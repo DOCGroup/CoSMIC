@@ -3311,6 +3311,9 @@ adding_visitor::add_exception_elements (DOMElement *parent,
       AST_Type *ex = ei.item ();
       const XMLCh *gme_id = be_global->lookup_id (ex);
 
+      if (0 == gme_id)
+        return;
+
       // Since the members of an exception list must be unique, we
       // just check for a DOM element in this scope that refers to
       // the exception. If there already is one, we can assume it
@@ -5062,7 +5065,7 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
     {
       next =
         dynamic_cast<DOMElement *> (this->previous_->getNextSibling ());
-  
+
       if (next != 0)
         {
           tag = next->getTagName ();
@@ -5084,7 +5087,7 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
       this->redef_error (next, d);
       BE_abort ();
     }
-    
+
     const XMLCh *ttag = 0;
     if (next != 0)
           ttag = next->getTagName ();

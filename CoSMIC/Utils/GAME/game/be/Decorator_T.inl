@@ -42,17 +42,17 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj)
     GAME::Meta::Part part (metaPart);
     GAME::FCO fco (obj);
 
-    int retval = this->impl_.initialize (proj, part, obj) == 0 ? S_OK : E_DECORATOR_INIT_WITH_NULL;
-    this->is_init_ = true;
+    int retval = this->impl_.initialize (proj, part, obj);
 
-    return retval;
+    if (0 == retval)
+      this->is_init_ = true;
   }
   catch (...)
   { 
     
   }
 
-  return E_DECORATOR_INIT_WITH_NULL;
+  return S_OK;
 }
 
 //
@@ -73,16 +73,16 @@ InitializeEx (IMgaProject* project,
     GAME::FCO fco (pFCO);
 
     int retval = this->impl_.initialize_ex (proj, part, fco, eventSink, parentWnd);
-    this->is_init_ = true;
 
-    return retval;
+    if (0 == retval)
+      this->is_init_ = true;
   }
   catch (...)
   {
 
   }
 
-  return E_DECORATOR_INIT_WITH_NULL;
+  return S_OK;
 }
 
 //

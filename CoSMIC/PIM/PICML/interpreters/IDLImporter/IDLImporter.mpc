@@ -1,7 +1,7 @@
 // -*- MPC -*-
 // $Id$
 
-project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, tao_idl_fe {
+project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe {
 
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
@@ -13,33 +13,30 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, tao_
   includes    += $(GME_ROOT)
 
   Source_Files {
-    adding_visitor.cpp
     be_global.cpp
     be_init.cpp
     be_produce.cpp
-    removing_visitor.cpp
-    removing_closure_visitor.cpp
     Type_Trait.cpp
-    xme_dom_visitor.cpp
+
+    Artifact_Generator.cpp
+    File_Creator.cpp
+    Implementation_Generator.cpp
+    Project_Generator.cpp
+    Scope.cpp
   }
 
   Header_Files {
-    adding_visitor.h
     be_extern.h
     be_global.h
     IDL_TO_PICML_BE_Export.h
     Predefined_Types.h
-    removing_visitor.h
-    removing_closure_visitor.h
-    xme_dom_visitor.h
   }
 
   Template_Files {
-    adding_visitor_t.cpp
   }
 }
 
-project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, mcpp, tao_idl_mcpp, tao_idl_fe {
+project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, game_xme, mcpp, tao_idl_mcpp, tao_idl_fe {
   after          += IDL_TO_PICML_BE
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE
@@ -55,12 +52,16 @@ project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, mcp
     endif
 
     VPATH = $(TAO_ROOT)/TAO_IDL $(TAO_ROOT)/TAO_IDL/driver
-    
+
     ifeq ($(static_libs_only), 1)
       ifneq ($(with_ld), macosx)
         LDFLAGS += -static 
       endif
     endif
+  }
+
+  specific (prop:microsoft) {
+    subsystem = 0
   }
 
   Source_Files {

@@ -7,4 +7,5 @@ workspace : cosmic_common {
 
   PIM/PICML/interpreters/IDLImporter
   $(COSMIC_ROOT)/Utils/xercesc
+  $(COSMIC_ROOT)/Utils/GAME/game/xme
 }

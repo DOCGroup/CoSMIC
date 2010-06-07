@@ -1766,7 +1766,9 @@ void PackageVisitor::Visit_AttributeMapping(const AttributeMapping& mapping)
     {
       Property prop = value.dstAttributeMappingValue_end();
       set<pair<string, string> > compAttrs;
+
       this->GetAttributeComponents (mapping, compAttrs);
+
       for (set<pair<string, string> >::const_iterator
              iter = compAttrs.begin();
            iter != compAttrs.end();
@@ -1963,112 +1965,109 @@ CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
   }
 }
 
-template <typename T, typename Del, typename DelRet, typename DelEndRet>
-void PackageVisitor::GetComponents (const T& port,
-                                    DelRet (T::*srcDel)() const,
-                                    DelRet (T::*dstDel) () const,
-                                    DelEndRet (Del::*srcDelEnd)() const,
-                                    DelEndRet (Del::*dstDelEnd)() const,
-                                    map<Component, string>& output,
-                                    set<T>& visited)
-{
-  visited.insert (port);
-  Udm::Object par = port.parent();
-  string recepName = port.name();
-  string parentName = this->ExtractName (par);
-  if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-    {
-      set<Del> delegates = (port.*dstDel)();
-      for (set<Del>::const_iterator iter = delegates.begin();
-           iter != delegates.end();
-           ++iter)
-        {
-          Del delegate = *iter;
-          T srcPort = (delegate.*dstDelEnd)();
-          string srcPortName = this->ExtractName(srcPort);
-          if (find (visited.begin(),
-                    visited.end(),
-                    srcPort) == visited.end())
-            this->GetComponents(srcPort, srcDel, dstDel,
-                                srcDelEnd, dstDelEnd, output, visited);
-        }
-      delegates = (port.*srcDel)();
-      for (set<Del>::const_iterator iter = delegates.begin();
-           iter != delegates.end();
-           ++iter)
-        {
-          Del delegate = *iter;
-          T dstPort = (delegate.*srcDelEnd)();
-          string dstPortName = this->ExtractName(dstPort);
-          if (find (visited.begin(),
-                    visited.end(),
-                    dstPort) == visited.end())
-            this->GetComponents(dstPort, srcDel, dstDel,
-                                srcDelEnd, dstDelEnd, output, visited);
-        }
-    }
-  else if (Udm::IsDerivedFrom (par.type(), Component::meta))
-    {
-      Component recep_comp = Component::Cast (par);
-      output.insert (make_pair (recep_comp, port.name()));
-    }
-  visited.erase (port);
-  return;
-}
-
-
-
-void PackageVisitor::GetReceptacleComponents (const RequiredRequestPort& receptacle,
-                                              map<Component,string>& output)
-{
-  set<RequiredRequestPort> visited;
-  this->GetComponents (receptacle,
-                       &RequiredRequestPort::srcReceptacleDelegate,
-                       &RequiredRequestPort::dstReceptacleDelegate,
-                       &ReceptacleDelegate::srcReceptacleDelegate_end,
-                       &ReceptacleDelegate::dstReceptacleDelegate_end,
-                       output,
-                       visited);
-}
-
-void PackageVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
-                                         map<Component,string>& output)
-{
-  set<ProvidedRequestPort> visited;
-  this->GetComponents (facet,
-                       &ProvidedRequestPort::srcFacetDelegate,
-                       &ProvidedRequestPort::dstFacetDelegate,
-                       &FacetDelegate::srcFacetDelegate_end,
-                       &FacetDelegate::dstFacetDelegate_end,
-                       output,
-                       visited);
-}
-
-void PackageVisitor::GetEventSinkComponents (const InEventPort& consumer,
-                                             map<Component,string>& output)
-{
-  set<InEventPort> visited;
-  this->GetComponents (consumer,
-                       &InEventPort::srcEventSinkDelegate,
-                       &InEventPort::dstEventSinkDelegate,
-                       &EventSinkDelegate::srcEventSinkDelegate_end,
-                       &EventSinkDelegate::dstEventSinkDelegate_end,
-                       output,
-                       visited);
-}
-
-void PackageVisitor::GetEventSourceComponents (const OutEventPort& publisher,
-                                               map<Component,string>& output)
-{
-  set<OutEventPort> visited;
-  this->GetComponents (publisher,
-                       &OutEventPort::srcEventSourceDelegate,
-                       &OutEventPort::dstEventSourceDelegate,
-                       &EventSourceDelegate::srcEventSourceDelegate_end,
-                       &EventSourceDelegate::dstEventSourceDelegate_end,
-                       output,
-                       visited);
-}
+//template <typename T, typename Del, typename DelRet, typename DelEndRet>
+//void PackageVisitor::GetComponents (const T& port,
+//                                    DelRet (T::*srcDel)() const,
+//                                    DelRet (T::*dstDel) () const,
+//                                    DelEndRet (Del::*srcDelEnd)() const,
+//                                    DelEndRet (Del::*dstDelEnd)() const,
+//                                    map<Component, string>& output,
+//                                    set<T>& visited)
+//{
+//  visited.insert (port);
+//  Udm::Object par = port.parent();
+//  string recepName = port.name();
+//  string parentName = this->ExtractName (par);
+//
+//  if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+//    {
+//      Del delegate = (port.*dstDelEnd)();
+//      string srcPortName = this->ExtractName (srcPort);
+//
+//      if (find (visited.begin(),
+//                visited.end(),
+//                srcPort) == visited.end ())
+//      this->GetComponents(srcPort, srcDel, dstDel,
+//                          srcDelEnd, dstDelEnd, output, visited);
+//
+//      delegates = (port.*srcDel)();
+//      for (set<Del>::const_iterator iter = delegates.begin();
+//           iter != delegates.end();
+//           ++iter)
+//        {
+//          Del delegate = *iter;
+//          T dstPort = (delegate.*srcDelEnd)();
+//          string dstPortName = this->ExtractName(dstPort);
+//          if (find (visited.begin(),
+//                    visited.end(),
+//                    dstPort) == visited.end())
+//            this->GetComponents(dstPort, srcDel, dstDel,
+//                                srcDelEnd, dstDelEnd, output, visited);
+//        }
+//    }
+//  else if (Udm::IsDerivedFrom (par.type(), Component::meta))
+//    {
+//      Component recep_comp = Component::Cast (par);
+//      output.insert (make_pair (recep_comp, port.name()));
+//    }
+//  visited.erase (port);
+//  return;
+//}
+//
+//
+//
+//void PackageVisitor::
+//GetReceptacleComponents (const RequiredRequestPort& receptacle,
+//                         map<Component,string>& output)
+//{
+//  set<RequiredRequestPort> visited;
+//  this->GetComponents (receptacle,
+//                       &RequiredRequestPort::srcReceptacleDelegate,
+//                       &RequiredRequestPort::dstReceptacleDelegate,
+//                       &ReceptacleDelegate::srcReceptacleDelegate_end,
+//                       &ReceptacleDelegate::dstReceptacleDelegate_end,
+//                       output,
+//                       visited);
+//}
+//
+//void PackageVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
+//                                         map<Component,string>& output)
+//{
+//  set<ProvidedRequestPort> visited;
+//  this->GetComponents (facet,
+//                       &ProvidedRequestPort::srcFacetDelegate,
+//                       &ProvidedRequestPort::dstFacetDelegate,
+//                       &FacetDelegate::srcFacetDelegate_end,
+//                       &FacetDelegate::dstFacetDelegate_end,
+//                       output,
+//                       visited);
+//}
+//
+//void PackageVisitor::GetEventSinkComponents (const InEventPort& consumer,
+//                                             map<Component,string>& output)
+//{
+//  set<InEventPort> visited;
+//  this->GetComponents (consumer,
+//                       &InEventPort::srcEventSinkDelegate,
+//                       &InEventPort::dstEventSinkDelegate,
+//                       &EventSinkDelegate::srcEventSinkDelegate_end,
+//                       &EventSinkDelegate::dstEventSinkDelegate_end,
+//                       output,
+//                       visited);
+//}
+//
+//void PackageVisitor::GetEventSourceComponents (const OutEventPort& publisher,
+//                                               map<Component,string>& output)
+//{
+//  set<OutEventPort> visited;
+//  this->GetComponents (publisher,
+//                       &OutEventPort::srcEventSourceDelegate,
+//                       &OutEventPort::dstEventSourceDelegate,
+//                       &EventSourceDelegate::srcEventSourceDelegate_end,
+//                       &EventSourceDelegate::dstEventSourceDelegate_end,
+//                       output,
+//                       visited);
+//}
 
 void PackageVisitor::CreateConnections (const map<Component, string>& src,
                                         const map<Component, string>& dst)
@@ -2135,8 +2134,8 @@ void PackageVisitor::Visit_invoke(const invoke& iv)
   map<Component,string> receptacles;
   map<Component,string> facets;
 
-  this->GetReceptacleComponents (receptacle, receptacles);
-  this->GetFacetComponents (facet, facets);
+  //this->GetReceptacleComponents (receptacle, receptacles);
+  //this->GetFacetComponents (facet, facets);
   this->CreateConnections (receptacles, facets);
 }
 
@@ -2155,8 +2154,8 @@ void PackageVisitor::Visit_sendsTo (const PICML::sendsTo & s)
     map <Component, string> emitters;
     map <Component, string> consumers;
 
-    this->GetEventSourceComponents (sender, emitters);
-    this->GetEventSinkComponents (consumer, consumers);
+    //this->GetEventSourceComponents (sender, emitters);
+    //this->GetEventSinkComponents (consumer, consumers);
     this->CreateConnections (emitters, consumers);
   }
   else

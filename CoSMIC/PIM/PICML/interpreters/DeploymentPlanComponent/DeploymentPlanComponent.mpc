@@ -6,6 +6,7 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
 
   Source_Files {
     Connection_Visitor.cpp
+    Connector_Visitor.cpp
     Data_Type_Visitor.cpp
     Data_Value_Visitor.cpp
     DeploymentPlanVisitor.cpp

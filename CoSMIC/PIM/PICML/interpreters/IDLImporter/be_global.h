@@ -26,7 +26,7 @@
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xme/Project.h"
 
 #include <string>
 
@@ -346,6 +346,8 @@ public:
   const char * const * allfiles (void) const;
   // Accessor.
 
+  GAME::XME::Project project (void) const;
+
 private:
   char *get_name (DOMElement *node);
   // Utility function that gets the value of the child with
@@ -437,6 +439,9 @@ private:
 
   ACE_CString schema_path_;
   // Location of the DTD for GME's XML format.
+
+  /// The GME project.
+  GAME::XME::Project proj_;
 };
 
 #endif /* IDL_TO_PICML_BE_GLOBAL_H */

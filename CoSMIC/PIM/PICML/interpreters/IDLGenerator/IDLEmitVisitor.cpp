@@ -282,6 +282,26 @@ namespace IDML
     return this->visitObjectByValue (object);
   }
 
+  bool IDLEmitVisitor::visitPortType (const PortType & object)
+  {
+    if (!object) 
+      return false;
+
+    // Constraints ensure that 'abstract' and 'custom' are not both set.
+    ofs << nl
+        << "porttype " << object->getName () << nl
+        << "{" << idt;
+
+    std::set <ObjectPort> ports = object->getObjectPort ();
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   boost::bind (&IDLEmitVisitor::visitReferenceImpl, this, _1));
+
+    ofs << uidt_nl
+        << "};";
+
+    return true;
+  }
 
   bool IDLEmitVisitor::visitException (const Exception& object)
   {
@@ -1045,6 +1065,7 @@ namespace IDML
     if ( !visitRequiredRequestPort( ref))
     if ( !visitReturnType( ref))
     if ( !visitSetException( ref))
+    if ( !visitPortSet( ref))
     if ( !visitSupports( ref))
     {
       // visiting other Reference
@@ -1081,6 +1102,7 @@ namespace IDML
     if ( !visitObject( model))
     if ( !visitObjectByValue( model))
     if ( !visitOnewayOperation( model))
+    if ( !visitPortType( model))
     if ( !visitOperationBase( model))
     if ( !visitPackage( model))
     if ( !visitPrefixable( model))
@@ -2218,6 +2240,22 @@ namespace IDML
         BON::Model d_parent = ct->getParentModel ();
         ofs << (sa_parent == d_parent ? ct->getName () : this->scoped_name (ct));
       }
+  }
+
+  bool IDLEmitVisitor::visitPortSet (const PortSet & object)
+  {
+    if (!object)
+      return false;
+
+    if (object->getMirrorPort ())
+      ofs << "mirrorport ";
+    else
+      ofs << "port ";
+
+    ofs << scoped_name (object->getPortType ())
+        << object->getName () << ";" << nl;
+
+    return true;
   }
 
   bool IDLEmitVisitor::emitPredefinedSequence (const MemberType& m)

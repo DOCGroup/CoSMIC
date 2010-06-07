@@ -1858,49 +1858,49 @@ namespace PICML
                                       Component_Port& output,
                                       std::set<T>& visited)
   {
-    visited.insert (port);
-    Udm::Object par = port.parent();
-    std::string recepName = port.name();
-    std::string parentName = this->ExtractName (par);
+    //visited.insert (port);
+    //Udm::Object par = port.parent();
+    //std::string recepName = port.name();
+    //std::string parentName = this->ExtractName (par);
 
-    if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-      {
-        std::set<Del> delegates = (port.*dstDel)();
-        for (std::set<Del>::const_iterator iter = delegates.begin();
-             iter != delegates.end();
-             ++iter)
-          {
-            Del delegate = *iter;
-            T srcPort = (delegate.*dstDelEnd)();
-            std::string srcPortName = this->ExtractName(srcPort);
-            if (std::find (visited.begin(),
-                           visited.end(),
-                           srcPort) == visited.end())
-              this->GetComponents(srcPort, srcDel, dstDel,
-                                  srcDelEnd, dstDelEnd, output, visited);
-          }
-        delegates = (port.*srcDel)();
-        for (std::set<Del>::const_iterator iter = delegates.begin();
-             iter != delegates.end();
-             ++iter)
-          {
-            Del delegate = *iter;
-            T dstPort = (delegate.*srcDelEnd)();
-            std::string dstPortName = this->ExtractName(dstPort);
-            if (std::find (visited.begin(),
-                           visited.end(),
-                           dstPort) == visited.end())
-              this->GetComponents(dstPort, srcDel, dstDel,
-                                  srcDelEnd, dstDelEnd, output, visited);
-          }
-      }
-    else if (Udm::IsDerivedFrom (par.type(), ComponentInstance::meta))
-      {
-        ComponentInstance recep_comp = ComponentInstance::Cast (par);
-        output.insert (make_pair (recep_comp, port));
-      }
-    visited.erase (port);
-    return;
+    //if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+    //  {
+    //    std::set<Del> delegates = (port.*dstDel)();
+    //    for (std::set<Del>::const_iterator iter = delegates.begin();
+    //         iter != delegates.end();
+    //         ++iter)
+    //      {
+    //        Del delegate = *iter;
+    //        T srcPort = (delegate.*dstDelEnd)();
+    //        std::string srcPortName = this->ExtractName(srcPort);
+    //        if (std::find (visited.begin(),
+    //                       visited.end(),
+    //                       srcPort) == visited.end())
+    //          this->GetComponents(srcPort, srcDel, dstDel,
+    //                              srcDelEnd, dstDelEnd, output, visited);
+    //      }
+    //    delegates = (port.*srcDel)();
+    //    for (std::set<Del>::const_iterator iter = delegates.begin();
+    //         iter != delegates.end();
+    //         ++iter)
+    //      {
+    //        Del delegate = *iter;
+    //        T dstPort = (delegate.*srcDelEnd)();
+    //        std::string dstPortName = this->ExtractName(dstPort);
+    //        if (std::find (visited.begin(),
+    //                       visited.end(),
+    //                       dstPort) == visited.end())
+    //          this->GetComponents(dstPort, srcDel, dstDel,
+    //                              srcDelEnd, dstDelEnd, output, visited);
+    //      }
+    //  }
+    //else if (Udm::IsDerivedFrom (par.type(), ComponentInstance::meta))
+    //  {
+    //    ComponentInstance recep_comp = ComponentInstance::Cast (par);
+    //    output.insert (make_pair (recep_comp, port));
+    //  }
+    //visited.erase (port);
+    //return;
   }
 
 
@@ -2275,13 +2275,18 @@ namespace PICML
 
     typedef size_type* Iiter;
 
-    std::vector < size_type > ordered_vertices (dtime.size ());
     // use std::sort to order the vertices by their discover time
-    //std::vector < size_type > discover_order(10);
+    std::vector < size_type > ordered_vertices (dtime.size ());
     boost::integer_range < size_type > r (0, dtime.size ());
-    std::copy (r.begin(), r.end(), ordered_vertices.begin());
-    std::sort(ordered_vertices.begin(), ordered_vertices.end(),
-      boost::indirect_cmp < Iiter, std::less < size_type > >(&dtime[0]));
+
+    std::copy (r.begin(), 
+               r.end(), 
+               ordered_vertices.begin ());
+
+    std::sort (ordered_vertices.begin(), 
+               ordered_vertices.end(),
+               boost::indirect_cmp < Iiter, std::less < size_type > > (&dtime[0]));
+
     std::cout << "order of discovery: ";
 
     discover = ordered_vertices;

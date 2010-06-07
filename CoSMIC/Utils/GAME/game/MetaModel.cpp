@@ -78,7 +78,7 @@ Aspect Model::aspect (const std::string & name) const
   CComPtr <IMgaMetaAspect> aspect;
 
   VERIFY_HRESULT (this->impl ()->get_AspectByName (bstr, &aspect));
-  return Aspect (aspect);
+  return aspect.p;
 }
 
 //

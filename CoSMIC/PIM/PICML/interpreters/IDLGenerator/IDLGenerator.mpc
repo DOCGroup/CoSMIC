@@ -1,24 +1,27 @@
 // $Id$
 
-project (IDLGeneratorComponent) : gme_bon2_component, cosmic_utils {
+project (IDLGeneratorComponent) : picml_udm_utils, game, gme_udm_component, cosmic_utils {
   sharedname = IDLGeneratorComponent
 
   dynamicflags += PICML_IDLGENERATOR_BUILD_DLL
 
   Source_Files {
     Component.rc
-    DependencyVisitor.cpp
-    IDMLBonExtension.cpp
-    IDLEmitVisitor.cpp
+    //DependencyVisitor.cpp
+    //IDMLBonExtension.cpp
+    //IDLEmitVisitor.cpp
+    Find_Forward_Decls.cpp
+    File_Processor.cpp
     IDLStream.cpp
+    
+    IDL_File_Generator.cpp
+    IDL_Generator_Visitor.cpp
   }
 
   Header_Files {
-    DependencyVisitor.h
-    IDLEmitVisitor.h
-    IDMLBonExtension.h
-  }
 
+  }
+  
   Resource_Files {
     CompIcon.ico
   }

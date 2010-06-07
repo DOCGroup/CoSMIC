@@ -52,6 +52,7 @@ namespace IDML
     bool visitLookupOperation (const LookupOperation& object);
     bool visitObject (const Object& object);
     bool visitObjectByValue (const ObjectByValue& object);
+    bool visitPortType (const PortType& object);
     bool visitOnewayOperation (const OnewayOperation& object);
     bool visitOperationBase (const OperationBase& object);
     bool visitPackage (const Package& object);
@@ -97,6 +98,7 @@ namespace IDML
     bool visitTaggable (const Taggable& object);
     bool visitInterfaceDefinitions (const InterfaceDefinitions& object);
     bool visitPredefinedTypes (const PredefinedTypes& object);
+    bool visitPortSet (const PortSet & object);
 
     void order_children( const Orderable& object );
     std::string scoped_name( const BON::FCO& object );

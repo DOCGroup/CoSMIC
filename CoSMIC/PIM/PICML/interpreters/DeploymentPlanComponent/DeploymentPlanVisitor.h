@@ -117,7 +117,15 @@ public:
 
   virtual void Visit_AttributeValue (const PICML::AttributeValue & );
 
+  virtual void Visit_ConnectorInstance (const PICML::ConnectorInstance &);
+
+  virtual void Visit_ConnectorImplementationType (const PICML::ConnectorImplementationType &);
+
+  virtual void Visit_ConnectorImplementation (const PICML::ConnectorImplementation &);
+
 private:
+  void Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & );
+
   /// Initialize the object.
   void init (void);
 
@@ -145,6 +153,8 @@ private:
 
   /// Collection of instances in the current deployment.
   std::map <PICML::ComponentInstance, xercesc::DOMElement *> insts_;
+
+  std::map <PICML::ConnectorInstance, xercesc::DOMElement *> conn_insts_;
 
   /// Collection of implementation in the current deployment.
   std::map <PICML::Implemenation, xercesc::DOMElement *> impls_;

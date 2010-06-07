@@ -558,10 +558,13 @@ BE_GlobalData::generator_init (void)
 void
 BE_GlobalData::xerces_init (void)
 {
+  using GAME::XME::Project;
+
   // Initialize the Xerces run-time
   try
     {
       XMLPlatformUtils::Initialize ();
+
       XMLCh tempStr[100];
       XMLString::transcode ("LS", tempStr, 99);
       this->impl_ =
@@ -597,6 +600,27 @@ BE_GlobalData::xerces_init (void)
       // the DOM tree, else create an empty one.
       if (0 == xme)
         {
+          ACE_CString target_name;
+          const char *path = be_global->output_dir ();
+
+          if (path != 0)
+            {
+              target_name += path;
+              target_name += "/";
+            }
+
+          target_name += be_global->output_file ();
+          target_name += FILE_EXT;
+
+          // Create the project and set its name.
+          static const ::Utils::XStr PICML ("PICML");
+          static const ::Utils::XStr GUID ("94FCA7F1-9017-4BFD-B557-F738FC54B103");
+          static const ::Utils::XStr name (be_global->output_file ().c_str ());
+
+          this->proj_ = Project::_create (target_name.c_str (), PICML, GUID);
+          this->proj_.name (name);
+          this->proj_.root_folder ().name (name);
+
           DOMDocumentType *doc_type =
             this->impl_->createDocumentType (X (DOCTYPE),
                                              0,
@@ -605,11 +629,12 @@ BE_GlobalData::xerces_init (void)
                                                     X (DOCTYPE),
                                                     doc_type);
 
-          // this->doc_->setEncoding (X (ENCODING));
           this->doc_->setXmlVersion (X (VERSION));
         }
       else
         {
+          this->proj_ = Project::_open (xme, this->schema_path_.c_str ());
+
           XercesDOMParser parser;
           parser.setValidationScheme(XercesDOMParser::Val_Always);
           parser.setDoNamespaces (true);
@@ -630,18 +655,14 @@ BE_GlobalData::xerces_init (void)
                           ACE_TEXT ("directory of execution\n")));
             }
 
-          Utils::EntityResolver resolver (
-            this->schema_path_.c_str ());
+          Utils::EntityResolver resolver (this->schema_path_.c_str ());
           parser.setEntityResolver (&resolver);
 
           parser.parse (xme);
           this->doc_ = parser.adoptDocument ();
 
           if (handler.getErrors ())
-            {
-              // The error handler will output a message.
-              BE_abort ();
-            }
+            BE_abort ();
         }
 
       ACE_CString target_name;
@@ -664,8 +685,7 @@ BE_GlobalData::xerces_init (void)
       Utils::XStr target_xstr (target_name.c_str ());
       const XMLCh * target_arg = target_xstr.begin ();
 
-      this->target_ =
-        new LocalFileFormatTarget (target_name.c_str ());
+      //this->target_ = new LocalFileFormatTarget (target_name.c_str ());
     }
   catch (const DOMException &e)
     {
@@ -792,12 +812,12 @@ BE_GlobalData::destroy (void)
   if (ok_to_write)
     {
       // Write out the file last, just before cleanup.
-      xercesc::DOMLSOutput * output =
-        ((DOMImplementationLS*) this->impl_)->createLSOutput ();
-      output->setByteStream (this->target_);
+      //xercesc::DOMLSOutput * output =
+      //  ((DOMImplementationLS*) this->impl_)->createLSOutput ();
+      //output->setByteStream (this->target_);
 
-      this->writer_->write (this->doc_, output);
-      output->release ();
+      //this->writer_->write (this->doc_, output);
+      //output->release ();
     }
 
   if (0 != this->writer_)
@@ -1978,6 +1998,14 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
     {
       return true;
     }
+}
+
+//
+// project
+//
+GAME::XME::Project BE_GlobalData::project (void) const
+{
+  return this->proj_;
 }
 
 std::string

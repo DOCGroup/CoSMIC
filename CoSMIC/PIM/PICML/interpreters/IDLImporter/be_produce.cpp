@@ -65,16 +65,24 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
  */
 
 #include "IDL_TO_PICML_BE_Export.h"
+#include "Project_Generator.h"
+#include "File_Creator.h"
+#include "Implementation_Generator.h"
+
 #include "global_extern.h"
 #include "be_extern.h"
 #include "fe_extern.h"
 #include "ast_root.h"
 #include "utl_string.h"
-#include "adding_visitor.h"
-#include "removing_visitor.h"
-#include "Utils/xercesc/XercesString.h"
-#include "xercesc/util/XMLUniDefs.hpp"
-#include "xercesc/framework/LocalFileFormatTarget.hpp"
+//#include "adding_visitor.h"
+//#include "removing_visitor.h"
+
+//#include "Utils/xercesc/XercesString.h"
+//#include "xercesc/util/XMLUniDefs.hpp"
+//#include "xercesc/framework/LocalFileFormatTarget.hpp"
+
+#include "ace/High_Res_Timer.h"
+#include "ace/streams.h"
 
 // Temporarily included for debugging purposes.
 //#include "XML_Helper.h"
@@ -101,9 +109,45 @@ BE_abort (void)
 IDL_TO_PICML_BE_Export void
 BE_produce (void)
 {
-  // Get the root node.
-  AST_Decl *d = idl_global->root ();
-  AST_Root *ast_root = AST_Root::narrow_from_decl (d);
+#if 0
+  ACE_High_Res_Timer timer;
+  timer.start ();
+#endif
+
+  try
+  {
+    GAME::XME::Project & project = be_global->project ();
+
+    // Generate the IDL files in PICML for this project.
+    PICML_File_Creator fc (project);
+    const char * dest = "InterfaceDefintions";
+    fc.create_files (be_global->allfiles (), be_global->nfiles (), dest);
+
+    // Visitor all nodes in the AST. This will populate the XME
+    // document with the correct hierarchy for parsed IDL files.
+    AST_Root *ast_root = idl_global->root ();
+    Implementation_Generator impl_gen (project.root_folder ());
+    Project_Generator visitor (fc, impl_gen, project);
+
+    ast_root->ast_accept (&visitor);
+    project.save ();
+  }
+  catch (...)
+  {
+    BE_abort ();
+  }
+
+#if 0
+  timer.stop ();
+  ACE_Time_Value elapsed;
+  timer.elapsed_time (elapsed);
+
+  std::cerr << "Pattern version: " << elapsed << std::endl;
+  timer.reset ();
+#endif
+
+#if 0
+  /// BEGIN OLD CODE HERE
 
   if (0 == ast_root)
     {
@@ -125,6 +169,8 @@ BE_produce (void)
     }
   try
     {
+      timer.start ();
+
       DOMElement *dom_root = doc->getDocumentElement ();
 
       if (0 == dom_root)
@@ -160,6 +206,11 @@ BE_produce (void)
               BE_abort ();
             }
         }
+
+      timer.stop ();
+
+      timer.elapsed_time (elapsed);
+      std::cerr << "Old version: " << elapsed << std::endl;
     }
   catch (const DOMException &e)
     {
@@ -191,6 +242,9 @@ BE_produce (void)
                   ACE_TEXT ("Unknown exception in BE_produce\n")));
       BE_abort ();
     }
+#endif
+
+  //@ END OLD CODE HERE
 
   // Clean up.
   BE_cleanup ();

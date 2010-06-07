@@ -12,7 +12,7 @@ workspace : cosmic_common {
   // The following directories and workspaces apply only
   // apply to building CoSMIC using Visual C++.
   PIM/PICML/addons
-  PIM/PICML/decorators/Decorators.mwc
+  PIM/PICML/decorators
   PIM/PICML/utils
   PIM/PICML/interpreters/Interpreters.mwc
 

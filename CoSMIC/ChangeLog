@@ -1,8 +1,95 @@
+Mon Jun  7 17:14:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        
+          . Added support for generating connector instance infomration to the 
+            deployment plan. The last issue is generating the connection information
+            to the deployment plan.
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.h:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Visitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Visitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/RawComponent.h:
+        * PIM/PICML/interpreters/IDLGenerator/RawComponent.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/UdmApp.h:
+        * PIM/PICML/interpreters/IDLGenerator/UdmApp.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/UdmConfig.h:
+        
+          . Updated IDL generator to support IDL3+. 
+
+        * Release_idl_to_picml.mwc:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.inl:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.h:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.inl:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.inl:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Scope.h:
+        * PIM/PICML/interpreters/IDLImporter/Scope.inl:
+        * PIM/PICML/interpreters/IDLImporter/Scope.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        
+          . Updated idl_to_picml to use the XME version in GAME.
+          
+          . Updated idl_to_picml to support IDL3+ minus parameterized
+            packages.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        
+          Fixed compiler errors related to updated PICML metamodel.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+          
+          . Removed the Component and ComponentRef decorator.
+        
+          . Changed the semantics of port delegation in an assemble to 
+            1-1. This simplifies the semantics of the metamodel.
+          
+          . Added UUID to the ConnectorInstance.
+
+        * Utils/GAME/game/MetaModel.cpp:
+        
+          . Updated the formatting.
+
+        * Utils/GAME/game/be/Decorator_T.inl:
+        
+          . The decorator no longer returns  E_DECORATOR_INIT_WITH_NULL.
+
+        * picml.mwc:
+        
+          . Removed the explicit decorator workspace.
+
 Sun Jun  6 17:56:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.h:
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
-        
+
           Added support for auto-generating the UUID for the
           connector elements.
 

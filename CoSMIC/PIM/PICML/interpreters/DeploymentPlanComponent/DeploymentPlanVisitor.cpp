@@ -368,6 +368,15 @@ Visit_ComponentInstanceType (const PICML::ComponentInstanceType & type)
 void DeploymentPlanVisitor::
 Visit_MonolithicImplementation (const PICML::MonolithicImplementation & impl)
 {
+  this->Visit_MonolithicImplementationBase (impl);
+}
+
+//
+// Visit_MonolithicImplementationBase
+//
+void DeploymentPlanVisitor::
+Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & impl)
+{
   // Add the implementation to the current instance.
   std::string uuid = std::string ("_") + std::string (impl.UUID ());
 
@@ -567,6 +576,76 @@ Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter& param)
 
   PICML::Property prop = param.dstArtifactExecParameter_end ();
   prop.Accept (*this);
+}
+
+//
+// Visit_ConnectorInstance
+//
+void DeploymentPlanVisitor::
+Visit_ConnectorInstance (const PICML::ConnectorInstance & inst)
+{
+  if (this->conn_insts_.find (inst) != this->conn_insts_.end ())
+    return;
+
+  std::string uuid = "_" /*+ std::string (inst.UUID ())*/;
+  std::string name = inst.getPath (".", false, true, "name", true);
+
+  // Create a new instance in the XML document.
+  this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
+  this->conn_insts_.insert (std::make_pair (inst, this->curr_instance_));
+
+  this->curr_instance_->setAttribute (XStr ("xmi:id"), XStr (uuid));
+  this->create_simple_content (this->curr_instance_, "name", name);
+
+  // TODO set the node correctly...
+  this->create_simple_content (this->curr_instance_, "node", this->current_node_.name ());
+  this->create_simple_content (this->curr_instance_, "source", "");
+
+  //// Insert this instance into the current locality.
+  //DOMElement * constrained = this->create_element (this->curr_locality_, "constrainedInstance");
+  //constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+
+  // Visit this instance's implementation.
+  PICML::ConnectorImplementationType cit = inst.ConnectorImplementationType_child ();
+  cit.Accept (*this);
+
+  this->param_parent_ = this->curr_instance_;
+
+  // Finish writing the component instance information.
+  std::vector <PICML::ReadonlyAttribute> attrs = inst.ReadonlyAttribute_children ();
+  std::for_each (attrs.begin (),
+                 attrs.end (),
+                 boost::bind (&PICML::ReadonlyAttribute::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  //std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
+  //std::for_each (configs.begin (),
+  //               configs.end (),
+  //               boost::bind (&PICML::AssemblyConfigProperty::Accept,
+  //                            _1,
+  //                            boost::ref (*this)));
+}
+
+//
+// Visit_ConnectorImplementationType
+//
+void DeploymentPlanVisitor::
+Visit_ConnectorImplementationType (const PICML::ConnectorImplementationType & cit)
+{
+  PICML::ConnectorImplementation impl = cit.ref ();
+
+  if (impl != Udm::null)
+    impl.Accept (*this);
+}
+
+//
+// Visit_ConnectorImplementation
+//
+void DeploymentPlanVisitor::
+Visit_ConnectorImplementation (const PICML::ConnectorImplementation & impl)
+{
+  this->Visit_MonolithicImplementationBase (impl);
 }
 
 //

@@ -164,29 +164,29 @@ namespace PICML
     DOMElement* createSimpleContent (const string& name,
                                      const string& value);
 
-    void GetReceptacleComponents (const RequiredRequestPort& receptacle,
-                                  map<Component,string>& output);
+    //void GetReceptacleComponents (const RequiredRequestPort& receptacle,
+    //                              map<Component,string>& output);
 
-    void GetFacetComponents (const ProvidedRequestPort& facet,
-                             map<Component,string>& output);
+    //void GetFacetComponents (const ProvidedRequestPort& facet,
+    //                         map<Component,string>& output);
 
-    void GetEventSinkComponents (const InEventPort& consumer,
-                                 map<Component,string>& output);
+    //void GetEventSinkComponents (const InEventPort& consumer,
+    //                             map<Component,string>& output);
 
-    void GetEventSourceComponents (const OutEventPort& publisher,
-                                   map<Component,string>& output);
+    //void GetEventSourceComponents (const OutEventPort& publisher,
+    //                               map<Component,string>& output);
 
     void GetAttributeComponents (const AttributeMapping& mapping,
                                  set<pair<string, string> >& output);
 
-    template <typename T, typename Del, typename DelRet, typename DelEndRet>
-      void GetComponents (const T& port,
-                          DelRet (T::*srcDel)() const,
-                          DelRet (T::*dstDel) () const,
-                          DelEndRet (Del::*srcDelEnd)() const,
-                          DelEndRet (Del::*dstDelEnd)() const,
-                          map<Component, string>& output,
-                          set<T>& visited);
+    //template <typename T, typename Del, typename DelRet, typename DelEndRet>
+    //  void GetComponents (const T& port,
+    //                      DelRet (T::*srcDel)() const,
+    //                      DelRet (T::*dstDel) () const,
+    //                      DelEndRet (Del::*srcDelEnd)() const,
+    //                      DelEndRet (Del::*dstDelEnd)() const,
+    //                      map<Component, string>& output,
+    //                      set<T>& visited);
 
     void CreateAssemblies (const ComponentAssembly& assembly);
 

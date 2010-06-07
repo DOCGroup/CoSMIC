@@ -25,6 +25,7 @@ DECLARE_ABSTRACT_BONEXTENSION( Taggable, PortImpl, Port );
 DECLARE_ABSTRACT_BONEXTENSION2( MemberType, ConstantType, PredefinedTypeImpl, PredefinedType );
 DECLARE_BONEXTENSION2( BON::Reference, Manageable, ComponentRefImpl, ComponentRef );
 DECLARE_BONEXTENSION3( BON::Reference, Orderable, Taggable, ConstantImpl, Constant );
+
 DECLARE_BONEXTENSION( ReadonlyAttribute, AttributeImpl, Attribute );
 DECLARE_ABSTRACT_BONEXTENSION( OperationBase, HasExceptionsImpl, HasExceptions );
 DECLARE_ABSTRACT_BONEXTENSION3( BON::Model, Orderable, NamedType, InheritableImpl, Inheritable );
@@ -43,10 +44,18 @@ DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, StringImpl, String );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, TypeEncodingImpl, TypeEncoding );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, TypeKindImpl, TypeKind );
 DECLARE_BONEXTENSION3( BON::Reference, Orderable, NamedType, BoxedImpl, Boxed );
+
 DECLARE_BONEXTENSION2( BON::Reference, Port, InEventPortImpl, InEventPort );
 DECLARE_BONEXTENSION2( BON::Reference, Port, OutEventPortImpl, OutEventPort );
-DECLARE_BONEXTENSION2( BON::Reference, Port, ProvidedRequestPortImpl, ProvidedRequestPort );
-DECLARE_BONEXTENSION2( BON::Reference, Port, RequiredRequestPortImpl, RequiredRequestPort );
+DECLARE_BONEXTENSION2( BON::Reference, Port, PortSetImpl, PortSet );
+
+DECLARE_ABSTRACT_BONEXTENSION( Port, ObjectPortImpl, ObjectPort);
+DECLARE_BONEXTENSION2( BON::Reference, ObjectPort, ProvidedRequestPortImpl, ProvidedRequestPort );
+DECLARE_BONEXTENSION2( BON::Reference, ObjectPort, RequiredRequestPortImpl, RequiredRequestPort );
+
+DECLARE_BONEXTENSION2( BON::Model, NoInheritable, PortTypeImpl, PortType );
+
+
 DECLARE_BONEXTENSION2( BON::Model, NoInheritable, AggregateImpl, Aggregate );
 DECLARE_BONEXTENSION3( BON::Model, NoInheritable, ConstantType, EnumImpl, Enum );
 DECLARE_BONEXTENSION( HasExceptions, FactoryOperationImpl, FactoryOperation );
@@ -289,6 +298,7 @@ public:
   virtual std::set<Package>               getPackage();
   virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
   virtual std::set<ValueObject>           getValueObject();
+  virtual std::set<PortType>              getPortType();
 
   bool include_components_idl () const;
   void include_components_idl (bool val);
@@ -354,6 +364,7 @@ public:
   virtual std::set<Package>               getPackage();
   virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
   virtual std::set<ValueObject>           getValueObject();
+  virtual std::set<PortType>              getPortType();
 
   ///BUP
   // add your own members here
@@ -409,6 +420,33 @@ public:
   ///EUP
 };
 
+
+//*******************************************************************
+//   C  L  A  S  S   PortImpl
+//*******************************************************************
+class PortSetImpl :
+  virtual public PortImpl,
+  virtual public BON::ReferenceImpl
+{
+public:
+  PortType getPortType (void);
+
+  bool getMirrorPort (void);
+};
+
+//*******************************************************************
+//   C  L  A  S  S   ObjectPortImpl
+//*******************************************************************
+
+class ObjectPortImpl :
+  virtual public PortImpl
+{
+public:
+
+  ///BUP
+  // add your own members here
+  ///EUP
+};
 
 //*******************************************************************
 //   C  L  A  S  S   PredefinedTypeImpl
@@ -794,7 +832,7 @@ public:
 //*******************************************************************
 class ProvidedRequestPortImpl :
   virtual public BON::ReferenceImpl,
-  virtual public PortImpl
+  virtual public ObjectPortImpl
 {
 public:
   //
@@ -812,7 +850,7 @@ public:
 //*******************************************************************
 class RequiredRequestPortImpl :
   virtual public BON::ReferenceImpl,
-  virtual public PortImpl
+  virtual public ObjectPortImpl
 {
 public:
   //
@@ -1029,6 +1067,7 @@ public:
   virtual std::set<Port>                  getPort();
   virtual std::set<ProvidedRequestPort>   getProvidedRequestPort();
   virtual std::set<RequiredRequestPort>   getRequiredRequestPort();
+  virtual std::set<PortSet>               getPortSet();
 
   bool ref_managed () const;
   void ref_managed (bool val);
@@ -1488,6 +1527,20 @@ public:
   ///EUP
 };
 
+//*******************************************************************
+//   C  L  A  S  S   PortTypeImpl
+//*******************************************************************
+
+class PortTypeImpl :
+  virtual public BON::ModelImpl,
+  virtual public NoInheritableImpl
+{
+public:
+
+  std::set <IDML::ObjectPort> getObjectPort (void);
+  std::set <IDML::ProvidedRequestPort> getProvidedRequestPort (void);
+  std::set <IDML::RequiredRequestPort> getRequiredRequestPort (void);
+};
 
 
 }; // namespace IDML

@@ -25,6 +25,7 @@ IMPLEMENT_BONEXTENSION( IDML::Package, "Package" );
 IMPLEMENT_BONEXTENSION( IDML::ReadonlyAttribute, "ReadonlyAttribute" );
 IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::NamedType );
 IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Port );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::ObjectPort );
 IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::PredefinedType );
 IMPLEMENT_BONEXTENSION( IDML::ComponentRef, "ComponentRef" );
 IMPLEMENT_BONEXTENSION( IDML::Constant, "Constant" );
@@ -86,6 +87,8 @@ IMPLEMENT_BONEXTENSION( IDML::OutParameter, "OutParameter" );
 IMPLEMENT_BONEXTENSION( IDML::ReturnType, "ReturnType" );
 IMPLEMENT_BONEXTENSION( IDML::SetException, "SetException" );
 IMPLEMENT_BONEXTENSION( IDML::Supports, "Supports" );
+IMPLEMENT_BONEXTENSION( IDML::PortType, "PortType" );
+IMPLEMENT_BONEXTENSION( IDML::PortSet, "PortSet" );
 
 
 }; // end namespace BON
@@ -482,6 +485,21 @@ std::set<Aggregate> FileImpl::getAggregate()
   return res;
 }
 
+//*******************************************************************
+// getter for role "PortType" among "NamedType"s and its descendants
+//*******************************************************************
+std::set<PortType> FileImpl::getPortType()
+{
+  std::set<PortType> res;
+  std::set<BON::FCO> roles = getChildFCOsAs ("PortType");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    PortType elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
+}
 
 //*******************************************************************
 // getter for role "Alias" among "NamedType"s and its descendants
@@ -818,6 +836,21 @@ std::set<Aggregate> PackageImpl::getAggregate()
   return res;
 }
 
+//*******************************************************************
+// getter for role "PortType" among "NamedType"s and its descendants
+//*******************************************************************
+std::set<PortType> PackageImpl::getPortType()
+{
+  std::set<PortType> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("PortType");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    PortType elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
+}
 
 //*******************************************************************
 // getter for role "Alias" among "NamedType"s and its descendants
@@ -1783,6 +1816,22 @@ std::set<ProvidedRequestPort> ComponentImpl::getProvidedRequestPort()
 
 
 //*******************************************************************
+// getter for role "PortSet" among "Port"s and its descendants
+//*******************************************************************
+std::set<PortSet> ComponentImpl::getPortSet()
+{
+  std::set<PortSet> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("PortSet");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    PortSet elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
+}
+
+//*******************************************************************
 // getter for role "RequiredRequestPort" among "Port"s and its descendants
 //*******************************************************************
 std::set<RequiredRequestPort> ComponentImpl::getRequiredRequestPort()
@@ -2400,5 +2449,61 @@ Object SupportsImpl::getObject()
 }
 
 
+//*******************************************************************
+// PortTypeImpl
+//*******************************************************************
+
+std::set <ObjectPort> PortTypeImpl::getObjectPort (void)
+{
+  std::set <ObjectPort> res;
+  std::set <BON::FCO> roles = getChildFCOsAs ("ObjectPort");
+
+  for( std::set <BON::FCO>::iterator i = roles.begin (); i != roles.end(); ++i)
+  {
+    ObjectPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
+}
+
+std::set <ProvidedRequestPort> PortTypeImpl::getProvidedRequestPort (void)
+{
+  std::set <ProvidedRequestPort> res;
+  std::set <BON::FCO> roles = getChildFCOsAs ("ProvidedRequestPort");
+
+  for( std::set <BON::FCO>::iterator i = roles.begin (); i != roles.end(); ++i)
+  {
+    ProvidedRequestPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
+}
+
+std::set <RequiredRequestPort> PortTypeImpl::getRequiredRequestPort (void)
+{
+  std::set <RequiredRequestPort> res;
+  std::set <BON::FCO> roles = getChildFCOsAs ("RequiredRequestPort");
+
+  for( std::set <BON::FCO>::iterator i = roles.begin (); i != roles.end(); ++i)
+  {
+    RequiredRequestPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
+}
+
+PortType PortSetImpl::getPortType (void)
+{
+  BON::FCO r = this->getReferred ();
+  return PortType(r);
+}
+
+bool PortSetImpl::getMirrorPort (void)
+{
+  return this->getAttribute ("MirrorPort")->getBooleanValue ();
+}
 
 }; // namespace IDML
