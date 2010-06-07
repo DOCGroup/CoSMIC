@@ -1,10 +1,17 @@
+Mon Jun  7 17:33:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        
+          . Missing source files.
+
 Mon Jun  7 17:14:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
-        
-          . Added support for generating connector instance infomration to the 
+
+          . Added support for generating connector instance infomration to the
             deployment plan. The last issue is generating the connection information
             to the deployment plan.
 
@@ -26,8 +33,8 @@ Mon Jun  7 17:14:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLGenerator/UdmApp.h:
         * PIM/PICML/interpreters/IDLGenerator/UdmApp.cpp:
         * PIM/PICML/interpreters/IDLGenerator/UdmConfig.h:
-        
-          . Updated IDL generator to support IDL3+. 
+
+          . Updated IDL generator to support IDL3+.
 
         * Release_idl_to_picml.mwc:
         * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.h:
@@ -49,40 +56,40 @@ Mon Jun  7 17:14:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
-        
+
           . Updated idl_to_picml to use the XME version in GAME.
-          
+
           . Updated idl_to_picml to support IDL3+ minus parameterized
             packages.
 
         * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
         * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
         * PIM/PICML/interpreters/Path/PathVisitor.cpp:
-        
+
           Fixed compiler errors related to updated PICML metamodel.
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          
+
           . Removed the Component and ComponentRef decorator.
-        
-          . Changed the semantics of port delegation in an assemble to 
+
+          . Changed the semantics of port delegation in an assemble to
             1-1. This simplifies the semantics of the metamodel.
-          
+
           . Added UUID to the ConnectorInstance.
 
         * Utils/GAME/game/MetaModel.cpp:
-        
+
           . Updated the formatting.
 
         * Utils/GAME/game/be/Decorator_T.inl:
-        
+
           . The decorator no longer returns  E_DECORATOR_INIT_WITH_NULL.
 
         * picml.mwc:
-        
+
           . Removed the explicit decorator workspace.
 
 Sun Jun  6 17:56:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
