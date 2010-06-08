@@ -110,6 +110,8 @@ public:
 
   virtual ~Project_Generator (void);
 
+  void finalize (void);
+
   virtual int visit_decl (AST_Decl *d);
   virtual int visit_scope (UTL_Scope *node);
   virtual int visit_type (AST_Type *node);

@@ -109,11 +109,6 @@ BE_abort (void)
 IDL_TO_PICML_BE_Export void
 BE_produce (void)
 {
-#if 0
-  ACE_High_Res_Timer timer;
-  timer.start ();
-#endif
-
   try
   {
     GAME::XME::Project & project = be_global->project ();
@@ -130,121 +125,15 @@ BE_produce (void)
     Project_Generator visitor (fc, impl_gen, project);
 
     ast_root->ast_accept (&visitor);
+    visitor.finalize ();
+
+    // Save the project.
     project.save ();
   }
   catch (...)
   {
     BE_abort ();
   }
-
-#if 0
-  timer.stop ();
-  ACE_Time_Value elapsed;
-  timer.elapsed_time (elapsed);
-
-  std::cerr << "Pattern version: " << elapsed << std::endl;
-  timer.reset ();
-#endif
-
-#if 0
-  /// BEGIN OLD CODE HERE
-
-  if (0 == ast_root)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("(%N:%l) BE_produce - ")
-                  ACE_TEXT ("AST Root is  null\n")));
-      BE_abort ();
-    }
-
-  // Visit the AST.
-  DOMDocument *doc = be_global->doc ();
-
-  if (0 == doc)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("(%N:%l) BE_produce - ")
-                  ACE_TEXT ("DOM document is null\n")));
-      BE_abort ();
-    }
-  try
-    {
-      timer.start ();
-
-      DOMElement *dom_root = doc->getDocumentElement ();
-
-      if (0 == dom_root)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      ACE_TEXT ("(%N:%l) BE_produce - ")
-                      ACE_TEXT ("DOM document root element is null\n")));
-          BE_abort ();
-        }
-
-      adding_visitor ast_visitor (dom_root);
-
-      if (ast_visitor.visit_root (ast_root) == -1)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      ACE_TEXT ("BE_produce - ")
-                      ACE_TEXT ("failed to accept AST visitor\n")));
-          BE_abort ();
-        }
-
-      // Launch this visitor only if we have imported an XML document
-      // and pruning hasn't been suppressed from the command line.
-      if (0 != be_global->input_xme () && be_global->do_removal ())
-        {
-          // Visit the DOM tree.
-          removing_visitor dom_visitor;
-
-          if (!dom_visitor.visit_root (be_global->current_idl_file ()))
-            {
-              ACE_ERROR ((LM_ERROR,
-                          ACE_TEXT ("BE_produce - ")
-                          ACE_TEXT ("failed to accept DOM visitor\n")));
-              BE_abort ();
-            }
-        }
-
-      timer.stop ();
-
-      timer.elapsed_time (elapsed);
-      std::cerr << "Old version: " << elapsed << std::endl;
-    }
-  catch (const DOMException &e)
-    {
-      char *message = XMLString::transcode (e.getMessage ());
-      ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("BE_produce - ")
-                  ACE_TEXT ("DOMException message is:  %s\n"),
-                  message));
-      XMLString::release (&message);
-      BE_abort ();
-    }
-  catch (const XMLException &e)
-    {
-      char *message = XMLString::transcode (e.getMessage ());
-      ACE_ERROR ((LM_DEBUG,
-                  ACE_TEXT ("BE_produce - ")
-                  ACE_TEXT ("XMLException message is: %s\n"),
-                  message));
-      XMLString::release (&message);
-      BE_abort ();
-    }
-  catch (Bailout)
-    {
-      throw;
-    }
-  catch (...)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("Unknown exception in BE_produce\n")));
-      BE_abort ();
-    }
-#endif
-
-  //@ END OLD CODE HERE
 
   // Clean up.
   BE_cleanup ();

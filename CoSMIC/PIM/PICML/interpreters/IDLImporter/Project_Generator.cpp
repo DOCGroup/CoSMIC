@@ -423,12 +423,36 @@ void Project_Generator::initialize (void)
 }
 
 //
+// finalize
+//
+void Project_Generator::finalize (void)
+{
+  typedef
+    ACE_Hash_Map_Manager <GAME::XME::Reference,
+                          AST_Decl *,
+                          ACE_Null_Mutex> 
+                          unresolved_t;
+
+  std::for_each (this->unresolved_.begin (),
+                 this->unresolved_.end (),
+                 boost::bind (&Project_Generator::handle_symbol_resolution,
+                              this,
+                              boost::bind (&unresolved_t::ENTRY::item, _1),
+                              boost::bind (&unresolved_t::ENTRY::key, _1)));
+}
+
+//
 // visit_root
 //
 int Project_Generator::visit_root (AST_Root * node)
 {
   using GAME::XME::Folder;
   using GAME::XME::Model;
+
+#if !defined USE_MCPP_BUFFER_LEXING
+  char abspath[MAXPATHLEN];
+  ACE_CString fullpath;
+#endif
 
   for (UTL_ScopeActiveIterator si (node, UTL_Scope::IK_decls);
        !si.is_done (); si.next ())
@@ -449,9 +473,17 @@ int Project_Generator::visit_root (AST_Root * node)
         continue;
       }
     }
+    
 
+#if defined USE_MCPP_BUFFER_LEXING
     if (0 != this->files_.files ().find (d->file_name (), this->current_file_))
       continue;
+#else
+    fullpath = ACE_OS::realpath (d->file_name ().c_str (), abspath);
+
+    if (0 != this->files_.files ().find (fullpath, this->current_file_))
+      continue;
+#endif
 
     this->parent_ = &this->current_file_->file_;
     int retval = d->ast_accept (this);

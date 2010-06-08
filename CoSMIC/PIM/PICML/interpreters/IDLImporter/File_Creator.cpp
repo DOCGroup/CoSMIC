@@ -98,13 +98,7 @@ create_files (const char * const * files, size_t n_files, const char * dest)
 
     // Get the fullpath of the current filename.
     char abspath[MAXPATHLEN];
-    char *fullpath = ACE_OS::realpath (filename, abspath);
-
-    for (char * iter = fullpath; *iter != '\0'; ++ iter)
-    {
-      if (*iter == '\\')
-        *iter = '/';
-    }
+    ACE_CString fullpath = ACE_OS::realpath (filename, abspath);
 
     // Store the file for later usage.
     PICML_File_Creator_Item * item = 0;
