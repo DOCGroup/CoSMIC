@@ -1431,24 +1431,19 @@ int Project_Generator::visit_operation (AST_Operation *node)
     using GAME::XME::Reference;
     using GAME::XME::FCO;
 
-    // Locate the return type in the model.
-    FCO fco;
-    ACE_CString id = node->repoID ();
+    // Create the return type element.
+    Reference return_type;
+    static const ::Utils::XStr meta_ReturnType ("ReturnType");
 
-    if (this->lookup_symbol (node->return_type (), fco))
+    if (auto_model.create_if_not (meta_ReturnType, return_type,
+        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                        meta_ReturnType,
+                        boost::bind (&Reference::kind, _1)))))
     {
-      // Create the return type element.
-      Reference return_type;
-      static const ::Utils::XStr meta_ReturnType ("ReturnType");
-
-      if (auto_model.create_if_not (meta_ReturnType, return_type,
-          GAME::contains (boost::bind (std::equal_to <FCO> (),
-                          fco,
-                          boost::bind (&Reference::refers_to, _1)))))
-      {
-        return_type.refers_to (fco);
-      }
+      return_type.name (meta_ReturnType);
     }
+
+    this->handle_symbol_resolution (node->return_type (), return_type);
   }
 
   // Visit the remaining elements in the model.
@@ -1854,9 +1849,10 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
 
   // Create the alias if it already does not exist in this model.
   using GAME::XME::Reference;
-  static const ::Utils::XStr name (node->local_name ()->get_string ());
 
   Reference alias;
+  const ::Utils::XStr name (node->local_name ()->get_string ());
+
   if (this->parent_->create_if_not (meta_list[index], alias,
       GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
                                    name,
@@ -1866,6 +1862,7 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
   }
 
   this->handle_symbol_resolution (base_type, alias);
+  this->symbols_.bind (node, alias);
 
   return 0;
 }

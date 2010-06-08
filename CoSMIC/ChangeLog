@@ -1,3 +1,10 @@
+Tue Jun  8 05:14:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        
+          . Bug fix where alias elements were not added to the 
+            symbol table.
+
 Tue Jun  8 04:38:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
@@ -5,13 +12,13 @@ Tue Jun  8 04:38:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp.old:
-        
+
           . Bug fix for support the mcpp and non-mcpp version.
-          
+
           . Bug fix for handling unresolved externals.
 
         * default.features:
-        
+
           . Disabled mcpp.
 
 Tue Jun  8 00:12:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
