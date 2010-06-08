@@ -53,9 +53,9 @@ class TemplateParameter_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
 public:
   TemplateParameter_Dispatcher (void)
   {
-    this->insert <PICML::NamedParameter> ();
+    this->insert <PICML::NameParameter> ();
     this->insert <PICML::CollectionParameter> ();
-    this->insert <PICML::TypedParameter> ();
+    this->insert <PICML::TypeParameter> ();
   }
 };
 
@@ -120,6 +120,20 @@ public:
 };
 
 /**
+ * @class Port_Dispatcher
+ */
+template <typename T>
+class Member_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
+{
+public:
+  Member_Dispatcher (void)
+  {
+    this->insert <PICML::Member> ();
+    this->insert <PICML::ArrayMember> ();
+  }
+};
+
+/**
  * @class IDL_File_Generator
  *
  * Visitor that is responsible for generating the IDL file.
@@ -137,16 +151,19 @@ public:
   virtual void Visit_EnumValue (const PICML::EnumValue & v);
 
   virtual void Visit_Alias (const PICML::Alias & a);
-  virtual void Visit_TemplatePackageAlias (const PICML::TemplatePackageAlias & p);
+  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p);
 
   virtual void Visit_Constant (const PICML::Constant & c);
   virtual void Visit_Collection (const PICML::Collection & c);
-  virtual void Visit_NamedParameter (const PICML::NamedParameter & c);
+  virtual void Visit_NameParameter (const PICML::NameParameter & c);
   virtual void Visit_CollectionParameter (const PICML::CollectionParameter & c);
-  virtual void Visit_TypedParameter (const PICML::TypedParameter & c);
+  virtual void Visit_TypeParameter (const PICML::TypeParameter & c);
   virtual void Visit_Aggregate (const PICML::Aggregate & a);
   virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & a);
+
   virtual void Visit_Member (const PICML::Member & a);
+  virtual void Visit_ArrayMember (const PICML::ArrayMember & m);
+
   virtual void Visit_LabelConnection (const PICML::LabelConnection & c);
   virtual void Visit_Exception (const PICML::Exception & e);
   virtual void Visit_Object (const PICML::Object & o);
@@ -205,12 +222,15 @@ private:
   /// Target output stream for the IDL.
   IDLStream & idl_;
 
+  bool templates_only_;
+
   PredefinedType_Dispatcher <IDL_File_Generator> pt_dispatcher_;
   TemplateParameter_Dispatcher <IDL_File_Generator> tp_dispatcher_;
   ParameterType_Dispatcher <IDL_File_Generator> param_dispatcher_;
   ReadonlyAttribute_Dispatcher <IDL_File_Generator> ro_dispatcher_;
   Port_Dispatcher <IDL_File_Generator> port_dispatcher_;
   ExtendedPort_Dispatcher <IDL_File_Generator> extended_dispatcher_;
+  Member_Dispatcher <IDL_File_Generator> member_dispatcher_;
 };
 
 #endif  // !defined _IDL_FILE_GENERATOR_H_

@@ -68,7 +68,10 @@ void Find_Forward_Decls::Visit_File (const PICML::File & file)
 //
 void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
 {
-  this->Visit_FilePackage (package);
+  std::vector <PICML::TemplateParameter> params = package.TemplateParameter_kind_children ();
+
+  if (params.empty ())
+    this->Visit_FilePackage (package);
 }
 
 //
@@ -84,7 +87,7 @@ void Find_Forward_Decls::Visit_FilePackage (const Udm::Object & fp)
   Udm::visit_all <PICML::SwitchedAggregate> (fp, *this);
   Udm::visit_all <PICML::ValueObject> (fp, *this);
 
-  Udm::visit_all <PICML::TemplatePackageAlias> (fp, *this);
+  Udm::visit_all <PICML::TemplatePackageInstance> (fp, *this);
 
   Udm::visit_all <PICML::Event> (fp, *this);
   Udm::visit_all <PICML::Object> (fp, *this);
@@ -100,7 +103,7 @@ void Find_Forward_Decls::Visit_FilePackage (const Udm::Object & fp)
 // Visit_TemplatePackageAlias
 //
 void Find_Forward_Decls::
-Visit_TemplatePackageAlias (const PICML::TemplatePackageAlias & a)
+Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a)
 {
   PICML::PackageType t = a.PackageType_child ();
   PICML::File file = this->get_file (t.ref ());

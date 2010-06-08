@@ -48,7 +48,7 @@ public:
   // visitor method(s)
   virtual void Visit_File (const PICML::File &);
   virtual void Visit_Package (const PICML::Package & );
-  virtual void Visit_TemplatePackageAlias (const PICML::TemplatePackageAlias & a);
+  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a);
   virtual void Visit_Alias (const PICML::Alias & a);
   virtual void Visit_Constant (const PICML::Constant & c);
   virtual void Visit_Collection (const PICML::Collection & c);

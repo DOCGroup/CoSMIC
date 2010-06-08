@@ -58,18 +58,33 @@ struct ACE_Hash <AST_PredefinedType::PredefinedType>
 };
 
 /**
- * @struct ACE_Hash <AST_Type *>
+ * @struct ACE_Hash <AST_Decl *>
  *
- * Specialization of ACE_Hash for AST_Type *.
+ * Specialization of ACE_Hash for AST_Decl *.
  */
 template < >
-struct ACE_Hash <AST_Type *>
+struct ACE_Hash <AST_Decl *>
 {
-  unsigned long operator () (AST_Type * t) const
+  unsigned long operator () (AST_Decl * t) const
   {
     return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (t));
   }
 };
+
+/**
+ * @struct ACE_Hash <FE_Utils::T_Param_Info  *>
+ *
+ * Specialization of ACE_Hash for FE_Utils::T_Param_Info  *.
+ */
+template < >
+struct ACE_Hash <const FE_Utils::T_Param_Info  *>
+{
+  unsigned long operator () (const FE_Utils::T_Param_Info  * t) const
+  {
+    return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (t));
+  }
+};
+
 
 // Forward decl.
 class PICML_File_Creator;
@@ -151,9 +166,9 @@ private:
   /// Initialize the project.
   void initialize (void);
 
-  void handle_symbol_resolution (AST_Type * type, GAME::XME::Reference & ref);
+  void handle_symbol_resolution (AST_Decl * type, GAME::XME::Reference & ref);
 
-  bool lookup_symbol (AST_Type * type, GAME::XME::FCO & fco);
+  bool lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco);
 
   void visit_exception_list (UTL_ExceptList * list,
                              const ::Utils::XStr & meta,
@@ -161,6 +176,16 @@ private:
 
   int visit_scope (UTL_Scope *node,
                    GAME::XME::Auto_Model_T <GAME::XME::Model> * auto_model);
+
+  void create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
+                              FE_Utils::T_Param_Info * info);
+
+  void create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
+                                  FE_Utils::T_Param_Info * info);
+
+  void create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
+                              FE_Utils::T_Param_Info * info,
+                              const ::Utils::XStr & type);
 
   /// Collection of files captured in this project.
   const PICML_File_Creator & files_;
@@ -172,6 +197,8 @@ private:
 
   /// Location where all the IDL files are stored
   GAME::XME::Folder idl_folder_;
+
+  bool is_in_enum_;
 
   /// The active parent for the visitor.
   GAME::XME::Auto_Model_T <GAME::XME::Model> * parent_;
@@ -185,7 +212,7 @@ private:
   GAME::XME::Atom string_type_;
 
   /// Collection of symbols that can be referenced.
-  ACE_Hash_Map_Manager <AST_Type *,
+  ACE_Hash_Map_Manager <AST_Decl *,
                         GAME::XME::FCO,
                         ACE_Null_Mutex> symbols_;
 
@@ -194,8 +221,17 @@ private:
 
   /// Collection of unresolved references.
   ACE_Hash_Map_Manager <GAME::XME::Reference,
-                        AST_Type *,
+                        AST_Decl *,
                         ACE_Null_Mutex> unresolved_;
+
+  /// Collection of template parameters.
+  ACE_Hash_Map_Manager <const FE_Utils::T_Param_Info  *, 
+                        GAME::XME::FCO,
+                        ACE_Null_Mutex> params_;
+
+  ACE_Hash_Map_Manager <ACE_CString, 
+                        GAME::XME::FCO,
+                        ACE_Null_Mutex> active_params_;
 };
 
 #include "Project_Generator.inl"

@@ -49,9 +49,17 @@ IDL_File_Generator::~IDL_File_Generator (void)
 void IDL_File_Generator::Visit_File (const PICML::File & file)
 {
   this->idl_ << nl
-             << "// declaration of all the objects" << nl
+             << "// template module(s)" << nl
              << nl;
 
+  this->templates_only_ = true;
+  Udm::visit_all <PICML::Package> (file, *this);
+
+  this->idl_ << nl
+             << "// declaration(s)" << nl
+             << nl;
+
+  this->templates_only_ = false;
   this->Visit_FilePackage (file);
 }
 
@@ -60,23 +68,18 @@ void IDL_File_Generator::Visit_File (const PICML::File & file)
 //
 void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 {
-  // Start the model specification.
-  this->idl_ << "module " << package.name ();
-  
-  // Write the template parameters for the module, if applicable.
-  //typedef std::set <PICML::TemplateParameter> parameter_t;
-  //parameter_t parameters = package.TemplateParameter_children ();
-
   typedef UDM_Position_Sort_T <PICML::TemplateParameter, PS_Left_To_Right> sorter_t;
   typedef std::set <PICML::TemplateParameter, sorter_t> parameter_t;
   parameter_t parameters = package.TemplateParameter_children_sorted (sorter_t ());
 
-  //std::for_each (values.begin (),
-  //               values.end (),
-  //               boost::bind (&sorted_parameter_t::insert, 
-  //                            boost::ref (parameters), 
-  //                            _1));
+  if (this->templates_only_ && parameters.empty ())
+    return;
+  else if (!this->templates_only_ && !parameters.empty ())
+    return;
 
+  // Start the model specification.
+  this->idl_ << "module " << package.name ();
+  
   if (!parameters.empty ())
   {
     // Write each of the parameters in the module. We must right
@@ -119,7 +122,7 @@ void IDL_File_Generator::Visit_FilePackage (const Udm::Object & object)
   Udm::visit_all <PICML::Alias> (object, *this);
   Udm::visit_all <PICML::Collection> (object, *this);
   Udm::visit_all <PICML::Exception> (object, *this);
-  Udm::visit_all <PICML::TemplatePackageAlias> (object, *this);
+  Udm::visit_all <PICML::TemplatePackageInstance> (object, *this);
 
   // Forward declarable elements.
   Udm::visit_all <PICML::Aggregate> (object, *this);
@@ -142,10 +145,10 @@ void IDL_File_Generator::Visit_FilePackage (const Udm::Object & object)
 }
 
 //
-// Visit_NamedParameter
+// Visit_NameParameter
 //
 void IDL_File_Generator::
-Visit_NamedParameter (const PICML::NamedParameter & c)
+Visit_NameParameter (const PICML::NameParameter & c)
 {
   this->idl_ << "typename " << c.name ();
 }
@@ -164,9 +167,23 @@ Visit_CollectionParameter (const PICML::CollectionParameter & c)
 // Visit_TypedParameter
 //
 void IDL_File_Generator::
-Visit_TypedParameter (const PICML::TypedParameter & c)
+Visit_TypeParameter (const PICML::TypeParameter & c)
 {
-  this->pt_dispatcher_.dispatch (*this, c.ref ());
+  std::string type = c.Type ();
+
+  if (type == "Aggregate")
+    this->idl_ << "struct ";
+  else if (type == "Enum")
+    this->idl_ << "enum ";
+  else if (type == "Event")
+    this->idl_ << "eventtype ";
+  else if (type == "Exception")
+    this->idl_ << "exception ";
+  else if (type == "Object")
+    this->idl_ << "interface ";
+  else if (type == "ValueObject")
+    this->idl_ << "valuetype ";
+
   this->idl_ << " " << c.name ();
 }
 
@@ -174,7 +191,7 @@ Visit_TypedParameter (const PICML::TypedParameter & c)
 // Visit_TemplatePackageAlias
 //
 void IDL_File_Generator::
-Visit_TemplatePackageAlias (const PICML::TemplatePackageAlias & p)
+Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p)
 {
   PICML::PackageType t = p.PackageType_child ();
 
@@ -259,9 +276,14 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
 
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-  sorted_values_t values = a.Member_children_sorted (sorter_t ());
+  sorted_values_t values = a.Member_kind_children_sorted (sorter_t ());
 
-  Udm::visit_all (values, *this);
+  std::for_each (values.begin (),
+                 values.end (),
+                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch, 
+                              boost::ref (this->member_dispatcher_), 
+                              boost::ref (*this),
+                              _1));
 
   this->idl_ << uidt_nl << "};" << nl
              << nl;
@@ -284,12 +306,13 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
   
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-  sorted_values_t values = s.Member_children_sorted (sorter_t ());
+  sorted_values_t values = s.Member_kind_children_sorted (sorter_t ());
 
   std::for_each (values.begin (),
                  values.end (),
-                 boost::bind (&IDL_File_Generator::Visit_SwitchMember,
-                              this,
+                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch, 
+                              boost::ref (this->member_dispatcher_), 
+                              boost::ref (*this),
                               _1));
 
   this->idl_ << uidt_nl << "};" << nl
@@ -306,6 +329,21 @@ void IDL_File_Generator::Visit_Member (const PICML::Member & m)
   this->idl_ << nl;
   this->Visit_MemberType (mt);
   this->idl_ << " " << m.name () << ";" << nl;
+}
+
+//
+// Visit_ArrayMember
+//
+void IDL_File_Generator::
+Visit_ArrayMember (const PICML::ArrayMember & m)
+{
+  PICML::MemberType mt = m.ref ();
+
+  this->idl_ << nl;
+  this->Visit_MemberType (mt);
+
+  unsigned long array_size = m.Size ();
+  this->idl_ << " " << m.name () << "[" << array_size << "];" << nl;
 }
 
 //

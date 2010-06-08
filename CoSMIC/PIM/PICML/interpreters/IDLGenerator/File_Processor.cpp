@@ -44,7 +44,7 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
     this->idl_ << "#include <Components.idl>" << nl;
 
   this->idl_ << nl
-             << "// forward declaration of all objects" << nl
+             << "// forward declaration(s)" << nl
              << nl;
 
   // Now, let's generate every element that can be forward declared. This 
@@ -74,12 +74,17 @@ void IDL_File_Processor::generate_include_file (const PICML::File &file)
 //
 void IDL_File_Processor::Visit_Package (const PICML::Package & p)
 {
-  this->idl_ << "module " << p.name () << nl 
-             << "{" << idt_nl;
+  std::vector <PICML::TemplateParameter> params = p.TemplateParameter_kind_children ();
 
-  this->Visit_FilePackage (p);
+  if (params.empty ())
+  {
+    this->idl_ << "module " << p.name () << nl 
+               << "{" << idt_nl;
 
-  this->idl_ << uidt_nl << "};";
+    this->Visit_FilePackage (p);
+
+    this->idl_ << uidt_nl << "};";
+  }
 }
 
 //

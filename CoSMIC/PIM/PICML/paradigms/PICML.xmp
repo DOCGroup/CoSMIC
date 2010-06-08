@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{0AFBE59A-CC34-4C2A-96A0-1449ECE7BB6F}" cdate="Mon May 17 16:25:05 2010" mdate="WhoControlsThisObj" >
+<paradigm name="PICML" guid="{07FC21C5-0C08-449E-AD56-E11963E2F2D9}" cdate="Mon May 17 16:25:05 2010" mdate="WhoControlsThisObj" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -243,6 +243,8 @@ endif]]>
 			<enumitem dispname = "Maximum" value = "Maximum"></enumitem>
 			<enumitem dispname = "Selection" value = "Selection"></enumitem>
 			<enumitem dispname = "Attribute" value = "Attribute"></enumitem>
+		</attrdef>
+		<attrdef name="Size" metaref = "5513" valuetype = "integer" defvalue = "">
 		</attrdef>
 		<attrdef name="SpecifyIdTag" metaref = "1026" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -703,7 +705,7 @@ let version = self.defaultVersion.trim() in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="multiinvocations.bmp"></regnode>
 		</atom>
-		<atom name = "NamedParameter" metaref = "4328" >
+		<atom name = "NameParameter" metaref = "5525" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidIdentifier" eventmask = "0x80000000" depth = "1" priority = "1">
 				<![CDATA[let name = self.name().trim() in
@@ -901,6 +903,25 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "icon" value ="member.bmp"></regnode>
 				<regnode name = "icon" value ="member.bmp"></regnode>
 				<regnode name = "icon" value ="typekind.bmp"></regnode>
+		</atom>
+		<atom name = "TypeParameter" metaref = "5526"  attributes = "Type">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidIdentifier" eventmask = "0x80000000" depth = "1" priority = "1">
+				<![CDATA[let name = self.name().trim() in
+name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+				<dispname>Not a valid identifier</dispname>
+			</constraint>
+			<attrdef name="Type" metaref = "5527" valuetype = "enum" defvalue = "Object">
+				<enumitem dispname = "Aggregate" value = "Aggregate"></enumitem>
+				<enumitem dispname = "Enum" value = "Enum"></enumitem>
+				<enumitem dispname = "Event" value = "Event"></enumitem>
+				<enumitem dispname = "Exception" value = "Exception"></enumitem>
+				<enumitem dispname = "Object" value = "Object"></enumitem>
+				<enumitem dispname = "SwitchAggregate" value = "SwitchAggregate"></enumitem>
+				<enumitem dispname = "ValueObject" value = "ValueObject"></enumitem>
+			</attrdef>
+				<regnode name = "icon" value ="member.bmp"></regnode>
+				<regnode name = "icon" value ="member.bmp"></regnode>
 		</atom>
 		<atom name = "WhileState" metaref = "5176"  attributes = "LoopingCondition">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -1765,6 +1786,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "lineType" value ="solid"></regnode>
 			<connjoint>
 				<pointerspec name = "src">
+					<pointeritem desc = "ArrayMember"></pointeritem>
 					<pointeritem desc = "Member"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
@@ -1801,6 +1823,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "lineType" value ="solid"></regnode>
 			<connjoint>
 				<pointerspec name = "src">
+					<pointeritem desc = "ArrayMember"></pointeritem>
 					<pointeritem desc = "Member"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
@@ -2439,7 +2462,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -2447,7 +2470,66 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
+				<pointeritem desc = "ValueObject"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "ArrayMember" metaref = "5514" attributes = "Size">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyMember"></regnode>
+			<constraint name="LegalTemplateParameter" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let r = self.refersTo () in
+ (r.isTypeOf (NamedParameter) or
+  r.isTypeOf (TypedParameter) or
+  r.isTypeOf (CollectionParameter))
+     implies r.parent ().isChildNode (self)
+]]>
+				<dispname>Referenced template parameter is not in scope of containing package</dispname>
+			</constraint>
+			<constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[not refersTo ().isNull ()]]>
+				<dispname>A reference to a named type must be assigned</dispname>
+			</constraint>
+			<constraint name="ParentNameClash" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[name <> parent ().name]]>
+				<dispname>A member may not have the same name as its container.</dispname>
+			</constraint>
+			<constraint name="ValidMakeMemberPrivatedstCardinality88" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::MakeMemberPrivate ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Member as &quot;dst&quot; over MakeMemberPrivate, has to match 0..1.</dispname>
+			</constraint>
+			<regnode name = "icon" value ="member.bmp"></regnode>
+			<regnode name = "decorator" value ="MGA.Decorator.ShowReference"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "Aggregate"></pointeritem>
+				<pointeritem desc = "Alias"></pointeritem>
+				<pointeritem desc = "Boolean"></pointeritem>
+				<pointeritem desc = "Boxed"></pointeritem>
+				<pointeritem desc = "Byte"></pointeritem>
+				<pointeritem desc = "Collection"></pointeritem>
+				<pointeritem desc = "CollectionParameter"></pointeritem>
+				<pointeritem desc = "Component"></pointeritem>
+				<pointeritem desc = "ComponentFactory"></pointeritem>
+				<pointeritem desc = "ConnectorObject"></pointeritem>
+				<pointeritem desc = "DoubleNumber"></pointeritem>
+				<pointeritem desc = "Enum"></pointeritem>
+				<pointeritem desc = "Event"></pointeritem>
+				<pointeritem desc = "FloatNumber"></pointeritem>
+				<pointeritem desc = "GenericObject"></pointeritem>
+				<pointeritem desc = "GenericValue"></pointeritem>
+				<pointeritem desc = "GenericValueObject"></pointeritem>
+				<pointeritem desc = "LongInteger"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
+				<pointeritem desc = "Object"></pointeritem>
+				<pointeritem desc = "PortType"></pointeritem>
+				<pointeritem desc = "ShortInteger"></pointeritem>
+				<pointeritem desc = "String"></pointeritem>
+				<pointeritem desc = "SwitchedAggregate"></pointeritem>
+				<pointeritem desc = "TypeEncoding"></pointeritem>
+				<pointeritem desc = "TypeKind"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -2533,7 +2615,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -2541,7 +2623,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -2589,7 +2671,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -2597,7 +2679,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -2642,7 +2724,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -2650,14 +2732,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "CollectionParameter" metaref = "4329">
 				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "rName" value ="ref"></regnode>
-				<regnode name = "rrName" value ="referedbyTypedParameter"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyCollectionParameter"></regnode>
 			<constraint name="ValidIdentifier" eventmask = "0x80000000" depth = "1" priority = "1">
@@ -2667,22 +2747,8 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			</constraint>
 			<regnode name = "icon" value ="member.bmp"></regnode>
 			<regnode name = "icon" value ="member.bmp"></regnode>
-			<regnode name = "icon" value ="member.bmp"></regnode>
-			<regnode name = "icon" value ="member.bmp"></regnode>
 			<pointerspec name = "ref">
-				<pointeritem desc = "Boolean"></pointeritem>
-				<pointeritem desc = "Byte"></pointeritem>
-				<pointeritem desc = "DoubleNumber"></pointeritem>
-				<pointeritem desc = "FloatNumber"></pointeritem>
-				<pointeritem desc = "GenericObject"></pointeritem>
-				<pointeritem desc = "GenericValue"></pointeritem>
-				<pointeritem desc = "GenericValueObject"></pointeritem>
-				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
-				<pointeritem desc = "ShortInteger"></pointeritem>
-				<pointeritem desc = "String"></pointeritem>
-				<pointeritem desc = "TypeEncoding"></pointeritem>
-				<pointeritem desc = "TypeKind"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "CompRef" metaref = "1172">
@@ -2996,7 +3062,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3004,7 +3070,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -3191,8 +3257,8 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 			<pointerspec name = "ref">
 				<pointeritem desc = "CollectionParameter"></pointeritem>
 				<pointeritem desc = "Event"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "InParameter" metaref = "1188">
@@ -3225,7 +3291,7 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3233,7 +3299,7 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -3285,7 +3351,7 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3293,7 +3359,7 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -3358,7 +3424,7 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3366,7 +3432,7 @@ c->forAll (x : Connection | x.parent() <> self.parent())]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -3510,8 +3576,8 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 			<pointerspec name = "ref">
 				<pointeritem desc = "CollectionParameter"></pointeritem>
 				<pointeritem desc = "Event"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "OutParameter" metaref = "1197">
@@ -3544,7 +3610,7 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3552,7 +3618,7 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -3650,9 +3716,9 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 			<pointerspec name = "ref">
 				<pointeritem desc = "CollectionParameter"></pointeritem>
 				<pointeritem desc = "GenericObject"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "RequiredRequestPort" metaref = "5333" attributes = "VersionTag SpecifyIdTag optional exclusiveUser exclusiveProvider multiple_connections">
@@ -3714,9 +3780,9 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 			<pointerspec name = "ref">
 				<pointeritem desc = "CollectionParameter"></pointeritem>
 				<pointeritem desc = "GenericObject"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "ReturnType" metaref = "1203">
@@ -3748,7 +3814,7 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3756,7 +3822,7 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -3817,7 +3883,7 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<pointeritem desc = "GenericValue"></pointeritem>
 				<pointeritem desc = "GenericValueObject"></pointeritem>
 				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "NamedParameter"></pointeritem>
+				<pointeritem desc = "NameParameter"></pointeritem>
 				<pointeritem desc = "Object"></pointeritem>
 				<pointeritem desc = "PortType"></pointeritem>
 				<pointeritem desc = "ShortInteger"></pointeritem>
@@ -3825,34 +3891,8 @@ c->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<pointeritem desc = "SwitchedAggregate"></pointeritem>
 				<pointeritem desc = "TypeEncoding"></pointeritem>
 				<pointeritem desc = "TypeKind"></pointeritem>
-				<pointeritem desc = "TypedParameter"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
-			</pointerspec>
-		</reference>
-		<reference name = "TypedParameter" metaref = "4330">
-				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "rName" value ="ref"></regnode>
-				<regnode name = "rrName" value ="referedbyTypedParameter"></regnode>
-			<constraint name="ValidIdentifier" eventmask = "0x80000000" depth = "1" priority = "1">
-				<![CDATA[let name = self.name().trim() in
-name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-				<dispname>Not a valid identifier</dispname>
-			</constraint>
-			<regnode name = "icon" value ="member.bmp"></regnode>
-			<regnode name = "icon" value ="member.bmp"></regnode>
-			<pointerspec name = "ref">
-				<pointeritem desc = "Boolean"></pointeritem>
-				<pointeritem desc = "Byte"></pointeritem>
-				<pointeritem desc = "DoubleNumber"></pointeritem>
-				<pointeritem desc = "FloatNumber"></pointeritem>
-				<pointeritem desc = "GenericObject"></pointeritem>
-				<pointeritem desc = "GenericValue"></pointeritem>
-				<pointeritem desc = "GenericValueObject"></pointeritem>
-				<pointeritem desc = "LongInteger"></pointeritem>
-				<pointeritem desc = "ShortInteger"></pointeritem>
-				<pointeritem desc = "String"></pointeritem>
-				<pointeritem desc = "TypeEncoding"></pointeritem>
-				<pointeritem desc = "TypeKind"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "Variable" metaref = "5191" attributes = "InitialValue">
@@ -3970,8 +4010,10 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
+			<role name = "ArrayMember" metaref = "5515" kind = "ArrayMember"></role>
 			<role name = "Member" metaref = "1207" kind = "Member"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5003" attributes = "VersionTag SpecifyIdTag" >
+				<part metaref = "5516" role = "ArrayMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1209" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
@@ -4609,12 +4651,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4910,14 +4952,14 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidECRequirementsPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ECBehavior" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidECRequirementsPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ECRole" ) -> size in
                      (partCount = 2)]]>
 				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 2.</dispname>
+			</constraint>
+			<constraint name="ValidECRequirementsPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ECBehavior" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "ECBehavior" metaref = "4013" kind = "ECBehavior"></role>
 			<role name = "ECRole" metaref = "4014" kind = "ECRole"></role>
@@ -5027,6 +5069,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			</attrdef>
 			<role name = "Aggregate" metaref = "1495" kind = "Aggregate"></role>
 			<role name = "Alias" metaref = "1496" kind = "Alias"></role>
+			<role name = "ArrayMember" metaref = "5517" kind = "ArrayMember"></role>
 			<role name = "Attribute" metaref = "1497" kind = "Attribute"></role>
 			<role name = "Collection" metaref = "1498" kind = "Collection"></role>
 			<role name = "Constant" metaref = "1499" kind = "Constant"></role>
@@ -5046,6 +5089,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<aspect name = "InterfaceDefinition" metaref = "5010" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
 				<part metaref = "1513" role = "Aggregate" primary = "yes" linked = "no"></part>
 				<part metaref = "1514" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "5518" role = "ArrayMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1515" role = "Attribute" primary = "yes" linked = "no"></part>
 				<part metaref = "1516" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1517" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
@@ -5072,8 +5116,10 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
+			<role name = "ArrayMember" metaref = "5519" kind = "ArrayMember"></role>
 			<role name = "Member" metaref = "1553" kind = "Member"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5011" attributes = "VersionTag SpecifyIdTag" >
+				<part metaref = "5520" role = "ArrayMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1555" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
@@ -5153,7 +5199,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "Package" metaref = "1581" kind = "Package"></role>
 			<role name = "PortType" metaref = "5441" kind = "PortType"></role>
 			<role name = "SwitchedAggregate" metaref = "1582" kind = "SwitchedAggregate"></role>
-			<role name = "TemplatePackageAlias" metaref = "4343" kind = "TemplatePackageAlias"></role>
+			<role name = "TemplatePackageInstance" metaref = "5541" kind = "TemplatePackageInstance"></role>
 			<role name = "ValueObject" metaref = "1583" kind = "ValueObject"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5013" attributes = "path PrefixTag" >
 				<part metaref = "1585" role = "Aggregate" primary = "yes" linked = "no"></part>
@@ -5174,7 +5220,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<part metaref = "1599" role = "Package" primary = "yes" linked = "no"></part>
 				<part metaref = "5446" role = "PortType" primary = "yes" linked = "no"></part>
 				<part metaref = "1600" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "4344" role = "TemplatePackageAlias" primary = "yes" linked = "no"></part>
+				<part metaref = "5542" role = "TemplatePackageInstance" primary = "yes" linked = "no"></part>
 				<part metaref = "1601" role = "ValueObject" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -5517,13 +5563,13 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 			<role name = "Event" metaref = "1678" kind = "Event"></role>
 			<role name = "Exception" metaref = "1679" kind = "Exception"></role>
 			<role name = "ManagesComponent" metaref = "5452" kind = "ManagesComponent"></role>
-			<role name = "NamedParameter" metaref = "4332" kind = "NamedParameter"></role>
+			<role name = "NameParameter" metaref = "5528" kind = "NameParameter"></role>
 			<role name = "Object" metaref = "1681" kind = "Object"></role>
 			<role name = "Package" metaref = "1682" kind = "Package"></role>
 			<role name = "PortType" metaref = "5453" kind = "PortType"></role>
 			<role name = "SwitchedAggregate" metaref = "1683" kind = "SwitchedAggregate"></role>
-			<role name = "TemplatePackageAlias" metaref = "4345" kind = "TemplatePackageAlias"></role>
-			<role name = "TypedParameter" metaref = "4333" kind = "TypedParameter"></role>
+			<role name = "TemplatePackageInstance" metaref = "5543" kind = "TemplatePackageInstance"></role>
+			<role name = "TypeParameter" metaref = "5529" kind = "TypeParameter"></role>
 			<role name = "ValueObject" metaref = "1684" kind = "ValueObject"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5017" attributes = "VersionTag PrefixTag SpecifyIdTag" >
 				<part metaref = "1686" role = "Aggregate" primary = "yes" linked = "no"></part>
@@ -5543,14 +5589,14 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<part metaref = "1699" role = "Package" primary = "yes" linked = "no"></part>
 				<part metaref = "5458" role = "PortType" primary = "yes" linked = "no"></part>
 				<part metaref = "1700" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "4346" role = "TemplatePackageAlias" primary = "yes" linked = "no"></part>
+				<part metaref = "5544" role = "TemplatePackageInstance" primary = "yes" linked = "no"></part>
 				<part metaref = "1701" role = "ValueObject" primary = "yes" linked = "no"></part>
 			</aspect>
-			<aspect name = "Parameterization" metaref = "4347" attributes = "VersionTag PrefixTag SpecifyIdTag" >
+			<aspect name = "TemplateParameters" metaref = "4334" attributes = "VersionTag PrefixTag SpecifyIdTag" >
 				<dispname>Template Parameters</dispname>
-				<part metaref = "4348" role = "CollectionParameter" primary = "yes" linked = "no"></part>
-				<part metaref = "4349" role = "NamedParameter" primary = "yes" linked = "no"></part>
-				<part metaref = "4350" role = "TypedParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "4335" role = "CollectionParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "5536" role = "NameParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "5537" role = "TypeParameter" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PackageConfigurationContainer" metaref = "1702" >
@@ -5563,7 +5609,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5573,7 +5619,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5588,7 +5634,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality171" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5639,12 +5685,12 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality173" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5981,12 +6027,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "icon" value ="provider.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidServiceProviderPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceLevels" ) -> size in
+				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServiceProvider, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidServiceProviderPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceLevels" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServiceProvider, has to match 0..1.</dispname>
 			</constraint>
@@ -6088,12 +6134,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -6101,36 +6147,38 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
+			<role name = "ArrayMember" metaref = "5521" kind = "ArrayMember"></role>
 			<role name = "Discriminator" metaref = "1820" kind = "Discriminator"></role>
 			<role name = "Label" metaref = "1821" kind = "Label"></role>
 			<role name = "LabelConnection" metaref = "1822" kind = "LabelConnection"></role>
 			<role name = "Member" metaref = "1823" kind = "Member"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5020" attributes = "VersionTag SpecifyIdTag" >
+				<part metaref = "5522" role = "ArrayMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1825" role = "Discriminator" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1826" role = "Label" primary = "yes" linked = "no"></part>
 				<part metaref = "1827" role = "LabelConnection" primary = "yes" linked = "no"></part>
 				<part metaref = "1828" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "TemplatePackageAlias" metaref = "4351" >
+		<model name = "TemplatePackageInstance" metaref = "5545" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
-			<constraint name="ValidTemplatePackageAliasPartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTemplatePackageInstancePartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageType" ) -> size in
                      (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TemplatePackageAlias, has to match 1.</dispname>
+				<dispname>Multiplicity of parts, which are contained by TemplatePackageInstance, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidTemplatePackageAliasPartCardinality190" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTemplatePackageInstancePartCardinality190" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "TemplateParameterValue" ) -> size in
                      (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TemplatePackageAlias, has to match 1..*.</dispname>
+				<dispname>Multiplicity of parts, which are contained by TemplatePackageInstance, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "PackageType" metaref = "4358" kind = "PackageType"></role>
-			<role name = "TemplateParameterValue" metaref = "4353" kind = "TemplateParameterValue"></role>
-			<aspect name = "Parameterization" metaref = "4354" >
+			<role name = "PackageType" metaref = "5546" kind = "PackageType"></role>
+			<role name = "TemplateParameterValue" metaref = "5547" kind = "TemplateParameterValue"></role>
+			<aspect name = "TemplateParameters" metaref = "5548" >
 				<dispname>Template Parameters</dispname>
-				<part metaref = "4359" role = "PackageType" primary = "yes" kindaspect = "Parameterization" linked = "no"></part>
-				<part metaref = "4356" role = "TemplateParameterValue" primary = "yes" linked = "no"></part>
+				<part metaref = "5549" role = "PackageType" primary = "yes" kindaspect = "TemplateParameters" linked = "no"></part>
+				<part metaref = "5550" role = "TemplateParameterValue" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Throughput" metaref = "1829" attributes = "fileName priority rate warmup iterations resolution" >
@@ -6173,12 +6221,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality193" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality194" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6298,6 +6346,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			</attrdef>
 			<role name = "Aggregate" metaref = "1861" kind = "Aggregate"></role>
 			<role name = "Alias" metaref = "1862" kind = "Alias"></role>
+			<role name = "ArrayMember" metaref = "5523" kind = "ArrayMember"></role>
 			<role name = "Attribute" metaref = "1863" kind = "Attribute"></role>
 			<role name = "Collection" metaref = "1864" kind = "Collection"></role>
 			<role name = "Constant" metaref = "1865" kind = "Constant"></role>
@@ -6317,6 +6366,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<aspect name = "InterfaceDefinition" metaref = "5022" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
 				<part metaref = "1879" role = "Aggregate" primary = "yes" linked = "no"></part>
 				<part metaref = "1880" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "5524" role = "ArrayMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1881" role = "Attribute" primary = "yes" linked = "no"></part>
 				<part metaref = "1882" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1883" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>

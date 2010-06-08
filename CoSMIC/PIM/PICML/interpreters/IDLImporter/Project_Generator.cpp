@@ -37,6 +37,10 @@
 #include "ast_connector.h"
 #include "ast_mirror_port.h"
 #include "ast_extended_port.h"
+#include "ast_template_module.h"
+#include "ast_template_module_inst.h"
+#include "ast_template_module_ref.h"
+#include "ast_param_holder.h"
 
 #include "utl_exceptlist.h"
 #include "utl_identifier.h"
@@ -82,6 +86,7 @@ namespace attr
 namespace aspect
 {
   static const ::Utils::XStr InterfaceDefinition ("InterfaceDefinition");
+  static const ::Utils::XStr TemplateParameters ("TemplateParameters");
 }
 
 namespace name
@@ -104,8 +109,11 @@ struct predefined_typeinfo
  */
 struct arrange_horizontal
 {
-  arrange_horizontal (::Utils::Point & start, int dx)
-    : pt_ (start),
+  arrange_horizontal (const ::Utils::XStr & aspect,
+                      ::Utils::Point & start, 
+                      int dx)
+    : aspect_ (aspect),
+      pt_ (start),
       dx_ (dx)
   {
 
@@ -115,14 +123,27 @@ struct arrange_horizontal
   {
     // Set the position of the element.
     GAME::XME::set_position (fco,
-                            constant::aspect::InterfaceDefinition,
-                            this->pt_);
+                             this->aspect_,
+                             this->pt_);
+
+    // Advance to the next element.
+    this->pt_.shift (this->dx_, 0);
+  }
+
+  void operator () (ACE_Hash_Map_Manager <ACE_CString, GAME::XME::FCO, ACE_Null_Mutex>::ENTRY & e)
+  {
+    // Set the position of the element.
+    GAME::XME::set_position (e.item (),
+                             this->aspect_,
+                             this->pt_);
 
     // Advance to the next element.
     this->pt_.shift (this->dx_, 0);
   }
 
 private:
+  const ::Utils::XStr & aspect_;
+
   /// The current position
   ::Utils::Point & pt_;
 
@@ -415,7 +436,7 @@ int Project_Generator::visit_root (AST_Root * node)
     AST_Decl * d = si.item ();
     AST_Decl::NodeType nt = d->node_type ();
 
-    if (nt == AST_Decl::NT_pre_defined)
+    if (nt == AST_Decl::NT_pre_defined || (nt == AST_Decl::NT_enum_val && !this->is_in_enum_))
       continue;
 
     if (node->node_type () == AST_Decl::NT_component)
@@ -486,7 +507,7 @@ int Project_Generator::visit_scope (UTL_Scope *node)
     AST_Decl * d = si.item ();
     AST_Decl::NodeType nt = d->node_type ();
 
-    if (nt == AST_Decl::NT_pre_defined)
+    if (nt == AST_Decl::NT_pre_defined || (nt == AST_Decl::NT_enum_val && !this->is_in_enum_))
       continue;
 
     // Want to skip the 'uses multiple' related artifacts.
@@ -519,6 +540,9 @@ int Project_Generator::visit_module (AST_Module *node)
 {
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
+
+  if (node->from_inst ())
+    return 0;
 
   // Let's see if we can find the module in the global map.
   const char * repo_id = node->repoID ();
@@ -595,7 +619,7 @@ int Project_Generator::visit_interface (AST_Interface *node)
   // Check for any interface inheritance.
   AST_Type ** inherits = node->inherits ();
 
-  if (0 != *inherits)
+  if (0 != inherits)
   {
     static const ::Utils::XStr meta_Inherits ("Inherits");
 
@@ -639,8 +663,10 @@ int Project_Generator::visit_interface_fwd (AST_InterfaceFwd *node)
   }
 
   // Set the attributes for the object.
-  object.attribute (constant::attr::abstract, true).value (node->is_abstract ());
-  object.attribute (constant::attr::local, true).value (node->is_local ());
+  if (node->is_abstract ())
+    object.attribute (constant::attr::InterfaceSemantics, true).value (constant::attr::abstract);
+  else if (node->is_local ())
+    object.attribute (constant::attr::InterfaceSemantics, true).value (constant::attr::local);
 
   // Store the element as a symbol.
   this->symbols_.bind (node, object);
@@ -758,7 +784,7 @@ int Project_Generator::visit_component (AST_Component *node)
   // Check for any component inheritence.
   AST_Type ** inherits = node->inherits ();
 
-  if (0 != *inherits)
+  if (0 != inherits)
   {
     static const ::Utils::XStr meta_CompenentInherits ("ComponentInherits");
 
@@ -1128,7 +1154,7 @@ int Project_Generator::visit_factory (AST_Factory *node)
 
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
 
   return 0;
 }
@@ -1164,7 +1190,7 @@ int Project_Generator::visit_finder (AST_Finder *node)
 
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
 
   return 0;
 }
@@ -1290,10 +1316,12 @@ int Project_Generator::visit_enum (AST_Enum *node)
 
   // Visit the contents of the enumeration.
   Auto_Model_T <Model> auto_model (enumeration);
+  this->is_in_enum_ = true;
 
   if (-1 == this->visit_scope (node, &auto_model))
     return -1;
 
+  this->is_in_enum_ = false;
   ::Utils::Point start (60, 60);
 
   std::for_each (auto_model.children ().begin (),
@@ -1310,11 +1338,10 @@ int Project_Generator::visit_enum_val (AST_EnumVal *node)
 {
   using GAME::XME::Atom;
 
-  static const ::Utils::XStr meta_EnumValue ("EnumValue");
-
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
   Atom value;
+  const ::Utils::XStr name (node->local_name ()->get_string ());
+  static const ::Utils::XStr meta_EnumValue ("EnumValue");
 
   if (this->parent_->create_if_not (meta_EnumValue, value,
       GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
@@ -1403,7 +1430,7 @@ int Project_Generator::visit_operation (AST_Operation *node)
   ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
   return 0;
 }
 
@@ -1514,7 +1541,7 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
   ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
 
   return 0;
 }
@@ -1871,7 +1898,7 @@ visit_exception_list (UTL_ExceptList * list,
 //
 // lookup_symbol
 //
-bool Project_Generator::lookup_symbol (AST_Type * type, GAME::XME::FCO & fco)
+bool Project_Generator::lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco)
 {
   using GAME::XME::FCO;
   AST_Decl::NodeType node_type = type->node_type ();
@@ -1892,6 +1919,14 @@ bool Project_Generator::lookup_symbol (AST_Type * type, GAME::XME::FCO & fco)
   {
     fco = this->string_type_;
   }
+  else if (node_type == AST_Decl::NT_param_holder)
+  {
+    AST_Param_Holder * param = dynamic_cast <AST_Param_Holder *> (type);
+    const FE_Utils::T_Param_Info * info = param->info ();
+
+    if (0 != this->params_.find (param->info (), fco))
+      return false;
+  }
   else
   {
     // Locate the type in the symbol table.
@@ -1905,7 +1940,8 @@ bool Project_Generator::lookup_symbol (AST_Type * type, GAME::XME::FCO & fco)
 //
 // handle_symbol_resolution
 //
-void Project_Generator::handle_symbol_resolution (AST_Type * type, GAME::XME::Reference & ref)
+void Project_Generator::
+handle_symbol_resolution (AST_Decl * type, GAME::XME::Reference & ref)
 {
   GAME::XME::FCO fco;
 
@@ -1962,7 +1998,7 @@ int Project_Generator::visit_extended_port (AST_Extended_Port *node)
 { 
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_ExtendedPort ("meta_ExtendedPort");
+  static const ::Utils::XStr meta_ExtendedPort ("ExtendedPort");
 
   // Either locate an existing package, or create a new one.
   Reference ref;
@@ -1989,7 +2025,7 @@ int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
 { 
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_MirrorPort ("meta_MirrorPort");
+  static const ::Utils::XStr meta_MirrorPort ("MirrorPort");
 
   // Either locate an existing package, or create a new one.
   Reference ref;
@@ -2042,7 +2078,7 @@ int Project_Generator::visit_connector (AST_Connector *node)
   // Lastly, check for any component inheritence.
   AST_Type ** inherits = node->inherits ();
 
-  if (0 != *inherits)
+  if (0 != inherits)
   {
     static const ::Utils::XStr meta_ConnectorInherits ("ConnectorInherits");
 
@@ -2066,10 +2102,317 @@ int Project_Generator::visit_connector (AST_Connector *node)
   return retval;  
 }
 
-int Project_Generator::visit_param_holder (AST_Param_Holder *node){ return 0; }
-int Project_Generator::visit_template_module (AST_Template_Module *node){ return 0; }
-int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *node){ return 0; }
-int Project_Generator::visit_template_module_ref (AST_Template_Module_Ref *node){ return 0; }
+//
+// visit_template_module
+//
+int Project_Generator::visit_template_module (AST_Template_Module *node)
+{ 
+  using GAME::XME::Model;
+  using GAME::XME::Auto_Model_T;
+  using GAME::XME::Atom;
+
+  // Let's see if we can find the module in the global map.
+  const char * repo_id = node->repoID ();
+  Auto_Model_T <Model> * module = 0;
+
+  if (0 != this->current_file_->modules_.find (repo_id, module))
+  {
+    static const ::Utils::XStr meta_Package ("Package");
+
+    // Either locate an existing package, or create a new one.
+    const ::Utils::XStr name (node->local_name ()->get_string ());
+    Model package;
+
+    if (this->parent_->create_if_not (meta_Package, package,
+        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                     name,
+                                     boost::bind (&Model::name, _1)))))
+    {
+      package.name (name);
+    }
+
+    // We need to store this package in the global space since it
+    // is reentrant. We don't want elements deleted on accident. ;-)
+    ACE_NEW_RETURN (module,
+                    Auto_Model_T <Model> (package),
+                    -1);
+
+    this->current_file_->modules_.bind (repo_id, module);
+
+    // Save this module to the symbol table.
+    this->symbols_.bind (node, module->get ());
+  }
+
+  // Now, let's add the template parameters to this package.
+  FE_Utils::T_PARAMLIST_INFO * params = node->template_params ();
+  FE_Utils::T_PARAMLIST_INFO::ITERATOR iter (*params);
+  FE_Utils::T_Param_Info * info = 0;
+
+  for (; !iter.done (); iter.advance ())
+  {
+    // Get the next template parameter.
+    iter.next (info);
+
+    switch (info->type_)
+    {
+    case AST_Type::NT_type:
+      this->create_name_parameter (module, info);
+      break;
+
+    case AST_Type::NT_sequence:
+      this->create_sequence_parameter (module, info);
+      break;
+
+    case AST_Type::NT_interface:
+      {
+        static const ::Utils::XStr meta_Type ("Object");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+
+    case AST_Type::NT_eventtype:
+      {
+        static const ::Utils::XStr meta_Type ("Event");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+
+    case AST_Type::NT_valuetype:
+      {
+        static const ::Utils::XStr meta_Type ("ValueObject");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+
+    case AST_Type::NT_enum:
+      {
+        static const ::Utils::XStr meta_Type ("Enum");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+
+    case AST_Type::NT_struct: 
+      {
+        static const ::Utils::XStr meta_Type ("Aggregate");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+
+    case AST_Type::NT_union: 
+      {
+        static const ::Utils::XStr meta_Type ("SwitchedAggregate");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+
+    case AST_Type::NT_except: 
+      {
+        static const ::Utils::XStr meta_Type ("Exception");
+        this->create_type_parameter (module, info, meta_Type);
+      }
+      break;
+    };
+  }
+
+  // Order the parameters before adding anymore elements to the 
+  // model. This is done by arranging the parameters horizontally.
+  ::Utils::Point start (60, 60);
+  std::for_each (this->active_params_.begin (),
+                 this->active_params_.end (),
+                 arrange_horizontal (constant::aspect::TemplateParameters, start, 100));
+
+  // We are finish with there parameters.
+  this->active_params_.unbind_all ();
+
+  // Visit the remaining contents in the module.
+  return this->visit_scope (node, module);
+}
+
+//
+// create_name_parameter
+//
+void Project_Generator::
+create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
+                        FE_Utils::T_Param_Info * info)
+{
+  // We need to create a named parameter.
+  using GAME::XME::Atom;
+  
+  Atom named_parameter;
+  ::Utils::XStr param_name (info->name_.c_str ());
+  static const ::Utils::XStr meta_NamedParameter ("NameParameter");
+
+  if (module->create_if_not (meta_NamedParameter, named_parameter,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   param_name,
+                                   boost::bind (&Atom::name, _1)))))
+  {
+    named_parameter.name (param_name);
+  }
+
+  // Save the parameter.
+  this->params_.bind (info, named_parameter);
+  this->active_params_.bind (info->name_, named_parameter);
+}
+
+//
+// create_type_parameter
+//
+void Project_Generator::
+create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
+                       FE_Utils::T_Param_Info * info,
+                       const ::Utils::XStr & type)
+{
+  // We need to create a named parameter.
+  using GAME::XME::Atom;
+  
+  Atom parameter;
+  ::Utils::XStr param_name (info->name_.c_str ());
+  static const ::Utils::XStr meta_TypeParameter ("TypeParameter");
+
+  if (module->create_if_not (meta_TypeParameter, parameter,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   param_name,
+                                   boost::bind (&Atom::name, _1)))))
+  {
+    parameter.name (param_name);
+  }
+
+  static const ::Utils::XStr attr_Type ("Type");
+  parameter.attribute (attr_Type, true).value (type);
+
+  // Save the parameter.
+  this->params_.bind (info, parameter);
+  this->active_params_.bind (info->name_, parameter);
+}
+
+//
+// create_sequence_parameter
+//
+void Project_Generator::
+create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
+                           FE_Utils::T_Param_Info * info)
+{
+  using GAME::XME::Reference;
+  
+  Reference parameter;
+  ::Utils::XStr param_name (info->name_.c_str ());
+  static const ::Utils::XStr meta_CollectionParameter ("CollectionParameter");
+
+  if (module->create_if_not (meta_CollectionParameter, parameter,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   param_name,
+                                   boost::bind (&Reference::name, _1)))))
+  {
+    parameter.name (param_name);
+  }
+
+  // Save the parameter.
+  this->params_.bind (info, parameter);
+  this->active_params_.bind (info->name_, parameter);
+
+  // Locate the parameter that we are referencing.
+  GAME::XME::FCO target;
+
+  if (0 == this->active_params_.find (info->seq_param_ref_, target))
+    parameter.refers_to (target);
+}
+
+//
+// visit_param_holder
+//
+int Project_Generator::visit_param_holder (AST_Param_Holder *node)
+{ 
+  return 0; 
+}
+
+//
+// visit_template_module_inst
+//
+int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *node)
+{ 
+  // Store the element as a symbol.
+  using GAME::XME::Auto_Model_T;
+  using GAME::XME::Reference;
+  using GAME::XME::Model;
+  using GAME::XME::FCO;
+
+  Model module_inst;
+
+  // Create the template package alias.
+  const ::Utils::XStr name (node->local_name ()->get_string ());
+  static const ::Utils::XStr meta_TemplatePackageAlias ("TemplatePackageInstance");
+
+  if (this->parent_->create_if_not (meta_TemplatePackageAlias, module_inst,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   name,
+                                   boost::bind (&Model::name, _1)))))
+  {
+    module_inst.name (name);
+  }
+
+  Auto_Model_T <Model> auto_model (module_inst);
+
+  // Make sure there is a package type in this element. We also need
+  // to reference the correct package.
+  Reference package_type;
+  static const ::Utils::XStr meta_PackageType ("PackageType");
+
+  if (auto_model.create_if_not (meta_PackageType, package_type,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   meta_PackageType,
+                                   boost::bind (&Reference::kind, _1)))))
+  {
+    package_type.name (meta_PackageType);
+  }
+
+  this->handle_symbol_resolution (node->ref (), package_type);
+
+  // Finally, add the parameters to the listing.
+  FE_Utils::T_ARGLIST * arg_list = node->template_args ();
+  FE_Utils::T_ARGLIST::CONST_ITERATOR iter (*arg_list);
+  AST_Decl ** decl = 0;
+
+  for (; !iter.done (); iter.advance ())
+  {
+    // Get the next template parameter.
+    iter.next (decl);
+
+    FCO value;
+
+    if (!this->lookup_symbol (*decl, value))
+      continue;
+
+    // Make sure we have a template value of this element.
+    Reference parameter_value;
+    static const ::Utils::XStr meta_TemplateParameterValue ("TemplateParameterValue");
+
+    if (auto_model.create_if_not (meta_TemplateParameterValue, parameter_value,
+        GAME::contains (boost::bind (std::equal_to <FCO> (),
+                                     value,
+                                     boost::bind (&Reference::refers_to, _1)))))
+    {
+      parameter_value.name (meta_TemplateParameterValue);
+      parameter_value.refers_to (value);
+    }
+  }
+
+  // Arrange the template parameters.
+  ::Utils::Point start (60, 60);
+  std::for_each (auto_model.children ().begin (),
+                 auto_model.children ().end (),
+                 arrange_horizontal (constant::aspect::TemplateParameters, start, 100));
+
+  return 0; 
+}
+
+//
+// visit_template_module_ref
+//
+int Project_Generator::visit_template_module_ref (AST_Template_Module_Ref *node)
+{ 
+  return 0;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // unused methods
