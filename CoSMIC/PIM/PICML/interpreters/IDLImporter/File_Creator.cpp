@@ -69,6 +69,8 @@ create_files (const char * const * files, size_t n_files, const char * dest)
   std::vector <Model> idl_files;
   idl_folder.children (meta_File, idl_files);
 
+  ACE_CString fullname;
+
   for (size_t i = 0; i < n_files; ++ i)
   {
     const char * filename = files[i];
@@ -96,9 +98,16 @@ create_files (const char * const * files, size_t n_files, const char * dest)
       idl_file.name (name);
     }
 
-    // Get the fullpath of the current filename.
+    // Get the fullpath of the current filename and put it into
+    // a canonical format that we can understand.
     char abspath[MAXPATHLEN];
-    ACE_CString fullpath = ACE_OS::realpath (filename, abspath);
+    fullname = ACE_OS::realpath (filename, abspath);
+                  
+    for (char * iter = abspath; *iter != '\0'; ++ iter)
+    {
+      if (*iter == '\\')
+        *iter = '/';
+    }
 
     // Store the file for later usage.
     PICML_File_Creator_Item * item = 0;
@@ -106,7 +115,11 @@ create_files (const char * const * files, size_t n_files, const char * dest)
                     PICML_File_Creator_Item (idl_file),
                     -1);
 
-    this->files_.bind (fullpath, item);
+    if (0 != this->files_.bind (abspath, item))
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         ACE_TEXT ("*** failed to create %s file object; aborting..."),
+                         abspath),
+                         -1);
   }
 
   return 0;

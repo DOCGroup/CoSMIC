@@ -36,6 +36,38 @@ public:
                         ACE_Null_Mutex> modules_;
 };
 
+#if defined (WIN32) || defined (ACE_OPENVMS)
+#include "ace/OS_NS_strings.h"
+#include "ace/OS_NS_ctype.h"
+
+struct String_Case_Insensitive_Hash
+{
+  unsigned long operator () (const ACE_CString &lhs) const
+  {
+    ACE_CString copy (lhs);
+    std::transform (copy.begin (),
+                    copy.end (),
+                    copy.begin (),
+                    &ACE_OS::ace_tolower);
+
+    return ACE::hash_pjw (copy.c_str ());
+  }
+};
+
+/**
+ * @struct String_Case_Insensitive
+ *
+ * Functor for doing incasitive comparison of strings.
+ */
+struct String_Case_Insensitive
+{
+  bool operator () (const ACE_CString & lhs, const ACE_CString & rhs) const
+  {
+    return 0 == ACE_OS::strcasecmp (lhs.c_str (), rhs.c_str ());
+  }
+};
+#endif
+
 /**
  * @class PICML_File_Creator
  */
@@ -43,10 +75,17 @@ class PICML_File_Creator
 {
 public:
   /// Type definition for the collection of files.
-  typedef ACE_Hash_Map_Manager <ACE_CString,
-                                PICML_File_Creator_Item *,
-                                ACE_Null_Mutex>
-                                item_map;
+  typedef ACE_Hash_Map_Manager_Ex <ACE_CString,
+                                   PICML_File_Creator_Item *,
+#if defined (WIN32) || defined (ACE_OPENVMS)
+                                   String_Case_Insensitive_Hash,
+                                   String_Case_Insensitive,
+#else
+                                   ACE_Hash <ACE_CString>,
+                                   ACE_Equal_To <ACE_CString> ,
+#endif
+                                   ACE_Null_Mutex>
+                                   item_map;
 
   /**
    * Initializing constructor
