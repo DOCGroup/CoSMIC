@@ -43,9 +43,8 @@ Reference (xercesc::DOMElement * parent,
        kind,
        relid)
 {
-  this->obj_->setAttribute (ATTR_REFERRED, NULL_REFERENCE);
-}
 
+}
 
 //
 // _create
@@ -68,8 +67,15 @@ Reference Reference::_create (Model & parent, const ::Utils::XStr & kind)
 //
 void Reference::refers_to (const FCO & fco)
 {
-  this->obj_->setAttribute (ATTR_REFERRED, ::Utils::XStr (fco.id ()));
-  this->refers_to_ = fco;
+  if (fco.is_nil ())
+  {
+    this->reset ();
+  }
+  else
+  {
+    this->obj_->setAttribute (ATTR_REFERRED, ::Utils::XStr (fco.id ()));
+    this->refers_to_ = fco;
+  }
 }
 
 //
@@ -120,7 +126,7 @@ bool Reference::is_null (void)
 //
 void Reference::reset (void)
 {
-  this->obj_->setAttribute (ATTR_REFERRED, NULL_REFERENCE);
+  this->obj_->removeAttribute (ATTR_REFERRED);
   this->refers_to_.release ();
 }
 
