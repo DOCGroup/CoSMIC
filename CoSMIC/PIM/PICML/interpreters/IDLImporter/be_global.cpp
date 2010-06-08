@@ -44,9 +44,8 @@ IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 BE_GlobalData::BE_GlobalData (void)
   : output_dir_ (0),
     input_xme_ (0),
-    nfiles_ (0),
-    first_file_ (true),
-    output_file_ ("PICML_default_xme_file")
+    output_file_ ("PICML_default_xme_file"),
+    files_ (proj_)
 {
   ACE_Env_Value <const char *> path ("COSMIC_ROOT", 0);
 
@@ -62,20 +61,11 @@ BE_GlobalData::BE_GlobalData (void)
   }
 }
 
+//
+// ~BE_GlobalData
+//
 BE_GlobalData::~BE_GlobalData (void)
 {
-}
-
-const char *
-BE_GlobalData::filename (void) const
-{
-  return this->filename_.c_str ();
-}
-
-void
-BE_GlobalData::filename (const char *fname)
-{
-  this->filename_ = fname;
 }
 
 const char*
@@ -104,38 +94,18 @@ BE_GlobalData::input_xme (const char* s)
   this->input_xme_ = ACE::strnew (s);
 }
 
-long
-BE_GlobalData::nfiles (void) const
-{
-  return this->nfiles_;
-}
-
-void
-BE_GlobalData::nfiles (long val)
-{
-  this->nfiles_ = val;
-}
-
-bool
-BE_GlobalData::first_file (void) const
-{
-  return this->first_file_;
-}
-
-void
-BE_GlobalData::first_file (bool val)
-{
-  this->first_file_ = val;
-}
-
-ACE_CString
-BE_GlobalData::output_file (void) const
+//
+// output_file
+//
+ACE_CString BE_GlobalData::output_file (void) const
 {
   return this->output_file_;
 }
 
-void
-BE_GlobalData::output_file (const char *val)
+//
+// output_file
+//
+void BE_GlobalData::output_file (const char *val)
 {
   this->output_file_ = val;
 }
@@ -398,17 +368,6 @@ void BE_GlobalData::xerces_init (void)
 }
 
 //
-// cache_files
-//
-void BE_GlobalData::cache_files (char *files[], long nfiles)
-{
-  for (long i = 0; i < nfiles; ++i)
-    this->allfiles_[i] = files[i];
-
-  this->nfiles_ = nfiles;
-}
-
-//
 // destroy
 //
 void BE_GlobalData::destroy (void)
@@ -417,17 +376,9 @@ void BE_GlobalData::destroy (void)
 }
 
 //
-// allfiles
-//
-const char * const * BE_GlobalData::allfiles (void) const
-{
-  return this->allfiles_;
-}
-
-//
 // project
 //
-GAME::XME::Project BE_GlobalData::project (void) const
+GAME::XME::Project & BE_GlobalData::project (void)
 {
   return this->proj_;
 }
@@ -471,3 +422,18 @@ std::string BE_GlobalData::get_GME_version (std::string path)
   return ""; // Empty string
 }
 
+//
+// files
+//
+PICML_File_Creator & BE_GlobalData::files (void)
+{
+  return this->files_;
+}
+
+//
+// files
+//
+const PICML_File_Creator & BE_GlobalData::files (void) const
+{
+  return this->files_;
+}

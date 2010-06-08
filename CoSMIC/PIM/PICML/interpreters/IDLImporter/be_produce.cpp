@@ -111,18 +111,16 @@ BE_produce (void)
 {
   try
   {
-    GAME::XME::Project & project = be_global->project ();
-
-    // Generate the IDL files in PICML for this project.
-    PICML_File_Creator fc (project);
-    const char * dest = "InterfaceDefintions";
-    fc.create_files (be_global->allfiles (), be_global->nfiles (), dest);
-
     // Visitor all nodes in the AST. This will populate the XME
     // document with the correct hierarchy for parsed IDL files.
+    GAME::XME::Project & project = be_global->project ();
     AST_Root *ast_root = idl_global->root ();
+
     Implementation_Generator impl_gen (project.root_folder ());
-    Project_Generator visitor (fc, impl_gen, project);
+
+    Project_Generator visitor (be_global->files (), 
+                               impl_gen, 
+                               project);
 
     ast_root->ast_accept (&visitor);
     visitor.finalize ();

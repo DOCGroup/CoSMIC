@@ -13,8 +13,11 @@ BE_version (void)
               ACE_TEXT (TAO_VERSION)));
 }
 
-IDL_TO_PICML_BE_Export int
-BE_init (int &, char *[])
+//
+// BE_init
+//
+IDL_TO_PICML_BE_Export 
+int BE_init (int &, char *[])
 {
   // Initialize BE global data object.
   ACE_NEW_RETURN (be_global,
@@ -24,11 +27,19 @@ BE_init (int &, char *[])
   return 0;
 }
 
-IDL_TO_PICML_BE_Export void
-BE_post_init (char *files[], long nfiles)
+//
+// BE_post_init
+//
+IDL_TO_PICML_BE_Export 
+void BE_post_init (char *files[], long nfiles)
 {
   idl_global->multi_file_input (true);
+
+
   be_global->xerces_init ();
-  be_global->cache_files (files, nfiles);
+
+  // We should enable you to customize the location (i.e., target
+  // folder name) via a command-line argument.
+  be_global->files ().create_files (files, nfiles, "InterfaceDefinitions");
 }
 
