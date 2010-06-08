@@ -648,26 +648,30 @@ int Project_Generator::visit_interface (AST_Interface *node)
                  auto_model.children ().end (),
                  arrange_vertical (start, 100));
 
+  using GAME::XME::FCO;
+
   // Check for any interface inheritance.
-  AST_Type ** inherits = node->inherits ();
+  static const ::Utils::XStr meta_Inherits ("Inherits");
+  long inherits_count = node->n_inherits ();
+  AST_Interface ** inherits = node->inherits_flat ();
 
-  if (0 != inherits)
+  for (long i = 0; i < inherits_count; ++ i)
   {
-    static const ::Utils::XStr meta_Inherits ("Inherits");
+    FCO referred_interface;
+   
+    if (!this->lookup_symbol (inherits[i], referred_interface))
+      continue;
 
-    Reference ref_inherits;
+    Reference inherits_ref;
 
-    if (auto_model.create_if_not (meta_Inherits, ref_inherits,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
-                                     meta_Inherits,
-                                     boost::bind (&Reference::kind, _1)))))
+    if (auto_model.create_if_not (meta_Inherits, inherits_ref,
+        GAME::contains (boost::bind (std::equal_to <FCO> (),
+                                     referred_interface,
+                                     boost::bind (&Reference::refers_to, _1)))))
     {
-      ;
+      inherits_ref.refers_to (referred_interface);
+      inherits_ref.name (meta_Inherits);
     }
-
-    // Let's just override the current settings.
-    ref_inherits.name (meta_Inherits);
-    this->handle_symbol_resolution (*inherits, ref_inherits);
   }
 
   return retval;
