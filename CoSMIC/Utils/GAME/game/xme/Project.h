@@ -13,7 +13,10 @@
 #ifndef _GAME_XME_PROJECT_H_
 #define _GAME_XME_PROJECT_H_
 
-#include "Folder.h"
+#include <map>
+#include <utility>
+#include "Library.h"
+#include "Configuration.h"
 
 namespace GAME
 {
@@ -35,15 +38,16 @@ public:
    */
   static Project _create (const ::Utils::XStr & xmefile,
                           const ::Utils::XStr & paradigm,
-                          const ::Utils::XStr & guid);
+                          const ::Utils::XStr & guid,
+                          const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /**
    * Open an existing file.
    *
    * @paramp[in]
    */
-  static Project _open (const ::Utils::XStr & location,
-                        const ::Utils::XStr & schema);
+  static Project _open (const ::Utils::XStr & location, 
+                        const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /// Default constructor.
   Project (void);
@@ -53,7 +57,9 @@ public:
    *
    * @param[in]     proj          Root element of the project.
    */
-  Project (xercesc::DOMDocument * proj, bool validate);
+  Project (xercesc::DOMDocument * proj, 
+           bool validate,
+           const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /**
    * Copy constructor
@@ -161,6 +167,13 @@ public:
    */
   bool is_nil (void) const;
 
+  Library attach_library (const ::Utils::XStr & library);
+
+  Library attach_library (const ::Utils::XStr & as_name, 
+                          const ::Utils::XStr & library);
+
+  const Configuration * configuration (void) const;
+
 private:
   static const ::Utils::XStr TAGNAME;
   static const ::Utils::XStr DTD;
@@ -168,6 +181,8 @@ private:
   static const ::Utils::XStr ELEMENT_NAME;
   static const ::Utils::XStr ELEMENT_AUTHOR;
   static const ::Utils::XStr ELEMENT_COMMENT;
+  static const ::Utils::XStr ROOT_FOLDER;
+  static const ::Utils::XStr ATTR_LIBREF;
 
   // Implementation of the save method.
   bool save_i (const ::Utils::XStr & xmefile) const;
@@ -177,6 +192,9 @@ private:
 
   /// Location of the project.
   ::Utils::XStr xmefile_;
+
+  /// The project's configuration.
+  const Configuration * config_;
 };
 
 }

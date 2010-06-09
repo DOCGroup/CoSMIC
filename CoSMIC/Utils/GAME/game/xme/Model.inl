@@ -164,5 +164,17 @@ children (const ::Utils::XStr & metaname, std::vector <Connection> & coll)
   return Utils::get_children (this->obj_, metaname, coll);
 }
 
+//
+// _narrow
+//
+GAME_INLINE
+Model Model::_narrow (const Object & obj)
+{
+  if ((Object_Type::OT_MODEL & obj.type ()))
+    return Model (obj.ptr ());
+
+  throw Invalid_Cast ();
+}
+
 }
 }

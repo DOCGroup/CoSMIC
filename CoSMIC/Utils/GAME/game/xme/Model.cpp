@@ -40,7 +40,7 @@ Model (xercesc::DOMElement * model, bool validate)
 : FCO (model, false),
   counter_ (0)
 {
-  if (validate && !(this->type_ & Object_Type::OT_MODEL))
+  if (validate && !((this->type_ & Object_Type::OT_MODEL) == Object_Type::OT_MODEL))
     throw Invalid_Cast ();
 
   this->initialize_counter ();

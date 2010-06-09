@@ -60,5 +60,17 @@ const Connection & Connection::operator = (const Connection & conn)
   return *this;
 }
 
+//
+// _narrow
+//
+GAME_INLINE
+Connection Connection::_narrow (const Object & obj)
+{
+  if ((Object_Type::OT_CONNECTION & obj.type ()))
+    return Connection (obj.ptr ());
+
+  throw Invalid_Cast ();
+}
+
 }
 }

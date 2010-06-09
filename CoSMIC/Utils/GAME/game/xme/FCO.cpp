@@ -22,7 +22,7 @@ void FCO::attach (xercesc::DOMElement * fco, bool validate)
   Object::attach (fco, false);
 
   // Validate the concrete type.
-  if (validate && !(this->type_ & Object_Type::OT_FCO))
+  if (validate && !((this->type_ & Object_Type::OT_FCO) == Object_Type::OT_FCO))
     throw Invalid_Cast ();
 }
 

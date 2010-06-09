@@ -12,7 +12,8 @@ namespace XME
 //
 GAME_INLINE
 Project::Project (void)
-: doc_ (0)
+: doc_ (0),
+  config_ (0)
 {
 
 }
@@ -23,7 +24,8 @@ Project::Project (void)
 GAME_INLINE
 Project::Project (const Project & proj)
 : doc_ (proj.doc_),
-  xmefile_ (proj.xmefile_)
+  xmefile_ (proj.xmefile_),
+  config_ (proj.config_)
 {
 
 }
@@ -32,8 +34,11 @@ Project::Project (const Project & proj)
 // Project
 //
 GAME_INLINE
-Project::Project (xercesc::DOMDocument * doc, bool validate)
-: doc_ (0)
+Project::Project (xercesc::DOMDocument * doc, 
+                  bool validate,
+                  const Configuration * config)
+: doc_ (0),
+  config_ (config)
 {
   this->attach (doc, validate);
 }
@@ -157,5 +162,28 @@ bool Project::is_nil (void) const
 {
   return this->doc_ == 0;
 }
+
+//
+// schema
+//
+GAME_INLINE
+const Configuration * Project::configuration (void) const
+{
+  return this->config_;
+}
+
+//
+// attach_library
+//
+GAME_INLINE
+Library Project::
+attach_library (const ::Utils::XStr & as_name, const ::Utils::XStr & lib)
+{
+  Library library = this->attach_library (lib);
+  library.name (as_name);
+
+  return library;
+}
+
 }
 }

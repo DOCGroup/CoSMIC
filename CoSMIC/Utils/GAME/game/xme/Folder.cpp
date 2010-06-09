@@ -37,7 +37,7 @@ Folder::Folder (xercesc::DOMElement * folder, bool validate)
 : Object (folder, false),
   counter_ (0)
 {
-  if (validate && !(this->type_ & Object_Type::OT_FOLDER))
+  if (validate && !((this->type_ & Object_Type::OT_FOLDER) == Object_Type::OT_FOLDER))
     throw Invalid_Cast ();
 
   this->initialize_counter ();
@@ -69,7 +69,7 @@ void Folder::attach (xercesc::DOMElement * obj, bool validate)
   // Pass control to the base class.
   Object::attach (obj);
 
-  if (validate && !(this->type_ & Object_Type::OT_FOLDER))
+  if (validate && !((this->type_ & Object_Type::OT_FOLDER) == Object_Type::OT_FOLDER))
     throw Invalid_Cast ();
 
   // Initialize the counter variable.

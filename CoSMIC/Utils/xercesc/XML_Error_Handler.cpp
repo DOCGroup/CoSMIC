@@ -61,4 +61,58 @@ bool XML_Error_Handler::getErrors (void) const
   return this->errors_;
 }
 
+
+//
+// DOM_Error_Handler
+//
+DOM_Error_Handler::DOM_Error_Handler (void)
+: errors_ (false)
+{
+
+}
+
+//
+// ~DOM_Error_Handler
+//
+DOM_Error_Handler::~DOM_Error_Handler (void)
+{
+
+}
+
+//
+// handleError
+//
+bool DOM_Error_Handler::handleError (const xercesc::DOMError& domError)
+{
+  static const char * severity [] = {"", "warning", "error", "fatal error"};
+
+  if (this->errors_ != true)
+    this->errors_ = true;
+
+  XStr error_msg (domError.getMessage (), false);
+
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%s at line %d and column %d\n"),
+              error_msg.to_string ().c_str (),
+              domError.getLocation ()->getLineNumber (),
+              domError.getLocation ()->getColumnNumber ()));
+
+  return true;
+}
+
+//
+// resetErrors
+//
+void DOM_Error_Handler::resetErrors (void)
+{
+  this->errors_ = false;
+}
+
+//
+// getErrors
+//
+bool DOM_Error_Handler::getErrors (void) const
+{
+  return this->errors_;
+}
 }

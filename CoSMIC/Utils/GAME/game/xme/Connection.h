@@ -41,6 +41,8 @@ public:
                              const FCO & src,
                              const FCO & dst);
 
+  static Connection _narrow (const Object & obj);
+
   /// Default constructor.
   Connection (void);
 

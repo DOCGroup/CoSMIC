@@ -32,7 +32,7 @@ GAME_INLINE
 Atom::Atom (xercesc::DOMElement * atom, bool validate)
 : FCO (atom, false)
 {
-  if (validate && !(this->type_ & Object_Type::OT_ATOM))
+  if (validate && !((this->type_ & Object_Type::OT_ATOM) == Object_Type::OT_ATOM))
     throw Invalid_Cast ();
 }
 

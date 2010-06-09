@@ -9,15 +9,22 @@
 #include "Folder.h"
 #include "GME_ID_Generator.h"
 #include "GME_ID_Generator_T.h"
+#include "Library_Importer.h"
 
 #include "Utils/xercesc/XML_Error_Handler.h"
 #include "Utils/xercesc/EntityResolver.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
 
+#include "boost/bind.hpp"
+
 #include "ace/OS_Memory.h"
 #include "ace/OS_NS_stdio.h"
 #include "ace/OS_NS_time.h"
 #include <sstream>
+
+#include <xercesc/framework/Wrapper4InputSource.hpp>
+#include <xercesc/framework/LocalFileInputSource.hpp>
+#include <xercesc/dom/DOM.hpp>
 
 namespace GAME
 {
@@ -29,6 +36,8 @@ const ::Utils::XStr Project::XML_VERSION ("1.0");
 const ::Utils::XStr Project::ELEMENT_NAME ("name");
 const ::Utils::XStr Project::ELEMENT_AUTHOR ("author") ;
 const ::Utils::XStr Project::ELEMENT_COMMENT ("comment");
+const ::Utils::XStr Project::ROOT_FOLDER ("RootFolder");
+const ::Utils::XStr Project::ATTR_LIBREF ("libref");
 
 //
 // timestamp
@@ -107,7 +116,8 @@ static ACE_TCHAR * timestamp (ACE_TCHAR * buffer, int length)
 Project Project::
 _create (const ::Utils::XStr & xmefile,
          const ::Utils::XStr & paradigm,
-         const ::Utils::XStr & guid)
+         const ::Utils::XStr & guid,
+         const Configuration * config)
 {
   using namespace xercesc;
 
@@ -147,13 +157,13 @@ _create (const ::Utils::XStr & xmefile,
   root->setAttribute (::Utils::XStr ("cdate"), ::Utils::XStr (ts));
 
   // Initialize the project attributes.
-  Project project (doc, false);
+  Project project (doc, false, config);
   project.name (::Utils::XStr::EMPTY_STRING);
   project.comment (::Utils::XStr::EMPTY_STRING);
   project.author (::Utils::XStr::EMPTY_STRING);
 
   // Create the root folder for the project.
-  Folder root_folder (root, "RootFolder", 0);
+  Folder root_folder (root, ROOT_FOLDER, 0);
 
   // Save the current state of the project.
   project.save (xmefile);
@@ -165,11 +175,10 @@ _create (const ::Utils::XStr & xmefile,
 // _open
 //
 Project Project::
-_open (const ::Utils::XStr & location, const ::Utils::XStr & schema)
+_open (const ::Utils::XStr & location, const Configuration * config)
 {
-  using xercesc::XercesDOMParser;
+  using namespace xercesc;
 
-  // Initailize the DOM parser.
   XercesDOMParser parser;
   parser.setValidationScheme(XercesDOMParser::Val_Always);
   parser.setDoNamespaces (true);
@@ -179,22 +188,19 @@ _open (const ::Utils::XStr & location, const ::Utils::XStr & schema)
   parser.setDoSchema (true);
 
   // Set the error handler.
-  xercesc::HandlerBase * handler = new ::Utils::XML_Error_Handler ();
-  parser.setErrorHandler (handler);
+  std::auto_ptr <xercesc::HandlerBase> handler (new ::Utils::XML_Error_Handler ());
+  parser.setErrorHandler (handler.get ());
 
   // Set the entity resolver.
-  xercesc::EntityResolver * resolver = new ::Utils::EntityResolver (schema);
-  parser.setEntityResolver (resolver);
+  std::auto_ptr <xercesc::EntityResolver> resolver (new ::Utils::EntityResolver (config->schema_path_));
+  parser.setEntityResolver (resolver.get ());
 
   // Parse the specified XML document.
   parser.parse (location);
 
   // Initialize a project variable.
-  Project proj (parser.adoptDocument (), false);
+  Project proj (parser.adoptDocument (), false, config);
   proj.xmefile_ = location;
-
-  delete handler;
-  delete resolver;
 
   return proj;
 }
@@ -248,15 +254,16 @@ bool Project::save_i (const ::Utils::XStr & xmefile) const
 //
 void Project::close (void)
 {
+  // Release all the resource owned by this document.
   if (0 != this->doc_)
   {
-    // Release all the resource owned by this document.
     this->doc_->release ();
     this->doc_ = 0;
   }
 
   // Erase the target filename.
   this->xmefile_.clear ();
+  this->config_ = 0;
 }
 
 //
@@ -267,6 +274,7 @@ const Project & Project::operator = (const Project & proj)
   // Take ownership of the document.
   this->doc_ = proj.doc_;
   this->xmefile_ = proj.xmefile_;
+  this->config_ = proj.config_;
 
   return *this;
 }
@@ -333,6 +341,45 @@ Folder Project::root_folder (void) const
   return Folder ();
 }
 
+//
+// attach_library
+//
+Library Project::
+attach_library (const ::Utils::XStr & libpath)
+{
+  ::Utils::XStr xmefile (libpath);
+  xmefile.append (L".xme");
+
+  // Make sure we have the fullpath for the library.
+  char abspath[MAXPATHLEN];
+  std::string filename = ACE_OS::realpath (xmefile.to_string ().c_str (), 
+                                           abspath);
+
+  std::replace (filename.begin (),
+                filename.end (),
+                '\\',
+                '/');
+
+  xmefile = filename.c_str ();
+
+  // Let the project's root folder adopt the library's root 
+
+  using namespace xercesc;
+
+  Project lib_project = Project::_open (xmefile, this->config_);
+  
+  Library_Importer importer;
+  importer.import (lib_project.root_folder ());
+
+  // Attach this document as a library.
+  DOMNode * node = this->doc_->importNode (lib_project.root_folder ().ptr (), true);
+  DOMElement * e = dynamic_cast <DOMElement *> (node);
+
+  Folder root_folder = this->root_folder ();
+  root_folder.ptr ()->appendChild (e);
+
+  return Library (e, xmefile, false);
 }
 
+}
 }

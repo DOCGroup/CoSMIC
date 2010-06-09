@@ -45,7 +45,7 @@ Reference::
 Reference (xercesc::DOMElement * ref, bool validate)
 : FCO (ref, false)
 {
-  if (validate && !(this->type_ & Object_Type::OT_REFERENCE))
+  if (validate && !((this->type_ & Object_Type::OT_REFERENCE) == Object_Type::OT_REFERENCE))
     throw Invalid_Cast ();
 }
 

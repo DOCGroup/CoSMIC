@@ -44,33 +44,9 @@ void XStr::append (const XMLCh * tail)
   this->as_string_.reset ();
 }
 
-////
-//// erase
-////
-//bool XStr::erase(const XMLCh *head, const XMLCh *tail)
-//{
-//  bool bOK = head <= tail && head >= begin() && tail <= end();
-//  if (bOK)
-//    {
-//      XMLCh *result = new XMLCh[ size() - (tail - head) + 1 ];
-//      XMLCh *target = result;
-//      bOK = target != NULL;
-//      if (bOK)
-//        {
-//          const XMLCh *cursor = begin();
 //
-//          while (cursor != head) *target++ = *cursor++;
-//          cursor = tail;
-//          while ( cursor != end() ) *target++ = *cursor++;
-//          *target ++ = 0;
-//          XMLString::release(&wstr_);
-//          wstr_ = result;
-//        }
-//    }
-//  return bOK;
-//}
+// to_string
 //
-
 const std::string & XStr::to_string (void) const
 {
   // Take the quick path out if we can.

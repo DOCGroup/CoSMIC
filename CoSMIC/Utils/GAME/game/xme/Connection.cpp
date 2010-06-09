@@ -183,7 +183,10 @@ xercesc::DOMElement * Connection::release (void)
 //
 void Connection::attach (xercesc::DOMElement * e, bool validate)
 {
-  FCO::attach (e, validate);
+  FCO::attach (e, false);
+
+  if (validate && !((this->type_ & Object_Type::OT_CONNECTION) == Object_Type::OT_CONNECTION))
+    throw Invalid_Cast ();
 
   // Make sure we release our current connections. Otherwise,
   // we can end up in a bad state.
