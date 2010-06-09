@@ -37,6 +37,29 @@ Library_Importer::~Library_Importer (void)
 //
 void Library_Importer::import (Folder & folder)
 {
+  this->handle_folder (folder);
+
+  // Finally, fix any unresolved references.
+  std::cout << "---- map size = " << this->id_map_.size () << std::endl;
+
+  std::for_each (this->unresolved_refs_.begin (),
+                 this->unresolved_refs_.end (),
+                 boost::bind (&Library_Importer::resolve_reference,
+                              boost::ref (this),
+                              _1));
+
+  std::for_each (this->unresolved_conns_.begin (),
+                 this->unresolved_conns_.end (),
+                 boost::bind (&Library_Importer::resolved_connection,
+                              boost::ref (this),
+                              _1));
+}
+
+//
+// handle_folder
+//
+void Library_Importer::handle_folder (Folder & folder)
+{
   // Update the id for the folder element.
   this->handle_import_common (folder);
 
@@ -46,7 +69,9 @@ void Library_Importer::import (Folder & folder)
 
   std::for_each (child_folders.begin (),
                  child_folders.end (),
-                 boost::bind (&Library_Importer::import, this, _1));
+                 boost::bind (&Library_Importer::handle_folder, 
+                              boost::ref (this),
+                              _1));
 
   std::vector <FCO> child_fcos;
   folder.children (child_fcos);
@@ -54,20 +79,7 @@ void Library_Importer::import (Folder & folder)
   std::for_each (child_fcos.begin (),
                  child_fcos.end (),
                  boost::bind (&Library_Importer::handle_import_fco,
-                              this,
-                              _1));
-
-  // Finally, fix any unresolved references.
-  std::for_each (this->unresolved_refs_.begin (),
-                 this->unresolved_refs_.end (),
-                 boost::bind (&Library_Importer::resolve_reference,
-                              this,
-                              _1));
-
-  std::for_each (this->unresolved_conns_.begin (),
-                 this->unresolved_conns_.end (),
-                 boost::bind (&Library_Importer::resolved_connection,
-                              this,
+                              boost::ref (this),
                               _1));
 }
 
@@ -102,13 +114,25 @@ void Library_Importer::handle_import_fco (FCO & fco)
 template <typename T>
 void Library_Importer::handle_import_common (T & e)
 {
+  using xercesc::XMLString;
+
+  // Get the old id and convert it to lowercase.
+  ::Utils::XStr old_id (e.id (), false);
+  XMLString::lowerCase (old_id);
+
+  // Generarate a new id for the element.
+  ::Utils::XStr id = GME_XME_ID_GENERATOR (T)->generate_id ();
+  XMLString::lowerCase (id);
+
+  ::Utils::XStr name (e.name (), false);
+  ::Utils::XStr kind (e.kind (), false);
+
+  std::cout 
+    << ". [" << old_id << "] = " << id 
+    << " (" << name << " : "  << kind << ")" << std::endl;
+
   // Store the old id and set a new id.
-  const ::Utils::XStr old_id (e.id (), false);
-  const ::Utils::XStr name (e.name (), false);
-
-  const ::Utils::XStr & id = GME_XME_ID_GENERATOR (T)->generate_id ();
   this->id_map_[old_id] = id;
-
   e.ptr ()->setAttribute (ATTR_ID, id);
 }
 
@@ -136,7 +160,7 @@ void Library_Importer::handle_import_model (FCO & fco)
   std::for_each (children.begin (),
                  children.end (),
                  boost::bind (&Library_Importer::handle_import_fco,
-                              this,
+                              boost::ref (this),
                               _1));
 }
 
@@ -169,12 +193,20 @@ void Library_Importer::handle_import_connection (FCO & fco)
 //
 void Library_Importer::resolve_reference (Reference & ref)
 {
-  const ::Utils::XStr old_id (ref.ptr ()->getAttribute (ATTR_REFERRED), false);
-  
+  using xercesc::XMLString;
+
+  if (!ref.ptr ()->hasAttribute (ATTR_REFERRED))
+    return;
+
+  ::Utils::XStr old_id (ref.ptr ()->getAttribute (ATTR_REFERRED));
+  XMLString::lowerCase (old_id);
+
   id_map_t::iterator iter = this->id_map_.find (old_id);
 
   if (iter != this->id_map_.end ())
     ref.ptr ()->setAttribute (ATTR_REFERRED, iter->second);
+  else
+    std::cerr << "failed to locate " << old_id << std::endl; 
 }
 
 //
@@ -182,11 +214,16 @@ void Library_Importer::resolve_reference (Reference & ref)
 //
 void Library_Importer::resolved_connection (Connection & conn)
 {
+  using xercesc::XMLString;
+
   xercesc::DOMElement * p1 = conn.ptr ()->getFirstElementChild ()->getNextElementSibling ();
   xercesc::DOMElement * p2 = p1->getNextElementSibling ();
 
-  const ::Utils::XStr p1_old_id (p1->getAttribute (ATTR_TARGET));
-  const ::Utils::XStr p2_old_id (p2->getAttribute (ATTR_TARGET));
+  ::Utils::XStr p1_old_id (p1->getAttribute (ATTR_TARGET));
+  XMLString::lowerCase (p1_old_id);
+
+  ::Utils::XStr p2_old_id (p2->getAttribute (ATTR_TARGET));
+  XMLString::lowerCase (p2_old_id);
 
   id_map_t::iterator iter = this->id_map_.find (p1_old_id);
 

@@ -67,6 +67,7 @@ const ::Utils::XStr & GME_ID_Generator_T <T>::generate_id  (void)
     *ptr ++ = xercesc::chDigit_0;
 
   // Insert the number into the id.
+  XMLString::lowerCase (buffer);
   XMLString::moveChars (ptr, buffer, length + 1);
 
   // Increment the count for the next id

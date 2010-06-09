@@ -44,6 +44,8 @@ private:
     bool operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid);
   };
 
+  void handle_folder (Folder & folder);
+
   void handle_import_fco (FCO & fco);
 
   void handle_import_atom (FCO & fco);
