@@ -24,19 +24,18 @@
 #include "Utils/xercesc/EntityResolver.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
 
+#include "game/xme/Configuration.h"
+
 #include "ace/OS_NS_stdio.h"
-#include "ace/Env_Value_T.h"
 #include "ace/streams.h"
 
 #include <fstream>
 #include <sstream>
 #include <string>
 
+#include "boost/bind.hpp"
+
 // Some magic strings.
-const char *VERSION = "1.0";
-const char *ENCODING = "UTF-8";
-const char *DOCTYPE = "project";
-const char *SYS_ID = "mga.dtd";
 const char *FILE_EXT = ".xme";
 
 IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
@@ -47,18 +46,7 @@ BE_GlobalData::BE_GlobalData (void)
     output_file_ ("PICML_default_xme_file"),
     files_ (proj_)
 {
-  ACE_Env_Value <const char *> path ("COSMIC_ROOT", 0);
 
-  // Need an extra step here because some C++ compilers can't
-  // match ACE_CString's assignment from char* operator with
-  // ACE_Env_Value's cast operator.
-  const char * path_str = path;
-
-  if (path_str != 0)
-  {
-    this->schema_path_ = path_str;
-    this->schema_path_ += "/includes/GME/";
-  }
 }
 
 //
@@ -178,17 +166,31 @@ void BE_GlobalData::parse_args (long &i, char **av)
 
       case 'm':
         if (av[i][2] == '\0')
-          {
-            this->schema_path_ = av [i + 1];
-            i++;
-          }
+        {
+          GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_ = av [i + 1];
+          i++;
+        }
         else
-          {
-            this->schema_path_ = av[i] + 2;
-          }
+        {
+          GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_ = av[i] + 2;
+        }
+
         // In case it isn't at the end of the command line option,
         // otherwise idempotent.
-        this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
+        GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (L"/");
+        break;
+
+      case 'l':
+        // Load the specified library.
+        if (av[i][2] == '\0')
+        {
+          this->libs_.push_back(av [i + 1]);
+          i++;
+        }
+        else
+        {
+          this->libs_.push_back (av[i] + 2);
+        }
         break;
 
       //case 'S':
@@ -262,15 +264,21 @@ void BE_GlobalData::usage (void) const
     ));
   ACE_DEBUG ((
       LM_DEBUG,
-      ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
-      ACE_TEXT (" Default is c:\\Program Files\\GME\n")
+      ACE_TEXT (" -l <filepath>\t\tAttach specified file as a ")
+      ACE_TEXT ("library")
     ));
   ACE_DEBUG ((
       LM_DEBUG,
-      ACE_TEXT (" -Sp \t\t\tSuppress pruning of elements removed")
-      ACE_TEXT (" in modified IDL.")
-      ACE_TEXT (" Default is to do pruning\n")
+      ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
+      ACE_TEXT (" Default is c:\\Program Files\\GME\n")
     ));
+
+  //ACE_DEBUG ((
+  //    LM_DEBUG,
+  //    ACE_TEXT (" -Sp \t\t\tSuppress pruning of elements removed")
+  //    ACE_TEXT (" in modified IDL.")
+  //    ACE_TEXT (" Default is to do pruning\n")
+  //  ));
 }
 
 //
@@ -288,7 +296,7 @@ AST_Generator * BE_GlobalData::generator_init (void)
 //
 // xerces_init
 //
-void BE_GlobalData::xerces_init (void)
+void BE_GlobalData::initialize (void)
 {
   using GAME::XME::Project;
 
@@ -315,16 +323,24 @@ void BE_GlobalData::xerces_init (void)
       // Create the project and set its name.
       static const ::Utils::XStr PICML ("PICML");
       static const ::Utils::XStr GUID ("94FCA7F1-9017-4BFD-B557-F738FC54B103");
-      static const ::Utils::XStr name (be_global->output_file ().c_str ());
+      const ::Utils::XStr name (be_global->output_file ().c_str ());
 
       this->proj_ = Project::_create (target_name.c_str (), PICML, GUID);
+
       this->proj_.name (name);
       this->proj_.root_folder ().name (name);
     }
     else
     {
-      this->proj_ = Project::_open (xme, this->schema_path_.c_str ());
+      this->proj_ = Project::_open (xme);
     }
+
+    // Next, attach the specified libraries.
+    std::for_each (this->libs_.begin (),
+                   this->libs_.end (),
+                   boost::bind (&Project::attach_library, 
+                                boost::ref (this->proj_),
+                                _1));
   }
   catch (const xercesc::DOMException & e)
   {

@@ -35,11 +35,9 @@ void BE_post_init (char *files[], long nfiles)
 {
   idl_global->multi_file_input (true);
 
-
-  be_global->xerces_init ();
-
   // We should enable you to customize the location (i.e., target
   // folder name) via a command-line argument.
+  be_global->initialize ();
   be_global->files ().create_files (files, nfiles, "InterfaceDefinitions");
 }
 

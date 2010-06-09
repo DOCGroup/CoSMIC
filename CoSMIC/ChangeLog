@@ -1,13 +1,27 @@
+Wed Jun  9 22:17:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_init.cpp:
+        
+          . Support for resolving external references in libraries. 
+
+        * Utils/GAME/game/xme/Library_Importer.cpp:
+        
+          . Removed debugging messages.
+
 Wed Jun  9 18:47:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/GME_ID_Generator_T.cpp:
-        
+
           . The ids are now generated in lowercase.
-          
+
         * Utils/GAME/game/xme/Library_Importer.h:
         * Utils/GAME/game/xme/Library_Importer.cpp:
-        
-          . Bug fix where the importer failed to resolve ids due to 
+
+          . Bug fix where the importer failed to resolve ids due to
             case sensitivity related issues.
 
 Wed Jun  9 17:29:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -80,7 +80,7 @@ public:
   // Create an AST node generator.
   AST_Generator *generator_init (void);
 
-  void xerces_init (void);
+  void initialize (void);
   // Initialize all the Xerces stuff.
 
   // Cleanup.
@@ -117,6 +117,8 @@ private:
 
   /// Collection of files in this parsing.
   PICML_File_Creator files_;
+
+  std::vector <std::string> libs_;
 };
 
 #endif /* IDL_TO_PICML_BE_GLOBAL_H */

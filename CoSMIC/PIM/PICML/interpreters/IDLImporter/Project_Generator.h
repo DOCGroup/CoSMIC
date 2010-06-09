@@ -168,9 +168,25 @@ private:
   /// Initialize the project.
   void initialize (void);
 
-  void handle_symbol_resolution (AST_Decl * type, GAME::XME::Reference & ref);
+  void handle_symbol_resolution (AST_Decl * type, 
+                                 GAME::XME::Reference & ref,
+                                 bool use_library = false);
 
-  bool lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco);
+  bool lookup_symbol (AST_Decl * type, 
+                      GAME::XME::FCO & fco,
+                      bool use_library = false);
+
+  bool lookup_symbol (AST_Decl * type, 
+                      std::vector <GAME::XME::Folder> & lib,
+                      GAME::XME::FCO & fco);
+
+  bool lookup_symbol (AST_Decl * type, 
+                      GAME::XME::Folder & folder,
+                      GAME::XME::FCO & fco);
+
+  bool lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
+                      GAME::XME::Model & model,
+                      GAME::XME::FCO & fco);
 
   void visit_exception_list (UTL_ExceptList * list,
                              const ::Utils::XStr & meta,

@@ -6,7 +6,6 @@
 #include "GME_ID_Generator.h"
 
 #include "boost/bind.hpp"
-#include <iostream>
 
 namespace GAME
 {
@@ -40,8 +39,6 @@ void Library_Importer::import (Folder & folder)
   this->handle_folder (folder);
 
   // Finally, fix any unresolved references.
-  std::cout << "---- map size = " << this->id_map_.size () << std::endl;
-
   std::for_each (this->unresolved_refs_.begin (),
                  this->unresolved_refs_.end (),
                  boost::bind (&Library_Importer::resolve_reference,
@@ -127,10 +124,6 @@ void Library_Importer::handle_import_common (T & e)
   ::Utils::XStr name (e.name (), false);
   ::Utils::XStr kind (e.kind (), false);
 
-  std::cout 
-    << ". [" << old_id << "] = " << id 
-    << " (" << name << " : "  << kind << ")" << std::endl;
-
   // Store the old id and set a new id.
   this->id_map_[old_id] = id;
   e.ptr ()->setAttribute (ATTR_ID, id);
@@ -205,8 +198,6 @@ void Library_Importer::resolve_reference (Reference & ref)
 
   if (iter != this->id_map_.end ())
     ref.ptr ()->setAttribute (ATTR_REFERRED, iter->second);
-  else
-    std::cerr << "failed to locate " << old_id << std::endl; 
 }
 
 //

@@ -438,7 +438,8 @@ void Project_Generator::finalize (void)
                  boost::bind (&Project_Generator::handle_symbol_resolution,
                               this,
                               boost::bind (&unresolved_t::ENTRY::item, _1),
-                              boost::bind (&unresolved_t::ENTRY::key, _1)));
+                              boost::bind (&unresolved_t::ENTRY::key, _1),
+                              true));
 }
 
 //
@@ -1930,7 +1931,8 @@ visit_exception_list (UTL_ExceptList * list,
 //
 // lookup_symbol
 //
-bool Project_Generator::lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco)
+bool Project_Generator::
+lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
 {
   using GAME::XME::FCO;
   AST_Decl::NodeType node_type = type->node_type ();
@@ -1946,41 +1948,162 @@ bool Project_Generator::lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco)
       return false;
 
     fco = predefined;
+    return true;
   }
   else if (node_type == AST_Decl::NT_string || node_type == AST_Decl::NT_wstring)
   {
     fco = this->string_type_;
+    return true;
   }
   else if (node_type == AST_Decl::NT_param_holder)
   {
     AST_Param_Holder * param = dynamic_cast <AST_Param_Holder *> (type);
     const FE_Utils::T_Param_Info * info = param->info ();
 
-    if (0 != this->params_.find (param->info (), fco))
-      return false;
+    if (0 == this->params_.find (param->info (), fco))
+      return true;
   }
-  else
+  else if (0 == this->symbols_.find (type, fco))
   {
-    // Locate the type in the symbol table.
-    if (0 != this->symbols_.find (type, fco))
-      return false;
+    return true;
+  }
+  else if (use_library)
+  {
+    std::vector <GAME::XME::Folder> libraries;
+    this->proj_.root_folder ().children (L"RootFolder", libraries);
+    
+    if (this->lookup_symbol (type, libraries, fco))
+      return true;
   }
 
-  return true;
+  return false;
 }
 
 //
 // handle_symbol_resolution
 //
 void Project_Generator::
-handle_symbol_resolution (AST_Decl * type, GAME::XME::Reference & ref)
+handle_symbol_resolution (AST_Decl * type, 
+                          GAME::XME::Reference & ref,
+                          bool use_library)
 {
   GAME::XME::FCO fco;
 
-  if (this->lookup_symbol (type, fco))
+  if (this->lookup_symbol (type, fco, use_library))
     ref.refers_to (fco);
   else
     this->unresolved_.bind (ref, type);
+}
+
+//
+// lookup_symbol
+//
+bool Project_Generator::
+lookup_symbol (AST_Decl * type, 
+               std::vector <GAME::XME::Folder> & lib,
+               GAME::XME::FCO & fco)
+{
+  // Check the provided libraries.
+  std::vector <GAME::XME::Folder>::iterator
+    iter = lib.begin (), iter_end = lib.end ();
+
+  for (; iter != iter_end; ++ iter)
+  {
+    std::vector <GAME::XME::Folder> idl_files;
+    iter->children (L"InterfaceDefinitions", idl_files);
+
+    // We should go through these to find the right file before
+    // continuing with our search.
+    std::vector <GAME::XME::Folder>::iterator
+      idl_files_iter = idl_files.begin (),
+      idl_files_end = idl_files.end ();
+
+    for (; idl_files_iter != idl_files_end; ++ idl_files_iter)
+    {
+      if (this->lookup_symbol (type, *idl_files_iter, fco))
+        return true;
+    }
+  }
+
+  return false;
+}
+
+//
+// lookup_symbol
+//
+bool Project_Generator::
+lookup_symbol (AST_Decl * type, 
+               GAME::XME::Folder & folder,
+               GAME::XME::FCO & fco)
+{
+  // We are in an interface definitions folder.
+  std::vector <GAME::XME::Model> files;
+  folder.children (files);
+
+  std::vector <GAME::XME::Model>::iterator 
+    iter = files.begin (), iter_end = files.end ();
+
+  for (; iter != iter_end; ++ iter)
+  {
+    // Search the current file for this symbol.
+    UTL_ScopedNameActiveIterator name_iter (type->name ());  
+    name_iter.next ();
+
+    if (this->lookup_symbol (name_iter, *iter, fco))
+      return true;
+  }
+
+  return false;
+}
+
+//
+// lookup_symbol
+//
+bool Project_Generator::
+lookup_symbol (UTL_ScopedNameActiveIterator & name_iter, 
+               GAME::XME::Model & model,
+               GAME::XME::FCO & fco)
+{
+  std::vector <GAME::XME::FCO> children;
+  model.children (children);
+
+  std::vector <GAME::XME::FCO>::iterator 
+    iter = children.begin (), iter_end = children.end ();
+
+  ::Utils::XStr name;
+  char * iter_name;
+
+  for ( ; iter != iter_end; ++ iter)
+  {
+    name.set (iter->name (), false);
+    iter_name = name_iter.item ()->get_string ();
+
+    if (0 == ACE_OS::strcmp (iter_name, name.to_string ().c_str ()))
+    {
+      // We found what we are looking for. Let's advance the
+      // name iterator and see if there is anything left.
+      name_iter.next ();
+      ::Utils::XStr kind (iter->kind (), false);
+
+      if (name_iter.is_done ())
+      {
+        fco = *iter;
+        return true;
+      }
+      else if (iter->type () == GAME::XME::Object_Type::OT_MODEL)
+      {
+        GAME::XME::Model model = GAME::XME::Model::_narrow (*iter);
+        return this->lookup_symbol (name_iter, model, fco);
+      }
+      else
+      {
+        // We got there before of a bad XML document.
+        return false;
+      }
+    }
+  }
+
+  return false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
