@@ -36,11 +36,11 @@ Show_Reference_Decorator_Impl::~Show_Reference_Decorator_Impl (void)
 // initialize
 //
 int Show_Reference_Decorator_Impl::
-initialize (const GAME::Project & proj, 
-            const GAME::Meta::Part & part, 
-            const GAME::FCO & fco,
-            IMgaCommonDecoratorEvents * eventSink, 
-            ULONGLONG parentWnd)
+initialize_ex (const GAME::Project & proj, 
+               const GAME::Meta::Part & part, 
+               const GAME::FCO & fco,
+               IMgaCommonDecoratorEvents * eventSink, 
+               ULONGLONG parentWnd)
 {
 	return this->initialize (proj, part, fco);
 }

@@ -36,16 +36,15 @@ public:
                   const GAME::Meta::Part & part, 
                   const GAME::FCO & fco);
 
-  int initialize (const GAME::Project & proj, 
-                  const GAME::Meta::Part & part, 
-                  const GAME::FCO & fco,
-                  IMgaCommonDecoratorEvents * eventSink, 
-                  ULONGLONG parentWnd);
+  int initialize_ex (const GAME::Project & proj, 
+                     const GAME::Meta::Part & part, 
+                     const GAME::FCO & fco,
+                     IMgaCommonDecoratorEvents * eventSink, 
+                     ULONGLONG parentWnd);
 
   int get_preferred_size (long & sx, long & sy);
 
   int draw (CDC & context);
-
   int draw (Gdiplus::Graphics & g);
 
 private:
