@@ -8,18 +8,6 @@
 #include "game/graphics/Image_Resolver.h"
 #include "game/utils/Registrar.h"
 
-#define GME_PORT_HEIGHT         11
-#define GME_PORT_WIDTH          11
-
-#define GME_PORT_PADDING_Y      4
-
-#define GME_PORT_MARGIN_X       8
-#define GME_PORT_MARGIN_Y       8
-
-#define COMPONENT_DEFUALT_WIDTH     143
-#define COMPONENT_DEFAULT_HEIGHT    70
-#define COMPONENT_LINE_WIDTH        3
-
 DECLARE_DECORATOR (NoShowRefersTo_Decorator, NoShowRefersTo_Decorator_Impl);
 
 //

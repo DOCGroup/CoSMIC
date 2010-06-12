@@ -1,3 +1,32 @@
+Sat Jun 12 15:16:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.cpp:
+          
+          Removed disfunct code.
+
+        * PIM/PICML/decorators/PackageDecorator:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.idl:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.mpc:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.reg:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.h:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Module.cpp:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_export.h:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decoratord.reg:
+        * PIM/PICML/decorators/PackageDecorator/StdAfx.h:
+        * PIM/PICML/decorators/PackageDecorator/StdAfx.cpp:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          Implemented a decorator for differentiating a standard
+          package from a template package.
+
+        * PIM/PICML/paradigms/icons/visio/TemplatePackage.vsd:
+        * PIM/PICML/paradigms/icons/TemplatePackage.gif:
+        * PIM/PICML/paradigms/icons/visio:
+
+          Icon the represents a template package element.
+          
 Sat Jun 12 06:06:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/NoShowRefersTo:
@@ -13,7 +42,7 @@ Sat Jun 12 06:06:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/NoShowRefersTo/StdAfx.cpp:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           . Implemented a new decorator for reference elements to not
             show the element that it references.
 
