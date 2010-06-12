@@ -1,7 +1,16 @@
+Sat Jun 12 15:49:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/PortType.bmp:
+        * PIM/PICML/paradigms/icons/visio/PortType.vsd:
+        
+          Icon for PortType elements.
+
 Sat Jun 12 15:16:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.cpp:
-          
+
           Removed disfunct code.
 
         * PIM/PICML/decorators/PackageDecorator:
@@ -17,7 +26,7 @@ Sat Jun 12 15:16:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/PackageDecorator/StdAfx.cpp:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           Implemented a decorator for differentiating a standard
           package from a template package.
 
@@ -26,7 +35,7 @@ Sat Jun 12 15:16:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/icons/visio:
 
           Icon the represents a template package element.
-          
+
 Sat Jun 12 06:06:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/NoShowRefersTo:
