@@ -59,8 +59,9 @@ namespace PICML
         visitor_->searching_end_tree_ = 1;
       }
     }
+
     template < typename Vertex, typename Graph >
-      void finish_vertex(Vertex u, const Graph & g) const
+    void finish_vertex(Vertex u, const Graph & g) const
     {
       put(m_ftimemap, u, m_time++);
             //TODO ::
@@ -142,16 +143,14 @@ namespace PICML
     vertex.the_component_ = a_port.parent ();
   }*/
 
-  Component_Port_Vertex::Component_Port_Vertex (Port a_port , string par_name)
-    : the_component_(a_port.parent ()),
-      the_port_(a_port)
+  Component_Port_Vertex::
+  Component_Port_Vertex (const PICML::MgaObject & a_port , string par_name)
+    : the_component_ (a_port.GetParent ()),
+      the_port_ (a_port)
   {
     is_drawn = 0;
 
     this->vertex_name_ = the_component_.getPath (".", false, true, "name", true);
-    //this->vertex_name_ +=
-    //this->vertex_name_ = par_name;
-
     this->vertex_name_ += "/";
     this->vertex_name_ += the_port_.name ();
 
@@ -159,14 +158,7 @@ namespace PICML
     this->display_label_ = this->vertex_name_;
 
     // now add the port type to the vertex_name ...
-    if (Udm::IsDerivedFrom (a_port.type () , InEventPort::meta))
-      this->vertex_name_ += "InEventPort";
-    else if (Udm::IsDerivedFrom (a_port.type () , OutEventPort::meta))
-      this->vertex_name_ += "OutEventPort";
-    else if (Udm::IsDerivedFrom (a_port.type () , RequiredRequestPort::meta))
-      this->vertex_name_ += "RequiredRequestPort";
-    else if (Udm::IsDerivedFrom (a_port.type () , ProvidedRequestPort::meta))
-      this->vertex_name_ += "ProvidedRequestPort";
+    this->vertex_name_ += a_port.type ().meta.name ();
   }
 
 
@@ -185,9 +177,9 @@ namespace PICML
     {
       throw;
     }
+
     Udm::Object parent = startPort.parent ();
     Component parent_cmp = Component::Cast (parent);
-
   }
 
   PathVisitor::PathVisitor (set<Udm::Object>& selections)
@@ -282,6 +274,53 @@ namespace PICML
       this->doc_->release();
     delete this->target_;
     */
+  }
+
+  void PathVisitor::
+  add_the_edges (Component_Port_Vertex start_vertex,  Component_Port_Vertex end_vertex)
+  {
+    /// find the nodes and add the edges ...
+    int start_index;
+    std::map<std::string,int>::iterator iter = graph_vertex_.find (start_vertex.vertex_name_);
+    // get the start vertwx of the edge
+
+    if (iter == graph_vertex_.end ())
+    {
+      // The vertex is found new ...
+      start_index = vertex_count_;
+      graph_vertex_indices_[vertex_count_] = start_vertex;
+      graph_vertex_[start_vertex.vertex_name_] = vertex_count_;
+
+      vertex_count_++;
+    }
+    else
+    {
+      // This vertex was already found
+      start_index = iter->second;
+    }
+
+    // get the end vertex of the edge
+    int end_index ;
+    iter = graph_vertex_.find (end_vertex.vertex_name_);
+    if (iter == graph_vertex_.end ())
+    {
+      // The vertex is found new ...
+      end_index = vertex_count_;
+      graph_vertex_indices_[vertex_count_] = end_vertex;
+      graph_vertex_[end_vertex.vertex_name_] = vertex_count_;
+      vertex_count_++;
+    }
+    else
+    {
+      // This vertex was already found
+      end_index = iter->second;
+    }
+
+    Edge_Numbers new_edge;
+    new_edge.source_ = start_index;
+    new_edge.target_ = end_index;
+
+    all_edges.push_back (new_edge);
   }
 
   void PathVisitor::init()
@@ -1409,29 +1448,28 @@ namespace PICML
       {
         //Component* comp_ptr = ;
         std::string comp_name = iter->name ();
-        std::set<InEventPort> in_event_ports
-          = iter->InEventPort_kind_children ();
 
-        std::set<OutEventPort> out_event_ports
-          = iter->OutEventPort_kind_children ();
-
-        std::set<RequiredRequestPort> reqd_request_port
-          = iter->RequiredRequestPort_kind_children ();
+        std::set<InEventPortInstance> in_event_ports = iter->InEventPortInstance_kind_children ();
+        std::set<OutEventPortInstance> out_event_ports = iter->OutEventPortInstance_kind_children ();
+        std::set<RequiredRequestPortInstance> reqd_request_port = iter->RequiredRequestPortInstance_kind_children ();
 
         number++;
+
         // for all in-event ports do this
-        std::set<InEventPort>::iterator in_event_port_iter;
+        std::set<InEventPortInstance>::iterator in_event_port_iter;
+
         for (in_event_port_iter = in_event_ports.begin ();
-              in_event_port_iter != in_event_ports.end ();
-              in_event_port_iter++)
+             in_event_port_iter != in_event_ports.end ();
+             in_event_port_iter++)
         {
           // now iterate for the out -event port
-          std::set<OutEventPort>::iterator out_event_port_iter;
+          std::set<OutEventPortInstance>::iterator out_event_port_iter;
+
           for (out_event_port_iter = out_event_ports.begin ();
-                out_event_port_iter != out_event_ports.end ();
-              out_event_port_iter++)
+               out_event_port_iter != out_event_ports.end ();
+               out_event_port_iter ++)
           {
-             std::string start_vertex = iter->name ();
+            std::string start_vertex = iter->name ();
             start_vertex += + "_";
             start_vertex += in_event_port_iter->name ();
 
@@ -1445,21 +1483,21 @@ namespace PICML
 
             //Component_Port_Vertex start (*in_event_port_iter, extract_uuid (*iter));
 
-            Component_Port_Vertex start (*in_event_port_iter,
-              in_event_port_iter->getPath (".", false, true, "name", true));
-            Component_Port_Vertex end (*out_event_port_iter,
-              out_event_port_iter->getPath (".", false, true, "name", true));
+            Component_Port_Vertex 
+              start (*in_event_port_iter, in_event_port_iter->getPath (".", false, true, "name", true)),
+              end (*out_event_port_iter, out_event_port_iter->getPath (".", false, true, "name", true));
 
-            add_the_edges (start , end);
+            add_the_edges (start, end);
           }
 
           // Here we are connecting the Required Request port
-          std::set<RequiredRequestPort>::iterator reqd_request_port_iter;
+          std::set<RequiredRequestPortInstance>::iterator reqd_request_port_iter;
+
           for (reqd_request_port_iter = reqd_request_port.begin ();
-                reqd_request_port_iter != reqd_request_port.end ();
-              reqd_request_port_iter++)
+               reqd_request_port_iter != reqd_request_port.end ();
+               reqd_request_port_iter++)
           {
-             std::string start_vertex = iter->name ();
+            std::string start_vertex = iter->name ();
             start_vertex += + "_";
             start_vertex += in_event_port_iter->name ();
 
@@ -1468,18 +1506,11 @@ namespace PICML
             end_vertex += "_";
             end_vertex += reqd_request_port_iter->name ();
 
-            std::string connection
-                = start_vertex + "-" + end_vertex;
+            std::string connection = start_vertex + "-" + end_vertex;
 
-            //Component_Port_Vertex start (*in_event_port_iter,extract_uuid (*iter));
-
-            //Component_Port_Vertex end (*reqd_request_port_iter, extract_uuid (*iter));
-
-            Component_Port_Vertex start (*in_event_port_iter,
-              in_event_port_iter->getPath (".", false, true, "name", true));
-
-            Component_Port_Vertex end (*reqd_request_port_iter,
-              reqd_request_port_iter->getPath (".", false, true, "name", true));
+            Component_Port_Vertex 
+              start (*in_event_port_iter, in_event_port_iter->getPath (".", false, true, "name", true)),
+              end (*reqd_request_port_iter, reqd_request_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
@@ -1487,19 +1518,20 @@ namespace PICML
         } //  for in-event Ports .....
 
 
-        std::set<ProvidedRequestPort> prov_request_port
-          = iter->ProvidedRequestPort_kind_children ();
+        std::set<ProvidedRequestPortInstance> prov_request_port = iter->ProvidedRequestPortInstance_kind_children ();
         // for all provided-request ports do this
-        std::set<ProvidedRequestPort>::iterator prov_request_port_iter;
+        std::set<ProvidedRequestPortInstance>::iterator prov_request_port_iter;
+
         for (prov_request_port_iter = prov_request_port.begin ();
-              prov_request_port_iter != prov_request_port.end ();
-              prov_request_port_iter++)
+             prov_request_port_iter != prov_request_port.end ();
+             prov_request_port_iter++)
         {
           // now iterate for the out -event port
-          std::set<OutEventPort>::iterator out_event_port_iter;
+          std::set<OutEventPortInstance>::iterator out_event_port_iter;
+
           for (out_event_port_iter = out_event_ports.begin ();
-                out_event_port_iter != out_event_ports.end ();
-              out_event_port_iter++)
+               out_event_port_iter != out_event_ports.end ();
+               out_event_port_iter++)
           {
              std::string start_vertex = iter->name ();
             start_vertex += + "_";
@@ -1512,25 +1544,19 @@ namespace PICML
 
             std::string connection
                 = start_vertex + "-" + end_vertex;
-/*
-            Component_Port_Vertex start (*prov_request_port_iter, extract_uuid (*iter));
 
-            Component_Port_Vertex end (*out_event_port_iter, extract_uuid (*iter));
-*/
-            Component_Port_Vertex start (*prov_request_port_iter,
-              prov_request_port_iter->getPath (".", false, true, "name", true));
-
-            Component_Port_Vertex end (*out_event_port_iter,
-              out_event_port_iter->getPath (".", false, true, "name", true));
+            Component_Port_Vertex
+              start (*prov_request_port_iter, prov_request_port_iter->getPath (".", false, true, "name", true)),
+              end (*out_event_port_iter, out_event_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
 
           // Here we are connecting the Required Request port
-          std::set<RequiredRequestPort>::iterator reqd_request_port_iter;
+          std::set<RequiredRequestPortInstance>::iterator reqd_request_port_iter;
           for (reqd_request_port_iter = reqd_request_port.begin ();
-                reqd_request_port_iter != reqd_request_port.end ();
-              reqd_request_port_iter++)
+               reqd_request_port_iter != reqd_request_port.end ();
+               reqd_request_port_iter++)
           {
              std::string start_vertex = iter->name ();
             start_vertex += + "_";
@@ -1541,18 +1567,11 @@ namespace PICML
             end_vertex += "_";
             end_vertex += reqd_request_port_iter->name ();
 
-            std::string connection
-                = start_vertex + "-" + end_vertex;
+            std::string connection = start_vertex + "-" + end_vertex;
 
-/*            Component_Port_Vertex start (*prov_request_port_iter, extract_uuid (*iter));
-
-            Component_Port_Vertex end (*reqd_request_port_iter, extract_uuid (*iter));
-*/
-            Component_Port_Vertex start (*prov_request_port_iter,
-              prov_request_port_iter->getPath (".", false, true, "name", true));
-
-            Component_Port_Vertex end (*reqd_request_port_iter,
-              reqd_request_port_iter->getPath (".", false, true, "name", true));
+            Component_Port_Vertex 
+              start (*prov_request_port_iter, prov_request_port_iter->getPath (".", false, true, "name", true)),
+              end (*reqd_request_port_iter, reqd_request_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
@@ -1572,59 +1591,6 @@ namespace PICML
     // Dump out an ComponentImplementationDescription file
   //  this->dumpDocument();
     this->pop();
-
-  }
-
-  void PathVisitor::add_the_edges (Component_Port_Vertex start_vertex,
-                                   Component_Port_Vertex end_vertex)
-  {
-
-    /// find the nodes and add the edges ...
-    int start_index;
-    std::map<std::string,int>::iterator iter
-      = graph_vertex_.find (start_vertex.vertex_name_);
-    // get the start vertwx of the edge
-
-    if (iter == graph_vertex_.end ())
-    {
-      // The vertex is found new ...
-      start_index = vertex_count_;
-      graph_vertex_indices_[vertex_count_]
-        = start_vertex;
-      graph_vertex_[start_vertex.vertex_name_]
-        = vertex_count_;
-      vertex_count_++;
-    }
-    else
-    {
-      // This vertex was already found
-      start_index = iter->second;
-    }
-
-    // get the end vertex of the edge
-    int end_index ;
-    iter = graph_vertex_.find (end_vertex.vertex_name_);
-    if (iter == graph_vertex_.end ())
-    {
-      // The vertex is found new ...
-      end_index = vertex_count_;
-      graph_vertex_indices_[vertex_count_]
-      = end_vertex;
-      graph_vertex_[end_vertex.vertex_name_]
-        = vertex_count_;
-      vertex_count_++;
-    }
-    else
-    {
-      // This vertex was already found
-      end_index = iter->second;
-    }
-
-    Edge_Numbers new_edge;
-    new_edge.source_ = start_index;
-    new_edge.target_ = end_index;
-
-    all_edges.push_back (new_edge);
 
   }
 
@@ -1715,10 +1681,12 @@ namespace PICML
              ++iter)
           {
             AttributeDelegate delegate = *iter;
-            ReadonlyAttribute attr = delegate.dstAttributeDelegate_end();
+            AttributeInstance attr = delegate.dstAttributeDelegate_end();
+
             std::string attrName = this->ExtractName (attr);
-            Component parent = attr.Component_parent();
+            ComponentInstance parent = attr.ComponentInstance_parent ();
             std::string parentName = this->ExtractName (parent);
+
             std::string compName = parent.getPath ("_", false, true, "name", true);
             output.insert (make_pair (compName, attr.name()));
           }
@@ -1755,12 +1723,14 @@ namespace PICML
             AssemblyConfigProperty cp = *it2;
             cp.Accept (*this);
           }
-        std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
-        for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin();
+
+        std::set <AttributeInstance> attrs = comp.AttributeInstance_children();
+
+        for (std::set<AttributeInstance>::const_iterator iter = attrs.begin();
              iter != attrs.end();
              ++iter)
           {
-            ReadonlyAttribute attr = *iter;
+            AttributeInstance attr = *iter;
             attr.Accept (*this);
           }
         for (std::map<std::pair<std::string, std::string>, Property>::const_iterator iter = this->attrValues_.begin();
@@ -1788,22 +1758,22 @@ namespace PICML
 
   void PathVisitor::Visit_ReadonlyAttribute(const ReadonlyAttribute& attr)
   {
-    AttributeValue attValue = attr.dstAttributeValue();
-    if (attValue != Udm::null)
-      attValue.Accept (*this);
+    //AttributeValue attValue = attr.dstAttributeValue();
+    //if (attValue != Udm::null)
+    //  attValue.Accept (*this);
   }
 
   void PathVisitor::Visit_AttributeValue(const AttributeValue& value)
   {
-    this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-    Property ref = value.dstAttributeValue_end();
-    ReadonlyAttribute attr = value.srcAttributeValue_end();
-    ref.name() = attr.name();
-    ref.Accept (*this);
-    this->pop();
+    //this->push();
+    //DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    //this->curr_->appendChild (ele);
+    //this->curr_ = ele;
+    //Property ref = value.dstAttributeValue_end();
+    //ReadonlyAttribute attr = value.srcAttributeValue_end();
+    //ref.name() = attr.name();
+    //ref.Accept (*this);
+    //this->pop();
   }
 
   void PathVisitor::Visit_AttributeDelegate(const AttributeDelegate&){}
@@ -1817,19 +1787,19 @@ namespace PICML
          ++iter)
       {
         ComponentAssembly subasm = *iter;
-        const std::set<invoke> invokes = subasm.invoke_kind_children();
-        for (std::set<invoke>::const_iterator iter = invokes.begin();
+        const std::set<Invoke> invokes = subasm.Invoke_kind_children();
+        for (std::set<Invoke>::const_iterator iter = invokes.begin();
              iter != invokes.end();
              ++iter)
           {
-            invoke iv = *iter;
+            Invoke iv = *iter;
             iv.Accept (*this);
           }
 
-        std::set <sendsTo> sends = subasm.sendsTo_kind_children ();
+        std::set <SendsTo> sends = subasm.SendsTo_kind_children ();
         std::for_each (sends.begin (),
                        sends.end (),
-                       boost::bind (&sendsTo::Accept, _1, boost::ref (*this)));
+                       boost::bind (&SendsTo::Accept, _1, boost::ref (*this)));
 
         this->publishers_.clear();
         this->consumers_.clear();
@@ -1908,53 +1878,53 @@ namespace PICML
   void PathVisitor::GetReceptacleComponents (const RequiredRequestPort& receptacle,
                                                 Component_Port& output)
   {
-    std::set<RequiredRequestPort> visited;
-    this->GetComponents (receptacle,
-                        &RequiredRequestPort::srcReceptacleDelegate,
-                        &RequiredRequestPort::dstReceptacleDelegate,
-                        &ReceptacleDelegate::srcReceptacleDelegate_end,
-                        &ReceptacleDelegate::dstReceptacleDelegate_end,
-                        output,
-                        visited);
+    //std::set<RequiredRequestPort> visited;
+    //this->GetComponents (receptacle,
+    //                    &RequiredRequestPort::srcReceptacleDelegate,
+    //                    &RequiredRequestPort::dstReceptacleDelegate,
+    //                    &ReceptacleDelegate::srcReceptacleDelegate_end,
+    //                    &ReceptacleDelegate::dstReceptacleDelegate_end,
+    //                    output,
+    //                    visited);
   }
 
   void PathVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
                                            Component_Port& output)
   {
-    std::set<ProvidedRequestPort> visited;
-    this->GetComponents (facet,
-                         &ProvidedRequestPort::srcFacetDelegate,
-                         &ProvidedRequestPort::dstFacetDelegate,
-                         &FacetDelegate::srcFacetDelegate_end,
-                         &FacetDelegate::dstFacetDelegate_end,
-                         output,
-                         visited);
+    //std::set<ProvidedRequestPort> visited;
+    //this->GetComponents (facet,
+    //                     &ProvidedRequestPort::srcFacetDelegate,
+    //                     &ProvidedRequestPort::dstFacetDelegate,
+    //                     &FacetDelegate::srcFacetDelegate_end,
+    //                     &FacetDelegate::dstFacetDelegate_end,
+    //                     output,
+    //                     visited);
   }
 
   void PathVisitor::GetEventSinkComponents (const InEventPort& consumer,
                                                Component_Port& output)
   {
-    std::set<InEventPort> visited;
-    this->GetComponents (consumer,
-                         &InEventPort::srcEventSinkDelegate,
-                         &InEventPort::dstEventSinkDelegate,
-                         &EventSinkDelegate::srcEventSinkDelegate_end,
-                         &EventSinkDelegate::dstEventSinkDelegate_end,
-                         output,
-                         visited);
+    //std::set<InEventPort> visited;
+    //this->GetComponents (consumer,
+    //                     &InEventPort::srcEventSinkDelegate,
+    //                     &InEventPort::dstEventSinkDelegate,
+    //                     &EventSinkDelegate::srcEventSinkDelegate_end,
+    //                     &EventSinkDelegate::dstEventSinkDelegate_end,
+    //                     output,
+    //                     visited);
   }
 
     void PathVisitor::GetEventSourceComponents (const OutEventPort& publisher,
                                                    Component_Port& output)
   {
-    std::set<OutEventPort> visited;
-    this->GetComponents (publisher,
-                         &OutEventPort::srcEventSourceDelegate,
-                         &OutEventPort::dstEventSourceDelegate,
-                         &EventSourceDelegate::srcEventSourceDelegate_end,
-                         &EventSourceDelegate::dstEventSourceDelegate_end,
-                         output,
-                         visited);
+    //std::set<OutEventPort> visited;
+    //this->GetComponents (publisher,
+    //                     &OutEventPort::srcEventSourceDelegate,
+    //                     &OutEventPort::dstEventSourceDelegate,
+    //                     &EventSourceDelegate::srcEventSourceDelegate_end,
+    //                     &EventSourceDelegate::dstEventSourceDelegate_end,
+    //                     output,
+    //                     visited);
   }
 
   void PathVisitor::
@@ -2036,19 +2006,17 @@ namespace PICML
 
   }
 
-  void PathVisitor::Visit_invoke(const invoke& iv)
+  void PathVisitor::Visit_Invoke(const Invoke& iv)
   {
-    // Get the receptacle end
-    RequiredRequestPort receptacle = iv.srcinvoke_end();
+    //// Get the endpoints.
+    //RequiredRequestPortEnd receptacle = iv.srcinvoke_end();
+    //ProvidedRequestPortEnd facet = iv.dstinvoke_end ();
 
-    // Get the facet end
-    ProvidedRequestPort facet = ProvidedRequestPort::Cast (iv.dstinvoke_end());
-
-    Component_Port receptacles;
-    Component_Port facets;
-    this->GetReceptacleComponents (receptacle, receptacles);
-    this->GetFacetComponents (facet, facets);
-    this->CreateConnections (receptacles, facets);
+    //Component_Port receptacles;
+    //Component_Port facets;
+    //this->GetReceptacleComponents (receptacle, receptacles);
+    //this->GetFacetComponents (facet, facets);
+    //this->CreateConnections (receptacles, facets);
   }
 
   //void PathVisitor::Visit_invoke(const invoke& iv)
@@ -2104,43 +2072,43 @@ namespace PICML
     this->CreateConnections (emitters, consumers);
   }
 */
-  void PathVisitor::Visit_sendsTo (const PICML::sendsTo & s)
+  void PathVisitor::Visit_SendsTo (const PICML::SendsTo & s)
   {
-    OutEventPort sender = s.srcsendsTo_end ();
-    InEventPort consumer = s.dstsendsTo_end ();
+    //OutEventPort sender = s.srcsendsTo_end ();
+    //InEventPort consumer = s.dstsendsTo_end ();
 
-    if (sender.single_destination ())
-    {
-      Udm::Object parent = sender.parent ();
-      ComponentInstance source_component = ComponentInstance::Cast (parent);
+    //if (sender.single_destination ())
+    //{
+    //  Udm::Object parent = sender.parent ();
+    //  ComponentInstance source_component = ComponentInstance::Cast (parent);
 
-      parent = consumer.parent ();
-      ComponentInstance target_component = ComponentInstance::Cast (parent);
+    //  parent = consumer.parent ();
+    //  ComponentInstance target_component = ComponentInstance::Cast (parent);
 
-      std::string start_vertex = source_component.name ();
-      start_vertex += + "_";
-      start_vertex += sender.name ();
+    //  std::string start_vertex = source_component.name ();
+    //  start_vertex += + "_";
+    //  start_vertex += sender.name ();
 
-      std::string end_vertex;
-      end_vertex += target_component.name ();
-      end_vertex += "_";
-      end_vertex += consumer.name ();
+    //  std::string end_vertex;
+    //  end_vertex += target_component.name ();
+    //  end_vertex += "_";
+    //  end_vertex += consumer.name ();
 
-      std::string connection = start_vertex + "-" + end_vertex;
+    //  std::string connection = start_vertex + "-" + end_vertex;
 
-      Component_Port_Vertex 
-        start (sender, sender.getPath (".", false, true, "name", true)),
-        end (consumer, consumer.getPath (".", false, true, "name", true));
+    //  Component_Port_Vertex 
+    //    start (sender, sender.getPath (".", false, true, "name", true)),
+    //    end (consumer, consumer.getPath (".", false, true, "name", true));
 
-      this->add_the_edges (start , end);
-    }
-    else
-    {
-      this->CreateConnection (sender.ComponentInstance_parent (),
-                              sender,
-                              consumer.ComponentInstance_parent (),
-                              consumer);
-    }
+    //  this->add_the_edges (start , end);
+    //}
+    //else
+    //{
+    //  this->CreateConnection (sender.ComponentInstance_parent (),
+    //                          sender,
+    //                          consumer.ComponentInstance_parent (),
+    //                          consumer);
+    //}
   }
 
   std::string PathVisitor::ExtractName(Udm::Object ob)

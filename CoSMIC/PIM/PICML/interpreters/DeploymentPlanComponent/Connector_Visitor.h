@@ -36,19 +36,43 @@ public:
 
   virtual void Visit_ComponentInstance (const PICML::ComponentInstance &);
 
-  virtual void Visit_ExtendedPort (const PICML::ExtendedPort &);
+  virtual void Visit_ExtendedPortInstance (const PICML::ExtendedPortInstance &);
+
+  virtual void Visit_MirrorPortInstance (const PICML::MirrorPortInstance &);
 
   virtual void Visit_Publish (const PICML::Publish & );
 
   virtual void Visit_Consume (const PICML::Consume & );
 
+  virtual void Visit_PortType (const PICML::PortType & pt);
+
+  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort &);
+
+  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort &);
+
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 
 private:
-  /// Helper method for creating a connection.
-  void create_connection (const std::string & name, 
-                          xercesc::DOMNode * e1,
-                          xercesc::DOMNode * e2);
+  bool find_plan_locality (const PICML::ComponentInstance & inst);
+
+  void start_new_connection (void);
+
+  void append_endpoint (const std::string & portname,
+                        const std::string & kind,
+                        const std::string & provider,
+                        const std::string & inst);
+
+  void end_connection (void);
+
+  void Visit_RequiredRequestPort_i (const std::string & inst,
+                                    const std::string & prefix, 
+                                    const PICML::RequiredRequestPort & p,
+                                    bool invert);
+
+  void Visit_ProvidedRequestPort_i (const std::string & inst,
+                                    const std::string & prefix,
+                                    const PICML::ProvidedRequestPort & p,
+                                    bool invert);
 
   DeploymentPlanVisitor & dpv_;
 
@@ -58,11 +82,20 @@ private:
   /// Set of connection gathered.
   std::vector <xercesc::DOMElement *> conns_;
 
-  PICML::ConnectorInstance inst_;
+  xercesc::DOMElement * curr_conn_;
 
-  std::string name_;
+  PICML::CollocationGroup group_;
 
-  xercesc::DOMElement * endpoint_;
+  PICML::ComponentInstance comp_inst_;
+
+  std::string conn_uuid_;
+  std::string conn_path_;
+
+  std::string prefix1_;
+
+  std::string prefix2_;
+
+  bool invert_;
 };
 
 #endif  // !defined _PICML_DEPLOYMENT_CONNECTOR_VISITOR_H_

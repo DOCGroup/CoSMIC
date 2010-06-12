@@ -498,8 +498,8 @@ handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
     if (attr_value.connection_points (connpoints) >= 2)
     {
       // Get the attribute at the 'src' of the connection.
-      GAME::Model attr =
-        GAME::Model::_narrow (connpoints["src"].target ());
+      GAME::Reference attr_inst = GAME::Reference::_narrow (connpoints["src"].target ());
+      GAME::Model attr = GAME::Model::_narrow (attr_inst.refers_to ());
 
       GAME::FCO attr_type;
       Reference_Set attr_members;
@@ -514,8 +514,7 @@ handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 
       // We have the destination connection point. This should
       // be a prop in an assembly.
-      GAME::Model prop =
-        GAME::Model::_narrow (connpoints["dst"].target ());
+      GAME::Model prop = GAME::Model::_narrow (connpoints["dst"].target ());
 
       // Set the name of the Property. We want to ensure the name
       // to the prop matches the name of the attribute.

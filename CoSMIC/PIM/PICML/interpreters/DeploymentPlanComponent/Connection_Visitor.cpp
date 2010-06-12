@@ -2,6 +2,7 @@
 
 #include "Connection_Visitor.h"
 #include "Utils/xercesc/XercesString.h"
+#include "Utils/udm/visit.h"
 #include "boost/bind.hpp"
 #include <algorithm>
 
@@ -33,31 +34,22 @@ void Connection_Visitor::
 Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 {
   // Visit the event sources.
-  std::vector <PICML::OutEventPort> sources = inst.OutEventPort_kind_children ();
-  std::for_each (sources.begin (),
-                 sources.end (),
-                 boost::bind (&PICML::OutEventPort::Accept,
-                              _1,
-                              boost::ref (*this)));
+  Udm::visit_all <PICML::OutEventPortInstance> (inst, *this);
 
-  // Visit the receptacles.
-  std::vector <PICML::RequiredRequestPort> receptacles = inst.RequiredRequestPort_kind_children ();
-  std::for_each (receptacles.begin (),
-                 receptacles.end (),
-                 boost::bind (&PICML::RequiredRequestPort::Accept,
-                              _1,
-                              boost::ref (*this)));
+  // Visit all the receptacles.
+  Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
 }
 
 //
 // Visit_OutEventPort
 //
 void Connection_Visitor::
-Visit_OutEventPort (const PICML::OutEventPort & source)
+Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
 {
   PICML::ComponentInstance inst = source.ComponentInstance_parent ();
   const std::string uuid = std::string ("_") + std::string (inst.UUID ());
-  const char * kind = source.single_destination () ? "EventEmitter" : "EventPublisher";
+  PICML::OutEventPort port = source.ref ();
+  const char * kind = port.single_destination () ? "EventEmitter" : "EventPublisher";
 
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
@@ -71,10 +63,10 @@ Visit_OutEventPort (const PICML::OutEventPort & source)
 
   this->name_ = source.getPath (".", false, true, "name", true);
 
-  std::set <PICML::sendsTo> sends = source.dstsendsTo ();
+  std::set <PICML::SendsTo> sends = source.dstSendsTo ();
   std::for_each (sends.begin (),
                  sends.end (),
-                 boost::bind (&PICML::sendsTo::Accept,
+                 boost::bind (&PICML::SendsTo::Accept,
                               _1,
                               boost::ref (*this)));
 
@@ -87,11 +79,13 @@ Visit_OutEventPort (const PICML::OutEventPort & source)
 // Visit_RequiredRequestPort
 //
 void Connection_Visitor::
-Visit_RequiredRequestPort (const PICML::RequiredRequestPort & receptacle)
+Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & receptacle)
 {
   PICML::ComponentInstance inst = receptacle.ComponentInstance_parent ();
   const std::string uuid = std::string ("_") + std::string (inst.UUID ());
-  const char * kind = receptacle.multiple_connections () ? "MultiplexReceptacle" : "SimplexReceptacle";
+
+  PICML::RequiredRequestPort port = receptacle.ref ();
+  const char * kind = port.multiple_connections () ? "MultiplexReceptacle" : "SimplexReceptacle";
 
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
@@ -106,11 +100,11 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & receptacle)
   this->name_ = receptacle.getPath (".", false, true, "name", true);
 
   // Visit all the connections.
-  std::set <PICML::invoke> invokes = receptacle.dstinvoke ();
+  std::set <PICML::Invoke> invokes = receptacle.dstinvoke ();
 
   std::for_each (invokes.begin (),
                  invokes.end (),
-                 boost::bind (&PICML::invoke::Accept,
+                 boost::bind (&PICML::Invoke::Accept,
                               _1,
                               boost::ref (*this)));
 
@@ -122,41 +116,47 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & receptacle)
 //
 // Visit_sendsTo
 //
-void Connection_Visitor::Visit_sendsTo (const PICML::sendsTo & sends)
+void Connection_Visitor::Visit_SendsTo (const PICML::SendsTo & sends)
 {
-  PICML::InEventPort sink = sends.dstsendsTo_end ();
-  sink.Accept (*this);
+  PICML::InEventPortEnd sink = sends.dstSendsTo_end ();
+  Uml::Class type = sink.type ();
+
+  if (type == PICML::InEventPortInstance::meta)
+    PICML::InEventPortInstance::Cast (sink).Accept (*this);
+  else if (type == PICML::InEventPortDelegate::meta)
+    PICML::InEventPortInstance::Cast (sink).Accept (*this);
 }
 
 //
 // Visit_invoke
 //
-void Connection_Visitor::Visit_invoke (const PICML::invoke & i)
+void Connection_Visitor::Visit_Invoke (const PICML::Invoke & i)
 {
-  PICML::InvokePortBase base = i.dstinvoke_end ();
-  const Uml::Class & type = base.type ();
+  PICML::ProvidedRequestPortEnd port = i.dstinvoke_end ();
+  const Uml::Class & type = port.type ();
 
-  if (type == PICML::ProvidedRequestPort::meta)
-    PICML::ProvidedRequestPort::Cast (base).Accept (*this);
-  else if (type == PICML::Supports::meta)
-    PICML::Supports::Cast (base).Accept (*this);
+  if (type == PICML::ProvidedRequestPortInstance::meta)
+    PICML::ProvidedRequestPortInstance::Cast (port).Accept (*this);
+  else if (type == PICML::SupportsInstance::meta)
+    PICML::SupportsInstance::Cast (port).Accept (*this);
 }
 
 //
-// Visit_InEventPort
+// Visit_InEventPortInstance
 //
 void Connection_Visitor::
-Visit_InEventPort (const PICML::InEventPort & sink)
+Visit_InEventPortInstance (const PICML::InEventPortInstance & sink)
 {
   PICML::ComponentInstance inst = sink.ComponentInstance_parent ();
 
   if (this->insts_.find (inst) != this->insts_.end ())
   {
     const std::string uuid = std::string ("_") + std::string (inst.UUID ());
+    PICML::InEventPort port = sink.ref ();
 
     // Create the template endpoint for these connections.
     xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
-    this->create_simple_content (endpoint, "portName", sink.name ());
+    this->create_simple_content (endpoint, "portName", port.name ());
     this->create_simple_content (endpoint, "provider", "true");
     this->create_simple_content (endpoint, "kind", "EventConsumer");
 
@@ -179,7 +179,7 @@ Visit_InEventPort (const PICML::InEventPort & sink)
 // Visit_ProvidedRequestPort
 //
 void Connection_Visitor::
-Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & facet)
+Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & facet)
 {
   PICML::ComponentInstance inst = facet.ComponentInstance_parent ();
 

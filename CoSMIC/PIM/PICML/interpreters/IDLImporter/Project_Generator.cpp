@@ -1967,6 +1967,10 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
   {
     return true;
   }
+  else if (this->lookup_symbol_in_template_module (type, fco, use_library))
+  {
+    return true;
+  }
   else if (use_library)
   {
     std::vector <GAME::XME::Folder> libraries;
@@ -1974,6 +1978,93 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
     
     if (this->lookup_symbol (type, libraries, fco))
       return true;
+  }
+
+  return false;
+}
+
+//
+// lookup_symbol_in_template_module
+//
+bool Project_Generator::
+lookup_symbol_in_template_module (AST_Decl * type,  
+                                  GAME::XME::FCO & fco, 
+                                  bool use_library)
+{
+  // Let's see if this is part of a template instance.
+  if (this->template_insts_.current_size () == 0)
+    return false;
+
+  const std::string full_name (type->full_name ());
+
+  // Let's look in the template modules for this reference.
+  typedef
+    ACE_Hash_Map_Manager <ACE_CString,
+    AST_Template_Module_Inst *,
+    ACE_Null_Mutex> module_inst_t;
+
+  module_inst_t::CONST_ITERATOR iter (this->template_insts_);
+
+  for (; !iter.done (); ++ iter)
+  {
+    if (full_name.find_first_of (iter->key ().c_str ()) == 0)
+    {
+      AST_Template_Module_Inst * module_inst = iter->item ();
+      AST_Template_Module * tm = module_inst->ref (); 
+
+      // Let's find out what type we are really looking for 
+      // in this case. This is done by replacing the instance 
+      // name with the template module's full name.
+      std::string name = full_name.substr (iter->key ().length ());
+
+      // Now, we have to locate the element by it's name. This is
+      // done by first, converting the string to a scoped name. Then,
+      // we look up the declaration by name in the current module. If
+      // the element is in that module, then we have have a declaration.
+      // Otherwise, it is not declared in this module.
+      UTL_ScopedName * sn = idl_global->string_to_scoped_name (name.c_str ());
+      AST_Decl * decl = tm->lookup_by_name (sn);
+      sn->destroy ();
+
+      if (0 != decl && this->lookup_symbol (decl, fco, use_library))
+      {
+        // We need to create a reference to this template instance,
+        // if it does not already exist in the parent of this element.
+        using GAME::XME::Model;
+        using GAME::XME::FCO;
+        using GAME::XME::Reference;
+
+        Model model = Model::_narrow (this->temp_ref_.parent ());
+
+        FCO target_inst;
+        if (this->lookup_symbol (module_inst, target_inst, use_library))
+        {
+          static const ::Utils::XStr meta_TemplatePackageInstanceRef ("TemplatePackageInstanceRef");
+          Reference tpir;
+
+          if (GAME::create_if_not (model, meta_TemplatePackageInstanceRef, tpir,
+              GAME::contains (boost::bind (std::equal_to <FCO> (),
+                                           target_inst,
+                                           boost::bind (&Reference::refers_to, _1)))))
+          {
+            tpir.refers_to (target_inst);
+          }
+
+          // Now, create a connection between the template instance and
+          // this element that references element in the template module.
+          // BTW, the temp_ref_ is such a hack!!
+          using GAME::XME::Connection;
+
+          static const ::Utils::XStr meta_TemplatePackageInstanceDecl ("TemplatePackageInstanceDecl");
+          Connection::_create (model, 
+                               meta_TemplatePackageInstanceDecl,
+                               tpir, 
+                               this->temp_ref_);
+        }
+
+        return true;
+      }
+    }
   }
 
   return false;
@@ -1988,6 +2079,7 @@ handle_symbol_resolution (AST_Decl * type,
                           bool use_library)
 {
   GAME::XME::FCO fco;
+  this->temp_ref_ = ref;
 
   if (this->lookup_symbol (type, fco, use_library))
     ref.refers_to (fco);
@@ -2039,6 +2131,9 @@ lookup_symbol (AST_Decl * type,
   // We are in an interface definitions folder.
   std::vector <GAME::XME::Model> files;
   folder.children (files);
+
+  //if (type == AST_Decl::NT_module)
+  //  ;
 
   std::vector <GAME::XME::Model>::iterator 
     iter = files.begin (), iter_end = files.end ();
@@ -2492,9 +2587,13 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   using GAME::XME::Model;
   using GAME::XME::FCO;
 
-  Model module_inst;
+  // First, save this instance for later. Right now, let's not worry 
+  // name clashes with other template modules.
+  const char * full_name = node->full_name ();
+  this->template_insts_.bind (full_name, node);
 
   // Create the template package alias.
+  Model module_inst;
   const ::Utils::XStr name (node->local_name ()->get_string ());
   static const ::Utils::XStr meta_TemplatePackageAlias ("TemplatePackageInstance");
 
@@ -2506,6 +2605,7 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
     module_inst.name (name);
   }
 
+  this->symbols_.bind (node, module_inst);
   Auto_Model_T <Model> auto_model (module_inst);
 
   // Make sure there is a package type in this element. We also need

@@ -176,6 +176,10 @@ private:
                       GAME::XME::FCO & fco,
                       bool use_library = false);
 
+  bool lookup_symbol_in_template_module (AST_Decl * type,  
+                                         GAME::XME::FCO & fco,
+                                         bool use_library = false);
+
   bool lookup_symbol (AST_Decl * type, 
                       std::vector <GAME::XME::Folder> & lib,
                       GAME::XME::FCO & fco);
@@ -235,6 +239,11 @@ private:
                         ACE_Null_Mutex> symbols_;
 
   /// Collection of symbols that can be referenced.
+  ACE_Hash_Map_Manager <ACE_CString,
+                        AST_Template_Module_Inst *,
+                        ACE_Null_Mutex> template_insts_;
+
+  /// Collection of symbols that can be referenced.
   PICML_File_Creator_Item * current_file_;
 
   /// Collection of unresolved references.
@@ -250,6 +259,8 @@ private:
   ACE_Hash_Map_Manager <ACE_CString, 
                         GAME::XME::FCO,
                         ACE_Null_Mutex> active_params_;
+
+  GAME::XME::Reference temp_ref_;
 };
 
 #include "Project_Generator.inl"

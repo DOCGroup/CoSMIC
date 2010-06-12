@@ -56,6 +56,7 @@ public:
   virtual void Visit_Member (const PICML::Member & m);
   virtual void Visit_Aggregate (const PICML::Aggregate & a);
   virtual void Visit_Component (const PICML::Component & c);
+  virtual void Visit_ConnectorObject (const PICML::ConnectorObject & c);
   virtual void Visit_ComponentFactory (const PICML::ComponentFactory & f);
   virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
   virtual void Visit_Object (const PICML::Object & o);
@@ -70,6 +71,8 @@ public:
   virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & op);
   virtual void Visit_InEventPort (const PICML::InEventPort & in);
   virtual void Visit_OutEventPort (const PICML::OutEventPort & out);
+  virtual void Visit_TemplateParameterValue (const PICML::TemplateParameterValue &);
+  virtual void Visit_TemplatePackageInstanceDecl (const PICML::TemplatePackageInstanceDecl &);
 
   bool has_component (void) const;
 

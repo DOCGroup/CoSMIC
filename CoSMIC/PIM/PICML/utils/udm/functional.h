@@ -42,6 +42,12 @@ std::string scope (const PICML::Package & ex,
                    const std::string & separator,
                    bool leading = false);
 
+PICML_UDM_UTILS_Export
+std::string scope (const PICML::TemplatePackageRefContainerFCO & fco,
+                   const PICML::MgaObject & object,
+                   const std::string & separator,
+                   bool leading = false);
+
 /**
  * Generate the fully qualified type name of a PICML named type.
  *
@@ -61,6 +67,12 @@ std::string fq_type (const PICML::Exception & ex,
 
 PICML_UDM_UTILS_Export
 std::string fq_type (const PICML::Package & ex,
+                     const std::string & separator,
+                     bool leading = false);
+
+PICML_UDM_UTILS_Export
+std::string fq_type (const PICML::TemplatePackageRefContainerFCO & fco,
+                     const PICML::MgaObject & object,
                      const std::string & separator,
                      bool leading = false);
 

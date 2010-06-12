@@ -110,6 +110,8 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a)
 
   if (this->current_file_ != file)
     this->includes_.insert (file);
+
+  Udm::visit_all <PICML::TemplateParameterValue> (a, *this);
 }
 
 //
@@ -247,13 +249,31 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 }
 
 //
-// Visit_PortType
+// Visit_ExtendedPort
 //
 void Find_Forward_Decls::
 Visit_ExtendedPort (const PICML::ExtendedPort & p)
 {
+  PICML::TemplatePackageInstanceDecl decl = p.srcTemplatePackageInstanceDecl ();
+
+  if (decl != Udm::null)
+    decl.Accept (*this);
+
   Udm::visit_all <PICML::ProvidedRequestPort> (p, *this);
   Udm::visit_all <PICML::RequiredRequestPort> (p, *this);
+}
+
+//
+// Visit_TemplatePackageInstanceDecl
+//
+void Find_Forward_Decls::
+Visit_TemplatePackageInstanceDecl (const PICML::TemplatePackageInstanceDecl & decl)
+{
+  PICML::TemplatePackageInstanceRef ref = decl.srcTemplatePackageInstanceDecl_end ();
+  PICML::File file = this->get_file (ref.ref ());
+
+  if (this->current_file_ != file)
+    this->includes_.insert (file);
 }
 
 //
@@ -303,6 +323,19 @@ void Find_Forward_Decls::Visit_Component (const PICML::Component & c)
 
   Udm::visit_all <PICML::ObjectPort> (c, *this);
   Udm::visit_all <PICML::EventPort> (c, *this);
+  Udm::visit_all <PICML::ExtendedPort> (c, *this);
+  Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
+}
+
+//
+// Visit_ConnectorObject
+//
+void Find_Forward_Decls::
+Visit_ConnectorObject (const PICML::ConnectorObject & c)
+{
+  this->has_component_ = true;
+
+  Udm::visit_all <PICML::ObjectPort> (c, *this);
   Udm::visit_all <PICML::ExtendedPort> (c, *this);
   Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
 }
@@ -379,18 +412,22 @@ Visit_OutEventPort (const PICML::OutEventPort & p)
 }
 
 //
+// Visit_TemplateParameterValue
+//
+void Find_Forward_Decls::
+Visit_TemplateParameterValue (const PICML::TemplateParameterValue & tpv)
+{
+  this->Visit_MemberType (tpv.ref ());
+}
+
+//
 // Visit_MemberType
 //
 void Find_Forward_Decls::
 Visit_MemberType (const PICML::MemberType & m)
 {
   if (Udm::IsDerivedFrom (m.type (), PICML::NamedType::meta))
-  {
-    PICML::File file = this->get_file (m);
-
-    if (this->current_file_ != file)
-      this->includes_.insert (file);
-  }
+    this->Visit_NamedType (PICML::NamedType::Cast (m));
 }
 
 //

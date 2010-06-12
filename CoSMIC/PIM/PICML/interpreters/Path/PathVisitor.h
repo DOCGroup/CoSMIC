@@ -25,23 +25,23 @@ namespace PICML
 
   struct Component_Port_Vertex
   {
-    std::string vertex_name_;
-    Udm::Object the_component_;
-    Port  the_port_;
-    bool is_drawn;
-    DisplayNode node_;
-    std::string display_label_;
-
-    Component_Port_Vertex (Port a_port , string par_name = "");
+    Component_Port_Vertex (const PICML::MgaObject & a_port, string par_name = "");
 
     Component_Port_Vertex () {};
 
-/*    Component_Port_Vertex ()
-    {
-      is_drawn = 0;
-    }
-    */
+    std::string vertex_name_;
+    
+    Udm::Object the_component_;
+
+    PICML::MgaObject the_port_;
+
+    bool is_drawn;
+    
+    DisplayNode node_;
+    
+    std::string display_label_;
   };
+
   struct Edge_Numbers
   {
     int source_;
@@ -147,9 +147,9 @@ namespace PICML
     virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
 
     virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
-    virtual void Visit_sendsTo (const PICML::sendsTo & s);
+    virtual void Visit_SendsTo (const PICML::SendsTo & s);
     virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-    virtual void Visit_invoke(const invoke&);
+    virtual void Visit_Invoke(const Invoke&);
 
     virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
     virtual void Visit_ConfigProperty(const ConfigProperty&);
@@ -295,11 +295,7 @@ namespace PICML
     void CreateAssemblyInstances (std::set<ComponentInstance>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
-  void CreatePropertyElement (std::string name, const Property& property);
-
-  // Add the edges to the graph
-  //void add_the_edges (std::string start_vertex,
-    //                  std::string end_vertex);
+    void CreatePropertyElement (std::string name, const Property& property);
 
   void add_the_edges (Component_Port_Vertex start_vertex,
                       Component_Port_Vertex end_vertex);
@@ -327,7 +323,7 @@ namespace PICML
 
     /// Contains the mapping with
     /// key node index , value Component_Vertex
-    std::map<int, Component_Port_Vertex> graph_vertex_indices_;
+    std::map <int, Component_Port_Vertex> graph_vertex_indices_;
 
     /// Contains a mapping with
     /// key Component_port , value node index

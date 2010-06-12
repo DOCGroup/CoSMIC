@@ -67,7 +67,7 @@ void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
   // Construct the name of the IDL file. Make sure to include the 
   // path of the IDL file.
   std::string filename (this->outdir_);
-  const std::string path (file.path ());
+  const std::string path (file.Path ());
 
   if (!path.empty ())
   {

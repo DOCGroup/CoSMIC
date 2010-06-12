@@ -113,15 +113,20 @@ public:
 
   virtual void Visit_ComponentAssembly (const PICML::ComponentAssembly & );
 
-  virtual void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & );
+  virtual void Visit_AttributeInstance (const PICML::AttributeInstance & );
 
   virtual void Visit_AttributeValue (const PICML::AttributeValue & );
-
-  virtual void Visit_ConnectorInstance (const PICML::ConnectorInstance &);
 
   virtual void Visit_ConnectorImplementationType (const PICML::ConnectorImplementationType &);
 
   virtual void Visit_ConnectorImplementation (const PICML::ConnectorImplementation &);
+
+  typedef std::map <PICML::CollocationGroup, xercesc::DOMElement *> locality_t;
+
+  virtual void deploy_connector_instance (const PICML::ConnectorInstance &,
+                                          const PICML::CollocationGroup &);
+
+  const locality_t & localities (void) const;
 
 private:
   void Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & );
@@ -154,7 +159,7 @@ private:
   /// Collection of instances in the current deployment.
   std::map <PICML::ComponentInstance, xercesc::DOMElement *> insts_;
 
-  std::map <PICML::ConnectorInstance, xercesc::DOMElement *> conn_insts_;
+  std::map <std::string, xercesc::DOMElement *> conn_insts_;
 
   /// Collection of implementation in the current deployment.
   std::map <PICML::Implemenation, xercesc::DOMElement *> impls_;
@@ -166,7 +171,7 @@ private:
   std::vector <xercesc::DOMElement *> conns_;
 
   /// Collection of plan localities in the current deployment.
-  std::vector <xercesc::DOMElement *> locality_;
+  std::map <PICML::CollocationGroup, xercesc::DOMElement *> locality_;
 
   xercesc::DOMElement * curr_locality_;
 

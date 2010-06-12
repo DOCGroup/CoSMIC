@@ -87,6 +87,9 @@ create_files (const char * const * files, size_t n_files, const char * dest)
     if (pos != std::string::npos)
       path = tmp.substr (0, pos);
 
+    if (path.find_first_of ("./") == 0)
+      path = path.substr (2);
+
     ::Utils::XStr name (tmp.substr (pos + 1));
 
     // Either, create a new element or get the existing one.
@@ -97,6 +100,9 @@ create_files (const char * const * files, size_t n_files, const char * dest)
     {
       idl_file.name (name);
     }
+
+    // Set the path attribute for this element.
+    idl_file.attribute ("Path", true).value (path);
 
     // Get the fullpath of the current filename and put it into
     // a canonical format that we can understand.

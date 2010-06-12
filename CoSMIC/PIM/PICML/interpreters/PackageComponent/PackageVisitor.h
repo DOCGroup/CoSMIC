@@ -126,16 +126,17 @@ namespace PICML
     virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
 
     virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
-    virtual void Visit_sendsTo (const PICML::sendsTo & s);
+    virtual void Visit_sendsTo (const PICML::SendsTo & s);
     virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-    virtual void Visit_invoke(const invoke&);
+    virtual void Visit_Invoke (const Invoke&);
 
     virtual void Visit_InfoProperty(const InfoProperty&);
     virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
     virtual void Visit_ConfigProperty(const ConfigProperty&);
     virtual void Visit_Implements(const Implements&);
+
     // Component Attribute related operations
-    virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
+    virtual void Visit_AttributeInstance (const AttributeInstance & attr);
     virtual void Visit_AttributeValue(const AttributeValue&);
     virtual void Visit_AttributeMapping(const AttributeMapping&);
 

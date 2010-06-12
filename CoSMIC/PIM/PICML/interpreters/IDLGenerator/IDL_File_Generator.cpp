@@ -619,7 +619,7 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
 void IDL_File_Generator::
 Visit_ExtendedPort (const PICML::ExtendedPort & p)
 {
-  this->idl_ << "port " << PICML::utils::fq_type (p.ref (), "::", true) 
+  this->idl_ << "port " << PICML::utils::fq_type (p, p.ref (), "::", true) 
              << " " << p.name () << ";" << nl
              << nl;
 }
@@ -630,7 +630,7 @@ Visit_ExtendedPort (const PICML::ExtendedPort & p)
 void IDL_File_Generator::
 Visit_MirrorPort (const PICML::MirrorPort & p)
 {
-  this->idl_ << "mirrorport " << PICML::utils::fq_type (p.ref (), "::", true) 
+  this->idl_ << "mirrorport " << PICML::utils::fq_type (p, p.ref (), "::", true) 
              << " " << p.name () << ";" << nl
              << nl;
 }

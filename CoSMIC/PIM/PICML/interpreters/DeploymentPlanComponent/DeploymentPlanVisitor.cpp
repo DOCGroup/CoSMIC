@@ -6,8 +6,10 @@
 #include "Data_Value_Visitor.h"
 #include "Connection_Visitor.h"
 #include "External_Reference_Visitor.h"
+#include "Connector_Visitor.h"
 
 #include "Utils/xercesc/XercesString.h"
+#include "Utils/udm/visit.h"
 
 #include "UmlExt.h"
 #include "boost/bind.hpp"
@@ -172,13 +174,23 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   inst_map_t::iterator inst_iter, inst_iter_end = this->insts_.end ();
 
   Connection_Visitor cv (this->doc_, this->insts_);
+
   for (inst_iter = this->insts_.begin (); inst_iter != inst_iter_end; ++ inst_iter)
     PICML::ComponentInstance (inst_iter->first).Accept (cv);
 
   // Handle the external references.
   PICML_External_Reference_Visitor external (this->doc_);
+
   for (inst_iter = this->insts_.begin (); inst_iter != inst_iter_end; ++ inst_iter)
     PICML::ComponentInstance (inst_iter->first).Accept (external);
+
+  // Handle the connections to connectors. We need to check if any
+  // of the deployed instances has a connection to a connector since
+  // connectors do not appear in the deployment model.
+  Connector_Visitor connector_visitor (*this, this->doc_);
+
+  for (inst_iter = this->insts_.begin (); inst_iter != inst_iter_end; ++ inst_iter)
+    PICML::ComponentInstance (inst_iter->first).Accept (connector_visitor);
 
   // Append all the elements to this document in the correct order
   // so the deployment will be valid.
@@ -200,6 +212,14 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
 
+  std::for_each (this->conn_insts_.begin (),
+                 this->conn_insts_.end (),
+                 boost::bind (&xercesc::DOMElement::appendChild,
+                              root,
+                              boost::bind (&std::map <std::string, 
+                                                      xercesc::DOMElement *>::
+                                                      value_type::second, _1)));
+
   // <connection>
   std::for_each (cv.connections ().begin (),
                  cv.connections ().end (),
@@ -209,6 +229,12 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 
   std::for_each (external.connections ().begin (),
                  external.connections ().end (),
+                 boost::bind (&xercesc::DOMElement::appendChild,
+                              root,
+                              _1));
+
+  std::for_each (connector_visitor.connections ().begin (),
+                 connector_visitor.connections ().end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
                               _1));
@@ -227,7 +253,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                  this->locality_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
-                              _1));
+                              boost::bind (&locality_t::value_type::second, _1)));
 
   // Open the XML file for writing.
   std::ostringstream filename;
@@ -278,7 +304,7 @@ Visit_CollocationGroup (const PICML::CollocationGroup & group)
   // Start a new plan locality constraint (SameProcess).
   this->curr_locality_ = this->doc_->createElement (Utils::XStr ("localityConstraint"));
   this->create_simple_content (curr_locality_, "constraint", "SameProcess");
-  this->locality_.push_back (this->curr_locality_);
+  this->locality_.insert (std::make_pair (group, this->curr_locality_));
 
   std::set <PICML::CollocationGroupMember> members = group.members ();
 
@@ -331,12 +357,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   this->param_parent_ = this->curr_instance_;
 
   // Finish writing the component instance information.
-  std::vector <PICML::ReadonlyAttribute> attrs = inst.ReadonlyAttribute_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&PICML::ReadonlyAttribute::Accept,
-                              _1,
-                              boost::ref (*this)));
+  Udm::visit_all <PICML::AttributeInstance> (inst, *this);
 
   std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
   std::for_each (configs.begin (),
@@ -582,28 +603,39 @@ Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter& param)
 // Visit_ConnectorInstance
 //
 void DeploymentPlanVisitor::
-Visit_ConnectorInstance (const PICML::ConnectorInstance & inst)
+deploy_connector_instance (const PICML::ConnectorInstance & inst,
+                           const PICML::CollocationGroup & group)
 {
-  if (this->conn_insts_.find (inst) != this->conn_insts_.end ())
-    return;
+  //if (this->conn_insts_.find (inst) != this->conn_insts_.end ())
+  //  return;
 
-  std::string uuid = "_" /*+ std::string (inst.UUID ())*/;
+  std::string uuid = "_" + std::string (inst.UUID ());
   std::string name = inst.getPath (".", false, true, "name", true);
+
+  // Insert this instance into the current locality.
+  DOMElement * locality = this->locality_[group];
+
+  if (0 != locality)
+  {
+    DOMElement * constrained = this->create_element (locality, "constrainedInstance");
+    constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  }
+
+  // Get the target node's name for this instance
+  PICML::InstanceMapping mapping = group.dstInstanceMapping ();
+  PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
+  PICML::Node node = noderef.ref ();
 
   // Create a new instance in the XML document.
   this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
-  this->conn_insts_.insert (std::make_pair (inst, this->curr_instance_));
+  this->conn_insts_.insert (std::make_pair (uuid, this->curr_instance_));
 
   this->curr_instance_->setAttribute (XStr ("xmi:id"), XStr (uuid));
   this->create_simple_content (this->curr_instance_, "name", name);
 
   // TODO set the node correctly...
-  this->create_simple_content (this->curr_instance_, "node", this->current_node_.name ());
+  this->create_simple_content (this->curr_instance_, "node", node.name ());
   this->create_simple_content (this->curr_instance_, "source", "");
-
-  //// Insert this instance into the current locality.
-  //DOMElement * constrained = this->create_element (this->curr_locality_, "constrainedInstance");
-  //constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
   // Visit this instance's implementation.
   PICML::ConnectorImplementationType cit = inst.ConnectorImplementationType_child ();
@@ -612,19 +644,14 @@ Visit_ConnectorInstance (const PICML::ConnectorInstance & inst)
   this->param_parent_ = this->curr_instance_;
 
   // Finish writing the component instance information.
-  std::vector <PICML::ReadonlyAttribute> attrs = inst.ReadonlyAttribute_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&PICML::ReadonlyAttribute::Accept,
+  Udm::visit_all <PICML::AttributeInstance> (inst, *this);
+
+  std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
+  std::for_each (configs.begin (),
+                 configs.end (),
+                 boost::bind (&PICML::AssemblyConfigProperty::Accept,
                               _1,
                               boost::ref (*this)));
-
-  //std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
-  //std::for_each (configs.begin (),
-  //               configs.end (),
-  //               boost::bind (&PICML::AssemblyConfigProperty::Accept,
-  //                            _1,
-  //                            boost::ref (*this)));
 }
 
 //
@@ -662,13 +689,15 @@ Visit_Property (const PICML::Property & prop)
     name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
 
   // Create the property's name and value.
-  this->create_simple_content ("name", name);
+  this->create_simple_content (this->curr_param_, "name", name);
   this->curr_value_ = this->create_element (this->curr_param_, "value");
 
   // Visit the actual data type. This will add the necessary elements
   // to the document that determine if property's data type.
   PICML::DataType type = prop.DataType_child ();
-  type.Accept (*this);
+
+  if (type != Udm::null)
+    type.Accept (*this);
 
   // Now, we need to write attribute value to XML document.
   PICML_Data_Value_Visitor dvv (this->curr_value_, prop);
@@ -754,10 +783,10 @@ Visit_ConfigProperty (const PICML::ConfigProperty & cp)
 }
 
 //
-// Visit_ReadonlyAttribute
+// Visit_AttributeInstance
 //
 void DeploymentPlanVisitor::
-Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & attr)
+Visit_AttributeInstance (const PICML::AttributeInstance & attr)
 {
   PICML::AttributeValue attValue = attr.dstAttributeValue ();
 
@@ -787,6 +816,14 @@ Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty & acp)
 
   PICML::Property ref = acp.dstAssemblyConfigProperty_end ();
   ref.Accept (*this);
+}
+
+//
+// localities
+//
+const DeploymentPlanVisitor::locality_t & DeploymentPlanVisitor::localities (void) const 
+{
+  return this->locality_;
 }
 
 //template <typename T, typename Del, typename DelRet, typename DelEndRet>

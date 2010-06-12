@@ -33,15 +33,15 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
   Find_Forward_Decls fwd_decls;
   PICML::File (file).Accept (fwd_decls);
 
+  if (fwd_decls.has_component ())
+    this->idl_ << "#include <Components.idl>" << nl;
+
   // Generate the include files for this file.
   std::for_each (fwd_decls.includes ().begin (),
                  fwd_decls.includes ().end (),
                  boost::bind (&IDL_File_Processor::generate_include_file,
                               this,
                               _1));
-
-  if (fwd_decls.has_component ())
-    this->idl_ << "#include <Components.idl>" << nl;
 
   this->idl_ << nl
              << "// forward declaration(s)" << nl
@@ -61,7 +61,7 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
 //
 void IDL_File_Processor::generate_include_file (const PICML::File &file)
 {
-  std::string path = file.path ();
+  std::string path = file.Path ();
   
   if (path.empty ())
     path = ".";

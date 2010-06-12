@@ -35,17 +35,17 @@ public:
 
   virtual void Visit_ComponentInstance (const PICML::ComponentInstance &);
 
-  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort &);
+  virtual void Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance &);
 
-  virtual void Visit_invoke (const PICML::invoke &);
+  virtual void Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance &);
 
-  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort &);
+  virtual void Visit_OutEventPortInstance (const PICML::OutEventPortInstance & );
+  
+  virtual void Visit_InEventPortInstance (const PICML::InEventPortInstance & sink);
 
-  virtual void Visit_OutEventPort (const PICML::OutEventPort & source);
+  virtual void Visit_Invoke (const PICML::Invoke &);
 
-  virtual void Visit_InEventPort (const PICML::InEventPort & sink);
-
-  virtual void Visit_sendsTo (const PICML::sendsTo & sends);
+  virtual void Visit_SendsTo (const PICML::SendsTo & sends);
 
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 

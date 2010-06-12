@@ -1655,14 +1655,17 @@ void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
   // Collect all the Components of this assembly into a set.
   set <ComponentInstance> comps = assembly.ComponentInstance_children ();
 
+  /////////////////
   // TEMP DISABLE
   //// Add all the shared Components of this assembly into the set.  A
   //// shared Component is implemented as a reference to a Component.  So
   //// just traverse the reference and add it to the set.
-  set<ComponentRef> scomps = assembly.ComponentRef_kind_children();
+  //set<ComponentRef> scomps = assembly.ComponentRef_kind_children();
   //for_each (scomps.begin(), 
   //          scomps.end(),
   //          bind (&ComponentRef::Accept, _1, ref (*this)));
+
+  /////////////////
 
   // Collect all the immediate ComponentAssembly children of this assembly
   set <ComponentAssembly> subasms = assembly.ComponentAssembly_kind_children();
@@ -1821,18 +1824,16 @@ void PackageVisitor::GetAttributeComponents (const AttributeMapping& mapping,
     }
   else
     {
-      for (set<AttributeDelegate>::const_iterator
-             iter = delegates.begin();
-           iter != delegates.end();
-           ++iter)
+      for (set<AttributeDelegate>::const_iterator iter = delegates.begin();
+           iter != delegates.end(); ++iter)
         {
-          AttributeDelegate delegate = *iter;
-          ReadonlyAttribute attr = delegate.dstAttributeDelegate_end();
-          string attrName = this->ExtractName (attr);
-          Component parent = attr.Component_parent();
-          string parentName = this->ExtractName (parent);
-          string compName = parent.getPath (".", false, true, "name", true);
-          output.insert (make_pair (compName, attr.name()));
+          //AttributeDelegate delegate = *iter;
+          //ReadonlyAttribute attr = delegate.dstAttributeDelegate_end();
+          //string attrName = this->ExtractName (attr);
+          //Component parent = attr.Component_parent();
+          //string parentName = this->ExtractName (parent);
+          //string compName = parent.getPath (".", false, true, "name", true);
+          //output.insert (make_pair (compName, attr.name()));
         }
     }
 }
@@ -1865,21 +1866,21 @@ CreateAssemblyInstance (const ComponentInstance & comp)
 
   // TODO Add AssemblyConfigProperty back to PICML.
 
-  //set <AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
-  //for_each (cps.begin(), cps.end(),
-  //          bind (&AssemblyConfigProperty::Accept, _1, ref (*this)));
+  set <AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
+  for_each (cps.begin(), cps.end(),
+            bind (&AssemblyConfigProperty::Accept, _1, ref (*this)));
 
-  set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
+  set <AttributeInstance> attrs = comp.AttributeInstance_kind_children ();
   for_each (attrs.begin(), attrs.end(),
-            bind (&ReadonlyAttribute::Accept, _1, ref (*this)));
+            bind (&AttributeInstance::Accept, _1, ref (*this)));
 
-  for (map<pair<string, string>, Property>::const_iterator iter = this->attrValues_.begin();
+  for (map<pair <string, string>, Property>::const_iterator iter = this->attrValues_.begin();
        iter != this->attrValues_.end();
        ++iter)
     {
-      pair<pair<string, string>, Property>
-        attrVal = *iter;
-      pair<string, string> compAttr = attrVal.first;
+      pair <pair <string, string>, Property> attrVal = *iter;
+      pair <string, string> compAttr = attrVal.first;
+
       if (compAttr.first == comp.getPath (".", false, true, "name", true))
         {
           this->push();
@@ -1896,23 +1897,32 @@ CreateAssemblyInstance (const ComponentInstance & comp)
   this->pop();
 }
 
-void PackageVisitor::Visit_ReadonlyAttribute(const ReadonlyAttribute& attr)
+//
+// Visit_AttributeInstance
+//
+void PackageVisitor::Visit_AttributeInstance (const AttributeInstance & attr)
 {
   AttributeValue attValue = attr.dstAttributeValue();
+
   if (attValue != Udm::null)
     attValue.Accept (*this);
 }
 
-void PackageVisitor::Visit_AttributeValue(const AttributeValue& value)
+//
+// Visit_AttributeValue
+//
+void PackageVisitor::Visit_AttributeValue (const AttributeValue& value)
 {
   this->push();
+
   DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
+
   Property ref = value.dstAttributeValue_end();
-  ReadonlyAttribute attr = value.srcAttributeValue_end();
-  ref.name() = attr.name();
+  AttributeInstance attr = value.srcAttributeValue_end ();
   ref.Accept (*this);
+
   this->pop();
 }
 
@@ -1927,16 +1937,16 @@ CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
        ++iter)
   {
     ComponentAssembly subasm = *iter;
-    set <invoke> invokes = subasm.invoke_kind_children();
+    set <Invoke> invokes = subasm.Invoke_kind_children ();
 
     for_each (invokes.begin(), 
               invokes.end(),
-              bind (&invoke::Accept, _1, ref (*this)));
+              bind (&Invoke::Accept, _1, ref (*this)));
 
-    set <sendsTo> st = subasm.sendsTo_children ();
+    set <SendsTo> st = subasm.SendsTo_children ();
     std::for_each (st.begin (),
                    st.end (),
-                   boost::bind (&sendsTo::Accept, _1, boost::ref (*this)));
+                   boost::bind (&SendsTo::Accept, _1, boost::ref (*this)));
 
     //set <emit> emits = subasm.emit_kind_children();
 
@@ -2123,49 +2133,49 @@ void PackageVisitor::CreateConnection (const Component& srcComp,
   ele->appendChild (endPoint);
 }
 
-void PackageVisitor::Visit_invoke(const invoke& iv)
+void PackageVisitor::Visit_Invoke (const Invoke & iv)
 {
-  // Get the receptacle end
-  RequiredRequestPort receptacle = iv.srcinvoke_end();
+  ////// Get the receptacle end
+  ////RequiredRequestPortEnd receptacle = iv.srcinvoke_end ();
 
-  // Get the facet end
-  ProvidedRequestPort facet = ProvidedRequestPort::Cast (iv.dstinvoke_end());
+  ////// Get the facet end
+  ////ProvidedRequestPortEnd facet = ProvidedRequestPort::Cast (iv.dstinvoke_end());
 
-  map<Component,string> receptacles;
-  map<Component,string> facets;
+  //map<Component,string> receptacles;
+  //map<Component,string> facets;
 
-  //this->GetReceptacleComponents (receptacle, receptacles);
-  //this->GetFacetComponents (facet, facets);
-  this->CreateConnections (receptacles, facets);
+  ////this->GetReceptacleComponents (receptacle, receptacles);
+  ////this->GetFacetComponents (facet, facets);
+  //this->CreateConnections (receptacles, facets);
 }
 
 //
 // Visit_sendsTo
 //
-void PackageVisitor::Visit_sendsTo (const PICML::sendsTo & s)
+void PackageVisitor::Visit_sendsTo (const PICML::SendsTo & s)
 {
-  OutEventPort sender = s.srcsendsTo_end ();
-  InEventPort consumer = s.dstsendsTo_end ();
+  //OutEventPortEnd sender = s.srcSendsTo_end ();
+  //InEventPortEnd consumer = s.dstSendsTo_end ();
 
-  if (sender.single_destination ())
-  {
-    // This connection is going to only one destination. This
-    // means we are dealing with an emitter.
-    map <Component, string> emitters;
-    map <Component, string> consumers;
+  //if (sender.single_destination ())
+  //{
+  //  // This connection is going to only one destination. This
+  //  // means we are dealing with an emitter.
+  //  map <Component, string> emitters;
+  //  map <Component, string> consumers;
 
-    //this->GetEventSourceComponents (sender, emitters);
-    //this->GetEventSinkComponents (consumer, consumers);
-    this->CreateConnections (emitters, consumers);
-  }
-  else
-  {
-    std::ostringstream ostr;
-    ostr << '_' << sender.uniqueId () << '_' << consumer.uniqueId () << '_';
+  //  //this->GetEventSourceComponents (sender, emitters);
+  //  //this->GetEventSinkComponents (consumer, consumers);
+  //  this->CreateConnections (emitters, consumers);
+  //}
+  //else
+  //{
+  //  std::ostringstream ostr;
+  //  ostr << '_' << sender.uniqueId () << '_' << consumer.uniqueId () << '_';
 
-    this->publishers_[ostr.str ()] = sender;
-    this->consumers_.insert (make_pair (ostr.str (), consumer));
-  }
+  //  this->publishers_[ostr.str ()] = sender;
+  //  this->consumers_.insert (make_pair (ostr.str (), consumer));
+  //}
 }
 
 //void PackageVisitor::

@@ -36,19 +36,20 @@ public:
   // Visit a Component
   virtual void Visit_ComponentInstance (const PICML::ComponentInstance & c);
 
-  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort & receptacle);
+  virtual void Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & );
 
-  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & facet);
+  virtual void Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & );
 
-  virtual void Visit_InEventPort (const PICML::InEventPort & in_event);
+  virtual void Visit_InEventPortInstance (const PICML::InEventPortInstance & );
 
-  virtual void Visit_OutEventPort (const PICML::OutEventPort & out_event);
+  virtual void Visit_OutEventPortInstance (const PICML::OutEventPortInstance & );
 
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 
 private:
-  void Visit_Port (const PICML::Port & port,
-                   const std::string & type,
+  void Visit_Port (const PICML::MgaObject & port,
+                   const PICML::MgaObject & porttype,
+                   const std::string & provider_type,
                    bool provider,
                    const PICML::ExternalDelegate & ed);
 

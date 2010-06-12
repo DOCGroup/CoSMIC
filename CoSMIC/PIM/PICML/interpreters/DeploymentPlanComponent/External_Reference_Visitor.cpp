@@ -1,17 +1,12 @@
 // $Id$
 
 #include "External_Reference_Visitor.h"
+
 #include "Utils/xercesc/XercesString.h"
+#include "Utils/udm/visit.h"
+
 #include "boost/bind.hpp"
 #include <algorithm>
-
-template <typename VISITOR, typename T>
-void visit_all (VISITOR & v, T & coll)
-{
-  std::for_each (coll.begin (),
-                 coll.end (),
-                 boost::bind (&T::value_type::Accept, _1, boost::ref (v)));
-}
 
 //
 // Visit_Component
@@ -21,26 +16,28 @@ Visit_ComponentInstance (const PICML::ComponentInstance & c)
 {
   using namespace PICML;
 
-  visit_all (*this, std::vector <RequiredRequestPort> (c.RequiredRequestPort_kind_children ()));
-  visit_all (*this, std::vector <ProvidedRequestPort> (c.ProvidedRequestPort_kind_children ()));
-  visit_all (*this, std::vector <InEventPort> (c.InEventPort_kind_children ()));
-  visit_all (*this, std::vector <OutEventPort> (c.OutEventPort_kind_children ()));
+  Udm::visit_all <PICML::RequiredRequestPortInstance> (c, *this);
+  Udm::visit_all <PICML::ProvidedRequestPortInstance> (c, *this);
+  Udm::visit_all <PICML::InEventPortInstance> (c, *this);
+  Udm::visit_all <PICML::OutEventPortInstance> (c, *this);
 }
 
 //
 // Visit_RequiredRequestPort
 //
 void PICML_External_Reference_Visitor::
-Visit_RequiredRequestPort (const PICML::RequiredRequestPort & port)
+Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & inst)
 {
   // Check if the port has an external connection.
+  PICML::RequiredRequestPort port = inst.ref ();
   const char * kind = port.multiple_connections () ? "MultiplexReceptacle" : "SimplexReceptacle";
-  std::set <PICML::ExternalDelegate> ed = port.srcExternalDelegate ();
+  std::set <PICML::ExternalDelegate> ed = inst.srcExternalDelegate ();
 
   std::for_each (ed.begin (),
                  ed.end (),
                  boost::bind (&PICML_External_Reference_Visitor::Visit_Port,
                               this,
+                              inst,
                               port,
                               kind,
                               false,
@@ -51,17 +48,18 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & port)
 // Visit_ProvidedRequestPort
 //
 void PICML_External_Reference_Visitor::
-Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & port)
+Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & inst)
 {
   // Check if the port has an external connection.
-  std::set <PICML::ExternalDelegate> ed = port.srcExternalDelegate ();
+  std::set <PICML::ExternalDelegate> ed = inst.srcExternalDelegate ();
   static const char * kind = "Facet";
 
   std::for_each (ed.begin (),
                  ed.end (),
                  boost::bind (&PICML_External_Reference_Visitor::Visit_Port,
                               this,
-                              port,
+                              inst,
+                              inst.ref (),
                               kind,
                               true,
                               _1));
@@ -71,16 +69,17 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & port)
 // Visit_InEventPort
 //
 void PICML_External_Reference_Visitor::
-Visit_InEventPort (const PICML::InEventPort & port)
+Visit_InEventPortInstance (const PICML::InEventPortInstance & inst)
 {
-  std::set <PICML::ExternalDelegate> ed = port.srcExternalDelegate ();
+  std::set <PICML::ExternalDelegate> ed = inst.srcExternalDelegate ();
   static const char * kind = "EventConsumer";
 
   std::for_each (ed.begin (),
                  ed.end (),
                  boost::bind (&PICML_External_Reference_Visitor::Visit_Port,
                               this,
-                              port,
+                              inst,
+                              inst.ref (),
                               kind,
                               true,
                               _1));
@@ -90,15 +89,17 @@ Visit_InEventPort (const PICML::InEventPort & port)
 // Visit_OutEventPort
 //
 void PICML_External_Reference_Visitor::
-Visit_OutEventPort (const PICML::OutEventPort & port)
+Visit_OutEventPortInstance (const PICML::OutEventPortInstance & inst)
 {
-  std::set <PICML::ExternalDelegate> ed = port.srcExternalDelegate ();
+  PICML::OutEventPort port = inst.ref ();
   const char * kind = port.single_destination () ? "EventEmitter" : "EventPublisher";
+  std::set <PICML::ExternalDelegate> ed = inst.srcExternalDelegate ();
 
   std::for_each (ed.begin (),
                  ed.end (),
                  boost::bind (&PICML_External_Reference_Visitor::Visit_Port,
                               this,
+                              inst,
                               port,
                               kind,
                               false,
@@ -106,10 +107,20 @@ Visit_OutEventPort (const PICML::OutEventPort & port)
 }
 
 //
-// Visit_ExternalPortReference
+// connections
+//
+const std::vector <xercesc::DOMElement *> & 
+PICML_External_Reference_Visitor::connections (void) const
+{
+  return this->conns_;
+}
+
+//
+// Visit_Port
 //
 void PICML_External_Reference_Visitor::
-Visit_Port (const PICML::Port & port,
+Visit_Port (const PICML::MgaObject & port,
+            const PICML::MgaObject & porttype,
             const std::string & provider_type,
             bool provider,
             const PICML::ExternalDelegate & ed)
@@ -131,12 +142,12 @@ Visit_Port (const PICML::Port & port,
   DOMElement * endpoint = this->create_element (conn, "internalEndpoint");
 
   // Create the child elements for this element.
-  this->create_simple_content (endpoint, "portName", port.name ());
+  this->create_simple_content (endpoint, "portName", porttype.name ());
   this->create_simple_content (endpoint, "provider", provider ? "true" : "false");
   this->create_simple_content (endpoint, "kind", provider_type);
 
   // Set the instance for the connection.
-  PICML::Component parent = port.Component_parent ();
+  PICML::ComponentInstance parent = PICML::ComponentInstance::Cast (port.GetParent ());
   std::string id = std::string ("_") + std::string (parent.UUID ());
 
   DOMElement * inst = this->create_element (endpoint, "instance");
@@ -154,13 +165,4 @@ Visit_Port (const PICML::Port & port,
 
   // Save the connection.
   this->conns_.push_back (conn);
-}
-
-//
-// connections
-//
-const std::vector <xercesc::DOMElement *> & 
-PICML_External_Reference_Visitor::connections (void) const
-{
-  return this->conns_;
 }
