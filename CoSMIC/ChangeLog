@@ -1,10 +1,29 @@
+Sat Jun 12 06:06:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/NoShowRefersTo:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.idl:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.mpc:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.reg:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.h:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Module.cpp:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_export.h:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decoratord.reg:
+        * PIM/PICML/decorators/NoShowRefersTo/StdAfx.h:
+        * PIM/PICML/decorators/NoShowRefersTo/StdAfx.cpp:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          . Implemented a new decorator for reference elements to not
+            show the element that it references.
+
 Sat Jun 12 05:10:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ShowReference/Decorator.h:
         * PIM/PICML/decorators/ShowReference/Decorator.cpp:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML.xme:
-        
+
           Bug fix where the decorator was not working due to changes
           to the decorator interface's name.
 

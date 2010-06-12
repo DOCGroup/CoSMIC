@@ -1,0 +1,24 @@
+// $Id$
+
+project (NoShowRefersTo_Decorator): game_graphics, game_decorator {
+  sharedname = NoShowRefersTo_Decorator
+  
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+  
+  dynamicflags += NOSHOWREFERSTO_DECORATOR_BUILD_DLL
+  
+  Source_Files {
+    NoShowRefersTo_Decorator_Impl.cpp
+    NoShowRefersTo_Decorator_Module.cpp
+    NoShowRefersTo_Decorator.idl
+  }
+
+  Header_Files {
+  
+  }
+
+  Resource_Files {
+
+  }
+}
