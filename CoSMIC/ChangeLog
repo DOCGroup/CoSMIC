@@ -1,9 +1,16 @@
+Sun Jun 13 03:07:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          Fixed several constraint specifications.
+
 Sun Jun 13 00:35:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ShowReference/Decorator.h:
         * PIM/PICML/decorators/ShowReference/Decorator.cpp:
         * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
-        
+
           Re-implemented using the GAME decorator framework.
 
         * PIM/PICML/paradigms/PICML.xme:
@@ -14,7 +21,7 @@ Sun Jun 13 00:35:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/icons/visio/NameParameter.vsd:
         * PIM/PICML/paradigms/icons/visio/PackageType.vsd:
         * PIM/PICML/paradigms/icons/visio/TemplateParameterValue.vsd:
-        
+
           New icons for the paradigm.
 
 Sat Jun 12 23:24:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
