@@ -13,7 +13,7 @@
 #ifndef _T3_RUNTIME_ENGINE_H_
 #define _T3_RUNTIME_ENGINE_H_
 
-#include "game/GME.h"
+#include "game/GAME.h"
 #include "game/utils/modelgen.h"
 #include "ace/Null_Mutex.h"
 #include "ace/Singleton.h"

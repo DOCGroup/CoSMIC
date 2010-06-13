@@ -1,21 +1,5 @@
 // $Id$
 
 project : game_be {
-  Header_Files {
-    ComponentConfig.h
-  }
 
-  Source_Files {
-    Component.def
-    RawComponent.cpp
-    $(COSMIC_ROOT)/Utils/GAME/game/be/ComponentDLL.cpp
-
-    conditional (vc8) {
-      $(GME_ROOT)/SDK/BON/ComponentLib.idl
-    }
-    
-    conditional (vc9) {
-      $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
-    }
-  }
 }

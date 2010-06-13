@@ -1,6 +1,6 @@
 // $Id$
 
-project : game {
+project : register, game {
   dynamicflags += _USRDLL
 
   libs  += GAME_BE
@@ -8,9 +8,9 @@ project : game {
 
   specific (prop:microsoft) {
     midl_flags    += /server none /client none
-    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT) $(GAME_ROOT)
     midl_notlb     = 1
 
-    link_options += /DEF:$(COSMIC_ROOT)/Utils/GAME/etc/Component.def
+    link_options += /DEF:$(GAME_ROOT)/etc/Component.def
   }
 }
