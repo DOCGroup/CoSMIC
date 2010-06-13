@@ -1,9 +1,16 @@
 // $Id$
 
-project (PICMLManager): gme_raw_component, picml_game_utils, boost_base, cosmic_utils {
+project (PICMLManager): game_component, picml_game_utils, boost_base, cosmic_utils {
   sharedname = PICMLManager
 
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+  
   Source_Files {
+    PICMLManager.idl
+    PICMLManager_Impl.cpp
+    PICMLManager_Module.cpp
+    
     DefaultImplementationGenerator.cpp
     DefaultArtifactGenerator.cpp
     Dialogs.cpp

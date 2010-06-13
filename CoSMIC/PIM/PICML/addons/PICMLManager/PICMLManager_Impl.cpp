@@ -1,36 +1,47 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "Common.h"
-#include "ComHelp.h"
-#include "GMECOM.h"
+#include "PICMLManager_Impl.h"
+
+#include "PICMLManager.h"
+#include "PICMLManager_i.c"
+#include "game/be/Addon_T.h"
+#include "game/GAME.h"
+
 #include "Dialogs.h"
-#include "ComponentConfig.h"
-#include "RawComponent.h"
 #include "DefaultImplementationGenerator.h"
 #include "NewComponentConfig.h"
+
 #include "Utils/Utils.h"
 #include "game/utils/Point.h"
 #include "boost/bind.hpp"
+
 #include <algorithm>
 #include <sstream>
 
 // Type definition
 typedef std::vector <GAME::Reference> Reference_Set;
+DECLARE_ADDON (PICMLManager_Addon, PICMLManager_Impl);
+
+static const long EVENT_MASK = \
+   OBJEVENT_CREATED | OBJEVENT_ATTR |               \
+   OBJEVENT_RELATION |  OBJEVENT_SELECT |           \
+   OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED;
 
 //
-// RawComponent
+// PICMLManager_Impl
 //
-RawComponent::RawComponent (void)
-: importing_ (0)
+PICMLManager_Impl::PICMLManager_Impl (void)
+: GAME::Event_Handler_Impl (EVENT_MASK),
+  importing_ (0)
 {
 
 }
 
 //
-// ~RawComponent
+// ~PICMLManager_Impl
 //
-RawComponent::~RawComponent (void)
+PICMLManager_Impl::~PICMLManager_Impl (void)
 {
 
 }
@@ -38,95 +49,47 @@ RawComponent::~RawComponent (void)
 //
 // Initaialize
 //
-STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
+int PICMLManager_Impl::initialize (GAME::Project & project)
 {
   this->project_ = project;
 
-  this->handlers_.bind ("ExternalDelegate", &RawComponent::handle_ExternalDelegate);
-  this->handlers_.bind ("PublishConnector", &RawComponent::handle_PublishConnector);
-  this->handlers_.bind ("AttributeValue", &RawComponent::handle_AttributeValue);
-  this->handlers_.bind ("AttributeMember", &RawComponent::handle_AttributeMember);
-  this->handlers_.bind ("CollocationGroup", &RawComponent::handle_CollocationGroup);
+  this->handlers_.bind ("ExternalDelegate", &PICMLManager_Impl::handle_ExternalDelegate);
+  this->handlers_.bind ("PublishConnector", &PICMLManager_Impl::handle_PublishConnector);
+  this->handlers_.bind ("AttributeValue", &PICMLManager_Impl::handle_AttributeValue);
+  this->handlers_.bind ("AttributeMember", &PICMLManager_Impl::handle_AttributeMember);
+  this->handlers_.bind ("CollocationGroup", &PICMLManager_Impl::handle_CollocationGroup);
 
-  this->handlers_.bind ("Component", &RawComponent::handle_Component);
-  this->handlers_.bind ("ConnectorObject", &RawComponent::handle_ConnectorObject);
+  this->handlers_.bind ("Component", &PICMLManager_Impl::handle_Component);
+  this->handlers_.bind ("ConnectorObject", &PICMLManager_Impl::handle_ConnectorObject);
 
-  this->handlers_.bind ("ComponentAssembly", &RawComponent::handle_ComponentAssembly);
-  this->handlers_.bind ("ComponentPackage", &RawComponent::handle_ComponentPackage);
-  this->handlers_.bind ("ComponentRef", &RawComponent::handle_ComponentRef);
-  this->handlers_.bind ("Domain", &RawComponent::handle_Domain);
-  this->handlers_.bind ("PackageConfiguration", &RawComponent::handle_PackageConfiguration);
+  this->handlers_.bind ("ComponentAssembly", &PICMLManager_Impl::handle_ComponentAssembly);
+  this->handlers_.bind ("ComponentPackage", &PICMLManager_Impl::handle_ComponentPackage);
+  this->handlers_.bind ("ComponentRef", &PICMLManager_Impl::handle_ComponentRef);
+  this->handlers_.bind ("Domain", &PICMLManager_Impl::handle_Domain);
+  this->handlers_.bind ("PackageConfiguration", &PICMLManager_Impl::handle_PackageConfiguration);
 
-  this->handlers_.bind ("MonolithicImplementation", &RawComponent::handle_MonolithicImplementation);
-  this->handlers_.bind ("ComponentImplementation", &RawComponent::handle_ComponentImplementation);
-  this->handlers_.bind ("ConnectorImplementation", &RawComponent::handle_ConnectorImplementation);
+  this->handlers_.bind ("MonolithicImplementation", &PICMLManager_Impl::handle_MonolithicImplementation);
+  this->handlers_.bind ("ComponentImplementation", &PICMLManager_Impl::handle_ComponentImplementation);
+  this->handlers_.bind ("ConnectorImplementation", &PICMLManager_Impl::handle_ConnectorImplementation);
 
-  this->handlers_.bind ("ComponentFactoryInstance", &RawComponent::handle_ComponentFactoryInstance);
-  this->handlers_.bind ("DeploymentPlan", &RawComponent::handle_DeploymentPlan);
-  this->handlers_.bind ("NodeReference", &RawComponent::handle_NodeReference);
-  this->handlers_.bind ("ComponentInstanceType", &RawComponent::handle_ComponentInstanceType);
+  this->handlers_.bind ("ComponentFactoryInstance", &PICMLManager_Impl::handle_ComponentFactoryInstance);
+  this->handlers_.bind ("DeploymentPlan", &PICMLManager_Impl::handle_DeploymentPlan);
+  this->handlers_.bind ("NodeReference", &PICMLManager_Impl::handle_NodeReference);
+  this->handlers_.bind ("ComponentInstanceType", &PICMLManager_Impl::handle_ComponentInstanceType);
 
-  this->handlers_.bind ("ImplementationArtifact", &RawComponent::handle_ImplementationArtifact);
+  this->handlers_.bind ("ImplementationArtifact", &PICMLManager_Impl::handle_ImplementationArtifact);
 
-  this->handlers_.bind ("ComponentInstance", &RawComponent::handle_ComponentInstance);
-  this->handlers_.bind ("ConnectorInstance", &RawComponent::handle_ConnectorInstance);
+  this->handlers_.bind ("ComponentInstance", &PICMLManager_Impl::handle_ComponentInstance);
+  this->handlers_.bind ("ConnectorInstance", &PICMLManager_Impl::handle_ConnectorInstance);
 
-  return S_OK;
-}
-
-//
-// Invoke [obsolete]
-//
-STDMETHODIMP RawComponent::Invoke (IMgaProject* gme,
-                                   IMgaFCOs *models,
-                                   long param)
-{
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// InvokeEx
-//
-STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
-                                     IMgaFCO *currentobj,
-                                     IMgaFCOs *selectedobjs,
-                                     long param)
-{
-  return E_MGA_NOT_SUPPORTED;
+  return 0;
 }
 
 
 //
-// ObjectsInvokeEx [not implemented]
+// handle_global_event
 //
-STDMETHODIMP RawComponent::ObjectsInvokeEx (IMgaProject *project,
-                                            IMgaObject *currentobj,
-                                            IMgaObjects *selectedobjs,
-                                            long param)
-{
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// get_ComponentParameter
-//
-STDMETHODIMP RawComponent::get_ComponentParameter(BSTR name, VARIANT *pVal)
-{
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// put_ComponentParameter
-//
-STDMETHODIMP RawComponent::put_ComponentParameter (BSTR name, VARIANT newVal)
-{
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// GlobalEvent
-//
-STDMETHODIMP RawComponent::GlobalEvent (globalevent_enum event)
+int PICMLManager_Impl::handle_global_event (long global_event)
 {
   /*
    * Right now I am simplifying the UUIDManager and it no longer
@@ -134,10 +97,9 @@ STDMETHODIMP RawComponent::GlobalEvent (globalevent_enum event)
    * only creates UUIDs and manages existing ones when and
    * ObjectEvent is sent.
    */
-
   try
   {
-    switch (event)
+    switch (global_event)
     {
     case APPEVENT_XML_IMPORT_BEGIN:
       this->importing_ = 1;
@@ -169,11 +131,13 @@ STDMETHODIMP RawComponent::GlobalEvent (globalevent_enum event)
 }
 
 //
-// ObjectEvent
+// handle_object_event
 //
-STDMETHODIMP RawComponent::
-ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
+int PICMLManager_Impl::
+handle_object_event (GAME::Object & obj, unsigned long eventmask)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   //if (this->pending_.GetCount ())
   //  this->handle_pending ();
 
@@ -211,7 +175,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 //
 // create_uuid
 //
-void RawComponent::
+void PICMLManager_Impl::
 create_uuid (const GAME::FCO & fco)
 {
   GAME::Attribute uuid_attr;
@@ -236,7 +200,7 @@ create_uuid (const GAME::FCO & fco)
 //
 // verify_uuid
 //
-void RawComponent::verify_uuid (const GAME::FCO & fco)
+void PICMLManager_Impl::verify_uuid (const GAME::FCO & fco)
 {
   GAME::Attribute uuid_attr;
 
@@ -263,7 +227,7 @@ void RawComponent::verify_uuid (const GAME::FCO & fco)
 //
 // get_uuid_i
 //
-bool RawComponent::
+bool PICMLManager_Impl::
 get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr)
 {
   typedef std::vector <GAME::Attribute> Attribute_Set;
@@ -295,7 +259,7 @@ get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr)
 //
 // verify_all_uuids
 //
-void RawComponent::verify_all_uuids (void)
+void PICMLManager_Impl::verify_all_uuids (void)
 {
   // Get all the component (component assembly) objects.
   CComPtr <IMgaFilter> filter;
@@ -330,7 +294,7 @@ void RawComponent::verify_all_uuids (void)
 //
 // handle_pending
 //
-void RawComponent::handle_pending (void)
+void PICMLManager_Impl::handle_pending (void)
 {
   long status;
   this->project_.impl ()->get_ProjectStatus (&status);
@@ -345,7 +309,7 @@ void RawComponent::handle_pending (void)
 //
 // set_property_datatype
 //
-void RawComponent::
+void PICMLManager_Impl::
 set_property_datatype (GAME::Model & prop, const GAME::FCO & type)
 {
   // We need to make sure there isn't a data type already
@@ -376,7 +340,7 @@ set_property_datatype (GAME::Model & prop, const GAME::FCO & type)
 //
 // verify_property_datatype
 //
-void RawComponent::
+void PICMLManager_Impl::
 verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
                                 const GAME::FCO & attr_type)
 {
@@ -386,7 +350,7 @@ verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
 //
 // verify_property_datatype
 //
-void RawComponent::
+void PICMLManager_Impl::
 verify_property_datatype (GAME::ConnectionPoint & attr,
                           const GAME::FCO & attr_type)
 {
@@ -414,7 +378,7 @@ verify_property_datatype (GAME::ConnectionPoint & attr,
 //
 // handle_ExternalDelegate
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj)
 {
   // Extract the connection for the FCO.
@@ -440,7 +404,7 @@ handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_PublishConnector
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_PublishConnector (unsigned long eventmask, GAME::Object & obj)
 {
   // We need to set the name of the newly create connector.
@@ -451,7 +415,7 @@ handle_PublishConnector (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_AttributeValue
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_RELATION))
@@ -475,7 +439,7 @@ handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
 
       std::for_each (connpoints.begin (),
                      connpoints.end (),
-                     boost::bind (&RawComponent::verify_property_datatype_entry,
+                     boost::bind (&PICMLManager_Impl::verify_property_datatype_entry,
                                   _1,
                                   attr_type));
     }
@@ -485,7 +449,7 @@ handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_AttributeValue
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_CREATED))
@@ -530,7 +494,7 @@ handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_Component
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_Component (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -579,7 +543,7 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ComponentAssembly
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -588,7 +552,7 @@ handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ComponentPackage
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -597,7 +561,7 @@ handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ComponentFactoryInstance
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -606,7 +570,7 @@ handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_Domain
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_Domain (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -615,7 +579,7 @@ handle_Domain (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_MonolithicImplementation
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -624,7 +588,7 @@ handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_PackageConfiguration
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -633,7 +597,7 @@ handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ComponentImplementation
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -642,7 +606,7 @@ handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ConnectorImplementation
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -651,7 +615,7 @@ handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ConnectorObject
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -660,7 +624,7 @@ handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ComponentInstance
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -669,7 +633,7 @@ handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ConnectorInstance
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -678,7 +642,7 @@ handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_DeploymentPlan
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -687,7 +651,7 @@ handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ImplementationArtifact
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -696,7 +660,7 @@ handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_UUID
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_UUID (unsigned long eventmask, GAME::FCO & fco)
 {
   // We are managing an object that has a UUID.
@@ -713,7 +677,7 @@ handle_UUID (unsigned long eventmask, GAME::FCO & fco)
 //
 // handle_NodeReference
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_NodeReference (unsigned long eventmask, GAME::Object & obj)
 {
   if (this->importing_)
@@ -862,7 +826,7 @@ private:
 //
 // handle_ComponentInstanceType
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_RELATION))
@@ -902,7 +866,7 @@ handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_CollocationGroup
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj)
 {
   if (this->cg_member_)
@@ -938,7 +902,7 @@ handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj)
 //
 // handle_ComponentRef
 //
-void RawComponent::
+void PICMLManager_Impl::
 handle_ComponentRef (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_SETINCLUDED) != 0)

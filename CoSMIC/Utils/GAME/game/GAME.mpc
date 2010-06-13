@@ -19,8 +19,10 @@ project (GAME) : acelib, cosmic_common {
   }
 
   Source_Files {
+    $(GME_ROOT)/Interfaces/Gme.idl
     $(GME_ROOT)/Interfaces/Meta.idl
     $(GME_ROOT)/Interfaces/Mga.idl
+    $(GME_ROOT)/Interfaces/MgaUtil.idl
     $(GME_ROOT)/Interfaces/Parser.idl
     
     Attribute.cpp
@@ -32,7 +34,7 @@ project (GAME) : acelib, cosmic_common {
     FCO.cpp
     Filter.cpp
     Folder.cpp
-    GME.cpp
+    GAME.cpp
     Interpreter.cpp
     Model.cpp
     Object.cpp

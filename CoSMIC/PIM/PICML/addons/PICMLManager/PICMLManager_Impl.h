@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      RawComponent.h
+ * @file      PICMLManager_Impl.h
  *
  * $Id$
  *
@@ -10,45 +10,42 @@
  */
 //=============================================================================
 
-#ifndef RAWCOMPONENT_H
-#define RAWCOMPONENT_H
+#ifndef _PICML_MANAGER_IMPL_H_
+#define _PICML_MANAGER_IMPL_H_
 
-#ifdef BUILDER_OBJECT_NETWORK
-#error   This file should only be included in the RAW COM configurations
-#endif
+#include <set>
+#include "game/be/Event_Handler_Impl.h"
+#include "game/FCO.h"
+#include "game/Connection.h"
+#include "game/Project.h"
 
-#include "game/GME.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
-#include <set>
+
+namespace GAME
+{
+class FCO;
+}
 
 /**
- * @class RawComponent
+ * @class PICMLManager_Impl
  *
  * Raw COM implementation of the PICML manager add-on.
  */
-class RawComponent
+class PICMLManager_Impl : public GAME::Event_Handler_Impl
 {
 public:
   /// Constructor.
-  RawComponent (void);
+  PICMLManager_Impl (void);
 
   /// Destructor.
-  virtual ~RawComponent (void);
+  virtual ~PICMLManager_Impl (void);
 
-  /* GME specific members */
-  CComPtr <IMgaAddOn> addon;
-  bool interactive;
+  virtual int initialize (GAME::Project & project);
 
-  /* RawComponent specific methods */
-  STDMETHODIMP Initialize (struct IMgaProject *);
-  STDMETHODIMP Invoke (IMgaProject*, IMgaFCOs *, long );
-  STDMETHODIMP InvokeEx (IMgaProject *, IMgaFCO *, IMgaFCOs *, long);
-  STDMETHODIMP ObjectsInvokeEx (IMgaProject *, IMgaObject *, IMgaObjects *, long);
-  STDMETHODIMP get_ComponentParameter (BSTR, VARIANT *);
-  STDMETHODIMP put_ComponentParameter (BSTR, VARIANT);
-  STDMETHODIMP GlobalEvent (globalevent_enum);
-  STDMETHODIMP ObjectEvent (IMgaObject *, unsigned long, VARIANT);
+  virtual int handle_global_event (long global_event);
+
+  virtual int handle_object_event (GAME::Object & obj, unsigned long mask);
 
 private:
   void handle_AttributeMember (unsigned long eventmask, GAME::Object & obj);
@@ -133,7 +130,7 @@ private:
   std::set <std::string> uuid_types_;
 
   typedef
-    void (RawComponent::*_member_function) (unsigned long,
+    void (PICMLManager_Impl::*_member_function) (unsigned long,
                                             GAME::Object &);
 
   ACE_Hash_Map_Manager <std::string,
@@ -144,5 +141,4 @@ private:
   GAME::FCO cg_member_;
 };
 
-
-#endif /* RAWCOMPONENT_H */
+#endif // _PICML_MANAGER_IMPL_H_

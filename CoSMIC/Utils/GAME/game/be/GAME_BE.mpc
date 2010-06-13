@@ -4,13 +4,19 @@ project (GAME_BE) : game_utils, cosmic_common {
   sharedname    = GAME_BE
   dynamicflags += GAME_BE_BUILD_DLL
 
+  specific (prop:microsoft) {
+    midl_flags    += /server none /client none
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+  }
+    
   Header_Files {
 
   }
 
-  Source_Files {
+  Source_Files {    
     Decorator_Impl.cpp
-    Event_Sink_Impl.cpp
+    Event_Handler.cpp
+    Event_Handler_Impl.cpp
     Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp
   }
@@ -20,8 +26,8 @@ project (GAME_BE) : game_utils, cosmic_common {
   }
 
   Template_Files {
+    Addon_T.cpp
     ComponentEx_T.cpp
-    Event_Sink_T.cpp
     Decorator_T.cpp
     Interpreter_T.cpp
     Plugin_T.cpp

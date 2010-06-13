@@ -1,0 +1,36 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      PICMLManager.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_MANAGER_IDL_
+#define _PICML_MANAGER_IDL_
+
+#include <Gme.idl>
+
+[
+	uuid(A34FCD61-BCEE-403A-BEA2-C7BB7C51233A),
+	version(1.0),
+]
+library PICMLManager_AddonLib
+{
+	importlib("stdole32.tlb");
+
+	[uuid(B744B044-436A-4463-AF72-41D1D94815D9)]
+	coclass PICMLManager_Addon
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+		interface IMgaVersionInfo;
+	};
+};
+
+#endif
+

@@ -14,11 +14,7 @@
 #define _GME_RAW_COMPONENT_I_H_
 
 #include "StdAfx.h"
-#include "GAME_export.h"
-
-#if !defined (__ComponentLib_h__)
-#include "Mga.h"
-#endif
+#include "game/GAME_export.h"
 
 namespace GAME
 {
@@ -28,7 +24,7 @@ namespace GAME
 template <typename T, const CLSID * pclsid = &CLSID_NULL>
 class ATL_NO_VTABLE ComponentEx_T :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
-  public ATL::CComCoClass <T, pclsid>,
+  public ATL::CComCoClass < ComponentEx_T <T>, pclsid>,
   public IMgaComponentEx,
   public IMgaVersionInfo
 {

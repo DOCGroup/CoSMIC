@@ -141,12 +141,11 @@ template <typename T, const CLSID * pclsid>
 STDMETHODIMP ComponentEx_T <T, pclsid>::
 get_version (MgaInterfaceVersion_enum *pVal)
 {
-  if (pVal != 0)
-  {
-    *pVal = MgaInterfaceVersion_Current;
-    return S_OK;
-  }
+  if (pVal == 0)
+    return E_POINTER;
 
-  return E_POINTER;
+  *pVal = MgaInterfaceVersion_Current;
+  return S_OK;
 }
+
 }

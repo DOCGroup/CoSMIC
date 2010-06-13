@@ -13,9 +13,7 @@
 #ifndef _COMPONENT_DECORATOR_IMPL_H_
 #define _COMPONENT_DECORATOR_IMPL_H_
 
-#include "game/be/Decorator_T.h"
 #include "game/be/Decorator_Impl.h"
-
 #include "game/MetaAspect.h"
 #include "game/Part.h"
 #include "game/graphics/Image_Manager_T.h"

@@ -2,12 +2,14 @@
 // Microsoft Visual C++ generated include file.
 // Used by PICMLManager.rc
 //
+
 #define IDS_PROJNAME                    100
 #define IDD_NEWCOMPONENTNAME            101
 #define IDD_NEWCOMPONENT                101
 #define IDC_EXEC_ARTIFACT_SUFFIX        202
 #define IDC_SVNT_ARTIFACT_SUFFIX        203
 #define IDC_NAME                        1001
+#define IDR_LIB                         2005
 
 // Next default values for new objects
 // 

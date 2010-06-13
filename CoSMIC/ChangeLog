@@ -1,8 +1,52 @@
+Sun Jun 13 17:02:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.idl:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Module.cpp:
+        * PIM/PICML/addons/PICMLManager/Resource.h:
+
+          . Ported to new GAME backend framework for GME.
+
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.h:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.cpp:
+        
+          . Moved some header declarations around.
+
+        * Utils/GAME/game/GAME.h:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/be/Addon_T.h:
+        * Utils/GAME/game/be/Addon_T.inl:
+        * Utils/GAME/game/be/Addon_T.cpp:
+        * Utils/GAME/game/be/ComponentEx_T.h:
+        * Utils/GAME/game/be/ComponentEx_T.cpp:
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+        * Utils/GAME/game/be/Event_Handler_Impl.cpp:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        
+          . Initial GAME implementation for supporting add-ons in
+            GME.
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * Utils/GAME/game/GME.h:
+        * Utils/GAME/game/GME.cpp:
+        * Utils/GAME/game/be/Event_Sink_Impl.h:
+        * Utils/GAME/game/be/Event_Sink_Impl.inl:
+        * Utils/GAME/game/be/Event_Sink_Impl.cpp:
+
+          Removed these files.
+
 Sun Jun 13 03:07:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           Fixed several constraint specifications.
 
 Sun Jun 13 00:35:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

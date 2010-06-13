@@ -1,8 +1,10 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "NoShowRefersTo_Decorator.h"
+
 #include "NoShowRefersTo_Decorator_Impl.h"
+#include "NoShowRefersTo_Decorator.h"
+#include "game/be/Decorator_T.h"
 
 #include "game/MetaFCO.h"
 #include "game/graphics/Image_Resolver.h"
