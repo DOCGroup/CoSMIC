@@ -1,14 +1,33 @@
+Sun Jun 13 00:35:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+        
+          Re-implemented using the GAME decorator framework.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/NameParameter.bmp:
+        * PIM/PICML/paradigms/icons/PackageType.bmp:
+        * PIM/PICML/paradigms/icons/TemplateParameterValue.bmp:
+        * PIM/PICML/paradigms/icons/visio/NameParameter.vsd:
+        * PIM/PICML/paradigms/icons/visio/PackageType.vsd:
+        * PIM/PICML/paradigms/icons/visio/TemplateParameterValue.vsd:
+        
+          New icons for the paradigm.
+
 Sat Jun 12 23:24:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/icons/ConnectorObject.bmp:
         * PIM/PICML/paradigms/icons/visio/ConnectorObject.vsd:
-        
+
           Icon for the connector in the interface definition.
 
         * PIM/PICML/paradigms/icons/visio/ApplicationTask.vsd:
-        
+
           Saving an existing icon.
 
 Sat Jun 12 15:49:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

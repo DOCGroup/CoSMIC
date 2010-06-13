@@ -32,10 +32,6 @@ public:
   /// Destructor
   ~Show_Reference_Decorator_Impl (void);
 
-  int initialize (const GAME::Project & proj, 
-                  const GAME::Meta::Part & part, 
-                  const GAME::FCO & fco);
-
   int initialize_ex (const GAME::Project & proj, 
                      const GAME::Meta::Part & part, 
                      const GAME::FCO & fco,
@@ -44,15 +40,14 @@ public:
 
   int get_preferred_size (long & sx, long & sy);
 
-  int draw (CDC & context);
   int draw (Gdiplus::Graphics & g);
 
 private:
   /// The bitmap image for the element.
-  CMaskedBitmap bitmap_;
+  std::auto_ptr <Gdiplus::Bitmap> bitmap_;
 
   /// The label for the element.
-  CString label_;
+  std::string label_;
 };
 
 DECLARE_DECORATOR (ShowReferenceDecorator, Show_Reference_Decorator_Impl);

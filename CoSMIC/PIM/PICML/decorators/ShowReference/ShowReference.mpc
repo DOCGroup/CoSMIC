@@ -1,6 +1,6 @@
 // $Id$
 
-project (ShowReferenceDecorator): game_utils, game_decorator {
+project (ShowReferenceDecorator): game_utils, game_graphics, game_decorator {
   sharedname = ShowReferenceDecorator
   
   pch_header = StdAfx.h
@@ -9,9 +9,6 @@ project (ShowReferenceDecorator): game_utils, game_decorator {
   Source_Files {
     Decorator.cpp
     DecoratorLib.idl
-    CommonError.cpp
-    DecoratorUtil.cpp
-    MaskedBitmap.cpp
   }
 
   Header_Files {
