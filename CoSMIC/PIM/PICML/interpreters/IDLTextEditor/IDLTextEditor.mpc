@@ -77,7 +77,7 @@ project (IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_utils, co
   specific (wix) {
     gme_install     = 1
     gme_progid      = MGA.Interpreter.IDLTextEditor
-    gme_uuid        = B8C39C89-F6AB-4C62-AB13-3D61D74804C3
+    gme_uuid        = C8483E54-94D8-4F6C-97AB-9E3337E6AFD9
     gme_paradigms   = PICML
     gme_description = IDL text editor for PICML
     gme_tooltip     = IDL Text Editor

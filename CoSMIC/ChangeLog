@@ -1,15 +1,26 @@
+Mon Jun 14 21:19:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        
+          Added wix () specification to the project files.
+        
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        
+          Disabled the property manager component.
+
 Mon Jun 14 21:02:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
         * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc:
         * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
-        
+
           Added cosmic_common as a base class.
 
         * Utils/GAME/game/xme/Library_Importer.h:
         * Utils/GAME/game/xme/Library_Importer.cpp:
-        
+
           Fixed compiler errors in the release version.
 
 Mon Jun 14 16:53:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

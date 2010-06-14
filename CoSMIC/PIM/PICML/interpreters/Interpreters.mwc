@@ -14,7 +14,7 @@ workspace {
   Path
   PathComponent
   PICML
-  PropertyManager
+  //PropertyManager
 
   Target
   TargetComponent

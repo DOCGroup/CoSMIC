@@ -31,4 +31,14 @@ project (ComponentImplementationGenerator) : acedefaults, picmllib, gme_udm_comp
   Inline_Files {
 
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.PICML.ComponentImplementationGenerator
+    gme_uuid        = B787C813-5E3F-4A06-B608-2903539B42B1
+    gme_paradigms   = PICML
+    gme_has_icon    = 0
+    gme_description = Component Implementation Generator
+    gme_tooltip     = Generate default component implementation artifacts
+  }
 }
