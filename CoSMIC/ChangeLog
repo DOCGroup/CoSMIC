@@ -1,3 +1,9 @@
+Mon Jun 14 04:15:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * cosmic_common.mwb:
+
+          Removed this file.
+
 Mon Jun 14 04:14:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Release.mwc:
@@ -5,7 +11,7 @@ Mon Jun 14 04:14:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * cosmic.mwc:
         * cosmic_ace.mwc:
         * picml.mwc:
-        
+
           Removed the cosmic_common base workspace since it prevents
           workspaces that have base workspaces cannot be aggregated.
 
