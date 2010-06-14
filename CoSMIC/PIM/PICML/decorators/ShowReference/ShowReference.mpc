@@ -17,4 +17,10 @@ project (ShowReferenceDecorator): game_utils, game_graphics, game_decorator {
   Resource_Files {
     Decorator.rc
   }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = MGA.Decorator.ShowReference
+    gme_uuid        = E3EA54FF-CE85-4F3B-92C4-6652FF130FE4
+  }
 }

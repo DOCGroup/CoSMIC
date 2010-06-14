@@ -26,4 +26,10 @@ project (Package_Decorator): game_graphics, game_decorator {
     Package_Decorator.reg
     Package_Decoratord.reg
   }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = MGA.Decorator.PackageDecorator
+    gme_uuid        = 7DB2D69A-A98D-4191-9A5F-072D659CBF1A
+  }
 }

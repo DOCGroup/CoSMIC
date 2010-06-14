@@ -24,4 +24,10 @@ project (ComponentRef_Decorator): game_graphics, game_decorator {
   Resource_Files {
     ComponentRef_Decorator.rc
   }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = MGA.Decorator.ComponentRefDecorator
+    gme_uuid        = EBAA7FED-D435-4763-9D62-B5B2463B2F89
+  }
 }

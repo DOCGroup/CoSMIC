@@ -21,4 +21,10 @@ project (NoShowRefersTo_Decorator): game_graphics, game_decorator {
   Resource_Files {
 
   }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = MGA.Decorator.NoShowRefersToDecorator
+    gme_uuid        = 0B30998C-EB50-4B00-A556-74BAAEDBBC2A
+  }
 }
