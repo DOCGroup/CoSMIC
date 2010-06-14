@@ -16,4 +16,14 @@ project (CBMLManager): boost_base, game_utils, gme_raw_component, cosmic_common 
   Resource_Files {
     Component.rc
   }
+
+  specific (wix) {
+    gme_install        = 1
+    gme_component_type = 2
+    gme_progid         = MGA.AddOn.CBMLManager
+    gme_uuid           = FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC
+    gme_paradigms      = PICML
+    gme_description    = CBML Manager AddOn
+    gme_tooltip        = CBML Manager AddOn
+  }
 }

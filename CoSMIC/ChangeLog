@@ -1,12 +1,27 @@
+Mon Jun 14 23:00:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        
+          Update project to support Wix specifications.
+
+        * picml.mwc:
+        
+          Added ACE to the workspace.
+
+        * cosmic_ace.mwc:
+
+          Removed this file.
+
 Mon Jun 14 21:19:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.mpc:
         * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
-        
+
           Added wix () specification to the project files.
-        
+
         * PIM/PICML/interpreters/Interpreters.mwc:
-        
+
           Disabled the property manager component.
 
 Mon Jun 14 21:02:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

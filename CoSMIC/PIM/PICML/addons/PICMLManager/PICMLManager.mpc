@@ -23,4 +23,14 @@ project (PICMLManager): game_component, picml_game_utils, boost_base, cosmic_uti
   Resource_Files {
     PICMLManager.rc
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_component_type = 2
+    gme_progid      = MGA.AddOn.PICMLManager
+    gme_uuid        = B744B044-436A-4463-AF72-41D1D94815D9
+    gme_paradigms   = PICML CQML
+    gme_description = PICMLManager
+    gme_tooltip     = Simplifies the creation of PICML models
+  }
 }
