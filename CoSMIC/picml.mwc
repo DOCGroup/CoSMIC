@@ -1,6 +1,9 @@
 // $Id$
 
-workspace : cosmic_common {
+workspace (PICML) {
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
+
   // The follow directories and workspaces only apply to
   // building CoSMIC using Visual C++.
   Utils/Utils.mpc

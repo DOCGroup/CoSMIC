@@ -1,5 +1,9 @@
 // $Id$
 
-workspace : cosmic {
+workspace {
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
+
+  ./cosmic.mwc  
   $(ACE_ROOT)/ace/ace.mpc
 }

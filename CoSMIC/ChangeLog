@@ -1,3 +1,14 @@
+Mon Jun 14 04:14:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Release.mwc:
+        * Release_idl_to_picml.mwc:
+        * cosmic.mwc:
+        * cosmic_ace.mwc:
+        * picml.mwc:
+        
+          Removed the cosmic_common base workspace since it prevents
+          workspaces that have base workspaces cannot be aggregated.
+
 Sun Jun 13 21:25:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_be.mpb:
@@ -6,7 +17,7 @@ Sun Jun 13 21:25:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
         * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
         * Utils/T3/t3/runtime/Runtime_Engine.h:
-        
+
           Fixed compiler errors.
 
 Sun Jun 13 19:19:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

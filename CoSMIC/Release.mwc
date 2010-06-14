@@ -1,7 +1,8 @@
 // $Id$
 
-workspace : cosmic_common {
-  // Entire CoSMIC.mwc expanded inline.
+workspace {
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
 
   Utils/Utils.mpc
   Utils/GAME

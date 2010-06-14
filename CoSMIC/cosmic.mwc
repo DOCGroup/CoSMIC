@@ -1,9 +1,12 @@
 // $Id$
 
-workspace : picml {
-  exclude (prop:windows) {
-  }
-  else {
+workspace {
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
+
+  ./picml.mwc
+  
+  exclude (!prop:windows) {
     PIM/SIML/interpreters/Interpreters.mwc
     PIM/POSAML/interpreters/interpreters.mwc
     PSM/CQML/interpreters/Interpreters.mwc

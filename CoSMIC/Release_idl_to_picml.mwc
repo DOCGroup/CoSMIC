@@ -1,6 +1,9 @@
 // $Id$
 
-workspace : cosmic_common {
+workspace {
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
+
   $(ACE_ROOT)/ace/ace.mpc
   $(TAO_ROOT)/TAO_IDL/tao_idl_fe.mpc
   $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc
