@@ -1,4 +1,6 @@
-project (AspectInterpreter): register, gme_bon2_component {
+// $Id$
+
+project (AspectInterpreter) : register, gme_bon2_component, cosmic_lib {
 
   sharedname = AspectInterpreter
   includes += $(COSMIC_ROOT)/PIM/POSAML/interpreters/AspectInterpreter

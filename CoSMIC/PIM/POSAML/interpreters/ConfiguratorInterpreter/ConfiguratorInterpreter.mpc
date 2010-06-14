@@ -1,4 +1,6 @@
-project (ConfiguratorInterpreter): gme_bon2_component, xerces {
+// $Id$
+
+project (ConfiguratorInterpreter): gme_bon2_component, xerces, cosmic_lib {
 
   sharedname = ConfiguratorInterpreter
   includes += $(COSMIC_ROOT)/PIM/POSAML/interpreters/ConfiguratorInterpreter

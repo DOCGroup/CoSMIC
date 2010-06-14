@@ -1,4 +1,6 @@
-project (OMNeTInterpreter): gme_bon2_component, register {
+// $Id$
+
+project (OMNeTInterpreter): gme_bon2_component, register, cosmic_lib {
 
   sharedname = OMNeTInterpreter
   includes += $(COSMIC_ROOT)/PIM/POSAML/interpreters/OMNeTInterpreter

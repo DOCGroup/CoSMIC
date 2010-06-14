@@ -231,7 +231,7 @@ void Library_Importer::resolved_connection (Connection & conn)
 // operator ()
 //
 bool Library_Importer::
-insensitive_id::operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid)
+insensitive_id::operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid) const
 {
   using xercesc::XMLString;
   return XMLString::compareNIString (lid, rid, lid.size ()) < 0;

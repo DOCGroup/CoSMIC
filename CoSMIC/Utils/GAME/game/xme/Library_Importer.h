@@ -41,7 +41,7 @@ public:
 private:
   struct insensitive_id
   {
-    bool operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid);
+    bool operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid) const;
   };
 
   void handle_folder (Folder & folder);

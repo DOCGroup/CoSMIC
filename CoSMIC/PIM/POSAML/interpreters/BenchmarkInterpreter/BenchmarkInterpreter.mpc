@@ -1,4 +1,6 @@
-project (BenchmarkInterpreter): gme_bon2_component, xerces {
+// $Id$
+
+project (BenchmarkInterpreter): gme_bon2_component, xerces, cosmic_lib {
 
   sharedname = BenchmarkInterpreter
   includes += $(COSMIC_ROOT)/PIM/POSAML/interpreters/BenchmarkInterpreter
