@@ -39,6 +39,14 @@ bool Find_Forward_Decls::has_component (void) const
 }
 
 //
+// has_component
+//
+bool Find_Forward_Decls::has_typesupport (void) const
+{
+  return this->has_typesupport_;
+}
+
+//
 // fwd_decls
 //
 const Find_Forward_Decls::fwd_decls_t & Find_Forward_Decls::fwd_decls (void) const
@@ -165,6 +173,11 @@ void Find_Forward_Decls::Visit_Member (const PICML::Member & m)
 void Find_Forward_Decls::Visit_Aggregate (const PICML::Aggregate & a)
 {
   Udm::visit_all <PICML::Member> (a, *this);
+
+  // All we need is one aggregate to have a key for the
+  // entire file to need type support.
+  PICML::Key key = a.Key_child ();
+  this->has_typesupport_ |= (key != Udm::null);
 }
 
 //

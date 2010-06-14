@@ -76,6 +76,8 @@ public:
 
   bool has_component (void) const;
 
+  bool has_typesupport (void) const;
+
 private:
   void Visit_FilePackage (const Udm::Object & p);
   void Visit_ObjectByValue (const PICML::ObjectByValue & obv);
@@ -86,6 +88,8 @@ private:
   bool is_visible (const Udm::Object & ref);
 
   bool has_component_;
+
+  bool has_typesupport_;
 
   /// Set of forward declard objects.
   fwd_decls_t fwd_decls_;

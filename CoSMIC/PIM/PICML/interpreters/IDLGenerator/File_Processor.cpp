@@ -43,6 +43,22 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
                               this,
                               _1));
 
+  if (fwd_decls.has_typesupport ())
+  {
+    std::string basename (file.Path ());
+    basename += "/" + std::string (file.name ());
+
+    this->idl_ << nl
+               << "#pragma ndds typesupport \"" << basename << "Support.h\"" << nl
+               << "#pragma opendds typesupport \"" << basename << "TypeSupportC.h\"" << nl
+               << "#pragma splice typesupport \"" << basename << "DscpC.h\"" << nl;
+  }
+
+  std::string directives = file.PrePreprocessorDirectives ();
+
+  if (!directives.empty ())
+    this->idl_ << nl << directives << nl;
+
   this->idl_ << nl
              << "// forward declaration(s)" << nl
              << nl;
@@ -52,6 +68,11 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
   // all referenced elements are declared before they are used. In the 
   // future, we should optimize this approach.
   this->Visit_FilePackage (file);
+
+  directives = file.PostPreprocessorDirectives ();
+
+  if (!directives.empty ())
+    this->idl_ << nl << directives << nl;
 
   this->idl_ << nl;
 }

@@ -78,14 +78,12 @@ set (const XMLCh * wstr, bool release, xercesc::MemoryManager * const allocator)
   // Save the new string, or make a copy of it. This will also
   // determine what we do with the new allocator.
   if (release)
-  {
     this->wstr_ = XMLString::replicate (wstr, allocator);
-    this->allocator_ = allocator;
-  }
   else
     this->wstr_ = const_cast <XMLCh *> (wstr);
 
-  // Save the release state.
+  // Save the allocator and the release state.
+  this->allocator_ = allocator;
   this->release_ = release;
 
   // Reset the cstring

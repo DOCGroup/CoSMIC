@@ -67,36 +67,28 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "IDL_TO_PICML_BE_Export.h"
 #include "Project_Generator.h"
 #include "File_Creator.h"
+#include "Preprocessor_Importer.h"
 #include "Implementation_Generator.h"
 
 #include "global_extern.h"
 #include "be_extern.h"
 #include "fe_extern.h"
 #include "ast_root.h"
-#include "utl_string.h"
-//#include "adding_visitor.h"
-//#include "removing_visitor.h"
 
-//#include "Utils/xercesc/XercesString.h"
-//#include "xercesc/util/XMLUniDefs.hpp"
-//#include "xercesc/framework/LocalFileFormatTarget.hpp"
-
-#include "ace/High_Res_Timer.h"
-#include "ace/streams.h"
 
 // Temporarily included for debugging purposes.
 //#include "XML_Helper.h"
 
 // Clean up before exit, whether successful or not.
-IDL_TO_PICML_BE_Export void
-BE_cleanup (void)
+IDL_TO_PICML_BE_Export 
+void BE_cleanup (void)
 {
   idl_global->destroy ();
 }
 
 // Abort this run of the BE.
-IDL_TO_PICML_BE_Export void
-BE_abort (void)
+IDL_TO_PICML_BE_Export 
+void BE_abort (void)
 {
   ACE_ERROR ((LM_ERROR,
               ACE_TEXT ("Fatal Error - Aborting\n")));
@@ -105,9 +97,27 @@ BE_abort (void)
   throw Bailout ();
 }
 
+struct BE_import_directives
+{
+  BE_import_directives (const Project_Generator & proj_gen)
+    : proj_gen_ (proj_gen)
+  {
+
+  }
+
+  void operator () (PICML_File_Creator::item_map::ENTRY & e) const
+  {
+    Preprocessor_Importer importer;
+    importer.parse (e.key ().c_str (), e.item ()->file_.get ());
+  }
+
+private:
+  const Project_Generator & proj_gen_;
+};
+
 // Do the work of this BE. This is the starting point for code generation.
-IDL_TO_PICML_BE_Export void
-BE_produce (void)
+IDL_TO_PICML_BE_Export 
+void BE_produce (void)
 {
   try
   {
@@ -118,12 +128,17 @@ BE_produce (void)
 
     Implementation_Generator impl_gen (project.root_folder ());
 
-    Project_Generator visitor (be_global->files (), 
-                               impl_gen, 
-                               project);
+    PICML_File_Creator & fc = be_global->files ();
+    Project_Generator proj_gen (fc, impl_gen, project);
 
-    ast_root->ast_accept (&visitor);
-    visitor.finalize ();
+    ast_root->ast_accept (&proj_gen);
+    proj_gen.finalize ();
+
+    // Now, let's import the preprocessor directives. This we have
+    // to do manually since the AST does not preserve them.
+    std::for_each (fc.files ().begin (),
+                   fc.files ().end (),
+                   BE_import_directives (proj_gen));
 
     // Save the project.
     project.save ();

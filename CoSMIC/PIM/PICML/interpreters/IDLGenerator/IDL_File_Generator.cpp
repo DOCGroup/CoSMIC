@@ -271,6 +271,39 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
 //
 void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
 {
+  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
+  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
+
+  // First, generate the RTI-DDS pragma support.
+  PICML::Key key = a.Key_child ();
+  std::set <PICML::KeyMember> key_members = key.dstKeyMember ();
+  sorted_values_t key_values;
+
+  if (key != Udm::null)
+  {
+    // First, gather all the members in sorted order.
+    std::set <PICML::KeyMember>::iterator
+      iter = key_members.begin (),
+      iter_end = key_members.end ();
+
+    for (; iter != iter_end; ++ iter)
+      key_values.insert (iter->dstKeyMember_end ());
+  }
+
+  if (!key_values.empty ())
+  {
+    this->idl_ << "#pragma DCPS_DATA_TYPE \"" << a.name () << "\"" << nl;
+
+    sorted_values_t::iterator 
+      iter = key_values.begin (), iter_end = key_values.end ();
+
+    for (; iter != iter_end; ++ iter)
+      this->idl_ << "#pragma DCPS_DATA_KEY \"" 
+                   << a.name () << " " << iter->name () << "\"" << nl;
+
+    this->idl_ << nl;
+  }
+
   this->idl_ << "struct " << a.name () << nl
              << "{" << idt;
 
@@ -287,10 +320,25 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
 
   this->idl_ << uidt_nl << "};" << nl
              << nl;
+
+  // Now, right the key list. Future version of the IDL generator
+  // should enable a user to enable/disable such pragma statements.
+  if (!key_values.empty ())
+  {
+    this->idl_ << "#pragma keylist " << a.name ();
+
+    sorted_values_t::iterator 
+      iter = key_values.begin (), iter_end = key_values.end ();
+
+    for (; iter != iter_end; ++ iter)
+      this->idl_ << " " << iter->name ();
+
+    this->idl_ << nl << nl;
+  }
 }
 
 //
-// Visit_Aggregate
+// Visit_SwitchedAggregate
 //
 void IDL_File_Generator::
 Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
