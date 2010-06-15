@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        RegisterParadigm.h
+ * @file        Custom_Actions.h
  *
  * $Id$
  *
@@ -10,20 +10,16 @@
  */
 //=============================================================================
 
-#ifndef _COSMIC_REGISTER_PARADIGM_H_
-#define _COSMIC_REGISTER_PARADIGM_H_
+#ifndef _COSMIC_CUSTOM_ACTIONS_H_
+#define _COSMIC_CUSTOM_ACTIONS_H_
 
-#include "CoSMIC_Msi_export.h"
+#include "Custom_Actions_export.h"
 
 #if defined (__cplusplus)
 extern "C" {
 #endif
 
-COSMIC_MSI_Export UINT RegisterParadigms (MSIHANDLE);
-
-COSMIC_MSI_Export UINT UnregisterParadigms (MSIHANDLE);
-
-COSMIC_MSI_Export UINT CheckGMEVersion (MSIHANDLE);
+CUSTOM_ACTIONS_Export UINT CheckGMEVersion (MSIHANDLE);
 
 #if defined (__cplusplus)
 }

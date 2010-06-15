@@ -1,0 +1,9 @@
+// $Id$
+
+workspace (CoSMIC_Installer) {
+  cmdline += -include $COSMIC_ROOT/MPC/config
+  
+  exclude (!prop:microsoft, wix) {
+    CoSMIC_Installer.mpc
+  }
+}

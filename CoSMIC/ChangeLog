@@ -1,19 +1,63 @@
+Tue Jun 15 19:07:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer.mwc:
+        * Installer/CoSMIC_Installer.old:
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Release_Build.mwc:
+        * Installer/CoSMIC_Release_Build.wxi:
+        * Installer/Custom_Actions.h:
+        * Installer/Custom_Actions.wxs:
+        * Installer/Custom_Actions.cpp:
+        * Installer/Merge_Modules.wxs:
+        * Installer/includes:
+        
+          Replaced the older installer workspace/process with a new
+          installer workspace/process that use MPC to generate the 
+          Wix project/include files as opposed to manually handcrafting 
+          them.
+        
+        * Installer/CoSMIC.ise:
+        * Installer/CoSMIC_Installer:
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/CoSMIC_Installer/list_icons.sh:
+        * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
+        * Installer/RegisterParadigm:
+        * Installer/RegisterParadigm/CoSMIC_Msi_export.h:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/StdAfx.h:
+        * Installer/RegisterParadigm/StdAfx.cpp:
+
+          Removed these files.
+
 Tue Jun 15 15:27:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
-        
+
           Bug fix where decorator would crash under unknown circumstances. It
           had something to do with holding a reference to the aspect. This
           problem has been resolved.
 
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           Re-enabled the component decorator.
 
         * Utils/GAME/game/be/Decorator_T.inl:
-        
+
           Added more exception handling.
 
         * Utils/GAME/game/graphics/Graphics.mpc:
@@ -23,7 +67,7 @@ Tue Jun 15 15:27:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/graphics/Port_Decorator.cpp:
         * Utils/GAME/game/graphics/stdafx.h:
         * Utils/GAME/game/graphics/stdafx.cpp:
-        
+
           Implemented a helper class for ports.
 
 Tue Jun 15 02:18:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

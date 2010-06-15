@@ -1,3 +1,0 @@
-// $Id$
-
-#include "StdAfx.h"

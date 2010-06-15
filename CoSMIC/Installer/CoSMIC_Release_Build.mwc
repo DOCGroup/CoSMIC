@@ -1,0 +1,26 @@
+// $Id$
+
+workspace (CoSMIC_Release_Build) {
+  cmdline += -include $COSMIC_ROOT/MPC/config \
+             -feature_file $COSMIC_ROOT/default.features \
+             -name_modifier *_Release_Build
+
+  exclude (!prop:windows) {
+    cmdline += -value_template 'install_location=bin' \  
+               -value_template 'gme_register=HKCU'
+    
+    $(COSMIC_ROOT)/cosmic.mwc
+
+    exclude (wix) {
+      cmdline += -static \
+                 -include $COSMIC_ROOT/contrib/CCF/MPC/config \
+
+      $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
+    }
+  }
+
+  exclude (!wix) {
+    $(COSMIC_ROOT)/PIM/PICML/paradigms
+    $(COSMIC_ROOT)/PIM/PICML/examples
+  }
+}
