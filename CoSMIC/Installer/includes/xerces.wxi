@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Include>
+  <Fragment Id="xerces">
+    <DirectoryRef Id="INSTALLDIR">
+      <Directory Id="xerces.output" Name="bin">
+        <Component Id="xerces" Guid="0C94F93E-80E7-4B2C-A4D0-33AC24D3CB7B">
+          <File Id='xerces_c.dll'
+                Name='xerces-c_$(env.XERCESC_VERSION).dll'
+                DiskId='1'
+                Source='$(env.XERCESCROOT)\bin\xerces-c_$(env.XERCESC_VERSION).dll'  />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
+</Include>
