@@ -28,51 +28,49 @@
 DECLARE_DECORATOR (Component_Decorator, Component_Decorator_Impl);
 
 /**
- * @struct draw_port_t
- *
- * Functor to help with drawing a port.
+ * @struct sort_top_to_bottom_t
  */
-struct draw_port_t
+struct sort_top_to_bottom_t
 {
-public:
-  typedef GAME::graphics::Image_Manager_T <GAME::FCO> bitmap_map_t;
+  typedef Component_Decorator_Impl::port_set_t port_set_t;
 
-  draw_port_t (Gdiplus::Graphics & g, const bitmap_map_t & bitmaps)
-    : g_ (g),
-      bitmaps_ (bitmaps)
+  bool operator () (const port_set_t::value_type & p1, 
+                    const port_set_t::value_type & p2) const
   {
-
+    return p1->location ().y_value () < p2->location ().y_value ();
   }
+};
 
-  void operator () (const std::pair <GAME::FCO, GAME::utils::Point> & e)
+/**
+ * @struct set_port_location_t
+ *
+ * Functor to help set the port location.
+ */
+struct set_port_location_t
+{
+  typedef Component_Decorator_Impl::port_set_t::value_type value_type;
+
+  set_port_location_t (GAME::utils::Point & next)
+    : next_ (next) { }
+
+  void operator () (value_type & port) 
   {
-    Gdiplus::Bitmap * image = 0;
-
-    if (this->bitmaps_.get_image (e.first, image))
-    {
-      this->g_.DrawImage (image,
-                          static_cast <float> (e.second.x_value ()),
-                          static_cast <float> (e.second.y_value ()),
-                          static_cast <float> (GME_PORT_WIDTH),
-                          static_cast <float> (GME_PORT_HEIGHT));
-    }
+    port->location (this->next_);
+    this->next_.shift (0, GME_PORT_HEIGHT + GME_PORT_PADDING_Y);
   }
 
 private:
-  /// Target graphics object.
-  Gdiplus::Graphics & g_;
-
-  /// Collection of bitmaps for the ports.
-  const bitmap_map_t & bitmaps_;
+  /// The next port location.
+  GAME::utils::Point & next_;
 };
+
+///////////////////////////////////////////////////////////////////////////////
+//
 
 //
 // Component_Decorator_Impl
 //
 Component_Decorator_Impl::Component_Decorator_Impl (void)
-: sorter_ (aspect_),
-  l_ports_ (sorter_),
-  r_ports_ (sorter_)
 {
 
 }
@@ -85,16 +83,29 @@ Component_Decorator_Impl::~Component_Decorator_Impl (void)
 
 }
 
+template <typename T>
+struct delete_t
+{
+  void operator () (T * ptr) const
+  {
+    delete ptr;
+  }
+};
+
 //
 // destroy
 //
 void Component_Decorator_Impl::destroy (void)
 { 
-  this->aspect_.release ();
-
   this->port_bitmaps_.clear ();
-  this->l_ports_.clear ();
-  this->r_ports_.clear ();
+
+  std::for_each (this->l_ports_.begin (),
+                 this->l_ports_.end (),
+                 delete_t <GAME::graphics::Port_Decorator> ());
+
+  std::for_each (this->r_ports_.begin (),
+                 this->r_ports_.end (),
+                 delete_t <GAME::graphics::Port_Decorator> ());
 }
 
 //
@@ -149,6 +160,15 @@ initialize (const GAME::Project & project,
   if (!fco.is_nil ())
     this->initialize_ports ("InterfaceDefinition", fco, resolver);
 
+  // Finally, sort the ports from top to bottom.
+  std::sort (this->l_ports_.begin (),
+             this->l_ports_.end (),
+             sort_top_to_bottom_t ());
+
+  std::sort (this->r_ports_.begin (),
+             this->r_ports_.end (),
+             sort_top_to_bottom_t ());
+
   return S_OK;
 }
 
@@ -156,16 +176,22 @@ initialize (const GAME::Project & project,
 // initialize_ports
 //
 int Component_Decorator_Impl::
-initialize_ports (const std::string & aspect, 
+initialize_ports (const std::string & aspect_name, 
                   const GAME::FCO & fco,
                   GAME::graphics::Image_Resolver * resolver)
 {
   GAME::Model model = GAME::Model::_narrow (fco);
   GAME::Meta::Model metamodel = model.meta ();
-  this->aspect_ = metamodel.aspect (aspect);
 
+  // Get the target aspect.
+  GAME::Meta::Aspect aspect = metamodel.aspect (aspect_name);
+
+  if (!aspect)
+    return 0;
+
+  // Select all the FCO elements in the specified aspect.
   std::vector <GAME::FCO> ports;
-  if (model.children (this->aspect_, ports) == 0)
+  if (model.children (aspect, ports) == 0)
     return 0;
 
   std::vector <GAME::FCO>::const_iterator 
@@ -177,25 +203,38 @@ initialize_ports (const std::string & aspect,
 
   for (; iter != iter_end; ++ iter)
   {
-    // Get information about this part.
-    part = iter->part (this->aspect_);
+    // First, let's determine if the element is indeed a port. If
+    // it is not a port, let's just continue to the next iteration.
+    part = iter->part (aspect);
+
+    if (!part.meta ().is_linked ())
+      continue;
+
+    // Load the icon for the specified element.
     icon_filename = iter->meta ().registry_value ("icon");
 
     if (resolver->lookup_icon (icon_filename, filename))
-      this->port_bitmaps_.associate_image (*iter, filename);
+      this->port_bitmaps_.associate_image (*iter, filename, image);
 
-    // We need to save this element it is part of this aspect 
-    // and it is a port. 
+    // Determine what side of the model this port should
+    // be displayed.
     long x, y;
+    part.get_location (x, y);
 
-    if (part.meta ().is_linked ())
+    using GAME::graphics::Port_Decorator;
+
+    GAME::utils::Point location (x, y);
+    Port_Decorator * port = new Port_Decorator (image, iter->name (), location);
+
+    if (x < 200)
     {
-      part.get_location (x, y);
-
-      if (x < 200)
-        this->l_ports_[*iter] = GAME::utils::Point (x, y);
-      else
-        this->r_ports_[*iter] = GAME::utils::Point (x, y);
+      this->l_ports_.push_back (port);
+      port->alignment (Port_Decorator::ALIGNMENT_LEFT);
+    }
+    else
+    {
+      this->r_ports_.push_back (port);
+      port->alignment (Port_Decorator::ALINGMENT_RIGHT);
     }
   }
 
@@ -213,29 +252,6 @@ initialize_ports (const std::string & aspect,
 
   return 0;
 }
-
-/**
- * @struct set_port_location_t
- *
- * Functor to help set the port location.
- */
-struct set_port_location_t
-{
-  set_port_location_t (GAME::utils::Point & next)
-    : next_ (next) { }
-
-  void operator () (std::pair <const GAME::FCO, GAME::utils::Point> & e) 
-  {
-    std::string name = e.first.name ();
-
-    e.second = this->next_;
-    this->next_.shift (0, GME_PORT_HEIGHT + GME_PORT_PADDING_Y);
-  }
-
-private:
-  /// The next port location.
-  GAME::utils::Point & next_;
-};
 
 //
 // location
@@ -349,7 +365,7 @@ int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
   float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0);
   float py = static_cast <float> (this->location_.y_) + (height + 15.0);
 
-  static const Gdiplus::Font font (L"Arial", 12);
+  static const Gdiplus::Font font (L"Arial", 10);
   static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
 
   Gdiplus::StringFormat format;
@@ -377,14 +393,20 @@ int Component_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
   if (this->l_ports_.empty () && this->r_ports_.empty ())
     return 0;
 
+  using GAME::graphics::Port_Decorator;
+
   // Draw the ports for the model.
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
-                 draw_port_t (g, this->port_bitmaps_));
+                 boost::bind (&Port_Decorator::draw, 
+                              _1,
+                              boost::ref (g)));
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
-                 draw_port_t (g, this->port_bitmaps_));
+                 boost::bind (&Port_Decorator::draw, 
+                              _1, 
+                              boost::ref (g)));
 
   return 0;
 }

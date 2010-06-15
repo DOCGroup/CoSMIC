@@ -161,6 +161,10 @@ STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
     Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (graphics);
     return this->impl_.draw (*g);  
   }
+  catch (const GAME::Failed_Result & )
+  {
+
+  }
   catch (...)
   {
 

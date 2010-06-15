@@ -1,3 +1,31 @@
+Tue Jun 15 15:27:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        
+          Bug fix where decorator would crash under unknown circumstances. It
+          had something to do with holding a reference to the aspect. This
+          problem has been resolved.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          Re-enabled the component decorator.
+
+        * Utils/GAME/game/be/Decorator_T.inl:
+        
+          Added more exception handling.
+
+        * Utils/GAME/game/graphics/Graphics.mpc:
+        * Utils/GAME/game/graphics/Image_Resolver.cpp:
+        * Utils/GAME/game/graphics/Port_Decorator.h:
+        * Utils/GAME/game/graphics/Port_Decorator.inl:
+        * Utils/GAME/game/graphics/Port_Decorator.cpp:
+        * Utils/GAME/game/graphics/stdafx.h:
+        * Utils/GAME/game/graphics/stdafx.cpp:
+        
+          Implemented a helper class for ports.
+
 Tue Jun 15 02:18:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:

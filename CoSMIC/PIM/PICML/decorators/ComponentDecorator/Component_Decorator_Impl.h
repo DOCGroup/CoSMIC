@@ -20,6 +20,7 @@
 #include "game/Part.h"
 #include "game/graphics/Image_Manager_T.h"
 #include "game/graphics/Image_Resolver.h"
+#include "game/graphics/Port_Decorator.h"
 
 #include "Component_Decorator_export.h"
 
@@ -66,6 +67,9 @@ public:
   /// Draw the label for the component.
   int draw_label (Gdiplus::Graphics & g);
 
+  /// Type definition of the port type.
+  typedef std::vector <GAME::graphics::Port_Decorator *> port_set_t;
+
 protected:
   int initialize_ports (const std::string & aspect,
                         const GAME::FCO &, 
@@ -73,48 +77,17 @@ protected:
 
   int initialize_graphics_path (void);
 
-  /// Inline struction for sorting the ports.
-  struct sort_t
-  {
-    sort_t (const GAME::Meta::Aspect & aspect)
-      : aspect_ (aspect)
-    {
-
-    }
-
-    bool operator () (const GAME::FCO & p1, const GAME::FCO & p2) const
-    {
-      long x1, y1, x2, y2;
-
-      p1.part (this->aspect_).get_location (x1, y1);
-      p2.part (this->aspect_).get_location (x2, y2);
-
-      return y1 < y2;
-    }
-
-  private:
-    const GAME::Meta::Aspect & aspect_;
-  };
-
-  /// Type definition of the port type.
-  typedef std::map <GAME::FCO, 
-                    GAME::utils::Point,
-                    sort_t> 
-                    port_map;
-
   /// The label for the element.
   std::string label_;
 
   /// Pointer to the loaded bitmap.
   Gdiplus::GraphicsPath graphics_path_;
 
-  GAME::Meta::Aspect aspect_;
+  /// Collection of ports on the left side.
+  port_set_t l_ports_;
 
-  sort_t sorter_;
-
-  port_map l_ports_;
-
-  port_map r_ports_;
+  /// Collection of ports on the right side.
+  port_set_t r_ports_;
 
   GAME::graphics::Image_Manager_T <GAME::FCO> port_bitmaps_;
 };

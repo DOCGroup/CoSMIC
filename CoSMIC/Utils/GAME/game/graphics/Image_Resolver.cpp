@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Image_Resolver.h"
 
 #if !defined (__GAME_INLINE__)
