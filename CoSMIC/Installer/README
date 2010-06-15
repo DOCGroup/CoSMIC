@@ -11,7 +11,7 @@ please execute the following commands:
 
 %> mwc.pl -type wix CoSMIC_Release_Build.mwc
 %> mwc.pl -type vc9 CoSMIC_Installer.mwc
-%> devenv /useenv CoSMIC_MSI.sln
+%> devenv /useenv CoSMIC_Installer.sln
 %> [build the release configuration]
 
 The final build process will result in a file named CoSMIC_MSI.msi,
