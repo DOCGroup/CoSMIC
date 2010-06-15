@@ -1,7 +1,13 @@
+Tue Jun 15 20:18:16 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/Custom_Actions_export.h:
+
+          Missing file.
+
 Tue Jun 15 19:34:26 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/README:
-        
+
           Instructions on how to build the installer.
 
 Tue Jun 15 19:12:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
