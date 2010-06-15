@@ -4,9 +4,7 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  exclude (prop:windows) {
-  }
-  else {
+  exclude (!prop:windows) {
     GatewayGenerator
   }
 }

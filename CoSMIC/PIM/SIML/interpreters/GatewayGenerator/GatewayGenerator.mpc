@@ -30,4 +30,14 @@ project (GatewayGenerator): gme_bon2_component, codegenerationkit, boost_base, c
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.GatewayGenerator
+    gme_uuid        = 53D7DAE3-C61B-4D1D-9AB9-228A6430D913
+    gme_paradigms   = SIML
+    gme_has_icon    = 1
+    gme_description = GatewayGenerator
+    gme_tooltip     = GatewayGenerator Interpreter
+  }
 }

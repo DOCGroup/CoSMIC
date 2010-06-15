@@ -1,3 +1,10 @@
+Tue Jun 15 02:18:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+        * PIM/SIML/interpreters/Interpreters.mwc:
+
+          Update project to support Wix specifications.
+
 Mon Jun 14 23:40:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.mpc:
@@ -10,7 +17,7 @@ Mon Jun 14 23:40:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
           Update project to support Wix specifications.
 
         * PIM/PICML/examples/SLICE-cpu-bound.xme:
-        
+
           Non-versioned model.
 
 Mon Jun 14 23:00:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
