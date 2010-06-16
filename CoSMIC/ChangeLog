@@ -1,9 +1,33 @@
+Wed Jun 16 16:22:28 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        
+          . Added support for predefined types below.
+          
+          . Bug fix where the artifact and implementation tags were missing
+            the id attribute.
+            
+          . Succesfully deployed the dds4ccm Shapes example.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          . Changed the global aspect priority so that the ports show
+            on the component instance and connector instance.
+
 Wed Jun 16 14:39:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
-        
-          Bug fix where ports on the component instance were not being 
+
+          Bug fix where ports on the component instance were not being
           generated correctly.
 
 Wed Jun 16 12:58:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

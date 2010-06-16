@@ -167,7 +167,7 @@ void Connector_Visitor::Visit_Publish (const PICML::Publish & publish)
 
   // Make sure to include this instance in deployment plan.
   PICML::ConnectorInstance inst = publish.dstPublish_end ();
-  this->conn_path_ = inst.getPath (".", false, true, "name", true);
+  this->conn_path_ += inst.getPath (".", false, true, "name", true);
 
   // Generate a new UUID for this connector fragment.
   std::string new_uuid = Utils::CreateUuid ();
@@ -192,7 +192,7 @@ void Connector_Visitor::Visit_Consume (const PICML::Consume & consume)
 
   // Make sure to include this instance in deployment plan.
   PICML::ConnectorInstance inst = consume.srcConsume_end ();
-  this->conn_path_ = inst.getPath (".", false, true, "name", true);
+  this->conn_path_ += inst.getPath (".", false, true, "name", true);
 
   // Generate a new UUID for this connector fragment.
   std::string new_uuid = Utils::CreateUuid ();
@@ -228,30 +228,18 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
   this->Visit_RequiredRequestPort_i (uuid,
                                      this->prefix1_, 
                                      p, 
+                                     this->portname1_,
                                      this->invert_);
+
+  this->conn_name_ += "::" + this->conn_path_;
 
   this->Visit_RequiredRequestPort_i (this->conn_uuid_,
                                      this->prefix2_, 
                                      p, 
+                                     this->portname2_,
                                      !this->invert_);
 
   this->end_connection ();
-}
-
-//
-// Visit_RequiredRequestPort
-//
-void Connector_Visitor::
-Visit_RequiredRequestPort_i (const std::string & inst,
-                             const std::string & prefix, 
-                             const PICML::RequiredRequestPort & p,
-                             bool invert)
-{
-  std::string portname = prefix + "_" + std::string (p.name ());
-  const char * kind = invert ? "Facet" : "SimplexReceptacle";
-  const char * provider = invert ? "true" : "false";
-
-  this->append_endpoint (portname, kind, provider, inst);
 }
 
 //
@@ -266,14 +254,35 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
   this->Visit_ProvidedRequestPort_i (uuid,
                                      this->prefix1_, 
                                      p,
+                                     this->portname1_,
                                      this->invert_);
+
+  this->conn_name_ += "::" + this->conn_path_;
 
   this->Visit_ProvidedRequestPort_i (this->conn_uuid_,
                                      this->prefix2_,
                                      p, 
+                                     this->portname2_,
                                      !this->invert_);
 
   this->end_connection ();
+}
+
+//
+// Visit_RequiredRequestPort
+//
+void Connector_Visitor::
+Visit_RequiredRequestPort_i (const std::string & inst,
+                             const std::string & prefix, 
+                             const PICML::RequiredRequestPort & p,
+                             std::string & portname,
+                             bool invert)
+{
+  portname = prefix + "_" + std::string (p.name ());
+  const char * kind = invert ? "Facet" : "SimplexReceptacle";
+  const char * provider = invert ? "true" : "false";
+
+  this->append_endpoint (portname, kind, provider, inst);
 }
 
 //
@@ -283,9 +292,11 @@ void Connector_Visitor::
 Visit_ProvidedRequestPort_i (const std::string & inst,
                              const std::string & prefix,
                              const PICML::ProvidedRequestPort & p,
+                             std::string & portname,
                              bool invert)
 {
-  std::string portname = prefix + "_" + std::string (p.name ());
+  portname = prefix + "_" + std::string (p.name ());
+
   const char * kind = invert ? "SimplexReceptacle" : "Facet";
   const char * provider = invert ? "false" : "true";
 
@@ -299,14 +310,9 @@ void Connector_Visitor::start_new_connection (void)
 {
   using xercesc::DOMElement;
 
-  std::string name =
-    this->comp_inst_.getPath (".", false, true, "name", true) + "." +
-    this->prefix1_ + "::" +
-    this->conn_path_ + "." +
-    this->prefix2_;
-
   this->curr_conn_ = this->doc_->createElement (L"connection");
-  this->create_simple_content (this->curr_conn_, "name", name);
+  this->name_element_ = this->create_element (this->curr_conn_, "name");
+  this->conn_name_ = this->comp_inst_.getPath (".", false, true, "name", true);
 
   DOMElement * deployRequirement = this->create_element (this->curr_conn_, "deployRequirement");
   this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
@@ -324,6 +330,9 @@ append_endpoint (const std::string & portname,
 {
   using xercesc::DOMElement;
 
+  // Add the portname to the connection name.
+  this->conn_name_ += "." + portname;
+
   DOMElement * ep = this->create_element (this->curr_conn_, "internalEndpoint");
   this->create_simple_content (ep, "portName", portname);
   this->create_simple_content (ep, "provider", provider);
@@ -338,6 +347,7 @@ append_endpoint (const std::string & portname,
 //
 void Connector_Visitor::end_connection (void)
 {
+  this->name_element_->setTextContent (::Utils::XStr (this->conn_name_));
   this->conns_.push_back (this->curr_conn_);
 }
 

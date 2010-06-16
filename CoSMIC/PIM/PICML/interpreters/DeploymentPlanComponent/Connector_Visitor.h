@@ -67,11 +67,13 @@ private:
   void Visit_RequiredRequestPort_i (const std::string & inst,
                                     const std::string & prefix, 
                                     const PICML::RequiredRequestPort & p,
+                                    std::string & portname,
                                     bool invert);
 
   void Visit_ProvidedRequestPort_i (const std::string & inst,
                                     const std::string & prefix,
                                     const PICML::ProvidedRequestPort & p,
+                                    std::string & portname,
                                     bool invert);
 
   DeploymentPlanVisitor & dpv_;
@@ -83,6 +85,8 @@ private:
   std::vector <xercesc::DOMElement *> conns_;
 
   xercesc::DOMElement * curr_conn_;
+  xercesc::DOMElement * name_element_;
+  std::string conn_name_;
 
   PICML::CollocationGroup group_;
 
@@ -92,8 +96,10 @@ private:
   std::string conn_path_;
 
   std::string prefix1_;
+  std::string portname1_;
 
   std::string prefix2_;
+  std::string portname2_;
 
   bool invert_;
 };

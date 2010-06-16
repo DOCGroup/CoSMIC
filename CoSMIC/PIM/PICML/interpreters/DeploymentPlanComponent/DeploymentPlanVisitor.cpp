@@ -424,6 +424,8 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   this->curr_impl_ = this->doc_->createElement (XStr ("implementation"));
   this->impls_.insert (std::make_pair (impl, this->curr_impl_));
 
+  this->curr_impl_->setAttribute (XStr ("xmi:id"), XStr (uuid));
+
   std::string name = impl.getPath (".", false, true, "name", true);
   this->create_simple_content (this->curr_impl_, "name", name);
   this->create_simple_content (this->curr_impl_, "source", "");
@@ -514,6 +516,7 @@ Visit_ImplementationArtifact (const PICML::ImplementationArtifact & artifact)
   this->curr_artifact_ = this->doc_->createElement (XStr ("artifact"));
   this->artifacts_.insert (std::make_pair (artifact, this->curr_artifact_));
 
+  this->curr_artifact_->setAttribute (XStr ("xmi:id"), XStr (uuid));
   std::string name = artifact.getPath (".", false, true, "name", true);
   this->create_simple_content (this->curr_artifact_, "name", name);
   this->create_simple_content (this->curr_artifact_, "source", "");

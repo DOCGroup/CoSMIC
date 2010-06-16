@@ -35,12 +35,37 @@ Visit_Byte (const PICML::Byte & b)
 }
 
 //
+// Visit_Char
+//
+void PICML_Data_Type_Visitor::Visit_Char (const PICML::Char & )
+{
+  this->create_simple_content ("kind", "tk_char");
+}
+
+//
+// Visit_WideChar
+//
+void PICML_Data_Type_Visitor::Visit_WideChar (const PICML::WideChar & )
+{
+  this->create_simple_content ("kind", "tk_wchar");
+}
+
+//
 // Visit_String
 //
 void PICML_Data_Type_Visitor::
 Visit_String (const PICML::String & s)
 {
   this->create_simple_content ("kind", "tk_string");
+}
+
+//
+// Visit_WideString
+//
+void PICML_Data_Type_Visitor::
+Visit_WideString (const PICML::WideString & s)
+{
+  this->create_simple_content ("kind", "tk_wstring");
 }
 
 //
@@ -62,6 +87,15 @@ Visit_DoubleNumber (const PICML::DoubleNumber & dn)
 }
 
 //
+// Visit_LongDoubleNumber
+//
+void PICML_Data_Type_Visitor::
+Visit_LongDoubleNumber (const PICML::LongDoubleNumber & dn)
+{
+  this->create_simple_content ("kind", "tk_longdouble");
+}
+
+//
 // Visit_ShortInteger
 //
 void PICML_Data_Type_Visitor::
@@ -77,6 +111,42 @@ void PICML_Data_Type_Visitor::
 Visit_LongInteger (const PICML::LongInteger & li)
 {
   this->create_simple_content ("kind", "tk_long");
+}
+
+//
+// Visit_LongLongInteger
+//
+void PICML_Data_Type_Visitor::
+Visit_LongLongInteger (const PICML::LongLongInteger & li)
+{
+  this->create_simple_content ("kind", "tk_longlong");
+}
+
+//
+// Visit_UnsignedShortInteger
+//
+void PICML_Data_Type_Visitor::
+Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & si)
+{
+  this->create_simple_content ("kind", "tk_ushort");
+}
+
+//
+// Visit_UnsignedLongInteger
+//
+void PICML_Data_Type_Visitor::
+Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & li)
+{
+  this->create_simple_content ("kind", "tk_ulong");
+}
+
+//
+// Visit_UnsignedLongLongInteger
+//
+void PICML_Data_Type_Visitor::
+Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & li)
+{
+  this->create_simple_content ("kind", "tk_ulonglong");
 }
 
 //
