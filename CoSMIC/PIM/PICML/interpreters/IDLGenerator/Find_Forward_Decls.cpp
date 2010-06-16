@@ -7,8 +7,10 @@
 //
 // Find_Forward_Decls
 //
-Find_Forward_Decls::Find_Forward_Decls (void)
-: has_component_ (false)
+Find_Forward_Decls::Find_Forward_Decls (bool visit_template_module)
+: has_component_ (false),
+  has_typesupport_ (false),
+  visit_template_module_ (visit_template_module)
 {
 
 }
@@ -78,7 +80,7 @@ void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
 {
   std::vector <PICML::TemplateParameter> params = package.TemplateParameter_kind_children ();
 
-  if (params.empty ())
+  if (params.empty () || (!params.empty () && this->visit_template_module_))
     this->Visit_FilePackage (package);
 }
 
@@ -120,6 +122,25 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a)
     this->includes_.insert (file);
 
   Udm::visit_all <PICML::TemplateParameterValue> (a, *this);
+
+  // We all need to visit the contents of the template package 
+  // instance's type. This will determine what other things 
+  // we need to include.
+  PICML::PackageType type = a.PackageType_child ();
+  PICML::Package package = type.ref ();
+
+  Find_Forward_Decls inner_fwd (true);
+
+  try
+  {
+    package.Accept (inner_fwd);
+  }
+  catch (...)
+  {
+
+  }
+
+  this->has_component_ |= inner_fwd.has_component ();
 }
 
 //

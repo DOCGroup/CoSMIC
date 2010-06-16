@@ -31,7 +31,7 @@ public:
   typedef std::set <PICML::File> includes_t;
 
   /// Default constructor.
-  Find_Forward_Decls (void);
+  Find_Forward_Decls (bool visit_template_module = false);
 
   /// Destructor.
   virtual ~Find_Forward_Decls (void);
@@ -99,6 +99,8 @@ private:
 
   /// The current file being processed.
   PICML::File current_file_;
+
+  bool visit_template_module_;
 };
 
 #endif  // !defined _IDL_FIND_FORWARD_DECLS_H_

@@ -232,6 +232,7 @@ private:
 
   /// Handle to the string predefined type.
   GAME::XME::Atom string_type_;
+  GAME::XME::Atom wstring_type_;
 
   /// Collection of symbols that can be referenced.
   ACE_Hash_Map_Manager <AST_Decl *,

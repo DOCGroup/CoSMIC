@@ -1,8 +1,34 @@
+Wed Jun 16 05:18:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          Implemented the remaining predefined types (i.e., signed integers,
+          long double, wide string, and char types).
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.h:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        
+          . Added support for the newly added predefined types.
+          
+          . Bug fix where the IDL generator was not generating the 
+            #pragma lem in the correct location.
+            
+          . Successfully compiles the dds4ccm Shapes example using the 
+            IDL generated from CoSMIC. :-)
+
 Wed Jun 16 00:00:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/Object.cpp:
-        
-          Bug fix where the Id attribute was not being designated as 
+
+          Bug fix where the Id attribute was not being designated as
           an Id attribute in the DOM model for newly created elements.
 
         * Release.mwc:

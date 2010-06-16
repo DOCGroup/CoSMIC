@@ -32,12 +32,27 @@ public:
   PredefinedType_Dispatcher (void)
   {
     this->insert <PICML::Boolean> ();
+    
     this->insert <PICML::Byte> ();
+
+    this->insert <PICML::Char> ();
+    this->insert <PICML::WideChar> ();
+
     this->insert <PICML::String> ();
-    this->insert <PICML::LongInteger> ();
+    this->insert <PICML::WideString> ();
+
     this->insert <PICML::ShortInteger> ();
-    this->insert <PICML::DoubleNumber> ();
+    this->insert <PICML::LongInteger> ();
+    this->insert <PICML::LongLongInteger> ();
+
+    this->insert <PICML::UnsignedShortInteger> ();
+    this->insert <PICML::UnsignedLongInteger> ();
+    this->insert <PICML::UnsignedLongLongInteger> ();
+
     this->insert <PICML::FloatNumber> ();
+    this->insert <PICML::DoubleNumber> ();
+    this->insert <PICML::LongDoubleNumber> ();
+
     this->insert <PICML::GenericObject> ();
     this->insert <PICML::GenericValue> ();
     this->insert <PICML::GenericValueObject> ();
@@ -194,12 +209,27 @@ public:
   virtual void Visit_MirrorPort (const PICML::MirrorPort & p);
 
   virtual void Visit_Byte (const PICML::Byte & b);
+
+  virtual void Visit_Char (const PICML::Char & b);
+  virtual void Visit_WideChar (const PICML::WideChar & b);
+
   virtual void Visit_Boolean (const PICML::Boolean & b);
+
   virtual void Visit_String (const PICML::String & s);
+  virtual void Visit_WideString (const PICML::WideString & b);
+
+  virtual void Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & s);
+  virtual void Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & l);
+  virtual void Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & );
+
   virtual void Visit_ShortInteger (const PICML::ShortInteger & s);
   virtual void Visit_LongInteger (const PICML::LongInteger & l);
+  virtual void Visit_LongLongInteger (const PICML::LongLongInteger & );
+
   virtual void Visit_DoubleNumber (const PICML::DoubleNumber & d);
   virtual void Visit_FloatNumber (const PICML::FloatNumber & f);
+  virtual void Visit_LongDoubleNumber (const PICML::LongDoubleNumber &);
+
   virtual void Visit_GenericObject (const PICML::GenericObject & f);
   virtual void Visit_GenericValue (const PICML::GenericValue & f);
   virtual void Visit_GenericValueObject (const PICML::GenericValueObject & v);

@@ -33,6 +33,14 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
   Find_Forward_Decls fwd_decls;
   PICML::File (file).Accept (fwd_decls);
 
+  // Generate the basename for this file.
+  std::string basename (file.Path ());
+
+  if (!basename.empty ())
+    basename.append ("/");
+
+  basename.append (file.name ());
+
   if (fwd_decls.has_component ())
     this->idl_ << "#include <Components.idl>" << nl;
 
@@ -43,17 +51,24 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
                               this,
                               _1));
 
+  if (fwd_decls.has_component ())
+  {
+    // Write the pragma statement for the local executor mapping.
+    this->idl_ << nl 
+               << "#pragma ciao lem \"" << basename << "E.idl\"" << nl;
+  }
+
   if (fwd_decls.has_typesupport ())
   {
-    std::string basename (file.Path ());
-    basename += "/" + std::string (file.name ());
-
+    // Write the pragma statement for the type support.
     this->idl_ << nl
                << "#pragma ndds typesupport \"" << basename << "Support.h\"" << nl
                << "#pragma opendds typesupport \"" << basename << "TypeSupportC.h\"" << nl
                << "#pragma splice typesupport \"" << basename << "DscpC.h\"" << nl;
   }
 
+  // Write any of the preprocessor directives that should occur 
+  // before the file's content.
   std::string directives = file.PrePreprocessorDirectives ();
 
   if (!directives.empty ())
@@ -69,6 +84,8 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
   // future, we should optimize this approach.
   this->Visit_FilePackage (file);
 
+  // Write any of the preprocessor directives that should occur 
+  // after the file's content.
   directives = file.PostPreprocessorDirectives ();
 
   if (!directives.empty ())

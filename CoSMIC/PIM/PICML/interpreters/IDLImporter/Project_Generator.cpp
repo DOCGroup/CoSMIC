@@ -71,6 +71,7 @@ namespace meta
 {
   static const ::Utils::XStr PREDEFINED_TYPES ("PredefinedTypes");
   static const ::Utils::XStr String ("String");
+  static const ::Utils::XStr WideString ("WideString");
 }
 
 namespace attr
@@ -373,11 +374,23 @@ void Project_Generator::initialize (void)
   static const predefined_typeinfo predefined_types[] =
   {
     {"Boolean", {AST_PredefinedType::PT_boolean, AST_PredefinedType::PT_void}},
-    {"Byte", {AST_PredefinedType::PT_char, AST_PredefinedType::PT_octet, AST_PredefinedType::PT_wchar, AST_PredefinedType::PT_void}},
-    {"LongInteger", {AST_PredefinedType::PT_long, AST_PredefinedType::PT_ulong, AST_PredefinedType::PT_void}},
-    {"ShortInteger", {AST_PredefinedType::PT_short, AST_PredefinedType::PT_ushort, AST_PredefinedType::PT_void}},
-    {"DoubleNumber", {AST_PredefinedType::PT_double, AST_PredefinedType::PT_longdouble, AST_PredefinedType::PT_void}},
+    {"Byte", {AST_PredefinedType::PT_octet, AST_PredefinedType::PT_void}},
+    
+    {"Char", {AST_PredefinedType::PT_char, AST_PredefinedType::PT_void}},
+    {"WideChar", {AST_PredefinedType::PT_wchar, AST_PredefinedType::PT_void}},
+    
+    {"ShortInteger", {AST_PredefinedType::PT_short, AST_PredefinedType::PT_void}},
+    {"LongInteger", {AST_PredefinedType::PT_long, AST_PredefinedType::PT_void}},
+    {"LongLongInteger", {AST_PredefinedType::PT_longlong, AST_PredefinedType::PT_void}},
+    
+    {"UnsignedShortInteger", {AST_PredefinedType::PT_ushort, AST_PredefinedType::PT_void}},
+    {"UnsignedLongInteger", {AST_PredefinedType::PT_ulong, AST_PredefinedType::PT_void}},
+    {"UnsignedLongLongInteger", {AST_PredefinedType::PT_ulonglong, AST_PredefinedType::PT_void}},
+
     {"FloatNumber", {AST_PredefinedType::PT_float, AST_PredefinedType::PT_void}},
+    {"DoubleNumber", {AST_PredefinedType::PT_double, AST_PredefinedType::PT_void}},
+    {"LongDoubleNumber", {AST_PredefinedType::PT_longdouble, AST_PredefinedType::PT_void}},
+    
     {"GenericObject", {AST_PredefinedType::PT_object, AST_PredefinedType::PT_void}},
     {"GenericValue", {AST_PredefinedType::PT_any, AST_PredefinedType::PT_void}},
     {"GenericValueObject", {AST_PredefinedType::PT_value, AST_PredefinedType::PT_void}},
@@ -419,6 +432,14 @@ void Project_Generator::initialize (void)
                                    boost::bind (&GAME::XME::Atom::name, _1)))))
   {
     this->string_type_.name (constant::meta::String);
+  }
+
+  if (GAME::create_if_not (types_folder, constant::meta::WideString, current_types, this->wstring_type_,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   constant::meta::String,
+                                   boost::bind (&GAME::XME::Atom::name, _1)))))
+  {
+    this->wstring_type_.name (constant::meta::WideString);
   }
 }
 
@@ -1950,9 +1971,14 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
     fco = predefined;
     return true;
   }
-  else if (node_type == AST_Decl::NT_string || node_type == AST_Decl::NT_wstring)
+  else if (node_type == AST_Decl::NT_string)
   {
     fco = this->string_type_;
+    return true;
+  }
+  else if (node_type == AST_Decl::NT_wstring)
+  {
+    fco = this->wstring_type_;
     return true;
   }
   else if (node_type == AST_Decl::NT_param_holder)

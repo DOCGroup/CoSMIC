@@ -1266,6 +1266,22 @@ void IDL_File_Generator::Visit_Byte (const PICML::Byte & b)
 }
 
 //
+// Visit_Char
+// 
+void IDL_File_Generator::Visit_Char (const PICML::Char & )
+{
+  this->idl_ << "wchar";
+}
+
+//
+// Visit_WideChar
+// 
+void IDL_File_Generator::Visit_WideChar (const PICML::WideChar & )
+{
+  this->idl_ << "wchar";
+}
+
+//
 // Visit_Boolean
 //
 void IDL_File_Generator::Visit_Boolean (const PICML::Boolean & b)
@@ -1279,6 +1295,42 @@ void IDL_File_Generator::Visit_Boolean (const PICML::Boolean & b)
 void IDL_File_Generator::Visit_String (const PICML::String & s)
 {
   this->idl_ << "string";
+}
+
+//
+// Visit_WideString
+//
+void IDL_File_Generator::
+Visit_WideString (const PICML::WideString & )
+{
+  this->idl_ << "wstring";
+}
+
+//
+// Visit_UnsignedShortInteger
+//
+void IDL_File_Generator::
+Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & s)
+{
+  this->idl_ << "unsigned short";
+}
+
+//
+// Visit_UnsignedLongInteger
+//
+void IDL_File_Generator::
+Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & l)
+{
+  this->idl_ << "unsigned long";
+}
+
+//
+// Visit_UnsignedLongLongInteger
+//
+void IDL_File_Generator::
+Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & )
+{
+  this->idl_ << "unsigned long long";
 }
 
 //
@@ -1298,11 +1350,37 @@ void IDL_File_Generator::Visit_LongInteger (const PICML::LongInteger & l)
 }
 
 //
+// Visit_LongLongInteger
+//
+void IDL_File_Generator::
+Visit_LongLongInteger (const PICML::LongLongInteger & )
+{
+  this->idl_ << "long long";
+}
+
+//
+// Visit_FloatNumber
+//
+void IDL_File_Generator::Visit_FloatNumber (const PICML::FloatNumber & f)
+{
+  this->idl_ << "float";
+}
+
+//
 // Visit_DoubleNumber
 //
 void IDL_File_Generator::Visit_DoubleNumber (const PICML::DoubleNumber & d)
 {
   this->idl_ << "double";
+}
+
+//
+// Visit_LongDoubleNumber
+//
+void IDL_File_Generator::
+Visit_LongDoubleNumber (const PICML::LongDoubleNumber &)
+{
+  this->idl_ << "long double";
 }
 
 //
@@ -1321,18 +1399,13 @@ void IDL_File_Generator::Visit_GenericValue (const PICML::GenericValue & f)
   this->idl_ << "any";
 }
 
+//
+// Visit_GenericValueObject
+//
 void IDL_File_Generator::
-Visit_GenericValueObject (const PICML::GenericValueObject & v)
+Visit_GenericValueObject (const PICML::GenericValueObject & )
 {
   this->idl_ << "ValueBase";
-}
-
-//
-// Visit_FloatNumber
-//
-void IDL_File_Generator::Visit_FloatNumber (const PICML::FloatNumber & f)
-{
-  this->idl_ << "float";
 }
 
 //
