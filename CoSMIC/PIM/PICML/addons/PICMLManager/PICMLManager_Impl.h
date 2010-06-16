@@ -71,12 +71,17 @@ private:
   void handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj);
   void handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
 
+  void handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj);
+
   void handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj);
   void handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
   void handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
   void handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
-  void handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj);
+  
   void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
+
+  void generate_port_instances (GAME::Model inst, 
+                                const GAME::Model & component);
 
   /**
    * Create a UUID for the FCO.

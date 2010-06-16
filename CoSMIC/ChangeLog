@@ -1,7 +1,15 @@
+Wed Jun 16 14:39:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        
+          Bug fix where ports on the component instance were not being 
+          generated correctly.
+
 Wed Jun 16 12:58:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
-        
+
           Bug fix where the key information for RTI-DDS was not
           generated for structs.
 

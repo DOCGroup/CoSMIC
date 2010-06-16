@@ -67,6 +67,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("ComponentRef", &PICMLManager_Impl::handle_ComponentRef);
   this->handlers_.bind ("Domain", &PICMLManager_Impl::handle_Domain);
   this->handlers_.bind ("PackageConfiguration", &PICMLManager_Impl::handle_PackageConfiguration);
+  this->handlers_.bind ("ComponentInstanceType", &PICMLManager_Impl::handle_ComponentInstanceType);
 
   this->handlers_.bind ("MonolithicImplementation", &PICMLManager_Impl::handle_MonolithicImplementation);
   this->handlers_.bind ("ComponentImplementation", &PICMLManager_Impl::handle_ComponentImplementation);
@@ -824,46 +825,6 @@ private:
 };
 
 //
-// handle_ComponentInstanceType
-//
-void PICMLManager_Impl::
-handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
-{
-  if ((eventmask & OBJEVENT_RELATION))
-  {
-    GAME::Reference ref = GAME::Reference::_narrow (obj);
-    GAME::FCO refers_to = ref.refers_to ();
-
-    std::vector <GAME::Connection> implements;
-
-    if (refers_to.in_connections ("Implements", implements) != 1)
-      return;
-
-    GAME::Connection implement = implements[0];
-    GAME::FCO dst = implement[std::string ("dst")].target ();
-
-    GAME::Reference component_ref = GAME::Reference::_narrow (dst);
-    refers_to = component_ref.refers_to ();
-
-    if (refers_to.is_nil ())
-      return;
-
-    GAME::Model component = GAME::Model::_narrow (refers_to);  
-    GAME::Meta::Aspect src_aspect = component.meta ().aspect ("InterfaceDefinition");
-
-    std::vector <GAME::FCO> ports;
-    component.children (src_aspect, ports);
-
-    GAME::Model parent = GAME::Model::_narrow (obj.parent ());
-    GAME::Meta::Aspect dst_aspect = parent.meta ().aspect ("PortsAspect");
-
-    std::for_each (ports.begin (),
-                   ports.end (),
-                   model_sync_t (parent, src_aspect, dst_aspect));
-  }
-}
-
-//
 // handle_CollocationGroup
 //
 void PICMLManager_Impl::
@@ -907,4 +868,128 @@ handle_ComponentRef (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_SETINCLUDED) != 0)
     this->cg_member_ = GAME::FCO::_narrow (obj);
+}
+
+//
+// handle_ComponentInstanceType
+//
+void PICMLManager_Impl::
+handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
+{
+  using GAME::Reference;
+  using GAME::Model;
+  using GAME::Atom;
+  using GAME::Connection;
+  using GAME::FCO;
+
+  if ((eventmask && OBJEVENT_RELATION) != 0)
+  {
+    Model inst = Model::_narrow (obj.parent ());
+
+    // The the component's implementation.
+    Reference ref = GAME::Reference::_narrow (obj);
+    Atom impl = Atom::_narrow (ref.refers_to ());
+
+    // Walk this until we locate the component interface.
+    std::vector <Connection> implements;
+    impl.in_connections ("Implements", implements);
+
+    if (implements.empty ())
+      return;
+
+    Connection implement = implements[0];
+    ref = Reference::_narrow (implement[std::string ("dst")].target ());
+    Model component = Model::_narrow (ref.refers_to ());
+
+    this->generate_port_instances (inst, component);
+  }
+}
+
+struct generate_instance_t
+{
+  generate_instance_t (GAME::Model & parent, const std::string & type)
+    : parent_ (parent),
+      type_ (type)
+  {
+    
+  }
+
+  void operator () (const GAME::FCO & target) const
+  {
+    using GAME::Reference;
+
+    Reference ref = Reference::_create (this->parent_, this->type_);
+    ref.refers_to (target);
+    ref.name (target.name ());
+
+    // Make the reference readonly.
+    ref.readonly_access (true, true);
+  }
+
+private:
+  GAME::Model & parent_;
+
+  const std::string & type_;
+};
+
+//
+// gather_component_ports
+//
+void PICMLManager_Impl::
+generate_port_instances (GAME::Model inst,  const GAME::Model & component)
+{
+  using GAME::Reference;
+  using GAME::Model;
+
+  std::vector <GAME::FCO> ports;
+  
+  if (component.children ("InEventPort", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "InEventPortInstance"));
+
+  if (component.children ("OutEventPort", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "OutEventPortInstance"));
+
+  if (component.children ("ProvidedRequestPort", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "ProvidedRequestPortInstance"));
+
+  if (component.children ("RequiredRequestPort", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "RequiredRequestPortInstance"));
+
+  if (component.children ("Attribute", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "AttributeInstance"));
+
+  if (component.children ("ReadonlyAttribute", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "AttributeInstance"));
+
+  if (component.children ("ExtendedPort", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "ExtendedPortInstance"));
+
+  if (component.children ("MirrorPort", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "MirrorPortInstance"));
+
+  // Finally, generate the ports of the base type in this 
+  // component instance.
+  std::vector <Reference> inherits;
+
+  if (component.children ("ComponentInherits", inherits))
+  {
+    Model basetype = Model::_narrow (inherits.begin ()->refers_to ());
+    this->generate_port_instances (inst, basetype);
+  }
 }
