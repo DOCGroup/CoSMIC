@@ -45,6 +45,11 @@ Object (xercesc::DOMElement * parent,
   this->obj_->setAttribute (ATTR_KIND, kind);
   this->obj_->setAttribute (ATTR_RELID, ::Utils::XStr (ostr.str ()));
 
+  // Finally, make sure the 'id' is the id attribute. This will be
+  // needed when making calls to getElementById ().
+  if (!this->obj_->getAttributeNode (ATTR_ID)->isId ())
+    this->obj_->setIdAttribute (ATTR_ID, true);
+
   // Make sure the object has <name> element.
   DOMElement * e = doc->createElement (ELEMENT_NAME);
   this->obj_->appendChild (e);

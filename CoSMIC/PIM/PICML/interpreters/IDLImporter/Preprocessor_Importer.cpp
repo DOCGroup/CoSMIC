@@ -534,20 +534,6 @@ public:
 
     this->sys_filepath_ %= 
       qi::lexeme[ascii::char_ ("<") >> *(ascii::print - "\"") >> ascii::char_ (">")];
-
-    debug (file_content_);
-    debug (module_);
-    debug (module_content_);
-    debug (garbage_);
-    debug (ignorable_scope_);
-    debug (ignorable_scope_keyword_);
-    debug (ident_);
-    debug (pragma_stmts_);
-    debug (pragma_typesupport_);
-    debug (pragma_keylist_);
-    debug (filepath_);
-    debug (usr_filepath_);
-    debug (sys_filepath_);
   }
 
 private:

@@ -1,3 +1,14 @@
+Wed Jun 16 00:00:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Object.cpp:
+        
+          Bug fix where the Id attribute was not being designated as 
+          an Id attribute in the DOM model for newly created elements.
+
+        * Release.mwc:
+
+          Removed this file.
+
 Tue Jun 15 20:18:16 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/Custom_Actions_export.h:
