@@ -376,7 +376,13 @@ void IDL_File_Generator::Visit_Member (const PICML::Member & m)
 
   this->idl_ << nl;
   this->Visit_MemberType (mt);
-  this->idl_ << " " << m.name () << ";" << nl;
+  this->idl_ << " " << m.name () << ";";
+
+  PICML::KeyMember key = m.srcKeyMember ();
+  if (key != Udm::null)
+    this->idl_ << "  // @key";
+
+  this->idl_ << nl;
 }
 
 //
