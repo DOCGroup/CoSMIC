@@ -1,7 +1,17 @@
+Thu Jun 17 04:32:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Release_Build.mwc:
+        
+          Added the include/GME directory to the installer.
+
+        * Installer/CoSMIC_Release_Build.wxi:
+
+          Removed this file.
+
 Thu Jun 17 00:17:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML_DSML.mpc:
-        
+
           Missing project file.
 
 Wed Jun 16 16:22:28 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

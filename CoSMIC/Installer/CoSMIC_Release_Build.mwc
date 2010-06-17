@@ -20,6 +20,7 @@ workspace (CoSMIC_Release_Build) {
   }
 
   exclude (!wix) {
+    $(COSMIC_ROOT)/includes
     $(COSMIC_ROOT)/PIM/PICML/paradigms
     $(COSMIC_ROOT)/PIM/PICML/examples
   }
