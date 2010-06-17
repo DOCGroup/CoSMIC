@@ -14,7 +14,7 @@
 #define _GME_RAW_COMPONENT_I_H_
 
 #include "StdAfx.h"
-#include "game/GAME_export.h"
+#include "game/config.h"
 
 namespace GAME
 {
@@ -24,7 +24,7 @@ namespace GAME
 template <typename T, const CLSID * pclsid = &CLSID_NULL>
 class ATL_NO_VTABLE ComponentEx_T :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
-  public ATL::CComCoClass < ComponentEx_T <T>, pclsid>,
+  public ATL::CComCoClass < T, pclsid>,
   public IMgaComponentEx,
   public IMgaVersionInfo
 {
@@ -58,7 +58,6 @@ public:
   // IMgaVersionInfo interface
   STDMETHOD (get_version) (MgaInterfaceVersion_enum *pVal);
 
-  // COM MAP
   BEGIN_COM_MAP (T)
     COM_INTERFACE_ENTRY (IMgaComponent)
     COM_INTERFACE_ENTRY (IMgaComponentEx)
@@ -66,20 +65,6 @@ public:
   END_COM_MAP ()
 };
 }
-
-#define GME_RAWCOMPONENT_DECL(TYPE, IMPL) \
-  class ATL_NO_VTABLE RawComponent : \
-    public TYPE <RawComponent, IMPL> { \
-  public: \
-    RawComponent (void); \
-    virtual ~RawComponent (void); \
-  }; \
-  OBJECT_ENTRY_AUTO (__uuidof (MgaComponent), RawComponent)
-
-#define GME_RAWCOMPONENT_IMPL(DLL, NAME) \
-  RawComponent::RawComponent (void) { } \
-  RawComponent::~RawComponent (void) { } \
-  GME_COMPONENT_DECLARE (DLL, NAME, LIBID_MgaComponentLib)
 
 #if defined (__GAME_INLINE__)
 #include "ComponentEx_T.inl"

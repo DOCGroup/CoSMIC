@@ -1,7 +1,44 @@
+Thu Jun 17 05:07:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        
+          Updated manager to automatically generate the ports of a 
+          component instance when its type is set. Also the add-on
+          prevents the ports from being deleted. Finally, the add-on
+          delete the ports whenever the type element is deleted.
+
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        
+          Fixed compilation error related to latest updates to metamodel.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          Added the PortInstance abstract type to the metamodel.
+          
+          Changed the color of the connections between a connector
+          and a port.
+
+        * Utils/GAME/game/MetaBase.cpp:
+        
+          Fixed null exception bug.
+          
+        * Utils/GAME/game/be/ComponentEx_T.h:
+        * Utils/GAME/game/be/Component_Module.h:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/be/Interpreter_T.h:
+        * Utils/GAME/game/be/Interpreter_T.inl:
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+        
+          Fixed extended component implementation.   
+
 Thu Jun 17 05:00:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML_DSML.mpc:
-        
+
           Updated the paradigm guid.
 
 Thu Jun 17 04:47:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

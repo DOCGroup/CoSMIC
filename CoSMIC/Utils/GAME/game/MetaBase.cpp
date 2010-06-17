@@ -114,6 +114,9 @@ namespace Meta
 
     VERIFY_HRESULT (this->metabase_->get_RegistryValue (bstrpath, &bstrval));
 
+    if (!bstrval)
+      return "";
+
     CW2A tempstr (bstrval);
     return tempstr.m_psz;
   }
@@ -122,7 +125,7 @@ namespace Meta
   // registry_value
   //
   void Base::registry_value (const std::string & path,
-                                 const std::string & value)
+                             const std::string & value)
   {
     CComBSTR bstrpath (path.length (), path.c_str ());
     CComBSTR bstrval (value.length (), value.c_str ());

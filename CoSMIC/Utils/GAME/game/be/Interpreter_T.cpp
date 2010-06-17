@@ -4,13 +4,13 @@
 #include "Interpreter_T.inl"
 #endif
 
-#include "../Collection_T.h"
+#include "game/FCO.h"
 
 //
 // Initialize
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::Initialize (IMgaProject * proj)
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::Initialize (IMgaProject * proj)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
@@ -21,26 +21,24 @@ STDMETHODIMP GAME::Interpreter_T <T, IMPL>::Initialize (IMgaProject * proj)
 //
 // get_InteractiveMode
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::
 get_InteractiveMode (VARIANT_BOOL * mode)
 {
+  if (mode == 0)
+    return E_POINTER;
+
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-  if (mode != 0)
-  {
-    *mode = this->impl_.interactive () ? VARIANT_TRUE : VARIANT_FALSE;
-    return S_OK;
-  }
-
-  return E_POINTER;
+  *mode = this->impl_.interactive () ? VARIANT_TRUE : VARIANT_FALSE;
+  return S_OK;
 }
 
 //
 // get_ComponentName
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_ComponentName (BSTR * name)
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::get_ComponentName (BSTR * name)
 {
   // Get the name of the component.
   std::string temp = this->impl_.name ();
@@ -51,8 +49,8 @@ STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_ComponentName (BSTR * name)
 //
 // get_Paradigm
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_Paradigm (BSTR * paradigm)
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::get_Paradigm (BSTR * paradigm)
 {
   // Get the name of the component.
   std::string temp = this->impl_.paradigm ();
@@ -63,8 +61,8 @@ STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_Paradigm (BSTR * paradigm)
 //
 // Invoke
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::
 Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -109,8 +107,8 @@ Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 //
 // InvokeEx
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::
 InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -159,8 +157,8 @@ InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 //
 // ObjectsInvokeEx
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::
 ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long flags)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -206,8 +204,8 @@ ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long 
 //
 // get_ComponentProgID
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_ComponentProgID (BSTR * val)
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::get_ComponentProgID (BSTR * val)
 {
   std::string temp = this->impl_.progid ();
   CComBSTR progid (temp.length (), temp.c_str ());
@@ -217,8 +215,8 @@ STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_ComponentProgID (BSTR * val)
 //
 // Enable
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::Enable (VARIANT_BOOL enable)
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::Enable (VARIANT_BOOL enable)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
@@ -229,8 +227,8 @@ STDMETHODIMP GAME::Interpreter_T <T, IMPL>::Enable (VARIANT_BOOL enable)
 //
 // put_InteractiveMode
 //
-template <typename T, typename IMPL>
-STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP GAME::Interpreter_T <T, pclsid>::
 put_InteractiveMode (VARIANT_BOOL  mode)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());

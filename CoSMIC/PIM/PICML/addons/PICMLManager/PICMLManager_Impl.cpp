@@ -7,6 +7,7 @@
 #include "PICMLManager_i.c"
 #include "game/be/Addon_T.h"
 #include "game/GAME.h"
+#include "game/utils/modelgen.h"
 
 #include "Dialogs.h"
 #include "DefaultImplementationGenerator.h"
@@ -18,21 +19,23 @@
 
 #include <algorithm>
 #include <sstream>
+#include <functional>
 
 // Type definition
 typedef std::vector <GAME::Reference> Reference_Set;
 DECLARE_ADDON (PICMLManager_Addon, PICMLManager_Impl);
 
-static const long EVENT_MASK = \
-   OBJEVENT_CREATED | OBJEVENT_ATTR |               \
-   OBJEVENT_RELATION |  OBJEVENT_SELECT |           \
-   OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED;
+static const long EVENTMASK =
+   OBJEVENT_CREATED | OBJEVENT_ATTR |   
+   OBJEVENT_RELATION |  OBJEVENT_SELECT |           
+   OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED |
+   OBJEVENT_DESTROYED | OBJEVENT_LOSTCHILD;
 
 //
 // PICMLManager_Impl
 //
 PICMLManager_Impl::PICMLManager_Impl (void)
-: GAME::Event_Handler_Impl (EVENT_MASK),
+: GAME::Event_Handler_Impl (EVENTMASK),
   importing_ (0)
 {
 
@@ -68,6 +71,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("Domain", &PICMLManager_Impl::handle_Domain);
   this->handlers_.bind ("PackageConfiguration", &PICMLManager_Impl::handle_PackageConfiguration);
   this->handlers_.bind ("ComponentInstanceType", &PICMLManager_Impl::handle_ComponentInstanceType);
+
+  this->handlers_.bind ("ExtendedPortInstance", &PICMLManager_Impl::handle_ExtendedPortInstance);
+  this->handlers_.bind ("MirrorPortInstance", &PICMLManager_Impl::handle_MirrorPortInstance);
 
   this->handlers_.bind ("MonolithicImplementation", &PICMLManager_Impl::handle_MonolithicImplementation);
   this->handlers_.bind ("ComponentImplementation", &PICMLManager_Impl::handle_ComponentImplementation);
@@ -159,7 +165,7 @@ handle_object_event (GAME::Object & obj, unsigned long eventmask)
     _member_function handler;
 
     if (this->handlers_.find (type, handler) != -1)
-      (this->*handler) (eventmask, object);
+      return (this->*handler) (eventmask, object);
   }
   catch (GAME::Exception &)
   {
@@ -374,12 +380,13 @@ verify_property_datatype (GAME::ConnectionPoint & attr,
     // Set the data type for the prop.
     set_property_datatype (prop, attr_type);
   }
+
 }
 
 //
 // handle_ExternalDelegate
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj)
 {
   // Extract the connection for the FCO.
@@ -400,23 +407,52 @@ handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj)
     if (src_port.name () != dst_port.name ())
       src_port.name (dst_port.name ());
   }
+
+  return 0;
 }
 
 //
 // handle_PublishConnector
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_PublishConnector (unsigned long eventmask, GAME::Object & obj)
 {
   // We need to set the name of the newly create connector.
   if ((eventmask & OBJEVENT_CREATED))
     obj.name (obj.id ());
+
+  return 0;
+}
+
+//
+// handle_MirrorPortInstance
+//
+int PICMLManager_Impl::
+handle_MirrorPortInstance (unsigned long eventmask, GAME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_DESTROYED))
+    return S_FALSE;
+  
+
+  return 0;
+}
+
+//
+// handle_ExtendedPortInstance
+//
+int PICMLManager_Impl::
+handle_ExtendedPortInstance (unsigned long eventmask, GAME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_DESTROYED))
+    return S_FALSE;
+
+  return 0;
 }
 
 //
 // handle_AttributeValue
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_RELATION))
@@ -445,12 +481,14 @@ handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
                                   attr_type));
     }
   }
+
+  return 0;
 }
 
 //
 // handle_AttributeValue
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_CREATED))
@@ -490,12 +528,14 @@ handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
         this->set_property_datatype (prop, attr_type);
     }
   }
+
+  return 0;
 }
 
 //
 // handle_Component
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_Component (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
@@ -525,7 +565,7 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
         NewComponentDialog new_component (config, ::AfxGetMainWnd ());
 
         if (new_component.DoModal () == IDCANCEL)
-          return;
+          return 0;
 
         // Set the name of the component.
         obj.name (config.component_name_.c_str ());
@@ -539,123 +579,163 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
       impl_gen.generate (component);
     }
   }
+
+  return 0;
 }
 
 //
 // handle_ComponentAssembly
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ComponentPackage
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ComponentFactoryInstance
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_Domain
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_Domain (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_MonolithicImplementation
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_PackageConfiguration
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ComponentImplementation
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ConnectorImplementation
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ConnectorObject
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ComponentInstance
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+
+  if ((eventmask && OBJEVENT_LOSTCHILD))
+  {
+    static const std::string meta_ComponentInstanceType ("ComponentInstanceType");
+    GAME::Model model = GAME::Model::_narrow (obj);
+
+    std::vector <GAME::Reference> types;
+
+    if (model.children (meta_ComponentInstanceType, types) == 0 ||
+        types.front ().is_nil ())
+    {
+      // Delete all the children in the inferface.
+      std::vector <GAME::FCO> children;
+      GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
+      
+      model.children (aspect, children);
+      std::for_each (children.begin (),
+                     children.end (),
+                     boost::bind (&GAME::FCO::destroy, _1));
+      return 0;
+    }
+    else 
+      return -1;
+  }
+
+  return 0;
 }
 
 //
 // handle_ConnectorInstance
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_DeploymentPlan
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
 // handle_ImplementationArtifact
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  return 0;
 }
 
 //
@@ -678,11 +758,11 @@ handle_UUID (unsigned long eventmask, GAME::FCO & fco)
 //
 // handle_NodeReference
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_NodeReference (unsigned long eventmask, GAME::Object & obj)
 {
   if (this->importing_)
-    return;
+    return 0;
 
   if ((eventmask & OBJEVENT_CREATED) != 0)
   {
@@ -708,126 +788,14 @@ handle_NodeReference (unsigned long eventmask, GAME::Object & obj)
 
     GAME::utils::position ("NodeMapping", pt, group);
   }
+
+  return 0;
 }
-
-struct attr_sync_t
-{
-  attr_sync_t (GAME::FCO & dst)
-    : dst_ (dst)
-  {
-
-  }
-
-  void operator () (const GAME::Attribute & src_attr)
-  {
-    GAME::Meta::Attribute meta = src_attr.meta ();
-    GAME::Attribute dst_attr = this->dst_.attribute (meta);
-
-    switch (meta.type ())
-    {
-    case ATTVAL_BOOLEAN:
-      dst_attr.bool_value (src_attr.bool_value ());
-      break;
-
-    case ATTVAL_DOUBLE:
-      dst_attr.float_value (src_attr.float_value ());
-      break;
-
-    case ATTVAL_STRING:
-    case ATTVAL_ENUM:
-      dst_attr.string_value (src_attr.string_value ());
-      break;
-
-    case ATTVAL_INTEGER:
-      dst_attr.int_value (src_attr.int_value ());
-      break;
-    }
-  }
-
-private:
-  GAME::FCO & dst_;
-};
-
-struct model_sync_t
-{
-  model_sync_t (GAME::Model & parent, 
-                const GAME::Meta::Aspect & src_aspect,
-                const GAME::Meta::Aspect & dst_aspect)
-    : parent_ (parent),
-      src_aspect_ (src_aspect),
-      dst_aspect_ (dst_aspect)
-  {
-
-  }
-
-  void operator () (const GAME::FCO & src_fco)
-  {
-    GAME::FCO new_fco;
-
-    switch (src_fco.meta ().type ())
-    {
-    case OBJTYPE_ATOM:
-      new_fco = this->handle_atom (src_fco);
-      break;
-
-    case OBJTYPE_REFERENCE:
-      new_fco = this->handle_reference (src_fco);
-      break;
-
-    case OBJTYPE_MODEL:
-      new_fco = this->handle_model (src_fco);
-      break;
-    }
-  
-    // Copy over the name of the source FCO.
-    new_fco.name (src_fco.name ());
-
-    // Set the location of the new FCO.
-    long x, y;
-    src_fco.part (this->src_aspect_).get_location (x, y);
-    new_fco.part (this->dst_aspect_).set_location (x, y);
-
-    // Copy over all the attributes of the source FCO.
-    std::vector <GAME::Attribute> attrs;
-    
-    if (src_fco.attributes (attrs))
-      std::for_each (attrs.begin (),
-                     attrs.end (),
-                     attr_sync_t (new_fco));
-  }
-
-private:
-  GAME::FCO handle_reference (const GAME::FCO & src_fco)
-  {
-    GAME::Reference ref = GAME::Reference::_create (this->parent_, src_fco.meta ().name ());
-    GAME::FCO refers_to = GAME::Reference::_narrow (src_fco).refers_to ();
-
-    ref.refers_to (refers_to);
-    return ref;
-  }
-
-  GAME::FCO handle_model (const GAME::FCO & src_fco)
-  {
-    GAME::Model model = GAME::Model::_create (this->parent_, src_fco.meta ().name ());
-    return model;
-  }
-
-  GAME::FCO handle_atom (const GAME::FCO & src_fco)
-  {
-    return GAME::Atom::_create (this->parent_, src_fco.meta ().name ());
-  }
-
-  GAME::Model & parent_;
-
-  const GAME::Meta::Aspect & src_aspect_;
-
-  const GAME::Meta::Aspect & dst_aspect_;
-};
 
 //
 // handle_CollocationGroup
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj)
 {
   if (this->cg_member_)
@@ -858,22 +826,26 @@ handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj)
     // Release our reference to this element.
     this->cg_member_.release ();
   }
+
+  return 0;
 }
 
 //
 // handle_ComponentRef
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentRef (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_SETINCLUDED) != 0)
     this->cg_member_ = GAME::FCO::_narrow (obj);
+
+  return 0;
 }
 
 //
 // handle_ComponentInstanceType
 //
-void PICMLManager_Impl::
+int PICMLManager_Impl::
 handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
 {
   using GAME::Reference;
@@ -888,21 +860,40 @@ handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
 
     // The the component's implementation.
     Reference ref = GAME::Reference::_narrow (obj);
-    Atom impl = Atom::_narrow (ref.refers_to ());
+    FCO fco = ref.refers_to ();
 
-    // Walk this until we locate the component interface.
-    std::vector <Connection> implements;
-    impl.in_connections ("Implements", implements);
+    if (fco.is_nil ())
+    {
+      GAME::Model model = GAME::Model::_narrow (obj.parent ());
 
-    if (implements.empty ())
-      return;
+      // Delete the ports in the model.
+      std::vector <GAME::FCO> children;
+      GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
+      
+      model.children (aspect, children);
+      std::for_each (children.begin (),
+                     children.end (),
+                     boost::bind (&GAME::FCO::destroy, _1));
+    }
+    else
+    {
+      // Walk this until we locate the component interface.
+      Atom impl = Atom::_narrow (ref.refers_to ());
+      std::vector <Connection> implements;
+      impl.in_connections ("Implements", implements);
 
-    Connection implement = implements[0];
-    ref = Reference::_narrow (implement[std::string ("dst")].target ());
-    Model component = Model::_narrow (ref.refers_to ());
+      if (implements.empty ())
+        return 0;
 
-    this->generate_port_instances (inst, component);
+      Connection implement = implements[0];
+      ref = Reference::_narrow (implement[std::string ("dst")].target ());
+      Model component = Model::_narrow (ref.refers_to ());
+
+      this->generate_port_instances (inst, component);
+    }
   }
+
+  return 0;
 }
 
 struct generate_instance_t
@@ -917,13 +908,18 @@ struct generate_instance_t
   void operator () (const GAME::FCO & target) const
   {
     using GAME::Reference;
+    using GAME::FCO;
 
-    Reference ref = Reference::_create (this->parent_, this->type_);
-    ref.refers_to (target);
-    ref.name (target.name ());
-
-    // Make the reference readonly.
-    ref.readonly_access (true, true);
+    Reference ref;
+    
+    if (GAME::create_if_not (this->parent_, this->type_, ref,      
+        GAME::contains (boost::bind (std::equal_to <FCO> (),
+                        target,
+                        boost::bind (&Reference::refers_to, _1)))))
+    {
+      ref.refers_to (target);
+      ref.name (target.name ());
+    }
   }
 
 private:

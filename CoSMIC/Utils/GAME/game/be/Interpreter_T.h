@@ -10,9 +10,9 @@ namespace GAME
 /**
  * @class Interpreter_T
  */
-template <typename T, typename IMPL>
-class ATL_NO_VTABLE Interpreter_T :
-  public GAME::ComponentEx_T <T, &CLSID_MgaComponent>
+template <typename T, const CLSID * pclsid = &CLSID_NULL>
+class Interpreter_T :
+  public GAME::ComponentEx_T < Interpreter_T < T >, pclsid>
 {
 public:
   /// Default constructor
@@ -38,9 +38,13 @@ public:
 
 protected:
   /// The actual implementation of the interpreter
-  IMPL impl_;
+  T impl_;
 };
 }
+
+#define DECLARE_GAME_INTERPRETER(type, impl) \
+  typedef GAME::Interpreter_T <impl, &CLSID_##type> impl##_AutoImpl; \
+  OBJECT_ENTRY_AUTO (__uuidof (type), impl##_AutoImpl)
 
 #if defined (__GAME_INLINE__)
 #include "Interpreter_T.inl"

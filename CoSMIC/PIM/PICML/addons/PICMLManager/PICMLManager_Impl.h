@@ -48,35 +48,38 @@ public:
   virtual int handle_object_event (GAME::Object & obj, unsigned long mask);
 
 private:
-  void handle_AttributeMember (unsigned long eventmask, GAME::Object & obj);
-  void handle_AttributeValue (unsigned long eventmask, GAME::Object & obj);
-  void handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj);
-  void handle_PublishConnector (unsigned long eventmask, GAME::Object & obj);
-  void handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj);
-  void handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj);
-  void handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj);
+  int handle_AttributeMember (unsigned long eventmask, GAME::Object & obj);
+  int handle_AttributeValue (unsigned long eventmask, GAME::Object & obj);
+  int handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj);
+  int handle_PublishConnector (unsigned long eventmask, GAME::Object & obj);
+  int handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj);
+  int handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj);
+  int handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj);
 
-  void handle_ComponentRef (unsigned long eventmask, GAME::Object & obj);
+  int handle_MirrorPortInstance (unsigned long eventmask, GAME::Object & obj);
+  int handle_ExtendedPortInstance (unsigned long eventmask, GAME::Object & obj);
 
-  void handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj);
-  void handle_Component (unsigned long eventmask, GAME::Object & obj);
+  int handle_ComponentRef (unsigned long eventmask, GAME::Object & obj);
 
-  void handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj);
-  void handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj);
+  int handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj);
+  int handle_Component (unsigned long eventmask, GAME::Object & obj);
 
-  void handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj);
-  void handle_Domain (unsigned long eventmask, GAME::Object & obj);
+  int handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj);
+  int handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj);
+
+  int handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj);
+  int handle_Domain (unsigned long eventmask, GAME::Object & obj);
  
-  void handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj);
-  void handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj);
-  void handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
+  int handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj);
+  int handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj);
+  int handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
 
-  void handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj);
+  int handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj);
 
-  void handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj);
-  void handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
-  void handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
-  void handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
+  int handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj);
+  int handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
+  int handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
+  int handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
   
   void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
 
@@ -135,8 +138,8 @@ private:
   std::set <std::string> uuid_types_;
 
   typedef
-    void (PICMLManager_Impl::*_member_function) (unsigned long,
-                                            GAME::Object &);
+    int (PICMLManager_Impl::*_member_function)
+    (unsigned long, GAME::Object &);
 
   ACE_Hash_Map_Manager <std::string,
                         _member_function,

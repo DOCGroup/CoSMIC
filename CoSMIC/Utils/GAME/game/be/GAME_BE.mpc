@@ -10,7 +10,7 @@ project (GAME_BE) : game_utils, cosmic_common {
   }
     
   Header_Files {
-
+    Component_Module.h
   }
 
   Source_Files {    

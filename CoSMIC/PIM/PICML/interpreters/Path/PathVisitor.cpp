@@ -1724,7 +1724,7 @@ namespace PICML
             cp.Accept (*this);
           }
 
-        std::set <AttributeInstance> attrs = comp.AttributeInstance_children();
+        std::set <AttributeInstance> attrs = comp.AttributeInstance_kind_children ();
 
         for (std::set<AttributeInstance>::const_iterator iter = attrs.begin();
              iter != attrs.end();
