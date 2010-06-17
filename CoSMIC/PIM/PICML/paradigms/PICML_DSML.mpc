@@ -23,13 +23,14 @@ project (PICML_paradigm) {
     
     gme_paradigm   = 1
     paradigm_name  = PICML
-    paradigm_guid  = 6A1E05F2-941D-40FF-B921-B9EF8AA1DB0E
+    paradigm_guid  = F45E79F7-BDCB-4C5E-BEFB-E109948BEFA7
     paradigm_file  = PICML.mta
   }
   
   Resource_Files {
     conditional (wix) {
       PICML.xme
+      PICML.xmp
     }
   }
 }

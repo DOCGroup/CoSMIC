@@ -1,7 +1,13 @@
+Thu Jun 17 05:00:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Updated the paradigm guid.
+
 Thu Jun 17 04:47:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * includes/GME/GME_includes.mpc:
-          
+
           Added the includes/GME directory to the installer.
 
 Thu Jun 17 04:43:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
