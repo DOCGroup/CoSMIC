@@ -1,7 +1,14 @@
+Thu Jun 17 04:43:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.mta:
+        
+          Now saving the precompiled version of the PICML paradigm. This 
+          is needed by the installer to install PICML correctly.
+
 Thu Jun 17 04:32:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Release_Build.mwc:
-        
+
           Added the include/GME directory to the installer.
 
         * Installer/CoSMIC_Release_Build.wxi:
