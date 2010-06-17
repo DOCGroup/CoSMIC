@@ -1,0 +1,15 @@
+// $Id$
+
+project (GME_includes) {
+  specific {
+    install_location  = includes GME
+    install_resources = 1
+    no_binary         = 1
+  }
+
+  Resource_Files {
+    conditional (wix) {
+      mga.dtd
+    }
+  }
+}
