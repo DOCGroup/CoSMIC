@@ -1,0 +1,36 @@
+// $Id$
+
+project (PICML_paradigm_icons) {
+  specific (wix) {
+    no_binary         = 1
+    install_location  = paradigms PICML icons
+    install_resources = 1
+  }
+  
+  Resource_Files {
+    conditional (wix) {
+      icons/*.bmp
+      icons/*.gif
+    }
+  }
+}
+
+project (PICML_paradigm) {
+  specific (wix) {
+    no_binary         = 1
+    install_location  = paradigms PICML
+    install_resources = 1
+    
+    gme_paradigm   = 1
+    paradigm_name  = PICML
+    paradigm_guid  = 6A1E05F2-941D-40FF-B921-B9EF8AA1DB0E
+    paradigm_file  = PICML.mta
+  }
+  
+  Resource_Files {
+    conditional (wix) {
+      PICML.xme
+    }
+  }
+}
+
