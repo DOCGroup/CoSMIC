@@ -23,6 +23,11 @@ library PICMLManager_AddonLib
 {
 	importlib("stdole32.tlb");
 
+  interface IManagerConfigurator
+  {
+
+  };
+
 	[uuid(B744B044-436A-4463-AF72-41D1D94815D9)]
 	coclass PICMLManager_Addon
 	{
