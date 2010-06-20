@@ -1,7 +1,17 @@
+Sun Jun 20 08:48:57 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * Release_idl_to_picml.mwc:
+        * picml.mwc:
+        * contrib/mcpp:
+
+          Updated to remove completely mcpp which has now been removed from
+          doc head.
+
 Fri Jun 18 19:08:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.idl:
-        
+
           Added a new interface to the PICML manager. This is used to
           configure the manager remotely.
 
@@ -11,7 +21,7 @@ Fri Jun 18 19:08:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML_DSML.mpc:
-        
+
           Bug fix where the ConstantType subtypes had to be updated to
           reflect the addition of unsigned types.
 

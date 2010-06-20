@@ -22,6 +22,5 @@ workspace (PICML) {
   // -- build the contributions
   $(ACE_ROOT)/ace/ACE.mpc
   $(ACE_ROOT)/contrib/minizip/minizip.mpc
-  $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc
   $(TAO_ROOT)/TAO_IDL/tao_idl_fe.mpc
 }

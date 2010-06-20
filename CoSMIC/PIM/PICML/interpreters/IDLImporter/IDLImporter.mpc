@@ -37,7 +37,7 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game
   }
 }
 
-project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, game_xme, mcpp, tao_idl_mcpp, tao_idl_fe {
+project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe {
   after          += IDL_TO_PICML_BE
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE
@@ -67,7 +67,7 @@ project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, gam
 
   Source_Files {
     $(TAO_ROOT)/TAO_IDL/driver/drv_args.cpp
-    //$(TAO_ROOT)/TAO_IDL/driver/drv_preproc.cpp
+    $(TAO_ROOT)/TAO_IDL/driver/drv_preproc.cpp
     $(TAO_ROOT)/TAO_IDL/tao_idl.cpp
   }
 
