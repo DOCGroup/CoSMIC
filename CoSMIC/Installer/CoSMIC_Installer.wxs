@@ -152,4 +152,5 @@
   <!-- third-party library includes -->
   <?include includes\xerces.wxi ?>
   <?include includes\udm.wxi ?>
+  <?include includes\zlib.wxi ?>
 </Wix>
