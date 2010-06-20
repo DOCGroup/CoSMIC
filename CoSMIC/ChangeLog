@@ -1,3 +1,44 @@
+Sun Jun 20 13:26:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_dialogs.mpb:
+        * MPC/config/game_interpreter.mpb:
+        
+          Base class for GAME projects.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        
+          Update PICML manager to auto-select the target extended/mirror port 
+          of a connector when making a connection between a extended/mirror
+          port and a connector.
+
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        
+          
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Added support for NativeValue in PICML metamodel.
+
+        * Utils/GAME/game/dialogs:
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+        
+          Dialog for selecting an element by name from a list of 
+          elements.          
+
 Sun Jun 20 10:11:50 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/OCML/interpreters/TAOServiceConfExporter/GNUmakefile.SvcConfExporter:

@@ -8,6 +8,7 @@
 #include "game/be/Addon_T.h"
 #include "game/GAME.h"
 #include "game/utils/modelgen.h"
+#include "game/dialogs/Selection_List_Dialog.h"
 
 #include "Dialogs.h"
 #include "DefaultImplementationGenerator.h"
@@ -88,6 +89,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   this->handlers_.bind ("ComponentInstance", &PICMLManager_Impl::handle_ComponentInstance);
   this->handlers_.bind ("ConnectorInstance", &PICMLManager_Impl::handle_ConnectorInstance);
+
+  this->handlers_.bind ("Consume", &PICMLManager_Impl::handle_Consume);
+  this->handlers_.bind ("Publish", &PICMLManager_Impl::handle_Publish);
 
   return 0;
 }
@@ -988,4 +992,157 @@ generate_port_instances (GAME::Model inst,  const GAME::Model & component)
     Model basetype = Model::_narrow (inherits.begin ()->refers_to ());
     this->generate_port_instances (inst, basetype);
   }
+}
+
+//
+// handle_Publish
+//
+int PICMLManager_Impl::
+handle_Publish (unsigned long eventmask, GAME::Object & obj)
+{
+  using GAME::Connection;
+  using GAME::Model;
+  using GAME::Reference;
+
+  if ((eventmask & OBJEVENT_CREATED))
+  {
+    using GAME::Connection;
+    using GAME::Model;
+
+    // This is a publish connection.
+    Connection publish = Connection::_narrow (obj);
+
+    // First, let's get the source PortType that wants to connect to
+    // the target connector.
+    GAME::FCO port =  publish[std::string ("src")].target ();
+    Model connector_inst = Model::_narrow (publish[std::string ("dst")].target ());
+
+    return this->handle_connector_porttype_connection (connector_inst, port, publish);
+  }
+
+  return 0;
+}
+
+//
+// handle_Consume
+//
+int PICMLManager_Impl::
+handle_Consume (unsigned long eventmask, GAME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_CREATED))
+  {
+    using GAME::Connection;
+    using GAME::Model;
+
+    // This is a publish connection.
+    Connection publish = Connection::_narrow (obj);
+
+    // First, let's get the source PortType that wants to connect to
+    // the target connector.
+    GAME::FCO port =  publish[std::string ("dst")].target ();
+    Model connector_inst = Model::_narrow (publish[std::string ("src")].target ());
+
+    return this->handle_connector_porttype_connection (connector_inst, port, publish);
+  }
+
+  return 0;
+}
+
+//
+// handle_connector_porttype_connection
+//
+int PICMLManager_Impl::
+handle_connector_porttype_connection (const GAME::Model & connector_inst,
+                                      const GAME::FCO & port,
+                                      GAME::Connection & connection)
+{
+  using GAME::Reference;
+  using GAME::Model;
+
+  Reference extended_port_inst = Reference::_narrow (port);
+  Reference extended_port = GAME::Reference::_narrow (extended_port_inst.refers_to ());
+  GAME::FCO port_type = extended_port.refers_to ();
+  const bool is_extended_port = extended_port.meta () == "ExtendedPort" ? true : false;
+
+  // Now that we have the port type, we need to locate either the 
+  // extended port, or mirror port, on the connector.
+  Model connector;
+  if (!this->get_connector_type (connector_inst, connector))
+    return 0;
+
+  std::string metaname = is_extended_port ? "MirrorPort" : "ExtendedPort";
+
+  // Select all the port types of the specified metaname. 
+  std::vector <Reference> extended_ports;
+  connector.children (metaname, extended_ports);
+
+  // Of these port types, narrow the selection down to those
+  // that have the same port types as the source.
+  std::vector <Reference>::iterator
+    iter = extended_ports.begin (),
+    iter_end = extended_ports.end ();
+
+  std::vector <Reference> valid_set;
+
+  for (; iter != iter_end; ++ iter)
+  {
+    if (iter->refers_to () == port_type)
+      valid_set.push_back (*iter);
+  }
+
+  Reference valid_port;
+
+  if (valid_set.size () == 1)
+  {
+    // Since there is only one element in the set, we can
+    // just use that as the selection.
+    valid_port = valid_set.front ();
+  }
+  else
+  {
+    using GAME::Dialogs::Selection_List_Dialog;
+
+    // Since there is more than one element in the set, we 
+    // need to ask the user to select the correct one.
+    Selection_List_Dialog <Reference> dlg (valid_set);
+
+    dlg.title ("Please select the connector's port name");
+
+    if (dlg.DoModal () != IDOK)
+      return 0;
+
+    valid_port = dlg.selection ();
+  }
+
+  // We can now set the name of the connection since we have the
+  // valid target port on the connector.
+  connection.name (valid_port.name ());
+  return 0;
+}
+
+//
+// get_connector_type
+//
+bool PICMLManager_Impl::
+get_connector_type (const GAME::Model & inst, GAME::Model & connector)
+{
+  using GAME::Reference;
+  using GAME::Connection;
+  using GAME::Model;
+
+  std::vector <Reference> types;
+  if (inst.children ("ConnectorImplementationType", types) == 0)
+    return false;
+
+  GAME::FCO impl = types.front ().refers_to ();
+
+  std::vector <Connection> conns;
+  if (impl.in_connections ("ConnectorImplements", conns) == 0)
+    return false;
+
+  Connection implements = conns.front ();
+  Reference conn_ref = Reference::_narrow (implements[std::string ("dst")].target ());
+
+  connector = Model::_narrow (conn_ref.refers_to ());
+  return true;
 }

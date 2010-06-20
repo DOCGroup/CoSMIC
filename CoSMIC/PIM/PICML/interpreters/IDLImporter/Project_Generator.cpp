@@ -21,6 +21,7 @@
 #include "ast_finder.h"
 #include "ast_field.h"
 #include "ast_home.h"
+#include "ast_native.h"
 #include "ast_operation.h"
 #include "ast_root.h"
 #include "ast_sequence.h"
@@ -394,6 +395,7 @@ void Project_Generator::initialize (void)
     {"GenericObject", {AST_PredefinedType::PT_object, AST_PredefinedType::PT_void}},
     {"GenericValue", {AST_PredefinedType::PT_any, AST_PredefinedType::PT_void}},
     {"GenericValueObject", {AST_PredefinedType::PT_value, AST_PredefinedType::PT_void}},
+
     {0, AST_PredefinedType::PT_void}
   };
 
@@ -429,7 +431,7 @@ void Project_Generator::initialize (void)
   if (GAME::create_if_not (types_folder, constant::meta::String, current_types, this->string_type_,
       GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
                                    constant::meta::String,
-                                   boost::bind (&GAME::XME::Atom::name, _1)))))
+                                   boost::bind (&GAME::XME::Atom::kind, _1)))))
   {
     this->string_type_.name (constant::meta::String);
   }
@@ -437,7 +439,7 @@ void Project_Generator::initialize (void)
   if (GAME::create_if_not (types_folder, constant::meta::WideString, current_types, this->wstring_type_,
       GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
                                    constant::meta::String,
-                                   boost::bind (&GAME::XME::Atom::name, _1)))))
+                                   boost::bind (&GAME::XME::Atom::kind, _1)))))
   {
     this->wstring_type_.name (constant::meta::WideString);
   }
@@ -479,6 +481,9 @@ int Project_Generator::visit_root (AST_Root * node)
   {
     AST_Decl * d = si.item ();
     AST_Decl::NodeType nt = d->node_type ();
+
+
+    const ::Utils::XStr name (d->local_name ()->get_string ());
 
     if (nt == AST_Decl::NT_pre_defined || (nt == AST_Decl::NT_enum_val && !this->is_in_enum_))
       continue;
@@ -813,6 +818,7 @@ int Project_Generator::visit_component (AST_Component *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
+  using GAME::XME::FCO;
 
   static const ::Utils::XStr meta_Component ("Component");
 
@@ -828,10 +834,6 @@ int Project_Generator::visit_component (AST_Component *node)
     component.name (name);
   }
 
-  // Set the attributes for the object.
-  //this->parent_.attribute (constant::attr::abstract, true).value (node->is_abstract ());
-  //this->parent_.attribute (constant::attr::local, true).value (node->is_local ());
-
   // Store the element as a symbol.
   this->symbols_.bind (node, component);
 
@@ -841,22 +843,70 @@ int Project_Generator::visit_component (AST_Component *node)
   // Check for any component inheritence.
   AST_Type ** inherits = node->inherits ();
 
-  if (0 != inherits)
+  if (inherits != 0)
   {
-    static const ::Utils::XStr meta_CompenentInherits ("ComponentInherits");
+    // There is a bug in TAO_IDL_FE where it returns a supported interface
+    // as an inherited interface. So, we need check if this is actually an
+    // inherited interface.
+    bool is_inherited = true;
+  
+    AST_Type ** supports_list = node->supports ();
+    long supports_count = node->n_supports ();
 
-    Reference ref_inherits;
-
-    if (auto_model.create_if_not (meta_CompenentInherits, ref_inherits,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
-                                     meta_CompenentInherits,
-                                     boost::bind (&Reference::kind, _1)))))
+    for (long i = 0; i < supports_count; ++ i)
     {
-      ;
+      if (supports_list[i] == *inherits)
+      {
+        is_inherited = false;
+        break;
+      }
     }
+    
+    if (is_inherited)
+    {
+      static const ::Utils::XStr meta_CompenentInherits ("ComponentInherits");
 
-    ref_inherits.name (meta_CompenentInherits);
-    this->handle_symbol_resolution (*inherits, ref_inherits);
+      Reference ref_inherits;
+
+      if (auto_model.create_if_not (meta_CompenentInherits, ref_inherits,
+          GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                       meta_CompenentInherits,
+                                       boost::bind (&Reference::kind, _1)))))
+      {
+        ;
+      }
+
+      ref_inherits.name (meta_CompenentInherits);
+      this->handle_symbol_resolution (*inherits, ref_inherits);
+    }
+  }
+
+  // Check for any component inheritence.
+  long supports_count = node->n_supports ();
+
+  if (supports_count > 0)
+  {
+    static const ::Utils::XStr meta_Supports ("Supports");
+    AST_Type ** supports_list = node->supports ();
+
+    for (long i = 0; i < supports_count; ++ i)
+    {
+      FCO referred_interface;
+     
+      if (!this->lookup_symbol (supports_list[i], referred_interface))
+        continue;
+
+      Reference supports;
+
+      if (auto_model.create_if_not (meta_Supports, supports,
+          GAME::contains (boost::bind (std::equal_to <FCO> (),
+                                       referred_interface,
+                                       boost::bind (&Reference::refers_to, _1)))))
+      {
+        supports.refers_to (referred_interface);
+        supports.name (meta_Supports);
+      }
+    }
   }
 
   if (0 == retval)
@@ -1496,15 +1546,13 @@ int Project_Generator::visit_field (AST_Field *node)
   // Locate the concrete type in the symbol table.
   const ::Utils::XStr field_name (node->local_name ()->get_string ());
   AST_Type * type = node->field_type ();
-
-  // Get the current packages in this model.
-  static const ::Utils::XStr meta_Member ("Member");
+  const ::Utils::XStr metename = type->node_type () == AST_Decl::NT_array ? "ArrayMember" : "Member";
 
   // Either locate the existing Member element, or create a new
   // one for the field.
 
   Reference member;
-  if (this->parent_->create_if_not (meta_Member, member,
+  if (this->parent_->create_if_not (metename, member,
       GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
                                    field_name,
                                    boost::bind (&Reference::name, _1)))))
@@ -1515,7 +1563,26 @@ int Project_Generator::visit_field (AST_Field *node)
   // Locate the target FCO that will be referenced.
   this->handle_symbol_resolution (type, member);
 
+  if (type->node_type () == AST_Decl::NT_array)
+  {
+    AST_Array * arr = dynamic_cast <AST_Array *> (type);
+    AST_Expression ** dims = arr->dims ();
+
+    ::Utils::XStr value;
+    value << *dims[0]->ev ();
+
+    member.attribute ("Size", true).value (value);
+  }
+
   return 0;
+}
+
+//
+// visit_array
+//
+int Project_Generator::visit_array (AST_Array *node)
+{ 
+  return 0; 
 }
 
 //
@@ -1971,6 +2038,11 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
     fco = predefined;
     return true;
   }
+  else if (node_type == AST_Decl::NT_array)
+  {
+    AST_Array * ar = dynamic_cast <AST_Array *> (type);
+    return this->lookup_symbol (ar->base_type (), fco, use_library);
+  }
   else if (node_type == AST_Decl::NT_string)
   {
     fco = this->string_type_;
@@ -2227,6 +2299,29 @@ lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
   return false;
 }
 
+//
+// visit_native
+//
+int Project_Generator::visit_native (AST_Native *node)
+{ 
+  using GAME::XME::Atom;
+
+  static const ::Utils::XStr meta_NativeValue ("NativeValue");
+  const ::Utils::XStr name (node->local_name ()->get_string ());
+
+  Atom native;
+
+  if (this->parent_->create_if_not (meta_NativeValue, native,
+      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                                   name,
+                                   boost::bind (&Atom::name, _1)))))
+  {
+    native.name (name);
+  }
+
+  return 0;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // IDL 3+
 
@@ -2352,9 +2447,9 @@ int Project_Generator::visit_connector (AST_Connector *node)
   int retval = this->visit_scope (node, &auto_model);
 
   // Lastly, check for any component inheritence.
-  AST_Type ** inherits = node->inherits ();
+  AST_Connector * base = node->base_connector ();
 
-  if (0 != inherits)
+  if (0 != base)
   {
     static const ::Utils::XStr meta_ConnectorInherits ("ConnectorInherits");
 
@@ -2369,7 +2464,7 @@ int Project_Generator::visit_connector (AST_Connector *node)
     }
 
     ref_inherits.name (meta_ConnectorInherits);
-    this->handle_symbol_resolution (*inherits, ref_inherits);
+    this->handle_symbol_resolution (base, ref_inherits);
   }
 
   //if (0 == retval)
@@ -2698,8 +2793,6 @@ int Project_Generator::visit_template_module_ref (AST_Template_Module_Ref *node)
 ///////////////////////////////////////////////////////////////////////////////
 // unused methods
 
-int Project_Generator::visit_native (AST_Native *node){ return 0; }
-int Project_Generator::visit_array (AST_Array *node){ return 0; }
 int Project_Generator::visit_sequence (AST_Sequence *node){ return 0; }
 int Project_Generator::visit_string (AST_String *node){ return 0; }
 int Project_Generator::visit_type (AST_Type *node) { return 0; }

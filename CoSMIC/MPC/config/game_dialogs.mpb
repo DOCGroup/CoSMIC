@@ -1,0 +1,7 @@
+// $Id$
+
+project : game {
+  Resource_Files {
+    $(GAME_ROOT)/game/dialogs/Dialogs.rc
+  }
+}

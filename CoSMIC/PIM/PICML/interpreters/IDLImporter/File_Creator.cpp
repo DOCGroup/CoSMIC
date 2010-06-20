@@ -87,8 +87,10 @@ create_files (const char * const * files, size_t n_files, const char * dest)
     if (pos != std::string::npos)
       path = tmp.substr (0, pos);
 
-    if (path.find_first_of ("./") == 0)
+    if (path.find ("./") == 0)
       path = path.substr (2);
+    else if (path.find (".") == 0)
+      path = path.substr (1);
 
     ::Utils::XStr name (tmp.substr (pos + 1));
 
