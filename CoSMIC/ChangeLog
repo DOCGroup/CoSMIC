@@ -1,3 +1,9 @@
+Sun Jun 20 10:11:50 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/OCML/interpreters/TAOServiceConfExporter/GNUmakefile.SvcConfExporter:
+
+          Removed this file.
+
 Sun Jun 20 08:48:57 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
