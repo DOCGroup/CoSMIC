@@ -62,6 +62,35 @@
               
               <Environment Id='env.COSMIC_ROOT' Name='COSMIC_ROOT' Action='create' 
                            System='yes' Value='[INSTALLDIR]' Permanent='no' />
+           
+              <File Name="ChangeLog"
+                    Source="$(env.COSMIC_ROOT)/ChangeLog"
+                    DiskId="1" />
+
+              <File Name="COPYING"
+                    Source="$(env.COSMIC_ROOT)/COPYING"
+                    DiskId="1" />
+
+              <File Name="NEWS"
+                    Source="$(env.COSMIC_ROOT)/NEWS"
+                    DiskId="1" />
+
+              <File Name="PROBLEM_REPORT_FORM"
+                    Source="$(env.COSMIC_ROOT)/PROBLEM-REPORT-FORM"
+                    DiskId="1" />
+
+              <File Name="README"
+                    Source="$(env.COSMIC_ROOT)/README"
+                    DiskId="1" />
+
+              <File Name="RELEASE_NOTES"
+                    Source="$(env.COSMIC_ROOT)/RELEASE-NOTES"
+                    DiskId="1" />
+
+              <File Name="VERSION"
+                    Source="$(env.COSMIC_ROOT)/VERSION"
+                    DiskId="1" />
+
             </Component>
           </Directory>
         </Directory>

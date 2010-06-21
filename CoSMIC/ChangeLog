@@ -1,3 +1,13 @@
+Mon Jun 21 22:04:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * COPYING:
+        
+          Standard copying agreement in text format.
+          
+        * Installer/CoSMIC_Installer.wxs:
+        
+          Updated installer to installer stardard root documents.
+
 Mon Jun 21 21:18:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/ComponentImplementationGenerator/Component.rc:
@@ -5,18 +15,18 @@ Mon Jun 21 21:18:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.reg:
         * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGeneratord.reg:
         * PIM/PICML/interpreters/ComponentImplementationGenerator/MonolithicImplementation.ico:
-        
-          Component implementation generator now shows up on the 
+
+          Component implementation generator now shows up on the
           toolbar for quicker access.
 
         * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.h:
-        
+
           Formatting change.
 
         * PIM/PICML/interpreters/TargetComponent/Component.rc:
         * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
         * PIM/PICML/interpreters/TargetComponent/domain.ico:
-        
+
           New icon for the domain interpreter.
 
 Mon Jun 21 16:29:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
