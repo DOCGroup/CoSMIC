@@ -1,11 +1,20 @@
+Mon Jun 21 23:10:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Fixed several broken constraints.
+
 Mon Jun 21 22:04:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * COPYING:
-        
+
           Standard copying agreement in text format.
-          
+
         * Installer/CoSMIC_Installer.wxs:
-        
+
           Updated installer to installer stardard root documents.
 
 Mon Jun 21 21:18:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
