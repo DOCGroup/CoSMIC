@@ -149,12 +149,6 @@ handle_object_event (GAME::Object & obj, unsigned long eventmask)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-  //if (this->pending_.GetCount ())
-  //  this->handle_pending ();
-
-  //if (this->importing_)
-  //  return S_OK;
-
   try
   {
     GAME::Object object (obj);
@@ -684,6 +678,9 @@ int PICMLManager_Impl::
 handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+
+  if (this->importing_)
+    return 0;
 
   if ((eventmask && OBJEVENT_LOSTCHILD))
   {
