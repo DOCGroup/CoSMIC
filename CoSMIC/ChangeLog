@@ -1,8 +1,19 @@
+Mon Jun 21 04:16:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Added constraint to validate the name of a Publish and Consume
+          connection. It should be the name of the target/source port type
+          on the connector.
+
 Sun Jun 20 22:12:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Installer.wxs:
         * Installer/includes/zlib.wxi:
-          
+
           Zlib was missing from the installer.
 
 Sun Jun 20 13:26:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

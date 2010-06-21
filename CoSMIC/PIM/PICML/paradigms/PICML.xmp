@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{48EC511C-4041-4EDC-8D6A-E4867FB8EC68}" cdate="Mon May 17 16:25:05 2010" mdate="WhoControlsThisObj" >
+<paradigm name="PICML" guid="{DE73FCDF-2F13-4435-AEBF-356CAAF1F554}" cdate="Mon May 17 16:25:05 2010" mdate="WhoControlsThisObj" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -88,6 +88,15 @@ endif]]>
 			<![CDATA[method;gme::Model;;ocl::Set;
 			self.referenceParts(Inherits)->iterate
  (i: gme::Reference; acc = Set{} | acc + Set{i.refersTo()})]]>
+		</constraint>
+		<constraint type="function" name="getConnectorObject">
+			<![CDATA[method;ConnectorInstance;;ConnectorObject;
+			let type = self.referenceParts (ConnectorImplementationType).asSequence ().first () in
+let impl : ConnectorImplementation  = type.oclAsType (ConnectorImplementationType).refersTo () in
+let ref : ConnectorType = impl.connectedFCOs (ConnectorImplements).asSequence ().first () in
+
+ref.refersTo ().oclAsType (ConnectorObject)
+  ]]>
 		</constraint>
 		<constraint type="function" name="inheritedOps">
 			<![CDATA[method;gme::Model;top : gme::Model;ocl::Set;
@@ -1578,6 +1587,30 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
 				<regnode name = "lineType" value ="dash"></regnode>
+			<constraint name="ValidPublishName" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let port = self.connectionPoint ("dst").target () in
+let connectorInst : ConnectorInstance = self.connectionPoint ("src").target () in
+let connector = connectorInst.getConnectorObject () in
+
+(port.isTypeOf (ExtendedPortInstance) =>
+    (let ep : ExtendedPort = port.oclAsType (ExtendedPortInstance).refersTo () in
+     let pt = ep.refersTo () in
+     let mps = connector.referenceParts (MirrorPort) in
+     mps->one (i : MirrorPort | 
+       i.name () = self.name () and 
+       i.refersTo () = pt))) 
+and
+
+(port.isTypeOf (MirrorPortInstance) =>
+    (let mp : MirrorPort = port.oclAsType (MirrorPortInstance).refersTo () in
+     let pt = mp.refersTo () in
+     let eps = connector.referenceParts (ExtendedPort) in
+     eps->one (i : ExtendedPort | 
+       i.name () = self.name () and 
+       i.refersTo () = pt)))
+        ]]>
+				<dispname>The connection&apos;s name must match the name of the target extended/mirror port in the connector instance that has the same porttype as the connection&apos;s destination</dispname>
+			</constraint>
 			<connjoint>
 				<pointerspec name = "src">
 					<pointeritem desc = "ConnectorInstance"></pointeritem>
@@ -2357,6 +2390,30 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
 				<regnode name = "lineType" value ="dash"></regnode>
+			<constraint name="ValidPublishName" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let port = self.connectionPoint ("src").target () in
+let connectorInst : ConnectorInstance = self.connectionPoint ("dst").target () in
+let connector = connectorInst.getConnectorObject () in
+
+(port.isTypeOf (ExtendedPortInstance) =>
+    (let ep : ExtendedPort = port.oclAsType (ExtendedPortInstance).refersTo () in
+     let pt = ep.refersTo () in
+     let mps = connector.referenceParts (MirrorPort) in
+     mps->one (i : MirrorPort | 
+       i.name () = self.name () and 
+       i.refersTo () = pt))) 
+and
+
+(port.isTypeOf (MirrorPortInstance) =>
+    (let mp : MirrorPort = port.oclAsType (MirrorPortInstance).refersTo () in
+     let pt = mp.refersTo () in
+     let eps = connector.referenceParts (ExtendedPort) in
+     eps->one (i : ExtendedPort | 
+       i.name () = self.name () and 
+       i.refersTo () = pt)))
+        ]]>
+				<dispname>The connection&apos;s name must match the name of the target extended/mirror port in the connector instance that has the same porttype as the connection&apos;s source.</dispname>
+			</constraint>
 			<connjoint>
 				<pointerspec name = "src">
 					<pointeritem desc = "ComponentInstance ExtendedPortInstance"></pointeritem>
@@ -2787,6 +2844,11 @@ members->forAll (member : Reference |
       datatypes->forAll (prop : Reference | member.refersTo () = prop.refersTo ()))) ]]>
 				<dispname>The type of the value of a property should match the type of the attribute.</dispname>
 			</constraint>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidAttributeDelegatesrcCardinality15" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::AttributeDelegate ) -> size in
                      (srcCount <= 1)]]>
@@ -3171,6 +3233,11 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyComponentInstanceType"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<pointerspec name = "ref">
 				<pointeritem desc = "MonolithicImplementation"></pointeritem>
 			</pointerspec>
@@ -3233,6 +3300,11 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyConnectorImplementationType"></regnode>
+			<constraint name="NoNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the connector implementation type</dispname>
+			</constraint>
 			<pointerspec name = "ref">
 				<pointeritem desc = "ConnectorImplementation"></pointeritem>
 			</pointerspec>
@@ -3439,6 +3511,11 @@ let y = value.toInteger () in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyExtendedPortInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidConsumesrcCardinality45" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Consume ) -> size in
                      (srcCount <= 1)]]>
@@ -3553,6 +3630,11 @@ let y = value.toInteger () in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyInEventPortInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidEventSinkDelegatesrcCardinality57" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::EventSinkDelegate ) -> size in
                      (srcCount <= 1)]]>
@@ -3788,6 +3870,11 @@ let y = value.toInteger () in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyMirrorPortInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidConsumesrcCardinality45" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Consume ) -> size in
                      (srcCount <= 1)]]>
@@ -3892,6 +3979,11 @@ let y = value.toInteger () in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyOutEventPortInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidEventConnection" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let type : OutEventPort = self.refersTo () in
 let n = self.attachingConnections (SendsTo)->size in
@@ -4045,6 +4137,11 @@ type.single_destination implies (n = 0 or n = 1)]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyProvidedRequestPortInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<regnode name = "icon" value ="providedrequestport.bmp"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "ProvidedRequestPort"></pointeritem>
@@ -4093,6 +4190,11 @@ type.single_destination implies (n = 0 or n = 1)]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyRequiredRequestPortInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidInvokeConnection" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let requestPort : Reference = self.refersTo () in
 
@@ -4208,6 +4310,11 @@ not type.multiple_connections => self.attachingConnections(Invoke)->size() <= 1]
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbySupportsInstance"></regnode>
+			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let x = self.refersTo () in
+not x.isNull ()]]>
+				<dispname>Must define the reference type</dispname>
+			</constraint>
 			<constraint name="ValidSupportDelegate" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let consumers = self.connectedFCOs (Invoke)  in
  consumers->forAll ( inst : ProvidedRequestPortInstance |  
@@ -5020,17 +5127,17 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentImplementationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidComponentImplementationContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5983,7 +6090,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality173" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5998,19 +6105,19 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "ComponentPackage" metaref = "1703" kind = "ComponentPackage"></role>
 			<role name = "ComponentPackageReference" metaref = "1704" kind = "ComponentPackageReference"></role>
@@ -6054,17 +6161,17 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Monolithic implementation in a ComponentPackage should all implement the same component interface</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageContainerPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageContainerPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6261,12 +6368,12 @@ endif]]>
 				<regnode name = "icon" value ="rtrequirements.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidRTRequirementsPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRTRequirementsPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
@@ -6481,14 +6588,14 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality194" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality195" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality195" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -6511,14 +6618,14 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidTemplatePackageInstancePartCardinality196" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageType" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TemplatePackageInstance, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidTemplatePackageInstancePartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "TemplateParameterValue" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TemplatePackageInstance, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidTemplatePackageInstancePartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageType" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TemplatePackageInstance, has to match 1.</dispname>
 			</constraint>
 			<role name = "PackageType" metaref = "5546" kind = "PackageType"></role>
 			<role name = "TemplateParameterValue" metaref = "5547" kind = "TemplateParameterValue"></role>
@@ -6563,19 +6670,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality199" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality200" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality201" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTopLevelPackageContainerPartCardinality200" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality201" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "PackageConfigurationReference" metaref = "1840" kind = "PackageConfigurationReference"></role>
 			<role name = "TopLevelPackage" metaref = "1841" kind = "TopLevelPackage"></role>
