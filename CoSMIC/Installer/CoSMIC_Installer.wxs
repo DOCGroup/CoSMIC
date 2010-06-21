@@ -126,6 +126,7 @@
       <!-- gather all the third-party components -->
       <ComponentRef Id="xerces" />
       <ComponentRef Id="UDM" />
+      <ComponentRef Id="zlib" />
 
       <!-- include the VC merge modules -->
       <FeatureRef Id="vc_merge_modules" />
