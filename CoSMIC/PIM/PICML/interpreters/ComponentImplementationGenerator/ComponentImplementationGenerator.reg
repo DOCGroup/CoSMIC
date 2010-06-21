@@ -22,6 +22,7 @@ REGEDIT4
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.PICML.ComponentImplementationGenerator]
 "Tooltip"="Generate default component implementation artifacts"
 "Paradigm"="PICML"
+"Icon"=",IDI_COMPICON"
 "Type"=dword:00000001
 "Description"="Component Implementation Generator"
 

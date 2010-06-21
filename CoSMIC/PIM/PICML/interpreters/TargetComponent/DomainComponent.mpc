@@ -14,7 +14,8 @@ project (DomainComponent): picmllib, gme_udm_component {
   }
 
   Resource_Files {
-    CompIcon.ico
+    domain.ico
+    Component.rc
   }
 
   specific (wix) {
