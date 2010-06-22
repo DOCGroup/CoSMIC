@@ -1,3 +1,15 @@
+Tue Jun 22 03:01:26 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * MPC/config/cosmic_common.mpb:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/Object_Type_Map.hpp:
+
+          Resolve warnings under non-windows OS.
+
+        * lib:
+
+         Create this directory so non-windows OS won't complain about its absence.
+
 Tue Jun 22 00:48:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
@@ -20,7 +32,7 @@ Tue Jun 22 00:48:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/xme/Reference.cpp:
         * Utils/GAME/game/xme/XME_Utils_T.cpp:
         * picml.mwc:
-        
+
           Fixed build errors on non-Windows systems.
 
 Mon Jun 21 23:10:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
@@ -29,7 +41,7 @@ Mon Jun 21 23:10:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML_DSML.mpc:
-        
+
           Fixed several broken constraints.
 
 Mon Jun 21 22:04:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

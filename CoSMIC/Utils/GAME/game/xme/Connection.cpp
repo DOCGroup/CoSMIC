@@ -152,7 +152,7 @@ const FCO & Connection::dst (void) const
   // Locate destination connection in XML document.
   DOMNode * node = this->obj_->getFirstChild ();
   const XMLCh * name = node->getNodeName ();
-
+  ACE_UNUSED_ARG (name);
   DOMNode * cp = node->getNextSibling ()->getNextSibling ();
   DOMElement * e = dynamic_cast <DOMElement *> (cp);
 

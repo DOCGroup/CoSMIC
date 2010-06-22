@@ -6,7 +6,7 @@
 struct object_type
 {
   /// Name of the object type.
-  char * name;
+  const char * name;
 
   /// GME object type value.
   int type;
