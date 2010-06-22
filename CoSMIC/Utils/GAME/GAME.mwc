@@ -1,7 +1,16 @@
-// $Id$
+/// $Id$
 
 workspace (GAME) {
   cmdline += -include $COSMIC_ROOT/MPC/config
 
-  game
+  exclude (!prop:windows) {
+    // == visit all the projects
+
+    ./game
+  }
+  else {
+    // == non-Windows can only visit the XME project
+
+    ./game/xme
+  }
 }

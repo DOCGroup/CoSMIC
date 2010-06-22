@@ -6,11 +6,38 @@ namespace GAME
 namespace XME
 {
 //
+// Exception
+//
+GAME_INLINE
+Exception::Exception (void)
+{
+}
+
+//
+// Exception
+//
+GAME_INLINE
+Exception::Exception (const std::string & what)
+: what_ (what)
+{
+
+}
+
+//
+// ~Exception
+//
+GAME_INLINE
+Exception::~Exception (void)
+{
+
+}
+
+//
 // Invalid_Cast
 //
 GAME_INLINE
 Invalid_Cast::Invalid_Cast (void)
-: std::runtime_error ("invalid cast")
+: Exception ("invalid cast")
 {
 
 }
@@ -29,7 +56,7 @@ Invalid_Cast::~Invalid_Cast (void)
 //
 GAME_INLINE
 Bad_Attribute::Bad_Attribute (void)
-: std::runtime_error ("bad attribute")
+: Exception ("bad attribute")
 {
 
 }
@@ -48,7 +75,7 @@ Bad_Attribute::~Bad_Attribute (void)
 //
 GAME_INLINE
 Not_Found::Not_Found (void)
-: std::runtime_error ("not found")
+: Exception("not found")
 {
 
 }

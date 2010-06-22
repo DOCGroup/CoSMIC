@@ -126,7 +126,8 @@ void BE_produce (void)
     GAME::XME::Project & project = be_global->project ();
     AST_Root *ast_root = idl_global->root ();
 
-    Implementation_Generator impl_gen (project.root_folder ());
+    GAME::XME::Folder root_folder = project.root_folder ();
+    Implementation_Generator impl_gen (root_folder);
 
     PICML_File_Creator & fc = be_global->files ();
     Project_Generator proj_gen (fc, impl_gen, project);

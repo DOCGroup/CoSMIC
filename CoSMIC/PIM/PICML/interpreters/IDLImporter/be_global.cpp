@@ -177,7 +177,7 @@ void BE_GlobalData::parse_args (long &i, char **av)
 
         // In case it isn't at the end of the command line option,
         // otherwise idempotent.
-        GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (L"/");
+        GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (::Utils::XStr ("/"));
         break;
 
       case 'l':

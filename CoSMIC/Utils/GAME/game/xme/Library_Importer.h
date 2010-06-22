@@ -63,15 +63,15 @@ private:
   template <typename T>
   void handle_import_common (T & element);
  
-  typedef std::map <::Utils::XStr, 
-                    ::Utils::XStr,
-                    insensitive_id > id_map_t;
+  typedef std::map < ::Utils::XStr, 
+                     ::Utils::XStr,
+                     insensitive_id > id_map_t;
 
   id_map_t id_map_;
 
-  std::vector <Reference> unresolved_refs_;
+  std::vector < Reference > unresolved_refs_;
 
-  std::vector <Connection> unresolved_conns_;
+  std::vector < Connection > unresolved_conns_;
 
   static const ::Utils::XStr ATTR_ID;
   static const ::Utils::XStr ATTR_REFERRED;

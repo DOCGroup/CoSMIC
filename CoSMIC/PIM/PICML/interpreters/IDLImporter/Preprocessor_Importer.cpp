@@ -84,7 +84,7 @@ public:
       static const ::Utils::XStr meta_Package ("Package");
 
       if (GAME::find (model, meta_Package, child, 
-          boost::bind (std::equal_to <::Utils::XStr> (),
+          boost::bind (std::equal_to < ::Utils::XStr > (),
                        name,
                        boost::bind (&Model::name, _1))))
       {
@@ -202,7 +202,7 @@ public:
       Model aggregate;
 
       if (GAME::find (model, meta_Aggregate, aggregate, 
-          boost::bind (std::equal_to <::Utils::XStr> (),
+          boost::bind (std::equal_to < ::Utils::XStr > (),
                        ::Utils::XStr (ident),
                        boost::bind (&Model::name, _1))))
       {
@@ -213,7 +213,7 @@ public:
         static const ::Utils::XStr meta_Key ("Key");
 
         if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                          ::Utils::XStr (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
@@ -253,7 +253,7 @@ public:
       Model aggregate;
 
       if (GAME::find (model, meta_Aggregate, aggregate, 
-          boost::bind (std::equal_to <::Utils::XStr> (),
+          boost::bind (std::equal_to < ::Utils::XStr > (),
                        ::Utils::XStr (val.ident1_),
                        boost::bind (&Model::name, _1))))
       {
@@ -267,7 +267,7 @@ public:
 
         // Make sure the key element exists, and retrieve it.
         if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                          ::Utils::XStr (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
@@ -279,7 +279,7 @@ public:
         FCO member;
 
         if (GAME::find (aggregate, meta_Member, member, 
-            boost::bind (std::equal_to <::Utils::XStr> (),
+            boost::bind (std::equal_to < ::Utils::XStr > (),
                          ::Utils::XStr (val.ident2_),
                          boost::bind (&FCO::name, _1))))
         {
@@ -333,7 +333,7 @@ public:
       Model aggregate;
 
       if (GAME::find (model, meta_Aggregate, aggregate, 
-          boost::bind (std::equal_to <::Utils::XStr> (),
+          boost::bind (std::equal_to < ::Utils::XStr > (),
                        ::Utils::XStr (keylist.ident_),
                        boost::bind (&Model::name, _1))))
       {
@@ -344,7 +344,7 @@ public:
         static const ::Utils::XStr meta_Key ("Key");
 
         if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                          ::Utils::XStr (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
@@ -364,7 +364,7 @@ public:
           static const ::Utils::XStr meta_Member ("Member");
 
           if (GAME::find (aggregate, meta_Member, member, 
-              boost::bind (std::equal_to <::Utils::XStr> (),
+              boost::bind (std::equal_to < ::Utils::XStr > (),
                            ::Utils::XStr (*iter),
                            boost::bind (&FCO::name, _1))))
           {

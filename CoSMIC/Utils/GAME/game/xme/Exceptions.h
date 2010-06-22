@@ -21,18 +21,39 @@ namespace GAME
 namespace XME
 {
 /**
+ * @class Exception
+ *
+ * Base class for all exceptions.
+ */
+class GAME_XME_Export Exception
+{
+public:
+  /// Default constructor.
+  Exception (void);
+ 
+  Exception (const std::string & what);
+
+  /// Destructor
+  virtual ~Exception (void);
+
+private:
+  /// The exception string.
+  std::string what_;
+};
+
+/**
  * @class Invalid_Cast
  *
  * The cast operation failed.
  */
-  class GAME_XME_Export Invalid_Cast : public std::runtime_error
+class GAME_XME_Export Invalid_Cast : public Exception
 {
 public:
   /// Default constructor
   Invalid_Cast (void);
 
   /// Destructor
-  ~Invalid_Cast (void);
+  virtual ~Invalid_Cast (void);
 };
 
 /**
@@ -40,14 +61,14 @@ public:
  *
  * The cast operation failed.
  */
-class GAME_XME_Export Bad_Attribute : public std::runtime_error
+class GAME_XME_Export Bad_Attribute : public Exception
 {
 public:
   /// Default constructor
   Bad_Attribute (void);
 
   /// Destructor
-  ~Bad_Attribute (void);
+  virtual ~Bad_Attribute (void);
 };
 
 /**
@@ -55,14 +76,14 @@ public:
  *
  * The cast operation failed.
  */
-class GAME_XME_Export Not_Found : public std::runtime_error
+class GAME_XME_Export Not_Found : public Exception
 {
 public:
   /// Default constructor
   Not_Found (void);
 
   /// Destructor
-  ~Not_Found (void);
+  virtual ~Not_Found (void);
 };
 
 }

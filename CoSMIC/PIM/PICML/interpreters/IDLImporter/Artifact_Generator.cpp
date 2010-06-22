@@ -6,21 +6,9 @@
 #include "game/xme/functional.h"
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
-#include "PIM/PICML/utils/game/Utility.h"
 #include "boost/bind.hpp"
 #include <functional>
 #include <stack>
-
-////
-//// operator +
-////
-//::Utils::XStr operator + (const ::Utils::XStr & str, const ACE_CString & acestr)
-//{
-//  ::Utils::XStr temp (str);
-//  temp.append (acestr.c_str (), acestr.length ());
-//
-//  return temp;
-//}
 
 //
 // Artifact_Generator
@@ -31,7 +19,7 @@ Artifact_Generator::Artifact_Generator (GAME::XME::Folder & root)
   static const ::Utils::XStr meta_ImplementationArtifacts ("ImplementationArtifacts");
 
   if (GAME::create_if_not (root, meta_ImplementationArtifacts, this->artifacts_,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       meta_ImplementationArtifacts,
                       boost::bind (&Folder::name, _1)))))
   {
@@ -75,7 +63,7 @@ bool Artifact_Generator::generate (const GAME::XME::Model & component)
   static const ::Utils::XStr meta_ArtifactContainer ("ArtifactContainer");
 
   if (GAME::create_if_not (this->artifacts_, meta_ArtifactContainer, container,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       container_name,
                       boost::bind (&GAME::XME::Model::name, _1)))))
   {
@@ -85,7 +73,7 @@ bool Artifact_Generator::generate (const GAME::XME::Model & component)
   // Create the servant artifact for the component.
   static const ::Utils::XStr meta_ImplementationArtifact ("ImplementationArtifact");
   if (GAME::create_if_not (container, meta_ImplementationArtifact, this->svnt_artifact_,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       svnt_name,
                       boost::bind (&GAME::XME::Atom::name, _1)))))
   {
@@ -103,7 +91,7 @@ bool Artifact_Generator::generate (const GAME::XME::Model & component)
 
   // Create the implementation artifact for the component.
   if (GAME::create_if_not (container, meta_ImplementationArtifact, this->impl_artifact_,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       impl_name,
                       boost::bind (&GAME::XME::Atom::name, _1)))))
   {

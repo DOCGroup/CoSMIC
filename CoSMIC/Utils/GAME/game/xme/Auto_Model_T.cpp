@@ -5,6 +5,7 @@
 #endif
 
 #include "game/utils/modelgen.h"
+#include "boost/bind.hpp"
 
 namespace GAME
 {

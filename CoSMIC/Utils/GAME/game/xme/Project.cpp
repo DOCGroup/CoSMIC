@@ -348,7 +348,7 @@ Library Project::
 attach_library (const ::Utils::XStr & libpath)
 {
   ::Utils::XStr xmefile (libpath);
-  xmefile.append (L".xme");
+  xmefile.append (::Utils::XStr (".xme"));
 
   // Make sure we have the fullpath for the library.
   char abspath[MAXPATHLEN];
@@ -369,10 +369,11 @@ attach_library (const ::Utils::XStr & libpath)
   Project lib_project = Project::_open (xmefile, this->config_);
   
   Library_Importer importer;
-  importer.import (lib_project.root_folder ());
+  Folder lib_root_folder = lib_project.root_folder ();
+  importer.import (lib_root_folder);
 
   // Attach this document as a library.
-  DOMNode * node = this->doc_->importNode (lib_project.root_folder ().ptr (), true);
+  DOMNode * node = this->doc_->importNode (lib_root_folder.ptr (), true);
   DOMElement * e = dynamic_cast <DOMElement *> (node);
 
   Folder root_folder = this->root_folder ();

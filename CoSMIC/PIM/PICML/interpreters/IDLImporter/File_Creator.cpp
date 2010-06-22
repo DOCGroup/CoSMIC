@@ -56,7 +56,7 @@ create_files (const char * const * files, size_t n_files, const char * dest)
   // Locate the interface definitions folder.
   Folder idl_folder;
   if (GAME::create_if_not (root_folder, meta_InterfaceDefinitions, idl_folder,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    dest_name,
                                    boost::bind (&GAME::XME::Folder::name, _1)))))
   {
@@ -96,7 +96,7 @@ create_files (const char * const * files, size_t n_files, const char * dest)
 
     // Either, create a new element or get the existing one.
     if (GAME::create_if_not (idl_folder, meta_File, idl_files, idl_file,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {

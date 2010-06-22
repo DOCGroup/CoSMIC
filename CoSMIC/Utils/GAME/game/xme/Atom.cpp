@@ -19,7 +19,7 @@ namespace XME
 const ::Utils::XStr Atom::TAGNAME ("atom");
 
 template <typename T>
-static Atom Atom::create_impl (T & parent, const ::Utils::XStr & kind)
+Atom Atom::create_impl (T & parent, const ::Utils::XStr & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();

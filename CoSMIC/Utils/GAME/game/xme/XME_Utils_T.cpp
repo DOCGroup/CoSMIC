@@ -1,6 +1,7 @@
 // $Id$
 
 #include "Utils/xercesc/XercesString.h"
+#include "Exceptions.h"
 
 namespace GAME
 {
@@ -49,7 +50,7 @@ get_children (xercesc::DOMElement * e,  std::vector <T> & children)
           children[final_length].attach (e, true);
           ++ final_length;
         }
-        catch (Invalid_Cast & )
+        catch (const Invalid_Cast & )
         {
 
         }

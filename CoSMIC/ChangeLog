@@ -1,3 +1,28 @@
+Tue Jun 22 00:48:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * Utils/GAME/GAME.mwc:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Auto_Model_T.h:
+        * Utils/GAME/game/xme/Auto_Model_T.cpp:
+        * Utils/GAME/game/xme/Configuration.cpp:
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.h:
+        * Utils/GAME/game/xme/Library_Importer.h:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.cpp:
+        * Utils/GAME/game/xme/XME_Utils_T.cpp:
+        * picml.mwc:
+        
+          Fixed build errors on non-Windows systems.
+
 Mon Jun 21 23:10:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML.mta:

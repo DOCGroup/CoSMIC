@@ -7,7 +7,7 @@ workspace (PICML) {
   // The follow directories and workspaces only apply to
   // building CoSMIC using Visual C++.
   Utils/Utils.mpc
-  Utils/GAME
+  Utils/GAME/GAME.mwc
   Utils/ModelUpgrade
   Utils/T3
   Utils/xercesc

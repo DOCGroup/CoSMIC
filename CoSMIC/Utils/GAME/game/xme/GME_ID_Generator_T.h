@@ -80,8 +80,8 @@ private:
 }
 
 #define GME_XME_ID_GENERATOR(T) \
-  ACE_Singleton <::GAME::XME::GME_ID_Generator_T <T>, \
-                 ACE_Null_Mutex>::instance ()
+  ACE_Singleton < ::GAME::XME::GME_ID_Generator_T <T>, \
+                  ACE_Null_Mutex >::instance ()
 
 #if defined (__GAME_INLINE__)
 #include "GME_ID_Generator_T.inl"

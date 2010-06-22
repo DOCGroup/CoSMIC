@@ -31,7 +31,7 @@ class Auto_Model_T
 {
 public:
   /// Type definition of the model type.
-  typename T type;
+  typedef T type;
 
   /// Collection of the current children.
   typedef std::vector <FCO> collection_type;

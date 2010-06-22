@@ -360,7 +360,7 @@ void Project_Generator::initialize (void)
   Folder types_folder;
 
   if (GAME::create_if_not (root_folder, constant::meta::PREDEFINED_TYPES, types_folder,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    constant::meta::PREDEFINED_TYPES,
                                    boost::bind (&GAME::XME::Folder::name, _1)))))
   {
@@ -411,7 +411,7 @@ void Project_Generator::initialize (void)
 
     // Either, create a new element or get the existing one.
     if (GAME::create_if_not (types_folder, metaname, current_types, predefined_type,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      metaname,
                                      boost::bind (&GAME::XME::Atom::kind, _1)))))
     {
@@ -429,7 +429,7 @@ void Project_Generator::initialize (void)
 
   // Create the string predefined type.
   if (GAME::create_if_not (types_folder, constant::meta::String, current_types, this->string_type_,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    constant::meta::String,
                                    boost::bind (&GAME::XME::Atom::kind, _1)))))
   {
@@ -437,7 +437,7 @@ void Project_Generator::initialize (void)
   }
 
   if (GAME::create_if_not (types_folder, constant::meta::WideString, current_types, this->wstring_type_,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    constant::meta::String,
                                    boost::bind (&GAME::XME::Atom::kind, _1)))))
   {
@@ -456,13 +456,8 @@ void Project_Generator::finalize (void)
                           ACE_Null_Mutex> 
                           unresolved_t;
 
-  std::for_each (this->unresolved_.begin (),
-                 this->unresolved_.end (),
-                 boost::bind (&Project_Generator::handle_symbol_resolution,
-                              this,
-                              boost::bind (&unresolved_t::ENTRY::item, _1),
-                              boost::bind (&unresolved_t::ENTRY::key, _1),
-                              true));
+  for (unresolved_t::ITERATOR iter (this->unresolved_); !iter.done (); ++ iter)
+    this->handle_symbol_resolution (iter->item (), iter->key (), true);
 }
 
 //
@@ -615,7 +610,7 @@ int Project_Generator::visit_module (AST_Module *node)
     Model package;
 
     if (this->parent_->create_if_not (meta_Package, package,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -650,7 +645,7 @@ int Project_Generator::visit_interface (AST_Interface *node)
   Model object;
 
   if (this->parent_->create_if_not (meta_Object, object,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -717,7 +712,7 @@ int Project_Generator::visit_interface_fwd (AST_InterfaceFwd *node)
   Model object;
 
   if (this->parent_->create_if_not (meta_Object, object,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -751,7 +746,7 @@ int Project_Generator::visit_valuetype (AST_ValueType *node)
   Model value_object;
 
   if (this->parent_->create_if_not (meta_ValueObject, value_object,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -794,7 +789,7 @@ int Project_Generator::visit_valuetype_fwd (AST_ValueTypeFwd *node)
   Model value_object;
 
   if (this->parent_->create_if_not (meta_ValueObject, value_object,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -827,7 +822,7 @@ int Project_Generator::visit_component (AST_Component *node)
   Model component;
 
   if (this->parent_->create_if_not (meta_Component, component,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -869,7 +864,7 @@ int Project_Generator::visit_component (AST_Component *node)
       Reference ref_inherits;
 
       if (auto_model.create_if_not (meta_CompenentInherits, ref_inherits,
-          GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+          GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                        meta_CompenentInherits,
                                        boost::bind (&Reference::kind, _1)))))
       {
@@ -929,7 +924,7 @@ int Project_Generator::visit_component_fwd (AST_ComponentFwd *node)
   Model component;
 
   if (this->parent_->create_if_not (meta_Component, component,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -961,7 +956,7 @@ int Project_Generator::visit_provides (AST_Provides *node)
   const ::Utils::XStr name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_ProvidedRequestPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -988,7 +983,7 @@ int Project_Generator::visit_uses (AST_Uses *node)
   Reference ref;
 
   if (this->parent_->create_if_not (meta_RequiredRequestPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1017,7 +1012,7 @@ int Project_Generator::visit_publishes (AST_Publishes *node)
   Reference ref;
 
   if (this->parent_->create_if_not (meta_OutEventPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1047,7 +1042,7 @@ int Project_Generator::visit_emits (AST_Emits *node)
   Reference ref;
 
   if (this->parent_->create_if_not (meta_OutEventPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1077,7 +1072,7 @@ int Project_Generator::visit_consumes (AST_Consumes *node)
   Reference ref;
 
   if (this->parent_->create_if_not (meta_InEventPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1105,7 +1100,7 @@ int Project_Generator::visit_eventtype (AST_EventType *node)
   Model ev;
 
   if (this->parent_->create_if_not (meta_Event, ev,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1144,7 +1139,7 @@ int Project_Generator::visit_eventtype_fwd (AST_EventTypeFwd *node)
   Model ev;
 
   if (this->parent_->create_if_not (meta_Event, ev,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1172,7 +1167,7 @@ int Project_Generator::visit_home (AST_Home *node)
   Model component_factory;
 
   if (this->parent_->create_if_not (meta_ComponentFactory, component_factory,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1190,7 +1185,7 @@ int Project_Generator::visit_home (AST_Home *node)
     Reference lookup_key;
 
     this->parent_->create_if_not (meta_LookupKey, lookup_key,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    meta_LookupKey,
                                    boost::bind (&Model::kind, _1))));
 
@@ -1245,7 +1240,7 @@ int Project_Generator::visit_factory (AST_Factory *node)
   Model factory_op;
 
   if (this->parent_->create_if_not (meta_FactoryOperation, factory_op,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1281,7 +1276,7 @@ int Project_Generator::visit_finder (AST_Finder *node)
   Model lookup_op;
 
   if (this->parent_->create_if_not (meta_LookupOperation, lookup_op,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1317,7 +1312,7 @@ int Project_Generator::visit_structure (AST_Structure *node)
   Model aggregate;
 
   if (this->parent_->create_if_not (meta_Aggregate, aggregate,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1355,7 +1350,7 @@ int Project_Generator::visit_structure_fwd (AST_StructureFwd *node)
   Model aggregate;
 
   if (this->parent_->create_if_not (meta_Aggregate, aggregate,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1381,7 +1376,7 @@ int Project_Generator::visit_exception (AST_Exception *node)
   Model exception;
 
   if (this->parent_->create_if_not (meta_Exception, exception,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1411,7 +1406,7 @@ int Project_Generator::visit_enum (AST_Enum *node)
   Model enumeration;
 
   if (this->parent_->create_if_not (meta_Enum, enumeration,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1451,7 +1446,7 @@ int Project_Generator::visit_enum_val (AST_EnumVal *node)
   static const ::Utils::XStr meta_EnumValue ("EnumValue");
 
   if (this->parent_->create_if_not (meta_EnumValue, value,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -1478,7 +1473,7 @@ int Project_Generator::visit_operation (AST_Operation *node)
     static const ::Utils::XStr meta_OnewayOperation ("OnewayOperation");
 
     if (this->parent_->create_if_not (meta_OnewayOperation, operation,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1491,7 +1486,7 @@ int Project_Generator::visit_operation (AST_Operation *node)
     static const ::Utils::XStr meta_TwowayOperation ("TwowayOperation");
 
     if (this->parent_->create_if_not (meta_TwowayOperation, operation,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1511,7 +1506,7 @@ int Project_Generator::visit_operation (AST_Operation *node)
     static const ::Utils::XStr meta_ReturnType ("ReturnType");
 
     if (auto_model.create_if_not (meta_ReturnType, return_type,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                         meta_ReturnType,
                         boost::bind (&Reference::kind, _1)))))
     {
@@ -1553,7 +1548,7 @@ int Project_Generator::visit_field (AST_Field *node)
 
   Reference member;
   if (this->parent_->create_if_not (metename, member,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    field_name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1602,7 +1597,7 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
     static const ::Utils::XStr meta_ReadonlyAttribute ("ReadonlyAttribute");
 
     if (this->parent_->create_if_not (meta_ReadonlyAttribute, attribute,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1615,7 +1610,7 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
     static const ::Utils::XStr meta_Attribute ("Attribute");
 
     if (this->parent_->create_if_not (meta_Attribute, attribute,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1633,7 +1628,7 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
   std::vector <Reference> attribute_members;
 
   auto_model.create_if_not (meta_AttributeMember, attribute_member,
-                            GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+                            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                             meta_AttributeMember,
                                             boost::bind (&Reference::kind, _1))));
 
@@ -1688,7 +1683,7 @@ int Project_Generator::visit_argument (AST_Argument *node)
   // Create the argument if it does not exist.
   Reference argument;
   if (this->parent_->create_if_not (*meta, argument,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1716,7 +1711,7 @@ int Project_Generator::visit_union (AST_Union *node)
   Model switched_aggregate;
 
   if (this->parent_->create_if_not (meta_SwitchedAggregate, switched_aggregate,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1736,7 +1731,7 @@ int Project_Generator::visit_union (AST_Union *node)
   static const ::Utils::XStr meta_Discriminator ("Discriminator");
 
   if (auto_model.create_if_not (meta_Discriminator, discriminator,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    meta_Discriminator,
                                    boost::bind (&Reference::kind, _1)))))
   {
@@ -1774,7 +1769,7 @@ int Project_Generator::visit_union_fwd (AST_UnionFwd *node)
   Model switched_aggregate;
 
   if (this->parent_->create_if_not (meta_SwitchedAggregate, switched_aggregate,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1797,7 +1792,7 @@ int Project_Generator::visit_union_branch (AST_UnionBranch *node)
 
   Reference branch;
   if (this->parent_->create_if_not (meta_Member, branch,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1829,7 +1824,7 @@ int Project_Generator::visit_constant (AST_Constant *node)
 
   Reference constant;
   if (this->parent_->create_if_not (meta_Constant, constant,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1937,6 +1932,9 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
     index = 1;
     base_type = AST_Sequence::narrow_from_decl (base_type)->base_type ();
     break;
+
+  default:
+    ;
   }
 
   // Create the alias if it already does not exist in this model.
@@ -1946,7 +1944,7 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
   const ::Utils::XStr name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_list[index], alias,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1971,7 +1969,7 @@ int Project_Generator::visit_valuebox (AST_ValueBox *node)
 
   Reference boxed;
   if (this->parent_->create_if_not (meta_Boxed, boxed,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2072,7 +2070,9 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
   else if (use_library)
   {
     std::vector <GAME::XME::Folder> libraries;
-    this->proj_.root_folder ().children (L"RootFolder", libraries);
+    static const ::Utils::XStr meta_RootFolder ("RootFolder");
+
+    this->proj_.root_folder ().children (meta_RootFolder, libraries);
     
     if (this->lookup_symbol (type, libraries, fco))
       return true;
@@ -2200,7 +2200,9 @@ lookup_symbol (AST_Decl * type,
   for (; iter != iter_end; ++ iter)
   {
     std::vector <GAME::XME::Folder> idl_files;
-    iter->children (L"InterfaceDefinitions", idl_files);
+    static const ::Utils::XStr meta ("InterfaceDefinitions");
+
+    iter->children (meta, idl_files);
 
     // We should go through these to find the right file before
     // continuing with our search.
@@ -2312,7 +2314,7 @@ int Project_Generator::visit_native (AST_Native *node)
   Atom native;
 
   if (this->parent_->create_if_not (meta_NativeValue, native,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -2340,7 +2342,7 @@ int Project_Generator::visit_porttype (AST_PortType *node)
   const ::Utils::XStr name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_PortType, porttype,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -2376,7 +2378,7 @@ int Project_Generator::visit_extended_port (AST_Extended_Port *node)
   const ::Utils::XStr name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_ExtendedPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2403,7 +2405,7 @@ int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
   const ::Utils::XStr name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_MirrorPort, ref,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2432,7 +2434,7 @@ int Project_Generator::visit_connector (AST_Connector *node)
   Model connector;
 
   if (this->parent_->create_if_not (meta_ConnectorObject, connector,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -2456,7 +2458,7 @@ int Project_Generator::visit_connector (AST_Connector *node)
     Reference ref_inherits;
 
     if (auto_model.create_if_not (meta_ConnectorInherits, ref_inherits,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      meta_ConnectorInherits,
                                      boost::bind (&Reference::kind, _1)))))
     {
@@ -2495,7 +2497,7 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
     Model package;
 
     if (this->parent_->create_if_not (meta_Package, package,
-        GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -2582,6 +2584,9 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
+
+    default:
+      ;
     };
   }
 
@@ -2614,7 +2619,7 @@ create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   static const ::Utils::XStr meta_NamedParameter ("NameParameter");
 
   if (module->create_if_not (meta_NamedParameter, named_parameter,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    param_name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -2642,7 +2647,7 @@ create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   static const ::Utils::XStr meta_TypeParameter ("TypeParameter");
 
   if (module->create_if_not (meta_TypeParameter, parameter,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    param_name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -2671,7 +2676,7 @@ create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   static const ::Utils::XStr meta_CollectionParameter ("CollectionParameter");
 
   if (module->create_if_not (meta_CollectionParameter, parameter,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    param_name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2719,7 +2724,7 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   static const ::Utils::XStr meta_TemplatePackageAlias ("TemplatePackageInstance");
 
   if (this->parent_->create_if_not (meta_TemplatePackageAlias, module_inst,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -2735,7 +2740,7 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   static const ::Utils::XStr meta_PackageType ("PackageType");
 
   if (auto_model.create_if_not (meta_PackageType, package_type,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                                    meta_PackageType,
                                    boost::bind (&Reference::kind, _1)))))
   {

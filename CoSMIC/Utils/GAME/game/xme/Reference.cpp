@@ -18,7 +18,7 @@ const ::Utils::XStr Reference::ATTR_REFERRED ("referred");
 const ::Utils::XStr Reference::NULL_REFERENCE ("");
 
 template <typename T>
-static Reference Reference::create_impl (T parent, const ::Utils::XStr & kind)
+Reference Reference::create_impl (T parent, const ::Utils::XStr & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();

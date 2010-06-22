@@ -41,7 +41,7 @@ Implementation_Generator (GAME::XME::Folder & root)
   static const ::Utils::XStr meta_ComponentImplementations ("ComponentImplementations");
 
   if (GAME::create_if_not (root, meta_ComponentImplementations, this->impls_,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       meta_ComponentImplementations,
                       boost::bind (&GAME::XME::Folder::name, _1)))))
   {
@@ -81,7 +81,7 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   static const ::Utils::XStr meta_ComponentImplementationContainer ("ComponentImplementationContainer");
 
   if (GAME::create_if_not (this->impls_, meta_ComponentImplementationContainer, container,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       impl_name,
                       boost::bind (&GAME::XME::Model::name, _1)))))
   {
@@ -93,7 +93,7 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   static const ::Utils::XStr meta_MonolithicImplementation ("MonolithicImplementation");
 
   if (GAME::create_if_not (container, meta_MonolithicImplementation, impl,
-      GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                       impl_name,
                       boost::bind (&GAME::XME::Atom::name, _1)))))
   {
@@ -109,7 +109,7 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   static const ::Utils::XStr meta_ComponentRef ("ComponentRef");
 
   GAME::create_if_not (container, meta_ComponentRef, component_ref,
-    GAME::contains (boost::bind (std::equal_to <::Utils::XStr> (),
+    GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
                     meta_ComponentRef,
                     boost::bind (&GAME::XME::Atom::kind, _1))));
 
