@@ -1,3 +1,14 @@
+Tue Jun 22 03:17:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/Component.rc:
+        
+          Removed the typelib from the resource.
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Bug fix where symbol lookup in template modules using the
+          find_first_of () instead of find () method on the string.
+
 Tue Jun 22 03:01:26 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * MPC/config/cosmic_common.mpb:

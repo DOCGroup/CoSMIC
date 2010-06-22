@@ -2105,7 +2105,9 @@ lookup_symbol_in_template_module (AST_Decl * type,
 
   for (; !iter.done (); ++ iter)
   {
-    if (full_name.find_first_of (iter->key ().c_str ()) == 0)
+    const ACE_CString & key = iter->key ();
+
+    if (full_name.find (key.c_str ()) == 0)
     {
       AST_Template_Module_Inst * module_inst = iter->item ();
       AST_Template_Module * tm = module_inst->ref (); 
@@ -2113,7 +2115,7 @@ lookup_symbol_in_template_module (AST_Decl * type,
       // Let's find out what type we are really looking for 
       // in this case. This is done by replacing the instance 
       // name with the template module's full name.
-      std::string name = full_name.substr (iter->key ().length ());
+      std::string name = full_name.substr (key.length ());
 
       // Now, we have to locate the element by it's name. This is
       // done by first, converting the string to a scoped name. Then,
