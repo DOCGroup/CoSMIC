@@ -1,6 +1,7 @@
 // $Id$
 
 #include "DeploymentPlanVisitor.h"
+#include "Deployment_Domain_Visitor.h"
 
 #include "Data_Type_Visitor.h"
 #include "Data_Value_Visitor.h"
@@ -267,6 +268,10 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 
   // Release the document.
   this->doc_->release ();
+
+  //call visitor that will generate the .cdd file
+  Deployment_Domain_Visitor ddv (this->outputPath_);
+  PICML::DeploymentPlan (plan).Accept (ddv);
 }
 
 //

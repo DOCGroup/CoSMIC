@@ -1,8 +1,21 @@
+Wed Jun 23 22:39:11 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+		
+		  Added the Deployment_Domain_Visitor that will traverse the Deployment Plan
+		  generates the .cdd file which has the xml representation of the plan. The
+		  Deployment_Domain_Visitor is called from the DeploymentPlanVisitor
+
+        * PIM/PICML/paradigms/PICML.mta:
+
 Wed Jun 23 20:10:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
-        
-          Bug fix where the id in the idref="" attribute was missing an 
+
+          Bug fix where the id in the idref="" attribute was missing an
           a leading underscore.
 
 Wed Jun 23 04:06:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
