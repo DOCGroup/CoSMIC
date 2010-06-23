@@ -1,7 +1,19 @@
+Wed Jun 23 04:06:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Bug fix where some elements where not allowed to be declared as
+          a template value.
+
 Tue Jun 22 03:17:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/ComponentImplementationGenerator/Component.rc:
-        
+
           Removed the typelib from the resource.
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
