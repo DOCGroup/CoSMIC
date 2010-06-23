@@ -1,3 +1,10 @@
+Wed Jun 23 20:10:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        
+          Bug fix where the id in the idref="" attribute was missing an 
+          a leading underscore.
+
 Wed Jun 23 04:06:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -6,7 +13,7 @@ Wed Jun 23 04:06:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML_DSML.mpc:
-        
+
           Bug fix where some elements where not allowed to be declared as
           a template value.
 

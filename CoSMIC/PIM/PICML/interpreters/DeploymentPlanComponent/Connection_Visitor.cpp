@@ -95,7 +95,7 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
   this->create_simple_content (this->endpoint_, "kind", kind);
 
   xercesc::DOMElement * ele = this->create_simple_content (this->endpoint_, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (inst.UUID ())); 
+  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid)); 
 
   this->name_ = receptacle.getPath (".", false, true, "name", true);
 
