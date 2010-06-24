@@ -1,15 +1,25 @@
+Thu Jun 24 13:42:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Synchronizing the PICML paradigm UUIDs just in case they have
+          gotten out of sync.
+
 Thu Jun 24 13:34:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
-        
+
           . Bug fix where a connector fragment was instantiated multiple times
             when its ports were connected to multiple component instances in the
             same collocation group.
-            
-          . Bug fix where it was assumed all connectors used local interfaces.            
+
+          . Bug fix where it was assumed all connectors used local interfaces.
 
 Wed Jun 23 22:39:11 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
