@@ -38,8 +38,13 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   // Locate the plan locality for this instance.
   this->find_plan_locality (inst);
 
+  // Visit the extended ports.
   Udm::visit_all <PICML::ExtendedPortInstance> (inst, *this);
   Udm::visit_all <PICML::MirrorPortInstance> (inst, *this);
+
+  // Visit the standard ports.
+  Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
+  Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
 }
 
 //
@@ -169,17 +174,34 @@ void Connector_Visitor::Visit_Publish (const PICML::Publish & publish)
   PICML::ConnectorInstance inst = publish.dstPublish_end ();
   this->conn_path_ += inst.getPath (".", false, true, "name", true);
 
-  // Generate a new UUID for this connector fragment.
-  std::string new_uuid = Utils::CreateUuid ();
-  std::string old_uuid = inst.UUID ();
+  // First, let's check if this connector fragment already exists
+  // in the current collocation group.
+  std::set <fragment_t> & fragments = this->fragments_[this->group_];
+  std::set <fragment_t>::iterator iter = fragments.find (fragment_t (inst, ""));
 
-  inst.UUID () = new_uuid;
-  this->conn_uuid_ = "_" + new_uuid;
+  if (iter == fragments.end ())
+  {
+    // Generate a new UUID for this connector fragment.
+    std::string target_uuid = Utils::CreateUuid ();
+    std::string old_uuid = inst.UUID ();
 
-  this->dpv_.deploy_connector_instance (inst, this->group_); ;
+    inst.UUID () = target_uuid;
+    this->conn_uuid_ = "_" + target_uuid;
 
-  // Restore the original UUID.
-  inst.UUID () = old_uuid;
+    // Save the fragment for later usage.
+    fragments.insert (fragment_t (inst, target_uuid));
+
+    // Since this is a new fragment, we need to make sure that it
+    // is included in the deployment plan.
+    this->dpv_.deploy_connector_instance (inst, this->group_);
+
+    // Restore the original UUID.
+    inst.UUID () = old_uuid;
+  }
+  else
+  {
+    this->conn_uuid_ = "_" + iter->uuid_;
+  }
 }
 
 //
@@ -222,7 +244,8 @@ void Connector_Visitor::Visit_PortType (const PICML::PortType & pt)
 void Connector_Visitor::
 Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
 {
-  this->start_new_connection ();
+  PICML::Object obj (PICML::Object::Cast (p.ref ()));
+  this->start_new_connection (obj);
 
   std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
   this->Visit_RequiredRequestPort_i (uuid,
@@ -248,7 +271,8 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
 void Connector_Visitor::
 Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 {
-  this->start_new_connection ();
+  PICML::Object obj = PICML::Object::Cast (p.ref ());
+  this->start_new_connection (obj);
 
   std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
   this->Visit_ProvidedRequestPort_i (uuid,
@@ -306,7 +330,8 @@ Visit_ProvidedRequestPort_i (const std::string & inst,
 //
 // start_new_connection
 //
-void Connector_Visitor::start_new_connection (void)
+void Connector_Visitor::
+start_new_connection (const PICML::Object & obj)
 {
   using xercesc::DOMElement;
 
@@ -314,9 +339,12 @@ void Connector_Visitor::start_new_connection (void)
   this->name_element_ = this->create_element (this->curr_conn_, "name");
   this->conn_name_ = this->comp_inst_.getPath (".", false, true, "name", true);
 
-  DOMElement * deployRequirement = this->create_element (this->curr_conn_, "deployRequirement");
-  this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
-  this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
+  // Determine if the interface is local. If this is the case, then we
+  // need to generate a special tag for such object.
+  const std::string semantics (obj.InterfaceSemantics ());
+
+  if (semantics == "local")
+    this->make_connection_local (this->curr_conn_);
 }
 
 //
@@ -359,3 +387,13 @@ const std::vector <xercesc::DOMElement *> & Connector_Visitor::connections (void
   return this->conns_;
 }
 
+//
+// make_connection_local
+//
+void Connector_Visitor::
+make_connection_local (xercesc::DOMElement * conn)
+{
+  xercesc::DOMElement * deployRequirement = this->create_element (conn, "deployRequirement");
+  this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+  this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
+}

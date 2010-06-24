@@ -53,7 +53,10 @@ private:
   /// Helper method for creating a connection.
   void create_connection (const std::string & name, 
                           xercesc::DOMNode * e1,
-                          xercesc::DOMNode * e2);
+                          xercesc::DOMNode * e2,
+                          bool is_local);
+
+  void make_local_connection (xercesc::DOMElement * conn);
 
   /// The target document.
   xercesc::DOMDocument * doc_;

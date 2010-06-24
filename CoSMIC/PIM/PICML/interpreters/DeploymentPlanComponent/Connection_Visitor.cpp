@@ -170,7 +170,8 @@ Visit_InEventPortInstance (const PICML::InEventPortInstance & sink)
 
     this->create_connection (connection_name, 
                              this->endpoint_->cloneNode (true),
-                             endpoint);
+                             endpoint,
+                             false);
   }
 
 }
@@ -197,14 +198,21 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
     xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
     ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid)); 
 
-    // Finally, create final connection between the two endpoints.
     std::string connection_name = this->name_;
     connection_name.append ("::");
     connection_name.append (facet.getPath (".", false, true, "name", true));
 
+    // Determine if this is a local connection.
+    PICML::ProvidedRequestPort port = facet.ref ();
+    PICML::Object obj = PICML::Object::Cast (port.ref ());
+    const std::string semantics (obj.InterfaceSemantics ());
+    bool is_local = semantics == "local" ? true : false;
+
+    // Finally, create final connection between the two endpoints.
     this->create_connection (connection_name, 
                              this->endpoint_->cloneNode (true),
-                             endpoint);
+                             endpoint,
+                             is_local);
   }
 }
 
@@ -214,11 +222,15 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
 void Connection_Visitor::
 create_connection (const std::string & name, 
                    xercesc::DOMNode * ep1,
-                   xercesc::DOMNode * ep2)
+                   xercesc::DOMNode * ep2,
+                   bool is_local)
 {
   // Create the new connection.
   xercesc::DOMElement * conn = this->doc_->createElement (Utils::XStr ("connection"));
   this->create_simple_content (conn, "name", name);
+
+  if (is_local)
+    this->make_local_connection (conn);
 
   // Add its endpoints.
   conn->appendChild (ep1);
@@ -226,6 +238,16 @@ create_connection (const std::string & name,
 
   // Save the connection.
   this->conns_.push_back (conn);
+}
+
+//
+// make_local_connection
+//
+void Connection_Visitor::make_local_connection (xercesc::DOMElement * conn)
+{
+  xercesc::DOMElement * deployRequirement = this->create_element (conn, "deployRequirement");
+  this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+  this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
 }
 
 //

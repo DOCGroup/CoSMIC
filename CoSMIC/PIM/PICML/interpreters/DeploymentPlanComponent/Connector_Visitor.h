@@ -16,6 +16,7 @@
 #include "PICML/PICML.h"
 #include "XML_Document.h"
 
+// Forward decl.
 class DeploymentPlanVisitor;
 
 /**
@@ -53,9 +54,33 @@ public:
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 
 private:
+  struct fragment_t
+  {
+    fragment_t (const PICML::ConnectorInstance & inst, const std::string & uuid)
+      : fragment_ (inst),
+        uuid_ (uuid)
+    {
+
+    }
+
+    bool operator == (const PICML::ConnectorInstance & inst) const
+    {
+      return this->fragment_ == inst;
+    }
+
+    bool operator < (const fragment_t & f) const
+    {
+      return this->fragment_ < f.fragment_;
+    }
+
+    PICML::ConnectorInstance fragment_;
+
+    std::string uuid_;
+  };
+
   bool find_plan_locality (const PICML::ComponentInstance & inst);
 
-  void start_new_connection (void);
+  void start_new_connection (const PICML::Object & obj);
 
   void append_endpoint (const std::string & portname,
                         const std::string & kind,
@@ -76,6 +101,8 @@ private:
                                     std::string & portname,
                                     bool invert);
 
+  void make_connection_local (xercesc::DOMElement * conn);
+
   DeploymentPlanVisitor & dpv_;
 
   /// The target document.
@@ -89,6 +116,8 @@ private:
   std::string conn_name_;
 
   PICML::CollocationGroup group_;
+
+  std::map <PICML::CollocationGroup, std::set <fragment_t> > fragments_;
 
   PICML::ComponentInstance comp_inst_;
 
