@@ -53,7 +53,6 @@
 #include "fe_extern.h"
 #include "be_extern.h"
 
-#include "Utils/Point.h"
 #include "Utils/xercesc/XercesString.h"
 
 #include "game/xme/Project.h"
@@ -112,10 +111,12 @@ struct predefined_typeinfo
 struct arrange_horizontal
 {
   arrange_horizontal (const ::Utils::XStr & aspect,
-                      ::Utils::Point & start, 
+                      int x,
+                      int y, 
                       int dx)
     : aspect_ (aspect),
-      pt_ (start),
+      x_ (x),
+      y_ (y),
       dx_ (dx)
   {
 
@@ -126,10 +127,11 @@ struct arrange_horizontal
     // Set the position of the element.
     GAME::XME::set_position (fco,
                              this->aspect_,
-                             this->pt_);
+                             this->x_,
+                             this->y_);
 
     // Advance to the next element.
-    this->pt_.shift (this->dx_, 0);
+    this->x_ += this->dx_;
   }
 
   void operator () (ACE_Hash_Map_Manager <ACE_CString, GAME::XME::FCO, ACE_Null_Mutex>::ENTRY & e)
@@ -137,20 +139,22 @@ struct arrange_horizontal
     // Set the position of the element.
     GAME::XME::set_position (e.item (),
                              this->aspect_,
-                             this->pt_);
+                             this->x_,
+                             this->y_);
 
     // Advance to the next element.
-    this->pt_.shift (this->dx_, 0);
+    this->x_ += this->dx_;
   }
 
 private:
   const ::Utils::XStr & aspect_;
 
-  /// The current position
-  ::Utils::Point & pt_;
+  int x_;
+
+  const int y_;
 
   /// Amount to shift the point y-units
-  int dx_;
+  const int dx_;
 };
 
 /**
@@ -160,8 +164,9 @@ private:
  */
 struct arrange_vertical
 {
-  arrange_vertical (::Utils::Point & start, int dy)
-    : pt_ (start),
+  arrange_vertical (int x, int y, int dy)
+    : x_ (x),
+      y_ (y),
       dy_ (dy)
   {
 
@@ -171,19 +176,22 @@ struct arrange_vertical
   {
     // Set the position of the element.
     GAME::XME::set_position (fco,
-                            constant::aspect::InterfaceDefinition,
-                            this->pt_);
+                             constant::aspect::InterfaceDefinition,
+                             this->x_,
+                             this->y_);
 
     // Advance to the next element.
-    this->pt_.shift (0, this->dy_);
+    this->y_ += this->dy_;
   }
 
 private:
-  /// The current position
-  ::Utils::Point & pt_;
+  /// The current x-position.
+  const int x_;
+
+  int y_;
 
   /// Amount to shift the point y-units
-  int dy_;
+  const int dy_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -664,10 +672,9 @@ int Project_Generator::visit_interface (AST_Interface *node)
   int retval = this->visit_scope (node, &auto_model);
 
   // Arrange all the child elements veritcally in the model.
-  ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   using GAME::XME::FCO;
 
@@ -766,11 +773,9 @@ int Project_Generator::visit_valuetype (AST_ValueType *node)
     return -1;
 
   // Align the elements in the structure.
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   return 0;
 }
@@ -1116,11 +1121,9 @@ int Project_Generator::visit_eventtype (AST_EventType *node)
     return -1;
 
   // Align the elements in the structure.
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   return 0;
 }
@@ -1252,11 +1255,9 @@ int Project_Generator::visit_factory (AST_Factory *node)
     return -1;
 
   // Align the elements in the structure.
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, 60, 60, 100));
 
   return 0;
 }
@@ -1288,11 +1289,9 @@ int Project_Generator::visit_finder (AST_Finder *node)
     return -1;
 
   // Align the elements in the structure.
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, 60, 60, 100));
 
   return 0;
 }
@@ -1327,11 +1326,9 @@ int Project_Generator::visit_structure (AST_Structure *node)
     return -1;
 
   // Align the elements in the structure.
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   return 0;
 }
@@ -1424,11 +1421,9 @@ int Project_Generator::visit_enum (AST_Enum *node)
     return -1;
 
   this->is_in_enum_ = false;
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   return 0;
 }
@@ -1524,10 +1519,9 @@ int Project_Generator::visit_operation (AST_Operation *node)
   this->visit_exception_list (node->exceptions (), meta_Exception, auto_model);
 
   // Finally, short all the element in <auto_model> horizontally.
-  ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, 60, 60, 100));
   return 0;
 }
 
@@ -1652,10 +1646,9 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
 
 
   // Finally, arrange the elements in horizontal order.
-  ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (constant::aspect::InterfaceDefinition, start, 100));
+                 arrange_horizontal (constant::aspect::InterfaceDefinition, 60, 60, 100));
 
   return 0;
 }
@@ -1745,11 +1738,9 @@ int Project_Generator::visit_union (AST_Union *node)
     return -1;
 
   // Align the elements in the structure.
-  ::Utils::Point start (60, 60);
-
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   return 0;
 }
@@ -2358,10 +2349,9 @@ int Project_Generator::visit_porttype (AST_PortType *node)
   int retval = this->visit_scope (node, &auto_model);
 
   // Arrange all the child elements veritcally in the model.
-  ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_vertical (start, 100));
+                 arrange_vertical (60, 60, 100));
 
   return 0;
 }
@@ -2594,10 +2584,9 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
 
   // Order the parameters before adding anymore elements to the 
   // model. This is done by arranging the parameters horizontally.
-  ::Utils::Point start (60, 60);
   std::for_each (this->active_params_.begin (),
                  this->active_params_.end (),
-                 arrange_horizontal (constant::aspect::TemplateParameters, start, 100));
+                 arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
 
   // We are finish with there parameters.
   this->active_params_.unbind_all ();
@@ -2781,10 +2770,9 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   }
 
   // Arrange the template parameters.
-  ::Utils::Point start (60, 60);
   std::for_each (auto_model.children ().begin (),
                  auto_model.children ().end (),
-                 arrange_horizontal (constant::aspect::TemplateParameters, start, 100));
+                 arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
 
   return 0; 
 }

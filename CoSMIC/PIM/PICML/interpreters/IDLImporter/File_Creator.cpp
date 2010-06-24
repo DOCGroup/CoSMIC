@@ -5,6 +5,30 @@
 #include "boost/bind.hpp"
 #include <functional>
 
+#if defined (WIN32) || defined (ACE_OPENVMS)
+#include "ace/OS_NS_strings.h"
+#include "ace/OS_NS_ctype.h"
+
+unsigned long String_Case_Insensitive_Hash::
+operator () (const ACE_CString &lhs) const
+{
+  ACE_CString copy (lhs);
+  std::transform (copy.begin (),
+                  copy.end (),
+                  copy.begin (),
+                  &ACE_OS::ace_tolower);
+
+  return ACE::hash_pjw (copy.c_str ());
+}
+
+bool String_Case_Insensitive::
+operator () (const ACE_CString & lhs, const ACE_CString & rhs) const
+{
+  return 0 == ACE_OS::strcasecmp (lhs.c_str (), rhs.c_str ());
+}
+
+#endif
+
 //
 // PICML_File_Creator_Item
 //

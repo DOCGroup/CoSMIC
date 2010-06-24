@@ -17,12 +17,6 @@
 #include "GAME_Utils_export.h"
 #include "game/config.h"
 
-namespace Utils
-{
-// Forward decl.
-class Point;
-}
-
 namespace GAME
 {
 // Forward decl.

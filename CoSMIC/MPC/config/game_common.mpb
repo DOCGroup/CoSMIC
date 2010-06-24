@@ -1,6 +1,6 @@
 // $Id$
 
-project : mfc, acenosubsets, acedefaults {
-  includes += $(COSMIC_ROOT)/Utils/GAME
+project : acenosubsets, acedefaults {
+  includes += $(GAME_ROOT) $(GAME_ROOT)/game
   libpaths += $(COSMIC_ROOT)/lib
 }

@@ -400,26 +400,26 @@ public:
   /// Type definition of the iterator type.
   typedef IteratorT iterator_type;
 
-  Preprocessor_Importer_Grammar (GAME::XME::Model & file)
+  Preprocessor_Importer_Grammar (GAME::XME::Model & file, bool debug = false)
     : Preprocessor_Importer_Grammar::base_type (this->file_content_),
       file_ (file),
       file_content_ (std::string ("file_content")),
-      garbage_ (std::string ("garbage")),
-      pragma_stmts_ (std::string ("pragma_stmts")),
       module_ (std::string ("module")),
-      module_content_ (std::string ("module_content")),
-      keywords_ (std::string ("keywords")),
-      pragma_typesupport_ (std::string ("pragma_typesupport")),
-      ident_ (std::string ("ident")),
       ignorable_scope_ (std::string ("ignorable_scope")),
       ignorable_scope_keyword_ (std::string ("ignorable_scope_keyword")),
+      module_content_ (std::string ("module_content")),
+      pragma_stmts_ (std::string ("pragma_stmts")),
+      pragma_typesupport_ (std::string ("pragma_typesupport")),
+      pragma_dcps_data_type_ (std::string ("pragma_dcps_data_type")),
+      pragma_dcps_data_key_ (std::string ("pragma_dcps_data_key")),
+      pragma_keylist_ (std::string ("pragma_keylist")),
+      garbage_ (std::string ("garbage")),
+      keywords_ (std::string ("keywords")),
       quoted_string_ (std::string ("quoted_string")),
       filepath_ (std::string ("filepath")),
       usr_filepath_ (std::string ("usr_filepath")),
       sys_filepath_ (std::string ("sys_filepath")),
-      pragma_dcps_data_type_ (std::string ("pragma_dcps_data_type")),
-      pragma_dcps_data_key_ (std::string ("pragma_dcps_data_key")),
-      pragma_keylist_ (std::string ("pragma_keylist"))
+      ident_ (std::string ("ident"))
   {
     namespace repo = boost::spirit::repository;
 
@@ -490,16 +490,6 @@ public:
       qi::lit ("keylist") >>
       this->ident_ >> +this->ident_;
 
-    // The parsers below are for parsing C/C++ style comments.
-    this->comment_ =
-      this->comment_c_ | this->comment_cpp_;
-
-    this->comment_cpp_ =
-      qi::lexeme[qi::lit ("//") >> *(qi::print - qi::eol) >> qi::omit[qi::eol]];
-
-    this->comment_c_ = 
-      qi::lexeme[repo::confix ("/*", "*/")[*(ascii::char_ - "*/")]];
-
     // The actual value of the string literal.
     this->quoted_string_ %=
       qi::lit ('"') >> *(ascii::char_ - '"') >> qi::lit ('"');
@@ -534,9 +524,34 @@ public:
 
     this->sys_filepath_ %= 
       qi::lexeme[ascii::char_ ("<") >> *(ascii::print - "\"") >> ascii::char_ (">")];
+
+    if (debug)
+      this->enable_debugging ();
   }
 
 private:
+  void enable_debugging (void)
+  {
+    debug (this->file_content_);
+    debug (this->module_);
+    debug (this->ignorable_scope_);
+    debug (this->ignorable_scope_keyword_);
+    debug (this->pragma_stmts_);
+    debug (this->pragma_typesupport_);
+    debug (this->pragma_lem_);
+    debug (this->pragma_dcps_data_type_);
+    debug (this->pragma_dcps_data_key_);
+    debug (this->pragma_keylist_);
+    debug (this->garbage_);
+    debug (this->keywords_);
+    debug (this->quoted_string_);
+    debug (this->filepath_);
+    debug (this->usr_filepath_);
+    debug (this->sys_filepath_);
+    debug (this->filename_);
+    debug (this->ident_);
+  }
+
   GAME::XME::Model & file_;
 
   model_stack_t model_stack_;
@@ -556,10 +571,6 @@ private:
   qi::rule <IteratorT, std::string (), ascii::space_type> pragma_dcps_data_type_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_dcps_data_key_;
   qi::rule <IteratorT, data::keylist_t (), ascii::space_type> pragma_keylist_;
-
-  qi::rule <IteratorT, void (), ascii::space_type> comment_;
-  qi::rule <IteratorT, void (), ascii::space_type> comment_cpp_;
-  qi::rule <IteratorT, void (), ascii::space_type> comment_c_;
 
   qi::rule <IteratorT, void (), ascii::space_type> garbage_;
 
@@ -603,6 +614,10 @@ Preprocessor_Importer::~Preprocessor_Importer (void)
 bool Preprocessor_Importer::
 parse (const char * filename, GAME::XME::Model & model)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - importing %s preprocessor directives\n"),
+              filename));
+
   // Open the specified file for reading.
   std::ifstream infile;
   infile.open (filename);
@@ -618,7 +633,7 @@ parse (const char * filename, GAME::XME::Model & model)
   spirit::istream_iterator end_iter;
 
   // Parse the open file using the iterators above.
-  Preprocessor_Importer_Grammar <spirit::istream_iterator> g (model);
+  Preprocessor_Importer_Grammar <spirit::istream_iterator> g (model, false);
   bool retval = qi::phrase_parse (begin_iter, 
                                   end_iter, 
                                   g, 

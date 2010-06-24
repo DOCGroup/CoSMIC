@@ -18,8 +18,8 @@
 
 #define GME_PORT_PADDING_Y      4
 
-#define GME_PORT_MARGIN_X       8
-#define GME_PORT_MARGIN_Y       8
+#define GME_PORT_MARGIN_X       4
+#define GME_PORT_MARGIN_Y       4
 
 #define COMPONENT_DEFUALT_WIDTH     143
 #define COMPONENT_DEFAULT_HEIGHT    70

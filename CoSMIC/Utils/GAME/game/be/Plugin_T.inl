@@ -6,8 +6,8 @@ namespace GAME
 //
 // Plugin_T
 //
-template <typename T, typename IMPL>
-Plugin_T <T, IMPL>::Plugin_T (void)
+template <typename T, const CLSID * pclsid>
+Plugin_T <T, pclsid>::Plugin_T (void)
 {
 
 }
@@ -15,8 +15,8 @@ Plugin_T <T, IMPL>::Plugin_T (void)
 //
 // ~Plugin_T
 //
-template <typename T, typename IMPL>
-Plugin_T <T, IMPL>::~Plugin_T (void)
+template <typename T, const CLSID * pclsid>
+Plugin_T <T, pclsid>::~Plugin_T (void)
 {
 
 }

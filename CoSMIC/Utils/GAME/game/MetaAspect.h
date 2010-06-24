@@ -63,7 +63,7 @@ public:
 
 private:
   /// Cached pointer to the implementation.
-  mutable CComPtr <IMgaMetaAspect> aspect_;
+  mutable ATL::CComPtr <IMgaMetaAspect> aspect_;
 };
 
 }

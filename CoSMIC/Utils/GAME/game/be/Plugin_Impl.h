@@ -17,27 +17,27 @@
 
 namespace GAME
 {
+/**
+ * @class Plugin_Impl_Base
+ *
+ * Base class for all plug-in implementations. The concrete plug-in
+ * should derive from this class. The subclass should then be used
+ * as the IMPL parameter in Plugin_T class.
+ */
+class GAME_BE_Export Plugin_Impl :
+  public GAME::Interpreter_Impl_Base
+{
+public:
   /**
-   * @class Plugin_Impl_Base
-   *
-   * Base class for all plug-in implementations. The concrete plug-in
-   * should derive from this class. The subclass should then be used
-   * as the IMPL parameter in Plugin_T class.
+   * Initializing constructor.
    */
-  class GAME_BE_Export Plugin_Impl :
-    public GAME::Interpreter_Impl_Base
-  {
-  public:
-    /**
-     * Initializing constructor.
-     */
-    Plugin_Impl (const std::string & name,
-                      const std::string & progid,
-                      bool managed = true);
+  Plugin_Impl (const std::string & name,
+               const std::string & progid,
+               bool managed = true);
 
-    /// Desturctor.
-    virtual ~Plugin_Impl (void);
-  };
+  /// Desturctor.
+  virtual ~Plugin_Impl (void);
+};
 }
 
 

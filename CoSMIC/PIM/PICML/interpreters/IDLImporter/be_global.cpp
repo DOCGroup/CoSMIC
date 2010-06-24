@@ -265,7 +265,7 @@ void BE_GlobalData::usage (void) const
   ACE_DEBUG ((
       LM_DEBUG,
       ACE_TEXT (" -l <filepath>\t\tAttach specified file as a ")
-      ACE_TEXT ("library")
+      ACE_TEXT ("library\n")
     ));
   ACE_DEBUG ((
       LM_DEBUG,

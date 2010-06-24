@@ -1,8 +1,6 @@
 // $Id$
 
-project : game_common {
+project : mfc, game_common {
   after += GAME
   libs  += GAME
-  
-  includes += $(COSMIC_ROOT)/Utils/GAME/game
 }

@@ -17,21 +17,26 @@
 
 namespace GAME
 {
-  /**
-   * @class Plugin_T
-   */
-  template <typename T, typename IMPL>
-  class ATL_NO_VTABLE Plugin_T :
-    public GAME::Interpreter_T <T, IMPL>
-  {
-  public:
-    /// Default constructor
-    Plugin_T (void);
+/**
+ * @class Plugin_T
+ */
+template <typename T, const CLSID * pclsid = &CLSID_NULL>
+class ATL_NO_VTABLE Plugin_T :
+  public Interpreter_T < T , pclsid>
+{
+public:
+  /// Default constructor
+  Plugin_T (void);
 
-    /// Destructor
-    virtual ~Plugin_T (void);
-  };
+  /// Destructor
+  virtual ~Plugin_T (void);
+};
+
 }
+
+#define DECLARE_GAME_PLUGIN(type, impl) \
+  typedef GAME::Plugin_T <impl, &CLSID_##type> impl##_AutoImpl; \
+  OBJECT_ENTRY_AUTO (__uuidof (type), impl##_AutoImpl)
 
 #if defined (__GAME_INLINE__)
 #include "Plugin_T.inl"

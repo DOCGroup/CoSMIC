@@ -101,8 +101,9 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   }
 
   GAME::XME::set_position (impl,
-                          constant::aspect::Packaging,
-                          Utils::Point (250, 250));
+                           constant::aspect::Packaging,
+                           250, 
+                           250);
 
   // Create the reference to the target component.
   GAME::XME::Reference component_ref;
@@ -117,8 +118,9 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   component_ref.refers_to (component);
 
   GAME::XME::set_position (component_ref,
-                          constant::aspect::Packaging,
-                          Utils::Point (187, 75));
+                           constant::aspect::Packaging,
+                           187, 
+                           75);
 
   // Associate the monolithic implementation with the reference.
   using GAME::XME::Connection;
@@ -178,8 +180,9 @@ generate_impl (GAME::XME::Model & container,
   impl_artifact.attribute (constant::attr::EntryPoint, true).value (entrypoint);
 
   GAME::XME::set_position (impl_artifact,
-                          constant::aspect::Packaging,
-                          Utils::Point (506,151));
+                           constant::aspect::Packaging,
+                           506,
+                           151);
 
   using GAME::XME::Connection;
   Connection connection;
@@ -230,8 +233,9 @@ generate_servant (GAME::XME::Model & container,
 
   svnt_artifact.attribute (constant::attr::EntryPoint, true).value (entrypoint);
   GAME::XME::set_position (svnt_artifact,
-                          constant::aspect::Packaging,
-                          Utils::Point (506,347));
+                           constant::aspect::Packaging,
+                           506,
+                           347);
 
   // Next, associate the artifact with the implementation.
   using GAME::XME::Connection;

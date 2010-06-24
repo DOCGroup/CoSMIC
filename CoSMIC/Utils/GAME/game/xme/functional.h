@@ -15,9 +15,12 @@
 
 #include <string>
 #include <vector>
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/Point.h"
 #include "XME_export.h"
+
+namespace Utils
+{
+class XStr;
+}
 
 namespace GAME
 {
@@ -29,12 +32,14 @@ class FCO;
 GAME_XME_Export
 bool get_position (FCO & fco,
                    const ::Utils::XStr & aspect,
-                   ::Utils::Point & pt);
+                   size_t & x,
+                   size_t & y);
 
 GAME_XME_Export
 void set_position (FCO & fco,
                    const ::Utils::XStr & name,
-                   const ::Utils::Point & pt);
+                   size_t x,
+                   size_t y);
 
 }
 }

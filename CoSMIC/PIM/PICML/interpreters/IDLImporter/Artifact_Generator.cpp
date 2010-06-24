@@ -86,8 +86,9 @@ bool Artifact_Generator::generate (const GAME::XME::Model & component)
   // Set the position of the artifact.
   this->svnt_artifact_.attribute (attr_location, true).value (svnt_name);
   GAME::XME::set_position (this->svnt_artifact_,
-                          aspect_Packaging,
-                          Utils::Point (150, 150));
+                           aspect_Packaging,
+                           150, 
+                           150);
 
   // Create the implementation artifact for the component.
   if (GAME::create_if_not (container, meta_ImplementationArtifact, this->impl_artifact_,
@@ -101,8 +102,9 @@ bool Artifact_Generator::generate (const GAME::XME::Model & component)
   // Set the position of the artifact.
   this->impl_artifact_.attribute (attr_location, true).value (impl_name);
   GAME::XME::set_position (this->impl_artifact_,
-                          aspect_Packaging,
-                          Utils::Point (450, 150));
+                           aspect_Packaging,
+                           450, 
+                           150);
 
   return true;
 }

@@ -3,6 +3,7 @@
 #include "functional.h"
 #include "FCO.h"
 #include "Registry.h"
+#include "Utils/xercesc/XercesString.h"
 #include <sstream>
 
 namespace GAME
@@ -20,7 +21,8 @@ namespace constant
 //
 bool get_position (FCO & fco,
                    const ::Utils::XStr & aspect,
-                   ::Utils::Point & pt)
+                   size_t & x,
+                   size_t & y)
 {
   Registry_Node node =
     fco.registry ().
@@ -33,11 +35,8 @@ bool get_position (FCO & fco,
   ::Utils::XStr tempstr (node.value (), false);
   std::istringstream istr (tempstr.to_string ());
 
-  int x_value, y_value;
   char comma;
-
-  istr >> x_value >> comma >> y_value;
-  pt.set (x_value, y_value);
+  istr >> x >> comma >> y;
 
   return true;
 }
@@ -46,10 +45,10 @@ bool get_position (FCO & fco,
 // set_position
 //
 void
-set_position (FCO & fco, const ::Utils::XStr & aspect, const ::Utils::Point & pt)
+set_position (FCO & fco, const ::Utils::XStr & aspect, size_t x, size_t y)
 {
   std::ostringstream ostr;
-  ostr << pt.x_value () << "," << pt.y_value ();
+  ostr << x << "," << y;
 
   Registry_Node node =
     fco.registry ().

@@ -40,18 +40,14 @@ public:
 #include "ace/OS_NS_strings.h"
 #include "ace/OS_NS_ctype.h"
 
+/**
+ * @class String_Case_Insensitive_Hash
+ *
+ * Functor for computing an insensitive-case hash value.
+ */
 struct String_Case_Insensitive_Hash
 {
-  unsigned long operator () (const ACE_CString &lhs) const
-  {
-    ACE_CString copy (lhs);
-    std::transform (copy.begin (),
-                    copy.end (),
-                    copy.begin (),
-                    &ACE_OS::ace_tolower);
-
-    return ACE::hash_pjw (copy.c_str ());
-  }
+  unsigned long operator () (const ACE_CString &lhs) const;
 };
 
 /**
@@ -61,10 +57,7 @@ struct String_Case_Insensitive_Hash
  */
 struct String_Case_Insensitive
 {
-  bool operator () (const ACE_CString & lhs, const ACE_CString & rhs) const
-  {
-    return 0 == ACE_OS::strcasecmp (lhs.c_str (), rhs.c_str ());
-  }
+  bool operator () (const ACE_CString & lhs, const ACE_CString & rhs) const;
 };
 #endif
 

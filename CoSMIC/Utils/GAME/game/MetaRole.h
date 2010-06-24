@@ -21,86 +21,84 @@ namespace GAME
 {
 namespace Meta
 {
-  // Forward decl.
-  class Model;
+// Forward decl.
+class Model;
 
-  // Forward decl.
-  class FCO;
+// Forward decl.
+class FCO;
 
-  //===========================================================================
+/**
+ * @class Role
+ *
+ * Wrapper class for the IMgaMetaRole interface.
+ */
+class GAME_Export Role : public Base
+{
+public:
+  /// Type definition of the COM interface.
+  typedef IMgaMetaRole interface_type;
+
+  /// Default constructor.
+  Role (void);
+
   /**
-   * @class Role
+   * Initializing constructor.
    *
-   * Wrapper class for the IMgaMetaRole interface.
+   * @param[in]     role        Pointer to a COM interface.
    */
-  //===========================================================================
+  Role (IMgaMetaRole * role);
 
-  class GAME_Export Role : public Base
-  {
-  public:
-    /// Type definition of the COM interface.
-    typedef IMgaMetaRole interface_type;
+  /**
+   * Copy constructor.
+   *
+   * @param[in]     role        The source object.
+   */
+  Role (const Role & role);
 
-    /// Default constructor.
-    Role (void);
+  /// Destructor.
+  virtual ~Role (void);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]     role        Pointer to a COM interface.
-     */
-    Role (IMgaMetaRole * role);
+  /**
+   * Assignment operator.
+   *
+   * @param[in]       role      The source role.
+   * @return          Reference to self.
+   */
+  const Role & operator = (const Role & role);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]     role        The source object.
-     */
-    Role (const Role & role);
+  /**
+   * Get the meta FCO for the role.
+   *
+   * @return          The meta FCO of the role.
+   */
+  FCO kind (void) const;
 
-    /// Destructor.
-    virtual ~Role (void);
+  /**
+   * Conversion operator.
+   *
+   * @return          Pointer to the COM interface.
+   */
+  operator IMgaMetaRole * (void) const;
 
-    /**
-     * Assignment operator.
-     *
-     * @param[in]       role      The source role.
-     * @return          Reference to self.
-     */
-    const Role & operator = (const Role & role);
+  /**
+   * Get a raw pointer to the underlying COM object.
+   *
+   * @return        Pointer to the raw COM object.
+   */
+  IMgaMetaRole * impl (void) const;
 
-    /**
-     * Get the meta FCO for the role.
-     *
-     * @return          The meta FCO of the role.
-     */
-    FCO kind (void) const;
+  /**
+   * Get the parent model of the role.
+   *
+   * @return        Parent model of the role.
+   */
+  Model parent (void) const;
 
-    /**
-     * Conversion operator.
-     *
-     * @return          Pointer to the COM interface.
-     */
-    operator IMgaMetaRole * (void) const;
+private:
+  /// Pointer to the COM object.
+  mutable ATL::CComPtr <IMgaMetaRole> metarole_;
+};
 
-    /**
-     * Get a raw pointer to the underlying COM object.
-     *
-     * @return        Pointer to the raw COM object.
-     */
-    IMgaMetaRole * impl (void) const;
-
-    /**
-     * Get the parent model of the role.
-     *
-     * @return        Parent model of the role.
-     */
-    Model parent (void) const;
-
-  private:
-    /// Pointer to the COM object.
-    mutable CComPtr <IMgaMetaRole> metarole_;
-  };
 }
 }
 
