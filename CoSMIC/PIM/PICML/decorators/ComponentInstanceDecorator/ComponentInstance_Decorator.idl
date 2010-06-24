@@ -1,0 +1,41 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file     ComponentInstance_Decorator.idl
+ *
+ *  $Id$
+ *
+ *  @author   James H. Hill
+ */
+//=============================================================================
+
+#ifndef _COMPONENT_INSTANCE_DECORATOR_IDL_
+#define _COMPONENT_INSTANCE_DECORATOR_IDL_
+
+#include "MgaDecorator.idl"
+#include "gme.idl"
+
+[
+	uuid (1A636FF4-0BA6-4511-80DF-FFE665240CB9),
+	version (1.0),
+]
+library ComponentInstance_DecoratorLib
+{
+	importlib ("stdole32.tlb");
+	importlib ("stdole2.tlb");
+
+	[
+		uuid (5148ADA5-B30A-4392-9855-D6524479BB79),
+    version (1.0)
+	]
+	coclass ComponentInstance_Decorator
+	{
+		[default] interface IMgaDecorator;
+		interface IMgaVersionInfo;
+	};
+
+};
+
+
+#endif

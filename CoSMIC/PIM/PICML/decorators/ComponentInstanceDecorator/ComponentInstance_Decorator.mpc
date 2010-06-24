@@ -1,0 +1,30 @@
+// $Id$
+
+project (ComponentInstance_Decorator): game_graphics, game_decorator {
+  sharedname = ComponentInstance_Decorator
+  
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+  
+  dynamicflags += COMPONENTINSTANCE_DECORATOR_BUILD_DLL
+  
+  Source_Files {
+    ComponentInstance_Decorator_Impl.cpp
+    ComponentInstance_Decorator_Module.cpp
+    ComponentInstance_Decorator.idl
+  }
+
+  Header_Files {
+  
+  }
+
+  Resource_Files {
+
+  }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = MGA.Decorator.ComponentInstanceDecorator
+    gme_uuid        = 5148ADA5-B30A-4392-9855-D6524479BB79
+  }
+}

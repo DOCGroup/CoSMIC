@@ -1,15 +1,35 @@
+Thu Jun 24 23:43:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        
+          Updated to handle new Port_Decorator () constuctor.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.idl:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.reg:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Module.cpp:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_export.h:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decoratord.reg:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/stdafx.h:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/stdafx.cpp:
+        
+          First implementation of the component instance decorator.
+
 Thu Jun 24 23:41:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/be/Decorator_T.inl
-        
-          Bug fix where the decorator failed to reset its state 
+
+          Bug fix where the decorator failed to reset its state
           before it is destroyed.
-          
+
         * Utils/GAME/game/graphics/Port_Decorator.h:
         * Utils/GAME/game/graphics/Port_Decorator.inl:
         * Utils/GAME/game/graphics/Port_Decorator.cpp:
-        
-          Implemented get_location (), which returns the current 
+
+          Implemented get_location (), which returns the current
           location of the port.
 
 Thu Jun 24 20:05:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -1,8 +1,8 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "Component_Decorator.h"
-#include "Component_Decorator_Impl.h"
+#include "ComponentInstance_Decorator.h"
+#include "ComponentInstance_Decorator_Impl.h"
 
 #include "game/MetaFCO.h"
 #include "game/MetaModel.h"
@@ -25,14 +25,14 @@
 #define COMPONENT_DEFAULT_HEIGHT    70
 #define COMPONENT_LINE_WIDTH        3
 
-DECLARE_DECORATOR (Component_Decorator, Component_Decorator_Impl);
+DECLARE_DECORATOR (ComponentInstance_Decorator, ComponentInstance_Decorator_Impl);
 
 /**
  * @struct sort_top_to_bottom_t
  */
 struct sort_top_to_bottom_t
 {
-  typedef Component_Decorator_Impl::port_set_t port_set_t;
+  typedef ComponentInstance_Decorator_Impl::port_set_t port_set_t;
 
   bool operator () (const port_set_t::value_type & p1, 
                     const port_set_t::value_type & p2) const
@@ -48,7 +48,7 @@ struct sort_top_to_bottom_t
  */
 struct set_port_location_t
 {
-  typedef Component_Decorator_Impl::port_set_t::value_type value_type;
+  typedef ComponentInstance_Decorator_Impl::port_set_t::value_type value_type;
 
   set_port_location_t (GAME::utils::Point & next)
     : next_ (next) { }
@@ -68,17 +68,17 @@ private:
 //
 
 //
-// Component_Decorator_Impl
+// ComponentInstance_Decorator_Impl
 //
-Component_Decorator_Impl::Component_Decorator_Impl (void)
+ComponentInstance_Decorator_Impl::ComponentInstance_Decorator_Impl (void)
 {
 
 }
 
 //
-// ~Component_Decorator_Impl
+// ~ComponentInstance_Decorator_Impl
 //
-Component_Decorator_Impl::~Component_Decorator_Impl (void)
+ComponentInstance_Decorator_Impl::~ComponentInstance_Decorator_Impl (void)
 {
 
 }
@@ -95,7 +95,7 @@ struct delete_t
 //
 // destroy
 //
-void Component_Decorator_Impl::destroy (void)
+void ComponentInstance_Decorator_Impl::destroy (void)
 { 
   this->port_bitmaps_.clear ();
 
@@ -111,7 +111,7 @@ void Component_Decorator_Impl::destroy (void)
 //
 // initialize
 //
-int Component_Decorator_Impl::
+int ComponentInstance_Decorator_Impl::
 initialize_ex (const GAME::Project & proj, 
                const GAME::Meta::Part & part, 
                const GAME::FCO & fco,
@@ -124,7 +124,7 @@ initialize_ex (const GAME::Project & proj,
 //
 // initialize
 //
-int Component_Decorator_Impl::
+int ComponentInstance_Decorator_Impl::
 initialize (const GAME::Project & project, 
             const GAME::Meta::Part & part,
             const GAME::FCO & fco)
@@ -150,15 +150,27 @@ initialize (const GAME::Project & project,
   }
   else
   {
-    // Determine if we need to show the label for the element.
-    std::string show_name = fco.registry_value ("isNameEnabled");
+    // We also show the name of the instance regardless of what the
+    // end-user wants use to show. :-)
+    this->label_ = fco.name ();
+    
+    // We also need to determine the implementation to show. This is
+    // done by getting the name of the implementation.
+    GAME::Model model = GAME::Model::_narrow (fco);
 
-    if (show_name.empty () || show_name == "true")
-      this->label_ = fco.name ();
+    std::vector <GAME::Reference> typeset;
+    if (model.children ("ComponentInstanceType", typeset))
+    {
+      const GAME::Reference & impl_type = typeset.front ();
+      GAME::FCO refers_to = impl_type.refers_to ();
+
+      if (!refers_to.is_nil ())
+        this->impl_label_ = refers_to.name ();
+    }
   }
 
   if (!fco.is_nil ())
-    this->initialize_ports ("InterfaceDefinition", fco, resolver);
+    this->initialize_ports ("ComponentInterface", fco, resolver);
 
   // Finally, sort the ports from top to bottom.
   std::sort (this->l_ports_.begin (),
@@ -175,7 +187,7 @@ initialize (const GAME::Project & project,
 //
 // initialize_ports
 //
-int Component_Decorator_Impl::
+int ComponentInstance_Decorator_Impl::
 initialize_ports (const std::string & aspect_name, 
                   const GAME::FCO & fco,
                   GAME::graphics::Image_Resolver * resolver)
@@ -256,7 +268,7 @@ initialize_ports (const std::string & aspect_name,
 //
 // location
 //
-void Component_Decorator_Impl::
+void ComponentInstance_Decorator_Impl::
 set_location (const GAME::utils::Rect & loc)
 {
   // Now that we know our dimensions, let's draw the bitmap
@@ -287,7 +299,7 @@ set_location (const GAME::utils::Rect & loc)
 //
 // initialize_graphics_path
 //
-int Component_Decorator_Impl::initialize_graphics_path (void)
+int ComponentInstance_Decorator_Impl::initialize_graphics_path (void)
 {
   static const int cs = 15;
   int xr = this->location_.x_ + (this->location_.width () - cs);
@@ -315,7 +327,7 @@ int Component_Decorator_Impl::initialize_graphics_path (void)
 //
 // get_preferred_size
 //
-int Component_Decorator_Impl::
+int ComponentInstance_Decorator_Impl::
 get_preferred_size (long & sx, long & sy)
 {
   // The width of the component is the same.
@@ -334,7 +346,7 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int Component_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw (Gdiplus::Graphics & g)
 {
   return (this->draw_component (g) |
           this->draw_label (g) |
@@ -344,7 +356,7 @@ int Component_Decorator_Impl::draw (Gdiplus::Graphics & g)
 //
 // draw_component
 //
-int Component_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
 {
   // Start drawing the component image.
   static const Gdiplus::SolidBrush brush (Gdiplus::Color (210, 210, 210));
@@ -359,13 +371,14 @@ int Component_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
 //
 // draw_label
 //
-int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
 {
   float height = (float)this->location_.height ();
   float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
   float py = static_cast <float> (this->location_.y_) + (height + 15.0f);
 
   static const Gdiplus::Font font (L"Arial", 10);
+  static const Gdiplus::Font inst_font (L"Arial", 8);
   static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
 
   Gdiplus::StringFormat format;
@@ -382,13 +395,27 @@ int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
                 &format,
                 &brush);
 
+  if (this->impl_label_.empty ())
+    this->impl_label_ = "<undefined>";
+
+  std::string inst_label ("[");
+  inst_label += this->impl_label_ + "]";
+
+  CComBSTR inst_bstr (inst_label.length (), inst_label.c_str ());
+  g.DrawString (inst_bstr, 
+                inst_label.length (),
+                &inst_font,
+                Gdiplus::PointF (px, py + 15),
+                &format,
+                &brush);
+
   return 0;
 }
 
 //
 // draw
 //
-int Component_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
 {
   if (this->l_ports_.empty () && this->r_ports_.empty ())
     return 0;
@@ -409,4 +436,95 @@ int Component_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
                               boost::ref (g)));
 
   return 0;
+}
+
+//
+// get_ports
+//
+int ComponentInstance_Decorator_Impl::
+get_ports (std::vector < ::GAME::FCO > & v)
+{
+  std::for_each (this->l_ports_.begin (),
+                 this->l_ports_.end (),
+                 boost::bind (&std::vector < ::GAME::FCO >::push_back,
+                              boost::ref (v),
+                              boost::bind (&GAME::graphics::Port_Decorator::fco, _1)));
+
+  std::for_each (this->r_ports_.begin (),
+                 this->r_ports_.end (),
+                 boost::bind (&std::vector < ::GAME::FCO >::push_back,
+                              boost::ref (v),
+                              boost::bind (&GAME::graphics::Port_Decorator::fco, _1)));
+
+  return 0;
+}
+
+/**
+ * @struct is_matching_port
+ *
+ * Functor for testing if a port decorator matches a given 
+ * FCO element.
+ */
+struct is_matching_port
+{
+  is_matching_port (const GAME::FCO & fco)
+    : fco_ (fco)
+  {
+
+  }
+
+  bool operator () (GAME::graphics::Port_Decorator * d) const
+  {
+    return d->fco () == this->fco_;
+  }
+
+private:
+  const GAME::FCO & fco_;
+};
+
+//
+// get_port_location
+//
+int ComponentInstance_Decorator_Impl::
+get_port_location (const GAME::FCO & fco, 
+                   long & sx, 
+                   long & sy, 
+                   long & ex, 
+                   long & ey)
+{
+  // Search the left ports for the FCO.
+  std::vector <GAME::graphics::Port_Decorator *>::const_iterator result;
+
+  result = std::find_if (this->l_ports_.begin (),
+                         this->l_ports_.end (),
+                         is_matching_port (fco));
+
+  if (result != this->l_ports_.end ())
+  {
+    (*result)->get_location (sx, sy, ex, ey);
+    sx -= this->location_.x_;
+    sy -= this->location_.y_;
+    ex -= this->location_.x_;
+    ey -= this->location_.y_;
+
+    return 0;
+  }
+
+  // Search the right ports for the FCO.
+  result = std::find_if (this->r_ports_.begin (),
+                         this->r_ports_.end (),
+                         is_matching_port (fco));
+
+  if (result != this->r_ports_.end ())
+  {
+    (*result)->get_location (sx, sy, ex, ey);
+
+    sx -= this->location_.x_;
+    sy -= this->location_.y_;
+    ex -= this->location_.x_;
+    ey -= this->location_.y_;
+    return 0;
+  }
+
+  return -1;
 }
