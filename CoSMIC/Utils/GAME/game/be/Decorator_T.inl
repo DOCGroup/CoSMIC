@@ -96,6 +96,9 @@ STDMETHODIMP Decorator_T <T, pclsid>::Destroy (void)
     if (!this->is_init_)
       return E_DECORATOR_UNINITIALIZED;
 
+    this->is_init_ = false;
+    this->is_loc_set_ = false;
+
     this->impl_.destroy ();
     return S_OK;
   }

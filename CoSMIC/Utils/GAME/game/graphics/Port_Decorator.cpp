@@ -75,5 +75,18 @@ bool Port_Decorator::draw (Gdiplus::Graphics & g)
   return true;
 }
 
+//
+// get_location
+//
+void Port_Decorator::
+get_location (long & sx, long & sy, long & ex, long & ey)
+{
+  sx = this->location_.x_value ();
+  sy = this->location_.y_value ();
+
+  ex = sx + GME_PORT_WIDTH;
+  ey = sy + GME_PORT_HEIGHT;
+}
+
 }
 }

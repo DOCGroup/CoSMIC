@@ -14,6 +14,7 @@
 #define _GAME_GRAPHIC_PORT_DECORATOR_H_
 
 #include <string>
+#include "game/FCO.h"
 #include "game/utils/Point.h"
 #include "Graphics_export.h"
 
@@ -43,12 +44,13 @@ public:
   };
 
   /// Default constructor.
-  Port_Decorator (void);
+  Port_Decorator (const GAME::FCO & port);
 
   /**
    * Initializing constructor.
    */
-  Port_Decorator (Gdiplus::Image *, 
+  Port_Decorator (const GAME::FCO & port,
+                  Gdiplus::Image *, 
                   const std::string & label,
                   const utils::Point & location,
                   ALIGNMENT alignment = ALIGNMENT_LEFT);
@@ -64,7 +66,17 @@ public:
   ALIGNMENT alignment (void) const;
   void alignment (ALIGNMENT align);
 
+  const GAME::FCO & fco (void) const;
+
+  void get_location (long & sx, 
+                     long & sy, 
+                     long & ex, 
+                     long & ey);
+
 private:
+  /// FCO associated with the port.
+  GAME::FCO port_;
+
   /// The image to draw for the port.
   Gdiplus::Image * image_;
 

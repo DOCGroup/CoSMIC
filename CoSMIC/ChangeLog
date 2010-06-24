@@ -1,17 +1,31 @@
+Thu Jun 24 23:41:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Decorator_T.inl
+        
+          Bug fix where the decorator failed to reset its state 
+          before it is destroyed.
+          
+        * Utils/GAME/game/graphics/Port_Decorator.h:
+        * Utils/GAME/game/graphics/Port_Decorator.inl:
+        * Utils/GAME/game/graphics/Port_Decorator.cpp:
+        
+          Implemented get_location (), which returns the current 
+          location of the port.
+
 Thu Jun 24 20:05:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game.mpb:
-          
+
           Added mfc as a base project.
-          
+
         * MPC/config/game_common.mpb:
-        
+
           Updated the includes statement.
 
         * PIM/PICML/addons/PICMLManager/StdAfx.h:
-        
+
           Removed the extern definition.
-          
+
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
         * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
         * PIM/PICML/interpreters/IDLImporter/File_Creator.h:
@@ -21,11 +35,11 @@ Thu Jun 24 20:05:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-        
+
           Fixed compile warnings on Windows.
-          
+
           Fixed compile warnings on non-Windows.
-          
+
           Removed dependency on ::Utils::Point class.
 
         * Utils/GAME/game/MetaAspect.h:
@@ -33,13 +47,13 @@ Thu Jun 24 20:05:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/be/Plugin_Impl.h:
         * Utils/GAME/game/be/Plugin_T.h:
         * Utils/GAME/game/be/Plugin_T.inl:
-        
+
           Fixed build errors with using GAME plugin architecture.
-        
-        * Utils/GAME/game/utils/Point.h:        
+
+        * Utils/GAME/game/utils/Point.h:
         * Utils/GAME/game/xme/functional.h:
         * Utils/GAME/game/xme/functional.cpp:
-          
+
           Removed dependency on ::Utils::Point class.
 
 Thu Jun 24 13:42:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
