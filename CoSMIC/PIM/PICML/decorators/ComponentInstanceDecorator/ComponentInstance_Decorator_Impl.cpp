@@ -167,6 +167,9 @@ initialize (const GAME::Project & project,
       if (!refers_to.is_nil ())
         this->impl_label_ = refers_to.name ();
     }
+
+    if (this->impl_label_.empty ())
+      this->impl_label_ = "<undefined>";
   }
 
   if (!fco.is_nil ())
@@ -396,7 +399,7 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
                 &brush);
 
   if (this->impl_label_.empty ())
-    this->impl_label_ = "<undefined>";
+    return 0;
 
   std::string inst_label ("[");
   inst_label += this->impl_label_ + "]";

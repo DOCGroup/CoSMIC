@@ -1,8 +1,53 @@
+Fri Jun 25 04:21:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+        
+          Bug fix where the implementation label was displayed
+          in the parts browser.
+
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+
+          Removed some debugging code.
+          
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        * PIM/PICML/paradigms/icons/ExtendedPort.gif:
+        * PIM/PICML/paradigms/icons/MirrorPort.gif:
+        * PIM/PICML/paradigms/icons/TemplatePackageInstance.bmp:
+        * PIM/PICML/paradigms/icons/attribute.gif:
+        * PIM/PICML/paradigms/icons/ineventport.gif:
+        * PIM/PICML/paradigms/icons/key.bmp:
+        * PIM/PICML/paradigms/icons/native.bmp:
+        * PIM/PICML/paradigms/icons/outeventport.gif:
+        * PIM/PICML/paradigms/icons/providedrequestport.gif:
+        * PIM/PICML/paradigms/icons/readonlyattribute.gif:
+        * PIM/PICML/paradigms/icons/requiredrequestport.gif:
+        
+          Converted several of the icons for elements that are ports to
+          GIF so they can have a transparent background.
+
+        * PIM/PICML/paradigms/icons/attribute.bmp:
+        * PIM/PICML/paradigms/icons/inevent_lf.bmp:
+        * PIM/PICML/paradigms/icons/inevent_rt.bmp:
+        * PIM/PICML/paradigms/icons/ineventport.bmp:
+        * PIM/PICML/paradigms/icons/outevent_lf.bmp:
+        * PIM/PICML/paradigms/icons/outevent_rt.bmp:
+        * PIM/PICML/paradigms/icons/outeventport.bmp:
+        * PIM/PICML/paradigms/icons/providedrequestport.bmp:
+        * PIM/PICML/paradigms/icons/readonlyattribute.bmp:
+        * PIM/PICML/paradigms/icons/receptacle_lf.bmp:
+        * PIM/PICML/paradigms/icons/receptacle_rt.bmp:
+        * PIM/PICML/paradigms/icons/requiredrequestport.bmp:
+
+          Removed these files.
+
 Fri Jun 25 00:47:18 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/paradigms/icons/long.bmp:
-		
-		  Changes image size from 32x32 to 65x65
+
+          hanges image size from 32x32 to 65x65
 
 Fri Jun 25 00:26:25 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
@@ -13,8 +58,8 @@ Fri Jun 25 00:26:25 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML_DSML.mpc:
 
-                  Added icons to predefined datatypes that did not have an
-                  icon and regenerated the metamodel.
+          Added icons to predefined datatypes that did not have an
+          icon and regenerated the metamodel.
 
         * PIM/PICML/paradigms/icons/LongDoubleNumber.bmp:
         * PIM/PICML/paradigms/icons/LongLongInteger.bmp:
@@ -25,8 +70,8 @@ Fri Jun 25 00:26:25 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * PIM/PICML/paradigms/icons/WideString.bmp:
         * PIM/PICML/paradigms/icons/char.bmp:
 
-                  These files were added as icons to the predefined datatypes,
-                  of the same name, that did not have an icon.
+          These files were added as icons to the predefined datatypes,
+          of the same name, that did not have an icon.
 
 
 Thu Jun 24 23:43:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

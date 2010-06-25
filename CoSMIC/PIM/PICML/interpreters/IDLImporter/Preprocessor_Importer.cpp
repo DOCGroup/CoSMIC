@@ -614,9 +614,9 @@ Preprocessor_Importer::~Preprocessor_Importer (void)
 bool Preprocessor_Importer::
 parse (const char * filename, GAME::XME::Model & model)
 {
-  ACE_DEBUG ((LM_DEBUG,
-              ACE_TEXT ("%T (%t) - %M - importing %s preprocessor directives\n"),
-              filename));
+  //ACE_DEBUG ((LM_DEBUG,
+  //            ACE_TEXT ("%T (%t) - %M - importing %s preprocessor directives\n"),
+  //            filename));
 
   // Open the specified file for reading.
   std::ifstream infile;
