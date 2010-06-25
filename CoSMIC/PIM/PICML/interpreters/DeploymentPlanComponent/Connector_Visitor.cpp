@@ -163,6 +163,133 @@ Visit_MirrorPortInstance (const PICML::MirrorPortInstance & port)
 }
 
 //
+// Visit_RequiredRequestPortInstance
+//
+void Connector_Visitor::
+Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & inst)
+{
+  // The prefix is not included since the name of the port is
+  // only thing that matters with this type of connection.
+  this->receptacle_ = inst.ref ();
+  this->prefix1_.clear ();
+
+  std::set <PICML::ConnectorToReceptacle> conns = inst.dstConnectorToReceptacle ();
+  std::for_each (conns.begin (),
+                 conns.end (),
+                 boost::bind (&PICML::ConnectorToReceptacle::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_ProvidedRequestPortInstance
+//
+void Connector_Visitor::
+Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & inst)
+{
+  // The prefix is not included since the name of the port is
+  // only thing that matters with this type of connection.
+  this->facet_ = inst.ref ();
+  this->prefix1_.clear ();
+
+  std::set <PICML::ConnectorToFacet> conns = inst.srcConnectorToFacet ();  
+  std::for_each (conns.begin (),
+                 conns.end (),
+                 boost::bind (&PICML::ConnectorToFacet::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_ConnectorToReceptacle
+//
+void Connector_Visitor::
+Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
+{
+  const std::string name (conn.name ());
+  const std::string inner_name (conn.InnerName ());
+
+  if (inner_name.empty ())
+  {
+    // We are connecting to a facet on the connector.
+    this->prefix2_.clear ();
+    this->portname2_ = name;
+  }
+  else
+  {
+    // We are connecting to a facet in a port type.
+    this->prefix2_ = conn.name ();
+    this->portname2_ = conn.InnerName ();
+  }
+
+  // Get the connector instance and deploy it. This will also prepare
+  // the necessary private variables for creating the connection.
+  PICML::ConnectorInstance inst = conn.dstConnectorToReceptacle_end ();
+  this->deploy_connector_fragment (inst);
+
+  // We have enough information to generate the connection information 
+  // for the the receptacle to facet connection.
+  PICML::Object obj = PICML::Object::Cast (this->receptacle_.ref ());
+  this->start_new_connection (obj);
+
+  std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
+  this->Visit_RequiredRequestPort_i (uuid, "", this->receptacle_.name (), false);
+  
+  this->connection_name_ += "::" + this->connector_name_;
+
+  this->Visit_ProvidedRequestPort_i (this->connector_uuid_, 
+                                     this->prefix2_, 
+                                     this->portname2_, 
+                                     false);
+
+  this->end_connection ();
+}
+
+//
+// Visit_ConnectorToFacet
+//
+void Connector_Visitor::
+Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
+{
+  const std::string name (conn.name ());
+  const std::string inner_name (conn.InnerName ());
+
+  if (inner_name.empty ())
+  {
+    // We are connecting to a facet on the connector.
+    this->prefix2_.clear ();
+    this->portname2_ = name;
+  }
+  else
+  {
+    // We are connecting to a facet in a port type.
+    this->prefix2_ = conn.name ();
+    this->portname2_ = conn.InnerName ();
+  }
+
+  // Get the connector instance and deploy it. This will also prepare
+  // the necessary private variables for creating the connection.
+  PICML::ConnectorInstance inst = conn.srcConnectorToFacet_end ();
+  this->deploy_connector_fragment (inst);
+
+  // We have enough information to generate the connection information 
+  // for the the receptacle to facet connection.
+  PICML::Object obj = PICML::Object::Cast (this->facet_.ref ());
+  this->start_new_connection (obj);
+
+  std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
+  this->Visit_ProvidedRequestPort_i (uuid, "", this->facet_.name (), false);
+  
+  this->connection_name_ += "::" + this->connector_name_;
+
+  this->Visit_RequiredRequestPort_i (this->connector_uuid_, 
+                                     this->prefix2_, 
+                                     this->portname2_, 
+                                     false);
+  this->end_connection ();
+}
+
+//
 // Visit_Publish
 //
 void Connector_Visitor::Visit_Publish (const PICML::Publish & publish)
@@ -172,36 +299,7 @@ void Connector_Visitor::Visit_Publish (const PICML::Publish & publish)
 
   // Make sure to include this instance in deployment plan.
   PICML::ConnectorInstance inst = publish.dstPublish_end ();
-  this->conn_path_ += inst.getPath (".", false, true, "name", true);
-
-  // First, let's check if this connector fragment already exists
-  // in the current collocation group.
-  std::set <fragment_t> & fragments = this->fragments_[this->group_];
-  std::set <fragment_t>::iterator iter = fragments.find (fragment_t (inst, ""));
-
-  if (iter == fragments.end ())
-  {
-    // Generate a new UUID for this connector fragment.
-    std::string target_uuid = Utils::CreateUuid ();
-    std::string old_uuid = inst.UUID ();
-
-    inst.UUID () = target_uuid;
-    this->conn_uuid_ = "_" + target_uuid;
-
-    // Save the fragment for later usage.
-    fragments.insert (fragment_t (inst, target_uuid));
-
-    // Since this is a new fragment, we need to make sure that it
-    // is included in the deployment plan.
-    this->dpv_.deploy_connector_instance (inst, this->group_);
-
-    // Restore the original UUID.
-    inst.UUID () = old_uuid;
-  }
-  else
-  {
-    this->conn_uuid_ = "_" + iter->uuid_;
-  }
+  this->deploy_connector_fragment (inst);
 }
 
 //
@@ -214,19 +312,7 @@ void Connector_Visitor::Visit_Consume (const PICML::Consume & consume)
 
   // Make sure to include this instance in deployment plan.
   PICML::ConnectorInstance inst = consume.srcConsume_end ();
-  this->conn_path_ += inst.getPath (".", false, true, "name", true);
-
-  // Generate a new UUID for this connector fragment.
-  std::string new_uuid = Utils::CreateUuid ();
-  std::string old_uuid = inst.UUID ();
-
-  inst.UUID () = new_uuid;
-  this->conn_uuid_ = "_" + new_uuid;
-
-  this->dpv_.deploy_connector_instance (inst, this->group_); ;
-
-  // Restore the original UUID.
-  inst.UUID () = old_uuid;
+  this->deploy_connector_fragment (inst);
 }
 
 //
@@ -250,16 +336,14 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
   std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
   this->Visit_RequiredRequestPort_i (uuid,
                                      this->prefix1_, 
-                                     p, 
-                                     this->portname1_,
+                                     p.name (), 
                                      this->invert_);
 
-  this->conn_name_ += "::" + this->conn_path_;
+  this->connection_name_ += "::" + this->connector_name_;
 
-  this->Visit_RequiredRequestPort_i (this->conn_uuid_,
+  this->Visit_RequiredRequestPort_i (this->connector_uuid_,
                                      this->prefix2_, 
-                                     p, 
-                                     this->portname2_,
+                                     p.name (), 
                                      !this->invert_);
 
   this->end_connection ();
@@ -277,16 +361,14 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
   std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
   this->Visit_ProvidedRequestPort_i (uuid,
                                      this->prefix1_, 
-                                     p,
-                                     this->portname1_,
+                                     p.name (),
                                      this->invert_);
 
-  this->conn_name_ += "::" + this->conn_path_;
+  this->connection_name_ += "::" + this->connector_name_;
 
-  this->Visit_ProvidedRequestPort_i (this->conn_uuid_,
+  this->Visit_ProvidedRequestPort_i (this->connector_uuid_,
                                      this->prefix2_,
-                                     p, 
-                                     this->portname2_,
+                                     p.name (), 
                                      !this->invert_);
 
   this->end_connection ();
@@ -298,11 +380,16 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 void Connector_Visitor::
 Visit_RequiredRequestPort_i (const std::string & inst,
                              const std::string & prefix, 
-                             const PICML::RequiredRequestPort & p,
-                             std::string & portname,
+                             const std::string & port,
                              bool invert)
 {
-  portname = prefix + "_" + std::string (p.name ());
+  std::string portname;
+
+  if (!prefix.empty ())
+    portname = prefix + "_";
+  
+  portname += port;
+
   const char * kind = invert ? "Facet" : "SimplexReceptacle";
   const char * provider = invert ? "true" : "false";
 
@@ -315,16 +402,73 @@ Visit_RequiredRequestPort_i (const std::string & inst,
 void Connector_Visitor::
 Visit_ProvidedRequestPort_i (const std::string & inst,
                              const std::string & prefix,
-                             const PICML::ProvidedRequestPort & p,
-                             std::string & portname,
+                             const std::string & port,
                              bool invert)
 {
-  portname = prefix + "_" + std::string (p.name ());
+  std::string portname;
+
+  if (!prefix.empty ())
+    portname = prefix + "_";
+
+  portname += port;
 
   const char * kind = invert ? "SimplexReceptacle" : "Facet";
   const char * provider = invert ? "false" : "true";
 
   this->append_endpoint (portname, kind, provider, inst);
+}
+
+//
+// deploy_connector_fragment
+//
+void Connector_Visitor::
+deploy_connector_fragment (const PICML::ConnectorInstance & inst)
+{
+
+  // First, let's check if this connector fragment already exists
+  // in the current collocation group.
+  std::set <fragment_t> & fragments = this->fragments_[this->group_];
+  std::set <fragment_t>::iterator iter = fragments.find (fragment_t (inst, "", ""));
+
+  if (iter == fragments.end ())
+  {
+    const std::string old_uuid = inst.UUID ();
+    const std::string old_name = inst.name ();
+
+    PICML::InstanceMapping mapping = this->group_.dstInstanceMapping ();
+    PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
+    PICML::Node node = noderef.ref ();
+
+    // Generate a new UUID and name for this connector fragment.
+    std::string fragment_uuid = ::Utils::CreateUuid ();
+    std::string fragment_name = inst.name ();
+    fragment_name += "@" + std::string (node.name ()) + "." + std::string (this->group_.name ());
+
+    this->connector_name_ = inst.getPath (".", false, true, "name", true);
+    this->connector_name_ += "@" + std::string (node.name ());
+    this->connector_name_ += "." + std::string (this->group_.name ());
+
+    inst.UUID () = fragment_uuid;
+    inst.name () = fragment_name;
+
+    this->connector_uuid_ = "_" + fragment_uuid;
+
+    // Save the fragment for later usage.
+    fragments.insert (fragment_t (inst, fragment_uuid, this->connector_name_));
+
+    // Since this is a new fragment, we need to make sure that it
+    // is included in the deployment plan.
+    this->dpv_.deploy_connector_fragment (inst, this->group_);
+
+    // Restore the original UUID.
+    inst.UUID () = old_uuid;
+    inst.name () = old_name;
+  }
+  else
+  {
+    this->connector_uuid_ = "_" + iter->uuid_;
+    this->connector_name_ = iter->name_;
+  }
 }
 
 //
@@ -337,7 +481,7 @@ start_new_connection (const PICML::Object & obj)
 
   this->curr_conn_ = this->doc_->createElement (L"connection");
   this->name_element_ = this->create_element (this->curr_conn_, "name");
-  this->conn_name_ = this->comp_inst_.getPath (".", false, true, "name", true);
+  this->connection_name_ = this->comp_inst_.getPath (".", false, true, "name", true);
 
   // Determine if the interface is local. If this is the case, then we
   // need to generate a special tag for such object.
@@ -359,7 +503,7 @@ append_endpoint (const std::string & portname,
   using xercesc::DOMElement;
 
   // Add the portname to the connection name.
-  this->conn_name_ += "." + portname;
+  this->connection_name_ += "." + portname;
 
   DOMElement * ep = this->create_element (this->curr_conn_, "internalEndpoint");
   this->create_simple_content (ep, "portName", portname);
@@ -375,7 +519,7 @@ append_endpoint (const std::string & portname,
 //
 void Connector_Visitor::end_connection (void)
 {
-  this->name_element_->setTextContent (::Utils::XStr (this->conn_name_));
+  this->name_element_->setTextContent (::Utils::XStr (this->connection_name_));
   this->conns_.push_back (this->curr_conn_);
 }
 

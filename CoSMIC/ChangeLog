@@ -1,14 +1,29 @@
+Fri Jun 25 15:06:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        
+          Updated the deployment plan interpreter to generate connection 
+          information for ConnectorToFacet and ConnectorToReceptacle model 
+          connections.
+          
+          Added the node and collocation group name to the connection name
+          for a connector and the connector instance. This will help with 
+          debugging connections between ports and connector fragments.
+
 Fri Jun 25 04:21:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
-        
+
           Bug fix where the implementation label was displayed
           in the parts browser.
 
         * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
 
           Removed some debugging code.
-          
+
         * PIM/PICML/paradigms/PICML.mta:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
@@ -24,7 +39,7 @@ Fri Jun 25 04:21:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/icons/providedrequestport.gif:
         * PIM/PICML/paradigms/icons/readonlyattribute.gif:
         * PIM/PICML/paradigms/icons/requiredrequestport.gif:
-        
+
           Converted several of the icons for elements that are ports to
           GIF so they can have a transparent background.
 

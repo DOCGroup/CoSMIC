@@ -41,9 +41,17 @@ public:
 
   virtual void Visit_MirrorPortInstance (const PICML::MirrorPortInstance &);
 
+  virtual void Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance &);
+
+  virtual void Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance &);
+
   virtual void Visit_Publish (const PICML::Publish & );
 
   virtual void Visit_Consume (const PICML::Consume & );
+
+  virtual void Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle &);
+
+  virtual void Visit_ConnectorToFacet (const PICML::ConnectorToFacet &);
 
   virtual void Visit_PortType (const PICML::PortType & pt);
 
@@ -56,9 +64,12 @@ public:
 private:
   struct fragment_t
   {
-    fragment_t (const PICML::ConnectorInstance & inst, const std::string & uuid)
+    fragment_t (const PICML::ConnectorInstance & inst,
+                const std::string & uuid,
+                const std::string & name)
       : fragment_ (inst),
-        uuid_ (uuid)
+        uuid_ (uuid),
+        name_ (name)
     {
 
     }
@@ -76,6 +87,8 @@ private:
     PICML::ConnectorInstance fragment_;
 
     std::string uuid_;
+
+    std::string name_;
   };
 
   bool find_plan_locality (const PICML::ComponentInstance & inst);
@@ -91,15 +104,15 @@ private:
 
   void Visit_RequiredRequestPort_i (const std::string & inst,
                                     const std::string & prefix, 
-                                    const PICML::RequiredRequestPort & p,
-                                    std::string & portname,
+                                    const std::string & port,
                                     bool invert);
 
   void Visit_ProvidedRequestPort_i (const std::string & inst,
                                     const std::string & prefix,
-                                    const PICML::ProvidedRequestPort & p,
-                                    std::string & portname,
+                                    const std::string & port,
                                     bool invert);
+
+  void deploy_connector_fragment (const PICML::ConnectorInstance & inst);
 
   void make_connection_local (xercesc::DOMElement * conn);
 
@@ -113,7 +126,7 @@ private:
 
   xercesc::DOMElement * curr_conn_;
   xercesc::DOMElement * name_element_;
-  std::string conn_name_;
+  std::string connection_name_;
 
   PICML::CollocationGroup group_;
 
@@ -121,14 +134,17 @@ private:
 
   PICML::ComponentInstance comp_inst_;
 
-  std::string conn_uuid_;
-  std::string conn_path_;
+  PICML::RequiredRequestPort receptacle_;
+  PICML::ProvidedRequestPort facet_;
+
+  std::string connector_uuid_;
+  std::string connector_name_;
 
   std::string prefix1_;
-  std::string portname1_;
-
   std::string prefix2_;
   std::string portname2_;
+
+  bool override_portname2_;
 
   bool invert_;
 };

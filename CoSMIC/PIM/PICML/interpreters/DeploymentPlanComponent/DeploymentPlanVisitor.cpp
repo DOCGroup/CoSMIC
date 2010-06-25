@@ -611,7 +611,7 @@ Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter& param)
 // Visit_ConnectorInstance
 //
 void DeploymentPlanVisitor::
-deploy_connector_instance (const PICML::ConnectorInstance & inst,
+deploy_connector_fragment (const PICML::ConnectorInstance & inst,
                            const PICML::CollocationGroup & group)
 {
   //if (this->conn_insts_.find (inst) != this->conn_insts_.end ())

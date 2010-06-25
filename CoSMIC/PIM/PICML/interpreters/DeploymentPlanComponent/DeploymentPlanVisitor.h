@@ -135,7 +135,7 @@ public:
 
   typedef std::map <PICML::CollocationGroup, xercesc::DOMElement *> locality_t;
 
-  virtual void deploy_connector_instance (const PICML::ConnectorInstance &,
+  virtual void deploy_connector_fragment (const PICML::ConnectorInstance &,
                                           const PICML::CollocationGroup &);
 
   const locality_t & localities (void) const;
