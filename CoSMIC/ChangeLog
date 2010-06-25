@@ -1,7 +1,32 @@
+Fri Jun 25 00:26:25 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+		
+		  Added icons to predefined datatypes that did not have an
+		  icon and regenerated the metamodel.
+
+        * PIM/PICML/paradigms/icons/LongDoubleNumber.bmp:
+        * PIM/PICML/paradigms/icons/LongLongInteger.bmp:
+        * PIM/PICML/paradigms/icons/UnsignedLongInteger.bmp:
+        * PIM/PICML/paradigms/icons/UnsignedLongLongInteger.bmp:
+        * PIM/PICML/paradigms/icons/UnsignedShortInteger.bmp:
+        * PIM/PICML/paradigms/icons/WideChar.bmp:
+        * PIM/PICML/paradigms/icons/WideString.bmp:
+        * PIM/PICML/paradigms/icons/char.bmp:
+		
+		  These files were added as icons to the predefined datatypes,
+		  of the same name, that did not have an icon.
+		  
+
 Thu Jun 24 23:43:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
-        
+
           Updated to handle new Port_Decorator () constuctor.
 
         * PIM/PICML/decorators/ComponentInstanceDecorator:
@@ -15,7 +40,7 @@ Thu Jun 24 23:43:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decoratord.reg:
         * PIM/PICML/decorators/ComponentInstanceDecorator/stdafx.h:
         * PIM/PICML/decorators/ComponentInstanceDecorator/stdafx.cpp:
-        
+
           First implementation of the component instance decorator.
 
 Thu Jun 24 23:41:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
