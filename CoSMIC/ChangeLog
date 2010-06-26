@@ -1,13 +1,19 @@
+Sat Jun 26 22:59:01 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/EUCON.xme:
+
+          Updated to latest version of PICML.
+
 Sat Jun 26 22:48:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/examples/ExternalPort.xme:
 
           Updated to latest version of PICML.
-          
+
         * PIM/PICML/migration/CoSMIC-0.7.9.xslt:
 
           Updated script to remove references from PredefinedTypes folder.
-          
+
 Sat Jun 26 22:40:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/examples/BasicSP.xme:
