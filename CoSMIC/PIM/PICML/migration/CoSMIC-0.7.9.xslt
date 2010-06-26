@@ -230,6 +230,11 @@
   </xsl:template>
 
   <!--
+    @template RemovePredefinedTypeReference
+    -->
+  <xsl:template name="RemovePredefinedTypeReference" match="folder[@kind='PredefinedTypes']/reference" />
+
+  <!--
     @template UpdateFacetDelegateConnection
     
     Update the invoke connection element to Invoke.
