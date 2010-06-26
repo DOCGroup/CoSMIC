@@ -1,16 +1,27 @@
+Sat Jun 26 22:04:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/Hello.xme:
+        
+          Updated to latest version of PICML.
+
+        * PIM/PICML/migration/CoSMIC-0.7.9.xslt:
+        
+          First version of the migration script for next release
+          of CoSMIC.
+
 Fri Jun 25 15:06:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
-        
-          Updated the deployment plan interpreter to generate connection 
-          information for ConnectorToFacet and ConnectorToReceptacle model 
+
+          Updated the deployment plan interpreter to generate connection
+          information for ConnectorToFacet and ConnectorToReceptacle model
           connections.
-          
+
           Added the node and collocation group name to the connection name
-          for a connector and the connector instance. This will help with 
+          for a connector and the connector instance. This will help with
           debugging connections between ports and connector fragments.
 
 Fri Jun 25 04:21:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
