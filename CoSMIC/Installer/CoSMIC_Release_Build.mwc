@@ -10,18 +10,5 @@ workspace (CoSMIC_Release_Build) {
                -value_template 'gme_register=HKCU'
     
     $(COSMIC_ROOT)/cosmic.mwc
-
-    exclude (wix) {
-      cmdline += -static \
-                 -include $COSMIC_ROOT/contrib/CCF/MPC/config \
-
-      $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
-    }
-  }
-
-  exclude (!wix) {
-    $(COSMIC_ROOT)/includes
-    $(COSMIC_ROOT)/PIM/PICML/paradigms
-    $(COSMIC_ROOT)/PIM/PICML/examples
   }
 }

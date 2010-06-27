@@ -1,0 +1,14 @@
+
+project (CoSMIC_docs) {
+  specific (wix) {
+    install_location  = docs
+    install_resources = 1
+    no_binary         = 1
+  }
+
+  Resource_Files {
+    conditional (wix) {
+      MIGRATION
+    }
+  }
+}

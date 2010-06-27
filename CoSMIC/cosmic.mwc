@@ -12,11 +12,16 @@ workspace {
     PSM/CQML/interpreters/Interpreters.mwc
     PSM/DQML
 
-    static {
+    exclude (wix) {
       cmdline += -static \
                  -include $COSMIC_ROOT/contrib/CCF/MPC/config
 
       $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
+    }
+
+    exclude (!wix) {
+      $(COSMIC_ROOT)/docs
+      $(COSMIC_ROOT)/includes
     }
   }
 }

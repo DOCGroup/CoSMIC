@@ -19,6 +19,11 @@ workspace (PICML) {
   PIM/PICML/utils
   PIM/PICML/interpreters/Interpreters.mwc
 
+  exclude (!wix) {
+    $(COSMIC_ROOT)/PIM/PICML/paradigms
+    $(COSMIC_ROOT)/PIM/PICML/examples
+  }
+  
   // -- build the contributions
   $(ACE_ROOT)/ace/ACE.mpc
   $(ACE_ROOT)/contrib/minizip/minizip.mpc
