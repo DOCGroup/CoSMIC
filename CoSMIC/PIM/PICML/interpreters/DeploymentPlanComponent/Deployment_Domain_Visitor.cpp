@@ -213,7 +213,7 @@ Visit_Property (const PICML::Property & prop)
 	  pname_full = "edu.vanderbilt.dre.DAnCE.CORBAName";
   }
 
-  if(pname == "StringIOR" || pname == "CORBAName")
+  if (!pname_full.empty ())
   {
 	  this->curr_property_ = this->doc_->createElement (XStr ("property"));
 	  this->create_simple_content (this->curr_property_, "name", pname_full);

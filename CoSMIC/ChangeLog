@@ -1,3 +1,14 @@
+Sun Jun 27 17:27:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * NEWS:
+        
+          Updated the NEWS file.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+        
+          Improved the if () condition that generates the deployment
+          plan properties.
+          
 Sun Jun 27 17:08:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/RealNumber_to_DoubleNumber.xsl:
