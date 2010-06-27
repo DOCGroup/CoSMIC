@@ -9,6 +9,7 @@ project (CoSMIC_docs) {
 
   Resource_Files {
     conditional (wix) {
+      LICENSE.rtf
       MIGRATION
     }
   }

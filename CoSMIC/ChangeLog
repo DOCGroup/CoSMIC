@@ -1,3 +1,16 @@
+Sun Jun 27 19:30:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * docs/CoSMIC_docs.mpc:
+        * docs/LICENSE.rtf:
+        
+          Changed the location of the license displayed by the installer. This
+          file is also installed into the ./docs directory.
+
+        * License.rtf:
+
+          Removed this file.
+
 Sun Jun 27 19:26:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/RELEASE:
@@ -8,11 +21,10 @@ Sun Jun 27 19:26:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 Sun Jun 27 18:37:44 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/examples/deployment:
-
         * PIM/PICML/examples/deployment/Quoter_DeploymentPlan.xme:
 
           Added an example to demonstrate to use of "DeploymentProperties"
-          Aspect.
+          sspect.
 
 Sun Jun 27 18:05:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 

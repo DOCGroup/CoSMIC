@@ -19,7 +19,7 @@
              SummaryCodepage='1252' />
 
     <!-- Wix variables -->
-    <WixVariable Id="WixUILicenseRtf" Value="$(env.COSMIC_ROOT)/License.rtf" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(env.COSMIC_ROOT)/docs/LICENSE.rtf" />
 
     <Condition Message='CoSMIC is not suported on Windows 95/98/ME.'>
       NOT Version9X
