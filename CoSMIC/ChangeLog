@@ -1,3 +1,34 @@
+Sun Jun 27 18:05:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/CommonError.h:
+        * PIM/PICML/decorators/CommonError.cpp:
+        * PIM/PICML/decorators/CommonSmart.h:
+        * PIM/PICML/decorators/Decorator.h:
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/Decorator.rgs:
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/DecoratorApp.def:
+        * PIM/PICML/decorators/DecoratorApp.cpp:
+        * PIM/PICML/decorators/DecoratorConfig.h:
+        * PIM/PICML/decorators/DecoratorLib.idl:
+        * PIM/PICML/decorators/DecoratorStd.h:
+        * PIM/PICML/decorators/DecoratorUtil.h:
+        * PIM/PICML/decorators/DecoratorUtil.cpp:
+        * PIM/PICML/decorators/Decorators.mwc:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/MaskedBitmap.h:
+        * PIM/PICML/decorators/MaskedBitmap.cpp:
+        * PIM/PICML/decorators/PICMLDecorator.mpc.old:
+        * PIM/PICML/decorators/PICMLDecorator.reg:
+        * PIM/PICML/decorators/PICMLDecorator.wxs:
+        * PIM/PICML/decorators/PICMLDecoratord.reg:
+        * PIM/PICML/decorators/StdAfx.h:
+        * PIM/PICML/decorators/StdAfx.cpp:
+        * PIM/PICML/decorators/resource.h:
+
+          Removed the old decorator.
+
 Sun Jun 27 18:01:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/examples/RACE.xme.disable:
@@ -6,19 +37,19 @@ Sun Jun 27 18:01:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/examples/RobotAssembly.xme.disable:
         * PIM/PICML/examples/SPACE.xme.disable:
         * PIM/PICML/examples/Sample_Strings.xme.disable:
-        
+
           Temporary disabled the models above since the migration script
           is not able to convert them correctly.
 
         * PIM/PICML/migration/CoSMIC-0.7.9.xslt:
-        
+
           Bug fix where migration script would handle component assembly
           elements that were instances incorrectly.
 
         * PIM/PICML/paradigms/PICML.mta:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML_DSML.mpc:
-        
+
           Bug fix where ComponentAssembly was still using the old decorator,
           which no longer exists.
 
