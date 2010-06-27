@@ -1,3 +1,10 @@
+Sun Jun 27 02:25:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/SLICE-Path.xme:
+        * PIM/PICML/examples/SLICE-cpu-bound.xme:
+
+          Updated to latest version of PICML.
+
 Sun Jun 27 01:34:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/examples/SLICE.xme:
@@ -5,8 +12,8 @@ Sun Jun 27 01:34:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
           Updated to latest version of PICML.
 
         * PIM/PICML/migration/CoSMIC-0.7.9.xslt:
-        
-          Bug fix where migration script did not convert the emits 
+
+          Bug fix where migration script did not convert the emits
           connection element.
 
 Sat Jun 26 22:59:01 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
