@@ -1,16 +1,22 @@
+Sun Jun 27 17:08:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/RealNumber_to_DoubleNumber.xsl:
+
+          Removed this file.
+
 Sun Jun 27 17:04:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/PICML_migration.mpc:
         * PIM/PICML/migration/README:
         * picml.mwc:
-        
-          Added migration scripts for migrating existing models to the 
+
+          Added migration scripts for migrating existing models to the
           latest version of CoSMIC to the installer.
 
         * docs/CoSMIC_docs.mpc:
-        
+
           Added the Id tag to the file.
-          
+
 Sun Jun 27 16:33:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Release_Build.mwc:
