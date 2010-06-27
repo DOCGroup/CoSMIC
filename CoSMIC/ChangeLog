@@ -1,16 +1,29 @@
+Sun Jun 27 17:04:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/PICML_migration.mpc:
+        * PIM/PICML/migration/README:
+        * picml.mwc:
+        
+          Added migration scripts for migrating existing models to the 
+          latest version of CoSMIC to the installer.
+
+        * docs/CoSMIC_docs.mpc:
+        
+          Added the Id tag to the file.
+          
 Sun Jun 27 16:33:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Release_Build.mwc:
         * cosmic.mwc:
         * picml.mwc:
-        
+
           Improved workspace definition so that wix specific projects are
-          not defined in the release workspace, but in cosmic.mwc and 
+          not defined in the release workspace, but in cosmic.mwc and
           picml.mwc. This should help keep the installer in a consistent
           state with the CoSMIC workspace.
 
         * docs/CoSMIC_docs.mpc:
-        
+
           Project for adding documents to the installer.
 
 Sun Jun 27 16:14:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

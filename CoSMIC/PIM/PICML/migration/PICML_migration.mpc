@@ -1,15 +1,16 @@
 // $Id$ 
 
-project (CoSMIC_docs) {
+project (PICML_migration) {
   specific (wix) {
-    install_location  = docs
+    install_location  = paradigms PICML migration
     install_resources = 1
     no_binary         = 1
   }
 
   Resource_Files {
     conditional (wix) {
-      MIGRATION
+      README
+      *.xslt
     }
   }
 }

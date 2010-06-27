@@ -1,0 +1,12 @@
+.: 6/27/2010 :.
+
+This directory contains scripts for migrating existing models 
+created using an earlier version of PICML to the lastest version
+of PICML. Each migration script is designed to port existing 
+models to that version of CoSMIC/PICML. Depending on what version
+of CoSMIC you initially used to create the model will determine
+how many individual transforms the model must undergo. For example,
+if the model was created with version 0.0.3 and the target version
+if 0.0.5, then the model must be transformed using 0.0.4.xslt and 
+0.0.5.xslt. This is the only way to ensure accurate migration of
+existing models.

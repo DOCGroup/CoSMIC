@@ -20,8 +20,9 @@ workspace (PICML) {
   PIM/PICML/interpreters/Interpreters.mwc
 
   exclude (!wix) {
-    $(COSMIC_ROOT)/PIM/PICML/paradigms
     $(COSMIC_ROOT)/PIM/PICML/examples
+    $(COSMIC_ROOT)/PIM/PICML/migration
+    $(COSMIC_ROOT)/PIM/PICML/paradigms
   }
   
   // -- build the contributions
