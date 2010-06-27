@@ -1,3 +1,25 @@
+Sun Jun 27 15:58:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * bin/migrate.bat:
+        * bin/migration:
+        * bin/migration/LICENSE.txt:
+        * bin/migration/NOTICE.txt:
+        * bin/migration/readme.html:
+        * bin/migration/serializer.jar:
+        * bin/migration/xalan.jar:
+        * bin/migration/xercesImpl.jar:
+        * bin/migration/xml-apis.jar:
+        
+          Simple script that uses Xalan-J to transform existing models. The 
+          script works such that the first parameter is the input file, the
+          second parameter is the output file, and the third parameter is the
+          transformation file.
+        
+        * bin/install.dat:
+        * bin/installer.pl:
+
+          Removed these files.
+
 Sun Jun 27 02:25:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/examples/SLICE-Path.xme:
