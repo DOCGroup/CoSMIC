@@ -376,7 +376,7 @@
     
     Update the ComponentRef in a deployment plan to a ComponentInstanceRef.
     -->
-  <xsl:template name="UpdateToComponentInstance" match="model[@kind='ComponentAssembly']/model[@kind='Component' and @isinstance='yes']">
+  <xsl:template name="UpdateToComponentInstance" match="model[@kind='ComponentAssembly' and (not(@isinstance) or @isinstance='no')]/model[@kind='Component' and @isinstance='yes']">
     <!-- create the same type of element -->
     <xsl:element name="{name ()}">
 

@@ -1,14 +1,47 @@
+Sun Jun 27 18:01:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/RACE.xme.disable:
+        * PIM/PICML/examples/RACE_NetQoS.xme.disable:
+        * PIM/PICML/examples/RACE_devl.xme.disable:
+        * PIM/PICML/examples/RobotAssembly.xme.disable:
+        * PIM/PICML/examples/SPACE.xme.disable:
+        * PIM/PICML/examples/Sample_Strings.xme.disable:
+        
+          Temporary disabled the models above since the migration script
+          is not able to convert them correctly.
+
+        * PIM/PICML/migration/CoSMIC-0.7.9.xslt:
+        
+          Bug fix where migration script would handle component assembly
+          elements that were instances incorrectly.
+
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+        
+          Bug fix where ComponentAssembly was still using the old decorator,
+          which no longer exists.
+
+        * PIM/PICML/examples/RACE.xme:
+        * PIM/PICML/examples/RACE_NetQoS.xme:
+        * PIM/PICML/examples/RACE_devl.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/SPACE.xme:
+        * PIM/PICML/examples/Sample_Strings.xme:
+
+          Removed these files.
+
 Sun Jun 27 17:27:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * NEWS:
-        
+
           Updated the NEWS file.
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
-        
+
           Improved the if () condition that generates the deployment
           plan properties.
-          
+
 Sun Jun 27 17:08:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/RealNumber_to_DoubleNumber.xsl:
