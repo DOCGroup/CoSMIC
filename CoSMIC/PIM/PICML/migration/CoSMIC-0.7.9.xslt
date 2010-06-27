@@ -89,6 +89,34 @@
   </xsl:template>
 
   <!--
+    @template ChangeEmitConnection
+    
+    Update the local attribute to an InterfaceSemantics attribute.
+    -->
+  <xsl:template name="ChangeEmitConnection" match="model[@kind='ComponentAssembly']/connection[@kind='emit']">
+    <xsl:element name="{name()}">
+      <!--
+           copy all the attributes, but we need to change the
+           value of "role" and "kind" attributes
+        -->
+      <xsl:for-each select="@*">
+        <xsl:choose>
+          <xsl:when test="name()='kind' or name()='role'">
+            <!-- Change the kind to DoubleNumber -->
+            <xsl:attribute name="{name()}">SendsTo</xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+
+      <!-- perform the default behavior for the remainder of this node -->
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
+
+  <!--
     @template UpdateAbstractInterface
     
     Update the local attribute to an InterfaceSemantics attribute.
@@ -376,7 +404,7 @@
       <xsl:apply-templates select="attribute[@kind='UUID']" />
       
       <!-- copy over the ports -->
-      <xsl:apply-templates select="reference" />
+      <xsl:apply-templates select="reference[@kind='InEventPort' or @kind='OutEventPort' or @kind='ProvidedRequestPort' or @kind='RequiredRequestPort' or @kind='Supports']" />
       
       <!-- copy over the attributes -->
       <xsl:apply-templates select="model[@kind='Attribute' or @kind='ReadonlyAttribute']" />
