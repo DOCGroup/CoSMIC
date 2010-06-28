@@ -1,0 +1,37 @@
+// $Id$
+
+project (DQML_paradigm_icons) {
+  specific (wix) {
+    no_binary         = 1
+    install_location  = paradigms DQML icons
+    install_resources = 1
+  }
+  
+  Resource_Files {
+    conditional (wix) {
+      icons/*.bmp
+      icons/*.gif
+    }
+  }
+}
+
+project (DQML_paradigm) {
+  specific (wix) {
+    no_binary         = 1
+    install_location  = paradigms DQML
+    install_resources = 1
+    
+    gme_paradigm   = 1
+    paradigm_name  = DQML
+    paradigm_guid  = 9C0716A9-334A-48B8-BC1B-0B46959B6EB7
+    paradigm_file  = DQML.mta
+  }
+  
+  Resource_Files {
+    conditional (wix) {
+      DQML.xme
+      DQML.xmp
+    }
+  }
+}
+

@@ -1,0 +1,15 @@
+// $Id$
+
+project (CQML_examples) {
+  specific {
+    install_location  = paradigms CQML examples
+    install_resources = 1
+    no_binary         = 1
+  }
+
+  Resource_Files {
+    conditional (wix) {
+      *.xme
+    }
+  }
+}

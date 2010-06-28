@@ -17,6 +17,12 @@ workspace (cosmic) {
     $(COSMIC_ROOT)/bin
     $(COSMIC_ROOT)/docs
     $(COSMIC_ROOT)/includes
+
+    PIM/POSAML/examples
+    PIM/POSAML/paradigms    
+
+    PSM/CQML/examples
+    PSM/CQML/paradigms    
   }  
   
   exclude (wix) {

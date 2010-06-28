@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="DQML" guid="{0A1DD473-4A44-499C-A747-8A1F2156021C}" cdate="Sat Jun 27 19:48:31 2009" mdate="Sat Jun 27 19:48:31 2009" >
+<paradigm name="DDSQoS" guid="{9C0716A9-334A-48B8-BC1B-0B46959B6EB7}" cdate="Mon Jun 28 13:14:53 2010" mdate="Mon Jun 28 13:14:53 2010" >
 
 	<comment></comment>
 
@@ -1449,6 +1449,7 @@ endif]]>
 		</connection>
 		<model name = "DDSQoS" metaref = "1002" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "DataReader" metaref = "1004" kind = "DataReader"></role>
 			<role name = "DataWriter" metaref = "1005" kind = "DataWriter"></role>
 			<role name = "DeadlineQosPolicy" metaref = "1127" kind = "DeadlineQosPolicy"></role>
@@ -1631,6 +1632,7 @@ endif]]>
 		<model name = "DataReader" metaref = "1026" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="sink-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Consistent_DR_ResourceLimits" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let dr_reslimits_policies = self.connectedFCOs(dr_res_Connection) in
 
@@ -1769,6 +1771,7 @@ endif]]>
 		<model name = "DataWriter" metaref = "1028" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="faucet-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Applicable_OwnershipStrength" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let ownership_policies = self.connectedFCOs(dw_ownership_Connection) in
 let ownstr_policies = self.connectedFCOs(dw_ownerstrength_Connection) in
@@ -1923,6 +1926,7 @@ endif]]>
 		<model name = "DomainParticipant" metaref = "1231" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="participant-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Validdp_entityfactory_ConnectiondstCardinality2" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::dp_entityfactory_Connection ) -> size in
                      (dstCount <= 1)]]>
@@ -1959,6 +1963,7 @@ endif]]>
 		<model name = "DomainParticipantFactory" metaref = "1387" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="participant-factory-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Validdpf_dp_ConnectiondstCardinality12" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::dpf_dp_Connection ) -> size in
                      (dstCount >= 1)]]>
@@ -1975,6 +1980,7 @@ endif]]>
 		<model name = "Publisher" metaref = "1040" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="printing-press-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Validdp_pub_ConnectionsrcCardinality3" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::dp_pub_Connection ) -> size in
                      (srcCount = 1)]]>
@@ -2011,6 +2017,7 @@ endif]]>
 		<model name = "Subscriber" metaref = "1042" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="paper-stack-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Validdp_sub_ConnectionsrcCardinality5" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::dp_sub_Connection ) -> size in
                      (srcCount = 1)]]>
@@ -2047,6 +2054,7 @@ endif]]>
 		<model name = "Topic" metaref = "1044" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bookshelves-70x70"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="Compatible_Deadline" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[-- Get all the DataReaders associated with this topic
 let readers = self.connectedFCOs(dr_topic_Connection) in

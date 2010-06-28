@@ -1,9 +1,39 @@
+Mon Jun 28 17:16:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/POSAML/examples/POSAML_examples.mpc:
+        * PIM/POSAML/paradigms/POSAML.mta:
+        * PIM/POSAML/paradigms/POSAML.xme:
+        * PIM/POSAML/paradigms/POSAML.xmp:
+        * PIM/POSAML/paradigms/POSAML_DSML.mpc:
+        
+          Re-added POSAML to the installer.
+
+        * PSM/CQML/examples/CQML_examples.mpc:
+        * PSM/CQML/paradigms/CQML.mta:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xmp:
+        * PSM/CQML/paradigms/CQML_DSML.mpc:
+
+          Re-added CQML to the installer.
+
+        * PSM/DQML/examples/DQML_examples.mpc:
+        * PSM/DQML/paradigms/DQML.xme:
+        * PSM/DQML/paradigms/DQML.xmp:
+        * PSM/DQML/paradigms/DQML_DSML.mpc:
+
+          Re-added DQML to the installer.
+
+        * cosmic.mwc:
+        
+          Updated workspace to include remaining parts of CQML,
+          DQML, and POSAML.         
+
 Mon Jun 28 16:20:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * bin/CoSMIC_bin.mpc:
         * bin/migration/migrate.mpc:
         * cosmic.mwc:
-        
+
           Added the migration wrapper to the installer.
 
 Mon Jun 28 07:15:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

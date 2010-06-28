@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="POSAML" guid="{E06AF5F9-FD12-438A-AF78-1A1D6BE193B6}" cdate="Wed Apr 18 14:50:11 2007" mdate="Wed Apr 18 14:50:11 2007" >
+<paradigm name="POSAML" guid="{7521D7F2-29E0-4413-A3F7-B67DFD92D380}" cdate="Mon Jun 28 12:41:11 2010" mdate="Mon Jun 28 12:41:11 2010" >
 
 	<comment></comment>
 
@@ -189,7 +189,7 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to End_Points as &quot;dst&quot; over End_Point_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidEnd_Point_ConnectiondstCardinality46" eventmask = "0x800000" depth = "1" priority = "1">
+			<constraint name="ValidEnd_Point_ConnectiondstCardinality42" eventmask = "0x800000" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::End_Point_Connection ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to End_Points as &quot;dst&quot; over End_Point_Connection, has to match 0..1.</dispname>
@@ -1279,6 +1279,7 @@
 		<model name = "Acceptor_Connector" metaref = "1236" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Acceptor_Connector.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidEnd_Point_ConnectionsrcCardinality39" eventmask = "0x800000" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::End_Point_Connection ) -> size in
                      (srcCount <= 1)]]>
@@ -1323,6 +1324,7 @@
 		<model name = "Active_Object" metaref = "1388" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="active_object.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "AbstractMethodRequest" metaref = "1389" kind = "AbstractMethodRequest"></role>
 			<role name = "Activation_Method_Connection" metaref = "1390" kind = "Activation_Method_Connection"></role>
 			<role name = "Activation_Queue" metaref = "1391" kind = "Activation_Queue"></role>
@@ -1373,6 +1375,7 @@
 			<dispname>Aspect</dispname>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="myaspect.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Advice" metaref = "1581" kind = "Advice"></role>
 			<role name = "Advice_Pointcut_Connection" metaref = "1787" kind = "Advice_Pointcut_Connection"></role>
 			<role name = "ConnectionAspectImplement" metaref = "1788" kind = "ConnectionAspectImplement"></role>
@@ -1387,6 +1390,7 @@
 		<model name = "Bridge" metaref = "1793" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="myclass.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "AspectFeature" metaref = "1590" kind = "AspectFeature"></role>
 			<role name = "ConcreteImplementation" metaref = "1591" kind = "ConcreteImplementation"></role>
 			<role name = "Connection" metaref = "1592" kind = "Connection"></role>
@@ -1414,6 +1418,7 @@
 		<model name = "ConcreteImplementation" metaref = "1606" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Implementation.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "RefinedAbstraction" metaref = "1609" kind = "RefinedAbstraction"></role>
 			<aspect name = "Bridge_Aspect" metaref = "1652" >
 				<part metaref = "1654" role = "RefinedAbstraction" primary = "yes" linked = "no"></part>
@@ -1421,6 +1426,7 @@
 		</model>
 		<model name = "Implementor" metaref = "1614" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "RefinedAbstraction" metaref = "1616" kind = "RefinedAbstraction"></role>
 			<aspect name = "Bridge_Aspect" metaref = "1655" >
 				<part metaref = "1657" role = "RefinedAbstraction" primary = "yes" linked = "no"></part>
@@ -1428,33 +1434,34 @@
 		</model>
 		<model name = "Middleware" metaref = "1341" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidMiddlewarePartCardinality135" eventmask = "0x800000" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Concurrency" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidMiddlewarePartCardinality136" eventmask = "0x800000" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Acceptor_Connector" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidMiddlewarePartCardinality137" eventmask = "0x800000" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Reactor_Type" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidMiddlewarePartCardinality138" eventmask = "0x800000" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Thread_Queue" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidMiddlewarePartCardinality139" eventmask = "0x800000" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Reactor_Concurrency_Connection" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidMiddlewarePartCardinality140" eventmask = "0x800000" depth = "1" priority = "1">
+			<constraint name="ValidMiddlewarePartCardinality136" eventmask = "0x800000" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Reactor_Type_Connection" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality137" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Acceptor_Connector" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality138" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Concurrency" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality139" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Reactor_Type" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality140" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Thread_Queue" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
 			</constraint>
@@ -1516,6 +1523,7 @@
 		<model name = "Pointcut" metaref = "1801" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Pointcut.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "AddJointPointsConnection" metaref = "1802" kind = "AddJointPointsConnection"></role>
 			<role name = "AddPointCutConnection" metaref = "1803" kind = "AddPointCutConnection"></role>
 			<role name = "FinalJointPoint" metaref = "1804" kind = "FinalJointPoint"></role>
@@ -1556,6 +1564,7 @@
 		<model name = "Reactor_Pattern" metaref = "1020" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="reactor_pattern.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidReactor_Concurrency_ConnectionsrcCardinality103" eventmask = "0x800000" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Reactor_Concurrency_Connection ) -> size in
                      (srcCount <= 1)]]>
@@ -1624,6 +1633,7 @@
 				<regnode name = "namePosition" value ="0"></regnode>
 				<regnode name = "icon" value ="abstract.bmp"></regnode>
 				<regnode name = "icon" value ="abstract.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<aspect name = "Bridge_Aspect" metaref = "1658" >
 			</aspect>
 		</model>

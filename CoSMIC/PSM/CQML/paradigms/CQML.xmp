@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="CQML" guid="{B898246B-AB6F-4AE1-8684-2BF9B8AB404A}" cdate="Sun Sep 06 23:40:59 2009" mdate="Sun Sep 06 23:40:59 2009" >
+<paradigm name="CQML" guid="{DDC40FEA-BD8A-4104-81E0-43E861FD730F}" cdate="Mon Jun 28 13:08:54 2010" mdate="Mon Jun 28 13:08:54 2010" >
 
 	<comment></comment>
 
@@ -4813,6 +4813,7 @@ not worker.Abstract]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "isTypeShown" value ="true"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="DanglingAction" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[if self.kindName () = "Action" and self.isInstance () then
   let parent : Component = self.parent () in
@@ -4862,6 +4863,7 @@ endif]]>
 		<model name = "Aggregate" metaref = "1206" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="aggregate.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="UniqueMemberNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[parts (Member)->forAll (x, y : gme::Reference |  x <> y implies x.name <> y.name)]]>
 				<dispname>Members of an aggregate type must have unique names</dispname>
@@ -4882,6 +4884,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "ArtifactContainer" metaref = "1210" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="UniqueImplementationArtifacts" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let artifacts = self.atomParts(ImplementationArtifact) in
 artifacts->forAll ( i, j : ImplementationArtifact | 
@@ -4926,6 +4929,7 @@ artifacts->forAll ( i, j : ImplementationArtifact |
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
 				<regnode name = "icon" value ="attribute.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="DelegateOrValue" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections(AttributeValue)->size = 1 implies self.attachingConnections(AttributeDelegate)->size = 0]]>
 				<dispname>A value can be specified for an Attribute directly, or it can have a value delegated to it via an AttributeMapping, but not both.</dispname>
@@ -4986,6 +4990,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		</model>
 		<model name = "BenchmarkAnalysis" metaref = "1238" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Average" metaref = "1239" kind = "Average"></role>
 			<role name = "BenchmarkCharacteristics" metaref = "1240" kind = "BenchmarkCharacteristics"></role>
 			<role name = "CompRef" metaref = "1241" kind = "CompRef"></role>
@@ -5037,6 +5042,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "Bridge" metaref = "1285" attributes = "label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Bridge"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Resource" metaref = "1286" kind = "Resource"></role>
 			<aspect name = "Target" metaref = "1287" attributes = "label" >
 				<part metaref = "1288" role = "Resource" primary = "yes" linked = "no"></part>
@@ -5045,6 +5051,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "CIAOEvents" metaref = "7053" attributes = "id" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ciaoevents.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "EventChannelCommunicationPoint" metaref = "7054" kind = "EventChannelCommunicationPoint"></role>
 			<role name = "ReceiverConnection" metaref = "7055" kind = "ReceiverConnection"></role>
 			<role name = "SenderConnection" metaref = "7056" kind = "SenderConnection"></role>
@@ -5059,6 +5066,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "Capability" metaref = "1289" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Capability.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="AtleastOneResourceType" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.resourceType <> ""]]>
 				<dispname>ResourceType should contain atleast one element</dispname>
@@ -5078,6 +5086,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "icon" value ="component.bmp"></regnode>
 				<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
 				<regnode name = "isTypeShown" value ="true"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="InstanceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
 				<![CDATA[let parent = self.parent() in
    if (parent.isNull()) then
@@ -5263,6 +5272,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "icon" value ="component.bmp"></regnode>
 				<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
 				<regnode name = "isTypeShown" value ="true"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="InstanceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
 				<![CDATA[let parent = self.parent() in
    if (parent.isNull()) then
@@ -5443,6 +5453,7 @@ instances->forAll (x : Component |
 		<model name = "ComponentAssemblySecurityQoS" metaref = "4343" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="assembly_qos.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="AssemblySecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Assembly Secuirty QoS must have atleast one rule pertaining with its associated Target Assembly</dispname>
@@ -5456,6 +5467,7 @@ instances->forAll (x : Component |
 		</model>
 		<model name = "ComponentContainer" metaref = "1369" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidComponentContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
@@ -5479,6 +5491,7 @@ instances->forAll (x : Component |
 		<model name = "ComponentFactory" metaref = "1383" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="componentfactory.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="InheritsSameType" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.referenceParts (Inherits)->forAll (x : gme::Reference | x.refersTo ().type () = self.type ())]]>
 				<dispname>A parent must have the same type as its child</dispname>
@@ -5576,6 +5589,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "ComponentFactoryImplementationContainer" metaref = "4113" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "ComponentFactoryInstance" metaref = "4114" kind = "ComponentFactoryInstance"></role>
 			<role name = "ComponentImplementationArtifact" metaref = "7362" kind = "ComponentImplementationArtifact"></role>
 			<role name = "ComponentServantArtifact" metaref = "7363" kind = "ComponentServantArtifact"></role>
@@ -5603,6 +5617,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "ComponentImplementationContainer" metaref = "1417" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ImplementationXor" eventmask = "0x80000000" depth = "1" priority = "1">
 				<![CDATA[(self.modelParts (ComponentAssembly)->size = 1 implies self.atomParts (MonolithicImplementation)->size = 0)and
           (self.atomParts (MonolithicImplementation)->size = 1 implies self.modelParts (ComponentAssembly)->size = 0)]]>
@@ -5687,6 +5702,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "ComponentPropertyDescription" metaref = "1451" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ComponentProperty.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidComponentPropertyDescriptionPartCardinality215" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
@@ -5700,6 +5716,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "ComponentSecurityQoS" metaref = "4358" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="component_qos.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ComponentSecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Component Security QoS must have atleast one rule pertaining with its associated Target Component .</dispname>
@@ -5713,6 +5730,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "ConnectedComponent" metaref = "2011" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidDstEdgedstCardinality56" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::DstEdge ) -> size in
                      (dstCount <= 1)]]>
@@ -5738,6 +5756,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "DeploymentPlan" metaref = "1455" attributes = "UUID label" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="UniquePropertyNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let properties = self.modelParts(Property) in
           properties->isUnique (i : Property | i.name.trim())]]>
@@ -5773,6 +5792,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Domain" metaref = "1467" attributes = "UUID label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Domain"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Bridge" metaref = "1468" kind = "Bridge"></role>
 			<role name = "BridgeConnection" metaref = "4176" kind = "BridgeConnection"></role>
 			<role name = "Interconnect" metaref = "1470" kind = "Interconnect"></role>
@@ -5795,6 +5815,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "DomainRiskGrouping" metaref = "6004" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidDomainRiskGroupingPartCardinality216" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
                      (partCount <= 1)]]>
@@ -5816,6 +5837,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "ECRequirements" metaref = "4012" attributes = "resourceType ConfigureRTQoS" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidECRequirementsPartCardinality217" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ECBehavior" ) -> size in
                      (partCount <= 1)]]>
@@ -5840,6 +5862,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Enum" metaref = "1489" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="enum.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="UniqueEnumValues" eventmask = "0x80000010" depth = "1" priority = "1">
 				<![CDATA[atomParts ()->forAll (x, y : gme::Atom | x <> y implies x.name <> y.name)]]>
 				<dispname>An enum&apos;s member names must be unique</dispname>
@@ -5866,6 +5889,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Event" metaref = "1493" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="event.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ConcreteEventParent" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let concrete_parents = self.parts ("Inherits")->select (x : gme::Model | x.oclAsType (Event).abstract = false)
           in
@@ -5959,6 +5983,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Exception" metaref = "1552" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="exception.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
@@ -5971,6 +5996,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "ExecutorProject" metaref = "1556" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidExecutorProjectPartCardinality220" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
                      (partCount = 1)]]>
@@ -5991,6 +6017,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "FTDeployment" metaref = "5989" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "DeploymentPlanRef" metaref = "6177" kind = "DeploymentPlanRef"></role>
 			<role name = "DomainRiskGrouping" metaref = "6178" kind = "DomainRiskGrouping"></role>
 			<role name = "FTDeployDepends" metaref = "6179" kind = "FTDeployDepends"></role>
@@ -6003,6 +6030,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "FactoryOperation" metaref = "1560" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="factory.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
 				<dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
@@ -6036,6 +6064,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "FailOverUnit" metaref = "4411" attributes = "Replica" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="FOU.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="NotEmpty" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.parts().size() > 0]]>
 				<dispname>FailOverUnit can&apos;t be empty.</dispname>
@@ -6053,6 +6082,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "File" metaref = "1566" attributes = "path PrefixTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="UniqueFileIncludes" eventmask = "0x400" depth = "1" priority = "1">
 				<![CDATA[referenceParts (FileRef)->forAll (x, y : gme::Reference | x <> y implies x.refersTo ().name <> y.refersTo ().name)]]>
 				<dispname>A file cannot be included more than once</dispname>
@@ -6097,6 +6127,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Filter" metaref = "7065" attributes = "filter_id filter_type" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ciaoevents_filter.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "EventSource" metaref = "7066" kind = "EventSource"></role>
 			<role name = "EventSourcePort" metaref = "7067" kind = "EventSourcePort"></role>
 			<aspect name = "QoS" metaref = "7068" attributes = "filter_id filter_type" >
@@ -6107,6 +6138,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Group" metaref = "4427" attributes = "principal" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="group.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<attrdef name="principal" metaref = "4428" valuetype = "string" defvalue = "">
 			</attrdef>
 			<role name = "Group" metaref = "4429" kind = "Group"></role>
@@ -6119,6 +6151,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "ImplementationRequirement" metaref = "1602" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ImplementationRequirement.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Property" metaref = "1603" kind = "Property"></role>
 			<aspect name = "Packaging" metaref = "1604" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
 				<part metaref = "1605" role = "Property" primary = "yes" linked = "no"></part>
@@ -6128,6 +6161,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="InputAction.bmp"></regnode>
 				<regnode name = "icon" value ="InputAction.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 				<regnode name = "isNameEnabled" value ="false"></regnode>
 			<constraint name="MustHaveFinish" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections( "dst", Finish ) -> size = 1]]>
@@ -6156,6 +6190,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Interconnect" metaref = "1606" attributes = "label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Interconnect"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Resource" metaref = "1607" kind = "Resource"></role>
 			<aspect name = "Target" metaref = "1608" attributes = "label" >
 				<part metaref = "1609" role = "Resource" primary = "yes" linked = "no"></part>
@@ -6164,6 +6199,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Latency" metaref = "1610" attributes = "fileName priority rate warmup iterations resolution" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Latency.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidBenchmarkCharacteristicssrcCardinality29" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::BenchmarkCharacteristics ) -> size in
                      (srcCount <= 1)]]>
@@ -6193,6 +6229,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "LookupOperation" metaref = "1620" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="lookup.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
 				<dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
@@ -6225,6 +6262,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "MPC" metaref = "1626" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Project" metaref = "1627" kind = "Project"></role>
 			<role name = "Workspaces" metaref = "1628" kind = "Workspaces"></role>
 			<aspect name = "Workspace" metaref = "1629" >
@@ -6236,6 +6274,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="InputAction.bmp"></regnode>
 				<regnode name = "icon" value ="MultiInputAction.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="MustHaveFinish" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections( "dst", Finish ) -> size = 1]]>
 				<dispname>Input actions must have one finish connection</dispname>
@@ -6263,6 +6302,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Node" metaref = "1632" attributes = "label operatingSystem architecture" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Node"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Resource" metaref = "1633" kind = "Resource"></role>
 			<aspect name = "Target" metaref = "1634" attributes = "label operatingSystem architecture" >
 				<part metaref = "1635" role = "Resource" primary = "yes" linked = "no"></part>
@@ -6271,6 +6311,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Object" metaref = "1636" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="object.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="InheritsSameType" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.referenceParts (Inherits)->forAll (x : gme::Reference | x.refersTo ().type () = self.type ())]]>
 				<dispname>A parent must have the same type as its child</dispname>
@@ -6363,6 +6404,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "OnewayOperation" metaref = "1664" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="oneway.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
 				<dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
@@ -6388,6 +6430,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "OperationSet" metaref = "4448" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="operation_set.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "OperationRef" metaref = "7389" kind = "OperationRef"></role>
 			<aspect name = "QoS" metaref = "6195" >
 				<part metaref = "7390" role = "OperationRef" primary = "yes" linked = "no"></part>
@@ -6396,6 +6439,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "OutputAction" metaref = "7391" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="OutputAction.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="HasEffect" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let name = self->parent ().kindName in
 
@@ -6441,6 +6485,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 		<model name = "Package" metaref = "1668" attributes = "VersionTag PrefixTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="package.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="NonEmptyPackage" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[self.parts ()->size > 0]]>
 				<dispname>A package cannot be empty</dispname>
@@ -6504,6 +6549,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 		</model>
 		<model name = "PackageConfigurationContainer" metaref = "1702" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="PackageConfXor" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.referenceParts(PackageConfigurationReference)->size = 1
           xor self.referenceParts(ComponentPackageReference)->size = 1
@@ -6511,34 +6557,34 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality221" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality222" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality223" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality224" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality225" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality226" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality222" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality223" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality224" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality225" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality226" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "ComponentPackage" metaref = "1703" kind = "ComponentPackage"></role>
 			<role name = "ComponentPackageReference" metaref = "1704" kind = "ComponentPackageReference"></role>
@@ -6569,6 +6615,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 		</model>
 		<model name = "PackageContainer" metaref = "1724" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="MatchingInterfaces" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let pkgInterface = self.referenceParts (ComponentRef) in
 let impls = self.referenceParts(ComponentImplementationReference) in
@@ -6616,6 +6663,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		</model>
 		<model name = "Path" metaref = "2116" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "ComponentRef" metaref = "2066" kind = "ComponentRef"></role>
 			<role name = "ConnectedComponent" metaref = "2024" kind = "ConnectedComponent"></role>
 			<role name = "DisplayNode" metaref = "2845" kind = "DisplayNode"></role>
@@ -6645,6 +6693,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		</model>
 		<model name = "Paths" metaref = "3072" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Path" metaref = "3073" kind = "Path"></role>
 			<role name = "PathProperty" metaref = "3074" kind = "PathProperty"></role>
 			<role name = "Property" metaref = "3075" kind = "Property"></role>
@@ -6657,6 +6706,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		<model name = "Policy" metaref = "4461" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="security_policy.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "AssemblyAccessConn" metaref = "4462" kind = "AssemblyAccessConn"></role>
 			<role name = "AssemblyRule" metaref = "4463" kind = "AssemblyRule"></role>
 			<role name = "AttributeManipulateConn" metaref = "4464" kind = "AttributeManipulateConn"></role>
@@ -6705,6 +6755,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		<model name = "PolicySet" metaref = "4505" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="policy_set.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Policy" metaref = "4506" kind = "Policy"></role>
 			<aspect name = "QoS" metaref = "3616" >
 				<part metaref = "6224" role = "Policy" primary = "yes" linked = "no"></part>
@@ -6713,6 +6764,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		<model name = "PortSecurityQoS" metaref = "4509" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="port_qos.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="PortSecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Port Security QoS must have atleast one rule pertaining with its associated Target</dispname>
@@ -6725,6 +6777,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		<model name = "Project" metaref = "1742" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="comp-proj.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "ExecutorProject" metaref = "1743" kind = "ExecutorProject"></role>
 			<role name = "ExtResourceConn" metaref = "1744" kind = "ExtResourceConn"></role>
 			<role name = "ExternalResources" metaref = "1745" kind = "ExternalResources"></role>
@@ -6742,6 +6795,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		<model name = "Property" metaref = "1755" attributes = "DataValue" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Property.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidAttributeMappingValuesrcCardinality25" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::AttributeMappingValue ) -> size in
                      (srcCount <= 1)]]>
@@ -6760,6 +6814,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 		<model name = "QueryAction" metaref = "7401" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="QueryAction.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="HasEffect" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let name = self->parent ().kindName in
 
@@ -6798,6 +6853,7 @@ endif]]>
 		<model name = "QueryInputAction" metaref = "7403" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="QueryInputAction.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidQueryInputsrcCardinality159" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::QueryInput ) -> size in
                      (srcCount <= 1)]]>
@@ -6811,6 +6867,7 @@ endif]]>
 		<model name = "RBAC" metaref = "4513" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="rbac.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "GrantedRights" metaref = "4514" kind = "GrantedRights"></role>
 			<role name = "Group" metaref = "4515" kind = "Group"></role>
 			<role name = "RightsAssignmentConn" metaref = "4516" kind = "RightsAssignmentConn"></role>
@@ -6832,13 +6889,14 @@ endif]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 				<regnode name = "icon" value ="rtrequirements.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidRTRequirementsPartCardinality231" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRTRequirementsPartCardinality232" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
@@ -6856,6 +6914,7 @@ endif]]>
 		<model name = "ReadonlyAttribute" metaref = "1785" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="DelegateOrValue" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections(AttributeValue)->size = 1 implies self.attachingConnections(AttributeDelegate)->size = 0]]>
 				<dispname>A value can be specified for an Attribute directly, or it can have a value delegated to it via an AttributeMapping, but not both.</dispname>
@@ -6915,6 +6974,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "RealTimeConfiguration" metaref = "4529" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RTModel.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidRTQoSCharacteristicAssociation" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.connectedFCOs(QoSReq)->size() = 0
 and
@@ -6922,12 +6982,12 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 				<dispname>Can not connect to different QoSCharacteristic type</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality234" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ThreadPool" ) -> size in
+				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality235" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ThreadPool" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
@@ -6956,6 +7016,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "Realm" metaref = "4545" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="realm.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Role" metaref = "4546" kind = "Role"></role>
 			<aspect name = "QoS" metaref = "6235" >
 				<part metaref = "6236" role = "Role" primary = "yes" linked = "no"></part>
@@ -6964,6 +7025,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "RepicaGroupConfiguration" metaref = "4563" attributes = "ReplicationStyle" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RPG.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidMonitorableGroupAssociationsrcCardinality113" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MonitorableGroupAssociation ) -> size in
                      (srcCount <= 1)]]>
@@ -6976,6 +7038,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "Requirement" metaref = "1791" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Property" metaref = "1792" kind = "Property"></role>
 			<aspect name = "Packaging" metaref = "1793" attributes = "resourceType" >
 				<part metaref = "1794" role = "Property" primary = "yes" linked = "no"></part>
@@ -6984,6 +7047,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "Resource" metaref = "1795" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Resource"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="AtleastOneResourceType" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.resourceType <> ""]]>
 				<dispname>ResourceType should contain atleast one element</dispname>
@@ -6996,6 +7060,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "RootRiskGroup" metaref = "4566" attributes = "Metric" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RootRiskGroup.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="MustHaveChild" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.attachingConnections(meta::RootRiskAssociation)->size() >= 1]]>
 				<dispname>A RootRiskGroup must have atleast one child</dispname>
@@ -7008,6 +7073,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "SatisfierProperty" metaref = "1799" attributes = "dynamic DataValue SatisfierPropertyKind" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SatisfierProperty.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidSatisfierPropertyPartCardinality237" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
@@ -7023,6 +7089,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		</model>
 		<model name = "Security" metaref = "4570" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "PolicySet" metaref = "4571" kind = "PolicySet"></role>
 			<role name = "RBAC" metaref = "4572" kind = "RBAC"></role>
 			<aspect name = "QoS" metaref = "6241" >
@@ -7033,6 +7100,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "SecurityDomain" metaref = "4576" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="security_domain.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Realm" metaref = "4577" kind = "Realm"></role>
 			<aspect name = "QoS" metaref = "6244" >
 				<part metaref = "6245" role = "Realm" primary = "yes" linked = "no"></part>
@@ -7041,15 +7109,16 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "ServantProject" metaref = "1803" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidServantProjectPartCardinality238" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidServantProjectPartCardinality239" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidServantProjectPartCardinality239" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
@@ -7069,6 +7138,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "ServiceProvider" metaref = "3942" attributes = "fixed_prioirty_service_execution" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="provider.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidServiceProviderPartCardinality240" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
                      (partCount <= 1)]]>
@@ -7089,6 +7159,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "SharedResource" metaref = "1809" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SharedResource"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="AtleastOneResourceType" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.resourceType <> ""]]>
 				<dispname>ResourceType should contain atleast one element</dispname>
@@ -7106,6 +7177,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "SharedRiskGroup" metaref = "4580" attributes = "Metric" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SharedRiskGroup.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="SingleSRGParent" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.connectedFCOs(SRGRiskAssociation ) -> size = 1 and
  self.connectedFCOs(RootRiskAssociation ) -> size = 0 ) or
@@ -7131,13 +7203,14 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "StubProject" metaref = "1813" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidStubProjectPartCardinality242" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
+				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidStubProjectPartCardinality243" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
@@ -7159,6 +7232,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 		<model name = "SwitchedAggregate" metaref = "1819" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="switchedaggregate.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="DefaultCaseCardinality" eventmask = "0x80000000" depth = "1" priority = "1">
 				<![CDATA[parts (Member)->forAll (
           x : gme::FCO | let labels = x.connectedFCOs ()
@@ -7190,19 +7264,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality244" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality245" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality246" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality245" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality246" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -7222,6 +7296,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Throughput" metaref = "1829" attributes = "fileName priority rate warmup iterations resolution" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Throughput.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidBenchmarkCharacteristicssrcCardinality29" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::BenchmarkCharacteristics ) -> size in
                      (srcCount <= 1)]]>
@@ -7251,13 +7326,14 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "TopLevelPackageContainer" metaref = "1839" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality248" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality249" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -7278,6 +7354,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "TwowayOperation" metaref = "1847" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="twoway.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
 				<dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
@@ -7322,6 +7399,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "ValueObject" metaref = "1859" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="value.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ConcreteValueParent" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let concrete_parents =
           self.parts ("Inherits")->select (x : gme::Reference | x.refersTo ().oclAsType (ValueObject).abstract = false)
@@ -7416,6 +7494,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "Worker" metaref = "7415" attributes = "Abstract" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="worker.gif"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Action" metaref = "7416" kind = "Action"></role>
 			<aspect name = "Behavior" metaref = "2958" attributes = "Abstract" >
 				<part metaref = "7417" role = "Action" primary = "yes" linked = "no"></part>
@@ -7424,6 +7503,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "WorkerFile" metaref = "7418" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="file.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Worker" metaref = "7419" kind = "Worker"></role>
 			<role name = "WorkerPackage" metaref = "7420" kind = "WorkerPackage"></role>
 			<aspect name = "Behavior" metaref = "2990" attributes = "Location" >
@@ -7433,6 +7513,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</model>
 		<model name = "WorkerLibrary" metaref = "7423" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="UniqueWorker" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let workers = self->parts (Worker) in
     workers->isUnique (iter : Worker | iter->name ())]]>
@@ -7446,6 +7527,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "WorkerPackage" metaref = "7426" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="package.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "Worker" metaref = "7427" kind = "Worker"></role>
 			<role name = "WorkerPackage" metaref = "7428" kind = "WorkerPackage"></role>
 			<aspect name = "Behavior" metaref = "2993" >
@@ -7456,6 +7538,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<model name = "eventServiceConfiguration" metaref = "7071" attributes = "configuration_id type svc_cfg_file node" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ciaoevents_channel.bmp"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidECQoSCharacteristicAssociation" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.connectedFCOs(PortQoS)->size() = 0
 and

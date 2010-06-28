@@ -1,0 +1,37 @@
+// $Id$
+
+project (CQML_paradigm_icons) {
+  specific (wix) {
+    no_binary         = 1
+    install_location  = paradigms CQML icons
+    install_resources = 1
+  }
+  
+  Resource_Files {
+    conditional (wix) {
+      icons/*.bmp
+      icons/*.gif
+    }
+  }
+}
+
+project (CQML_paradigm) {
+  specific (wix) {
+    no_binary         = 1
+    install_location  = paradigms CQML
+    install_resources = 1
+    
+    gme_paradigm   = 1
+    paradigm_name  = CQML
+    paradigm_guid  = DDC40FEA-BD8A-4104-81E0-43E861FD730F
+    paradigm_file  = CQML.mta
+  }
+  
+  Resource_Files {
+    conditional (wix) {
+      CQML.xme
+      CQML.xmp
+    }
+  }
+}
+
