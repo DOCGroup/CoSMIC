@@ -1,3 +1,13 @@
+Mon Jun 28 20:35:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/POSAML/paradigms/POSAML_DSML.mpc:
+        
+          Invalid Wix specification.
+          
+        * PSM/DQML/paradigms/DQML.mta:
+        
+          Missing file.
+
 Mon Jun 28 20:32:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/cosmic_bin.mpb:
@@ -9,7 +19,7 @@ Mon Jun 28 20:32:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
         * PSM/CQML/interpreters/CQML/CQML.mpc:
         * picml.mwc:
-        
+
           Fixed the Wix install location.
 
 Mon Jun 28 19:44:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -29,8 +29,8 @@ project (POSAML_paradigm) {
   
   Resource_Files {
     conditional (wix) {
-      PICML.xme
-      PICML.xmp
+      POSAML.xme
+      POSAML.xmp
     }
   }
 }
