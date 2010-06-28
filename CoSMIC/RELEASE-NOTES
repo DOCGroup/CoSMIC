@@ -16,6 +16,43 @@ modeling of large number QoS knobs provided by DDS.
 This document lists the new features that are introduced in the latest 
 version.
 
+Release CoSMIC-0.7.9
+======================
+
+. Added support IDL3+. This included adding support for template
+  modules, port types, extended ports, mirror ports, and 
+  connectors to the InterfaceDefinitions aspect.
+  
+. Added support for modeling and deploying different implementations
+  of a component. This resulted in changing how to model component
+  instances in an assembly. This will also require you to migrate
+  existing models to the lastest version of PICML.
+  
+  Please see the StockQuoter example at the following location for
+  how to use the new version of PICML:
+  
+    http://www.dre.vanderbilt.edu/~schmidt/DOC_ROOT/CIAO/tutorials/Quoter/Simple/03.html
+  
+  In addition, please see the MIGRATION file in the ./docs for
+  information on migrating existing models.
+  
+. Upgraded to the latest version of GME. We will no longer support 
+  muliple versions of GME at this time. Instead, we will only support
+  the latest version of GME.
+  
+. The deployment plan interpreter now generates a supplemental .cdd 
+  file for each deployment it generates. If a property of type String
+  with the following name is attached to a NodeReference:
+  
+    . StringIOR
+    . CORBAName
+  
+  then the deployment plan interpreter will add the corresponding 
+  properties for that node to the generated .ccd file.
+  
+. The default component implementation generator has been added
+  to the interpreter toolbar.
+  
 Release CoSMIC-0.7.8
 ======================
 

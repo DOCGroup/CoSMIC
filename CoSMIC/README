@@ -3,7 +3,7 @@ Component Synthesis using Model-Integrated Computing (CoSMIC) README
 Overview of CoSMIC
 ==================
 
-This is the release 0.7.8 of Component Synthesis using Model-Integrated 
+This is the release 0.7.9 of Component Synthesis using Model-Integrated 
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool-suite consists of 
 a collection of Domain Specific Modeling Languages (DSML) and related tools 
 for meta-data generation, quality of service (QoS) analysis and more.  
@@ -24,7 +24,7 @@ Minimum Requirements
 You need to have administrator privileges to install CoSMIC. The following 
 are the minimum system requirements for installing CoSMIC: 
 1.	Windows 2000, Windows XP, Windows Server 2003, Windows XP 64-bit
-2.	Generic Modeling Environment (GME) version (7.6.29, 9.8.28)
+2.	Generic Modeling Environment (GME) version (10.2.9)
 
 This document gives some preliminary information on getting started with 
 using CoSMIC as well as information on supported features.
