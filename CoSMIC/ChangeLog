@@ -1,3 +1,10 @@
+Mon Jun 28 19:44:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * cosmic.mwc:
+        * picml.mwc:
+          
+          Fixed exclude () scopes.
+
 Mon Jun 28 17:16:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/POSAML/examples/POSAML_examples.mpc:
@@ -5,7 +12,7 @@ Mon Jun 28 17:16:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/POSAML/paradigms/POSAML.xme:
         * PIM/POSAML/paradigms/POSAML.xmp:
         * PIM/POSAML/paradigms/POSAML_DSML.mpc:
-        
+
           Re-added POSAML to the installer.
 
         * PSM/CQML/examples/CQML_examples.mpc:
@@ -24,9 +31,9 @@ Mon Jun 28 17:16:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
           Re-added DQML to the installer.
 
         * cosmic.mwc:
-        
+
           Updated workspace to include remaining parts of CQML,
-          DQML, and POSAML.         
+          DQML, and POSAML.
 
 Mon Jun 28 16:20:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 

@@ -10,7 +10,7 @@ workspace (cosmic) {
     PIM/SIML/interpreters/Interpreters.mwc
     PIM/POSAML/interpreters/interpreters.mwc
     PSM/CQML/interpreters/Interpreters.mwc
-    PSM/DQML    
+    PSM/DQML/interpreters    
   }
 
   exclude (!wix) {
@@ -23,6 +23,9 @@ workspace (cosmic) {
 
     PSM/CQML/examples
     PSM/CQML/paradigms    
+    
+    PSM/DQML/examples
+    PSM/DQML/paradigms
   }  
   
   exclude (wix) {
