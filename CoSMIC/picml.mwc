@@ -1,7 +1,7 @@
 // $Id$
 
 workspace (PICML) {
-  cmdline += -feature_file default.features \
+  cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
   // The follow directories and workspaces only apply to

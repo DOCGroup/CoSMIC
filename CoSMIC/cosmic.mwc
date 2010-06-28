@@ -1,7 +1,7 @@
 // $Id$
 
-workspace (cosmic) {
-  cmdline += -feature_file default.features \
+workspace {
+  cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
   ./picml.mwc
