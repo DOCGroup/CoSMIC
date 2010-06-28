@@ -17,9 +17,11 @@ workspace {
     $(COSMIC_ROOT)/docs
     $(COSMIC_ROOT)/includes
   }
-  else {
+  
+  static {
     cmdline += -static \
-               -include $COSMIC_ROOT/contrib/CCF/MPC/config
+               -include $COSMIC_ROOT/contrib/CCF/MPC/config \
+               -base noinstall
     
     $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
   }
