@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML): game, udm, boost_base, cosmic_xerces_utils, cosmic_utils {
+project (PICML): game, udm, boost_base, cosmic_xerces_utils, cosmic_utils, cosmic_lib {
 
   sharedname = PICML
   macros    += PICML_HAS_DLL PICML_EXPORT UDM_DYNAMIC_LINKING
