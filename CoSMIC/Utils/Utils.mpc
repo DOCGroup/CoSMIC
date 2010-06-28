@@ -1,6 +1,6 @@
 // $Id$
 
-project (CoSMIC_Utils) : acelib, cosmic_common {
+project (CoSMIC_Utils) : acelib, cosmic_lib {
   sharedname = Utils
 
   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL

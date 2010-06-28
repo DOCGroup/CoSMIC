@@ -1,3 +1,9 @@
+Mon Jun 28 20:51:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/Utils.mpc:
+
+          Fixed Wix install locations.
+
 Mon Jun 28 20:43:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PICML/PICML.mpc:
