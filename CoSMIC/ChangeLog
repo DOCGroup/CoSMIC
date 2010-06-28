@@ -1,15 +1,23 @@
+Mon Jun 28 16:20:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * bin/CoSMIC_bin.mpc:
+        * bin/migration/migrate.mpc:
+        * cosmic.mwc:
+        
+          Added the migration wrapper to the installer.
+
 Mon Jun 28 07:15:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Release_Build.mwc:
-        
+
           Bug fix where the installer had conflicting registry locations.
 
         * MPC/config/noinstall.mpb:
-        
+
           Based project to prevent installation of a project.
 
         * cosmic.mwc:
-        
+
           Excluded the CodeGenerationKit from the installer.
 
 Mon Jun 28 05:56:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

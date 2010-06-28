@@ -1,0 +1,18 @@
+// $Id$ 
+
+project (CoSMIC_migrate) {
+  specific (wix) {
+    install_location  = bin migration
+    install_resources = 1
+    no_binary         = 1
+  }
+
+  Resource_Files {
+    conditional (wix) {
+      *.jar
+      
+      LICENSE.txt
+      NOTICE.txt
+    }
+  }
+}

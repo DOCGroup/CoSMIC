@@ -1,0 +1,15 @@
+// $Id$ 
+
+project (CoSMIC_bin) {
+  specific (wix) {
+    install_location  = bin
+    install_resources = 1
+    no_binary         = 1
+  }
+
+  Resource_Files {
+    conditional (wix) {
+      migrate.bat
+    }
+  }
+}
