@@ -1,11 +1,19 @@
+Mon Jun 28 20:41:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/utils/GAME_Utils.mpc:
+
+          Fixed Wix install locations.
+          
 Mon Jun 28 20:35:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/POSAML/paradigms/POSAML_DSML.mpc:
-        
+
           Invalid Wix specification.
-          
+
         * PSM/DQML/paradigms/DQML.mta:
-        
+
           Missing file.
 
 Mon Jun 28 20:32:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
