@@ -36,4 +36,8 @@ project : register, gme_common {
       ComponentLib_h.h
     }
   }
+
+  specific (wix) {
+    install_location = bin
+  }
 }

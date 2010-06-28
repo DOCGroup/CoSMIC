@@ -1,6 +1,6 @@
 // $Id4
 
-project : udm, cosmic_xerces_utils, cosmic_utils {
+project : udm, cosmic_xerces_utils, cosmic_utils, cosmic_lib {
    after += CQML
    libs  += CQML
 

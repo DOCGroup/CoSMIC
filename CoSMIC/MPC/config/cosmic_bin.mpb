@@ -11,4 +11,8 @@ project : vc8warnings, boost_base  {
   specific (prop:microsoft) {
     DisableSpecificWarnings += 4251
   }
+
+  specific (wix) {
+    install_location = bin
+  }
 }

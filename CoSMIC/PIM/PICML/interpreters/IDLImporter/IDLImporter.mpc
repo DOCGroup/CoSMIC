@@ -1,13 +1,8 @@
 // -*- MPC -*-
 // $Id$
 
-project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe {
-
+project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe, cosmic_lib {
   sharedname   = IDL_TO_PICML_BE
-  libout       = $(COSMIC_ROOT)/lib
-  dllout       = $(COSMIC_ROOT)/bin
-  libpaths    += $(COSMIC_ROOT)/lib
-  libs        += ACE
   dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
   
   specific (prop:microsoft) {
@@ -41,13 +36,12 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game
   }
 }
 
-project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe {
+project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe, cosmic_bin {
   after          += IDL_TO_PICML_BE
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE
   includes       += . $(TAO_ROOT)
   libpaths       += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin
-  install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {
     ifeq ($(TAO_IDL_PREPROCESSOR),)

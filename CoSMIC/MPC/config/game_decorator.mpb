@@ -13,4 +13,8 @@ project : register, mfc, gdiplus, game_be {
     link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/DecoratorApp.def
     compile_flags += /wd4996
   }
+
+  specific (wix) {
+    install_location = bin
+  }
 }

@@ -28,4 +28,8 @@ project : mfc, register {
   Header_Files {
 
   }
+  
+  specific (wix) {
+    install_location = bin
+  }
 }
