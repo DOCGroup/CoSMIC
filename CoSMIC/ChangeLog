@@ -1,13 +1,24 @@
+Mon Jun 28 04:10:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/RELEASE-HOWTO:
+        
+          Updated instructions for creating a release.
+
+        * cosmic.mwc:
+        * picml.mwc:
+        
+          Removed t3-compiler from the build.
+
 Mon Jun 28 02:12:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * README:
         * RELEASE-NOTES:
         * VERSION:
-        
+
           Updated the files above for the release.
-          
+
         * contrib:
-        
+
           CCF -r 90881 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
           utility -r 90881 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
 

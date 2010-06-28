@@ -9,7 +9,7 @@ workspace (PICML) {
   Utils/Utils.mpc
   Utils/GAME/GAME.mwc
   Utils/ModelUpgrade
-  Utils/T3
+  Utils/T3/t3/runtime
   Utils/xercesc
 
   // The following directories and workspaces apply only

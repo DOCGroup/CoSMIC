@@ -1,27 +1,20 @@
 // $Id$
 
-workspace {
+workspace (cosmic) {
   cmdline += -feature_file default.features \
              -include $COSMIC_ROOT/MPC/config
 
   ./picml.mwc
-  
+
   exclude (!prop:windows) {
     PIM/SIML/interpreters/Interpreters.mwc
     PIM/POSAML/interpreters/interpreters.mwc
     PSM/CQML/interpreters/Interpreters.mwc
     PSM/DQML
+  }
 
-    exclude (wix) {
-      cmdline += -static \
-                 -include $COSMIC_ROOT/contrib/CCF/MPC/config
-
-      $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
-    }
-
-    exclude (!wix) {
-      $(COSMIC_ROOT)/docs
-      $(COSMIC_ROOT)/includes
-    }
+  exclude (!wix) {
+    $(COSMIC_ROOT)/docs
+    $(COSMIC_ROOT)/includes
   }
 }

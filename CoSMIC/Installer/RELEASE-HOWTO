@@ -52,11 +52,10 @@ This file documents the CoSMIC release procedure
    RELEASE-NOTES, VERSION, and ChangeLog.
  
 7. Build the CoSMIC installers. At the time of this writing, CoSMIC was 
-   built using both GME 7.6.29 (vc8) and GME 9.8.28 (vc9) on equus and 
-   trian nightly build machines respectively. Check the CoSMIC scoreboard
-   at http://www.dre.vanderbilt.edu/scoreboard/cosmic.html to make sure
-   they build properly. Upload the installers in the WWW repository as 
-   described in step #12
+   built using latest version of GME on trian nightly build machine. 
+   Check the CoSMIC scoreboard at http://www.dre.vanderbilt.edu/scoreboard/cosmic.html 
+   to make sure they build properly. Upload the installers in the WWW 
+   repository as described in step #12
    
 8. Create a tag. For example,
 
