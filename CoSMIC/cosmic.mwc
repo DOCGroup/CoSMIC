@@ -4,8 +4,8 @@ workspace (cosmic) {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  ./picml.mwc
-
+  PIM/PICML/PICML.mwc
+  
   exclude (!prop:windows) {
     PIM/SIML/interpreters/Interpreters.mwc
     PIM/POSAML/interpreters/interpreters.mwc
@@ -34,4 +34,12 @@ workspace (cosmic) {
   
     $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit      
   }
+
+  // The follow directories and workspaces only apply to
+  // building CoSMIC using Visual C++.
+  Utils/Utils.mpc
+  Utils/GAME/GAME.mwc
+  Utils/ModelUpgrade
+  Utils/T3/t3/runtime
+  Utils/xercesc
 }

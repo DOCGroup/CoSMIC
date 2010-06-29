@@ -1,11 +1,26 @@
+Tue Jun 29 14:35:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        
+          Added exclude {} scope for different interpreters.
+
+        * PIM/PICML/PICML.mwc:
+        * cosmic.mwc:
+        
+          Move the PICML workspace to the PICML directory.
+
+        * picml.mwc:
+
+          Removed this file.
+
 Mon Jun 28 22:05:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * ChangeLog:
         * ChangeLogs/ChangeLog-10c:
         * contrib:
 
-          CoSMIC version 0.7.9 was released. Moved the ChangeLog 
-          to ChangeLogs/ChangeLog-09. Reverted contrib svn:externals property 
+          CoSMIC version 0.7.9 was released. Moved the ChangeLog
+          to ChangeLogs/ChangeLog-09. Reverted contrib svn:externals property
           back to the HEAD revision.
 
    Local Variables:
