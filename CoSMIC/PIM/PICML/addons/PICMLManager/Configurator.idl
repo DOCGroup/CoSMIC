@@ -1,0 +1,31 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Configurator.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_MANAGER_CONFIGURATOR_IDL_
+#define _PICML_MANAGER_CONFIGURATOR_IDL_
+
+import "oaidl.idl";
+
+[object, uuid (8E638B71-4CC7-49CD-9C0D-6F051233D524)]
+interface IConfigurator : IUnknown
+{
+  /// Set the name of the implementation folder.
+  HRESULT setImplementationFolder ([in] BSTR name);
+  
+  /// Set the name of the artifact folder.
+  HRESULT setArtifactFolder ([in] BSTR name);
+
+  /// Reset to the default configuration.
+  HRESULT resetConfiguration ();
+};   
+
+#endif  // !defined _PICML_MANAGER_CONFIGURATOR_IDL_

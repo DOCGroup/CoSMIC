@@ -3,15 +3,14 @@
 #include "StdAfx.h"
 #include "PICMLManager_Impl.h"
 
-#include "PICMLManager.h"
-#include "PICMLManager_i.c"
-#include "game/be/Addon_T.h"
 #include "game/GAME.h"
 #include "game/utils/modelgen.h"
 #include "game/dialogs/Selection_List_Dialog.h"
 
 #include "Dialogs.h"
+
 #include "DefaultImplementationGenerator.h"
+#include "DefaultArtifactGenerator.h"
 #include "NewComponentConfig.h"
 
 #include "Utils/Utils.h"
@@ -24,7 +23,6 @@
 
 // Type definition
 typedef std::vector <GAME::Reference> Reference_Set;
-DECLARE_ADDON (PICMLManager_Addon, PICMLManager_Impl);
 
 static const long EVENTMASK =
    OBJEVENT_CREATED | OBJEVENT_ATTR |   
@@ -37,7 +35,9 @@ static const long EVENTMASK =
 //
 PICMLManager_Impl::PICMLManager_Impl (void)
 : GAME::Event_Handler_Impl (EVENTMASK),
-  importing_ (0)
+  importing_ (0),
+  impl_folder_ ("ComponentImplementations"),
+  artifact_folder_ ("ImplementationArtifacts")
 {
 
 }
@@ -175,6 +175,31 @@ handle_object_event (GAME::Object & obj, unsigned long eventmask)
   }
 
   return S_OK;
+}
+
+//
+// set_artifact_folder
+//
+void PICMLManager_Impl::set_artifact_folder (const std::string & name)
+{
+  this->artifact_folder_ = name;
+}
+
+//
+// set_implementation_folder
+//
+void PICMLManager_Impl::set_implementation_folder (const std::string & name)
+{
+  this->impl_folder_ = name;
+}
+
+//
+// reset_configuration
+//
+void PICMLManager_Impl::reset_configuration (void)
+{
+  this->artifact_folder_ = "ImplementationArtifacts";
+  this->impl_folder_ = "ComponentImplementations";
 }
 
 //
@@ -569,12 +594,36 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
         obj.name (config.component_name_.c_str ());
       }
 
-      // Generate the component's default implementation.
+      // Make sure the target folder's exist.
       GAME::Folder root_folder = obj.project ().root_folder ();
-      DefaultImplementationGenerator impl_gen (root_folder, config);
+      GAME::Folder artifact_folder, impl_folder;
 
+      if (GAME::create_if_not (root_folder, "ImplementationArtifacts", artifact_folder,      
+          GAME::contains (boost::bind (std::equal_to <std::string> (),
+                          this->artifact_folder_,
+                          boost::bind (&GAME::Model::name, _1)))))
+      {
+        artifact_folder.name (this->artifact_folder_);
+      }
+
+      if (GAME::create_if_not (root_folder, "ComponentImplementations", impl_folder,      
+          GAME::contains (boost::bind (std::equal_to <std::string> (),
+                          this->impl_folder_,
+                          boost::bind (&GAME::Model::name, _1)))))
+      {
+        impl_folder.name (this->impl_folder_);
+      }
+
+      // Generate the component's artifacts.
       GAME::Model component = GAME::Model::_narrow (obj);
-      impl_gen.generate (component);
+      DefaultArtifactGenerator artifact_gen (artifact_folder);
+      
+      if (artifact_gen.generate (config, component))
+      {
+        // Generate the component's implementation.
+        DefaultImplementationGenerator impl_gen (artifact_gen, impl_folder);
+        impl_gen.generate (component);
+      }
     }
   }
 

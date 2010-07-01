@@ -33,7 +33,7 @@ public:
    *
    * @param[in]       root        Root folder for the project
    */
-  DefaultArtifactGenerator (GAME::Folder & root, const NewComponentConfig & config);
+  DefaultArtifactGenerator (GAME::Folder & root);
 
   /// Destructor.
   ~DefaultArtifactGenerator (void);
@@ -43,7 +43,7 @@ public:
    *
    * @param[in]       component         Compent
    */
-  bool generate (const GAME::Model & component);
+  bool generate (const NewComponentConfig & config, const GAME::Model & component);
 
   const GAME::Atom & svnt_artifact (void) const;
 
@@ -51,16 +51,13 @@ public:
 
 private:
   /// Folder that contains the artifacts.
-  GAME::Folder artifacts_;
+  GAME::Folder & artifacts_;
 
   /// The servant's artifact.
   GAME::Atom svnt_artifact_;
 
   /// The implementation's artifact.
   GAME::Atom impl_artifact_;
-
-  /// Configuration for the new component.
-  const NewComponentConfig & config_;
 };
 
 #endif  // !defined _PICML_MANAGER_DEFAULT_ARTIFACT_GENERATOR_H_

@@ -54,6 +54,12 @@ namespace GAME
   // Forward decl.
   class ConnectionPoints;
 
+  // Forward decl.
+  class Component;
+
+  // Forward decl.
+  class ComponentEx;
+
   namespace Meta
   {
     // Foward decl.

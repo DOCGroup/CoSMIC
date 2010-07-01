@@ -1,45 +1,26 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ *  @file     Interpreter_T
+ *
+ *  $Id$
+ *
+ *  @author   James H. Hill
+ */
+//=============================================================================
+
 #ifndef _GME_INTERPRETER_T_H_
 #define _GME_INTERPRETER_T_H_
 
 #include "ComponentEx_T.h"
+#include "ComponentEx_Impl_Base.h"
 
 namespace GAME
 {
-/**
- * @class Interpreter_T
- */
-template <typename T, const CLSID * pclsid = &CLSID_NULL>
-class Interpreter_T :
-  public GAME::ComponentEx_T < Interpreter_T < T >, pclsid>
-{
-public:
-  /// Default constructor
-  Interpreter_T (void);
 
-  /// Destructor
-  virtual ~Interpreter_T (void);
-
-  STDMETHOD (Initialize) (IMgaProject * proj);
-  STDMETHOD (Invoke) (IMgaProject * proj, IMgaFCOs * selected, long flags);
-  STDMETHOD (Enable) (VARIANT_BOOL enable);
-  STDMETHOD (get_InteractiveMode) (VARIANT_BOOL * mode);
-  STDMETHOD (put_InteractiveMode) (VARIANT_BOOL mode);
-  STDMETHOD (get_ComponentName) (BSTR * name);
-  STDMETHOD (get_ComponentType) (componenttype_enum * type);
-  STDMETHOD (get_Paradigm) (BSTR * paradigm);
-
-  STDMETHOD (InvokeEx) (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * selected, long flags);
-  STDMETHOD (ObjectsInvokeEx) (IMgaProject *, IMgaObject *, IMgaObjects *, long);
-  STDMETHOD (get_ComponentProgID) (BSTR *pVal);
-  STDMETHOD (put_ComponentParameter) (BSTR name, VARIANT newVal);
-  STDMETHOD (get_ComponentParameter) (BSTR name, VARIANT *pVal);
-
-protected:
-  /// The actual implementation of the interpreter
-  T impl_;
 };
+
 }
 
 #define DECLARE_GAME_INTERPRETER(type, impl) \

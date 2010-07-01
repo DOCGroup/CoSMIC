@@ -28,16 +28,10 @@ std::string operator + (const std::string & str, const ACE_CString & acestr)
 // DefaultArtifactGenerator
 //
 DefaultArtifactGenerator::
-DefaultArtifactGenerator (GAME::Folder & root, const NewComponentConfig & config)
-: config_ (config)
+DefaultArtifactGenerator (GAME::Folder & folder)
+: artifacts_ (folder)
 {
-  if (GAME::create_if_not (root, "ImplementationArtifacts", this->artifacts_,
-      GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      "ImplementationArtifacts",
-                      boost::bind (&GAME::Folder::name, _1)))))
-  {
-    this->artifacts_.name ("ImplementationArtifacts");
-  }
+
 }
 
 //
@@ -51,11 +45,12 @@ DefaultArtifactGenerator::~DefaultArtifactGenerator (void)
 //
 // generate
 //
-bool DefaultArtifactGenerator::generate (const GAME::Model & component)
+bool DefaultArtifactGenerator::
+generate (const NewComponentConfig & config, const GAME::Model & component)
 {
   std::string name = PICML::GAME::fq_type (component, "_");
-  std::string impl_name = name + this->config_.exec_artifact_suffix_;
-  std::string svnt_name = name + this->config_.svnt_artifact_suffix_;
+  std::string impl_name = name + config.exec_artifact_suffix_;
+  std::string svnt_name = name + config.svnt_artifact_suffix_;
 
   // Create a new container for the component's artifacts.
   std::string container_name = name + "Artifacts";

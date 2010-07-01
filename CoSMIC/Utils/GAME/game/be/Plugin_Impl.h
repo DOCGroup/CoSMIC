@@ -13,7 +13,7 @@
 #ifndef _GME_PLUGIN_IMPL_H_
 #define _GME_PLUGIN_IMPL_H_
 
-#include "Interpreter_Impl_Base.h"
+#include "ComponentEx_Impl_Base.h"
 
 namespace GAME
 {
@@ -24,20 +24,19 @@ namespace GAME
  * should derive from this class. The subclass should then be used
  * as the IMPL parameter in Plugin_T class.
  */
-class GAME_BE_Export Plugin_Impl :
-  public GAME::Interpreter_Impl_Base
+class GAME_BE_Export Plugin_Impl : public ComponentEx_Impl_Base
 {
 public:
   /**
    * Initializing constructor.
    */
   Plugin_Impl (const std::string & name,
-               const std::string & progid,
-               bool managed = true);
+               const std::string & progid);
 
   /// Desturctor.
   virtual ~Plugin_Impl (void);
 };
+
 }
 
 

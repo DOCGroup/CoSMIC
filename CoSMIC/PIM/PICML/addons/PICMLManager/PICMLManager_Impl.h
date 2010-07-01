@@ -24,6 +24,7 @@
 
 namespace GAME
 {
+// Forward decl.
 class FCO;
 }
 
@@ -46,6 +47,10 @@ public:
   virtual int handle_global_event (long global_event);
 
   virtual int handle_object_event (GAME::Object & obj, unsigned long mask);
+
+  void set_implementation_folder (const std::string & name);
+  void set_artifact_folder (const std::string & name);
+  void reset_configuration (void);
 
 private:
   int handle_AttributeMember (unsigned long eventmask, GAME::Object & obj);
@@ -157,6 +162,10 @@ private:
 
   /// Latest member of the collocation group.
   GAME::FCO cg_member_;
+
+  std::string impl_folder_;
+
+  std::string artifact_folder_;
 };
 
 #endif // _PICML_MANAGER_IMPL_H_

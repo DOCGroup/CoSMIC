@@ -1,0 +1,25 @@
+// $Id$
+
+namespace GAME
+{
+//
+// ComponentEx_Impl_T
+//
+template <typename T>
+GAME_INLINE
+ComponentEx_Impl_T <T>::ComponentEx_Impl_T (void)
+{
+
+}
+
+//
+// ~ComponentEx_T
+//
+template <typename T>
+GAME_INLINE
+ComponentEx_Impl_T <T>::~ComponentEx_Impl_T (void)
+{
+
+}
+
+}

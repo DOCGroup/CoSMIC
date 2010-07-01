@@ -7,108 +7,149 @@
 
 namespace GAME
 {
-  //
-  // Component
-  //
-  Component::Component (void)
-  {
+//
+// load
+//
+Component Component::_load (const std::string & progid)
+{
+  CComBSTR temp (progid.length (), progid.c_str ());
 
-  }
+  Component component;
+  VERIFY_HRESULT (component.component_.CoCreateInstance (temp));
 
-  //
-  // Component
-  //
-  Component::Component (const std::string & progid)
-  {
-    this->load (progid);
-  }
+  return component;
+}
 
-  //
-  // ~Component
-  //
-  Component::~Component (void)
-  {
+//
+// Component
+//
+Component::Component (void)
+{
 
-  }
+}
 
-  //
-  // name
-  //
-  std::string Component::name (void) const
-  {
-    CComBSTR bstr;
-    VERIFY_HRESULT (this->component_->get_ComponentName (&bstr));
+//
+// Component
+//
+Component::Component (const Component & c)
+: component_ (c.component_)
+{
 
-    CW2CT tempstr (bstr);
-    return tempstr.m_psz;
-  }
+}
 
-  //
-  // type
-  //
-  componenttype_enum Component::type (void) const
-  {
-    componenttype_enum type;
-    VERIFY_HRESULT (this->component_->get_ComponentType (&type));
+//
+// ~Component
+//
+Component::~Component (void)
+{
 
-    return type;
-  }
+}
 
-  //
-  // registered_paradigm
-  //
-  std::string Component::registered_paradigm (void) const
-  {
-    CComBSTR bstr;
-    VERIFY_HRESULT (this->component_->get_Paradigm (&bstr));
+//
+// operator ->
+//
+IMgaComponent * Component::operator -> (void) const
+{
+  return this->component_.p;
+}
 
-    CW2CT tempstr (bstr);
-    return tempstr.m_psz;
-  }
+//
+// name
+//
+std::string Component::name (void) const
+{
+  CComBSTR bstr;
+  VERIFY_HRESULT (this->component_->get_ComponentName (&bstr));
 
-  //
-  // load
-  //
-  void Component::load (const std::string & progid)
-  {
-    CComBSTR temp (progid.length (), progid.c_str ());
-    VERIFY_HRESULT (this->component_.CoCreateInstance (temp));
-  }
+  CW2CT tempstr (bstr);
+  return tempstr.m_psz;
+}
 
-  //
-  // release
-  //
-  void Component::release (void)
-  {
-    this->component_.Release ();
-  }
+//
+// type
+//
+componenttype_enum Component::type (void) const
+{
+  componenttype_enum type;
+  VERIFY_HRESULT (this->component_->get_ComponentType (&type));
 
-  //
-  // invoke
-  //
-  void Component::invoke (Project & project,
-                          std::vector <FCO> & selected,
-                          long param)
-  {
-    CComBSTR progid ("Mga.MgaFCOs");
-    CComPtr <IMgaFCOs> selected_raw;
-    VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
+  return type;
+}
 
-    std::vector <GAME::FCO>::const_iterator
-      iter = selected.begin (), iter_end = selected.end ();
+//
+// interative
+//
+bool Component::interative (void) const
+{
+  VARIANT_BOOL enabled;
+  VERIFY_HRESULT (this->component_->get_InteractiveMode (&enabled));
 
-    for ( ; iter != iter_end; ++ iter)
-      VERIFY_HRESULT (selected_raw->Insert (iter->impl (), 0));
+  return enabled == VARIANT_TRUE ? true : false;
+}
 
-    VERIFY_HRESULT (
-      this->component_->Invoke (project.impl (), selected_raw, param));
-  }
+//
+// interative
+//
+void Component::interative (bool flag)
+{
+  VARIANT_BOOL enabled = flag ? VARIANT_TRUE : VARIANT_FALSE;
+  VERIFY_HRESULT (this->component_->put_InteractiveMode (enabled));
+}
 
-  //
-  // initialize
-  //
-  void Component::initialize (Project & project)
-  {
-    VERIFY_HRESULT (this->component_->Initialize (project.impl ()));
-  }
+//
+// registered_paradigm
+//
+std::string Component::registered_paradigm (void) const
+{
+  CComBSTR bstr;
+  VERIFY_HRESULT (this->component_->get_Paradigm (&bstr));
+
+  CW2CT tempstr (bstr);
+  return tempstr.m_psz;
+}
+
+//
+// release
+//
+void Component::release (void)
+{
+  this->component_.Release ();
+}
+
+//
+// invoke
+//
+void Component::invoke (Project & project,
+                        std::vector <FCO> & selected,
+                        long param)
+{
+  CComBSTR progid ("Mga.MgaFCOs");
+  CComPtr <IMgaFCOs> selected_raw;
+  VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
+
+  std::vector <GAME::FCO>::const_iterator
+    iter = selected.begin (), iter_end = selected.end ();
+
+  for ( ; iter != iter_end; ++ iter)
+    VERIFY_HRESULT (selected_raw->Insert (iter->impl (), 0));
+
+  VERIFY_HRESULT (this->component_->Invoke (project.impl (), selected_raw, param));
+}
+
+//
+// initialize
+//
+void Component::initialize (Project & project)
+{
+  VERIFY_HRESULT (this->component_->Initialize (project.impl ()));
+}
+
+//
+// attach
+//
+void Component::attach (IMgaComponent * c)
+{
+  this->component_.Attach (c);  
+}
+
 }

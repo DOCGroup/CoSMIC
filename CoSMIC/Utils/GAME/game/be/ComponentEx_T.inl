@@ -3,21 +3,21 @@
 namespace GAME
 {
 //
-// RawComponent_i
+// ComponentEx_T
 //
-template <typename T, const CLSID * pclsid>
+template <typename IMPL, const CLSID * pclsid>
 GAME_INLINE
-ComponentEx_T <T, pclsid>::ComponentEx_T (void)
+ComponentEx_T <IMPL, pclsid>::ComponentEx_T (void)
 {
 
 }
 
 //
-// ~RawComponent_i
+// ~ComponentEx_T
 //
-template <typename T, const CLSID * pclsid>
+template <typename IMPL, const CLSID * pclsid>
 GAME_INLINE
-ComponentEx_T <T, pclsid>::~ComponentEx_T (void)
+ComponentEx_T <IMPL, pclsid>::~ComponentEx_T (void)
 {
 
 }

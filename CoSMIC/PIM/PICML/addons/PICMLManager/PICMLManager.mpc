@@ -7,9 +7,12 @@ project (PICMLManager): game_dialogs, game_component, picml_game_utils, boost_ba
   pch_source = StdAfx.cpp
   
   Source_Files {
+    Configurator.idl
     PICMLManager.idl
+    
     PICMLManager_Impl.cpp
     PICMLManager_Module.cpp
+    PICML_Manager_Addon.cpp
     
     DefaultImplementationGenerator.cpp
     DefaultArtifactGenerator.cpp

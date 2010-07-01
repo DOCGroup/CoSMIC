@@ -14,10 +14,12 @@ project (GAME_BE) : game_utils, cosmic_lib {
   }
 
   Source_Files {    
+    Addon_Impl_Base.cpp
+    ComponentEx_Impl_Base.cpp
     Decorator_Impl.cpp
     Event_Handler.cpp
     Event_Handler_Impl.cpp
-    Interpreter_Impl_Base.cpp
+    Interpreter_Impl_Base.cpp    
     Plugin_Impl.cpp
   }
 
@@ -26,8 +28,9 @@ project (GAME_BE) : game_utils, cosmic_lib {
   }
 
   Template_Files {
-    Addon_T.cpp
+    Addon_Impl_T.cpp
     ComponentEx_T.cpp
+    ComponentEx_Impl_T.cpp
     Decorator_T.cpp
     Interpreter_T.cpp
     Plugin_T.cpp

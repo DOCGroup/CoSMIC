@@ -1,7 +1,10 @@
 // $Id$
 
 #include "StdAfx.h"
+
 #include "DefaultImplementationGenerator.h"
+#include "DefaultArtifactGenerator.h"
+
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
 #include "game/Attribute.h"
@@ -18,18 +21,11 @@
 // DefaultImplementationGenerator
 //
 DefaultImplementationGenerator::
-DefaultImplementationGenerator (GAME::Folder & root, const NewComponentConfig & config)
-: artifact_gen_ (root, config)
+DefaultImplementationGenerator (const DefaultArtifactGenerator & artifact_gen,
+                                GAME::Folder & folder)
+: artifact_gen_ (artifact_gen),
+  folder_ (folder)
 {
-  static const std::string metaname ("ComponentImplementations");
-
-  if (GAME::create_if_not (root, metaname, this->impls_,
-      GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      metaname,
-                      boost::bind (&GAME::Folder::name, _1)))))
-  {
-    this->impls_.name (metaname);
-  }
 }
 
 //
@@ -45,9 +41,6 @@ DefaultImplementationGenerator::~DefaultImplementationGenerator (void)
 //
 bool DefaultImplementationGenerator::generate (const GAME::Model & component)
 {
-  // First, generate the artifacts for the component.
-  this->artifact_gen_.generate (component);
-
   // Generate the monolithic implementation.
   std::string name = component.name ();
   std::string fq_type = PICML::GAME::fq_type (component, "_");
@@ -56,7 +49,7 @@ bool DefaultImplementationGenerator::generate (const GAME::Model & component)
   // Create a new container for the component implementation.
   GAME::Model container;
 
-  if (GAME::create_if_not (this->impls_, "ComponentImplementationContainer", container,
+  if (GAME::create_if_not (this->folder_, "ComponentImplementationContainer", container,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
                       impl_name,
                       boost::bind (&GAME::Model::name, _1)))))

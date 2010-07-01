@@ -1,12 +1,77 @@
+Thu Jul  1 21:26:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Configurator.idl:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.idl:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Module.cpp:
+        * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.h:
+        * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.cpp:
+        
+          Updated to latest version of GAME.
+          
+          Implemented an interface for configuring where the PICML Manager
+          auto-generates the default component implementation and its artifacts.
+          This is useful for automation purposes.
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+        * Utils/GAME/game/Collection_T.h:
+        * Utils/GAME/game/GME_fwd.h:
+        
+          Implemented method for retrieving all the add-ons for a 
+          given project.
+          
+        * Utils/GAME/game/Component.h:
+        * Utils/GAME/game/Component.cpp:
+        * Utils/GAME/game/ComponentEx.h:
+        * Utils/GAME/game/ComponentEx.cpp:
+        * Utils/GAME/game/be/Addon_Impl_Base.h:
+        * Utils/GAME/game/be/Addon_Impl_Base.inl:
+        * Utils/GAME/game/be/Addon_Impl_Base.cpp:
+        * Utils/GAME/game/be/Addon_Impl_T.h:
+        * Utils/GAME/game/be/Addon_Impl_T.inl:
+        * Utils/GAME/game/be/Addon_Impl_T.cpp:
+        * Utils/GAME/game/be/ComponentEx_Impl_Base.h:
+        * Utils/GAME/game/be/ComponentEx_Impl_Base.inl:
+        * Utils/GAME/game/be/ComponentEx_Impl_Base.cpp:
+        * Utils/GAME/game/be/ComponentEx_Impl_T.h:
+        * Utils/GAME/game/be/ComponentEx_Impl_T.inl:
+        * Utils/GAME/game/be/ComponentEx_Impl_T.cpp:
+        * Utils/GAME/game/be/ComponentEx_T.h:
+        * Utils/GAME/game/be/ComponentEx_T.inl:
+        * Utils/GAME/game/be/ComponentEx_T.cpp:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.h:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.inl:
+        * Utils/GAME/game/be/Interpreter_T.h:
+        * Utils/GAME/game/be/Plugin_Impl.h:
+        * Utils/GAME/game/be/Plugin_Impl.inl:
+        
+          Re-designed GAME's component framework. This re-design simplified
+          a lot of things, and makes it possible to define domain-specific
+          interfaces for the components.
+
+        * Utils/GAME/game/be/Addon_T.h:
+        * Utils/GAME/game/be/Addon_T.inl:
+        * Utils/GAME/game/be/Addon_T.cpp:
+
+          Removed these files.
+
 Tue Jun 29 14:35:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
-        
+
           Added exclude {} scope for different interpreters.
 
         * PIM/PICML/PICML.mwc:
         * cosmic.mwc:
-        
+
           Move the PICML workspace to the PICML directory.
 
         * picml.mwc:

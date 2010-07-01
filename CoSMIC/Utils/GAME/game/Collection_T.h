@@ -63,6 +63,12 @@ struct collection_traits <IMgaAttributes>
 };
 
 template < >
+struct collection_traits <IMgaComponents>
+{
+  typedef IMgaComponent interface_type;
+};
+
+template < >
 struct collection_traits <IMgaConnPoints>
 {
   typedef IMgaConnPoint interface_type;
@@ -161,6 +167,18 @@ template < >
 struct item_traits <ConnectionPoint>
 {
   typedef IMgaConnPoints collection_type;
+};
+
+template < >
+struct item_traits <Component>
+{
+  typedef IMgaComponents collection_type;
+};
+
+template < >
+struct item_traits <ComponentEx>
+{
+  typedef IMgaComponents collection_type;
 };
 
 template < >

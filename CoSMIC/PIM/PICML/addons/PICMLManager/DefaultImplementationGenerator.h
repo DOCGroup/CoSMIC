@@ -14,7 +14,9 @@
 #define _PICML_MANAGER_DEFAULT_IMPLEMENTATION_GENERATOR_H_
 
 #include "game/Folder.h"
-#include "DefaultArtifactGenerator.h"
+
+// Forward decl.
+class DefaultArtifactGenerator;
 
 /**
  * @class DefaultImplementationGenerator
@@ -31,7 +33,8 @@ public:
    * @param[in]       root        Root folder for the project
    * @param[in]       config      Configuration for the new component.
    */
-  DefaultImplementationGenerator (GAME::Folder & root, const NewComponentConfig & config);
+  DefaultImplementationGenerator (const DefaultArtifactGenerator & artifact_gen, 
+                                  GAME::Folder & folder);
 
   /// Destructor.
   ~DefaultImplementationGenerator (void);
@@ -44,11 +47,10 @@ public:
   bool generate (const GAME::Model & component);
 
 private:
-  /// Folder that contains the implementations.
-  GAME::Folder impls_;
-
   /// Default artifact generator.
-  DefaultArtifactGenerator artifact_gen_;
+  const DefaultArtifactGenerator & artifact_gen_;
+
+  GAME::Folder & folder_;
 };
 
 #endif  // !defined _PICML_MANAGER_DEFAULT_IMPLEMENTATION_GENERATOR_H_
