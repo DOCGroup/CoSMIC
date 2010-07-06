@@ -13,30 +13,12 @@
 #ifndef _GME_PLUGIN_T_H_
 #define _GME_PLUGIN_T_H_
 
-#include "Interpreter_T.h"
+#include "ComponentEx_T.h"
+#include "ComponentEx_Impl_T.h"
 
-namespace GAME
-{
-/**
- * @class Plugin_T
- */
-template <typename T, const CLSID * pclsid = &CLSID_NULL>
-class ATL_NO_VTABLE Plugin_T :
-  public Interpreter_T < T , pclsid>
-{
-public:
-  /// Default constructor
-  Plugin_T (void);
-
-  /// Destructor
-  virtual ~Plugin_T (void);
-};
-
-}
-
-#define DECLARE_GAME_PLUGIN(type, impl) \
-  typedef GAME::Plugin_T <impl, &CLSID_##type> impl##_AutoImpl; \
-  OBJECT_ENTRY_AUTO (__uuidof (type), impl##_AutoImpl)
+#define GAME_DECLARE_PLUGIN(type, impl) \
+  typedef GAME::ComponentEx_T < GAME::ComponentEx_Impl_T <impl>, &CLSID_##type>  impl##_PluginImpl; \
+  OBJECT_ENTRY_AUTO (__uuidof (type), impl##_PluginImpl)
 
 #if defined (__GAME_INLINE__)
 #include "Plugin_T.inl"

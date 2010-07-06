@@ -2,6 +2,11 @@
 
 #include "stdafx.h"
 #include "Component.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Component.inl"
+#endif
+
 #include "FCO.h"
 #include "Set.h"
 
@@ -18,39 +23,6 @@ Component Component::_load (const std::string & progid)
   VERIFY_HRESULT (component.component_.CoCreateInstance (temp));
 
   return component;
-}
-
-//
-// Component
-//
-Component::Component (void)
-{
-
-}
-
-//
-// Component
-//
-Component::Component (const Component & c)
-: component_ (c.component_)
-{
-
-}
-
-//
-// ~Component
-//
-Component::~Component (void)
-{
-
-}
-
-//
-// operator ->
-//
-IMgaComponent * Component::operator -> (void) const
-{
-  return this->component_.p;
 }
 
 //
@@ -109,14 +81,6 @@ std::string Component::registered_paradigm (void) const
 }
 
 //
-// release
-//
-void Component::release (void)
-{
-  this->component_.Release ();
-}
-
-//
 // invoke
 //
 void Component::invoke (Project & project,
@@ -142,14 +106,6 @@ void Component::invoke (Project & project,
 void Component::initialize (Project & project)
 {
   VERIFY_HRESULT (this->component_->Initialize (project.impl ()));
-}
-
-//
-// attach
-//
-void Component::attach (IMgaComponent * c)
-{
-  this->component_.Attach (c);  
 }
 
 }

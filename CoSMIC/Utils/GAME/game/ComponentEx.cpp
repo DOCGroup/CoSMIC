@@ -2,26 +2,26 @@
 
 #include "stdafx.h"
 #include "ComponentEx.h"
+
+#if !defined (__GAME_INLINE__)
+#include "ComponentEx.inl"
+#endif
+
 #include "FCO.h"
 
 namespace GAME
 {
 //
-// ComponentEx
+// _load
 //
-ComponentEx::ComponentEx (void)
+ComponentEx ComponentEx::_load (const std::string & progid)
 {
+  CComPtr <IMgaComponentEx> ptr;
+  CA2W tempstr (progid.c_str ());
 
+  VERIFY_HRESULT (ptr.CoCreateInstance (tempstr));
+  return ptr.p;
 }
-
-//
-// ~ComponentEx
-//
-ComponentEx::~ComponentEx (void)
-{
-
-}
-
 
 //
 // parameter

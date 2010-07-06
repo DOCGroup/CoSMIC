@@ -10,27 +10,14 @@
  */
 //=============================================================================
 
-#ifndef _GME_INTERPRETER_T_H_
-#define _GME_INTERPRETER_T_H_
+#ifndef _GAME_INTERPRETER_T_H_
+#define _GAME_INTERPRETER_T_H_
 
 #include "ComponentEx_T.h"
-#include "ComponentEx_Impl_Base.h"
+#include "ComponentEx_Impl_T.h"
 
-namespace GAME
-{
+#define GAME_DECLARE_INTERPRETER(type, impl) \
+  typedef GAME::ComponentEx_T < GAME::ComponentEx_Impl_T <impl> , &CLSID_##type> impl##_Interpreter; \
+  OBJECT_ENTRY_AUTO (__uuidof (type), impl##_Interpreter)
 
-};
-
-}
-
-#define DECLARE_GAME_INTERPRETER(type, impl) \
-  typedef GAME::Interpreter_T <impl, &CLSID_##type> impl##_AutoImpl; \
-  OBJECT_ENTRY_AUTO (__uuidof (type), impl##_AutoImpl)
-
-#if defined (__GAME_INLINE__)
-#include "Interpreter_T.inl"
-#endif
-
-#include "Interpreter_T.cpp"
-
-#endif  // !defined _GME_INTERPRETER_T_H_
+#endif  // !defined _GAME_INTERPRETER_T_H_

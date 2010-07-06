@@ -1,3 +1,24 @@
+Tue Jul  6 14:11:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Component.h:
+        * Utils/GAME/game/Component.inl:
+        * Utils/GAME/game/Component.cpp:
+        * Utils/GAME/game/ComponentEx.h:
+        * Utils/GAME/game/ComponentEx.inl:
+        * Utils/GAME/game/ComponentEx.cpp:
+        
+          Added support for loading a extended component via the _load () method.
+          
+          Implemented missing constructors.
+          
+          Moved some code to the inline file.
+
+        * Utils/GAME/game/be/Interpreter_T.h:
+        * Utils/GAME/game/be/Plugin_T.h:
+        * Utils/GAME/game/be/Plugin_T.inl:
+        
+          Removed obsolete code.
+
 Thu Jul  1 21:26:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Configurator.idl:
@@ -12,9 +33,9 @@ Thu Jul  1 21:26:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/addons/PICMLManager/PICMLManager_Module.cpp:
         * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.h:
         * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.cpp:
-        
+
           Updated to latest version of GAME.
-          
+
           Implemented an interface for configuring where the PICML Manager
           auto-generates the default component implementation and its artifacts.
           This is useful for automation purposes.
@@ -23,10 +44,10 @@ Thu Jul  1 21:26:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/Project.cpp:
         * Utils/GAME/game/Collection_T.h:
         * Utils/GAME/game/GME_fwd.h:
-        
-          Implemented method for retrieving all the add-ons for a 
+
+          Implemented method for retrieving all the add-ons for a
           given project.
-          
+
         * Utils/GAME/game/Component.h:
         * Utils/GAME/game/Component.cpp:
         * Utils/GAME/game/ComponentEx.h:
@@ -52,7 +73,7 @@ Thu Jul  1 21:26:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/be/Interpreter_T.h:
         * Utils/GAME/game/be/Plugin_Impl.h:
         * Utils/GAME/game/be/Plugin_Impl.inl:
-        
+
           Re-designed GAME's component framework. This re-design simplified
           a lot of things, and makes it possible to define domain-specific
           interfaces for the components.

@@ -44,9 +44,16 @@ public:
   Component (void);
 
   /**
+   * Initializing constructor
+   *
+   * @param[in]         c       Pointer to the component
+   */
+  Component (IMgaComponent * c);
+
+  /**
    * Copy constructor
    *
-   * @param[in]   c           The source component
+   * @param[in]         c       The source component
    */
   Component (const Component & c);
 
@@ -108,5 +115,9 @@ protected:
 };
 
 }
+
+#if defined (__GAME_INLINE__)
+#include "Component.inl"
+#endif
 
 #endif  // !defined _GME_COMPONENT_H_
