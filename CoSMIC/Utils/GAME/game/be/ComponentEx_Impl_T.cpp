@@ -4,6 +4,9 @@
 #include "ComponentEx_Impl_T.inl"
 #endif
 
+#include "game/Project.h"
+#include "game/FCO.h"
+
 namespace GAME
 {
 //

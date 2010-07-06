@@ -28,6 +28,25 @@ class GAME_Export Project
 {
 public:
   /**
+   * Create a new project. The name of the project is specified
+   * in the \a name parameter. The project type, i.e., its paradigm,
+   * is specified by the \a paradigm parameter.
+   *
+   * @param[in]     path          Location of the project.
+   * @param[in]     paradigm      The project's paradigm type.
+   */
+  static Project _create (const std::string & path, const std::string & paradigm);
+
+  /**
+   * Open an existing project.
+   *
+   * @param[in]     path          Location of the project.
+   * @param[out]    ro_mode       Read/write mode of the project.
+   */
+  static Project _open (const std::string & path);
+  static Project _open (const std::string & path, bool & ro_mode);
+
+  /**
    * Default constructor. This will create a Mga.MgaProject
    * object that will allow you to manage existing GME projects.
    */
@@ -49,24 +68,6 @@ public:
 
   /// Destructor.
   ~Project (void);
-
-  /**
-   * Create a new project. The name of the project is specified
-   * in the \a name parameter. The project type, i.e., its paradigm,
-   * is specified by the \a paradigm parameter.
-   *
-   * @param[in]     path          Location of the project.
-   * @param[in]     paradigm      The project's paradigm type.
-   */
-  void create (const std::string & path, const std::string & paradigm);
-
-  /**
-   * Open an existing project.
-   *
-   * @param[in]     path          Location of the project.
-   * @param[out]    ro_mode       Read/write mode of the project.
-   */
-  void open (const std::string & path, bool * ro_mode = 0);
 
   /**
    * Save the project as a new different project.

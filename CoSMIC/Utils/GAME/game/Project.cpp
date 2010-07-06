@@ -29,9 +29,15 @@ Project::Project (const Project & project)
 // Project
 //
 Project::Project (IMgaProject * project)
-  : project_ (project)
+: project_ (project)
 {
+  CComPtr <IMgaTerritory> terr;
 
+  if (this->project_.p)
+  {
+    this->project_->get_ActiveTerritory (&terr);
+    this->terr_.attach (terr.Detach ());
+  }
 }
 
 //
@@ -43,38 +49,50 @@ Project::~Project (void)
 }
 
 //
-// create
+// _create
 //
-void Project::create (const std::string & name,
-                      const std::string & paradigm)
+Project Project::_create (const std::string & name, const std::string & paradigm)
 {
   // Convert the string to wide-char format.
   CComBSTR wName (name.length (), name.c_str ());
   CComBSTR wParadigm (paradigm.length (), paradigm.c_str ());
 
-  // Invoke the operation.
-  VERIFY_HRESULT (this->project_->Create (wName, wParadigm));
+  // Create the project and the initial territory.
+  CComPtr <IMgaProject> project;
+  VERIFY_HRESULT (project->Create (wName, wParadigm));
+  
+  CComPtr <IMgaTerritory> terr;
+  VERIFY_HRESULT (project->CreateTerritory (0, &terr, 0));
 
-  // Create the default territory for the project.
-  this->terr_ = this->create_territory ();
+  return project.p;
 }
 
 //
-// open
+// _open
 //
-void Project::open (const std::string & name,
-                    bool * ro_mode)
+Project Project::_open (const std::string & name)
+{
+  bool ro_mode;
+  return Project::_open (name, ro_mode);
+}
+
+//
+// _open
+//
+Project Project::_open (const std::string & name, bool & ro_mode)
 {
   VARIANT_BOOL temp;
   CComBSTR tempstr (name.length (), name.c_str ());
 
-  VERIFY_HRESULT (this->project_->Open (tempstr, &temp));
-
-  if (ro_mode)
-    *ro_mode = temp == VARIANT_TRUE ? true : false;
+  CComPtr <IMgaProject> project;
+  VERIFY_HRESULT (project->Open (tempstr, &temp));
+  ro_mode = (temp == VARIANT_TRUE) ? true : false;
 
   // Create the default territory for the project.
-  this->terr_ = this->create_territory ();
+  CComPtr <IMgaTerritory> terr;
+  VERIFY_HRESULT (project->CreateTerritory (0, &terr, 0));
+
+  return project.p;
 }
 
 //

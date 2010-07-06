@@ -1,3 +1,15 @@
+Tue Jul  6 20:05:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+        
+          The open () and create () methods are now named _open () and
+          _create (), and are declared as static methods.
+
+        * Utils/GAME/game/be/ComponentEx_Impl_T.cpp:
+        
+          Added missing header files.
+
 Tue Jul  6 14:11:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Component.h:
@@ -6,17 +18,17 @@ Tue Jul  6 14:11:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/ComponentEx.h:
         * Utils/GAME/game/ComponentEx.inl:
         * Utils/GAME/game/ComponentEx.cpp:
-        
+
           Added support for loading a extended component via the _load () method.
-          
+
           Implemented missing constructors.
-          
+
           Moved some code to the inline file.
 
         * Utils/GAME/game/be/Interpreter_T.h:
         * Utils/GAME/game/be/Plugin_T.h:
         * Utils/GAME/game/be/Plugin_T.inl:
-        
+
           Removed obsolete code.
 
 Thu Jul  1 21:26:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
