@@ -67,5 +67,6 @@ project (GAME) : acelib, cosmic_lib {
   Header_Files {
     GAME_export.h
     GME_fwd.h
+    types.h
   }
 }

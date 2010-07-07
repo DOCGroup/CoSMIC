@@ -1,7 +1,36 @@
+Wed Jul  7 14:03:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Project.cpp:
+        
+          Closing the project now releases the CComPtr.
+        
+        * Utils/GAME/game/Territory.cpp:
+        
+          Improved the code layout.
+        
+        * Utils/GAME/game/automation:
+        * Utils/GAME/game/automation/Automation_App.h:
+        * Utils/GAME/game/automation/Automation_App.inl:
+        * Utils/GAME/game/automation/Automation_App.cpp:
+        * Utils/GAME/game/automation/Automation_App_Options.h:
+        * Utils/GAME/game/automation/Automation_App_Options.inl:
+        * Utils/GAME/game/automation/Automation_App_Options.cpp:
+        * Utils/GAME/game/automation/automation.mpc:
+        * Utils/GAME/game/automation/automation.cpp:
+        
+          First implementation of the application for automating an
+          interpreter.          
+
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/types.h:
+        
+          Standard GAME types. This will help normalize the types 
+          across the different projects.
+
 Wed Jul  7 02:23:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/ModelUpgrade/Model_Upgrade.cpp:
-        
+
           Fixed compiler errors.
 
 Tue Jul  6 20:05:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

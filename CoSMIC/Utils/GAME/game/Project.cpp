@@ -31,13 +31,7 @@ Project::Project (const Project & project)
 Project::Project (IMgaProject * project)
 : project_ (project)
 {
-  CComPtr <IMgaTerritory> terr;
-
-  if (this->project_.p)
-  {
-    this->project_->get_ActiveTerritory (&terr);
-    this->terr_.attach (terr.Detach ());
-  }
+  this->terr_ = this->active_territory ();
 }
 
 //
@@ -84,15 +78,14 @@ Project Project::_open (const std::string & name, bool & ro_mode)
   VARIANT_BOOL temp;
   CComBSTR tempstr (name.length (), name.c_str ());
 
-  CComPtr <IMgaProject> project;
-  VERIFY_HRESULT (project->Open (tempstr, &temp));
+  Project project;
+  VERIFY_HRESULT (project.project_->Open (tempstr, &temp));
   ro_mode = (temp == VARIANT_TRUE) ? true : false;
 
   // Create the default territory for the project.
-  CComPtr <IMgaTerritory> terr;
-  VERIFY_HRESULT (project->CreateTerritory (0, &terr, 0));
+  project.terr_ = project.create_territory ();
 
-  return project.p;
+  return project;
 }
 
 //
@@ -116,8 +109,8 @@ void Project::close (bool abort)
   this->terr_.close ();
 
   // Close the project.
-  VERIFY_HRESULT (this->project_->Close (
-                  abort ? VARIANT_TRUE : VARIANT_FALSE));
+  VERIFY_HRESULT (this->project_->Close (abort ? VARIANT_TRUE : VARIANT_FALSE));
+  this->project_.Release ();
 }
 
 //
