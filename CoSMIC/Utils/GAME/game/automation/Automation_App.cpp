@@ -6,6 +6,8 @@
 #include "Automation_App.inl"
 #endif
 
+#include "Parameter_Parser.h"
+
 #include "game/XML.h"
 #include "game/ComponentEx.h"
 #include "game/GAME.h"
@@ -124,7 +126,8 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
       }
       else if (ACE_OS::strcmp ("param", get_opt.long_option ()) == 0)
       {
-        // TODO add parameter support
+        Parameter_Parser p;
+        p.parse (get_opt.opt_arg (), this->opts_.params_);
       }
       else if (ACE_OS::strcmp ("help", get_opt.long_option ()) == 0)
       {

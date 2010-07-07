@@ -1,3 +1,12 @@
+Wed Jul  7 22:15:44 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/automation/Automation_App.cpp:
+        * Utils/GAME/game/automation/Parameter_Parser.h:
+        * Utils/GAME/game/automation/Parameter_Parser.cpp:
+        * Utils/GAME/game/automation/automation.mpc:
+        
+          Implemented support for passing parameters to the interpreter.
+
 Wed Jul  7 20:45:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_manip.mpb:
@@ -6,7 +15,7 @@ Wed Jul  7 20:45:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/manip/Manipulation_export.h:
         * Utils/GAME/game/manip/copy.h:
         * Utils/GAME/game/manip/copy.cpp:
-        
+
           First version of a model manipulation library.
 
 Wed Jul  7 17:54:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -11,5 +11,6 @@ project (GAME_Automation) : game, cosmic_bin {
     automation.cpp
     Automation_App.cpp
     Automation_App_Options.cpp
+    Parameter_Parser.cpp
   }
 }
