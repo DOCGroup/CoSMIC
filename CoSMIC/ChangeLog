@@ -1,13 +1,21 @@
+Wed Jul  7 17:54:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+        
+          The destructor no longer closes the territory. Instead, this now
+          handled in the close () method.
+
 Wed Jul  7 14:03:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Project.cpp:
-        
+
           Closing the project now releases the CComPtr.
-        
+
         * Utils/GAME/game/Territory.cpp:
-        
+
           Improved the code layout.
-        
+
         * Utils/GAME/game/automation:
         * Utils/GAME/game/automation/Automation_App.h:
         * Utils/GAME/game/automation/Automation_App.inl:
@@ -17,14 +25,14 @@ Wed Jul  7 14:03:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/automation/Automation_App_Options.cpp:
         * Utils/GAME/game/automation/automation.mpc:
         * Utils/GAME/game/automation/automation.cpp:
-        
+
           First implementation of the application for automating an
-          interpreter.          
+          interpreter.
 
         * Utils/GAME/game/GAME.mpc:
         * Utils/GAME/game/types.h:
-        
-          Standard GAME types. This will help normalize the types 
+
+          Standard GAME types. This will help normalize the types
           across the different projects.
 
 Wed Jul  7 02:23:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -19,8 +19,9 @@ Project::Project (void)
 //
 // Project
 //
-Project::Project (const Project & project)
-  : project_ (project.project_)
+Project::Project (const Project & p)
+  : project_ (p.project_),
+    terr_ (p.terr_)
 {
 
 }
@@ -31,7 +32,8 @@ Project::Project (const Project & project)
 Project::Project (IMgaProject * project)
 : project_ (project)
 {
-  this->terr_ = this->active_territory ();
+  if (this->project_)
+    this->terr_ = this->active_territory ();
 }
 
 //
@@ -39,7 +41,7 @@ Project::Project (IMgaProject * project)
 //
 Project::~Project (void)
 {
-  this->terr_.close ();
+
 }
 
 //
@@ -237,10 +239,10 @@ Territory Project::create_territory (void)
 //
 Territory Project::active_territory (void)
 {
-  IMgaTerritory * terr = 0;
+  CComPtr <IMgaTerritory> terr;
   VERIFY_HRESULT (this->project_->get_ActiveTerritory (&terr));
 
-  return terr;
+  return terr.p;
 }
 
 //
@@ -343,9 +345,35 @@ IMgaProject * Project::impl (void)
 //
 // operator =
 //
-const Project & Project::operator = (IMgaProject * project)
+const Project & Project::operator = (const Project & p)
 {
-  this->project_ = project;
+  if (this == &p)
+    return *this;
+
+  // Save the source's information.
+  this->project_ = p.project_;
+  this->terr_ = p.terr_;
+
+  return *this;
+}
+
+//
+// operator =
+//
+const Project & Project::operator = (IMgaProject * p)
+{
+  if (this->project_ == p)
+    return *this;
+
+  // Save this pointer to the project.
+  if (this->project_)
+    this->project_.Release ();
+
+  this->project_ = p;
+
+  if (0 != this->project_)
+    this->terr_ = this->active_territory ();
+
   return *this;
 }
 

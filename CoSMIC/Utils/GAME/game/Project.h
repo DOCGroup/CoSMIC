@@ -211,7 +211,8 @@ public:
 
   IMgaProject * impl (void);
 
-  const Project & operator = (IMgaProject * project);
+  const Project & operator = (IMgaProject * p);
+  const Project & operator = (const Project & p);
 
   /**
    * Get the connection string for the project.
