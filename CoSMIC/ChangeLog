@@ -1,8 +1,19 @@
+Wed Jul  7 20:45:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_manip.mpb:
+        * Utils/GAME/game/manip:
+        * Utils/GAME/game/manip/Manipulation.mpc:
+        * Utils/GAME/game/manip/Manipulation_export.h:
+        * Utils/GAME/game/manip/copy.h:
+        * Utils/GAME/game/manip/copy.cpp:
+        
+          First version of a model manipulation library.
+
 Wed Jul  7 17:54:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Project.h:
         * Utils/GAME/game/Project.cpp:
-        
+
           The destructor no longer closes the territory. Instead, this now
           handled in the close () method.
 

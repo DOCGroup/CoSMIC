@@ -1,0 +1,10 @@
+// $Id$
+
+project (GAME_Manipulation) : game, cosmic_lib {
+  sharedname    = GAME_Manipulation
+  dynamicflags += GAME_MANIPULATION_BUILD_DLL
+  
+  Source_Files {
+    copy.cpp
+  }
+}
