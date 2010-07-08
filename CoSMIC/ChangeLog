@@ -1,3 +1,9 @@
+Thu Jul  8 03:28:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/ComponentLib_h.h:
+        
+          This file is needed for BON.
+
 Thu Jul  8 00:08:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
@@ -7,7 +13,7 @@ Thu Jul  8 00:08:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Module.cpp:
         * PIM/PICML/interpreters/IDLGenerator/StdAfx.h:
-        
+
           Re-implemented interface with GME using GAME.
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.h:
