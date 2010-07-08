@@ -1,10 +1,33 @@
+Thu Jul  8 00:08:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component.idl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Module.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/StdAfx.h:
+        
+          Re-implemented interface with GME using GAME.
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.h:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
+        * PIM/PICML/interpreters/IDLGenerator/RawComponent.h:
+        * PIM/PICML/interpreters/IDLGenerator/RawComponent.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/UdmApp.h:
+        * PIM/PICML/interpreters/IDLGenerator/UdmApp.cpp:
+
+          Removed these files.
+
 Wed Jul  7 22:15:44 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/automation/Automation_App.cpp:
         * Utils/GAME/game/automation/Parameter_Parser.h:
         * Utils/GAME/game/automation/Parameter_Parser.cpp:
         * Utils/GAME/game/automation/automation.mpc:
-        
+
           Implemented support for passing parameters to the interpreter.
 
 Wed Jul  7 20:45:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

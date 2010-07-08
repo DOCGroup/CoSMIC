@@ -396,7 +396,7 @@ Visit_ArrayMember (const PICML::ArrayMember & m)
   this->idl_ << nl;
   this->Visit_MemberType (mt);
 
-  unsigned long array_size = m.Size ();
+  long array_size = static_cast <long> (m.Size ());
   this->idl_ << " " << m.name () << "[" << array_size << "];" << nl;
 }
 
