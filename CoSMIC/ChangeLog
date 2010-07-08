@@ -1,22 +1,36 @@
+Thu Jul  8 22:17:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/Transaction.h:
+        * Utils/GAME/game/Transaction.inl:
+        * Utils/GAME/game/Transaction.cpp:
+        
+          Simple object for managing transactions within a specified scope.
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        
+          Added more exception handling to prevent exceptions from
+          making their way to the server.
+
 Thu Jul  8 14:26:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.h:
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
-        
+
           Added automation support.
-        
+
         * Utils/GAME/game/automation/Automation_App.cpp:
         * Utils/GAME/game/automation/Automation_App_Options.inl:
-        
+
           Changed the --non-interactive command-line parameter to --interactive. The
           application is now non-interactive by default.
-          
+
         * Utils/GAME/game/be/ComponentEx_Impl_Base.h:
         * Utils/GAME/game/be/ComponentEx_Impl_Base.inl:
         * Utils/GAME/game/be/ComponentEx_Impl_T.cpp:
-        
+
           Added support for handling parameters.
-          
+
           Added more exception handling.
 
 Thu Jul  8 03:28:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

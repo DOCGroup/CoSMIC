@@ -25,10 +25,19 @@ int Event_Handler::initialize (GAME::Project & project)
 //
 STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
 {
-  if (0 != this->impl_)
-    return this->impl_->handle_global_event (ev);
+  try
+  {
+    if (0 != this->impl_)
+      return this->impl_->handle_global_event (ev);
 
-  return S_OK;
+    return S_OK;
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_FALSE;
 }
 
 //
@@ -37,10 +46,19 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
 STDMETHODIMP Event_Handler::
 ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 {
-  if (0 != this->impl_)
-    return this->impl_->handle_object_event (GAME::Object (obj), eventmask);
+  try
+  {
+    if (0 != this->impl_)
+      return this->impl_->handle_object_event (GAME::Object (obj), eventmask);
 
-  return S_OK;
+    return S_OK;
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_FALSE;
 }
 
 }

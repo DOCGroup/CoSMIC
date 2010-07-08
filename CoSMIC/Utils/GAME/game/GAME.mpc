@@ -44,6 +44,7 @@ project (GAME) : acelib, cosmic_lib {
     RegistryNode.cpp
     Set.cpp
     Territory.cpp
+    Transaction.cpp
     XML.cpp
 
     MetaAspect.cpp
