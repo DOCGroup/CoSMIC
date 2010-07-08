@@ -34,7 +34,7 @@ static const char * __HELP__ =
 "  --param=NAME=VALUE              set the value of a parameter\n"
 "\n"
 "  --disable-addons                disable GAME auto add-ons\n"
-"  --non-interative                disable interativeness\n"
+"  ---interative                   enable interactive behavior\n"
 "\n"
 "Informative Options:\n"
 "  -h, --help                      print this help message\n"
@@ -99,7 +99,7 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
   get_opt.long_option ("param", ACE_Get_Opt::ARG_REQUIRED);
 
   get_opt.long_option ("disable-addons");
-  get_opt.long_option ("non-interactive");
+  get_opt.long_option ("interactive");
 
   char opt;
 
@@ -120,9 +120,9 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
       {
         this->opts_.enable_auto_addons_ = false;
       }
-      else if (ACE_OS::strcmp ("non-interactive", get_opt.long_option ()) == 0)
+      else if (ACE_OS::strcmp ("interactive", get_opt.long_option ()) == 0)
       {
-        this->opts_.interactive_ = false;
+        this->opts_.interactive_ = true;
       }
       else if (ACE_OS::strcmp ("param", get_opt.long_option ()) == 0)
       {

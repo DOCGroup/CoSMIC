@@ -35,6 +35,12 @@ public:
                  GAME::FCO & fco,
                  std::vector <GAME::FCO> & selected,
                  long flags);
+
+  int set_parameter (const std::string & name, const std::string & value);
+
+private:
+  /// The target location for the generation.
+  std::string output_;
 };
 
 #endif

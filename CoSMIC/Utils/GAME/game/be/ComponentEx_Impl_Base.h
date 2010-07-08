@@ -69,6 +69,9 @@ public:
 
   bool is_managed (void) const;
 
+  int set_parameter (const std::string & name, const std::string & value);
+  int get_parameter (const std::string & name, std::string & value);
+
 protected:
   /// Name of the interpreter.
   const std::string name_;

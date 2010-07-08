@@ -137,4 +137,25 @@ bool ComponentEx_Impl_Base::is_managed (void) const
 {
   return this->is_managed_;
 }
+
+//
+// set_parameter
+//
+GAME_INLINE
+int ComponentEx_Impl_Base::
+set_parameter (const std::string & name, const std::string & value)
+{
+  return 0;
+}
+
+//
+// get_parameter
+//
+GAME_INLINE
+int ComponentEx_Impl_Base::
+get_parameter (const std::string & name, std::string & value)
+{
+  return 0;
+}
+
 }

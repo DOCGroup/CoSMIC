@@ -68,54 +68,61 @@ invoke_ex (GAME::Project & project,
            std::vector <GAME::FCO> & selected,
            long flags)
 {
+  UdmGme::GmeDataNetwork dngBackend (META_NAMESPACE::diagram);
+  using namespace META_NAMESPACE;
+
   try
   {
-    UdmGme::GmeDataNetwork dngBackend (META_NAMESPACE::diagram);
-    using namespace META_NAMESPACE;
+    // Opening backend
+    dngBackend.OpenExisting (project.impl ());
 
-    try
+    Udm::Object currentObject;
+    if (!focus.is_nil ())
+      currentObject = dngBackend.Gme2Udm (focus.impl ());
+
+    set <Udm::Object> selectedObjects;
+    std::for_each (selected.begin (),
+                   selected.end (),
+                   insert_udm_t (dngBackend, selectedObjects));
+
+    if (this->is_interactive_ || this->output_.empty ())
     {
-      // Opening backend
-      dngBackend.OpenExisting (project.impl ());
-
-      Udm::Object currentObject;
-      if (!focus.is_nil ())
-        currentObject = dngBackend.Gme2Udm (focus.impl ());
-
-      set <Udm::Object> selectedObjects;
-      std::for_each (selected.begin (),
-                     selected.end (),
-                     insert_udm_t (dngBackend, selectedObjects));
-
       // Select the output directory for the files.
-      std::string outdir;
-
-      if (!::Utils::getPath ("Select target output directory for IDL files", outdir))
+      if (!::Utils::getPath ("Select target output directory...", this->output_))
         return 0;
+    }
 
-      // Generate all the IDL files.
-      PICML::RootFolder folder = PICML::RootFolder::Cast (dngBackend.GetRootObject ());
+    // Generate all the IDL files.
+    PICML::RootFolder folder = PICML::RootFolder::Cast (dngBackend.GetRootObject ());
 
-      IDL_Generator_Visitor visitor (outdir);
-      folder.Accept (visitor);
+    IDL_Generator_Visitor visitor (this->output_);
+    folder.Accept (visitor);
 
+    if (this->is_interactive_)
       ::AfxMessageBox ("Successfully generated IDL files");
 
-      // Closing backend
-      dngBackend.CloseWithUpdate ();
-      return 0;
-    }
-    catch (udm_exception &exc)
-    {
-      ::AfxMessageBox (exc.what ());
-    }
-
-    dngBackend.CloseNoUpdate ();
+    // Closing backend
+    dngBackend.CloseWithUpdate ();
+    return 0;
   }
-  catch(...)
+  catch (udm_exception & exc)
   {
-    ::AfxMessageBox ("An unexpected error has occured during the interpretation process.");
+    if (this->is_interactive_)
+      ::AfxMessageBox (exc.what ());
   }
 
+  dngBackend.CloseNoUpdate ();
   return -1;
+}
+
+//
+// set_parameter
+//
+int IDL_Generator_Component_Impl::
+set_parameter (const std::string & name, const std::string & value)
+{
+  if (name == "OutputPath")
+    this->output_ = value;
+
+  return 0;
 }
