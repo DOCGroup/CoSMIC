@@ -52,6 +52,7 @@ public:
    */
   void kind (const std::string & value);
   void kind (std::vector <std::string> & value);
+  void kind (std::vector <Meta::FCO> & fcos);
 
   void name (const std::string & value);
   void name (std::vector <std::string> & value);

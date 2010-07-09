@@ -1,3 +1,10 @@
+Fri Jul  9 22:02:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Filter.h:
+        * Utils/GAME/game/Filter.cpp:
+        
+          Overloaded the kind () and name () method.
+
 Fri Jul  9 21:28:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/StdAfx.h:
@@ -136,10 +143,10 @@ Fri Jul  9 21:28:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/Visitor.cpp:
 
           Improved compilation dependencies.
-          
-          Added support resolving the types that a reference can 
+
+          Added support resolving the types that a reference can
           refer to.
-          
+
 Thu Jul  8 22:17:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/GAME.mpc:
