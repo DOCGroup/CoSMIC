@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "simple_type_spec_impl.hpp"
 
 void instantiate_simple_type_spec_grammar (void)

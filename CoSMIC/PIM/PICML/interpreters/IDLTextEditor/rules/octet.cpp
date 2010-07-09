@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "octet_impl.hpp"
 
 void instantiate_octet_grammar (void)

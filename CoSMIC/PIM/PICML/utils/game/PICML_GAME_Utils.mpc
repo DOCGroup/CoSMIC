@@ -4,6 +4,9 @@ project (PICML_GAME_Utils) : acelib, game, cosmic_lib {
   sharedname    = PICML_GAME_Utils
   dynamicflags += PICML_GAME_UTILS_BUILD_DLL
 
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+  
   Source_Files {
     Utility.cpp
   }

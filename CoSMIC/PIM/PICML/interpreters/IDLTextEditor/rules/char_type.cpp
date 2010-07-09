@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "char_type_impl.hpp"
 
 void instantiate_char_type_grammar (void)

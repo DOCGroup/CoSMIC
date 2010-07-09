@@ -1,16 +1,10 @@
 // $Id$
 
 project (PICML): game, udm, boost_base, cosmic_xerces_utils, cosmic_utils, cosmic_lib {
-
   sharedname = PICML
   macros    += PICML_HAS_DLL PICML_EXPORT UDM_DYNAMIC_LINKING
 
   Source_Files {
-    Data_Value.cpp
-    Data_Value_Parser.cpp
-    Data_Value_Visitor.cpp
-    Data_Value_XML_Visitor.cpp
-    Data_Value_Builder.cpp
     PICML.cpp
   }
 
@@ -19,7 +13,7 @@ project (PICML): game, udm, boost_base, cosmic_xerces_utils, cosmic_utils, cosmi
   }
 
   Template_Files {
-    Data_Value_Parser_T.cpp
+
   }
 
   UDM_Files {

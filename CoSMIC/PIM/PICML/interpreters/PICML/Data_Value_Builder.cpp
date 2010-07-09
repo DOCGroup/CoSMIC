@@ -5,6 +5,7 @@
 #define _WIN32_WINNT 0x0400
 #endif
 
+#include "game/Mga.h"
 #include "Data_Value_Builder.h"
 #include "Data_Value.h"
 #include "game/GAME.h"

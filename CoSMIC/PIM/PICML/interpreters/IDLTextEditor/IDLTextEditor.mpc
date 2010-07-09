@@ -3,9 +3,10 @@
 project (IDLTextEditor_Core) : t3_runtime, acelib, cosmic_lib {
   sharedname    = IDLTextEditor_Core
   dynamicflags += IDLTEXTEDITOR_CORE_BUILD_DLL
-
-  macros += _WIN32_WINNT=0x0400
-
+  
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+  
   Source_Files {
     IDL_File_Parser.cpp
     Symbols.cpp

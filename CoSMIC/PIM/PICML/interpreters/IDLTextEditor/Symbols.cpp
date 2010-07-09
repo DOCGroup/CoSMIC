@@ -1,6 +1,8 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "Symbols.h"
+
 #include "game/FCO.h"
 #include "game/MetaBase.h"
 #include <stack>

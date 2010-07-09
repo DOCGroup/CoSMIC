@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "ident_impl.hpp"
 
 void instantiate_ident_grammar (void)

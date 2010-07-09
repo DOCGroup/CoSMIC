@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "copy.h"
 
 #include "game/Atom.h"

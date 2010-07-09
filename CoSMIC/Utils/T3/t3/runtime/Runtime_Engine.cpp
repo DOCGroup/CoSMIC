@@ -1,9 +1,13 @@
 // $Id4
 
+#include "stdafx.h"
 #include "Runtime_Engine.h"
-#include "boost/bind.hpp"
+
 #include "game/Filter.h"
 #include "game/utils/modelgen.h"
+
+#include "boost/bind.hpp"
+
 #include <algorithm>
 #include <functional>
 #include <stack>

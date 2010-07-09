@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Parser.hpp"
 #include "Project.h"
 #include "Registrar.h"

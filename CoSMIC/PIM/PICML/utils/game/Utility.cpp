@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Utility.h"
 #include "game/MetaBase.h"
 #include <stack>

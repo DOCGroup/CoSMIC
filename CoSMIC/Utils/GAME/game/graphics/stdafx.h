@@ -21,4 +21,6 @@
 #include <afxwin.h>
 #include <Gdiplus.h>
 
+#include "game/Mga.h"
+
 #endif // !defined(AFX_STDAFX_H__8B8917B1_B409_43D6_9604_73055641403B__INCLUDED)

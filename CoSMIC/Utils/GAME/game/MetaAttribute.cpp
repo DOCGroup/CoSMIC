@@ -1,11 +1,14 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Mga.h"
 #include "MetaAttribute.h"
 
 #if !defined (__GAME_INLINE__)
 #include "MetaAttribute.inl"
 #endif
+
+#include "Exception.h"
 
 namespace GAME
 {

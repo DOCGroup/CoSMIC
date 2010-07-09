@@ -1,15 +1,34 @@
 // $Id$
 
+#include "stdafx.h"
+#include "Mga.h"
 #include "MetaPart.h"
 
 #if !defined (__GAME_INLINE__)
 #include "MetaPart.inl"
 #endif
 
+#include "Exception.h"
+
 namespace GAME
 {
 namespace Meta
 {
+//
+// impl
+//
+IMgaMetaPart * Part::impl (void) const
+{
+  if (this->part_.p == this->metabase_.p)
+    return this->part_.p;
+
+  if (this->part_.p != 0)
+    this->part_.Release ();
+
+  VERIFY_HRESULT (this->metabase_.QueryInterface (&this->part_));
+  return this->part_;
+} 
+
 //
 // kind
 //

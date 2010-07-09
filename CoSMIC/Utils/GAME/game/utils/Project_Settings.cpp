@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Project_Settings.h"
 
 #if !defined (__GAME_INLINE__)

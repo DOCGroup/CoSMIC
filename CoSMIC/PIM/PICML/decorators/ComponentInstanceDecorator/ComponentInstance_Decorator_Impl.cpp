@@ -201,7 +201,7 @@ initialize_ports (const std::string & aspect_name,
   // Get the target aspect.
   GAME::Meta::Aspect aspect = metamodel.aspect (aspect_name);
 
-  if (!aspect)
+  if (aspect.is_nil ())
     return 0;
 
   // Select all the FCO elements in the specified aspect.

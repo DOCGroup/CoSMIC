@@ -274,7 +274,7 @@ int GAME_Automation_App::run (const std::string & progid)
   GAME::ComponentEx interpreter = GAME::ComponentEx::_load (progid);
 
   // Set the interactive state.
-  interpreter.interative (this->opts_.interactive_);
+  interpreter.interactive (this->opts_.interactive_);
 
   // Pass the parameters to the interpreter.
   typedef GAME_Automation_App_Options::param_t param_t;

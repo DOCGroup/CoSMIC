@@ -21,78 +21,76 @@ namespace GAME
 {
 namespace Meta
 {
-  //===========================================================================
+/**
+ * @class FCO
+ *
+ * Wrapper class for the IMgaMetaFCO interface.
+ */
+class GAME_Export FCO : public Base
+{
+public:
+  /// Type definition of the interface pointer.
+  typedef IMgaMetaFCO interface_type;
+
+  /// Default constructor.
+  FCO (void);
+
   /**
-   * @class FCO
+   * Initializing constructor.
    *
-   * Wrapper class for the IMgaMetaFCO interface.
+   * @param[in]     meta        Pointer to the meta information.
    */
-  //===========================================================================
+  FCO (IMgaMetaFCO * meta);
 
-  class GAME_Export FCO : public Base
-  {
-  public:
-    /// Type definition of the interface pointer.
-    typedef IMgaMetaFCO interface_type;
+  /**
+   * Copy constructor.
+   *
+   * @param[in]     meta        The source object.
+   */
+  FCO (const FCO & meta);
 
-    /// Default constructor.
-    FCO (void);
+  /// Destructor.
+  virtual ~FCO (void);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]     meta        Pointer to the meta information.
-     */
-    FCO (IMgaMetaFCO * meta);
+  /**
+   * Assignment operator.
+   *
+   * @param[in]     meta        The source object.
+   * @return        Reference to this object.
+   */
+  const FCO & operator = (const FCO & meta);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]     meta        The source object.
-     */
-    FCO (const FCO & meta);
+  /**
+   * Get the meta object this FCO is defined in.
+   *
+   * @return        Base meta object.
+   */
+  Base defined_in (void) const;
 
-    /// Destructor.
-    virtual ~FCO (void);
+  /**
+   * Get an attributes meta information by its name.
+   *
+   * @param[in]       name        Name of the attribute.
+   * @return          Meta information about the attribute.
+   */
+  Attribute attribute (const std::string & name) const;
 
-    /**
-     * Assignment operator.
-     *
-     * @param[in]     meta        The source object.
-     * @return        Reference to this object.
-     */
-    const FCO & operator = (const FCO & meta);
+  /**
+   * Get an attributes meta information by its display name.
+   *
+   * @param[in]       name        Display name.
+   * @return          Meta information about the attribute.
+   */
+  Attribute attribute_by_display_name (const std::string & name) const;
 
-    /**
-     * Get the meta object this FCO is defined in.
-     *
-     * @return        Base meta object.
-     */
-    Base defined_in (void) const;
+  /// Helper method to the correct implementation.
+  IMgaMetaFCO * impl (void) const;
 
-    /**
-     * Get an attributes meta information by its name.
-     *
-     * @param[in]       name        Name of the attribute.
-     * @return          Meta information about the attribute.
-     */
-    Attribute attribute (const std::string & name) const;
+private:
+  /// Cached pointer to the implementation.
+  mutable CComPtr <IMgaMetaFCO> meta_fco_;
+};
 
-    /**
-     * Get an attributes meta information by its display name.
-     *
-     * @param[in]       name        Display name.
-     * @return          Meta information about the attribute.
-     */
-    Attribute attribute_by_display_name (const std::string & name) const;
-
-    /// Helper method to the correct implementation.
-    IMgaMetaFCO * impl (void) const;
-
-  private:
-    /// Cached pointer to the implementation.
-    mutable CComPtr <IMgaMetaFCO> meta_fco_;
-  };
 }
 }
 

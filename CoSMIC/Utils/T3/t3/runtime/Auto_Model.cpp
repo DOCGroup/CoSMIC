@@ -1,6 +1,6 @@
-#ifndef _AUTO_MODEL_T_CPP_
-#define _AUTO_MODEL_T_CPP_
+// $Id$
 
+#include "stdafx.h"
 #include "Auto_Model.h"
 #include "Auto_Model_Impl.h"
 #include "Event_Listener.h"
@@ -97,5 +97,3 @@ create_unique_reference (const std::string & symbol, const std::string & type)
 }
 
 }
-
-#endif

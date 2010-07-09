@@ -13,16 +13,16 @@
 #ifndef _GME_METABASE_H_
 #define _GME_METABASE_H_
 
-#include "Exception.h"
-
-#if !defined (__ComponentLib_h__) && !defined (__DecoratorLib_h__)
-#include "Mga.h"
-#endif
+#include <string>
+#include "game/config.h"
+#include "GAME_export.h"
 
 namespace GAME
 {
 namespace Meta
 {
+class Project;
+
 /**
  * @class Base
  *
@@ -95,13 +95,6 @@ public:
   const Base & operator = (const Base & meta);
 
   /**
-   * Convert the object to a IMgaMetaBase pointer.
-   *
-   * @return          Pointer to a IMgaMetaBase object.
-   */
-  operator IMgaMetaBase * (void) const;
-
-  /**
    * Determine if the metabase's name is equal to \a name. This
    * compares the name with the real name, not the displayed name
    * of the metabase.
@@ -111,6 +104,7 @@ public:
    * @retval          false       The object does not match \a name.
    */
   bool operator == (const std::string & name) const;
+  bool operator != (const std::string & name) const;
 
   /**
    * Determine if two Base objects are equal.
@@ -120,15 +114,7 @@ public:
    * @retval          false       The two objects are not the name.
    */
   bool operator == (const Base & meta) const;
-
-  /**
-   * Determine if two Base objects are equal.
-   *
-   * @param[in]       meta        The source object.
-   * @retval          true        The two objects are the same
-   * @retval          false       The two objects are not the name.
-   */
-  bool operator < (const Base & meta) const;
+  bool operator != (const Base & meta) const;
 
   /**
    * Get the meta reference id.
@@ -168,8 +154,7 @@ public:
    * @param[in]       path      The target path.
    * @param[in]       value     The new value.
    */
-  void registry_value (const std::string & path,
-                       const std::string & value);
+  void registry_value (const std::string & path, const std::string & value);
 
   /**
    * Get a pointer to the implementation.
@@ -178,24 +163,35 @@ public:
    */
   IMgaMetaBase * impl (void) const;
 
-  /**
-   * Convert the object to a boolean value. This will test the
-   * validity of the object.
-   *
-   * @retval          true      The object is valid.
-   * @retval          false     The object is not valid.
-   */
-  operator bool (void) const;
+  /// Test the validity of the object.
+  bool is_nil (void) const;
 
   /// Release the underlying pointer.
   void release (void);
+
+  /// Get the parent project for this object.
+  Project project (void) const;
 
 protected:
   /// The underlying interface pointer.
   mutable ATL::CComPtr <IMgaMetaBase> metabase_;
 };
+
 }
 }
+
+/**
+ * Determine if two Base objects are equal.
+ *
+ * @param[in]       meta        The source object.
+ * @retval          true        The two objects are the same
+ * @retval          false       The two objects are not the name.
+ */
+bool operator < (const GAME::Meta::Base &, const GAME::Meta::Base &);
+bool operator > (const GAME::Meta::Base &, const GAME::Meta::Base &);
+
+bool operator <= (const GAME::Meta::Base &, const GAME::Meta::Base &);
+bool operator >= (const GAME::Meta::Base &, const GAME::Meta::Base &);
 
 #if defined (__GAME_INLINE__)
 #include "MetaBase.inl"

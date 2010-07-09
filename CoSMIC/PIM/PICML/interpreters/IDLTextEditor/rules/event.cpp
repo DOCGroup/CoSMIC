@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "event_impl.hpp"
 
 void instantiate_event_grammar (void)

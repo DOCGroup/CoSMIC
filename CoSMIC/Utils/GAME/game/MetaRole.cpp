@@ -1,6 +1,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Mga.h"
 #include "MetaRole.h"
 
 #if !defined (__GAME_INLINE__)

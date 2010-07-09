@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "template_type_spec_impl.hpp"
 
 void instantiate_template_type_spec_grammar (void)

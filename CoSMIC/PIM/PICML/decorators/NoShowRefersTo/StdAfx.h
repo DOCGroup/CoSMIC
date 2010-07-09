@@ -31,4 +31,6 @@
 #include <atlcom.h>
 #include <Gdiplus.h>
 
+#include "NoShowRefersTo_Decorator.h"
+
 #endif // !defined(AFX_STDAFX_H__8B8917B1_B409_43D6_9604_73055641403B__INCLUDED)

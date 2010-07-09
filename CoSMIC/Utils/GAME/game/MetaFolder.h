@@ -10,11 +10,12 @@
  */
 //=============================================================================
 
-#ifndef _GME_METAFOLDER_H_
-#define _GME_METAFOLDER_H_
+#ifndef _GME_META_FOLDER_H_
+#define _GME_META_FOLDER_H_
 
+#include <vector>
+#include "MetaBase.h"
 #include "MetaFCO.h"
-#include "Collection_T.h"
 
 namespace GAME
 {
@@ -52,11 +53,12 @@ public:
   virtual ~Folder (void);
 
   /**
-   * Attach to an existing meta folder.
+   * Get all the subfolders defined by this folder.
    *
-   * @param[in]     meta        The existing meta folder.
+   * @param[out]      metafolder      Collection of meta folders
+   * @return          Number of folders in \a metafolders.
    */
-  void attach (IMgaMetaFolder * meta);
+  size_t children (std::vector <Folder> & folders) const;
 
   /**
    * Get all the subfolders defined by this folder.
@@ -64,26 +66,11 @@ public:
    * @param[out]      metafolder      Collection of meta folders
    * @return          Number of folders in \a metafolders.
    */
-  size_t children (std::vector <GAME::Meta::Folder> & folders) const;
-
-  /**
-   * Get all the subfolders defined by this folder.
-   *
-   * @param[out]      metafolder      Collection of meta folders
-   * @return          Number of folders in \a metafolders.
-   */
-  size_t children (std::vector <GAME::Meta::FCO> & fcos) const;
+  size_t children (std::vector <FCO> & fcos) const;
 
   FCO child (const std::string & name) const;
 
   Folder folder (const std::string & name) const;
-
-  /**
-   * Convert the object to an implementation pointer.
-   *
-   * @return          Pointer to the implementation.
-   */
-  operator IMgaMetaFolder * (void) const;
 
   /**
    * Get a pointer to the implementation.
@@ -99,7 +86,7 @@ public:
    * @param[in]       in_scope    Scope of the FCO.
    * @return          Meta FCO object.
    */
-  GAME::Meta::FCO fco (const std::string & name, bool in_scope = true);
+  FCO find (const std::string & name, bool in_scope = true);
 
 private:
   /// Cached pointer to the metafolder.

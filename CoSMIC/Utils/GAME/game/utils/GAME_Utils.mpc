@@ -4,6 +4,9 @@ project (GAME_Utils) : game, acelib, cosmic_lib {
   sharedname    = GAME_Utils
   dynamicflags += GAME_UTILS_BUILD_DLL
   
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+  
   specific {
     compile_flags += /wd4290 /wd4251 /wd4273 /wd4275
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)

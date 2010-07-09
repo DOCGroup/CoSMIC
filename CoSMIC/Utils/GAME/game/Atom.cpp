@@ -1,6 +1,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Mga.h"
 #include "Atom.h"
 
 #if !defined (__GAME_INLINE__)

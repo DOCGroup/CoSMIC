@@ -13,7 +13,7 @@ namespace GAME
 //
 Project::Project (void)
 {
-  VERIFY_HRESULT (this->project_.CoCreateInstance(L"Mga.MgaProject"));
+
 }
 
 //
@@ -55,6 +55,7 @@ Project Project::_create (const std::string & name, const std::string & paradigm
 
   // Create the project and the initial territory.
   CComPtr <IMgaProject> project;
+  VERIFY_HRESULT (project.CoCreateInstance (L"Mga.MgaProject"));
   VERIFY_HRESULT (project->Create (wName, wParadigm));
   
   CComPtr <IMgaTerritory> terr;
@@ -81,6 +82,8 @@ Project Project::_open (const std::string & name, bool & ro_mode)
   CComBSTR tempstr (name.length (), name.c_str ());
 
   Project project;
+
+  VERIFY_HRESULT (project.project_.CoCreateInstance (L"Mga.MgaProject"));
   VERIFY_HRESULT (project.project_->Open (tempstr, &temp));
   ro_mode = (temp == VARIANT_TRUE) ? true : false;
 
@@ -93,13 +96,10 @@ Project Project::_open (const std::string & name, bool & ro_mode)
 //
 // save
 //
-void Project::save (const std::string & saveas,
-                    bool keep_old_name)
+void Project::save (const std::string & saveas, bool keep_old_name)
 {
   CComBSTR tempstr (saveas.length (), saveas.c_str ());
-
-  VERIFY_HRESULT (this->project_->Save (
-                  tempstr, keep_old_name ? VARIANT_TRUE : VARIANT_FALSE));
+  VERIFY_HRESULT (this->project_->Save (tempstr, keep_old_name ? VARIANT_TRUE : VARIANT_FALSE));
 }
 
 //
@@ -248,33 +248,6 @@ Territory Project::active_territory (void)
 //
 // begin_transaction
 //
-void Project::begin_transaction (transactiontype_enum type)
-{
-  if (this->terr_ == 0)
-    this->terr_ = this->create_territory ();
-
-  // Begin the default transition.
-  this->begin_transaction (this->terr_, type);
-}
-
-//
-// begin_transaction
-//
-void Project::
-begin_transaction (bool commit_existing, transactiontype_enum type)
-{
-  if (commit_existing)
-    this->commit_transaction ();
-  else
-    this->abort_transaction ();
-
-  // Begin the default transition.
-  this->begin_transaction (type);
-}
-
-//
-// begin_transaction
-//
 void Project::
 begin_transaction (const Territory & terr, transactiontype_enum mode)
 {
@@ -282,7 +255,7 @@ begin_transaction (const Territory & terr, transactiontype_enum mode)
 }
 
 //
-// begin_transaction
+// commit_transaction
 //
 void Project::commit_transaction (void)
 {
@@ -290,7 +263,7 @@ void Project::commit_transaction (void)
 }
 
 //
-// begin_transaction
+// abort_transaction
 //
 void Project::abort_transaction (void)
 {

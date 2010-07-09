@@ -15,12 +15,16 @@
 
 #include <atlbase.h>
 #include <string>
-#include "Collection_T.h"
+#include <vector>
+#include "MetaBase.h"
 
 namespace GAME
 {
 // Forward decl.
 class Visitor;
+
+// Forward decl.
+class Project;
 
 /**
  * @class Object
@@ -147,8 +151,7 @@ public:
    *                                of the path.
    * @return        The path of the string.
    */
-  std::string path (const std::string & separator,
-                    bool leading = true) const;
+  std::string path (const std::string & separator, bool leading = true) const;
 
   /**
    * Get the absolute path of the object.

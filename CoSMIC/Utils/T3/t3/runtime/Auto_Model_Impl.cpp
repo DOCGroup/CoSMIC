@@ -1,6 +1,6 @@
-#ifndef _AUTO_MODEL_T_CPP_
-#define _AUTO_MODEL_T_CPP_
+// $Id$
 
+#include "stdafx.h"
 #include "Auto_Model_Impl.h"
 #include "Runtime_Engine.h"
 #include "Event_Listener.h"
@@ -105,5 +105,3 @@ void Auto_Model_Impl::handle_new_object (const GAME::Object & obj)
 }
 
 }
-
-#endif

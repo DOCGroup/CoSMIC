@@ -1,6 +1,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Mga.h"
 #include "Reference.h"
 
 #if !defined (__GAME_INLINE__)
@@ -8,95 +9,106 @@
 #endif
 
 #include "Model.h"
+#include "Visitor.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
-#include "Visitor.h"
+#include "MetaReference.h"
 
 namespace GAME
 {
-  //
-  // operator =
-  //
-  const Reference & Reference::operator = (const Reference & ref)
-  {
-    if (this != &ref)
-      this->object_ = ref.object_;
+//
+// meta
+//
+GAME_INLINE
+Meta::Reference Reference::meta (void) const
+{
+  return Meta::Reference::_narrow (FCO::meta ());
+}
 
+//
+// operator =
+//
+const Reference & Reference::operator = (const Reference & ref)
+{
+  if (this == &ref)
     return *this;
-  }
 
-  //
-  // refers_to
-  //
-  FCO Reference::refers_to (void) const
-  {
-    CComPtr <IMgaFCO> fco;
-    VERIFY_HRESULT (this->impl ()->get_Referred (&fco));
+  FCO::attach (ref.impl ());
+  return *this;
+}
 
-    return fco.p;
-  }
+//
+// refers_to
+//
+FCO Reference::refers_to (void) const
+{
+  CComPtr <IMgaFCO> fco;
+  VERIFY_HRESULT (this->impl ()->get_Referred (&fco));
 
-  //
-  // refers_to
-  //
-  void Reference::refers_to (const FCO & fco)
-  {
-    VERIFY_HRESULT (this->impl ()->put_Referred (fco.impl ()));
-  }
+  return fco.p;
+}
 
-  //
-  // impl
-  //
-  IMgaReference * Reference::impl (void) const
-  {
-    if (this->ref_.p == this->object_.p)
-      return this->ref_.p;
+//
+// refers_to
+//
+void Reference::refers_to (const FCO & fco)
+{
+  VERIFY_HRESULT (this->impl ()->put_Referred (fco.impl ()));
+}
 
-    if (this->ref_.p != 0)
-      this->ref_.Release ();
-
-    VERIFY_HRESULT (this->object_.QueryInterface (&this->ref_));
+//
+// impl
+//
+IMgaReference * Reference::impl (void) const
+{
+  if (this->ref_.p == this->object_.p)
     return this->ref_.p;
-  }
 
-  //
-  // _narrow
-  //
-  Reference Reference::_narrow (const GAME::Object & object)
-  {
-    CComPtr <IMgaReference> ref;
+  if (this->ref_.p != 0)
+    this->ref_.Release ();
 
-    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&ref),
-                             GAME::Invalid_Cast ());
+  VERIFY_HRESULT (this->object_.QueryInterface (&this->ref_));
+  return this->ref_.p;
+}
 
-    return ref.p;
-  }
+//
+// _narrow
+//
+Reference Reference::_narrow (const GAME::Object & object)
+{
+  CComPtr <IMgaReference> ref;
 
-  //
-  // _create
-  //
-  Reference Reference::_create (Model & parent, const std::string & type)
-  {
-    Meta::Role role = parent.meta ().role (type);
-    return Reference::_create (parent, role);
-  }
+  VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&ref),
+                           GAME::Invalid_Cast ());
 
-  //
-  // _create
-  //
-  Reference Reference::_create (Model & parent, const Meta::Role & role)
-  {
-    CComPtr <IMgaFCO> child;
-    VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
+  return ref.p;
+}
 
-    return Reference::_narrow (FCO (child));
-  }
+//
+// _create
+//
+Reference Reference::_create (Model & parent, const std::string & type)
+{
+  Meta::Role role = parent.meta ().role (type);
+  return Reference::_create (parent, role);
+}
 
-  //
-  // accept
-  //
-  void Reference::accept (GAME::Visitor & visitor)
-  {
-    visitor.visit_Reference (*this);
-  }
+//
+// _create
+//
+Reference Reference::_create (Model & parent, const Meta::Role & role)
+{
+  CComPtr <IMgaFCO> child;
+  VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
+
+  return Reference::_narrow (FCO (child));
+}
+
+//
+// accept
+//
+void Reference::accept (GAME::Visitor & visitor)
+{
+  visitor.visit_Reference (*this);
+}
 }

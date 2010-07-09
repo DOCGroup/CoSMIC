@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Filter.h"
 #include "Project.h"
 #include "FCO.h"

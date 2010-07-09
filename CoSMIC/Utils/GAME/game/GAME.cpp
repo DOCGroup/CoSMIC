@@ -1,6 +1,8 @@
 // $Id$
 
 #include "stdafx.h"
+
+#include "Mga.h"
 #include "GAME.h"
 #include "Exception.h"
 

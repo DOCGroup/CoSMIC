@@ -53,21 +53,5 @@ const Part & Part::operator = (const Part & role)
   return *this;
 }
 
-//
-// impl
-//
-GAME_INLINE
-IMgaMetaPart * Part::impl (void) const
-{
-  if (this->part_.p == this->metabase_.p)
-    return this->part_.p;
-
-  if (this->part_.p != 0)
-    this->part_.Release ();
-
-  VERIFY_HRESULT (this->metabase_.QueryInterface (&this->part_));
-  return this->part_;
-} 
-
 }
 }

@@ -51,7 +51,7 @@ componenttype_enum Component::type (void) const
 //
 // interative
 //
-bool Component::interative (void) const
+bool Component::interactive (void) const
 {
   VARIANT_BOOL enabled;
   VERIFY_HRESULT (this->component_->get_InteractiveMode (&enabled));
@@ -62,7 +62,7 @@ bool Component::interative (void) const
 //
 // interative
 //
-void Component::interative (bool flag)
+void Component::interactive (bool flag)
 {
   VARIANT_BOOL enabled = flag ? VARIANT_TRUE : VARIANT_FALSE;
   VERIFY_HRESULT (this->component_->put_InteractiveMode (enabled));

@@ -5,7 +5,10 @@ project (GAME) : acelib, cosmic_lib {
 
   dynamicflags += GAME_BUILD_DLL
   staticflags  += GAME_AS_STATIC_LIBS
-
+  
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+  
   includes += $(COSMIC_ROOT)/Utils/GAME
 
   macros += _WIN32_DCOM
@@ -55,7 +58,9 @@ project (GAME) : acelib, cosmic_lib {
     MetaFCO.cpp
     MetaModel.cpp
     MetaPart.cpp
+    MetaProject.cpp
     MetaRole.cpp
+    MetaReference.cpp
 
     stlace.cpp
     Visitor.cpp

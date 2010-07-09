@@ -170,27 +170,11 @@ public:
   Territory active_territory (void);
 
   /**
-   * Begin a new transaction using the project's default territory.
-   */
-  void begin_transaction (transactiontype_enum type = TRANSACTION_GENERAL);
-
-  /**
-   * Begin a new transaction using the project's default territory.
-   * The user has the option of commiting, or aborting, the current
-   * transition.
-   *
-   * @param[in]     commit_existing     Commit existing transaction.
-   */
-  void begin_transaction (bool commit_existing,
-                          transactiontype_enum type = TRANSACTION_GENERAL);
-
-  /**
    * Begin a new transaction using the specified territory.
    *
    * @param[in]     terr        Source territory for the transaction.
    */
-  void begin_transaction (const Territory & terr,
-                          transactiontype_enum type = TRANSACTION_GENERAL);
+  void begin_transaction (const Territory & terr, transactiontype_enum type = TRANSACTION_GENERAL);
 
   /// Commit all modifications in the current transaction.
   void commit_transaction (void);

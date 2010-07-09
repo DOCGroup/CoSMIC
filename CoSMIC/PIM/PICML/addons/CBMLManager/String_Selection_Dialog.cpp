@@ -1,6 +1,7 @@
 // $Id$
 
 #include "StdAfx.h"
+
 #include "String_Selection_Dialog.h"
 #include "Resource.h"
 #include "boost/bind.hpp"

@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "export_impl.hpp"
 
 void instantiate_idl_export_grammar (void)

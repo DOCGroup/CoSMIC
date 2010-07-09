@@ -51,8 +51,10 @@ public:
    * @param[in]       name        The kind value
    */
   void kind (const std::string & value);
+  void kind (std::vector <std::string> & value);
 
   void name (const std::string & value);
+  void name (std::vector <std::string> & value);
 
 private:
   /// Reference to the project.

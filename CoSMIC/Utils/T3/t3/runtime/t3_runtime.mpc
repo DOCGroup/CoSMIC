@@ -5,6 +5,9 @@ project (T3_Runtime) : game, cosmic_lib {
   dynamicflags += T3_RUNTIME_BUILD_DLL
 
   macros += _WIN32_WINNT=0x0400
+  
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
 
   Source_Files {
     Auto_Model.cpp

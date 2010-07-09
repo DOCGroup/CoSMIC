@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "preprocessor_impl.hpp"
 
 void instantiate_preprocessor_grammar (void)

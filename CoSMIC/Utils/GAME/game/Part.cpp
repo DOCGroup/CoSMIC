@@ -1,10 +1,15 @@
 // $Id$
 
+#include "stdafx.h"
+#include "Mga.h"
+
 #include "Part.h"
 
 #if !defined (__GAME_INLINE__)
 #include "Part.inl"
 #endif
+
+#include "Exception.h"
 
 namespace GAME
 {

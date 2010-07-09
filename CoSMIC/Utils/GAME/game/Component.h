@@ -67,8 +67,8 @@ public:
    */
   void initialize (GAME::Project & project);
 
-  bool interative (void) const;
-  void interative (bool flag);
+  bool interactive (void) const;
+  void interactive (bool flag);
 
   /**
    * Get the name of the component.

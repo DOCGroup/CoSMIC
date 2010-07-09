@@ -103,9 +103,9 @@ int NoShowRefersTo_Decorator_Impl::draw (Gdiplus::Graphics & g)
   if (this->label_.empty ())
     return 0;
 
-  float height = this->location_.height ();
-  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0);
-  float py = static_cast <float> (this->location_.y_) + (height + 15.0);
+  float height = static_cast <float> (this->location_.height ());
+  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
+  float py = static_cast <float> (this->location_.y_) + (height + 15.0f);
 
   static const Gdiplus::Font font (L"Arial", 10);
   static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));

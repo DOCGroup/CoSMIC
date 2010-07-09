@@ -1,13 +1,13 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Mga.h"
 #include "Folder.h"
 
 #if !defined (__GAME_INLINE__)
 #include "Folder.inl"
 #endif
 
-#include "MetaFolder.h"
 #include "Visitor.h"
 #include "Atom.h"
 #include "Set.h"
@@ -163,7 +163,7 @@ namespace GAME
   Folder Folder::_create (Folder & parent, const Meta::Folder & meta)
   {
     CComPtr <IMgaFolder> folder;
-    VERIFY_HRESULT (parent.impl ()->CreateFolder (meta, &folder));
+    VERIFY_HRESULT (parent.impl ()->CreateFolder (meta.impl (), &folder));
     return folder.p;
   }
 
@@ -194,7 +194,7 @@ namespace GAME
   //
   // meta
   //
-  Meta::Folder Folder::meta (void) const
+  GAME::Meta::Folder Folder::meta (void) const
   {
     CComPtr <IMgaMetaFolder> meta;
     VERIFY_HRESULT (this->impl ()->get_MetaFolder (&meta));

@@ -1,17 +1,20 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Mga.h"
+
 #include "Object.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Object.inl"
+#endif
+
 #include "Exception.h"
 #include "MetaBase.h"
 #include "Project.h"
 #include "Visitor.h"
 #include <stack>
 #include <sstream>
-
-#if !defined (__GAME_INLINE__)
-#include "Object.inl"
-#endif
 
 namespace GAME
 {

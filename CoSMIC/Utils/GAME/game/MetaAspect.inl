@@ -49,7 +49,10 @@ Aspect::~Aspect (void)
 GAME_INLINE
 const Aspect & Aspect::operator = (const Aspect & aspect)
 {
-  Base::attach (aspect);
+  if (this == &aspect)
+    return *this;
+
+  Base::attach (aspect.impl ());
   return *this;
 }
 

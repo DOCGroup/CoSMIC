@@ -52,15 +52,6 @@ void Base::attach (IMgaMetaBase * metabase)
 }
 
 //
-// operator IMgaMetaBase *
-//
-GAME_INLINE
-Base::operator IMgaMetaBase * (void) const
-{
-  return this->metabase_.p;
-}
-
-//
 // operator ==
 //
 GAME_INLINE
@@ -70,12 +61,12 @@ bool Base::operator == (const std::string & name) const
 }
 
 //
-// operator <
+// operator !=
 //
 GAME_INLINE
-bool Base::operator < (const Base & meta) const
+bool Base::operator != (const std::string & name) const
 {
-  return this->metabase_.p < meta.metabase_.p;
+  return !(*this == name);
 }
 
 //
@@ -85,6 +76,15 @@ GAME_INLINE
 bool Base::operator == (const Base & meta) const
 {
   return this->metabase_ == meta.metabase_;
+}
+
+//
+// operator !=
+//
+GAME_INLINE
+bool Base::operator != (const Base & meta) const
+{
+  return !(*this == meta);
 }
 
 //
@@ -100,9 +100,9 @@ IMgaMetaBase * Base::impl (void) const
 // operator bool
 //
 GAME_INLINE
-Base::operator bool (void) const
+bool Base::is_nil (void) const
 {
-  return this->metabase_.p != 0;
+  return this->metabase_.p == 0;
 }
 
 //
@@ -115,4 +115,40 @@ void Base::release (void)
 }
 
 }
+}
+
+//
+// operator <
+//
+GAME_INLINE
+bool operator < (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
+{
+  return lhs.impl () < rhs.impl ();
+}
+
+//
+// operator >
+//
+GAME_INLINE
+bool operator > (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
+{
+  return lhs.impl () > rhs.impl ();
+}
+
+//
+// operator <=
+//
+GAME_INLINE
+bool operator <= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
+{
+  return lhs.impl () <= rhs.impl ();
+}
+
+//
+// operator >=
+//
+GAME_INLINE
+bool operator >= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
+{
+  return lhs.impl () >= rhs.impl ();
 }

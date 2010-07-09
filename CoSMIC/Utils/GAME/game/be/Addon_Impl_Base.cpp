@@ -1,6 +1,6 @@
 // $Id$
 
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "Addon_Impl_Base.h"
 
 #if !defined (__GAME_INLINE__)

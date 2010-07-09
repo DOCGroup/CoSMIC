@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "scoped_name_impl.hpp"
 
 void instantiate_scoped_name_grammar (void)

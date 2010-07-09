@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "floating_pt_type_impl.hpp"
 
 void instantiate_floating_pt_type_grammar (void)

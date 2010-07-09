@@ -1,5 +1,6 @@
 // $Id$
 
+#include "StdAfx.h"
 #include "raises_expr_impl.hpp"
 
 void instantiate_raises_expr_grammar (void)
