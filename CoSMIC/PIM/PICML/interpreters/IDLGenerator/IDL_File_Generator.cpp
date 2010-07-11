@@ -252,16 +252,32 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
   this->idl_ << "const ";
 
   // Write the constant's type.
-  this->Visit_ConstantType (c.ref ());
+  PICML::ConstantType t = c.ref ();
+  this->Visit_ConstantType (t);
 
   // Write the name of the constant.
-  this->idl_ << " " << c.name ();
+  this->idl_ << " " << c.name () << " = ";
 
   // Write the value of the constant, if applicable.
   std::string value = c.value ();
+  const Uml::Class & cls = t.type ();
 
-  if (!value.empty ())
-    this->idl_ << " = " << value;
+  if (cls == PICML::String::meta || cls == PICML::WideString::meta)
+  {
+    // Make sure the string is enclosed in quotations.
+    if (value[0] != '"')
+      this->idl_ << '"';
+
+    this->idl_ << value;
+
+    if (value[value.length () - 1] != '"')
+      this->idl_ << '"';
+  }
+  else
+  {
+    // We can just write the value.
+    this->idl_  << value;
+  }
 
   this->idl_ << ";" << nl;
 }

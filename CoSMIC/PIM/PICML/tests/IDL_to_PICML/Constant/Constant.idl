@@ -1,0 +1,26 @@
+// -*- IDL -*-
+
+#ifndef _CONSTANT_IDL_
+#define _CONSTANT_IDL_
+
+// boolean types
+const boolean CONST_TRUE = TRUE;
+const boolean CONST_FALSE = FALSE;
+
+// integer types
+const short CONST_SHORT_MIN = -32768;
+const short CONST_SHORT_MAX = 32767;
+const unsigned short CONST_UNSIGNED_SHORT_MAX = 65535;
+
+const long CONST_LONG_MIN = -2147483648;
+const long CONST_LONG_MAX = 2147483647;
+const unsigned long CONST_UNSIGNED_LONG_MAX = 4294967295;
+
+const long long CONST_LONG_LONG_MIN = -9223372036854775808;
+const long long CONST_LONG_LONG_MAX = 9223372036854775807;
+const unsigned long long CONST_UNSIGNED_LONG_LONG_MAX = 18446744073709551615;
+
+// string types
+const string CONST_STRING = "IDL_TO_PICML";
+
+#endif

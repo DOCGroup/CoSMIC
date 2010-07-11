@@ -64,6 +64,7 @@
 
 #include "boost/bind.hpp"
 #include <functional>
+#include <sstream>
 
 namespace constant
 {
@@ -200,90 +201,77 @@ private:
 //
 // operator <<
 //
-::Utils::XStr &
-operator << (::Utils::XStr & str, const AST_Expression::AST_ExprValue & ev)
+::Utils::XStr & operator << (::Utils::XStr & str, const AST_Expression::AST_ExprValue & ev)
 {
-  char buffer[33] = {'\0'};
+  std::ostringstream buffer;
 
   switch (ev.et)
   {
   case AST_Expression::EV_short:
-    ACE_OS::sprintf (buffer, "%hd", ev.u.sval);
-    str = buffer;
+    buffer << ev.u.sval;
     break;
 
   case AST_Expression::EV_ushort:
-    ACE_OS::sprintf (buffer, "%hu", ev.u.usval);
-    str = buffer;
+    buffer << ev.u.usval;
     break;
 
   case AST_Expression::EV_long:
-    ACE_OS::sprintf (buffer, "%ld", ev.u.lval);
-    str = buffer;
+    buffer << ev.u.lval;
     break;
 
   case AST_Expression::EV_ulong:
-    ACE_OS::sprintf (buffer, "%u", ev.u.ulval);
-    str = buffer;
+    buffer << ev.u.ulval;
     break;
 
   case AST_Expression::EV_longlong:
-#if ! defined (ACE_LACKS_LONGLONG_T)
-    ACE_OS::sprintf (buffer, "%ld", ev.u.llval);
-    str = buffer;
-#endif /* ! defined (ACE_LACKS_LONGLONG_T) */
+    buffer << ev.u.llval;
     break;
 
   case AST_Expression::EV_ulonglong:
-#if ! defined (ACE_LACKS_LONGLONG_T)
-    ACE_OS::sprintf (buffer,
-                     ACE_UINT64_FORMAT_SPECIFIER,
-                     ev.u.ullval);
-    str = buffer;
-#endif /* ! defined (ACE_LACKS_LONGLONG_T) */
+    buffer << ev.u.ullval;
     break;
 
   case AST_Expression::EV_bool:
-    str = (ev.u.bval ? "TRUE" : "FALSE");
+    buffer << (ev.u.bval ? "TRUE" : "FALSE");
     break;
 
   case AST_Expression::EV_float:
-    ACE_OS::sprintf (buffer, "%f", ev.u.fval);
-    str = buffer;
+    buffer << ev.u.fval;
     break;
 
   case AST_Expression::EV_longdouble:
   case AST_Expression::EV_double:
-    ACE_OS::sprintf (buffer, "%0.16G", ev.u.dval);
-    str = buffer;
+    buffer << ev.u.dval;
     break;
 
   case AST_Expression::EV_char:
-    ACE_OS::sprintf (buffer, "%c", ev.u.cval);
-    str = buffer;
+    buffer << ev.u.cval;
     break;
 
   case AST_Expression::EV_wchar:
-    ACE_OS::sprintf (buffer, "%lc", ev.u.wcval);
-    str = buffer;
+    //buffer << ev.u.wcval;
+    //ACE_OS::sprintf (buffer, "%lc", ev.u.wcval);
+    //str = buffer;
     break;
 
   case AST_Expression::EV_octet:
-    ACE_OS::sprintf (buffer, "%d", ev.u.oval);
-    str = buffer;
+    buffer << (int)ev.u.oval;
     break;
 
   case AST_Expression::EV_wstring:
-    str = ev.u.wstrval;
-    break;
+    str.set (ev.u.wstrval);
+    return str;
 
   case AST_Expression::EV_string:
-    str = ev.u.strval->get_string ();
-    break;
+    str.set (ev.u.strval->get_string ());
+    return str;
 
   default:
-    break;
+    return str;
   }
+
+  // Save the buffer in the string.
+  str.set (buffer.str ().c_str ());
 
   return str;
 }
@@ -1831,7 +1819,7 @@ int Project_Generator::visit_constant (AST_Constant *node)
     static_map[EXPRTYPE_TO_PREDEFINEDTYPE_MAP_SIZE] =
   {
     AST_PredefinedType::PT_short,
-    AST_PredefinedType::PT_short,
+    AST_PredefinedType::PT_ushort,
     AST_PredefinedType::PT_long,
     AST_PredefinedType::PT_ulong,
     AST_PredefinedType::PT_longlong,
