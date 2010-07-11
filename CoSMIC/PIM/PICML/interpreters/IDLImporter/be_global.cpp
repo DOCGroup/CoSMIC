@@ -318,7 +318,9 @@ void BE_GlobalData::initialize (void)
       }
 
       target_name += be_global->output_file ();
-      target_name += FILE_EXT;
+
+      if (target_name.find (".xme") == ACE_CString::npos)
+        target_name += FILE_EXT;
 
       // Create the project and set its name.
       static const ::Utils::XStr PICML ("PICML");

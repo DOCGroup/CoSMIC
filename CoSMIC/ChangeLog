@@ -1,10 +1,37 @@
+Sun Jul 11 07:06:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        
+          idl_to_picml will not append the .xme extension if the output
+          filename already contains a valid extension.
+
+        * PIM/PICML/tests/IDL_to_PICML/Constant.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Constant.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Constant.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/idl2picml.mpb:
+        
+          First completely automated version of the Constant test. This
+          will be used as template for other tests.
+
+        * PIM/PICML/tests/IDL_to_PICML/generated:
+        
+          Target directory for auto-generated files.
+
+        * PIM/PICML/tests/IDL_to_PICML/Constant:
+        * PIM/PICML/tests/IDL_to_PICML/Constant/Constant.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Constant/generated:
+        * PIM/PICML/tests/IDL_to_PICML/Constant/generated/Constant.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Constant/generated/constant.cpp:
+
+          Removed these files.
+
 Sun Jul 11 06:33:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
 
           Bug fix where the wide string was missing the L prefix.
         * Utils/GAME/game/Reference.cpp:
-        
+
           The attach () method failed to increment the reference count.
 
 Sun Jul 11 04:22:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
