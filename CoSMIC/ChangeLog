@@ -1,8 +1,34 @@
+Sun Jul 11 00:36:27 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Complex_Type_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Complex_Type_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Complex_Type_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Value_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Value_Visitor.cpp:
+
+          Added two visitors Complex_Type_Visitor - to traverse through the type
+          of the added property and Value_Visior - to traverse through the values
+          of the complex type.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Changes the metamodel "Common" sheet to enable complex properties by
+          adding a DataValueContainer, ComplexTypeReference and DataValue
+          to a property.
+
 Fri Jul  9 22:02:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Filter.h:
         * Utils/GAME/game/Filter.cpp:
-        
+
           Overloaded the kind () and name () method.
 
 Fri Jul  9 21:28:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

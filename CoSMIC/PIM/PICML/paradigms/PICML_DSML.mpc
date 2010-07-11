@@ -23,7 +23,7 @@ project (PICML_paradigm) {
     
     gme_paradigm   = 1
     paradigm_name  = PICML
-    paradigm_guid  = 10E5CE80-5ED8-4ECB-9988-7E1E860F81DF
+    paradigm_guid  = ADA08645-8068-4D88-AEB6-CEE6DB8A5F2B
     paradigm_file  = PICML.mta
   }
   

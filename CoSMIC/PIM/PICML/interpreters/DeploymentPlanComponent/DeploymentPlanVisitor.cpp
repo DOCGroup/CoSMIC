@@ -5,12 +5,16 @@
 
 #include "Data_Type_Visitor.h"
 #include "Data_Value_Visitor.h"
+#include "Value_Visitor.h"
+#include "Complex_Type_Visitor.h"
+//class PICML_Complex_Type_Visitor;
 #include "Connection_Visitor.h"
 #include "External_Reference_Visitor.h"
 #include "Connector_Visitor.h"
 
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/udm/visit.h"
+#include "Utils/UDM/Position_Sort_T.h"
 
 #include "UmlExt.h"
 #include "boost/bind.hpp"
@@ -689,27 +693,149 @@ Visit_ConnectorImplementation (const PICML::ConnectorImplementation & impl)
 void DeploymentPlanVisitor::
 Visit_Property (const PICML::Property & prop)
 {
+  PICML::ComplexTypeReference ctr = prop.ComplexTypeReference_child ();
+
+  // Start building the xml
   std::string name = prop.name ();
-
-  if (name == "ComponentIOR")
-    name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
-  else if (name == "RegisterNaming")
-    name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
-
-  // Create the property's name and value.
   this->create_simple_content (this->curr_param_, "name", name);
-  this->curr_value_ = this->create_element (this->curr_param_, "value");
 
-  // Visit the actual data type. This will add the necessary elements
-  // to the document that determine if property's data type.
-  PICML::DataType type = prop.DataType_child ();
+  // Check if complex reference is present
+  if(! ctr == Udm::null)
+  {
+    xercesc::DOMElement * outer_value = this->create_element (this->curr_param_, "value");
+    xercesc::DOMElement * outer_type = this->create_element (outer_value, "type");
 
-  if (type != Udm::null)
-    type.Accept (*this);
+    // Extract the UML class to check the type to complex class
+    PICML::ComplexType ct = ctr.ref ();
+    Uml::Class c = ct.type ();
 
-  // Now, we need to write attribute value to XML document.
-  PICML_Data_Value_Visitor dvv (this->curr_value_, prop);
-  this->datatypes_.dispatch (dvv, type.ref ());
+    // Create the complex type visitor that will visit the complex
+	// type create xml data type hierarchy
+	PICML_Complex_Type_Visitor ctv (outer_type);
+    this->datatypes_.dispatch (ctv, ct);
+
+    // This starts the data value part of the 
+	xercesc::DOMElement * inner_value = this->create_element (outer_value, "value");
+    xercesc::DOMElement * attach;
+
+	// Order the DataValue elements using top-down ordering
+    typedef UDM_Position_Sort_T <PICML::DataValue, PS_Top_To_Bottom> sorter_t;
+    typedef std::set <PICML::DataValue, sorter_t> sorted_values_t;
+    sorted_values_t values = prop.DataValue_children_sorted (sorter_t ());
+
+    // Propcess the DataValues in the property
+	for ( sorted_values_t::iterator p = values.begin( ); p != values.end( ); ++p )
+    {
+      attach = check_complex_type (c, p->name (), inner_value);
+      PICML_Value_Visitor dvv (attach, p->value ());
+      this->datatypes_.dispatch (dvv, p->ref ());
+    }
+
+    // Oder the DataValueContainer elements using the topdown ordering
+	typedef UDM_Position_Sort_T <PICML::DataValueContainer, PS_Top_To_Bottom> sorter_t_dvc;
+    typedef std::set <PICML::DataValueContainer, sorter_t_dvc> sorted_values_t_dvc;
+    sorted_values_t_dvc dvc_inner = prop.DataValueContainer_children_sorted (sorter_t_dvc ());
+	
+	// Process the DataValueContainers in the property
+    for ( sorted_values_t_dvc::iterator p = dvc_inner.begin( ); p != dvc_inner.end( ); ++p )
+    {
+      attach = check_complex_type (c, p->name (), inner_value);
+      process_datavaluecontainer ((*p), attach);
+    }
+  }
+
+  else
+  {
+	  std::set <PICML::DataValue> datavalset = prop.DataValue_children ();
+	  for (std::set <PICML::DataValue>::iterator p = datavalset.begin( ); p != datavalset.end( ); ++p )
+      {
+        xercesc::DOMElement * outer_value = this->create_element (this->curr_param_, "value");
+        xercesc::DOMElement * outer_type = this->create_element (outer_value, "type");
+		PICML_Complex_Type_Visitor ctv (outer_type);
+		this->datatypes_.dispatch (ctv, p->ref());
+		xercesc::DOMElement * inner_value = this->create_element (outer_value, "value");
+		PICML_Value_Visitor dvv (inner_value, p->value ());
+		this->datatypes_.dispatch (dvv, p->ref ());
+      }
+  }
+}
+
+//
+// process_datavaluecontainer
+//
+void DeploymentPlanVisitor::
+process_datavaluecontainer (const PICML::DataValueContainer & dvc, xercesc::DOMElement * root)
+{
+  PICML::ComplexTypeReference ctr = dvc.ComplexTypeReference_child ();
+  PICML::ComplexType ct = ctr.ref ();
+  Uml::Class c = ct.type ();
+
+  xercesc::DOMElement * attach;
+
+  // Order the DataValue elements using top-down ordering
+  typedef UDM_Position_Sort_T <PICML::DataValue, PS_Top_To_Bottom> sorter_t;
+  typedef std::set <PICML::DataValue, sorter_t> sorted_values_t;
+  sorted_values_t values = dvc.DataValue_children_sorted (sorter_t ());
+
+  // Propcess the DataValues in the current DataValueContainer
+  for ( sorted_values_t::iterator p = values.begin( ); p != values.end( ); ++p )
+  {
+    attach = check_complex_type (c, p->name (), root);
+    PICML_Value_Visitor dvv (attach, p->value ());
+    this->datatypes_.dispatch (dvv, p->ref ());
+  }
+
+  // Oder the DataValueContainer elements using the topdown ordering
+  typedef UDM_Position_Sort_T <PICML::DataValueContainer, PS_Top_To_Bottom> sorter_t_dvc;
+  typedef std::set <PICML::DataValueContainer, sorter_t_dvc> sorted_values_t_dvc;
+  sorted_values_t_dvc dvc_inner = dvc.DataValueContainer_children_sorted (sorter_t_dvc ());
+	
+  // Process the DataValueContainers in the current DataValueContainer
+  for ( sorted_values_t_dvc::iterator p = dvc_inner.begin( ); p != dvc_inner.end( ); ++p )
+  {
+    attach = check_complex_type (c, p->name (), root);
+    process_datavaluecontainer ((*p), attach);
+  }
+}
+
+//
+// create_aggregate_value
+//
+xercesc::DOMElement *  DeploymentPlanVisitor::
+create_aggregate_value (const std::string nm, xercesc::DOMElement * root)
+{
+  xercesc::DOMElement * current_root = this->create_element (root, "member");
+  this->create_simple_content (current_root, "name", nm);
+  xercesc::DOMElement * inner_most_value = this->create_element (current_root, "value");
+  return inner_most_value;
+}
+
+//
+// create_collection_value
+//
+xercesc::DOMElement *  DeploymentPlanVisitor::
+create_collection_value (xercesc::DOMElement * root)
+{
+  xercesc::DOMElement * current_root = this->create_element (root, "element");
+  return current_root;
+}
+
+//
+// check_complex_type
+//
+xercesc::DOMElement *  DeploymentPlanVisitor::
+check_complex_type (Uml::Class c, const std::string nm, xercesc::DOMElement * root)
+{
+  xercesc::DOMElement * attach;
+  if (c == PICML::Collection::meta)
+  {
+    attach = create_collection_value(root);
+  }
+  else if (c == PICML::Aggregate::meta)
+  {
+    attach = create_aggregate_value(nm, root);
+  }
+  return attach;
 }
 
 //
