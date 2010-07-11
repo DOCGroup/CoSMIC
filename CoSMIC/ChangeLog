@@ -1,7 +1,13 @@
+Sun Jul 11 07:10:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Constant.mpc:
+        
+          Added the Id tag.
+
 Sun Jul 11 07:06:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-        
+
           idl_to_picml will not append the .xme extension if the output
           filename already contains a valid extension.
 
@@ -9,12 +15,12 @@ Sun Jul 11 07:06:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/tests/IDL_to_PICML/Constant.idl:
         * PIM/PICML/tests/IDL_to_PICML/Constant.mpc:
         * PIM/PICML/tests/IDL_to_PICML/idl2picml.mpb:
-        
+
           First completely automated version of the Constant test. This
           will be used as template for other tests.
 
         * PIM/PICML/tests/IDL_to_PICML/generated:
-        
+
           Target directory for auto-generated files.
 
         * PIM/PICML/tests/IDL_to_PICML/Constant:

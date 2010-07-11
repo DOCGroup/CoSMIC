@@ -1,4 +1,5 @@
 // -*- MPC -*-
+// $Id$
 
 project (Constant_IDLTOPICML) : idl2picml {
   custom_only = 1
