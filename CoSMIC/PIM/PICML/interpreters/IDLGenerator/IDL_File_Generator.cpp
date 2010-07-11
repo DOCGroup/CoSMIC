@@ -264,6 +264,10 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
 
   if (cls == PICML::String::meta || cls == PICML::WideString::meta)
   {
+    // Make sure the wide string has a 'L' prefix.
+    if (cls == PICML::WideString::meta)
+      this->idl_ << "L";
+
     // Make sure the string is enclosed in quotations.
     if (value[0] != '"')
       this->idl_ << '"';

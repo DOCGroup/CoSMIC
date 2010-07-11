@@ -30,10 +30,9 @@ Meta::Reference Reference::meta (void) const
 //
 const Reference & Reference::operator = (const Reference & ref)
 {
-  if (this == &ref)
-    return *this;
+  if (this != &ref)
+    this->object_ = ref.object_;
 
-  FCO::attach (ref.impl ());
   return *this;
 }
 

@@ -1,24 +1,33 @@
+Sun Jul 11 06:33:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Bug fix where the wide string was missing the L prefix.
+        * Utils/GAME/game/Reference.cpp:
+        
+          The attach () method failed to increment the reference count.
+
 Sun Jul 11 04:22:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
-        
+
           Big fix where importing an XME file would result
           in GME crashing.
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
-        
+
           Project was missing some source files.
-          
+
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
-        
+
           Removed unnecessary code.
 
         * PIM/PICML/tests/IDL_to_PICML/Constant/generated:
-        
+
           Updated the 'ignore' property.
 
         * Utils/GAME/game/Collection_T.cpp:
-        
+
           Bug fix where AddRef () was not invoked before storing
           the element in the array.
 
