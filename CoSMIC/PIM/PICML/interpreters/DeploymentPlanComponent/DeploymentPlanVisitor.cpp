@@ -7,7 +7,6 @@
 #include "Data_Value_Visitor.h"
 #include "Value_Visitor.h"
 #include "Complex_Type_Visitor.h"
-//class PICML_Complex_Type_Visitor;
 #include "Connection_Visitor.h"
 #include "External_Reference_Visitor.h"
 #include "Connector_Visitor.h"

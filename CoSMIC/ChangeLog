@@ -1,29 +1,53 @@
+Sun Jul 11 04:22:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        
+          Big fix where importing an XME file would result
+          in GME crashing.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        
+          Project was missing some source files.
+          
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        
+          Removed unnecessary code.
+
+        * PIM/PICML/tests/IDL_to_PICML/Constant/generated:
+        
+          Updated the 'ignore' property.
+
+        * Utils/GAME/game/Collection_T.cpp:
+        
+          Bug fix where AddRef () was not invoked before storing
+          the element in the array.
+
 Sun Jul 11 01:53:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
-        
+
           Bug fix where string constants were not enclosed in
           quotation marks.
-          
+
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
-        
+
           Bug fix where unsigned short constants were not handled
           correctly.
-          
+
           Bug fix where the values of a long long and unsigned long
           long where not handled correctly.
 
         * PIM/PICML/tests:
         * PIM/PICML/tests/IDL_to_PICML:
-        
+
           Location for idl_to_picml unit tests.
-          
+
         * PIM/PICML/tests/IDL_to_PICML/Constant:
         * PIM/PICML/tests/IDL_to_PICML/Constant/Constant.idl:
         * PIM/PICML/tests/IDL_to_PICML/Constant/generated:
         * PIM/PICML/tests/IDL_to_PICML/Constant/generated/Constant.mpc:
         * PIM/PICML/tests/IDL_to_PICML/Constant/generated/constant.cpp:
-        
+
           Test for validating import/generation of constant elements.
 
 Sun Jul 11 00:36:27 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>

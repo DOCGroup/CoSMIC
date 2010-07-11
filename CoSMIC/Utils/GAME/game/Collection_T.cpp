@@ -34,6 +34,8 @@ size_t get_children (ITER iter, std::vector <T> & coll)
   for (long i = 0; i < count; i ++)
   {
     arr[i].QueryInterface (&temp);
+
+    temp->AddRef ();
     coll[i].attach (temp);
 
     temp = 0;

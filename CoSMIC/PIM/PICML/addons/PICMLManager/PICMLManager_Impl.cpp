@@ -348,13 +348,9 @@ set_property_datatype (GAME::Model & prop, const GAME::FCO & type)
   GAME::Reference datatype;
 
   if (0 == prop.children ("DataType", datatypes))
-  {
     datatype = GAME::Reference::_create (prop, "DataType");
-  }
   else
-  {
     datatype = datatypes.front ();
-  }
 
   // Set the name of the data type and its reference.
   if (datatype.name () != type.name ())
@@ -898,6 +894,9 @@ handle_ComponentRef (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
 {
+  if (this->importing_)
+    return 0;
+
   using GAME::Reference;
   using GAME::Model;
   using GAME::Atom;
