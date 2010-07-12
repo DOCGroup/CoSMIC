@@ -24,6 +24,8 @@
 #include "Utils/xercesc/EntityResolver.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
 
+#include "PIM/PICML/interpreters/PICML/PICML_GUID.h"
+
 #include "game/xme/Configuration.h"
 
 #include "ace/OS_NS_stdio.h"
@@ -324,7 +326,7 @@ void BE_GlobalData::initialize (void)
 
       // Create the project and set its name.
       static const ::Utils::XStr PICML ("PICML");
-      static const ::Utils::XStr GUID ("94FCA7F1-9017-4BFD-B557-F738FC54B103");
+      static const ::Utils::XStr GUID (PICML_PARADIGM_GUID);
       const ::Utils::XStr name (be_global->output_file ().c_str ());
 
       this->proj_ = Project::_create (target_name.c_str (), PICML, GUID);

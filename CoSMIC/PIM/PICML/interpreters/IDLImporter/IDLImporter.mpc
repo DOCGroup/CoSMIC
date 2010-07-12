@@ -5,6 +5,8 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game
   sharedname   = IDL_TO_PICML_BE
   dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
   
+  after += PICML_GUID
+
   specific (prop:microsoft) {
     macros += _SCL_SECURE_NO_WARNINGS
   }

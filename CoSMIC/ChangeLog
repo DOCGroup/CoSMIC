@@ -1,8 +1,26 @@
+Mon Jul 12 05:56:03 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        
+          idl_to_picml now stays up-to-date with latest paradigm guid.
+          
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        
+          Update project builds to auto-generate a header file that
+          contains the paradigms guid.
+
+        * bin/scripts:
+        * bin/scripts/gme_paradigm_guid_to_header.pl:
+        
+          Simple script that generates a header file that contains
+          a paramdigms information.
+
 Mon Jul 12 02:35:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
-        
+
           Added support for auto-generating the values of a
           Property that is a complex type.
 
