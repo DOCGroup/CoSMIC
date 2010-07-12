@@ -17,6 +17,7 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game
     be_global.cpp
     be_init.cpp
     be_produce.cpp
+    be_util.cpp
     Type_Trait.cpp
 
     Artifact_Generator.cpp
@@ -30,6 +31,7 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game
   Header_Files {
     be_extern.h
     be_global.h
+    be_util.h
     IDL_TO_PICML_BE_Export.h
     Predefined_Types.h
   }

@@ -68,18 +68,6 @@ public:
   // Parse args that affect the backend.
   void parse_args (long &i, char **av);
 
-  // Special BE arg call factored out of DRV_args.
-  void prep_be_arg (char *s);
-
-  // Checks made after parsing args.
-  void arg_post_proc (void);
-
-  // Display usage of BE-specific options.
-  void usage (void) const;
-
-  // Create an AST node generator.
-  AST_Generator *generator_init (void);
-
   void initialize (void);
   // Initialize all the Xerces stuff.
 

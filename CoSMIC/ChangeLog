@@ -1,3 +1,21 @@
+Mon Jul 12 08:39:01 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_util.h:
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+
+          New files containing a utility class of static
+          methods.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          Added new file to project.
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Factored out methods unrelated to global data
+          storage and moved them to the new utility class.
+
 Mon Jul 12 05:58:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/Component.rc:
