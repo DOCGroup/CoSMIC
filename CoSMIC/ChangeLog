@@ -1,7 +1,15 @@
+Mon Jul 12 02:35:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        
+          Added support for auto-generating the values of a
+          Property that is a complex type.
+
 Sun Jul 11 07:10:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Constant.mpc:
-        
+
           Added the Id tag.
 
 Sun Jul 11 07:06:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -87,6 +87,8 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   this->handlers_.bind ("ImplementationArtifact", &PICMLManager_Impl::handle_ImplementationArtifact);
 
+  this->handlers_.bind ("ComplexTypeReference", &PICMLManager_Impl::handle_ComplexTypeReference);
+
   this->handlers_.bind ("ComponentInstance", &PICMLManager_Impl::handle_ComponentInstance);
   this->handlers_.bind ("ConnectorInstance", &PICMLManager_Impl::handle_ConnectorInstance);
 
@@ -337,30 +339,59 @@ void PICMLManager_Impl::handle_pending (void)
 }
 
 //
-// set_property_datatype
+// set_property_type
 //
 void PICMLManager_Impl::
-set_property_datatype (GAME::Model & prop, const GAME::FCO & type)
+set_property_type (GAME::Model & prop, const GAME::FCO & type)
 {
-  // We need to make sure there isn't a data type already
-  // present in the target prop.
-  Reference_Set datatypes;
-  GAME::Reference datatype;
+  GAME::Meta::FCO metafco = type.meta ();
+  GAME::FCO real_type = type;
 
-  if (0 == prop.children ("DataType", datatypes))
-    datatype = GAME::Reference::_create (prop, "DataType");
+  // We need to remove all the mask of this alias. Only then can
+  // we really set the property's type.
+  while (metafco == "Alias")
+  {
+    GAME::Reference alias = GAME::Reference::_narrow (real_type);
+    real_type = alias.refers_to ();
+    metafco = real_type.meta ();
+  }
+
+  if (metafco == "Aggregate" || metafco == "Collection")
+  {
+    GAME::Reference complex;
+    std::vector <GAME::Reference> complex_refs;
+
+    // We are working with a predefined type, or an Enum.
+    if (0 == prop.children ("ComplexTypeReference", complex_refs))
+      complex = GAME::Reference::_create (prop, "ComplexTypeReference");
+    else
+      complex = complex_refs.front ();
+
+    // Set the reference for the type. This will force the 
+    // add-on to make sure each member is set correct.
+    complex.refers_to (type);
+  }
   else
-    datatype = datatypes.front ();
+  {
+    GAME::Reference datavalue;
+    std::vector <GAME::Reference> datavalues;
 
-  // Set the name of the data type and its reference.
-  if (datatype.name () != type.name ())
-    datatype.name (type.name ());
+    // We are working with a predefined type, or an Enum.
+    if (0 == prop.children ("DataValue", datavalues))
+      datavalue = GAME::Reference::_create (prop, "DataValue");
+    else
+      datavalue = datavalues.front ();
 
-  // Get the current data type.
-  GAME::FCO curr_type = datatype.refers_to ();
+    // Set the name of the data type and its reference.
+    if (datavalue.name () != type.name ())
+      datavalue.name (type.name ());
 
-  if (curr_type.is_nil () || (curr_type != type))
-    datatype.refers_to (type);
+    // Get the current data type.
+    GAME::FCO current = datavalue.refers_to ();
+
+    if (current.is_nil () || (current != type))
+      datavalue.refers_to (type);
+  }
 }
 
 //
@@ -377,8 +408,7 @@ verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
 // verify_property_datatype
 //
 void PICMLManager_Impl::
-verify_property_datatype (GAME::ConnectionPoint & attr,
-                          const GAME::FCO & attr_type)
+verify_property_datatype (GAME::ConnectionPoint & attr, const GAME::FCO & attr_type)
 {
   // Get the own of this connection. If this is an AttributeValue
   // connection, then we should continue walking the connection
@@ -397,7 +427,7 @@ verify_property_datatype (GAME::ConnectionPoint & attr,
     GAME::Model prop = GAME::Model::_narrow (connpoints["dst"].target ());
 
     // Set the data type for the prop.
-    set_property_datatype (prop, attr_type);
+    set_property_type (prop, attr_type);
   }
 
 }
@@ -496,6 +526,7 @@ handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
       std::for_each (connpoints.begin (),
                      connpoints.end (),
                      boost::bind (&PICMLManager_Impl::verify_property_datatype_entry,
+                                  this,
                                   _1,
                                   attr_type));
     }
@@ -510,43 +541,36 @@ handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 {
-  if ((eventmask & OBJEVENT_CREATED))
-  {
-    // Extract the connection from the object and get
-    // the connection points in model.
-    GAME::Connection attr_value = GAME::Connection::_narrow (obj);
-    GAME::ConnectionPoints connpoints;
+  if ((eventmask & OBJEVENT_CREATED) == 0)
+    return 0;
 
-    if (attr_value.connection_points (connpoints) >= 2)
-    {
-      // Get the attribute at the 'src' of the connection.
-      GAME::Reference attr_inst = GAME::Reference::_narrow (connpoints["src"].target ());
-      GAME::Model attr = GAME::Model::_narrow (attr_inst.refers_to ());
+  // Extract the connection from the object and get its endpoints.
+  GAME::Connection attr_value = GAME::Connection::_narrow (obj);
+  GAME::Reference attr_inst = GAME::Reference::_narrow (attr_value[std::string ("src")].target ());
+  GAME::Model prop = GAME::Model::_narrow (attr_value[std::string ("dst")].target ());
 
-      GAME::FCO attr_type;
-      Reference_Set attr_members;
+  // Get the target attribute.
+  GAME::Model attr = GAME::Model::_narrow (attr_inst.refers_to ());
+    
+  if (attr.is_nil ())
+    return 0;
 
-      if (1 == attr.children ("AttributeMember", attr_members))
-      {
-        // Let's get the data type of the attribute. Since there
-        // is only 1 attribute member, we can just get the front
-        // element in the container.
-        attr_type = attr_members.front ().refers_to ();
-      }
+  // Set the name of the Property. We want to ensure the name to 
+  // the prop matches the name of the attribute.
+  if (prop.name () != attr.name ())
+    prop.name (attr.name ());
 
-      // We have the destination connection point. This should
-      // be a prop in an assembly.
-      GAME::Model prop = GAME::Model::_narrow (connpoints["dst"].target ());
+  GAME::FCO member_type;
+  Reference_Set attr_members;
 
-      // Set the name of the Property. We want to ensure the name
-      // to the prop matches the name of the attribute.
-      if (prop.name () != attr.name ())
-        prop.name (attr.name ());
+  // Let's get the data type of the attribute. Since there is only
+  // 1 attribute member, we can just get the front element in the 
+  // container.
+  if (1 == attr.children ("AttributeMember", attr_members))
+    member_type = attr_members.front ().refers_to ();
 
-      if (attr_type)
-        this->set_property_datatype (prop, attr_type);
-    }
-  }
+  if (!member_type.is_nil ())
+    this->set_property_type (prop, member_type);
 
   return 0;
 }
@@ -903,7 +927,7 @@ handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
   using GAME::Connection;
   using GAME::FCO;
 
-  if ((eventmask && OBJEVENT_RELATION) != 0)
+  if ((eventmask & OBJEVENT_RELATION) != 0)
   {
     Model inst = Model::_narrow (obj.parent ());
 
@@ -1190,4 +1214,140 @@ get_connector_type (const GAME::Model & inst, GAME::Model & connector)
 
   connector = Model::_narrow (conn_ref.refers_to ());
   return true;
+}
+
+//
+// handle_ComplexTypeReference
+//
+int PICMLManager_Impl::
+handle_ComplexTypeReference (unsigned long eventmask, GAME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_RELATION) == 0)
+    return 0;
+
+  // Get the complex types actual type.
+  GAME::Model container = GAME::Model::_narrow (obj.parent ());
+  GAME::Reference complex = GAME::Reference::_narrow (obj);
+  GAME::FCO type = complex.refers_to ();
+
+  // We need to remove all the mask of this alias. Only then can
+  // we really set the property's type.
+  GAME::FCO real_type = type;
+  GAME::Meta::FCO metafco = real_type.meta ();
+
+  while (metafco == "Alias")
+  {
+    GAME::Reference alias = GAME::Reference::_narrow (real_type);
+    real_type = alias.refers_to ();
+    metafco = real_type.meta ();
+  }
+
+  if (metafco == "Aggregate")
+  {
+    GAME::Model aggregate = GAME::Model::_narrow (real_type);
+
+    // Get all the members of the aggregate.
+    std::vector <GAME::FCO> members;
+    aggregate.children (members);
+
+    std::for_each (members.begin (),
+                   members.end (),
+                   boost::bind (&PICMLManager_Impl::create_DataValue,
+                                this,
+                                container,
+                                _1));
+  }
+  else if (metafco == "Collection")
+  {
+
+  }
+
+  return 0;
+}
+
+//
+// create_DataValue
+//
+void PICMLManager_Impl::
+create_DataValue (GAME::Model & container, const GAME::FCO & fco)
+{
+  GAME::Reference member = GAME::Reference::_narrow (fco);
+  GAME::FCO type = member.refers_to ();
+
+  if (type.is_nil ())
+    return;
+
+  GAME::FCO real_type = type;
+  GAME::Meta::FCO metafco = type.meta ();
+  const std::string name (fco.name ());
+
+  // We need to remove all the mask of this alias. Only then can
+  // we really set the property's type.
+  while (metafco == "Alias")
+  {
+    GAME::Reference alias = GAME::Reference::_narrow (real_type);
+    real_type = alias.refers_to ();
+
+    if (real_type.is_nil ())
+      return;
+
+    metafco = real_type.meta ();
+  }
+
+  if (metafco == "Aggregate" || metafco == "Collection")
+  {
+    // Make sure the container contains the element that has the
+    // same name as <fco> input parameter.
+    GAME::Model child_container;
+
+    if (GAME::create_if_not (container, "DataValueContainer", child_container,      
+        GAME::contains (boost::bind (std::equal_to <std::string> (),
+                        name,
+                        boost::bind (&GAME::Model::name, _1)))))
+    {
+      child_container.name (name);
+    }
+
+    // Set the child container's type. This will cause the add-on to
+    // generate the container's elements.
+    GAME::Reference complex_type;
+    std::vector <GAME::Reference> complex_types;
+
+    if (0 == child_container.children ("ComplexTypeReference", complex_types))
+      complex_type = GAME::Reference::_create (child_container, "ComplexTypeReference");
+    else
+      complex_type = complex_types.front ();
+
+    complex_type.refers_to (type);
+    complex_type.name (type.name ());
+
+    // Finally, set the position of the data value. We can do this by 
+    // just copying the current position of the type.
+    GAME::utils::Point pt;
+    GAME::utils::position ("InterfaceDefinition", fco, pt);
+    GAME::utils::position ("DataValueAspect", pt, child_container);
+  }
+  else
+  {
+    // Make sure the container contains the element that has the
+    // same name as <fco> input parameter.
+    GAME::Reference data_value;
+
+    if (GAME::create_if_not (container, "DataValue", data_value,      
+        GAME::contains (boost::bind (std::equal_to <std::string> (),
+                        name,
+                        boost::bind (&GAME::Reference::name, _1)))))
+    {
+      data_value.name (name);
+    }
+
+    // Set the data values type.
+    data_value.refers_to (type);
+
+    // Finally, set the position of the data value. We can do this by 
+    // just copying the current position of the type.
+    GAME::utils::Point pt;
+    GAME::utils::position ("InterfaceDefinition", fco, pt);
+    GAME::utils::position ("DataValueAspect", pt, data_value);
+  }
 }

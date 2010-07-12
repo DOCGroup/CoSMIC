@@ -86,6 +86,8 @@ private:
   int handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
   int handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
   
+  int handle_ComplexTypeReference (unsigned long eventmask, GAME::Object & obj);
+
   int handle_Publish (unsigned long eventmask, GAME::Object & obj);
   int handle_Consume (unsigned long eventmask, GAME::Object & obj);
 
@@ -120,6 +122,8 @@ private:
                                             GAME::Connection & connection);
 
 
+  void create_DataValue (GAME::Model & container, const GAME::FCO & member);
+
   /**
    * Get the UUID from a FCO object.
    *
@@ -128,17 +132,15 @@ private:
    * @retval        true      The attribute was found.
    * @retval        false     The attribute was not found.
    */
-  bool get_uuid_i (const GAME::FCO & fco,
-                   GAME::Attribute & attr);
+  bool get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr);
 
-  static void set_property_datatype (GAME::Model & property,
-                                     const GAME::FCO & type);
+  void set_property_type (GAME::Model & prop, const GAME::FCO & type);
 
-  static void verify_property_datatype (GAME::ConnectionPoint & attr,
-                                        const GAME::FCO & attr_type);
+  void verify_property_datatype (GAME::ConnectionPoint & attr,
+                                 const GAME::FCO & attr_type);
 
-  static void verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
-                                              const GAME::FCO & attr_type);
+  void verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
+                                       const GAME::FCO & attr_type);
 
   /// The project is in import mode.
   int importing_;
