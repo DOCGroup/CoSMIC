@@ -1124,7 +1124,13 @@ handle_Consume (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_DataType (unsigned long eventmask, GAME::Object & obj)
 {
-  AfxMessageBox ("The use of DataType has been deprecated.\nPlease use DataValue in the DataValueAspect of the \"Part Browser\" instead.");
+	AfxMessageBox ("The use of DataType has been deprecated.\nPlease use DataValue in the DataValueAspect of the \"Part Browser\" instead.");
+	
+	if (this->importing_)
+	{
+		AfxMessageBox ("Please use the latest migration script to remove the deprecated functionality");
+	}
+
 	return -1;
 }
 
