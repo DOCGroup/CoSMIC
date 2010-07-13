@@ -1,19 +1,25 @@
+Tue Jul 13 20:37:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+
+          Removed link_options from the IDLTextEditor_Core project.
+
 Tue Jul 13 19:14:02 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
-        
+
           Changed string_to_scoped_name() call from being on idl_global
           to FE_Utils, where that method was recently moved.
-          
+
         * PIM/PICML/interpreters/IDLImporter/be_util.h:
-        
+
           Fixed cut and paste errors in export macros.
 
 Tue Jul 13 14:55:26 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
-        
-          Updated IDLTextEditor_Core to process the .idl file since 
+
+          Updated IDLTextEditor_Core to process the .idl file since
           it is required for StdAfx.h
 
 Tue Jul 13 14:12:10 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>

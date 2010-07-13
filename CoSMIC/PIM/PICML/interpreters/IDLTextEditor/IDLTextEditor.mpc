@@ -3,21 +3,20 @@
 project (IDLTextEditor_Core) : gme_common, t3_runtime, acelib, cosmic_lib {
   sharedname    = IDLTextEditor_Core
   dynamicflags += IDLTEXTEDITOR_CORE_BUILD_DLL
-  
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-  
+
   specific (prop:microsoft) {
     midl_flags    += /server none /client none
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
-    link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/Component.def
 
     DisableSpecificWarnings += 4355 4180 4290
   }
 
   Source_Files {
     $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
-    
+
     IDL_File_Parser.cpp
     Symbols.cpp
 
