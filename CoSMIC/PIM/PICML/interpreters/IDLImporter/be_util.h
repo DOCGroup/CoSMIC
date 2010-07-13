@@ -24,19 +24,19 @@ class be_util
 {
 public:
   /// Special BE arg call factored out of DRV_args.
-  static TAO_IDL_TO_PICML_BE_Export void
+  static IDL_TO_PICML_BE_Export void
   prep_be_arg (char *s);
 
   /// Checks made after parsing args.
-  static TAO_IDL_TO_PICML_BE_Export void
+  static IDL_TO_PICML_BE_Export void
   arg_post_proc (void);
 
   /// Display usage of BE-specific options.
-  static TAO_IDL_TO_PICML_BE_Export void
+  static IDL_TO_PICML_BE_Export void
   usage (void);
 
   /// Create an AST node generator.
-  static TAO_IDL_TO_PICML_BE_Export AST_Generator *
+  static IDL_TO_PICML_BE_Export AST_Generator *
   generator_init (void);
 };
 

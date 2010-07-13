@@ -48,6 +48,8 @@
 #include "utl_idlist.h"
 #include "utl_string.h"
 
+#include "fe_utils.h"
+
 #include "global_extern.h"
 #include "nr_extern.h"
 #include "fe_extern.h"
@@ -2101,7 +2103,7 @@ lookup_symbol_in_template_module (AST_Decl * type,
       // we look up the declaration by name in the current module. If
       // the element is in that module, then we have have a declaration.
       // Otherwise, it is not declared in this module.
-      UTL_ScopedName * sn = idl_global->string_to_scoped_name (name.c_str ());
+      UTL_ScopedName * sn = FE_Utils::string_to_scoped_name (name.c_str ());
       AST_Decl * decl = tm->lookup_by_name (sn);
       sn->destroy ();
 
