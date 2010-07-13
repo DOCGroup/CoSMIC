@@ -1,7 +1,14 @@
+Tue Jul 13 14:55:26 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        
+          Updated IDLTextEditor_Core to process the .idl file since 
+          it is required for StdAfx.h
+
 Tue Jul 13 14:12:10 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_util.h:
-        
+
           Fixed typo in included export header file. Thanks to James
           Hill <hillj at cs dot iupui dot edu> for reporting the problem.
 
