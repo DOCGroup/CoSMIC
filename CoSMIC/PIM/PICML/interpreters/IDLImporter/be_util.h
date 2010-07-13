@@ -16,7 +16,7 @@
 #ifndef TAO_BE_UTIL_H
 #define TAO_BE_UTIL_H
 
-#include "TAO_IDL_TO_PICML_BE_Export.h"
+#include "IDL_TO_PICML_BE_Export.h"
 
 class AST_Generator;
 

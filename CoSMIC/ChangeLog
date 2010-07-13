@@ -1,3 +1,10 @@
+Tue Jul 13 14:12:10 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_util.h:
+        
+          Fixed typo in included export header file. Thanks to James
+          Hill <hillj at cs dot iupui dot edu> for reporting the problem.
+
 Tue Jul 13 12:29:12 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
