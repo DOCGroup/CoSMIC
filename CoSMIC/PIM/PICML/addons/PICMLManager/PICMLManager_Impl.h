@@ -91,6 +91,9 @@ private:
   int handle_Publish (unsigned long eventmask, GAME::Object & obj);
   int handle_Consume (unsigned long eventmask, GAME::Object & obj);
 
+	int handle_DataType (unsigned long eventmask, GAME::Object & obj);
+	int handle_Property (unsigned long eventmask, GAME::Object & obj);
+
   void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
 
   void generate_port_instances (GAME::Model inst, 

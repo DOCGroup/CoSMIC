@@ -1,3 +1,11 @@
+Tue Jul 13 12:29:12 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Added deprecation support for DataValue attribute of Property and
+          DataType.
+
 Mon Jul 12 08:39:01 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_util.h:
@@ -19,7 +27,7 @@ Mon Jul 12 08:39:01 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 Mon Jul 12 05:58:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/Component.rc:
-        
+
           Removed the type library from the resource.
 
 Mon Jul 12 05:56:03 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -95,6 +95,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("Consume", &PICMLManager_Impl::handle_Consume);
   this->handlers_.bind ("Publish", &PICMLManager_Impl::handle_Publish);
 
+	this->handlers_.bind ("DataType", &PICMLManager_Impl::handle_DataType);
+	this->handlers_.bind ("Property", &PICMLManager_Impl::handle_Property);
+
   return 0;
 }
 
@@ -155,14 +158,12 @@ handle_object_event (GAME::Object & obj, unsigned long eventmask)
   {
     GAME::Object object (obj);
 
-    if (object.is_lib_object ())
+		if (object.is_lib_object ())
       return 0;
 
     // Get the meta information for the object.
     std::string type = object.meta ().name ();
-
-    // Locate the handler for this object type.
-    _member_function handler;
+		_member_function handler;
 
     if (this->handlers_.find (type, handler) != -1)
       return (this->*handler) (eventmask, object);
@@ -401,7 +402,7 @@ void PICMLManager_Impl::
 verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
                                 const GAME::FCO & attr_type)
 {
-  verify_property_datatype (attr.item (), attr_type);
+	verify_property_datatype (attr.item (), attr_type);
 }
 
 //
@@ -410,7 +411,7 @@ verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
 void PICMLManager_Impl::
 verify_property_datatype (GAME::ConnectionPoint & attr, const GAME::FCO & attr_type)
 {
-  // Get the own of this connection. If this is an AttributeValue
+	// Get the own of this connection. If this is an AttributeValue
   // connection, then we should continue walking the connection
   // until we get to the prop.
   GAME::Connection attr_value = GAME::Connection::_narrow (attr.owner ());
@@ -746,7 +747,7 @@ handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+	this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 
   if (this->importing_)
     return 0;
@@ -1115,6 +1116,29 @@ handle_Consume (unsigned long eventmask, GAME::Object & obj)
   }
 
   return 0;
+}
+
+//
+// handle_DataType
+//
+int PICMLManager_Impl::
+handle_DataType (unsigned long eventmask, GAME::Object & obj)
+{
+  AfxMessageBox ("The use of DataType has been deprecated.\nPlease use DataValue in the DataValueAspect of the \"Part Browser\" instead.");
+	return -1;
+}
+
+//
+// handle_Property
+//
+int PICMLManager_Impl::
+handle_Property (unsigned long eventmask, GAME::Object & obj)
+{
+	if (eventmask == OBJEVENT_ATTR)
+	{
+		AfxMessageBox ("Setting the Property value has been deprecated.\nInstead please use DataValue in the DataValueAspect of the \"Part Browser\" within the Property.");
+		return -1;
+	}
 }
 
 //
