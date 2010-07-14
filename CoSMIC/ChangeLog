@@ -1,3 +1,23 @@
+Wed Jul 14 15:37:38 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/deployment:
+
+        * PIM/PICML/tests/deployment/Mixed1.xme:
+        * PIM/PICML/tests/deployment/Mixed2.xme:
+        * PIM/PICML/tests/deployment/Mixed3.xme:
+        * PIM/PICML/tests/deployment/Mixed4.xme:
+        * PIM/PICML/tests/deployment/Mixed5.xme:
+        * PIM/PICML/tests/deployment/Mixed6.xme:
+        * PIM/PICML/tests/deployment/UnitTest(Aggregate).xme:
+        * PIM/PICML/tests/deployment/UnitTest(AggregateofSequence).xme:
+        * PIM/PICML/tests/deployment/UnitTest(PredefinedTypes).xme:
+        * PIM/PICML/tests/deployment/UnitTest(Sequence).xme:
+        * PIM/PICML/tests/deployment/UnitTest(SequenceOfAggregate).xme:
+
+          Added examples to test the functionality of ComplexTypeReference
+          within a Property for different data types like Aggregate's, 
+          Sequence's and Predefined Types.
+
 Wed Jul 14 05:44:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
