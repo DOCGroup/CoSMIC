@@ -1,7 +1,15 @@
+Wed Jul 14 17:52:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+
+          Bug fix where the Release version optimized the return statement
+          in the draw () method, which resulted in calling the other drawing
+          functions in the incorrect order.
+
 Wed Jul 14 15:37:38 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/deployment:
-
         * PIM/PICML/tests/deployment/Mixed1.xme:
         * PIM/PICML/tests/deployment/Mixed2.xme:
         * PIM/PICML/tests/deployment/Mixed3.xme:
@@ -15,7 +23,7 @@ Wed Jul 14 15:37:38 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * PIM/PICML/tests/deployment/UnitTest(SequenceOfAggregate).xme:
 
           Added examples to test the functionality of ComplexTypeReference
-          within a Property for different data types like Aggregate's, 
+          within a Property for different data types like Aggregate's,
           Sequence's and Predefined Types.
 
 Wed Jul 14 05:44:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

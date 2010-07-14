@@ -34,7 +34,7 @@ struct sort_top_to_bottom_t
 {
   typedef Component_Decorator_Impl::port_set_t port_set_t;
 
-  bool operator () (const port_set_t::value_type & p1, 
+  bool operator () (const port_set_t::value_type & p1,
                     const port_set_t::value_type & p2) const
   {
     return p1->location ().y_value () < p2->location ().y_value ();
@@ -53,7 +53,7 @@ struct set_port_location_t
   set_port_location_t (GAME::utils::Point & next)
     : next_ (next) { }
 
-  void operator () (value_type & port) 
+  void operator () (value_type & port)
   {
     port->location (this->next_);
     this->next_.shift (0, GME_PORT_HEIGHT + GME_PORT_PADDING_Y);
@@ -96,7 +96,7 @@ struct delete_t
 // destroy
 //
 void Component_Decorator_Impl::destroy (void)
-{ 
+{
   this->port_bitmaps_.clear ();
 
   std::for_each (this->l_ports_.begin (),
@@ -112,20 +112,20 @@ void Component_Decorator_Impl::destroy (void)
 // initialize
 //
 int Component_Decorator_Impl::
-initialize_ex (const GAME::Project & proj, 
-               const GAME::Meta::Part & part, 
+initialize_ex (const GAME::Project & proj,
+               const GAME::Meta::Part & part,
                const GAME::FCO & fco,
-               IMgaCommonDecoratorEvents * eventSink, 
+               IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
-	return this->initialize (proj, part, fco);
+  return this->initialize (proj, part, fco);
 }
 
 //
 // initialize
 //
 int Component_Decorator_Impl::
-initialize (const GAME::Project & project, 
+initialize (const GAME::Project & project,
             const GAME::Meta::Part & part,
             const GAME::FCO & fco)
 {
@@ -138,7 +138,7 @@ initialize (const GAME::Project & project,
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-  
+
   if (!resolver->is_init ())
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
@@ -176,7 +176,7 @@ initialize (const GAME::Project & project,
 // initialize_ports
 //
 int Component_Decorator_Impl::
-initialize_ports (const std::string & aspect_name, 
+initialize_ports (const std::string & aspect_name,
                   const GAME::FCO & fco,
                   GAME::graphics::Image_Resolver * resolver)
 {
@@ -194,7 +194,7 @@ initialize_ports (const std::string & aspect_name,
   if (model.children (aspect, ports) == 0)
     return 0;
 
-  std::vector <GAME::FCO>::const_iterator 
+  std::vector <GAME::FCO>::const_iterator
     iter = ports.begin (), iter_end = ports.end ();
 
   GAME::Part part;
@@ -263,14 +263,14 @@ set_location (const GAME::utils::Rect & loc)
   // for this component to size.
   GAME::utils::Point pt (loc.x_, loc.y_);
 
-  // Set the port locations for the left side of model. 
+  // Set the port locations for the left side of model.
   pt.shift (GME_PORT_MARGIN_X, GME_PORT_MARGIN_Y);
 
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
                  set_port_location_t (pt));
 
-  // Set the port locations for the right side of model. 
+  // Set the port locations for the right side of model.
   pt.set (loc.cx_ - (GME_PORT_WIDTH + GME_PORT_MARGIN_X), loc.y_ + GME_PORT_MARGIN_Y);
 
   std::for_each (this->r_ports_.begin (),
@@ -336,9 +336,9 @@ get_preferred_size (long & sx, long & sy)
 //
 int Component_Decorator_Impl::draw (Gdiplus::Graphics & g)
 {
-  return (this->draw_component (g) |
-          this->draw_label (g) |
-          this->draw_ports (g));
+  return ((this->draw_component (g) == 0) &&
+          (this->draw_label (g) == 0) &&
+          (this->draw_ports (g) == 0)) ? 0 : -1;
 }
 
 //
@@ -375,7 +375,7 @@ int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr, 
+  g.DrawString (bstr,
                 this->label_.length (),
                 &font,
                 Gdiplus::PointF (px, py),
@@ -390,22 +390,17 @@ int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
 //
 int Component_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
 {
-  if (this->l_ports_.empty () && this->r_ports_.empty ())
-    return 0;
-
   using GAME::graphics::Port_Decorator;
 
   // Draw the ports for the model.
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
-                 boost::bind (&Port_Decorator::draw, 
-                              _1,
-                              boost::ref (g)));
+                 boost::bind (&Port_Decorator::draw, _1, boost::ref (g)));
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
-                 boost::bind (&Port_Decorator::draw, 
-                              _1, 
+                 boost::bind (&Port_Decorator::draw,
+                              _1,
                               boost::ref (g)));
 
   return 0;
