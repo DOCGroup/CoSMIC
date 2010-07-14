@@ -1,3 +1,11 @@
+Wed Jul 14 05:44:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+
+          Moved the PICML_GUID project to its own file.
+
 Tue Jul 13 23:18:49 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:

@@ -4,24 +4,31 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  exclude (!prop:microsoft) {
+  exclude (!prop:microsoft, !wix) {
     ComponentImplementationGenerator
     DeploymentPlanComponent
-    PackageComponent
     IDLGenerator
     IDLTextEditor
     MPC
     MPCComponent
+
+    PackageComponent
     Path
     PathComponent
-    PICML
+    PICML/PICML.mpc
+    PropertyManager
 
     //PAM
     //PAMComponent
     //QED
+
+    Target
+    TargetComponent
   }
-  
-  Target
-  TargetComponent
+
+  exclude (wix) {
+    PICML/PICML_GUID.mpc
+  }
+
   IDLImporter
 }

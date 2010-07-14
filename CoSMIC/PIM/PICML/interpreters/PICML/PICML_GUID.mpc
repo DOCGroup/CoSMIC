@@ -1,0 +1,23 @@
+// $Id$
+
+project (PICML_GUID) {
+  custom_only = 1
+
+  Define_Custom (Paradigm) {
+    automatic_in     = 0
+    automatic_out    = 0
+    command          = perl -- $(COSMIC_ROOT)/bin/scripts/gme_paradigm_guid_to_header.pl
+    inputext         = .xmp
+    source_outputext = .h
+
+    keyword paradigm_flags = commandflags
+  }
+
+  paradigm_flags += PICML_GUID
+
+  Paradigm_Files {
+    gendir = .
+
+    $(COSMIC_ROOT)/PIM/PICML/paradigms/PICML.xmp >> PICML_GUID.h
+  }
+}
