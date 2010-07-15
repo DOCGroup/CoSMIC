@@ -1,3 +1,19 @@
+Thu Jul 15 15:34:49 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/deployment/Aggregate_UnitTest.xme:
+        * PIM/PICML/tests/deployment/AggregateofSequence_UnitTest.xme:
+        * PIM/PICML/tests/deployment/ComplexTypes_Mixed_1.xme:
+        * PIM/PICML/tests/deployment/ComplexTypes_Mixed_2.xme:
+        * PIM/PICML/tests/deployment/ComplexTypes_Mixed_3.xme:
+        * PIM/PICML/tests/deployment/ComplexTypes_Mixed_4.xme:
+        * PIM/PICML/tests/deployment/ComplexTypes_Mixed_5.xme:
+        * PIM/PICML/tests/deployment/ComplexTypes_Mixed_6.xme:
+        * PIM/PICML/tests/deployment/PredefinedTypes_UnitTest.xme:
+        * PIM/PICML/tests/deployment/Sequence_UnitTest.xme:
+        * PIM/PICML/tests/deployment/SequenceofAggregate_UnitTest.xme:
+
+          Renamed the test case files according to the naming convention.
+
 Wed Jul 14 17:52:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
