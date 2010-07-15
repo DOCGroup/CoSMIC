@@ -1,3 +1,20 @@
+Thu Jul 15 15:43:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+
+        * PIM/PICML/tests/deployment/Mixed1.xme:
+        * PIM/PICML/tests/deployment/Mixed2.xme:
+        * PIM/PICML/tests/deployment/Mixed3.xme:
+        * PIM/PICML/tests/deployment/Mixed4.xme:
+        * PIM/PICML/tests/deployment/Mixed5.xme:
+        * PIM/PICML/tests/deployment/Mixed6.xme:
+        * PIM/PICML/tests/deployment/UnitTest(Aggregate).xme:
+        * PIM/PICML/tests/deployment/UnitTest(AggregateofSequence).xme:
+        * PIM/PICML/tests/deployment/UnitTest(PredefinedTypes).xme:
+        * PIM/PICML/tests/deployment/UnitTest(Sequence).xme:
+        * PIM/PICML/tests/deployment/UnitTest(SequenceOfAggregate).xme:
+
+          Removed these files as they have been renamed in the previous commit.
+
 Thu Jul 15 15:34:49 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/deployment/Aggregate_UnitTest.xme:
