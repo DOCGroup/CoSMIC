@@ -1,21 +1,21 @@
 // $Id$
 
-void DDX_Text (CDataExchange * , int , PICML_Data_Value & );
+void DDX_Text (CDataExchange * , int , PICML::DataValue & );
 
 //
-// PICML_Simple_DT_Control
+// PICML_Simple_Data_Value_Control
 //
 template <typename CONTROL>
-PICML_Simple_DT_Control <CONTROL>::PICML_Simple_DT_Control (void)
+PICML_Simple_Data_Value_Control <CONTROL>::PICML_Simple_Data_Value_Control (void)
 {
 
 }
 
 //
-// ~PICML_Simple_DT_Control
+// ~PICML_Simple_Data_Value_Control
 //
 template <typename CONTROL>
-PICML_Simple_DT_Control <CONTROL>::~PICML_Simple_DT_Control (void)
+PICML_Simple_Data_Value_Control <CONTROL>::~PICML_Simple_Data_Value_Control (void)
 {
 
 }
@@ -24,7 +24,7 @@ PICML_Simple_DT_Control <CONTROL>::~PICML_Simple_DT_Control (void)
 // create_i
 //
 template <typename CONTROL>
-BOOL PICML_Simple_DT_Control <CONTROL>::
+BOOL PICML_Simple_Data_Value_Control <CONTROL>::
 Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
 {
   // Store the control id.
@@ -46,14 +46,14 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
 // Destroy
 //
 template <typename CONTROL>
-BOOL PICML_Simple_DT_Control <CONTROL>::Destroy (void)
+BOOL PICML_Simple_Data_Value_Control <CONTROL>::Destroy (void)
 {
   // Get the text from the control's window.
   CString text;
   CONTROL::GetWindowText (text);
 
   // Save the text in the value.
-  this->value_->value (text.GetBuffer ());
+  this->value_.Value () = text.GetBuffer ();
 
   // Destroy the control.
   return CONTROL::DestroyWindow ();

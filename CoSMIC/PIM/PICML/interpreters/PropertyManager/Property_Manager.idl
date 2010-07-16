@@ -1,0 +1,25 @@
+// -*- IDL -*-
+
+#ifndef _PICML_PROPERTY_MANAGER_IDL_
+#define _PICML_PROPERTY_MANAGER_IDL_
+
+#include <Gme.idl>
+
+[
+  uuid (C307223C-6FDE-42A2-BD19-CBA5C949E8BE),
+  version (1.0),
+]
+library Property_Manager
+{
+  importlib("stdole32.tlb");
+
+  [ uuid (A6C5F848-5439-4549-831F-62ABAD36FCD3) ]
+  coclass Property_Manager_Component
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IMgaVersionInfo;
+  };
+};
+
+#endif

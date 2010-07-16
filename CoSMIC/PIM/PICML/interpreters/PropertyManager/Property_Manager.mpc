@@ -1,0 +1,32 @@
+// $Id$
+
+project (PropertyManager): game_interpreter, picml_udm_utils, cosmic_lib {
+  sharedname = Property_Manager
+  
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    Data_Type_Dispatcher.cpp
+    Data_Value_Controls.cpp
+    Property_Manager_Dialog.cpp
+
+    Property_Manager.idl
+    Property_Manager_Impl.cpp
+    Property_Manager_Module.cpp
+  }
+
+  Header_Files {
+
+  }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.PropertyManager
+    gme_uuid        = A6C5F848-5439-4549-831F-62ABAD36FCD3
+    gme_paradigms   = PICML
+    gme_has_icon    = 0
+    gme_description = Property Manager
+    gme_tooltip     = Property Manager
+  }
+}

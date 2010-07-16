@@ -11,7 +11,7 @@ REGEDIT4
 @="MGA.Interpreter.PropertyManager"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{A6C5F848-5439-4549-831F-62ABAD36FCD3}\InProcServer32]
-@="PropertyManagerd.dll"
+@="Property_Managerd.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.PropertyManager]
 @="MGA.Interpreter.PropertyManager"
@@ -20,7 +20,7 @@ REGEDIT4
 @="{A6C5F848-5439-4549-831F-62ABAD36FCD3}"
 
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.PropertyManager]
-"Tooltip"="Component Instance Property Manager"
+"Tooltip"="Property Manager"
 "Paradigm"="PICML"
 "Type"=dword:00000001
 "Description"="Property Manager"

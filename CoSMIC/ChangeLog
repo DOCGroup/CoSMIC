@@ -1,3 +1,47 @@
+Fri Jul 16 00:28:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Data_Type_Dispatcher.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Type_Dispatcher.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls_T.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.idl:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.rc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.reg:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.wxs:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.inl:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Module.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Managerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/UdmConfig.h:
+        * PIM/PICML/interpreters/PropertyManager/resource.h:
+
+          First version of the property manager that is able to handle
+          simple types, aggregates, and aggregates of aggregates.
+
+        * PIM/PICML/interpreters/PropertyManager/Component.def:
+        * PIM/PICML/interpreters/PropertyManager/ComponentConfig.h:
+        * PIM/PICML/interpreters/PropertyManager/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PropertyManager/DT_Controls.h:
+        * PIM/PICML/interpreters/PropertyManager/DT_Controls.cpp:
+        * PIM/PICML/interpreters/PropertyManager/DT_Controls_T.cpp:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.reg:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.wxs:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManagerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.h:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.inl:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+
+          Removed these files.
+
 Thu Jul 15 15:43:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
 

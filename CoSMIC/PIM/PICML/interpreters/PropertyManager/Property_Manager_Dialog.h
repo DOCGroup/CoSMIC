@@ -15,21 +15,15 @@
 #ifndef _PICML_PROPERTY_MANAGER_DIALOG_H_
 #define _PICML_PROPERTY_MANAGER_DIALOG_H_
 
-// Forward decl.
-class PICML_Data_Value;
-
-// Forward decl.
-class PICML_Sequence_Data_Value;
+#include "Data_Type_Dispatcher.h"
 
 // Forward decl.
 class PICML_Data_Value_Control;
+class PICML_Sequence_Data_Value;
 
-//=============================================================================
 /**
  * @class PICML_Property_Manager_ListCtrl
  */
-//=============================================================================
-
 class PICML_Property_Manager_ListCtrl : public CListCtrl
 {
 public:
@@ -40,9 +34,12 @@ public:
   /// Initialize the columns for the control.
   BOOL InitControl (void);
 
-  void SetDataValue (PICML_Data_Value * value);
+  void SetProperty (const PICML::Property & prop);
 
 protected:
+  void handle_name_click (const LVHITTESTINFO & testinfo);
+  void handle_value_click (const LVHITTESTINFO & testinfo);
+
   virtual void DrawItem (LPDRAWITEMSTRUCT item);
 
   afx_msg void OnLButtonDown (UINT flags, CPoint point);
@@ -78,11 +75,8 @@ private:
 
   PICML_Data_Value_Control * edit_control_;
 
-  /// Target sequence of the operation.
-  PICML_Sequence_Data_Value  * sequence_;
-
   /// Target value of the operation.
-  PICML_Data_Value * target_value_;
+  PICML::DataValue target_value_;
 
   /// Delete item of the operation.
   int target_item_;
@@ -97,7 +91,6 @@ private:
   LVITEM lvitem_;
 };
 
-//=============================================================================
 /**
  * @class PICML_Property_Manager_Dialog
  *
@@ -105,19 +98,16 @@ private:
  * contain any control for entering data values. Instead, the client
  * has to bind the dialog to a collection of PICML_DT_Control objects.
  */
-//=============================================================================
-
 class PICML_Property_Manager_Dialog : public CDialog
 {
 public:
-  /// Default constructor.
-  PICML_Property_Manager_Dialog (PICML_Data_Value * value,
-                                 CWnd * parent = 0);
+  PICML_Property_Manager_Dialog (const PICML::Property & prop, CWnd * parent = 0);
 
   /// Destructor.
   virtual ~PICML_Property_Manager_Dialog (void);
 
 protected:
+
   virtual void DoDataExchange (CDataExchange * pDX);
 
   virtual BOOL OnInitDialog (void);
@@ -125,7 +115,8 @@ protected:
 private:
   DECLARE_MESSAGE_MAP ();
 
-  PICML_Data_Value * value_;
+  /// Target property for the dialog.
+  PICML::Property prop_;
 
   PICML_Property_Manager_ListCtrl listview_;
 };

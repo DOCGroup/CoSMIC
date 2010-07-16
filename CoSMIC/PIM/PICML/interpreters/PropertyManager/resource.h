@@ -1,11 +1,11 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by PropertyManager.rc
+// Used by Property_Manager.rc
 //
 #define IDI_EXPAND                      5
 #define IDC_EDIT_CONTROL                104
 #define IDS_PROJNAME                    200
-#define IDD_DATAVALUE                   201
+#define IDD_PROPERTY_MANAGER            201
 #define IDI_BLANK                       204
 #define IDI_COLLAPSE                    206
 #define IDR_LISTCTRL_CTX                207
