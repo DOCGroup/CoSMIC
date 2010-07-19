@@ -164,12 +164,17 @@ void PICML_Data_Type_Visitor::Visit_Enum (const PICML::Enum & e)
   this->create_simple_content (enum_element, "typeId", PICML::utils::repository_id (e));
 
   // Write the members of the enumeration.
-  typedef UDM_Position_Sort_T <PICML::EnumValue, PS_Top_To_Bottom> sort_type;
-  std::set <PICML::EnumValue, sort_type> values = e.EnumValue_children_sorted (sort_type ());
+  typedef UDM_Position_Sort_T <PICML::EnumValue, PS_Top_To_Bottom> sorter_t;
+  sorter_t sorter ("InterfaceDefinition", PS_Top_To_Bottom ());
+  std::set <PICML::EnumValue, sorter_t> sorted_values (sorter);
+  sorted_values = e.EnumValue_kind_children_sorted (sorter);
+
+  //typedef UDM_Position_Sort_T <PICML::EnumValue, PS_Top_To_Bottom> sort_type;
+  //std::set <PICML::EnumValue, sort_type> values = e.EnumValue_children_sorted (sort_type ());
 
   std::swap (enum_element, this->curr_);
-  std::for_each (values.begin (),
-                 values.end (),
+  std::for_each (sorted_values.begin (),
+                 sorted_values.end (),
                  boost::bind (&PICML::EnumValue::Accept,
                               _1,
                               boost::ref (*this)));
@@ -183,4 +188,85 @@ void PICML_Data_Type_Visitor::Visit_Enum (const PICML::Enum & e)
 void PICML_Data_Type_Visitor::Visit_EnumValue (const PICML::EnumValue & ev)
 {
   this->create_simple_content ("member", ev.name ());
+}
+
+//
+// Visit_Collection
+//
+void PICML_Data_Type_Visitor::Visit_Collection (const PICML::Collection & c)
+{
+  using namespace xercesc;
+
+  this->create_simple_content ("kind", "tk_sequence");
+  DOMElement * sequence = this->create_element ("sequence");
+
+  // Make sure we account for the sequence's size.
+  std::string bound = c.bound ();
+
+  if (!bound.empty ())
+    this->create_simple_content (sequence, "bound", bound);
+
+  // Start the elementType for this part of the document.
+  DOMElement * elementType = this->create_element (sequence, "elementType");
+  std::swap (elementType, this->curr_);
+
+  // Visit the member type. This will define the <kind> element
+  // contained within the <elementType> element.
+  PICML::MemberType mt = c.ref ();
+  this->dispatcher_.dispatch (*this, mt);
+
+  std::swap (elementType, this->curr_);
+}
+
+//
+// Visit_Aggregate
+//
+void PICML_Data_Type_Visitor::Visit_Aggregate (const PICML::Aggregate & aggr)
+{
+  using namespace xercesc;
+
+  this->create_simple_content ("kind", "tk_struct");
+  DOMElement * aggregate = this->create_element ("struct");
+
+  // Write the name and typeId to the document.
+  this->create_simple_content (aggregate, "name", aggr.name ());
+  this->create_simple_content (aggregate, "typeId", PICML::utils::repository_id (aggr));
+
+
+  // Sort the elements by the position in the InterfaceDefinition aspect.
+  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
+  sorter_t sorter ("InterfaceDefinition", PS_Top_To_Bottom ());
+
+  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
+  sorted_values_t sorted_values (sorter);
+
+  std::vector <PICML::Member> members = aggr.Member_children ();
+  std::for_each (members.begin (),
+                 members.end (),
+                 boost::bind (&sorted_values_t::insert,
+                              boost::ref (sorted_values),
+                              _1));
+
+  std::swap (aggregate, this->curr_);
+  std::for_each (sorted_values.begin (),
+                 sorted_values.end (),
+                 boost::bind (&PICML::Member::Accept, _1, boost::ref (*this)));
+
+  std::swap (aggregate, this->curr_);
+}
+
+//
+// Visit_Member
+//
+void PICML_Data_Type_Visitor::Visit_Member (const PICML::Member & m)
+{
+  using namespace xercesc;
+
+  DOMElement * member = this->create_element ("member");
+  this->create_simple_content (member, "name", m.name ());
+
+  // We need to create the "type" for this member. We can do so just
+  // by reusing this class/visitor to handle the generation.
+  PICML_Data_Type_Visitor v (member);
+  this->dispatcher_.dispatch (v, m.ref ());
 }

@@ -18,6 +18,7 @@
 #include "Data_Type_Visitor.h"
 
 #include "DeploymentPlanVisitor.h"
+#include "Data_Type_Dispatcher.h"
 
 /**
  * @class PICML_Complex_Type_Visitor
@@ -56,7 +57,7 @@ public:
   virtual void Visit_Enum (const PICML::Enum & e);
 
   virtual void Visit_EnumValue (const PICML::EnumValue & ev);
-  
+
   virtual void Visit_Aggregate (const PICML::Aggregate & ag);
 
   virtual void process_aggregate_type (const PICML::Aggregate &);
@@ -68,7 +69,7 @@ private:
 
   xercesc::DOMElement * curr_;
 
-  DataType_Dispatcher datatypes_;
+  PICML_Data_Type_Dispatcher datatypes_;
 };
 
 #include "Complex_Type_Visitor.inl"

@@ -206,22 +206,22 @@ void PICML_Complex_Type_Visitor::Visit_Aggregate (const PICML::Aggregate & agg)
 void  PICML_Complex_Type_Visitor::
 process_aggregate_type (const PICML::Aggregate & agg)
 {
-	xercesc::DOMElement * root_struct = this->create_element (curr_, "struct");
-	this->create_simple_content (root_struct, "name", agg.name ());
-	this->create_simple_content (root_struct, "typeId", PICML::utils::repository_id (agg));
+  xercesc::DOMElement * root_struct = this->create_element (curr_, "struct");
+  this->create_simple_content (root_struct, "name", agg.name ());
+  this->create_simple_content (root_struct, "typeId", PICML::utils::repository_id (agg));
 
-	std::set <PICML::Member> mems = agg.Member_children ();
+  std::set <PICML::Member> mems = agg.Member_children ();
 
-	for ( set <PICML::Member>::iterator p = mems.begin( ); p != mems.end( ); ++p )
-	{
-		xercesc::DOMElement * member  = this->create_element (root_struct, "member");
-		this->create_simple_content (member, "name", p->name ());
+  for ( set <PICML::Member>::iterator p = mems.begin( ); p != mems.end( ); ++p )
+  {
+    xercesc::DOMElement * member  = this->create_element (root_struct, "member");
+    this->create_simple_content (member, "name", p->name ());
 
-		xercesc::DOMElement * inner_type  = this->create_element (member, "type");
-		PICML_Complex_Type_Visitor cctv (inner_type);
-		PICML::MemberType mt = p->ref ();
-		this->datatypes_.dispatch (cctv, p->ref ());
-	}
+    xercesc::DOMElement * inner_type  = this->create_element (member, "type");
+    PICML_Complex_Type_Visitor cctv (inner_type);
+    PICML::MemberType mt = p->ref ();
+    this->datatypes_.dispatch (cctv, p->ref ());
+  }
 }
 
 
@@ -241,15 +241,15 @@ void PICML_Complex_Type_Visitor::Visit_Collection (const PICML::Collection & col
 void  PICML_Complex_Type_Visitor::
 process_collection_type (const PICML::Collection & coll)
 {
-	xercesc::DOMElement * root_struct = this->create_element (curr_, "sequence");
-	std::string temp (coll.bound ());
-	if(temp.length () != 0)
-	{
-		this->create_simple_content (root_struct, "bound", temp);
-	}
-	xercesc::DOMElement * element_type = this->create_element (root_struct, "elementType");
+  xercesc::DOMElement * root_struct = this->create_element (curr_, "sequence");
+  std::string temp (coll.bound ());
+  if(temp.length () != 0)
+  {
+    this->create_simple_content (root_struct, "bound", temp);
+  }
+  xercesc::DOMElement * element_type = this->create_element (root_struct, "elementType");
 
-	PICML_Complex_Type_Visitor ctv (element_type);
-	PICML::MemberType mt = coll.ref ();
-	this->datatypes_.dispatch (ctv, mt);
+  PICML_Complex_Type_Visitor ctv (element_type);
+  PICML::MemberType mt = coll.ref ();
+  this->datatypes_.dispatch (ctv, mt);
 }

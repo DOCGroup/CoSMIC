@@ -76,7 +76,7 @@ private:
   PICML_Data_Value_Control * edit_control_;
 
   /// Target value of the operation.
-  PICML::DataValue target_value_;
+  PICML::Property prop_;
 
   /// Delete item of the operation.
   int target_item_;

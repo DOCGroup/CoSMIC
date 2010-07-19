@@ -8,7 +8,10 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
     Complex_Type_Visitor.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp
+    
     Data_Type_Visitor.cpp
+    Data_Type_Dispatcher.cpp
+    
     Data_Value_Visitor.cpp
     Deployment_Domain_Visitor.cpp
     DeploymentPlanVisitor.cpp

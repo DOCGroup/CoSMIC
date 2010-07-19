@@ -67,7 +67,7 @@ public:
    *
    * @param[in]       sorter        The actual sorter.
    */
-  UDM_Position_Sort_T (const SORT & sorter);
+  UDM_Position_Sort_T (const std::string & aspect, const SORT & sorter);
 
   /**
    * Functor for determine which position is greater.
@@ -86,6 +86,11 @@ public:
   const UDM_Position_Sort_T & operator = (const UDM_Position_Sort_T & rhs);
 
 private:
+  bool get_position (const T & element, position_t & pos);
+
+  /// The aspect used to sort the elements.
+  const std::string aspect_;
+
   /// Functor that is responsible for sorting.
   SORT sorter_;
 };

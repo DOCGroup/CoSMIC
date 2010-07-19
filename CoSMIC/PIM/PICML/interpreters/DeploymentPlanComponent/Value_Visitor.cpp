@@ -7,7 +7,8 @@
 //
 PICML_Value_Visitor::
 PICML_Value_Visitor (xercesc::DOMElement * parent, const std::string value)
-: curr (parent), datavalue_ (value)
+: curr (parent), 
+  datavalue_ (value)
 {
 
 }

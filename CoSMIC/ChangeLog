@@ -1,3 +1,49 @@
+Mon Jul 19 05:23:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_xml.mpb:
+
+          Base class for the GAME XML library.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Complex_Type_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Complex_Type_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Dispatcher.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Dispatcher.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Value_Visitor.cpp:
+
+          Re-implemented support for Enum types
+
+          Improved the implementation of the portion of the generator
+          that generates config properties.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Support for Enum properties was accidently removed when adding support
+          for complex types to PICML.
+
+          Improved the DataValue and DataValueContainer specification by subclassing
+          either element from a DataValueBase. This makes it a LOT easier to
+          implement intepreters.
+
+        * Utils/UDM/Position_Sort_T.h:
+        * Utils/UDM/Position_Sort_T.cpp:
+
+          Bug fix where the position () returned a string that contained the
+          position of the element in each aspect. This string needed to be
+          parsed so that the position is the desired aspect is used when
+          sorting the elements.
+
 Fri Jul 16 00:28:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PropertyManager/Data_Type_Dispatcher.h:

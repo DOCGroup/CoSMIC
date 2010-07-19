@@ -14,15 +14,32 @@
 #define _PICML_DATA_VALUE_VISITOR_H_
 
 #include "PICML/PICML.h"
+#include "Data_Type_Dispatcher.h"
 #include "XML_Document.h"
 
+/**
+ * @class DataValueBase_Dispatcher
+ */
+class DataValueBase_Dispatcher :
+  public UDM_Abstract_Type_Dispatcher_T <PICML::Visitor>
+{
+public:
+  DataValueBase_Dispatcher (void)
+  {
+    this->insert <PICML::DataValue> ();
+    this->insert <PICML::DataValueContainer> ();
+  }
+};
+
+/**
+ * @class PICML_Data_Value_Visitor
+ */
 class PICML_Data_Value_Visitor :
   public PICML::Visitor,
   public XML_Document
 {
 public:
-  PICML_Data_Value_Visitor (xercesc::DOMElement * parent,
-                            const PICML::Property & prop);
+  PICML_Data_Value_Visitor (xercesc::DOMElement * parent);
 
   virtual ~PICML_Data_Value_Visitor (void);
 
@@ -50,8 +67,27 @@ public:
 
   virtual void Visit_Enum (const PICML::Enum & e);
 
+  virtual void Visit_DataValueContainer (const PICML::DataValueContainer & c);
+  virtual void Visit_DataValue (const PICML::DataValue & v);
+  virtual void Visit_Property (const PICML::Property & prop);
+
 private:
-  const PICML::Property & prop_;
+  enum container_t
+  {
+    NONE          = 0,
+    AGGREGATE     = 1,
+    SEQUENCE      = 2
+  };
+
+  container_t container_;
+
+  static const char * envelopes_[3];
+  const char * envelope_;
+
+  DataValueBase_Dispatcher dvb_dispatcher_;
+  PICML_Data_Type_Dispatcher dt_dispatcher_;
+
+  PICML::DataValue value_;
 };
 
 #include "Data_Value_Visitor.inl"

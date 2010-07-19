@@ -198,6 +198,20 @@ public:
                    boost::bind (&PICML_Property_Manager_ListView_Expand::Visit_DataValueBase,
                                 this,
                                 _1));
+
+    // We need to add a "blank" element to the end of the list
+    // if this is a collection (i.e., a sequence). This will allow
+    // the user to add new elements to the sequence.
+    PICML::ComplexTypeReference type = prop.ComplexTypeReference_child ();
+
+    if (type == Udm::null)
+      return;
+
+    // Get the complex type.
+    PICML::ComplexType complex = type.ref ();
+
+    if (complex != Udm::null && complex.type () == PICML::Collection::meta)
+      this->insert_collection_footer ();
   }
 
   virtual void Visit_DataValueContainer (const PICML::DataValueContainer & c)
@@ -214,9 +228,35 @@ public:
                    boost::bind (&PICML_Property_Manager_ListView_Expand::Visit_DataValueBase,
                                 this,
                                 _1));
+
+    // We need to add a "blank" element to the end of the list
+    // if this is a collection (i.e., a sequence). This will allow
+    // the user to add new elements to the sequence.
+    PICML::ComplexTypeReference type = c.ComplexTypeReference_child ();
+
+    if (type == Udm::null)
+      return;
+
+    // Get the complex type.
+    PICML::ComplexType complex = type.ref ();
+
+    if (complex != Udm::null && complex.type () == PICML::Collection::meta)
+      this->insert_collection_footer ();
   }
 
 private:
+  void insert_collection_footer (void)
+  {
+    // Insert the blank item into the listing. This will be used
+    // to determine when the sequence is clicked.
+    this->item_.mask     = LVIF_INDENT | LVIF_IMAGE | LVIF_PARAM;
+    this->item_.iImage   = 0;
+    this->item_.iSubItem = 0;
+    this->item_.lParam   = 0;
+
+    this->parent_.InsertItem (&this->item_);
+  }
+
   // Helper method for inserting items into the container.
   void Visit_DataValueBase (const PICML::DataValueBase & value)
   {
@@ -234,13 +274,6 @@ private:
 
     // Move to the next item in the list.
     ++ this->item_.iItem;
-
-    if (!expand)
-    {
-      // Insert the subitem for the value.
-      this->item_.iSubItem = 1;
-      this->parent_.InsertItem (&this->item_);
-    }
   }
 
   /// Parent control of the item.
@@ -333,6 +366,7 @@ void PICML_Property_Manager_ListCtrl::SetProperty (const PICML::Property & prop)
   // Initialize the control based on the property.
   PICML_Property_Manager_ListView_Expand expander (*this, 0, 0);
   PICML::Property (prop).Accept (expander);
+  this->prop_ = prop;
 }
 
 //
@@ -340,22 +374,26 @@ void PICML_Property_Manager_ListCtrl::SetProperty (const PICML::Property & prop)
 //
 void PICML_Property_Manager_ListCtrl::DrawItem (LPDRAWITEMSTRUCT item)
 {
-  if (item->itemData == 0)
-    return;
-
   int image = 0;
   std::string name, value;
 
   // Get the name and value from the data item.
-  Udm::ObjectImpl * impl = reinterpret_cast <Udm::ObjectImpl *> (item->itemData);
-  Udm::Object obj (impl->clone ());
+  if (item->itemData != 0)
+  {
+    Udm::ObjectImpl * impl = reinterpret_cast <Udm::ObjectImpl *> (item->itemData);
+    Udm::Object obj (impl->clone ());
 
-  // Save the name of the object/item.
-  PICML::DataValueBase base = PICML::DataValueBase::Cast (obj);
-  name = base.name ();
+    // Save the name of the object/item.
+    PICML::DataValueBase base = PICML::DataValueBase::Cast (obj);
+    name = base.name ();
 
-  if (base.type () == PICML::DataValue::meta)
-    value = PICML::DataValue::Cast (base).Value ();
+    if (base.type () == PICML::DataValue::meta)
+      value = PICML::DataValue::Cast (base).Value ();
+  }
+  else
+  {
+    value = "Click to insert new item";
+  }
 
   // Get the image index for the item.
   LVITEM lvitem;
@@ -567,10 +605,6 @@ void PICML_Property_Manager_ListCtrl::OnLButtonDown (UINT flags, CPoint point)
   case 1:
     this->handle_value_click (info);
     break;
-
-  default:
-    // The default case is to end label editing
-    this->end_label_edit ();
   }
 }
 
@@ -700,33 +734,82 @@ handle_value_click (const LVHITTESTINFO & testinfo)
 
     lvitem.mask = LVIF_INDENT | LVIF_PARAM;
 
-    do
+    // Get the infomration about the current item. We need to
+    // locate the parent sequence container. If the container is
+    // a property, then we need to
+    this->GetItem (&lvitem);
+
+    while (lvitem.iIndent >= indent && lvitem.iItem > 0)
     {
-      // Get the previous item in the listing.
       -- lvitem.iItem;
       this->GetItem (&lvitem);
+    }
 
-      // Check the indentation of this item.
-    } while (lvitem.iIndent >= indent);
+    PICML::Collection source;
+    Udm::Object parent;
 
-    if (lvitem.lParam != 0)
+    if (lvitem.lParam == 0)
+    {
+      // Save the container as the parent element. This will be needed
+      // later when we create the new element in the sequence.
+      parent = this->prop_;
+
+      // We need to use the property, since we can assume the
+      // sequence is actual the root.
+      PICML::ComplexTypeReference ref = this->prop_.ComplexTypeReference_child ();
+      source = PICML::Collection::Cast (ref.ref ());
+    }
+    else
     {
       Udm::ObjectImpl * impl = reinterpret_cast <Udm::ObjectImpl *> (lvitem.lParam);
-      PICML::DataValueBase value_base (impl->clone ());
+      PICML::DataValueContainer container (impl->clone ());
 
-      if (value_base.type () != PICML::Collection::meta)
-        return;
+      // Save the container as the parent element. This will be needed
+      // later when we create the new element in the sequence.
+      parent = container;
+
+      PICML::ComplexTypeReference ref = this->prop_.ComplexTypeReference_child ();
+      source = PICML::Collection::Cast (ref.ref ());
+    }
+
+    // Get the source's type. This will determine what kind of DataValueBase
+    // element we need to create.
+    PICML::DataValueBase value_base;
+    PICML::MemberType member_type = source.ref ();
+    const Uml::Class & cls = member_type.type ();
+
+    if (Udm::IsDerivedFrom (cls, PICML::PredefinedType::meta) ||
+        cls == PICML::Enum::meta)
+    {
+      // We need to create a DataValue element.
+      PICML::DataValue value = PICML::DataValue::Create (parent);
+      value.ref () = PICML::SimpleType::Cast (member_type);
+
+      // Save the value for storage in the list control.
+      value_base = value;
+    }
+    else
+    {
+      // We need to create a DataValueContainer element.
+      PICML::DataValueContainer value = PICML::DataValueContainer::Create (parent);
+      PICML::ComplexTypeReference ref = PICML::ComplexTypeReference::Create (value);
+      ref.ref () = PICML::ComplexType::Cast (member_type);
+
+      // Save the value for storage in the list control.
+      value_base = value;
+    }
+
+    // Finally, add the element to the collection. This is done by
+    // selecting all the elements in the container.
+
 
       // Add a new element to the collection to the DataValueContainer.
 
-      //// Create a new element in the sequence.
-      //PICML_Data_Value * value = sequence->new_element ();
-
-      //lvitem.mask     = LVIF_IMAGE | LVIF_INDENT | LVIF_PARAM;
-      //lvitem.iItem    = item;
-      //lvitem.iSubItem = 0;
-      //lvitem.iIndent  = indent;
-      //lvitem.lParam   = reinterpret_cast <LPARAM> (value);
+    lvitem.mask     = LVIF_IMAGE | LVIF_INDENT | LVIF_PARAM;
+    lvitem.iItem    = item;
+    lvitem.iSubItem = 0;
+    lvitem.iIndent  = indent;
+    lvitem.lParam   = reinterpret_cast <LPARAM> (value_base.__impl ());
 
       //// Select the correct image for the item.
       //PICML_Property_Manager_ListView_Image image (lvitem.iImage);
@@ -741,7 +824,6 @@ handle_value_click (const LVHITTESTINFO & testinfo)
 
       //  this->SetItemText (item + 1, 0, name.str ());
       //}
-    }
   }
 }
 
@@ -954,20 +1036,11 @@ void PICML_Property_Manager_ListCtrl::collapse_item (int item)
   // Move the next item. From this point forward, we do not
   // have to change this value.
   ++ this->lvitem_.iItem;
-  Udm::ObjectImpl * impl = 0;
 
   // Delete all the items with a greater indentation value. This
   // will make sure we remove all items within this scope.
   while (this->GetItem (&this->lvitem_) != 0 && this->lvitem_.iIndent > indent)
-  {
-    // Make sure we release our object reference.
-    impl = reinterpret_cast <Udm::ObjectImpl *> (this->lvitem_.lParam);
-    if (0 != impl)
-      impl->release ();
-
-    // Delete the item.
     this->DeleteItem (this->lvitem_.iItem);
-  }
 }
 
 //

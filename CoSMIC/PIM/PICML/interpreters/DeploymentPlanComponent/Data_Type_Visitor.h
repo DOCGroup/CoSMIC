@@ -13,7 +13,7 @@
 #ifndef _PICML_DATA_TYPE_VISITOR_H_
 #define _PICML_DATA_TYPE_VISITOR_H_
 
-#include "PICML/PICML.h"
+#include "Data_Type_Dispatcher.h"
 #include "XML_Document.h"
 
 /**
@@ -51,8 +51,16 @@ public:
   virtual void Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & li);
 
   virtual void Visit_Enum (const PICML::Enum & e);
-
   virtual void Visit_EnumValue (const PICML::EnumValue & ev);
+
+  virtual void Visit_Collection (const PICML::Collection & c);
+  virtual void Visit_Aggregate (const PICML::Aggregate & a);
+
+  virtual void Visit_Member (const PICML::Member & m);
+
+private:
+  /// Dispatcher for complex data types.
+  PICML_Data_Type_Dispatcher dispatcher_;
 };
 
 #include "Data_Type_Visitor.inl"

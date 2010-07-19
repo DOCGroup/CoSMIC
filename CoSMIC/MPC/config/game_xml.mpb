@@ -1,0 +1,6 @@
+// $Id$
+
+project {
+  after += GAME_XML
+  libs  += GAME_XML
+}
