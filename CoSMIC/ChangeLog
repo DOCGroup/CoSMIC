@@ -1,3 +1,11 @@
+Mon Jul 19 19:29:29 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/deployment/Enum_UnitTest.xme:
+        * PIM/PICML/tests/deployment/Package_Test.xme:
+
+          Added tests to verify Enum and the repository_id() method for
+          DataTypes within a Package.
+
 Mon Jul 19 13:42:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/UDM/Position_Sort_T.cpp:
