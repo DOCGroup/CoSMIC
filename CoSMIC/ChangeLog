@@ -1,3 +1,10 @@
+Mon Jul 19 13:42:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/UDM/Position_Sort_T.cpp:
+
+          Bug fix where the position returned was invalid if there
+          was no aspect in the position string.
+
 Mon Jul 19 05:23:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_xml.mpb:

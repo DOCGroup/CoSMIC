@@ -50,25 +50,29 @@ get_position (const T & element, position_t & pos)
 {
   std::string posstr = element.position ();
 
-  // Find the aspect in the position string.
-  size_t pos_start = posstr.find (this->aspect_);
-  if (pos_start == std::string::npos)
-    return false;
+  if (posstr.find_first_of (";") != std::string::npos)
+  {
+    // Find the aspect in the position string.
+    size_t pos_start = posstr.find (this->aspect_);
+    if (pos_start == std::string::npos)
+      return false;
 
-  // Move to the end of the aspect's name.
-  pos_start += this->aspect_.length () + 1;
+    // Move to the end of the aspect's name.
+    pos_start += this->aspect_.length ();
 
-  // Find the close paranthesis for the aspects using the start
-  // position as the start index.
-  size_t pos_end = posstr.find_first_of (')', pos_start);
-  if (pos_end == std::string::npos)
-    return false;
+    // Find the close paranthesis for the aspects using the start
+    // position as the start index.
+    size_t pos_end = posstr.find_first_of (')', pos_start);
+    if (pos_end == std::string::npos)
+      return false;
 
-  // Extract the position from the string.
-  posstr = posstr.substr (pos_start, pos_end - pos_start);
+    // Extract the position from the string.
+    posstr = posstr.substr (pos_start, (pos_end - pos_start) + 1);
+  }
 
   // Convert the position string to binary format.
   std::istringstream istr (posstr);
+  istr.ignore (1);
   istr >> pos.x_;
   istr.ignore (1);
   istr >> pos.y_;
