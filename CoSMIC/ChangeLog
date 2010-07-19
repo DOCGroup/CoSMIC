@@ -1,3 +1,17 @@
+Mon Jul 19 22:25:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/CoSMIC-0.8.0.xslt:
+
+          Migration script for the latest version of CoSMIC.
+
+        * PIM/PICML/migration/@derivedfrom_cleaner.xsl:
+        * PIM/PICML/migration/Effect_to_InputEffect.xsl:
+        * PIM/PICML/migration/InputAction_to_MultiInputAction.xsl:
+        * PIM/PICML/migration/PeriodicAction_to_PeriodicEvent.xsl:
+        * PIM/PICML/migration/PeriodicEvent_disconnect.xsl:
+
+          Removed these files.
+
 Mon Jul 19 19:29:29 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/deployment/Enum_UnitTest.xme:
