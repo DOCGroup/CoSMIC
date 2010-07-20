@@ -1,3 +1,12 @@
+Tue Jul 20 04:50:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * contrib:
+
+          Setting external tags as follows for upcoming release:
+
+            CCF -r 91125 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+            utility -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+
 Tue Jul 20 04:11:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PropertyManager/Property_Manager.rc:
