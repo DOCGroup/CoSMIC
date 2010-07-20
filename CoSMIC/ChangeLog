@@ -1,3 +1,30 @@
+Tue Jul 20 15:33:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/ComponentEx_Impl_T.cpp:
+
+          Updated implementation to call AFX_MANAGE_STATE () before
+          it passes control to the implementation.
+
+        * Utils/GAME/game/xml:
+        * Utils/GAME/game/xml/Document.h:
+        * Utils/GAME/game/xml/Document.inl:
+        * Utils/GAME/game/xml/Document.cpp:
+        * Utils/GAME/game/xml/Fragment.h:
+        * Utils/GAME/game/xml/Fragment.inl:
+        * Utils/GAME/game/xml/Fragment.cpp:
+        * Utils/GAME/game/xml/GAME_XML.mpc:
+        * Utils/GAME/game/xml/Memory_Manager.h:
+        * Utils/GAME/game/xml/Memory_Manager.cpp:
+        * Utils/GAME/game/xml/Static_Configuration.h:
+        * Utils/GAME/game/xml/Static_Configuration.cpp:
+        * Utils/GAME/game/xml/String.h:
+        * Utils/GAME/game/xml/String.inl:
+        * Utils/GAME/game/xml/String.cpp:
+        * Utils/GAME/game/xml/Xml_export.h:
+
+          Project that simplifies common methods/operations when
+          generating XML documents.
+
 Tue Jul 20 14:31:41 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

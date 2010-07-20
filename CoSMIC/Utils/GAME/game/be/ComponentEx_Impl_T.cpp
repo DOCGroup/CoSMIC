@@ -15,13 +15,15 @@ namespace GAME
 template <typename T>
 STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     return this->impl_.initialize (Project (proj));
   }
   catch (...)
   {
-  
+
   }
 
   return S_FALSE;
@@ -34,10 +36,21 @@ template <typename T>
 STDMETHODIMP ComponentEx_Impl_T <T>::
 Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 {
-  std::vector <FCO> selected;
-  GAME::get_children (fcos, selected);
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-  return this->impl_.invoke (Project (proj), selected, flags);
+  try
+  {
+    std::vector <FCO> selected;
+    GAME::get_children (fcos, selected);
+
+    return this->impl_.invoke (Project (proj), selected, flags);
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_FALSE;
 }
 
 //
@@ -49,6 +62,8 @@ InvokeEx (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * fcos, long flags)
 {
   try
   {
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
     std::vector <FCO> selected;
     GAME::get_children (fcos, selected);
 
@@ -68,6 +83,8 @@ InvokeEx (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * fcos, long flags)
 template <typename T>
 STDMETHODIMP ComponentEx_Impl_T <T>::Enable (VARIANT_BOOL enable)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     bool flag = enable == VARIANT_TRUE ? true : false;
@@ -111,6 +128,8 @@ STDMETHODIMP ComponentEx_Impl_T <T>::get_InteractiveMode (VARIANT_BOOL * mode)
 template <typename T>
 STDMETHODIMP ComponentEx_Impl_T <T>::put_InteractiveMode (VARIANT_BOOL mode)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     bool value = mode == VARIANT_TRUE ? true : false;
@@ -120,7 +139,7 @@ STDMETHODIMP ComponentEx_Impl_T <T>::put_InteractiveMode (VARIANT_BOOL mode)
   }
   catch (...)
   {
-    
+
   }
   return S_FALSE;
 }
@@ -133,6 +152,8 @@ STDMETHODIMP ComponentEx_Impl_T <T>::get_ComponentName (BSTR * name)
 {
   if (name == 0)
     return E_POINTER;
+
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
   try
   {
@@ -172,6 +193,8 @@ STDMETHODIMP ComponentEx_Impl_T <T>::get_Paradigm (BSTR * paradigm)
   if (paradigm == 0)
     return E_POINTER;
 
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     const std::string n (this->impl_.paradigm ());
@@ -182,7 +205,7 @@ STDMETHODIMP ComponentEx_Impl_T <T>::get_Paradigm (BSTR * paradigm)
   }
   catch (...)
   {
-    
+
   }
 
   return S_FALSE;
@@ -207,6 +230,8 @@ STDMETHODIMP ComponentEx_Impl_T <T>::get_ComponentProgID (BSTR * progid)
   if (progid == 0)
     return E_POINTER;
 
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     const std::string n (this->impl_.progid ());
@@ -230,6 +255,8 @@ template <typename T>
 STDMETHODIMP ComponentEx_Impl_T <T>::
 put_ComponentParameter (BSTR name, VARIANT value)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     CComVariant var (value);
