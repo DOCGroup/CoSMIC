@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<project name="migration" basedir="." default="build.all">
+  <property environment="env" />
+  <property name="jarfile" value="${env.COSMIC_ROOT}/bin/migration/migration.jar" />
+
+  <!-- build all the implementations -->
+  <target name="build.all" depends="migration.jar.build" />
+
+  <target name="migration.build">
+    <path id="build.classpath">
+      <pathelement path="." />
+    </path>
+
+    <javac srcdir="${env.COSMIC_ROOT}/bin/migration"
+           classpathref="build.classpath"
+           debug="true"
+           debuglevel="source,lines" />
+  </target>
+
+  <target name="migration.jar.build" depends="migration.build">
+    <!-- create the final jar file -->
+    <jar destfile="${jarfile}"
+         basedir="${env.COSMIC_ROOT}/bin/migration"
+         includes="edu/vanderbilt/dre/**"
+         excludes="**/*.java" />
+  </target>
+</project>
+
+<!-- end of auto-generated file -->

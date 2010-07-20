@@ -1,10 +1,23 @@
+Tue Jul 20 20:21:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * bin/migrate.bat:
+        * bin/migration/build.xml:
+        * bin/migration/edu:
+        * bin/migration/edu/vanderbilt:
+        * bin/migration/edu/vanderbilt/dre:
+        * bin/migration/edu/vanderbilt/dre/MgaEntityResolver.java:
+        * bin/migration/migration.jar:
+
+          Implemented an EntityResolver that resolves the location of
+          mga.dtd. This means you no longer have to have mga.dtd in the
+          same directory as the file undergoing migration.
 Tue Jul 20 20:10:31 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
 
-          Cleaned up some of the code that was not being used or was 
+          Cleaned up some of the code that was not being used or was
           commented.
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Complex_Type_Visitor.h:
@@ -14,8 +27,8 @@ Tue Jul 20 20:10:31 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * PIM/PICML/interpreters/DeploymentPlanComponent/Value_Visitor.inl:
         * PIM/PICML/interpreters/DeploymentPlanComponent/Value_Visitor.cpp:
 
-          Removed these files. The functionality of these visitors is 
-          now included within Data_Type_Visitor and Data_Value_visitor 
+          Removed these files. The functionality of these visitors is
+          now included within Data_Type_Visitor and Data_Value_visitor
           respectively.
 
 Tue Jul 20 15:33:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
