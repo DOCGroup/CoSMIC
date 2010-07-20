@@ -1,40 +1,61 @@
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.9 and CoSMIC-0.8.9
+============================================================
+
+. Added support for complex types, i.e., structures and sequences,
+  to configuration properties in the deployment plan. This caused
+  the metamodel to change and break existing models. Please use
+  the latest migration script at the following location in the
+  PICML paradigm directory to convert existing models.
+
+. Implemented Beta version of the Property Manager, which is an
+  interperter for manipulating property values. Currently, the
+  Property Manager supports basic types, structures, structures
+  of structure, sequences, and sequences of structs. When dealing
+  with sequences, the Property Manager can only added elements
+  to the sequence. It is not able to remove elements, or move
+  elements to new locations.
+
+. Implemented deprecation support to the DataType element and
+  the DataValue attribute on a Property. This will be removed
+  completely in the next release.
+
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.8 and CoSMIC-0.7.9
 ============================================================
 
 . Added support IDL3+. This included adding support for template
-  modules, port types, extended ports, mirror ports, and 
+  modules, port types, extended ports, mirror ports, and
   connectors to the InterfaceDefinitions aspect.
-  
+
 . Added support for modeling and deploying different implementations
   of a component. This resulted in changing how to model component
   instances in an assembly. This will also require you to migrate
   existing models to the lastest version of PICML.
-  
+
   Please see the StockQuoter example at the following location for
   how to use the new version of PICML:
-  
+
     http://www.dre.vanderbilt.edu/~schmidt/DOC_ROOT/CIAO/tutorials/Quoter/Simple/03.html
-  
+
   In addition, please see the MIGRATION file in the ./docs for
   information on migrating existing models.
-  
-. Upgraded to the latest version of GME. We will no longer support 
+
+. Upgraded to the latest version of GME. We will no longer support
   muliple versions of GME at this time. Instead, we will only support
   the latest version of GME.
-  
-. The deployment plan interpreter now generates a supplemental .cdd 
+
+. The deployment plan interpreter now generates a supplemental .cdd
   file for each deployment it generates. If a property of type String
   with the following name is attached to a NodeReference:
-  
+
     . StringIOR
     . CORBAName
-  
-  then the deployment plan interpreter will add the corresponding 
+
+  then the deployment plan interpreter will add the corresponding
   properties for that node to the generated .ccd file.
-  
+
 . The default component implementation generator has been added
   to the interpreter toolbar.
-  
+
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.7 and CoSMIC-0.7.8
 ============================================================
 
@@ -45,8 +66,8 @@ USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.7 and CoSMIC-0.7.8
 
 . Location of the external port can not be empty.
 
-. Multiple ports connected to the same external port must of 
-  the same kind and object type. 
+. Multiple ports connected to the same external port must of
+  the same kind and object type.
 
 . LEESA has been moved to its own repository. Please visit
   http://www.dre.vanderbilt.edu/LEESA

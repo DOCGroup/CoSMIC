@@ -1,58 +1,79 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC)
 
-This is a release version 0.7.8 of Component Synthesis using Model-Integrated 
-Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of 
+This is a release version 0.7.8 of Component Synthesis using Model-Integrated
+Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of
     o   Platform-Independent Component Modeling Language (PICML)
     o   Component QoS Modeling Language (CQML)
     o   DDS QoS Modeling Language (DQML)
 
-PICML is a Model-Integrated Computing (MIC) based paradigm for modeling CORBA 
-Component Model (CCM) based applications, which use the latest Deployment and 
-Configuration Specification (D&C), for configuration and deployment. CQML 
-allows PICML-based models to capture the higher level QoS design intent and 
-helps generate QoS configuration metadata from annotated models. DQML allows 
-modeling of large number QoS knobs provided by DDS. 
+PICML is a Model-Integrated Computing (MIC) based paradigm for modeling CORBA
+Component Model (CCM) based applications, which use the latest Deployment and
+Configuration Specification (D&C), for configuration and deployment. CQML
+allows PICML-based models to capture the higher level QoS design intent and
+helps generate QoS configuration metadata from annotated models. DQML allows
+modeling of large number QoS knobs provided by DDS.
 
-This document lists the new features that are introduced in the latest 
+This document lists the new features that are introduced in the latest
 version.
+
+Release CoSMIC-0.8.0
+======================
+
+. Added support for complex types, i.e., structures and sequences,
+  to configuration properties in the deployment plan. This caused
+  the metamodel to change and break existing models. Please use
+  the latest migration script at the following location in the
+  PICML paradigm directory to convert existing models.
+
+. Implemented Beta version of the Property Manager, which is an
+  interperter for manipulating property values. Currently, the
+  Property Manager supports basic types, structures, structures
+  of structure, sequences, and sequences of structs. When dealing
+  with sequences, the Property Manager can only added elements
+  to the sequence. It is not able to remove elements, or move
+  elements to new locations.
+
+. Implemented deprecation support to the DataType element and
+  the DataValue attribute on a Property. This will be removed
+  completely in the next release.
 
 Release CoSMIC-0.7.9
 ======================
 
 . Added support IDL3+. This included adding support for template
-  modules, port types, extended ports, mirror ports, and 
+  modules, port types, extended ports, mirror ports, and
   connectors to the InterfaceDefinitions aspect.
-  
+
 . Added support for modeling and deploying different implementations
   of a component. This resulted in changing how to model component
   instances in an assembly. This will also require you to migrate
   existing models to the lastest version of PICML.
-  
+
   Please see the StockQuoter example at the following location for
   how to use the new version of PICML:
-  
+
     http://www.dre.vanderbilt.edu/~schmidt/DOC_ROOT/CIAO/tutorials/Quoter/Simple/03.html
-  
+
   In addition, please see the MIGRATION file in the ./docs for
   information on migrating existing models.
-  
-. Upgraded to the latest version of GME. We will no longer support 
+
+. Upgraded to the latest version of GME. We will no longer support
   muliple versions of GME at this time. Instead, we will only support
   the latest version of GME.
-  
-. The deployment plan interpreter now generates a supplemental .cdd 
+
+. The deployment plan interpreter now generates a supplemental .cdd
   file for each deployment it generates. If a property of type String
   with the following name is attached to a NodeReference:
-  
+
     . StringIOR
     . CORBAName
-  
-  then the deployment plan interpreter will add the corresponding 
+
+  then the deployment plan interpreter will add the corresponding
   properties for that node to the generated .ccd file.
-  
+
 . The default component implementation generator has been added
   to the interpreter toolbar.
-  
+
 Release CoSMIC-0.7.8
 ======================
 
@@ -63,8 +84,8 @@ Release CoSMIC-0.7.8
 
 . Location of the external port can not be empty.
 
-. Multiple ports connected to the same external port must of 
-  the same kind and object type. 
+. Multiple ports connected to the same external port must of
+  the same kind and object type.
 
 . LEESA has been moved to its own repository. Please visit
   http://www.dre.vanderbilt.edu/LEESA
@@ -73,7 +94,7 @@ Release CoSMIC-0.7.8
 Release CoSMIC-0.7.7
 ======================
 
-. Re-enable the model intelligence feature that auto-generates default 
+. Re-enable the model intelligence feature that auto-generates default
   artifacts when a new Component is added to an File model element.
 
 . When a user adds a new Component to the model, they can
@@ -89,18 +110,18 @@ Release CoSMIC-0.7.7
     2. Select Interpret
     3. Select IDLTextEditor in listing
 
-. LEESA supports "typed XML programming" in C++ based on Codesynthesis's 
+. LEESA supports "typed XML programming" in C++ based on Codesynthesis's
   open-source XML data binding tool: xsdcxx. Major enhacements are:
 
     1. New LEESA homepage at http://www.dre.vanderbilt.edu/LEESA.
-    2. Support for succint XPath-like traversals including child, 
-       sibling, descendant axes, wildcards, and "tuple-fication" of 
-       siblings while being schema-aware. Optimized Carrier<T> for 
+    2. Support for succint XPath-like traversals including child,
+       sibling, descendant axes, wildcards, and "tuple-fication" of
+       siblings while being schema-aware. Optimized Carrier<T> for
        fast query execution.
     3. Python script gen-meta.py externalizes meta-information and
-       generates new "type-driven" data access layer from C++ headers 
+       generates new "type-driven" data access layer from C++ headers
        generated by xsdcxx. Generates skeleton for hierarchical visitor.
-    4. Several new functionality and performance tests for small to 
+    4. Several new functionality and performance tests for small to
        very large XML schemas (downloadable from the LEESA homepage).
     5. Compiles on g++ 4.4.2.
 
@@ -112,165 +133,165 @@ Release CoSMIC-0.7.4.5
   when a new component is added to the model. This feature will be released in the next version
   of PICML/CoSMIC. Contact: James Hill <hillj@cs.iupui.edu>
 
-. LEESA ships with a new Perl script called gen-pairs.pl that extends 
-  Udm generated header file with additional meta-information (IsDescendant 
+. LEESA ships with a new Perl script called gen-pairs.pl that extends
+  Udm generated header file with additional meta-information (IsDescendant
   and VisitorAsIndex) to speed up compilation.
-  
+
 
 Release CoSMIC-0.7.4
 ====================
 
 *   CoSMIC supports ACE/TAO/CIAO 0.7.4
 
-*   Depending upon the version of GME chosen, different CoSMIC installers are 
+*   Depending upon the version of GME chosen, different CoSMIC installers are
     available.
     o   GME 9.8.28 with UDM 3.2.1 built using Visual Studio 2008 (VC9)
     o   GME 7.6.29 with UDM 3.1.2 built using Visual Studio 2005 (VC8)
-    
-*   Updated PICML to support CIAO/DAnCE 0.7.3. 
-    o   Entry points for a component implementation are no longer defined 
-        on an ImplementationArtifact element. Now, entry points are defined 
-        on the ComponentExecutorArtifact or ComponentServantArtifact that 
-        is attached to MonolithicImplementation element. 
-    o   Implemented a new interpreter named ComponentImplementationGenerator 
-        that will generate the default implementation and artifacts for an 
-        existing component in the interface definitions. This interpreter can 
+
+*   Updated PICML to support CIAO/DAnCE 0.7.3.
+    o   Entry points for a component implementation are no longer defined
+        on an ImplementationArtifact element. Now, entry points are defined
+        on the ComponentExecutorArtifact or ComponentServantArtifact that
+        is attached to MonolithicImplementation element.
+    o   Implemented a new interpreter named ComponentImplementationGenerator
+        that will generate the default implementation and artifacts for an
+        existing component in the interface definitions. This interpreter can
         be accessed via the interpreter dialog box (File | Run Interpreter...)
-    o   The deployment plan interpreter now inserts plan locality information 
+    o   The deployment plan interpreter now inserts plan locality information
         in the generated deployment plan. The deployment plan interpreter now
-        generated spec-compliant XML for its generated deployment plans. 
+        generated spec-compliant XML for its generated deployment plans.
     o   Contact: James Hill <hillj@cs.iupui.edu>
-    
+
 *   IDL_TO_PICML
-    o   Support for the MCPP preprocessor has been added to the idl_to_picml 
-        tool. This replaces the default system preprocessor and will result 
+    o   Support for the MCPP preprocessor has been added to the idl_to_picml
+        tool. This replaces the default system preprocessor and will result
         in some speed improvement.
-    o   Bug fix: idl_to_picml now uses fully scoped names when generating a 
-        component implementation and its default artifacts to avoid name 
+    o   Bug fix: idl_to_picml now uses fully scoped names when generating a
+        component implementation and its default artifacts to avoid name
         clashes.
-    o   Bug fix: Under certain unknown circumstances, idl_to_picml failed 
+    o   Bug fix: Under certain unknown circumstances, idl_to_picml failed
         to generate UUIDs on the necessary modeling elements.
-    o   Bug fix: A memory deletion problem associated with 
+    o   Bug fix: A memory deletion problem associated with
         XMLString::transcode has been fixed.
-    o   Bug fix (3740): A problem of raising an unknown exception when 
+    o   Bug fix (3740): A problem of raising an unknown exception when
         -i command-line option is specified has been fixed.
-    o   Bug fix (3742): Front end of idl_to_picml now handles upto 1024 
+    o   Bug fix (3742): Front end of idl_to_picml now handles upto 1024
         .idl files at the command-line.
-    o   Bug fix (3749): Simplified idl_to_picml project to use tao_idl_fe 
+    o   Bug fix (3749): Simplified idl_to_picml project to use tao_idl_fe
         project only.
     o   Contact: Jeff Parsons <j.parsons@vanderbilt.edu>
-    
+
 *   LEESA
-    o   A new StateMachine (SM) paradigm and a corresponding interpreter have 
+    o   A new StateMachine (SM) paradigm and a corresponding interpreter have
         been added to show how to use LEESA in a UDM-based project.
     o   Documentation of LEESA has been enhanced.
     o   Contact: Sumant Tambe < sutambe@dre.vanderbilt.edu>
 
-The sources of CoSMIC beta release version 0.7.4 can be found under 
+The sources of CoSMIC beta release version 0.7.4 can be found under
 “CoSMIC-0_7_4” tag of the CoSMIC subversion repository.
 
-    
+
 Release CoSMIC-0.7.3
 ====================
 
 *   LEESA:
     o   LEESA is a new way of writing traversals over typed object structures,
-        such as models and XML documents. LEESA (Language for Embedded quEry 
-        and traverSAl) is a domain-specific embedded language (DSEL) in C++ 
-        that provides a succinct and expressive notation for writing object 
-        structure traversal. For more information please see 
+        such as models and XML documents. LEESA (Language for Embedded quEry
+        and traverSAl) is a domain-specific embedded language (DSEL) in C++
+        that provides a succinct and expressive notation for writing object
+        structure traversal. For more information please see
         $(CoSMIC installation directory)\Traversal\LEESA.pdf
     o   Contact: Sumant Tambe <sutambe@dre.vanderbilt.edu>
 
-    
+
 Release CoSMIC-beta-0.6.3
 =========================
 
 *   PICML:
-    o   Enabled support for modeling complex type Property elements, such as 
+    o   Enabled support for modeling complex type Property elements, such as
         collections, aggregates, and enums.
-        
-*   PICMLManager: 
-    o   It replaces old UUIDManager addon. 
-    o   Handles generating a unique name for the PublishConnector object 
+
+*   PICMLManager:
+    o   It replaces old UUIDManager addon.
+    o   Handles generating a unique name for the PublishConnector object
         when its added to a component assembly.
-    o   When an AttributeValue connection is added to a model, i.e., creating 
-        a connection between an attribute and a property, the manager ensures 
-        the referenced data type in the property is the correct type. This 
-        includes autonomously adding the correct data type to the property, 
-        or making sure the current referenced data type is the same type as 
+    o   When an AttributeValue connection is added to a model, i.e., creating
+        a connection between an attribute and a property, the manager ensures
+        the referenced data type in the property is the correct type. This
+        includes autonomously adding the correct data type to the property,
+        or making sure the current referenced data type is the same type as
         the attribute.
-    o   When an attribute is given a new data type, PICMLManager ensures that 
-        all properties of the target attribute in the component assembly 
+    o   When an attribute is given a new data type, PICMLManager ensures that
+        all properties of the target attribute in the component assembly
         model has the newly selected data type.
-    o   When an ExternalDelegate connection is created between an 
-        ExternalPortReference and a port (e.g., ProvidedEventPort, 
-        RequiredEventPort, InEventPort, or OutEventPort), the referenced 
-        object for the ExternalEventPort is set to the referenced object 
+    o   When an ExternalDelegate connection is created between an
+        ExternalPortReference and a port (e.g., ProvidedEventPort,
+        RequiredEventPort, InEventPort, or OutEventPort), the referenced
+        object for the ExternalEventPort is set to the referenced object
         for the target port.
     o   Contact: James H. Hill  <hillj@isis.vanderbilt.edu>
-    
+
 *   PropertyManager:
-    o   A new interpreter that simplifies setting the values of complex type 
+    o   A new interpreter that simplifies setting the values of complex type
         Property values.
-        
+
 *   Component Behavior Modeling Language (CBML) has new features.
-    o   Added modeling support for do-while, for, and while loops. They 
+    o   Added modeling support for do-while, for, and while loops. They
         have the same modeling semantics as branch states.
     o   Contact: James H. Hill  <hillj@isis.vanderbilt.edu>
-    
+
 *   CIAOEvents Project
     o   EventChannelConfiguration model and an interpreter for CQML
     o   Contact: Friedhelm Wolf <fwolf@dre.vanderbilt.edu>
-    
+
 *   NetQoS
-    o   New OCL constraints to check the well-formedness of the model using 
+    o   New OCL constraints to check the well-formedness of the model using
         NetQoS.
     o   Contact: Sumant Tambe <sutambe@dre.vanderbilt.edu>
-    
+
 *   Bug fixes:
-    o   DeploymentPlan Interpreter: The implementation detail of a component 
-        instance is now determined by the component instance’s type, and not 
-        its name. Selecting the implementation detail based on the component 
-        instance’s name was a problem when a subtype of a component, or any 
-        component instance, was given the incorrect name. 
-    o   DeploymentPlan Interpreter: The type information for monolithic 
-        components of component assembly instances that were contained in 
+    o   DeploymentPlan Interpreter: The implementation detail of a component
+        instance is now determined by the component instance’s type, and not
+        its name. Selecting the implementation detail based on the component
+        instance’s name was a problem when a subtype of a component, or any
+        component instance, was given the incorrect name.
+    o   DeploymentPlan Interpreter: The type information for monolithic
+        components of component assembly instances that were contained in
         another component assemblies was not handled correctly.
     o   Contact: James H. Hill  <hillj@isis.vanderbilt.edu>
 
-The sources of CoSMIC beta release version 0.6.3 can be found under 
+The sources of CoSMIC beta release version 0.6.3 can be found under
 “CoSMIC-beta-0.6.3” tag of the CoSMIC subversion repository.
 
 
 Release CoSMIC-beta-0.5.7
 =========================
 
-*   CQML: A new paradigm called CQML captures higher level system 
-    quality-of-service (QoS) design intent of the designer. Following is a 
+*   CQML: A new paradigm called CQML captures higher level system
+    quality-of-service (QoS) design intent of the designer. Following is a
     list of different QoS modeling capabilities of CQML:
-    o   Fault-tolerance aspect modeling supports modeling of protected 
-        components, degree of replication, replication style and more. The 
-        interpreter augments deployment plan with replica components, 
+    o   Fault-tolerance aspect modeling supports modeling of protected
+        components, degree of replication, replication style and more. The
+        interpreter augments deployment plan with replica components,
         connections and decides a placement for all the components.
-    o   Network QoS modeling supports modeling of bidirectional bandwidth 
-        requirements of CCM level connections. Also it supports traffic 
+    o   Network QoS modeling supports modeling of bidirectional bandwidth
+        requirements of CCM level connections. Also it supports traffic
         characteristic modeling.
-    o   Real-time configuration model checking capabilities using BOGOR 
-        generates the Bogor Input Representation (BIR) for RT configuration 
+    o   Real-time configuration model checking capabilities using BOGOR
+        generates the Bogor Input Representation (BIR) for RT configuration
         options (component-level) specified in CQML models.
-    o   Real-time configuration modeling supports modeling of Real-time 
-        options at the component level. The interpreter generates 
-        correspondingly server resources file(s) and augments the deployment 
+    o   Real-time configuration modeling supports modeling of Real-time
+        options at the component level. The interpreter generates
+        correspondingly server resources file(s) and augments the deployment
         plan with RT policies for that plan.
-    o   Security QoS modeling allows the modeling of Security QoS policies 
-        and Role-Based Access Control to allow specification of permissions 
-        on resource access such as assemblies, components, ports, operations, 
+    o   Security QoS modeling allows the modeling of Security QoS policies
+        and Role-Based Access Control to allow specification of permissions
+        on resource access such as assemblies, components, ports, operations,
         attributes, critical paths, etc.
 
-*	DeploymentPlanFramework (DPFramework) is an extensible framework that 
-    provides a fixed set of extension points where a deployment plan can be 
-    extended with QoS specific metadata. Many of the CQML interpreters are 
+*  DeploymentPlanFramework (DPFramework) is an extensible framework that
+    provides a fixed set of extension points where a deployment plan can be
+    extended with QoS specific metadata. Many of the CQML interpreters are
     implemented as extensions to the DPFramework.
 
 
@@ -278,69 +299,69 @@ Release CoSMIC-beta-0.5.7
 Release CoSMIC-0.4.8
 ====================
 
-*   Modeling of component behavior is supported using I/O Automata language. 
-    It is based on the formalism of Input/Output automata. The interpreter 
-    generates a workload characterization file which can be further used to 
+*   Modeling of component behavior is supported using I/O Automata language.
+    It is based on the formalism of Input/Output automata. The interpreter
+    generates a workload characterization file which can be further used to
     drive the workload emulators.
 
-*   New command line option for the IDL importer: -r <path>. This option 
-    takes the place of a list of IDL files, and causes the importer to 
+*   New command line option for the IDL importer: -r <path>. This option
+    takes the place of a list of IDL files, and causes the importer to
     process all IDL files in <path> and its subdirectories.
 
-*   IDL importer now automatically adds $TAO_ROOT, $TAO_ROOT/tao, $CIAO_ROOT, 
+*   IDL importer now automatically adds $TAO_ROOT, $TAO_ROOT/tao, $CIAO_ROOT,
     and $CIAO_ROOT/ciao to its set of include paths.
 
-*   A new paradigm sheet with ability to generate all available path diagrams 
-    originating out of a chosen port within the given model. The required 
-    port needs to be chosen and subsequently the interpreter needs to be run 
-    which generates all the possible paths through which control can flow in 
+*   A new paradigm sheet with ability to generate all available path diagrams
+    originating out of a chosen port within the given model. The required
+    port needs to be chosen and subsequently the interpreter needs to be run
+    which generates all the possible paths through which control can flow in
     the run-time. Helps detecting possible faults in design and architecture.
 
-*   The CIDL interpreter now generates a one-to-one mapping of CIDL files to 
-    IDL files specified in a project. 
+*   The CIDL interpreter now generates a one-to-one mapping of CIDL files to
+    IDL files specified in a project.
 
-*   It also preserves factories declared in packages by using module 
-    declarations. This prevents factories having the same declaration and 
+*   It also preserves factories declared in packages by using module
+    declarations. This prevents factories having the same declaration and
     located in different packages from being overwritten.
 
-*   Enhanced QoSPML (QoS Policy Modeling Language) and integrated it into 
-    PICML. This language is available in the RTConfiguration model in PICML 
-    and allows developers to model RT-CCM entities such as thread-pools with 
-    lanes, priority banded connections and priority propagation models as 
-    well as some CIAO-specific configurations such as command line options 
+*   Enhanced QoSPML (QoS Policy Modeling Language) and integrated it into
+    PICML. This language is available in the RTConfiguration model in PICML
+    and allows developers to model RT-CCM entities such as thread-pools with
+    lanes, priority banded connections and priority propagation models as
+    well as some CIAO-specific configurations such as command line options
     and service configuration filenames.
 
-*   Added an interpreter which produces XML configuration code based on the 
-    RTConfiguration models in PICML. The output is conformant to the XML 
+*   Added an interpreter which produces XML configuration code based on the
+    RTConfiguration models in PICML. The output is conformant to the XML
     schema available at $CIAO_ROOT/docs/schema/CIAOServerResources.xsd
 
-*   A new modeling language has been added to CoSMIC that provides high level 
-    QoS modeling and meta-modeling.  This language is currently an alpha 
-    implementation and its use is not currently recommended as it will 
+*   A new modeling language has been added to CoSMIC that provides high level
+    QoS modeling and meta-modeling.  This language is currently an alpha
+    implementation and its use is not currently recommended as it will
     undergo substantial changes and improvement in forthcoming releases.
 
-*   Added enhancements to the flat-plan interpreter to deploy multiple 
+*   Added enhancements to the flat-plan interpreter to deploy multiple
     instances of a component across multiple nodes.
 
 *   Fixed a number of bugs in the flat-plan interpreter.
 
 
-Release CoSMIC-0.4.6 
+Release CoSMIC-0.4.6
 ====================
 
 *   A new "attribute mapping" feature which allows values for attributes to
     specified at the assembly level and allows propagation of the values to
     individual components in the assembly.
 
-*   MPC interpreter now generates MPC files which are in-sync with the MPC 
-    config modules in $ACE_ROOT/bin/MakeProjectCreator/config         
-     
+*   MPC interpreter now generates MPC files which are in-sync with the MPC
+    config modules in $ACE_ROOT/bin/MakeProjectCreator/config
+
 *   Improved constraints which catch a lot more errors compared with
     previous versions.
 
 *   Importing IDL files into PICML models automatically fills a lot of the
     modeling artifacts which had to created by the user previously.
-     
+
 *   First-cut implementation of importing an updated IDL file with changes
     into an existing PICML model.
 
