@@ -1,34 +1,41 @@
 // -*- MPC -*-
 // $Id$
 
-project (Constant_IDLTOPICML) : idl2picml {
-  custom_only = 1
-  
-  IDL2PICML_Files {
+project (Constant_Expected) : taoclient {
+  exename = Constant_Expected
+  install = .
+
+  Source_Files {
+    Constant.cpp
+  }
+
+  IDL_Files {
     Constant.idl
   }
 }
 
-project (Constant_IDL_Gen) : taoidldefaults {
+project (Constant_IDLTOPICML) : idl2picml {
   custom_only = 1
-  after += Constant_IDLTOPICML
-  
-  IDL_Files {
-    ./generated/Constant.idl
+
+  after += Constant_Expected
+
+  IDL2PICML_Files {
+    Constant.idl
   }
 }
 
 project (Constant) : taoclient {
   exename = Constant
   install = .
-  
-  after += Constant_IDL_Gen
-    
+
+  after += Constant_IDLTOPICML
+
   Source_Files {
     Constant.cpp
   }
-  
+
   IDL_Files {
-  
+    gendir = .
+    ./generated/Constant.idl
   }
 }

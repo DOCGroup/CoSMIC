@@ -1,3 +1,9 @@
+Tue Jul 20 23:58:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Constant.mpc:
+
+          Improved the test specification.
+
 Tue Jul 20 23:39:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
