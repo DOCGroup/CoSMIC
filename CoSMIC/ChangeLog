@@ -1,3 +1,10 @@
+Tue Jul 20 06:07:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Bug fix where generating the IDL for an aggregate or swicthed
+          aggregated resulted in an exception if there was no key defined.
+
 Tue Jul 20 05:03:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Installer.wxs:

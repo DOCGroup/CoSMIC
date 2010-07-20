@@ -64,7 +64,7 @@ void IDL_File_Generator::Visit_File (const PICML::File & file)
 }
 
 //
-// Visit_Package 
+// Visit_Package
 //
 void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 {
@@ -79,7 +79,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 
   // Start the model specification.
   this->idl_ << "module " << package.name ();
-  
+
   if (!parameters.empty ())
   {
     // Write each of the parameters in the module. We must right
@@ -87,7 +87,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
     // the correct placement of commas between each parameter.
     this->idl_ << " < ";
 
-    parameter_t::iterator 
+    parameter_t::iterator
       iter = parameters.begin (),
       iter_end = parameters.end ();
 
@@ -137,7 +137,7 @@ void IDL_File_Generator::Visit_FilePackage (const Udm::Object & object)
   Udm::visit_all <PICML::Component> (object, *this);
   Udm::visit_all <PICML::ConnectorObject> (object, *this);
 
-  // Homes should be generated last always to ensure their 
+  // Homes should be generated last always to ensure their
   // managed components have already been generated.
   Udm::visit_all <PICML::ComponentFactory> (object, *this);
 
@@ -195,14 +195,14 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p)
 {
   PICML::PackageType t = p.PackageType_child ();
 
-  this->idl_ << nl 
+  this->idl_ << nl
     << "module " << PICML::utils::fq_type (t.ref (), "::", true) << "< ";
 
   typedef UDM_Position_Sort_T <PICML::TemplateParameterValue, PS_Left_To_Right> sorter_t;
   typedef std::set <PICML::TemplateParameterValue, sorter_t> parameter_t;
   parameter_t parameters = p.TemplateParameterValue_children_sorted (sorter_t ());
 
-  parameter_t::iterator 
+  parameter_t::iterator
     iter = parameters.begin (),
     iter_end = parameters.end ();
 
@@ -232,7 +232,7 @@ void IDL_File_Generator::Visit_Enum (const PICML::Enum & e)
 
   Udm::visit_all (values, *this);
 
-  this->idl_ << uidt_nl 
+  this->idl_ << uidt_nl
              << "};" << nl;
 }
 
@@ -291,34 +291,35 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
 //
 void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
 {
+  // Sort the elements by the position in the InterfaceDefinition aspect.
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
+  sorter_t sorter ("InterfaceDefinition", PS_Top_To_Bottom ());
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
 
   // First, generate the RTI-DDS pragma support.
   PICML::Key key = a.Key_child ();
-  std::set <PICML::KeyMember> key_members = key.dstKeyMember ();
-  sorted_values_t key_values;
+  sorted_values_t key_values (sorter);
 
   if (key != Udm::null)
   {
     // First, gather all the members in sorted order.
-    std::set <PICML::KeyMember>::iterator
-      iter = key_members.begin (),
-      iter_end = key_members.end ();
-
-    for (; iter != iter_end; ++ iter)
-      key_values.insert (iter->dstKeyMember_end ());
+    std::set <PICML::KeyMember> key_members = key.dstKeyMember ();
+    std::for_each (key_members.begin (),
+                   key_members.end (),
+                   boost::bind (&sorted_values_t::insert,
+                                boost::ref (key_values),
+                                boost::bind (&PICML::KeyMember::dstKeyMember_end, _1)));
   }
 
   if (!key_values.empty ())
   {
     this->idl_ << "#pragma DCPS_DATA_TYPE \"" << a.name () << "\"" << nl;
 
-    sorted_values_t::iterator 
+    sorted_values_t::iterator
       iter = key_values.begin (), iter_end = key_values.end ();
 
     for (; iter != iter_end; ++ iter)
-      this->idl_ << "#pragma DCPS_DATA_KEY \"" 
+      this->idl_ << "#pragma DCPS_DATA_KEY \""
                    << a.name () << " " << iter->name () << "\"" << nl;
 
     this->idl_ << nl;
@@ -327,14 +328,19 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
   this->idl_ << "struct " << a.name () << nl
              << "{" << idt;
 
-  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
-  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-  sorted_values_t values = a.Member_kind_children_sorted (sorter_t ());
+  // Sort the elements by the position in the InterfaceDefinition aspect.
+  sorted_values_t sorted_values (sorter);
+  std::vector <PICML::Member> members = a.Member_kind_children ();
+  std::for_each (members.begin (),
+                 members.end (),
+                 boost::bind (&sorted_values_t::insert,
+                              boost::ref (sorted_values),
+                              _1));
 
-  std::for_each (values.begin (),
-                 values.end (),
-                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->member_dispatcher_), 
+  std::for_each (sorted_values.begin (),
+                 sorted_values.end (),
+                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->member_dispatcher_),
                               boost::ref (*this),
                               _1));
 
@@ -347,7 +353,7 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
   {
     this->idl_ << "#pragma keylist " << a.name ();
 
-    sorted_values_t::iterator 
+    sorted_values_t::iterator
       iter = key_values.begin (), iter_end = key_values.end ();
 
     for (; iter != iter_end; ++ iter)
@@ -368,18 +374,25 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
   PICML::Discriminator d = s.Discriminator_child ();
   this->Visit_ConstantType (d.ref ());
 
-  this->idl_ << ")" << nl 
+  this->idl_ << ")" << nl
              << "{" << idt;
 
-  
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
+  sorter_t sorter ("InterfaceDefinition", PS_Top_To_Bottom ());
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-  sorted_values_t values = s.Member_kind_children_sorted (sorter_t ());
 
-  std::for_each (values.begin (),
-                 values.end (),
-                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->member_dispatcher_), 
+  sorted_values_t sorted_values (sorter);
+  std::vector <PICML::Member> members = s.Member_kind_children ();
+  std::for_each (members.begin (),
+                 members.end (),
+                 boost::bind (&sorted_values_t::insert,
+                              boost::ref (sorted_values),
+                              _1));
+
+  std::for_each (sorted_values.begin (),
+                 sorted_values.end (),
+                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->member_dispatcher_),
                               boost::ref (*this),
                               _1));
 
@@ -445,7 +458,7 @@ void IDL_File_Generator::Visit_Event (const PICML::Event & e)
   this->idl_ << "eventtype " << e.name ();
 
   std::vector <PICML::Inherits> inherits = e.Inherits_children ();
-  
+
   if (!inherits.empty ())
   {
     this->idl_ << " : " << idt_nl;
@@ -463,7 +476,7 @@ void IDL_File_Generator::Visit_Event (const PICML::Event & e)
   }
 
   std::vector <PICML::Supports> supports = e.Supports_children ();
-  
+
   if (!supports.empty ())
   {
     this->idl_ << idt_nl
@@ -479,12 +492,12 @@ void IDL_File_Generator::Visit_Event (const PICML::Event & e)
       this->idl_ << ", " << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
   }
 
-  this->idl_ << nl 
+  this->idl_ << nl
              << "{" << idt;
 
   this->Visit_ObjectByValue (e);
 
-  this->idl_ << uidt_nl 
+  this->idl_ << uidt_nl
              << "};" << nl;
 }
 
@@ -500,7 +513,7 @@ Visit_ValueObject (const PICML::ValueObject & v)
   this->idl_ << "valuetype " << v.name ();
 
   std::vector <PICML::Inherits> inherits = v.Inherits_children ();
-  
+
   if (!inherits.empty ())
   {
     this->idl_ << " : " << idt_nl;
@@ -518,7 +531,7 @@ Visit_ValueObject (const PICML::ValueObject & v)
   }
 
   std::vector <PICML::Supports> supports = v.Supports_children ();
-  
+
   if (!supports.empty ())
   {
     this->idl_ << idt_nl
@@ -534,7 +547,7 @@ Visit_ValueObject (const PICML::ValueObject & v)
       this->idl_ << ", " << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
   }
 
-  this->idl_ << nl 
+  this->idl_ << nl
              << "{" << idt;
 
   this->Visit_ObjectByValue (v);
@@ -564,8 +577,8 @@ Visit_ObjectByValue (const PICML::ObjectByValue & o)
   std::vector <PICML::ReadonlyAttribute> attrs = o.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
                  attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->ro_dispatcher_), 
+                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->ro_dispatcher_),
                               boost::ref (*this),
                               _1));
 
@@ -611,17 +624,17 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
     sorted_values_t::iterator iter = values.begin (),
                               iter_end = values.end ();
 
-    this->idl_ << ", " << nl 
+    this->idl_ << ", " << nl
                << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
 
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << nl 
+      this->idl_ << ", " << nl
                  << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
 
     this->idl_ << uidt << uidt;
   }
 
-  this->idl_ << nl 
+  this->idl_ << nl
              << "{" << idt_nl;
 
   // Write each of the ports for the component.
@@ -633,16 +646,16 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
   std::vector <PICML::ExtendedPort> extended = c.ExtendedPort_kind_children ();
   std::for_each (extended.begin (),
                  extended.end (),
-                 boost::bind (&ExtendedPort_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->extended_dispatcher_), 
+                 boost::bind (&ExtendedPort_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->extended_dispatcher_),
                               boost::ref (*this),
                               _1));
-  
+
   std::vector <PICML::ReadonlyAttribute> attrs = c.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
                  attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->ro_dispatcher_), 
+                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->ro_dispatcher_),
                               boost::ref (*this),
                               _1));
 
@@ -666,7 +679,7 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
     this->idl_ << " : " << idt_nl
                << PICML::utils::fq_type (inherits.ref (), "::", true) << uidt_nl;
 
-  this->idl_ << nl 
+  this->idl_ << nl
              << "{" << idt_nl;
 
   Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
@@ -677,8 +690,8 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
   std::vector <PICML::ReadonlyAttribute> attrs = c.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
                  attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->ro_dispatcher_), 
+                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->ro_dispatcher_),
                               boost::ref (*this),
                               _1));
 
@@ -693,7 +706,7 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
 void IDL_File_Generator::
 Visit_ExtendedPort (const PICML::ExtendedPort & p)
 {
-  this->idl_ << "port " << PICML::utils::fq_type (p, p.ref (), "::", true) 
+  this->idl_ << "port " << PICML::utils::fq_type (p, p.ref (), "::", true)
              << " " << p.name () << ";" << nl
              << nl;
 }
@@ -704,7 +717,7 @@ Visit_ExtendedPort (const PICML::ExtendedPort & p)
 void IDL_File_Generator::
 Visit_MirrorPort (const PICML::MirrorPort & p)
 {
-  this->idl_ << "mirrorport " << PICML::utils::fq_type (p, p.ref (), "::", true) 
+  this->idl_ << "mirrorport " << PICML::utils::fq_type (p, p.ref (), "::", true)
              << " " << p.name () << ";" << nl
              << nl;
 }
@@ -717,7 +730,7 @@ void IDL_File_Generator::Visit_PortType (const PICML::PortType & p)
   this->idl_ << "porttype " << p.name () << nl
              << "{" << idt_nl;
 
-  std::vector <PICML::ObjectPort> ports = p.ObjectPort_children (); 
+  std::vector <PICML::ObjectPort> ports = p.ObjectPort_children ();
   std::for_each (ports.begin (),
                  ports.end (),
                  boost::bind (&Port_Dispatcher <IDL_File_Generator>::dispatch,
@@ -810,9 +823,9 @@ void IDL_File_Generator::Visit_Object (const PICML::Object & o)
 
     this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
 
-    std::for_each (++ iter, 
+    std::for_each (++ iter,
                    iter_end,
-                   boost::bind (&PICML::Inherits::Accept, _1, boost::ref (*this)));     
+                   boost::bind (&PICML::Inherits::Accept, _1, boost::ref (*this)));
 
     this->idl_ << uidt;
   }
@@ -834,12 +847,12 @@ void IDL_File_Generator::Visit_Object (const PICML::Object & o)
   std::vector <PICML::ReadonlyAttribute> attrs = o.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
                  attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->ro_dispatcher_), 
+                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->ro_dispatcher_),
                               boost::ref (*this),
                               _1));
 
-  this->idl_ << uidt_nl 
+  this->idl_ << uidt_nl
              << "};" << nl
              << nl;
 }
@@ -849,7 +862,7 @@ void IDL_File_Generator::Visit_Object (const PICML::Object & o)
 //
 void IDL_File_Generator::Visit_Inherits (const PICML::Inherits & i)
 {
-  this->idl_ << ", " << nl 
+  this->idl_ << ", " << nl
              << PICML::utils::fq_type (i.ref (), "::", true);
 }
 
@@ -885,14 +898,14 @@ void IDL_File_Generator::Visit_Attribute (const PICML::Attribute & a)
 
   if (!get_exs.empty ())
   {
-    this->idl_ << idt_nl 
+    this->idl_ << idt_nl
                << "getraises (";
 
-    get_values_t::iterator iter = get_exs.begin (), 
+    get_values_t::iterator iter = get_exs.begin (),
                            iter_end = get_exs.end ();
 
     this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
-  
+
     for (++ iter; iter != iter_end; ++ iter)
       this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
 
@@ -905,14 +918,14 @@ void IDL_File_Generator::Visit_Attribute (const PICML::Attribute & a)
 
   if (!set_exs.empty ())
   {
-    this->idl_ << idt_nl 
+    this->idl_ << idt_nl
                << "setraises (";
 
-    set_values_t::iterator iter = set_exs.begin (), 
+    set_values_t::iterator iter = set_exs.begin (),
                            iter_end = set_exs.end ();
 
     this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
-  
+
     for (++ iter; iter != iter_end; ++ iter)
       this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
 
@@ -941,7 +954,7 @@ Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & a)
 //
 void IDL_File_Generator::Visit_AttributeMember (const PICML::AttributeMember & m)
 {
-  this->Visit_MemberType (m.ref ()); 
+  this->Visit_MemberType (m.ref ());
 }
 
 //
@@ -1019,8 +1032,8 @@ Visit_TwowayOperation (const PICML::TwowayOperation & op)
 
   if (!exs.empty ())
   {
-    ex_values_t::iterator iter = exs.begin (), 
-                          iter_end = exs.end (); 
+    ex_values_t::iterator iter = exs.begin (),
+                          iter_end = exs.end ();
 
     this->idl_ << idt_nl
                << "raises (";
@@ -1103,7 +1116,7 @@ void IDL_File_Generator::Visit_Exception (const PICML::Exception & e)
 
   Udm::visit_all (values, *this);
 
-  this->idl_ << uidt_nl 
+  this->idl_ << uidt_nl
              << "};" << nl;
 }
 
@@ -1132,11 +1145,11 @@ Visit_ComponentFactory (const PICML::ComponentFactory & f)
     sorted_values_t::iterator iter = values.begin (),
                               iter_end = values.end ();
 
-    this->idl_ << ", " << nl 
+    this->idl_ << ", " << nl
                << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
 
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << nl 
+      this->idl_ << ", " << nl
                  << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
 
     this->idl_ << uidt << uidt;
@@ -1151,10 +1164,10 @@ Visit_ComponentFactory (const PICML::ComponentFactory & f)
   PICML::LookupKey key = f.LookupKey_child ();
 
   if (key != Udm::null)
-    this->idl_ << nl 
+    this->idl_ << nl
                << "primarykey " << PICML::utils::fq_type (key.ref (), "::", true);
 
-  this->idl_ << nl 
+  this->idl_ << nl
              << "{" << idt_nl;
 
   Udm::visit_all <PICML::Aggregate> (f, *this);
@@ -1169,8 +1182,8 @@ Visit_ComponentFactory (const PICML::ComponentFactory & f)
   std::vector <PICML::ReadonlyAttribute> attrs = f.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
                  attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch, 
-                              boost::ref (this->ro_dispatcher_), 
+                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
+                              boost::ref (this->ro_dispatcher_),
                               boost::ref (*this),
                               _1));
 
@@ -1200,7 +1213,7 @@ Visit_LookupOperation (const PICML::LookupOperation & op)
 
   if (!params.empty ())
   {
-    sorted_values_t::iterator 
+    sorted_values_t::iterator
       iter = params.begin (), iter_end = params.end ();
 
     iter->Accept (*this);
@@ -1216,12 +1229,12 @@ Visit_LookupOperation (const PICML::LookupOperation & op)
 
   // Finally, write the exception list to the document.
   std::vector <PICML::ExceptionRef> excepts = op.ExceptionRef_children ();
-  
+
   if (!excepts.empty ())
   {
     this->idl_ << idt_nl << "raises (";
 
-    std::vector <PICML::ExceptionRef>::iterator 
+    std::vector <PICML::ExceptionRef>::iterator
       iter = excepts.begin (), iter_end = excepts.end ();
 
     this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
@@ -1249,7 +1262,7 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 
   if (!params.empty ())
   {
-    sorted_values_t::iterator 
+    sorted_values_t::iterator
       iter = params.begin (), iter_end = params.end ();
 
     iter->Accept (*this);
@@ -1265,12 +1278,12 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 
   // Finally, write the exception list to the document.
   std::vector <PICML::ExceptionRef> excepts = op.ExceptionRef_children ();
-  
+
   if (!excepts.empty ())
   {
     this->idl_ << idt_nl << "raises (";
 
-    std::vector <PICML::ExceptionRef>::iterator 
+    std::vector <PICML::ExceptionRef>::iterator
       iter = excepts.begin (), iter_end = excepts.end ();
 
     this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
@@ -1285,7 +1298,7 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 
 //
 // Visit_Byte
-// 
+//
 void IDL_File_Generator::Visit_Byte (const PICML::Byte & b)
 {
   this->idl_ << "octet";
@@ -1293,7 +1306,7 @@ void IDL_File_Generator::Visit_Byte (const PICML::Byte & b)
 
 //
 // Visit_Char
-// 
+//
 void IDL_File_Generator::Visit_Char (const PICML::Char & )
 {
   this->idl_ << "wchar";
@@ -1301,7 +1314,7 @@ void IDL_File_Generator::Visit_Char (const PICML::Char & )
 
 //
 // Visit_WideChar
-// 
+//
 void IDL_File_Generator::Visit_WideChar (const PICML::WideChar & )
 {
   this->idl_ << "wchar";
