@@ -108,14 +108,6 @@ public:
 
   const locality_t & localities (void) const;
 
-  void process_datavaluecontainer (const PICML::DataValueContainer &, xercesc::DOMElement *);
-
-  xercesc::DOMElement *  create_aggregate_value (const std::string, xercesc::DOMElement *);
-  
-  xercesc::DOMElement *  create_collection_value (xercesc::DOMElement *);
-
-  xercesc::DOMElement *  check_complex_type (Uml::Class, const std::string, xercesc::DOMElement *);
-
 private:
   void Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & );
 

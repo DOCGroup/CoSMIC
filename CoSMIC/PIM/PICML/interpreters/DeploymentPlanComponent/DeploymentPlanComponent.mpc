@@ -5,7 +5,6 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
   dynamicflags += DEPLOYMENTPLAN_BUILD_DLL
 
   Source_Files {
-    Complex_Type_Visitor.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp
     
@@ -17,7 +16,6 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
     DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
     XML_Document.cpp
-    Value_Visitor.cpp
   }
 
   Header_Files {
