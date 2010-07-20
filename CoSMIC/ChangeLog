@@ -1,3 +1,15 @@
+Tue Jul 20 00:54:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/EUCON.xme:
+        * PIM/PICML/examples/ExternalPort.xme:
+        * PIM/PICML/examples/Hello.xme:
+        * PIM/PICML/examples/SLICE-Path.xme:
+        * PIM/PICML/examples/SLICE-cpu-bound.xme:
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated examples to latest version of PICML.
+
 Tue Jul 20 00:48:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
