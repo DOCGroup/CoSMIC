@@ -220,6 +220,8 @@ public:
     // in the property are correct. This means that simple types
     // contain only a single DataValueBase element and complex types
     // contain [1..n] DataValueBase elements.
+    std::vector <PICML::DataValueBase> t = c.DataValueBase_kind_children ();
+
     typedef UDM_Position_Sort_T <PICML::DataValueBase, PS_Top_To_Bottom> sort_type;
     std::set <PICML::DataValueBase, sort_type> values = c.DataValueBase_kind_children_sorted (sort_type ());
 
@@ -734,21 +736,15 @@ handle_value_click (const LVHITTESTINFO & testinfo)
 
     lvitem.mask = LVIF_INDENT | LVIF_PARAM;
 
-    // Get the infomration about the current item. We need to
-    // locate the parent sequence container. If the container is
-    // a property, then we need to
-    this->GetItem (&lvitem);
-
-    while (lvitem.iIndent >= indent && lvitem.iItem > 0)
-    {
+    // Locate the parent of this item. It will be the item that
+    // has a lower indent value.
+    while (this->GetItem (&lvitem) && lvitem.iIndent == indent)
       -- lvitem.iItem;
-      this->GetItem (&lvitem);
-    }
 
     PICML::Collection source;
     Udm::Object parent;
 
-    if (lvitem.lParam == 0)
+    if (lvitem.iItem == -1)
     {
       // Save the container as the parent element. This will be needed
       // later when we create the new element in the sequence.
@@ -768,7 +764,7 @@ handle_value_click (const LVHITTESTINFO & testinfo)
       // later when we create the new element in the sequence.
       parent = container;
 
-      PICML::ComplexTypeReference ref = this->prop_.ComplexTypeReference_child ();
+      PICML::ComplexTypeReference ref = container.ComplexTypeReference_child ();
       source = PICML::Collection::Cast (ref.ref ());
     }
 
@@ -777,6 +773,11 @@ handle_value_click (const LVHITTESTINFO & testinfo)
     PICML::DataValueBase value_base;
     PICML::MemberType member_type = source.ref ();
     const Uml::Class & cls = member_type.type ();
+
+    // Finally, add the element to the collection. This is done by
+    // selecting all the elements in the container.
+    std::vector <PICML::DataValueBase> values =
+      Udm::ChildrenAttr <::PICML::DataValueBase> (parent.__impl (), Udm::NULLCHILDROLE);
 
     if (Udm::IsDerivedFrom (cls, PICML::PredefinedType::meta) ||
         cls == PICML::Enum::meta)
@@ -799,31 +800,57 @@ handle_value_click (const LVHITTESTINFO & testinfo)
       value_base = value;
     }
 
-    // Finally, add the element to the collection. This is done by
-    // selecting all the elements in the container.
+    if (values.empty ())
+    {
+      // We are the first element in the collection.
+      value_base.position () = "(100, 100)";
+      value_base.name () = "[0]";
+    }
+    else
+    {
+      // Find the last element in the collection.
+      typedef UDM_Position_Sort_T <PICML::DataValueBase, PS_Top_To_Bottom> sorter_t;
+      sorter_t sorter ("DataValueAspect", PS_Top_To_Bottom ());
 
+      typedef std::set <PICML::DataValueBase, sorter_t> sorted_values_t;
+      sorted_values_t sorted_values (sorter);
 
-      // Add a new element to the collection to the DataValueContainer.
+      std::for_each (values.begin (),
+                     values.end (),
+                     boost::bind (&sorted_values_t::insert,
+                                  boost::ref (sorted_values),
+                                  _1));
 
+      // Get the position of the last element in the collection. This
+      // is such a hack, but will have to do for right now.
+      sorted_values_t::const_iterator iter = sorted_values.end ();
+      -- iter;
+
+     position_t position;
+     position <<= iter->position ();
+
+     position.y_ += 75;
+
+     std::ostringstream ostr;
+     ostr << "(" << position.x_ << "," << position.y_ << ")";
+     value_base.position () = ostr.str ();
+
+     // Set the name of the new element.
+     std::ostringstream name;
+     name << "[" << sorted_values.size () << "]";
+     value_base.name () = name.str ();
+    }
+
+    // Add a new element to the collection to the DataValueContainer.
     lvitem.mask     = LVIF_IMAGE | LVIF_INDENT | LVIF_PARAM;
     lvitem.iItem    = item;
     lvitem.iSubItem = 0;
     lvitem.iIndent  = indent;
-    lvitem.lParam   = reinterpret_cast <LPARAM> (value_base.__impl ());
+    lvitem.iImage   = value_base.type () == PICML::DataValue::meta ? 0 : 1;
+    lvitem.lParam   = reinterpret_cast <LPARAM> (value_base.__impl ()->clone ());
 
-      //// Select the correct image for the item.
-      //PICML_Property_Manager_ListView_Image image (lvitem.iImage);
-      //value->accept (image);
-
-      //// Insert the item into the list.
-      //if (this->InsertItem (&lvitem) != -1)
-      //{
-      //  // Update the "insert" items name.
-      //  std::ostrstream name;
-      //  name << "[" << sequence->size () << "]" << std::ends;
-
-      //  this->SetItemText (item + 1, 0, name.str ());
-      //}
+    if (this->InsertItem (&lvitem) == -1)
+      ::AfxMessageBox ("Failed to insert new item");
   }
 }
 

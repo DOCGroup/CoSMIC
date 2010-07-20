@@ -1,3 +1,11 @@
+Tue Jul 20 04:11:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.rc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.cpp:
+
+          Bug fix where adding a new struct to a sequence would result
+          in a runtime exception.
+
 Tue Jul 20 03:54:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/PICML.mwc:
