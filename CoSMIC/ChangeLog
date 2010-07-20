@@ -1,3 +1,16 @@
+Tue Jul 20 14:31:41 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Added support to the behavior model for calling a facet's
+          method. The name of the element is the target facet, and the
+          MethodName attribute is the name of the method on the facet.
+
 Tue Jul 20 07:47:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * ChangeLog:

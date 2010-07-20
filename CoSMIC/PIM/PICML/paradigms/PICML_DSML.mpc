@@ -6,7 +6,7 @@ project (PICML_paradigm_icons) {
     install_location  = paradigms PICML icons
     install_resources = 1
   }
-  
+
   Resource_Files {
     conditional (wix) {
       icons/*.bmp
@@ -20,13 +20,13 @@ project (PICML_paradigm) {
     no_binary         = 1
     install_location  = paradigms PICML
     install_resources = 1
-    
+
     gme_paradigm   = 1
     paradigm_name  = PICML
-    paradigm_guid  = 2F7F508E-4611-4335-8291-97CE955BF877
+    paradigm_guid  = 47840A87-0BB6-473F-9F05-8709616C42B6
     paradigm_file  = PICML.mta
   }
-  
+
   Resource_Files {
     conditional (wix) {
       PICML.xme
