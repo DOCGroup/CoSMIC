@@ -1,3 +1,11 @@
+Tue Jul 20 00:48:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Bug fix where the name of a DataValue on a simple type was
+          changed to the referenced type's name when importing a .xme
+          file.
+
 Mon Jul 19 22:25:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/CoSMIC-0.8.0.xslt:

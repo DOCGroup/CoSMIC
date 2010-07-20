@@ -25,8 +25,8 @@
 typedef std::vector <GAME::Reference> Reference_Set;
 
 static const long EVENTMASK =
-   OBJEVENT_CREATED | OBJEVENT_ATTR |   
-   OBJEVENT_RELATION |  OBJEVENT_SELECT |           
+   OBJEVENT_CREATED | OBJEVENT_ATTR |
+   OBJEVENT_RELATION |  OBJEVENT_SELECT |
    OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED |
    OBJEVENT_DESTROYED | OBJEVENT_LOSTCHILD;
 
@@ -95,8 +95,8 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("Consume", &PICMLManager_Impl::handle_Consume);
   this->handlers_.bind ("Publish", &PICMLManager_Impl::handle_Publish);
 
-	this->handlers_.bind ("DataType", &PICMLManager_Impl::handle_DataType);
-	this->handlers_.bind ("Property", &PICMLManager_Impl::handle_Property);
+  this->handlers_.bind ("DataType", &PICMLManager_Impl::handle_DataType);
+  this->handlers_.bind ("Property", &PICMLManager_Impl::handle_Property);
 
   return 0;
 }
@@ -158,12 +158,12 @@ handle_object_event (GAME::Object & obj, unsigned long eventmask)
   {
     GAME::Object object (obj);
 
-		if (object.is_lib_object ())
+    if (object.is_lib_object ())
       return 0;
 
     // Get the meta information for the object.
     std::string type = object.meta ().name ();
-		_member_function handler;
+    _member_function handler;
 
     if (this->handlers_.find (type, handler) != -1)
       return (this->*handler) (eventmask, object);
@@ -368,7 +368,7 @@ set_property_type (GAME::Model & prop, const GAME::FCO & type)
     else
       complex = complex_refs.front ();
 
-    // Set the reference for the type. This will force the 
+    // Set the reference for the type. This will force the
     // add-on to make sure each member is set correct.
     complex.refers_to (type);
   }
@@ -384,8 +384,8 @@ set_property_type (GAME::Model & prop, const GAME::FCO & type)
       datavalue = datavalues.front ();
 
     // Set the name of the data type and its reference.
-    if (datavalue.name () != type.name ())
-      datavalue.name (type.name ());
+    if (datavalue.name () != prop.name ())
+      datavalue.name (prop.name ());
 
     // Get the current data type.
     GAME::FCO current = datavalue.refers_to ();
@@ -402,7 +402,7 @@ void PICMLManager_Impl::
 verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
                                 const GAME::FCO & attr_type)
 {
-	verify_property_datatype (attr.item (), attr_type);
+  verify_property_datatype (attr.item (), attr_type);
 }
 
 //
@@ -411,7 +411,7 @@ verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
 void PICMLManager_Impl::
 verify_property_datatype (GAME::ConnectionPoint & attr, const GAME::FCO & attr_type)
 {
-	// Get the own of this connection. If this is an AttributeValue
+  // Get the own of this connection. If this is an AttributeValue
   // connection, then we should continue walking the connection
   // until we get to the prop.
   GAME::Connection attr_value = GAME::Connection::_narrow (attr.owner ());
@@ -482,7 +482,7 @@ handle_MirrorPortInstance (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_DESTROYED))
     return S_FALSE;
-  
+
 
   return 0;
 }
@@ -552,11 +552,11 @@ handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 
   // Get the target attribute.
   GAME::Model attr = GAME::Model::_narrow (attr_inst.refers_to ());
-    
+
   if (attr.is_nil ())
     return 0;
 
-  // Set the name of the Property. We want to ensure the name to 
+  // Set the name of the Property. We want to ensure the name to
   // the prop matches the name of the attribute.
   if (prop.name () != attr.name ())
     prop.name (attr.name ());
@@ -565,7 +565,7 @@ handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
   Reference_Set attr_members;
 
   // Let's get the data type of the attribute. Since there is only
-  // 1 attribute member, we can just get the front element in the 
+  // 1 attribute member, we can just get the front element in the
   // container.
   if (1 == attr.children ("AttributeMember", attr_members))
     member_type = attr_members.front ().refers_to ();
@@ -619,7 +619,7 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
       GAME::Folder root_folder = obj.project ().root_folder ();
       GAME::Folder artifact_folder, impl_folder;
 
-      if (GAME::create_if_not (root_folder, "ImplementationArtifacts", artifact_folder,      
+      if (GAME::create_if_not (root_folder, "ImplementationArtifacts", artifact_folder,
           GAME::contains (boost::bind (std::equal_to <std::string> (),
                           this->artifact_folder_,
                           boost::bind (&GAME::Model::name, _1)))))
@@ -627,7 +627,7 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
         artifact_folder.name (this->artifact_folder_);
       }
 
-      if (GAME::create_if_not (root_folder, "ComponentImplementations", impl_folder,      
+      if (GAME::create_if_not (root_folder, "ComponentImplementations", impl_folder,
           GAME::contains (boost::bind (std::equal_to <std::string> (),
                           this->impl_folder_,
                           boost::bind (&GAME::Model::name, _1)))))
@@ -638,7 +638,7 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
       // Generate the component's artifacts.
       GAME::Model component = GAME::Model::_narrow (obj);
       DefaultArtifactGenerator artifact_gen (artifact_folder);
-      
+
       if (artifact_gen.generate (config, component))
       {
         // Generate the component's implementation.
@@ -747,7 +747,7 @@ handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 {
-	this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 
   if (this->importing_)
     return 0;
@@ -765,14 +765,14 @@ handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
       // Delete all the children in the inferface.
       std::vector <GAME::FCO> children;
       GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
-      
+
       model.children (aspect, children);
       std::for_each (children.begin (),
                      children.end (),
                      boost::bind (&GAME::FCO::destroy, _1));
       return 0;
     }
-    else 
+    else
       return -1;
   }
 
@@ -943,7 +943,7 @@ handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
       // Delete the ports in the model.
       std::vector <GAME::FCO> children;
       GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
-      
+
       model.children (aspect, children);
       std::for_each (children.begin (),
                      children.end (),
@@ -976,7 +976,7 @@ struct generate_instance_t
     : parent_ (parent),
       type_ (type)
   {
-    
+
   }
 
   void operator () (const GAME::FCO & target) const
@@ -985,8 +985,8 @@ struct generate_instance_t
     using GAME::FCO;
 
     Reference ref;
-    
-    if (GAME::create_if_not (this->parent_, this->type_, ref,      
+
+    if (GAME::create_if_not (this->parent_, this->type_, ref,
         GAME::contains (boost::bind (std::equal_to <FCO> (),
                         target,
                         boost::bind (&Reference::refers_to, _1)))))
@@ -1012,7 +1012,7 @@ generate_port_instances (GAME::Model inst,  const GAME::Model & component)
   using GAME::Model;
 
   std::vector <GAME::FCO> ports;
-  
+
   if (component.children ("InEventPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
@@ -1053,7 +1053,7 @@ generate_port_instances (GAME::Model inst,  const GAME::Model & component)
                    ports.end (),
                    generate_instance_t (inst, "MirrorPortInstance"));
 
-  // Finally, generate the ports of the base type in this 
+  // Finally, generate the ports of the base type in this
   // component instance.
   std::vector <Reference> inherits;
 
@@ -1124,14 +1124,14 @@ handle_Consume (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_DataType (unsigned long eventmask, GAME::Object & obj)
 {
-	AfxMessageBox ("The use of DataType has been deprecated.\nPlease use DataValue in the DataValueAspect of the \"Part Browser\" instead.");
-	
-	if (this->importing_)
-	{
-		AfxMessageBox ("Please use the latest migration script to remove the deprecated functionality");
-	}
+  AfxMessageBox ("The use of DataType has been deprecated.\nPlease use DataValue in the DataValueAspect of the \"Part Browser\" instead.");
 
-	return -1;
+  if (this->importing_)
+  {
+    AfxMessageBox ("Please use the latest migration script to remove the deprecated functionality");
+  }
+
+  return -1;
 }
 
 //
@@ -1140,11 +1140,11 @@ handle_DataType (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_Property (unsigned long eventmask, GAME::Object & obj)
 {
-	if (eventmask == OBJEVENT_ATTR)
-	{
-		AfxMessageBox ("Setting the Property value has been deprecated.\nInstead please use DataValue in the DataValueAspect of the \"Part Browser\" within the Property.");
-		return -1;
-	}
+  if (eventmask == OBJEVENT_ATTR)
+  {
+    AfxMessageBox ("Setting the Property value has been deprecated.\nInstead please use DataValue in the DataValueAspect of the \"Part Browser\" within the Property.");
+    return -1;
+  }
 }
 
 //
@@ -1163,7 +1163,7 @@ handle_connector_porttype_connection (const GAME::Model & connector_inst,
   GAME::FCO port_type = extended_port.refers_to ();
   const bool is_extended_port = extended_port.meta () == "ExtendedPort" ? true : false;
 
-  // Now that we have the port type, we need to locate either the 
+  // Now that we have the port type, we need to locate either the
   // extended port, or mirror port, on the connector.
   Model connector;
   if (!this->get_connector_type (connector_inst, connector))
@@ -1171,7 +1171,7 @@ handle_connector_porttype_connection (const GAME::Model & connector_inst,
 
   std::string metaname = is_extended_port ? "MirrorPort" : "ExtendedPort";
 
-  // Select all the port types of the specified metaname. 
+  // Select all the port types of the specified metaname.
   std::vector <Reference> extended_ports;
   connector.children (metaname, extended_ports);
 
@@ -1201,7 +1201,7 @@ handle_connector_porttype_connection (const GAME::Model & connector_inst,
   {
     using GAME::Dialogs::Selection_List_Dialog;
 
-    // Since there is more than one element in the set, we 
+    // Since there is more than one element in the set, we
     // need to ask the user to select the correct one.
     Selection_List_Dialog <Reference> dlg (valid_set);
 
@@ -1330,7 +1330,7 @@ create_DataValue (GAME::Model & container, const GAME::FCO & fco)
     // same name as <fco> input parameter.
     GAME::Model child_container;
 
-    if (GAME::create_if_not (container, "DataValueContainer", child_container,      
+    if (GAME::create_if_not (container, "DataValueContainer", child_container,
         GAME::contains (boost::bind (std::equal_to <std::string> (),
                         name,
                         boost::bind (&GAME::Model::name, _1)))))
@@ -1351,7 +1351,7 @@ create_DataValue (GAME::Model & container, const GAME::FCO & fco)
     complex_type.refers_to (type);
     complex_type.name (type.name ());
 
-    // Finally, set the position of the data value. We can do this by 
+    // Finally, set the position of the data value. We can do this by
     // just copying the current position of the type.
     GAME::utils::Point pt;
     GAME::utils::position ("InterfaceDefinition", fco, pt);
@@ -1363,7 +1363,7 @@ create_DataValue (GAME::Model & container, const GAME::FCO & fco)
     // same name as <fco> input parameter.
     GAME::Reference data_value;
 
-    if (GAME::create_if_not (container, "DataValue", data_value,      
+    if (GAME::create_if_not (container, "DataValue", data_value,
         GAME::contains (boost::bind (std::equal_to <std::string> (),
                         name,
                         boost::bind (&GAME::Reference::name, _1)))))
@@ -1374,7 +1374,7 @@ create_DataValue (GAME::Model & container, const GAME::FCO & fco)
     // Set the data values type.
     data_value.refers_to (type);
 
-    // Finally, set the position of the data value. We can do this by 
+    // Finally, set the position of the data value. We can do this by
     // just copying the current position of the type.
     GAME::utils::Point pt;
     GAME::utils::position ("InterfaceDefinition", fco, pt);
