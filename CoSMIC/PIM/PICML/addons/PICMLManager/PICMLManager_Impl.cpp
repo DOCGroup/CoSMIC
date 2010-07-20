@@ -747,9 +747,10 @@ handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+  GAME::FCO fco = GAME::FCO::_narrow (obj);
+  this->handle_UUID (eventmask, fco);
 
-  if (this->importing_)
+  if (this->importing_ || fco.is_instance ())
     return 0;
 
   if ((eventmask && OBJEVENT_LOSTCHILD))
@@ -1140,11 +1141,13 @@ handle_DataType (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_Property (unsigned long eventmask, GAME::Object & obj)
 {
-  if (eventmask == OBJEVENT_ATTR)
-  {
-    AfxMessageBox ("Setting the Property value has been deprecated.\nInstead please use DataValue in the DataValueAspect of the \"Part Browser\" within the Property.");
-    return -1;
-  }
+  if (eventmask != OBJEVENT_ATTR)
+    return 0;
+
+  ::AfxMessageBox ("Setting the Property value has been deprecated.\n"
+                   "Instead please use DataValue in the DataValueAspect "
+                   "of the \"Part Browser\" within the Property.");
+  return -1;
 }
 
 //

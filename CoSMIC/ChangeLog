@@ -1,3 +1,11 @@
+Tue Jul 20 23:39:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Bug fix where the PICML manager prevented creating an instance
+          of a component assembly if the assembly contained component
+          instances that had ports.
+
 Tue Jul 20 20:21:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * bin/migrate.bat:
