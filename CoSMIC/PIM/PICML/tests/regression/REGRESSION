@@ -1,0 +1,10 @@
+This document contains a list of regression test that need to
+be run manually until we have the ability to automate such
+testing.
+
+. Creating an instance of a ComponentAssembly that contains one
+  or more ComponentInstance elements that have ports is prevented
+  due to bad logic in the PICMLManager.
+
+. The ports a Component and ComponentInstance element do not show
+  up because of a bug in the corresponding decorator.
