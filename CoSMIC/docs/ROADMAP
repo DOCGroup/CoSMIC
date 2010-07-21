@@ -26,8 +26,8 @@ USER VISIBLE CHANGES FOR CoSMIC-0.8.1
   the toolbar.
 
 . Generation of a nodemap.dat file in conjunction with the
-  auto-generated .cdd file. The name of the auto-generated file
-  will the same name as the deployment plan.
+  auto-generated .cdd file. The name of the auto-generated
+  file will be the same as the deployment plan.
 
 . When making a connection between a Facet/Receptacle and
   Connector the PICML Model Intelligence either (1) auto-complete
