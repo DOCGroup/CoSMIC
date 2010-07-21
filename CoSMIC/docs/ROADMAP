@@ -1,11 +1,11 @@
 .:: $Id$ ::.
 
 This document is a roadmap for CoSMIC. It lists user visible
-features that will be added to CoSMIC for each upcoming version.
-This document can therefore help to better plan your CoSMIC usage,
-as well as help us better plan for what features should be included
-in each upcoming version of CoSMIC, depending on the amout of
-effort required to complete the given feature.
+changes for each upcoming version of CoSMIC. This document can
+therefore help to better plan your CoSMIC usage, as well as help
+us better plan for what changes should be included in each
+upcoming version of CoSMIC. This, however, depends on the
+amout of effort required to complete the given change.
 
 USER VISIBLE CHANGES FOR CoSMIC-0.8.1
 ===========================================================
