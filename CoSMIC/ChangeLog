@@ -1,3 +1,9 @@
+Wed Jul 21 17:36:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/tests/deployment/PortDelegation.xme:
+
+          Model for testing deployment of assemblies with delegated ports.
+
 Wed Jul 21 15:34:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * docs/ROADMAP:
