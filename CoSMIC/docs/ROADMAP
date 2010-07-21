@@ -7,7 +7,7 @@ us better plan for what changes should be included in each
 upcoming version of CoSMIC. This, however, depends on the
 amout of effort required to complete the given change.
 
-USER VISIBLE CHANGES FOR CoSMIC-0.8.1
+USER VISIBLE CHANGES FOR CoSMIC-0.8.1 (tentative 8/4/2010)
 ===========================================================
 
 . Delegation of extended/mirror ports
@@ -37,7 +37,7 @@ USER VISIBLE CHANGES FOR CoSMIC-0.8.1
 . Support for deployment of ComponentAssembly elements under
   the new modeling semantics for PICML.
 
-USER VISIBLE CHANGES FOR CoSMIC-0.8.2
+USER VISIBLE CHANGES FOR CoSMIC-0.8.2 (tentative 8/25/2010)
 ===========================================================
 
 . Placement of Property elements in their own aspect when
