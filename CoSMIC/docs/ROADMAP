@@ -26,14 +26,13 @@ USER VISIBLE CHANGES FOR CoSMIC-0.8.1
   the toolbar.
 
 . Generation of a nodemap.dat file in conjunction with the
-  auto-generated .cdd file. The name of the file will the
-  tranditional nodemap.dat file will be the same name as the
-  deployment plan.
+  auto-generated .cdd file. The name of the auto-generated file
+  will the same name as the deployment plan.
 
 . When making a connection between a Facet/Receptacle and
-  Connector, have the PICML Model Intelligence either (1)
-  auto-complete the connection name or (2) display a dialog
-  for selecting the correct connection name.
+  Connector the PICML Model Intelligence either (1) auto-complete
+  the connection name or (2) display a dialog for selecting the
+  correct connection name.
 
 . Support for deployment of ComponentAssembly elements under
   the new modeling semantics for PICML.
@@ -45,8 +44,8 @@ USER VISIBLE CHANGES FOR CoSMIC-0.8.2
   viewing a ComponentAssembly to reduce *clutter*.
 
 . Introduction of SimpleProperty and ComplexProperty model
-  elements where SimpleProperty will be used for setting the
-  values of PredefinedType and Enum elements, and ComplexProperty
+  element. The SimpleProperty will be used for setting the
+  values of PredefinedType and Enum element. The ComplexProperty
   will be use to set the values for Aggregate, SwitchedAggregate,
   and Collection elements.
 
