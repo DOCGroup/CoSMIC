@@ -35,6 +35,9 @@ USER VISIBLE CHANGES FOR CoSMIC-0.8.1
   auto-complete the connection name or (2) display a dialog
   for selecting the correct connection name.
 
+. Support for deployment of ComponentAssembly elements under
+  the new modeling semantics for PICML.
+
 USER VISIBLE CHANGES FOR CoSMIC-0.8.2
 ===========================================================
 
