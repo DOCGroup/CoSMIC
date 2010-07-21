@@ -1,4 +1,4 @@
-USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.9 and CoSMIC-0.8.9
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.9 and CoSMIC-0.8.0
 ============================================================
 
 . Added support for complex types, i.e., structures and sequences,

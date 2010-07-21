@@ -1,0 +1,53 @@
+.:: $Id$ ::.
+
+This document is a roadmap for CoSMIC. It lists user visible
+features that will be added to CoSMIC for each upcoming version.
+This document can therefore help to better plan your CoSMIC usage,
+as well as help us better plan for what features should be included
+in each upcoming version of CoSMIC, depending on the amout of
+effort required to complete the given feature.
+
+USER VISIBLE CHANGES FOR CoSMIC-0.8.1
+===========================================================
+
+. Delegation of extended/mirror ports
+
+. Support for generating valid descriptor information for
+  AMI4CCM connections.
+
+. Support process/thread specification for plan locality
+  managers.
+
+. Support specification of CPU or CPU core affinity for each
+  process/thread.
+
+. Complete support for managing ComplexType elements via the
+  Property Manager, and expose the Property Manager icon on
+  the toolbar.
+
+. Generation of a nodemap.dat file in conjunction with the
+  auto-generated .cdd file. The name of the file will the
+  tranditional nodemap.dat file will be the same name as the
+  deployment plan.
+
+. When making a connection between a Facet/Receptacle and
+  Connector, have the PICML Model Intelligence either (1)
+  auto-complete the connection name or (2) display a dialog
+  for selecting the correct connection name.
+
+USER VISIBLE CHANGES FOR CoSMIC-0.8.2
+===========================================================
+
+. Placement of Property elements in their own aspect when
+  viewing a ComponentAssembly to reduce *clutter*.
+
+. Introduction of SimpleProperty and ComplexProperty model
+  elements where SimpleProperty will be used for setting the
+  values of PredefinedType and Enum elements, and ComplexProperty
+  will be use to set the values for Aggregate, SwitchedAggregate,
+  and Collection elements.
+
+. Expansion of TemplateModule elements into their concrete
+  artifacts. This will make it easier to determine the actual
+  type of a parameter. Likewise, you can then use the concrete
+  types like *traditional* elements.
