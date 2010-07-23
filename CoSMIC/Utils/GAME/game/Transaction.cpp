@@ -5,7 +5,7 @@
 
 #if !defined (__GAME_INLINE__)
 #include "Transaction.inl"
-#endif  
+#endif
 
 namespace GAME
 {
@@ -26,6 +26,19 @@ void Transaction::commit (void)
 {
   this->proj_.commit_transaction ();
   this->is_active_ = false;
+}
+
+//
+// flush
+//
+void Transaction::flush (void)
+{
+  // Commit the current transaction if it is active.
+  if (this->is_active_)
+    this->commit ();
+
+  // Start a new transaction.
+  this->init (this->transaction_type_);
 }
 
 //

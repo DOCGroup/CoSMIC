@@ -1,3 +1,12 @@
+Fri Jul 23 22:51:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Transaction.h:
+        * Utils/GAME/game/Transaction.inl:
+        * Utils/GAME/game/Transaction.cpp:
+
+          Implemented a flush () method that commits the current
+          transaction and starts a new transaction.
+
 Fri Jul 23 12:01:23 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.idl:

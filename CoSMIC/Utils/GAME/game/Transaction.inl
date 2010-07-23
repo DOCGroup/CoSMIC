@@ -12,9 +12,10 @@ Transaction::
 Transaction (GAME::Project & proj, transactiontype_enum type)
 : proj_ (proj),
   terr_ (proj_.create_territory ()),
-  is_active_ (false)
+  is_active_ (false),
+  transaction_type_ (type)
 {
-  this->init (type);
+  this->init (this->transaction_type_);
 }
 
 //
@@ -25,9 +26,10 @@ Transaction::
 Transaction (Project & proj, const Territory & terr, transactiontype_enum type)
 : proj_ (proj),
   terr_ (terr),
-  is_active_ (false)
+  is_active_ (false),
+  transaction_type_ (type)
 {
-  this->init (type);
+  this->init (this->transaction_type_);
 }
 
 //

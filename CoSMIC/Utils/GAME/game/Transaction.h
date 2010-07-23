@@ -34,7 +34,7 @@ public:
    *
    * @param[in]     proj        Target project
    */
-  Transaction (Project & proj, 
+  Transaction (Project & proj,
                transactiontype_enum type = TRANSACTION_GENERAL);
 
   Transaction (Project & proj,
@@ -44,11 +44,16 @@ public:
   /// Destructor.
   virtual ~Transaction (void);
 
-  /// Abort the transaction.
-  void abort (void);
-
   /// Commit the current transaction.
   void commit (void);
+
+  /// Commit the current transaction and start another one. This
+  /// make it a lot easier to reuse a transaction, instead of creating
+  /// may different ones within the same scope.
+  void flush (void);
+
+  /// Abort the transaction.
+  void abort (void);
 
 private:
   // Initialize the transaction.
@@ -61,13 +66,20 @@ private:
   Territory terr_;
 
   /// The active state of the transaction
-  bool is_active_;  
+  bool is_active_;
+
+  /// The type of transaction.
+  transactiontype_enum transaction_type_;
+
+  // Prevent the following operations.
+  Transaction (const Transaction &);
+  const Transaction & operator = (const Transaction &);
 };
 
 }
 
 #if defined (__GAME_INLINE__)
 #include "Transaction.inl"
-#endif  
+#endif
 
 #endif  // !defined _GAME_TRANSACTION_H_
