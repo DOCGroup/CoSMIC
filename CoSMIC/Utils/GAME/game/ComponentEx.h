@@ -28,7 +28,7 @@ class GAME_Export ComponentEx : public Component
 public:
   /**
    * Load a extended component into memory. This method will create the
-   * extended component with the specified program id. If the component 
+   * extended component with the specified program id. If the component
    * cannot be created, then an exception is thrown.
    *
    * @param[in]       progid        Source program id
@@ -84,7 +84,6 @@ public:
 
   virtual IMgaComponentEx * operator -> (void) const;
 
-protected:
   /// Helper method to get the correct implementation.
   IMgaComponentEx * impl () const;
 

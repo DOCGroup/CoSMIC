@@ -1,6 +1,9 @@
 // $Id$
 
 project : game {
+  after += GAME_Dialogs
+  libs  += GAME_Dialogs
+
   Resource_Files {
     $(GAME_ROOT)/game/dialogs/Dialogs.rc
   }

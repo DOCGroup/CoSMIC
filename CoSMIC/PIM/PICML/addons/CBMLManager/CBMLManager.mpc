@@ -1,15 +1,20 @@
 // $Id$
 
-project (CBMLManager): boost_base, game_utils, gme_raw_component, cosmic_common {
+project (CBMLManager): boost_base, game_component, game_utils, cosmic_lib {
   sharedname = CBMLManager
 
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
   Source_Files {
-    Output_Event_Builder.cpp
+    CBMLManager.idl
+    CBMLManager.cpp
+    CBMLManager_Module.cpp
+
     String_Selection_Dialog.cpp
   }
 
   Header_Files {
-    Output_Event_Builder.h
     String_Selection_Dialog.h
   }
 

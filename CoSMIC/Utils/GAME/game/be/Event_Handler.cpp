@@ -28,7 +28,7 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
 {
   try
   {
-    if (0 != this->impl_)
+    if (0 != this->impl_ && this->enable_)
       return this->impl_->handle_global_event (ev);
 
     return S_OK;
@@ -49,7 +49,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 {
   try
   {
-    if (0 != this->impl_)
+    if (0 != this->impl_ && this->enable_)
       return this->impl_->handle_object_event (GAME::Object (obj), eventmask);
 
     return S_OK;

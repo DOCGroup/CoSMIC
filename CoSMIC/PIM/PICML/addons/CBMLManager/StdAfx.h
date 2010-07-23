@@ -11,24 +11,22 @@
 
 #define STRICT
 #ifndef _WIN32_WINNT
-	#if _MSC_VER > 1400
-		#define _WIN32_WINNT 0x0500
-	#else
-		#define _WIN32_WINNT 0x0400
-	#endif 
+  #if _MSC_VER > 1400
+    #define _WIN32_WINNT 0x0500
+  #else
+    #define _WIN32_WINNT 0x0400
+  #endif
 #endif
 #define _ATL_APARTMENT_THREADED
 
 #include <afxwin.h>
 #include <afxdisp.h>
 #include <atlbase.h>
-//You may derive a class from CComModule and use it if you want to override
-//something, but do not change the name of _Module
-extern CComModule _Module;
+
 #include <atlcom.h>
 #include <atlcoll.h>
 
-#include "ComponentLib.h"
+#include "CBMLManager.h"
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

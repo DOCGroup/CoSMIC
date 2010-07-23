@@ -1,3 +1,83 @@
+Fri Jul 23 12:01:23 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.idl:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.inl:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Module.cpp:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.cpp:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.cpp:
+
+          Added support for automatically generating the next state
+          for a RequestAction.
+
+          Re-implemented the addon using GAME's component architecture.
+
+        * Utils/GAME/game/Component.h:
+        * Utils/GAME/game/Component.inl:
+        * Utils/GAME/game/Component.cpp:
+
+          Implemented the enable () function so clients can programmatically
+          enable/disable a loaded component. This is most useful when deadling
+          with addons.
+
+        * Utils/GAME/game/ComponentEx.h:
+
+          Removed trailing spaces.
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+
+          Implemented the addon_component () method for getting an addon
+          by is program id.
+
+        * Utils/GAME/game/Reference.h:
+
+          Moved the impl () method to the public section.
+
+        * Utils/GAME/game/be/Addon_Impl_T.h:
+        * Utils/GAME/game/be/Addon_Impl_T.cpp:
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Implemented the Enable () method. By default the addon is enabled. If
+          the architecture receives a disable command, then all events send to
+          the addon are suppressed and not passed to the implementation.
+
+        * MPC/config/game_dialogs.mpb:
+        * Utils/GAME/game/dialogs/Dialog_Display_Strategy.h:
+        * Utils/GAME/game/dialogs/Dialog_Display_Strategy.inl:
+        * Utils/GAME/game/dialogs/Dialog_Display_Strategy.cpp:
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/GAME_Dialogs.mpc:
+        * Utils/GAME/game/dialogs/Object_Path_Dialog_Display_Strategy.h:
+        * Utils/GAME/game/dialogs/Object_Path_Dialog_Display_Strategy.inl:
+        * Utils/GAME/game/dialogs/Object_Path_Dialog_Display_Strategy.cpp:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/stdafx.h:
+        * Utils/GAME/game/dialogs/stdafx.cpp:
+
+          Stategized the dialog so it is now possible for clients to
+          control the display string of an element. If the dialog is not
+          strategized, then the name of the element is used.
+
+          Implemented a strategy for displaying elements by their path.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.wxs:
+        * PIM/PICML/addons/CBMLManager/Component.def:
+        * PIM/PICML/addons/CBMLManager/ComponentLib_h.h:
+        * PIM/PICML/addons/CBMLManager/Output_Event_Builder.h:
+        * PIM/PICML/addons/CBMLManager/Output_Event_Builder.cpp:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.inl:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          Removed these files.
+
 Wed Jul 21 17:36:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/tests/deployment/PortDelegation.xme:

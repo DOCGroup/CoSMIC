@@ -2,9 +2,10 @@
 
 #include "stdafx.h"
 #include "Project.h"
-
-#include "Component.h"
 #include "ComponentEx.h"
+#include "boost/bind.hpp"
+#include <algorithm>
+#include <functional>
 
 namespace GAME
 {
@@ -57,7 +58,7 @@ Project Project::_create (const std::string & name, const std::string & paradigm
   CComPtr <IMgaProject> project;
   VERIFY_HRESULT (project.CoCreateInstance (L"Mga.MgaProject"));
   VERIFY_HRESULT (project->Create (wName, wParadigm));
-  
+
   CComPtr <IMgaTerritory> terr;
   VERIFY_HRESULT (project->CreateTerritory (0, &terr, 0));
 
@@ -234,8 +235,8 @@ Territory Project::create_territory (void)
   return terr;
 }
 
-  //
-// create_territory
+//
+// active_territory
 //
 Territory Project::active_territory (void)
 {
@@ -438,4 +439,30 @@ size_t Project::addon_components (std::vector <ComponentEx> & v) const
 
   return get_children (temp, v);
 }
+
+//
+// addon_component
+//
+ComponentEx Project::addon_component (const std::string & progid) const
+{
+  // Get all the addons for the project.
+  std::vector <ComponentEx> addons;
+
+  if (0 == this->addon_components (addons))
+    throw Exception ();
+
+  // Locate the add-on with the specified program id.
+  std::vector <GAME::ComponentEx>::const_iterator
+    result = std::find_if (addons.begin (),
+                           addons.end (),
+                           boost::bind (std::equal_to <std::string> (),
+                                        progid,
+                                        boost::bind (&GAME::ComponentEx::progid, _1)));
+
+  if (result != addons.end ())
+    return *result;
+
+  throw Exception ();
+}
+
 }

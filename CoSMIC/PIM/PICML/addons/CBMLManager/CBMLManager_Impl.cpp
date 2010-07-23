@@ -1,12 +1,10 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "ComHelp.h"
-#include "GMECOM.h"
-#include "ComponentConfig.h"
-#include "RawComponent.h"
+#include "CBMLManager_Impl.h"
 #include "String_Selection_Dialog.h"
-#include "Output_Event_Builder.h"
+
+#include "game/be/ComponentEx_T.h"
 #include "game/Atom.h"
 #include "game/Model.h"
 #include "game/Object.h"
@@ -16,6 +14,7 @@
 #include "game/Reference.h"
 #include "game/utils/Point.h"
 #include "boost/bind.hpp"
+
 #include <algorithm>
 #include <sstream>
 
@@ -25,6 +24,17 @@
 #define PREF_AUTOROUTER           "autorouterPref"
 #define PREF_AUTOROUTER_ALL       "NEWSnews"
 
+typedef GAME::Addon_Impl_T <
+  CBML_Manager_ComponentEx_Impl,
+  CBML_Model_Intelligence >
+  CBML_Model_Intelligence_Impl;
+
+DECLARE_GAME_COMPONENT_EX (CBML_Model_Intelligence_Impl, CBMLManager_Addon);
+
+
+/**
+ * @struct insert_item
+ */
 struct insert_item
 {
 public:
@@ -46,19 +56,21 @@ private:
 //
 // action_types_
 //
-RawComponent::string_set RawComponent::actions_types_;
+CBML_Model_Intelligence::string_set CBML_Model_Intelligence::actions_types_;
 
 //
-// RawComponent
+// CBML_Model_Intelligence
 //
-RawComponent::RawComponent (void)
+CBML_Model_Intelligence::CBML_Model_Intelligence (void)
 {
   // Initialize the collection of action types we are interested
   // in when creating action -> state transitions.
-  if (RawComponent::actions_types_.empty ())
+  if (CBML_Model_Intelligence::actions_types_.empty ())
   {
-    RawComponent::actions_types_.insert ("Action");
-    RawComponent::actions_types_.insert ("OutputAction");
+    CBML_Model_Intelligence::actions_types_.insert ("Action");
+    CBML_Model_Intelligence::actions_types_.insert ("OutputAction");
+    CBML_Model_Intelligence::actions_types_.insert ("RequestAction");
+    CBML_Model_Intelligence::actions_types_.insert ("QueryAction");
   }
 
   this->state_transition_map_.bind ("State", "Transition");
@@ -69,100 +81,45 @@ RawComponent::RawComponent (void)
 }
 
 //
-// ~RawComponent
+// ~CBML_Model_Intelligence
 //
-RawComponent::~RawComponent (void)
+CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 {
 
 }
 
 //
-// Initialize
+// initialize
 //
-STDMETHODIMP RawComponent::Initialize (struct IMgaProject *)
+int CBML_Model_Intelligence::initialize (GAME::Project & project)
 {
   this->importing_ = false;
-  return S_OK;
+  return 0;
 }
 
 //
-// Invoke
+// handle_global_event
 //
-STDMETHODIMP RawComponent::
-Invoke (IMgaProject* gme, IMgaFCOs *models, long param)
+int CBML_Model_Intelligence::handle_global_event (long global_event)
 {
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// InvokeEx
-//
-STDMETHODIMP RawComponent::
-InvokeEx (IMgaProject *project,
-          IMgaFCO *currentobj,
-          IMgaFCOs *selectedobjs,
-          long param)
-{
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// ObjectsInvokeEx
-//
-STDMETHODIMP RawComponent::
-ObjectsInvokeEx (IMgaProject *project,
-                 IMgaObject *currentobj,
-                 IMgaObjects *selectedobjs,
-                 long param)
-{
-  return E_MGA_NOT_SUPPORTED;
-}
-
-//
-// get_ComponentParameter
-//
-STDMETHODIMP RawComponent::
-get_ComponentParameter (BSTR name, VARIANT *pVal)
-{
-  return S_OK;
-}
-
-//
-// put_ComponentParameter
-//
-STDMETHODIMP RawComponent::
-put_ComponentParameter(BSTR name, VARIANT newVal)
-{
-  return S_OK;
-}
-
-#if defined (GME_ADDON)
-
-//
-// GlobalEvent
-//
-STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event)
-{
-  if (event == APPEVENT_XML_IMPORT_BEGIN)
+  if (global_event == APPEVENT_XML_IMPORT_BEGIN)
     this->importing_ = true;
-  else if (event == APPEVENT_XML_IMPORT_END)
+  else if (global_event == APPEVENT_XML_IMPORT_END)
     this->importing_ = false;
 
-  return S_OK;
+  return 0;
 }
 
 //
-// ObjectEvent
+// handle_object_event
 //
-STDMETHODIMP RawComponent::
-ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
+int CBML_Model_Intelligence::
+handle_object_event (GAME::Object & object, unsigned long eventmask)
 {
   try
   {
     if (!this->importing_)
     {
-      GAME::Object object (obj);
-
       // This is a cool case of optimizing for the mostly frequently
       // taken path. We know for a fact that the elements will be
       // created more than anything else in the model. We, therefore,
@@ -172,17 +129,13 @@ ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
       if ((eventmask & OBJEVENT_CREATED))
         this->handle_objevent_created (object);
-
-      if ((eventmask & OBJEVENT_SELECT))
+      else if ((eventmask & OBJEVENT_SELECT))
         this->handle_objevent_select (object);
-
-      if ((eventmask & OBJEVENT_CLOSEMODEL))
+      else if ((eventmask & OBJEVENT_CLOSEMODEL))
         this->handle_objevent_modelclose (object);
-
-      if ((eventmask & OBJEVENT_OPENMODEL))
+      else if ((eventmask & OBJEVENT_OPENMODEL))
         this->handle_objevent_modelopen (object);
-
-      if ((eventmask & OBJEVENT_DESTROYED))
+      else if ((eventmask & OBJEVENT_DESTROYED))
         this->handle_objevent_destroyed (object);
     }
 
@@ -200,12 +153,10 @@ ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
   return S_FALSE;
 }
 
-#endif
-
 //
 // save_active_state
 //
-void RawComponent::save_active_state (void)
+void CBML_Model_Intelligence::save_active_state (void)
 {
   // Get the parent of the active state.
   GAME::FCO parent = GAME::FCO::_narrow (this->active_state_.parent ());
@@ -224,7 +175,7 @@ void RawComponent::save_active_state (void)
 //
 // load_active_state
 //
-void RawComponent::load_active_state (GAME::Object & model)
+void CBML_Model_Intelligence::load_active_state (GAME::Object & model)
 {
   // Get the parent of the active state.
   GAME::FCO parent = GAME::FCO::_narrow (model);
@@ -248,7 +199,7 @@ void RawComponent::load_active_state (GAME::Object & model)
 //
 // handle_objevent_destroyed
 //
-void RawComponent::handle_objevent_destroyed (GAME::Object & obj)
+void CBML_Model_Intelligence::handle_objevent_destroyed (GAME::Object & obj)
 {
   GAME::FCO fco = GAME::FCO::_narrow (obj);
 
@@ -264,7 +215,7 @@ void RawComponent::handle_objevent_destroyed (GAME::Object & obj)
 //
 // handle_objevent_select
 //
-void RawComponent::handle_objevent_select (GAME::Object & obj)
+void CBML_Model_Intelligence::handle_objevent_select (GAME::Object & obj)
 {
   if (obj.meta ().name () == "State")
   {
@@ -279,7 +230,7 @@ void RawComponent::handle_objevent_select (GAME::Object & obj)
 //
 // handle_objevent_created
 //
-void RawComponent::handle_objevent_created (GAME::Object & obj)
+void CBML_Model_Intelligence::handle_objevent_created (GAME::Object & obj)
 {
   // We need to get the parent of the newly created object and determine
   // its type. We only need to continue if the parent's type is a
@@ -293,51 +244,44 @@ void RawComponent::handle_objevent_created (GAME::Object & obj)
     // Narrow the parent to its FCO type.
     GAME::FCO parent_fco = GAME::FCO::_narrow (parent);
 
-    if (!parent_fco.is_instance ())
+    if (parent_fco.is_instance ())
+      return;
+
+    // Get the type of the newly created object.
+    metaname = obj.meta ().name ();
+
+    // We check the map before comparing the name because it's the
+    // more likeable. User's will create more Action -> State
+    // transition than InputAction -> State transitions.
+    if (metaname == "Action" || metaname == "OutputAction" || metaname == "RequestAction")
     {
-      // Get the type of the newly created object.
-      metaname = obj.meta ().name ();
+      GAME::FCO base_type = parent_fco.derived_from ();
 
-      // We check the map before comparing the name because it's the
-      // more likeable. User's will create more Action -> State
-      // transition than InputAction -> State transitions.
-      if (metaname == "Action" ||
-          metaname == "OutputAction")
-      {
-        GAME::FCO base_type = parent_fco.derived_from ();
+      // First, go ahead and connect the state to the action.
+      this->create_state_and_connect (obj, "Effect");
 
-        // First, go ahead and connect the state to the action.
-        this->create_state_and_connect (obj, "Effect");
+      if (this->last_action_)
+        this->last_action_ = 0;
 
-        if (this->last_action_)
-          this->last_action_ = 0;
+      // Save the action as the last action.
+      this->last_action_ = GAME::FCO::_narrow (obj);
+    }
+    else if (metaname == "InputAction" || metaname == "MultiInputAction")
+    {
+      if (this->active_state_)
+        this->active_state_.release ();
 
-        // Save the action as the last action.
-        this->last_action_ = GAME::FCO::_narrow (obj);
-      }
-      else if (metaname == "InputAction" ||
-               metaname == "MultiInputAction")
-      {
-        if (this->active_state_)
-          this->active_state_ = 0;
-
-        this->create_state_and_connect (obj, "InputEffect");
-
-        if (this->last_action_)
-          this->last_action_ = 0;
-
-        // Save the action as the last action.
-        this->last_action_ = GAME::FCO::_narrow (obj);
-      }
-      else if (this->state_transition_map_.find (metaname.c_str ()) == 0)
-      {
-        this->active_state_ = GAME::FCO::_narrow (obj);
-      }
-      else if (metaname == "WorkerType")
-      {
-        GAME::Reference ref = GAME::Reference::_narrow (obj);
-        this->cache_worker_type (ref);
-      }
+      this->create_state_and_connect (obj, "InputEffect");
+      this->last_action_ = GAME::FCO::_narrow (obj);
+    }
+    else if (this->state_transition_map_.find (metaname.c_str ()) == 0)
+    {
+      this->active_state_ = GAME::FCO::_narrow (obj);
+    }
+    else if (metaname == "WorkerType")
+    {
+      GAME::Reference ref = GAME::Reference::_narrow (obj);
+      this->cache_worker_type (ref);
     }
   }
 }
@@ -345,7 +289,7 @@ void RawComponent::handle_objevent_created (GAME::Object & obj)
 //
 // create_state_and_connect
 //
-void RawComponent::
+void CBML_Model_Intelligence::
 create_state_and_connect (GAME::Object & src, const std::string & conntype)
 {
   if (this->last_action_)
@@ -433,7 +377,7 @@ create_state_and_connect (GAME::Object & src, const std::string & conntype)
 //
 // handle_objevent_modelopen
 //
-void RawComponent::
+void CBML_Model_Intelligence::
 handle_objevent_modelopen (GAME::Object & obj)
 {
   // Get the metaname of the object
@@ -460,7 +404,7 @@ handle_objevent_modelopen (GAME::Object & obj)
       model.children ("WorkerType", refs);
       std::for_each (refs.begin (),
                      refs.end (),
-                     boost::bind (&RawComponent::cache_worker_type,
+                     boost::bind (&CBML_Model_Intelligence::cache_worker_type,
                                   this,
                                   _1));
     }
@@ -470,7 +414,7 @@ handle_objevent_modelopen (GAME::Object & obj)
 //
 // handle_objevent_modelopen
 //
-void RawComponent::
+void CBML_Model_Intelligence::
 handle_objevent_modelclose (GAME::Object & obj)
 {
   if (obj.meta ().name () == "Component")
@@ -487,7 +431,7 @@ handle_objevent_modelclose (GAME::Object & obj)
 //
 // cache_worker_type
 //
-void RawComponent::cache_worker_type (const GAME::Reference & worker)
+void CBML_Model_Intelligence::cache_worker_type (const GAME::Reference & worker)
 {
   // Get the reference for this worker.
   GAME::FCO ref = worker.refers_to ();
@@ -506,7 +450,7 @@ void RawComponent::cache_worker_type (const GAME::Reference & worker)
 //
 // resolve_output_action
 //
-void RawComponent::resolve_output_action (GAME::FCO & action)
+void CBML_Model_Intelligence::resolve_output_action (GAME::FCO & action)
 {
   GAME::Reference output;
   std::vector <GAME::Reference> refs;
@@ -545,17 +489,14 @@ void RawComponent::resolve_output_action (GAME::FCO & action)
     action.name (output.name ());
 
     // Create the elements for the output event.
-    GAME::Model event = GAME::Model::_narrow (output.refers_to ());
-
-    GAME::Model output_action = GAME::Model::_narrow (action);
-    CBML_Output_Event_Builder builder (output_action);
+    GAME::Model ev = GAME::Model::_narrow (output.refers_to ());
   }
 }
 
 //
 // resolve_worker_action
 //
-void RawComponent::resolve_worker_action (GAME::FCO & action)
+void CBML_Model_Intelligence::resolve_worker_action (GAME::FCO & action)
 {
   // Locate the archetype for this action instance.
   GAME::FCO basetype = action.archetype ();

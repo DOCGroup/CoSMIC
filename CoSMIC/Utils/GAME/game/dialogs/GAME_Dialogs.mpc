@@ -1,0 +1,22 @@
+// $Id$
+
+project (GAME_Dialogs) : game, cosmic_lib {
+  sharedname    = GAME_Dialogs
+  dynamicflags += GAME_DIALOGS_BUILD_DLL
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    Dialog_Display_Strategy.cpp
+    Object_Path_Dialog_Display_Strategy.cpp
+  }
+
+  Resource_Files {
+
+  }
+
+  Template_Files {
+    Selection_List_Dialog.cpp
+  }
+}

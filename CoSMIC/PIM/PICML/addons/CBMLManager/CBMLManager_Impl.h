@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        RawComponent.h
+ * @file        CBML_Model_Intelligence.h
  *
  * $Id$
  *
@@ -17,68 +17,43 @@
 # error This file should only be included in the RAW COM configurations
 #endif
 
-#include "game/FCO.h"
-#include "ace/Hash_Map_Manager.h"
-#include "ace/Null_Mutex.h"
-#include "ace/SString.h"
 #include <string>
 #include <set>
 #include <map>
 
+#include "ace/Hash_Map_Manager.h"
+#include "ace/Null_Mutex.h"
+#include "ace/SString.h"
+
+#include "game/FCO.h"
+#include "game/be/Addon_Impl_T.h"
+#include "game/be/ComponentEx_T.h"
+#include "game/be/Event_Handler_Impl.h"
+
+GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
+                         "CBML Model Intelligence",
+                         "PICML",
+                         "MGA.AddOn.CBMLManager");
+
 /**
- * @class RawComponent
+ * @class CBML_Model_Intelligence
  *
  * Raw component interface for the add-on.
  */
-class RawComponent
+class CBML_Model_Intelligence : public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  RawComponent (void);
+  CBML_Model_Intelligence (void);
 
   /// Destructor.
-  ~RawComponent (void);
+  virtual ~CBML_Model_Intelligence (void);
 
-#if defined (GME_ADDON)
-  /// Pointer to the project for the add-on.
-  CComPtr <IMgaProject> project;
+  virtual int initialize (GAME::Project & project);
 
-  /// Pointer to the add-on for this project.
-  CComPtr <IMgaAddOn> addon;
-#endif
+  virtual int handle_global_event (long global_event);
 
-  /// Interactive flag for the component.
-  bool interactive;
-
-  STDMETHODIMP Initialize (struct IMgaProject *);
-
-  STDMETHODIMP Invoke (IMgaProject* gme,
-                       IMgaFCOs *models,
-                       long param);
-
-  STDMETHODIMP InvokeEx (IMgaProject *project,
-                         IMgaFCO *currentobj,
-                         IMgaFCOs *selectedobjs,
-                         long param);
-
-  STDMETHODIMP ObjectsInvokeEx (IMgaProject *project,
-                                IMgaObject *currentobj,
-                                IMgaObjects *selectedobjs,
-                                long param);
-
-  STDMETHODIMP get_ComponentParameter (BSTR name,
-                                       VARIANT *pVal);
-
-  STDMETHODIMP put_ComponentParameter (BSTR name,
-                                       VARIANT newVal);
-
-#if defined (GME_ADDON)
-  STDMETHODIMP GlobalEvent (globalevent_enum event);
-
-  STDMETHODIMP ObjectEvent (IMgaObject * obj,
-                            unsigned long eventmask,
-                            VARIANT v);
-#endif
+  virtual int handle_object_event (GAME::Object & obj, unsigned long mask);
 
 private:
   /// Event handler for OBJEVENT_CREATED.

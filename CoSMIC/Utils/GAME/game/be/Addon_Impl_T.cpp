@@ -10,6 +10,21 @@
 namespace GAME
 {
 //
+// Addon_Impl_T
+//
+template <typename T, typename SINK>
+Addon_Impl_T <T, SINK>::~Addon_Impl_T (void)
+{
+  if (this->addon_)
+  {
+    HRESULT hr = this->addon_->Destroy ();
+
+    if (hr == S_OK)
+      this->sink_.Detach ();
+  }
+}
+
+//
 // initialize
 //
 template <typename T, typename SINK>
@@ -24,34 +39,37 @@ STDMETHODIMP Addon_Impl_T <T, SINK>::Initialize (IMgaProject * proj)
   try
   {
     // Create a new event handler for this add-on.
-    Event_Handler * handler = new CComObject <Event_Handler> ();
-    handler->attach (&this->impl_);
-    this->sink_.Attach (handler);
+    this->sink_.Attach (new CComObject <Event_Handler> ());
+    this->sink_->attach (&this->impl_);
 
     // Register the event handler with GME.
     VERIFY_HRESULT (proj->CreateAddOn (this->sink_, &this->addon_));
     VERIFY_HRESULT (this->addon_->put_EventMask (this->impl_.event_mask ()));
 
-    return handler->initialize (GAME::Project (proj));
+    return this->sink_->initialize (GAME::Project (proj));
   }
   catch (...)
   {
-    return S_FALSE;
+    return E_FAIL;
   }
 }
 
 //
-// Addon_Impl_T
+// Enable
 //
 template <typename T, typename SINK>
-Addon_Impl_T <T, SINK>::~Addon_Impl_T (void)
+STDMETHODIMP Addon_Impl_T <T, SINK>::Enable (VARIANT_BOOL enable)
 {
-  if (this->addon_)
+  try
   {
-    HRESULT hr = this->addon_->Destroy ();
+    bool state = enable == VARIANT_TRUE ? true : false;
+    this->sink_->enable (state);
 
-    if (hr == S_OK)
-      this->sink_.Detach ();
+    return S_OK;
+  }
+  catch (...)
+  {
+    return E_FAIL;
   }
 }
 

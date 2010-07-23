@@ -49,6 +49,15 @@ componenttype_enum Component::type (void) const
 }
 
 //
+// enable
+//
+void Component::enable (bool state)
+{
+  VARIANT_BOOL enabled = state ? VARIANT_TRUE : VARIANT_FALSE;
+  VERIFY_HRESULT (this->component_->Enable (enabled));
+}
+
+//
 // interative
 //
 bool Component::interactive (void) const

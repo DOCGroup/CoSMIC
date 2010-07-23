@@ -34,7 +34,7 @@ class Project;
  */
 class GAME_BE_Export Event_Handler :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
-  public IMgaEventSink 
+  public IMgaEventSink
 {
 public:
   /// Default constructor.
@@ -43,12 +43,26 @@ public:
   /// Destructor.
   virtual ~Event_Handler (void);
 
-  void attach (Event_Handler_Impl * impl = 0);
-
   int initialize (GAME::Project & project);
 
+  /**
+   * Attach the event handler to an implementation.
+   *
+   * @param[in]       impl          The target implementation
+   */
+  void attach (Event_Handler_Impl * impl = 0);
+
+  /**
+   * Set the enable state of the event handler. If \a enable is
+   * true, then the event handler will process events. If \a enable
+   * is false, then the event handler will not process events.
+   *
+   * @param[in]       state         The enable state
+   */
+  void enable (bool state);
+
   STDMETHOD (GlobalEvent) (globalevent_enum event);
-	STDMETHOD (ObjectEvent) (IMgaObject * obj, unsigned long eventmask, VARIANT v);
+  STDMETHOD (ObjectEvent) (IMgaObject * obj, unsigned long eventmask, VARIANT v);
 
   BEGIN_COM_MAP (Event_Handler)
     COM_INTERFACE_ENTRY (IMgaEventSink)
@@ -58,6 +72,9 @@ public:
 private:
   /// Pointer to the actual implementation.
   Event_Handler_Impl * impl_;
+
+  /// The enable state for the event handler.
+  bool enable_;
 };
 
 }

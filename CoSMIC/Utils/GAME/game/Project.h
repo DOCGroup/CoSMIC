@@ -237,6 +237,7 @@ public:
 
   size_t addon_components (std::vector <Component> & v) const;
   size_t addon_components (std::vector <ComponentEx> & v) const;
+  ComponentEx addon_component (const std::string & progid) const;
 
 private:
   /// The project type.

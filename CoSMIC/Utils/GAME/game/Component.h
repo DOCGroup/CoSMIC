@@ -101,13 +101,16 @@ public:
    */
   void invoke (Project & project, std::vector <FCO> & selected, long param);
 
+  /// Set the enable state for the component.
+  void enable (bool state);
+
   /// Explicitly release the component.
   void release (void);
 
   /// Attach to the specified inteface.
   void attach (IMgaComponent * c);
 
-  virtual IMgaComponent * operator -> (void) const;
+  IMgaComponent * impl (void) const;
 
 protected:
   /// The underlying component interface.

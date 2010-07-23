@@ -45,7 +45,7 @@ Component::~Component (void)
 // operator ->
 //
 GAME_INLINE
-IMgaComponent * Component::operator -> (void) const
+IMgaComponent * Component::impl (void) const
 {
   return this->component_.p;
 }
@@ -65,7 +65,7 @@ void Component::release (void)
 GAME_INLINE
 void Component::attach (IMgaComponent * c)
 {
-  this->component_.Attach (c);  
+  this->component_.Attach (c);
 }
 
 }

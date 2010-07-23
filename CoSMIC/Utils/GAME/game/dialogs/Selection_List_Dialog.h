@@ -20,10 +20,13 @@ namespace GAME
 {
 namespace Dialogs
 {
+// Forward decl.
+class Dialog_Display_Strategy;
+
 /**
  * @class Selection_List_Dialog
  *
- * Simple dialog that shows a list of elements. 
+ * Simple dialog that shows a list of elements.
  */
 template <typename T>
 class Selection_List_Dialog : public CDialog
@@ -41,7 +44,9 @@ public:
    * @param[in]     items       Initial items for the dialog
    * @param[in]     parent      Parent of the dialog
    */
-  Selection_List_Dialog (const items_type & items,  CWnd * parent = 0);
+  Selection_List_Dialog (const items_type & items,
+                         Dialog_Display_Strategy * strategy = 0,
+                         CWnd * parent = 0);
 
   /// Destructor.
   virtual ~Selection_List_Dialog (void);
@@ -67,17 +72,22 @@ protected:
   virtual BOOL OnInitDialog (void);
 
 private:
-  /// The selected string from the dialog.
-  int index_;
+  void insert_item (T item, const std::string & display_name);
 
-  /// The list control for the dialog.
-  CListBox list_;
+  /// Display strategy for the dialog.
+  Dialog_Display_Strategy * strategy_;
 
   /// Collection of strings to display.
   const items_type & items_;
 
+  /// The list control for the dialog.
+  CListBox list_;
+
   /// Title of the dialog box.
   std::string title_;
+
+  /// The selected item from the listbox.
+  T selection_;
 };
 
 }

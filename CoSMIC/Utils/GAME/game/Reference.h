@@ -95,10 +95,10 @@ public:
   /// Get the meta information for this object.
   virtual Meta::Reference meta (void) const;
 
-private:
   /// Helper method to get the correct implementation.
   IMgaReference * impl (void) const;
 
+private:
   /// Pointer to the underlying COM interface.
   mutable ATL::CComPtr <IMgaReference> ref_;
 };

@@ -15,6 +15,7 @@
 
 #include "ComponentEx_Impl_T.h"
 #include "Addon_Impl_Base.h"
+#include "Event_Handler.h"
 
 #define GAME_DEFAULT_ADDON_IMPL(type, name, paradigm, progid) \
   class type : public GAME::Addon_Impl_Base { \
@@ -46,13 +47,14 @@ public:
 
   // Handle the initialization of the addon
   STDMETHOD (Initialize) (IMgaProject * proj);
+  STDMETHOD (Enable) (VARIANT_BOOL enable);
 
 protected:
   /// The implementation of the sink.
   SINK impl_;
 
   /// Raw interface to the event sink.
-  ::ATL::CComPtr <IMgaEventSink> sink_;
+  ::ATL::CComPtr <Event_Handler> sink_;
 
   /// Raw interface to the add-on.
   ::ATL::CComPtr <IMgaAddOn> addon_;
