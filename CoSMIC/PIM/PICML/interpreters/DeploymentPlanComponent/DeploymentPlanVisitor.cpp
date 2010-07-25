@@ -155,20 +155,20 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   this->create_simple_content (root, "label", plan.label ());
   this->create_simple_content (root, "UUID", plan.UUID ());
 
-  // Visit all the nodes in the deployment plan. This will gather all 
-  // the necessary parts of the XML document. We do not process the 
-  // connections at this point because we want to wait until we have 
+  // Visit all the nodes in the deployment plan. This will gather all
+  // the necessary parts of the XML document. We do not process the
+  // connections at this point because we want to wait until we have
   // all the deployed instances. This will make a life a little less
   // hectic in the long run.
   std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
   std::for_each (nodes.begin (),
                  nodes.end (),
-                 boost::bind (&PICML::NodeReference::Accept, 
-                              _1, 
+                 boost::bind (&PICML::NodeReference::Accept,
+                              _1,
                               boost::ref (*this)));
 
-  // Finally, get all the connections. To simplify this problem, we 
-  // can look at the outbound connections and if there is a connection 
+  // Finally, get all the connections. To simplify this problem, we
+  // can look at the outbound connections and if there is a connection
   // on the other end and the target instance is deployed, then we can
   // include the connection in the final deployment.
 
@@ -202,7 +202,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                  this->impls_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
-                              boost::bind (&std::map <PICML::Implemenation, 
+                              boost::bind (&std::map <PICML::Implemenation,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
   // <instance>
@@ -210,7 +210,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                  this->insts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
-                              boost::bind (&std::map <PICML::ComponentInstance, 
+                              boost::bind (&std::map <PICML::ComponentInstance,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
 
@@ -218,7 +218,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                  this->conn_insts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
-                              boost::bind (&std::map <std::string, 
+                              boost::bind (&std::map <std::string,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
 
@@ -246,7 +246,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                  this->artifacts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
-                              boost::bind (&std::map <PICML::ImplementationArtifact, 
+                              boost::bind (&std::map <PICML::ImplementationArtifact,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
 
@@ -261,7 +261,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   std::ostringstream filename;
   filename << this->outputPath_ << "/" << plan.name () << ".cdp";
   LocalFileFormatTarget target (filename.str ().c_str ());
-  
+
   // Write the document.
   this->output_->setByteStream (&target);
   this->serializer_->write (this->doc_, this->output_);
@@ -436,7 +436,7 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   this->create_simple_content (this->curr_impl_, "name", name);
   this->create_simple_content (this->curr_impl_, "source", "");
 
-  // The next part of this element is the artifacts. Therefore, visit 
+  // The next part of this element is the artifacts. Therefore, visit
   // all the primary artifacts for this component.
   std::set <PICML::MonolithprimaryArtifact> mpas = impl.dstMonolithprimaryArtifact ();
   std::for_each (mpas.begin (),
@@ -448,7 +448,7 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   // Set the property parameter's parent.
   this->param_parent_ = this->curr_impl_;
 
-  // Write the executor parameters for the required artifacts. This 
+  // Write the executor parameters for the required artifacts. This
   // should never be null, but just in case... :-)
   if (Udm::null != this->impl_artifact_)
     this->impl_artifact_.Accept (*this);
@@ -456,8 +456,8 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   if (Udm::null != this->svnt_artifact_)
     this->svnt_artifact_.Accept (*this);
 
-  // The last part of this section of the XML document are the 
-  // executor parameters. So, let's visit all the monolithic executor 
+  // The last part of this section of the XML document are the
+  // executor parameters. So, let's visit all the monolithic executor
   // parameters for this implementation.
   std::set <PICML::MonolithExecParameter> mexecs = impl.dstMonolithExecParameter ();
 
@@ -512,12 +512,12 @@ Visit_ImplementationArtifact (const PICML::ImplementationArtifact & artifact)
   DOMElement * element = this->create_element (this->curr_impl_, "artifact");
   element->setAttribute (XStr ("xmi:idref"), XStr (uuid));
 
-  // There is no need to continue if we have already seen this 
+  // There is no need to continue if we have already seen this
   // artifact. Otherwise, we will overwrite the existing one.
   if (this->artifacts_.find (artifact) != this->artifacts_.end ())
     return;
 
-  // We should go ahead and create a new artifact element for 
+  // We should go ahead and create a new artifact element for
   // the XML document.
   this->curr_artifact_ = this->doc_->createElement (XStr ("artifact"));
   this->artifacts_.insert (std::make_pair (artifact, this->curr_artifact_));
@@ -693,11 +693,16 @@ Visit_Property (const PICML::Property & prop)
   // Start with the name of the property.
   std::string name = prop.name ();
 
+  if (name == "InstanceIOR")
+    name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
+  else if (name == "RegisterNaming")
+    name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
+
   PICML_Data_Type_Dispatcher dt_dispatcher;
 
   this->create_simple_content (this->curr_param_, "name", name);
   xercesc::DOMElement * value = this->create_element (this->curr_param_, "value");
-  
+
   // First, we need to generate the type for this property
   PICML_Data_Type_Visitor dtv (value);
   PICML_Data_Value_Visitor dvv (value);
@@ -716,7 +721,7 @@ Visit_Property (const PICML::Property & prop)
   }
   else
   {
-    // Ok, so we are dealing with a complex type. We therefore need to 
+    // Ok, so we are dealing with a complex type. We therefore need to
     // visit the ComplexType reference in this container.
     dt_dispatcher.dispatch (dtv, complex.ref ());
   }
@@ -842,7 +847,7 @@ Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty & acp)
 //
 // localities
 //
-const DeploymentPlanVisitor::locality_t & DeploymentPlanVisitor::localities (void) const 
+const DeploymentPlanVisitor::locality_t & DeploymentPlanVisitor::localities (void) const
 {
   return this->locality_;
 }

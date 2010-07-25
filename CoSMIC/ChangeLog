@@ -1,3 +1,11 @@
+Sun Jul 25 21:44:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Somehow, the code that generates the InstanceIOR and
+          RegisterNaming was deleted from the interpreter. This
+          functionality has been readded.
+
 Sun Jul 25 13:27:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
