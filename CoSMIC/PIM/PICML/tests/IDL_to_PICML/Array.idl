@@ -1,0 +1,33 @@
+// $Id: $
+
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    Array.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    array types using the basic types
+//
+// = AUTHORS
+//    Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
+
+#ifndef _ARRAY_IDL_
+#define _ARRAY_IDL_
+
+module ArrayBasicTypes
+{
+  typedef boolean BooleanArray[4];
+  typedef short ShortArray[4];
+  typedef long LongArray[4];
+  typedef char CharArray[4];
+  typedef float FloatArray[4];
+  typedef double DoubleArray[4];
+};
+
+#endif

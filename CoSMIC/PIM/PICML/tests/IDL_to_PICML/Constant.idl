@@ -1,4 +1,22 @@
-// -*- IDL -*-
+// $Id$
+
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    Constants.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    basic types MAX and MIN boundaries.
+//
+// = AUTHORS
+//    James H. Hill <hillj@cs.iupui.edu>
+//    Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
 
 #ifndef _CONSTANT_IDL_
 #define _CONSTANT_IDL_
@@ -20,7 +38,16 @@ const long long CONST_LONG_LONG_MIN = -9223372036854775808;
 const long long CONST_LONG_LONG_MAX = 9223372036854775807;
 const unsigned long long CONST_UNSIGNED_LONG_LONG_MAX = 18446744073709551615;
 
-// string types
-const string CONST_STRING = "IDL_TO_PICML";
+// float types
+const float CONST_FLOAT_MIN = 1.175494351e-38F;
+const float CONST_FLOAT_MAX = 3.402823466e+38F; 
+
+// double types
+const double CONST_DOUBLE_MIN = 2.225073858507202e-308;
+const double CONST_DOUBLE_MAX = 1.797693134862315e+308;
+
+// char types
+const char CONST_CHAR_MIN = 'a';
+const char CONST_CHAR_MAX = 'Z';
 
 #endif

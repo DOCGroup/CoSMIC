@@ -1,0 +1,41 @@
+// -*- MPC -*-
+// $Id: $
+
+project (String_Expected) : taoclient {
+  exename = String_Expected
+  install = .
+
+  Source_Files {
+    String.cpp
+  }
+
+  IDL_Files {
+    String.idl
+  }
+}
+
+project (String_IDLTOPICML) : idl2picml {
+  custom_only = 1
+
+  after += String_Expected
+
+  IDL2PICML_Files {
+    String.idl
+  }
+}
+
+project (String) : taoclient {
+  exename = String
+  install = .
+
+  after += String_IDLTOPICML
+
+  Source_Files {
+    String.cpp
+  }
+
+  IDL_Files {
+    gendir = .
+    ./generated/String.idl
+  }
+}

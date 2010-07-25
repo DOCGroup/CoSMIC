@@ -88,12 +88,47 @@ int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
   if (CONST_UNSIGNED_LONG_LONG_MAX != ACE_UINT64_MAX)
     ACE_ERROR ((LM_ERROR, "value of CONST_UNSIGNED_LONG_LONG_MAX is incorrect\n"));
 
-  // validate CONST_STRING
-  if (typeid (const char * const) != typeid (CONST_STRING))
-    ACE_ERROR ((LM_ERROR, "type of CONST_STRING is incorrect\n"));
+  // validate CONST_FLOAT_MIN
+  if (typeid (CORBA::Float) != typeid (CONST_FLOAT_MIN))
+    ACE_ERROR ((LM_ERROR, "type of CONST_FLOAT_MIN is incorrect\n"));
 
-  if (0 != ACE_OS::strcmp (CONST_STRING, "IDL_TO_PICML"))
-    ACE_ERROR ((LM_ERROR, "value of CONST_STRING is incorrect\n"));
+  if (CONST_FLOAT_MIN != ACE_FLT_MIN)
+    ACE_ERROR ((LM_ERROR, "value of CONST_FLOAT_MIN is incorrect\n"));
+
+  // validate CONST_FLOAT_MAX
+  if (typeid (CORBA::Float) != typeid (CONST_FLOAT_MAX))
+    ACE_ERROR ((LM_ERROR, "type of CONST_FLOAT_MAX is incorrect\n"));
+
+  if (CONST_FLOAT_MAX != ACE_FLT_MAX)
+    ACE_ERROR ((LM_ERROR, "value of CONST_FLOAT_MAX is incorrect\n"));
+
+  // validate CONST_DOUBLE_MIN
+  if (typeid (CORBA::Double) != typeid (CONST_DOUBLE_MIN))
+    ACE_ERROR ((LM_ERROR, "type of CONST_DOUBLE_MIN is incorrect\n"));
+
+  if (CONST_DOUBLE_MIN != ACE_DBL_MIN)
+    ACE_ERROR ((LM_ERROR, "value of CONST_DOUBLE_MIN is incorrect\n"));
+
+  // validate CONST_DOUBLE_MAX
+  if (typeid (CORBA::Double) != typeid (ACE_DBL_MAX))
+    ACE_ERROR ((LM_ERROR, "type of CONST_DOUBLE_MAX is incorrect\n"));
+
+  if (CONST_DOUBLE_MAX != ACE_DBL_MAX)
+    ACE_ERROR ((LM_ERROR, "value of CONST_DOUBLE_MAX is incorrect\n"));
+
+  // validate CONST_CHAR_MIN
+  if (typeid (CORBA::Char) != typeid (ACE_CHAR_MIN))
+    ACE_ERROR ((LM_ERROR, "type of CONST_CHAR_MIN is incorrect\n"));
+
+  if (CONST_CHAR_MIN != 'a')
+    ACE_ERROR ((LM_ERROR, "value of CONST_CHAR_MIN is incorrect\n"));
+
+  // validate CONST_CHAR_MAX
+  if (typeid (CORBA::Char) != typeid (ACE_CHAR_MAX))
+    ACE_ERROR ((LM_ERROR, "type of CONST_CHAR_MAX is incorrect\n"));
+
+  if (CONST_CHAR_MAX != 'Z')
+    ACE_ERROR ((LM_ERROR, "value of CONST_CHAR_MAX is incorrect\n"));
 
   ACE_DEBUG ((LM_DEBUG, "*** end validating constant values\n"));
 

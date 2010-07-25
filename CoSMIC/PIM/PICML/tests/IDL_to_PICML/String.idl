@@ -1,0 +1,34 @@
+// $Id: $
+
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    String.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    string types
+//
+// = AUTHORS
+//   Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
+
+#ifndef _STRING_IDL_
+#define _STRING_IDL_
+
+    // string types
+    const string CONST_STRING_PERSON = "A_PERSON_HAS_A_NAME_HEIGHT_AND_AGE_ATTRIBUTES";
+    // string types
+    const string CONST_STRING_PLACE = "a place has a name, how many and is real attributes";
+    // string types
+    const string CONST_STRING_THING = "A ThInG hAs A nAmE aNd NuMbEr Of AtTrIbUtEs";
+    // string types
+    const string CONST_STRING_EVENT = "A THING HAS A NAME ID AND TYPE ATTRIBUTES";
+    // string types
+    const string CONST_STRING_IDEA =  "AN_IDEA_HAS_A_NAME_IS_GREAT_ID_AND_BEGIN_LETTER_ATTRIBUTES";
+
+#endif
