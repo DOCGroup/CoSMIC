@@ -8,7 +8,7 @@ project (CBMLManager): boost_base, game_component, game_utils, cosmic_lib {
 
   Source_Files {
     CBMLManager.idl
-    CBMLManager.cpp
+    CBMLManager_Impl.cpp
     CBMLManager_Module.cpp
 
     String_Selection_Dialog.cpp

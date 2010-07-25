@@ -1,3 +1,9 @@
+Sun Jul 25 13:27:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+
+          Fixed error in project specification.
+
 Fri Jul 23 22:51:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Transaction.h:
