@@ -3,6 +3,7 @@
 #include "Data_Type_Visitor.h"
 #include "Data_Value_Visitor.h"
 #include "External_Reference_Visitor.h"
+#include "Utils/UDM/Position_Sort_T.h"
 
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/udm/visit.h"
@@ -34,7 +35,8 @@ Deployment_Domain_Visitor (const std::string & outputPath)
   doc_ (0),
   output_ (0),
   serializer_ (0),
-  outputPath_ (outputPath)
+  outputPath_ (outputPath),
+  nodemap_contents_ ("")
 {
   this->init ();
 }
@@ -152,6 +154,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 
   // Release the document.
   this->doc_->release ();
+
+  create_nodemap ();
 }
 
 
@@ -161,7 +165,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 void Deployment_Domain_Visitor::
 Visit_NodeReference (const PICML::NodeReference & noderef)
 {
-	PICML::Node parent_noderef = noderef.ref();
+  PICML::Node parent_noderef = noderef.ref ();
+  this->curr_node_ref_name_ = noderef.name ();
   //std::set <PICML::InstanceMapping> mapping = noderef.srcInstanceMapping () ;
   std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping () ;
 
@@ -201,14 +206,35 @@ Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 void Deployment_Domain_Visitor::
 Visit_Property (const PICML::Property & prop)
 {
-  std::string pname = prop.name ();
+  this->curr_prop_name_ = prop.name ();
+
+  typedef UDM_Position_Sort_T <PICML::DataValue, PS_Top_To_Bottom> sorter_t;
+  sorter_t sorter ("DataValueAspect", PS_Top_To_Bottom ());
+  std::set <PICML::DataValue, sorter_t> sorted_values (sorter);
+  sorted_values = prop.DataValue_kind_children_sorted (sorter);
+
+  std::for_each (sorted_values.begin (),
+                 sorted_values.end (),
+                 boost::bind (&PICML::DataValue::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_DataValue
+//
+void Deployment_Domain_Visitor::
+Visit_DataValue (const PICML::DataValue & dv)
+{
   std::string pname_full;
 
-  if (pname == "StringIOR")
+  if (this->curr_prop_name_ == "StringIOR")
   {
 	  pname_full = "edu.vanderbilt.dre.DAnCE.StringIOR";
+    add_to_nodemap (dv);
   }
-  else if (pname == "CORBAName")
+      
+  else if (this->curr_prop_name_ == "CORBAName")
   {
 	  pname_full = "edu.vanderbilt.dre.DAnCE.CORBAName";
   }
@@ -224,10 +250,44 @@ Visit_Property (const PICML::Property & prop)
 	  this->create_simple_content (this->curr_value_, "type", "tk_string");
 
 	  this->curr_value_inner_ = this->doc_->createElement (XStr ("value"));
-	  this->create_simple_content (this->curr_value_inner_, "string", prop.DataValue());
+    this->create_simple_content (this->curr_value_inner_, "string", dv.Value ());
 
 	  this->curr_value_->appendChild (this->curr_value_inner_);
 	  this->curr_property_->appendChild (this->curr_value_);
 	  this->curr_resource_->appendChild (this->curr_property_);
+  }
+}
+
+//
+// add_to_nodemap
+//
+void Deployment_Domain_Visitor::
+add_to_nodemap (const PICML::DataValue & dv)
+{
+  if(!this->nodemap_contents_.empty ())
+  {
+    this->nodemap_contents_.append ("\n\n");
+  }
+
+  this->nodemap_contents_.append (this->curr_node_ref_name_);
+  this->nodemap_contents_.append (" ");
+  this->nodemap_contents_.append (dv.Value ());
+}
+
+//
+// create_nodemap
+//
+void Deployment_Domain_Visitor::
+create_nodemap ()
+{
+  std::string full_op_path = this->outputPath_;
+  full_op_path.append("/NodeMap.dat");
+
+  FILE * nodemap = fopen (full_op_path.c_str(),"w");
+
+  if (nodemap != NULL)
+  {
+    fputs (this->nodemap_contents_.c_str (), nodemap);
+    fclose (nodemap);
   }
 }

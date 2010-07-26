@@ -33,6 +33,8 @@ Connection_Visitor::~Connection_Visitor (void)
 void Connection_Visitor::
 Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 {
+  std::string s = inst.name ();
+  
   // Visit the event sources.
   Udm::visit_all <PICML::OutEventPortInstance> (inst, *this);
 
@@ -69,6 +71,9 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
                  boost::bind (&PICML::SendsTo::Accept,
                               _1,
                               boost::ref (*this)));
+
+  PICML::EventSourceDelegate del = source.dstEventSourceDelegate ();
+  PICML::EventSourceDelegate (del).Accept (*this);
 
   // We can release this endpoint now.
   this->endpoint_->release ();
@@ -108,13 +113,16 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
                               _1,
                               boost::ref (*this)));
 
+  PICML::ReceptacleDelegate del = receptacle.srcReceptacleDelegate ();
+  PICML::ReceptacleDelegate (del).Accept (*this);
+
   // We can release this endpoint now.
   this->endpoint_->release ();
   this->endpoint_ = 0;  
 }
 
 //
-// Visit_sendsTo
+// Visit_SendsTo
 //
 void Connection_Visitor::Visit_SendsTo (const PICML::SendsTo & sends)
 {
@@ -124,11 +132,11 @@ void Connection_Visitor::Visit_SendsTo (const PICML::SendsTo & sends)
   if (type == PICML::InEventPortInstance::meta)
     PICML::InEventPortInstance::Cast (sink).Accept (*this);
   else if (type == PICML::InEventPortDelegate::meta)
-    PICML::InEventPortInstance::Cast (sink).Accept (*this);
+    PICML::InEventPortDelegate::Cast (sink).Accept (*this);
 }
 
 //
-// Visit_invoke
+// Visit_Invoke
 //
 void Connection_Visitor::Visit_Invoke (const PICML::Invoke & i)
 {
@@ -139,6 +147,8 @@ void Connection_Visitor::Visit_Invoke (const PICML::Invoke & i)
     PICML::ProvidedRequestPortInstance::Cast (port).Accept (*this);
   else if (type == PICML::SupportsInstance::meta)
     PICML::SupportsInstance::Cast (port).Accept (*this);
+  else if (type == PICML::ProvidedRequestPortDelegate::meta)
+    PICML::ProvidedRequestPortDelegate::Cast (port).Accept (*this);
 }
 
 //
@@ -214,6 +224,118 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
                              endpoint,
                              is_local);
   }
+}
+
+//
+// Visit_ReceptacleDelegate
+//
+void Connection_Visitor::
+Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate & del)
+{
+  PICML::RequiredRequestPortEnd port = del.srcReceptacleDelegate_end ();
+  const Uml::Class & type = port.type ();
+
+  if (type == PICML::RequiredRequestPortInstance::meta)
+    PICML::RequiredRequestPortInstance::Cast (port).Accept (*this);
+  else if (type == PICML::RequiredRequestPortDelegate::meta)
+    PICML::RequiredRequestPortDelegate::Cast (port).Accept (*this);
+}
+
+//
+// Visit_RequiredRequestPortDelegate
+//
+void Connection_Visitor::
+Visit_RequiredRequestPortDelegate (const PICML::RequiredRequestPortDelegate & facet)
+{
+  std::set <PICML::Invoke> invokes = facet.dstinvoke ();
+  
+  std::for_each (invokes.begin (),
+                 invokes.end (),
+                 boost::bind (&PICML::Invoke::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_FacetDelegate
+//
+void Connection_Visitor::
+Visit_FacetDelegate (const PICML::FacetDelegate & del)
+{
+  PICML::ProvidedRequestPortEnd port = del.dstFacetDelegate_end ();
+  const Uml::Class & type = port.type ();
+
+  if (type == PICML::ProvidedRequestPortInstance::meta)
+    PICML::ProvidedRequestPortInstance::Cast (port).Accept (*this);
+  else if (type == PICML::SupportsInstance::meta)
+    PICML::SupportsInstance::Cast (port).Accept (*this);
+  else if (type == PICML::ProvidedRequestPortDelegate::meta)
+    PICML::ProvidedRequestPortDelegate::Cast (port).Accept (*this);
+}
+
+//
+// Visit_ProvidedRequestPortDelegate
+//
+void Connection_Visitor::
+Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & facet)
+{
+  PICML::FacetDelegate del = facet.dstFacetDelegate ();
+  PICML::FacetDelegate (del).Accept (*this);
+}
+
+//
+// Visit_EventSourceDelegate
+//
+void Connection_Visitor::
+Visit_EventSourceDelegate (const PICML::EventSourceDelegate & del)
+{
+  PICML::OutEventPortEnd port = del.dstEventSourceDelegate_end ();
+  const Uml::Class & type = port.type ();
+
+  if (type == PICML::OutEventPortInstance::meta)
+    PICML::OutEventPortInstance::Cast (port).Accept (*this);
+  else if (type == PICML::OutEventPortDelegate::meta)
+    PICML::OutEventPortDelegate::Cast (port).Accept (*this);
+}
+
+//
+// Visit_OutEventPortDelegate
+//
+void Connection_Visitor::
+Visit_OutEventPortDelegate (const PICML::OutEventPortDelegate & facet)
+{
+  std::set <PICML::SendsTo> st = facet.dstSendsTo();
+  
+  std::for_each (st.begin (),
+                 st.end (),
+                 boost::bind (&PICML::SendsTo::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_EventSinkDelegate
+//
+void Connection_Visitor::
+Visit_EventSinkDelegate (const PICML::EventSinkDelegate & del)
+{
+  PICML::InEventPortEnd port = del.dstEventSinkDelegate_end ();
+  const Uml::Class & type = port.type ();
+
+  if (type == PICML::InEventPortInstance::meta)
+    PICML::InEventPortInstance::Cast (port).Accept (*this);
+  else if (type == PICML::InEventPortDelegate::meta)
+    PICML::InEventPortDelegate::Cast (port).Accept (*this);
+}
+
+//
+// Visit_InEventPortDelegate
+//
+void Connection_Visitor::
+Visit_InEventPortDelegate (const PICML::InEventPortDelegate & facet)
+{
+  PICML::EventSinkDelegate del = facet.dstEventSinkDelegate ();
+  PICML::EventSinkDelegate (del).Accept (*this);
 }
 
 //

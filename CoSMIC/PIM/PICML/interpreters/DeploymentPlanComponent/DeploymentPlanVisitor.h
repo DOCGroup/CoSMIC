@@ -28,6 +28,8 @@ public:
   CollocationGroupMember_Dispatcher (void)
   {
     this->insert <PICML::ComponentInstanceRef> ();
+
+    this->insert <PICML::ComponentAssemblyReference> ();
   }
 };
 
@@ -90,6 +92,8 @@ public:
   virtual void Visit_ConfigProperty (const PICML::ConfigProperty & );
 
   virtual void Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty &);
+
+  virtual void Visit_ComponentAssemblyReference (const PICML::ComponentAssemblyReference & );
 
   virtual void Visit_ComponentAssembly (const PICML::ComponentAssembly & );
 

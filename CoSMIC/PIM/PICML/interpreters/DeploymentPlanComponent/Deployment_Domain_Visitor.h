@@ -41,6 +41,12 @@ class Deployment_Domain_Visitor :
   
   virtual void Visit_Property (const PICML::Property & );
 
+  virtual void Visit_DataValue (const PICML::DataValue & );
+
+  virtual void add_to_nodemap (const PICML::DataValue & );
+
+  virtual void create_nodemap ();
+
   private:
   /// Initialize the object.
   void init (void);
@@ -68,6 +74,12 @@ class Deployment_Domain_Visitor :
   xercesc::DOMElement * curr_value_;
 
   xercesc::DOMElement * curr_value_inner_;
+
+  std::string curr_node_ref_name_;
+
+  std::string curr_prop_name_;
+
+  std::string nodemap_contents_;
 };
 
 #endif

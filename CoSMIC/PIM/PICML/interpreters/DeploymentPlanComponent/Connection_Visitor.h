@@ -47,6 +47,22 @@ public:
 
   virtual void Visit_SendsTo (const PICML::SendsTo & sends);
 
+	virtual void Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate &);
+
+  virtual void Visit_RequiredRequestPortDelegate (const PICML::RequiredRequestPortDelegate &);
+
+  virtual void Visit_FacetDelegate (const PICML::FacetDelegate &);
+
+  virtual void Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate &);
+
+  virtual void Visit_EventSourceDelegate (const PICML::EventSourceDelegate &);
+
+  virtual void Visit_OutEventPortDelegate (const PICML::OutEventPortDelegate &);
+
+  virtual void Visit_EventSinkDelegate (const PICML::EventSinkDelegate &);
+
+  virtual void Visit_InEventPortDelegate (const PICML::InEventPortDelegate &);
+
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 
 private:

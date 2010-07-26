@@ -1,3 +1,27 @@
+Mon Jul 26 15:34:24 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+
+          Added code to handle ComponentAssembly elements in the DeploymentPlanVisitor.
+          Added code in connectionVisitor to handle Invoke, ReceptacleDelegate,
+          FacetDelegate, SendsTo, EventSourceDelegate and EventSinkDelegate connections.
+          Added code in Deployment_Domain_Visitor to auto generate NodeMap.dat file.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Changed the cardinality between ProvidedRequestPortDelegate and
+          ProvidedRequestPortEnd to 0..1 at both ends.
+
 Sun Jul 25 21:44:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
@@ -182,6 +206,7 @@ Tue Jul 20 20:21:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
           Implemented an EntityResolver that resolves the location of
           mga.dtd. This means you no longer have to have mga.dtd in the
           same directory as the file undergoing migration.
+
 Tue Jul 20 20:10:31 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
