@@ -1,3 +1,31 @@
+Thu Jul 29 23:08:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Component.rc:
+
+          Fixed compile error from disfunct resource includes.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Added support for delegating extended ports and mirror ports
+          from a component assembly.
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+          Removed unnessary base projects.
+
+Mon Jul 26 17:39:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+
 Mon Jul 26 15:34:24 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.h:

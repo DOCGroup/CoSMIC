@@ -36,7 +36,7 @@ public:
 /**
  * @class DeploymentPlanVisitor
  */
-class DeploymentPlan_Export DeploymentPlanVisitor : 
+class DeploymentPlan_Export DeploymentPlanVisitor :
   public PICML::Visitor,
   public XML_Document
 {
@@ -50,15 +50,15 @@ public:
   virtual ~DeploymentPlanVisitor (void);
 
   virtual void Visit_RootFolder (const PICML::RootFolder &);
-  
+
   virtual void Visit_DeploymentPlans (const PICML::DeploymentPlans &);
-  
+
   virtual void Visit_DeploymentPlan (const PICML::DeploymentPlan &);
-  
+
   virtual void Visit_NodeReference (const PICML::NodeReference &);
-  
+
   virtual void Visit_InstanceMapping (const PICML::InstanceMapping &);
-  
+
   virtual void Visit_CollocationGroup (const PICML::CollocationGroup &);
 
   virtual void Visit_ComponentInstanceRef (const PICML::ComponentInstanceRef &);
@@ -112,6 +112,9 @@ public:
 
   const locality_t & localities (void) const;
 
+  const std::map <PICML::ComponentInstance,
+                  PICML::CollocationGroup> & mappings (void) const;
+
 private:
   void Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & );
 
@@ -147,12 +150,14 @@ private:
 
   /// Collection of implementation in the current deployment.
   std::map <PICML::Implemenation, xercesc::DOMElement *> impls_;
-  
+
   /// Collection of artifacts in the current deployment.
   std::map <PICML::ImplementationArtifact, xercesc::DOMElement *> artifacts_;
-  
+
   /// Collection of connections in the current deployment.
   std::vector <xercesc::DOMElement *> conns_;
+
+  std::map <PICML::ComponentInstance, PICML::CollocationGroup> mappings_;
 
   /// Collection of plan localities in the current deployment.
   std::map <PICML::CollocationGroup, xercesc::DOMElement *> locality_;
@@ -174,6 +179,8 @@ private:
   PICML::ComponentImplementationArtifact impl_artifact_;
 
   PICML::ComponentServantArtifact svnt_artifact_;
+
+  PICML::CollocationGroup current_group_;
 
   std::string parameter_type_;
 };

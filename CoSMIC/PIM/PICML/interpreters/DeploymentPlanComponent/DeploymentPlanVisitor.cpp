@@ -309,6 +309,8 @@ Visit_CollocationGroup (const PICML::CollocationGroup & group)
 {
   // Start a new plan locality constraint (SameProcess).
   this->curr_locality_ = this->doc_->createElement (Utils::XStr ("localityConstraint"));
+  this->current_group_ = group;
+
   this->create_simple_content (curr_locality_, "constraint", "SameProcess");
   this->locality_.insert (std::make_pair (group, this->curr_locality_));
 
@@ -346,6 +348,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   // Create a new instance in the XML document.
   this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
   this->insts_.insert (std::make_pair (inst, this->curr_instance_));
+  this->mappings_[inst] = this->current_group_;
 
   this->curr_instance_->setAttribute (XStr ("xmi:id"), XStr (uuid));
   this->create_simple_content (this->curr_instance_, "name", name);
@@ -852,346 +855,14 @@ const DeploymentPlanVisitor::locality_t & DeploymentPlanVisitor::localities (voi
   return this->locality_;
 }
 
-//template <typename T, typename Del, typename DelRet, typename DelEndRet>
-//  void DeploymentPlanVisitor::GetComponents (const T& port,
-//  DelRet (T::*srcDel)() const,
-//  DelRet (T::*dstDel) () const,
-//  DelEndRet (Del::*srcDelEnd)() const,
-//  DelEndRet (Del::*dstDelEnd)() const,
-//  std::map<Component, std::string>& output,
-//  std::set<T>& visited)
-//{
-//  visited.insert (port);
-//  Udm::Object par = port.parent ();
-//  std::string recepName = port.name ();
-//  std::string parentName = this->ExtractName (par);
-//  if (Udm::IsDerivedFrom (par.type (), ComponentAssembly::meta))
-//  {
-//    std::set<Del> delegates = (port.*dstDel)();
-//    for (std::set<Del>::const_iterator iter = delegates.begin ();
-//      iter != delegates.end ();
-//      ++iter)
-//    {
-//      Del delegate = *iter;
-//      T srcPort = (delegate.*dstDelEnd)();
-//      std::string srcPortName = this->ExtractName (srcPort);
-//      if (std::find (visited.begin (),
-//        visited.end (),
-//        srcPort) == visited.end ())
-//        this->GetComponents (srcPort, srcDel, dstDel,
-//        srcDelEnd, dstDelEnd, output, visited);
-//    }
-//    delegates = (port.*srcDel)();
-//    for (std::set<Del>::const_iterator iter = delegates.begin ();
-//      iter != delegates.end ();
-//      ++iter)
-//    {
-//      Del delegate = *iter;
-//      T dstPort = (delegate.*srcDelEnd)();
-//      std::string dstPortName = this->ExtractName (dstPort);
-//      if (std::find (visited.begin (),
-//        visited.end (),
-//        dstPort) == visited.end ())
-//        this->GetComponents (dstPort, srcDel, dstDel,
-//        srcDelEnd, dstDelEnd, output, visited);
-//    }
-//  }
-//  else if (Udm::IsDerivedFrom (par.type (), Component::meta))
-//  {
-//    Component recep_comp = Component::Cast (par);
-//    output.insert (make_pair (recep_comp, port.name ()));
-//  }
-//  visited.erase (port);
-//  return;
-//}
 //
-//void DeploymentPlanVisitor::GetReceptacleComponents
-//  (const RequiredRequestPort& receptacle,
-//  std::map<Component,std::string>& output)
-//{
-//  std::set<RequiredRequestPort> visited;
-//  this->GetComponents (receptacle,
-//    &RequiredRequestPort::srcReceptacleDelegate,
-//    &RequiredRequestPort::dstReceptacleDelegate,
-//    &ReceptacleDelegate::srcReceptacleDelegate_end,
-//    &ReceptacleDelegate::dstReceptacleDelegate_end,
-//    output,
-//    visited);
-//}
+// mappings
 //
-//void DeploymentPlanVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
-//  std::map<Component,
-//  std::string>& output)
-//{
-//  std::set<ProvidedRequestPort> visited;
-//  this->GetComponents (facet,
-//    &ProvidedRequestPort::srcFacetDelegate,
-//    &ProvidedRequestPort::dstFacetDelegate,
-//    &FacetDelegate::srcFacetDelegate_end,
-//    &FacetDelegate::dstFacetDelegate_end,
-//    output,
-//    visited);
-//}
-//
-////
-//// GetEventSinkComponents
-////
-//void DeploymentPlanVisitor::
-//GetEventSinkComponents (const InEventPort& consumer,
-//                        std::map<Component, std::string>& output)
-//{
-//  std::set<InEventPort> visited;
-//
-//  this->GetComponents (consumer,
-//                       &InEventPort::srcEventSinkDelegate,
-//                       &InEventPort::dstEventSinkDelegate,
-//                       &EventSinkDelegate::srcEventSinkDelegate_end,
-//                       &EventSinkDelegate::dstEventSinkDelegate_end,
-//                       output,
-//                       visited);
-//}
-//
-////
-//// GetEventSourceComponents
-////
-//void DeploymentPlanVisitor::
-//GetEventSourceComponents (const OutEventPort& publisher,
-//                          std::map <Component,std::string> & output)
-//{
-//  std::set<OutEventPort> visited;
-//
-//  this->GetComponents (publisher,
-//                       &OutEventPort::srcEventSourceDelegate,
-//                       &OutEventPort::dstEventSourceDelegate,
-//                       &EventSourceDelegate::srcEventSourceDelegate_end,
-//                       &EventSourceDelegate::dstEventSourceDelegate_end,
-//                       output,
-//                       visited);
-//}
-//
-//void DeploymentPlanVisitor::CreateConnections (const std::map<Component,
-//  std::string>& src,
-//  const std::map<Component,
-//  std::string>& dst,
-//  const std::string& source_kind,
-//  const std::string& dest_kind)
-//{
-//  for (std::map<Component,std::string>::const_iterator iter = src.begin ();
-//    iter != src.end ();
-//    ++iter)
-//  {
-//    Component srcComp = iter->first;
-//    std::string srcPortName = iter->second;
-//    for (std::map<Component,
-//      std::string>::const_iterator iter = dst.begin ();
-//      iter != dst.end ();
-//    ++iter)
-//    {
-//      Component dstComp = iter->first;
-//      std::string dstPortName = iter->second;
-//      this->CreateConnection (srcComp, srcPortName, dstComp,
-//        dstPortName, source_kind, dest_kind);
-//    }
-//  }
-//}
-//
-
-////
-//// CreateConnection
-////
-//void DeploymentPlanVisitor::
-//CreateConnection (const Component& srcComp,
-//                  const std::string& srcPortName,
-//                  const Component& dstComp,
-//                  const std::string& dstPortName,
-//                  const std::string& source_kind,
-//                  const std::string& dest_kind)
-//{
-//  std::string source_comp_instance = "_" + std::string (srcComp.UUID ());
-//  std::string dest_comp_instance = "_" + std::string (dstComp.UUID ());
-//
-//  if (this->selected_instances_.find (source_comp_instance) != this->selected_instances_.end () &&
-//      this->selected_instances_.find (dest_comp_instance) != this->selected_instances_.end ())
-//  {
-//    // Create a connection
-//    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-//    this->curr_->appendChild (ele);
-//
-//    std::string connection =
-//      this->unique_id (srcComp) + ":" + srcPortName + "::" +
-//      this->unique_id (dstComp) + ":" + dstPortName;
-//
-//    ele->appendChild (this->createSimpleContent ("name", connection));
-//
-//    // Source endPoint
-//    DOMElement * endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-//    endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
-//    endPoint->appendChild (this->createSimpleContent ("provider", "false"));
-//    endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
-//
-//    DOMElement * instance = this->doc_->createElement (XStr ("instance"));
-//    endPoint->appendChild (instance);
-//    instance->setAttribute (XStr ("xmi:idref"), XStr (source_comp_instance.c_str ()));
-//    ele->appendChild (endPoint);
-//
-//    // Destination endPoint
-//    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-//    endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
-//    endPoint->appendChild (this->createSimpleContent ("provider", "true"));
-//    endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
-//
-//    instance = this->doc_->createElement (XStr ("instance"));
-//    endPoint->appendChild (instance);
-//    instance->setAttribute (XStr ("xmi:idref"), XStr (dest_comp_instance.c_str ()));
-//
-//    ele->appendChild (endPoint);
-//  }
-//}
-//
-//std::string DeploymentPlanVisitor::ExtractName (Udm::Object ob)
-//{
-//  Uml::Class cls= ob.type ();
-//  set<Uml::Attribute> attrs=cls.attributes ();
-//
-//  // Adding parent attributes
-//  set<Uml::Attribute> aattrs=Uml::AncestorAttributes (cls);
-//  attrs.insert (aattrs.begin (),aattrs.end ());
-//
-//  for (set<Uml::Attribute>::iterator ai = attrs.begin ();
-//    ai != attrs.end (); ai++)
-//  {
-//    if (string (ai->type ())=="String")
-//    {
-//      string str=ai->name ();
-//      if (str=="name")
-//      {
-//        string value=ob.getStringAttr (*ai);
-//        if (value.empty ())value="<empty string>";
-//        return value;
-//      }
-//    }
-//  }
-//  return string ("<no name specified>");
-//}
-//
-//void DeploymentPlanVisitor::Visit_invoke (const invoke& iv)
-//{
-//
-//  // Get the receptacle end
-//  RequiredRequestPort receptacle = iv.srcinvoke_end ();
-//
-//  // Get the facet end. This could be a supported interface.
-//  ProvidedRequestPort facet =
-//    PICML::ProvidedRequestPort::Cast (iv.dstinvoke_end ());
-//
-//  std::map<Component,std::string> receptacles;
-//  std::map<Component,std::string> facets;
-//  std::string source_kind = "Facet";
-//  std::string dest_kind = "SimplexReceptacle";
-//  this->GetReceptacleComponents (receptacle, receptacles);
-//  this->GetFacetComponents (facet, facets);
-//  this->CreateConnections (receptacles, facets, source_kind, dest_kind);
-//}
-//
-//void DeploymentPlanVisitor::Visit_emit (const emit& ev)
-//{
-//  // Get the emitter end
-//  OutEventPort emitter = ev.srcemit_end ();
-//
-//  // Get the consumer end
-//  InEventPort consumer = ev.dstemit_end ();
-//
-//  std::map<Component,std::string> emitters;
-//  std::map<Component,std::string> consumers;
-//  std::string source_kind = "EventConsumer";
-//  std::string dest_kind = "EventEmitter";
-//  this->GetEventSourceComponents (emitter, emitters);
-//  this->GetEventSinkComponents (consumer, consumers);
-//  this->CreateConnections (emitters, consumers, source_kind, dest_kind);
-//}
-//
-//void DeploymentPlanVisitor::Visit_publish (const publish& ev)
-//{
-//  // Get the publisher end
-//  const OutEventPort publisher = ev.srcpublish_end ();
-//
-//  // Get the connector end
-//  const PublishConnector connector = ev.dstpublish_end ();
-//
-//  // Create an entry in the publishers_ map
-//  this->publishers_[std::string (connector.name ())] = publisher;
-//}
-//
-//void DeploymentPlanVisitor::Visit_deliverTo (const deliverTo& dv)
-//{
-//  // Get the connector end
-//  const  PublishConnector connector = dv.srcdeliverTo_end ();
-//
-//  // Get the consumer end
-//  const InEventPort consumer = dv.dstdeliverTo_end ();
-//
-//  // Create an entry in the consumers_ map
-//  this->consumers_.insert (make_pair (std::string (connector.name ()),
-//    consumer));
-//}
-//
-//void DeploymentPlanVisitor::Visit_PublishConnector (const PublishConnector& pubctor)
-//{
-//  std::string ctor = pubctor.name ();
-//
-//  // Get Publisher
-//  OutEventPort publisher = this->publishers_[ctor];
-//  std::map<Component,std::string> publishers;
-//  this->GetEventSourceComponents (publisher, publishers);
-//
-//  for (std::map<Component,std::string>::const_iterator
-//    iter = publishers.begin ();
-//    iter != publishers.end ();
-//  ++iter)
-//  {
-//    Component srcComp = iter->first;
-//    std::string srcPortName = iter->second;
-//
-//    for (std::multimap<std::string, InEventPort>::const_iterator
-//      iter = this->consumers_.lower_bound (ctor);
-//      iter != this->consumers_.upper_bound (ctor);
-//    ++iter)
-//    {
-//      // Get Consumer
-//      InEventPort consumer = iter->second;
-//      std::map<Component,std::string> consumers;
-//      this->GetEventSinkComponents (consumer, consumers);
-//      for (std::map<Component,std::string>::const_iterator
-//        iter = consumers.begin ();
-//        iter != consumers.end ();
-//      ++iter)
-//      {
-//        Component dstComp = iter->first;
-//        std::string dstPortName = iter->second;
-//        std::string source_kind = "EventConsumer";
-//        std::string dest_kind = "EventPublisher";
-//        this->CreateConnection (srcComp, srcPortName, dstComp,
-//          dstPortName, source_kind, dest_kind);
-//      }
-//    }
-//  }
-//}
-//
-
-////
-//// instantiate_deployment_plan_descriptor
-////
-//void DeploymentPlanVisitor::
-//instantiate_deployment_plan_descriptor (const DeploymentPlan & dp)
-//{
-//  this->push ();
-//  std::string name = this->outputPath_ + "\\";
-//  name += dp.name ();
-//  name += ".cdp";
-//  this->initTarget (name);
-//  this->init_document ("Deployment:DeploymentPlan");
-//  this->init_root_attributes ();
-//}
+const std::map <PICML::ComponentInstance, PICML::CollocationGroup> &
+DeploymentPlanVisitor::mappings (void) const
+{
+  return this->mappings_;
+}
 
 //
 // Visit_ComponentAssemblyReference
@@ -1199,7 +870,7 @@ const DeploymentPlanVisitor::locality_t & DeploymentPlanVisitor::localities (voi
 void DeploymentPlanVisitor::
 Visit_ComponentAssemblyReference (const PICML::ComponentAssemblyReference & ref)
 {
-	PICML::ComponentAssembly inst = ref.ref ();
+  PICML::ComponentAssembly inst = ref.ref ();
 
   if (inst != Udm::null)
     inst.Accept (*this);
@@ -1211,140 +882,25 @@ Visit_ComponentAssemblyReference (const PICML::ComponentAssemblyReference & ref)
 void DeploymentPlanVisitor::
 Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
 {
-
   // Oder the ComponentInstances elements using the topdown ordering
-	typedef UDM_Position_Sort_T <PICML::ComponentInstance, PS_Top_To_Bottom> sorter_t_inst;
-	typedef std::set <PICML::ComponentInstance, sorter_t_inst> sorted_values_t_inst;
-	sorted_values_t_inst insts = assembly.ComponentInstance_children_sorted (sorter_t_inst ());
+  typedef UDM_Position_Sort_T <PICML::ComponentInstance, PS_Top_To_Bottom> sorter_t_inst;
+  typedef std::set <PICML::ComponentInstance, sorter_t_inst> sorted_values_t_inst;
+  sorted_values_t_inst insts = assembly.ComponentInstance_children_sorted (sorter_t_inst ());
 
-	std::for_each (insts.begin (),
+  std::for_each (insts.begin (),
                  insts.end (),
                  boost::bind (&PICML::ComponentInstance::Accept,
                                _1,
                                boost::ref (*this)));
 
   // Oder the ComponentAsssembly elements using the topdown ordering
-	typedef UDM_Position_Sort_T <PICML::ComponentAssembly, PS_Top_To_Bottom> sorter_t_ass;
-	typedef std::set <PICML::ComponentAssembly, sorter_t_ass> sorted_values_t_ass;
-	sorted_values_t_ass child_assemblies = assembly.ComponentAssembly_children_sorted (sorter_t_ass ());
+  typedef UDM_Position_Sort_T <PICML::ComponentAssembly, PS_Top_To_Bottom> sorter_t_ass;
+  typedef std::set <PICML::ComponentAssembly, sorter_t_ass> sorted_values_t_ass;
+  sorted_values_t_ass child_assemblies = assembly.ComponentAssembly_children_sorted (sorter_t_ass ());
 
-	std::for_each (child_assemblies.begin (),
+  std::for_each (child_assemblies.begin (),
                  child_assemblies.end (),
                  boost::bind (&PICML::ComponentAssembly::Accept,
                                _1,
                                boost::ref (*this)));
-
-  //std::string node_reference_name = this->retNodeRefName ();
-  //std::string cg_name = this->retcgName ();
-
-  //// Collect all the Components of this assembly into a set.
-  //std::set<Component> comps = assembly.Component_kind_children ();
-
-  //// Add all the shared Components of this assembly into the set.  A
-  //// shared Component is implemented as a reference to a Component.  So
-  //// just traverse the reference and add it to the set.
-  //std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children ();
-  //for (std::set<ComponentRef>::const_iterator
-  //  iter = scomps.begin ();
-  //  iter != scomps.end ();
-  //++iter)
-  //{
-  //  const ComponentRef compRef = *iter;
-  //  comps.insert (compRef.ref ());
-  //}
-
-  //// Collect all the immediate ComponentAssembly children of this assembly
-  //std::set<ComponentAssembly>
-  //  subasms = assembly.ComponentAssembly_kind_children ();
-
-  //// Add all the shared ComponentAssemblies of the current assembly.
-  //// Like shared components, shared assemblies are also implemented as
-  //// references.  So just traverse the references, and add them to the set.
-  //std::set<ComponentAssemblyReference>
-  //  sasms = assembly.ComponentAssemblyReference_kind_children ();
-  //for (std::set<ComponentAssemblyReference>::const_iterator
-  //  iter = sasms.begin ();
-  //  iter != sasms.end ();
-  //++iter)
-  //{
-  //  const ComponentAssemblyReference asmRef = *iter;
-  //  subasms.insert (asmRef.ref ());
-  //}
-
-  //// Maintain a list of all ComponentAssemblies in this assembly
-  //std::vector<ComponentAssembly> assemblies;
-
-  //// Put ourselves in the global list first.
-  //assemblies.push_back (assembly);
-
-  //// Do a Depth-First search and collect all the ComponentAssembly,
-  //// Component children of this assembly, and add them to the
-  //// assembly-specific list.
-  //while (!subasms.empty ())
-  //{
-  //  ComponentAssembly rassembly = *subasms.begin ();
-  //  // Put the first assembly from the current list to the
-  //  // assembly-specific list.
-  //  assemblies.push_back (rassembly);
-
-  //  subasms.erase (rassembly);
-
-  //  // Get the components of the current assembly, and insert them into
-  //  // the component list
-  //  std::set<Component> rcomps = rassembly.Component_kind_children ();
-
-  //  // Get the shared components of the current assembly
-  //  scomps = rassembly.ComponentRef_kind_children ();
-  //  for (std::set<ComponentRef>::const_iterator
-  //    iter = scomps.begin ();
-  //    iter != scomps.end ();
-  //  ++iter)
-  //  {
-  //    const ComponentRef compRef = *iter;
-  //    rcomps.insert (compRef.ref ());
-  //  }
-
-  //  comps.insert (rcomps.begin (), rcomps.end ());
-
-  //  // Get the subassemblies of the first assembly.
-  //  std::set<ComponentAssembly>
-  //    rasms = rassembly.ComponentAssembly_kind_children ();
-
-  //  // Add all the shared ComponentAssemblies of the current assembly.
-  //  // Like shared components, shared assemblies are also implemented
-  //  // as references.  So just traverse the references, and add them to
-  //  // the set.
-  //  std::set<ComponentAssemblyReference>
-  //    sasms = rassembly.ComponentAssemblyReference_kind_children ();
-  //  for (std::set<ComponentAssemblyReference>::const_iterator
-  //    iter = sasms.begin ();
-  //    iter != sasms.end ();
-  //  ++iter)
-  //  {
-  //    const ComponentAssemblyReference asmRef = *iter;
-  //    rasms.insert (asmRef.ref ());
-  //  }
-
-  //  // Insert them to the current list.
-  //  // std::copy (rasms.begin (), rasms.end (), std::back_inserter (subasms));
-  //  subasms.insert (rasms.begin (), rasms.end ());
-  //}
-
-  //// Create the appropriate component attribute value mappings
-  //this->CreateAttributeMappings (assemblies);
-  //this->assembly_components_ = comps;
 }
-
-//
-//void DeploymentPlanVisitor::Visit_AttributeValue (const AttributeValue& value)
-//{
-//  this->push ();
-//  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
-//  this->curr_->appendChild (ele);
-//  this->curr_ = ele;
-//  Property ref = value.dstAttributeValue_end ();
-//  ReadonlyAttribute attr = value.srcAttributeValue_end ();
-//  ref.name () = attr.name ();
-//  ref.Accept (*this);
-//  this->pop ();
-//}

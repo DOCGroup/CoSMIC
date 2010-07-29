@@ -7,6 +7,15 @@
 #include "Utils/udm/visit.h"
 #include "Utils/Utils.h"
 
+struct name_sort_t
+{
+  template <typename T>
+  bool operator () (const T & rhs, const T & lhs) const
+  {
+    return std::string (rhs.name ()) < std::string (lhs.name ());
+  }
+};
+
 //
 // Connector_Visitor
 //
@@ -53,38 +62,19 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 bool Connector_Visitor::
 find_plan_locality (const PICML::ComponentInstance & inst)
 {
-  std::set <PICML::ComponentInstanceRef> refers = inst.referedbyComponentInstanceRef ();
+  typedef std::map <
+    PICML::ComponentInstance,
+    PICML::CollocationGroup> mapping_t;
 
-  std::set <PICML::ComponentInstanceRef>::
-    iterator iter = refers.begin (), iter_end = refers.end ();
+  // Locate the collocation group for this instance.
+  const mapping_t & mappings = this->dpv_.mappings ();
+  mapping_t::const_iterator iter = mappings.find (inst);
 
-  for (; iter != iter_end; ++ iter)
-  {
-    // This reference can be in either 0 or 1 collocation groups. We do
-    // not allow a component to appear in more than on collocation group.
-    std::set <PICML::CollocationGroup> groups = iter->setCollocationGroup ();
+  if (iter == mappings.end ())
+    return false;
 
-    // Find the group that contains this reference.
-    std::set <PICML::CollocationGroup>::iterator
-      group_iter = groups.begin (), group_iter_end = groups.end ();
-
-    for (; group_iter != group_iter_end; ++ group_iter)
-    {
-      typedef DeploymentPlanVisitor::locality_t locality_t;
-      PICML::CollocationGroup group = *group_iter;
-
-      locality_t::const_iterator local = this->dpv_.localities ().find (group);
-
-      if (local != this->dpv_.localities ().end ())
-      {
-        this->group_ = group;
-        return true;
-      }
-    }
-  }
-
-  this->group_ = PICML::CollocationGroup ();
-  return false;
+  this->group_ = iter->second;
+  return true;
 }
 
 //
@@ -98,8 +88,18 @@ Visit_ExtendedPortInstance (const PICML::ExtendedPortInstance & port)
   this->prefix1_ = ep.name ();
   PICML::PortType pt = ep.ref ();
 
-  // Check if this port type is sending anything to a connector.
-  PICML::Publish publish = port.dstPublish ();
+  this->Visit_ExtendedPortInstanceBase (port, pt);
+}
+
+//
+// Visit_ExtendedPortInstanceBase
+//
+void Connector_Visitor::
+Visit_ExtendedPortInstanceBase (const PICML::ExtendedPortInstanceBase & base,
+                                const PICML::PortType & pt)
+{
+  // Vist the publish connection for this port if it exist.
+  PICML::Publish publish = base.dstPublish ();
 
   if (publish != Udm::null)
   {
@@ -108,12 +108,12 @@ Visit_ExtendedPortInstance (const PICML::ExtendedPortInstance & port)
 
     // Now, flatten out the port type.
     this->invert_ = false;
-    pt.Accept (*this);
+    PICML::PortType (pt).Accept (*this);
   }
 
-  // We also need to see if this port type is receiving anything 
+  // We also need to see if this port type is receiving anything
   // from a connector.
-  PICML::Consume consume = port.srcConsume ();
+  PICML::Consume consume = base.srcConsume ();
 
   if (consume != Udm::null)
   {
@@ -122,7 +122,29 @@ Visit_ExtendedPortInstance (const PICML::ExtendedPortInstance & port)
 
     // Now, flatten out the port type.
     this->invert_ = false;
-    pt.Accept (*this);
+    PICML::PortType (pt).Accept (*this);
+  }
+
+  // Finally, check if this port is part of a delegation. If so,
+  // we need to locate the non-delegated port for this port.
+  PICML::ExtendedDelegate ed = base.dstExtendedDelegate ();
+
+  if (ed != Udm::null)
+  {
+    PICML::ExtendedPortDelegate epd = ed.dstExtendedDelegate_end ();
+
+    // Since we are going up the model, we have to get the instance of
+    // the delegate port. This is because the only way a port is delegated
+    // is if it is instantiated in another component assembly.
+    typedef std::set < PICML::ExtendedPortDelegate, name_sort_t > set_t;
+    set_t instances = epd.Instances_sorted (name_sort_t ());
+
+    std::for_each (instances.begin (),
+                   instances.end (),
+                   boost::bind (&Connector_Visitor::Visit_ExtendedPortInstanceBase,
+                                this,
+                                _1,
+                                boost::ref (pt)));
   }
 }
 
@@ -136,8 +158,18 @@ Visit_MirrorPortInstance (const PICML::MirrorPortInstance & port)
   this->prefix1_ = mp.name ();
   PICML::PortType pt = mp.ref ();
 
-  // Check if this port type is sending anything to a connector.
-  PICML::Publish publish = port.dstPublish ();
+  this->Visit_MirrorPortInstanceBase (port, pt);
+}
+
+//
+// Visit_MirrorPortInstanceBase
+//
+void Connector_Visitor::
+Visit_MirrorPortInstanceBase (const PICML::MirrorPortInstanceBase & base,
+                              const PICML::PortType & pt)
+{
+  // Vist the publish connection for this port if it exist.
+  PICML::Publish publish = base.dstPublish ();
 
   if (publish != Udm::null)
   {
@@ -146,10 +178,12 @@ Visit_MirrorPortInstance (const PICML::MirrorPortInstance & port)
 
     // Write all the connections.
     this->invert_ = true;
-    pt.Accept (*this);
+    PICML::PortType (pt).Accept (*this);
   }
 
-  PICML::Consume consume = port.srcConsume ();
+  // We also need to see if this port type is receiving anything
+  // from a connector.
+  PICML::Consume consume = base.srcConsume ();
 
   if (consume != Udm::null)
   {
@@ -158,7 +192,29 @@ Visit_MirrorPortInstance (const PICML::MirrorPortInstance & port)
 
     // Write all the connections.
     this->invert_ = true;
-    pt.Accept (*this);
+    PICML::PortType (pt).Accept (*this);
+  }
+
+  // Finally, check if this port is part of a delegation. If so,
+  // we need to locate the non-delegated port for this port.
+  PICML::MirrorDelegate md = base.dstMirrorDelegate ();
+
+  if (md != Udm::null)
+  {
+    PICML::MirrorPortDelegate mpd = md.dstMirrorDelegate_end ();
+
+    // Since we are going up the model, we have to get the instance of
+    // the delegate port. This is because the only way a port is delegated
+    // is if it is instantiated in another component assembly.
+    typedef std::set < PICML::MirrorPortDelegate, name_sort_t > set_t;
+    set_t instances = mpd.Instances_sorted (name_sort_t ());
+
+    std::for_each (instances.begin (),
+                   instances.end (),
+                   boost::bind (&Connector_Visitor::Visit_MirrorPortInstanceBase,
+                                this,
+                                _1,
+                                boost::ref (pt)));
   }
 }
 
@@ -192,7 +248,7 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & in
   this->facet_ = inst.ref ();
   this->prefix1_.clear ();
 
-  std::set <PICML::ConnectorToFacet> conns = inst.srcConnectorToFacet ();  
+  std::set <PICML::ConnectorToFacet> conns = inst.srcConnectorToFacet ();
   std::for_each (conns.begin (),
                  conns.end (),
                  boost::bind (&PICML::ConnectorToFacet::Accept,
@@ -227,19 +283,19 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
   PICML::ConnectorInstance inst = conn.dstConnectorToReceptacle_end ();
   this->deploy_connector_fragment (inst);
 
-  // We have enough information to generate the connection information 
+  // We have enough information to generate the connection information
   // for the the receptacle to facet connection.
   PICML::Object obj = PICML::Object::Cast (this->receptacle_.ref ());
   this->start_new_connection (obj);
 
-  std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
+  std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
   this->Visit_RequiredRequestPort_i (uuid, "", this->receptacle_.name (), false);
-  
+
   this->connection_name_ += "::" + this->connector_name_;
 
-  this->Visit_ProvidedRequestPort_i (this->connector_uuid_, 
-                                     this->prefix2_, 
-                                     this->portname2_, 
+  this->Visit_ProvidedRequestPort_i (this->connector_uuid_,
+                                     this->prefix2_,
+                                     this->portname2_,
                                      false);
 
   this->end_connection ();
@@ -272,19 +328,19 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
   PICML::ConnectorInstance inst = conn.srcConnectorToFacet_end ();
   this->deploy_connector_fragment (inst);
 
-  // We have enough information to generate the connection information 
+  // We have enough information to generate the connection information
   // for the the receptacle to facet connection.
   PICML::Object obj = PICML::Object::Cast (this->facet_.ref ());
   this->start_new_connection (obj);
 
-  std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
+  std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
   this->Visit_ProvidedRequestPort_i (uuid, "", this->facet_.name (), false);
-  
+
   this->connection_name_ += "::" + this->connector_name_;
 
-  this->Visit_RequiredRequestPort_i (this->connector_uuid_, 
-                                     this->prefix2_, 
-                                     this->portname2_, 
+  this->Visit_RequiredRequestPort_i (this->connector_uuid_,
+                                     this->prefix2_,
+                                     this->portname2_,
                                      false);
   this->end_connection ();
 }
@@ -333,17 +389,17 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
   PICML::Object obj (PICML::Object::Cast (p.ref ()));
   this->start_new_connection (obj);
 
-  std::string uuid = "_" + std::string (this->comp_inst_.UUID ()); 
+  std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
   this->Visit_RequiredRequestPort_i (uuid,
-                                     this->prefix1_, 
-                                     p.name (), 
+                                     this->prefix1_,
+                                     p.name (),
                                      this->invert_);
 
   this->connection_name_ += "::" + this->connector_name_;
 
   this->Visit_RequiredRequestPort_i (this->connector_uuid_,
-                                     this->prefix2_, 
-                                     p.name (), 
+                                     this->prefix2_,
+                                     p.name (),
                                      !this->invert_);
 
   this->end_connection ();
@@ -360,7 +416,7 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 
   std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
   this->Visit_ProvidedRequestPort_i (uuid,
-                                     this->prefix1_, 
+                                     this->prefix1_,
                                      p.name (),
                                      this->invert_);
 
@@ -368,7 +424,7 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 
   this->Visit_ProvidedRequestPort_i (this->connector_uuid_,
                                      this->prefix2_,
-                                     p.name (), 
+                                     p.name (),
                                      !this->invert_);
 
   this->end_connection ();
@@ -379,7 +435,7 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 //
 void Connector_Visitor::
 Visit_RequiredRequestPort_i (const std::string & inst,
-                             const std::string & prefix, 
+                             const std::string & prefix,
                              const std::string & port,
                              bool invert)
 {
@@ -387,7 +443,7 @@ Visit_RequiredRequestPort_i (const std::string & inst,
 
   if (!prefix.empty ())
     portname = prefix + "_";
-  
+
   portname += port;
 
   const char * kind = invert ? "Facet" : "SimplexReceptacle";

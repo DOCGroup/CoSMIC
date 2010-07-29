@@ -62,6 +62,14 @@ public:
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 
 private:
+  void Visit_ExtendedPortInstanceBase (
+    const PICML::ExtendedPortInstanceBase & base,
+    const PICML::PortType & pt);
+
+  void Visit_MirrorPortInstanceBase (
+    const PICML::MirrorPortInstanceBase & base,
+    const PICML::PortType & pt);
+
   struct fragment_t
   {
     fragment_t (const PICML::ConnectorInstance & inst,
@@ -103,7 +111,7 @@ private:
   void end_connection (void);
 
   void Visit_RequiredRequestPort_i (const std::string & inst,
-                                    const std::string & prefix, 
+                                    const std::string & prefix,
                                     const std::string & port,
                                     bool invert);
 
@@ -120,7 +128,7 @@ private:
 
   /// The target document.
   xercesc::DOMDocument * doc_;
-                      
+
   /// Set of connection gathered.
   std::vector <xercesc::DOMElement *> conns_;
 
