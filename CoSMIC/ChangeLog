@@ -1,3 +1,13 @@
+Fri Jul 30 13:04:58 UTC 2010  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+
+          moved script name to commandflags to fix build error on *nix systems.
+
+        * Release_idl_to_picml.mwc:
+
+          Added PICML_GUID.
+
 Fri Jul 30 12:11:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
