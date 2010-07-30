@@ -34,23 +34,23 @@ int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
   ACE_DEBUG ((LM_DEBUG, "*** begin validating union type\n"));
   
   // verify union discriminator for Idea
-  if (union_idea._d() != E_IDEA);
+  if (union_idea._d() != E_IDEA)
     ACE_ERROR ((LM_ERROR, "The discriminator for Idea was set incorrectly\n"));
     
   // verify union discriminator for Place
-  if (union_place._d() != E_PLACE);
+  if (union_place._d() != E_PLACE)
     ACE_ERROR ((LM_ERROR, "The discriminator for Place was set incorrectly\n"));
     
   // verify union discriminator for Thing
-  if (union_thing._d() != E_THING);
+  if (union_thing._d() != E_THING)
     ACE_ERROR ((LM_ERROR, "The discriminator for Thing was set incorrectly\n"));
     
   // verify union discriminator for Person
-  if (union_person._d() != E_PERSON);
+  if (union_person._d() != E_PERSON)
     ACE_ERROR ((LM_ERROR, "The discriminator for Person was set incorrectly\n"));
     
   // verify union discriminator for Event
-  if (union_event._d() != E_EVENT);
+  if (union_event._d() != E_EVENT)
     ACE_ERROR ((LM_ERROR, "The discriminator for Event was set incorrectly\n"));
     
   ACE_DEBUG ((LM_DEBUG, "*** end validating union type\n"));
