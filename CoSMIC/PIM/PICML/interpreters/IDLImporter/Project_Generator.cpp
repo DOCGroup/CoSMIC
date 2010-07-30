@@ -47,6 +47,7 @@
 #include "utl_identifier.h"
 #include "utl_idlist.h"
 #include "utl_string.h"
+#include "utl_labellist.h"
 
 #include "fe_utils.h"
 
@@ -115,7 +116,7 @@ struct arrange_horizontal
 {
   arrange_horizontal (const ::Utils::XStr & aspect,
                       int x,
-                      int y, 
+                      int y,
                       int dx)
     : aspect_ (aspect),
       x_ (x),
@@ -284,8 +285,7 @@ private:
 ::Utils::XStr & operator << (::Utils::XStr & str, AST_Constant & c)
 {
   if (c.et () == AST_Expression::EV_enum)
-    // print scoped name
-    ;
+    str = c.full_name ();
   else
     str << *c.constant_value ()->ev ();
 
@@ -295,51 +295,62 @@ private:
 //
 // operator <<
 //
-//::Utils::XStr &
-//operator << (::Utils::XStr & str, const AST_UnionLabel & label)
-//{
-//  ACE_CString name;
-//
-//  AST_Expression *e = label.label_val ();
-//  AST_Union *u = AST_Union::narrow_from_scope (s);
-//
-//  if (ul->label_kind () == AST_UnionLabel::UL_default)
-//    {
-//      name = "default";
-//    }
-//  else
-//    {
-//      if (u->disc_type ()->node_type () == AST_Decl::NT_enum)
-//        {
-//          UTL_Scope *parent = u->disc_type ()->defined_in ();
-//
-//          if (0 == parent)
-//            {
-//              name = this->print_scoped_name (e->n ());
-//            }
-//          else
-//            {
-//              if (ScopeAsDecl (parent)->node_type () != AST_Decl::NT_root)
-//                {
-//                  name =
-//                    this->print_scoped_name (
-//                      ScopeAsDecl (parent)->name ());
-//
-//                  name += "::";
-//                }
-//
-//              name += e->n ()->last_component ()->get_string ();
-//            }
-//        }
-//      else
-//        {
-//          name =
-//            this->expr_val_to_string (ul->label_val ()->ev ());
-//        }
-//    }
-//
-//  return name;
-//}
+::Utils::XStr & operator << (::Utils::XStr & str, AST_UnionLabel & label)
+{
+
+  if (label.label_kind () == AST_UnionLabel::UL_default)
+  {
+    str = "default";
+  }
+  else
+  {
+    AST_Expression * e = label.label_val ();
+
+    switch (e->ev ()->et)
+    {
+    case AST_Expression::EV_enum:
+      {
+        UTL_ScopedName * sn = e->n ();
+        AST_Decl * decl = e->defined_in ()->lookup_by_name (sn, true, false);
+        str = decl->local_name ()->get_string ();
+      }
+      break;
+
+    default:
+      str << *label.label_val ()->ev ();
+    }
+  }
+
+    //if (u->disc_type ()->node_type () == AST_Decl::NT_enum)
+    //  {
+    //    UTL_Scope *parent = u->disc_type ()->defined_in ();
+
+    //    if (0 == parent)
+    //      {
+    //        name = this->print_scoped_name (e->n ());
+    //      }
+    //    else
+    //      {
+    //        if (ScopeAsDecl (parent)->node_type () != AST_Decl::NT_root)
+    //          {
+    //            name =
+    //              this->print_scoped_name (
+    //                ScopeAsDecl (parent)->name ());
+
+    //            name += "::";
+    //          }
+
+    //        name += e->n ()->last_component ()->get_string ();
+    //      }
+    //  }
+    //else
+    //  {
+    //    name =
+    //      this->expr_val_to_string (ul->label_val ()->ev ());
+    //  }
+
+  return str;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Project_Generator class
@@ -374,14 +385,14 @@ void Project_Generator::initialize (void)
   {
     {"Boolean", {AST_PredefinedType::PT_boolean, AST_PredefinedType::PT_void}},
     {"Byte", {AST_PredefinedType::PT_octet, AST_PredefinedType::PT_void}},
-    
+
     {"Char", {AST_PredefinedType::PT_char, AST_PredefinedType::PT_void}},
     {"WideChar", {AST_PredefinedType::PT_wchar, AST_PredefinedType::PT_void}},
-    
+
     {"ShortInteger", {AST_PredefinedType::PT_short, AST_PredefinedType::PT_void}},
     {"LongInteger", {AST_PredefinedType::PT_long, AST_PredefinedType::PT_void}},
     {"LongLongInteger", {AST_PredefinedType::PT_longlong, AST_PredefinedType::PT_void}},
-    
+
     {"UnsignedShortInteger", {AST_PredefinedType::PT_ushort, AST_PredefinedType::PT_void}},
     {"UnsignedLongInteger", {AST_PredefinedType::PT_ulong, AST_PredefinedType::PT_void}},
     {"UnsignedLongLongInteger", {AST_PredefinedType::PT_ulonglong, AST_PredefinedType::PT_void}},
@@ -389,7 +400,7 @@ void Project_Generator::initialize (void)
     {"FloatNumber", {AST_PredefinedType::PT_float, AST_PredefinedType::PT_void}},
     {"DoubleNumber", {AST_PredefinedType::PT_double, AST_PredefinedType::PT_void}},
     {"LongDoubleNumber", {AST_PredefinedType::PT_longdouble, AST_PredefinedType::PT_void}},
-    
+
     {"GenericObject", {AST_PredefinedType::PT_object, AST_PredefinedType::PT_void}},
     {"GenericValue", {AST_PredefinedType::PT_any, AST_PredefinedType::PT_void}},
     {"GenericValueObject", {AST_PredefinedType::PT_value, AST_PredefinedType::PT_void}},
@@ -451,7 +462,7 @@ void Project_Generator::finalize (void)
   typedef
     ACE_Hash_Map_Manager <GAME::XME::Reference,
                           AST_Decl *,
-                          ACE_Null_Mutex> 
+                          ACE_Null_Mutex>
                           unresolved_t;
 
   for (unresolved_t::ITERATOR iter (this->unresolved_); !iter.done (); ++ iter)
@@ -493,14 +504,14 @@ int Project_Generator::visit_root (AST_Root * node)
     }
 
     // Some of the files will have a full path, and others will
-    // not. So, to be save we just need to make sure we have the 
+    // not. So, to be save we just need to make sure we have the
     // real path for each element.
     fullpath = ACE_OS::realpath (d->file_name ().c_str (), abspath);
     std::replace (fullpath.begin (),
                   fullpath.end (),
                   '\\',
                   '/');
-    
+
     if (0 != this->files_.files ().find (fullpath, this->current_file_))
       continue;
 
@@ -676,7 +687,7 @@ int Project_Generator::visit_interface (AST_Interface *node)
   for (long i = 0; i < inherits_count; ++ i)
   {
     FCO referred_interface;
-   
+
     if (!this->lookup_symbol (inherits[i], referred_interface))
       continue;
 
@@ -839,7 +850,7 @@ int Project_Generator::visit_component (AST_Component *node)
     // as an inherited interface. So, we need check if this is actually an
     // inherited interface.
     bool is_inherited = true;
-  
+
     AST_Type ** supports_list = node->supports ();
     long supports_count = node->n_supports ();
 
@@ -851,7 +862,7 @@ int Project_Generator::visit_component (AST_Component *node)
         break;
       }
     }
-    
+
     if (is_inherited)
     {
       static const ::Utils::XStr meta_CompenentInherits ("ComponentInherits");
@@ -882,7 +893,7 @@ int Project_Generator::visit_component (AST_Component *node)
     for (long i = 0; i < supports_count; ++ i)
     {
       FCO referred_interface;
-     
+
       if (!this->lookup_symbol (supports_list[i], referred_interface))
         continue;
 
@@ -1560,8 +1571,8 @@ int Project_Generator::visit_field (AST_Field *node)
 // visit_array
 //
 int Project_Generator::visit_array (AST_Array *node)
-{ 
-  return 0; 
+{
+  return 0;
 }
 
 //
@@ -1781,6 +1792,55 @@ int Project_Generator::visit_union_branch (AST_UnionBranch *node)
   }
 
   this->handle_symbol_resolution (node->field_type (), branch);
+
+  // Set all the labels for this member. Remember, there can be
+  // more than one label associated with a branch.
+  UTL_LabelList * labels = node->labels ();
+  const size_t length = node->label_list_length ();
+
+  for (size_t i = 0; i < length; ++ i)
+  {
+    using GAME::XME::Atom;
+    using GAME::XME::Connection;
+
+    // Get the name of the label.
+    AST_UnionLabel * l = node->label (i);
+
+    ::Utils::XStr label_name;
+    label_name << *l;
+
+    // Create the label for this member.
+    Atom label;
+    static const ::Utils::XStr meta_Label ("Label");
+
+    if (this->parent_->create_if_not (meta_Label, label,
+        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+                                     label_name,
+                                     boost::bind (&Atom::name, _1)))))
+    {
+      label.name (label_name);
+    }
+
+    // Create a connection between the current union branch
+    // element (i.e., Member) and the newly created label.
+    static const ::Utils::XStr meta_LabelConnection ("LabelConnection");
+    Connection connection;
+
+    if (!GAME::find (this->parent_->get (), meta_LabelConnection, connection,
+          boost::bind (std::logical_and <bool> (),
+            boost::bind (std::equal_to <GAME::XME::FCO> (),
+                         branch,
+                         boost::bind (&Connection::src, _1)),
+            boost::bind (std::equal_to <GAME::XME::FCO> (),
+                         label,
+                         boost::bind (&Connection::dst, _1)))))
+    {
+      Connection::_create (this->parent_->get (),
+                           meta_LabelConnection,
+                           branch,
+                           label);
+    }
+  }
 
   return 0;
 }
@@ -2054,7 +2114,7 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
     static const ::Utils::XStr meta_RootFolder ("RootFolder");
 
     this->proj_.root_folder ().children (meta_RootFolder, libraries);
-    
+
     if (this->lookup_symbol (type, libraries, fco))
       return true;
   }
@@ -2066,8 +2126,8 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
 // lookup_symbol_in_template_module
 //
 bool Project_Generator::
-lookup_symbol_in_template_module (AST_Decl * type,  
-                                  GAME::XME::FCO & fco, 
+lookup_symbol_in_template_module (AST_Decl * type,
+                                  GAME::XME::FCO & fco,
                                   bool use_library)
 {
   // Let's see if this is part of a template instance.
@@ -2091,10 +2151,10 @@ lookup_symbol_in_template_module (AST_Decl * type,
     if (full_name.find (key.c_str ()) == 0)
     {
       AST_Template_Module_Inst * module_inst = iter->item ();
-      AST_Template_Module * tm = module_inst->ref (); 
+      AST_Template_Module * tm = module_inst->ref ();
 
-      // Let's find out what type we are really looking for 
-      // in this case. This is done by replacing the instance 
+      // Let's find out what type we are really looking for
+      // in this case. This is done by replacing the instance
       // name with the template module's full name.
       std::string name = full_name.substr (key.length ());
 
@@ -2137,9 +2197,9 @@ lookup_symbol_in_template_module (AST_Decl * type,
           using GAME::XME::Connection;
 
           static const ::Utils::XStr meta_TemplatePackageInstanceDecl ("TemplatePackageInstanceDecl");
-          Connection::_create (model, 
+          Connection::_create (model,
                                meta_TemplatePackageInstanceDecl,
-                               tpir, 
+                               tpir,
                                this->temp_ref_);
         }
 
@@ -2155,7 +2215,7 @@ lookup_symbol_in_template_module (AST_Decl * type,
 // handle_symbol_resolution
 //
 void Project_Generator::
-handle_symbol_resolution (AST_Decl * type, 
+handle_symbol_resolution (AST_Decl * type,
                           GAME::XME::Reference & ref,
                           bool use_library)
 {
@@ -2172,7 +2232,7 @@ handle_symbol_resolution (AST_Decl * type,
 // lookup_symbol
 //
 bool Project_Generator::
-lookup_symbol (AST_Decl * type, 
+lookup_symbol (AST_Decl * type,
                std::vector <GAME::XME::Folder> & lib,
                GAME::XME::FCO & fco)
 {
@@ -2207,7 +2267,7 @@ lookup_symbol (AST_Decl * type,
 // lookup_symbol
 //
 bool Project_Generator::
-lookup_symbol (AST_Decl * type, 
+lookup_symbol (AST_Decl * type,
                GAME::XME::Folder & folder,
                GAME::XME::FCO & fco)
 {
@@ -2218,13 +2278,13 @@ lookup_symbol (AST_Decl * type,
   //if (type == AST_Decl::NT_module)
   //  ;
 
-  std::vector <GAME::XME::Model>::iterator 
+  std::vector <GAME::XME::Model>::iterator
     iter = files.begin (), iter_end = files.end ();
 
   for (; iter != iter_end; ++ iter)
   {
     // Search the current file for this symbol.
-    UTL_ScopedNameActiveIterator name_iter (type->name ());  
+    UTL_ScopedNameActiveIterator name_iter (type->name ());
     name_iter.next ();
 
     if (this->lookup_symbol (name_iter, *iter, fco))
@@ -2238,14 +2298,14 @@ lookup_symbol (AST_Decl * type,
 // lookup_symbol
 //
 bool Project_Generator::
-lookup_symbol (UTL_ScopedNameActiveIterator & name_iter, 
+lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
                GAME::XME::Model & model,
                GAME::XME::FCO & fco)
 {
   std::vector <GAME::XME::FCO> children;
   model.children (children);
 
-  std::vector <GAME::XME::FCO>::iterator 
+  std::vector <GAME::XME::FCO>::iterator
     iter = children.begin (), iter_end = children.end ();
 
   ::Utils::XStr name;
@@ -2288,7 +2348,7 @@ lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
 // visit_native
 //
 int Project_Generator::visit_native (AST_Native *node)
-{ 
+{
   using GAME::XME::Atom;
 
   static const ::Utils::XStr meta_NativeValue ("NativeValue");
@@ -2350,7 +2410,7 @@ int Project_Generator::visit_porttype (AST_PortType *node)
 // visit_extended_port
 //
 int Project_Generator::visit_extended_port (AST_Extended_Port *node)
-{ 
+{
   using GAME::XME::Reference;
 
   static const ::Utils::XStr meta_ExtendedPort ("ExtendedPort");
@@ -2377,7 +2437,7 @@ int Project_Generator::visit_extended_port (AST_Extended_Port *node)
 // visit_mirror_port
 //
 int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
-{ 
+{
   using GAME::XME::Reference;
 
   static const ::Utils::XStr meta_MirrorPort ("MirrorPort");
@@ -2397,14 +2457,14 @@ int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
   // Resolve the port type for this port.
   this->handle_symbol_resolution (node->field_type (), ref);
 
-  return 0; 
+  return 0;
 }
 
 //
 // visit_connector
 //
 int Project_Generator::visit_connector (AST_Connector *node)
-{ 
+{
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
@@ -2454,14 +2514,14 @@ int Project_Generator::visit_connector (AST_Connector *node)
   //if (0 == retval)
   //  this->impl_gen_.generate (component);
 
-  return retval;  
+  return retval;
 }
 
 //
 // visit_template_module
 //
 int Project_Generator::visit_template_module (AST_Template_Module *node)
-{ 
+{
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Atom;
@@ -2546,21 +2606,21 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
       }
       break;
 
-    case AST_Type::NT_struct: 
+    case AST_Type::NT_struct:
       {
         static const ::Utils::XStr meta_Type ("Aggregate");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
-    case AST_Type::NT_union: 
+    case AST_Type::NT_union:
       {
         static const ::Utils::XStr meta_Type ("SwitchedAggregate");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
-    case AST_Type::NT_except: 
+    case AST_Type::NT_except:
       {
         static const ::Utils::XStr meta_Type ("Exception");
         this->create_type_parameter (module, info, meta_Type);
@@ -2572,7 +2632,7 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
     };
   }
 
-  // Order the parameters before adding anymore elements to the 
+  // Order the parameters before adding anymore elements to the
   // model. This is done by arranging the parameters horizontally.
   std::for_each (this->active_params_.begin (),
                  this->active_params_.end (),
@@ -2594,7 +2654,7 @@ create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
 {
   // We need to create a named parameter.
   using GAME::XME::Atom;
-  
+
   Atom named_parameter;
   ::Utils::XStr param_name (info->name_.c_str ());
   static const ::Utils::XStr meta_NamedParameter ("NameParameter");
@@ -2622,7 +2682,7 @@ create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
 {
   // We need to create a named parameter.
   using GAME::XME::Atom;
-  
+
   Atom parameter;
   ::Utils::XStr param_name (info->name_.c_str ());
   static const ::Utils::XStr meta_TypeParameter ("TypeParameter");
@@ -2651,7 +2711,7 @@ create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
                            FE_Utils::T_Param_Info * info)
 {
   using GAME::XME::Reference;
-  
+
   Reference parameter;
   ::Utils::XStr param_name (info->name_.c_str ());
   static const ::Utils::XStr meta_CollectionParameter ("CollectionParameter");
@@ -2679,22 +2739,22 @@ create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
 // visit_param_holder
 //
 int Project_Generator::visit_param_holder (AST_Param_Holder *node)
-{ 
-  return 0; 
+{
+  return 0;
 }
 
 //
 // visit_template_module_inst
 //
 int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *node)
-{ 
+{
   // Store the element as a symbol.
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
   using GAME::XME::Model;
   using GAME::XME::FCO;
 
-  // First, save this instance for later. Right now, let's not worry 
+  // First, save this instance for later. Right now, let's not worry
   // name clashes with other template modules.
   const char * full_name = node->full_name ();
   this->template_insts_.bind (full_name, node);
@@ -2764,14 +2824,14 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
                  auto_model.children ().end (),
                  arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
 
-  return 0; 
+  return 0;
 }
 
 //
 // visit_template_module_ref
 //
 int Project_Generator::visit_template_module_ref (AST_Template_Module_Ref *node)
-{ 
+{
   return 0;
 }
 

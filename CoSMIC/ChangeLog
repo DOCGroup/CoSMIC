@@ -1,3 +1,9 @@
+Fri Jul 30 02:26:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Fixed support for unions.
+
 Fri Jul 30 00:38:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
