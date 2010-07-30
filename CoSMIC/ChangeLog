@@ -1,3 +1,14 @@
+Fri Jul 30 12:11:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Bug fix where the servant/executor artifacts were added to
+          the implementation if the component did not specify one.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Fixed support for generating case statements for unions.
 
         * PIM/PICML/tests/IDL_to_PICML/Union.cpp:
 

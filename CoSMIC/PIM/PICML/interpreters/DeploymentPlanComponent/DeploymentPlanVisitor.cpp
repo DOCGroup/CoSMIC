@@ -460,10 +460,16 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   // Write the executor parameters for the required artifacts. This
   // should never be null, but just in case... :-)
   if (Udm::null != this->impl_artifact_)
+  {
     this->impl_artifact_.Accept (*this);
+    this->impl_artifact_ = PICML::ComponentImplementationArtifact ();
+  }
 
   if (Udm::null != this->svnt_artifact_)
+  {
     this->svnt_artifact_.Accept (*this);
+    this->svnt_artifact_ = PICML::ComponentServantArtifact ();
+  }
 
   // The last part of this section of the XML document are the
   // executor parameters. So, let's visit all the monolithic executor

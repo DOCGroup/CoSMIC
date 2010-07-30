@@ -243,7 +243,6 @@ private:
   void Visit_FilePackage (const Udm::Object & object);
   void Visit_MemberType (const PICML::MemberType & mt);
   void Visit_ConstantType (const PICML::ConstantType & ct);
-  void Visit_SwitchMember (const PICML::Member & a);
   void Visit_ParameterType (const PICML::ParameterType & pt);
   void Visit_Provideable (const PICML::Provideable & p);
   void Visit_EventType (const PICML::EventType & e);

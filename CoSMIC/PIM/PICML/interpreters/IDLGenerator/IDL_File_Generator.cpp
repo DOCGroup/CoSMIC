@@ -407,6 +407,13 @@ void IDL_File_Generator::Visit_Member (const PICML::Member & m)
 {
   PICML::MemberType mt = m.ref ();
 
+  std::set <PICML::LabelConnection> labels = m.dstLabelConnection ();
+  std::for_each (labels.begin (),
+                 labels.end (),
+                 boost::bind (&PICML::LabelConnection::Accept,
+                              _1,
+                              boost::ref (*this)));
+
   this->idl_ << nl;
   this->Visit_MemberType (mt);
   this->idl_ << " " << m.name () << ";";
@@ -431,20 +438,6 @@ Visit_ArrayMember (const PICML::ArrayMember & m)
 
   long array_size = static_cast <long> (m.Size ());
   this->idl_ << " " << m.name () << "[" << array_size << "];" << nl;
-}
-
-//
-// Visit_SwitchMember
-//
-void IDL_File_Generator::Visit_SwitchMember (const PICML::Member & m)
-{
-  std::set <PICML::LabelConnection> conns = m.dstLabelConnection ();
-
-  std::for_each (conns.begin (),
-                 conns.end (),
-                 boost::bind (&PICML::LabelConnection::Accept, _1, boost::ref (*this)));
-
-  this->Visit_Member (m);
 }
 
 //
