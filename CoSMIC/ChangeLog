@@ -1,3 +1,17 @@
+Fri Jul 30 04:35:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+
+          Changed file name from Deployment_Node_Visitor to Nodemap_Generator.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Node_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Node_Visitor.cpp:
+
+          Removed these files.
+
 Fri Jul 30 02:26:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:

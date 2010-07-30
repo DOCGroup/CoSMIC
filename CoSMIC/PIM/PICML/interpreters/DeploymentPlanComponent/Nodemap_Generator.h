@@ -1,24 +1,24 @@
-#ifndef DEPLOYMENT_NODE_VISITOR_H
-#define DEPLOYMENT_NODE_VISITOR_H
+#ifndef NODEMAP_GENERATOR_H
+#define NODEMAP_GENERATOR_H
 
 #include "PICML/PICML.h"
 
 #include "DeploymentPlan_Export.h"
 
 /**
- * @class Deployment_Node_Visitor
+ * @class Nodemap_Generator
  */
-class Deployment_Node_Visitor : 
+class Nodemap_Generator : 
   public PICML::Visitor
 {
   public:
   /**
    * Initializing constructor.
    */
-  Deployment_Node_Visitor (const std::string & outputPath);
+  Nodemap_Generator (const std::string & outputPath);
 
   /// Destructor.
-  virtual ~Deployment_Node_Visitor (void);
+  virtual ~Nodemap_Generator (void);
 
   virtual void Visit_DeploymentPlan (const PICML::DeploymentPlan &);
   

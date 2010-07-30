@@ -1,4 +1,4 @@
-#include "Deployment_Node_Visitor.h"
+#include "Nodemap_Generator.h"
 
 #include "Utils/UDM/Position_Sort_T.h"
 
@@ -7,10 +7,10 @@
 #include <algorithm>
 
 //
-// Deployment_Node_Visitor
+// Nodemap_Generator
 //
-Deployment_Node_Visitor::
-Deployment_Node_Visitor (const std::string & outputPath)
+Nodemap_Generator::
+Nodemap_Generator (const std::string & outputPath)
 : outputPath_ (outputPath),
   nodemap_contents_ ("")
 {
@@ -18,10 +18,10 @@ Deployment_Node_Visitor (const std::string & outputPath)
 
 
 //
-// ~Deployment_Node_Visitor
+// ~Nodemap_Generator
 //
-Deployment_Node_Visitor::
-~Deployment_Node_Visitor (void)
+Nodemap_Generator::
+~Nodemap_Generator (void)
 {
 }
 
@@ -29,7 +29,7 @@ Deployment_Node_Visitor::
 //
 // Visit_DeploymentPlan
 //
-void Deployment_Node_Visitor::
+void Nodemap_Generator::
 Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 {
   // Visit all the nodes in the deployment plan.  
@@ -59,7 +59,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 //
 // Visit_NodeReference
 //
-void Deployment_Node_Visitor::
+void Nodemap_Generator::
 Visit_NodeReference (const PICML::NodeReference & noderef)
 {
   this->curr_node_ref_name_ = noderef.name ();
@@ -76,7 +76,7 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
 //
 // Visit_PropertyMapping
 //
-void Deployment_Node_Visitor::
+void Nodemap_Generator::
 Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 {
 	PICML::Property prop = pmapping.dstPropertyMapping_end ();
@@ -87,7 +87,7 @@ Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 //
 // Visit_Property
 //
-void Deployment_Node_Visitor::
+void Nodemap_Generator::
 Visit_Property (const PICML::Property & prop)
 {
   this->curr_prop_name_ = prop.name ();
@@ -108,7 +108,7 @@ Visit_Property (const PICML::Property & prop)
 //
 // Visit_DataValue
 //
-void Deployment_Node_Visitor::
+void Nodemap_Generator::
 Visit_DataValue (const PICML::DataValue & dv)
 {
   if (this->curr_prop_name_ == "StringIOR")
