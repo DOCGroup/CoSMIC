@@ -1,3 +1,16 @@
+Fri Jul 30 00:38:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Node_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Node_Visitor.cpp:
+
+          Removed the code to create the .nodemap file from the Deployment_Domain_Visitor
+          and created a new visitor Deployment_Node_Visitor to handle the generation of
+          the file.
+
 Thu Jul 29 23:08:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/Component.rc:

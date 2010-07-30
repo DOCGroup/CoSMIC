@@ -13,6 +13,7 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
     
     Data_Value_Visitor.cpp
     Deployment_Domain_Visitor.cpp
+    Deployment_Node_Visitor.cpp
     DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
     XML_Document.cpp

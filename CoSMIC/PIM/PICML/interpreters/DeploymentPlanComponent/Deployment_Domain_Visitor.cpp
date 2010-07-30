@@ -35,8 +35,7 @@ Deployment_Domain_Visitor (const std::string & outputPath)
   doc_ (0),
   output_ (0),
   serializer_ (0),
-  outputPath_ (outputPath),
-  nodemap_contents_ ("")
+  outputPath_ (outputPath)
 {
   this->init ();
 }
@@ -154,8 +153,6 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 
   // Release the document.
   this->doc_->release ();
-
-  create_nodemap ();
 }
 
 
@@ -166,7 +163,6 @@ void Deployment_Domain_Visitor::
 Visit_NodeReference (const PICML::NodeReference & noderef)
 {
   PICML::Node parent_noderef = noderef.ref ();
-  this->curr_node_ref_name_ = noderef.name ();
   //std::set <PICML::InstanceMapping> mapping = noderef.srcInstanceMapping () ;
   std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping () ;
 
@@ -231,7 +227,6 @@ Visit_DataValue (const PICML::DataValue & dv)
   if (this->curr_prop_name_ == "StringIOR")
   {
 	  pname_full = "edu.vanderbilt.dre.DAnCE.StringIOR";
-    add_to_nodemap (dv);
   }
       
   else if (this->curr_prop_name_ == "CORBAName")
@@ -255,39 +250,5 @@ Visit_DataValue (const PICML::DataValue & dv)
 	  this->curr_value_->appendChild (this->curr_value_inner_);
 	  this->curr_property_->appendChild (this->curr_value_);
 	  this->curr_resource_->appendChild (this->curr_property_);
-  }
-}
-
-//
-// add_to_nodemap
-//
-void Deployment_Domain_Visitor::
-add_to_nodemap (const PICML::DataValue & dv)
-{
-  if(!this->nodemap_contents_.empty ())
-  {
-    this->nodemap_contents_.append ("\n\n");
-  }
-
-  this->nodemap_contents_.append (this->curr_node_ref_name_);
-  this->nodemap_contents_.append (" ");
-  this->nodemap_contents_.append (dv.Value ());
-}
-
-//
-// create_nodemap
-//
-void Deployment_Domain_Visitor::
-create_nodemap ()
-{
-  std::string full_op_path = this->outputPath_;
-  full_op_path.append("/NodeMap.dat");
-
-  FILE * nodemap = fopen (full_op_path.c_str(),"w");
-
-  if (nodemap != NULL)
-  {
-    fputs (this->nodemap_contents_.c_str (), nodemap);
-    fclose (nodemap);
   }
 }
