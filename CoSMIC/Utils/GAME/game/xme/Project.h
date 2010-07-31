@@ -46,7 +46,7 @@ public:
    *
    * @paramp[in]
    */
-  static Project _open (const ::Utils::XStr & location, 
+  static Project _open (const ::Utils::XStr & location,
                         const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /// Default constructor.
@@ -57,7 +57,7 @@ public:
    *
    * @param[in]     proj          Root element of the project.
    */
-  Project (xercesc::DOMDocument * proj, 
+  Project (xercesc::DOMDocument * proj,
            bool validate,
            const Configuration * config = GLOBAL_CONFIG::instance ());
 
@@ -169,8 +169,10 @@ public:
 
   Library attach_library (const ::Utils::XStr & library);
 
-  Library attach_library (const ::Utils::XStr & as_name, 
+  Library attach_library (const ::Utils::XStr & as_name,
                           const ::Utils::XStr & library);
+
+  size_t attached_libraries (std::vector <Library> & libs);
 
   const Configuration * configuration (void) const;
 

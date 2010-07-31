@@ -36,6 +36,13 @@ public:
   Library (void);
 
   /**
+   * Initializing constructor
+   *
+   * @param[in]     obj       The source object.
+   */
+  Library (xercesc::DOMElement * folder, bool validate);
+
+  /**
    * Copy constructor
    *
    * @param[in]     obj       The source object
@@ -52,11 +59,18 @@ public:
    */
   const Library & operator = (const Library & library);
 
+  /// Get the reference location of the library.
+  const XMLCh * libref (void) const;
+
+  virtual void attach (xercesc::DOMElement * e, bool validate = true);
+
+  static ::Utils::XStr xme_to_libref (const ::Utils::XStr & xme);
+
 protected:
   Library (const ::Utils::XStr & location, xercesc::DOMElement * parent);
 
 private:
-  Library (xercesc::DOMElement * libnode, 
+  Library (xercesc::DOMElement * libnode,
            const ::Utils::XStr & libpath,
            bool validate = true);
 

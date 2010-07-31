@@ -341,19 +341,37 @@ Folder Project::root_folder (void) const
   return Folder ();
 }
 
+struct find_by_name_t
+{
+  find_by_name_t (const ::Utils::XStr & name)
+    : name_ (name)
+  {
+
+  }
+
+  template <typename T>
+  bool operator () (T t) const
+  {
+    const ::Utils::XStr name (t.name (), false);
+    return name == this->name_;
+  }
+
+private:
+  const ::Utils::XStr & name_;
+};
+
 //
 // attach_library
 //
-Library Project::
-attach_library (const ::Utils::XStr & libpath)
+Library Project::attach_library (const ::Utils::XStr & libpath)
 {
   ::Utils::XStr xmefile (libpath);
   xmefile.append (::Utils::XStr (".xme"));
 
   // Make sure we have the fullpath for the library.
   char abspath[MAXPATHLEN];
-  std::string filename = ACE_OS::realpath (xmefile.to_string ().c_str (), 
-                                           abspath);
+  std::string filename =
+    ACE_OS::realpath (xmefile.to_string ().c_str (), abspath);
 
   std::replace (filename.begin (),
                 filename.end (),
@@ -362,14 +380,35 @@ attach_library (const ::Utils::XStr & libpath)
 
   xmefile = filename.c_str ();
 
-  // Let the project's root folder adopt the library's root 
-
+  // Let the project's root folder adopt the library's root
   using namespace xercesc;
 
   Project lib_project = Project::_open (xmefile, this->config_);
-  
-  Library_Importer importer;
   Folder lib_root_folder = lib_project.root_folder ();
+
+  // Make sure this library does not already exist. We do not want
+  // to attached it more than one to the project since it can cause
+  // problems in the long run.
+  std::vector <Library> libs;
+  if (this->attached_libraries (libs))
+  {
+    const ::Utils::XStr libname (lib_root_folder.name ());
+
+    std::vector <Library>::iterator
+      result = std::find_if (libs.begin (),
+                             libs.end (),
+                             find_by_name_t (libname));
+
+    if (result != libs.end ())
+    {
+      lib_project.close ();
+      return *result;
+    }
+  }
+
+  // Since we did not find the library, we can begin the import
+  // process. ;-)
+  Library_Importer importer;
   importer.import (lib_root_folder);
 
   // Attach this document as a library.
@@ -379,7 +418,30 @@ attach_library (const ::Utils::XStr & libpath)
   Folder root_folder = this->root_folder ();
   root_folder.ptr ()->appendChild (e);
 
+  lib_project.close ();
   return Library (e, xmefile, false);
+}
+
+//
+// attached_libraries
+//
+size_t Project::attached_libraries (std::vector <Library> & libs)
+{
+  Folder root = this->root_folder ();
+  static const ::Utils::XStr metaname ("RootFolder");
+
+  std::vector <Folder> temp;
+
+  if (root.children (metaname, temp))
+  {
+    std::vector <Folder>::iterator
+      iter = temp.begin (), iter_end = temp.end ();
+
+    for (; iter != iter_end; ++ iter)
+      libs.push_back (Library (iter->ptr (), true));
+  }
+
+  return libs.size ();
 }
 
 }
