@@ -100,8 +100,14 @@ create_files (const char * const * files, size_t n_files, const char * dest)
     const char * filename = files[i];
     Model idl_file;
 
-    // Get the path and the name of the file.
     std::string tmp (filename);
+
+    // Force the exclusion of *E.idl files. We need to make setting
+    // excluded files a command-line parameter.
+    if (tmp.rfind ("E.idl") != std::string::npos)
+      continue;
+
+    // Get the path and the name of the file.
     std::replace (tmp.begin (), tmp.end (), '\\', '/');
 
     tmp = tmp.substr (0, tmp.rfind ('.'));
@@ -134,7 +140,7 @@ create_files (const char * const * files, size_t n_files, const char * dest)
     // a canonical format that we can understand.
     char abspath[MAXPATHLEN];
     fullname = ACE_OS::realpath (filename, abspath);
-                  
+
     for (char * iter = abspath; *iter != '\0'; ++ iter)
     {
       if (*iter == '\\')

@@ -236,10 +236,10 @@ void BE_GlobalData::initialize (void)
   {
     const char *xme = this->input_xme ();
 
-    // If we are inputting an existing XME file, use that to create
-    // the DOM tree, else create an empty one.
     if (0 == xme)
     {
+      // If we are inputting an existing XME file, use that to create
+      // the DOM tree, else create an empty one.
       ACE_CString target_name;
       const char *path = be_global->output_dir ();
 
@@ -272,7 +272,7 @@ void BE_GlobalData::initialize (void)
     // Next, attach the specified libraries.
     std::for_each (this->libs_.begin (),
                    this->libs_.end (),
-                   boost::bind (&Project::attach_library, 
+                   boost::bind (&Project::attach_library,
                                 boost::ref (this->proj_),
                                 _1));
   }
