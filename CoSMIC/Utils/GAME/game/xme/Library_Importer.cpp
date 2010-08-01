@@ -4,7 +4,7 @@
 #include "Library.h"
 
 #include "GME_ID_Generator.h"
-
+#include "ID_Generator_Repo.h"
 #include "boost/bind.hpp"
 
 namespace GAME
@@ -18,7 +18,8 @@ const ::Utils::XStr Library_Importer::ATTR_TARGET ("target");
 //
 // Library_Importer
 //
-Library_Importer::Library_Importer (void)
+Library_Importer::Library_Importer (GME_ID_Generator * idgen)
+: idgen_ (idgen)
 {
 
 }
@@ -58,7 +59,7 @@ void Library_Importer::import (Folder & folder)
 void Library_Importer::handle_folder (Folder & folder)
 {
   // Update the id for the folder element.
-  this->handle_import_common (folder);
+  this->handle_import_common (folder, this->idgen_->generate_folder_id ());
 
   // Update the children in this folder.
   std::vector <Folder> child_folders;
@@ -66,7 +67,7 @@ void Library_Importer::handle_folder (Folder & folder)
 
   std::for_each (child_folders.begin (),
                  child_folders.end (),
-                 boost::bind (&Library_Importer::handle_folder, 
+                 boost::bind (&Library_Importer::handle_folder,
                               boost::ref (this),
                               _1));
 
@@ -109,7 +110,7 @@ void Library_Importer::handle_import_fco (FCO & fco)
 // handle_import_common
 //
 template <typename T>
-void Library_Importer::handle_import_common (T & e)
+void Library_Importer::handle_import_common (T & e, const ::Utils::XStr & newid)
 {
   using xercesc::XMLString;
 
@@ -117,16 +118,12 @@ void Library_Importer::handle_import_common (T & e)
   ::Utils::XStr old_id (e.id (), false);
   XMLString::lowerCase (old_id);
 
-  // Generarate a new id for the element.
-  ::Utils::XStr id = GME_XME_ID_GENERATOR (T)->generate_id ();
-  XMLString::lowerCase (id);
-
   ::Utils::XStr name (e.name (), false);
   ::Utils::XStr kind (e.kind (), false);
 
   // Store the old id and set a new id.
-  this->id_map_[old_id] = id;
-  e.ptr ()->setAttribute (ATTR_ID, id);
+  this->id_map_[old_id] = newid;
+  e.ptr ()->setAttribute (ATTR_ID, newid);
 }
 
 //
@@ -135,7 +132,7 @@ void Library_Importer::handle_import_common (T & e)
 void Library_Importer::handle_import_atom (FCO & fco)
 {
   Atom atom = Atom::_narrow (fco);
-  this->handle_import_common (atom);
+  this->handle_import_common (atom, this->idgen_->generate_atom_id ());
 }
 
 //
@@ -144,7 +141,7 @@ void Library_Importer::handle_import_atom (FCO & fco)
 void Library_Importer::handle_import_model (FCO & fco)
 {
   Model model = Model::_narrow (fco);
-  this->handle_import_common (model);
+  this->handle_import_common (model, this->idgen_->generate_model_id ());
 
   // Now, visit all the children in the model.
   std::vector <FCO> children;
@@ -163,7 +160,7 @@ void Library_Importer::handle_import_model (FCO & fco)
 void Library_Importer::handle_import_reference (FCO & fco)
 {
   Reference ref = Reference::_narrow (fco);
-  this->handle_import_common (ref);
+  this->handle_import_common (ref, this->idgen_->generate_reference_id ());
 
   // Store the reference id for resolution later.
   this->unresolved_refs_.push_back (ref);
@@ -175,7 +172,7 @@ void Library_Importer::handle_import_reference (FCO & fco)
 void Library_Importer::handle_import_connection (FCO & fco)
 {
   Connection conn = Connection::_narrow (fco);
-  this->handle_import_common (conn);
+  this->handle_import_common (conn, this->idgen_->generate_connection_id ());
 
   // Store the connection for later resolution.
   this->unresolved_conns_.push_back (conn);

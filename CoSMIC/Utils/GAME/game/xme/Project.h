@@ -15,6 +15,8 @@
 
 #include <map>
 #include <utility>
+#include <memory>
+
 #include "Library.h"
 #include "Configuration.h"
 
@@ -22,6 +24,9 @@ namespace GAME
 {
 namespace XME
 {
+// Forward decl.
+class GME_ID_Generator;
+
 /**
  * @class Project
  *
@@ -51,15 +56,6 @@ public:
 
   /// Default constructor.
   Project (void);
-
-  /**
-   * Initializing constructor
-   *
-   * @param[in]     proj          Root element of the project.
-   */
-  Project (xercesc::DOMDocument * proj,
-           bool validate,
-           const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /**
    * Copy constructor
@@ -141,17 +137,6 @@ public:
    */
   bool operator != (const Project & rhs) const;
 
-  /// Release control of the wrapped DOMElement.
-  xercesc::DOMDocument * release (void);
-
-  /**
-   * Attach to an existing XML document.
-   *
-   * @param[in]     proj        Target project
-   * @param[in]     validate    Validate XML document is project
-   */
-  void attach (xercesc::DOMDocument * proj, bool validate);
-
   /**
    * Get the root folder for the project.
    *
@@ -185,6 +170,14 @@ private:
   static const ::Utils::XStr ELEMENT_COMMENT;
   static const ::Utils::XStr ROOT_FOLDER;
   static const ::Utils::XStr ATTR_LIBREF;
+
+  /**
+   * Initializing constructor
+   *
+   * @param[in]     proj          Root element of the project.
+   */
+  Project (xercesc::DOMDocument * proj,
+           const Configuration * config = GLOBAL_CONFIG::instance ());
 
   // Implementation of the save method.
   bool save_i (const ::Utils::XStr & xmefile) const;

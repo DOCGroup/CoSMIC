@@ -1,3 +1,41 @@
+Sun Aug  1 14:02:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator.h:
+        * Utils/GAME/game/xme/GME_ID_Generator.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+        * Utils/GAME/game/xme/ID_Generator_Repo.h:
+        * Utils/GAME/game/xme/ID_Generator_Repo.inl:
+        * Utils/GAME/game/xme/ID_Generator_Repo.cpp:
+        * Utils/GAME/game/xme/Library_Importer.h:
+        * Utils/GAME/game/xme/Library_Importer.cpp:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+
+          Bug fix where using the -i option with very large models
+          could result in duplicated id generation. This prevented
+          the model from being opened.
+
+        * PIM/PICML/tests/regression/REGRESSION:
+
+          Updated the regession testing log.
+
+        * docs/KNOWN-ISSUES:
+
+          Updated the known issues file.
+
+        * Utils/GAME/game/xme/GME_ID_Generator_T.h:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.cpp:
+
+          Removed these files.
+
 Sat Jul 31 17:00:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:

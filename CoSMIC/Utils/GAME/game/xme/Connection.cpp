@@ -7,6 +7,7 @@
 #endif
 
 #include "GME_ID_Generator.h"
+#include "ID_Generator_Repo.h"
 #include "Model.h"
 
 namespace GAME
@@ -48,7 +49,7 @@ Connection (xercesc::DOMElement * parent,
             const FCO & dst)
 : FCO (parent,
        TAGNAME,
-       GME_XME_ID_GENERATOR (Connection)->generate_id (),
+       GAME_XME_ID_GENERATOR_REPO->get (parent)->generate_connection_id (),
        kind,
        kind,
        relid)

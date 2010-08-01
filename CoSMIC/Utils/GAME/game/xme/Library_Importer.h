@@ -22,17 +22,28 @@
 namespace GAME
 {
 namespace XME
-{ 
+{
+// Forward decl.
 class Library;
 
+// Forward decl.
 class Folder;
 
+// Forward decl.
 class FCO;
 
+// Forward decl.
+class GME_ID_Generator;
+
+/**
+ * @class Library_Importer
+ *
+ * Utility class for importing a library into a project.
+ */
 class Library_Importer
 {
 public:
-  Library_Importer (void);
+  Library_Importer (GME_ID_Generator * idgen);
 
   ~Library_Importer (void);
 
@@ -49,11 +60,11 @@ private:
   void handle_import_fco (FCO & fco);
 
   void handle_import_atom (FCO & fco);
-  
+
   void handle_import_model (FCO & fco);
-  
+
   void handle_import_reference (FCO & fco);
-  
+
   void handle_import_connection (FCO & fco);
 
   void resolve_reference (Reference & ref);
@@ -61,9 +72,9 @@ private:
   void resolved_connection (Connection & conn);
 
   template <typename T>
-  void handle_import_common (T & element);
- 
-  typedef std::map < ::Utils::XStr, 
+  void handle_import_common (T & e, const ::Utils::XStr & newid);
+
+  typedef std::map < ::Utils::XStr,
                      ::Utils::XStr,
                      insensitive_id > id_map_t;
 
@@ -76,6 +87,9 @@ private:
   static const ::Utils::XStr ATTR_ID;
   static const ::Utils::XStr ATTR_REFERRED;
   static const ::Utils::XStr ATTR_TARGET;
+
+private:
+  GME_ID_Generator * idgen_;
 };
 
 }

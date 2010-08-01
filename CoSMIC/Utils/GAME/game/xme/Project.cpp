@@ -9,6 +9,7 @@
 #include "Folder.h"
 #include "GME_ID_Generator.h"
 #include "GME_ID_Generator_T.h"
+#include "ID_Generator_Repo.h"
 #include "Library_Importer.h"
 
 #include "Utils/xercesc/XML_Error_Handler.h"
@@ -20,6 +21,8 @@
 #include "ace/OS_Memory.h"
 #include "ace/OS_NS_stdio.h"
 #include "ace/OS_NS_time.h"
+#include "ace/CORBA_macros.h"
+
 #include <sstream>
 
 #include <xercesc/framework/Wrapper4InputSource.hpp>
@@ -111,6 +114,18 @@ static ACE_TCHAR * timestamp (ACE_TCHAR * buffer, int length)
 }
 
 //
+// Project
+//
+GAME_INLINE
+Project::
+Project (xercesc::DOMDocument * doc, const Configuration * config)
+: doc_ (doc),
+  config_ (config)
+{
+  GAME_XME_ID_GENERATOR_REPO->open (doc);
+}
+
+//
 // _create
 //
 Project Project::
@@ -136,9 +151,6 @@ _create (const ::Utils::XStr & xmefile,
   DOMDocument * doc = impl->createDocument (0, Project::TAGNAME, doc_type);
   doc->setXmlVersion (Project::XML_VERSION);
 
-  // Initialize the GME id generator.
-  ID_GENERATOR::instance ()->init (doc);
-
   // Get the root element of the document.
   DOMElement * root = doc->getDocumentElement ();
 
@@ -157,7 +169,7 @@ _create (const ::Utils::XStr & xmefile,
   root->setAttribute (::Utils::XStr ("cdate"), ::Utils::XStr (ts));
 
   // Initialize the project attributes.
-  Project project (doc, false, config);
+  Project project (doc, config);
   project.name (::Utils::XStr::EMPTY_STRING);
   project.comment (::Utils::XStr::EMPTY_STRING);
   project.author (::Utils::XStr::EMPTY_STRING);
@@ -199,7 +211,7 @@ _open (const ::Utils::XStr & location, const Configuration * config)
   parser.parse (location);
 
   // Initialize a project variable.
-  Project proj (parser.adoptDocument (), false, config);
+  Project proj (parser.adoptDocument (), config);
   proj.xmefile_ = location;
 
   return proj;
@@ -254,9 +266,12 @@ bool Project::save_i (const ::Utils::XStr & xmefile) const
 //
 void Project::close (void)
 {
-  // Release all the resource owned by this document.
   if (0 != this->doc_)
   {
+    // Remove the project from the id generator repo.
+    GAME_XME_ID_GENERATOR_REPO->close (this->doc_);
+
+    // Release all the resource owned by this document.
     this->doc_->release ();
     this->doc_ = 0;
   }
@@ -264,6 +279,7 @@ void Project::close (void)
   // Erase the target filename.
   this->xmefile_.clear ();
   this->config_ = 0;
+
 }
 
 //
@@ -277,27 +293,6 @@ const Project & Project::operator = (const Project & proj)
   this->config_ = proj.config_;
 
   return *this;
-}
-
-//
-// attach
-//
-void Project::attach (xercesc::DOMDocument * proj, bool validate)
-{
-  if (validate)
-  {
-    using xercesc::DOMElement;
-
-    DOMElement * e = this->doc_->getDocumentElement ();
-    ::Utils::XStr tagname (e->getTagName (), false);
-
-    if (tagname != Project::TAGNAME)
-      throw Invalid_Cast ();
-  }
-
-  // Initialize the ID generator and save the project.
-  ID_GENERATOR::instance ()->init (proj);
-  this->doc_ = proj;
 }
 
 //
@@ -408,7 +403,7 @@ Library Project::attach_library (const ::Utils::XStr & libpath)
 
   // Since we did not find the library, we can begin the import
   // process. ;-)
-  Library_Importer importer;
+  Library_Importer importer (GAME_XME_ID_GENERATOR_REPO->get (this->doc_));
   importer.import (lib_root_folder);
 
   // Attach this document as a library.

@@ -8,3 +8,14 @@ testing.
 
 . The ports a Component and ComponentInstance element do not show
   up because of a bug in the corresponding decorator.
+
+. Use idl_to_picml to create the PICML model for the Shape example
+  in the dds4ccm directory of the CIAO repo. Then use idl_to_picml
+  to re-import the files for the same example into the same model
+  create from the last step. Make sure the model is able to import
+  into GME correctly and there are no duplicate id constraint
+  violations.
+
+. Run idl_to_picml on a directory that has E.idl (or executor
+  IDL) files and verify that those files are not imported into
+  the model.

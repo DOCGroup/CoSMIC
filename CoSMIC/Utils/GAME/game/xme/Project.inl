@@ -31,19 +31,6 @@ Project::Project (const Project & proj)
 }
 
 //
-// Project
-//
-GAME_INLINE
-Project::Project (xercesc::DOMDocument * doc, 
-                  bool validate,
-                  const Configuration * config)
-: doc_ (0),
-  config_ (config)
-{
-  this->attach (doc, validate);
-}
-
-//
 // ~Project
 //
 GAME_INLINE
@@ -140,18 +127,6 @@ void Project::comment (const ::Utils::XStr & value)
   Utils::set_element_value (this->doc_->getDocumentElement (),
                             ELEMENT_COMMENT,
                             value);
-}
-
-//
-// release
-//
-GAME_INLINE
-xercesc::DOMDocument * Project::release (void)
-{
-  xercesc::DOMDocument * temp = this->doc_;
-  this->doc_ = 0;
-
-  return temp;
 }
 
 //

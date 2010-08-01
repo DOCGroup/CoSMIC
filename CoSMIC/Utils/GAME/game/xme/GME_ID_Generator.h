@@ -13,90 +13,86 @@
 #ifndef _GAME_GME_ID_GENERATOR_H_
 #define _GAME_GME_ID_GENERATOR_H_
 
-#include "xercesc/dom/DOM.hpp"
-#include "ace/Singleton.h"
-#include "ace/Null_Mutex.h"
+#include "xercesc/dom/DOMDocument.hpp"
+#include "Utils/xercesc/XercesString.h"
+#include "ace/Thread_Mutex.h"
 #include "game/config.h"
-#include "GME_ID_Generator_T.h"
 
 namespace GAME
 {
 namespace XME
 {
 /**
- * @class GME_ID_Generator_T
+ * @class GME_ID_Generator
  *
- * ID generator for different model element types.
+ * Id generator for different model element types.
  */
 class GME_ID_Generator
 {
 public:
   /// Default constructor.
-  GME_ID_Generator (void);
+  GME_ID_Generator (xercesc::DOMDocument * proj);
 
   /// Destructor.
   ~GME_ID_Generator (void);
 
-  /**
-   * Initialize the id generator.
-   *
-   * @param[in]     proj      Project used to initial generator
-   */
+  const ::Utils::XStr & generate_folder_id (void);
+  const ::Utils::XStr & generate_atom_id (void);
+  const ::Utils::XStr & generate_model_id (void);
+  const ::Utils::XStr & generate_reference_id (void);
+  const ::Utils::XStr & generate_connection_id (void);
+
+private:
+  struct typeinfo_t
+  {
+    typeinfo_t (void)
+      : count_ (0) { }
+
+    typeinfo_t (size_t count, const ::Utils::XStr & idstr)
+      : count_ (count),
+        idstr_ (idstr)
+    {
+
+    }
+
+    /// Number of elements for the given type.
+    XMLSize_t count_;
+
+    /// The current id string for the type.
+    ::Utils::XStr idstr_;
+
+    ACE_Thread_Mutex lock_;
+  };
+
+  /// Helper method for initializing object.
   void init (xercesc::DOMDocument * proj);
 
-  /// Reset the ID generator.
-  void reset (void);
+  /// Helper method to initialize a type in the generator.
+  static void init (xercesc::DOMDocument * proj,
+                    const ::Utils::XStr & name,
+                    typeinfo_t & type);
+
+  /// Helper method for generating an id for a given type.
+  static ::Utils::XStr & generate_id (typeinfo_t & type);
+
+  /// Number of atoms.
+  typeinfo_t atom_;
+
+  /// Number of models.
+  typeinfo_t model_;
+
+  /// Number of folders.
+  typeinfo_t folder_;
+
+  /// Number of sets.
+  typeinfo_t set_;
+
+  /// Number of references.
+  typeinfo_t ref_;
+
+  /// Number of connections.
+  typeinfo_t conn_;
 };
-
-/// Global id generator for all the types.
-typedef ACE_Singleton <GME_ID_Generator, ACE_Null_Mutex> ID_GENERATOR;
-
-// Forward decl.
-class Folder;
-
-// Forward decl.
-class Model;
-
-// Forward decl.
-class Reference;
-
-// Forward decl.
-class Connection;
-
-// Forward decl.
-class Atom;
-
-template < >
-struct initial_id <Model>
-{
-  static const ::Utils::XStr result_type;
-};
-
-template < >
-struct initial_id <Atom>
-{
-  static const ::Utils::XStr result_type;
-};
-
-template < >
-struct initial_id <Reference>
-{
-  static const ::Utils::XStr result_type;
-};
-
-template < >
-struct initial_id <Connection>
-{
-  static const ::Utils::XStr result_type;
-};
-
-template < >
-struct initial_id <Folder>
-{
-  static const ::Utils::XStr result_type;
-};
-
-/// @todo add initial_id for Set
 
 }
 }

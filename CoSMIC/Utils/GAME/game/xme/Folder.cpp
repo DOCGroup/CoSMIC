@@ -7,6 +7,7 @@
 #endif
 
 #include "GME_ID_Generator.h"
+#include "ID_Generator_Repo.h"
 #include <sstream>
 
 namespace GAME
@@ -46,14 +47,13 @@ Folder::Folder (xercesc::DOMElement * folder, bool validate)
 //
 // Folder
 //
-GAME_INLINE
 Folder::
 Folder (xercesc::DOMElement * parent,
         const ::Utils::XStr & kind,
         size_t relid)
 : Object (parent,
           TAGNAME,
-          GME_XME_ID_GENERATOR (Folder)->generate_id (),
+          GAME_XME_ID_GENERATOR_REPO->get (parent)->generate_folder_id (),
           kind,
           relid),
   counter_ (0)

@@ -7,6 +7,7 @@
 #endif
 
 #include "GME_ID_Generator.h"
+#include "ID_Generator_Repo.h"
 #include "Folder.h"
 
 namespace GAME
@@ -39,7 +40,7 @@ Atom (xercesc::DOMElement * parent,
       size_t relid)
 : FCO (parent,
        TAGNAME,
-       GME_XME_ID_GENERATOR (Atom)->generate_id (),
+       GAME_XME_ID_GENERATOR_REPO->get (parent)->generate_atom_id (),
        kind,
        kind,
        relid)
