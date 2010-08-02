@@ -1,3 +1,10 @@
+Mon Aug  2 04:09:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Project.cpp:
+
+          Fixed compile error related to including non-existent header
+          file.
+
 Sun Aug  1 14:02:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/Atom.cpp:
