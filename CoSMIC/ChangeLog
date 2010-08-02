@@ -1,3 +1,11 @@
+Mon Aug  2 05:24:17 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Interface.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.mpc:
+
+          Added idl_to_picml interface test cases.
+
 Mon Aug  2 04:37:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

@@ -1,0 +1,139 @@
+// $Id: $
+
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    Interface.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    interface declarations
+//
+// = AUTHORS
+//    Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
+
+#ifndef _INTERFACE_IDL_
+#define _INTERFACE_IDL_
+
+// interface declaration
+interface JustANoun
+{
+  void person(in string name);
+  void place(in string name);
+  void thing(in long number_of);
+  void idea(in boolean is_great);
+  void my_event(in long type);
+};
+
+// advance interface declaration with attributes
+interface NounWithAttributes
+{
+  attribute boolean m_is_great;
+  attribute string m_name_of;
+  attribute long m_number_of;
+
+  void person(in string name);
+  void place(in string name);
+  void thing(in long number_of);
+  void idea(in boolean is_great);
+  void event(in long type);
+};
+
+// advance interface declaration with attributes and an exception
+interface NounWithAttributesAndException
+{
+  attribute boolean m_is_member;
+  attribute string m_name_of;
+  attribute long m_number_of;
+  
+  // not a member exception
+  exception NotAMember{}; 
+
+  void person(in boolean is_member);
+  void place(in long how_many);
+  void thing(in boolean has_more);
+  void idea(in char begin_letter);
+  void event(in double my_double);
+};
+
+// Module of an interface
+module ModuleOfAnInterface
+{
+  interface person
+  {
+    void my_person(in boolean is_member);
+  };
+  
+  interface place
+  {
+    void my_place(in long how_many);
+  };
+  
+  interface thing
+  {
+    void my_thing(in boolean has_more);
+  };
+  
+  interface idea
+  {
+    void my_idea(in char begin_letter);
+  };
+  
+  interface event
+  {
+    void my_event(in double my_double);
+  };
+};
+
+// advance interface with forward declaration
+module ForwardDeclaration
+{
+  interface place; // forward declaration
+  interface person; // forward declaration
+
+  interface place
+  {
+    attribute long m_how_many;
+    
+    void my_place(in long how_many);
+  };
+  
+  interface person
+  {
+    attribute boolean m_member;
+    
+    void my_person(in boolean is_member);
+  };
+};
+
+// interface with oneway operations plus exceptions
+module NounWitnOneWayOp
+{
+  interface idea
+  {
+    exception NotSoGreat{};
+    attribute boolean m_is_great;
+    
+    void is_great(in boolean great);
+    
+    oneway void create_idea();
+  };
+  
+  interface event
+  {
+    exception TypeUndefined{};
+    attribute long m_type_of;
+    
+    void get_type(out long type);
+    void set_type(in long type);
+    
+    oneway void create_event();
+  };
+};
+
+#endif
