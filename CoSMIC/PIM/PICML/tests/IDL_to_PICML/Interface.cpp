@@ -1,167 +1,76 @@
 // $Id: $
 
-#include "Interface.h"
+#include "InterfaceC.h"
 #include "ace/Log_Msg.h"
-#include "ace/Auto_Ptr.h"
+#include "ace/Get_Opt.h"
 #include <typeinfo.h>
+
+const char *noun_ior = "file://noun.ior";
+
+int
+parse_args (int argc, char *argv[])
+{
+  ACE_Get_Opt get_opts (argc, argv, "k:p:");
+  int c;
+  while ((c = get_opts ()) != -1)
+    {
+      switch (c)
+        {
+          case 'k':
+            noun_ior = get_opts.opt_arg ();
+            break;
+
+          case '?':  // display help for use of the server.
+          default:
+            ACE_ERROR_RETURN ((LM_ERROR,
+                               "usage:  %s\n"
+                               "-k <Noun IOR> (default is file://noun.ior)\n"
+                               "\n",
+                               argv [0]),
+                              -1);
+        }
+    }
+  return 0;
+}
 
 //
 // ACE_TMAIN
 //
 int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
 {
-
   ACE_DEBUG ((LM_DEBUG, "*** begin validating interface declarations\n"));
 
   try
   {
-    ACE_Auto_Ptr <MyJustANoun> noun_;
+    // Initialize the ORB.
+    CORBA::ORB_var orb = CORBA::ORB_init ( argc, argv );
     
-    // test JustANoun members
-    noun_->person("me");
-    noun_->place("IDL");
-    noun_->thing(1000);
-    noun_->idea(true);
-    noun_->my_event(12);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyJustANoun threw an exception\n"));
-  }
+    if (parse_args (argc, argv) != 0)
+    {
+      return -1;
+    }
 
-  try
-  {
-    ACE_Auto_Ptr <MyNounWithAttributes> noun_;
+    CORBA::Object_var obj = orb->string_to_object (noun_ior);
     
-    // test MyNounWithAttributes members
-    noun_->person("me");
-    noun_->place("IDL");
-    noun_->thing(1000);
-    noun_->idea(true);
-    noun_->my_event(12);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyNounWithAttributes threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyNounWithAttributesAndException> noun_;
+    JustANoun_var noun = JustANoun::_narrow (obj.in());
     
-    // test MyNounWithAttributesAndException members
-    noun_->person("me");
-    noun_->place(1234);
-    noun_->thing(false);
-    noun_->idea('I');
-    noun_->my_event(12.34);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyNounWithAttributesAndException threw an exception\n"));
-  }
+    if (CORBA::is_nil (noun.in ()))
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "Unable to acquire JustANoun objref\n"),
+                        -1);
+    }
 
-  try
-  {
-    ACE_Auto_Ptr <MyPerson> person_;
-    // test MyPerson members
-    person_->my_person(true);
+    noun->person ("me");
+    noun->place ("IDL");
+    noun->thing (1000);
+    noun->idea (true);
+    noun->my_event (12);
   }
-  catch(...)
+  catch(const CORBA::Exception& ex)
   {
-      ACE_ERROR ((LM_ERROR, "MyPerson threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyPlace> place_;
-    // test MyPlace members
-    place_->my_place(2000);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyPlace threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyThing> thing_;
-    // test MyPlace members
-    thing_->my_thing(false);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyThing threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyIdea> idea_;
-    // test MyPlace members
-    idea_->my_idea('I');
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyIdea threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyEvent> event_;
-    // test MyEvent members
-    event_->my_event(12.34);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyEvent threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyForwardDeclarationPlace> place_;
-    // test MyForwardDeclarationPlace members
-    place_->my_place(123);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyForwardDeclarationPlace threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <MyForwardDeclarationPerson> person_;
-    // test MyForwardDeclarationPerson members
-    person_->my_person(true);
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "MyForwardDeclarationPerson threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <NounWithOneWayOPIdea> idea_;
-    // test NounWithOneWayOPIdea members
-    idea_->is_great(true);
-    idea_->create_idea();
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "NounWithOneWayOPIdea threw an exception\n"));
-  }
-
-  try
-  {
-    ACE_Auto_Ptr <NounWithOneWayOPEvent> event_;
-    // test NounWithOneWayOPEvent members
-    ::CORBA::Long my_type = 0;
-    event_->get_type(my_type);
-    event_->set_type(10);
-    event_->create_event();
-  }
-  catch(...)
-  {
-      ACE_ERROR ((LM_ERROR, "NounWithOneWayOPEvent threw an exception\n"));
+      ACE_PRINT_EXCEPTION (ex, "CORBA::Exception\n");
+      ACE_ERROR_RETURN ((LM_ERROR, "Caught CORBA::Exception\n"), 1);
   }
 
   ACE_DEBUG ((LM_DEBUG, "*** end validating interface declarations\n"));
