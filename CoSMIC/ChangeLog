@@ -1,3 +1,17 @@
+Tue Aug  3 05:51:18 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Interface.h:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.cpp:
+
+          Updated idl_to_picml interface test cases.
+
+        * PIM/PICML/tests/IDL_to_PICML/Typedef.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Typedef.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Typedef.mpc:
+
+          Added idl_to_picml typedef test cases.
+
 Tue Aug  3 05:14:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
 

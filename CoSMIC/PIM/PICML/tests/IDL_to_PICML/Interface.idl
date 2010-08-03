@@ -30,7 +30,7 @@ interface JustANoun
   void my_event(in long type);
 };
 
-// advance interface declaration with attributes
+// interface declaration with attributes
 interface NounWithAttributes
 {
   attribute boolean m_is_great;
@@ -41,7 +41,7 @@ interface NounWithAttributes
   void place(in string name);
   void thing(in long number_of);
   void idea(in boolean is_great);
-  void event(in long type);
+  void my_event(in long type);
 };
 
 // advance interface declaration with attributes and an exception
@@ -58,7 +58,7 @@ interface NounWithAttributesAndException
   void place(in long how_many);
   void thing(in boolean has_more);
   void idea(in char begin_letter);
-  void event(in double my_double);
+  void my_event(in double my_double);
 };
 
 // Module of an interface
@@ -90,7 +90,7 @@ module ModuleOfAnInterface
   };
 };
 
-// advance interface with forward declaration
+// interface with forward declaration
 module ForwardDeclaration
 {
   interface place; // forward declaration
@@ -112,7 +112,7 @@ module ForwardDeclaration
 };
 
 // interface with oneway operations plus exceptions
-module NounWitnOneWayOp
+module NounWithOneWayOp
 {
   interface idea
   {
