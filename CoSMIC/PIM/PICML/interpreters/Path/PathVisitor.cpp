@@ -608,58 +608,63 @@ namespace PICML
     DOMElement* value = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (value);
     this->curr_ = value;
+
     // Property's type
-    DataType type = property.DataType_child();
-    type.Accept (*this);
+    std::vector <PICML::DataValue> data_values = property.DataValue_kind_children ();
+    PICML::DataValue data_value = data_values.front ();
+    data_value.Accept (*this);
+
     // Property's type's value
     DOMElement* val = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
 
-    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+    PredefinedType ref = PICML::PredefinedType::Cast (data_value.ref ());
+
+    std::string data_val = data_value.Value ();
 
     std::string refName = ref.name();
     if (refName == "Boolean")
       {
         this->curr_->appendChild (this->createSimpleContent ("boolean",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     else if (refName == "Byte")
       {
         this->curr_->appendChild (this->createSimpleContent ("octet",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     else if (refName == "String")
       {
         this->curr_->appendChild (this->createSimpleContent ("string",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     else if (refName == "DoubleNumber")
       {
         this->curr_->appendChild (this->createSimpleContent ("double",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     else if (refName == "FloatNumber")
       {
         this->curr_->appendChild (this->createSimpleContent ("float",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     else if (refName == "ShortInteger")
       {
         this->curr_->appendChild (this->createSimpleContent ("short",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     else if (refName == "LongInteger")
       {
         this->curr_->appendChild (this->createSimpleContent ("long",
-                                                             property.DataValue()));
+                                                             data_val));
       }
     this->pop();
   }
 
-  void PathVisitor::Visit_DataType(const DataType& type)
+  void PathVisitor::Visit_DataValue(const DataValue & dv)
   {
-    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+    PredefinedType ref = PICML::PredefinedType::Cast (dv.ref ());
 
     std::string kindName = ref.name();
     if (kindName == "Boolean")

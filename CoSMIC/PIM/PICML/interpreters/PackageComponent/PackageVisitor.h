@@ -64,7 +64,7 @@ namespace PICML
     virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&);
     virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
     virtual void Visit_Property(const Property&);
-    virtual void Visit_DataType(const DataType&);
+    virtual void Visit_DataValue(const DataValue&);
 
     virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&);
     virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&);

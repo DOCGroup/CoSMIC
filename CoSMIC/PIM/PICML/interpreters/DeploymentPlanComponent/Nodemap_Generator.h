@@ -5,6 +5,10 @@
 
 #include "DeploymentPlan_Export.h"
 
+#include <iostream>
+#include <fstream>
+#include <cstdio>
+
 /**
  * @class Nodemap_Generator
  */
@@ -38,7 +42,8 @@ class Nodemap_Generator :
 
   std::string curr_prop_name_;
 
-  std::string nodemap_contents_;
+  std::ofstream out;
+
 };
 
 #endif

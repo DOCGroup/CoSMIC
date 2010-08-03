@@ -11,8 +11,7 @@
 //
 Nodemap_Generator::
 Nodemap_Generator (const std::string & outputPath)
-: outputPath_ (outputPath),
-  nodemap_contents_ ("")
+: outputPath_ (outputPath)
 {
 }
 
@@ -32,6 +31,11 @@ Nodemap_Generator::
 void Nodemap_Generator::
 Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 {
+  // Create the document
+  this->outputPath_.append ("/");
+  this->outputPath_.append (plan.name ().operator std::string ().c_str ());
+  this->outputPath_.append (".nodemap");
+
   // Visit all the nodes in the deployment plan.  
   std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
   
@@ -40,19 +44,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                  boost::bind (&PICML::NodeReference::Accept, 
                               _1, 
                               boost::ref (*this)));
-
-  // Create the document
-  this->outputPath_.append("/");
-  this->outputPath_.append(plan.name ().operator std::string ().c_str ());
-  this->outputPath_.append(".nodemap");
-
-  FILE * nodemap = fopen (this->outputPath_.c_str(),"w");
-
-  if (nodemap != NULL)
-  {
-    fputs (this->nodemap_contents_.c_str (), nodemap);
-    fclose (nodemap);
-  }
+  if(out.is_open ())
+    out.close ();
 }
 
 
@@ -113,13 +106,14 @@ Visit_DataValue (const PICML::DataValue & dv)
 {
   if (this->curr_prop_name_ == "StringIOR")
   {
-	  if(!this->nodemap_contents_.empty ())
+    if(!out.is_open ())
     {
-      this->nodemap_contents_.append ("\n\n");
+      out.open (this->outputPath_.c_str (), std::ios::trunc);
+      out<<this->curr_node_ref_name_<<" "<<dv.Value ();
     }
-
-    this->nodemap_contents_.append (this->curr_node_ref_name_);
-    this->nodemap_contents_.append (" ");
-    this->nodemap_contents_.append (dv.Value ());
+    else
+    {
+      out<<std::endl<<std::endl<<this->curr_node_ref_name_<<" "<<dv.Value ();
+    }
   }
 }

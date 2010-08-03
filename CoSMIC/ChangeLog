@@ -1,9 +1,53 @@
+Tue Aug  3 22:07:46 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Removed code that provided deprecation support for DataValue attribute
+          of Property and DataType reference within Property. 
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Added support to handle name if Property name is LocalityArguments.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+
+          Changed code to handle files using streams.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+
+          Changed code to handle new Property and remove support
+          for DataValue attribute of Property and DataType reference
+          within Property.
+
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+
+          Changed code to handle new Property and remove support
+          for DataValue attribute of Property and DataType reference
+          within Property.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Removed the DataValue attribute of Property and support for
+          DataType reference within Property. Corrected the bug in
+          constraint AddComplexTypeReference in the Common paradigm sheet.
+          Deleted constraint UniquePropertyNames in the DeploymentPlan
+          paradigm sheet.
+
 Tue Aug  3 20:42:36 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Interface.mpc:
         * PIM/PICML/tests/IDL_to_PICML/Interface.cpp:
         * PIM/PICML/tests/IDL_to_PICML/Typedef.mpc:
-        
+
           Updated idle_to_picml interface test cases
 
         * PIM/PICML/tests/IDL_to_PICML/Interface.h:

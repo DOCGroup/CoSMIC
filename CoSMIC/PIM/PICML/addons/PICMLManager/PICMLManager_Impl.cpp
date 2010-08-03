@@ -95,9 +95,6 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("Consume", &PICMLManager_Impl::handle_Consume);
   this->handlers_.bind ("Publish", &PICMLManager_Impl::handle_Publish);
 
-  this->handlers_.bind ("DataType", &PICMLManager_Impl::handle_DataType);
-  this->handlers_.bind ("Property", &PICMLManager_Impl::handle_Property);
-
   return 0;
 }
 
@@ -1117,37 +1114,6 @@ handle_Consume (unsigned long eventmask, GAME::Object & obj)
   }
 
   return 0;
-}
-
-//
-// handle_DataType
-//
-int PICMLManager_Impl::
-handle_DataType (unsigned long eventmask, GAME::Object & obj)
-{
-  AfxMessageBox ("The use of DataType has been deprecated.\nPlease use DataValue in the DataValueAspect of the \"Part Browser\" instead.");
-
-  if (this->importing_)
-  {
-    AfxMessageBox ("Please use the latest migration script to remove the deprecated functionality");
-  }
-
-  return -1;
-}
-
-//
-// handle_Property
-//
-int PICMLManager_Impl::
-handle_Property (unsigned long eventmask, GAME::Object & obj)
-{
-  if (eventmask != OBJEVENT_ATTR)
-    return 0;
-
-  ::AfxMessageBox ("Setting the Property value has been deprecated.\n"
-                   "Instead please use DataValue in the DataValueAspect "
-                   "of the \"Part Browser\" within the Property.");
-  return -1;
 }
 
 //

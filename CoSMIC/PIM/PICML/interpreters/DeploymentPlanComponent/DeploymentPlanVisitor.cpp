@@ -711,6 +711,8 @@ Visit_Property (const PICML::Property & prop)
     name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
   else if (name == "RegisterNaming")
     name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
+  else if (name == "LocalityArguments")
+    name = "edu.vanderbilt.dre.DAnCE.LocalityArguments";
 
   PICML_Data_Type_Dispatcher dt_dispatcher;
 

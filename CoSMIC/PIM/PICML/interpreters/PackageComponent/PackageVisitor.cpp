@@ -321,59 +321,64 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
   DOMElement* value = this->doc_->createElement (XStr ("value"));
   this->curr_->appendChild (value);
   this->curr_ = value;
+
   // Property's type
-  DataType type = property.DataType_child();
-  type.Accept (*this);
+  std::vector <PICML::DataValue> data_values = property.DataValue_kind_children ();
+  PICML::DataValue data_value = data_values.front ();
+  data_value.Accept (*this);
+  
   // Property's type's value
   DOMElement* val = this->doc_->createElement (XStr ("value"));
   this->curr_->appendChild (val);
   this->curr_ = val;
 
-  PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
-  const Uml::Class& refType = ref.type();
+  PredefinedType ref = PICML::PredefinedType::Cast (data_value.ref ());
+  const Uml::Class& refType = ref.type ();
+
+  std::string data_val = data_value.Value ();
 
   if (refType == Boolean::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("boolean",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   else if (refType == Byte::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("octet",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   else if (refType == String::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("string",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   else if (refType == FloatNumber::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("float",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   else if (refType == DoubleNumber::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("double",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   else if (refType == ShortInteger::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("short",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   else if (refType == LongInteger::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("long",
-                                                           property.DataValue()));
+                                                           data_val));
     }
   this->pop();
 }
 
-void PackageVisitor::Visit_DataType(const DataType& type)
+void PackageVisitor::Visit_DataValue(const DataValue & dv)
 {
-  PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
-  const Uml::Class& refType = ref.type();
+  PredefinedType ref = PICML::PredefinedType::Cast (dv.ref ());
+  const Uml::Class& refType = ref.type ();
 
   if (refType == Boolean::meta)
     {
