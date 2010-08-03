@@ -996,7 +996,7 @@ int Project_Generator::visit_uses (AST_Uses *node)
     ref.name (name);
   }
 
-  ref.attribute (constant::attr::multiple_connections, true).value (!node->is_multiple ());
+  ref.attribute (constant::attr::multiple_connections, true).value (node->is_multiple ());
 
   // Resolve the event type for this port.
   this->handle_symbol_resolution (node->uses_type (), ref);

@@ -10,6 +10,7 @@
 Find_Forward_Decls::Find_Forward_Decls (bool visit_template_module)
 : has_component_ (false),
   has_typesupport_ (false),
+  has_ami4ccm_ (false),
   visit_template_module_ (visit_template_module)
 {
 
@@ -30,6 +31,10 @@ void Find_Forward_Decls::clear (void)
 {
   this->fwd_decls_.clear ();
   this->includes_.clear ();
+
+  this->has_component_ = false;
+  this->has_typesupport_ = false;
+  this->has_ami4ccm_ = false;
 }
 
 //
@@ -41,11 +46,19 @@ bool Find_Forward_Decls::has_component (void) const
 }
 
 //
-// has_component
+// has_typesupport
 //
 bool Find_Forward_Decls::has_typesupport (void) const
 {
   return this->has_typesupport_;
+}
+
+//
+// has_ami4ccm
+//
+bool Find_Forward_Decls::has_ami4ccm (void) const
+{
+  return this->has_ami4ccm_;
 }
 
 //
@@ -123,8 +136,8 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a)
 
   Udm::visit_all <PICML::TemplateParameterValue> (a, *this);
 
-  // We all need to visit the contents of the template package 
-  // instance's type. This will determine what other things 
+  // We all need to visit the contents of the template package
+  // instance's type. This will determine what other things
   // we need to include.
   PICML::PackageType type = a.PackageType_child ();
   PICML::Package package = type.ref ();
@@ -210,11 +223,35 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
   Udm::visit_all <PICML::Member> (s, *this);
 }
 
+/**
+ * @struct is_async_receptacle_t
+ */
+struct is_async_receptacle_t
+{
+  bool operator () (const PICML::RequiredRequestPort & p) const
+  {
+    return p.AsyncCommunication ();
+  }
+};
+
 //
 // Visit_Object
 //
 void Find_Forward_Decls::Visit_Object (const PICML::Object & o)
 {
+  // Determine if this object has ami4ccm support. If so, then
+  // we need to make sure this file is marked as ami4ccm.
+  std::set <PICML::RequiredRequestPort> receptacles =
+    o.referedbyRequiredRequestPort ();
+
+  std::set <PICML::RequiredRequestPort>::
+    const_iterator result = std::find_if (receptacles.begin (),
+                                          receptacles.end (),
+                                          is_async_receptacle_t ());
+
+  this->has_ami4ccm_ |= o.SupportsAsync ();
+
+  // Visit the remaining elements in the object.
   Udm::visit_all <PICML::Inherits> (o, *this);
 
   Udm::visit_all <PICML::Aggregate> (o, *this);
@@ -477,7 +514,7 @@ void Find_Forward_Decls::Visit_NamedType (const PICML::NamedType & n)
   // THIS IS TODO
 
   // Determine if we need to forward declare this object. This is
-  // the case if we are not in the current object is not able to 
+  // the case if we are not in the current object is not able to
   // see us (i.e., we are not in a namespace above the current object).
 }
 

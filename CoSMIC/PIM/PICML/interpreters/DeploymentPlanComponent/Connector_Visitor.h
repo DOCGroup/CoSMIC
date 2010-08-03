@@ -62,6 +62,9 @@ public:
   const std::vector <xercesc::DOMElement *> & connections (void) const;
 
 private:
+  bool is_ami4ccm_connector (const PICML::ConnectorInstance & inst);
+  bool is_ami4ccm_connector (const PICML::ConnectorObject & obj);
+
   void Visit_ExtendedPortInstanceBase (
     const PICML::ExtendedPortInstanceBase & base,
     const PICML::PortType & pt);

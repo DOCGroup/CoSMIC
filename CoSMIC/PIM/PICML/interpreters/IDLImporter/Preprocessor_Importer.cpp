@@ -5,7 +5,7 @@
 #include "game/utils/modelgen.h"
 
 #include "boost/spirit/include/qi.hpp"
-#include "boost/spirit/include/support_istream_iterator.hpp" 
+#include "boost/spirit/include/support_istream_iterator.hpp"
 #include "boost/spirit/repository/include/qi_confix.hpp"
 #include "boost/fusion/include/adapt_struct.hpp"
 #include "boost/bind.hpp"
@@ -61,13 +61,13 @@ BOOST_FUSION_ADAPT_STRUCT (
  * Boost grammar for parsing identifiers.
  */
 template <typename IteratorT>
-struct Preprocessor_Importer_Grammar : 
+struct Preprocessor_Importer_Grammar :
   qi::grammar <IteratorT, void (), ascii::space_type>
 {
 public:
   typedef std::stack <GAME::XME::Model> model_stack_t;
 
-  struct open_module 
+  struct open_module
   {
     open_module (model_stack_t & s)
       : stack_ (s)
@@ -83,14 +83,14 @@ public:
       Model model = this->stack_.top ();
       static const ::Utils::XStr meta_Package ("Package");
 
-      if (GAME::find (model, meta_Package, child, 
+      if (GAME::find (model, meta_Package, child,
           boost::bind (std::equal_to < ::Utils::XStr > (),
                        name,
                        boost::bind (&Model::name, _1))))
       {
         this->stack_.push (child);
       }
-      
+
       // We should really abort the operation since we did not
       // find the target module...
     }
@@ -99,7 +99,7 @@ public:
     model_stack_t & stack_;
   };
 
-  struct close_module 
+  struct close_module
   {
     close_module (model_stack_t & s)
       : stack_ (s)
@@ -194,14 +194,14 @@ public:
     {
       using GAME::XME::Model;
 
-      // Locate the Aggregate in the current scope that has the 
+      // Locate the Aggregate in the current scope that has the
       // name identified in <val>.
       Model model = this->stack_.top ();
 
       static const ::Utils::XStr meta_Aggregate ("Aggregate");
       Model aggregate;
 
-      if (GAME::find (model, meta_Aggregate, aggregate, 
+      if (GAME::find (model, meta_Aggregate, aggregate,
           boost::bind (std::equal_to < ::Utils::XStr > (),
                        ::Utils::XStr (ident),
                        boost::bind (&Model::name, _1))))
@@ -244,7 +244,7 @@ public:
     {
       using GAME::XME::Model;
 
-      // Locate the Aggregate in the current scope that has the 
+      // Locate the Aggregate in the current scope that has the
       // name identified in <val>.
       Model model = this->stack_.top ();
 
@@ -252,7 +252,7 @@ public:
       static const ::Utils::XStr meta_Aggregate ("Aggregate");
       Model aggregate;
 
-      if (GAME::find (model, meta_Aggregate, aggregate, 
+      if (GAME::find (model, meta_Aggregate, aggregate,
           boost::bind (std::equal_to < ::Utils::XStr > (),
                        ::Utils::XStr (val.ident1_),
                        boost::bind (&Model::name, _1))))
@@ -278,12 +278,12 @@ public:
         using GAME::XME::FCO;
         FCO member;
 
-        if (GAME::find (aggregate, meta_Member, member, 
+        if (GAME::find (aggregate, meta_Member, member,
             boost::bind (std::equal_to < ::Utils::XStr > (),
                          ::Utils::XStr (val.ident2_),
                          boost::bind (&FCO::name, _1))))
         {
-          // Make sure there is a connection between the key 
+          // Make sure there is a connection between the key
           // and the member.
           using GAME::XME::Connection;
           Connection key_member;
@@ -325,14 +325,14 @@ public:
     {
       using GAME::XME::Model;
 
-      // Locate the Aggregate in the current scope that has the 
+      // Locate the Aggregate in the current scope that has the
       // name identified in <val>.
       Model model = this->stack_.top ();
 
       static const ::Utils::XStr meta_Aggregate ("Aggregate");
       Model aggregate;
 
-      if (GAME::find (model, meta_Aggregate, aggregate, 
+      if (GAME::find (model, meta_Aggregate, aggregate,
           boost::bind (std::equal_to < ::Utils::XStr > (),
                        ::Utils::XStr (keylist.ident_),
                        boost::bind (&Model::name, _1))))
@@ -352,7 +352,7 @@ public:
         }
 
         std::vector <std::string>::const_iterator
-          iter = keylist.list_.begin (), 
+          iter = keylist.list_.begin (),
           iter_end = keylist.list_.end ();
 
         for (; iter != iter_end; ++ iter)
@@ -363,12 +363,12 @@ public:
 
           static const ::Utils::XStr meta_Member ("Member");
 
-          if (GAME::find (aggregate, meta_Member, member, 
+          if (GAME::find (aggregate, meta_Member, member,
               boost::bind (std::equal_to < ::Utils::XStr > (),
                            ::Utils::XStr (*iter),
                            boost::bind (&FCO::name, _1))))
           {
-            // Make sure there is a connection between the key 
+            // Make sure there is a connection between the key
             // and the member.
             using GAME::XME::Connection;
             Connection key_member;
@@ -446,33 +446,53 @@ public:
 
     // List of keyworks that we must be able to recognize. This will
     // stop the parser from gobbling unused characters.
-    this->keywords_ = 
-      qi::lit ("#pragma") | 
+    this->keywords_ =
+      qi::lit ("#pragma") |
       qi::lit ("module");
 
     // Rules for recognizing #pragma statements in the code.
     this->pragma_stmts_ =
-      this->pragma_typesupport_/*[append_typesupport_directive (this->file_)]*/ |
-      this->pragma_lem_/*[append_lem_directive (this->file_)]*/ |
+      this->pragma_typesupport_ |
+      this->pragma_lem_ |
       this->pragma_dcps_data_type_[append_dcps_data_type (this->model_stack_)] |
       this->pragma_dcps_data_key_[append_dcps_data_key (this->model_stack_)] |
       this->pragma_keylist_[append_keylist (this->model_stack_)];
+      this->pragma_ami4ccm_receptacle_;
+      this->pragma_ami4ccm_interface_;
 
     this->pragma_typesupport_ %=
       qi::lit ("#pragma") >>
-      this->ident_ >> 
-      qi::lit ("typesupport") >> 
+      this->ident_ >>
+      qi::lit ("typesupport") >>
       this->usr_filepath_;
 
     this->pragma_lem_ %=
       qi::lit ("#pragma") >>
-      this->ident_ >> 
-      qi::lit ("lem") >> 
+      this->ident_ >>
+      qi::lit ("lem") >>
       this->usr_filepath_;
 
     this->pragma_dcps_data_type_ %=
       qi::lit ("#pragma") >>
       qi::lit ("DCPS_DATA_TYPE") >>
+      qi::lit ("\"") >>
+      this->ident_ >>
+      qi::lit ("\"");
+
+    this->pragma_ami4ccm_interface_ %=
+      qi::lit ("#pragma") >>
+      qi::lit ("ciao") >>
+      qi::lit ("ami4ccm") >>
+      qi::lit ("interface") >>
+      qi::lit ("\"") >>
+      this->ident_ >>
+      qi::lit ("\"");
+
+    this->pragma_ami4ccm_receptacle_ %=
+      qi::lit ("#pragma") >>
+      qi::lit ("ciao") >>
+      qi::lit ("ami4ccm") >>
+      qi::lit ("receptacle") >>
       qi::lit ("\"") >>
       this->ident_ >>
       qi::lit ("\"");
@@ -500,12 +520,12 @@ public:
     // Rule definition for parsing identifiers.
     this->ident_ %= qi::lexeme [(qi::alpha >> *(qi::alnum | '_'))];
 
-    this->ignorable_scope_ = 
+    this->ignorable_scope_ =
       this->ignorable_scope_keyword_ >> this->ident_ >>
-      qi::lit ('{') >> this->garbage_ >> 
+      qi::lit ('{') >> this->garbage_ >>
       qi::lit ('}') >> qi::lit (';');
 
-    this->ignorable_scope_keyword_ = 
+    this->ignorable_scope_keyword_ =
       qi::lit ("eventtype") |
       qi::lit ("valuetype") |
       qi::lit ("connector") |
@@ -515,14 +535,14 @@ public:
       qi::lit ("interface") |
       qi::lit ("enum");
 
-    this->filepath_ %= 
-      this->usr_filepath_ | 
+    this->filepath_ %=
+      this->usr_filepath_ |
       this->sys_filepath_;
 
-    this->usr_filepath_ %= 
+    this->usr_filepath_ %=
       qi::lexeme[ascii::char_ ("\"") >> *(ascii::print - "\"") >> ascii::char_ ("\"")];
 
-    this->sys_filepath_ %= 
+    this->sys_filepath_ %=
       qi::lexeme[ascii::char_ ("<") >> *(ascii::print - "\"") >> ascii::char_ (">")];
 
     if (debug)
@@ -568,6 +588,10 @@ private:
   qi::rule <IteratorT, void (), ascii::space_type> pragma_stmts_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_typesupport_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_lem_;
+
+  qi::rule <IteratorT, std::string (), ascii::space_type> pragma_ami4ccm_receptacle_;
+  qi::rule <IteratorT, std::string (), ascii::space_type> pragma_ami4ccm_interface_;
+
   qi::rule <IteratorT, std::string (), ascii::space_type> pragma_dcps_data_type_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_dcps_data_key_;
   qi::rule <IteratorT, data::keylist_t (), ascii::space_type> pragma_keylist_;
@@ -583,9 +607,9 @@ private:
   qi::rule <IteratorT, std::string (), ascii::space_type> sys_filepath_;
   qi::rule <IteratorT, std::string (), ascii::space_type> filename_;
 
-  qi::rule <IteratorT, 
-            std::string (), 
-            ascii::space_type> 
+  qi::rule <IteratorT,
+            std::string (),
+            ascii::space_type>
             ident_;
 };
 
@@ -634,9 +658,9 @@ parse (const char * filename, GAME::XME::Model & model)
 
   // Parse the open file using the iterators above.
   Preprocessor_Importer_Grammar <spirit::istream_iterator> g (model, false);
-  bool retval = qi::phrase_parse (begin_iter, 
-                                  end_iter, 
-                                  g, 
+  bool retval = qi::phrase_parse (begin_iter,
+                                  end_iter,
+                                  g,
                                   ascii::space);
 
   // Close the file before exiting.

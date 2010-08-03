@@ -75,8 +75,8 @@ public:
   virtual void Visit_TemplatePackageInstanceDecl (const PICML::TemplatePackageInstanceDecl &);
 
   bool has_component (void) const;
-
   bool has_typesupport (void) const;
+  bool has_ami4ccm (void) const;
 
 private:
   void Visit_FilePackage (const Udm::Object & p);
@@ -90,6 +90,8 @@ private:
   bool has_component_;
 
   bool has_typesupport_;
+
+  bool has_ami4ccm_;
 
   /// Set of forward declard objects.
   fwd_decls_t fwd_decls_;

@@ -32,7 +32,7 @@ public:
   PredefinedType_Dispatcher (void)
   {
     this->insert <PICML::Boolean> ();
-    
+
     this->insert <PICML::Byte> ();
 
     this->insert <PICML::Char> ();

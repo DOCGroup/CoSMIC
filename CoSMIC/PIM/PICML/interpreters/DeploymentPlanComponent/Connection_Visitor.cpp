@@ -34,7 +34,7 @@ void Connection_Visitor::
 Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 {
   std::string s = inst.name ();
-  
+
   // Visit the event sources.
   Udm::visit_all <PICML::OutEventPortInstance> (inst, *this);
 
@@ -61,7 +61,7 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
   this->create_simple_content (this->endpoint_, "kind", kind);
 
   xercesc::DOMElement * ele = this->create_simple_content (this->endpoint_, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid)); 
+  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
   this->name_ = source.getPath (".", false, true, "name", true);
 
@@ -72,12 +72,14 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
                               _1,
                               boost::ref (*this)));
 
+  // Lastly, visit the delegation connections.
   PICML::EventSourceDelegate del = source.dstEventSourceDelegate ();
-  PICML::EventSourceDelegate (del).Accept (*this);
+  if (del != Udm::null)
+    PICML::EventSourceDelegate (del).Accept (*this);
 
   // We can release this endpoint now.
   this->endpoint_->release ();
-  this->endpoint_ = 0;  
+  this->endpoint_ = 0;
 }
 
 //
@@ -100,7 +102,7 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
   this->create_simple_content (this->endpoint_, "kind", kind);
 
   xercesc::DOMElement * ele = this->create_simple_content (this->endpoint_, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid)); 
+  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
   this->name_ = receptacle.getPath (".", false, true, "name", true);
 
@@ -113,12 +115,14 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
                               _1,
                               boost::ref (*this)));
 
+  // Lastly, visit the delegation connections.
   PICML::ReceptacleDelegate del = receptacle.srcReceptacleDelegate ();
-  PICML::ReceptacleDelegate (del).Accept (*this);
+  if (del != Udm::null)
+    PICML::ReceptacleDelegate (del).Accept (*this);
 
   // We can release this endpoint now.
   this->endpoint_->release ();
-  this->endpoint_ = 0;  
+  this->endpoint_ = 0;
 }
 
 //
@@ -171,14 +175,14 @@ Visit_InEventPortInstance (const PICML::InEventPortInstance & sink)
     this->create_simple_content (endpoint, "kind", "EventConsumer");
 
     xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
-    ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid)); 
+    ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
     // Finally, create final connection between the two endpoints.
     std::string connection_name = this->name_;
     connection_name.append ("::");
     connection_name.append (sink.getPath (".", false, true, "name", true));
 
-    this->create_connection (connection_name, 
+    this->create_connection (connection_name,
                              this->endpoint_->cloneNode (true),
                              endpoint,
                              false);
@@ -206,7 +210,7 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
 
     PICML::ComponentInstance inst = facet.ComponentInstance_parent ();
     xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
-    ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid)); 
+    ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
     std::string connection_name = this->name_;
     connection_name.append ("::");
@@ -219,7 +223,7 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
     bool is_local = semantics == "local" ? true : false;
 
     // Finally, create final connection between the two endpoints.
-    this->create_connection (connection_name, 
+    this->create_connection (connection_name,
                              this->endpoint_->cloneNode (true),
                              endpoint,
                              is_local);
@@ -248,7 +252,7 @@ void Connection_Visitor::
 Visit_RequiredRequestPortDelegate (const PICML::RequiredRequestPortDelegate & facet)
 {
   std::set <PICML::Invoke> invokes = facet.dstinvoke ();
-  
+
   std::for_each (invokes.begin (),
                  invokes.end (),
                  boost::bind (&PICML::Invoke::Accept,
@@ -305,7 +309,7 @@ void Connection_Visitor::
 Visit_OutEventPortDelegate (const PICML::OutEventPortDelegate & facet)
 {
   std::set <PICML::SendsTo> st = facet.dstSendsTo();
-  
+
   std::for_each (st.begin (),
                  st.end (),
                  boost::bind (&PICML::SendsTo::Accept,
@@ -342,7 +346,7 @@ Visit_InEventPortDelegate (const PICML::InEventPortDelegate & facet)
 // create_connection
 //
 void Connection_Visitor::
-create_connection (const std::string & name, 
+create_connection (const std::string & name,
                    xercesc::DOMNode * ep1,
                    xercesc::DOMNode * ep2,
                    bool is_local)
@@ -375,7 +379,7 @@ void Connection_Visitor::make_local_connection (xercesc::DOMElement * conn)
 //
 // connections
 //
-const std::vector <xercesc::DOMElement *> & 
+const std::vector <xercesc::DOMElement *> &
 Connection_Visitor::connections (void) const
 {
   return this->conns_;

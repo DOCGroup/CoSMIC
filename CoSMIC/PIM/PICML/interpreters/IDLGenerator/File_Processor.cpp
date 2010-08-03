@@ -51,23 +51,25 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
                               this,
                               _1));
 
+  // Write the pragma statement for the local executor mapping.
   if (fwd_decls.has_component ())
-  {
-    // Write the pragma statement for the local executor mapping.
-    this->idl_ << nl 
+    this->idl_ << nl
                << "#pragma ciao lem \"" << basename << "E.idl\"" << nl;
-  }
 
+  // Write the pragma statement for ami4ccm.
+  if (fwd_decls.has_ami4ccm ())
+    this->idl_ << nl
+               << "#pragma ciao ami4ccm idl \"" << basename << "A.idl\"" << nl
+               << "#pragma ciao lem \"" << basename << "AE.idl\"" << nl;
+
+  // Write the pragma statement for the type support.
   if (fwd_decls.has_typesupport ())
-  {
-    // Write the pragma statement for the type support.
     this->idl_ << nl
                << "#pragma ndds typesupport \"" << basename << "Support.h\"" << nl
                << "#pragma opendds typesupport \"" << basename << "TypeSupportC.h\"" << nl
                << "#pragma splice typesupport \"" << basename << "DscpC.h\"" << nl;
-  }
 
-  // Write any of the preprocessor directives that should occur 
+  // Write any of the preprocessor directives that should occur
   // before the file's content.
   std::string directives = file.PrePreprocessorDirectives ();
 
@@ -78,13 +80,13 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
              << "// forward declaration(s)" << nl
              << nl;
 
-  // Now, let's generate every element that can be forward declared. This 
-  // is not the most optimal way of doing things, but it will ensure that 
-  // all referenced elements are declared before they are used. In the 
+  // Now, let's generate every element that can be forward declared. This
+  // is not the most optimal way of doing things, but it will ensure that
+  // all referenced elements are declared before they are used. In the
   // future, we should optimize this approach.
   this->Visit_FilePackage (file);
 
-  // Write any of the preprocessor directives that should occur 
+  // Write any of the preprocessor directives that should occur
   // after the file's content.
   directives = file.PostPreprocessorDirectives ();
 
@@ -100,7 +102,7 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
 void IDL_File_Processor::generate_include_file (const PICML::File &file)
 {
   std::string path = file.Path ();
-  
+
   if (path.empty ())
     path = ".";
 
@@ -116,7 +118,7 @@ void IDL_File_Processor::Visit_Package (const PICML::Package & p)
 
   if (params.empty ())
   {
-    this->idl_ << "module " << p.name () << nl 
+    this->idl_ << "module " << p.name () << nl
                << "{" << idt_nl;
 
     this->Visit_FilePackage (p);
@@ -137,7 +139,7 @@ void IDL_File_Processor::Visit_FilePackage (const Udm::Object & object)
   // object by value types
   Udm::visit_all <PICML::ValueObject> (object, *this);
   Udm::visit_all <PICML::Event> (object, *this);
-  
+
   // interfaces
   Udm::visit_all <PICML::Object> (object, *this);
   //Udm::visit_all <PICML::PortType> (object, *this);
@@ -172,7 +174,7 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 void IDL_File_Processor::Visit_Object (const PICML::Object & o)
 {
   this->idl_ << nl;
-  
+
   std::string semantics = o.InterfaceSemantics ();
 
   if (semantics == "local")
@@ -189,7 +191,7 @@ void IDL_File_Processor::Visit_Object (const PICML::Object & o)
 void IDL_File_Processor::Visit_Event (const PICML::Event & e)
 {
   this->idl_ << nl;
-  
+
   if (e.abstract ())
     this->idl_ << "abstract ";
 
@@ -202,7 +204,7 @@ void IDL_File_Processor::Visit_Event (const PICML::Event & e)
 void IDL_File_Processor::Visit_ValueObject (const PICML::ValueObject & v)
 {
   this->idl_ << nl;
-  
+
   if (v.abstract ())
     this->idl_ << "abstract ";
 

@@ -739,7 +739,8 @@ void IDL_File_Generator::Visit_PortType (const PICML::PortType & p)
 //
 // Visit_ProvidedRequestPort
 //
-void IDL_File_Generator::Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
+void IDL_File_Generator::
+Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 {
   this->idl_ << "provides ";
   this->Visit_Provideable (p.ref ());
@@ -750,8 +751,20 @@ void IDL_File_Generator::Visit_ProvidedRequestPort (const PICML::ProvidedRequest
 //
 // Visit_RequiredRequestPort
 //
-void IDL_File_Generator::Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
+void IDL_File_Generator::
+Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
 {
+  if (p.AsyncCommunication ())
+  {
+    // Generate the pragma statement for the receptacle to enable
+    // ami4ccm support.
+    PICML::Component c = p.Component_parent ();
+
+    this->idl_ << "#pragma ciao ami4ccm receptacle \""
+               << PICML::utils::fq_type (c, "::", true)
+               << "::" << p.name () << "\"" << nl;
+  }
+
   this->idl_ << "uses ";
 
   if (p.multiple_connections ())
@@ -765,7 +778,8 @@ void IDL_File_Generator::Visit_RequiredRequestPort (const PICML::RequiredRequest
 //
 // Visit_InEventPort
 //
-void IDL_File_Generator::Visit_InEventPort (const PICML::InEventPort & p)
+void IDL_File_Generator::
+Visit_InEventPort (const PICML::InEventPort & p)
 {
   this->idl_ << "consumes ";
 
@@ -789,12 +803,33 @@ void IDL_File_Generator::Visit_OutEventPort (const PICML::OutEventPort & p)
              << nl;
 }
 
+/**
+ * @struct is_async_receptacle_t
+ */
+struct is_async_receptacle_t
+{
+  bool operator () (const PICML::RequiredRequestPort & p) const
+  {
+    return p.AsyncCommunication ();
+  }
+};
 
 //
 // Visit_Object
 //
 void IDL_File_Generator::Visit_Object (const PICML::Object & o)
 {
+  // Determine if this interface is required by an async receptacle.
+  // If this is the case, then we need to generate the pragma statement
+  // for it.
+  if (o.SupportsAsync ())
+    this->idl_ << nl
+               << "#pragma ciao ami4ccm interface \""
+               << PICML::utils::fq_type (o, "::", true) << "\"" << nl
+               << nl;
+
+  // Write the port's semantics. It will either be abstract
+  // or a local interface.
   std::string semantics = o.InterfaceSemantics ();
 
   if (semantics != "standard")
