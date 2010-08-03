@@ -287,7 +287,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 void DeploymentPlanVisitor::
 Visit_NodeReference (const PICML::NodeReference & noderef)
 {
-  this->current_node_ = noderef.ref ();
+  this->current_node_ = noderef;
   std::set <PICML::InstanceMapping> mapping = noderef.srcInstanceMapping () ;
 
   std::for_each (mapping.begin (),
@@ -648,7 +648,6 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
   // Get the target node's name for this instance
   PICML::InstanceMapping mapping = group.dstInstanceMapping ();
   PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
-  PICML::Node node = noderef.ref ();
 
   // Create a new instance in the XML document.
   this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
@@ -658,7 +657,7 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
   this->create_simple_content (this->curr_instance_, "name", name);
 
   // TODO set the node correctly...
-  this->create_simple_content (this->curr_instance_, "node", node.name ());
+  this->create_simple_content (this->curr_instance_, "node", noderef.name ());
   this->create_simple_content (this->curr_instance_, "source", "");
 
   // Visit this instance's implementation.

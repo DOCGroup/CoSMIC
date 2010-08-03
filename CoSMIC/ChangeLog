@@ -1,3 +1,11 @@
+Tue Aug  3 13:48:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Updated deployment plan generator to use the node reference
+          name when specifying the node location of an instance.
+
 Tue Aug  3 05:51:18 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Interface.h:

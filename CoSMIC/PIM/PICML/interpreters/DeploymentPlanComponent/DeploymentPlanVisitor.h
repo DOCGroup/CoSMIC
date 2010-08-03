@@ -141,7 +141,7 @@ private:
   std::string outputPath_;
 
   /// The current node for the iteration.
-  PICML::Node current_node_;
+  PICML::NodeReference current_node_;
 
   /// Collection of instances in the current deployment.
   std::map <PICML::ComponentInstance, xercesc::DOMElement *> insts_;
