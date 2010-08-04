@@ -90,6 +90,8 @@ private:
   /// Type definition for a set of event handlers.
   typedef ACE_Unbounded_Set <Event_Handler_Impl *> handler_set;
 
+  static int dispatch_global_event (long global_event, Event_Handler_Impl * eh);
+
   int dispatch_object_event (Object obj,
                              unsigned long mask,
                              const handler_set & handlers);
@@ -110,6 +112,9 @@ private:
                         handler_set *,
                         ACE_Null_Mutex>
                         type_handlers_;
+
+  /// Master register for all registered handlers.
+  handler_set master_;
 };
 
 }

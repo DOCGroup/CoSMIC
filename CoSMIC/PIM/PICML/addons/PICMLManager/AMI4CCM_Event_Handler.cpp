@@ -25,7 +25,8 @@ namespace MI
 // AMI4CCM_Event_Handler
 //
 AMI4CCM_Event_Handler::AMI4CCM_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_ATTR)
+: GAME::Event_Handler_Impl (OBJEVENT_ATTR),
+  is_importing_ (false)
 {
 
 }
@@ -39,10 +40,31 @@ AMI4CCM_Event_Handler::~AMI4CCM_Event_Handler (void)
 }
 
 //
+// handle_xml_import_begin
+//
+int AMI4CCM_Event_Handler::handle_xml_import_begin (void)
+{
+  this->is_importing_ = true;
+  return 0;
+}
+
+//
+// handle_xml_import_end
+//
+int AMI4CCM_Event_Handler::handle_xml_import_end (void)
+{
+  this->is_importing_ = false;
+  return 0;
+}
+
+//
 // handle_object_attribute
 //
 int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object obj)
 {
+  if (this->is_importing_)
+    return 0;
+
   // Get the support async attribute for the interface.
   GAME::Model model = GAME::Model::_narrow (obj);
   GAME::Attribute attr = model.attribute ("SupportsAsync");

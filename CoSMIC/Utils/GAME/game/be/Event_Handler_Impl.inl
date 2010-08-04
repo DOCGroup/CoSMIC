@@ -168,37 +168,37 @@ int Event_Handler_Impl::handle_notification_ready (void)
 }
 
 //
-// handle_import_begin
+// handle_xml_import_begin
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_import_begin (void)
+int Event_Handler_Impl::handle_xml_import_begin (void)
 {
   return 0;
 }
 
 //
-// handle_import_end
+// handle_xml_import_end
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_import_end (void)
+int Event_Handler_Impl::handle_xml_import_end (void)
 {
   return 0;
 }
 
 //
-// handle_import_fcos_begin
+// handle_xml_import_fcos_begin
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_import_fcos_begin (void)
+int Event_Handler_Impl::handle_xml_import_fcos_begin (void)
 {
   return 0;
 }
 
 //
-// handle_import_fcos_end
+// handle_xml_import_fcos_end
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_import_fcos_end (void)
+int Event_Handler_Impl::handle_xml_import_fcos_end (void)
 {
   return 0;
 }

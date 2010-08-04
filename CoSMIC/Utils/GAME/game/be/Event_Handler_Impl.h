@@ -83,11 +83,11 @@ public:
   virtual int handle_project_properties (void);
   virtual int handle_notification_ready (void);
 
-  virtual int handle_import_begin (void);
-  virtual int handle_import_end (void);
+  virtual int handle_xml_import_begin (void);
+  virtual int handle_xml_import_end (void);
 
-  virtual int handle_import_fcos_begin (void);
-  virtual int handle_import_fcos_end (void);
+  virtual int handle_xml_import_fcos_begin (void);
+  virtual int handle_xml_import_fcos_end (void);
 
   virtual int handle_xml_import_special_begin (void);
   virtual int handle_xml_import_special_end (void);
