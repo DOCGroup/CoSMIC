@@ -4,7 +4,7 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  exclude (!prop:microsoft) {
+  exclude (!prop:microsoft, !wix) {
     ComponentImplementationGenerator
     DeploymentPlanComponent
     IDLGenerator

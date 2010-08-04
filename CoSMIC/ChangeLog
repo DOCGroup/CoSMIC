@@ -1,3 +1,13 @@
+Wed Aug  4 18:40:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Fixed bug in workspace.
+
+        * PIM/PICML/tests/deployment/MultiPortDelegation.xme:
+
+          Test for multi-port delegation.
+
 Wed Aug  4 17:39:24 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
