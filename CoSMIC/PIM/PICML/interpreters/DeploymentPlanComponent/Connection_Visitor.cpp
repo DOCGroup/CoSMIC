@@ -73,9 +73,14 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
                               boost::ref (*this)));
 
   // Lastly, visit the delegation connections.
-  PICML::EventSourceDelegate del = source.dstEventSourceDelegate ();
-  if (del != Udm::null)
-    PICML::EventSourceDelegate (del).Accept (*this);
+  std::set <PICML::EventSourceDelegate>
+    delegates = source.dstEventSourceDelegate ();
+
+  std::for_each (delegates.begin (),
+                 delegates.end (),
+                 boost::bind (&PICML::EventSourceDelegate::Accept,
+                              _1,
+                              boost::ref (*this)));
 
   // We can release this endpoint now.
   this->endpoint_->release ();
@@ -116,9 +121,14 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
                               boost::ref (*this)));
 
   // Lastly, visit the delegation connections.
-  PICML::ReceptacleDelegate del = receptacle.srcReceptacleDelegate ();
-  if (del != Udm::null)
-    PICML::ReceptacleDelegate (del).Accept (*this);
+  std::set <PICML::ReceptacleDelegate>
+    delegates = receptacle.srcReceptacleDelegate ();
+
+  std::for_each (delegates.begin (),
+                 delegates.end (),
+                 boost::bind (&PICML::ReceptacleDelegate::Accept,
+                              _1,
+                              boost::ref (*this)));
 
   // We can release this endpoint now.
   this->endpoint_->release ();
@@ -283,8 +293,12 @@ Visit_FacetDelegate (const PICML::FacetDelegate & del)
 void Connection_Visitor::
 Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & facet)
 {
-  PICML::FacetDelegate del = facet.dstFacetDelegate ();
-  PICML::FacetDelegate (del).Accept (*this);
+  std::set <PICML::FacetDelegate> delegates = facet.dstFacetDelegate ();
+  std::for_each (delegates.begin (),
+                 delegates.end (),
+                 boost::bind (&PICML::FacetDelegate::Accept,
+                              _1,
+                              boost::ref (*this)));
 }
 
 //
@@ -338,8 +352,13 @@ Visit_EventSinkDelegate (const PICML::EventSinkDelegate & del)
 void Connection_Visitor::
 Visit_InEventPortDelegate (const PICML::InEventPortDelegate & facet)
 {
-  PICML::EventSinkDelegate del = facet.dstEventSinkDelegate ();
-  PICML::EventSinkDelegate (del).Accept (*this);
+  std::set <PICML::EventSinkDelegate> delegates = facet.dstEventSinkDelegate ();
+
+  std::for_each (delegates.begin (),
+                 delegates.end (),
+                 boost::bind (&PICML::EventSinkDelegate::Accept,
+                              _1,
+                              boost::ref (*this)));
 }
 
 //

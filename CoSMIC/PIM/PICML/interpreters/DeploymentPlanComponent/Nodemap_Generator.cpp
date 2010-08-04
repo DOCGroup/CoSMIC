@@ -13,17 +13,16 @@ Nodemap_Generator::
 Nodemap_Generator (const std::string & outputPath)
 : outputPath_ (outputPath)
 {
-}
 
+}
 
 //
 // ~Nodemap_Generator
 //
-Nodemap_Generator::
-~Nodemap_Generator (void)
+Nodemap_Generator::~Nodemap_Generator (void)
 {
-}
 
+}
 
 //
 // Visit_DeploymentPlan
@@ -31,21 +30,26 @@ Nodemap_Generator::
 void Nodemap_Generator::
 Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 {
-  // Create the document
-  this->outputPath_.append ("/");
-  this->outputPath_.append (plan.name ().operator std::string ().c_str ());
-  this->outputPath_.append (".nodemap");
+  // Construct the filename.
+  std::ostringstream filename;
+  filename << this->outputPath_ << "/" << plan.name () << ".nodemap";
 
-  // Visit all the nodes in the deployment plan.  
+  // Open the document for writing.
+  this->out.open (filename.str ().c_str ());
+
+  if (!this->out.is_open ())
+    return;
+
+  // Visit all the nodes in the deployment plan.
   std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
-  
   std::for_each (nodes.begin (),
                  nodes.end (),
-                 boost::bind (&PICML::NodeReference::Accept, 
-                              _1, 
+                 boost::bind (&PICML::NodeReference::Accept,
+                              _1,
                               boost::ref (*this)));
-  if(out.is_open ())
-    out.close ();
+
+  // Close the output file.
+  this->out.close ();
 }
 
 
@@ -56,7 +60,7 @@ void Nodemap_Generator::
 Visit_NodeReference (const PICML::NodeReference & noderef)
 {
   this->curr_node_ref_name_ = noderef.name ();
-  
+
   std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping () ;
   std::for_each (mapping.begin (),
                  mapping.end (),
@@ -72,8 +76,8 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
 void Nodemap_Generator::
 Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 {
-	PICML::Property prop = pmapping.dstPropertyMapping_end ();
-	PICML::Property (prop).Accept (*this);
+  PICML::Property prop = pmapping.dstPropertyMapping_end ();
+  PICML::Property (prop).Accept (*this);
 }
 
 

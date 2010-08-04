@@ -203,10 +203,10 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       // to use the traditional method for passing the event to the
       // implementation as well as the dispatch method.
       if (0 != this->impl_->handle_object_event (object, eventmask))
-        return -1;
+        return S_FALSE;
 
       if (0 != this->dispatch_object_event (object, eventmask, this->impl_))
-        return -1;
+        return S_FALSE;
     }
 
     // Notify the instance handlers of the event
@@ -214,7 +214,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     if (0 == this->type_handlers_.find (object.meta ().name (), handlers) &&
         0 != this->dispatch_object_event (object, eventmask, *handlers))
     {
-      return -1;
+      return S_FALSE;
     }
 
     // Notify the type handlers of the event.

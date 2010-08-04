@@ -1,3 +1,31 @@
+Wed Aug  4 17:39:24 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+
+          Bug fix where the nodemap generator failed to generate the
+          target file due to not opening the output stream for writing.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Removed the path interpreter from the default build.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Relaxed the cardinality constraint so you can do 0..*
+          connections with facet, receptacle, event source, and event
+          sink delegates.
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Updated the return values.
+
 Wed Aug  4 04:41:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
