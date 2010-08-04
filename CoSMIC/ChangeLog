@@ -1,10 +1,43 @@
+Wed Aug  4 00:00:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Implemented an event handler object that generates the necessary
+          ami4ccm connector element. The methods on the interfaces that
+          parameterize the connectors are not generated.
+
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+
+          Removed trailing spaces from file.
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+
+          Implemented new event handler architecture that provides methods
+          for each global and object event. This means the object events
+          are automatically dispatched for the client. Likewise, it is now
+          possible to register event handler objects for types based on
+          their name in the metamodel.
+
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/ComponentLib_h.h:
+        * PIM/PICML/addons/PICMLManager/component.def:
+
+          Removed these files.
+
 Tue Aug  3 22:07:46 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
 
           Removed code that provided deprecation support for DataValue attribute
-          of Property and DataType reference within Property. 
+          of Property and DataType reference within Property.
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
 

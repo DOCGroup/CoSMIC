@@ -12,7 +12,8 @@ Event_Handler::Event_Handler (Event_Handler_Impl * impl)
 : impl_ (impl),
   enable_ (true)
 {
-
+  if (0 != this->impl_)
+    this->impl_->set_event_handler (this);
 }
 
 //
@@ -21,18 +22,8 @@ Event_Handler::Event_Handler (Event_Handler_Impl * impl)
 GAME_INLINE
 Event_Handler::~Event_Handler (void)
 {
-
+  this->close ();
 }
-
-//
-// attach
-//
-GAME_INLINE
-void Event_Handler::attach (Event_Handler_Impl * impl)
-{
-  this->impl_ = impl;
-}
-
 
 //
 // enable

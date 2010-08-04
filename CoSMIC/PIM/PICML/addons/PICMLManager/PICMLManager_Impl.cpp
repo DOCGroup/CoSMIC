@@ -4,18 +4,24 @@
 #include "PICMLManager_Impl.h"
 
 #include "game/GAME.h"
-#include "game/utils/modelgen.h"
+#include "game/be/Event_Handler.h"
 #include "game/dialogs/Selection_List_Dialog.h"
+#include "game/utils/modelgen.h"
+#include "game/utils/Point.h"
 
 #include "Dialogs.h"
-
 #include "DefaultImplementationGenerator.h"
 #include "DefaultArtifactGenerator.h"
 #include "NewComponentConfig.h"
 
 #include "Utils/Utils.h"
-#include "game/utils/Point.h"
+
 #include "boost/bind.hpp"
+
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
+
+#include "AMI4CCM_Event_Handler.h"
 
 #include <algorithm>
 #include <sstream>
@@ -94,6 +100,15 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   this->handlers_.bind ("Consume", &PICMLManager_Impl::handle_Consume);
   this->handlers_.bind ("Publish", &PICMLManager_Impl::handle_Publish);
+
+  // The new way of writing event handler's for the model intelligence
+  // is to use event handler objects. We are going to preload the objects
+  // into memory.
+
+  this->event_handler_->register_handler ("Object",
+    ACE_Singleton <PICML::MI::AMI4CCM_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
+
 
   return 0;
 }

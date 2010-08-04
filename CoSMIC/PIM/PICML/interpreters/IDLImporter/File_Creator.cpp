@@ -63,7 +63,6 @@ PICML_File_Creator::~PICML_File_Creator (void)
     delete iter->item ();
 }
 
-
 //
 // create_files
 //
