@@ -1,3 +1,13 @@
+Wed Aug  4 23:49:44 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/deployment/Nodemap:
+
+          Added folder for test/examples of Nodemap Generator.
+
+        * PIM/PICML/tests/deployment/Nodemap/StockQuoter_Nodemap.xme:
+
+          Tests/examples for Nodemap Generator.
+
 Wed Aug  4 23:19:48 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/deployment/Locality_Manager:
