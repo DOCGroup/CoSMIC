@@ -1,3 +1,9 @@
+Wed Aug  4 19:01:58 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+
+          Improved implementation for writing the file.
+
 Wed Aug  4 18:40:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:

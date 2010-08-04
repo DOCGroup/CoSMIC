@@ -61,7 +61,7 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
 {
   this->curr_node_ref_name_ = noderef.name ();
 
-  std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping () ;
+  std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping ();
   std::for_each (mapping.begin (),
                  mapping.end (),
                  boost::bind (&PICML::PropertyMapping::Accept,
@@ -77,7 +77,7 @@ void Nodemap_Generator::
 Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 {
   PICML::Property prop = pmapping.dstPropertyMapping_end ();
-  PICML::Property (prop).Accept (*this);
+  prop.Accept (*this);
 }
 
 
@@ -87,20 +87,20 @@ Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 void Nodemap_Generator::
 Visit_Property (const PICML::Property & prop)
 {
-  this->curr_prop_name_ = prop.name ();
+  const std::string name (prop.name ());
 
-  typedef UDM_Position_Sort_T <PICML::DataValue, PS_Top_To_Bottom> sorter_t;
-  sorter_t sorter ("DataValueAspect", PS_Top_To_Bottom ());
-  std::set <PICML::DataValue, sorter_t> sorted_values (sorter);
-  sorted_values = prop.DataValue_kind_children_sorted (sorter);
+  if (name != "StringIOR")
+    return;
 
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&PICML::DataValue::Accept,
-                              _1,
-                              boost::ref (*this)));
+  // Since this is a simple type, we only need to get the
+  // first element in the collection.
+  std::vector <PICML::DataValue> values = prop.DataValue_kind_children ();
+
+  if (values.empty ())
+    return;
+
+  values.front ().Accept (*this);
 }
-
 
 //
 // Visit_DataValue
@@ -108,16 +108,5 @@ Visit_Property (const PICML::Property & prop)
 void Nodemap_Generator::
 Visit_DataValue (const PICML::DataValue & dv)
 {
-  if (this->curr_prop_name_ == "StringIOR")
-  {
-    if(!out.is_open ())
-    {
-      out.open (this->outputPath_.c_str (), std::ios::trunc);
-      out<<this->curr_node_ref_name_<<" "<<dv.Value ();
-    }
-    else
-    {
-      out<<std::endl<<std::endl<<this->curr_node_ref_name_<<" "<<dv.Value ();
-    }
-  }
+  this->out << this->curr_node_ref_name_ << "\t\t\t" << dv.Value () << std::endl;
 }
