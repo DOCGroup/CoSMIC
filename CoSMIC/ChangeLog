@@ -1,3 +1,16 @@
+Wed Aug  4 23:19:48 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/deployment/Locality_Manager:
+
+          Added folder for test/examples of Locality Manager.
+
+        * PIM/PICML/tests/deployment/Locality_Manager/CPUAffinity.xme:
+        * PIM/PICML/tests/deployment/Locality_Manager/CommandLinePassage.xme:
+        * PIM/PICML/tests/deployment/Locality_Manager/StockQuoter_LocalityManagers.xme:
+        * PIM/PICML/tests/deployment/Locality_Manager/StockQuoter_One_LocalityManager.xme:
+
+          Tests/examples for Locality Manager.
+
 Wed Aug  4 22:49:00 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.idl:
