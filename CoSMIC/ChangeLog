@@ -1,3 +1,11 @@
+Wed Aug  4 22:49:00 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.idl:
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.cpp:
+
+          Added idl_to_picml multiple interface test cases.
+
 Wed Aug  4 19:01:58 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:

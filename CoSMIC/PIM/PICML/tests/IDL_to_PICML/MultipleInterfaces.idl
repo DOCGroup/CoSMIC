@@ -1,0 +1,68 @@
+// $Id: $
+
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    MultipleInterfaces.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    multiple interfaces via inheritance
+//
+// = AUTHORS
+//    Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
+
+#ifndef _MULTIPLEINTERFACES_IDL_
+#define _MULTIPLEINTERFACES_IDL_
+
+module MultipleInterfaces
+{
+  interface Person
+  {
+    attribute string m_name;
+    void my_person (in string name);
+  };
+  
+  interface Place
+  {
+    attribute string m_name_of;
+    void my_place (in string name_of);
+  };
+  
+  interface PersonPlace : Person, Place
+  {
+  };
+  
+  interface Thing
+  {
+    attribute boolean m_has_more;
+    void my_thing (in boolean has_more);
+  };
+  
+  interface Idea
+  {
+    attribute short m_id;
+    void my_idea (in short idea_id);
+  };
+  
+  interface ThingIdea : Thing, Idea
+  {
+  };
+  
+  interface Event
+  {
+    attribute long m_type;
+    void my_event (in long type);
+  };
+  
+  interface Noun : PersonPlace, ThingIdea, Event
+  {
+  };
+};
+
+#endif
