@@ -1,3 +1,11 @@
+Wed Aug  4 03:12:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+
+          Bug fix where the initial state of the id generator would
+          produce duplicate ids if the number of elements for a given
+          kind was less than the max count encoded in an id.
+
 Wed Aug  4 00:00:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:

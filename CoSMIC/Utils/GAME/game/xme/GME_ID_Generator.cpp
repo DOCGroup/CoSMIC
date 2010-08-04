@@ -12,10 +12,50 @@
 #include "Connection.h"
 #include "Reference.h"
 
+#include "boost/spirit/include/qi_uint.hpp"
+#include "boost/spirit/include/qi.hpp"
+
 namespace GAME
 {
 namespace XME
 {
+namespace qi = boost::spirit::qi;
+namespace ascii = boost::spirit::ascii;
+
+/**
+ * @struct PathParser
+ *
+ * Boost grammar for parsing identifiers.
+ */
+template <typename IteratorT>
+struct Id_Grammar : qi::grammar <IteratorT, size_t (), ascii::space_type>
+{
+private:
+public:
+  /// Type definition of the iterator type.
+  typedef IteratorT iterator_type;
+
+  Id_Grammar (void)
+    : Id_Grammar::base_type (this->parser_)
+  {
+    this->parser_ =
+      qi::lit ("id-") > this->typeid_ > qi::lit ("-") > qi::hex;
+
+    this->typeid_ =
+      qi::lit ("0065") |
+      qi::lit ("0066") |
+      qi::lit ("0067") |
+      qi::lit ("0068") |
+      qi::lit ("0069") |
+      qi::lit ("006a");
+  }
+
+private:
+  qi::rule <IteratorT, size_t (), ascii::space_type> parser_;
+
+  qi::rule <IteratorT, void (), ascii::space_type> typeid_;
+};
+
 
 //
 // init
@@ -40,7 +80,42 @@ init (xercesc::DOMDocument * proj, const ::Utils::XStr & name, typeinfo_t & type
   // Initialize the count based on the number of node found
   // in the model that match the elements tagname.
   DOMNodeList * list = proj->getElementsByTagName (name);
-  type.count_ = list->getLength ();
+  size_t count = list->getLength ();
+
+  Id_Grammar <std::string::const_iterator> grammar;
+
+  for (size_t i = 0; i < count; ++ i)
+  {
+    using xercesc::DOMNode;
+    using xercesc::DOMElement;
+
+    // Get the next element.
+    DOMNode * node = list->item (i);
+    DOMElement * e = dynamic_cast <DOMElement *> (node);
+
+    // Get the id string of the element.
+    ::Utils::XStr idstr (e->getAttribute (::Utils::XStr ("id")));
+    const std::string & cstr = idstr.to_string ();
+
+    // Parse the string to get the count portion.
+    size_t count = 0;
+    if (qi::phrase_parse (cstr.begin (),
+                          cstr.end (),
+                          grammar,
+                          ascii::space,
+                          count))
+    {
+      // Determine if this value is larget than the current. We
+      // need to make sure we do not overwrite the exist ids
+      if (count > type.count_)
+        type.count_ = count;
+    }
+  }
+
+  // If there is at least one element in the model, then we need
+  // to increment our count to account for largest count number. ;-)
+  if (count > 0)
+    ++ type.count_;
 }
 
 //
