@@ -1,8 +1,13 @@
+Thu Aug  5 23:47:07 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Array.cpp:
+          Fixed compilation error
+
 Thu Aug  5 21:07:54 UTC 2010  Harold Owens II  <owensh at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Interface.cpp:
         * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.cpp:
-        
+
           Fixed compilation error
 
 Thu Aug  5 20:29:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
