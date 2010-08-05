@@ -1,3 +1,15 @@
+Thu Aug  5 14:27:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Added support to handle name if Property name is LocalityManager.ProcessName.
+
+        * PIM/PICML/tests/deployment/Locality_Manager/ExplicitExec.xme:
+        * PIM/PICML/tests/deployment/Locality_Manager/SpawnMultiple.xme:
+        * PIM/PICML/tests/deployment/Locality_Manager/SpawnOne.xme:
+
+          Tests/examples for Locality Manager.
+
 Thu Aug  5 05:00:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.h:

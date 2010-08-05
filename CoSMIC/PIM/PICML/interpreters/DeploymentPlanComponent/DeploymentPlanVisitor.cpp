@@ -713,6 +713,8 @@ Visit_Property (const PICML::Property & prop)
     name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
   else if (name == "LocalityArguments")
     name = "edu.vanderbilt.dre.DAnCE.LocalityArguments";
+  else if (name == "LocalityManager.ProcessName")
+    name = "edu.vanderbilt.dre.DAnCE.LocalityManager.ProcessName";
 
   PICML_Data_Type_Dispatcher dt_dispatcher;
 
