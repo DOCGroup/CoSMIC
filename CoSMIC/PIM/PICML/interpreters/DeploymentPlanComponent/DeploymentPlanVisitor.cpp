@@ -84,7 +84,7 @@ void DeploymentPlanVisitor::init (void)
 //
 void DeploymentPlanVisitor::init_document (const std::string& rootName)
 {
-  if (this->doc_)
+  if (0 != this->doc_)
     this->doc_->release ();
 
   // Create the document
@@ -269,8 +269,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   this->serializer_->write (this->doc_, this->output_);
   this->output_->setByteStream (0);
 
-  // Release the document.
-  this->doc_->release ();
+  // Reset the generator's state.
+  this->reset_state ();
 
   //call visitor that will generate the .cdd file
   Deployment_Domain_Visitor ddv (this->outputPath_);
@@ -279,6 +279,25 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   //call visitor that will generate the .nodemap file
   Nodemap_Generator ng (this->outputPath_);
   PICML::DeploymentPlan (plan).Accept (ng);
+}
+
+//
+// reset
+//
+void DeploymentPlanVisitor::reset_state (void)
+{
+  // Release the document.
+  this->doc_->release ();
+  this->doc_ = 0;
+
+  // Reset all the state variables.
+  this->insts_.clear ();
+  this->conn_insts_.clear ();
+  this->impls_.clear ();
+  this->artifacts_.clear ();
+  this->conns_.clear ();
+  this->mappings_.clear ();
+  this->locality_.clear ();
 }
 
 //

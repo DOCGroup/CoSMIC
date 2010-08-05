@@ -44,8 +44,7 @@ Deployment_Domain_Visitor (const std::string & outputPath)
 //
 // ~Deployment_Domain_Visitor
 //
-Deployment_Domain_Visitor::
-~Deployment_Domain_Visitor (void)
+Deployment_Domain_Visitor::~Deployment_Domain_Visitor (void)
 {
   if (this->output_)
     this->output_->release ();
@@ -107,7 +106,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 
   // Prepare the XML document for writing.
   this->curr_root_ = this->doc_->getDocumentElement ();
-  
+
   this->curr_root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                         XStr ("xmlns:Deployment"),
                         XStr ("http://www.omg.org/Deployment"));
@@ -125,27 +124,27 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 
   this->create_simple_content (this->curr_root_, "UUID", plan.UUID ());
   this->create_simple_content (this->curr_root_, "label", plan.label ());
-  
-  // Visit all the nodes in the deployment plan. This will gather all 
-  // the necessary parts of the XML document. We do not process the 
-  // connections at this point because we want to wait until we have 
+
+  // Visit all the nodes in the deployment plan. This will gather all
+  // the necessary parts of the XML document. We do not process the
+  // connections at this point because we want to wait until we have
   // all the deployed instances. This will make a life a little less
   // hectic in the long run.
-  
-  
+
+
   std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
-  
+
   std::for_each (nodes.begin (),
                  nodes.end (),
-                 boost::bind (&PICML::NodeReference::Accept, 
-                              _1, 
+                 boost::bind (&PICML::NodeReference::Accept,
+                              _1,
                               boost::ref (*this)));
 
   // Open the XML file for writing.
   std::ostringstream filename;
   filename << this->outputPath_ << "/" << plan.name () << ".cdd";
   LocalFileFormatTarget target (filename.str ().c_str ());
-  
+
   // Write the document.
   this->output_->setByteStream (&target);
   this->serializer_->write (this->doc_, this->output_);
@@ -191,8 +190,8 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
 void Deployment_Domain_Visitor::
 Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 {
-	PICML::Property prop = pmapping.dstPropertyMapping_end ();
-	PICML::Property (prop).Accept (*this);
+  PICML::Property prop = pmapping.dstPropertyMapping_end ();
+  PICML::Property (prop).Accept (*this);
 }
 
 
@@ -226,29 +225,29 @@ Visit_DataValue (const PICML::DataValue & dv)
 
   if (this->curr_prop_name_ == "StringIOR")
   {
-	  pname_full = "edu.vanderbilt.dre.DAnCE.StringIOR";
+    pname_full = "edu.vanderbilt.dre.DAnCE.StringIOR";
   }
-      
+
   else if (this->curr_prop_name_ == "CORBAName")
   {
-	  pname_full = "edu.vanderbilt.dre.DAnCE.CORBAName";
+    pname_full = "edu.vanderbilt.dre.DAnCE.CORBAName";
   }
 
   if (!pname_full.empty ())
   {
-	  this->curr_property_ = this->doc_->createElement (XStr ("property"));
-	  this->create_simple_content (this->curr_property_, "name", pname_full);
-	  this->create_simple_content (this->curr_property_, "kind", "Attribute");
-	  this->create_simple_content (this->curr_property_, "dynamic", "false");
+    this->curr_property_ = this->doc_->createElement (XStr ("property"));
+    this->create_simple_content (this->curr_property_, "name", pname_full);
+    this->create_simple_content (this->curr_property_, "kind", "Attribute");
+    this->create_simple_content (this->curr_property_, "dynamic", "false");
 
-	  this->curr_value_ = this->doc_->createElement (XStr ("value"));
-	  this->create_simple_content (this->curr_value_, "type", "tk_string");
+    this->curr_value_ = this->doc_->createElement (XStr ("value"));
+    this->create_simple_content (this->curr_value_, "type", "tk_string");
 
-	  this->curr_value_inner_ = this->doc_->createElement (XStr ("value"));
+    this->curr_value_inner_ = this->doc_->createElement (XStr ("value"));
     this->create_simple_content (this->curr_value_inner_, "string", dv.Value ());
 
-	  this->curr_value_->appendChild (this->curr_value_inner_);
-	  this->curr_property_->appendChild (this->curr_value_);
-	  this->curr_resource_->appendChild (this->curr_property_);
+    this->curr_value_->appendChild (this->curr_value_inner_);
+    this->curr_property_->appendChild (this->curr_value_);
+    this->curr_resource_->appendChild (this->curr_property_);
   }
 }

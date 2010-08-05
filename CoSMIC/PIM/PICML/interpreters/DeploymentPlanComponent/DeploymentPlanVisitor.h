@@ -123,6 +123,8 @@ private:
 
   void init_document (const std::string & root);
 
+  void reset_state (void);
+
   void write_artifact_execParameter (const std::string & name,
                                      const std::string & value);
 

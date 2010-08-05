@@ -1,3 +1,12 @@
+Thu Aug  5 20:29:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+
+          Bug fix where the deployment plan generator crahsed when
+          generating multiple deployment plans.
+
 Thu Aug  5 19:32:50 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/deployment/Locality_Manager/ProcessName.xme:
