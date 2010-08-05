@@ -1,3 +1,9 @@
+Thu Aug  5 19:32:50 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/deployment/Locality_Manager/ProcessName.xme:
+
+          Test/example for Locality Manager.
+
 Thu Aug  5 19:12:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
@@ -24,6 +30,7 @@ Thu Aug  5 19:12:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
           a collection up and down. Also, it is possible to delete
           an existing element in the collection from the property
           manager.
+
 Thu Aug  5 14:27:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
