@@ -61,12 +61,6 @@ private:
 
   void collapse_item (int item);
 
-  int find_prev_item (int item);
-
-  int find_next_item (int item);
-
-  int find_item_i (int item, int step);
-
   void swap_item_data (int i, int j);
 
   DECLARE_MESSAGE_MAP ();

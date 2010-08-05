@@ -1,3 +1,29 @@
+Thu Aug  5 19:12:11 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Container_Data_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Container_Data_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Container_Data_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Container_Data_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item_Base.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item_Base.cpp:
+        * PIM/PICML/interpreters/PropertyManager/New_Collection_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/New_Collection_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.cpp:
+
+          The property manager is now able to move elements in
+          a collection up and down. Also, it is possible to delete
+          an existing element in the collection from the property
+          manager.
 Thu Aug  5 14:27:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:

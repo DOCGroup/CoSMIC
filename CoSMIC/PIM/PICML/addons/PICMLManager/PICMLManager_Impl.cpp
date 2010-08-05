@@ -22,6 +22,7 @@
 #include "ace/Null_Mutex.h"
 
 #include "AMI4CCM_Event_Handler.h"
+#include "FacetToConnector_Event_Handler.h"
 
 #include <algorithm>
 #include <sstream>
@@ -107,6 +108,10 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   this->event_handler_->register_handler ("Object",
     ACE_Singleton <PICML::MI::AMI4CCM_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
+
+  this->event_handler_->register_handler ("ConnectorToFacet",
+    ACE_Singleton <PICML::MI::FacetToConnector_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
 

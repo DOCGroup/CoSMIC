@@ -20,6 +20,7 @@ project (PICMLManager): game_dialogs, game_component, picml_game_utils, boost_ba
 
     Type_Handlers {
       AMI4CCM_Event_Handler.cpp
+      FacetToConnector_Event_Handler.cpp
     }
 
     Instance_Handlers {

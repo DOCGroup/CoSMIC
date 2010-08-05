@@ -7,10 +7,16 @@ project (PropertyManager): game_interpreter, game_utils, cosmic_lib {
   pch_source = StdAfx.cpp
 
   Source_Files {
+    Collection_Container_Data_Item.cpp
+    Collection_Item.cpp
+    Container_Data_Item.cpp
+    Data_Item.cpp
     Data_Value_Controls.cpp
+    Data_Value_Item.cpp
+    Data_Value_Item_Base.cpp
+    New_Collection_Item.cpp
     Property_Manager_Dialog.cpp
     Property_Manager_Dialog_ListCtrl.cpp
-
     Property_Manager.idl
     Property_Manager_Impl.cpp
     Property_Manager_Module.cpp
