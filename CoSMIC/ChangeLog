@@ -1,3 +1,24 @@
+Thu Aug  5 05:00:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls_T.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.h:
+
+          Re-implemented the property manager using GAME.
+
+          Improved the property manager's design/architecture.
+
+          Implemented edit controls for UnsignedLongLongInteger and
+          LongLongInteger types.
+
 Wed Aug  4 23:49:44 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/deployment/Nodemap:

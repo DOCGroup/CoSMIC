@@ -1,15 +1,15 @@
 // $Id$
 
-project (PropertyManager): game_interpreter, picml_udm_utils, cosmic_lib {
+project (PropertyManager): game_interpreter, game_utils, cosmic_lib {
   sharedname = Property_Manager
-  
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
   Source_Files {
-    Data_Type_Dispatcher.cpp
     Data_Value_Controls.cpp
     Property_Manager_Dialog.cpp
+    Property_Manager_Dialog_ListCtrl.cpp
 
     Property_Manager.idl
     Property_Manager_Impl.cpp

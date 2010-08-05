@@ -15,81 +15,7 @@
 #ifndef _PICML_PROPERTY_MANAGER_DIALOG_H_
 #define _PICML_PROPERTY_MANAGER_DIALOG_H_
 
-#include "Data_Type_Dispatcher.h"
-
-// Forward decl.
-class PICML_Data_Value_Control;
-class PICML_Sequence_Data_Value;
-
-/**
- * @class PICML_Property_Manager_ListCtrl
- */
-class PICML_Property_Manager_ListCtrl : public CListCtrl
-{
-public:
-  PICML_Property_Manager_ListCtrl (void);
-
-  virtual ~PICML_Property_Manager_ListCtrl (void);
-
-  /// Initialize the columns for the control.
-  BOOL InitControl (void);
-
-  void SetProperty (const PICML::Property & prop);
-
-protected:
-  void handle_name_click (const LVHITTESTINFO & testinfo);
-  void handle_value_click (const LVHITTESTINFO & testinfo);
-
-  virtual void DrawItem (LPDRAWITEMSTRUCT item);
-
-  afx_msg void OnLButtonDown (UINT flags, CPoint point);
-
-  afx_msg void OnContextMenu (CWnd * parent, CPoint point);
-
-  afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-
-  afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-
-  afx_msg void OnInitMenuPopup (CMenu * popup, UINT index, BOOL sysmenu);
-
-  afx_msg void OnCommand_DeleteItem (void);
-
-  afx_msg void OnCommand_MoveUp (void);
-
-  afx_msg void OnCommand_MoveDown (void);
-
-private:
-  void end_label_edit (void);
-
-  void collapse_item (int item);
-
-  int find_prev_item (int item);
-
-  int find_next_item (int item);
-
-  int find_item_i (int item, int step);
-
-  void swap_item_data (int i, int j);
-
-  DECLARE_MESSAGE_MAP ();
-
-  PICML_Data_Value_Control * edit_control_;
-
-  /// Target value of the operation.
-  PICML::Property prop_;
-
-  /// Delete item of the operation.
-  int target_item_;
-
-  /// Delete index of the operation.
-  int target_index_;
-
-  /// Index of the parent.
-  int parent_item_;
-
-  /// Global listview item structure.
-  LVITEM lvitem_;
-};
+#include "Property_Manager_Dialog_ListCtrl.h"
 
 /**
  * @class PICML_Property_Manager_Dialog
@@ -101,7 +27,7 @@ private:
 class PICML_Property_Manager_Dialog : public CDialog
 {
 public:
-  PICML_Property_Manager_Dialog (const PICML::Property & prop, CWnd * parent = 0);
+  PICML_Property_Manager_Dialog (const GAME::Model & prop, CWnd * parent = 0);
 
   /// Destructor.
   virtual ~PICML_Property_Manager_Dialog (void);
@@ -116,7 +42,7 @@ private:
   DECLARE_MESSAGE_MAP ();
 
   /// Target property for the dialog.
-  PICML::Property prop_;
+  GAME::Model prop_;
 
   PICML_Property_Manager_ListCtrl listview_;
 };

@@ -2,29 +2,31 @@
 
 #include "stdafx.h"
 #include "Data_Value_Controls.h"
+
+#include "game/Atom.h"
+#include "game/Attribute.h"
+
 #include "boost/bind.hpp"
+
 #include <algorithm>
 
 //
 // DDX_Text
 //
-void DDX_Text (CDataExchange * pDX, int id, PICML::DataValue & value)
+void DDX_Text (CDataExchange * pDX, int id, GAME::Reference & value)
 {
+  GAME::Attribute attr = value.attribute ("Value");
+
   if (pDX->m_bSaveAndValidate)
   {
-    // We are saving the controls contents. This means we need to
-    // get it in string format, and store it in the <value>
     CString str;
     pDX->m_pDlgWnd->GetDlgItemText (id, str);
 
-    value.Value () = str.GetBuffer ();
+    attr.string_value (str.GetBuffer ());
   }
   else
   {
-    // We are not saving the control. We therefore need to store
-    // the data value's content in the control.
-    std::string v (value.Value ());
-    pDX->m_pDlgWnd->SetDlgItemText (id, v.c_str ());
+    pDX->m_pDlgWnd->SetDlgItemText (id, attr.string_value ().c_str ());
   }
 }
 
@@ -50,19 +52,9 @@ PICML_Data_Value_Control::~PICML_Data_Value_Control (void)
 //
 // InitControl
 //
-void PICML_Data_Value_Control::
-InitControl (size_t item, const PICML::DataValue & value)
+void PICML_Data_Value_Control::InitControl (const GAME::FCO & value)
 {
-  this->item_ = item;
   this->value_ = value;
-}
-
-//
-// init
-//
-size_t PICML_Data_Value_Control::item (void) const
-{
-  return this->item_;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -104,7 +96,7 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
   this->SetFont (parent->GetFont ());
 
   // Set the text in the window.
-  std::string v (this->value_.Value ());
+  const std::string v (this->value_.attribute ("Value").string_value ());
   this->SetWindowText (v.c_str ());
 
   // Get the control focus.
@@ -122,7 +114,7 @@ BOOL PICML_Simple_Data_Value_Control <CEdit>::Destroy (void)
   this->GetWindowText (text);
 
   // Save the text in the value.
-  this->value_.Value () = text.GetBuffer ();
+  this->value_.attribute ("Value").string_value (text.GetBuffer ());
 
   // Destroy the control.
   return this->DestroyWindow ();
@@ -174,7 +166,7 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
   this->InsertString (-1, "false");
 
   // Select the current value.
-  std::string s (this->value_.Value ());
+  std::string s (this->value_.attribute ("Value").string_value ());
 
   if (!s.empty ())
     this->SelectString (-1, s.c_str ());
@@ -225,20 +217,24 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
     return FALSE;
 
   // Populate the control with the enumeration values.
-  PICML::Enum e = PICML::Enum::Cast (this->value_.ref ());
-  std::vector <PICML::EnumValue> evs = e.EnumValue_children ();
+  GAME::Reference ref = GAME::Reference::_narrow (this->value_);
+  GAME::Model e = GAME::Model::_narrow (ref.refers_to ());
+  std::vector <GAME::Atom> values;
 
-  std::for_each (evs.begin (),
-                 evs.end (),
-                 boost::bind (&PICML::EnumValue::Accept, 
-                              _1,
-                              boost::ref (*this)));
+  if (e.children ("EnumValue", values))
+  {
+    std::for_each (values.begin (),
+                   values.end (),
+                   boost::bind (&PICML_Enum_Data_Value_Control::visit_enum_value,
+                                this,
+                                _1));
+  }
 
   // Select the current value.
-  std::string v = this->value_.Value ();
+  const std::string selection = this->value_.attribute ("Value").string_value ();
 
-  if (!v.empty ())
-    this->SelectString (-1, v.c_str ());
+  if (!selection.empty ())
+    this->SelectString (-1, selection.c_str ());
 
   return TRUE;
 }
@@ -247,10 +243,9 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
 // Visit_EnumValue
 //
 void PICML_Enum_Data_Value_Control::
-Visit_EnumValue (const PICML::EnumValue & ev)
+visit_enum_value (const GAME::Atom & ev)
 {
-  std::string s (ev.name ());
-  this->InsertString (-1, s.c_str ());
+  this->InsertString (-1, ev.name ().c_str ());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

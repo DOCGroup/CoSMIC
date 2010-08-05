@@ -15,7 +15,8 @@
 #ifndef _PICML_DATA_VALUE_CONTROLS_H_
 #define _PICML_DATA_VALUE_CONTROLS_H_
 
-#include "PICML/PICML.h"
+#include "game/Reference.h"
+#include "game/Model.h"
 
 /**
  * @class PICML_Data_Value_Control
@@ -31,22 +32,15 @@ public:
   /// Destructor.
   virtual ~PICML_Data_Value_Control (void);
 
-  void InitControl (size_t item, const PICML::DataValue & value);
+  void InitControl (const GAME::FCO & value);
 
   virtual BOOL Create (DWORD style, const RECT & rect, CWnd * parent, UINT id) = 0;
 
   virtual BOOL Destroy (void) = 0;
 
-  /// Get the item number for this control.
-  size_t item (void) const;
-
 protected:
   /// The current data value.
-  PICML::DataValue value_;
-
-private:
-  /// The current index/item number for the control.
-  size_t item_;
+  GAME::FCO value_;
 };
 
 /**
@@ -235,8 +229,7 @@ public:
  * @class PICML_Enum_Data_Value_Control
  */
 class PICML_Enum_Data_Value_Control :
-  public PICML_Simple_Data_Value_Control <CComboBox>,
-  public PICML::Visitor
+  public PICML_Simple_Data_Value_Control <CComboBox>
 {
 public:
   /// Default contructor.
@@ -249,8 +242,7 @@ public:
   virtual BOOL Create (DWORD style, const RECT & rect, CWnd * parent, UINT id);
 
 private:
-  virtual void Visit_EnumValue (const PICML::EnumValue & ev);
-
+  void visit_enum_value (const GAME::Atom & ev);
 };
 
 #include "Data_Value_Controls_T.cpp"
