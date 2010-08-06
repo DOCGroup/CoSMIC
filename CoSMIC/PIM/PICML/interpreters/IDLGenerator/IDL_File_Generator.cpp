@@ -277,6 +277,10 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
     if (value[value.length () - 1] != '"')
       this->idl_ << '"';
   }
+  else if (cls == PICML::Char::meta)
+  {
+    this->idl_ << "'" << value << "'";
+  }
   else
   {
     // We can just write the value.
@@ -1335,15 +1339,15 @@ void IDL_File_Generator::Visit_Byte (const PICML::Byte & b)
 //
 // Visit_Char
 //
-void IDL_File_Generator::Visit_Char (const PICML::Char & )
+void IDL_File_Generator::Visit_Char (const PICML::Char & c)
 {
-  this->idl_ << "wchar";
+  this->idl_ << "char";
 }
 
 //
 // Visit_WideChar
 //
-void IDL_File_Generator::Visit_WideChar (const PICML::WideChar & )
+void IDL_File_Generator::Visit_WideChar (const PICML::WideChar & w)
 {
   this->idl_ << "wchar";
 }
