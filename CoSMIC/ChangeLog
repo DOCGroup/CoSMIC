@@ -1,3 +1,24 @@
+Fri Aug  6 13:47:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ConnectorInstanceDecorator:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.idl:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.reg:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator_Impl.h:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator_Module.cpp:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decoratord.reg:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/stdafx.h:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/stdafx.cpp:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Implemented a decorator for ConnectorInstance elements that
+          displays the connector's name and its implementation type
+          information.
+
 Fri Aug  6 04:08:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_dialogs.mpb:

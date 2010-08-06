@@ -1,0 +1,40 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file     ConnectorInstance_Decorator.idl
+ *
+ *  $Id$
+ *
+ *  @author   James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_CONNECTOR_INSTANCE_DECORATOR_IDL_
+#define _PICML_CONNECTOR_INSTANCE_DECORATOR_IDL_
+
+#include "MgaDecorator.idl"
+#include "gme.idl"
+
+[
+  uuid (D91F2183-7728-4806-9593-283B0DD7605D),
+  version (1.0),
+]
+library ConnectorInstance_DecoratorLib
+{
+  importlib ("stdole32.tlb");
+  importlib ("stdole2.tlb");
+
+  [
+    uuid (EBC4DE1C-8C90-40C3-9C03-EF115D70D5BC),
+    version (1.0)
+  ]
+  coclass ConnectorInstance_Decorator
+  {
+    [default] interface IMgaDecorator;
+    interface IMgaVersionInfo;
+  };
+
+};
+
+#endif

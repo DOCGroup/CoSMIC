@@ -1,0 +1,28 @@
+// $Id$
+
+project (ConnectorInstance_Decorator): game_graphics, game_decorator {
+  sharedname = ConnectorInstance_Decorator
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    ConnectorInstance_Decorator_Impl.cpp
+    ConnectorInstance_Decorator_Module.cpp
+    ConnectorInstance_Decorator.idl
+  }
+
+  Header_Files {
+
+  }
+
+  Resource_Files {
+
+  }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = MGA.Decorator.ConnectorInstanceDecorator
+    gme_uuid        = EBC4DE1C-8C90-40C3-9C03-EF115D70D5BC
+  }
+}
