@@ -8,6 +8,12 @@
 #include "boost/spirit/include/support_istream_iterator.hpp"
 #include "boost/spirit/repository/include/qi_confix.hpp"
 #include "boost/fusion/include/adapt_struct.hpp"
+#include "boost/spirit/include/phoenix_core.hpp"
+#include "boost/spirit/include/phoenix_operator.hpp"
+#include "boost/spirit/include/phoenix_fusion.hpp"
+#include "boost/spirit/include/phoenix_stl.hpp"
+#include "boost/spirit/include/phoenix_object.hpp"
+
 #include "boost/bind.hpp"
 
 #include <fstream>
@@ -41,6 +47,8 @@ namespace data
     std::string ident_;
     std::vector <std::string> list_;
   };
+
+  typedef std::vector <std::string> scope_t;
 }
 
 BOOST_FUSION_ADAPT_STRUCT (
@@ -395,7 +403,117 @@ public:
     const model_stack_t & stack_;
   };
 
+  /**
+   * @struct enable_ami4ccm_interface
+   */
+  struct enable_ami4ccm_interface_t
+  {
+    enable_ami4ccm_interface_t (const GAME::XME::Model & file)
+      : file_ (file)
+    {
 
+    }
+
+    void operator () (const data::scope_t & fq_type, qi::unused_type, qi::unused_type) const
+    {
+      data::scope_t::const_iterator
+        iter = fq_type.begin (), iter_end = fq_type.end () - 1;
+
+      GAME::XME::Model parent (this->file_);
+
+      for (; iter != iter_end; ++ iter)
+      {
+        static const ::Utils::XStr meta_Package ("Package");
+
+        // Locate the Package with this name.
+        if (!GAME::find (parent, meta_Package, parent,
+            boost::bind (std::equal_to < ::Utils::XStr > (),
+                         ::Utils::XStr (*iter),
+                         boost::bind (&GAME::XME::Model::name, _1))))
+        {
+          return;
+        }
+      }
+
+      // The final location is the parent. We now need to locate the
+      // object in this parent that has the specified name.
+      GAME::XME::Model object;
+      static const ::Utils::XStr meta_Object ("Object");
+
+      if (GAME::find (parent, meta_Object, object,
+          boost::bind (std::equal_to < ::Utils::XStr > (),
+                       ::Utils::XStr (*iter),
+                       boost::bind (&GAME::XME::Model::name, _1))))
+      {
+        static const ::Utils::XStr attr_SupportsAsync ("SupportsAsync");
+        object.attribute (attr_SupportsAsync, true).value (true);
+      }
+    }
+
+  private:
+    const GAME::XME::Model & file_;
+  };
+
+  struct enable_ami4ccm_receptacle_t
+  {
+    enable_ami4ccm_receptacle_t (GAME::XME::Model & file)
+      : file_ (file)
+    {
+
+    }
+
+    void operator () (const data::scope_t & fq_type, qi::unused_type, qi::unused_type) const
+    {
+      data::scope_t::const_iterator
+        iter = fq_type.begin (), iter_end = fq_type.end () - 2;
+
+      GAME::XME::Model parent (this->file_);
+
+      for (; iter != iter_end; ++ iter)
+      {
+        static const ::Utils::XStr meta_Package ("Package");
+
+        // Locate the Package with this name.
+        if (!GAME::find (parent, meta_Package, parent,
+            boost::bind (std::equal_to < ::Utils::XStr > (),
+                         ::Utils::XStr (*iter),
+                         boost::bind (&GAME::XME::Model::name, _1))))
+        {
+          return;
+        }
+      }
+
+      // The next location is the component. We now need to locate
+      // the object in this parent that has the specified name.
+      GAME::XME::Model component;
+      static const ::Utils::XStr meta_Object ("Component");
+
+      if (!GAME::find (parent, meta_Object, component,
+          boost::bind (std::equal_to < ::Utils::XStr > (),
+                       ::Utils::XStr (*iter ++),
+                       boost::bind (&GAME::XME::Model::name, _1))))
+      {
+        return;
+      }
+
+      // The final location is the receptacle. We now need to locate
+      // the object in this parent that has the specified name.
+      GAME::XME::Reference receptacle;
+      static const ::Utils::XStr meta_RequiredRequestPort ("RequiredRequestPort");
+
+      if (GAME::find (component, meta_RequiredRequestPort, receptacle,
+          boost::bind (std::equal_to < ::Utils::XStr > (),
+                       ::Utils::XStr (*iter),
+                       boost::bind (&GAME::XME::Reference::name, _1))))
+      {
+        static const ::Utils::XStr attr_AsyncCommunication ("AsyncCommunication");
+        receptacle.attribute (attr_AsyncCommunication, true).value (true);
+      }
+    }
+
+  private:
+    GAME::XME::Model & file_;
+  };
 
   /// Type definition of the iterator type.
   typedef IteratorT iterator_type;
@@ -409,6 +527,7 @@ public:
       ignorable_scope_keyword_ (std::string ("ignorable_scope_keyword")),
       module_content_ (std::string ("module_content")),
       pragma_stmts_ (std::string ("pragma_stmts")),
+      pragma_lem_ (std::string ("pragma_lem")),
       pragma_typesupport_ (std::string ("pragma_typesupport")),
       pragma_dcps_data_type_ (std::string ("pragma_dcps_data_type")),
       pragma_dcps_data_key_ (std::string ("pragma_dcps_data_key")),
@@ -419,9 +538,14 @@ public:
       filepath_ (std::string ("filepath")),
       usr_filepath_ (std::string ("usr_filepath")),
       sys_filepath_ (std::string ("sys_filepath")),
-      ident_ (std::string ("ident"))
+      ident_ (std::string ("ident")),
+      pragma_ami4ccm_interface_ (std::string ("pragma_ami4ccm_interface")),
+      pragma_ami4ccm_receptacle_ (std::string ("pragma_ami4ccm_receptacle"))
   {
+    namespace phoenix = boost::phoenix;
     namespace repo = boost::spirit::repository;
+
+    using phoenix::push_back;
 
     // This is the first object on the stack.
     this->model_stack_.push (file);
@@ -442,6 +566,7 @@ public:
     this->module_content_ =
       this->module_ |
       this->ignorable_scope_ |
+      this->pragma_stmts_ |
       this->garbage_;
 
     // List of keyworks that we must be able to recognize. This will
@@ -456,9 +581,9 @@ public:
       this->pragma_lem_ |
       this->pragma_dcps_data_type_[append_dcps_data_type (this->model_stack_)] |
       this->pragma_dcps_data_key_[append_dcps_data_key (this->model_stack_)] |
-      this->pragma_keylist_[append_keylist (this->model_stack_)];
-      this->pragma_ami4ccm_receptacle_;
-      this->pragma_ami4ccm_interface_;
+      this->pragma_keylist_[append_keylist (this->model_stack_)] |
+      this->pragma_ami4ccm_receptacle_[enable_ami4ccm_receptacle_t (file)] |
+      this->pragma_ami4ccm_interface_[enable_ami4ccm_interface_t (file)];
 
     this->pragma_typesupport_ %=
       qi::lit ("#pragma") >>
@@ -485,7 +610,7 @@ public:
       qi::lit ("ami4ccm") >>
       qi::lit ("interface") >>
       qi::lit ("\"") >>
-      this->ident_ >>
+      this->scoped_name_ >>
       qi::lit ("\"");
 
     this->pragma_ami4ccm_receptacle_ %=
@@ -494,7 +619,7 @@ public:
       qi::lit ("ami4ccm") >>
       qi::lit ("receptacle") >>
       qi::lit ("\"") >>
-      this->ident_ >>
+      this->scoped_name_ >>
       qi::lit ("\"");
 
     this->pragma_dcps_data_key_ %=
@@ -535,6 +660,11 @@ public:
       qi::lit ("interface") |
       qi::lit ("enum");
 
+    this->scoped_name_ =
+      qi::omit[-qi::lit ("::")] >>
+      this->ident_[push_back (qi::labels::_val, qi::labels::_1)]  >>
+      * (qi::lit ("::") >> this->ident_[push_back (qi::labels::_val, qi::labels::_1)]);
+
     this->filepath_ %=
       this->usr_filepath_ |
       this->sys_filepath_;
@@ -570,6 +700,8 @@ private:
     debug (this->sys_filepath_);
     debug (this->filename_);
     debug (this->ident_);
+    debug (this->pragma_ami4ccm_receptacle_);
+    debug (this->pragma_ami4ccm_interface_);
   }
 
   GAME::XME::Model & file_;
@@ -589,8 +721,8 @@ private:
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_typesupport_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_lem_;
 
-  qi::rule <IteratorT, std::string (), ascii::space_type> pragma_ami4ccm_receptacle_;
-  qi::rule <IteratorT, std::string (), ascii::space_type> pragma_ami4ccm_interface_;
+  qi::rule <IteratorT, data::scope_t (), ascii::space_type> pragma_ami4ccm_receptacle_;
+  qi::rule <IteratorT, data::scope_t (), ascii::space_type> pragma_ami4ccm_interface_;
 
   qi::rule <IteratorT, std::string (), ascii::space_type> pragma_dcps_data_type_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_dcps_data_key_;
@@ -606,6 +738,10 @@ private:
   qi::rule <IteratorT, std::string (), ascii::space_type> usr_filepath_;
   qi::rule <IteratorT, std::string (), ascii::space_type> sys_filepath_;
   qi::rule <IteratorT, std::string (), ascii::space_type> filename_;
+
+  qi::rule <IteratorT,
+            data::scope_t (),
+            ascii::space_type> scoped_name_;
 
   qi::rule <IteratorT,
             std::string (),

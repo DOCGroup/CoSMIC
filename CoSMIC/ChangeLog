@@ -1,3 +1,10 @@
+Fri Aug  6 16:47:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+
+          Bug fix where importing idl that contained ami4ccm
+          pragma statments were not preserved in the model.
+
 Fri Aug  6 14:14:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * NEWS:
