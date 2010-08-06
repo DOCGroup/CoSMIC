@@ -1,6 +1,7 @@
 // $Id$
 
-project (PICMLManager): game_dialogs, game_component, picml_game_utils, boost_base, cosmic_utils {
+project (PICMLManager): game_dialogs, game_component, \
+                        picml_game_utils, boost_base, cosmic_utils {
   sharedname = PICMLManager
 
   pch_header = StdAfx.h
@@ -20,7 +21,7 @@ project (PICMLManager): game_dialogs, game_component, picml_game_utils, boost_ba
 
     Type_Handlers {
       AMI4CCM_Event_Handler.cpp
-      FacetToConnector_Event_Handler.cpp
+      ToConnector_Event_Handler.cpp
     }
 
     Instance_Handlers {

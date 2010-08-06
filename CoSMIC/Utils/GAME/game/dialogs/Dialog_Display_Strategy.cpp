@@ -6,4 +6,3 @@
 #if !defined (__GAME_INLINE__)
 #include "Dialog_Display_Strategy.inl"
 #endif
-

@@ -5,7 +5,7 @@
 
 #include "game/GAME.h"
 #include "game/be/Event_Handler.h"
-#include "game/dialogs/Selection_List_Dialog.h"
+#include "game/dialogs/Selection_List_Dialog_T.h"
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
 
@@ -22,7 +22,7 @@
 #include "ace/Null_Mutex.h"
 
 #include "AMI4CCM_Event_Handler.h"
-#include "FacetToConnector_Event_Handler.h"
+#include "ToConnector_Event_Handler.h"
 
 #include <algorithm>
 #include <sstream>
@@ -114,6 +114,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
     ACE_Singleton <PICML::MI::FacetToConnector_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
+  this->event_handler_->register_handler ("ConnectorToReceptacle",
+    ACE_Singleton <PICML::MI::ReceptacleToConnector_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
 
   return 0;
 }
@@ -169,8 +172,6 @@ int PICMLManager_Impl::handle_global_event (long global_event)
 int PICMLManager_Impl::
 handle_object_event (GAME::Object & obj, unsigned long eventmask)
 {
-  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
-
   try
   {
     GAME::Object object (obj);
@@ -623,6 +624,7 @@ handle_Component (unsigned long eventmask, GAME::Object & obj)
       {
         // Allow the end-user to rename the component. This will
         // also set the suffixes for the artifacts.
+        AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
         NewComponentDialog new_component (config, ::AfxGetMainWnd ());
 
         if (new_component.DoModal () == IDCANCEL)
@@ -1188,13 +1190,15 @@ handle_connector_porttype_connection (const GAME::Model & connector_inst,
   }
   else
   {
-    using GAME::Dialogs::Selection_List_Dialog;
+    using GAME::Dialogs::Selection_List_Dialog_T;
 
     // Since there is more than one element in the set, we
     // need to ask the user to select the correct one.
-    Selection_List_Dialog <Reference> dlg (valid_set);
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+    Selection_List_Dialog_T <Reference> dlg (0, ::AfxGetMainWnd ());
 
-    dlg.title ("Please select the connector's port name");
+    dlg.insert (valid_set);
+    dlg.title ("Target Port Selector");
 
     if (dlg.DoModal () != IDOK)
       return 0;

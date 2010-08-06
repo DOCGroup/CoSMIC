@@ -14,7 +14,8 @@
 #define _GAME_SELECTION_LIST_DIALOG_H_
 
 #include <vector>
-#include <afxwin.h>
+#include "game/Object.h"
+
 
 namespace GAME
 {
@@ -28,24 +29,16 @@ class Dialog_Display_Strategy;
  *
  * Simple dialog that shows a list of elements.
  */
-template <typename T>
-class Selection_List_Dialog : public CDialog
+class AFX_EXT_CLASS Selection_List_Dialog : public CDialog
 {
 public:
-  /// Type definition of the value type.
-  typedef T value_type;
-
-  /// Type definition for the list of elements.
-  typedef std::vector <T> items_type;
-
   /**
    * Initializing constructor.
    *
    * @param[in]     items       Initial items for the dialog
    * @param[in]     parent      Parent of the dialog
    */
-  Selection_List_Dialog (const items_type & items,
-                         Dialog_Display_Strategy * strategy = 0,
+  Selection_List_Dialog (Dialog_Display_Strategy * strategy = 0,
                          CWnd * parent = 0);
 
   /// Destructor.
@@ -56,9 +49,13 @@ public:
    *
    * @return        The selected string value.
    */
-  T selection (void) const;
+  GAME::Object selection (void) const;
 
   void title (const char * str);
+
+  void insert (std::vector <GAME::Object> & items);
+
+  void insert (const GAME::Object & object);
 
 protected:
   /**
@@ -71,14 +68,14 @@ protected:
 
   virtual BOOL OnInitDialog (void);
 
+  /// The selected item from the listbox.
+  GAME::Object selection_;
+
 private:
-  void insert_item (T item, const std::string & display_name);
+  void insert_item (const GAME::Object &, const std::string &);
 
   /// Display strategy for the dialog.
   Dialog_Display_Strategy * strategy_;
-
-  /// Collection of strings to display.
-  const items_type & items_;
 
   /// The list control for the dialog.
   CListBox list_;
@@ -86,13 +83,11 @@ private:
   /// Title of the dialog box.
   std::string title_;
 
-  /// The selected item from the listbox.
-  T selection_;
+  /// Set of items for this dialog.
+  std::vector <Object> items_;
 };
 
 }
 }
-
-#include "Selection_List_Dialog.cpp"
 
 #endif  // !defined _GAME_SELECTION_LIST_DIALOG_H_

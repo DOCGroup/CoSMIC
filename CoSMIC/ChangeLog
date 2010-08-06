@@ -1,3 +1,43 @@
+Fri Aug  6 04:08:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_dialogs.mpb:
+
+          Removed the resource for the base project.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Module.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Implemented support for setting the name of a connection
+          between a connector and a facet/receptacle.
+
+        * PIM/PICML/tests/assembly:
+        * PIM/PICML/tests/assembly/Model_Intelligence:
+        * PIM/PICML/tests/assembly/Model_Intelligence/ToConnector.xme:
+
+          Test for validating the model intelligence works with connecting
+          a facet/receptacle to a connector.
+
+        * Utils/GAME/game/be/stdafx.h:
+
+          Added _WINVER and _WINNT macros.
+
+        * Utils/GAME/game/dialogs/Dialog_Display_Strategy.cpp:
+        * Utils/GAME/game/dialogs/GAME_Dialogs.mpc:
+        * Utils/GAME/game/dialogs/Module.h:
+        * Utils/GAME/game/dialogs/Module.cpp:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog_T.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog_T.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+        * Utils/GAME/game/dialogs/stdafx.h:
+
+          Implemented the project as a MFC extension module. This makes
+          it a LOT easier to reuse the GUI classes.
+
 Fri Aug  6 03:01:36 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:

@@ -11,14 +11,15 @@
 
 #define STRICT
 #ifndef _WIN32_WINNT
-	#if _MSC_VER > 1400
-		#define _WIN32_WINNT 0x0501
-	#else
-		#define _WIN32_WINNT 0x0400
-	#endif 
+  #if _MSC_VER > 1400
+    #define _WIN32_WINNT 0x0501
+  #else
+    #define _WIN32_WINNT 0x0400
+  #endif
 #endif
 
 #include <afxwin.h>
+#include <afxdllx.h>
 #include <Gdiplus.h>
 
 #include "game/Mga.h"
