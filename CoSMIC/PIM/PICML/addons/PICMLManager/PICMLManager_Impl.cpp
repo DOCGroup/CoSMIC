@@ -65,7 +65,6 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->project_ = project;
 
   this->handlers_.bind ("ExternalDelegate", &PICMLManager_Impl::handle_ExternalDelegate);
-  this->handlers_.bind ("PublishConnector", &PICMLManager_Impl::handle_PublishConnector);
   this->handlers_.bind ("AttributeValue", &PICMLManager_Impl::handle_AttributeValue);
   this->handlers_.bind ("AttributeMember", &PICMLManager_Impl::handle_AttributeMember);
   this->handlers_.bind ("CollocationGroup", &PICMLManager_Impl::handle_CollocationGroup);
@@ -99,9 +98,6 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("ComponentInstance", &PICMLManager_Impl::handle_ComponentInstance);
   this->handlers_.bind ("ConnectorInstance", &PICMLManager_Impl::handle_ConnectorInstance);
 
-  this->handlers_.bind ("Consume", &PICMLManager_Impl::handle_Consume);
-  this->handlers_.bind ("Publish", &PICMLManager_Impl::handle_Publish);
-
   // The new way of writing event handler's for the model intelligence
   // is to use event handler objects. We are going to preload the objects
   // into memory.
@@ -116,6 +112,14 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   this->event_handler_->register_handler ("ConnectorToReceptacle",
     ACE_Singleton <PICML::MI::ReceptacleToConnector_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
+
+  this->event_handler_->register_handler ("Publish",
+    ACE_Singleton <PICML::MI::Publish_To_Connector_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
+
+  this->event_handler_->register_handler ("Consume",
+    ACE_Singleton <PICML::MI::Consume_To_Connector_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   return 0;
@@ -475,19 +479,6 @@ handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj)
     if (src_port.name () != dst_port.name ())
       src_port.name (dst_port.name ());
   }
-
-  return 0;
-}
-
-//
-// handle_PublishConnector
-//
-int PICMLManager_Impl::
-handle_PublishConnector (unsigned long eventmask, GAME::Object & obj)
-{
-  // We need to set the name of the newly create connector.
-  if ((eventmask & OBJEVENT_CREATED))
-    obj.name (obj.id ());
 
   return 0;
 }
@@ -1082,134 +1073,6 @@ generate_port_instances (GAME::Model inst,  const GAME::Model & component)
     Model basetype = Model::_narrow (inherits.begin ()->refers_to ());
     this->generate_port_instances (inst, basetype);
   }
-}
-
-//
-// handle_Publish
-//
-int PICMLManager_Impl::
-handle_Publish (unsigned long eventmask, GAME::Object & obj)
-{
-  using GAME::Connection;
-  using GAME::Model;
-  using GAME::Reference;
-
-  if ((eventmask & OBJEVENT_CREATED))
-  {
-    using GAME::Connection;
-    using GAME::Model;
-
-    // This is a publish connection.
-    Connection publish = Connection::_narrow (obj);
-
-    // First, let's get the source PortType that wants to connect to
-    // the target connector.
-    GAME::FCO port =  publish[std::string ("src")].target ();
-    Model connector_inst = Model::_narrow (publish[std::string ("dst")].target ());
-
-    return this->handle_connector_porttype_connection (connector_inst, port, publish);
-  }
-
-  return 0;
-}
-
-//
-// handle_Consume
-//
-int PICMLManager_Impl::
-handle_Consume (unsigned long eventmask, GAME::Object & obj)
-{
-  if ((eventmask & OBJEVENT_CREATED))
-  {
-    using GAME::Connection;
-    using GAME::Model;
-
-    // This is a publish connection.
-    Connection publish = Connection::_narrow (obj);
-
-    // First, let's get the source PortType that wants to connect to
-    // the target connector.
-    GAME::FCO port =  publish[std::string ("dst")].target ();
-    Model connector_inst = Model::_narrow (publish[std::string ("src")].target ());
-
-    return this->handle_connector_porttype_connection (connector_inst, port, publish);
-  }
-
-  return 0;
-}
-
-//
-// handle_connector_porttype_connection
-//
-int PICMLManager_Impl::
-handle_connector_porttype_connection (const GAME::Model & connector_inst,
-                                      const GAME::FCO & port,
-                                      GAME::Connection & connection)
-{
-  using GAME::Reference;
-  using GAME::Model;
-
-  Reference extended_port_inst = Reference::_narrow (port);
-  Reference extended_port = GAME::Reference::_narrow (extended_port_inst.refers_to ());
-  GAME::FCO port_type = extended_port.refers_to ();
-  const bool is_extended_port = extended_port.meta () == "ExtendedPort" ? true : false;
-
-  // Now that we have the port type, we need to locate either the
-  // extended port, or mirror port, on the connector.
-  Model connector;
-  if (!this->get_connector_type (connector_inst, connector))
-    return 0;
-
-  std::string metaname = is_extended_port ? "MirrorPort" : "ExtendedPort";
-
-  // Select all the port types of the specified metaname.
-  std::vector <Reference> extended_ports;
-  connector.children (metaname, extended_ports);
-
-  // Of these port types, narrow the selection down to those
-  // that have the same port types as the source.
-  std::vector <Reference>::iterator
-    iter = extended_ports.begin (),
-    iter_end = extended_ports.end ();
-
-  std::vector <Reference> valid_set;
-
-  for (; iter != iter_end; ++ iter)
-  {
-    if (iter->refers_to () == port_type)
-      valid_set.push_back (*iter);
-  }
-
-  Reference valid_port;
-
-  if (valid_set.size () == 1)
-  {
-    // Since there is only one element in the set, we can
-    // just use that as the selection.
-    valid_port = valid_set.front ();
-  }
-  else
-  {
-    using GAME::Dialogs::Selection_List_Dialog_T;
-
-    // Since there is more than one element in the set, we
-    // need to ask the user to select the correct one.
-    AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
-    Selection_List_Dialog_T <Reference> dlg (0, ::AfxGetMainWnd ());
-
-    dlg.insert (valid_set);
-    dlg.title ("Target Port Selector");
-
-    if (dlg.DoModal () != IDOK)
-      return 0;
-
-    valid_port = dlg.selection ();
-  }
-
-  // We can now set the name of the connection since we have the
-  // valid target port on the connector.
-  connection.name (valid_port.name ());
-  return 0;
 }
 
 //

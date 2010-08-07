@@ -56,7 +56,6 @@ private:
   int handle_AttributeMember (unsigned long eventmask, GAME::Object & obj);
   int handle_AttributeValue (unsigned long eventmask, GAME::Object & obj);
   int handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj);
-  int handle_PublishConnector (unsigned long eventmask, GAME::Object & obj);
   int handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj);
   int handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj);
   int handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj);
@@ -74,7 +73,7 @@ private:
 
   int handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj);
   int handle_Domain (unsigned long eventmask, GAME::Object & obj);
- 
+
   int handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj);
   int handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj);
   int handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
@@ -85,15 +84,12 @@ private:
   int handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
   int handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
   int handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
-  
+
   int handle_ComplexTypeReference (unsigned long eventmask, GAME::Object & obj);
 
-  int handle_Publish (unsigned long eventmask, GAME::Object & obj);
-  int handle_Consume (unsigned long eventmask, GAME::Object & obj);
+  void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
 
-	void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
-
-  void generate_port_instances (GAME::Model inst, 
+  void generate_port_instances (GAME::Model inst,
                                 const GAME::Model & component);
 
   /**

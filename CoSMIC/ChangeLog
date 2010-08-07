@@ -1,3 +1,15 @@
+Sat Aug  7 23:06:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Updated the PICML model intelligence to either (1) set the name
+          of a publish/consume connection or (2) display a dialog for
+          selecting the correct name when creating a connection between
+          a delegated port and connector instance.
+
 Sat Aug  7 00:51:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
