@@ -73,35 +73,6 @@ private:
     const PICML::MirrorPortInstanceBase & base,
     const PICML::PortType & pt);
 
-  struct fragment_t
-  {
-    fragment_t (const PICML::ConnectorInstance & inst,
-                const std::string & uuid,
-                const std::string & name)
-      : fragment_ (inst),
-        uuid_ (uuid),
-        name_ (name)
-    {
-
-    }
-
-    bool operator == (const PICML::ConnectorInstance & inst) const
-    {
-      return this->fragment_ == inst;
-    }
-
-    bool operator < (const fragment_t & f) const
-    {
-      return this->fragment_ < f.fragment_;
-    }
-
-    PICML::ConnectorInstance fragment_;
-
-    std::string uuid_;
-
-    std::string name_;
-  };
-
   bool find_plan_locality (const PICML::ComponentInstance & inst);
 
   void start_new_connection (const PICML::Object & obj);
@@ -140,8 +111,6 @@ private:
   std::string connection_name_;
 
   PICML::CollocationGroup group_;
-
-  std::map <PICML::CollocationGroup, std::set <fragment_t> > fragments_;
 
   PICML::ComponentInstance comp_inst_;
 

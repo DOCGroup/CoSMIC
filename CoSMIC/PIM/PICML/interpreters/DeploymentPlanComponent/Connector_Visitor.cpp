@@ -594,50 +594,35 @@ Visit_ProvidedRequestPort_i (const std::string & inst,
 void Connector_Visitor::
 deploy_connector_fragment (const PICML::ConnectorInstance & inst)
 {
-  // First, let's check if this connector fragment already exists
-  // in the current collocation group.
-  std::set <fragment_t> & fragments = this->fragments_[this->group_];
-  std::set <fragment_t>::iterator iter = fragments.find (fragment_t (inst, "", ""));
+  // Generate a new id for this connector fragment.
+  const std::string old_uuid = inst.UUID ();
+  const std::string old_name = inst.name ();
 
-  if (iter == fragments.end ())
-  {
-    const std::string old_uuid = inst.UUID ();
-    const std::string old_name = inst.name ();
+  PICML::InstanceMapping mapping = this->group_.dstInstanceMapping ();
+  PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
+  PICML::Node node = noderef.ref ();
 
-    PICML::InstanceMapping mapping = this->group_.dstInstanceMapping ();
-    PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
-    PICML::Node node = noderef.ref ();
+  // Generate a new UUID and name for this connector fragment.
+  std::string fragment_uuid = ::Utils::CreateUuid ();
+  std::string fragment_name = inst.name ();
+  fragment_name += "@" + std::string (node.name ()) + "." + std::string (this->group_.name ());
 
-    // Generate a new UUID and name for this connector fragment.
-    std::string fragment_uuid = ::Utils::CreateUuid ();
-    std::string fragment_name = inst.name ();
-    fragment_name += "@" + std::string (node.name ()) + "." + std::string (this->group_.name ());
+  this->connector_name_ = inst.getPath (".", false, true, "name", true);
+  this->connector_name_ += "@" + std::string (node.name ());
+  this->connector_name_ += "." + std::string (this->group_.name ());
 
-    this->connector_name_ = inst.getPath (".", false, true, "name", true);
-    this->connector_name_ += "@" + std::string (node.name ());
-    this->connector_name_ += "." + std::string (this->group_.name ());
+  inst.UUID () = fragment_uuid;
+  inst.name () = fragment_name;
 
-    inst.UUID () = fragment_uuid;
-    inst.name () = fragment_name;
+  this->connector_uuid_ = "_" + fragment_uuid;
 
-    this->connector_uuid_ = "_" + fragment_uuid;
+  // Since this is a new fragment, we need to make sure that it
+  // is included in the deployment plan.
+  this->dpv_.deploy_connector_fragment (inst, this->group_);
 
-    // Save the fragment for later usage.
-    fragments.insert (fragment_t (inst, fragment_uuid, this->connector_name_));
-
-    // Since this is a new fragment, we need to make sure that it
-    // is included in the deployment plan.
-    this->dpv_.deploy_connector_fragment (inst, this->group_);
-
-    // Restore the original UUID.
-    inst.UUID () = old_uuid;
-    inst.name () = old_name;
-  }
-  else
-  {
-    this->connector_uuid_ = "_" + iter->uuid_;
-    this->connector_name_ = iter->name_;
-  }
+  // Restore the original UUID.
+  inst.UUID () = old_uuid;
+  inst.name () = old_name;
 }
 
 //
