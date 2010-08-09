@@ -1,3 +1,11 @@
+Mon Aug  9 23:34:36 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Enum.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Enum.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Enum.mpc:
+
+          Added test for Enum type.
+
 Sun Aug  8 12:45:03 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
