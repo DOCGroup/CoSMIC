@@ -162,14 +162,14 @@ void Deployment_Domain_Visitor::
 Visit_NodeReference (const PICML::NodeReference & noderef)
 {
   PICML::Node parent_noderef = noderef.ref ();
-  //std::set <PICML::InstanceMapping> mapping = noderef.srcInstanceMapping () ;
-  std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping () ;
 
-  this->curr_node_ = this->doc_->createElement (XStr ("node"));
+  std::set <PICML::PropertyMapping> mapping = noderef.dstPropertyMapping ();
+
+  this->curr_node_ = this->create_element (this->curr_root_, "node");
   this->create_simple_content (this->curr_node_, "name", noderef.name ());
-  this->create_simple_content (this->curr_node_, "label", parent_noderef.label());
+  this->create_simple_content (this->curr_node_, "label", parent_noderef.label ());
 
-  this->curr_resource_ = this->doc_->createElement (XStr ("resource"));
+  this->curr_resource_ = this->create_element (this->curr_node_, "resource");
   this->create_simple_content (this->curr_resource_, "name", "Node Address");
   this->create_simple_content (this->curr_resource_, "resourceType", "edu.vanderbilt.dre.DAnCE.NodeAddress");
 
@@ -178,9 +178,6 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
                  boost::bind (&PICML::PropertyMapping::Accept,
                               _1,
                               boost::ref (*this)));
-
-  this->curr_node_->appendChild (this->curr_resource_);
-  this->curr_root_->appendChild (this->curr_node_);
 }
 
 
@@ -201,18 +198,36 @@ Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 void Deployment_Domain_Visitor::
 Visit_Property (const PICML::Property & prop)
 {
-  this->curr_prop_name_ = prop.name ();
+  std::string prop_name = prop.name ();
+  std::string pname_full;
 
-  typedef UDM_Position_Sort_T <PICML::DataValue, PS_Top_To_Bottom> sorter_t;
-  sorter_t sorter ("DataValueAspect", PS_Top_To_Bottom ());
-  std::set <PICML::DataValue, sorter_t> sorted_values (sorter);
-  sorted_values = prop.DataValue_kind_children_sorted (sorter);
+  if (prop_name == "StringIOR")
+  {
+    pname_full = "edu.vanderbilt.dre.DAnCE.StringIOR";
+  }
 
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&PICML::DataValue::Accept,
-                              _1,
-                              boost::ref (*this)));
+  else if (prop_name == "CORBAName")
+  {
+    pname_full = "edu.vanderbilt.dre.DAnCE.CORBAName";
+  }
+
+  if (!pname_full.empty ())
+  {
+    this->curr_property_ = this->create_element (this->curr_resource_, "property");
+    this->create_simple_content (this->curr_property_, "name", pname_full);
+    this->create_simple_content (this->curr_property_, "kind", "Attribute");
+    this->create_simple_content (this->curr_property_, "dynamic", "false");
+
+    this->curr_value_ = this->create_element (this->curr_property_, "value");
+    this->curr_type_ = this->create_element (this->curr_value_, "type");
+    this->create_simple_content (this->curr_type_, "kind", "tk_string");
+
+    this->curr_value_inner_ = this->create_element (this->curr_value_, "value");
+
+    std::vector <PICML::DataValue> data_values = prop.DataValue_kind_children ();
+    PICML::DataValue data_value = data_values.front ();
+    data_value.Accept (*this);
+  }
 }
 
 //
@@ -221,35 +236,5 @@ Visit_Property (const PICML::Property & prop)
 void Deployment_Domain_Visitor::
 Visit_DataValue (const PICML::DataValue & dv)
 {
-  std::string pname_full;
-
-  if (this->curr_prop_name_ == "StringIOR")
-  {
-    pname_full = "edu.vanderbilt.dre.DAnCE.StringIOR";
-  }
-
-  else if (this->curr_prop_name_ == "CORBAName")
-  {
-    pname_full = "edu.vanderbilt.dre.DAnCE.CORBAName";
-  }
-
-  if (!pname_full.empty ())
-  {
-    this->curr_property_ = this->doc_->createElement (XStr ("property"));
-    this->create_simple_content (this->curr_property_, "name", pname_full);
-    this->create_simple_content (this->curr_property_, "kind", "Attribute");
-    this->create_simple_content (this->curr_property_, "dynamic", "false");
-
-    this->curr_value_ = this->doc_->createElement (XStr ("value"));
-    this->curr_type_ = this->doc_->createElement (XStr ("type"));
-    this->create_simple_content (this->curr_type_, "kind", "tk_string");
-
-    this->curr_value_inner_ = this->doc_->createElement (XStr ("value"));
-    this->create_simple_content (this->curr_value_inner_, "string", dv.Value ());
-
-    this->curr_value_->appendChild (this->curr_type_);
-    this->curr_value_->appendChild (this->curr_value_inner_);
-    this->curr_property_->appendChild (this->curr_value_);
-    this->curr_resource_->appendChild (this->curr_property_);
-  }
+  this->create_simple_content (this->curr_value_inner_, "string", dv.Value ());
 }

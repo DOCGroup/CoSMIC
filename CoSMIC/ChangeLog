@@ -1,3 +1,10 @@
+Tue Aug 10 22:08:38 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+
+          Rearranged the visitation code in Deployment_Domain_Visitor.
+
 Tue Aug 10 17:14:07 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:

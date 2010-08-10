@@ -72,8 +72,6 @@ class Deployment_Domain_Visitor :
   xercesc::DOMElement * curr_type_;
 
   xercesc::DOMElement * curr_value_inner_;
-
-  std::string curr_prop_name_;
 };
 
 #endif
