@@ -1,3 +1,9 @@
+Tue Aug 10 14:53:22 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Bug fix where Enum is generated in idl.
+
 Tue Aug 10 14:29:05 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Enum.cpp:

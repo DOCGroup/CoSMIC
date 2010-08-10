@@ -223,17 +223,31 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p)
 void IDL_File_Generator::Visit_Enum (const PICML::Enum & e)
 {
   this->idl_ << "enum " << e.name () << nl
-             << "{" << idt << nl;
+             << "{" << idt;
 
   // Visit the enum values from top to bottom.
   typedef UDM_Position_Sort_T <PICML::EnumValue, PS_Top_To_Bottom> sorter_t;
   typedef std::set <PICML::EnumValue, sorter_t> sorted_values_t;
   sorted_values_t values = e.EnumValue_children_sorted (sorter_t ());
 
-  Udm::visit_all (values, *this);
+  // Create a iterator to visit values
+  sorted_values_t::iterator enum_value_iter = values.begin (), enum_value_end = values.end ();
+ 
+  // Visit the first element separately as we write it
+  // to the idl file without a comma at the end.
+  enum_value_iter->Accept (*this);
 
-  this->idl_ << uidt_nl
-             << "};" << nl;
+  // From the second element onwards we add a semicolon
+  // and then write the element to the next line.
+  for (++ enum_value_iter; enum_value_iter != enum_value_end; ++ enum_value_iter)
+  {
+    this->idl_ << "," << nl;
+    enum_value_iter->Accept (*this);
+  }
+
+  this->idl_ << nl << uidt_nl
+             << "};" << nl
+             << nl;
 }
 
 //
@@ -241,7 +255,7 @@ void IDL_File_Generator::Visit_Enum (const PICML::Enum & e)
 //
 void IDL_File_Generator::Visit_EnumValue (const PICML::EnumValue & e)
 {
-  this->idl_ << e.name () << ";" << nl;
+  this->idl_ << nl << e.name ();
 }
 
 //
