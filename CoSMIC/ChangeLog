@@ -1,3 +1,10 @@
+Tue Aug 10 17:14:07 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+
+          Fixed structural well-formedness errors of generated cdd file.
+
 Tue Aug 10 14:53:22 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:

@@ -102,7 +102,7 @@ void Deployment_Domain_Visitor::
 Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 {
   // Start a new XML document for this deployment plan.
-  this->init_document ("Deployment:Domain");
+  this->init_document ("Deployment:domain");
 
   // Prepare the XML document for writing.
   this->curr_root_ = this->doc_->getDocumentElement ();
@@ -241,11 +241,13 @@ Visit_DataValue (const PICML::DataValue & dv)
     this->create_simple_content (this->curr_property_, "dynamic", "false");
 
     this->curr_value_ = this->doc_->createElement (XStr ("value"));
-    this->create_simple_content (this->curr_value_, "type", "tk_string");
+    this->curr_type_ = this->doc_->createElement (XStr ("type"));
+    this->create_simple_content (this->curr_type_, "kind", "tk_string");
 
     this->curr_value_inner_ = this->doc_->createElement (XStr ("value"));
     this->create_simple_content (this->curr_value_inner_, "string", dv.Value ());
 
+    this->curr_value_->appendChild (this->curr_type_);
     this->curr_value_->appendChild (this->curr_value_inner_);
     this->curr_property_->appendChild (this->curr_value_);
     this->curr_resource_->appendChild (this->curr_property_);
