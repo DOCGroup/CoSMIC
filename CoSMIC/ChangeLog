@@ -1,3 +1,12 @@
+Wed Aug 11 16:45:22 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.mpc:
+
+          Added test/example to validate use of Enum type
+          within a structure. 
+
 Tue Aug 10 22:08:38 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
