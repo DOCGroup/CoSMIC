@@ -1,3 +1,12 @@
+Thu Aug 12 15:17:55 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.mpc:
+
+          Added test/example to validate use of Enum type declared within
+          a structure. The test is not supported by the PICML model yet.
+
 Thu Aug 12 13:28:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
