@@ -127,6 +127,8 @@ private:
   bool override_portname2_;
 
   bool invert_;
+
+  std::map <PICML::ConnectorToFacet, std::string> ami4ccm_uuids_;
 };
 
 #endif  // !defined _PICML_DEPLOYMENT_CONNECTOR_VISITOR_H_

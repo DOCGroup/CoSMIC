@@ -1,3 +1,16 @@
+Thu Aug 12 01:35:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Implemented new rule that gives each component instance its own
+          dedicated connector fragment. This means that is possible for
+          multiple extended ports on a component instance to share the
+          same connector fragment.
+
+          Implemented rule for ami4ccm connector fragments that emulates
+          sharing of connector fragments between component instances.
+
 Wed Aug 11 16:45:22 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.cpp:
@@ -5,7 +18,7 @@ Wed Aug 11 16:45:22 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.mpc:
 
           Added test/example to validate use of Enum type
-          within a structure. 
+          within a structure.
 
 Tue Aug 10 22:08:38 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 

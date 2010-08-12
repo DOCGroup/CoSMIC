@@ -54,6 +54,9 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   // Visit the standard ports.
   Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
   Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
+
+  // Clear the connector uuid for the next instance.
+  this->connector_uuid_.clear ();
 }
 
 //
@@ -78,7 +81,7 @@ find_plan_locality (const PICML::ComponentInstance & inst)
 }
 
 //
-// Visit_ExtendedPort
+// Visit_ExtendedPortInstance
 //
 void Connector_Visitor::
 Visit_ExtendedPortInstance (const PICML::ExtendedPortInstance & port)
@@ -269,51 +272,92 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
   // We have enough information to generate the connection information
   // for the the receptacle to facet connection.
   PICML::Object obj = PICML::Object::Cast (this->receptacle_.ref ());
-  this->start_new_connection (obj);
 
   if (this->is_ami4ccm_connector (inst))
   {
-    // Since the connector is ami4ccm, we need to generate a special
-    // connection for it.
     using xercesc::DOMElement;
 
-    this->curr_conn_ = this->doc_->createElement (L"connection");
-    this->name_element_ = this->create_element (this->curr_conn_, "name");
+    // Since the connector is ami4ccm, we need to generate a special
+    // connections for it. The number of connections will be determined
+    // by the number of facet connections we have coming into this
+    // connector instance.
+    std::set <PICML::ConnectorToFacet> conns = inst.dstConnectorToFacet ();
 
-    DOMElement * deployRequirement = this->create_element (this->curr_conn_, "deployRequirement");
-    this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
-    this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
+    std::set <PICML::ConnectorToFacet>::iterator
+      iter = conns.begin (), iter_end = conns.end ();
 
-    // Write the endpoint for the facet.
-    std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
+    for (; iter != iter_end; ++ iter)
+    {
+      //// Start a new connection.
+      //this->start_new_connection (obj);
 
-    const std::string sendc_portname =
-      std::string ("sendc_") +
-      std::string (this->receptacle_.name ());
+      this->curr_conn_ = this->doc_->createElement (L"connection");
+      this->name_element_ = this->create_element (this->curr_conn_, "name");
 
-    this->append_endpoint (sendc_portname,
-                           "SimplexReceptacle",
-                           "false",
-                           uuid);
+      DOMElement * deployRequirement = this->create_element (this->curr_conn_, "deployRequirement");
+      this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+      this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
 
-    // Write the endpoint for the connector's receptacle.
-    uuid = "_" + std::string (inst.UUID ());
-    this->append_endpoint ("ami4ccm_port_ami4ccm_provides",
-                           "Facet",
-                           "true",
-                           uuid);
+      // Write the endpoint for the facet.
+      std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
 
-    // Overwrite the current connection name.
-    this->connection_name_ = conn.getPath (".", false, true, "name", true);
+      const std::string sendc_portname =
+        std::string ("sendc_") +
+        std::string (this->receptacle_.name ());
 
-    // Make sure the connector is on the same group as the current
-    // component instance. Unlike with the standard connectors, the
-    // ami4ccm connector fragment is not deployed for each host. It
-    // is only deployed for the receptacle.
-    this->dpv_.deploy_connector_fragment (inst, this->group_);
+      this->append_endpoint (sendc_portname,
+                             "SimplexReceptacle",
+                             "false",
+                             uuid);
+
+      // Get the UUID assigned to the facet connection, which represents
+      // the UUID for the target connector fragment.
+      std::map <PICML::ConnectorToFacet, std::string>::
+        const_iterator result = this->ami4ccm_uuids_.find (*iter);
+
+      if (result == this->ami4ccm_uuids_.end ())
+      {
+        uuid = ::Utils::CreateUuid ();
+        this->ami4ccm_uuids_[*iter] = uuid;
+      }
+      else
+      {
+        uuid = result->second;
+      }
+
+      // Make sure the connector is on the same group as the current
+      // component instance. Unlike with the standard connectors, the
+      // ami4ccm connector fragment is not deployed for each host. It
+      // is only deployed for the receptacle. We all need to instantiate
+      // a connector fragment for each *FacetToConnector* connection
+      // that is connected to this connector.
+      std::string old_uuid = inst.UUID ();
+      inst.UUID () = uuid;
+
+      this->dpv_.deploy_connector_fragment (inst, this->group_);
+
+      inst.UUID () = old_uuid;
+
+      // Write the endpoint for the connector's receptacle.
+      this->append_endpoint ("ami4ccm_port_ami4ccm_provides",
+                             "Facet",
+                             "true",
+                             "_" + uuid);
+
+      // Overwrite the current connection name.
+      this->connection_name_ = conn.getPath (".", false, true, "name", true);
+
+
+      // End the current connection.
+      this->end_connection ();
+    }
   }
   else
   {
+    // Start a new connection.
+    this->start_new_connection (obj);
+
+    // Deploy the connector fragment.
     this->deploy_connector_fragment (inst);
 
     const std::string name (conn.name ());
@@ -341,9 +385,10 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
                                        this->prefix2_,
                                        this->portname2_,
                                        false);
-  }
 
-  this->end_connection ();
+    // End the current connection.
+    this->end_connection ();
+  }
 }
 
 //
@@ -376,12 +421,26 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
                            "true",
                            uuid);
 
+    // Get the UUID assigned to the facet connection, which represents
+    // the UUID for the target connector fragment.
+    std::map <PICML::ConnectorToFacet, std::string>::
+      const_iterator result = this->ami4ccm_uuids_.find (conn);
+
+    if (result == this->ami4ccm_uuids_.end ())
+    {
+      uuid = ::Utils::CreateUuid ();
+      this->ami4ccm_uuids_[conn] = uuid;
+    }
+    else
+    {
+      uuid = result->second;
+    }
+
     // Write the endpoint for the connector's receptacle.
-    uuid = "_" + std::string (inst.UUID ());
     this->append_endpoint ("ami4ccm_port_ami4ccm_uses",
                            "SimplexReceptacle",
                            "false",
-                           uuid);
+                           "_" + uuid);
 
     // Overwrite the current connection name.
     this->connection_name_ = conn.getPath (".", false, true, "name", true);
@@ -594,6 +653,11 @@ Visit_ProvidedRequestPort_i (const std::string & inst,
 void Connector_Visitor::
 deploy_connector_fragment (const PICML::ConnectorInstance & inst)
 {
+  // This will force all ports on the same component instance to
+  // connector with the ports on the same connector instance.
+  if (!this->connector_uuid_.empty ())
+    return;
+
   // Generate a new id for this connector fragment.
   const std::string old_uuid = inst.UUID ();
   const std::string old_name = inst.name ();
