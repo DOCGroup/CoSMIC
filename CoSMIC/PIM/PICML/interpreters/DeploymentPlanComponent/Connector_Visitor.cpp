@@ -55,7 +55,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
   Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
 
-  // Clear the connector uuid for the next instance.
+  // Clear the map of connector uuids.
   this->connector_uuid_.clear ();
 }
 
@@ -655,38 +655,48 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst)
 {
   // This will force all ports on the same component instance to
   // connector with the ports on the same connector instance.
-  if (!this->connector_uuid_.empty ())
-    return;
+  std::map <PICML::ConnectorInstance, std::string>::iterator
+    result = this->connector_uuids_.find (inst);
 
-  // Generate a new id for this connector fragment.
-  const std::string old_uuid = inst.UUID ();
-  const std::string old_name = inst.name ();
+  std::string fragment_uuid;
 
-  PICML::InstanceMapping mapping = this->group_.dstInstanceMapping ();
-  PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
-  PICML::Node node = noderef.ref ();
+  if (result == this->connector_uuids_.end ())
+  {
+    // Save the current name/uuid so we can generate a new one.
+    const std::string old_uuid (inst.UUID ());
+    const std::string old_name (inst.name ());
 
-  // Generate a new UUID and name for this connector fragment.
-  std::string fragment_uuid = ::Utils::CreateUuid ();
-  std::string fragment_name = inst.name ();
-  fragment_name += "@" + std::string (node.name ()) + "." + std::string (this->group_.name ());
+    PICML::InstanceMapping mapping = this->group_.dstInstanceMapping ();
+    PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
+    PICML::Node node = noderef.ref ();
 
-  this->connector_name_ = inst.getPath (".", false, true, "name", true);
-  this->connector_name_ += "@" + std::string (node.name ());
-  this->connector_name_ += "." + std::string (this->group_.name ());
+    // Generate a new UUID and name for this connector fragment.
+    std::string fragment_uuid = ::Utils::CreateUuid ();
+    std::string fragment_name = inst.name ();
+    fragment_name += "@" + std::string (node.name ()) + "." + std::string (this->group_.name ());
 
-  inst.UUID () = fragment_uuid;
-  inst.name () = fragment_name;
+    this->connector_name_ = inst.getPath (".", false, true, "name", true);
+    this->connector_name_ += "@" + std::string (node.name ());
+    this->connector_name_ += "." + std::string (this->group_.name ());
 
+    inst.UUID () = fragment_uuid;
+    inst.name () = fragment_name;
+
+    // Since this is a new fragment, we need to make sure that it
+    // is included in the deployment plan.
+    this->dpv_.deploy_connector_fragment (inst, this->group_);
+
+    // Restore the original UUID.
+    inst.UUID () = old_uuid;
+    inst.name () = old_name;
+  }
+  else
+  {
+    fragment_uuid = result->second;
+  }
+
+  // Save the UUID for the connector fragment.
   this->connector_uuid_ = "_" + fragment_uuid;
-
-  // Since this is a new fragment, we need to make sure that it
-  // is included in the deployment plan.
-  this->dpv_.deploy_connector_fragment (inst, this->group_);
-
-  // Restore the original UUID.
-  inst.UUID () = old_uuid;
-  inst.name () = old_name;
 }
 
 //

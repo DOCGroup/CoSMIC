@@ -1,3 +1,13 @@
+Thu Aug 12 13:28:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Bug fix where allowing an extended port from the same component
+          instance to connect with the same connector fragment was handled
+          incorrectly.
+
 Thu Aug 12 01:35:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:

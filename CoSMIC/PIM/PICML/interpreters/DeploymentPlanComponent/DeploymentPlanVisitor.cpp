@@ -916,10 +916,8 @@ Visit_ComponentAssemblyReference (const PICML::ComponentAssemblyReference & ref)
 void DeploymentPlanVisitor::
 Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
 {
-  // Oder the ComponentInstances elements using the topdown ordering
-  typedef UDM_Position_Sort_T <PICML::ComponentInstance, PS_Top_To_Bottom> sorter_t_inst;
-  typedef std::set <PICML::ComponentInstance, sorter_t_inst> sorted_values_t_inst;
-  sorted_values_t_inst insts = assembly.ComponentInstance_children_sorted (sorter_t_inst ());
+  // Visit all the component instances in this assembly.
+  std::vector <PICML::ComponentInstance> insts = assembly.ComponentInstance_children ();
 
   std::for_each (insts.begin (),
                  insts.end (),
@@ -927,13 +925,11 @@ Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
                                _1,
                                boost::ref (*this)));
 
-  // Oder the ComponentAsssembly elements using the topdown ordering
-  typedef UDM_Position_Sort_T <PICML::ComponentAssembly, PS_Top_To_Bottom> sorter_t_ass;
-  typedef std::set <PICML::ComponentAssembly, sorter_t_ass> sorted_values_t_ass;
-  sorted_values_t_ass child_assemblies = assembly.ComponentAssembly_children_sorted (sorter_t_ass ());
+  // Visit all the component assemblies in this assembly.
+  std::vector <PICML::ComponentAssembly> assemblies = assembly.ComponentAssembly_children ();
 
-  std::for_each (child_assemblies.begin (),
-                 child_assemblies.end (),
+  std::for_each (assemblies.begin (),
+                 assemblies.end (),
                  boost::bind (&PICML::ComponentAssembly::Accept,
                                _1,
                                boost::ref (*this)));
