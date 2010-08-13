@@ -1,3 +1,9 @@
+Fri Aug 13 06:09:03 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Removed remaining debug messages.
+
 Fri Aug 13 05:26:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:

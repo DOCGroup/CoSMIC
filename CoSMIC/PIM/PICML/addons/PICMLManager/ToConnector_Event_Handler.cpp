@@ -270,6 +270,8 @@ get_matching_ports (const GAME::Model & connector,
                                 boost::ref (type),
                                 boost::ref (ports)));
 
+  // TODO switch the type of port we are looking for since we are
+  // searching in MirrorPort elements.
   std::vector <Reference> mirror;
   if (connector.children ("MirrorPort", mirror))
     std::for_each (mirror.begin (),
@@ -454,8 +456,6 @@ PortType_To_Connector_Event_Handler::
 
 int PortType_To_Connector_Event_Handler::handle_object_created (GAME::Object obj)
 {
-  ::AfxMessageBox ("PortType_To_Connector_Event_Handler::handle_object_created");
-
   return 0;
 }
 
@@ -688,8 +688,6 @@ Consume_To_Connector_Event_Handler::
 int Consume_To_Connector_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
-  ::AfxMessageBox ("Go Home!");
-
   using GAME::Connection;
   using GAME::Model;
 
