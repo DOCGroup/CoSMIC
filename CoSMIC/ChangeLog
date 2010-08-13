@@ -1,3 +1,32 @@
+Fri Aug 13 05:26:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Bug fix where the event handler objects failed to set the
+          event mask at construction time.
+
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+
+          Bug fix where the default constructor did not initialize the
+          event mask to no events.
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler_Interface.h:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+
+          Separated the event handler interface from the default implementation
+          for the event handler.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Reset the ami4ccm connector map.
+
 Thu Aug 12 15:17:55 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.cpp:

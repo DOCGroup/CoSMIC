@@ -14,13 +14,250 @@
 namespace GAME
 {
 
+// Type definition for handling a global event.
+typedef int (Event_Handler_Interface::*GLOBAL_EVENT_METHOD) (void);
+
+static const GLOBAL_EVENT_METHOD __globalevent_map__[] = {
+  &Event_Handler_Interface::handle_project_open,
+  &Event_Handler_Interface::handle_project_close,
+  &Event_Handler_Interface::handle_territory_create,
+  &Event_Handler_Interface::handle_territory_destroy,
+  &Event_Handler_Interface::handle_transaction_commit,
+  &Event_Handler_Interface::handle_transaction_abort,
+  &Event_Handler_Interface::handle_undo,
+  &Event_Handler_Interface::handle_redo,
+  &Event_Handler_Interface::handle_project_properties,
+  &Event_Handler_Interface::handle_notification_ready
+};
+
+static const GLOBAL_EVENT_METHOD __appevent_map__[] = {
+  &Event_Handler_Interface::handle_xml_import_begin,
+  &Event_Handler_Interface::handle_xml_import_end,
+  &Event_Handler_Interface::handle_xml_import_fcos_begin,
+  &Event_Handler_Interface::handle_xml_import_end,
+  &Event_Handler_Interface::handle_xml_import_special_begin,
+  &Event_Handler_Interface::handle_xml_import_special_end,
+  &Event_Handler_Interface::handle_library_attach_begin,
+  &Event_Handler_Interface::handle_library_attach_end
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// invoke functions
+
+//
+// invoke_handle_object_attribute
+//
+static inline int
+invoke_handle_object_attribute (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_attribute (obj);
+}
+
+//
+// invoke_handle_object_registry
+//
+static inline int
+invoke_handle_object_registry (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_registry (obj);
+}
+
+//
+// invoke_handle_new_child
+//
+static inline int
+invoke_handle_new_child (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_new_child (obj);
+}
+
+//
+// invoke_handle_object_relation
+//
+static inline int
+invoke_handle_object_relation (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_relation (obj);
+}
+
+//
+// invoke_handle_object_properties
+//
+static inline int
+invoke_handle_object_properties (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_properties (obj);
+}
+
+//
+// invoke_handle_instance_subtype
+//
+static inline int
+invoke_handle_instance_subtype (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_instance_subtype (obj);
+}
+
+//
+// invoke_handle_object_parent
+//
+static inline int
+invoke_handle_object_parent (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_parent (obj);
+}
+
+//
+// invoke_handle_lost_child
+//
+static inline int
+invoke_handle_lost_child (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_lost_child (obj);
+}
+
+//
+// invoke_handle_referenced
+//
+static inline int
+invoke_handle_referenced (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_referenced (obj);
+}
+
+//
+// invoke_handle_object_connected
+//
+static inline int
+invoke_handle_object_connected (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_connected (obj);
+}
+
+//
+// invoke_handle_set_included
+//
+static inline int
+invoke_handle_set_included (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_set_included (obj);
+}
+
+//
+// invoke_handle_referenced_release
+//
+static inline int
+invoke_handle_referenced_release (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_referenced_release (obj);
+}
+
+//
+// invoke_handle_object_disconnected
+//
+static inline int
+invoke_handle_object_disconnected (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_disconnected (obj);
+}
+
+//
+// invoke_handle_set_excluded
+//
+static inline int
+invoke_handle_set_excluded (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_set_excluded (obj);
+}
+
+//
+// invoke_handle_marked_readonly
+//
+static inline int
+invoke_handle_marked_readonly (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_marked_readonly (obj);
+}
+
+//
+// invoke_handle_marked_readwrite
+//
+static inline int
+invoke_handle_marked_readwrite (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_marked_readwrite (obj);
+}
+
+//
+// invoke_handle_model_open
+//
+static inline int
+invoke_handle_model_open (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_model_open (obj);
+}
+
+//
+// invoke_handle_object_select
+//
+static inline int
+invoke_handle_object_select (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_select (obj);
+}
+
+//
+// invoke_handle_object_deselect
+//
+static inline int
+invoke_handle_object_deselect (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_deselect (obj);
+}
+
+//
+// invoke_handle_object_mouseover
+//
+static inline int
+invoke_handle_object_mouseover (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_mouseover (obj);
+}
+
+//
+// invoke_handle_model_close
+//
+static inline int
+invoke_handle_model_close (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_model_close (obj);
+}
+
+//
+// invoke_handle_object_destroyed
+//
+static inline int
+invoke_handle_object_destroyed (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_destroyed (obj);
+}
+
+//
+// invoke_handle_object_created
+//
+static inline int
+invoke_handle_object_created (Event_Handler_Interface * impl, Object obj)
+{
+  return impl->handle_object_created (obj);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// invocation map
+
 #define OBJECT_EVENT_COUNT 32
 
 // Type definition for the handler method of an object event.
-typedef int (Event_Handler_Impl::*HANDLER_METHOD) (Object);
-
-// Type definition for handling a global event.
-typedef int (Event_Handler_Impl::*GLOBAL_EVENT_METHOD) (void);
+typedef int (*HANDLER_METHOD) (Event_Handler_Interface *, Object);
 
 struct handler_entry_t
 {
@@ -29,70 +266,46 @@ struct handler_entry_t
   HANDLER_METHOD method_;
 };
 
-static const GLOBAL_EVENT_METHOD __globalevent_map__[] = {
-  &Event_Handler_Impl::handle_project_open,
-  &Event_Handler_Impl::handle_project_close,
-  &Event_Handler_Impl::handle_territory_create,
-  &Event_Handler_Impl::handle_territory_destroy,
-  &Event_Handler_Impl::handle_transaction_commit,
-  &Event_Handler_Impl::handle_transaction_abort,
-  &Event_Handler_Impl::handle_undo,
-  &Event_Handler_Impl::handle_redo,
-  &Event_Handler_Impl::handle_project_properties,
-  &Event_Handler_Impl::handle_notification_ready
-};
-
-static const GLOBAL_EVENT_METHOD __appevent_map__[] = {
-  &Event_Handler_Impl::handle_xml_import_begin,
-  &Event_Handler_Impl::handle_xml_import_end,
-  &Event_Handler_Impl::handle_xml_import_fcos_begin,
-  &Event_Handler_Impl::handle_xml_import_end,
-  &Event_Handler_Impl::handle_xml_import_special_begin,
-  &Event_Handler_Impl::handle_xml_import_special_end,
-  &Event_Handler_Impl::handle_library_attach_begin,
-  &Event_Handler_Impl::handle_library_attach_end
-};
-
 // Handle map for object events
 static const handler_entry_t objectevent_handles[OBJECT_EVENT_COUNT] = {
-  {0x1, &Event_Handler_Impl::handle_object_attribute},        /* OBJEVENT_ATTR          */
-  {0x2, &Event_Handler_Impl::handle_object_registry},         /* OBJEVENT_REGISTRY      */
-  {0x4, &Event_Handler_Impl::handle_new_child},               /* OBJEVENT_NEWCHILD      */
-  {0x8, &Event_Handler_Impl::handle_object_relation},         /* OBJEVENT_RELATION      */
-  {0x10, &Event_Handler_Impl::handle_object_properties},      /* OBJEVENT_PROPERTIES    */
-  {0x20, &Event_Handler_Impl::handle_instance_subtype},       /* OBJEVENT_SUBT_INST     */
-  {0, 0},                                                     /* (unused)               */
-  {0, 0},                                                     /* (unused)               */
-  {0x100, &Event_Handler_Impl::handle_object_parent},         /* OBJEVENT_PARENT        */
-  {0x200, &Event_Handler_Impl::handle_lost_child},            /* OBJEVENT_LOSTCHILD     */
-  {0x400, &Event_Handler_Impl::handle_referenced},            /* OBJEVENT_REFERENCED    */
-  {0x800, &Event_Handler_Impl::handle_object_connected},      /* OBJEVENT_CONNECTED     */
-  {0x1000, &Event_Handler_Impl::handle_set_included},         /* OBJEVENT_SETINCLUDED   */
-  {0x2000, &Event_Handler_Impl::handle_referenced_release},   /* OBJEVENT_REFRELEASED   */
-  {0x4000, &Event_Handler_Impl::handle_object_disconnected},  /* OBJEVENT_DISCONNECTED  */
-  {0x8000, &Event_Handler_Impl::handle_set_excluded},         /* OBJEVENT_SETEXCLUDED   */
-  {0x10000, &Event_Handler_Impl::handle_marked_readonly},     /* OBJEVENT_MARKEDRO      */
-  {0x20000, &Event_Handler_Impl::handle_marked_readwrite},    /* OBJEVENT_MARKEDRW      */
-  {0, 0},                                                     /* (unused)               */
-  {0x80000, &Event_Handler_Impl::handle_model_open},          /* OBJEVENT_OPENMODEL     */
-  {0x100000, &Event_Handler_Impl::handle_object_select},      /* OBJEVENT_SELECT        */
-  {0x200000, &Event_Handler_Impl::handle_object_deselect},    /* OBJEVENT_DESELECT      */
-  {0x400000, &Event_Handler_Impl::handle_object_mouseover},   /* OBJEVENT_MOUSEOVER     */
-  {0x800000, &Event_Handler_Impl::handle_model_close},        /* OBJEVENT_CLOSEMODEL    */
-  {0, 0},                                                     /* (unused)               */
-  {0, 0},                                                     /* (unused)               */
-  {0, 0},                                                     /* (unused)               */
-  {0, 0},                                                     /* (unused)               */
-  {0, 0},                                                     /* (unused)               */
-  {0, 0},                                                     /* (unused)               */
-  {0x40000000, &Event_Handler_Impl::handle_object_destroyed}, /* OBJEVENT_DESTROYED     */
-  {0x80000000, &Event_Handler_Impl::handle_object_created}    /* OBJEVENT_CREATED       */
+  {0x1, &invoke_handle_object_attribute},        /* OBJEVENT_ATTR          */
+  {0x2, &invoke_handle_object_registry},         /* OBJEVENT_REGISTRY      */
+  {0x4, &invoke_handle_new_child},               /* OBJEVENT_NEWCHILD      */
+  {0x8, &invoke_handle_object_relation},         /* OBJEVENT_RELATION      */
+  {0x10, &invoke_handle_object_properties},      /* OBJEVENT_PROPERTIES    */
+  {0x20, &invoke_handle_instance_subtype},       /* OBJEVENT_SUBT_INST     */
+  {0, 0},                                        /* (unused)               */
+  {0, 0},                                        /* (unused)               */
+  {0x100, &invoke_handle_object_parent},         /* OBJEVENT_PARENT        */
+  {0x200, &invoke_handle_lost_child},            /* OBJEVENT_LOSTCHILD     */
+  {0x400, &invoke_handle_referenced},            /* OBJEVENT_REFERENCED    */
+  {0x800, &invoke_handle_object_connected},      /* OBJEVENT_CONNECTED     */
+  {0x1000, &invoke_handle_set_included},         /* OBJEVENT_SETINCLUDED   */
+  {0x2000, &invoke_handle_referenced_release},   /* OBJEVENT_REFRELEASED   */
+  {0x4000, &invoke_handle_object_disconnected},  /* OBJEVENT_DISCONNECTED  */
+  {0x8000, &invoke_handle_set_excluded},         /* OBJEVENT_SETEXCLUDED   */
+  {0x10000, &invoke_handle_marked_readonly},     /* OBJEVENT_MARKEDRO      */
+  {0x20000, &invoke_handle_marked_readwrite},    /* OBJEVENT_MARKEDRW      */
+  {0, 0},                                        /* (unused)               */
+  {0x80000, &invoke_handle_model_open},          /* OBJEVENT_OPENMODEL     */
+  {0x100000, &invoke_handle_object_select},      /* OBJEVENT_SELECT        */
+  {0x200000, &invoke_handle_object_deselect},    /* OBJEVENT_DESELECT      */
+  {0x400000, &invoke_handle_object_mouseover},   /* OBJEVENT_MOUSEOVER     */
+  {0x800000, &invoke_handle_model_close},        /* OBJEVENT_CLOSEMODEL    */
+  {0, 0},                                        /* (unused)               */
+  {0, 0},                                        /* (unused)               */
+  {0, 0},                                        /* (unused)               */
+  {0, 0},                                        /* (unused)               */
+  {0, 0},                                        /* (unused)               */
+  {0, 0},                                        /* (unused)               */
+  {0x40000000, &invoke_handle_object_destroyed}, /* OBJEVENT_DESTROYED     */
+  {0x80000000, &invoke_handle_object_created}    /* OBJEVENT_CREATED       */
 };
 
 //
 // attach
 //
-void Event_Handler::attach (Event_Handler_Impl * impl)
+void Event_Handler::attach (Event_Handler_Interface * impl)
 {
   if (this->impl_ == impl)
     return;
@@ -162,7 +375,7 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
 // dispatch_global_event
 //
 int Event_Handler::
-dispatch_global_event (long global_event, Event_Handler_Impl * eh)
+dispatch_global_event (long global_event, Event_Handler_Interface * eh)
 {
   GLOBAL_EVENT_METHOD method = 0;
 
@@ -211,13 +424,15 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
     // Notify the instance handlers of the event
     handler_set * handlers = 0;
-    if (0 == this->type_handlers_.find (object.meta ().name (), handlers) &&
-        0 != this->dispatch_object_event (object, eventmask, *handlers))
+
+    if (0 == this->type_handlers_.find (object.meta ().name (), handlers))
     {
-      return S_FALSE;
+      // Notify the type handlers of the event. We are not going to
+      // continue if there are any *errors* in the process.
+      if (0 != this->dispatch_object_event (object, eventmask, *handlers))
+        return S_FALSE;
     }
 
-    // Notify the type handlers of the event.
 
     return S_OK;
   }
@@ -233,7 +448,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 // register_event_handler
 //
 int Event_Handler::
-register_handler (const std::string & metaname, Event_Handler_Impl * eh)
+register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 {
   // Locate the event handler set for this type.
   handler_set * handlers = 0;
@@ -305,9 +520,7 @@ dispatch_object_event (GAME::Object obj,
 // dispatch_object_event
 //
 int Event_Handler::
-dispatch_object_event (Object obj,
-                       unsigned long eventmask,
-                       Event_Handler_Impl * const eh)
+dispatch_object_event (Object obj, unsigned long eventmask, Event_Handler_Interface * eh)
 {
   // Get the event mask for the event handler.
   std::bitset <OBJECT_EVENT_COUNT> current_mask (eventmask);
@@ -320,16 +533,13 @@ dispatch_object_event (Object obj,
   {
     // Locate the first set bit in the current mask. We must increment
     // the handler iterator for each bit we skip.
-    while (!current_mask.test (0))
-    {
-      current_mask >>= 1;
+    for (; !current_mask.test (0); current_mask >>= 1)
       ++ handler_iter;
-    }
 
     // Ok, we found the next set bit location. We need to check if the
     // event handler is registered for this event.
-    if ((handler_iter->bitmask_ & eh_eventmask) != 0 && handler_iter->method_)
-      retval += (eh->*handler_iter->method_) (obj) == 0 ? 0 : 1;
+    if ((handler_iter->bitmask_ & eh_eventmask) != 0 && (0 != handler_iter->method_))
+      retval += (*handler_iter->method_) (eh, obj) == 0 ? 0 : 1;
 
     // Move to the next location.
     current_mask >>= 1;

@@ -6,23 +6,24 @@ project (GAME_BE) : game_utils, cosmic_lib {
 
   pch_header = stdafx.h
   pch_source = stdafx.cpp
-  
+
   specific (prop:microsoft) {
     midl_flags    += /server none /client none
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
   }
-    
+
   Header_Files {
     Component_Module.h
+    Event_Handler_Interface.h
   }
 
-  Source_Files {    
+  Source_Files {
     Addon_Impl_Base.cpp
     ComponentEx_Impl_Base.cpp
     Decorator_Impl.cpp
     Event_Handler.cpp
     Event_Handler_Impl.cpp
-    Interpreter_Impl_Base.cpp    
+    Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp
   }
 

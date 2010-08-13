@@ -13,8 +13,7 @@
 #ifndef _GAME_BE_EVENT_HANDLER_IMPL_H_
 #define _GAME_BE_EVENT_HANDLER_IMPL_H_
 
-#include "BE_Export.h"
-#include "game/Object.h"
+#include "Event_Handler_Interface.h"
 
 namespace GAME
 {
@@ -29,7 +28,8 @@ class Event_Handler;
  *
  * Base class implementation for the event sink.
  */
-class GAME_BE_Export Event_Handler_Impl
+class GAME_BE_Export Event_Handler_Impl :
+  public Event_Handler_Interface
 {
 public:
   /// Default constructor.
@@ -47,10 +47,10 @@ public:
 
   /// Set the event handler for the implementation. This allows
   /// the implementation to send message to the event handler.
-  void set_event_handler (Event_Handler * eh);
+  virtual void set_event_handler (Event_Handler * eh);
 
   /// Get the event make for the event handler.
-  long event_mask (void) const;
+  virtual long event_mask (void) const;
 
   /**
    * Initialize the event handler.
@@ -106,7 +106,7 @@ public:
    */
   virtual int handle_object_event (Object & obj, unsigned long mask);
 
-  virtual int handle_object_created (Object obj);
+  virtual int handle_object_created (GAME::Object obj);
   virtual int handle_object_destroyed (Object obj);
 
   virtual int handle_object_attribute (Object obj);

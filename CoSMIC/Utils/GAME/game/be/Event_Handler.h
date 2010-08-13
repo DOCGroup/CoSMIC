@@ -20,16 +20,10 @@
 #include "ace/Hash_Map_Manager.h"
 #include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
-#include "BE_export.h"
+#include "Event_Handler_Interface.h"
 
 namespace GAME
 {
-// Forward decl.
-class Event_Handler_Impl;
-
-// Forward decl.
-class Project;
-
 /**
  * @class Event_Handler
  *
@@ -42,7 +36,7 @@ class GAME_BE_Export Event_Handler :
 {
 public:
   /// Default constructor.
-  Event_Handler (Event_Handler_Impl * impl = 0);
+  Event_Handler (Event_Handler_Interface * impl = 0);
 
   /// Destructor.
   virtual ~Event_Handler (void);
@@ -54,7 +48,7 @@ public:
    *
    * @param[in]       impl          The target implementation
    */
-  void attach (Event_Handler_Impl * impl = 0);
+  void attach (Event_Handler_Interface * impl = 0);
 
   /**
    * Register event handler for the specified type. If an event
@@ -64,7 +58,8 @@ public:
    * @param[in]       metaname      Type to register for
    * @param[in]       eh            Pointer to the event handler
    */
-  int register_handler (const std::string & metaname, Event_Handler_Impl * eh);
+  int register_handler (const std::string & metaname,
+                        Event_Handler_Interface * eh);
 
   /**
    * Set the enable state of the event handler. If \a enable is
@@ -88,9 +83,10 @@ public:
 
 private:
   /// Type definition for a set of event handlers.
-  typedef ACE_Unbounded_Set <Event_Handler_Impl *> handler_set;
+  typedef ACE_Unbounded_Set <Event_Handler_Interface *> handler_set;
 
-  static int dispatch_global_event (long global_event, Event_Handler_Impl * eh);
+  static int dispatch_global_event (long global_event,
+                                    Event_Handler_Interface * eh);
 
   int dispatch_object_event (Object obj,
                              unsigned long mask,
@@ -98,11 +94,11 @@ private:
 
   static int dispatch_object_event (Object obj,
                                     unsigned long mask,
-                                    Event_Handler_Impl * const eh);
+                                    Event_Handler_Interface * eh);
 
 
   /// Pointer to the actual implementation.
-  Event_Handler_Impl * impl_;
+  Event_Handler_Interface * impl_;
 
   /// The enable state for the event handler.
   bool enable_;

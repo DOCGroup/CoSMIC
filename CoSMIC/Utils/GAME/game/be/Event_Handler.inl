@@ -1,14 +1,12 @@
 // $Id$
 
-#include "Event_Handler_Impl.h"
-
 namespace GAME
 {
 //
 // Event_Handler
 //
 GAME_INLINE
-Event_Handler::Event_Handler (Event_Handler_Impl * impl)
+Event_Handler::Event_Handler (Event_Handler_Interface * impl)
 : impl_ (impl),
   enable_ (true)
 {

@@ -62,7 +62,8 @@ public:
 // ToConnector_Event_Handler
 //
 ToConnector_Event_Handler::ToConnector_Event_Handler (void)
-: is_importing_ (false)
+: Event_Handler_Impl (OBJEVENT_CREATED),
+  is_importing_ (false)
 {
 
 }
@@ -451,6 +452,13 @@ PortType_To_Connector_Event_Handler::
 
 }
 
+int PortType_To_Connector_Event_Handler::handle_object_created (GAME::Object obj)
+{
+  ::AfxMessageBox ("PortType_To_Connector_Event_Handler::handle_object_created");
+
+  return 0;
+}
+
 //
 // set_connection_name
 //
@@ -680,6 +688,8 @@ Consume_To_Connector_Event_Handler::
 int Consume_To_Connector_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
+  ::AfxMessageBox ("Go Home!");
+
   using GAME::Connection;
   using GAME::Model;
 

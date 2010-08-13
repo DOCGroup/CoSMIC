@@ -57,6 +57,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 
   // Clear the map of connector uuids.
   this->connector_uuid_.clear ();
+  this->ami4ccm_uuids_.clear ();
 }
 
 //

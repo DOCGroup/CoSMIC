@@ -117,8 +117,6 @@ private:
   PICML::RequiredRequestPort receptacle_;
   PICML::ProvidedRequestPort facet_;
 
-  std::map <PICML::ConnectorInstance, std::string> connector_uuids_;
-
   std::string connector_uuid_;
   std::string connector_name_;
 
@@ -129,6 +127,8 @@ private:
   bool override_portname2_;
 
   bool invert_;
+
+  std::map <PICML::ConnectorInstance, std::string> connector_uuids_;
 
   std::map <PICML::ConnectorToFacet, std::string> ami4ccm_uuids_;
 };

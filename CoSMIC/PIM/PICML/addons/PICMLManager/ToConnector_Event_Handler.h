@@ -25,7 +25,8 @@ namespace MI
  * main purpose to the assist the modeler in completing the
  * name of the connection, which represents the target port.
  */
-class ToConnector_Event_Handler : public GAME::Event_Handler_Impl
+class ToConnector_Event_Handler :
+  public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
@@ -35,6 +36,7 @@ public:
   virtual ~ToConnector_Event_Handler (void);
 
   virtual int handle_xml_import_begin (void);
+
   virtual int handle_xml_import_end (void);
 
 protected:
@@ -108,6 +110,8 @@ public:
   PortType_To_Connector_Event_Handler (void);
 
   virtual ~PortType_To_Connector_Event_Handler (void);
+
+  virtual int handle_object_created (GAME::Object obj);
 
 protected:
   int set_connection_name (const GAME::Model & connector,

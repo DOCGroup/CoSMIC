@@ -7,6 +7,7 @@ namespace GAME
 //
 GAME_INLINE
 Event_Handler_Impl::Event_Handler_Impl (void)
+: current_mask_ (0)
 {
 
 }
@@ -243,7 +244,7 @@ int Event_Handler_Impl::handle_library_attach_end (void)
 // handle_object_created
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_created (Object obj)
+int Event_Handler_Impl::handle_object_created (GAME::Object obj)
 {
   return 0;
 }

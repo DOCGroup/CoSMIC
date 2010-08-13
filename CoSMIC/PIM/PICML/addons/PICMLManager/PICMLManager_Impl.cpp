@@ -131,40 +131,27 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 //
 int PICMLManager_Impl::handle_global_event (long global_event)
 {
-  /*
-   * Right now I am simplifying the UUIDManager and it no longer
-   * processes GlobalEvent messages. Instead the UUID manager
-   * only creates UUIDs and manages existing ones when and
-   * ObjectEvent is sent.
-   */
-  try
+  switch (global_event)
   {
-    switch (global_event)
-    {
-    case APPEVENT_XML_IMPORT_BEGIN:
-      this->importing_ = 1;
-      break;
+  case APPEVENT_XML_IMPORT_BEGIN:
+    this->importing_ = 1;
+    break;
 
-    case GLOBALEVENT_OPEN_PROJECT:
-      // this->verify_all_uuids ();
-      break;
+  case GLOBALEVENT_OPEN_PROJECT:
+    // this->verify_all_uuids ();
+    break;
 
-    case APPEVENT_XML_IMPORT_END:
-      this->importing_ = 0;
-      // this->verify_all_uuids ();
-      break;
+  case APPEVENT_XML_IMPORT_END:
+    this->importing_ = 0;
+    // this->verify_all_uuids ();
+    break;
 
-    case GLOBALEVENT_NOTIFICATION_READY:
-      //this->handle_pending ();
-      break;
+  case GLOBALEVENT_NOTIFICATION_READY:
+    //this->handle_pending ();
+    break;
 
-    default:
-      /* do nothing */;
-    }
-  }
-  catch (...)
-  {
-    AfxMessageBox ("Caught an unknown exception");
+  default:
+    /* do nothing */;
   }
 
   return S_OK;
