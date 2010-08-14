@@ -272,6 +272,10 @@ get_matching_ports (const GAME::Model & connector,
 
   // TODO switch the type of port we are looking for since we are
   // searching in MirrorPort elements.
+  const std::string mirror_type =
+    type == "RequiredRequestPort" ?
+    "ProvidedRequestPort" : "RequiredRequestPort";
+
   std::vector <Reference> mirror;
   if (connector.children ("MirrorPort", mirror))
     std::for_each (mirror.begin (),
@@ -280,7 +284,7 @@ get_matching_ports (const GAME::Model & connector,
                                 this,
                                 _1,
                                 boost::ref (object),
-                                boost::ref (type),
+                                boost::ref (mirror_type),
                                 boost::ref (ports)));
 
   // Now, see if this connector inherits for anything. If so, then

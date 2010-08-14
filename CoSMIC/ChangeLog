@@ -1,3 +1,15 @@
+Sat Aug 14 01:48:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Bug fix where locating valid ports in MirrorPort models failed
+          to invert the connection type.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Bug fix where the connector fragment uuid was not being saved
+          or used when setting the idref for connections.
+
 Fri Aug 13 06:09:03 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:

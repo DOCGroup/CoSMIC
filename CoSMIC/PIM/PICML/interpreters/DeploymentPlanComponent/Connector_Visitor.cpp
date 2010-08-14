@@ -7,7 +7,7 @@
 #include "Utils/udm/visit.h"
 #include "Utils/Utils.h"
 
-struct name_sort_t
+struct id_sort_t
 {
   template <typename T>
   bool operator () (const T & rhs, const T & lhs) const
@@ -135,20 +135,25 @@ Visit_ExtendedPortInstanceBase (const PICML::ExtendedPortInstanceBase & base,
 
   if (ed != Udm::null)
   {
+    PICML::ComponentAssembly parent = ed.ComponentAssembly_parent ();
+    const std::string path (parent.getPath (".", false, true, "name", true));
+
     PICML::ExtendedPortDelegate epd = ed.dstExtendedDelegate_end ();
+    const std::string name (epd.name ());
 
-    // Since we are going up the model, we have to get the instance of
-    // the delegate port. This is because the only way a port is delegated
-    // is if it is instantiated in another component assembly.
-    typedef std::set < PICML::ExtendedPortDelegate, name_sort_t > set_t;
-    set_t instances = epd.Instances_sorted (name_sort_t ());
+    this->Visit_ExtendedPortInstanceBase (epd, pt);
 
-    std::for_each (instances.begin (),
-                   instances.end (),
-                   boost::bind (&Connector_Visitor::Visit_ExtendedPortInstanceBase,
-                                this,
-                                _1,
-                                boost::ref (pt)));
+    //// Since we are going up the model, we have to get the instance of
+    //// the delegate port. This is because the only way a port is delegated
+    //// is if it is instantiated in another component assembly.
+    //std::set < PICML::ExtendedPortDelegate > instances = epd.Instances ();
+
+    //std::for_each (instances.begin (),
+    //               instances.end (),
+    //               boost::bind (&Connector_Visitor::Visit_ExtendedPortInstanceBase,
+    //                            this,
+    //                            _1,
+    //                            boost::ref (pt)));
   }
 }
 
@@ -206,19 +211,19 @@ Visit_MirrorPortInstanceBase (const PICML::MirrorPortInstanceBase & base,
   if (md != Udm::null)
   {
     PICML::MirrorPortDelegate mpd = md.dstMirrorDelegate_end ();
+    this->Visit_MirrorPortInstanceBase (mpd, pt);
 
-    // Since we are going up the model, we have to get the instance of
-    // the delegate port. This is because the only way a port is delegated
-    // is if it is instantiated in another component assembly.
-    typedef std::set < PICML::MirrorPortDelegate, name_sort_t > set_t;
-    set_t instances = mpd.Instances_sorted (name_sort_t ());
+    //// Since we are going up the model, we have to get the instance of
+    //// the delegate port. This is because the only way a port is delegated
+    //// is if it is instantiated in another component assembly.
+    //std::set < PICML::MirrorPortDelegate > instances = mpd.Instances ();
 
-    std::for_each (instances.begin (),
-                   instances.end (),
-                   boost::bind (&Connector_Visitor::Visit_MirrorPortInstanceBase,
-                                this,
-                                _1,
-                                boost::ref (pt)));
+    //std::for_each (instances.begin (),
+    //               instances.end (),
+    //               boost::bind (&Connector_Visitor::Visit_MirrorPortInstanceBase,
+    //                            this,
+    //                            _1,
+    //                            boost::ref (pt)));
   }
 }
 
@@ -672,7 +677,9 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst)
     PICML::Node node = noderef.ref ();
 
     // Generate a new UUID and name for this connector fragment.
-    std::string fragment_uuid = ::Utils::CreateUuid ();
+    fragment_uuid = ::Utils::CreateUuid ();
+    this->connector_uuids_[inst] = fragment_uuid;
+
     std::string fragment_name = inst.name ();
     fragment_name += "@" + std::string (node.name ()) + "." + std::string (this->group_.name ());
 
