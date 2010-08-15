@@ -1,3 +1,28 @@
+Sun Aug 15 03:20:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Bug fix where old debugging code was preventing name resolution
+          of the extended port connection name.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.cpp:
+
+          Bug fix where instance/connection information for AMI4CCM was
+          not handled correctly when dealing with delegated ports.
+
+          Bug fix where port delegation for receptacle/facet connections
+          to/from a connector was not handled correctly.
+
 Sat Aug 14 01:48:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:

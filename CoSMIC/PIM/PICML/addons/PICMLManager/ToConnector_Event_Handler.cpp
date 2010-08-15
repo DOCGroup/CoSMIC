@@ -458,11 +458,6 @@ PortType_To_Connector_Event_Handler::
 
 }
 
-int PortType_To_Connector_Event_Handler::handle_object_created (GAME::Object obj)
-{
-  return 0;
-}
-
 //
 // set_connection_name
 //

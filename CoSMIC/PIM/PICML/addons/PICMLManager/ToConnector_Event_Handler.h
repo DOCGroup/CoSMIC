@@ -111,8 +111,6 @@ public:
 
   virtual ~PortType_To_Connector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
-
 protected:
   int set_connection_name (const GAME::Model & connector,
                            const GAME::FCO & port,

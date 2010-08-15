@@ -11,8 +11,10 @@
 //
 Connection_Visitor::
 Connection_Visitor (xercesc::DOMDocument * doc,
+                    std::vector <xercesc::DOMElement *> & conns,
                     const std::map <PICML::ComponentInstance, xercesc::DOMElement *> & insts)
 : doc_ (doc),
+  conns_ (conns),
   insts_ (insts),
   endpoint_ (0)
 {
@@ -393,13 +395,4 @@ void Connection_Visitor::make_local_connection (xercesc::DOMElement * conn)
   xercesc::DOMElement * deployRequirement = this->create_element (conn, "deployRequirement");
   this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
   this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
-}
-
-//
-// connections
-//
-const std::vector <xercesc::DOMElement *> &
-Connection_Visitor::connections (void) const
-{
-  return this->conns_;
 }

@@ -107,15 +107,6 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & inst)
 }
 
 //
-// connections
-//
-const std::vector <xercesc::DOMElement *> & 
-PICML_External_Reference_Visitor::connections (void) const
-{
-  return this->conns_;
-}
-
-//
 // Visit_Port
 //
 void PICML_External_Reference_Visitor::

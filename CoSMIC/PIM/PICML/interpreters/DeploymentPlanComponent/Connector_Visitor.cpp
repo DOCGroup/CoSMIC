@@ -7,21 +7,94 @@
 #include "Utils/udm/visit.h"
 #include "Utils/Utils.h"
 
-struct id_sort_t
+///////////////////////////////////////////////////////////////////////////////
+// ProvidedRequestPortInstance_Collector
+
+/**
+ * @class ProvidedRequestPortInstance_Collector
+ */
+class ProvidedRequestPortInstance_Collector :
+  public PICML::Visitor
 {
-  template <typename T>
-  bool operator () (const T & rhs, const T & lhs) const
+public:
+  //
+  // ProvidedRequestPortInstance_Collector
+  //
+  ProvidedRequestPortInstance_Collector (std::set <PICML::ProvidedRequestPortInstance> & ports)
+    : ports_ (ports)
   {
-    return std::string (rhs.name ()) < std::string (lhs.name ());
+
   }
+
+  //
+  // ~ProvidedRequestPortInstance_Collector
+  //
+  virtual ~ProvidedRequestPortInstance_Collector (void)
+  {
+
+  }
+
+  //
+  // Visit_ConnectorToFacet
+  //
+  void Visit_ConnectorToFacet (const PICML::ConnectorToFacet & ctf)
+  {
+    PICML::ProvidedRequestPortEnd endpoint = ctf.dstConnectorToFacet_end ();
+    this->Visit_ProvidedRequestPortEnd (endpoint);
+  }
+
+  //
+  // Visit_ProvidedRequestPortDelegate
+  //
+  void Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & inst)
+  {
+    std::set <PICML::FacetDelegate> delegates = inst.dstFacetDelegate ();
+
+    std::for_each (delegates.begin (),
+                   delegates.end (),
+                   boost::bind (&PICML::FacetDelegate::Accept,
+                                _1,
+                                boost::ref (*this)));
+  }
+
+  //
+  // Visit_FacetDelegate
+  //
+  void Visit_FacetDelegate (const PICML::FacetDelegate & fd)
+  {
+    PICML::ProvidedRequestPortEnd endpoint = fd.dstFacetDelegate_end ();
+    this->Visit_ProvidedRequestPortEnd (endpoint);
+  }
+
+  //
+  // Visit_ProvidedRequestPortEnd
+  //
+  void Visit_ProvidedRequestPortEnd (const PICML::ProvidedRequestPortEnd & endpoint)
+  {
+    const Uml::Class & meta = endpoint.type ();
+
+    if (meta == PICML::ProvidedRequestPortInstance::meta)
+      this->ports_.insert (PICML::ProvidedRequestPortInstance::Cast (endpoint));
+    else if (meta == PICML::ProvidedRequestPortDelegate::meta)
+      PICML::ProvidedRequestPortDelegate::Cast (endpoint).Accept (*this);
+  }
+
+private:
+  std::set <PICML::ProvidedRequestPortInstance> & ports_;
 };
+
+///////////////////////////////////////////////////////////////////////////////
+// Connector_Visitor
 
 //
 // Connector_Visitor
 //
 Connector_Visitor::
-Connector_Visitor (DeploymentPlanVisitor & v, xercesc::DOMDocument * doc)
-: dpv_ (v),
+Connector_Visitor (DeploymentPlanVisitor & dpv,
+                   std::vector <xercesc::DOMElement *> & conns,
+                   xercesc::DOMDocument * doc)
+: dpv_ (dpv),
+  conns_ (conns),
   doc_ (doc),
   curr_conn_ (0)
 {
@@ -56,7 +129,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
 
   // Clear the map of connector uuids.
-  this->connector_uuid_.clear ();
+  this->connector_uuids_.clear ();
   this->ami4ccm_uuids_.clear ();
 }
 
@@ -135,25 +208,8 @@ Visit_ExtendedPortInstanceBase (const PICML::ExtendedPortInstanceBase & base,
 
   if (ed != Udm::null)
   {
-    PICML::ComponentAssembly parent = ed.ComponentAssembly_parent ();
-    const std::string path (parent.getPath (".", false, true, "name", true));
-
     PICML::ExtendedPortDelegate epd = ed.dstExtendedDelegate_end ();
-    const std::string name (epd.name ());
-
     this->Visit_ExtendedPortInstanceBase (epd, pt);
-
-    //// Since we are going up the model, we have to get the instance of
-    //// the delegate port. This is because the only way a port is delegated
-    //// is if it is instantiated in another component assembly.
-    //std::set < PICML::ExtendedPortDelegate > instances = epd.Instances ();
-
-    //std::for_each (instances.begin (),
-    //               instances.end (),
-    //               boost::bind (&Connector_Visitor::Visit_ExtendedPortInstanceBase,
-    //                            this,
-    //                            _1,
-    //                            boost::ref (pt)));
   }
 }
 
@@ -212,18 +268,6 @@ Visit_MirrorPortInstanceBase (const PICML::MirrorPortInstanceBase & base,
   {
     PICML::MirrorPortDelegate mpd = md.dstMirrorDelegate_end ();
     this->Visit_MirrorPortInstanceBase (mpd, pt);
-
-    //// Since we are going up the model, we have to get the instance of
-    //// the delegate port. This is because the only way a port is delegated
-    //// is if it is instantiated in another component assembly.
-    //std::set < PICML::MirrorPortDelegate > instances = mpd.Instances ();
-
-    //std::for_each (instances.begin (),
-    //               instances.end (),
-    //               boost::bind (&Connector_Visitor::Visit_MirrorPortInstanceBase,
-    //                            this,
-    //                            _1,
-    //                            boost::ref (pt)));
   }
 }
 
@@ -238,12 +282,7 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & in
   this->receptacle_ = inst.ref ();
   this->prefix1_.clear ();
 
-  std::set <PICML::ConnectorToReceptacle> conns = inst.dstConnectorToReceptacle ();
-  std::for_each (conns.begin (),
-                 conns.end (),
-                 boost::bind (&PICML::ConnectorToReceptacle::Accept,
-                              _1,
-                              boost::ref (*this)));
+  this->Visit_RequiredRequestPortEnd (inst);
 }
 
 //
@@ -257,10 +296,72 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & in
   this->facet_ = inst.ref ();
   this->prefix1_.clear ();
 
-  std::set <PICML::ConnectorToFacet> conns = inst.srcConnectorToFacet ();
+  this->active_facet_ = inst;
+  this->Visit_ProvidedRequestPortEnd (inst);
+}
+
+//
+// Visit_ReceptacleDelegate
+//
+void Connector_Visitor::
+Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate & rd)
+{
+  PICML::RequiredRequestPortDelegate rrpd = rd.srcReceptacleDelegate_end ();
+  this->Visit_RequiredRequestPortEnd (rrpd);
+}
+
+//
+// Visit_FacetDelegate
+//
+void Connector_Visitor::
+Visit_FacetDelegate (const PICML::FacetDelegate & fd)
+{
+  PICML::ProvidedRequestPortDelegate prpd = fd.srcFacetDelegate_end ();
+  const std::string n (prpd.name ());
+
+  this->Visit_ProvidedRequestPortEnd (prpd);
+}
+
+//
+// Visit_RequiredRequestPortEnd
+//
+void Connector_Visitor::
+Visit_RequiredRequestPortEnd (const PICML::RequiredRequestPortEnd & end)
+{
+  std::set <PICML::ConnectorToReceptacle> conns = end.dstConnectorToReceptacle ();
+  std::for_each (conns.begin (),
+                 conns.end (),
+                 boost::bind (&PICML::ConnectorToReceptacle::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  // We need to visit the receptacle delegates.
+  std::set <PICML::ReceptacleDelegate> delegates = end.srcReceptacleDelegate ();
+  std::for_each (delegates.begin (),
+                 delegates.end (),
+                 boost::bind (&PICML::ReceptacleDelegate::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_ProvidedRequestPortEnd
+//
+void Connector_Visitor::
+Visit_ProvidedRequestPortEnd (const PICML::ProvidedRequestPortEnd & end)
+{
+  std::set <PICML::ConnectorToFacet> conns = end.srcConnectorToFacet ();
   std::for_each (conns.begin (),
                  conns.end (),
                  boost::bind (&PICML::ConnectorToFacet::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  // We need to visit the facet delegates.
+  std::set <PICML::FacetDelegate> delegates = end.srcFacetDelegate ();
+  std::for_each (delegates.begin (),
+                 delegates.end (),
+                 boost::bind (&PICML::FacetDelegate::Accept,
                               _1,
                               boost::ref (*this)));
 }
@@ -287,16 +388,21 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
     // connections for it. The number of connections will be determined
     // by the number of facet connections we have coming into this
     // connector instance.
-    std::set <PICML::ConnectorToFacet> conns = inst.dstConnectorToFacet ();
+    std::set <PICML::ProvidedRequestPortInstance> facets;
+    ProvidedRequestPortInstance_Collector facet_gatherer (facets);
 
-    std::set <PICML::ConnectorToFacet>::iterator
-      iter = conns.begin (), iter_end = conns.end ();
+    std::set <PICML::ConnectorToFacet> conns = inst.dstConnectorToFacet ();
+    std::for_each (conns.begin (),
+                   conns.end (),
+                   boost::bind (&PICML::ConnectorToFacet::Accept,
+                                _1,
+                                boost::ref (facet_gatherer)));
+
+    std::set <PICML::ProvidedRequestPortInstance>::iterator
+      iter = facets.begin (), iter_end = facets.end ();
 
     for (; iter != iter_end; ++ iter)
     {
-      //// Start a new connection.
-      //this->start_new_connection (obj);
-
       this->curr_conn_ = this->doc_->createElement (L"connection");
       this->name_element_ = this->create_element (this->curr_conn_, "name");
 
@@ -318,7 +424,7 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
 
       // Get the UUID assigned to the facet connection, which represents
       // the UUID for the target connector fragment.
-      std::map <PICML::ConnectorToFacet, std::string>::
+      std::map <PICML::ProvidedRequestPortInstance, std::string>::
         const_iterator result = this->ami4ccm_uuids_.find (*iter);
 
       if (result == this->ami4ccm_uuids_.end ())
@@ -351,7 +457,7 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
                              "_" + uuid);
 
       // Overwrite the current connection name.
-      this->connection_name_ = conn.getPath (".", false, true, "name", true);
+      this->connection_name_ = iter->getPath (".", false, true, "name", true);
 
 
       // End the current connection.
@@ -422,20 +528,17 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
 
     // Write the endpoint for the facet.
     std::string uuid = "_" + std::string (this->comp_inst_.UUID ());
-    this->append_endpoint (this->facet_.name (),
-                           "Facet",
-                           "true",
-                           uuid);
+    this->append_endpoint (this->facet_.name (), "Facet", "true", uuid);
 
     // Get the UUID assigned to the facet connection, which represents
     // the UUID for the target connector fragment.
-    std::map <PICML::ConnectorToFacet, std::string>::
-      const_iterator result = this->ami4ccm_uuids_.find (conn);
+    std::map <PICML::ProvidedRequestPortInstance, std::string>::
+      const_iterator result = this->ami4ccm_uuids_.find (this->active_facet_);
 
     if (result == this->ami4ccm_uuids_.end ())
     {
       uuid = ::Utils::CreateUuid ();
-      this->ami4ccm_uuids_[conn] = uuid;
+      this->ami4ccm_uuids_[this->active_facet_] = uuid;
     }
     else
     {
@@ -449,7 +552,7 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
                            "_" + uuid);
 
     // Overwrite the current connection name.
-    this->connection_name_ = conn.getPath (".", false, true, "name", true);
+    this->connection_name_ = this->active_facet_.getPath (".", false, true, "name", true);
   }
   else
   {
@@ -715,7 +818,7 @@ start_new_connection (const PICML::Object & obj)
 {
   using xercesc::DOMElement;
 
-  this->curr_conn_ = this->doc_->createElement (L"connection");
+  this->curr_conn_ = this->doc_->createElement (::Utils::XStr ("connection"));
   this->name_element_ = this->create_element (this->curr_conn_, "name");
   this->connection_name_ = this->comp_inst_.getPath (".", false, true, "name", true);
 
@@ -747,7 +850,7 @@ append_endpoint (const std::string & portname,
   this->create_simple_content (ep, "kind", kind);
 
   DOMElement * instance = this->create_element (ep, "instance");
-  instance->setAttribute (L"xmi:idref", ::Utils::XStr (inst));
+  instance->setAttribute (::Utils::XStr ("xmi:idref"), ::Utils::XStr (inst));
 }
 
 //
@@ -757,14 +860,6 @@ void Connector_Visitor::end_connection (void)
 {
   this->name_element_->setTextContent (::Utils::XStr (this->connection_name_));
   this->conns_.push_back (this->curr_conn_);
-}
-
-//
-// connections
-//
-const std::vector <xercesc::DOMElement *> & Connector_Visitor::connections (void) const
-{
-  return this->conns_;
 }
 
 //

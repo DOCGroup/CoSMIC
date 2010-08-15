@@ -28,7 +28,8 @@ class PICML_External_Reference_Visitor :
 {
 public:
   /// Default constructor.
-  PICML_External_Reference_Visitor (xercesc::DOMDocument * doc);
+  PICML_External_Reference_Visitor (xercesc::DOMDocument * doc,
+                                    std::vector <xercesc::DOMElement *> & conns);
 
   /// Destructor
   virtual ~PICML_External_Reference_Visitor (void);
@@ -55,7 +56,7 @@ private:
 
   xercesc::DOMDocument * doc_;
 
-  std::vector <xercesc::DOMElement *> conns_;
+  std::vector <xercesc::DOMElement *> & conns_;
 };
 
 #include "External_Reference_Visitor.inl"

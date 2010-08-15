@@ -148,7 +148,7 @@ private:
   /// Collection of instances in the current deployment.
   std::map <PICML::ComponentInstance, xercesc::DOMElement *> insts_;
 
-  std::map <std::string, xercesc::DOMElement *> conn_insts_;
+  std::map <std::string, xercesc::DOMElement *> connector_insts_;
 
   /// Collection of implementation in the current deployment.
   std::map <PICML::Implemenation, xercesc::DOMElement *> impls_;

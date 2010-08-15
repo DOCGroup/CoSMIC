@@ -28,6 +28,7 @@ public:
    * Initializing constructor.
    */
   Connection_Visitor (xercesc::DOMDocument * doc,
+                      std::vector <xercesc::DOMElement *> & conns,
                       const std::map <PICML::ComponentInstance, xercesc::DOMElement *> & insts);
 
   /// Destructor.
@@ -40,14 +41,14 @@ public:
   virtual void Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance &);
 
   virtual void Visit_OutEventPortInstance (const PICML::OutEventPortInstance & );
-  
+
   virtual void Visit_InEventPortInstance (const PICML::InEventPortInstance & sink);
 
   virtual void Visit_Invoke (const PICML::Invoke &);
 
   virtual void Visit_SendsTo (const PICML::SendsTo & sends);
 
-	virtual void Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate &);
+  virtual void Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate &);
 
   virtual void Visit_RequiredRequestPortDelegate (const PICML::RequiredRequestPortDelegate &);
 
@@ -67,7 +68,7 @@ public:
 
 private:
   /// Helper method for creating a connection.
-  void create_connection (const std::string & name, 
+  void create_connection (const std::string & name,
                           xercesc::DOMNode * e1,
                           xercesc::DOMNode * e2,
                           bool is_local);
@@ -76,12 +77,12 @@ private:
 
   /// The target document.
   xercesc::DOMDocument * doc_;
-                      
-  /// Set of deployed instances.
-  const std::map <PICML::ComponentInstance, xercesc::DOMElement *> & insts_;
 
   /// Set of connection gathered.
-  std::vector <xercesc::DOMElement *> conns_;
+  std::vector <xercesc::DOMElement *> & conns_;
+
+  /// Set of deployed instances.
+  const std::map <PICML::ComponentInstance, xercesc::DOMElement *> & insts_;
 
   PICML::ComponentInstance inst_;
 

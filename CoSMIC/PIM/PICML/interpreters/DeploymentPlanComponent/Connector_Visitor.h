@@ -30,7 +30,9 @@ public:
   /**
    * Initializing constructor.
    */
-  Connector_Visitor (DeploymentPlanVisitor & v, xercesc::DOMDocument * doc);
+  Connector_Visitor (DeploymentPlanVisitor & dpv,
+                     std::vector <xercesc::DOMElement *> & conns,
+                     xercesc::DOMDocument * doc);
 
   /// Destructor.
   virtual ~Connector_Visitor (void);
@@ -53,15 +55,19 @@ public:
 
   virtual void Visit_ConnectorToFacet (const PICML::ConnectorToFacet &);
 
+  virtual void Visit_FacetDelegate (const PICML::FacetDelegate &);
+  virtual void Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate &);
+
   virtual void Visit_PortType (const PICML::PortType & pt);
 
   virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort &);
 
   virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort &);
 
-  const std::vector <xercesc::DOMElement *> & connections (void) const;
-
 private:
+  void Visit_ProvidedRequestPortEnd (const PICML::ProvidedRequestPortEnd &);
+  void Visit_RequiredRequestPortEnd (const PICML::RequiredRequestPortEnd &);
+
   bool is_ami4ccm_connector (const PICML::ConnectorInstance & inst);
   bool is_ami4ccm_connector (const PICML::ConnectorObject & obj);
 
@@ -100,11 +106,11 @@ private:
 
   DeploymentPlanVisitor & dpv_;
 
+  /// Set of connection gathered.
+  std::vector <xercesc::DOMElement *> & conns_;
+
   /// The target document.
   xercesc::DOMDocument * doc_;
-
-  /// Set of connection gathered.
-  std::vector <xercesc::DOMElement *> conns_;
 
   xercesc::DOMElement * curr_conn_;
   xercesc::DOMElement * name_element_;
@@ -130,7 +136,8 @@ private:
 
   std::map <PICML::ConnectorInstance, std::string> connector_uuids_;
 
-  std::map <PICML::ConnectorToFacet, std::string> ami4ccm_uuids_;
+  PICML::ProvidedRequestPortInstance active_facet_;
+  std::map <PICML::ProvidedRequestPortInstance, std::string> ami4ccm_uuids_;
 };
 
 #endif  // !defined _PICML_DEPLOYMENT_CONNECTOR_VISITOR_H_

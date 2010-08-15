@@ -31,6 +31,7 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 using xercesc::DOMElement;
+using xercesc::DOMComment;
 
 //
 // DeploymentPlanVisitor
@@ -177,13 +178,13 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   typedef std::map <PICML::ComponentInstance, xercesc::DOMElement *> inst_map_t;
   inst_map_t::iterator inst_iter, inst_iter_end = this->insts_.end ();
 
-  Connection_Visitor cv (this->doc_, this->insts_);
+  Connection_Visitor cv (this->doc_, this->conns_, this->insts_);
 
   for (inst_iter = this->insts_.begin (); inst_iter != inst_iter_end; ++ inst_iter)
     PICML::ComponentInstance (inst_iter->first).Accept (cv);
 
   // Handle the external references.
-  PICML_External_Reference_Visitor external (this->doc_);
+  PICML_External_Reference_Visitor external (this->doc_, this->conns_);
 
   for (inst_iter = this->insts_.begin (); inst_iter != inst_iter_end; ++ inst_iter)
     PICML::ComponentInstance (inst_iter->first).Accept (external);
@@ -191,7 +192,7 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   // Handle the connections to connectors. We need to check if any
   // of the deployed instances has a connection to a connector since
   // connectors do not appear in the deployment model.
-  Connector_Visitor connector_visitor (*this, this->doc_);
+  Connector_Visitor connector_visitor (*this, this->conns_, this->doc_);
 
   for (inst_iter = this->insts_.begin (); inst_iter != inst_iter_end; ++ inst_iter)
     PICML::ComponentInstance (inst_iter->first).Accept (connector_visitor);
@@ -216,8 +217,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
 
-  std::for_each (this->conn_insts_.begin (),
-                 this->conn_insts_.end (),
+  std::for_each (this->connector_insts_.begin (),
+                 this->connector_insts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
                               boost::bind (&std::map <std::string,
@@ -225,20 +226,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
                                                       value_type::second, _1)));
 
   // <connection>
-  std::for_each (cv.connections ().begin (),
-                 cv.connections ().end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
-                              _1));
-
-  std::for_each (external.connections ().begin (),
-                 external.connections ().end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
-                              _1));
-
-  std::for_each (connector_visitor.connections ().begin (),
-                 connector_visitor.connections ().end (),
+  std::for_each (this->conns_.begin (),
+                 this->conns_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
                               root,
                               _1));
@@ -292,7 +281,7 @@ void DeploymentPlanVisitor::reset_state (void)
 
   // Reset all the state variables.
   this->insts_.clear ();
-  this->conn_insts_.clear ();
+  this->connector_insts_.clear ();
   this->impls_.clear ();
   this->artifacts_.clear ();
   this->conns_.clear ();
@@ -380,7 +369,12 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   this->create_simple_content (this->curr_instance_, "node", this->current_node_.name ());
   this->create_simple_content (this->curr_instance_, "source", "");
 
-  // Insert this instance into the current locality.
+  // Insert this instance into the current locality and write a comment
+  // that shows the constained instances name.
+  // TODO make this a debugging feature.
+  DOMComment * comment = this->doc_->createComment (::Utils::XStr (name));
+  this->curr_locality_->appendChild (comment);
+
   DOMElement * constrained = this->create_element (this->curr_locality_, "constrainedInstance");
   constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
@@ -611,25 +605,6 @@ Visit_ArtifactDependsOn (const PICML::ArtifactDependsOn& ado)
   ref.Accept (*this);
 }
 
-////
-//// Visit_ImplementationArtifactReference
-////
-//void DeploymentPlanVisitor::
-//Visit_ImplementationArtifactReference (const PICML::ImplementationArtifactReference & iar)
-//{
-//  this->push ();
-//  DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
-//  ele->appendChild (this->createSimpleContent ("name", iar.name ()));
-//  const ImplementationArtifact ref = iar.ref ();
-//  std::string refName (ref.name ());
-//  refName += ".iad";
-//  DOMElement* refEle = this->doc_->createElement (XStr ("referencedArtifact"));
-//  refEle->setAttribute (XStr ("href"), XStr (refName));
-//  ele->appendChild (refEle);
-//  this->curr_->appendChild (ele);
-//  this->pop ();
-//}
-
 //
 // Visit_ArtifactExecParameter
 //
@@ -649,9 +624,6 @@ void DeploymentPlanVisitor::
 deploy_connector_fragment (const PICML::ConnectorInstance & inst,
                            const PICML::CollocationGroup & group)
 {
-  //if (this->conn_insts_.find (inst) != this->conn_insts_.end ())
-  //  return;
-
   std::string uuid = "_" + std::string (inst.UUID ());
   std::string name = inst.getPath (".", false, true, "name", true);
 
@@ -660,6 +632,11 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
 
   if (0 != locality)
   {
+    // Write a comment that shows the constained instances name.
+    // TODO make this a debugging feature.
+    DOMComment * comment = this->doc_->createComment (::Utils::XStr (name));
+    locality->appendChild (comment);
+
     DOMElement * constrained = this->create_element (locality, "constrainedInstance");
     constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
   }
@@ -670,7 +647,7 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
 
   // Create a new instance in the XML document.
   this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
-  this->conn_insts_.insert (std::make_pair (uuid, this->curr_instance_));
+  this->connector_insts_.insert (std::make_pair (uuid, this->curr_instance_));
 
   this->curr_instance_->setAttribute (XStr ("xmi:id"), XStr (uuid));
   this->create_simple_content (this->curr_instance_, "name", name);
