@@ -466,6 +466,9 @@ set_connection_name (const GAME::Model & connector,
                      const GAME::FCO & portend,
                      GAME::Connection connection)
 {
+  if (this->is_importing_)
+    return 0;
+
   using GAME::Reference;
   using GAME::Model;
 

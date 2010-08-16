@@ -20,10 +20,10 @@ REGEDIT4
 @="{B744B044-436A-4463-AF72-41D1D94815D9}"
 
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.AddOn.PICMLManager]
-"Tooltip"="Simplifies the creation of PICML models"
+"Tooltip"="PICML Model Intelligence"
 "Paradigm"="PICML, CQML"
 "Type"=dword:00000002
-"Description"="PICMLManager"
+"Description"="PICML Model Intelligence"
 
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.AddOn.PICMLManager\Associated]
 "PICML"=""

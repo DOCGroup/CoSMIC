@@ -43,7 +43,7 @@ project (PICMLManager): game_dialogs, game_component, \
     gme_progid      = MGA.AddOn.PICMLManager
     gme_uuid        = B744B044-436A-4463-AF72-41D1D94815D9
     gme_paradigms   = PICML CQML
-    gme_description = PICMLManager
-    gme_tooltip     = Simplifies the creation of PICML models
+    gme_description = PICML Model Intelligence
+    gme_tooltip     = PICML Model Intelligence
   }
 }

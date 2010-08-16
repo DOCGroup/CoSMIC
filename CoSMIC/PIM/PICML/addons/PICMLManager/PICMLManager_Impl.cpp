@@ -77,7 +77,6 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("ComponentRef", &PICMLManager_Impl::handle_ComponentRef);
   this->handlers_.bind ("Domain", &PICMLManager_Impl::handle_Domain);
   this->handlers_.bind ("PackageConfiguration", &PICMLManager_Impl::handle_PackageConfiguration);
-  this->handlers_.bind ("ComponentInstanceType", &PICMLManager_Impl::handle_ComponentInstanceType);
 
   this->handlers_.bind ("ExtendedPortInstance", &PICMLManager_Impl::handle_ExtendedPortInstance);
   this->handlers_.bind ("MirrorPortInstance", &PICMLManager_Impl::handle_MirrorPortInstance);
@@ -89,13 +88,13 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->handlers_.bind ("ComponentFactoryInstance", &PICMLManager_Impl::handle_ComponentFactoryInstance);
   this->handlers_.bind ("DeploymentPlan", &PICMLManager_Impl::handle_DeploymentPlan);
   this->handlers_.bind ("NodeReference", &PICMLManager_Impl::handle_NodeReference);
-  this->handlers_.bind ("ComponentInstanceType", &PICMLManager_Impl::handle_ComponentInstanceType);
 
   this->handlers_.bind ("ImplementationArtifact", &PICMLManager_Impl::handle_ImplementationArtifact);
 
   this->handlers_.bind ("ComplexTypeReference", &PICMLManager_Impl::handle_ComplexTypeReference);
 
   this->handlers_.bind ("ComponentInstance", &PICMLManager_Impl::handle_ComponentInstance);
+  this->handlers_.bind ("ComponentInstanceType", &PICMLManager_Impl::handle_ComponentInstanceType);
   this->handlers_.bind ("ConnectorInstance", &PICMLManager_Impl::handle_ConnectorInstance);
 
   // The new way of writing event handler's for the model intelligence

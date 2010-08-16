@@ -321,34 +321,6 @@ private:
     }
   }
 
-    //if (u->disc_type ()->node_type () == AST_Decl::NT_enum)
-    //  {
-    //    UTL_Scope *parent = u->disc_type ()->defined_in ();
-
-    //    if (0 == parent)
-    //      {
-    //        name = this->print_scoped_name (e->n ());
-    //      }
-    //    else
-    //      {
-    //        if (ScopeAsDecl (parent)->node_type () != AST_Decl::NT_root)
-    //          {
-    //            name =
-    //              this->print_scoped_name (
-    //                ScopeAsDecl (parent)->name ());
-
-    //            name += "::";
-    //          }
-
-    //        name += e->n ()->last_component ()->get_string ();
-    //      }
-    //  }
-    //else
-    //  {
-    //    name =
-    //      this->expr_val_to_string (ul->label_val ()->ev ());
-    //  }
-
   return str;
 }
 

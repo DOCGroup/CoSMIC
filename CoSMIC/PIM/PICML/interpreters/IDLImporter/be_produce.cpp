@@ -80,14 +80,14 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 //#include "XML_Helper.h"
 
 // Clean up before exit, whether successful or not.
-IDL_TO_PICML_BE_Export 
+IDL_TO_PICML_BE_Export
 void BE_cleanup (void)
 {
   idl_global->destroy ();
 }
 
 // Abort this run of the BE.
-IDL_TO_PICML_BE_Export 
+IDL_TO_PICML_BE_Export
 void BE_abort (void)
 {
   ACE_ERROR ((LM_ERROR,
@@ -116,7 +116,7 @@ private:
 };
 
 // Do the work of this BE. This is the starting point for code generation.
-IDL_TO_PICML_BE_Export 
+IDL_TO_PICML_BE_Export
 void BE_produce (void)
 {
   try
