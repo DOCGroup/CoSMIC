@@ -1,3 +1,10 @@
+Mon Aug 16 03:13:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/tests/deployment/ExternalEndpoint.xme:
+        * PIM/PICML/tests/deployment/RegisterNaming.xme:
+
+          Test for different functions in CoSMIC.
+
 Sun Aug 15 03:20:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
