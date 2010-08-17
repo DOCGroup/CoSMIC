@@ -129,6 +129,7 @@ END
 IDI_EXPAND              ICON                    "expand.ico"
 IDI_BLANK               ICON                    "blank.ico"
 IDI_COLLAPSE            ICON                    "collapse.ico"
+IDI_COMPICON            ICON                    "Property.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

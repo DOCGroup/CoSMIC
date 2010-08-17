@@ -21,6 +21,7 @@ REGEDIT4
 
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.PropertyManager]
 "Tooltip"="Property Manager"
+"Icon"=",IDI_COMPICON"
 "Paradigm"="PICML"
 "Type"=dword:00000001
 "Description"="Property Manager"

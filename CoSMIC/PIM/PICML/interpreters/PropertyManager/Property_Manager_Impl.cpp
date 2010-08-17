@@ -41,11 +41,18 @@ invoke_ex (GAME::Project & project,
 {
   try
   {
-    std::for_each (selected.begin (),
-                   selected.end (),
-                   boost::bind (&PICML_Property_Mangaer_Impl::handle_property,
-                                this,
-                                _1));
+    if (!selected.empty ())
+    {
+      std::for_each (selected.begin (),
+                     selected.end (),
+                     boost::bind (&PICML_Property_Mangaer_Impl::handle_property,
+                                  this,
+                                  _1));
+    }
+    else
+    {
+      ::AfxMessageBox ("Please select one or more Property elements first.", MB_ICONHAND);
+    }
 
     return 0;
   }

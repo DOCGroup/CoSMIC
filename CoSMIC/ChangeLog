@@ -1,3 +1,18 @@
+Tue Aug 17 14:16:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Property.ico:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.rc:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.reg:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Managerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/resource.h:
+
+          Fixed interpreter so its icon shows up on the toolbar.
+
+          Improved functionality by showing a dialog if no property
+          elements are selected when the interpreter is executed.
+
 Tue Aug 17 04:43:24 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * bin/migration/build.xml:
