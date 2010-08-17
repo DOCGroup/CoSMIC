@@ -14,7 +14,8 @@
     <javac srcdir="${env.COSMIC_ROOT}/bin/migration"
            classpathref="build.classpath"
            debug="true"
-           debuglevel="source,lines" />
+           debuglevel="source,lines"
+           target="1.5" />
   </target>
 
   <target name="migration.jar.build" depends="migration.build">
