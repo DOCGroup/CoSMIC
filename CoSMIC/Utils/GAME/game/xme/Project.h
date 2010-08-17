@@ -161,6 +161,8 @@ public:
 
   const Configuration * configuration (void) const;
 
+  size_t select_all (std::vector <Reference> & refs) const;
+
 private:
   static const ::Utils::XStr TAGNAME;
   static const ::Utils::XStr DTD;

@@ -81,5 +81,14 @@ Reference Reference::_narrow (const Object & obj)
   throw Invalid_Cast ();
 }
 
+//
+// refresh
+//
+GAME_INLINE
+void Reference::refresh (void)
+{
+  this->get_reference ();
+}
+
 }
 }

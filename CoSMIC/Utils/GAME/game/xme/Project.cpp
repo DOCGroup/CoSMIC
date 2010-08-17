@@ -438,5 +438,26 @@ size_t Project::attached_libraries (std::vector <Library> & libs)
   return libs.size ();
 }
 
+//
+// select_all
+//
+size_t Project::select_all (std::vector <Reference> & refs) const
+{
+  using xercesc::DOMNodeList;
+
+  DOMNodeList * list = this->doc_->getElementsByTagName (Reference::TAGNAME);
+  size_t length = list->getLength ();
+
+  for (size_t i = 0; i < length; ++ i)
+  {
+    using xercesc::DOMElement;
+    DOMElement * e = dynamic_cast <DOMElement *> (list->item (i));
+
+    refs.push_back (Reference (e, false));
+  }
+
+  return refs.size ();
+}
+
 }
 }

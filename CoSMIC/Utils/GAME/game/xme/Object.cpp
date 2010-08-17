@@ -7,6 +7,7 @@
 #endif
 
 #include "Object_Type_Map.hpp"
+#include "Reference.h"
 #include <sstream>
 
 namespace GAME
@@ -75,16 +76,50 @@ Object Object::parent (void) const
 //
 void Object::destroy (void)
 {
+  using xercesc::DOMDocument;
   using xercesc::DOMElement;
   using xercesc::DOMNode;
 
+  // Store this object's id since we will need it later.
+  DOMDocument * doc = this->obj_->getOwnerDocument ();
+  ::Utils::XStr old_id (this->id (), true);
+
   // Remove this node from the XML tree.
-  DOMNode * node = this->obj_->getParentNode ();
-  node->removeChild (this->obj_);
+  DOMNode * parent = this->obj_->getParentNode ();
+  parent->removeChild (this->obj_);
 
   // Release this object's resources.
   this->obj_->release ();
   this->obj_ = 0;
+
+  // Check for any dangling references. If we find any we need
+  // to reset them (i.e., set them to null). It would be nice to
+  // use XPath to make this evaluation a LOT easier (e.g., locating
+  // all the reference elements that refer to this element, and reset
+  // them).
+
+  using xercesc::DOMNodeList;
+
+  DOMNodeList * list = doc->getElementsByTagName (Reference::TAGNAME);
+  size_t length = list->getLength ();
+
+  for (size_t i = 0; i < length; ++ i)
+  {
+    DOMElement * e = dynamic_cast <DOMElement *> (list->item (i));
+
+    Reference ref (e, false);
+    FCO refers_to = ref.refers_to ();
+
+    if (!refers_to.is_nil ())
+    {
+      const ::Utils::XStr id (refers_to.id (), false);
+
+      if (id == old_id)
+        ref.reset ();
+    }
+  }
+
+  // TODO Make sure deleted objects are removed from their set.
 }
 
 //

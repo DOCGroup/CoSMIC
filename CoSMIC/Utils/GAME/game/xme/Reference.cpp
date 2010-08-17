@@ -97,24 +97,26 @@ void Reference::get_reference (void) const
 {
   ::Utils::XStr id (this->obj_->getAttribute (ATTR_REFERRED), false);
 
-  if (id != NULL_REFERENCE)
-  {
-    using xercesc::DOMDocument;
-    using xercesc::DOMElement;
+  if (id == NULL_REFERENCE)
+    return;
 
-    // Search for the element by id.
-    DOMDocument * doc = this->obj_->getOwnerDocument ();
-    DOMElement * element = doc->getElementById (id);
+  using xercesc::DOMDocument;
+  using xercesc::DOMElement;
 
-    if (element)
-      this->refers_to_.attach (element);
-  }
+  // Search for the element by id.
+  DOMDocument * doc = this->obj_->getOwnerDocument ();
+  DOMElement * element = doc->getElementById (id);
+
+  if (0 != element)
+    this->refers_to_.attach (element);
+  else
+    this->obj_->removeAttribute (ATTR_REFERRED);
 }
 
 //
 // is_null
 //
-bool Reference::is_null (void)
+bool Reference::is_null (void) const
 {
   if (this->refers_to_.is_nil ())
     this->get_reference ();

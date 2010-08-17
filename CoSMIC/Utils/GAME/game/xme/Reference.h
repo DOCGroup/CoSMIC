@@ -106,7 +106,12 @@ public:
   static const ::Utils::XStr TAGNAME;
 
   /// Test if the reference is null.
-  bool is_null (void);
+  bool is_null (void) const;
+
+  /// Refresh the state of the reference. This will relocate the
+  /// referred object and store it, or set the point to null of it
+  /// no longer exists.
+  void refresh (void);
 
 protected:
   /**
