@@ -1,6 +1,6 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC)
 
-This is a release version 0.7.8 of Component Synthesis using Model-Integrated
+This is a release version 0.8.1 of Component Synthesis using Model-Integrated
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of
     o   Platform-Independent Component Modeling Language (PICML)
     o   Component QoS Modeling Language (CQML)
@@ -16,8 +16,69 @@ modeling of large number QoS knobs provided by DDS.
 This document lists the new features that are introduced in the latest
 version.
 
+Release CoSMIC-0.8.1
+===================================================================
+
+. Delegation of extended/mirror ports. An extended/mirror
+  port can be delegated to 0..1 delegation ports. Supporting
+  delegation to multiple delegation ports will results in
+  deployments that are not able to deploy via DAnCE.
+
+. Support for generating valid descriptor information for
+  ami4ccm connectors. The ami4ccm support works similar to
+  the dds4ccm support. To generate the necessary pragma
+  statements in IDL for ami4ccm, you must enable the async
+  attribute on both the Object and RequiredRequestPort.
+
+. First version of supporting process/thread specification for
+  plan locality managers. Right now, PICML treats locality manager
+  as regular components. This means you set the process/thread
+  affinity using properties attached to a locality manager
+  instance. The property names are as follows:
+
+  - LocalityManager.ProcessName (String)
+  - LocalityArguments (String)
+
+  As more is learned about locality managers, the design and
+  implementation of locality managers will be improved.
+
+. First version of supporting specification of CPU or CPU core
+  affinity for each process/thread. The realization of this is
+  similar to the process/thread specification above. The name
+  of the property for specifying affinity is:
+
+  - edu.vanderbilt.dre.DAnCE.LocalityManager.CPUAffinity
+
+. Complete support for managing ComplexType elements via the
+  Property Manager, and expose the Property Manager icon on
+  the toolbar. In particular, you can move elements in a array
+  up/down and delete them. In you must close the dialog and
+  re-open it after you add a new element to an array consisting
+  of complex types to view the members of the newly added complex
+  type.
+
+. Generation of a nodemap.dat file in conjunction with the
+  auto-generated .cdd file. The name of the auto-generated file
+  will be the same as the deployment plan. To include an entry
+  in a .nodemap, attach a Property element of type String to the
+  target NodeReference element, and set its name to StringIOR.
+  The value of the Property element is a valid string IOR (i.e.,
+  corbaname:, corbaloc:, IOR:).
+
+. When making a connection between a Facet/Receptacle and
+  Connector the PICML Model Intelligence either (1) auto-complete
+  the connection name or (2) display a dialog for selecting the
+  correct connection name.
+
+. Support for deployment of ComponentAssembly elements under
+  the new modeling semantics for PICML.
+
+. Implemented the the first version of the ConnectorInstance
+  decorator that displays the name and implementation type of a
+  connector instance.
+
 Release CoSMIC-0.8.0
-======================
+===================================================================
 
 . Added support for complex types, i.e., structures and sequences,
   to configuration properties in the deployment plan. This caused
@@ -38,7 +99,7 @@ Release CoSMIC-0.8.0
   completely in the next release.
 
 Release CoSMIC-0.7.9
-======================
+===================================================================
 
 . Added support IDL3+. This included adding support for template
   modules, port types, extended ports, mirror ports, and
@@ -75,7 +136,7 @@ Release CoSMIC-0.7.9
   to the interpreter toolbar.
 
 Release CoSMIC-0.7.8
-======================
+===================================================================
 
 . Enum type property values are supported.
 
@@ -92,7 +153,7 @@ Release CoSMIC-0.7.8
 
 
 Release CoSMIC-0.7.7
-======================
+===================================================================
 
 . Re-enable the model intelligence feature that auto-generates default
   artifacts when a new Component is added to an File model element.
@@ -127,7 +188,7 @@ Release CoSMIC-0.7.7
 
 
 Release CoSMIC-0.7.4.5
-======================
+===================================================================
 
 . Temporarily disabled the model intelligence feature that auto-generates the default artifacts
   when a new component is added to the model. This feature will be released in the next version
@@ -139,7 +200,7 @@ Release CoSMIC-0.7.4.5
 
 
 Release CoSMIC-0.7.4
-====================
+===================================================================
 
 *   CoSMIC supports ACE/TAO/CIAO 0.7.4
 
@@ -192,7 +253,7 @@ The sources of CoSMIC beta release version 0.7.4 can be found under
 
 
 Release CoSMIC-0.7.3
-====================
+===================================================================
 
 *   LEESA:
     o   LEESA is a new way of writing traversals over typed object structures,
@@ -205,7 +266,7 @@ Release CoSMIC-0.7.3
 
 
 Release CoSMIC-beta-0.6.3
-=========================
+===================================================================
 
 *   PICML:
     o   Enabled support for modeling complex type Property elements, such as
@@ -265,7 +326,7 @@ The sources of CoSMIC beta release version 0.6.3 can be found under
 
 
 Release CoSMIC-beta-0.5.7
-=========================
+===================================================================
 
 *   CQML: A new paradigm called CQML captures higher level system
     quality-of-service (QoS) design intent of the designer. Following is a
@@ -295,9 +356,8 @@ Release CoSMIC-beta-0.5.7
     implemented as extensions to the DPFramework.
 
 
-
 Release CoSMIC-0.4.8
-====================
+===================================================================
 
 *   Modeling of component behavior is supported using I/O Automata language.
     It is based on the formalism of Input/Output automata. The interpreter
@@ -347,7 +407,7 @@ Release CoSMIC-0.4.8
 
 
 Release CoSMIC-0.4.6
-====================
+===================================================================
 
 *   A new "attribute mapping" feature which allows values for attributes to
     specified at the assembly level and allows propagation of the values to
