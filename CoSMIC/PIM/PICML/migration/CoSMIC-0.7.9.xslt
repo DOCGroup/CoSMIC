@@ -11,7 +11,7 @@
 
   <!--
     @template UpdateFilePath
-    
+
     Rename the path atttribute on the File model element.
     -->
   <xsl:template name="UpdateFilePath" match="model[@kind='File']/attribute[@kind='path']">
@@ -37,7 +37,7 @@
 
   <!--
     @template ReplaceRealNumber
-    
+
     Replaces the RealNumber model element with DoubleNumber.
     -->
   <xsl:template name="ReplaceRealNumber" match="atom[@kind='RealNumber']">
@@ -67,12 +67,12 @@
 
   <!--
     @template UpdateLocalInterface
-    
+
     Update the local attribute to an InterfaceSemantics attribute.
     -->
   <xsl:template name="UpdateLocalInterface" match="model[@kind='Object']/attribute[@kind='local']">
     <!-- There is only one <value> element, but we are still going
-         to wrap this in a for-each loop. We need to convert it to 
+         to wrap this in a for-each loop. We need to convert it to
          the correct enumeration type. -->
     <xsl:for-each select="value">
       <xsl:choose>
@@ -89,8 +89,56 @@
   </xsl:template>
 
   <!--
+    @template RemoveComponentAssemblyInstance
+
+    Remove all the contents of a component assembly instance
+  -->
+  <xsl:template name="RemoveComponentAssemblyInstance" match="model[@kind='ComponentAssembly' and @isinstance='yes']">
+    <xsl:element name="{name()}">
+      <xsl:for-each select="@*">
+        <xsl:copy />
+      </xsl:for-each>
+
+      <xsl:apply-templates select="name" />
+    </xsl:element>
+  </xsl:template>
+
+  <!--
+    @template RemoveComponentAssemblyReference
+
+    Remove all the contents of a component assembly instance
+  -->
+  <xsl:template name="RemoveComponentAssemblyReference" match="reference[@kind='ComponentAssemblyReference']" />
+
+  <!--
+    @template RemoveConnectionToComponentAssemblyInstance
+
+    Remove all the contents of a component assembly instance
+  -->
+  <xsl:template name="RemoveConnectionToComponentAssemblyInstance" match="model[@kind='ComponentAssembly' and (not(@isinstance) or @isinstance='no')]/connection">
+    <!-- get the src and dst connection ids -->
+    <xsl:variable name="srcid" select="connpoint[@role='src']/@target" />
+    <xsl:variable name="dstid" select="connpoint[@role='dst']/@target" />
+
+    <!-- locate the actual object -->
+    <xsl:variable name="src" select="//*[@id=$srcid]" />
+    <xsl:variable name="dst" select="//*[@id=$dstid]" />
+
+    <xsl:if test="$src[not(@isinstance) or @isinstance='no'] and $dst[not(@isinstance) or @isinstance='no']">
+      <xsl:element name="{name()}">
+        <xsl:for-each select="@*">
+          <xsl:copy />
+        </xsl:for-each>
+
+        <xsl:apply-templates />
+      </xsl:element>
+    </xsl:if>
+
+  </xsl:template>
+
+  <!--
     @template ChangeEmitConnection
-    
+
     Update the local attribute to an InterfaceSemantics attribute.
     -->
   <xsl:template name="ChangeEmitConnection" match="model[@kind='ComponentAssembly']/connection[@kind='emit']">
@@ -118,12 +166,12 @@
 
   <!--
     @template UpdateAbstractInterface
-    
+
     Update the local attribute to an InterfaceSemantics attribute.
     -->
   <xsl:template name="UpdateAbstractInterface" match="model[@kind='Object']/attribute[@kind='abstract']">
     <!-- There is only one <value> element, but we are still going
-         to wrap this in a for-each loop. We need to convert it to 
+         to wrap this in a for-each loop. We need to convert it to
          the correct enumeration type. -->
     <xsl:for-each select="value">
       <xsl:choose>
@@ -141,7 +189,7 @@
 
   <!--
     @template UpdateDeployedComponent
-    
+
     Update the ComponentRef in a deployment plan to a ComponentInstanceRef.
     -->
   <xsl:template name="UpdateDeployedComponent" match="model[@kind='DeploymentPlan']/reference[@kind='ComponentRef']">
@@ -170,36 +218,48 @@
 
   <!--
     @template UpdateInvoke
-    
+
     Update the invoke connection element to Invoke.
     -->
   <xsl:template name="UpdateInvoke" match="connection[@kind='invoke']">
-    <!-- create the same type of element -->
-    <xsl:element name="{name ()}">
+    <!-- get the src and dst connection ids -->
+    <xsl:variable name="srcid" select="connpoint[@role='src']/@target" />
+    <xsl:variable name="dstid" select="connpoint[@role='dst']/@target" />
 
-      <!--
+    <!-- locate the actual object -->
+    <xsl:variable name="src" select="//*[@id=$srcid]" />
+    <xsl:variable name="dst" select="//*[@id=$dstid]" />
+
+    <!-- Make sure we are not connecting to a port in an component assembly. If
+         this is the case, then we need to not copy over this connection. -->
+    <xsl:if test="$src[not(@isinstance) or @isinstance='no'] and $dst[not(@isinstance) or @isinstance='no']">
+      <!-- create the same type of element -->
+      <xsl:element name="{name ()}">
+
+        <!--
            Copy all the attributes, but make sure to change the value of
            the 'kind' attribute to InterfaceSemantics.
         -->
-      <xsl:for-each select="@*">
-        <xsl:choose>
-          <xsl:when test="name()='kind' or name()='role'">
-            <xsl:attribute name="{name()}">Invoke</xsl:attribute>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy />
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
+        <xsl:for-each select="@*">
+          <xsl:choose>
+            <xsl:when test="name()='kind' or name()='role'">
+              <xsl:attribute name="{name()}">Invoke</xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:copy />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
 
-      <!-- perform the default behavior for the remainder of this node -->
-      <xsl:apply-templates />
-    </xsl:element>
+        <!-- perform the default behavior for the remainder of this node -->
+        <xsl:apply-templates />
+      </xsl:element>
+    </xsl:if>
   </xsl:template>
 
   <!--
     @template UpdateFacetDelegate
-    
+
     Update the invoke connection element to Invoke.
     -->
   <xsl:template name="UpdateFacetDelegate" match="model[@kind='ComponentAssembly']/reference[@kind='ProvidedRequestPort']">
@@ -229,7 +289,7 @@
 
   <!--
     @template UpdateReceptacleDelegate
-    
+
     Update the invoke connection element to Invoke.
     -->
   <xsl:template name="UpdateReceptacleDelegate" match="model[@kind='ComponentAssembly']/reference[@kind='RequiredRequestPort']">
@@ -258,13 +318,73 @@
   </xsl:template>
 
   <!--
+    @template UpdateToInEventPortDelegate
+
+    Update the invoke connection element to Invoke.
+    -->
+  <xsl:template name="UpdateToInEventPortDelegate" match="model[@kind='ComponentAssembly']/reference[@kind='InEventPort']">
+    <!-- create the same type of element -->
+    <xsl:element name="atom">
+
+      <!--
+           Copy all the attributes, but make sure to change the value of
+           the 'kind' attribute to InterfaceSemantics.
+        -->
+      <xsl:for-each select="@*">
+        <xsl:choose>
+          <xsl:when test="name()='kind' or name()='role'">
+            <xsl:attribute name="{name()}">InEventPortDelegate</xsl:attribute>
+          </xsl:when>
+          <xsl:when test="name()='id' or name()='guid'">
+            <xsl:copy />
+          </xsl:when>
+          <xsl:otherwise />
+        </xsl:choose>
+      </xsl:for-each>
+
+      <!-- perform the default behavior for the remainder of this node -->
+      <xsl:apply-templates select="name" />
+    </xsl:element>
+  </xsl:template>
+
+  <!--
+    @template UpdateToOutEventPortDelegate
+
+    Update the invoke connection element to Invoke.
+    -->
+  <xsl:template name="UpdateToOutEventPortDelegate" match="model[@kind='ComponentAssembly']/reference[@kind='OutEventPort']">
+    <!-- create the same type of element -->
+    <xsl:element name="atom">
+
+      <!--
+           Copy all the attributes, but make sure to change the value of
+           the 'kind' attribute to InterfaceSemantics.
+        -->
+      <xsl:for-each select="@*">
+        <xsl:choose>
+          <xsl:when test="name()='kind' or name()='role'">
+            <xsl:attribute name="{name()}">OutEventPortDelegate</xsl:attribute>
+          </xsl:when>
+          <xsl:when test="name()='id' or name()='guid'">
+            <xsl:copy />
+          </xsl:when>
+          <xsl:otherwise />
+        </xsl:choose>
+      </xsl:for-each>
+
+      <!-- perform the default behavior for the remainder of this node -->
+      <xsl:apply-templates select="name" />
+    </xsl:element>
+  </xsl:template>
+
+  <!--
     @template RemovePredefinedTypeReference
     -->
   <xsl:template name="RemovePredefinedTypeReference" match="folder[@kind='PredefinedTypes']/reference" />
 
   <!--
     @template UpdateFacetDelegateConnection
-    
+
     Update the invoke connection element to Invoke.
     -->
   <xsl:template name="UpdateFacetDelegateConnectin" match="model[@kind='ComponentAssembly']/connection[@kind='FacetDelegate']">
@@ -274,14 +394,14 @@
       <xsl:apply-templates select="@*" />
       <xsl:apply-templates select="name" />
 
-        
+
       <xsl:for-each select="connpoint">
         <!-- update each connection point -->
         <xsl:variable name="current_cp" select="self::node ()" />
-        
+
         <xsl:element name="connpoint">
           <!-- switch the targets of the connection points -->
-          <xsl:for-each select="@*">    
+          <xsl:for-each select="@*">
             <xsl:choose>
               <xsl:when test="self::node()='src'">
                 <xsl:attribute name="role">src</xsl:attribute>
@@ -289,7 +409,7 @@
                   <xsl:value-of select="$current_cp/../connpoint[@role='dst']/@target" />
                 </xsl:attribute>
               </xsl:when>
-              
+
               <xsl:when test="self::node()='dst'">
                 <xsl:attribute name="role">dst</xsl:attribute>
                 <xsl:attribute name="target">
@@ -306,21 +426,21 @@
 
   <!--
     @template RemoveDeliverTo
-    
+
     Removes the deliverTo connection from the model.
     -->
   <xsl:template name="RemoveDeliverTo" match="connection[@kind='deliverTo']" />
 
   <!--
     @template RemoveDeliverTo
-    
+
     Removes the deliverTo connection from the model.
     -->
   <xsl:template name="RemovePublishConnector" match="atom[@kind='PublishConnector']" />
 
   <!--
     @template CreateSendsToConnection
-    
+
     Update the invoke connection element to Invoke.
     -->
   <xsl:template name="CreateSendsToConnection" match="connection[@kind='publish']">
@@ -331,17 +451,17 @@
 
     <!-- perform the default behavior for the remainder of this node -->
     <xsl:variable name="src_id" select="connpoint[@role='src']/@target" />
-    
+
     <!-- get the destination node id -->
     <xsl:variable name="dst" select="connpoint[@role='dst']" />
     <xsl:variable name="target" select="$dst/@target" />
-    
+
     <!-- The destination id is that of a PublishConnector. Try and
-         locate the correct PublishConnector object in this model. 
+         locate the correct PublishConnector object in this model.
          -->
     <xsl:variable name="connector" select="../atom[@id=$target]" />
     <xsl:variable name="connector_id" select="$connector/@id" />
-    
+
     <!-- Next, we need to locate all the deliverTo connections where
          this PublishConnector is the source. -->
     <xsl:variable name="inputs" select="../connection[@kind='deliverTo']/connpoint[@role='src' and @target=$connector_id]" />
@@ -373,7 +493,7 @@
 
   <!--
     @template UpdateToComponentInstance
-    
+
     Update the ComponentRef in a deployment plan to a ComponentInstanceRef.
     -->
   <xsl:template name="UpdateToComponentInstance" match="model[@kind='ComponentAssembly' and (not(@isinstance) or @isinstance='no')]/model[@kind='Component' and @isinstance='yes']">
@@ -402,20 +522,20 @@
       <!-- perform the default behavior for the remainder of this node -->
       <xsl:apply-templates select="name" />
       <xsl:apply-templates select="attribute[@kind='UUID']" />
-      
+
       <!-- copy over the ports -->
       <xsl:apply-templates select="reference[@kind='InEventPort' or @kind='OutEventPort' or @kind='ProvidedRequestPort' or @kind='RequiredRequestPort' or @kind='Supports']" />
-      
+
       <!-- copy over the attributes -->
       <xsl:apply-templates select="model[@kind='Attribute' or @kind='ReadonlyAttribute']" />
-      
+
       <!-- finally set the ComponentInstanceType -->
       <xsl:variable name="derivedfrom" select="@derivedfrom" />
       <xsl:variable name="component_ref" select="//model[@kind='ComponentImplementationContainer']/reference[@kind='ComponentRef' and @referred=$derivedfrom]" />
       <xsl:variable name="dst" select="$component_ref/@id" />
       <xsl:variable name="implements" select="//../model[@kind='ComponentImplementationContainer']/connection/connpoint[@target=$dst]" />
       <xsl:variable name="src" select="$implements/../connpoint[@role='src']/@target" />
-      
+
       <xsl:element name="reference">
         <xsl:attribute name="kind">ComponentInstanceType</xsl:attribute>
         <xsl:attribute name="role">ComponentInstanceType</xsl:attribute>
@@ -427,7 +547,7 @@
 
   <!--
     @template UpdateToRequiredRequestPortInstance
-    
+
     Update the ComponentRef in a deployment plan to a ComponentInstanceRef.
     -->
   <xsl:template name="UpdateToRequiredRequestPortInstance" match="model[@kind='Component' and @isinstance='yes']/reference[@kind='RequiredRequestPort']">

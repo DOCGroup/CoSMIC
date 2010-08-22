@@ -1,3 +1,23 @@
+Sun Aug 22 12:18:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/RACE.xme:
+        * PIM/PICML/examples/RACE_NetQoS.xme:
+        * PIM/PICML/examples/RACE_devl.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/Sample_Strings.xme:
+        * PIM/PICML/migration/CoSMIC-0.7.9.xslt:
+
+          Fixed mixing functionality in 0.7.9 migration script.
+
+        * PIM/PICML/examples/PICMLExamples.wxs:
+        * PIM/PICML/examples/RACE.xme.disable:
+        * PIM/PICML/examples/RACE_NetQoS.xme.disable:
+        * PIM/PICML/examples/RACE_devl.xme.disable:
+        * PIM/PICML/examples/RobotAssembly.xme.disable:
+        * PIM/PICML/examples/Sample_Strings.xme.disable:
+
+          Removed these files.
+
 Tue Aug 17 14:16:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PropertyManager/Property.ico:
