@@ -1,3 +1,10 @@
+Sun Aug 22 16:59:26 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * contrib:
+
+          CCF -r 86324 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+          utility -r 86324 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+
 Sun Aug 22 16:42:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Installer.wxs:
