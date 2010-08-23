@@ -1,10 +1,10 @@
 // $Id$
 
-project (PAMComponent): picmllib, boost_base, gme_udm_component {
-  sharedname = PAMComponent
+project (PICML_PAMComponent): picmllib, boost_base, gme_udm_component {
+  sharedname = PICML_PAMComponent
 
-  after += PAM
-  libs  += PAM
+  after += PICML_PAM
+  libs  += PICML_PAM
 
   Source_Files {
     Component.rc

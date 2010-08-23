@@ -1,5 +1,5 @@
-project(Path): picmllib, boost_base {
-   sharedname = Path
+project(PICML_Path): picmllib, boost_base {
+   sharedname = PICML_Path
    macros += PATH_BUILD_DLL
 
    Source_Files {

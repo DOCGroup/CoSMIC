@@ -1,7 +1,7 @@
 // $Id$
 
-project (NoShowRefersTo_Decorator): game_graphics, game_decorator {
-  sharedname = NoShowRefersTo_Decorator
+project (PICML_NoShowRefersTo_Decorator): game_graphics, game_decorator {
+  sharedname = PICML_NoShowRefersTo_Decorator
   
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

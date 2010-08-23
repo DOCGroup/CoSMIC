@@ -1,8 +1,8 @@
 // $Id$
 
-project (PICMLManager): game_dialogs, game_component, \
+project (PICML_PICMLManager): game_dialogs, game_component, \
                         picml_game_utils, boost_base, cosmic_utils {
-  sharedname = PICMLManager
+  sharedname = PICML_PICMLManager
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

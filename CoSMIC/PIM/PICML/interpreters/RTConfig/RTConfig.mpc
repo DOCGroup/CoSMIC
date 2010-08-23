@@ -1,6 +1,6 @@
-project(RTConfig): picmllib {
+project(PICML_RTConfig): picmllib {
    after += PICML
-   sharedname = RTConfig
+   sharedname = PICML_RTConfig
    macros += RTConfig_BUILD_DLL PICML_HAS_DLL
    libs += PICML
 

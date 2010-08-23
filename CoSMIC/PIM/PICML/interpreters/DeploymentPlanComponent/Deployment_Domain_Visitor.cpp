@@ -188,15 +188,17 @@ void Deployment_Domain_Visitor::
 Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 {
   PICML::Property prop = pmapping.dstPropertyMapping_end ();
-  PICML::Property (prop).Accept (*this);
+
+  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (prop).Accept (*this);
 }
 
 
 //
-// Visit_Property
+// Visit_SimpleProperty
 //
 void Deployment_Domain_Visitor::
-Visit_Property (const PICML::Property & prop)
+Visit_SimpleProperty (const PICML::SimpleProperty & prop)
 {
   std::string prop_name = prop.name ();
   std::string pname_full;
@@ -224,17 +226,6 @@ Visit_Property (const PICML::Property & prop)
 
     this->curr_value_inner_ = this->create_element (this->curr_value_, "value");
 
-    std::vector <PICML::DataValue> data_values = prop.DataValue_kind_children ();
-    PICML::DataValue data_value = data_values.front ();
-    data_value.Accept (*this);
+    this->create_simple_content (this->curr_value_inner_, "string", prop.Value ());
   }
-}
-
-//
-// Visit_DataValue
-//
-void Deployment_Domain_Visitor::
-Visit_DataValue (const PICML::DataValue & dv)
-{
-  this->create_simple_content (this->curr_value_inner_, "string", dv.Value ());
 }

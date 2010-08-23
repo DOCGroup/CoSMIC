@@ -592,7 +592,11 @@ Visit_MonolithExecParameter (const PICML::MonolithExecParameter & mexec)
   this->curr_param_ = this->create_element (this->param_parent_, "execParameter");
 
   PICML::Property prop = mexec.dstMonolithExecParameter_end ();
-  prop.Accept (*this);
+
+  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (prop).Accept (*this);
+  else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
+    PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
 //
@@ -614,7 +618,11 @@ Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter& param)
   this->curr_param_ = this->create_element (this->param_parent_, "execParameter");
 
   PICML::Property prop = param.dstArtifactExecParameter_end ();
-  prop.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (prop).Accept (*this);
+  else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
+    PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
 //
@@ -695,10 +703,10 @@ Visit_ConnectorImplementation (const PICML::ConnectorImplementation & impl)
 }
 
 //
-// Visit_Property
+// Visit_SimpleProperty
 //
 void DeploymentPlanVisitor::
-Visit_Property (const PICML::Property & prop)
+Visit_SimpleProperty (const PICML::SimpleProperty & prop)
 {
   // Start with the name of the property.
   std::string name = prop.name ();
@@ -720,28 +728,38 @@ Visit_Property (const PICML::Property & prop)
   // First, we need to generate the type for this property
   PICML_Data_Type_Visitor dtv (value);
   PICML_Data_Value_Visitor dvv (value);
-  PICML::ComplexTypeReference complex = prop.ComplexTypeReference_child ();
-
-  if (complex == Udm::null)
-  {
-    // Since this is not a complex type, then we know there should
-    // only be one DataValue in the property.
-    std::vector <PICML::DataValue> data_values = prop.DataValue_kind_children ();
-    PICML::DataValue data_value = data_values.front ();
-    PICML::SimpleType simple = data_value.ref ();
-
-    // Write the data type for the property.
-    dt_dispatcher.dispatch (dtv, simple);
-  }
-  else
-  {
-    // Ok, so we are dealing with a complex type. We therefore need to
-    // visit the ComplexType reference in this container.
-    dt_dispatcher.dispatch (dtv, complex.ref ());
-  }
+  
+  // Write the data type for the property.
+  dt_dispatcher.dispatch (dtv, prop.ref ());
 
   // Generate the value for the property.
-  PICML::Property (prop).Accept (dvv);
+  PICML::SimpleProperty::Cast (prop).Accept (dvv);
+}
+
+//
+// Visit_ComplexProperty
+//
+void DeploymentPlanVisitor::
+Visit_ComplexProperty (const PICML::ComplexProperty & prop)
+{
+  // Start with the name of the property.
+  std::string name = prop.name ();
+
+  PICML_Data_Type_Dispatcher dt_dispatcher;
+
+  this->create_simple_content (this->curr_param_, "name", name);
+  xercesc::DOMElement * value = this->create_element (this->curr_param_, "value");
+
+  // First, we need to generate the type for this property
+  PICML_Data_Type_Visitor dtv (value);
+  PICML_Data_Value_Visitor dvv (value);
+  PICML::ComplexTypeReference complex = prop.ComplexTypeReference_child ();
+
+  // visit the ComplexType reference in this container.
+  dt_dispatcher.dispatch (dtv, complex.ref ());
+
+  // Generate the value for the property.
+  PICML::ComplexProperty::Cast (prop).Accept (dvv);
 }
 
 //
@@ -819,7 +837,11 @@ Visit_ConfigProperty (const PICML::ConfigProperty & cp)
   this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
 
   PICML::Property ref = cp.dstConfigProperty_end ();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+  else if (Udm::IsDerivedFrom (ref.type (), PICML::ComplexProperty::meta))
+    PICML::ComplexProperty::Cast (ref).Accept (*this);
 }
 
 //
@@ -843,7 +865,11 @@ Visit_AttributeValue (const PICML::AttributeValue & v)
   this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
 
   PICML::Property prop = v.dstAttributeValue_end ();
-  prop.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (prop).Accept (*this);
+  else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
+    PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
 //
@@ -855,7 +881,11 @@ Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty & acp)
   this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
 
   PICML::Property ref = acp.dstAssemblyConfigProperty_end ();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+  else if (Udm::IsDerivedFrom (ref.type (), PICML::ComplexProperty::meta))
+    PICML::ComplexProperty::Cast (ref).Accept (*this);
 }
 
 //

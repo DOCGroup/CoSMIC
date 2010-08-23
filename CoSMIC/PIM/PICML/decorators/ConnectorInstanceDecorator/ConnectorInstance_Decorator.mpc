@@ -1,7 +1,7 @@
 // $Id$
 
-project (ConnectorInstance_Decorator): game_graphics, game_decorator {
-  sharedname = ConnectorInstance_Decorator
+project (PICML_ConnectorInstance_Decorator): game_graphics, game_decorator {
+  sharedname = PICML_ConnectorInstance_Decorator
 
   pch_header = stdafx.h
   pch_source = stdafx.cpp

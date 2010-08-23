@@ -79,7 +79,9 @@ public:
 
   virtual void Visit_ArtifactDependsOn (const PICML::ArtifactDependsOn & );
 
-  virtual void Visit_Property (const PICML::Property & );
+  virtual void Visit_SimpleProperty (const PICML::SimpleProperty & );
+
+  virtual void Visit_ComplexProperty (const PICML::ComplexProperty & );
 
   virtual void Visit_DataType (const PICML::DataType & );
 

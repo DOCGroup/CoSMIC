@@ -1,3 +1,358 @@
+Sun Aug 22 23:58:09 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/PICML_CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/PICML_CBMLManagerd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManagerd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentDecorator/PICML_Component_Decorator.reg:
+        * PIM/PICML/decorators/ComponentDecorator/PICML_Component_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/PICML_ComponentInstance_Decorator.reg:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/PICML_ComponentInstance_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentRefDecorator/PICML_ComponentRef_Decorator.reg:
+        * PIM/PICML/decorators/ComponentRefDecorator/PICML_ComponentRef_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/PICML_ConnectorInstance_Decorator.reg:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/PICML_ConnectorInstance_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.mpc:
+        * PIM/PICML/decorators/NoShowRefersTo/PICML_NoShowRefersTo_Decorator.reg:
+        * PIM/PICML/decorators/NoShowRefersTo/PICML_NoShowRefersTo_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/PackageDecorator/PICML_Package_Decorator.reg:
+        * PIM/PICML/decorators/PackageDecorator/PICML_Package_Decoratord.reg:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ShowReference/PICML_ShowReferenceDecorator.reg:
+        * PIM/PICML/decorators/ShowReference/PICML_ShowReferenceDecoratord.reg:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/BGML/BGML.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/PICML_BGMLComponent.reg:
+        * PIM/PICML/interpreters/BGMLComponent/PICML_BGMLComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.mpc:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/PICML_ComponentImplementationGenerator.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/PICML_ComponentImplementationGeneratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PICML_DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PICML_DeploymentPlanComponentd.reg:
+
+          Changed the visitors to handle the new Simple and Complex Property
+          types. Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/EQAL/EQAL.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/PICML_IDLGeneratorComponent.reg:
+        * PIM/PICML/interpreters/IDLGenerator/PICML_IDLGeneratorComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/PICML_IDLTextEditor.reg:
+        * PIM/PICML/interpreters/IDLTextEditor/PICML_IDLTextEditord.reg:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/MPC/MPC_Interpreter.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/MPCComponent/PICML_MPCComponent.reg:
+        * PIM/PICML/interpreters/MPCComponent/PICML_MPCComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/PAM/PAM.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PICML_PAMComponent.reg:
+        * PIM/PICML/interpreters/PAMComponent/PICML_PAMComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/PackageComponent/PICML_PackageComponent.reg:
+        * PIM/PICML/interpreters/PackageComponent/PICML_PackageComponentd.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+
+          Changed the visitor to handle the new Simple and Complex Property
+          types. Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/Path/Path.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/PathComponent/PICML_PathComponent.reg:
+        * PIM/PICML/interpreters/PathComponent/PICML_PathComponentd.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/PropertyManager/PICML_Property_Manager.reg:
+        * PIM/PICML/interpreters/PropertyManager/PICML_Property_Managerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/QED/deployment/PICML_QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QED/deployment/PICML_QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/QED/deployment/QED_Deployment.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/QoSMapping/QoSMapping.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/RTConfig/RTConfig.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/Target/Domain.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/PICML_DomainComponent.reg:
+        * PIM/PICML/interpreters/TargetComponent/PICML_DomainComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Added two new types of Properties, Simple and Complex,
+          instead of the old one. Also, put Properties in their
+          own Aspect and fixed constraints.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/CBMLManagerd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManagerd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.reg:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.reg:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.reg:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.reg:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.reg:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.reg:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ShowReference/ShowReferenceDecorator.reg:
+        * PIM/PICML/decorators/ShowReference/ShowReferenceDecoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.reg:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGeneratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponent.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.reg:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.reg:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.reg:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PathComponent/PathComponent.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.reg:
+        * PIM/PICML/interpreters/PropertyManager/Property_Managerd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/QED/deployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QED/deployment/QEDDeploymentComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.reg:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+          Removed these files.
+
 Sun Aug 22 17:36:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * ChangeLog:

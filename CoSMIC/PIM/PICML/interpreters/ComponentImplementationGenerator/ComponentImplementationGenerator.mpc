@@ -1,7 +1,7 @@
 // $Id$
 
-project (BE_ComponentImplementationGenerator) : acedefaults, boost_base, picmllib {
-  sharedname    = BE_ComponentImplementationGenerator
+project (PICML_BE_ComponentImplementationGenerator) : acedefaults, boost_base, picmllib {
+  sharedname    = PICML_BE_ComponentImplementationGenerator
   dynamicflags += PICML_BE_COMPONENTIMPLEMENTATIONGENERATOR_BUILD_DLL
 
   Source_Files {
@@ -14,11 +14,11 @@ project (BE_ComponentImplementationGenerator) : acedefaults, boost_base, picmlli
   }
 }
 
-project (ComponentImplementationGenerator) : acedefaults, picmllib, gme_udm_component {
-  sharedname = ComponentImplementationGenerator
+project (PICML_ComponentImplementationGenerator) : acedefaults, picmllib, gme_udm_component {
+  sharedname = PICML_ComponentImplementationGenerator
 
-  after += BE_ComponentImplementationGenerator
-  libs  += BE_ComponentImplementationGenerator
+  after += PICML_BE_ComponentImplementationGenerator
+  libs  += PICML_BE_ComponentImplementationGenerator
 
   Source_Files {
 

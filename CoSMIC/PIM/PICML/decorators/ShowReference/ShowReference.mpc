@@ -1,7 +1,7 @@
 // $Id$
 
-project (ShowReferenceDecorator): game_utils, game_graphics, game_decorator {
-  sharedname = ShowReferenceDecorator
+project (PICML_ShowReferenceDecorator): game_utils, game_graphics, game_decorator {
+  sharedname = PICML_ShowReferenceDecorator
   
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

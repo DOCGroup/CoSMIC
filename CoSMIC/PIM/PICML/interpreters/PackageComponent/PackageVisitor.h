@@ -63,8 +63,7 @@ namespace PICML
     virtual void Visit_ArtifactDependency(const ArtifactDependency&);
     virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&);
     virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
-    virtual void Visit_Property(const Property&);
-    virtual void Visit_DataValue(const DataValue&);
+    virtual void Visit_SimpleProperty(const SimpleProperty&);
 
     virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&);
     virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&);
@@ -203,7 +202,7 @@ namespace PICML
 
     void CreateAssemblyConnections (vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (vector<ComponentAssembly>& assemblies);
-    void CreatePropertyElement (string name, const Property& property);
+    void CreateSimplePropertyElement (string name, const SimpleProperty& prop);
     void DumpStringProperty (const string& name, const string& pvalue);
     void GenerateExecParameters (const ImplementationArtifact& ia);
     string CreatePath (const DisplayNode& node);
@@ -215,6 +214,8 @@ namespace PICML
     void CollectSupportedTypes (const Object& obj, set<string>& supportedTypes);
     void CollectSupportedTypes (const Event& event,
                                 set<string>& supportedTypes);
+
+    void Evaluate_SimpleProperty_Reference (const PICML::SimpleProperty &);
 
     private:
 

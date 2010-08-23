@@ -1,0 +1,31 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}]
+@="MGA.AddOn.CBMLManager"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\ProgID]
+@="MGA.AddOn.CBMLManager"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\InProcServer32]
+@="PICML_CBMLManager.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\MGA.AddOn.CBMLManager]
+@="MGA.AddOn.CBMLManager"
+
+[HKEY_CURRENT_USER\Software\Classes\MGA.AddOn.CBMLManager\CLSID]
+@="{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.AddOn.CBMLManager]
+"Tooltip"="Simplifies the creation of CUTS behavior models"
+"Paradigm"="PICML, CQML"
+"Type"=dword:00000002
+"Description"="CBMLManager"
+
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.AddOn.CBMLManager\Associated]
+"PICML"=""
+"CQML"=""
+"CHAOS"=""

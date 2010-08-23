@@ -1,10 +1,10 @@
 // $Id$
 
-project (PathComponent): picmllib, boost_base, gme_udm_component {
-  sharedname = PathComponent
+project (PICML_PathComponent): picmllib, boost_base, gme_udm_component {
+  sharedname = PICML_PathComponent
 
-  after += Path
-  libs  += Path
+  after += PICML_Path
+  libs  += PICML_Path
 
   Source_Files {
     Component.rc

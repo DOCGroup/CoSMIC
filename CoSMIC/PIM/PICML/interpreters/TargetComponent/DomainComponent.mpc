@@ -1,9 +1,9 @@
 // $Id$
 
-project (DomainComponent): picmllib, gme_udm_component {
-  sharedname = DomainComponent
-  after += Domain
-  libs  += Domain
+project (PICML_DomainComponent): picmllib, gme_udm_component {
+  sharedname = PICML_DomainComponent
+  after += PICML_Domain
+  libs  += PICML_Domain
 
   Source_Files {
 

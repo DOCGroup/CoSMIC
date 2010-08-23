@@ -1,10 +1,10 @@
-project (QoSMappingComponent): mfc, picmllib {
-  after += PICML QoSMapping
+project (PICML_QoSMappingComponent): mfc, picmllib {
+  after += PICML PICML_QoSMapping
 
 
   macros += PICML_HAS_DLL _USRDLL _WINDLL
-  sharedname = QoSMappingComponent
-  libs += PICML QoSMapping
+  sharedname = PICML_QoSMappingComponent
+  libs += PICML PICML_QoSMapping
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
@@ -72,11 +72,11 @@ project (QoSMappingComponent): mfc, picmllib {
   }
 }
 
-project (RegisterQoSMappingComponent): picmllib {
-  after += QoSMappingComponent
+project (PICML_RegisterQoSMappingComponent): picmllib {
+  after += PICML_QoSMappingComponent
   custom_only           = 1
 
   Register_Files {
-    $(COSMIC_ROOT)\bin\QoSMappingComponent.dll
+    $(COSMIC_ROOT)\bin\PICML_QoSMappingComponent.dll
   }
 }

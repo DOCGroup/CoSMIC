@@ -1,7 +1,7 @@
-project (EQAL): mfc, picmllib {
+project (PICML_EQAL): mfc, picmllib {
    libpaths += $(COSMIC_ROOT)/lib
    macros += BUILDER_OBJECT_NETWORK_V2 _WINDLL _USRDLL
-   sharedname = EQAL
+   sharedname = PICML_EQAL
    includes += . $(GME_ROOT)/SDK/BON \
                $(COSMIC_ROOT)/PIM/PICML/interpreters/EQAL
 
@@ -57,11 +57,11 @@ project (EQAL): mfc, picmllib {
    }
 }
 
-project (RegisterEQAL) : picmllib {
-  after += EQAL
+project (PICML_RegisterEQAL) : picmllib {
+  after += PICML_EQAL
   custom_only = 1
 
   Register_Files {
-    $(COSMIC_ROOT)\bin\EQAL.dll
+    $(COSMIC_ROOT)\bin\PICML_EQAL.dll
   }
 }

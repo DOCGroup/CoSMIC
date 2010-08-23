@@ -1,7 +1,7 @@
 // $Id$
 
-project (IDLGeneratorComponent) : picml_udm_utils, game_interpreter, udm, cosmic_utils {
-  sharedname = IDLGeneratorComponent
+project (PICML_IDLGeneratorComponent) : picml_udm_utils, game_interpreter, udm, cosmic_utils {
+  sharedname = PICML_IDLGeneratorComponent
 
   Source_Files {
     IDL_Generator_Component.idl

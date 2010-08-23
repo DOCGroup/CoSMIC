@@ -5,6 +5,7 @@
 #include "boost/bind.hpp"
 
 #include <algorithm>
+#include <windows.h>
 
 //
 // Nodemap_Generator
@@ -77,36 +78,22 @@ void Nodemap_Generator::
 Visit_PropertyMapping (const PICML::PropertyMapping & pmapping)
 {
   PICML::Property prop = pmapping.dstPropertyMapping_end ();
-  prop.Accept (*this);
+
+  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (prop).Accept (*this);
 }
 
 
 //
-// Visit_Property
+// Visit_SimpleProperty
 //
 void Nodemap_Generator::
-Visit_Property (const PICML::Property & prop)
+Visit_SimpleProperty (const PICML::SimpleProperty & prop)
 {
   const std::string name (prop.name ());
 
   if (name != "StringIOR")
     return;
 
-  // Since this is a simple type, we only need to get the
-  // first element in the collection.
-  std::vector <PICML::DataValue> values = prop.DataValue_kind_children ();
-
-  if (values.empty ())
-    return;
-
-  values.front ().Accept (*this);
-}
-
-//
-// Visit_DataValue
-//
-void Nodemap_Generator::
-Visit_DataValue (const PICML::DataValue & dv)
-{
-  this->out << this->curr_node_ref_name_ << "\t\t\t" << dv.Value () << std::endl;
+  this->out << this->curr_node_ref_name_ << "\t\t\t" << prop.Value () << std::endl;
 }

@@ -1,5 +1,5 @@
-project(Domain): picmllib {
-   sharedname = Domain
+project(PICML_Domain): picmllib {
+   sharedname = PICML_Domain
    macros += DOMAIN_BUILD_DLL
 
    Source_Files {

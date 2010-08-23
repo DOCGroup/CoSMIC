@@ -67,9 +67,11 @@ public:
 
   virtual void Visit_Enum (const PICML::Enum & e);
 
+  virtual void Visit_SimpleProperty (const PICML::SimpleProperty & prop);
+  virtual void Visit_ComplexProperty (const PICML::ComplexProperty & prop);
+
   virtual void Visit_DataValueContainer (const PICML::DataValueContainer & c);
   virtual void Visit_DataValue (const PICML::DataValue & v);
-  virtual void Visit_Property (const PICML::Property & prop);
 
 private:
   enum container_t
@@ -87,7 +89,7 @@ private:
   DataValueBase_Dispatcher dvb_dispatcher_;
   PICML_Data_Type_Dispatcher dt_dispatcher_;
 
-  PICML::DataValue value_;
+  std::string value_;
 };
 
 #include "Data_Value_Visitor.inl"

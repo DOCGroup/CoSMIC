@@ -1,10 +1,10 @@
 // $Id$
 
-project (RTConfigComponent): picmllib, gme_udm_component {
-  sharedname = RTConfigComponent
+project (PICML_RTConfigComponent): picmllib, gme_udm_component {
+  sharedname = PICML_RTConfigComponent
 
-  after += RTConfig
-  libs  += RTConfig
+  after += PICML_RTConfig
+  libs  += PICML_RTConfig
 
   Source_Files {
     Component.rc

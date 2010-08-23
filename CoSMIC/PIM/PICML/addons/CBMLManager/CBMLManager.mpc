@@ -1,7 +1,7 @@
 // $Id$
 
-project (CBMLManager): boost_base, game_component, game_utils, cosmic_lib {
-  sharedname = CBMLManager
+project (PICML_CBMLManager): boost_base, game_component, game_utils, cosmic_lib {
+  sharedname = PICML_CBMLManager
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

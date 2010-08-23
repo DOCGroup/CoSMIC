@@ -1,7 +1,7 @@
 // $Id$
 
-project(Package): acelib, picmllib, boost_base, zlib, minizip {
-   sharedname    = Package
+project(PICML_Package): acelib, picmllib, boost_base, zlib, minizip {
+   sharedname    = PICML_Package
    dynamicflags += PACKAGE_BUILD_DLL PACKAGER_BUILD_DLL
 
    includes += $(ACE_ROOT)/contrib/minizip
@@ -22,13 +22,13 @@ project(Package): acelib, picmllib, boost_base, zlib, minizip {
    }
 }
 
-project (PackageComponent): game_utils, picmllib, gme_udm_component {
-  sharedname = PackageComponent
+project (PICML_PackageComponent): game_utils, picmllib, gme_udm_component {
+  sharedname = PICML_PackageComponent
 
   // prevent build if Package project does not build.
   requires += zlib
-  after    += Package
-  libs     += Package
+  after    += PICML_Package
+  libs     += PICML_Package
 
   Source_Files {
     PackageMainDialog.cpp

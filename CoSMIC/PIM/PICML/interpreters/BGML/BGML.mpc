@@ -1,5 +1,5 @@
-project(BGML): picmllib {
-   sharedname = BGML
+project(PICML_BGML): picmllib {
+   sharedname = PICML_BGML
    macros += BGML_BUILD_DLL
 
    Source_Files {

@@ -4,6 +4,7 @@
 #include "PICML/PICML.h"
 
 #include "DeploymentPlan_Export.h"
+#include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
 
 #include <iostream>
 #include <fstream>
@@ -30,9 +31,7 @@ class Nodemap_Generator :
 
   virtual void Visit_PropertyMapping (const PICML::PropertyMapping &);
 
-  virtual void Visit_Property (const PICML::Property & );
-
-  virtual void Visit_DataValue (const PICML::DataValue & );
+  virtual void Visit_SimpleProperty (const PICML::SimpleProperty &);
 
   private:
 

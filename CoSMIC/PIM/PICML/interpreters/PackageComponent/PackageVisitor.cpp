@@ -282,7 +282,10 @@ void PackageVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& pa
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = param.dstArtifactExecParameter_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -308,34 +311,33 @@ void PackageVisitor::GenerateExecParameters (const ImplementationArtifact& ia)
     }
 }
 
-void PackageVisitor::Visit_Property(const Property& property)
+void PackageVisitor::Visit_SimpleProperty(const SimpleProperty& prop)
 {
-  this->CreatePropertyElement (property.name(), property);
+  this->CreateSimplePropertyElement (prop.name (), prop);
 }
 
-void PackageVisitor::CreatePropertyElement (string name, const Property& property)
+void PackageVisitor::CreateSimplePropertyElement (string name, const SimpleProperty& prop)
 {
   this->push();
   this->curr_->appendChild (this->createSimpleContent ("name", name));
+
   // Property's value
   DOMElement* value = this->doc_->createElement (XStr ("value"));
   this->curr_->appendChild (value);
   this->curr_ = value;
 
   // Property's type
-  std::vector <PICML::DataValue> data_values = property.DataValue_kind_children ();
-  PICML::DataValue data_value = data_values.front ();
-  data_value.Accept (*this);
+  this->Evaluate_SimpleProperty_Reference (prop);
   
   // Property's type's value
   DOMElement* val = this->doc_->createElement (XStr ("value"));
   this->curr_->appendChild (val);
   this->curr_ = val;
 
-  PredefinedType ref = PICML::PredefinedType::Cast (data_value.ref ());
+  PredefinedType ref = PICML::PredefinedType::Cast (prop.ref ());
   const Uml::Class& refType = ref.type ();
 
-  std::string data_val = data_value.Value ();
+  std::string data_val = prop.Value ();
 
   if (refType == Boolean::meta)
     {
@@ -375,9 +377,9 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
   this->pop();
 }
 
-void PackageVisitor::Visit_DataValue(const DataValue & dv)
+void PackageVisitor::Evaluate_SimpleProperty_Reference (const PICML::SimpleProperty & prop)
 {
-  PredefinedType ref = PICML::PredefinedType::Cast (dv.ref ());
+  PredefinedType ref = PICML::PredefinedType::Cast (prop.ref ());
   const Uml::Class& refType = ref.type ();
 
   if (refType == Boolean::meta)
@@ -506,7 +508,10 @@ void PackageVisitor::Visit_ArtifactInfoProperty(const ArtifactInfoProperty& aip)
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = aip.dstArtifactInfoProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -658,7 +663,10 @@ void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProp
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = pccp.dstPackageConfConfigProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -772,7 +780,10 @@ void PackageVisitor::Visit_PackageConfigProperty(const PackageConfigProperty& pc
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = pcp.dstPackageConfigProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -783,7 +794,10 @@ void PackageVisitor::Visit_PackageInfoProperty(const PackageInfoProperty& pip)
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = pip.dstPackageInfoProperty_end();
-  ref.Accept (*this);
+
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -1263,7 +1277,10 @@ void PackageVisitor::Visit_ComponentInfoProperty(const ComponentInfoProperty& ci
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = cip.dstComponentInfoProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 
 }
@@ -1275,7 +1292,10 @@ void PackageVisitor::Visit_ComponentConfigProperty(const ComponentConfigProperty
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = ccp.dstComponentConfigProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 
 }
@@ -1383,7 +1403,10 @@ void PackageVisitor::Visit_ConfigProperty(const ConfigProperty& cp)
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = cp.dstConfigProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -1394,7 +1417,10 @@ void PackageVisitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty& 
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = acp.dstAssemblyConfigProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 
@@ -1489,11 +1515,14 @@ void PackageVisitor::Visit_Path (const Path& path)
       this->curr_->appendChild (ele);
       this->curr_ = ele;
       PathProperty pprop = *iter;
-      Property prop = pprop.dstPathProperty_end();
+      PICML::Property prop = pprop.dstPathProperty_end();
       string pname = path.getPath (".", false, true, "name", true);
       pname += "/";
       pname += prop.name();
-      this->CreatePropertyElement (pname, prop);
+
+      if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+        this->CreateSimplePropertyElement (pname, PICML::SimpleProperty::Cast (prop));
+
       this->pop();
     }
 
@@ -1893,8 +1922,11 @@ CreateAssemblyInstance (const ComponentInstance & comp)
             ele = this->doc_->createElement (XStr ("configProperty"));
           this->curr_->appendChild (ele);
           this->curr_ = ele;
-          Property val = attrVal.second;
-          this->CreatePropertyElement (compAttr.second, val);
+          PICML::Property val = attrVal.second;
+
+          if (Udm::IsDerivedFrom (val.type (), PICML::SimpleProperty::meta))
+            this->CreateSimplePropertyElement (compAttr.second, PICML::SimpleProperty::Cast (val));
+          
           this->pop();
         }
     }
@@ -1926,7 +1958,9 @@ void PackageVisitor::Visit_AttributeValue (const AttributeValue& value)
 
   Property ref = value.dstAttributeValue_end();
   AttributeInstance attr = value.srcAttributeValue_end ();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
 
   this->pop();
 }
@@ -2231,7 +2265,10 @@ void PackageVisitor::Visit_InfoProperty(const InfoProperty& ip)
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = ip.dstInfoProperty_end();
-  ref.Accept (*this);
+  
+  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+    PICML::SimpleProperty::Cast (ref).Accept (*this);
+
   this->pop();
 }
 

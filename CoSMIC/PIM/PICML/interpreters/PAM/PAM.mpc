@@ -1,5 +1,5 @@
-project(PAM): picmllib, boost_base {
-   sharedname = PAM
+project(PICML_PAM): picmllib, boost_base {
+   sharedname = PICML_PAM
    dynamicflags += PAM_BUILD_DLL
 
    Source_Files {

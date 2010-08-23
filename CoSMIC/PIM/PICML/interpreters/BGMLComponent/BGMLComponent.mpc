@@ -1,8 +1,8 @@
-project (BGMLComponent): mfc, picmllib, register {
+project (PICML_BGMLComponent): mfc, picmllib, register {
   after += BGML
   macros +=  _USRDLL _WINDLL
-  sharedname = BGMLComponent
-  libs += BGML
+  sharedname = PICML_BGMLComponent
+  libs += PICML_BGML
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 

@@ -22,7 +22,7 @@ PICML_Data_Value_Visitor (xercesc::DOMElement * curr)
 void PICML_Data_Value_Visitor::
 Visit_Boolean (const PICML::Boolean & )
 {
-  this->create_simple_content ("boolean", this->value_.Value ());
+  this->create_simple_content ("boolean", this->value_);
 }
 
 //
@@ -31,7 +31,7 @@ Visit_Boolean (const PICML::Boolean & )
 void PICML_Data_Value_Visitor::
 Visit_Byte (const PICML::Byte & )
 {
-  this->create_simple_content ("octet", this->value_.Value ());
+  this->create_simple_content ("octet", this->value_);
 }
 
 //
@@ -39,7 +39,7 @@ Visit_Byte (const PICML::Byte & )
 //
 void PICML_Data_Value_Visitor::Visit_Char (const PICML::Char & )
 {
-  this->create_simple_content ("char", this->value_.Value ());
+  this->create_simple_content ("char", this->value_);
 }
 
 //
@@ -47,7 +47,7 @@ void PICML_Data_Value_Visitor::Visit_Char (const PICML::Char & )
 //
 void PICML_Data_Value_Visitor::Visit_WideChar (const PICML::WideChar & )
 {
-  this->create_simple_content ("wchar", this->value_.Value ());
+  this->create_simple_content ("wchar", this->value_);
 }
 
 //
@@ -56,7 +56,7 @@ void PICML_Data_Value_Visitor::Visit_WideChar (const PICML::WideChar & )
 void PICML_Data_Value_Visitor::
 Visit_String (const PICML::String & )
 {
-  this->create_simple_content ("string", this->value_.Value ());
+  this->create_simple_content ("string", this->value_);
 }
 
 //
@@ -65,7 +65,7 @@ Visit_String (const PICML::String & )
 void PICML_Data_Value_Visitor::
 Visit_WideString (const PICML::WideString & )
 {
-  this->create_simple_content ("wstring", this->value_.Value ());
+  this->create_simple_content ("wstring", this->value_);
 }
 
 //
@@ -74,7 +74,7 @@ Visit_WideString (const PICML::WideString & )
 void PICML_Data_Value_Visitor::
 Visit_FloatNumber (const PICML::FloatNumber & )
 {
-  this->create_simple_content ("float", this->value_.Value ());
+  this->create_simple_content ("float", this->value_);
 }
 
 //
@@ -83,7 +83,7 @@ Visit_FloatNumber (const PICML::FloatNumber & )
 void PICML_Data_Value_Visitor::
 Visit_DoubleNumber (const PICML::DoubleNumber & )
 {
-  this->create_simple_content ("double", this->value_.Value ());
+  this->create_simple_content ("double", this->value_);
 }
 
 //
@@ -92,7 +92,7 @@ Visit_DoubleNumber (const PICML::DoubleNumber & )
 void PICML_Data_Value_Visitor::
 Visit_LongDoubleNumber (const PICML::LongDoubleNumber & )
 {
-  this->create_simple_content ("longdouble", this->value_.Value ());
+  this->create_simple_content ("longdouble", this->value_);
 }
 
 //
@@ -101,7 +101,7 @@ Visit_LongDoubleNumber (const PICML::LongDoubleNumber & )
 void PICML_Data_Value_Visitor::
 Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & )
 {
-  this->create_simple_content ("ushort", this->value_.Value ());
+  this->create_simple_content ("ushort", this->value_);
 }
 
 //
@@ -110,7 +110,7 @@ Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & )
 void PICML_Data_Value_Visitor::
 Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & )
 {
-  this->create_simple_content ("ulong", this->value_.Value ());
+  this->create_simple_content ("ulong", this->value_);
 }
 
 //
@@ -119,7 +119,7 @@ Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & )
 void PICML_Data_Value_Visitor::
 Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & )
 {
-  this->create_simple_content ("ulonglong", this->value_.Value ());
+  this->create_simple_content ("ulonglong", this->value_);
 }
 
 //
@@ -128,7 +128,7 @@ Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & )
 void PICML_Data_Value_Visitor::
 Visit_ShortInteger (const PICML::ShortInteger & )
 {
-  this->create_simple_content ("short", this->value_.Value ());
+  this->create_simple_content ("short", this->value_);
 }
 
 //
@@ -137,7 +137,7 @@ Visit_ShortInteger (const PICML::ShortInteger & )
 void PICML_Data_Value_Visitor::
 Visit_LongInteger (const PICML::LongInteger & )
 {
-  this->create_simple_content ("long", this->value_.Value ());
+  this->create_simple_content ("long", this->value_);
 }
 
 //
@@ -146,7 +146,7 @@ Visit_LongInteger (const PICML::LongInteger & )
 void PICML_Data_Value_Visitor::
 Visit_LongLongInteger (const PICML::LongLongInteger & )
 {
-  this->create_simple_content ("longlong", this->value_.Value ());
+  this->create_simple_content ("longlong", this->value_);
 }
 
 //
@@ -155,7 +155,7 @@ Visit_LongLongInteger (const PICML::LongLongInteger & )
 void PICML_Data_Value_Visitor::
 Visit_Enum (const PICML::Enum & )
 {
-  this->create_simple_content ("enum", this->value_.Value ());
+  this->create_simple_content ("enum", this->value_);
 }
 
 //
@@ -195,7 +195,7 @@ Visit_DataValue (const PICML::DataValue & value)
 
   case NONE:
     // Store the value for later usage.
-    this->value_ = value;
+    this->value_ = value.Value ();
 
     // Visit the value's type. This will generate the correct value
     // element for this data value.
@@ -273,52 +273,51 @@ Visit_DataValueContainer (const PICML::DataValueContainer & c)
 }
 
 //
-// Visit_Property
+// Visit_SimpleProperty
 //
-void PICML_Data_Value_Visitor::Visit_Property (const PICML::Property & prop)
+void PICML_Data_Value_Visitor::Visit_SimpleProperty (const PICML::SimpleProperty & prop)
+{
+  this->value_ = prop.Value ();
+  this->dt_dispatcher_.dispatch (*this, prop.ref ());
+}
+
+//
+// Visit_ComlexProperty
+//
+void PICML_Data_Value_Visitor::Visit_ComplexProperty (const PICML::ComplexProperty & prop)
 {
   PICML::ComplexTypeReference complex = prop.ComplexTypeReference_child ();
 
-  if (complex == Udm::null)
-  {
-    // Visit the one and only DataValue element.
-    std::vector <PICML::DataValue> data_values = prop.DataValue_kind_children ();
-    PICML::DataValue data_value = data_values.front ();
-    data_value.Accept (*this);
-  }
-  else
-  {
-    PICML::ComplexType t = complex.ref ();
-    const Uml::Class & cls = t.type ();
+  PICML::ComplexType t = complex.ref ();
+  const Uml::Class & cls = t.type ();
 
-    // Store the container's type for later usage.
-    if (cls == PICML::Collection::meta)
-      this->container_ = SEQUENCE;
-    else if (cls == PICML::Aggregate::meta)
-      this->container_ = AGGREGATE;
+  // Store the container's type for later usage.
+  if (cls == PICML::Collection::meta)
+    this->container_ = SEQUENCE;
+  else if (cls == PICML::Aggregate::meta)
+    this->container_ = AGGREGATE;
 
-    // Select the DataValueBase elements from top to bottom. This has
-    // to be done in two phases since UDM does not allow you to initialize
-    // the collection with the sort function.
-    typedef UDM_Position_Sort_T <PICML::DataValueBase, PS_Top_To_Bottom> sorter_t;
-    sorter_t sorter ("DataValueAspect", PS_Top_To_Bottom ());
+  // Select the DataValueBase elements from top to bottom. This has
+  // to be done in two phases since UDM does not allow you to initialize
+  // the collection with the sort function.
+  typedef UDM_Position_Sort_T <PICML::DataValueBase, PS_Top_To_Bottom> sorter_t;
+  sorter_t sorter ("DataValueAspect", PS_Top_To_Bottom ());
 
-    typedef std::set <PICML::DataValueBase, sorter_t> sorted_values_t;
-    sorted_values_t sorted_values (sorter);
+  typedef std::set <PICML::DataValueBase, sorter_t> sorted_values_t;
+  sorted_values_t sorted_values (sorter);
 
-    std::vector <PICML::DataValueBase> values = prop.DataValueBase_kind_children ();
-    std::for_each (values.begin (),
-                   values.end (),
-                   boost::bind (&sorted_values_t::insert,
-                                boost::ref (sorted_values),
-                                _1));
+  std::vector <PICML::DataValueBase> values = prop.DataValueBase_kind_children ();
+  std::for_each (values.begin (),
+                 values.end (),
+                 boost::bind (&sorted_values_t::insert,
+                              boost::ref (sorted_values),
+                              _1));
 
-    // Visit each member of the container.
-    std::for_each (sorted_values.begin (),
-                   sorted_values.end (),
-                   boost::bind (&DataValueBase_Dispatcher::dispatch,
-                                boost::ref (this->dvb_dispatcher_),
-                                boost::ref (*this),
-                                _1));
-  }
+  // Visit each member of the container.
+  std::for_each (sorted_values.begin (),
+                 sorted_values.end (),
+                 boost::bind (&DataValueBase_Dispatcher::dispatch,
+                              boost::ref (this->dvb_dispatcher_),
+                              boost::ref (*this),
+                              _1));
 }

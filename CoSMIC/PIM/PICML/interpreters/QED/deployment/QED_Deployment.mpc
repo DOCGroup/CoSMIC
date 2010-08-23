@@ -1,7 +1,7 @@
 // $Id$
 
-project (QEDDeployment): boost_base, picmllib {
-  sharedname    = QEDDeployment
+project (PICML_QEDDeployment): boost_base, picmllib {
+  sharedname    = PICML_QEDDeployment
   dynamicflags += QED_DEPLOYMENT_BUILD_DLL
 
   Source_Files {
@@ -14,11 +14,11 @@ project (QEDDeployment): boost_base, picmllib {
   }
 }
 
-project (QEDDeploymentComponent) : game, picmllib, gme_udm_component {
-  sharedname    = QEDDeploymentComponent
+project (PICML_QEDDeploymentComponent) : game, picmllib, gme_udm_component {
+  sharedname    = PICML_QEDDeploymentComponent
 
-  after += QEDDeployment
-  libs  += QEDDeployment
+  after += PICML_QEDDeployment
+  libs  += PICML_QEDDeployment
 
   Source_Files {
     Component.rc

@@ -1,7 +1,7 @@
 // $Id$
 
-project (Component_Decorator): game_graphics, game_decorator {
-  sharedname = Component_Decorator
+project (PICML_Component_Decorator): game_graphics, game_decorator {
+  sharedname = PICML_Component_Decorator
   
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

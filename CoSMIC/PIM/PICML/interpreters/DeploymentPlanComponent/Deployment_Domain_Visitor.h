@@ -39,9 +39,7 @@ class Deployment_Domain_Visitor :
   
   virtual void Visit_PropertyMapping (const PICML::PropertyMapping &);
   
-  virtual void Visit_Property (const PICML::Property & );
-
-  virtual void Visit_DataValue (const PICML::DataValue & );
+  virtual void Visit_SimpleProperty (const PICML::SimpleProperty &);
 
   private:
   /// Initialize the object.

@@ -1,10 +1,10 @@
 // $Id$
 
-project (MPCComponent): picmllib, gme_udm_component {
-  sharedname = MPCComponent
+project (PICML_MPCComponent): picmllib, gme_udm_component {
+  sharedname = PICML_MPCComponent
 
-  after += MPC
-  libs  += MPC
+  after += PICML_MPC
+  libs  += PICML_MPC
 
   Source_Files {
     Component.rc

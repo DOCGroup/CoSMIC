@@ -1,7 +1,7 @@
 // $Id$
 
-project (IDLTextEditor_Core) : gme_common, t3_runtime, acelib, cosmic_lib {
-  sharedname    = IDLTextEditor_Core
+project (PICML_IDLTextEditor_Core) : gme_common, t3_runtime, acelib, cosmic_lib {
+  sharedname    = PICML_IDLTextEditor_Core
   dynamicflags += IDLTEXTEDITOR_CORE_BUILD_DLL
 
   pch_header = StdAfx.h
@@ -43,13 +43,13 @@ project (IDLTextEditor_Core) : gme_common, t3_runtime, acelib, cosmic_lib {
   }
 }
 
-project (IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_utils, cosmic_common {
-  sharedname = IDLTextEditor
+project (PICML_IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_utils, cosmic_common {
+  sharedname = PICML_IDLTextEditor
 
   includes += ../IDLGenerator
 
-  after    += IDLTextEditor_Core
-  libs     += IDLTextEditor_Core
+  after    += PICML_IDLTextEditor_Core
+  libs     += PICML_IDLTextEditor_Core
 
   Source_Files {
     Component.rc

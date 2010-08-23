@@ -1,7 +1,7 @@
 // $Id$
 
-project (DeploymentPlan): boost_base, picml_udm_utils {
-  sharedname    = DeploymentPlan
+project (PICML_DeploymentPlan): boost_base, picml_udm_utils {
+  sharedname    = PICML_DeploymentPlan
   dynamicflags += DEPLOYMENTPLAN_BUILD_DLL
 
   Source_Files {
@@ -29,11 +29,11 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
   }
 }
 
-project (DeploymentPlanComponent): boost_base, picmllib, gme_udm_component {
-  sharedname = DeploymentPlanComponent
+project (PICML_DeploymentPlanComponent): boost_base, picmllib, gme_udm_component {
+  sharedname = PICML_DeploymentPlanComponent
 
-  after += DeploymentPlan
-  libs  += DeploymentPlan
+  after += PICML_DeploymentPlan
+  libs  += PICML_DeploymentPlan
 
   Source_Files {
     DeploymentPlan_MainDialog.cpp

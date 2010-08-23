@@ -1,8 +1,8 @@
 // $Id$
 
-project (Configurator): mfc, picmllib {
+project (PICML_Configurator): mfc, picmllib {
    after += PICML config_exe
-   sharedname = Configurator
+   sharedname = PICML_Configurator
 
    macros += PICML_HAS_DLL _USRDLL _WINDLL \
              OCML_CONFIGURATOR_INTERPRETER_BUILD_DLL
@@ -50,11 +50,11 @@ project (Configurator): mfc, picmllib {
    }
 }
 
-project (RegisterConfigurator): picmllib {
-  after += Configurator
+project (PICML_RegisterConfigurator): picmllib {
+  after += PICML_Configurator
   custom_only = 1
 
   Register_Files {
-    $(COSMIC_ROOT)\bin\Configurator.dll
+    $(COSMIC_ROOT)\bin\PICML_Configurator.dll
   }
 }

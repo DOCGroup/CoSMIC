@@ -1,6 +1,6 @@
-project(QoSMapping): picmllib {
+project(PICML_QoSMapping): picmllib {
    after += PICML
-   sharedname = QoSMapping
+   sharedname = PICML_QoSMapping
    macros += QOSMAPPING_BUILD_DLL PICML_HAS_DLL
    libs += PICML
 

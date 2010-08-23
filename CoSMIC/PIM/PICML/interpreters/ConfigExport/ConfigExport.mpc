@@ -1,9 +1,9 @@
-project (ConfigExport): mfc, picmllib {
+project (PICML_ConfigExport): mfc, picmllib {
    after += PICML
 
    macros += PICML_HAS_DLL _USRDLL _WINDLL \
              OCML_CONFIGURATOR_INTERPRETER_BUILD_DLL
-   sharedname = ConfigExport
+   sharedname = PICML_ConfigExport
    libs += PICML
    pch_header = StdAfx.h
    pch_source = StdAfx.cpp
@@ -59,11 +59,11 @@ project (ConfigExport): mfc, picmllib {
    }
 }
 
-project (RegisterConfigExport): picmllib {
-  after += ConfigExport
+project (PICML_RegisterConfigExport): picmllib {
+  after += PICML_ConfigExport
   custom_only = 1
 
   Register_Files {
-    $(COSMIC_ROOT)\bin\ConfigExport.dll
+    $(COSMIC_ROOT)\bin\PICML_ConfigExport.dll
   }
 }
