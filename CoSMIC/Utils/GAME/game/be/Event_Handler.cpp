@@ -7,6 +7,8 @@
 #include "Event_Handler.inl"
 #endif
 
+#include "game/Transaction.h"
+
 #include "ace/ACE.h"
 #include "ace/Auto_Ptr.h"
 #include <bitset>
@@ -327,7 +329,9 @@ void Event_Handler::attach (Event_Handler_Interface * impl)
 //
 int Event_Handler::initialize (GAME::Project & project)
 {
+  // Save the project and start a new transaction.
   this->project_ = project;
+  Transaction t (this->project_, TRANSACTION_READ_ONLY);
 
   if (0 != this->impl_)
     return this->impl_->initialize (project);

@@ -8,7 +8,6 @@
 #include "game/dialogs/Selection_List_Dialog_T.h"
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
-#include "game/Transaction.h"
 
 #include "Dialogs.h"
 #include "DefaultImplementationGenerator.h"
@@ -63,8 +62,6 @@ PICMLManager_Impl::~PICMLManager_Impl (void)
 //
 int PICMLManager_Impl::initialize (GAME::Project & project)
 {
-  GAME::Transaction t (project);
-
   this->project_ = project;
 
   this->handlers_.bind ("ExternalDelegate", &PICMLManager_Impl::handle_ExternalDelegate);
