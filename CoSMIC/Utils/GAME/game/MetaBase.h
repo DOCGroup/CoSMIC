@@ -172,6 +172,9 @@ public:
   /// Get the parent project for this object.
   Project project (void) const;
 
+  /// Get the hash value for the object.
+  unsigned long hash (void) const;
+
 protected:
   /// The underlying interface pointer.
   mutable ATL::CComPtr <IMgaMetaBase> metabase_;

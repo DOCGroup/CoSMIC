@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        Event_Sink_Impl.h
+ * @file        Event_Handler.h
  *
  * $Id$
  *
@@ -15,11 +15,14 @@
 
 #include <atlbase.h>
 #include <atlcom.h>
-#include "game/Object.h"
+
+#include "game/Project.h"
 #include "game/stlace.h"
+
 #include "ace/Hash_Map_Manager.h"
 #include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
+
 #include "Event_Handler_Interface.h"
 
 namespace GAME
@@ -59,6 +62,15 @@ public:
    * @param[in]       eh            Pointer to the event handler
    */
   int register_handler (const std::string & metaname,
+                        Event_Handler_Interface * eh);
+
+  /**
+   * @overload
+   *
+   * @param[in]       meta          The type's meta information
+   * @param[in]       eh            Pointer to the event handler
+   */
+  int register_handler (const Meta::Base & meta,
                         Event_Handler_Interface * eh);
 
   /**
@@ -104,13 +116,16 @@ private:
   bool enable_;
 
   /// Collection of event handlers registered by type.
-  ACE_Hash_Map_Manager <std::string,
+  ACE_Hash_Map_Manager <Meta::Base,
                         handler_set *,
                         ACE_Null_Mutex>
                         type_handlers_;
 
   /// Master register for all registered handlers.
   handler_set master_;
+
+  /// The current project for the event handler.
+  Project project_;
 };
 
 }

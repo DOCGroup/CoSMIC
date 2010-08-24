@@ -114,6 +114,15 @@ void Base::release (void)
   this->metabase_.Release ();
 }
 
+//
+// hash
+//
+GAME_INLINE
+unsigned long Base::hash (void) const
+{
+  return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (this->metabase_.p));
+}
+
 }
 }
 

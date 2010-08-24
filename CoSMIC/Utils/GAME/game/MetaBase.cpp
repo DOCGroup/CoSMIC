@@ -145,6 +145,7 @@ Project Base::project (void) const
   VERIFY_HRESULT (this->metabase_->get_MetaProject (&proj));
 
   return proj.p;
+
 }
 
 }

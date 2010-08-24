@@ -1,3 +1,21 @@
+Tue Aug 24 09:52:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/MetaBase.h:
+        * Utils/GAME/game/MetaBase.inl:
+        * Utils/GAME/game/MetaBase.cpp:
+
+          Implemented a hash () method.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Added a transaction to the initialize () method.
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Re-implemented the type handler using meta objects instead
+          of strings.
+
 Sun Aug 22 23:58:09 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:

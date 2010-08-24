@@ -327,6 +327,8 @@ void Event_Handler::attach (Event_Handler_Interface * impl)
 //
 int Event_Handler::initialize (GAME::Project & project)
 {
+  this->project_ = project;
+
   if (0 != this->impl_)
     return this->impl_->initialize (project);
 
@@ -425,7 +427,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     // Notify the instance handlers of the event
     handler_set * handlers = 0;
 
-    if (0 == this->type_handlers_.find (object.meta ().name (), handlers))
+    if (0 == this->type_handlers_.find (object.meta (), handlers))
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
@@ -445,31 +447,46 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 }
 
 //
-// register_event_handler
+// register_handler
 //
 int Event_Handler::
 register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 {
+  Meta::Folder metafolder = this->project_.root_folder ().meta ();
+  Meta::FCO metafco = metafolder.find (metaname);
+
+  if (!metafco.is_nil ())
+    return this->register_handler (metafco, eh);
+
+  return -1;
+}
+
+//
+// register_handler
+//
+int Event_Handler::
+register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
+{
+  // Save the handler to the master set.
+  if (0 != this->master_.insert (eh))
+    return -1;
+
   // Locate the event handler set for this type.
   handler_set * handlers = 0;
 
-  if (0 == this->type_handlers_.find (metaname, handlers))
+  if (0 == this->type_handlers_.find (meta, handlers))
     return handlers->insert (eh);
 
   // Create a new event handler set.
   ACE_NEW_RETURN (handlers, handler_set (), -1);
   ACE_Auto_Ptr <handler_set> auto_clean (handlers);
 
-  if (0 != this->type_handlers_.bind (metaname, handlers))
+  if (0 != this->type_handlers_.bind (meta, handlers))
     return -1;
 
   // Release the auto clean pointer since the hash map now owns
   // the handler.
   auto_clean.release ();
-
-  // Save the handler to the master registery.
-  if (0 != this->master_.insert (eh))
-    return -1;
 
   // Save the handler to its handler set.
   if (0 != handlers->insert (eh))
@@ -484,9 +501,11 @@ register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 void Event_Handler::close (void)
 {
   // Delete all event handlers sets for the types.
-  ACE_Hash_Map_Manager <std::string,
-                        handler_set *,
-                        ACE_Null_Mutex>::ITERATOR iter (this->type_handlers_);
+  typedef ACE_Hash_Map_Manager <Meta::Base,
+                                handler_set *,
+                                ACE_Null_Mutex> hash_map_t;
+
+  hash_map_t::ITERATOR iter (this->type_handlers_);
 
   // Delete all the handler sets.
   for (; !iter.done (); ++ iter)
