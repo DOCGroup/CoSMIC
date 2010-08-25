@@ -11,7 +11,6 @@
 
 #include "ace/ACE.h"
 #include "ace/Auto_Ptr.h"
-#include <bitset>
 
 namespace GAME
 {
@@ -415,6 +414,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
   try
   {
     GAME::Object object (obj);
+    const std::bitset <BITMASK_SIZE> bitmask (eventmask);
 
     if (0 != this->impl_)
     {
@@ -424,7 +424,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       if (0 != this->impl_->handle_object_event (object, eventmask))
         return S_FALSE;
 
-      if (0 != this->dispatch_object_event (object, eventmask, this->impl_))
+      if (0 != this->dispatch_object_event (object, bitmask, this->impl_))
         return S_FALSE;
     }
 
@@ -435,7 +435,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object, eventmask, *handlers))
+      if (0 != this->dispatch_object_event (object, bitmask, *handlers))
         return S_FALSE;
     }
 
@@ -525,7 +525,7 @@ void Event_Handler::close (void)
 //
 int Event_Handler::
 dispatch_object_event (GAME::Object obj,
-                       unsigned long mask,
+                       const std::bitset <BITMASK_SIZE> & mask,
                        const handler_set & handlers)
 {
   int retval = 0;
@@ -534,7 +534,7 @@ dispatch_object_event (GAME::Object obj,
   handler_set::CONST_ITERATOR iter (handlers);
 
   for (; !iter.done (); ++ iter)
-    retval += this->dispatch_object_event (obj, mask, *iter);
+    retval += Event_Handler::dispatch_object_event (obj, mask, *iter);
 
   return retval;
 }
@@ -543,20 +543,22 @@ dispatch_object_event (GAME::Object obj,
 // dispatch_object_event
 //
 int Event_Handler::
-dispatch_object_event (Object obj, unsigned long eventmask, Event_Handler_Interface * eh)
+dispatch_object_event (Object obj,
+                       const std::bitset <BITMASK_SIZE> & mask,
+                       Event_Handler_Interface * eh)
 {
   // Get the event mask for the event handler.
-  std::bitset <OBJECT_EVENT_COUNT> current_mask (eventmask);
+  std::bitset <BITMASK_SIZE> copymask (mask);
   const unsigned long eh_eventmask = static_cast <unsigned long> (eh->event_mask ());
 
   int retval = 0;
   const handler_entry_t * handler_iter = objectevent_handles;
 
-  for (size_t count = current_mask.count (); count > 0; -- count)
+  for (size_t count = copymask.count (); count > 0; -- count)
   {
     // Locate the first set bit in the current mask. We must increment
     // the handler iterator for each bit we skip.
-    for (; !current_mask.test (0); current_mask >>= 1)
+    for (; !copymask.test (0); copymask >>= 1)
       ++ handler_iter;
 
     // Ok, we found the next set bit location. We need to check if the
@@ -565,7 +567,7 @@ dispatch_object_event (Object obj, unsigned long eventmask, Event_Handler_Interf
       retval += (*handler_iter->method_) (eh, obj) == 0 ? 0 : 1;
 
     // Move to the next location.
-    current_mask >>= 1;
+    copymask >>= 1;
     ++ handler_iter;
   }
 

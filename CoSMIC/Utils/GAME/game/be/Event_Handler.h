@@ -15,6 +15,7 @@
 
 #include <atlbase.h>
 #include <atlcom.h>
+#include <bitset>
 
 #include "game/Project.h"
 #include "game/stlace.h"
@@ -94,18 +95,20 @@ public:
   void close (void);
 
 private:
+  static const unsigned long BITMASK_SIZE = 32;
+
   /// Type definition for a set of event handlers.
   typedef ACE_Unbounded_Set <Event_Handler_Interface *> handler_set;
 
   static int dispatch_global_event (long global_event,
                                     Event_Handler_Interface * eh);
 
-  int dispatch_object_event (Object obj,
-                             unsigned long mask,
-                             const handler_set & handlers);
+  static int dispatch_object_event (Object obj,
+                                    const std::bitset <BITMASK_SIZE> & mask,
+                                    const handler_set & handlers);
 
   static int dispatch_object_event (Object obj,
-                                    unsigned long mask,
+                                    const std::bitset <BITMASK_SIZE> & mask,
                                     Event_Handler_Interface * eh);
 
 
