@@ -16,34 +16,206 @@ namespace GAME
 {
 
 // Type definition for handling a global event.
-typedef int (Event_Handler_Interface::*GLOBAL_EVENT_METHOD) (void);
+typedef int (*GLOBAL_EVENT_METHOD) (Event_Handler_Interface *);
 
+///////////////////////////////////////////////////////////////////////////////
+// invoke functions (global events)
+
+//
+// invoke_handle_project_open
+//
+static inline int
+invoke_handle_project_open (Event_Handler_Interface * impl)
+{
+  return impl->handle_project_open ();
+}
+
+//
+// invoke_handle_project_close
+//
+static inline int
+invoke_handle_project_close (Event_Handler_Interface * impl)
+{
+  return impl->handle_project_close ();
+}
+
+//
+// invoke_handle_territory_create
+//
+static inline int
+invoke_handle_territory_create (Event_Handler_Interface * impl)
+{
+  return impl->handle_territory_create ();
+}
+
+
+//
+// invoke_handle_territory_destroy
+//
+static inline int
+invoke_handle_territory_destroy (Event_Handler_Interface * impl)
+{
+  return impl->handle_territory_destroy ();
+}
+
+//
+// invoke_handle_transaction_commit
+//
+static inline int
+invoke_handle_transaction_commit (Event_Handler_Interface * impl)
+{
+  return impl->handle_transaction_commit ();
+}
+
+//
+// invoke_handle_transaction_abort
+//
+static inline int
+invoke_handle_transaction_abort (Event_Handler_Interface * impl)
+{
+  return impl->handle_transaction_abort ();
+}
+
+//
+// invoke_handle_undo
+//
+static inline int
+invoke_handle_undo (Event_Handler_Interface * impl)
+{
+  return impl->handle_undo ();
+}
+
+//
+// invoke_handle_redo
+//
+static inline int
+invoke_handle_redo (Event_Handler_Interface * impl)
+{
+  return impl->handle_redo ();
+}
+
+//
+// invoke_handle_project_properties
+//
+static inline int
+invoke_handle_project_properties (Event_Handler_Interface * impl)
+{
+  return impl->handle_project_properties ();
+}
+
+//
+// invoke_handle_notification_ready
+//
+static inline int
+invoke_handle_notification_ready (Event_Handler_Interface * impl)
+{
+  return impl->handle_notification_ready ();
+}
+
+//
+// __globalevent_map__
+//
 static const GLOBAL_EVENT_METHOD __globalevent_map__[] = {
-  &Event_Handler_Interface::handle_project_open,
-  &Event_Handler_Interface::handle_project_close,
-  &Event_Handler_Interface::handle_territory_create,
-  &Event_Handler_Interface::handle_territory_destroy,
-  &Event_Handler_Interface::handle_transaction_commit,
-  &Event_Handler_Interface::handle_transaction_abort,
-  &Event_Handler_Interface::handle_undo,
-  &Event_Handler_Interface::handle_redo,
-  &Event_Handler_Interface::handle_project_properties,
-  &Event_Handler_Interface::handle_notification_ready
+  &invoke_handle_project_open,
+  &invoke_handle_project_close,
+  &invoke_handle_territory_create,
+  &invoke_handle_territory_destroy,
+  &invoke_handle_transaction_commit,
+  &invoke_handle_transaction_abort,
+  &invoke_handle_undo,
+  &invoke_handle_redo,
+  &invoke_handle_project_properties,
+  &invoke_handle_notification_ready
 };
 
+//
+// invoke_handle_xml_import_begin
+//
+static inline int
+invoke_handle_xml_import_begin (Event_Handler_Interface * impl)
+{
+  return impl->handle_xml_import_begin ();
+}
+
+//
+// invoke_handle_xml_import_end
+//
+static inline int
+invoke_handle_xml_import_end (Event_Handler_Interface * impl)
+{
+  return impl->handle_xml_import_end ();
+}
+
+//
+// invoke_handle_xml_import_fcos_begin
+//
+static inline int
+invoke_handle_xml_import_fcos_begin (Event_Handler_Interface * impl)
+{
+  return impl->handle_xml_import_fcos_begin ();
+}
+
+//
+// invoke_handle_xml_import_fcos_end
+//
+static inline int
+invoke_handle_xml_import_fcos_end (Event_Handler_Interface * impl)
+{
+  return impl->handle_xml_import_fcos_end ();
+}
+
+//
+// invoke_handle_xml_import_special_begin
+//
+static inline int
+invoke_handle_xml_import_special_begin (Event_Handler_Interface * impl)
+{
+  return impl->handle_xml_import_special_begin ();
+}
+
+//
+// invoke_handle_xml_import_special_end
+//
+static inline int
+invoke_handle_xml_import_special_end (Event_Handler_Interface * impl)
+{
+  return impl->handle_xml_import_special_end ();
+}
+
+//
+// invoke_handle_library_attach_begin
+//
+static inline int
+invoke_handle_library_attach_begin (Event_Handler_Interface * impl)
+{
+  return impl->handle_library_attach_begin ();
+}
+
+//
+// invoke_handle_library_attach_end
+//
+static inline int
+invoke_handle_library_attach_end (Event_Handler_Interface * impl)
+{
+  return impl->handle_library_attach_end ();
+}
+
+//
+// __appevent_map__
+//
 static const GLOBAL_EVENT_METHOD __appevent_map__[] = {
-  &Event_Handler_Interface::handle_xml_import_begin,
-  &Event_Handler_Interface::handle_xml_import_end,
-  &Event_Handler_Interface::handle_xml_import_fcos_begin,
-  &Event_Handler_Interface::handle_xml_import_end,
-  &Event_Handler_Interface::handle_xml_import_special_begin,
-  &Event_Handler_Interface::handle_xml_import_special_end,
-  &Event_Handler_Interface::handle_library_attach_begin,
-  &Event_Handler_Interface::handle_library_attach_end
+  &invoke_handle_xml_import_begin,
+  &invoke_handle_xml_import_end,
+  &invoke_handle_xml_import_fcos_begin,
+  &invoke_handle_xml_import_fcos_end,
+  &invoke_handle_xml_import_special_begin,
+  &invoke_handle_xml_import_special_end,
+  &invoke_handle_library_attach_begin,
+  &invoke_handle_library_attach_end
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// invoke functions
+// invoke functions (object events)
 
 //
 // invoke_handle_object_attribute
@@ -398,7 +570,7 @@ dispatch_global_event (long global_event, Event_Handler_Interface * eh)
     method = __appevent_map__[index];
   }
 
-  return 0 != method ? (eh->*method) () : -1;
+  return 0 != method ? (*method) (eh) : -1;
 }
 
 //

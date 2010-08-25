@@ -1,3 +1,9 @@
+Wed Aug 25 03:40:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Updated global event dispatcher to use static methods.
+
 Tue Aug 24 12:05:01 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/be/Event_Handler.h:
