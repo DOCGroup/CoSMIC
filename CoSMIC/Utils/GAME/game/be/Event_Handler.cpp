@@ -644,7 +644,7 @@ int Event_Handler::
 register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
 {
   // Save the handler to the master set.
-  if (0 != this->master_.insert (eh))
+  if (-1 == this->master_.insert (eh))
     return -1;
 
   // Locate the event handler set for this type.

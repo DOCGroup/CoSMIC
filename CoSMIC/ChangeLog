@@ -1,3 +1,10 @@
+Sun Aug 29 00:48:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Bug fix where registering the same event handler with
+          different types failed.
+
 Wed Aug 25 03:40:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/be/Event_Handler.cpp:
