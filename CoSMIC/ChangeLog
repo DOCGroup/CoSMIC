@@ -1,3 +1,17 @@
+Tue Aug 31 17:28:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+
+          Added AFX_MANAGE_STATE () to ensure the dialog has the
+          correct title.
+
+        * Utils/GAME/game/MetaBase.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Bug fix where using meta objects to dispatch events failed
+          because the hash () and equality methods were implemented
+          incorrectly.
+
 Sun Aug 29 00:48:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/be/Event_Handler.cpp:

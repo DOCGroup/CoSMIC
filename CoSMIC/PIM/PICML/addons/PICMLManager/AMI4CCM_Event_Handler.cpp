@@ -222,6 +222,8 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object obj)
   }
   else
   {
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
     ::AfxMessageBox ("AMI4CCM_Connector connector not found. Please attach the "
                      "ami4ccm library and try again",
                      MB_ICONWARNING);

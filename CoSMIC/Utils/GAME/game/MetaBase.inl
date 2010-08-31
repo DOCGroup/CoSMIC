@@ -1,5 +1,7 @@
 // $Id$
 
+#include "ace/ACE.h"
+
 namespace GAME
 {
 namespace Meta
@@ -75,7 +77,7 @@ bool Base::operator != (const std::string & name) const
 GAME_INLINE
 bool Base::operator == (const Base & meta) const
 {
-  return this->metabase_ == meta.metabase_;
+  return this->metabase_.IsEqualObject (meta.metabase_);
 }
 
 //
@@ -120,7 +122,7 @@ void Base::release (void)
 GAME_INLINE
 unsigned long Base::hash (void) const
 {
-  return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (this->metabase_.p));
+  return ACE::hash_pjw (this->name ().c_str ());
 }
 
 }
@@ -132,7 +134,7 @@ unsigned long Base::hash (void) const
 GAME_INLINE
 bool operator < (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 {
-  return lhs.impl () < rhs.impl ();
+  return lhs.name () < rhs.name ();
 }
 
 //
@@ -141,7 +143,7 @@ bool operator < (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 GAME_INLINE
 bool operator > (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 {
-  return lhs.impl () > rhs.impl ();
+  return lhs.name () > rhs.name ();
 }
 
 //
@@ -150,7 +152,7 @@ bool operator > (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 GAME_INLINE
 bool operator <= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 {
-  return lhs.impl () <= rhs.impl ();
+  return lhs.name () <= rhs.name ();
 }
 
 //
@@ -159,5 +161,5 @@ bool operator <= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 GAME_INLINE
 bool operator >= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
 {
-  return lhs.impl () >= rhs.impl ();
+  return lhs.name () >= rhs.name ();
 }

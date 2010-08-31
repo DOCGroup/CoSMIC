@@ -602,8 +602,9 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
     // Notify the instance handlers of the event
     handler_set * handlers = 0;
+    const GAME::Meta::Base metabase (object.meta ());
 
-    if (0 == this->type_handlers_.find (object.meta (), handlers))
+    if (0 == this->type_handlers_.find (metabase, handlers))
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
