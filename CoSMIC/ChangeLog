@@ -1,3 +1,10 @@
+Tue Aug 31 22:03:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/CoSMIC-0.8.2.xslt:
+
+          First version of the migration script that converts Property elements
+          that are simple type to SimpleProperty elements.
+
 Tue Aug 31 20:07:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/CoSMIC-0.8.1.xslt:
