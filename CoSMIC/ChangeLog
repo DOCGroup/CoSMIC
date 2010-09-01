@@ -1,3 +1,12 @@
+Wed Sep  1 03:25:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/CoSMIC-0.8.2.xslt:
+
+          Update migration script to support complex types.
+
+          Bug fix where creating a simple property that did not originally
+          reference any type results in a invalid XML document.
+
 Tue Aug 31 22:03:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/CoSMIC-0.8.2.xslt:

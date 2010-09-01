@@ -21,7 +21,18 @@
     <xsl:choose>
       <xsl:when test="$count=1">
         <!-- this is a complex type -->
+        <xsl:element name="model">
+          <xsl:for-each select="@*" >
+            <xsl:choose>
+              <xsl:when test="name()='kind' or name()='role'">
+                <xsl:attribute name="{name()}">ComplexProperty</xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise><xsl:copy /></xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
 
+          <xsl:apply-templates />
+        </xsl:element>
       </xsl:when>
 
       <xsl:otherwise>
@@ -43,7 +54,9 @@
             </xsl:choose>
           </xsl:for-each>
 
-          <xsl:attribute name="referred"><xsl:value-of select="$referred" /></xsl:attribute>
+          <xsl:if test="$referred or $referred != ''">
+            <xsl:attribute name="referred"><xsl:value-of select="$referred" /></xsl:attribute>
+          </xsl:if>
 
           <xsl:apply-templates select="name" />
           <xsl:apply-templates select="reference[@kind='DataValue']/attribute[@kind='Value']" />
