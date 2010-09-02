@@ -13,15 +13,15 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Registry_Node::TAGNAME ("regnode");
-const ::Utils::XStr Registry_Node::TAGNAME_VALUE ("value");
-const ::Utils::XStr Registry_Node::ATTR_NAME ("name");
+const GAME::Xml::String Registry_Node::TAGNAME ("regnode");
+const GAME::Xml::String Registry_Node::TAGNAME_VALUE ("value");
+const GAME::Xml::String Registry_Node::ATTR_NAME ("name");
 
 //
 // _create
 //
 Registry_Node Registry_Node::
-_create (Registry & parent, const ::Utils::XStr & name)
+_create (Registry & parent, const GAME::Xml::String & name)
 {
   using xercesc::DOMElement;
 
@@ -45,7 +45,7 @@ _create (Registry & parent, const ::Utils::XStr & name)
 // _create
 //
 Registry_Node Registry_Node::
-_create (Registry_Node & parent, const ::Utils::XStr & name)
+_create (Registry_Node & parent, const GAME::Xml::String & name)
 {
   // First, we need to create the node.
   using xercesc::DOMElement;
@@ -61,7 +61,7 @@ _create (Registry_Node & parent, const ::Utils::XStr & name)
 // _create
 //
 xercesc::DOMElement * Registry_Node::
-_create (xercesc::DOMElement * parent, const ::Utils::XStr & name)
+_create (xercesc::DOMElement * parent, const GAME::Xml::String & name)
 {
   using xercesc::DOMElement;
   using xercesc::DOMDocument;
@@ -79,7 +79,7 @@ _create (xercesc::DOMElement * parent, const ::Utils::XStr & name)
 //
 // child
 //
-Registry_Node Registry_Node::child (const ::Utils::XStr & name, bool create)
+Registry_Node Registry_Node::child (const GAME::Xml::String & name, bool create)
 {
   using xercesc::DOMElement;
   using xercesc::DOMNode;
@@ -119,7 +119,7 @@ Registry_Node Registry_Node::child (const ::Utils::XStr & name, bool create)
 //
 // value
 //
-void Registry_Node::value (const ::Utils::XStr & v) const
+void Registry_Node::value (const GAME::Xml::String & v) const
 {
   if (0 == this->value_)
     this->get_value ();

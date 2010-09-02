@@ -94,7 +94,7 @@ size_t Folder::children (std::vector <Folder> & folders)
 //
 GAME_INLINE
 size_t Folder::
-children (const ::Utils::XStr & metaname, std::vector <Folder> & folders)
+children (const GAME::Xml::String & metaname, std::vector <Folder> & folders)
 {
   return Utils::get_children (this->obj_, metaname, folders);
 }
@@ -113,7 +113,7 @@ size_t Folder::children (std::vector <FCO> & folders)
 //
 GAME_INLINE
 size_t Folder::
-children (const ::Utils::XStr & metaname, std::vector <FCO> & folders)
+children (const GAME::Xml::String & metaname, std::vector <FCO> & folders)
 {
   return Utils::get_children (this->obj_, metaname, folders);
 }
@@ -132,7 +132,7 @@ size_t Folder::children (std::vector <Atom> & coll)
 //
 GAME_INLINE
 size_t Folder::
-children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
+children (const GAME::Xml::String & metaname, std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
@@ -151,7 +151,7 @@ size_t Folder::children (std::vector <Model> & coll)
 //
 GAME_INLINE
 size_t Folder::
-children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
+children (const GAME::Xml::String & metaname, std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }

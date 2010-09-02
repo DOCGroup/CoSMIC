@@ -15,8 +15,8 @@
 
 #include <string>
 #include <vector>
-#include "xercesc/dom/DOM.hpp"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
+#include "xercesc/dom/DOMElement.hpp"
 
 namespace GAME
 {
@@ -43,8 +43,8 @@ public:
                                  const std::string & value);
 
   static void set_element_value (xercesc::DOMElement * e,
-                                 const ::Utils::XStr & element,
-                                 const ::Utils::XStr & value);
+                                 const GAME::Xml::String & element,
+                                 const GAME::Xml::String & value);
 
   /**
    * Set the value of an element. If the element does not exist, then
@@ -62,7 +62,7 @@ public:
                                           const std::string & element);
 
   static const XMLCh * get_element_value (const xercesc::DOMElement * e,
-                                          const ::Utils::XStr & element);
+                                          const GAME::Xml::String & element);
 
   /**
    * Get the child elements. This function does not recursively
@@ -80,7 +80,7 @@ public:
    */
   template <typename T>
   static size_t get_children (xercesc::DOMElement * e,
-                              const ::Utils::XStr & metaname,
+                              const GAME::Xml::String & metaname,
                               std::vector <T> & children);
 };
 

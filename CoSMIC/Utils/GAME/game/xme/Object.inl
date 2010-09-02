@@ -121,7 +121,7 @@ const XMLCh * Object::name (void) const
 // name
 //
 GAME_INLINE
-void Object::name (const ::Utils::XStr & value)
+void Object::name (const GAME::Xml::String & value)
 {
   this->obj_->getFirstChild ()->setTextContent (value);
 }

@@ -1,3 +1,84 @@
+Thu Sep  2 21:16:01 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Scope.h:
+        * PIM/PICML/interpreters/IDLImporter/Scope.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+
+          Replaced the dependency on CoSMIC_Xerces_Utils with GAME_XME
+          and GAME_XML.
+
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Attribute.h:
+        * Utils/GAME/game/xme/Attribute.inl:
+        * Utils/GAME/game/xme/Attribute.cpp:
+        * Utils/GAME/game/xme/Configuration.h:
+        * Utils/GAME/game/xme/Configuration.cpp:
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.inl:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator.h:
+        * Utils/GAME/game/xme/GME_ID_Generator.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+        * Utils/GAME/game/xme/Library.h:
+        * Utils/GAME/game/xme/Library.inl:
+        * Utils/GAME/game/xme/Library.cpp:
+        * Utils/GAME/game/xme/Library_Importer.h:
+        * Utils/GAME/game/xme/Library_Importer.cpp:
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+        * Utils/GAME/game/xme/Object.cpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.cpp:
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+        * Utils/GAME/game/xme/XME_Utils.h:
+        * Utils/GAME/game/xme/XME_Utils.cpp:
+        * Utils/GAME/game/xme/XME_Utils_T.cpp:
+        * Utils/GAME/game/xme/functional.h:
+        * Utils/GAME/game/xme/functional.cpp:
+
+          Broke the dependency on CoSMIC_Xerces_Utils. Now, GAME Xme library
+          is dependent on GAME Xml.
+
+        * Utils/GAME/game/xml/Entity_Resolver.h:
+        * Utils/GAME/game/xml/Entity_Resolver.inl:
+        * Utils/GAME/game/xml/Entity_Resolver.cpp:
+        * Utils/GAME/game/xml/Error_Handler.h:
+        * Utils/GAME/game/xml/Error_Handler.inl:
+        * Utils/GAME/game/xml/Error_Handler.cpp:
+        * Utils/GAME/game/xml/GAME_XML.mpc:
+        * Utils/GAME/game/xml/String.h:
+        * Utils/GAME/game/xml/String.inl:
+        * Utils/GAME/game/xml/String.cpp:
+
+          Broke the dependency on CoSMIC_Xerces_Utils. Now, GAME Xml is a
+          self-contained library.
+
 Wed Sep  1 03:25:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/migration/CoSMIC-0.8.2.xslt:

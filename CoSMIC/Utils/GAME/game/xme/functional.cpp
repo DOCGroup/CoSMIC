@@ -3,7 +3,7 @@
 #include "functional.h"
 #include "FCO.h"
 #include "Registry.h"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include <sstream>
 
 namespace GAME
@@ -12,15 +12,15 @@ namespace XME
 {
 namespace constant
 {
-  static const ::Utils::XStr PartRegs ("PartRegs");
-  static const ::Utils::XStr Position ("Position");
+  static const GAME::Xml::String PartRegs ("PartRegs");
+  static const GAME::Xml::String Position ("Position");
 }
 
 //
 // get_position
 //
 bool get_position (FCO & fco,
-                   const ::Utils::XStr & aspect,
+                   const GAME::Xml::String & aspect,
                    size_t & x,
                    size_t & y)
 {
@@ -32,7 +32,7 @@ bool get_position (FCO & fco,
 
   // There has to be some way to stream in the values as a
   // XMLCh instead of converting the value to a C string.
-  ::Utils::XStr tempstr (node.value (), false);
+  GAME::Xml::String tempstr (node.value (), false);
   std::istringstream istr (tempstr.to_string ());
 
   char comma;
@@ -45,7 +45,7 @@ bool get_position (FCO & fco,
 // set_position
 //
 void
-set_position (FCO & fco, const ::Utils::XStr & aspect, size_t x, size_t y)
+set_position (FCO & fco, const GAME::Xml::String & aspect, size_t x, size_t y)
 {
   std::ostringstream ostr;
   ostr << x << "," << y;

@@ -16,17 +16,17 @@ namespace constant
 {
 namespace meta
 {
-  const ::Utils::XStr MonolithprimaryArtifact ("MonolithprimaryArtifact");
+  const GAME::Xml::String MonolithprimaryArtifact ("MonolithprimaryArtifact");
 }
 
 namespace aspect
 {
-  const ::Utils::XStr Packaging ("Packaging");
+  const GAME::Xml::String Packaging ("Packaging");
 }
 
 namespace attr
 {
-  const ::Utils::XStr EntryPoint ("EntryPoint");
+  const GAME::Xml::String EntryPoint ("EntryPoint");
 }
 
 }
@@ -38,10 +38,10 @@ Implementation_Generator::
 Implementation_Generator (GAME::XME::Folder & root)
 : artifact_gen_ (root)
 {
-  static const ::Utils::XStr meta_ComponentImplementations ("ComponentImplementations");
+  static const GAME::Xml::String meta_ComponentImplementations ("ComponentImplementations");
 
   if (GAME::create_if_not (root, meta_ComponentImplementations, this->impls_,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                       meta_ComponentImplementations,
                       boost::bind (&GAME::XME::Folder::name, _1)))))
   {
@@ -66,22 +66,22 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   this->artifact_gen_.generate (component);
 
   // Generate the monolithic implementation.
-  ::Utils::XStr name (component.name (), false);
+  GAME::Xml::String name (component.name (), false);
 
-  ::Utils::XStr fq_type;
+  GAME::Xml::String fq_type;
   Scope::fq_name (component, "_", false, fq_type);
 
-  static const ::Utils::XStr impl_suffix ("Impl");
-  ::Utils::XStr impl_name (fq_type);
+  static const GAME::Xml::String impl_suffix ("Impl");
+  GAME::Xml::String impl_name (fq_type);
   impl_name.append (impl_suffix);
 
   // Create a new container for the component implementation.
   GAME::XME::Model container;
 
-  static const ::Utils::XStr meta_ComponentImplementationContainer ("ComponentImplementationContainer");
+  static const GAME::Xml::String meta_ComponentImplementationContainer ("ComponentImplementationContainer");
 
   if (GAME::create_if_not (this->impls_, meta_ComponentImplementationContainer, container,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                       impl_name,
                       boost::bind (&GAME::XME::Model::name, _1)))))
   {
@@ -90,10 +90,10 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
 
   // Create the monolithic implementation for the component.
   GAME::XME::Atom impl;
-  static const ::Utils::XStr meta_MonolithicImplementation ("MonolithicImplementation");
+  static const GAME::Xml::String meta_MonolithicImplementation ("MonolithicImplementation");
 
   if (GAME::create_if_not (container, meta_MonolithicImplementation, impl,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                       impl_name,
                       boost::bind (&GAME::XME::Atom::name, _1)))))
   {
@@ -107,10 +107,10 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
 
   // Create the reference to the target component.
   GAME::XME::Reference component_ref;
-  static const ::Utils::XStr meta_ComponentRef ("ComponentRef");
+  static const GAME::Xml::String meta_ComponentRef ("ComponentRef");
 
   GAME::create_if_not (container, meta_ComponentRef, component_ref,
-    GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+    GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                     meta_ComponentRef,
                     boost::bind (&GAME::XME::Atom::kind, _1))));
 
@@ -125,7 +125,7 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
   // Associate the monolithic implementation with the reference.
   using GAME::XME::Connection;
 
-  static const ::Utils::XStr meta_Implements ("Implements");
+  static const GAME::Xml::String meta_Implements ("Implements");
   Connection connection;
 
   if (!GAME::find (container, meta_Implements, connection,
@@ -155,9 +155,9 @@ bool Implementation_Generator::generate (const GAME::XME::Model & component)
 void Implementation_Generator::
 generate_impl (GAME::XME::Model & container,
                const GAME::XME::FCO & impl,
-               const ::Utils::XStr & fq_type)
+               const GAME::Xml::String & fq_type)
 {
-  static const ::Utils::XStr meta_ComponentImplementationArtifact ("ComponentImplementationArtifact");
+  static const GAME::Xml::String meta_ComponentImplementationArtifact ("ComponentImplementationArtifact");
   GAME::XME::Reference impl_artifact;
 
   if (GAME::create_if_not (container, meta_ComponentImplementationArtifact, impl_artifact,
@@ -168,12 +168,12 @@ generate_impl (GAME::XME::Model & container,
     impl_artifact.refers_to (this->artifact_gen_.exec_artifact ());
   }
 
-  impl_artifact.name (::Utils::XStr (this->artifact_gen_.exec_artifact ().name (), false));
+  impl_artifact.name (GAME::Xml::String (this->artifact_gen_.exec_artifact ().name (), false));
 
   // Set the entrypoint for the implementation artifact.
-  static const ::Utils::XStr _Impl ("_Impl");
+  static const GAME::Xml::String _Impl ("_Impl");
 
-  ::Utils::XStr entrypoint = "create_";
+  GAME::Xml::String entrypoint = "create_";
   entrypoint.append (fq_type);
   entrypoint.append (_Impl);
 
@@ -209,10 +209,10 @@ generate_impl (GAME::XME::Model & container,
 void Implementation_Generator::
 generate_servant (GAME::XME::Model & container,
                   const GAME::XME::FCO & impl,
-                  const ::Utils::XStr & fq_type)
+                  const GAME::Xml::String & fq_type)
 {
   // First, create the servant artifact for the implementation.
-  static const ::Utils::XStr meta_ComponentServantArtifact ("ComponentServantArtifact");
+  static const GAME::Xml::String meta_ComponentServantArtifact ("ComponentServantArtifact");
   GAME::XME::Reference svnt_artifact;
 
   if (GAME::create_if_not (container, meta_ComponentServantArtifact, svnt_artifact,
@@ -223,11 +223,11 @@ generate_servant (GAME::XME::Model & container,
     svnt_artifact.refers_to (this->artifact_gen_.svnt_artifact ());
   }
 
-  svnt_artifact.name (::Utils::XStr (this->artifact_gen_.svnt_artifact ().name (), false));
+  svnt_artifact.name (GAME::Xml::String (this->artifact_gen_.svnt_artifact ().name (), false));
 
-  static const ::Utils::XStr _Servant ("_Servant");
+  static const GAME::Xml::String _Servant ("_Servant");
 
-  ::Utils::XStr entrypoint ("create_");
+  GAME::Xml::String entrypoint ("create_");
   entrypoint.append (fq_type);
   entrypoint.append (_Servant);
 

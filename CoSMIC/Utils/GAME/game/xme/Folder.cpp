@@ -14,14 +14,14 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Folder::TAGNAME ("folder");
-const ::Utils::XStr Folder::ATTR_CHILDRELIDCNTR ("childrelidcntr");
-const ::Utils::XStr Folder::NO_CHILDREN ("0x0");
+const GAME::Xml::String Folder::TAGNAME ("folder");
+const GAME::Xml::String Folder::ATTR_CHILDRELIDCNTR ("childrelidcntr");
+const GAME::Xml::String Folder::NO_CHILDREN ("0x0");
 
 //
 // _create
 //
-Folder Folder::_create (Folder & parent, const ::Utils::XStr & kind)
+Folder Folder::_create (Folder & parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();
@@ -49,7 +49,7 @@ Folder::Folder (xercesc::DOMElement * folder, bool validate)
 //
 Folder::
 Folder (xercesc::DOMElement * parent,
-        const ::Utils::XStr & kind,
+        const GAME::Xml::String & kind,
         size_t relid)
 : Object (parent,
           TAGNAME,
@@ -87,7 +87,7 @@ void Folder::relid_counter (size_t value)
   // Write the counter to hexadecimal format.
   std::ostringstream xstr;
   xstr << "0x" << std::hex << value;
-  this->obj_->setAttribute (ATTR_CHILDRELIDCNTR, ::Utils::XStr (xstr.str ()));
+  this->obj_->setAttribute (ATTR_CHILDRELIDCNTR, GAME::Xml::String (xstr.str ()));
 
   // Save the counter's value.
   this->counter_ = value;
@@ -100,7 +100,7 @@ void Folder::initialize_counter (void)
 {
   // Get the child relative id counter value.
   const XMLCh * ch = this->obj_->getAttribute (ATTR_CHILDRELIDCNTR);
-  const ::Utils::XStr value (ch, false);
+  const GAME::Xml::String value (ch, false);
 
   std::istringstream istr (value.to_string ());
   istr >> std::hex >> this->counter_;

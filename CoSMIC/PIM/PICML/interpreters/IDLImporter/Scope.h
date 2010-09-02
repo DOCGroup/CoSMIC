@@ -14,7 +14,6 @@
 #define _IDL_TO_PICML_SCOPE_H_
 
 #include "game/xme/FCO.h"
-#include "Utils/xercesc/XercesString.h"
 
 /**
  * @class Scope
@@ -23,14 +22,14 @@ class Scope
 {
 public:
   static void scope (const ::GAME::XME::FCO & fco,
-                     const ::Utils::XStr & separator,
+                     const GAME::Xml::String & separator,
                      bool leading,
-                     ::Utils::XStr & result);
+                     GAME::Xml::String & result);
 
   static void fq_name (const ::GAME::XME::FCO & fco,
-                       const ::Utils::XStr & separator,
+                       const GAME::Xml::String & separator,
                        bool leading,
-                       ::Utils::XStr & result);
+                       GAME::Xml::String & result);
 };
 
 #endif  // !defined _IDL_TO_PICML_SCOPE_H_

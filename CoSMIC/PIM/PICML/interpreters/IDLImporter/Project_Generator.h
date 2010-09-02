@@ -168,23 +168,23 @@ private:
   /// Initialize the project.
   void initialize (void);
 
-  void handle_symbol_resolution (AST_Decl * type, 
+  void handle_symbol_resolution (AST_Decl * type,
                                  GAME::XME::Reference & ref,
                                  bool use_library = false);
 
-  bool lookup_symbol (AST_Decl * type, 
+  bool lookup_symbol (AST_Decl * type,
                       GAME::XME::FCO & fco,
                       bool use_library = false);
 
-  bool lookup_symbol_in_template_module (AST_Decl * type,  
+  bool lookup_symbol_in_template_module (AST_Decl * type,
                                          GAME::XME::FCO & fco,
                                          bool use_library = false);
 
-  bool lookup_symbol (AST_Decl * type, 
+  bool lookup_symbol (AST_Decl * type,
                       std::vector <GAME::XME::Folder> & lib,
                       GAME::XME::FCO & fco);
 
-  bool lookup_symbol (AST_Decl * type, 
+  bool lookup_symbol (AST_Decl * type,
                       GAME::XME::Folder & folder,
                       GAME::XME::FCO & fco);
 
@@ -193,7 +193,7 @@ private:
                       GAME::XME::FCO & fco);
 
   void visit_exception_list (UTL_ExceptList * list,
-                             const ::Utils::XStr & meta,
+                             const GAME::Xml::String & meta,
                              GAME::XME::Auto_Model_T <GAME::XME::Model> & model);
 
   int visit_scope (UTL_Scope *node,
@@ -207,7 +207,7 @@ private:
 
   void create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
                               FE_Utils::T_Param_Info * info,
-                              const ::Utils::XStr & type);
+                              const GAME::Xml::String & type);
 
   /// Collection of files captured in this project.
   const PICML_File_Creator & files_;
@@ -253,11 +253,11 @@ private:
                         ACE_Null_Mutex> unresolved_;
 
   /// Collection of template parameters.
-  ACE_Hash_Map_Manager <const FE_Utils::T_Param_Info  *, 
+  ACE_Hash_Map_Manager <const FE_Utils::T_Param_Info  *,
                         GAME::XME::FCO,
                         ACE_Null_Mutex> params_;
 
-  ACE_Hash_Map_Manager <ACE_CString, 
+  ACE_Hash_Map_Manager <ACE_CString,
                         GAME::XME::FCO,
                         ACE_Null_Mutex> active_params_;
 

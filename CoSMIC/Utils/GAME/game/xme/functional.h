@@ -17,9 +17,13 @@
 #include <vector>
 #include "XME_export.h"
 
-namespace Utils
+namespace GAME
 {
-class XStr;
+namespace Xml
+{
+// Forward decl.
+class String;
+}
 }
 
 namespace GAME
@@ -31,13 +35,13 @@ class FCO;
 
 GAME_XME_Export
 bool get_position (FCO & fco,
-                   const ::Utils::XStr & aspect,
+                   const GAME::Xml::String & aspect,
                    size_t & x,
                    size_t & y);
 
 GAME_XME_Export
 void set_position (FCO & fco,
-                   const ::Utils::XStr & name,
+                   const GAME::Xml::String & name,
                    size_t x,
                    size_t y);
 

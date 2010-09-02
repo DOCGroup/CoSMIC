@@ -16,21 +16,21 @@ namespace XME
 //
 // TAGNAME
 //
-const ::Utils::XStr Attribute::TAGNAME ("attribute");
+const GAME::Xml::String Attribute::TAGNAME ("attribute");
 
 //
 // VALUE_TAGNAME
 //
-const ::Utils::XStr Attribute::VALUE_TAGNAME ("value");
-const ::Utils::XStr Attribute::ATTR_KIND ("kind");
+const GAME::Xml::String Attribute::VALUE_TAGNAME ("value");
+const GAME::Xml::String Attribute::ATTR_KIND ("kind");
 
-const ::Utils::XStr Attribute::TRUE_VALUE ("True");
-const ::Utils::XStr Attribute::FALSE_VALUE ("False");
+const GAME::Xml::String Attribute::TRUE_VALUE ("True");
+const GAME::Xml::String Attribute::FALSE_VALUE ("False");
 
 //
 // Attribute
 //
-Attribute::Attribute (const FCO & parent, const ::Utils::XStr & name)
+Attribute::Attribute (const FCO & parent, const GAME::Xml::String & name)
 : attr_ (0),
   value_ (0)
 {
@@ -48,7 +48,7 @@ Attribute::Attribute (const FCO & parent, const ::Utils::XStr & name)
   // Set an empty value for the attribute.
   this->value_ = doc->createElement (VALUE_TAGNAME);
   this->attr_->appendChild (this->value_);
-  this->value_->setTextContent (::Utils::XStr::EMPTY_STRING);
+  this->value_->setTextContent (GAME::Xml::String::EMPTY_STRING);
 }
 
 //
@@ -66,7 +66,7 @@ const XMLCh * Attribute::value (void) const
 //
 // value
 //
-void Attribute::value (const ::Utils::XStr & val)
+void Attribute::value (const GAME::Xml::String & val)
 {
   if (0 == this->value_)
     this->get_value_element ();

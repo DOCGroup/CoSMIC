@@ -37,7 +37,7 @@ public:
    * @param[in]       kind            Type folder's type
    */
   static Connection _create (Model & parent,
-                             const ::Utils::XStr & kind,
+                             const GAME::Xml::String & kind,
                              const FCO & src,
                              const FCO & dst);
 
@@ -71,7 +71,7 @@ public:
   const Connection & operator = (const Connection & fco);
 
   /// The XML tagname for this element.
-  static const ::Utils::XStr TAGNAME;
+  static const GAME::Xml::String TAGNAME;
 
   void src (const FCO & fco);
   const FCO & src (void) const;
@@ -91,16 +91,16 @@ public:
 
 protected:
   Connection (xercesc::DOMElement * parent,
-              const ::Utils::XStr & kind,
+              const GAME::Xml::String & kind,
               size_t relid,
               const FCO & src,
               const FCO & dst);
 
 private:
-  static const ::Utils::XStr TAGNAME_CONNPOINT;
-  static const ::Utils::XStr CONNPOINT_SRC;
-  static const ::Utils::XStr CONNPOINT_DST;
-  static const ::Utils::XStr ATTR_TARGET;
+  static const GAME::Xml::String TAGNAME_CONNPOINT;
+  static const GAME::Xml::String CONNPOINT_SRC;
+  static const GAME::Xml::String CONNPOINT_DST;
+  static const GAME::Xml::String ATTR_TARGET;
 
   /// The source FCO.
   mutable FCO src_;

@@ -10,8 +10,8 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr FCO::ATTR_ROLE ("role");
-const ::Utils::XStr FCO::ATTR_KIND ("kind");
+const GAME::Xml::String FCO::ATTR_ROLE ("role");
+const GAME::Xml::String FCO::ATTR_KIND ("kind");
 
 //
 // attach
@@ -29,7 +29,7 @@ void FCO::attach (xercesc::DOMElement * fco, bool validate)
 //
 // attribute
 //
-Attribute FCO::attribute (const ::Utils::XStr & name, bool create) const
+Attribute FCO::attribute (const GAME::Xml::String & name, bool create) const
 {
   using xercesc::DOMNodeList;
   using xercesc::DOMElement;

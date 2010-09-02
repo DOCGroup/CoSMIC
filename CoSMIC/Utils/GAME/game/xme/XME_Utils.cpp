@@ -1,7 +1,10 @@
 // $Id$
 
 #include "XME_Utils.h"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
+#include "xercesc/DOM/DOMDocument.hpp"
+#include "xercesc/DOM/DOMNode.hpp"
+#include "xercesc/DOM/DOMNodeList.hpp"
 
 namespace GAME
 {
@@ -16,8 +19,8 @@ set_element_value (xercesc::DOMElement * e,
                    const std::string & value)
 {
   Utils::set_element_value (e,
-                            ::Utils::XStr (element),
-                            ::Utils::XStr (value));
+                            GAME::Xml::String (element),
+                            GAME::Xml::String (value));
 }
 
 //
@@ -25,15 +28,15 @@ set_element_value (xercesc::DOMElement * e,
 //
 void Utils::
 set_element_value (xercesc::DOMElement * e,
-                   const ::Utils::XStr & element,
-                   const ::Utils::XStr & value)
+                   const GAME::Xml::String & element,
+                   const GAME::Xml::String & value)
 {
   using xercesc::DOMNode;
   using xercesc::DOMNodeList;
   using xercesc::DOMDocument;
 
   // There should be only 1 <name> tag in the list.
-  ::Utils::XStr nodename;
+  GAME::Xml::String nodename;
   DOMNode * node = 0;
   DOMNodeList * list = e->getChildNodes ();
   size_t len = list->getLength ();
@@ -75,7 +78,7 @@ get_element_value (const xercesc::DOMElement * e,
   using namespace xercesc;
 
   // There should be only 1 <name> tag in the list.
-  DOMNodeList * list = e->getElementsByTagName (::Utils::XStr (element));
+  DOMNodeList * list = e->getElementsByTagName (GAME::Xml::String (element));
   size_t len = list->getLength ();
 
   assert (len <= 1);
@@ -88,7 +91,7 @@ get_element_value (const xercesc::DOMElement * e,
   {
     // Get text content of the one and only node in listing.
     DOMNode * node = list->item (0);
-    ::Utils::XStr content (node->getTextContent (), false);
+    GAME::Xml::String content (node->getTextContent (), false);
 
     // Save the value in C string format.
     value = content.to_string ();
@@ -99,13 +102,13 @@ get_element_value (const xercesc::DOMElement * e,
 // get_element_value
 //
 const XMLCh * Utils::
-get_element_value (const xercesc::DOMElement * e, const ::Utils::XStr & element)
+get_element_value (const xercesc::DOMElement * e, const GAME::Xml::String & element)
 {
   using xercesc::DOMNodeList;
   using xercesc::DOMNode;
 
   // There should be only 1 <name> tag in the list.
-  ::Utils::XStr nodename;
+  GAME::Xml::String nodename;
   DOMNode * node = 0;
   DOMNodeList * list = e->getChildNodes ();
   size_t len = list->getLength ();
@@ -128,7 +131,7 @@ get_element_value (const xercesc::DOMElement * e, const ::Utils::XStr & element)
 const XMLCh * Utils::
 get_element_value (const xercesc::DOMElement * e, const std::string & element)
 {
-  return Utils::get_element_value (e, ::Utils::XStr (element));
+  return Utils::get_element_value (e, GAME::Xml::String (element));
 }
 
 }

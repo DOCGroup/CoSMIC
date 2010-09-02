@@ -14,7 +14,7 @@
 #define _GAME_XME_REGISTRY_NODE_H_
 
 #include "xercesc/dom/DOM.hpp"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "XME_export.h"
 
 namespace GAME
@@ -41,7 +41,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Registry_Node _create (Registry & parent, const ::Utils::XStr & name);
+  static Registry_Node _create (Registry & parent, const GAME::Xml::String & name);
 
   /**
    * Create a new folder
@@ -49,7 +49,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Registry_Node _create (Registry_Node & parent, const ::Utils::XStr & name);
+  static Registry_Node _create (Registry_Node & parent, const GAME::Xml::String & name);
 
   /// Default constructor.
   Registry_Node (void);
@@ -78,18 +78,18 @@ public:
    */
   const XMLCh * name (void) const;
 
-  void value (const ::Utils::XStr & v) const;
+  void value (const GAME::Xml::String & v) const;
 
   const XMLCh * value (void) const;
 
-  Registry_Node child (const ::Utils::XStr & name, bool create = false);
+  Registry_Node child (const GAME::Xml::String & name, bool create = false);
 
 private:
-  static const ::Utils::XStr TAGNAME;
-  static const ::Utils::XStr TAGNAME_VALUE;
-  static const ::Utils::XStr ATTR_NAME;
+  static const GAME::Xml::String TAGNAME;
+  static const GAME::Xml::String TAGNAME_VALUE;
+  static const GAME::Xml::String ATTR_NAME;
 
-  static xercesc::DOMElement * _create (xercesc::DOMElement * parent, const ::Utils::XStr & name);
+  static xercesc::DOMElement * _create (xercesc::DOMElement * parent, const GAME::Xml::String & name);
 
   Registry_Node (xercesc::DOMElement * node, bool existing);
 

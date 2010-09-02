@@ -14,18 +14,18 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Connection::TAGNAME ("connection");
-const ::Utils::XStr Connection::TAGNAME_CONNPOINT ("connpoint");
-const ::Utils::XStr Connection::CONNPOINT_SRC ("src");
-const ::Utils::XStr Connection::CONNPOINT_DST ("dst");
-const ::Utils::XStr Connection::ATTR_TARGET ("target");
+const GAME::Xml::String Connection::TAGNAME ("connection");
+const GAME::Xml::String Connection::TAGNAME_CONNPOINT ("connpoint");
+const GAME::Xml::String Connection::CONNPOINT_SRC ("src");
+const GAME::Xml::String Connection::CONNPOINT_DST ("dst");
+const GAME::Xml::String Connection::ATTR_TARGET ("target");
 
 //
 // _create
 //
 Connection Connection::
 _create (Model & parent,
-         const ::Utils::XStr & kind,
+         const GAME::Xml::String & kind,
          const FCO & src,
          const FCO & dst)
 {
@@ -43,7 +43,7 @@ _create (Model & parent,
 GAME_INLINE
 Connection::
 Connection (xercesc::DOMElement * parent,
-            const ::Utils::XStr & kind,
+            const GAME::Xml::String & kind,
             size_t relid,
             const FCO & src,
             const FCO & dst)

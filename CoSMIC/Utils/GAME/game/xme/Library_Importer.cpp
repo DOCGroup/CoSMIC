@@ -11,9 +11,9 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Library_Importer::ATTR_ID ("id");
-const ::Utils::XStr Library_Importer::ATTR_REFERRED ("referred");
-const ::Utils::XStr Library_Importer::ATTR_TARGET ("target");
+const GAME::Xml::String Library_Importer::ATTR_ID ("id");
+const GAME::Xml::String Library_Importer::ATTR_REFERRED ("referred");
+const GAME::Xml::String Library_Importer::ATTR_TARGET ("target");
 
 //
 // Library_Importer
@@ -110,16 +110,16 @@ void Library_Importer::handle_import_fco (FCO & fco)
 // handle_import_common
 //
 template <typename T>
-void Library_Importer::handle_import_common (T & e, const ::Utils::XStr & newid)
+void Library_Importer::handle_import_common (T & e, const GAME::Xml::String & newid)
 {
   using xercesc::XMLString;
 
   // Get the old id and convert it to lowercase.
-  ::Utils::XStr old_id (e.id (), false);
+  GAME::Xml::String old_id (e.id (), false);
   XMLString::lowerCase (old_id);
 
-  ::Utils::XStr name (e.name (), false);
-  ::Utils::XStr kind (e.kind (), false);
+  GAME::Xml::String name (e.name (), false);
+  GAME::Xml::String kind (e.kind (), false);
 
   // Store the old id and set a new id.
   this->id_map_[old_id] = newid;
@@ -188,7 +188,7 @@ void Library_Importer::resolve_reference (Reference & ref)
   if (!ref.ptr ()->hasAttribute (ATTR_REFERRED))
     return;
 
-  ::Utils::XStr old_id (ref.ptr ()->getAttribute (ATTR_REFERRED));
+  GAME::Xml::String old_id (ref.ptr ()->getAttribute (ATTR_REFERRED));
   XMLString::lowerCase (old_id);
 
   id_map_t::iterator iter = this->id_map_.find (old_id);
@@ -207,10 +207,10 @@ void Library_Importer::resolved_connection (Connection & conn)
   xercesc::DOMElement * p1 = conn.ptr ()->getFirstElementChild ()->getNextElementSibling ();
   xercesc::DOMElement * p2 = p1->getNextElementSibling ();
 
-  ::Utils::XStr p1_old_id (p1->getAttribute (ATTR_TARGET));
+  GAME::Xml::String p1_old_id (p1->getAttribute (ATTR_TARGET));
   XMLString::lowerCase (p1_old_id);
 
-  ::Utils::XStr p2_old_id (p2->getAttribute (ATTR_TARGET));
+  GAME::Xml::String p2_old_id (p2->getAttribute (ATTR_TARGET));
   XMLString::lowerCase (p2_old_id);
 
   id_map_t::iterator iter = this->id_map_.find (p1_old_id);
@@ -228,10 +228,10 @@ void Library_Importer::resolved_connection (Connection & conn)
 // operator ()
 //
 bool Library_Importer::
-insensitive_id::operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid) const
+insensitive_id::operator () (const GAME::Xml::String & lid, const GAME::Xml::String & rid) const
 {
   using xercesc::XMLString;
-  return XMLString::compareNIString (lid, rid, lid.size ()) < 0;
+  return XMLString::compareNIString (lid, rid, lid.length ()) < 0;
 }
 
 }

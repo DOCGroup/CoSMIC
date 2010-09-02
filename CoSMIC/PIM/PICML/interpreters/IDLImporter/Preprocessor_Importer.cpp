@@ -29,8 +29,8 @@ namespace constants
 {
 namespace attrs
 {
-  static const ::Utils::XStr PrePreprocessorDirectives ("PrePreprocessorDirectives");
-  static const ::Utils::XStr PostPreprocessorDirectives ("PostPreprocessorDirectives");
+  static const GAME::Xml::String PrePreprocessorDirectives ("PrePreprocessorDirectives");
+  static const GAME::Xml::String PostPreprocessorDirectives ("PostPreprocessorDirectives");
 }
 };
 
@@ -89,10 +89,10 @@ public:
 
       Model child;
       Model model = this->stack_.top ();
-      static const ::Utils::XStr meta_Package ("Package");
+      static const GAME::Xml::String meta_Package ("Package");
 
       if (GAME::find (model, meta_Package, child,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
                        name,
                        boost::bind (&Model::name, _1))))
       {
@@ -138,7 +138,7 @@ public:
 
       // Locate the PrePreprocessorDirectives attribute for the file.
       Attribute attr = this->file_.attribute (constants::attrs::PrePreprocessorDirectives, true);
-      ::Utils::XStr curr_value (attr.value (), false);
+      GAME::Xml::String curr_value (attr.value (), false);
 
       //// Let's make sure the is an eol at the end of the statement.
       std::string append_value ("#pragma ");
@@ -146,7 +146,7 @@ public:
 
       // Append this statement to the current value and save it back
       // to the model.
-      curr_value.append (::Utils::XStr (append_value));
+      curr_value.append (GAME::Xml::String (append_value));
       attr.value (curr_value);
     }
 
@@ -168,7 +168,7 @@ public:
 
       // Locate the PrePreprocessorDirectives attribute for the file.
       Attribute attr = this->file_.attribute (constants::attrs::PrePreprocessorDirectives, true);
-      ::Utils::XStr curr_value (attr.value (), false);
+      GAME::Xml::String curr_value (attr.value (), false);
 
       //// Let's make sure the is an eol at the end of the statement.
       std::string append_value ("#pragma ");
@@ -176,7 +176,7 @@ public:
 
       // Append this statement to the current value and save it back
       // to the model.
-      curr_value.append (::Utils::XStr (append_value));
+      curr_value.append (GAME::Xml::String (append_value));
       attr.value (curr_value);
     }
 
@@ -206,23 +206,23 @@ public:
       // name identified in <val>.
       Model model = this->stack_.top ();
 
-      static const ::Utils::XStr meta_Aggregate ("Aggregate");
+      static const GAME::Xml::String meta_Aggregate ("Aggregate");
       Model aggregate;
 
       if (GAME::find (model, meta_Aggregate, aggregate,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
-                       ::Utils::XStr (ident),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
+                       GAME::Xml::String (ident),
                        boost::bind (&Model::name, _1))))
       {
         using GAME::XME::Atom;
 
         // This is a signal for use to create a Key element.
         Atom key;
-        static const ::Utils::XStr meta_Key ("Key");
+        static const GAME::Xml::String meta_Key ("Key");
 
         if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
-                                         ::Utils::XStr (meta_Key),
+            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+                                         GAME::Xml::String (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
           key.name (meta_Key);
@@ -257,26 +257,26 @@ public:
       Model model = this->stack_.top ();
 
       // Locate the struct that we are about to update.
-      static const ::Utils::XStr meta_Aggregate ("Aggregate");
+      static const GAME::Xml::String meta_Aggregate ("Aggregate");
       Model aggregate;
 
       if (GAME::find (model, meta_Aggregate, aggregate,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
-                       ::Utils::XStr (val.ident1_),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
+                       GAME::Xml::String (val.ident1_),
                        boost::bind (&Model::name, _1))))
       {
         using GAME::XME::Atom;
 
-        static const ::Utils::XStr meta_Key ("Key");
-        static const ::Utils::XStr meta_Member ("Member");
-        static const ::Utils::XStr meta_KeyMember ("KeyMember");
+        static const GAME::Xml::String meta_Key ("Key");
+        static const GAME::Xml::String meta_Member ("Member");
+        static const GAME::Xml::String meta_KeyMember ("KeyMember");
 
         Atom key;
 
         // Make sure the key element exists, and retrieve it.
         if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
-                                         ::Utils::XStr (meta_Key),
+            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+                                         GAME::Xml::String (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
           key.name (meta_Key);
@@ -287,8 +287,8 @@ public:
         FCO member;
 
         if (GAME::find (aggregate, meta_Member, member,
-            boost::bind (std::equal_to < ::Utils::XStr > (),
-                         ::Utils::XStr (val.ident2_),
+            boost::bind (std::equal_to < GAME::Xml::String > (),
+                         GAME::Xml::String (val.ident2_),
                          boost::bind (&FCO::name, _1))))
         {
           // Make sure there is a connection between the key
@@ -337,23 +337,23 @@ public:
       // name identified in <val>.
       Model model = this->stack_.top ();
 
-      static const ::Utils::XStr meta_Aggregate ("Aggregate");
+      static const GAME::Xml::String meta_Aggregate ("Aggregate");
       Model aggregate;
 
       if (GAME::find (model, meta_Aggregate, aggregate,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
-                       ::Utils::XStr (keylist.ident_),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
+                       GAME::Xml::String (keylist.ident_),
                        boost::bind (&Model::name, _1))))
       {
         using GAME::XME::Atom;
 
         // This is a signal for use to create a Key element.
         Atom key;
-        static const ::Utils::XStr meta_Key ("Key");
+        static const GAME::Xml::String meta_Key ("Key");
 
         if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
-                                         ::Utils::XStr (meta_Key),
+            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+                                         GAME::Xml::String (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
           key.name (meta_Key);
@@ -369,11 +369,11 @@ public:
           using GAME::XME::FCO;
           FCO member;
 
-          static const ::Utils::XStr meta_Member ("Member");
+          static const GAME::Xml::String meta_Member ("Member");
 
           if (GAME::find (aggregate, meta_Member, member,
-              boost::bind (std::equal_to < ::Utils::XStr > (),
-                           ::Utils::XStr (*iter),
+              boost::bind (std::equal_to < GAME::Xml::String > (),
+                           GAME::Xml::String (*iter),
                            boost::bind (&FCO::name, _1))))
           {
             // Make sure there is a connection between the key
@@ -381,7 +381,7 @@ public:
             using GAME::XME::Connection;
             Connection key_member;
 
-            static const ::Utils::XStr meta_KeyMember ("KeyMember");
+            static const GAME::Xml::String meta_KeyMember ("KeyMember");
 
             if (!GAME::find (aggregate, meta_KeyMember, key_member,
                  boost::bind (std::logical_and <bool> (),
@@ -423,12 +423,12 @@ public:
 
       for (; iter != iter_end; ++ iter)
       {
-        static const ::Utils::XStr meta_Package ("Package");
+        static const GAME::Xml::String meta_Package ("Package");
 
         // Locate the Package with this name.
         if (!GAME::find (parent, meta_Package, parent,
-            boost::bind (std::equal_to < ::Utils::XStr > (),
-                         ::Utils::XStr (*iter),
+            boost::bind (std::equal_to < GAME::Xml::String > (),
+                         GAME::Xml::String (*iter),
                          boost::bind (&GAME::XME::Model::name, _1))))
         {
           return;
@@ -438,14 +438,14 @@ public:
       // The final location is the parent. We now need to locate the
       // object in this parent that has the specified name.
       GAME::XME::Model object;
-      static const ::Utils::XStr meta_Object ("Object");
+      static const GAME::Xml::String meta_Object ("Object");
 
       if (GAME::find (parent, meta_Object, object,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
-                       ::Utils::XStr (*iter),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
+                       GAME::Xml::String (*iter),
                        boost::bind (&GAME::XME::Model::name, _1))))
       {
-        static const ::Utils::XStr attr_SupportsAsync ("SupportsAsync");
+        static const GAME::Xml::String attr_SupportsAsync ("SupportsAsync");
         object.attribute (attr_SupportsAsync, true).value (true);
       }
     }
@@ -471,12 +471,12 @@ public:
 
       for (; iter != iter_end; ++ iter)
       {
-        static const ::Utils::XStr meta_Package ("Package");
+        static const GAME::Xml::String meta_Package ("Package");
 
         // Locate the Package with this name.
         if (!GAME::find (parent, meta_Package, parent,
-            boost::bind (std::equal_to < ::Utils::XStr > (),
-                         ::Utils::XStr (*iter),
+            boost::bind (std::equal_to < GAME::Xml::String > (),
+                         GAME::Xml::String (*iter),
                          boost::bind (&GAME::XME::Model::name, _1))))
         {
           return;
@@ -486,11 +486,11 @@ public:
       // The next location is the component. We now need to locate
       // the object in this parent that has the specified name.
       GAME::XME::Model component;
-      static const ::Utils::XStr meta_Object ("Component");
+      static const GAME::Xml::String meta_Object ("Component");
 
       if (!GAME::find (parent, meta_Object, component,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
-                       ::Utils::XStr (*iter ++),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
+                       GAME::Xml::String (*iter ++),
                        boost::bind (&GAME::XME::Model::name, _1))))
       {
         return;
@@ -499,14 +499,14 @@ public:
       // The final location is the receptacle. We now need to locate
       // the object in this parent that has the specified name.
       GAME::XME::Reference receptacle;
-      static const ::Utils::XStr meta_RequiredRequestPort ("RequiredRequestPort");
+      static const GAME::Xml::String meta_RequiredRequestPort ("RequiredRequestPort");
 
       if (GAME::find (component, meta_RequiredRequestPort, receptacle,
-          boost::bind (std::equal_to < ::Utils::XStr > (),
-                       ::Utils::XStr (*iter),
+          boost::bind (std::equal_to < GAME::Xml::String > (),
+                       GAME::Xml::String (*iter),
                        boost::bind (&GAME::XME::Reference::name, _1))))
       {
-        static const ::Utils::XStr attr_AsyncCommunication ("AsyncCommunication");
+        static const GAME::Xml::String attr_AsyncCommunication ("AsyncCommunication");
         receptacle.attribute (attr_AsyncCommunication, true).value (true);
       }
     }

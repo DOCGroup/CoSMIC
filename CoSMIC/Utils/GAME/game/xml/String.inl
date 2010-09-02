@@ -243,23 +243,24 @@ bool String::empty (void) const
   return this->wstr_ == 0 || this->length () == 0;
 }
 
+}
+}
+
+
 //
 // operator ==
 //
 GAME_INLINE
-bool operator == (const XMLCh * lhs, const String & rhs)
+bool operator == (const XMLCh * lhs, const GAME::Xml::String & rhs)
 {
-  return String (lhs, false) == rhs;
+  return GAME::Xml::String (lhs, false) == rhs;
 }
 
 //
 // operator !=
 //
 GAME_INLINE
-bool operator != (const XMLCh * lhs, const String & rhs)
+bool operator != (const XMLCh * lhs, const GAME::Xml::String & rhs)
 {
-  return String (lhs, false) != rhs;
-}
-
-}
+  return GAME::Xml::String (lhs, false) != rhs;
 }

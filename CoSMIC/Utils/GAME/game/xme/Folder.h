@@ -38,7 +38,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Folder _create (Folder & parent, const ::Utils::XStr & kind);
+  static Folder _create (Folder & parent, const GAME::Xml::String & kind);
 
   static Folder _narrow (const Object & obj);
 
@@ -90,16 +90,16 @@ public:
    *
    * @param[in]     metaname          Metaname of the child folders.
    */
-  size_t children (const ::Utils::XStr & metaname, std::vector <Folder> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Folder> & coll);
 
   size_t children (std::vector <FCO> & coll);
-  size_t children (const ::Utils::XStr & metaname, std::vector <FCO> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <FCO> & coll);
 
   size_t children (std::vector <Atom> & coll);
-  size_t children (const ::Utils::XStr & metaname, std::vector <Atom> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Atom> & coll);
 
   size_t children (std::vector <Model> & coll);
-  size_t children (const ::Utils::XStr & metaname, std::vector <Model> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Model> & coll);
 
   /**
    * Reset the relative id counter. This method should only be
@@ -117,7 +117,7 @@ public:
   size_t relid_counter (void) const;
 
   /// The XML tagname for this element.
-  static const ::Utils::XStr TAGNAME;
+  static const GAME::Xml::String TAGNAME;
 
 protected:
   /**
@@ -125,7 +125,7 @@ protected:
    * DOMElement that represents the folder object.
    */
   Folder (xercesc::DOMElement * parent,
-          const ::Utils::XStr & kind,
+          const GAME::Xml::String & kind,
           size_t relid);
 
   Folder (xercesc::DOMElement * parent);
@@ -137,8 +137,8 @@ private:
   /// The relative id counter for its children.
   size_t counter_;
 
-  static const ::Utils::XStr ATTR_CHILDRELIDCNTR;
-  static const ::Utils::XStr NO_CHILDREN;
+  static const GAME::Xml::String ATTR_CHILDRELIDCNTR;
+  static const GAME::Xml::String NO_CHILDREN;
 };
 
 }

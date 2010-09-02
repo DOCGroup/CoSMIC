@@ -58,15 +58,15 @@ public:
 
   const FCO & owner (void) const;
 
-  Registry_Node child (const ::Utils::XStr & name, bool create);
+  Registry_Node child (const GAME::Xml::String & name, bool create);
 
 private:
   /// The parent of the registry.
   FCO & parent_;
 
-  static const ::Utils::XStr TAGNAME;
-  static const ::Utils::XStr ATTR_TAGNAME;
-  static const ::Utils::XStr ATTR_NAME;
+  static const GAME::Xml::String TAGNAME;
+  static const GAME::Xml::String ATTR_TAGNAME;
+  static const GAME::Xml::String ATTR_NAME;
 };
 
 }

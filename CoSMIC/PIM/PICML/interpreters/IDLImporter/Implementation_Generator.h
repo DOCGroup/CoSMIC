@@ -46,11 +46,11 @@ public:
 private:
   void generate_impl (GAME::XME::Model & container,
                       const GAME::XME::FCO & impl,
-                      const ::Utils::XStr & fq_type);
+                      const GAME::Xml::String & fq_type);
 
   void generate_servant (GAME::XME::Model & container,
                          const GAME::XME::FCO & impl,
-                         const ::Utils::XStr & fq_type);
+                         const GAME::Xml::String & fq_type);
 
   /// Folder that contains the implementations.
   GAME::XME::Folder impls_;

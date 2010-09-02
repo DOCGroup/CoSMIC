@@ -19,14 +19,13 @@
 
 #include "Type_Trait.h"
 
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/xercesc/XML_Error_Handler.h"
-#include "Utils/xercesc/EntityResolver.h"
-#include "xercesc/parsers/XercesDOMParser.hpp"
+#include "game/xml/Error_Handler.h"
+#include "game/xml/Entity_Resolver.h"
+#include "game/xme/Configuration.h"
 
+#include "xercesc/parsers/XercesDOMParser.hpp"
 #include "PIM/PICML/interpreters/PICML/PICML_GUID.h"
 
-#include "game/xme/Configuration.h"
 
 #include "ace/OS_NS_stdio.h"
 #include "ace/streams.h"
@@ -179,7 +178,7 @@ void BE_GlobalData::parse_args (long &i, char **av)
 
         // In case it isn't at the end of the command line option,
         // otherwise idempotent.
-        GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (::Utils::XStr ("/"));
+        GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (GAME::Xml::String ("/"));
         break;
 
       case 'l':
@@ -255,9 +254,9 @@ void BE_GlobalData::initialize (void)
         target_name += FILE_EXT;
 
       // Create the project and set its name.
-      static const ::Utils::XStr PICML ("PICML");
-      static const ::Utils::XStr GUID (PICML_PARADIGM_GUID);
-      const ::Utils::XStr name (be_global->output_file ().c_str ());
+      static const GAME::Xml::String PICML ("PICML");
+      static const GAME::Xml::String GUID (PICML_PARADIGM_GUID);
+      const GAME::Xml::String name (be_global->output_file ().c_str ());
 
       this->proj_ = Project::_create (target_name.c_str (), PICML, GUID);
 
@@ -278,7 +277,7 @@ void BE_GlobalData::initialize (void)
   }
   catch (const xercesc::DOMException & e)
   {
-    ::Utils::XStr msg (e.getMessage (), false);
+    GAME::Xml::String msg (e.getMessage (), false);
 
     ACE_ERROR ((LM_ERROR,
                 ACE_TEXT ("xerces_init - ")
@@ -289,7 +288,7 @@ void BE_GlobalData::initialize (void)
   }
   catch (const xercesc::SAXParseException &e)
   {
-    ::Utils::XStr msg (e.getMessage (), false);
+    GAME::Xml::String msg (e.getMessage (), false);
 
     ACE_ERROR ((LM_DEBUG,
                 ACE_TEXT ("xerces_init - ")
@@ -300,7 +299,7 @@ void BE_GlobalData::initialize (void)
   }
   catch (const xercesc::XMLException &e)
   {
-    ::Utils::XStr msg (e.getMessage (), false);
+    GAME::Xml::String msg (e.getMessage (), false);
 
     ACE_ERROR ((LM_DEBUG,
                 ACE_TEXT ("xerces_init - ")

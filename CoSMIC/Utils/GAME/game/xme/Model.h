@@ -35,7 +35,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Model _create (Model & parent, const ::Utils::XStr & kind);
+  static Model _create (Model & parent, const GAME::Xml::String & kind);
 
   /**
    * Create a new model
@@ -43,7 +43,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Model _create (Folder & parent, const ::Utils::XStr & kind);
+  static Model _create (Folder & parent, const GAME::Xml::String & kind);
 
   /**
    * Narrow an object to an model.
@@ -104,35 +104,35 @@ public:
   size_t relid_counter (void) const;
 
   size_t children (std::vector <FCO> & atoms);
-  size_t children (const ::Utils::XStr & metaname, std::vector <FCO> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <FCO> & coll);
 
   size_t children (std::vector <Atom> & atoms);
-  size_t children (const ::Utils::XStr & metaname, std::vector <Atom> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Atom> & coll);
 
   size_t children (std::vector <Model> & coll);
-  size_t children (const ::Utils::XStr & metaname, std::vector <Model> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Model> & coll);
 
   size_t children (std::vector <Reference> & coll);
-  size_t children (const ::Utils::XStr & metaname, std::vector <Reference> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Reference> & coll);
 
   size_t children (std::vector <Connection> & coll);
-  size_t children (const ::Utils::XStr & metaname, std::vector <Connection> & coll);
+  size_t children (const GAME::Xml::String & metaname, std::vector <Connection> & coll);
 
   /// The XML tagname for this element.
-  static const ::Utils::XStr TAGNAME;
+  static const GAME::Xml::String TAGNAME;
 
 protected:
   /// Initializing constructor. This constructor creates the actual
   /// DOMElement that represents the folder object.
   Model (xercesc::DOMElement * parent,
-         const ::Utils::XStr & kind,
+         const GAME::Xml::String & kind,
          size_t relid);
 
   Model (xercesc::DOMElement * folder);
 
 private:
   template <typename T>
-  static Model create_impl (T & parent, const ::Utils::XStr & kind);
+  static Model create_impl (T & parent, const GAME::Xml::String & kind);
 
   /// Help method for initializing the counter.
   void initialize_counter (void);
@@ -140,8 +140,8 @@ private:
   /// The relative id counter for its children.
   size_t counter_;
 
-  static const ::Utils::XStr ATTR_CHILDRELIDCNTR;
-  static const ::Utils::XStr NO_CHILDREN;
+  static const GAME::Xml::String ATTR_CHILDRELIDCNTR;
+  static const GAME::Xml::String NO_CHILDREN;
 };
 
 }

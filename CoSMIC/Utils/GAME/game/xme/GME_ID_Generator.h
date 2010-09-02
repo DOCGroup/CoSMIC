@@ -14,7 +14,7 @@
 #define _GAME_GME_ID_GENERATOR_H_
 
 #include "xercesc/dom/DOMDocument.hpp"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "ace/Thread_Mutex.h"
 #include "game/config.h"
 
@@ -36,11 +36,11 @@ public:
   /// Destructor.
   ~GME_ID_Generator (void);
 
-  const ::Utils::XStr & generate_folder_id (void);
-  const ::Utils::XStr & generate_atom_id (void);
-  const ::Utils::XStr & generate_model_id (void);
-  const ::Utils::XStr & generate_reference_id (void);
-  const ::Utils::XStr & generate_connection_id (void);
+  const GAME::Xml::String & generate_folder_id (void);
+  const GAME::Xml::String & generate_atom_id (void);
+  const GAME::Xml::String & generate_model_id (void);
+  const GAME::Xml::String & generate_reference_id (void);
+  const GAME::Xml::String & generate_connection_id (void);
 
 private:
   struct typeinfo_t
@@ -48,7 +48,7 @@ private:
     typeinfo_t (void)
       : count_ (0) { }
 
-    typeinfo_t (size_t count, const ::Utils::XStr & idstr)
+    typeinfo_t (size_t count, const GAME::Xml::String & idstr)
       : count_ (count),
         idstr_ (idstr)
     {
@@ -59,7 +59,7 @@ private:
     XMLSize_t count_;
 
     /// The current id string for the type.
-    ::Utils::XStr idstr_;
+    GAME::Xml::String idstr_;
 
     ACE_Thread_Mutex lock_;
   };
@@ -69,11 +69,11 @@ private:
 
   /// Helper method to initialize a type in the generator.
   static void init (xercesc::DOMDocument * proj,
-                    const ::Utils::XStr & name,
+                    const GAME::Xml::String & name,
                     typeinfo_t & type);
 
   /// Helper method for generating an id for a given type.
-  static ::Utils::XStr & generate_id (typeinfo_t & type);
+  static GAME::Xml::String & generate_id (typeinfo_t & type);
 
   /// Number of atoms.
   typeinfo_t atom_;

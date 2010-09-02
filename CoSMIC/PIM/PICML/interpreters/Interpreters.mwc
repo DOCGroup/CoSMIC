@@ -13,14 +13,8 @@ workspace {
     MPCComponent
 
     PackageComponent
-    //Path
-    //PathComponent
     PICML/PICML.mpc
     PropertyManager
-
-    //PAM
-    //PAMComponent
-    //QED
 
     Target
     TargetComponent
@@ -29,6 +23,12 @@ workspace {
   exclude (wix) {
     PICML/PICML_GUID.mpc
   }
+
+    //Path
+    //PathComponent
+    //PAM
+    //PAMComponent
+    //QED
 
   IDLImporter
 }

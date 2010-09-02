@@ -168,6 +168,7 @@ private:
 }
 
 GAME_XML_Export std::ostream & operator << (std::ostream & o, const GAME::Xml::String & str);
+
 GAME_XML_Export bool operator == (const XMLCh * lhs, const GAME::Xml::String & rhs);
 GAME_XML_Export bool operator != (const XMLCh * lhs, const GAME::Xml::String & rhs);
 

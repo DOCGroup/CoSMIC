@@ -39,7 +39,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Atom _create (Folder & parent, const ::Utils::XStr & kind);
+  static Atom _create (Folder & parent, const GAME::Xml::String & kind);
 
   /**
    * Create a new folder
@@ -47,7 +47,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Atom _create (Model & parent, const ::Utils::XStr & kind);
+  static Atom _create (Model & parent, const GAME::Xml::String & kind);
 
   /**
    * Narrow an object to an atom.
@@ -85,13 +85,13 @@ public:
   const Atom & operator = (const Atom & atom);
 
   /// The XML tagname for this element.
-  static const ::Utils::XStr TAGNAME;
+  static const GAME::Xml::String TAGNAME;
 
 protected:
   /// Initializing constructor. This constructor creates the actual
   /// DOMElement that represents the folder object.
   Atom (xercesc::DOMElement * parent,
-        const ::Utils::XStr & kind,
+        const GAME::Xml::String & kind,
         size_t relid);
 
   Atom (xercesc::DOMElement * parent);
@@ -99,7 +99,7 @@ protected:
 private:
   /// Implementation of the creation method.
   template <typename T>
-  static Atom create_impl (T & parent, const ::Utils::XStr & kind);
+  static Atom create_impl (T & parent, const GAME::Xml::String & kind);
 };
 
 }

@@ -1,13 +1,13 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "Exceptions.h"
 
 namespace GAME
 {
 namespace XME
 {
-static const ::Utils::XStr ATTR_KIND ("kind");
+static const GAME::Xml::String ATTR_KIND ("kind");
 
 //
 // get_children
@@ -75,7 +75,7 @@ get_children (xercesc::DOMElement * e,  std::vector <T> & children)
 template <typename T>
 size_t Utils::
 get_children (xercesc::DOMElement * e,
-              const ::Utils::XStr & metaname,
+              const GAME::Xml::String & metaname,
               std::vector <T> & children)
 {
   using xercesc::DOMElement;
@@ -94,7 +94,7 @@ get_children (xercesc::DOMElement * e,
     // Copy over all the children in the list.
     size_t final_length = 0;
     DOMNode * node = 0;
-    ::Utils::XStr kind;
+    GAME::Xml::String kind;
 
     for (size_t i = 0; i < length; ++ i)
     {

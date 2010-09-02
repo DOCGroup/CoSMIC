@@ -1,10 +1,10 @@
 // -*- MPC -*-
 // $Id$
 
-project(PICML_IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe, cosmic_lib {
+project(PICML_IDL_TO_PICML_BE) : acelib, core, crosscompile, game_xme, tao_idl_fe, cosmic_lib {
   sharedname   = PICML_IDL_TO_PICML_BE
   dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
-  
+
   after += PICML_GUID
 
   specific (prop:microsoft) {
@@ -40,7 +40,7 @@ project(PICML_IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils
   }
 }
 
-project(PICML_IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, game_xme, tao_idl_fe, cosmic_bin {
+project(PICML_IDL_TO_PICML_EXE) : aceexe, core, crosscompile, game_xme, tao_idl_fe, cosmic_bin {
   after          += PICML_IDL_TO_PICML_BE
   exename         = idl_to_picml
   libs           += PICML_IDL_TO_PICML_BE
@@ -58,7 +58,7 @@ project(PICML_IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_util
 
     ifeq ($(static_libs_only), 1)
       ifneq ($(with_ld), macosx)
-        LDFLAGS += -static 
+        LDFLAGS += -static
       endif
     endif
   }
@@ -70,7 +70,7 @@ project(PICML_IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_util
   Source_Files {
     $(TAO_ROOT)/TAO_IDL/driver/drv_args.cpp
     $(TAO_ROOT)/TAO_IDL/driver/drv_preproc.cpp
-    $(TAO_ROOT)/TAO_IDL/tao_idl.cpp    
+    $(TAO_ROOT)/TAO_IDL/tao_idl.cpp
   }
 
   Header_Files {

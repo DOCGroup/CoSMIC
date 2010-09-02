@@ -12,14 +12,14 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Registry::TAGNAME ("regnode");
-const ::Utils::XStr Registry::ATTR_TAGNAME ("attribute");
-const ::Utils::XStr Registry::ATTR_NAME ("name");
+const GAME::Xml::String Registry::TAGNAME ("regnode");
+const GAME::Xml::String Registry::ATTR_TAGNAME ("attribute");
+const GAME::Xml::String Registry::ATTR_NAME ("name");
 
 //
 // child
 //
-Registry_Node Registry::child (const ::Utils::XStr & name, bool create)
+Registry_Node Registry::child (const GAME::Xml::String & name, bool create)
 {
   using xercesc::DOMElement;
   using xercesc::DOMNode;

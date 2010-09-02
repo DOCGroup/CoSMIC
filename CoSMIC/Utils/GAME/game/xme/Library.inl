@@ -19,7 +19,7 @@ Library::Library (void)
 //
 GAME_INLINE
 Library::
-Library (const ::Utils::XStr & location, xercesc::DOMElement * parent)
+Library (const GAME::Xml::String & location, xercesc::DOMElement * parent)
 : Folder (parent)
 {
   this->ptr ()->setAttribute (ATTR_LIBREF, location);
@@ -31,7 +31,7 @@ Library (const ::Utils::XStr & location, xercesc::DOMElement * parent)
 //
 GAME_INLINE
 Library::Library (xercesc::DOMElement * libnode,
-                  const ::Utils::XStr & libpath,
+                  const GAME::Xml::String & libpath,
                   bool validate)
 : Folder (libnode, validate)
 {

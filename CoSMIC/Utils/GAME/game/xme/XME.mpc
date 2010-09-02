@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_XME) : game_common, cosmic_xerces_utils, cosmic_lib {
+project (GAME_XME) : game_xml, cosmic_lib {
   sharedname    = GAME_XME
   dynamicflags += GAME_XME_BUILD_DLL
 

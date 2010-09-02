@@ -16,7 +16,7 @@ namespace XME
 //
 // ATTR_LIBREF
 //
-const ::Utils::XStr Library::ATTR_LIBREF ("libref");
+const GAME::Xml::String Library::ATTR_LIBREF ("libref");
 
 //
 // Library
@@ -26,8 +26,8 @@ Library::Library (xercesc::DOMElement * folder, bool validate)
 {
   if (validate)
   {
-    static const ::Utils::XStr kindname ("RootFolder");
-    const ::Utils::XStr kind (this->kind (), false);
+    static const GAME::Xml::String kindname ("RootFolder");
+    const GAME::Xml::String kind (this->kind (), false);
 
     if (kind != kindname)
       throw Invalid_Cast ();
@@ -45,8 +45,8 @@ void Library::attach (xercesc::DOMElement * e, bool validate)
   if (validate)
   {
     // Validate the element at this level now.
-    static const ::Utils::XStr kindname ("RootFolder");
-    const ::Utils::XStr kind (this->kind (), false);
+    static const GAME::Xml::String kindname ("RootFolder");
+    const GAME::Xml::String kind (this->kind (), false);
 
     if (kind != kindname)
       throw Invalid_Cast ();
@@ -56,12 +56,12 @@ void Library::attach (xercesc::DOMElement * e, bool validate)
 //
 // xme_to_libref
 //
-::Utils::XStr Library::xme_to_libref (const ::Utils::XStr & xmefile)
+GAME::Xml::String Library::xme_to_libref (const GAME::Xml::String & xmefile)
 {
-  ::Utils::XStr libref ("MGA=");
+  GAME::Xml::String libref ("MGA=");
   libref.append (xmefile);
 
-  size_t length = xmefile.size ();
+  size_t length = xmefile.length ();
   libref[length - 3] = xercesc::chLatin_m;
   libref[length - 2] = xercesc::chLatin_g;
   libref[length - 1] = xercesc::chLatin_a;

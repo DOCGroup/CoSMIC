@@ -15,7 +15,7 @@
 
 #include "ace/Thread_Mutex.h"
 #include "ace/Singleton.h"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "XME_export.h"
 
 namespace GAME
@@ -33,7 +33,7 @@ public:
   /// Default construction (configuration).
   Configuration (void);
 
-  ::Utils::XStr schema_path_;
+  GAME::Xml::String schema_path_;
 };
 
 typedef ACE_Singleton <Configuration, ACE_Thread_Mutex> GLOBAL_CONFIG;

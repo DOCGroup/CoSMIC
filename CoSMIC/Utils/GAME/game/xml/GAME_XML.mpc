@@ -8,6 +8,8 @@ project (GAME_XML) : xerces, acelib, cosmic_lib {
 
   Source_Files {
     Document.cpp
+    Entity_Resolver.cpp
+    Error_Handler.cpp
     Fragment.cpp
     Memory_Manager.cpp
     Static_Configuration.cpp

@@ -14,7 +14,7 @@
 #define _GAME_XME_OBJECT_H_
 
 #include "xercesc/dom/DOM.hpp"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "Object_Type.h"
 #include "Exceptions.h"
 
@@ -76,7 +76,7 @@ public:
    *
    * @param[in]     n         Name of the element.
    */
-  void name (const ::Utils::XStr & n);
+  void name (const GAME::Xml::String & n);
 
   /**
    * Test objects for equality.
@@ -144,7 +144,7 @@ public:
 
   static bool _is_type (const std::string & type);
 
-  static bool _is_type (const ::Utils::XStr & type);
+  static bool _is_type (const GAME::Xml::String & type);
 
   unsigned long hash (void) const;
 
@@ -153,9 +153,9 @@ public:
 protected:
   // Initializing constructor.
   Object (xercesc::DOMElement * parent,
-          const ::Utils::XStr & tagname,
-          const ::Utils::XStr & id,
-          const ::Utils::XStr & kind,
+          const GAME::Xml::String & tagname,
+          const GAME::Xml::String & id,
+          const GAME::Xml::String & kind,
           size_t relid);
 
   // Initializing constructor.
@@ -168,10 +168,10 @@ protected:
   int type_;
 
 private:
-  static const ::Utils::XStr ELEMENT_NAME;
-  static const ::Utils::XStr ATTR_ID;
-  static const ::Utils::XStr ATTR_KIND;
-  static const ::Utils::XStr ATTR_RELID;
+  static const GAME::Xml::String ELEMENT_NAME;
+  static const GAME::Xml::String ATTR_ID;
+  static const GAME::Xml::String ATTR_KIND;
+  static const GAME::Xml::String ATTR_RELID;
 };
 
 }

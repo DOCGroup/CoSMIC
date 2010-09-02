@@ -80,7 +80,7 @@ const XMLCh * Project::name (void) const
 // name
 //
 GAME_INLINE
-void Project::name (const ::Utils::XStr & value)
+void Project::name (const GAME::Xml::String & value)
 {
   Utils::set_element_value (this->doc_->getDocumentElement (),
                             ELEMENT_NAME,
@@ -101,7 +101,7 @@ const XMLCh * Project::author (void) const
 // author
 //
 GAME_INLINE
-void Project::author (const ::Utils::XStr & value)
+void Project::author (const GAME::Xml::String & value)
 {
   Utils::set_element_value (this->doc_->getDocumentElement (),
                             ELEMENT_AUTHOR,
@@ -122,7 +122,7 @@ const XMLCh * Project::comment (void) const
 // commnet
 //
 GAME_INLINE
-void Project::comment (const ::Utils::XStr & value)
+void Project::comment (const GAME::Xml::String & value)
 {
   Utils::set_element_value (this->doc_->getDocumentElement (),
                             ELEMENT_COMMENT,
@@ -152,7 +152,7 @@ const Configuration * Project::configuration (void) const
 //
 GAME_INLINE
 Library Project::
-attach_library (const ::Utils::XStr & as_name, const ::Utils::XStr & lib)
+attach_library (const GAME::Xml::String & as_name, const GAME::Xml::String & lib)
 {
   Library library = this->attach_library (lib);
   library.name (as_name);

@@ -55,10 +55,10 @@ FCO::FCO (xercesc::DOMElement * fco, int type)
 GAME_INLINE
 FCO::
 FCO (xercesc::DOMElement * parent,
-     const ::Utils::XStr & tagname,
-     const ::Utils::XStr & id,
-     const ::Utils::XStr & kind,
-     const ::Utils::XStr & role,
+     const GAME::Xml::String & tagname,
+     const GAME::Xml::String & id,
+     const GAME::Xml::String & kind,
+     const GAME::Xml::String & role,
      size_t relid)
 : Object (parent, tagname, id, kind, relid)
 {

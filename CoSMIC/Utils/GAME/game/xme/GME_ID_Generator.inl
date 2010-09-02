@@ -32,7 +32,7 @@ GME_ID_Generator::~GME_ID_Generator ()
 // generate_folder_id
 //
 GAME_INLINE
-const ::Utils::XStr & GME_ID_Generator::generate_folder_id (void)
+const GAME::Xml::String & GME_ID_Generator::generate_folder_id (void)
 {
   return GME_ID_Generator::generate_id (this->folder_);
 }
@@ -41,7 +41,7 @@ const ::Utils::XStr & GME_ID_Generator::generate_folder_id (void)
 // generate_atom_id
 //
 GAME_INLINE
-const ::Utils::XStr & GME_ID_Generator::generate_atom_id (void)
+const GAME::Xml::String & GME_ID_Generator::generate_atom_id (void)
 {
   return GME_ID_Generator::generate_id (this->atom_);
 }
@@ -50,7 +50,7 @@ const ::Utils::XStr & GME_ID_Generator::generate_atom_id (void)
 // generate_model_id
 //
 GAME_INLINE
-const ::Utils::XStr & GME_ID_Generator::generate_model_id (void)
+const GAME::Xml::String & GME_ID_Generator::generate_model_id (void)
 {
   return GME_ID_Generator::generate_id (this->model_);
 }
@@ -59,7 +59,7 @@ const ::Utils::XStr & GME_ID_Generator::generate_model_id (void)
 // generate_reference_id
 //
 GAME_INLINE
-const ::Utils::XStr & GME_ID_Generator::generate_reference_id (void)
+const GAME::Xml::String & GME_ID_Generator::generate_reference_id (void)
 {
   return GME_ID_Generator::generate_id (this->ref_);
 }
@@ -68,7 +68,7 @@ const ::Utils::XStr & GME_ID_Generator::generate_reference_id (void)
 // generate_set_id
 //
 GAME_INLINE
-const ::Utils::XStr & GME_ID_Generator::generate_connection_id (void)
+const GAME::Xml::String & GME_ID_Generator::generate_connection_id (void)
 {
   return GME_ID_Generator::generate_id (this->conn_);
 }

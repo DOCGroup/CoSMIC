@@ -15,15 +15,15 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Model::TAGNAME ("model");
-const ::Utils::XStr Model::ATTR_CHILDRELIDCNTR ("childrelidcntr");
-const ::Utils::XStr Model::NO_CHILDREN ("0x0");
+const GAME::Xml::String Model::TAGNAME ("model");
+const GAME::Xml::String Model::ATTR_CHILDRELIDCNTR ("childrelidcntr");
+const GAME::Xml::String Model::NO_CHILDREN ("0x0");
 
 //
 // _create_impl
 //
 template <typename T>
-Model Model::create_impl (T & parent, const ::Utils::XStr & kind)
+Model Model::create_impl (T & parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();
@@ -53,7 +53,7 @@ Model (xercesc::DOMElement * model, bool validate)
 GAME_INLINE
 Model::
 Model (xercesc::DOMElement * parent,
-       const ::Utils::XStr & kind,
+       const GAME::Xml::String & kind,
        size_t relid)
 : FCO (parent,
        TAGNAME,
@@ -69,7 +69,7 @@ Model (xercesc::DOMElement * parent,
 //
 // _create
 //
-Model Model::_create (Model & parent, const ::Utils::XStr & kind)
+Model Model::_create (Model & parent, const GAME::Xml::String & kind)
 {
   return Model::create_impl (parent, kind);
 }
@@ -77,7 +77,7 @@ Model Model::_create (Model & parent, const ::Utils::XStr & kind)
 //
 // _create
 //
-Model Model::_create (Folder & parent, const ::Utils::XStr & kind)
+Model Model::_create (Folder & parent, const GAME::Xml::String & kind)
 {
   return Model::create_impl (parent, kind);
 }
@@ -108,7 +108,7 @@ void Model::relid_counter (size_t value)
   // Write the counter to hexadecimal format.
   std::ostringstream xstr;
   xstr << "0x" << std::hex << value;
-  this->obj_->setAttribute (ATTR_CHILDRELIDCNTR, ::Utils::XStr (xstr.str ()));
+  this->obj_->setAttribute (ATTR_CHILDRELIDCNTR, GAME::Xml::String (xstr.str ()));
 
   // Save the counter's value.
   this->counter_ = value;
@@ -121,7 +121,7 @@ void Model::initialize_counter (void)
 {
   // Get the child relative id counter value.
   const XMLCh * ch = this->obj_->getAttribute (ATTR_CHILDRELIDCNTR);
-  const ::Utils::XStr value (ch, false);
+  const GAME::Xml::String value (ch, false);
 
   std::istringstream istr (value.to_string ());
   istr >> std::hex >> this->counter_;

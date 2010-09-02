@@ -15,19 +15,19 @@ namespace GAME
 namespace XME
 {
 // constants
-const ::Utils::XStr Object::ATTR_ID ("id");
-const ::Utils::XStr Object::ATTR_KIND ("kind");
-const ::Utils::XStr Object::ATTR_RELID ("relid");
-const ::Utils::XStr Object::ELEMENT_NAME ("name");
+const GAME::Xml::String Object::ATTR_ID ("id");
+const GAME::Xml::String Object::ATTR_KIND ("kind");
+const GAME::Xml::String Object::ATTR_RELID ("relid");
+const GAME::Xml::String Object::ELEMENT_NAME ("name");
 
 //
 // Object
 //
 Object::
 Object (xercesc::DOMElement * parent,
-        const ::Utils::XStr & tagname,
-        const ::Utils::XStr & id,
-        const ::Utils::XStr & kind,
+        const GAME::Xml::String & tagname,
+        const GAME::Xml::String & id,
+        const GAME::Xml::String & kind,
         size_t relid)
 {
   using xercesc::DOMDocument;
@@ -44,7 +44,7 @@ Object (xercesc::DOMElement * parent,
 
   this->obj_->setAttribute (ATTR_ID, id);
   this->obj_->setAttribute (ATTR_KIND, kind);
-  this->obj_->setAttribute (ATTR_RELID, ::Utils::XStr (ostr.str ()));
+  this->obj_->setAttribute (ATTR_RELID, GAME::Xml::String (ostr.str ()));
 
   // Finally, make sure the 'id' is the id attribute. This will be
   // needed when making calls to getElementById ().
@@ -54,7 +54,7 @@ Object (xercesc::DOMElement * parent,
   // Make sure the object has <name> element.
   DOMElement * e = doc->createElement (ELEMENT_NAME);
   this->obj_->appendChild (e);
-  e->setTextContent (::Utils::XStr::EMPTY_STRING);
+  e->setTextContent (GAME::Xml::String::EMPTY_STRING);
 }
 
 //
@@ -82,7 +82,7 @@ void Object::destroy (void)
 
   // Store this object's id since we will need it later.
   DOMDocument * doc = this->obj_->getOwnerDocument ();
-  ::Utils::XStr old_id (this->id (), true);
+  GAME::Xml::String old_id (this->id (), true);
 
   // Remove this node from the XML tree.
   DOMNode * parent = this->obj_->getParentNode ();
@@ -112,7 +112,7 @@ void Object::destroy (void)
 
     if (!refers_to.is_nil ())
     {
-      const ::Utils::XStr id (refers_to.id (), false);
+      const GAME::Xml::String id (refers_to.id (), false);
 
       if (id == old_id)
         ref.reset ();
@@ -128,7 +128,7 @@ void Object::destroy (void)
 void Object::attach (xercesc::DOMElement *e, bool validate)
 {
   // Get the tag name for this element.
-  ::Utils::XStr tagname (e->getTagName (), false);
+  GAME::Xml::String tagname (e->getTagName (), false);
   const std::string & str = tagname.to_string ();
 
   // Locate the tagname in the hashmap.

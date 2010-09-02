@@ -82,7 +82,7 @@ size_t Model::children (std::vector <FCO> & coll)
 //
 GAME_INLINE
 size_t Model::
-children (const ::Utils::XStr & metaname, std::vector <FCO> & coll)
+children (const GAME::Xml::String & metaname, std::vector <FCO> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
@@ -101,7 +101,7 @@ size_t Model::children (std::vector <Atom> & coll)
 //
 GAME_INLINE
 size_t Model::
-children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
+children (const GAME::Xml::String & metaname, std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
@@ -121,7 +121,7 @@ size_t Model::children (std::vector <Model> & coll)
 //
 GAME_INLINE
 size_t Model::
-children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
+children (const GAME::Xml::String & metaname, std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
@@ -140,7 +140,7 @@ size_t Model::children (std::vector <Reference> & coll)
 //
 GAME_INLINE
 size_t Model::
-children (const ::Utils::XStr & metaname, std::vector <Reference> & coll)
+children (const GAME::Xml::String & metaname, std::vector <Reference> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
@@ -159,7 +159,7 @@ size_t Model::children (std::vector <Connection> & coll)
 //
 GAME_INLINE
 size_t Model::
-children (const ::Utils::XStr & metaname, std::vector <Connection> & coll)
+children (const GAME::Xml::String & metaname, std::vector <Connection> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }

@@ -21,7 +21,7 @@ Configuration::Configuration (void)
 
   if (path_str != 0)
   {
-    static const ::Utils::XStr includes_GME ("/includes/GME/");
+    static const GAME::Xml::String includes_GME ("/includes/GME/");
 
     this->schema_path_ = path_str;
     this->schema_path_.append (includes_GME);

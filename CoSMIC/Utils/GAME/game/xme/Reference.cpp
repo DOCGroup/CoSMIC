@@ -14,12 +14,12 @@ namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Reference::TAGNAME ("reference");
-const ::Utils::XStr Reference::ATTR_REFERRED ("referred");
-const ::Utils::XStr Reference::NULL_REFERENCE ("");
+const GAME::Xml::String Reference::TAGNAME ("reference");
+const GAME::Xml::String Reference::ATTR_REFERRED ("referred");
+const GAME::Xml::String Reference::NULL_REFERENCE ("");
 
 template <typename T>
-Reference Reference::create_impl (T parent, const ::Utils::XStr & kind)
+Reference Reference::create_impl (T parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();
@@ -35,7 +35,7 @@ Reference Reference::create_impl (T parent, const ::Utils::XStr & kind)
 GAME_INLINE
 Reference::
 Reference (xercesc::DOMElement * parent,
-           const ::Utils::XStr & kind,
+           const GAME::Xml::String & kind,
            size_t relid)
 : FCO (parent,
        TAGNAME,
@@ -50,7 +50,7 @@ Reference (xercesc::DOMElement * parent,
 //
 // _create
 //
-Reference Reference::_create (Folder & parent, const ::Utils::XStr & kind)
+Reference Reference::_create (Folder & parent, const GAME::Xml::String & kind)
 {
   return Reference::create_impl (parent, kind);
 }
@@ -58,7 +58,7 @@ Reference Reference::_create (Folder & parent, const ::Utils::XStr & kind)
 //
 // _create
 //
-Reference Reference::_create (Model & parent, const ::Utils::XStr & kind)
+Reference Reference::_create (Model & parent, const GAME::Xml::String & kind)
 {
   return Reference::create_impl (parent, kind);
 }
@@ -74,7 +74,7 @@ void Reference::refers_to (const FCO & fco)
   }
   else
   {
-    this->obj_->setAttribute (ATTR_REFERRED, ::Utils::XStr (fco.id ()));
+    this->obj_->setAttribute (ATTR_REFERRED, GAME::Xml::String (fco.id ()));
     this->refers_to_ = fco;
   }
 }
@@ -95,7 +95,7 @@ FCO Reference::refers_to (void) const
 //
 void Reference::get_reference (void) const
 {
-  ::Utils::XStr id (this->obj_->getAttribute (ATTR_REFERRED), false);
+  GAME::Xml::String id (this->obj_->getAttribute (ATTR_REFERRED), false);
 
   if (id == NULL_REFERENCE)
     return;

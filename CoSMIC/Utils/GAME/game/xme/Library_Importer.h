@@ -52,7 +52,7 @@ public:
 private:
   struct insensitive_id
   {
-    bool operator () (const ::Utils::XStr & lid, const ::Utils::XStr & rid) const;
+    bool operator () (const GAME::Xml::String & lid, const GAME::Xml::String & rid) const;
   };
 
   void handle_folder (Folder & folder);
@@ -72,10 +72,10 @@ private:
   void resolved_connection (Connection & conn);
 
   template <typename T>
-  void handle_import_common (T & e, const ::Utils::XStr & newid);
+  void handle_import_common (T & e, const GAME::Xml::String & newid);
 
-  typedef std::map < ::Utils::XStr,
-                     ::Utils::XStr,
+  typedef std::map < GAME::Xml::String,
+                     GAME::Xml::String,
                      insensitive_id > id_map_t;
 
   id_map_t id_map_;
@@ -84,9 +84,9 @@ private:
 
   std::vector < Connection > unresolved_conns_;
 
-  static const ::Utils::XStr ATTR_ID;
-  static const ::Utils::XStr ATTR_REFERRED;
-  static const ::Utils::XStr ATTR_TARGET;
+  static const GAME::Xml::String ATTR_ID;
+  static const GAME::Xml::String ATTR_REFERRED;
+  static const GAME::Xml::String ATTR_TARGET;
 
 private:
   GME_ID_Generator * idgen_;

@@ -63,7 +63,7 @@ public:
   void attach (xercesc::DOMElement * fco, bool validate = true);
 
   size_t attributes (std::vector <Attribute> & attrs) const;
-  Attribute attribute (const ::Utils::XStr & name, bool create = false) const;
+  Attribute attribute (const GAME::Xml::String & name, bool create = false) const;
 
   /**
    * Get the registry for this FCO.
@@ -81,16 +81,16 @@ protected:
   /// Initalizing constructor. This will create the actual
   /// FCO element and initialize its contents.
   FCO (xercesc::DOMElement * parent,
-       const ::Utils::XStr & tagname,
-       const ::Utils::XStr & id,
-       const ::Utils::XStr & kind,
-       const ::Utils::XStr & role,
+       const GAME::Xml::String & tagname,
+       const GAME::Xml::String & id,
+       const GAME::Xml::String & kind,
+       const GAME::Xml::String & role,
        size_t relid);
 
   FCO (xercesc::DOMElement * fco, int type);
 
-  static const ::Utils::XStr ATTR_ROLE;
-  static const ::Utils::XStr ATTR_KIND;
+  static const GAME::Xml::String ATTR_ROLE;
+  static const GAME::Xml::String ATTR_KIND;
 
 private:
   /// Pointer to the object's registry.

@@ -51,7 +51,7 @@ Attribute::~Attribute (void)
 // _create
 //
 GAME_INLINE
-Attribute Attribute::_create (const FCO & fco, const ::Utils::XStr & name)
+Attribute Attribute::_create (const FCO & fco, const GAME::Xml::String & name)
 {
   return Attribute (fco, name);
 }

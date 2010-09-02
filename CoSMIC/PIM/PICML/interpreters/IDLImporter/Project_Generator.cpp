@@ -73,31 +73,31 @@ namespace constant
 {
 namespace meta
 {
-  static const ::Utils::XStr PREDEFINED_TYPES ("PredefinedTypes");
-  static const ::Utils::XStr String ("String");
-  static const ::Utils::XStr WideString ("WideString");
+  static const GAME::Xml::String PREDEFINED_TYPES ("PredefinedTypes");
+  static const GAME::Xml::String String ("String");
+  static const GAME::Xml::String WideString ("WideString");
 }
 
 namespace attr
 {
-  static const ::Utils::XStr abstract ("abstract");
-  static const ::Utils::XStr local ("local");
-  static const ::Utils::XStr single_destination ("single_destination");
-  static const ::Utils::XStr multiple_connections ("multiple_connections");
-  static const ::Utils::XStr value ("value");
-  static const ::Utils::XStr InterfaceSemantics ("InterfaceSemantics");
+  static const GAME::Xml::String abstract ("abstract");
+  static const GAME::Xml::String local ("local");
+  static const GAME::Xml::String single_destination ("single_destination");
+  static const GAME::Xml::String multiple_connections ("multiple_connections");
+  static const GAME::Xml::String value ("value");
+  static const GAME::Xml::String InterfaceSemantics ("InterfaceSemantics");
 }
 
 namespace aspect
 {
-  static const ::Utils::XStr InterfaceDefinition ("InterfaceDefinition");
-  static const ::Utils::XStr TemplateParameters ("TemplateParameters");
+  static const GAME::Xml::String InterfaceDefinition ("InterfaceDefinition");
+  static const GAME::Xml::String TemplateParameters ("TemplateParameters");
 }
 
 namespace name
 {
-  static const ::Utils::XStr PartRegs ("PartRegs");
-  static const ::Utils::XStr Position ("Position");
+  static const GAME::Xml::String PartRegs ("PartRegs");
+  static const GAME::Xml::String Position ("Position");
 }
 }
 
@@ -114,7 +114,7 @@ struct predefined_typeinfo
  */
 struct arrange_horizontal
 {
-  arrange_horizontal (const ::Utils::XStr & aspect,
+  arrange_horizontal (const GAME::Xml::String & aspect,
                       int x,
                       int y,
                       int dx)
@@ -151,7 +151,7 @@ struct arrange_horizontal
   }
 
 private:
-  const ::Utils::XStr & aspect_;
+  const GAME::Xml::String & aspect_;
 
   int x_;
 
@@ -204,7 +204,7 @@ private:
 //
 // operator <<
 //
-::Utils::XStr & operator << (::Utils::XStr & str, const AST_Expression::AST_ExprValue & ev)
+GAME::Xml::String & operator << (GAME::Xml::String & str, const AST_Expression::AST_ExprValue & ev)
 {
   std::ostringstream buffer;
 
@@ -282,7 +282,7 @@ private:
 //
 // operator <<
 //
-::Utils::XStr & operator << (::Utils::XStr & str, AST_Constant & c)
+GAME::Xml::String & operator << (GAME::Xml::String & str, AST_Constant & c)
 {
   if (c.et () == AST_Expression::EV_enum)
     str = c.full_name ();
@@ -295,7 +295,7 @@ private:
 //
 // operator <<
 //
-::Utils::XStr & operator << (::Utils::XStr & str, AST_UnionLabel & label)
+GAME::Xml::String & operator << (GAME::Xml::String & str, AST_UnionLabel & label)
 {
 
   if (label.label_kind () == AST_UnionLabel::UL_default)
@@ -341,7 +341,7 @@ void Project_Generator::initialize (void)
   Folder types_folder;
 
   if (GAME::create_if_not (root_folder, constant::meta::PREDEFINED_TYPES, types_folder,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    constant::meta::PREDEFINED_TYPES,
                                    boost::bind (&GAME::XME::Folder::name, _1)))))
   {
@@ -381,7 +381,7 @@ void Project_Generator::initialize (void)
   };
 
   Atom predefined_type;
-  ::Utils::XStr metaname;
+  GAME::Xml::String metaname;
 
   for (const predefined_typeinfo * iter = predefined_types;
        iter->metaname_ != 0;
@@ -392,7 +392,7 @@ void Project_Generator::initialize (void)
 
     // Either, create a new element or get the existing one.
     if (GAME::create_if_not (types_folder, metaname, current_types, predefined_type,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      metaname,
                                      boost::bind (&GAME::XME::Atom::kind, _1)))))
     {
@@ -410,7 +410,7 @@ void Project_Generator::initialize (void)
 
   // Create the string predefined type.
   if (GAME::create_if_not (types_folder, constant::meta::String, current_types, this->string_type_,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    constant::meta::String,
                                    boost::bind (&GAME::XME::Atom::kind, _1)))))
   {
@@ -418,7 +418,7 @@ void Project_Generator::initialize (void)
   }
 
   if (GAME::create_if_not (types_folder, constant::meta::WideString, current_types, this->wstring_type_,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    constant::meta::String,
                                    boost::bind (&GAME::XME::Atom::kind, _1)))))
   {
@@ -459,7 +459,7 @@ int Project_Generator::visit_root (AST_Root * node)
     AST_Decl::NodeType nt = d->node_type ();
 
 
-    const ::Utils::XStr name (d->local_name ()->get_string ());
+    const GAME::Xml::String name (d->local_name ()->get_string ());
 
     if (nt == AST_Decl::NT_pre_defined || (nt == AST_Decl::NT_enum_val && !this->is_in_enum_))
       continue;
@@ -584,14 +584,14 @@ int Project_Generator::visit_module (AST_Module *node)
 
   if (0 != this->current_file_->modules_.find (repo_id, module))
   {
-    static const ::Utils::XStr meta_Package ("Package");
+    static const GAME::Xml::String meta_Package ("Package");
 
     // Either locate an existing package, or create a new one.
-    const ::Utils::XStr name (node->local_name ()->get_string ());
+    const GAME::Xml::String name (node->local_name ()->get_string ());
     Model package;
 
     if (this->parent_->create_if_not (meta_Package, package,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -619,14 +619,14 @@ int Project_Generator::visit_interface (AST_Interface *node)
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_Object ("Object");
+  static const GAME::Xml::String meta_Object ("Object");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model object;
 
   if (this->parent_->create_if_not (meta_Object, object,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -652,7 +652,7 @@ int Project_Generator::visit_interface (AST_Interface *node)
   using GAME::XME::FCO;
 
   // Check for any interface inheritance.
-  static const ::Utils::XStr meta_Inherits ("Inherits");
+  static const GAME::Xml::String meta_Inherits ("Inherits");
   long inherits_count = node->n_inherits ();
   AST_Interface ** inherits = node->inherits_flat ();
 
@@ -685,14 +685,14 @@ int Project_Generator::visit_interface_fwd (AST_InterfaceFwd *node)
 {
   using GAME::XME::Model;
 
-  static const ::Utils::XStr meta_Object ("Object");
+  static const GAME::Xml::String meta_Object ("Object");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model object;
 
   if (this->parent_->create_if_not (meta_Object, object,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -719,14 +719,14 @@ int Project_Generator::visit_valuetype (AST_ValueType *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_ValueObject ("ValueObject");
+  static const GAME::Xml::String meta_ValueObject ("ValueObject");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model value_object;
 
   if (this->parent_->create_if_not (meta_ValueObject, value_object,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -760,14 +760,14 @@ int Project_Generator::visit_valuetype_fwd (AST_ValueTypeFwd *node)
 {
   using GAME::XME::Model;
 
-  static const ::Utils::XStr meta_ValueObject ("ValueObject");
+  static const GAME::Xml::String meta_ValueObject ("ValueObject");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model value_object;
 
   if (this->parent_->create_if_not (meta_ValueObject, value_object,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -793,14 +793,14 @@ int Project_Generator::visit_component (AST_Component *node)
   using GAME::XME::Reference;
   using GAME::XME::FCO;
 
-  static const ::Utils::XStr meta_Component ("Component");
+  static const GAME::Xml::String meta_Component ("Component");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model component;
 
   if (this->parent_->create_if_not (meta_Component, component,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -837,12 +837,12 @@ int Project_Generator::visit_component (AST_Component *node)
 
     if (is_inherited)
     {
-      static const ::Utils::XStr meta_CompenentInherits ("ComponentInherits");
+      static const GAME::Xml::String meta_CompenentInherits ("ComponentInherits");
 
       Reference ref_inherits;
 
       if (auto_model.create_if_not (meta_CompenentInherits, ref_inherits,
-          GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+          GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                        meta_CompenentInherits,
                                        boost::bind (&Reference::kind, _1)))))
       {
@@ -859,7 +859,7 @@ int Project_Generator::visit_component (AST_Component *node)
 
   if (supports_count > 0)
   {
-    static const ::Utils::XStr meta_Supports ("Supports");
+    static const GAME::Xml::String meta_Supports ("Supports");
     AST_Type ** supports_list = node->supports ();
 
     for (long i = 0; i < supports_count; ++ i)
@@ -895,14 +895,14 @@ int Project_Generator::visit_component_fwd (AST_ComponentFwd *node)
 {
   using GAME::XME::Model;
 
-  static const ::Utils::XStr meta_Component ("Component");
+  static const GAME::Xml::String meta_Component ("Component");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model component;
 
   if (this->parent_->create_if_not (meta_Component, component,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -926,15 +926,15 @@ int Project_Generator::visit_provides (AST_Provides *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_ProvidedRequestPort ("ProvidedRequestPort");
+  static const GAME::Xml::String meta_ProvidedRequestPort ("ProvidedRequestPort");
 
 
   // Either locate an existing package, or create a new one.
   Reference ref;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_ProvidedRequestPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -954,14 +954,14 @@ int Project_Generator::visit_uses (AST_Uses *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_RequiredRequestPort ("RequiredRequestPort");
+  static const GAME::Xml::String meta_RequiredRequestPort ("RequiredRequestPort");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Reference ref;
 
   if (this->parent_->create_if_not (meta_RequiredRequestPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -983,14 +983,14 @@ int Project_Generator::visit_publishes (AST_Publishes *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_OutEventPort ("OutEventPort");
+  static const GAME::Xml::String meta_OutEventPort ("OutEventPort");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Reference ref;
 
   if (this->parent_->create_if_not (meta_OutEventPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1013,14 +1013,14 @@ int Project_Generator::visit_emits (AST_Emits *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_OutEventPort ("OutEventPort");
+  static const GAME::Xml::String meta_OutEventPort ("OutEventPort");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Reference ref;
 
   if (this->parent_->create_if_not (meta_OutEventPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1043,14 +1043,14 @@ int Project_Generator::visit_consumes (AST_Consumes *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_InEventPort ("InEventPort");
+  static const GAME::Xml::String meta_InEventPort ("InEventPort");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Reference ref;
 
   if (this->parent_->create_if_not (meta_InEventPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1071,14 +1071,14 @@ int Project_Generator::visit_eventtype (AST_EventType *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_Event ("Event");
+  static const GAME::Xml::String meta_Event ("Event");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model ev;
 
   if (this->parent_->create_if_not (meta_Event, ev,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1108,14 +1108,14 @@ int Project_Generator::visit_eventtype_fwd (AST_EventTypeFwd *node)
 {
   using GAME::XME::Model;
 
-  static const ::Utils::XStr meta_Event ("Event");
+  static const GAME::Xml::String meta_Event ("Event");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model ev;
 
   if (this->parent_->create_if_not (meta_Event, ev,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1136,14 +1136,14 @@ int Project_Generator::visit_home (AST_Home *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_ComponentFactory ("ComponentFactory");
+  static const GAME::Xml::String meta_ComponentFactory ("ComponentFactory");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model component_factory;
 
   if (this->parent_->create_if_not (meta_ComponentFactory, component_factory,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1155,13 +1155,13 @@ int Project_Generator::visit_home (AST_Home *node)
 
   if (0 != primary_key)
   {
-    static const ::Utils::XStr meta_LookupKey ("LookupKey");
+    static const GAME::Xml::String meta_LookupKey ("LookupKey");
 
     using GAME::XME::Reference;
     Reference lookup_key;
 
     this->parent_->create_if_not (meta_LookupKey, lookup_key,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    meta_LookupKey,
                                    boost::bind (&Model::kind, _1))));
 
@@ -1179,7 +1179,7 @@ int Project_Generator::visit_home (AST_Home *node)
   Connection manages;
 
   // Create a connection between this home and the component.
-  static const ::Utils::XStr meta_ManagesComponent ("ManagesComponent");
+  static const GAME::Xml::String meta_ManagesComponent ("ManagesComponent");
 
   if (!GAME::find (this->parent_->get (), meta_ManagesComponent, manages,
         boost::bind (std::logical_and <bool> (),
@@ -1209,14 +1209,14 @@ int Project_Generator::visit_factory (AST_Factory *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_FactoryOperation ("FactoryOperation");
+  static const GAME::Xml::String meta_FactoryOperation ("FactoryOperation");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model factory_op;
 
   if (this->parent_->create_if_not (meta_FactoryOperation, factory_op,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1243,14 +1243,14 @@ int Project_Generator::visit_finder (AST_Finder *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_LookupOperation ("LookupOperation");
+  static const GAME::Xml::String meta_LookupOperation ("LookupOperation");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model lookup_op;
 
   if (this->parent_->create_if_not (meta_LookupOperation, lookup_op,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1277,14 +1277,14 @@ int Project_Generator::visit_structure (AST_Structure *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_Aggregate ("Aggregate");
+  static const GAME::Xml::String meta_Aggregate ("Aggregate");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model aggregate;
 
   if (this->parent_->create_if_not (meta_Aggregate, aggregate,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1313,14 +1313,14 @@ int Project_Generator::visit_structure_fwd (AST_StructureFwd *node)
 {
   using GAME::XME::Model;
 
-  static const ::Utils::XStr meta_Aggregate ("Aggregate");
+  static const GAME::Xml::String meta_Aggregate ("Aggregate");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model aggregate;
 
   if (this->parent_->create_if_not (meta_Aggregate, aggregate,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1339,14 +1339,14 @@ int Project_Generator::visit_exception (AST_Exception *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_Exception ("Exception");
+  static const GAME::Xml::String meta_Exception ("Exception");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model exception;
 
   if (this->parent_->create_if_not (meta_Exception, exception,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1369,14 +1369,14 @@ int Project_Generator::visit_enum (AST_Enum *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_Enum ("Enum");
+  static const GAME::Xml::String meta_Enum ("Enum");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model enumeration;
 
   if (this->parent_->create_if_not (meta_Enum, enumeration,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1410,11 +1410,11 @@ int Project_Generator::visit_enum_val (AST_EnumVal *node)
 
   // Either locate an existing package, or create a new one.
   Atom value;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
-  static const ::Utils::XStr meta_EnumValue ("EnumValue");
+  const GAME::Xml::String name (node->local_name ()->get_string ());
+  static const GAME::Xml::String meta_EnumValue ("EnumValue");
 
   if (this->parent_->create_if_not (meta_EnumValue, value,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -1433,15 +1433,15 @@ int Project_Generator::visit_operation (AST_Operation *node)
   using GAME::XME::Auto_Model_T;
 
   Model operation;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (node->flags () == AST_Operation::OP_oneway)
   {
     // Create, or locate, a oneway operation.
-    static const ::Utils::XStr meta_OnewayOperation ("OnewayOperation");
+    static const GAME::Xml::String meta_OnewayOperation ("OnewayOperation");
 
     if (this->parent_->create_if_not (meta_OnewayOperation, operation,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1451,10 +1451,10 @@ int Project_Generator::visit_operation (AST_Operation *node)
   else
   {
     // Create, or locate, a twoway operation.
-    static const ::Utils::XStr meta_TwowayOperation ("TwowayOperation");
+    static const GAME::Xml::String meta_TwowayOperation ("TwowayOperation");
 
     if (this->parent_->create_if_not (meta_TwowayOperation, operation,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1471,10 +1471,10 @@ int Project_Generator::visit_operation (AST_Operation *node)
 
     // Create the return type element.
     Reference return_type;
-    static const ::Utils::XStr meta_ReturnType ("ReturnType");
+    static const GAME::Xml::String meta_ReturnType ("ReturnType");
 
     if (auto_model.create_if_not (meta_ReturnType, return_type,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                         meta_ReturnType,
                         boost::bind (&Reference::kind, _1)))))
     {
@@ -1488,7 +1488,7 @@ int Project_Generator::visit_operation (AST_Operation *node)
   this->visit_scope (node, &auto_model);
 
   // Add the exception elements to the operation.
-  static const ::Utils::XStr meta_Exception ("ExceptionRef");
+  static const GAME::Xml::String meta_Exception ("ExceptionRef");
   this->visit_exception_list (node->exceptions (), meta_Exception, auto_model);
 
   // Finally, short all the element in <auto_model> horizontally.
@@ -1506,16 +1506,16 @@ int Project_Generator::visit_field (AST_Field *node)
   using GAME::XME::Reference;
 
   // Locate the concrete type in the symbol table.
-  const ::Utils::XStr field_name (node->local_name ()->get_string ());
+  const GAME::Xml::String field_name (node->local_name ()->get_string ());
   AST_Type * type = node->field_type ();
-  const ::Utils::XStr metename = type->node_type () == AST_Decl::NT_array ? "ArrayMember" : "Member";
+  const GAME::Xml::String metename = type->node_type () == AST_Decl::NT_array ? "ArrayMember" : "Member";
 
   // Either locate the existing Member element, or create a new
   // one for the field.
 
   Reference member;
   if (this->parent_->create_if_not (metename, member,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    field_name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1530,7 +1530,7 @@ int Project_Generator::visit_field (AST_Field *node)
     AST_Array * arr = dynamic_cast <AST_Array *> (type);
     AST_Expression ** dims = arr->dims ();
 
-    ::Utils::XStr value;
+    GAME::Xml::String value;
     value << *dims[0]->ev ();
 
     member.attribute ("Size", true).value (value);
@@ -1556,15 +1556,15 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
   using GAME::XME::Auto_Model_T;
 
   Model attribute;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (node->readonly ())
   {
     // We need to create a ReadonlyAttribute for the model.
-    static const ::Utils::XStr meta_ReadonlyAttribute ("ReadonlyAttribute");
+    static const GAME::Xml::String meta_ReadonlyAttribute ("ReadonlyAttribute");
 
     if (this->parent_->create_if_not (meta_ReadonlyAttribute, attribute,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1574,10 +1574,10 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
   else
   {
     // We need to create an Attribute for the model.
-    static const ::Utils::XStr meta_Attribute ("Attribute");
+    static const GAME::Xml::String meta_Attribute ("Attribute");
 
     if (this->parent_->create_if_not (meta_Attribute, attribute,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -1588,21 +1588,21 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
   Auto_Model_T <GAME::XME::Model> auto_model (attribute);
 
   // Set the reference element for the attribute's type.
-  static const ::Utils::XStr meta_AttributeMember ("AttributeMember");
+  static const GAME::Xml::String meta_AttributeMember ("AttributeMember");
 
   using GAME::XME::Reference;
   Reference attribute_member;
   std::vector <Reference> attribute_members;
 
   auto_model.create_if_not (meta_AttributeMember, attribute_member,
-                            GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+                            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                             meta_AttributeMember,
                                             boost::bind (&Reference::kind, _1))));
 
   this->handle_symbol_resolution (node->field_type (), attribute_member);
 
   // Handle the *get* exceptions for this element.
-  static const ::Utils::XStr meta_GetException ("GetException");
+  static const GAME::Xml::String meta_GetException ("GetException");
   this->visit_exception_list (node->get_get_exceptions (),
                               meta_GetException,
                               auto_model);
@@ -1611,7 +1611,7 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
   {
     // Handle the *set* exceptions for this element since it is
     // not a readonly attribute.
-    static const ::Utils::XStr meta_SetException ("SetException");
+    static const GAME::Xml::String meta_SetException ("SetException");
     this->visit_exception_list (node->get_set_exceptions (),
                                 meta_SetException,
                                 auto_model);
@@ -1633,23 +1633,23 @@ int Project_Generator::visit_argument (AST_Argument *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_list[5] =
+  static const GAME::Xml::String meta_list[5] =
   {
-    ::Utils::XStr::EMPTY_STRING,
+    GAME::Xml::String::EMPTY_STRING,
     "InParameter",
     "OutParameter",
-    ::Utils::XStr::EMPTY_STRING,
+    GAME::Xml::String::EMPTY_STRING,
     "InoutParameter"
   };
 
   // Initialize the typename for the argument.
-  const ::Utils::XStr * meta = &meta_list[node->direction ()];
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String * meta = &meta_list[node->direction ()];
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   // Create the argument if it does not exist.
   Reference argument;
   if (this->parent_->create_if_not (*meta, argument,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1670,14 +1670,14 @@ int Project_Generator::visit_union (AST_Union *node)
   using GAME::XME::FCO;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_SwitchedAggregate ("SwitchedAggregate");
+  static const GAME::Xml::String meta_SwitchedAggregate ("SwitchedAggregate");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model switched_aggregate;
 
   if (this->parent_->create_if_not (meta_SwitchedAggregate, switched_aggregate,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1694,10 +1694,10 @@ int Project_Generator::visit_union (AST_Union *node)
 
   using GAME::XME::Reference;
   Reference discriminator;
-  static const ::Utils::XStr meta_Discriminator ("Discriminator");
+  static const GAME::Xml::String meta_Discriminator ("Discriminator");
 
   if (auto_model.create_if_not (meta_Discriminator, discriminator,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    meta_Discriminator,
                                    boost::bind (&Reference::kind, _1)))))
   {
@@ -1726,14 +1726,14 @@ int Project_Generator::visit_union_fwd (AST_UnionFwd *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_SwitchedAggregate ("SwitchedAggregate");
+  static const GAME::Xml::String meta_SwitchedAggregate ("SwitchedAggregate");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model switched_aggregate;
 
   if (this->parent_->create_if_not (meta_SwitchedAggregate, switched_aggregate,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -1751,12 +1751,12 @@ int Project_Generator::visit_union_branch (AST_UnionBranch *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_Member ("Member");
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  static const GAME::Xml::String meta_Member ("Member");
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   Reference branch;
   if (this->parent_->create_if_not (meta_Member, branch,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1778,15 +1778,15 @@ int Project_Generator::visit_union_branch (AST_UnionBranch *node)
     // Get the name of the label.
     AST_UnionLabel * l = node->label (i);
 
-    ::Utils::XStr label_name;
+    GAME::Xml::String label_name;
     label_name << *l;
 
     // Create the label for this member.
     Atom label;
-    static const ::Utils::XStr meta_Label ("Label");
+    static const GAME::Xml::String meta_Label ("Label");
 
     if (this->parent_->create_if_not (meta_Label, label,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      label_name,
                                      boost::bind (&Atom::name, _1)))))
     {
@@ -1795,7 +1795,7 @@ int Project_Generator::visit_union_branch (AST_UnionBranch *node)
 
     // Create a connection between the current union branch
     // element (i.e., Member) and the newly created label.
-    static const ::Utils::XStr meta_LabelConnection ("LabelConnection");
+    static const GAME::Xml::String meta_LabelConnection ("LabelConnection");
     Connection connection;
 
     if (!GAME::find (this->parent_->get (), meta_LabelConnection, connection,
@@ -1832,12 +1832,12 @@ int Project_Generator::visit_constant (AST_Constant *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_Constant ("Constant");
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  static const GAME::Xml::String meta_Constant ("Constant");
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   Reference constant;
   if (this->parent_->create_if_not (meta_Constant, constant,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1909,7 +1909,7 @@ int Project_Generator::visit_constant (AST_Constant *node)
   constant.refers_to (fco);
 
   // Last, we need to set the value of the constant.
-  ::Utils::XStr value;
+  GAME::Xml::String value;
   value << *node;
 
   constant.attribute (constant::attr::value, true).value (value);
@@ -1924,7 +1924,7 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
 {
   AST_Type * base_type = node->base_type ();
 
-  static const ::Utils::XStr meta_list[2] =
+  static const GAME::Xml::String meta_list[2] =
   {
     "Alias",
     "Collection"
@@ -1954,10 +1954,10 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
   using GAME::XME::Reference;
 
   Reference alias;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_list[index], alias,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1977,12 +1977,12 @@ int Project_Generator::visit_valuebox (AST_ValueBox *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_Boxed ("Boxed");
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  static const GAME::Xml::String meta_Boxed ("Boxed");
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   Reference boxed;
   if (this->parent_->create_if_not (meta_Boxed, boxed,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -1999,7 +1999,7 @@ int Project_Generator::visit_valuebox (AST_ValueBox *node)
 //
 void Project_Generator::
 visit_exception_list (UTL_ExceptList * list,
-                      const ::Utils::XStr & meta,
+                      const GAME::Xml::String & meta,
                       GAME::XME::Auto_Model_T <GAME::XME::Model> & model)
 {
   using GAME::XME::Reference;
@@ -2083,7 +2083,7 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
   else if (use_library)
   {
     std::vector <GAME::XME::Folder> libraries;
-    static const ::Utils::XStr meta_RootFolder ("RootFolder");
+    static const GAME::Xml::String meta_RootFolder ("RootFolder");
 
     this->proj_.root_folder ().children (meta_RootFolder, libraries);
 
@@ -2152,7 +2152,7 @@ lookup_symbol_in_template_module (AST_Decl * type,
         FCO target_inst;
         if (this->lookup_symbol (module_inst, target_inst, use_library))
         {
-          static const ::Utils::XStr meta_TemplatePackageInstanceRef ("TemplatePackageInstanceRef");
+          static const GAME::Xml::String meta_TemplatePackageInstanceRef ("TemplatePackageInstanceRef");
           Reference tpir;
 
           if (GAME::create_if_not (model, meta_TemplatePackageInstanceRef, tpir,
@@ -2168,7 +2168,7 @@ lookup_symbol_in_template_module (AST_Decl * type,
           // BTW, the temp_ref_ is such a hack!!
           using GAME::XME::Connection;
 
-          static const ::Utils::XStr meta_TemplatePackageInstanceDecl ("TemplatePackageInstanceDecl");
+          static const GAME::Xml::String meta_TemplatePackageInstanceDecl ("TemplatePackageInstanceDecl");
           Connection::_create (model,
                                meta_TemplatePackageInstanceDecl,
                                tpir,
@@ -2215,7 +2215,7 @@ lookup_symbol (AST_Decl * type,
   for (; iter != iter_end; ++ iter)
   {
     std::vector <GAME::XME::Folder> idl_files;
-    static const ::Utils::XStr meta ("InterfaceDefinitions");
+    static const GAME::Xml::String meta ("InterfaceDefinitions");
 
     iter->children (meta, idl_files);
 
@@ -2280,7 +2280,7 @@ lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
   std::vector <GAME::XME::FCO>::iterator
     iter = children.begin (), iter_end = children.end ();
 
-  ::Utils::XStr name;
+  GAME::Xml::String name;
   char * iter_name;
 
   for ( ; iter != iter_end; ++ iter)
@@ -2293,7 +2293,7 @@ lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
       // We found what we are looking for. Let's advance the
       // name iterator and see if there is anything left.
       name_iter.next ();
-      ::Utils::XStr kind (iter->kind (), false);
+      GAME::Xml::String kind (iter->kind (), false);
 
       if (name_iter.is_done ())
       {
@@ -2323,13 +2323,13 @@ int Project_Generator::visit_native (AST_Native *node)
 {
   using GAME::XME::Atom;
 
-  static const ::Utils::XStr meta_NativeValue ("NativeValue");
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  static const GAME::Xml::String meta_NativeValue ("NativeValue");
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   Atom native;
 
   if (this->parent_->create_if_not (meta_NativeValue, native,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -2350,14 +2350,14 @@ int Project_Generator::visit_porttype (AST_PortType *node)
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
 
-  static const ::Utils::XStr meta_PortType ("PortType");
+  static const GAME::Xml::String meta_PortType ("PortType");
 
   // Either locate an existing package, or create a new one.
   Model porttype;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_PortType, porttype,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -2385,14 +2385,14 @@ int Project_Generator::visit_extended_port (AST_Extended_Port *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_ExtendedPort ("ExtendedPort");
+  static const GAME::Xml::String meta_ExtendedPort ("ExtendedPort");
 
   // Either locate an existing package, or create a new one.
   Reference ref;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_ExtendedPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2412,14 +2412,14 @@ int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
 {
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_MirrorPort ("MirrorPort");
+  static const GAME::Xml::String meta_MirrorPort ("MirrorPort");
 
   // Either locate an existing package, or create a new one.
   Reference ref;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
 
   if (this->parent_->create_if_not (meta_MirrorPort, ref,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2441,14 +2441,14 @@ int Project_Generator::visit_connector (AST_Connector *node)
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
 
-  static const ::Utils::XStr meta_ConnectorObject ("ConnectorObject");
+  static const GAME::Xml::String meta_ConnectorObject ("ConnectorObject");
 
   // Either locate an existing package, or create a new one.
-  const ::Utils::XStr name (node->local_name ()->get_string ());
+  const GAME::Xml::String name (node->local_name ()->get_string ());
   Model connector;
 
   if (this->parent_->create_if_not (meta_ConnectorObject, connector,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -2467,12 +2467,12 @@ int Project_Generator::visit_connector (AST_Connector *node)
 
   if (0 != base)
   {
-    static const ::Utils::XStr meta_ConnectorInherits ("ConnectorInherits");
+    static const GAME::Xml::String meta_ConnectorInherits ("ConnectorInherits");
 
     Reference ref_inherits;
 
     if (auto_model.create_if_not (meta_ConnectorInherits, ref_inherits,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      meta_ConnectorInherits,
                                      boost::bind (&Reference::kind, _1)))))
     {
@@ -2504,14 +2504,14 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
 
   if (0 != this->current_file_->modules_.find (repo_id, module))
   {
-    static const ::Utils::XStr meta_Package ("Package");
+    static const GAME::Xml::String meta_Package ("Package");
 
     // Either locate an existing package, or create a new one.
-    const ::Utils::XStr name (node->local_name ()->get_string ());
+    const GAME::Xml::String name (node->local_name ()->get_string ());
     Model package;
 
     if (this->parent_->create_if_not (meta_Package, package,
-        GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {
@@ -2552,49 +2552,49 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
 
     case AST_Type::NT_interface:
       {
-        static const ::Utils::XStr meta_Type ("Object");
+        static const GAME::Xml::String meta_Type ("Object");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
     case AST_Type::NT_eventtype:
       {
-        static const ::Utils::XStr meta_Type ("Event");
+        static const GAME::Xml::String meta_Type ("Event");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
     case AST_Type::NT_valuetype:
       {
-        static const ::Utils::XStr meta_Type ("ValueObject");
+        static const GAME::Xml::String meta_Type ("ValueObject");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
     case AST_Type::NT_enum:
       {
-        static const ::Utils::XStr meta_Type ("Enum");
+        static const GAME::Xml::String meta_Type ("Enum");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
     case AST_Type::NT_struct:
       {
-        static const ::Utils::XStr meta_Type ("Aggregate");
+        static const GAME::Xml::String meta_Type ("Aggregate");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
     case AST_Type::NT_union:
       {
-        static const ::Utils::XStr meta_Type ("SwitchedAggregate");
+        static const GAME::Xml::String meta_Type ("SwitchedAggregate");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
 
     case AST_Type::NT_except:
       {
-        static const ::Utils::XStr meta_Type ("Exception");
+        static const GAME::Xml::String meta_Type ("Exception");
         this->create_type_parameter (module, info, meta_Type);
       }
       break;
@@ -2628,11 +2628,11 @@ create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   using GAME::XME::Atom;
 
   Atom named_parameter;
-  ::Utils::XStr param_name (info->name_.c_str ());
-  static const ::Utils::XStr meta_NamedParameter ("NameParameter");
+  GAME::Xml::String param_name (info->name_.c_str ());
+  static const GAME::Xml::String meta_NamedParameter ("NameParameter");
 
   if (module->create_if_not (meta_NamedParameter, named_parameter,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    param_name,
                                    boost::bind (&Atom::name, _1)))))
   {
@@ -2650,24 +2650,24 @@ create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
 void Project_Generator::
 create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
                        FE_Utils::T_Param_Info * info,
-                       const ::Utils::XStr & type)
+                       const GAME::Xml::String & type)
 {
   // We need to create a named parameter.
   using GAME::XME::Atom;
 
   Atom parameter;
-  ::Utils::XStr param_name (info->name_.c_str ());
-  static const ::Utils::XStr meta_TypeParameter ("TypeParameter");
+  GAME::Xml::String param_name (info->name_.c_str ());
+  static const GAME::Xml::String meta_TypeParameter ("TypeParameter");
 
   if (module->create_if_not (meta_TypeParameter, parameter,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    param_name,
                                    boost::bind (&Atom::name, _1)))))
   {
     parameter.name (param_name);
   }
 
-  static const ::Utils::XStr attr_Type ("Type");
+  static const GAME::Xml::String attr_Type ("Type");
   parameter.attribute (attr_Type, true).value (type);
 
   // Save the parameter.
@@ -2685,11 +2685,11 @@ create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   using GAME::XME::Reference;
 
   Reference parameter;
-  ::Utils::XStr param_name (info->name_.c_str ());
-  static const ::Utils::XStr meta_CollectionParameter ("CollectionParameter");
+  GAME::Xml::String param_name (info->name_.c_str ());
+  static const GAME::Xml::String meta_CollectionParameter ("CollectionParameter");
 
   if (module->create_if_not (meta_CollectionParameter, parameter,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    param_name,
                                    boost::bind (&Reference::name, _1)))))
   {
@@ -2733,11 +2733,11 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
 
   // Create the template package alias.
   Model module_inst;
-  const ::Utils::XStr name (node->local_name ()->get_string ());
-  static const ::Utils::XStr meta_TemplatePackageAlias ("TemplatePackageInstance");
+  const GAME::Xml::String name (node->local_name ()->get_string ());
+  static const GAME::Xml::String meta_TemplatePackageAlias ("TemplatePackageInstance");
 
   if (this->parent_->create_if_not (meta_TemplatePackageAlias, module_inst,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    name,
                                    boost::bind (&Model::name, _1)))))
   {
@@ -2750,10 +2750,10 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   // Make sure there is a package type in this element. We also need
   // to reference the correct package.
   Reference package_type;
-  static const ::Utils::XStr meta_PackageType ("PackageType");
+  static const GAME::Xml::String meta_PackageType ("PackageType");
 
   if (auto_model.create_if_not (meta_PackageType, package_type,
-      GAME::contains (boost::bind (std::equal_to < ::Utils::XStr > (),
+      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    meta_PackageType,
                                    boost::bind (&Reference::kind, _1)))))
   {
@@ -2779,7 +2779,7 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
 
     // Make sure we have a template value of this element.
     Reference parameter_value;
-    static const ::Utils::XStr meta_TemplateParameterValue ("TemplateParameterValue");
+    static const GAME::Xml::String meta_TemplateParameterValue ("TemplateParameterValue");
 
     if (auto_model.create_if_not (meta_TemplateParameterValue, parameter_value,
         GAME::contains (boost::bind (std::equal_to <FCO> (),

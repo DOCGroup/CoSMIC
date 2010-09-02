@@ -41,9 +41,9 @@ public:
    * @param[in]     paradigm      Name of the project's paradigm.
    * @param[in]     guid          Version guid of the paradigm
    */
-  static Project _create (const ::Utils::XStr & xmefile,
-                          const ::Utils::XStr & paradigm,
-                          const ::Utils::XStr & guid,
+  static Project _create (const GAME::Xml::String & xmefile,
+                          const GAME::Xml::String & paradigm,
+                          const GAME::Xml::String & guid,
                           const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /**
@@ -51,7 +51,7 @@ public:
    *
    * @paramp[in]
    */
-  static Project _open (const ::Utils::XStr & location,
+  static Project _open (const GAME::Xml::String & location,
                         const Configuration * config = GLOBAL_CONFIG::instance ());
 
   /// Default constructor.
@@ -74,7 +74,7 @@ public:
    *
    * @param[in]     xmefile       Name of the XME file.
    */
-  bool save (const ::Utils::XStr & xmefile);
+  bool save (const GAME::Xml::String & xmefile);
 
   /// Save the file at the current location.
   bool save (void) const;
@@ -101,14 +101,14 @@ public:
    *
    * @param[in]     n         Name of the element.
    */
-  void name (const ::Utils::XStr & n);
+  void name (const GAME::Xml::String & n);
 
   /**
    * Set the comment of the project.
    *
    * @param[in]     n         Name of the element.
    */
-  void comment (const ::Utils::XStr & c);
+  void comment (const GAME::Xml::String & c);
   const XMLCh * comment (void) const;
 
   /**
@@ -116,7 +116,7 @@ public:
    *
    * @param[in]     n         Name of the element.
    */
-  void author (const ::Utils::XStr & a);
+  void author (const GAME::Xml::String & a);
   const XMLCh * author (void) const;
 
   /**
@@ -152,10 +152,10 @@ public:
    */
   bool is_nil (void) const;
 
-  Library attach_library (const ::Utils::XStr & library);
+  Library attach_library (const GAME::Xml::String & library);
 
-  Library attach_library (const ::Utils::XStr & as_name,
-                          const ::Utils::XStr & library);
+  Library attach_library (const GAME::Xml::String & as_name,
+                          const GAME::Xml::String & library);
 
   size_t attached_libraries (std::vector <Library> & libs);
 
@@ -164,14 +164,14 @@ public:
   size_t select_all (std::vector <Reference> & refs) const;
 
 private:
-  static const ::Utils::XStr TAGNAME;
-  static const ::Utils::XStr DTD;
-  static const ::Utils::XStr XML_VERSION;
-  static const ::Utils::XStr ELEMENT_NAME;
-  static const ::Utils::XStr ELEMENT_AUTHOR;
-  static const ::Utils::XStr ELEMENT_COMMENT;
-  static const ::Utils::XStr ROOT_FOLDER;
-  static const ::Utils::XStr ATTR_LIBREF;
+  static const GAME::Xml::String TAGNAME;
+  static const GAME::Xml::String DTD;
+  static const GAME::Xml::String XML_VERSION;
+  static const GAME::Xml::String ELEMENT_NAME;
+  static const GAME::Xml::String ELEMENT_AUTHOR;
+  static const GAME::Xml::String ELEMENT_COMMENT;
+  static const GAME::Xml::String ROOT_FOLDER;
+  static const GAME::Xml::String ATTR_LIBREF;
 
   /**
    * Initializing constructor
@@ -182,13 +182,13 @@ private:
            const Configuration * config = GLOBAL_CONFIG::instance ());
 
   // Implementation of the save method.
-  bool save_i (const ::Utils::XStr & xmefile) const;
+  bool save_i (const GAME::Xml::String & xmefile) const;
 
   /// The XML document for the project.
   xercesc::DOMDocument * doc_;
 
   /// Location of the project.
-  ::Utils::XStr xmefile_;
+  GAME::Xml::String xmefile_;
 
   /// The project's configuration.
   const Configuration * config_;

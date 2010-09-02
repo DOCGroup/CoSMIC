@@ -11,9 +11,8 @@
 #include "ID_Generator_Repo.h"
 #include "Library_Importer.h"
 
-#include "Utils/xercesc/XML_Error_Handler.h"
-#include "Utils/xercesc/EntityResolver.h"
-#include "xercesc/parsers/XercesDOMParser.hpp"
+#include "game/xml/Error_Handler.h"
+#include "game/xml/Entity_Resolver.h"
 
 #include "boost/bind.hpp"
 
@@ -24,22 +23,23 @@
 
 #include <sstream>
 
-#include <xercesc/framework/Wrapper4InputSource.hpp>
-#include <xercesc/framework/LocalFileInputSource.hpp>
-#include <xercesc/dom/DOM.hpp>
+#include "xercesc/parsers/XercesDOMParser.hpp"
+#include "xercesc/framework/Wrapper4InputSource.hpp"
+#include "xercesc/framework/LocalFileInputSource.hpp"
+#include "xercesc/dom/DOM.hpp"
 
 namespace GAME
 {
 namespace XME
 {
-const ::Utils::XStr Project::TAGNAME ("project");
-const ::Utils::XStr Project::DTD ("mga.dtd");
-const ::Utils::XStr Project::XML_VERSION ("1.0");
-const ::Utils::XStr Project::ELEMENT_NAME ("name");
-const ::Utils::XStr Project::ELEMENT_AUTHOR ("author") ;
-const ::Utils::XStr Project::ELEMENT_COMMENT ("comment");
-const ::Utils::XStr Project::ROOT_FOLDER ("RootFolder");
-const ::Utils::XStr Project::ATTR_LIBREF ("libref");
+const GAME::Xml::String Project::TAGNAME ("project");
+const GAME::Xml::String Project::DTD ("mga.dtd");
+const GAME::Xml::String Project::XML_VERSION ("1.0");
+const GAME::Xml::String Project::ELEMENT_NAME ("name");
+const GAME::Xml::String Project::ELEMENT_AUTHOR ("author") ;
+const GAME::Xml::String Project::ELEMENT_COMMENT ("comment");
+const GAME::Xml::String Project::ROOT_FOLDER ("RootFolder");
+const GAME::Xml::String Project::ATTR_LIBREF ("libref");
 
 //
 // timestamp
@@ -128,9 +128,9 @@ Project (xercesc::DOMDocument * doc, const Configuration * config)
 // _create
 //
 Project Project::
-_create (const ::Utils::XStr & xmefile,
-         const ::Utils::XStr & paradigm,
-         const ::Utils::XStr & guid,
+_create (const GAME::Xml::String & xmefile,
+         const GAME::Xml::String & paradigm,
+         const GAME::Xml::String & guid,
          const Configuration * config)
 {
   using namespace xercesc;
@@ -158,20 +158,20 @@ _create (const ::Utils::XStr & xmefile,
   std::ostringstream metaguid;
   metaguid << "{" << guid << "}";
 
-  root->setAttribute (::Utils::XStr ("metaguid"), ::Utils::XStr (metaguid.str ()));
-  root->setAttribute (::Utils::XStr ("metaname"), paradigm);
+  root->setAttribute (GAME::Xml::String ("metaguid"), GAME::Xml::String (metaguid.str ()));
+  root->setAttribute (GAME::Xml::String ("metaname"), paradigm);
 
 #define TIMESTAMP_BUFSIZE 27
   ACE_TCHAR ts[TIMESTAMP_BUFSIZE];
   timestamp (ts, TIMESTAMP_BUFSIZE);
 
-  root->setAttribute (::Utils::XStr ("cdate"), ::Utils::XStr (ts));
+  root->setAttribute (GAME::Xml::String ("cdate"), GAME::Xml::String (ts));
 
   // Initialize the project attributes.
   Project project (doc, config);
-  project.name (::Utils::XStr::EMPTY_STRING);
-  project.comment (::Utils::XStr::EMPTY_STRING);
-  project.author (::Utils::XStr::EMPTY_STRING);
+  project.name (GAME::Xml::String::EMPTY_STRING);
+  project.comment (GAME::Xml::String::EMPTY_STRING);
+  project.author (GAME::Xml::String::EMPTY_STRING);
 
   // Create the root folder for the project.
   Folder root_folder (root, ROOT_FOLDER, 0);
@@ -186,7 +186,7 @@ _create (const ::Utils::XStr & xmefile,
 // _open
 //
 Project Project::
-_open (const ::Utils::XStr & location, const Configuration * config)
+_open (const GAME::Xml::String & location, const Configuration * config)
 {
   using namespace xercesc;
 
@@ -199,11 +199,13 @@ _open (const ::Utils::XStr & location, const Configuration * config)
   parser.setDoSchema (true);
 
   // Set the error handler.
-  std::auto_ptr <xercesc::HandlerBase> handler (new ::Utils::XML_Error_Handler ());
+  using GAME::Xml::Xml_Error_Handler;
+  std::auto_ptr <xercesc::HandlerBase> handler (new Xml_Error_Handler ());
   parser.setErrorHandler (handler.get ());
 
   // Set the entity resolver.
-  std::auto_ptr <xercesc::EntityResolver> resolver (new ::Utils::EntityResolver (config->schema_path_));
+  using GAME::Xml::Entity_Resolver;
+  std::auto_ptr <xercesc::EntityResolver> resolver (new Entity_Resolver (config->schema_path_));
   parser.setEntityResolver (resolver.get ());
 
   // Parse the specified XML document.
@@ -219,7 +221,7 @@ _open (const ::Utils::XStr & location, const Configuration * config)
 //
 // save
 //
-bool Project::save (const ::Utils::XStr & xmefile)
+bool Project::save (const GAME::Xml::String & xmefile)
 {
   if (!this->save_i (xmefile))
     return false;
@@ -231,7 +233,7 @@ bool Project::save (const ::Utils::XStr & xmefile)
 //
 // save_i
 //
-bool Project::save_i (const ::Utils::XStr & xmefile) const
+bool Project::save_i (const GAME::Xml::String & xmefile) const
 {
   using namespace xercesc;
 
@@ -241,7 +243,7 @@ bool Project::save_i (const ::Utils::XStr & xmefile) const
   timestamp (ts, TIMESTAMP_BUFSIZE);
 
   DOMElement * root = this->doc_->getDocumentElement ();
-  root->setAttribute (::Utils::XStr ("mdate"), ::Utils::XStr (ts));
+  root->setAttribute (GAME::Xml::String ("mdate"), GAME::Xml::String (ts));
 
   // Create the serializer for the document.
   DOMImplementation * impl = this->doc_->getImplementation ();
@@ -310,7 +312,7 @@ Folder Project::root_folder (void) const
   // Locate the first RootFolder in the collection. Right now, we
   // are cheating and assuming the first folder is going to be
   // the RootFolder.
-  ::Utils::XStr tagname;
+  GAME::Xml::String tagname;
   size_t length = list->getLength ();
   DOMNode * node = 0;
 
@@ -337,7 +339,7 @@ Folder Project::root_folder (void) const
 
 struct find_by_name_t
 {
-  find_by_name_t (const ::Utils::XStr & name)
+  find_by_name_t (const GAME::Xml::String & name)
     : name_ (name)
   {
 
@@ -346,21 +348,21 @@ struct find_by_name_t
   template <typename T>
   bool operator () (T t) const
   {
-    const ::Utils::XStr name (t.name (), false);
+    const GAME::Xml::String name (t.name (), false);
     return name == this->name_;
   }
 
 private:
-  const ::Utils::XStr & name_;
+  const GAME::Xml::String & name_;
 };
 
 //
 // attach_library
 //
-Library Project::attach_library (const ::Utils::XStr & libpath)
+Library Project::attach_library (const GAME::Xml::String & libpath)
 {
-  ::Utils::XStr xmefile (libpath);
-  xmefile.append (::Utils::XStr (".xme"));
+  GAME::Xml::String xmefile (libpath);
+  xmefile.append (GAME::Xml::String (".xme"));
 
   // Make sure we have the fullpath for the library.
   char abspath[MAXPATHLEN];
@@ -386,7 +388,7 @@ Library Project::attach_library (const ::Utils::XStr & libpath)
   std::vector <Library> libs;
   if (this->attached_libraries (libs))
   {
-    const ::Utils::XStr libname (lib_root_folder.name ());
+    const GAME::Xml::String libname (lib_root_folder.name ());
 
     std::vector <Library>::iterator
       result = std::find_if (libs.begin (),
@@ -422,7 +424,7 @@ Library Project::attach_library (const ::Utils::XStr & libpath)
 size_t Project::attached_libraries (std::vector <Library> & libs)
 {
   Folder root = this->root_folder ();
-  static const ::Utils::XStr metaname ("RootFolder");
+  static const GAME::Xml::String metaname ("RootFolder");
 
   std::vector <Folder> temp;
 

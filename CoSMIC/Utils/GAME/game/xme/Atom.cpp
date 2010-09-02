@@ -17,10 +17,10 @@ namespace XME
 //
 // TAGNAME
 //
-const ::Utils::XStr Atom::TAGNAME ("atom");
+const GAME::Xml::String Atom::TAGNAME ("atom");
 
 template <typename T>
-Atom Atom::create_impl (T & parent, const ::Utils::XStr & kind)
+Atom Atom::create_impl (T & parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();
@@ -36,7 +36,7 @@ Atom Atom::create_impl (T & parent, const ::Utils::XStr & kind)
 GAME_INLINE
 Atom::
 Atom (xercesc::DOMElement * parent,
-      const ::Utils::XStr & kind,
+      const GAME::Xml::String & kind,
       size_t relid)
 : FCO (parent,
        TAGNAME,
@@ -51,7 +51,7 @@ Atom (xercesc::DOMElement * parent,
 //
 // _create
 //
-Atom Atom::_create (Folder & parent, const ::Utils::XStr & kind)
+Atom Atom::_create (Folder & parent, const GAME::Xml::String & kind)
 {
   return Atom::create_impl (parent, kind);
 }
@@ -59,7 +59,7 @@ Atom Atom::_create (Folder & parent, const ::Utils::XStr & kind)
 //
 // _create
 //
-Atom Atom::_create (Model & parent, const ::Utils::XStr & kind)
+Atom Atom::_create (Model & parent, const GAME::Xml::String & kind)
 {
   return Atom::create_impl (parent, kind);
 }

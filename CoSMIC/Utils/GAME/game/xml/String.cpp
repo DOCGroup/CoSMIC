@@ -127,14 +127,15 @@ void String::clear (void)
   this->wstr_ = 0;
 }
 
+}
+}
+
 //
 // operator <<
 //
-std::ostream & operator << (std::ostream & out, const String & str)
+std::ostream & operator << (std::ostream & out, const GAME::Xml::String & str)
 {
   out << str.to_string ().c_str ();
   return out;
 }
 
-}
-}

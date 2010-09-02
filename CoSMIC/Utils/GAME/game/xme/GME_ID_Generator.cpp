@@ -73,7 +73,7 @@ void GME_ID_Generator::init (xercesc::DOMDocument * proj)
 // init
 //
 void GME_ID_Generator::
-init (xercesc::DOMDocument * proj, const ::Utils::XStr & name, typeinfo_t & type)
+init (xercesc::DOMDocument * proj, const GAME::Xml::String & name, typeinfo_t & type)
 {
   using xercesc::DOMNodeList;
 
@@ -94,7 +94,7 @@ init (xercesc::DOMDocument * proj, const ::Utils::XStr & name, typeinfo_t & type
     DOMElement * e = dynamic_cast <DOMElement *> (node);
 
     // Get the id string of the element.
-    ::Utils::XStr idstr (e->getAttribute (::Utils::XStr ("id")));
+    GAME::Xml::String idstr (e->getAttribute (GAME::Xml::String ("id")));
     const std::string & cstr = idstr.to_string ();
 
     // Parse the string to get the count portion.
@@ -121,7 +121,7 @@ init (xercesc::DOMDocument * proj, const ::Utils::XStr & name, typeinfo_t & type
 //
 // generate_id
 //
-::Utils::XStr & GME_ID_Generator::generate_id (typeinfo_t & type)
+GAME::Xml::String & GME_ID_Generator::generate_id (typeinfo_t & type)
 {
   // Only one thread is allowed access to this method for each
   // type. Otherwise, we could have invalid id generation.

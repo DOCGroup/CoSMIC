@@ -39,7 +39,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Reference _create (Folder & parent, const ::Utils::XStr & kind);
+  static Reference _create (Folder & parent, const GAME::Xml::String & kind);
 
   /**
    * Create a new folder
@@ -47,7 +47,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Reference _create (Model & parent, const ::Utils::XStr & kind);
+  static Reference _create (Model & parent, const GAME::Xml::String & kind);
 
   /**
    * Narrow an object to an atom.
@@ -103,7 +103,7 @@ public:
   void reset (void);
 
   /// The XML tagname for this element.
-  static const ::Utils::XStr TAGNAME;
+  static const GAME::Xml::String TAGNAME;
 
   /// Test if the reference is null.
   bool is_null (void) const;
@@ -119,7 +119,7 @@ protected:
    * DOMElement that represents the folder object.
    */
   Reference (xercesc::DOMElement * parent,
-             const ::Utils::XStr & kind,
+             const GAME::Xml::String & kind,
              size_t relid);
 
   Reference (xercesc::DOMElement * ref);
@@ -130,14 +130,14 @@ private:
 
   /// Implementation of the creation method.
   template <typename T>
-  static Reference create_impl (T parent, const ::Utils::XStr & kind);
+  static Reference create_impl (T parent, const GAME::Xml::String & kind);
 
   /// FCO that this object references.
   mutable FCO refers_to_;
 
   /// XML attributes for this element.
-  static const ::Utils::XStr ATTR_REFERRED;
-  static const ::Utils::XStr NULL_REFERENCE;
+  static const GAME::Xml::String ATTR_REFERRED;
+  static const GAME::Xml::String NULL_REFERENCE;
 
 };
 

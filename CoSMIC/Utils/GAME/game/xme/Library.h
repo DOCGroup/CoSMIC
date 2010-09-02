@@ -64,17 +64,17 @@ public:
 
   virtual void attach (xercesc::DOMElement * e, bool validate = true);
 
-  static ::Utils::XStr xme_to_libref (const ::Utils::XStr & xme);
+  static GAME::Xml::String xme_to_libref (const GAME::Xml::String & xme);
 
 protected:
-  Library (const ::Utils::XStr & location, xercesc::DOMElement * parent);
+  Library (const GAME::Xml::String & location, xercesc::DOMElement * parent);
 
 private:
   Library (xercesc::DOMElement * libnode,
-           const ::Utils::XStr & libpath,
+           const GAME::Xml::String & libpath,
            bool validate = true);
 
-  static const ::Utils::XStr ATTR_LIBREF;
+  static const GAME::Xml::String ATTR_LIBREF;
 };
 
 }
