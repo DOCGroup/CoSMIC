@@ -17,6 +17,14 @@ int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
   CharArray       char_array;
   FloatArray      float_array;
   DoubleArray     double_array;
+  
+  // suppress compiler unreferenced local variable warning
+  static_cast<BooleanArray> (boolean_array);
+  static_cast<ShortArray> (short_array);
+  static_cast<LongArray> (long_array);
+  static_cast<CharArray> (char_array);
+  static_cast<FloatArray> (float_array);
+  static_cast<DoubleArray> (double_array);
 
   ACE_DEBUG ((LM_DEBUG, "*** begin validating array type\n"));
 

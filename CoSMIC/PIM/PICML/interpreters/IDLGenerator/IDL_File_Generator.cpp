@@ -4,6 +4,7 @@
 #include "IDL_File_Generator.h"
 #include "IDLStream.h"
 #include "File_Processor.h"
+#include "IDL_File_Dependency_Processor.h"
 
 #include "Utils/UDM/Position_Sort_T.h"
 #include "Utils/UDM/visit.h"
@@ -105,9 +106,11 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
   // Write the remaining contents of the package.
   this->idl_ << nl
              << "{" << idt << nl;
-
-  this->Visit_FilePackage (package);
-
+             
+  std::string name = package.name ();
+  
+  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
+  
   this->idl_ << uidt_nl << "};" << nl;
 }
 
@@ -116,32 +119,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 //
 void IDL_File_Generator::Visit_FilePackage (const Udm::Object & object)
 {
-  // Non-forward declarable elements.
-  Udm::visit_all <PICML::Constant> (object, *this);
-  Udm::visit_all <PICML::Enum> (object, *this);
-  Udm::visit_all <PICML::Alias> (object, *this);
-  Udm::visit_all <PICML::Collection> (object, *this);
-  Udm::visit_all <PICML::Exception> (object, *this);
-  Udm::visit_all <PICML::TemplatePackageInstance> (object, *this);
-
-  // Forward declarable elements.
-  Udm::visit_all <PICML::Aggregate> (object, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (object, *this);
-
-  Udm::visit_all <PICML::Object> (object, *this);
-  Udm::visit_all <PICML::PortType> (object, *this);
-
-  Udm::visit_all <PICML::ValueObject> (object, *this);
-  Udm::visit_all <PICML::Event> (object, *this);
-
-  Udm::visit_all <PICML::Component> (object, *this);
-  Udm::visit_all <PICML::ConnectorObject> (object, *this);
-
-  // Homes should be generated last always to ensure their
-  // managed components have already been generated.
-  Udm::visit_all <PICML::ComponentFactory> (object, *this);
-
-  Udm::visit_all <PICML::Package> (object, *this);
+  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_file (object, *this);
 }
 
 //

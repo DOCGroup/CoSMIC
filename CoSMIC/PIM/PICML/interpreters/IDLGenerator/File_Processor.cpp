@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "File_Processor.h"
 #include "Find_Forward_Decls.h"
+#include "IDL_File_Dependency_Processor.h"
 #include "IDLStream.h"
 
 #include "Utils/UDM/visit.h"
@@ -116,7 +117,10 @@ void IDL_File_Processor::Visit_Package (const PICML::Package & p)
 {
   std::vector <PICML::TemplateParameter> params = p.TemplateParameter_kind_children ();
 
-  if (params.empty ())
+  using namespace IDL_GENERATOR;
+
+  if (params.empty () && (GLOBAL_IDL_DEPEND_PROCESSOR::instance()->has_children () ||
+      GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_template_module ()))
   {
     this->idl_ << "module " << p.name () << nl
                << "{" << idt_nl;

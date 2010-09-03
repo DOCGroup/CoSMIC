@@ -62,12 +62,6 @@ int ACE_TMAIN (int argc, ACE_TCHAR * argv [])
                          "Unable to acquire Noun objref\n"),
                         -1);
     }
-
-    noun->my_person ("me");
-    noun->my_place ("IDL");
-    noun->my_thing (true);
-    noun->my_idea (123);
-    noun->my_event (1234);
   }
   catch(const CORBA::Exception& ex)
   {

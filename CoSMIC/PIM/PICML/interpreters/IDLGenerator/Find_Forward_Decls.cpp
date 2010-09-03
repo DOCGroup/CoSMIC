@@ -2,6 +2,7 @@
 
 #include "StdAfx.h"
 #include "Find_Forward_Decls.h"
+#include "IDL_File_Dependency_Processor.h"
 #include "Utils/UDM/visit.h"
 
 //
@@ -92,9 +93,9 @@ void Find_Forward_Decls::Visit_File (const PICML::File & file)
 void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
 {
   std::vector <PICML::TemplateParameter> params = package.TemplateParameter_kind_children ();
-
+  
   if (params.empty () || (!params.empty () && this->visit_template_module_))
-    this->Visit_FilePackage (package);
+    IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
 }
 
 //
@@ -102,24 +103,10 @@ void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
 //
 void Find_Forward_Decls::Visit_FilePackage (const Udm::Object & fp)
 {
-  Udm::visit_all <PICML::Constant> (fp, *this);
-  Udm::visit_all <PICML::Alias> (fp, *this);
-  Udm::visit_all <PICML::Collection> (fp, *this);
-  Udm::visit_all <PICML::Exception> (fp, *this);
-  Udm::visit_all <PICML::Aggregate> (fp, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (fp, *this);
-  Udm::visit_all <PICML::ValueObject> (fp, *this);
-
-  Udm::visit_all <PICML::TemplatePackageInstance> (fp, *this);
-
-  Udm::visit_all <PICML::Event> (fp, *this);
-  Udm::visit_all <PICML::Object> (fp, *this);
-  Udm::visit_all <PICML::PortType> (fp, *this);
-  Udm::visit_all <PICML::Component> (fp, *this);
-  Udm::visit_all <PICML::ComponentFactory> (fp, *this);
-  Udm::visit_all <PICML::ConnectorObject> (fp, *this);
-
-  Udm::visit_all <PICML::Package> (fp, *this);
+  // the state of the dependency processor is cleared on each request
+  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->clear ();
+  // determine forward declaration kind exists in package
+  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_file (fp, *this);
 }
 
 //

@@ -15,6 +15,9 @@ project (PICML_IDLGeneratorComponent) : picml_udm_utils, game_interpreter, udm, 
     
     IDL_File_Generator.cpp
     IDL_Generator_Visitor.cpp
+
+    IDL_File_Dependency_Processor.cpp
+    IDL_File_Ordering_Processor.cpp
   }
 
   Header_Files {
