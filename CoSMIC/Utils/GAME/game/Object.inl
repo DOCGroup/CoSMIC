@@ -1,6 +1,8 @@
 // -*- C++ -*-
 // $Id$
 
+#include "ace/ACE.h"
+
 namespace GAME
 {
 //
@@ -113,11 +115,12 @@ bool Object::operator > (const GAME::Object & obj) const
 }
 
 //
-// operator bool
+// hash
 //
 GAME_INLINE
-Object::operator bool (void)
+unsigned long Object::hash (void) const
 {
-  return this->object_.p != 0;
+  return ACE::hash_pjw (this->id ().c_str ());
 }
+
 }

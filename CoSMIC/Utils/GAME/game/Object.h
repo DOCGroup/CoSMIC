@@ -207,14 +207,6 @@ public:
   objtype_enum type (void) const;
 
   /**
-   * Determine if the object is valid.
-   *
-   * @retval      true      The object is valid.
-   * @retval      false     The object is not valid.
-   */
-  operator bool (void);
-
-  /**
    * Get the parent of the object.
    *
    * @return      The parent of this object.
@@ -303,7 +295,8 @@ public:
   /// Accept the GAME::Visitor object.
   virtual void accept (GAME::Visitor & visitor);
 
-  void send_event (objectevent_enum mask);
+  /// Get the hash value of the object.
+  unsigned long hash (void) const;
 
 protected:
   /// The underlying COM pointer.

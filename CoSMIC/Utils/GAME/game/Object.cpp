@@ -239,7 +239,7 @@ std::string Object::path (const std::string & separator,
   // reach the root element.
   Object parent = this->parent ();
 
-  while (parent)
+  while (!parent.is_nil ())
   {
     stack_trace.push (parent);
     parent = parent.parent ();
@@ -373,14 +373,6 @@ GAME::Object Object::child_by_relative_id (long relid)
   VERIFY_HRESULT (this->impl ()->get_ChildObjectByRelID (relid, &object));
 
   return object.p;
-}
-
-//
-// send_event
-//
-void Object::send_event (objectevent_enum mask)
-{
-  VERIFY_HRESULT (this->impl ()->SendEvent (mask));
 }
 
 //

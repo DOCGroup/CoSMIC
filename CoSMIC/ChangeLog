@@ -1,3 +1,20 @@
+Tue Sep  7 16:46:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.inl:
+        * Utils/GAME/game/Object.cpp:
+
+          Removed the operator bool () from Object class.
+
+          Removed send_event () from the Object class.
+
+          Implemented the hash () method for calculating the hash value
+          of an object.
+
+        * Utils/GAME/game/FCO.inl (is_basetype):
+
+          Used is_nil () instead of operator bool ().
+
 Fri Sep  3 01:35:26 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
