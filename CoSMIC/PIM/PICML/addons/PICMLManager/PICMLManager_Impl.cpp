@@ -510,7 +510,7 @@ handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
     GAME::Reference member = GAME::Reference::_narrow (obj);
     GAME::FCO attr_type = member.refers_to ();
 
-    if (attr_type)
+    if (!attr_type.is_nil ())
     {
       // Get the AttributeValue connection.
       GAME::Model attr = member.parent_model ();
@@ -866,35 +866,34 @@ handle_NodeReference (unsigned long eventmask, GAME::Object & obj)
 int PICMLManager_Impl::
 handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj)
 {
-  if (this->cg_member_)
+  if (this->cg_member_.is_nil ())
+    return 0;
+
+  // Get all sets that contain previously inserted collocation group member.
+  typedef std::vector <GAME::Set> Sets;
+  Sets sets;
+
+  size_t count = this->cg_member_.in_sets (sets);
+
+  if (count > 1)
   {
-    // Get all sets that contain previously inserted collocation group member.
-    typedef std::vector <GAME::Set> Sets;
-    Sets sets;
+    // Get the updated collocation group.
+    GAME::Set group = GAME::Set::_narrow (obj);
 
-    size_t count = this->cg_member_.in_sets (sets);
+    Sets::iterator
+      iter = sets.begin (), iter_end = sets.end ();
 
-    if (count > 1)
+    // Make sure the last object added to this group does not appear
+    // in any collocation group.
+    for ( ; iter != iter_end; ++ iter)
     {
-      // Get the updated collocation group.
-      GAME::Set group = GAME::Set::_narrow (obj);
-
-      Sets::iterator
-        iter = sets.begin (), iter_end = sets.end ();
-
-      // Make sure the last object added to this group does not appear
-      // in any collocation group.
-      for ( ; iter != iter_end; ++ iter)
-      {
-        if (!iter->is_equal_to (group))
-          iter->remove (this->cg_member_);
-      }
+      if (!iter->is_equal_to (group))
+        iter->remove (this->cg_member_);
     }
-
-    // Release our reference to this element.
-    this->cg_member_.release ();
   }
 
+  // Release our reference to this element.
+  this->cg_member_.release ();
   return 0;
 }
 
