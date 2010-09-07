@@ -1,3 +1,10 @@
+Tue Sep  7 22:14:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+
+          Fixed compilation errors.
+
 Tue Sep  7 21:46:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

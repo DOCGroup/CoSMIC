@@ -160,7 +160,7 @@ void T3_Runtime_Engine::init_fco (GAME::FCO & fco)
                  set_attr_boolean (fco));
 
   // If applicable, set the reference for the object.
-  if (this->stored_ref_ && fco.type () == OBJTYPE_REFERENCE)
+  if (!this->stored_ref_.is_nil () && fco.type () == OBJTYPE_REFERENCE)
   {
     // Set the reference for the object.
     GAME::Reference ref = GAME::Reference::_narrow (fco);

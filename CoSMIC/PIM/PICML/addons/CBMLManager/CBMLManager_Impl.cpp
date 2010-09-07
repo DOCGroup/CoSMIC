@@ -192,7 +192,7 @@ void CBML_Model_Intelligence::load_active_state (GAME::Object & model)
   // object as the active state.
   GAME::Object relobj = parent.child_by_relative_id (relid);
 
-  if (relobj)
+  if (!relobj.is_nil ())
     this->active_state_ = GAME::FCO::_narrow (relobj);
 }
 
@@ -207,7 +207,7 @@ void CBML_Model_Intelligence::handle_objevent_destroyed (GAME::Object & obj)
 
   if (metaname == "State")
   {
-    if (this->active_state_ && this->active_state_ == fco)
+    if (!this->active_state_.is_nil () && this->active_state_ == fco)
       this->active_state_ = 0;
   }
 }
@@ -217,14 +217,12 @@ void CBML_Model_Intelligence::handle_objevent_destroyed (GAME::Object & obj)
 //
 void CBML_Model_Intelligence::handle_objevent_select (GAME::Object & obj)
 {
-  if (obj.meta ().name () == "State")
-  {
-    // Set the active state of the behavior.
-    this->active_state_ = GAME::FCO::_narrow (obj);
+  if (obj.meta () != "State")
+    return;
 
-    // We no longer need to last action.
-    this->last_action_ = 0;
-  }
+  // Set the active state of the behavior.
+  this->active_state_ = GAME::FCO::_narrow (obj);
+  this->last_action_.release ();
 }
 
 //
@@ -260,15 +258,15 @@ void CBML_Model_Intelligence::handle_objevent_created (GAME::Object & obj)
       // First, go ahead and connect the state to the action.
       this->create_state_and_connect (obj, "Effect");
 
-      if (this->last_action_)
-        this->last_action_ = 0;
+      if (!this->last_action_.is_nil ())
+        this->last_action_.release ();
 
       // Save the action as the last action.
       this->last_action_ = GAME::FCO::_narrow (obj);
     }
     else if (metaname == "InputAction" || metaname == "MultiInputAction")
     {
-      if (this->active_state_)
+      if (!this->active_state_.is_nil ())
         this->active_state_.release ();
 
       this->create_state_and_connect (obj, "InputEffect");
@@ -292,27 +290,27 @@ void CBML_Model_Intelligence::handle_objevent_created (GAME::Object & obj)
 void CBML_Model_Intelligence::
 create_state_and_connect (GAME::Object & src, const std::string & conntype)
 {
-  if (this->last_action_)
+  if (!this->last_action_.is_nil ())
   {
     // Delete the <active_state_> if the <last_action_> is a subtype
     // of the newly created action.
     GAME::FCO basetype = this->last_action_.derived_from ();
 
-    if (basetype && (basetype == src))
+    if (!basetype.is_nil () && basetype == src)
       this->active_state_.destroy ();
   }
 
   // Get the model interface from the parent.
   GAME::Model parent = GAME::Model::_narrow (src.parent ());
 
-  if (this->active_state_)
+  if (!this->active_state_.is_nil ())
   {
     // Get the parent of the active state and determine if this
     // state is in the same model as the current action.
     GAME::Object temp = this->active_state_.parent ();
 
-    if (!parent == temp)
-      this->active_state_ = 0;
+    if (parent != temp)
+      this->active_state_.release ();
   }
 
   // Get the FCO interface from the object. We also need to change
@@ -330,7 +328,7 @@ create_state_and_connect (GAME::Object & src, const std::string & conntype)
 
   GAME::utils::Point position;
 
-  if (this->active_state_)
+  if (!this->active_state_.is_nil ())
   {
     // Align newly created action with previous state.
     GAME::utils::position ("Behavior", this->active_state_, position);
@@ -366,7 +364,7 @@ create_state_and_connect (GAME::Object & src, const std::string & conntype)
                               state);
 
   // Get the position of the action, if not already set.
-  if (!this->active_state_)
+  if (!this->active_state_.is_nil ())
     GAME::utils::position ("Behavior", action, position);
 
   // Align the <state> to the right of the <action>.
@@ -436,7 +434,7 @@ void CBML_Model_Intelligence::cache_worker_type (const GAME::Reference & worker)
   // Get the reference for this worker.
   GAME::FCO ref = worker.refers_to ();
 
-  if (ref)
+  if (!ref.is_nil ())
   {
     // Cache this worker type for the component.
     GAME::Model model = GAME::Model::_narrow (ref);
@@ -483,7 +481,7 @@ void CBML_Model_Intelligence::resolve_output_action (GAME::FCO & action)
     }
   }
 
-  if (output)
+  if (!output.is_nil ())
   {
     // Set the name of the output action.
     action.name (output.name ());
