@@ -9,13 +9,9 @@
 
 #include "UdmGme.h"
 #include "UdmStatic.h"
-#include "UdmConfig.h"
 
 #include "game/utils/Project_Settings.h"
 #include "Utils/Utils.h"
-
-// Global config object
-_config config;
 
 GAME_DECLARE_INTERPRETER (IDL_Generator_Component, IDL_Generator_Component_Impl);
 
@@ -23,7 +19,9 @@ GAME_DECLARE_INTERPRETER (IDL_Generator_Component, IDL_Generator_Component_Impl)
 // Quotas_Integrator_Impl
 //
 IDL_Generator_Component_Impl::IDL_Generator_Component_Impl (void)
-: GAME::Interpreter_Impl_Base ("IDL File Generator", "MGA.Interpreter.IDLGenerator", "PICML")
+: GAME::Interpreter_Impl_Base ("IDL File Generator",
+                               "MGA.Interpreter.IDLGenerator",
+                               "PICML")
 {
 
 }
@@ -68,8 +66,7 @@ invoke_ex (GAME::Project & project,
            std::vector <GAME::FCO> & selected,
            long flags)
 {
-  UdmGme::GmeDataNetwork dngBackend (META_NAMESPACE::diagram);
-  using namespace META_NAMESPACE;
+  UdmGme::GmeDataNetwork dngBackend (PICML::diagram);
 
   try
   {

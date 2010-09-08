@@ -1,3 +1,13 @@
+Wed Sep  8 17:26:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
+
+          Removed dead code from this file.
+
+        * PIM/PICML/interpreters/IDLGenerator/UdmConfig.h:
+
+          Removed this file.
+
 Wed Sep  8 17:09:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/Library.cpp:
