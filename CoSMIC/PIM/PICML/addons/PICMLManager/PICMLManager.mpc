@@ -22,6 +22,7 @@ project (PICML_PICMLManager): game_dialogs, game_component, \
     Type_Handlers {
       AMI4CCM_Event_Handler.cpp
       ComponentInstance_Event_Handler.cpp
+      ConnectorInstance_Event_Handler.cpp
       ToConnector_Event_Handler.cpp
       // Template_Module_Instance_Handler.cpp
     }

@@ -25,6 +25,7 @@
 #include "AMI4CCM_Event_Handler.h"
 #include "ToConnector_Event_Handler.h"
 #include "ComponentInstance_Event_Handler.h"
+#include "ConnectorInstance_Event_Handler.h"
 
 #include <algorithm>
 #include <sstream>
@@ -125,6 +126,10 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   this->event_handler_->register_handler ("ComponentInstance",
     ACE_Singleton <PICML::MI::ComponentInstance_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
+
+  this->event_handler_->register_handler ("ConnectorInstance",
+    ACE_Singleton <PICML::MI::ConnectorInstance_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   return 0;
