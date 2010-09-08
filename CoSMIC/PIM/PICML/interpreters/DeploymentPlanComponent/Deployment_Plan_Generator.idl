@@ -1,0 +1,35 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      DeploymentPlanGenerator.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _DEPLOYMENT_PLAN_GENERATOR_IDL_
+#define _DEPLOYMENT_PLAN_GENERATOR_IDL_
+
+#include <Gme.idl>
+
+[
+  uuid (7e07ab4a-96d7-472c-985f-4892a184ca3f),
+  version (1.0),
+]
+library Deployment_Plan_Generator
+{
+  importlib ("stdole32.tlb");
+
+  [uuid (44e85e1d-2d5f-4fc2-963f-2df070bbc577)]
+  coclass Deployment_Plan_Generator
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IMgaVersionInfo;
+  };
+};
+
+#endif  // !defined _IDL_GENERATOR_COMPONENT_IDL_

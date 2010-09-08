@@ -65,55 +65,48 @@ static int DDV_DirectoryExists (CDataExchange * pDX, CString & str)
 }
 
 //
-// Message map for the DeploymentPlan_MainDialog
+// Message map for the Deployment_Plan_Dialog
 //
-BEGIN_MESSAGE_MAP (DeploymentPlan_MainDialog, CDialog)
+BEGIN_MESSAGE_MAP (Deployment_Plan_Dialog, CDialog)
   ON_BN_CLICKED (IDC_BROWSE, OnClick_Browse)
 END_MESSAGE_MAP ()
 
 //
-// DeploymentPlan_MainDialog
+// Deployment_Plan_Dialog
 //
-DeploymentPlan_MainDialog::
-DeploymentPlan_MainDialog (CWnd * parent)
-: CDialog (IDD_MAINDIALOG, parent)
+Deployment_Plan_Dialog::
+Deployment_Plan_Dialog (Configuration & cfg, CWnd * parent)
+: CDialog (IDD_MAINDIALOG, parent),
+  config_ (cfg)
 {
 
 }
 
 //
-// DeploymentPlan_MainDialog
+// Deployment_Plan_Dialog
 //
-DeploymentPlan_MainDialog::~DeploymentPlan_MainDialog (void)
+Deployment_Plan_Dialog::~Deployment_Plan_Dialog (void)
 {
 
-}
-
-//
-// disable_optimization
-//
-int DeploymentPlan_MainDialog::disable_optimization (void) const
-{
-  return this->disable_optimize_;
 }
 
 //
 // DoDataExchange
 //
-void DeploymentPlan_MainDialog::DoDataExchange (CDataExchange * pDX)
+void Deployment_Plan_Dialog::DoDataExchange (CDataExchange * pDX)
 {
   CDialog::DoDataExchange (pDX);
 
-  DDX_Text (pDX, IDC_OUTPUT_DIR, this->output_directory_);
-  DDV_DirectoryExists (pDX, this->output_directory_);
+  DDX_Text (pDX, IDC_OUTPUT_DIR, this->config_.output_path_);
+  DDV_DirectoryExists (pDX, this->config_.output_path_);
 
-  DDX_Check (pDX, IDC_DISABLE_OPTS, this->disable_optimize_);
+  DDX_Check (pDX, IDC_DISABLE_OPTS, this->config_.disable_optimize_);
 }
 
 //
 // OnClick_Browse
 //
-void DeploymentPlan_MainDialog::OnClick_Browse (void)
+void Deployment_Plan_Dialog::OnClick_Browse (void)
 {
   // Get the current output directory from the edit control.
   CString temp;
@@ -130,21 +123,4 @@ void DeploymentPlan_MainDialog::OnClick_Browse (void)
   {
     this->SetDlgItemText (IDC_OUTPUT_DIR, outdir.c_str ());
   }
-}
-
-//
-// output_directory
-//
-const CString & DeploymentPlan_MainDialog::output_directory (void) const
-{
-  return this->output_directory_;
-}
-
-//
-// OnInitDialog
-//
-BOOL DeploymentPlan_MainDialog::OnInitDialog (void)
-{
-  this->disable_optimize_ = 0;
-  return TRUE;
 }

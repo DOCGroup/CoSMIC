@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file          DeploymentPlan_MainDialog.h
+ * @file          Deployment_Plan_Dialog.h
  *
  * Main dialog for the deployment plan interpreter.
  *
@@ -12,35 +12,31 @@
  */
 //=============================================================================
 
-#ifndef _DEPLOYMENTPLAN_MAINDIALOG_H_
-#define _DEPLOYMENTPLAN_MAINDIALOG_H_
+#ifndef _DEPLOYMENT_PLAN_DIALOG_H_
+#define _DEPLOYMENT_PLAN_DIALOG_H_
 
-//=============================================================================
+#include "Configuration.h"
+
 /**
- * @class DeploymentPlan_MainDialog
+ * @class Deployment_Plan_Dialog
  *
  * MFC-based wrapper class for the main dialog.
  */
-//=============================================================================
-
-class DeploymentPlan_MainDialog : public CDialog
+class Deployment_Plan_Dialog : public CDialog
 {
 public:
-  /// Default constructor.
-  DeploymentPlan_MainDialog (CWnd * parent = 0);
+  /**
+   * Initializing constructor
+   *
+   * @param[inout]        cfg           Initial configuration
+   * @param[in]           parent        The parent window.
+   */
+  Deployment_Plan_Dialog (Configuration & cfg, CWnd * parent = 0);
 
   /// Destructor.
-  virtual ~DeploymentPlan_MainDialog (void);
-
-  /// Get the disable optimization flag.
-  int disable_optimization (void) const;
-
-  const CString & output_directory (void) const;
+  virtual ~Deployment_Plan_Dialog (void);
 
 protected:
-  /// Handle the initialize dialog method.
-  virtual BOOL OnInitDialog (void);
-
   /// Event handler the for Browse button associated with
   /// implementation input directory.
   afx_msg void OnClick_Browse (void);
@@ -57,11 +53,8 @@ private:
   // Declare the message map for the dialog.
   DECLARE_MESSAGE_MAP ();
 
-  /// Optimization disable flag.
-  int disable_optimize_;
-
-  /// The output directory for the deployment plans.
-  CString output_directory_;
+  /// The target configuration.
+  Configuration & config_;
 };
 
 #endif  /* !defined _DEPLOYMENTPLAN_MAINDIALOG_H_ */

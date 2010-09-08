@@ -1,6 +1,6 @@
 // $Id$
+
 #include "stdafx.h"
-#include <afxdlgs.h> // For CFileDialog
 #include "resource.h"
 #include <stdlib.h>
 #include <sstream>
@@ -86,7 +86,7 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
 {
   try
   {
-    XMLPlatformUtils::Initialize();
+    XMLPlatformUtils::Initialize ();
 
     try
     {
@@ -94,18 +94,18 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
       // set before hand. The only want to can be set before hand
       // is by some external application invoking put_ComponentParameter
       // method for the interpreter. :o)
-
       int disable_optimize = 0;
 
       if (CUdmApp::output_path_.empty ())
       {
-        DeploymentPlan_MainDialog dialog (::AfxGetMainWnd ());
+        Configuration config;
+        Deployment_Plan_Dialog dialog (config, ::AfxGetMainWnd ());
 
         if (dialog.DoModal () == IDCANCEL)
           return;
 
-        CUdmApp::output_path_ = dialog.output_directory ();
-        disable_optimize = dialog.disable_optimization ();
+        CUdmApp::output_path_ = config.output_path_.GetBuffer ();
+        disable_optimize = config.disable_optimize_;
       }
 
       DeploymentPlanVisitor visitor (CUdmApp::output_path_);

@@ -5,13 +5,10 @@ project (PICML_DeploymentPlan): boost_base, picml_udm_utils {
   dynamicflags += DEPLOYMENTPLAN_BUILD_DLL
 
   Source_Files {
-    //AMI4CCM_Connector_Visitor.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp
-
     Data_Type_Visitor.cpp
     Data_Type_Dispatcher.cpp
-
     Data_Value_Visitor.cpp
     Deployment_Domain_Visitor.cpp
     Nodemap_Generator.cpp
@@ -29,18 +26,24 @@ project (PICML_DeploymentPlan): boost_base, picml_udm_utils {
   }
 }
 
-project (PICML_DeploymentPlanComponent): boost_base, picmllib, gme_udm_component {
+project (PICML_DeploymentPlanComponent): picml_udm_utils, game_utils, game_interpreter, udm, cosmic_utils {
   sharedname = PICML_DeploymentPlanComponent
 
   after += PICML_DeploymentPlan
   libs  += PICML_DeploymentPlan
 
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
   Source_Files {
+    Deployment_Plan_Generator.idl
+    Deployment_Plan_Generator_Impl.cpp
+    Deployment_Plan_Generator_Module.cpp
     DeploymentPlan_MainDialog.cpp
   }
 
   Header_Files {
-
+    Configuration.h
   }
 
   Resource_Files {
