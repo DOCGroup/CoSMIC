@@ -50,11 +50,6 @@ be_util::usage (void)
     ));
   ACE_DEBUG ((
       LM_DEBUG,
-      ACE_TEXT (" -i <filepath>\t\tPath to XME input file.")
-      ACE_TEXT (" Default is no XME input file\n")
-    ));
-  ACE_DEBUG ((
-      LM_DEBUG,
       ACE_TEXT (" -l <filepath>\t\tAttach specified file as a ")
       ACE_TEXT ("library\n")
     ));
@@ -63,13 +58,10 @@ be_util::usage (void)
       ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
       ACE_TEXT (" Default is c:\\Program Files\\GME\n")
     ));
-
-  //ACE_DEBUG ((
-  //    LM_DEBUG,
-  //    ACE_TEXT (" -Sp \t\t\tSuppress pruning of elements removed")
-  //    ACE_TEXT (" in modified IDL.")
-  //    ACE_TEXT (" Default is to do pruning\n")
-  //  ));
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT (" --overwrite\t\tOverwrite existing XME file.")
+    ));
 }
 
 AST_Generator *

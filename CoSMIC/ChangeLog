@@ -1,3 +1,23 @@
+Wed Sep  8 15:07:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Update the command-line arguments to the following semantics:
+
+            -x : name of the target xme file. If the file does not exist
+                 then it is created. If the file does exist, then it is
+                 reused.
+
+            --overwrite : overwrites an existing file (i.e., force the
+                          creation of a new file.
+
+Wed Sep  8 15:04:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
 Wed Sep  8 04:42:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:

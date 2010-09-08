@@ -28,6 +28,7 @@
 
 
 #include "ace/OS_NS_stdio.h"
+#include "ace/OS_NS_sys_stat.h"
 #include "ace/streams.h"
 
 #include <fstream>
@@ -42,10 +43,9 @@ const char *FILE_EXT = ".xme";
 IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 
 BE_GlobalData::BE_GlobalData (void)
-  : output_dir_ (0),
-    input_xme_ (0),
-    output_file_ ("PICML_default_xme_file"),
-    files_ (proj_)
+  : output_file_ ("PICML_default_xme_file"),
+    files_ (proj_),
+    overwrite_ (false)
 {
 
 }
@@ -57,30 +57,28 @@ BE_GlobalData::~BE_GlobalData (void)
 {
 }
 
-const char*
-BE_GlobalData::output_dir (void) const
+//
+// output_dir
+//
+const char * BE_GlobalData::output_dir (void) const
 {
-  return this->output_dir_;
+  return this->output_dir_.c_str ();
 }
 
-void
-BE_GlobalData::output_dir (const char* s)
+//
+// output_dir
+//
+void BE_GlobalData::output_dir (const char* s)
 {
-  delete [] this->output_dir_;
-  this->output_dir_ = ACE::strnew (s);
+  this->output_dir_ = s;
 }
 
-const char*
-BE_GlobalData::input_xme (void) const
+//
+// overwrite
+//
+bool BE_GlobalData::overwrite (void) const
 {
-  return this->input_xme_;
-}
-
-void
-BE_GlobalData::input_xme (const char* s)
-{
-  delete [] this->input_xme_;
-  this->input_xme_ = ACE::strnew (s);
+  return this->overwrite_;
 }
 
 //
@@ -116,53 +114,32 @@ void BE_GlobalData::parse_args (long &i, char **av)
     {
       case 'x':
         if (av[i][2] == '\0')
-          {
-            be_global->output_file (av[i + 1]);
-            ++i;
-          }
+        {
+          this->output_file_ = av[i + 1];
+          ++i;
+        }
         else
-          {
-            be_global->output_file (av[i] + 2);
-          }
+          this->output_file_ = av[i] + 2;
         break;
 
-      // Directory where the generated file is to
-      // be kept. Default is the current directory from which
-      // <idl_to_picml> is called.
       case 'o':
         if (av[i][2] == '\0')
-          {
-            be_global->output_dir (av [i + 1]);
-            i++;
-          }
+        {
+          this->output_dir_ = av[i + 1];
+          ++i;
+        }
         else
-          {
-            be_global->output_dir (av[i] + 2);
-          }
-        break;
-
-      case 'i':
-        if (av[i][2] == '\0')
-          {
-            be_global->input_xme (av [i + 1]);
-            i++;
-          }
-        else
-          {
-            be_global->input_xme (av[i] + 2);
-          }
+          this->output_dir_ = av[i] + 2;
         break;
 
       case 'r':
         if (av[i][2] == '\0')
-          {
-            idl_global->recursion_start (av [i + 1]);
-            i++;
-          }
+        {
+          idl_global->recursion_start (av [i + 1]);
+          i++;
+        }
         else
-          {
-            idl_global->recursion_start (av[i] + 2);
-          }
+          idl_global->recursion_start (av[i] + 2);
         break;
 
       case 'm':
@@ -194,21 +171,11 @@ void BE_GlobalData::parse_args (long &i, char **av)
         }
         break;
 
-      //case 'S':
-      //  if (av[i][2] == 'p')
-      //    {
-      //      this->do_removal_ = false;
-      //    }
-      //  else
-      //    {
-      //      ACE_ERROR ((
-      //          LM_ERROR,
-      //          ACE_TEXT ("IDL: I don't understand ")
-      //          ACE_TEXT ("the '%s' option\n"),
-      //          av[i]
-      //        ));
-      //    }
-      //  break;
+      case '-':
+        if (ACE_OS::strcmp (av[i], "--overwrite") == 0)
+          this->overwrite_ = true;
+
+        break;
 
       default:
         ACE_ERROR ((
@@ -230,45 +197,56 @@ void BE_GlobalData::parse_args (long &i, char **av)
 void BE_GlobalData::initialize (void)
 {
   using GAME::XME::Project;
+  using GAME::Xml::String;
 
   try
   {
-    const char *xme = this->input_xme ();
+    ACE_CString filename;
 
-    if (0 == xme)
+    if (!this->output_dir_.empty ())
     {
-      // If we are inputting an existing XME file, use that to create
-      // the DOM tree, else create an empty one.
-      ACE_CString target_name;
-      const char *path = be_global->output_dir ();
+      // Add the directory to the filename,
+      filename += this->output_dir_;
 
-      if (path != 0)
-      {
-        target_name += path;
-        target_name += "/";
-      }
+      // Make sure there is a ending slash on the filename.
+      char ending = this->output_dir_[this->output_dir_.length () - 1];
 
-      target_name += be_global->output_file ();
+      if (ending != '/' && ending != '\\')
+        filename += "/";
+    }
 
-      if (target_name.find (".xme") == ACE_CString::npos)
-        target_name += FILE_EXT;
+    // Append the name of the file to the filename.
+    filename += this->output_file_;
+    String project_name;
 
-      // Create the project and set its name.
-      static const GAME::Xml::String PICML ("PICML");
-      static const GAME::Xml::String GUID (PICML_PARADIGM_GUID);
-      const GAME::Xml::String name (be_global->output_file ().c_str ());
+    if (this->output_file_.find (FILE_EXT) == ACE_CString::npos)
+    {
+      // Make sure there is a .xme appended to the filename.
+      filename += FILE_EXT;
 
-      this->proj_ = Project::_create (target_name.c_str (), PICML, GUID);
-
-      this->proj_.name (name);
-      this->proj_.root_folder ().name (name);
+      // Set the name of the project.
+      project_name = this->output_file_.c_str ();
     }
     else
-    {
-      this->proj_ = Project::_open (xme);
-    }
+      project_name = this->output_file_.substr (0, this->output_file_.length () - 4).c_str ();
 
-    // Next, attach the specified libraries.
+    // Create the project and set its name.
+    static const String PICML ("PICML");
+    static const String GUID (PICML_PARADIGM_GUID);
+    const String xmefile (filename.c_str ());
+
+    ACE_stat stats;
+    bool exists = ACE_OS::stat (filename.c_str (), &stats) == 0;
+
+    if (this->overwrite_ || !exists)
+      this->proj_ = Project::_create (xmefile, PICML, GUID);
+    else
+      this->proj_ = Project::_open (xmefile);
+
+    this->proj_.name (project_name);
+    this->proj_.root_folder ().name (project_name);
+
+    // Finally, attach all the specified libraries.
     std::for_each (this->libs_.begin (),
                    this->libs_.end (),
                    boost::bind (&Project::attach_library,
@@ -277,7 +255,7 @@ void BE_GlobalData::initialize (void)
   }
   catch (const xercesc::DOMException & e)
   {
-    GAME::Xml::String msg (e.getMessage (), false);
+    String msg (e.getMessage (), false);
 
     ACE_ERROR ((LM_ERROR,
                 ACE_TEXT ("xerces_init - ")
@@ -288,7 +266,7 @@ void BE_GlobalData::initialize (void)
   }
   catch (const xercesc::SAXParseException &e)
   {
-    GAME::Xml::String msg (e.getMessage (), false);
+    String msg (e.getMessage (), false);
 
     ACE_ERROR ((LM_DEBUG,
                 ACE_TEXT ("xerces_init - ")
@@ -299,7 +277,7 @@ void BE_GlobalData::initialize (void)
   }
   catch (const xercesc::XMLException &e)
   {
-    GAME::Xml::String msg (e.getMessage (), false);
+    String msg (e.getMessage (), false);
 
     ACE_ERROR ((LM_DEBUG,
                 ACE_TEXT ("xerces_init - ")

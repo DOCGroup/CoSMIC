@@ -52,9 +52,6 @@ public:
   const char* output_dir (void) const;
   void output_dir (const char* s);
 
-  const char* input_xme (void) const;
-  void input_xme (const char* s);
-
   // Accessors for the member.
   ACE_CString output_file (void) const;
   void output_file (const char *val);
@@ -81,6 +78,8 @@ public:
 
   GAME::XME::Project & project (void);
 
+  bool overwrite (void) const;
+
 private:
   // Get the version of GME by looking into
   // $GME_ROOT\Interfaces\Interfaces\GMEVersion.h
@@ -89,10 +88,7 @@ private:
   // Directory where the generated file is to be
   // kept. Default value is 0 for this string which means the current
   // directory from which the <idl_to_picml> is called.
-  char *output_dir_;
-
-  // URL of the XME file to input, if any.
-  char *input_xme_;
+  ACE_CString output_dir_;
 
   // Set from command line or had default value.
   ACE_CString output_file_;
@@ -107,6 +103,9 @@ private:
   PICML_File_Creator files_;
 
   std::vector <std::string> libs_;
+
+  /// Overwrite the current output file.
+  bool overwrite_;
 };
 
 #endif /* IDL_TO_PICML_BE_GLOBAL_H */
