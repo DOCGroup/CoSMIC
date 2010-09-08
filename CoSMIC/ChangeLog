@@ -1,3 +1,10 @@
+Wed Sep  8 17:09:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Library.cpp:
+
+          Bug fix where the name of the library displayed in the
+          model was incorrect.
+
 Wed Sep  8 15:07:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_util.cpp:

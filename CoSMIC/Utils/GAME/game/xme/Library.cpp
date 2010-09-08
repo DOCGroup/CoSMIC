@@ -61,7 +61,7 @@ GAME::Xml::String Library::xme_to_libref (const GAME::Xml::String & xmefile)
   GAME::Xml::String libref ("MGA=");
   libref.append (xmefile);
 
-  size_t length = xmefile.length ();
+  size_t length = libref.length ();
   libref[length - 3] = xercesc::chLatin_m;
   libref[length - 2] = xercesc::chLatin_g;
   libref[length - 1] = xercesc::chLatin_a;
