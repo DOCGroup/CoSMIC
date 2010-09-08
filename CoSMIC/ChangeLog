@@ -1,3 +1,16 @@
+Wed Sep  8 04:24:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          When adding a component instance to a model, the PICML model
+          intelligence will either (1) automatically select the implementation
+          or (2) present a dialog of valid implementations to select.
+          It will then automatically create the ComponentInstanceType
+          element.
+
 Wed Sep  8 03:20:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML.mta:
