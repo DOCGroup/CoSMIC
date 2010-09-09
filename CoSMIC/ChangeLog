@@ -1,3 +1,11 @@
+Thu Sep  9 18:32:54 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+
+          Bug fixed that caused some of the event handlers to not work
+          due to wrong default value being set to is_importing_ because of
+          non initailization in one of the overloaded constructors.
+
 Thu Sep  9 14:44:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:

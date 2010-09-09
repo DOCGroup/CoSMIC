@@ -18,7 +18,8 @@ Event_Handler_Impl::Event_Handler_Impl (void)
 //
 GAME_INLINE
 Event_Handler_Impl::Event_Handler_Impl (long mask)
-: current_mask_ (mask)
+: current_mask_ (mask),
+  is_importing_ (false)
 {
 
 }
