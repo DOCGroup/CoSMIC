@@ -89,7 +89,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   
   // Handlers for AtributeValue
   this->event_handler_->register_handler ("AttributeValue",
-    ACE_Singleton <PICML::MI::AttributeValue_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::AttributeValue_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for CollocationGroup

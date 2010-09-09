@@ -21,19 +21,19 @@ namespace MI
 {
 
 /**
- * @class AttributeValue_Create_Event_Handler
+ * @class AttributeValue_Event_Handler
  *
  * This class creates a AttributeValue for the desired object.
  */
-class AttributeValue_Create_Event_Handler :
+class AttributeValue_Event_Handler :
   public PICML::MI::Event_Handler_Base
 {
 public:
   /// Default constructor.
-  AttributeValue_Create_Event_Handler (void);
+  AttributeValue_Event_Handler (void);
 
   /// Destructor.
-  virtual ~AttributeValue_Create_Event_Handler (void);
+  virtual ~AttributeValue_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Object obj);
 };

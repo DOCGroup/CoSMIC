@@ -14,18 +14,18 @@ namespace MI
 {
 
 //
-// AttributeValue_Create_Event_Handler
+// AttributeValue_Event_Handler
 //
-AttributeValue_Create_Event_Handler::AttributeValue_Create_Event_Handler (void)
+AttributeValue_Event_Handler::AttributeValue_Event_Handler (void)
 : Event_Handler_Base (OBJEVENT_CREATED)
 {
 
 }
 
 //
-// ~AttributeValue_Create_Event_Handler
+// ~AttributeValue_Event_Handler
 //
-AttributeValue_Create_Event_Handler::~AttributeValue_Create_Event_Handler (void)
+AttributeValue_Event_Handler::~AttributeValue_Event_Handler (void)
 {
 
 }
@@ -33,7 +33,7 @@ AttributeValue_Create_Event_Handler::~AttributeValue_Create_Event_Handler (void)
 //
 // handle_object_created
 //
-int AttributeValue_Create_Event_Handler::
+int AttributeValue_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
   // Extract the connection from the object and get its endpoints.
