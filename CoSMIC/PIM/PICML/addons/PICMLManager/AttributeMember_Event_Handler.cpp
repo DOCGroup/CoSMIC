@@ -17,18 +17,18 @@ namespace MI
 {
 
 //
-// AttributeMember_Relation_Event_Handler
+// AttributeMember_Event_Handler
 //
-AttributeMember_Relation_Event_Handler::AttributeMember_Relation_Event_Handler (void)
+AttributeMember_Event_Handler::AttributeMember_Event_Handler (void)
 : Event_Handler_Base (OBJEVENT_RELATION)
 {
 
 }
 
 //
-// ~AttributeMember_Relation_Event_Handler
+// ~AttributeMember_Event_Handler
 //
-AttributeMember_Relation_Event_Handler::~AttributeMember_Relation_Event_Handler (void)
+AttributeMember_Event_Handler::~AttributeMember_Event_Handler (void)
 {
 
 }
@@ -36,7 +36,7 @@ AttributeMember_Relation_Event_Handler::~AttributeMember_Relation_Event_Handler 
 //
 // handle_object_created
 //
-int AttributeMember_Relation_Event_Handler::
+int AttributeMember_Event_Handler::
 handle_object_relation (GAME::Object obj)
 {
   // The reference for the attribute changes. This is either
@@ -58,7 +58,7 @@ handle_object_relation (GAME::Object obj)
 
     std::for_each (connpoints.begin (),
                    connpoints.end (),
-                   boost::bind (&AttributeMember_Relation_Event_Handler::verify_property_datatype_entry,
+                   boost::bind (&AttributeMember_Event_Handler::verify_property_datatype_entry,
                                 this,
                                 _1,
                                 attr_type));
@@ -70,7 +70,7 @@ return 0;
 //
 // verify_property_datatype_entry
 //
-void AttributeMember_Relation_Event_Handler::
+void AttributeMember_Event_Handler::
 verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
                                 const GAME::FCO & attr_type)
 {
@@ -80,7 +80,7 @@ verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
 //
 // verify_property_datatype
 //
-void AttributeMember_Relation_Event_Handler::
+void AttributeMember_Event_Handler::
 verify_property_datatype (GAME::ConnectionPoint & attr, const GAME::FCO & attr_type)
 {
   // Get the own of this connection. If this is an AttributeValue

@@ -21,19 +21,19 @@ namespace MI
 {
 
 /**
- * @class AttributeMember_Relation_Event_Handler
+ * @class AttributeMember_Event_Handler
  *
  * This class creates a AttributeMember and the related references.
  */
-class AttributeMember_Relation_Event_Handler :
+class AttributeMember_Event_Handler :
   public PICML::MI::Event_Handler_Base
 {
 public:
   /// Default constructor.
-  AttributeMember_Relation_Event_Handler (void);
+  AttributeMember_Event_Handler (void);
 
   /// Destructor.
-  virtual ~AttributeMember_Relation_Event_Handler (void);
+  virtual ~AttributeMember_Event_Handler (void);
 
   virtual int handle_object_relation (GAME::Object obj);
 

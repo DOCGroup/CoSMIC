@@ -84,7 +84,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for AttributeMember
   this->event_handler_->register_handler ("AttributeMember",
-    ACE_Singleton <PICML::MI::AttributeMember_Relation_Event_Handler,
+    ACE_Singleton <PICML::MI::AttributeMember_Event_Handler,
                    ACE_Null_Mutex>::instance ());
   
   // Handlers for AtributeValue
