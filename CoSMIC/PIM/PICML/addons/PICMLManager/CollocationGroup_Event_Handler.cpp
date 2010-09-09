@@ -12,18 +12,18 @@ namespace MI
 {
 
 //
-// CollocationGroup_Relation_Event_Handler
+// CollocationGroup_Event_Handler
 //
-CollocationGroup_Relation_Event_Handler::CollocationGroup_Relation_Event_Handler (void)
+CollocationGroup_Event_Handler::CollocationGroup_Event_Handler (void)
 : Event_Handler_Base (OBJEVENT_RELATION)
 {
 
 }
 
 //
-// ~CollocationGroup_Relation_Event_Handler
+// ~CollocationGroup_Event_Handler
 //
-CollocationGroup_Relation_Event_Handler::~CollocationGroup_Relation_Event_Handler (void)
+CollocationGroup_Event_Handler::~CollocationGroup_Event_Handler (void)
 {
 
 }
@@ -31,7 +31,7 @@ CollocationGroup_Relation_Event_Handler::~CollocationGroup_Relation_Event_Handle
 //
 // handle_object_created
 //
-int CollocationGroup_Relation_Event_Handler::
+int CollocationGroup_Event_Handler::
 handle_object_relation (GAME::Object obj)
 {
   if (this->config_->cg_member_.is_nil ())

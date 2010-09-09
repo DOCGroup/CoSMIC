@@ -21,19 +21,19 @@ namespace MI
 {
 
 /**
- * @class CollocationGroup_Relation_Event_Handler
+ * @class CollocationGroup_Event_Handler
  *
  * This class creates a CollocationGroup and the related references.
  */
-class CollocationGroup_Relation_Event_Handler :
+class CollocationGroup_Event_Handler :
   public PICML::MI::Event_Handler_Base
 {
 public:
   /// Default constructor.
-  CollocationGroup_Relation_Event_Handler (void);
+  CollocationGroup_Event_Handler (void);
 
   /// Destructor.
-  virtual ~CollocationGroup_Relation_Event_Handler (void);
+  virtual ~CollocationGroup_Event_Handler (void);
 
   virtual int handle_object_relation (GAME::Object obj);
 };

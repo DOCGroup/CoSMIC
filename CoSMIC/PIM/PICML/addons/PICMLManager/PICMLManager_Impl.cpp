@@ -94,7 +94,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for CollocationGroup
   this->event_handler_->register_handler ("CollocationGroup",
-    ACE_Singleton <PICML::MI::CollocationGroup_Relation_Event_Handler,
+    ACE_Singleton <PICML::MI::CollocationGroup_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComplexTypeReference
