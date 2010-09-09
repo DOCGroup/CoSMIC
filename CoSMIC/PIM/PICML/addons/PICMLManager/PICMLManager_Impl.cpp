@@ -137,7 +137,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for ComponentInstanceType
   this->event_handler_->register_handler ("ComponentInstanceType",
-    ACE_Singleton <PICML::MI::ComponentInstanceType_Relation_Event_Handler,
+    ACE_Singleton <PICML::MI::ComponentInstanceType_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentPackage

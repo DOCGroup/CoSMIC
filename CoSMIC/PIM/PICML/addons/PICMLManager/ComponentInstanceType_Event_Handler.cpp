@@ -17,18 +17,18 @@ namespace MI
 {
 
 //
-// ComponentInstanceType_Relation_Event_Handler
+// ComponentInstanceType_Event_Handler
 //
-ComponentInstanceType_Relation_Event_Handler::ComponentInstanceType_Relation_Event_Handler (void)
+ComponentInstanceType_Event_Handler::ComponentInstanceType_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_RELATION)
 {
 
 }
 
 //
-// ~ComponentInstanceType_Relation_Event_Handler
+// ~ComponentInstanceType_Event_Handler
 //
-ComponentInstanceType_Relation_Event_Handler::~ComponentInstanceType_Relation_Event_Handler (void)
+ComponentInstanceType_Event_Handler::~ComponentInstanceType_Event_Handler (void)
 {
 
 }
@@ -36,7 +36,7 @@ ComponentInstanceType_Relation_Event_Handler::~ComponentInstanceType_Relation_Ev
 //
 // handle_object_relation
 //
-int ComponentInstanceType_Relation_Event_Handler::
+int ComponentInstanceType_Event_Handler::
 handle_object_relation (GAME::Object obj)
 {
   if (this->is_importing_)
@@ -122,7 +122,7 @@ private:
 //
 // generate_port_instances
 //
-void ComponentInstanceType_Relation_Event_Handler::
+void ComponentInstanceType_Event_Handler::
 generate_port_instances (GAME::Model inst,  const GAME::Model & component)
 {
   using GAME::Reference;

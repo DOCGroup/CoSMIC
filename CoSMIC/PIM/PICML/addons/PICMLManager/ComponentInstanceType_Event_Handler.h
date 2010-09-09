@@ -25,19 +25,19 @@ namespace MI
 {
 
 /**
- * @class ComponentInstanceType_Relation_Event_Handler
+ * @class ComponentInstanceType_Event_Handler
  *
  * Handles ComponentInstanceType when a relation is created.
  */
-class ComponentInstanceType_Relation_Event_Handler :
+class ComponentInstanceType_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  ComponentInstanceType_Relation_Event_Handler (void);
+  ComponentInstanceType_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ComponentInstanceType_Relation_Event_Handler (void);
+  virtual ~ComponentInstanceType_Event_Handler (void);
 
   virtual int handle_object_relation (GAME::Object obj);
 
