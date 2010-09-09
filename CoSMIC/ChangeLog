@@ -1,3 +1,9 @@
+Thu Sep  9 14:41:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+
+          Fixed compilation errors.
+
 Thu Sep  9 06:28:12 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
