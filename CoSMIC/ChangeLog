@@ -1,3 +1,12 @@
+Thu Sep  9 23:15:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from NodeReference_Create_Event_Handler
+          to NodeReference_Event_Handler.
+
 Thu Sep  9 23:05:39 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Event_Handler_Config.h:

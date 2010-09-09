@@ -14,18 +14,18 @@ namespace MI
 {
 
 //
-// NodeReference_Create_Event_Handler
+// NodeReference_Event_Handler
 //
-NodeReference_Create_Event_Handler::NodeReference_Create_Event_Handler (void)
+NodeReference_Event_Handler::NodeReference_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_CREATED)
 {
 
 }
 
 //
-// ~NodeReference_Create_Event_Handler
+// ~NodeReference_Event_Handler
 //
-NodeReference_Create_Event_Handler::~NodeReference_Create_Event_Handler (void)
+NodeReference_Event_Handler::~NodeReference_Event_Handler (void)
 {
 
 }
@@ -33,7 +33,7 @@ NodeReference_Create_Event_Handler::~NodeReference_Create_Event_Handler (void)
 //
 // handle_object_created
 //
-int NodeReference_Create_Event_Handler::
+int NodeReference_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
   if (this->is_importing_)

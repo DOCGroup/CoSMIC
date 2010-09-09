@@ -22,19 +22,19 @@ namespace MI
 {
 
 /**
- * @class NodeReference_Create_Event_Handler
+ * @class NodeReference_Event_Handler
  *
  * This class creates a NodeReference for the desired object.
  */
-class NodeReference_Create_Event_Handler :
+class NodeReference_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  NodeReference_Create_Event_Handler (void);
+  NodeReference_Event_Handler (void);
 
   /// Destructor.
-  virtual ~NodeReference_Create_Event_Handler (void);
+  virtual ~NodeReference_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Object obj);
 };

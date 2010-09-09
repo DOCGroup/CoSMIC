@@ -216,7 +216,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
                    
   // Handlers for NodeReference
   this->event_handler_->register_handler ("NodeReference",
-    ACE_Singleton <PICML::MI::NodeReference_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::NodeReference_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for Object
