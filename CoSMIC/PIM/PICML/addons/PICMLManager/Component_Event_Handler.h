@@ -24,22 +24,23 @@ namespace MI
 {
 
 /**
- * @class Component_Create_Event_Handler
+ * @class Component_Event_Handler
  *
  * This class creates a Component and its desired implementation.
  */
-class Component_Create_Event_Handler :
+class Component_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  Component_Create_Event_Handler (void);
+  Component_Event_Handler (void);
 
   /// Destructor.
-  virtual ~Component_Create_Event_Handler (void);
+  virtual ~Component_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Object obj);
 
+private:
   PICML::MI::Event_Handler_Config * config_;
 };
 

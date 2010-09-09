@@ -108,7 +108,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
                    ACE_Null_Mutex>::instance ());
                    
  this->event_handler_->register_handler ("Component",
-    ACE_Singleton <PICML::MI::Component_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::Component_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentAssembly

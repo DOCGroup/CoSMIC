@@ -27,9 +27,9 @@ namespace MI
 {
 
 //
-// Component_Create_Event_Handler
+// Component_Event_Handler
 //
-Component_Create_Event_Handler::Component_Create_Event_Handler (void)
+Component_Event_Handler::Component_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_CREATED),
   config_ (ACE_Singleton <PICML::MI::Event_Handler_Config,
                           ACE_Null_Mutex>::instance ())
@@ -38,9 +38,9 @@ Component_Create_Event_Handler::Component_Create_Event_Handler (void)
 }
 
 //
-// ~Component_Create_Event_Handler
+// ~Component_Event_Handler
 //
-Component_Create_Event_Handler::~Component_Create_Event_Handler (void)
+Component_Event_Handler::~Component_Event_Handler (void)
 {
 
 }
@@ -48,7 +48,7 @@ Component_Create_Event_Handler::~Component_Create_Event_Handler (void)
 //
 // handle_object_created
 //
-int Component_Create_Event_Handler::
+int Component_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
   if (!this->is_importing_)
