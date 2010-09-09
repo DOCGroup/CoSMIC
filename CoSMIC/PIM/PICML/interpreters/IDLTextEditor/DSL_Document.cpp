@@ -96,7 +96,7 @@ CRichEditCntrItem * DSL_Document::CreateClientItem (REOBJECT * obj) const
 //
 void DSL_Document::OnFileSave (void)
 {
-  if (0 == this->deserializer_ || !this->obj_)
+  if (0 == this->deserializer_ || this->obj_.is_nil ())
     return;
 
   // Get a reference to the RichEdit control.
@@ -120,7 +120,7 @@ void DSL_Document::OnFileSave (void)
 void DSL_Document::OnInitialUpdate (void)
 {
   // We cannot continue if there is no serializer.
-  if (0 == this->serializer_ || !this->obj_)
+  if (0 == this->serializer_ || this->obj_.is_nil ())
     return;
 
   // Serialize the object to the stream.

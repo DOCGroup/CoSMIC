@@ -1,3 +1,9 @@
+Thu Sep  9 14:44:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+
+          Fixed compilation errors.
+
 Thu Sep  9 14:41:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
