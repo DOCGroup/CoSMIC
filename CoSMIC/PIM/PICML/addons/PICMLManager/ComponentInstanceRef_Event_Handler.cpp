@@ -12,18 +12,18 @@ namespace MI
 {
 
 //
-// ComponentInstanceRef_Set_Included_Event_Handler
+// ComponentInstanceRef_Event_Handler
 //
-ComponentInstanceRef_Set_Included_Event_Handler::ComponentInstanceRef_Set_Included_Event_Handler (void)
+ComponentInstanceRef_Event_Handler::ComponentInstanceRef_Event_Handler (void)
 : Event_Handler_Base (OBJEVENT_SETINCLUDED)
 {
 
 }
 
 //
-// ~ComponentInstanceRef_Set_Included_Event_Handler
+// ~ComponentInstanceRef_Event_Handler
 //
-ComponentInstanceRef_Set_Included_Event_Handler::~ComponentInstanceRef_Set_Included_Event_Handler (void)
+ComponentInstanceRef_Event_Handler::~ComponentInstanceRef_Event_Handler (void)
 {
 
 }
@@ -31,7 +31,7 @@ ComponentInstanceRef_Set_Included_Event_Handler::~ComponentInstanceRef_Set_Inclu
 //
 // handle_set_included
 //
-int ComponentInstanceRef_Set_Included_Event_Handler::
+int ComponentInstanceRef_Event_Handler::
 handle_set_included (GAME::Object obj)
 {
   this->config_->cg_member_ = GAME::FCO::_narrow (obj);

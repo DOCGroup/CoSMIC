@@ -107,7 +107,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
     ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
- this->event_handler_->register_handler ("Component",
+  this->event_handler_->register_handler ("Component",
     ACE_Singleton <PICML::MI::Component_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
@@ -132,7 +132,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for ComponentInstanceRef
   this->event_handler_->register_handler ("ComponentInstanceRef",
-    ACE_Singleton <PICML::MI::ComponentInstanceRef_Set_Included_Event_Handler,
+    ACE_Singleton <PICML::MI::ComponentInstanceRef_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentInstanceType

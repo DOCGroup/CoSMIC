@@ -21,20 +21,20 @@ namespace MI
 {
 
 /**
- * @class ComponentInstanceRef_Set_Included_Event_Handler
+ * @class ComponentInstanceRef_Event_Handler
  *
  * Adds itself to the cg_members_ in case its included
  * in the set.
  */
-class ComponentInstanceRef_Set_Included_Event_Handler :
+class ComponentInstanceRef_Event_Handler :
   public PICML::MI::Event_Handler_Base
 {
 public:
   /// Default constructor.
-  ComponentInstanceRef_Set_Included_Event_Handler (void);
+  ComponentInstanceRef_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ComponentInstanceRef_Set_Included_Event_Handler (void);
+  virtual ~ComponentInstanceRef_Event_Handler (void);
 
   virtual int handle_set_included (GAME::Object obj);
 };
