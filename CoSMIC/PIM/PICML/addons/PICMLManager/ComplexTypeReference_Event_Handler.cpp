@@ -19,18 +19,18 @@ namespace MI
 {
 
 //
-// ComplexTypeReference_Relation_Event_Handler
+// ComplexTypeReference_Event_Handler
 //
-ComplexTypeReference_Relation_Event_Handler::ComplexTypeReference_Relation_Event_Handler (void)
+ComplexTypeReference_Event_Handler::ComplexTypeReference_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_RELATION)
 {
 
 }
 
 //
-// ~ComplexTypeReference_Relation_Event_Handler
+// ~ComplexTypeReference_Event_Handler
 //
-ComplexTypeReference_Relation_Event_Handler::~ComplexTypeReference_Relation_Event_Handler (void)
+ComplexTypeReference_Event_Handler::~ComplexTypeReference_Event_Handler (void)
 {
 
 }
@@ -38,7 +38,7 @@ ComplexTypeReference_Relation_Event_Handler::~ComplexTypeReference_Relation_Even
 //
 // handle_object_created
 //
-int ComplexTypeReference_Relation_Event_Handler::
+int ComplexTypeReference_Event_Handler::
 handle_object_relation (GAME::Object obj)
 {
   // Get the complex types actual type.
@@ -68,7 +68,7 @@ handle_object_relation (GAME::Object obj)
 
     std::for_each (members.begin (),
                    members.end (),
-                   boost::bind (&ComplexTypeReference_Relation_Event_Handler::create_DataValue,
+                   boost::bind (&ComplexTypeReference_Event_Handler::create_DataValue,
                                 this,
                                 container,
                                 _1));
@@ -84,7 +84,7 @@ handle_object_relation (GAME::Object obj)
 //
 // create_DataValue
 //
-void ComplexTypeReference_Relation_Event_Handler::
+void ComplexTypeReference_Event_Handler::
 create_DataValue (GAME::Model & container, const GAME::FCO & fco)
 {
   GAME::Reference member = GAME::Reference::_narrow (fco);

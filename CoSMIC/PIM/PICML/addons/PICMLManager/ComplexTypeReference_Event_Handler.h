@@ -22,19 +22,19 @@ namespace MI
 {
 
 /**
- * @class ComplexTypeReference_Relation_Event_Handler
+ * @class ComplexTypeReference_Event_Handler
  *
  * This class creates a ComplexTypeReference and the related references.
  */
-class ComplexTypeReference_Relation_Event_Handler :
+class ComplexTypeReference_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  ComplexTypeReference_Relation_Event_Handler (void);
+  ComplexTypeReference_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ComplexTypeReference_Relation_Event_Handler (void);
+  virtual ~ComplexTypeReference_Event_Handler (void);
 
   virtual int handle_object_relation (GAME::Object obj);
 
