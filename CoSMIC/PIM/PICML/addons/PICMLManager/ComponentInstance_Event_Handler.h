@@ -25,37 +25,21 @@ namespace MI
 {
 
 /**
- * @class ComponentInstance_Create_Event_Handler
+ * @class ComponentInstance_Event_Handler
  *
  * Event handler for managing the functionality of a ComponentInstance
  * in PICML.
  */
-class ComponentInstance_Create_Event_Handler : public GAME::Event_Handler_Impl
+class ComponentInstance_Event_Handler : public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  ComponentInstance_Create_Event_Handler (void);
+  ComponentInstance_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ComponentInstance_Create_Event_Handler (void);
+  virtual ~ComponentInstance_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Object obj);
-};
-
-/**
- * @class ComponentInstance_Lost_Child_Event_Handler
- *
- * To deal with the lost child for the ComponentInstance object.
- */
-class ComponentInstance_Lost_Child_Event_Handler :
-  public GAME::Event_Handler_Impl
-{
-public:
-  /// Default constructor.
-  ComponentInstance_Lost_Child_Event_Handler (void);
-
-  /// Destructor.
-  virtual ~ComponentInstance_Lost_Child_Event_Handler (void);
 
   virtual int handle_lost_child (GAME::Object obj);
 };

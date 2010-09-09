@@ -1,10 +1,20 @@
+Thu Sep  9 19:47:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Instead of multiple classes for different ComponentInstance
+          events created a single class for to handle all the
+          ComponentInstance events.
+
 Thu Sep  9 19:20:09 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
         * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
         * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
 
-          Instead of multiple classes for different UUID events 
+          Instead of multiple classes for different UUID events
           created a single class for to handle all the UUID events.
 
 Thu Sep  9 18:32:54 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>

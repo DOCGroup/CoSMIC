@@ -16,18 +16,18 @@ namespace MI
 {
 
 //
-// ComponentInstance_Create_Event_Handler
+// ComponentInstance_Event_Handler
 //
-ComponentInstance_Create_Event_Handler::ComponentInstance_Create_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_CREATED)
+ComponentInstance_Event_Handler::ComponentInstance_Event_Handler (void)
+: GAME::Event_Handler_Impl (OBJEVENT_CREATED | OBJEVENT_LOSTCHILD)
 {
 
 }
 
 //
-// ComponentInstance_Create_Event_Handler
+// ComponentInstance_Event_Handler
 //
-ComponentInstance_Create_Event_Handler::~ComponentInstance_Create_Event_Handler (void)
+ComponentInstance_Event_Handler::~ComponentInstance_Event_Handler (void)
 {
 
 }
@@ -35,7 +35,7 @@ ComponentInstance_Create_Event_Handler::~ComponentInstance_Create_Event_Handler 
 //
 // handle_object_created
 //
-int ComponentInstance_Create_Event_Handler::handle_object_created (GAME::Object obj)
+int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
 {
   if (this->is_importing_)
     return 0;
@@ -95,26 +95,9 @@ int ComponentInstance_Create_Event_Handler::handle_object_created (GAME::Object 
 }
 
 //
-// ComponentInstance_Lost_Child_Event_Handler
-//
-ComponentInstance_Lost_Child_Event_Handler::ComponentInstance_Lost_Child_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_LOSTCHILD)
-{
-
-}
-
-//
-// ~ComponentInstance_Lost_Child_Event_Handler
-//
-ComponentInstance_Lost_Child_Event_Handler::~ComponentInstance_Lost_Child_Event_Handler (void)
-{
-
-}
-
-//
 // handle_lost_child
 //
-int ComponentInstance_Lost_Child_Event_Handler::
+int ComponentInstance_Event_Handler::
 handle_lost_child (GAME::Object obj)
 {
   GAME::FCO fco = GAME::FCO::_narrow (obj);
