@@ -1,3 +1,14 @@
+Thu Sep  9 23:31:16 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+
+          Changed class name from ExtendedPortInstance_Destroyed_Event_Handler
+          to ExtendedPortInstance_Event_Handler and 
+          MirrorPortInstance_Destroyed_Event_Handler to
+          MirrorPortInstance_Event_Handler.
+
 Thu Sep  9 23:15:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:

@@ -10,18 +10,18 @@ namespace MI
 {
 
 //
-// ExtendedPortInstance_Destroyed_Event_Handler
+// ExtendedPortInstance_Event_Handler
 //
-ExtendedPortInstance_Destroyed_Event_Handler::ExtendedPortInstance_Destroyed_Event_Handler (void)
+ExtendedPortInstance_Event_Handler::ExtendedPortInstance_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_DESTROYED)
 {
 
 }
 
 //
-// ~ExtendedPortInstance_Destroyed_Event_Handler
+// ~ExtendedPortInstance_Event_Handler
 //
-ExtendedPortInstance_Destroyed_Event_Handler::~ExtendedPortInstance_Destroyed_Event_Handler (void)
+ExtendedPortInstance_Event_Handler::~ExtendedPortInstance_Event_Handler (void)
 {
 
 }
@@ -29,25 +29,25 @@ ExtendedPortInstance_Destroyed_Event_Handler::~ExtendedPortInstance_Destroyed_Ev
 //
 // handle_object_destroyed
 //
-int ExtendedPortInstance_Destroyed_Event_Handler::
+int ExtendedPortInstance_Event_Handler::
 handle_object_destroyed (GAME::Object obj)
 {
   return S_FALSE;
 }
 
 //
-// MirrorPortInstance_Destroyed_Event_Handler
+// MirrorPortInstance_Event_Handler
 //
-MirrorPortInstance_Destroyed_Event_Handler::MirrorPortInstance_Destroyed_Event_Handler (void)
+MirrorPortInstance_Event_Handler::MirrorPortInstance_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_DESTROYED)
 {
 
 }
 
 //
-// ~MirrorPortInstance_Destroyed_Event_Handler
+// ~MirrorPortInstance_Event_Handler
 //
-MirrorPortInstance_Destroyed_Event_Handler::~MirrorPortInstance_Destroyed_Event_Handler (void)
+MirrorPortInstance_Event_Handler::~MirrorPortInstance_Event_Handler (void)
 {
 
 }
@@ -55,7 +55,7 @@ MirrorPortInstance_Destroyed_Event_Handler::~MirrorPortInstance_Destroyed_Event_
 //
 // handle_object_destroyed
 //
-int MirrorPortInstance_Destroyed_Event_Handler::
+int MirrorPortInstance_Event_Handler::
 handle_object_destroyed (GAME::Object obj)
 {
   return S_FALSE;

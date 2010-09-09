@@ -191,7 +191,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
                    
   // Handlers for ExtendedPortInstance
   this->event_handler_->register_handler ("ExtendedPortInstance",
-    ACE_Singleton <PICML::MI::ExtendedPortInstance_Destroyed_Event_Handler,
+    ACE_Singleton <PICML::MI::ExtendedPortInstance_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ExternalDelegate
@@ -206,7 +206,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
                    
   // Handlers for MirrorPortInstance
   this->event_handler_->register_handler ("MirrorPortInstance",
-    ACE_Singleton <PICML::MI::MirrorPortInstance_Destroyed_Event_Handler,
+    ACE_Singleton <PICML::MI::MirrorPortInstance_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for MonolithicImplementation

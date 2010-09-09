@@ -22,37 +22,37 @@ namespace MI
 {
 
 /**
- * @class ExtendedPortInstance_Destroyed_Event_Handler
+ * @class ExtendedPortInstance_Event_Handler
  *
  * Handles destroyed event for ExtendedPortInstance.
  */
-class ExtendedPortInstance_Destroyed_Event_Handler :
+class ExtendedPortInstance_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  ExtendedPortInstance_Destroyed_Event_Handler (void);
+  ExtendedPortInstance_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ExtendedPortInstance_Destroyed_Event_Handler (void);
+  virtual ~ExtendedPortInstance_Event_Handler (void);
 
   virtual int handle_object_destroyed (GAME::Object obj);
 };
 
 /**
- * @class MirrorPortInstance_Destroyed_Event_Handler
+ * @class MirrorPortInstance_Event_Handler
  *
  * Handles destroyes event for MirrorPortInstance.
  */
-class MirrorPortInstance_Destroyed_Event_Handler :
+class MirrorPortInstance_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  MirrorPortInstance_Destroyed_Event_Handler (void);
+  MirrorPortInstance_Event_Handler (void);
 
   /// Destructor.
-  virtual ~MirrorPortInstance_Destroyed_Event_Handler (void);
+  virtual ~MirrorPortInstance_Event_Handler (void);
 
   virtual int handle_object_destroyed (GAME::Object obj);
 };
