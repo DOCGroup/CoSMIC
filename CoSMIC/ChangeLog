@@ -1,3 +1,89 @@
+Thu Sep  9 06:28:12 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+
+          Added is_importing_ and its related handler methods to
+          Event_Handler_Impl base class in GAME.
+
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Config.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Config.cpp:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+
+          Classes added to facilitate handling of events using objects
+          instead of events.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+
+          Files added to handle events using objects.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changes made to handle events using object and not methods.
+
+        * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.h:
+        * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.cpp:
+
+          Changes made to for the call to the handle methods for importing
+          of the Event_Handler_Config class and not the PICMLManager_Impl class.
+
+        * PIM/PICML/addons/PICMLManager/PICML_Model_Intelligence.reg:
+        * PIM/PICML/addons/PICMLManager/PICML_Model_Intelligenced.reg:
+
+          Changed name of PICML_PICMLManager to PICML_Model_Intelligence.
+
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+
+          Class added to facilitate handling of events using objects
+          instead of events.
+
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Added is_importing_ and its related handler methods to
+          Event_Handler_Impl base class in GAME.
+
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+
+          Added is_importing_ and its related methods to this
+          base class.
+
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManagerd.reg:
+
+          Changed name of PICML_PICMLManager to PICML_Model_Intelligence.
+
+          Removed these files.
+
 Wed Sep  8 17:26:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:

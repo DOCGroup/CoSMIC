@@ -35,10 +35,6 @@ public:
   /// Destructor.
   virtual ~ToConnector_Event_Handler (void);
 
-  virtual int handle_xml_import_begin (void);
-
-  virtual int handle_xml_import_end (void);
-
 protected:
   int create_connection (GAME::Object obj,
                          const std::string & port_role,
@@ -61,7 +57,6 @@ protected:
                                     const GAME::FCO & porttype,
                                     const std::string & metaname,
                                     std::vector <GAME::Reference> & ports);
-  bool is_importing_;
 };
 
 /**

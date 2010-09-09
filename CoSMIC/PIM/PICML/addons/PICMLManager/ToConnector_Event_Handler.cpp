@@ -62,8 +62,7 @@ public:
 // ToConnector_Event_Handler
 //
 ToConnector_Event_Handler::ToConnector_Event_Handler (void)
-: Event_Handler_Impl (OBJEVENT_CREATED),
-  is_importing_ (false)
+: Event_Handler_Impl (OBJEVENT_CREATED)
 {
 
 }
@@ -74,24 +73,6 @@ ToConnector_Event_Handler::ToConnector_Event_Handler (void)
 ToConnector_Event_Handler::~ToConnector_Event_Handler (void)
 {
 
-}
-
-//
-// handle_xml_import_begin
-//
-int ToConnector_Event_Handler::handle_xml_import_begin (void)
-{
-  this->is_importing_ = true;
-  return 0;
-}
-
-//
-// handle_xml_import_end
-//
-int ToConnector_Event_Handler::handle_xml_import_end (void)
-{
-  this->is_importing_ = false;
-  return 0;
 }
 
 //

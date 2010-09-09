@@ -35,15 +35,7 @@ public:
   /// Destructor.
   virtual ~ConnectorInstance_Event_Handler (void);
 
-  virtual int handle_xml_import_begin (void);
-
-  virtual int handle_xml_import_end (void);
-
   virtual int handle_object_created (GAME::Object obj);
-
-private:
-  /// The event handler is importing.
-  bool is_importing_;
 };
 
 }

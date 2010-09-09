@@ -145,6 +145,9 @@ protected:
   /// The mask for the event handler.
   long current_mask_;
 
+  /// The project is in import mode.
+  bool is_importing_;
+
   /// Event handler assigned to this implementation.
   Event_Handler * event_handler_;
 };

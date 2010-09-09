@@ -35,13 +35,7 @@ public:
   /// Destructor.
   virtual ~AMI4CCM_Event_Handler (void);
 
-  virtual int handle_xml_import_begin (void);
-  virtual int handle_xml_import_end (void);
-
   virtual int handle_object_attribute (GAME::Object obj);
-
-private:
-  bool is_importing_;
 };
 }
 }

@@ -25,8 +25,7 @@ namespace MI
 // AMI4CCM_Event_Handler
 //
 AMI4CCM_Event_Handler::AMI4CCM_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_ATTR),
-  is_importing_ (false)
+: GAME::Event_Handler_Impl (OBJEVENT_ATTR)
 {
 
 }
@@ -37,24 +36,6 @@ AMI4CCM_Event_Handler::AMI4CCM_Event_Handler (void)
 AMI4CCM_Event_Handler::~AMI4CCM_Event_Handler (void)
 {
 
-}
-
-//
-// handle_xml_import_begin
-//
-int AMI4CCM_Event_Handler::handle_xml_import_begin (void)
-{
-  this->is_importing_ = true;
-  return 0;
-}
-
-//
-// handle_xml_import_end
-//
-int AMI4CCM_Event_Handler::handle_xml_import_end (void)
-{
-  this->is_importing_ = false;
-  return 0;
 }
 
 //

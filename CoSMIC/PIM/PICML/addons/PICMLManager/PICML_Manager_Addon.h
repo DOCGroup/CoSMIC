@@ -19,7 +19,11 @@
 #include "game/be/Addon_Impl_T.h"
 #include "game/be/ComponentEx_T.h"
 
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
+
 #include "PICMLManager_Impl.h"
+#include "Event_Handler_Config.h"
 
 GAME_DEFAULT_ADDON_IMPL (PICML_Manager_ComponentEx_Impl,
                          "PICML Model Intelligence", 
@@ -49,6 +53,8 @@ public:
   STDMETHOD (setImplementationFolder) (BSTR folder);
   STDMETHOD (setArtifactFolder) (BSTR folder);
   STDMETHOD (resetConfiguration) (void);
+
+  PICML::MI::Event_Handler_Config * config_;
 
 private:
   typedef GAME::Addon_Impl_T < PICML_Manager_ComponentEx_Impl, PICMLManager_Impl > base_type;

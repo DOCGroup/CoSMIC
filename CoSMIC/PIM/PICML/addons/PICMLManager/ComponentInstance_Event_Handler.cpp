@@ -16,19 +16,18 @@ namespace MI
 {
 
 //
-// ComponentInstance_Event_Handler
+// ComponentInstance_Create_Event_Handler
 //
-ComponentInstance_Event_Handler::ComponentInstance_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_CREATED),
-  is_importing_ (false)
+ComponentInstance_Create_Event_Handler::ComponentInstance_Create_Event_Handler (void)
+: GAME::Event_Handler_Impl (OBJEVENT_CREATED)
 {
 
 }
 
 //
-// ComponentInstance_Event_Handler
+// ComponentInstance_Create_Event_Handler
 //
-ComponentInstance_Event_Handler::~ComponentInstance_Event_Handler (void)
+ComponentInstance_Create_Event_Handler::~ComponentInstance_Create_Event_Handler (void)
 {
 
 }
@@ -36,7 +35,7 @@ ComponentInstance_Event_Handler::~ComponentInstance_Event_Handler (void)
 //
 // handle_object_created
 //
-int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
+int ComponentInstance_Create_Event_Handler::handle_object_created (GAME::Object obj)
 {
   if (this->is_importing_)
     return 0;
@@ -96,20 +95,54 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
 }
 
 //
-// handle_xml_import_begin
+// ComponentInstance_Lost_Child_Event_Handler
 //
-int ComponentInstance_Event_Handler::handle_xml_import_begin (void)
+ComponentInstance_Lost_Child_Event_Handler::ComponentInstance_Lost_Child_Event_Handler (void)
+: GAME::Event_Handler_Impl (OBJEVENT_LOSTCHILD)
 {
-  this->is_importing_ = true;
-  return 0;
+
 }
 
 //
-// handle_xml_import_end
+// ~ComponentInstance_Lost_Child_Event_Handler
 //
-int ComponentInstance_Event_Handler::handle_xml_import_end (void)
+ComponentInstance_Lost_Child_Event_Handler::~ComponentInstance_Lost_Child_Event_Handler (void)
 {
-  this->is_importing_ = false;
+
+}
+
+//
+// handle_lost_child
+//
+int ComponentInstance_Lost_Child_Event_Handler::
+handle_lost_child (GAME::Object obj)
+{
+  GAME::FCO fco = GAME::FCO::_narrow (obj);
+
+  if (this->is_importing_ || fco.is_instance ())
+    return 0;
+
+  static const std::string meta_ComponentInstanceType ("ComponentInstanceType");
+  GAME::Model model = GAME::Model::_narrow (obj);
+
+  std::vector <GAME::Reference> types;
+
+  if (model.children (meta_ComponentInstanceType, types) == 0 ||
+      types.front ().is_nil ())
+  {
+    // Delete all the children in the inferface.
+    std::vector <GAME::FCO> children;
+    GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
+
+    model.children (aspect, children);
+    std::for_each (children.begin (),
+                   children.end (),
+                   boost::bind (&GAME::FCO::destroy, _1));
+    return 0;
+  }
+  else
+    return -1;
+
   return 0;
 }
 

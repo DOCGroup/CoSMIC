@@ -19,8 +19,7 @@ namespace MI
 // ConnectorInstance_Event_Handler
 //
 ConnectorInstance_Event_Handler::ConnectorInstance_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_CREATED),
-  is_importing_ (false)
+: GAME::Event_Handler_Impl (OBJEVENT_CREATED)
 {
 
 }
@@ -92,24 +91,6 @@ int ConnectorInstance_Event_Handler::handle_object_created (GAME::Object obj)
   typeref.refers_to (fco);
   typeref.name (fco.name ());
 
-  return 0;
-}
-
-//
-// handle_xml_import_begin
-//
-int ConnectorInstance_Event_Handler::handle_xml_import_begin (void)
-{
-  this->is_importing_ = true;
-  return 0;
-}
-
-//
-// handle_xml_import_end
-//
-int ConnectorInstance_Event_Handler::handle_xml_import_end (void)
-{
-  this->is_importing_ = false;
   return 0;
 }
 

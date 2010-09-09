@@ -11,7 +11,7 @@ REGEDIT4
 @="MGA.AddOn.PICMLManager"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}\InProcServer32]
-@="PICML_PICMLManager.dll"
+@="PICML_Model_Intelligence.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.AddOn.PICMLManager]
 @="MGA.AddOn.PICMLManager"

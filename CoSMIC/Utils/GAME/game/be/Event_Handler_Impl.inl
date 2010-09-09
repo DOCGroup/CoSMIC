@@ -7,7 +7,8 @@ namespace GAME
 //
 GAME_INLINE
 Event_Handler_Impl::Event_Handler_Impl (void)
-: current_mask_ (0)
+: current_mask_ (0),
+  is_importing_ (false)
 {
 
 }
@@ -174,6 +175,7 @@ int Event_Handler_Impl::handle_notification_ready (void)
 GAME_INLINE
 int Event_Handler_Impl::handle_xml_import_begin (void)
 {
+  this->is_importing_ = true;
   return 0;
 }
 
@@ -183,6 +185,7 @@ int Event_Handler_Impl::handle_xml_import_begin (void)
 GAME_INLINE
 int Event_Handler_Impl::handle_xml_import_end (void)
 {
+  this->is_importing_ = false;
   return 0;
 }
 
