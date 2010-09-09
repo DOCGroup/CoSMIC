@@ -47,6 +47,7 @@ public:
   /// Destructor.
   virtual ~Event_Handler_Base (void);
 
+protected:
   void set_property_type (GAME::Model & prop, const GAME::FCO & type);
 
   /// Latest member of the collocation group.
