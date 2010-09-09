@@ -38,11 +38,6 @@ public:
   void set_artifact_folder (const std::string & name);
   void reset_configuration (void);
 
-  // This verifies all UUID's in the project.
-  void verify_all_uuids (void);
-
-  void handle_pending (void);
-
   std::string impl_folder_;
 
   std::string artifact_folder_;

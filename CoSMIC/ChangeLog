@@ -1,3 +1,16 @@
+Thu Sep  9 23:05:39 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Config.h:
+
+          Removed decleration of unused methods.
+
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from ExternalDelegate_Create_Event_Handler
+          to ExternalDelegate_Event_Handler.
+
 Thu Sep  9 22:54:44 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:

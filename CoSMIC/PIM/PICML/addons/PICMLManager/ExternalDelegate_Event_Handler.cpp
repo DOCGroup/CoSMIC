@@ -10,18 +10,18 @@ namespace MI
 {
 
 //
-// ExternalDelegate_Create_Event_Handler
+// ExternalDelegate_Event_Handler
 //
-ExternalDelegate_Create_Event_Handler::ExternalDelegate_Create_Event_Handler (void)
+ExternalDelegate_Event_Handler::ExternalDelegate_Event_Handler (void)
 : GAME::Event_Handler_Impl (OBJEVENT_CREATED)
 {
 
 }
 
 //
-// ~ExternalDelegate_Create_Event_Handler
+// ~ExternalDelegate_Event_Handler
 //
-ExternalDelegate_Create_Event_Handler::~ExternalDelegate_Create_Event_Handler (void)
+ExternalDelegate_Event_Handler::~ExternalDelegate_Event_Handler (void)
 {
 
 }
@@ -29,7 +29,7 @@ ExternalDelegate_Create_Event_Handler::~ExternalDelegate_Create_Event_Handler (v
 //
 // handle_object_created
 //
-int ExternalDelegate_Create_Event_Handler::
+int ExternalDelegate_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
   // Extract the connection for the FCO.

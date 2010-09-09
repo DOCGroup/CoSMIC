@@ -22,19 +22,19 @@ namespace MI
 {
 
 /**
- * @class ExternalDelegate_Create_Event_Handler
+ * @class ExternalDelegate_Event_Handler
  *
  * This class creates a ExternalDelegate connection.
  */
-class ExternalDelegate_Create_Event_Handler :
+class ExternalDelegate_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  ExternalDelegate_Create_Event_Handler (void);
+  ExternalDelegate_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ExternalDelegate_Create_Event_Handler (void);
+  virtual ~ExternalDelegate_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Object obj);
 };

@@ -196,7 +196,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for ExternalDelegate
   this->event_handler_->register_handler ("ExternalDelegate",
-    ACE_Singleton <PICML::MI::ExternalDelegate_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::ExternalDelegate_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ImplementationArtifact
