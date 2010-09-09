@@ -16,68 +16,31 @@
 #include "game/be/Event_Handler_Impl.h"
 #include "game/Model.h"
 
-#include "Event_Handler_Config.h"
-
 namespace PICML
 {
 namespace MI
 {
 
 /**
- * @class UUID_Event_Handler_Base
+ * @class UUID_Event_Handler
  *
- * Base class for UUID handlers.
+ * UUID handlers.
  */
-class UUID_Event_Handler_Base :
+class UUID_Event_Handler :
   public GAME::Event_Handler_Impl
 {
 public:
   /// Default constructor.
-  UUID_Event_Handler_Base (objectevent_enum e);
+  UUID_Event_Handler ();
 
   /// Destructor.
-  virtual ~UUID_Event_Handler_Base (void);
+  virtual ~UUID_Event_Handler (void);
+
+  int handle_object_created (GAME::Object obj);
+
+  int handle_object_attribute (GAME::Object obj);
 
   bool get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr);
-
-protected:
-  PICML::MI::Event_Handler_Config * config_;
-};
-
-/**
- * @class UUID_Create_Event_Handler
- *
- * This class creates a UUID for the desired object.
- */
-class UUID_Create_Event_Handler :
-  public PICML::MI::UUID_Event_Handler_Base
-{
-public:
-  /// Default constructor.
-  UUID_Create_Event_Handler (void);
-
-  /// Destructor.
-  virtual ~UUID_Create_Event_Handler (void);
-
-  virtual int handle_object_created (GAME::Object obj);
-};
-
-/**
- * @class UUID_Verify_Event_Handler
- *
- * This class handles the UUID verification of the desired object.
- */
-class UUID_Verify_Event_Handler :
-  public PICML::MI::UUID_Event_Handler_Base
-{
-public:
-  /// Default constructor.
-  UUID_Verify_Event_Handler (void);
-
-  /// Destructor.
-  virtual ~UUID_Verify_Event_Handler (void);
-
-  virtual int handle_object_attribute (GAME::Object obj);
 };
 
 }

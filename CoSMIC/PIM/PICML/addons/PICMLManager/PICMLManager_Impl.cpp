@@ -104,44 +104,28 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for Component
   this->event_handler_->register_handler ("Component",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("Component",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-                   
-  this->event_handler_->register_handler ("Component",
+ this->event_handler_->register_handler ("Component",
     ACE_Singleton <PICML::MI::Component_Create_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentAssembly
   this->event_handler_->register_handler ("ComponentAssembly",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("ComponentAssembly",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
   // Handlers for ComponentFactoryInstance
   this->event_handler_->register_handler ("ComponentFactoryInstance",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-                   
-  this->event_handler_->register_handler ("ComponentFactoryInstance",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
   // Handlers for ComponentInstace
   this->event_handler_->register_handler ("ComponentInstance",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("ComponentInstance",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-  
   this->event_handler_->register_handler ("ComponentInstance",
     ACE_Singleton <PICML::MI::ComponentInstance_Create_Event_Handler,
                    ACE_Null_Mutex>::instance ());
@@ -162,29 +146,17 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for ComponentPackage
   this->event_handler_->register_handler ("ComponentPackage",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-                   
-  this->event_handler_->register_handler ("ComponentPackage",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
   // Handlers for ConnectorImplementation
   this->event_handler_->register_handler ("ConnectorImplementation",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("ConnectorImplementation",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
   // Handlers for ConnectorInstance
   this->event_handler_->register_handler ("ConnectorInstance",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-                   
-  this->event_handler_->register_handler ("ConnectorInstance",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
   this->event_handler_->register_handler ("ConnectorInstance",
@@ -193,11 +165,7 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for ConnectorObject
   this->event_handler_->register_handler ("ConnectorObject",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-                   
-  this->event_handler_->register_handler ("ConnectorObject",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
   // Handlers for ConnectorToFacet
@@ -217,22 +185,14 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for DeploymentPlan
   this->event_handler_->register_handler ("DeploymentPlan",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-                   
-  this->event_handler_->register_handler ("DeploymentPlan",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
   // Handlers for Domain
   this->event_handler_->register_handler ("Domain",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("Domain",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
   // Handlers for ExtendedPortInstance
   this->event_handler_->register_handler ("ExtendedPortInstance",
     ACE_Singleton <PICML::MI::ExtendedPortInstance_Destroyed_Event_Handler,
@@ -245,13 +205,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for ImplementationArtifact
   this->event_handler_->register_handler ("ImplementationArtifact",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("ImplementationArtifact",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
   // Handlers for MirrorPortInstance
   this->event_handler_->register_handler ("MirrorPortInstance",
     ACE_Singleton <PICML::MI::MirrorPortInstance_Destroyed_Event_Handler,
@@ -259,13 +215,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for MonolithicImplementation
   this->event_handler_->register_handler ("MonolithicImplementation",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("MonolithicImplementation",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
   // Handlers for NodeReference
   this->event_handler_->register_handler ("NodeReference",
     ACE_Singleton <PICML::MI::NodeReference_Create_Event_Handler,
@@ -278,13 +230,9 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
 
   // Handlers for PackageConfiguration
   this->event_handler_->register_handler ("PackageConfiguration",
-    ACE_Singleton <PICML::MI::UUID_Create_Event_Handler,
+    ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
                    
-  this->event_handler_->register_handler ("PackageConfiguration",
-    ACE_Singleton <PICML::MI::UUID_Verify_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
- 
   // Handlers for Publish
   this->event_handler_->register_handler ("Publish",
     ACE_Singleton <PICML::MI::Publish_To_Connector_Event_Handler,

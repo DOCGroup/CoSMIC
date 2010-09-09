@@ -15,36 +15,89 @@
 
 #include "boost/bind.hpp"
 
-#include "ace/Singleton.h"
-#include "ace/Null_Mutex.h"
-
 namespace PICML
 {
 namespace MI
 {
 
 //
-// UUID_Event_Handler_Base
+// UUID_Event_Handler
 //
-UUID_Event_Handler_Base::UUID_Event_Handler_Base (objectevent_enum e)
-: Event_Handler_Impl (e),
-  config_ (ACE_Singleton <PICML::MI::Event_Handler_Config,
-                          ACE_Null_Mutex>::instance ())
+UUID_Event_Handler::UUID_Event_Handler ()
+: GAME::Event_Handler_Impl (OBJEVENT_CREATED | OBJEVENT_ATTR)
 {
+
 }
 
 //
-// ~UUID_Event_Handler_Base
+// ~UUID_Event_Handler
 //
-UUID_Event_Handler_Base::~UUID_Event_Handler_Base (void)
+UUID_Event_Handler::~UUID_Event_Handler (void)
 {
 
+}
+
+//
+// handle_object_created
+//
+int UUID_Event_Handler::
+handle_object_created (GAME::Object obj)
+{
+  GAME::FCO fco = GAME::FCO::_narrow (obj);
+  GAME::Attribute uuid_attr;
+
+  if (this->get_uuid_i (fco, uuid_attr))
+  {
+    long status = uuid_attr.status ();
+
+    // This will force the generation of an UUID for any element
+    // that requires an UUID, including instances and subtypes.
+    try
+    {
+      uuid_attr.string_value (Utils::CreateUuid ());
+    }
+    catch (...)
+    {
+      
+    }
+  }
+  return 0;
+}
+
+//
+// handle_object_attribute
+//
+int UUID_Event_Handler::
+handle_object_attribute (GAME::Object obj)
+{
+  GAME::FCO fco = GAME::FCO::_narrow (obj);
+  GAME::Attribute uuid_attr;
+
+  if (this->get_uuid_i (fco, uuid_attr))
+  {
+    if (Utils::ValidUuid (uuid_attr.string_value ()))
+      return 0;
+
+    try
+    {
+      uuid_attr.string_value (Utils::CreateUuid ());
+    }
+    catch (GAME::Exception &)
+    {
+      
+    }
+    catch (...)
+    {
+
+    }
+  }
+  return 0;
 }
 
 //
 // get_uuid_i
 //
-bool UUID_Event_Handler_Base::
+bool UUID_Event_Handler::
 get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr)
 {
   typedef std::vector <GAME::Attribute> Attribute_Set;
@@ -71,96 +124,6 @@ get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr)
   }
 
   return false;
-}
-
-//
-// UUID_Create_Event_Handler
-//
-UUID_Create_Event_Handler::UUID_Create_Event_Handler (void)
-: UUID_Event_Handler_Base (OBJEVENT_CREATED)
-{
-}
-
-//
-// ~UUID_Create_Event_Handler
-//
-UUID_Create_Event_Handler::~UUID_Create_Event_Handler (void)
-{
-
-}
-
-//
-// handle_object_created
-//
-int UUID_Create_Event_Handler::
-handle_object_created (GAME::Object obj)
-{
-  GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr;
-
-  if (this->get_uuid_i (fco, uuid_attr))
-  {
-    long status = uuid_attr.status ();
-
-    // This will force the generation of an UUID for any element
-    // that requires an UUID, including instances and subtypes.
-    try
-    {
-      uuid_attr.string_value (Utils::CreateUuid ());
-    }
-    catch (...)
-    {
-      //this->config_->pending_.push_back (fco);
-    }
-  }
-  return 0;
-}
-
-//
-// UUID_Verify_Event_Handler
-//
-UUID_Verify_Event_Handler::UUID_Verify_Event_Handler (void)
-: UUID_Event_Handler_Base (OBJEVENT_ATTR)
-{
-
-}
-
-//
-// ~UUID_Verify_Event_Handler
-//
-UUID_Verify_Event_Handler::~UUID_Verify_Event_Handler (void)
-{
-
-}
-
-//
-// handle_object_attribute
-//
-int UUID_Verify_Event_Handler::
-handle_object_attribute (GAME::Object obj)
-{
-  GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr;
-
-  if (this->get_uuid_i (fco, uuid_attr))
-  {
-    if (Utils::ValidUuid (uuid_attr.string_value ()))
-      return 0;
-
-    try
-    {
-      uuid_attr.string_value (Utils::CreateUuid ());
-    }
-    catch (GAME::Exception &)
-    {
-      //this->config_->pending_.push_back (fco);
-    }
-    catch (...)
-    {
-
-    }
-  }
-  return 0;
 }
 
 }
