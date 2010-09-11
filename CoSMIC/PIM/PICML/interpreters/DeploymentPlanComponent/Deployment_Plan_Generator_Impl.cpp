@@ -73,9 +73,8 @@ invoke_ex (GAME::Project & project,
   {
     dngBackend.OpenExisting (project.impl ());
 
-    // Get the last output directory.
-    GAME::utils::Project_Settings settings (project);
-    this->config_.output_path_ = settings.default_output_directory ("__PICML__/DeploymentPlan").c_str ();
+    // Load the last configuration for this project.
+    this->load_configuration (project, this->config_);
 
     if (this->is_interactive_)
     {
@@ -86,12 +85,11 @@ invoke_ex (GAME::Project & project,
         return 0;
 
       // Save the directory back to the model.
-      settings.default_output_directory ("__PICML__/DeploymentPlan",
-                                         this->config_.output_path_.GetBuffer ());
+      this->save_configuration (project, this->config_);
     }
 
     // Opening backend
-    DeploymentPlanVisitor dpv (this->config_.output_path_.GetBuffer ());
+    DeploymentPlanVisitor dpv (this->config_);
 
     if (selected.empty ())
     {
@@ -142,7 +140,33 @@ int Deployment_Plan_Generator_Impl::
 set_parameter (const std::string & name, const std::string & value)
 {
   if (name == "OutputPath")
-    this->config_.output_path_ = value.c_str ();
+    this->config_.output_ = value.c_str ();
 
   return 0;
+}
+
+//
+// load_configuration
+//
+void Deployment_Plan_Generator_Impl::
+load_configuration (GAME::Project proj, Configuration & config)
+{
+  GAME::utils::Project_Settings settings (proj, "DeploymentPlanGenerator");
+
+  settings.get_string_value ("OutputPath", config.output_);
+  settings.get_boolean_value ("HasLocalityManager", config.has_locality_manager_);
+  settings.get_boolean_value ("DisableOptimize", config.disable_optimize_);
+}
+
+//
+// save_configuration
+//
+void Deployment_Plan_Generator_Impl::
+save_configuration (GAME::Project proj, const Configuration & config)
+{
+  GAME::utils::Project_Settings settings (proj, "DeploymentPlanGenerator");
+
+  settings.set_string_value ("OutputPath", config.output_);
+  settings.set_boolean_value ("HasLocalityManager", config.has_locality_manager_);
+  settings.set_boolean_value ("DisableOptimize", config.disable_optimize_);
 }

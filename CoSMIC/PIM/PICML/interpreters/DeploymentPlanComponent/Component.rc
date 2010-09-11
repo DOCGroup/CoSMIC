@@ -38,6 +38,11 @@ BEGIN
     "\0"
 END
 
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
 #endif    // APSTUDIO_INVOKED
 
 
@@ -93,19 +98,19 @@ IDI_COMPICON            ICON                    "compicon.ico"
 // Dialog
 //
 
-IDD_MAINDIALOG DIALOGEX 0, 0, 231, 66
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+IDD_MAINDIALOG DIALOGEX 0, 0, 231, 84
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Deployment Plan Options"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,174,45,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,118,45,50,14
-    CONTROL         "Disable optimizations",IDC_DISABLE_OPTS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,12,36,82,10
+    DEFPUSHBUTTON   "OK",IDOK,174,63,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,118,63,50,14
+    CONTROL         "Disable optimizations",IDC_DISABLE_OPTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,48,82,10
     EDITTEXT        IDC_OUTPUT_DIR,12,18,162,14,ES_AUTOHSCROLL
     LTEXT           "Output Directory:",IDC_STATIC,12,6,58,8
     DEFPUSHBUTTON   "Browse...",IDC_BROWSE,174,18,50,14
+    CONTROL         "Include DAnCE locality manager instances",IDC_HAS_LOCALITY_MANAGER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,36,149,10
 END
 
 
@@ -122,7 +127,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 224
         TOPMARGIN, 7
-        BOTTOMMARGIN, 59
+        BOTTOMMARGIN, 77
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -145,6 +150,10 @@ END
 
 #ifndef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED

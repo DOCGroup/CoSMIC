@@ -1,3 +1,54 @@
+Sat Sep 11 16:25:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Added support for connecting a Property to a CollocationGroup element.
+
+          Removed Property elements from the NodeMapping aspect.
+
+          Added the InstanceMapping connection to the DeploymentProperties
+          aspect. This will help determine what CollocationGroup element is
+          assigned to a particular NodeReference.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Configuration.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Configuration.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Locality_Manager.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Locality_Manager.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/resource.h:
+
+          Improved support to generating locality manager information into
+          a deployment plan. The information for the locality manager, if
+          enabled, is derived from the deployment plan model. Each collocation
+          group maps to a locality manager instance. Likewise, the name of
+          the collocation group maps to the ProcessName configuration property
+          on the locality manager instance.
+
+        * Utils/GAME/game/utils/Project_Settings.h:
+        * Utils/GAME/game/utils/Project_Settings.inl:
+        * Utils/GAME/game/utils/Project_Settings.cpp:
+
+          Added support for storing boolean values to the project settings.
+
+        * Utils/GAME/game/xml/Fragment.h:
+        * Utils/GAME/game/xml/Fragment.inl:
+
+          Implemented the xercesc::DOMElement * conversion operator.
+
 Sat Sep 11 15:20:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:

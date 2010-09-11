@@ -9,18 +9,20 @@
 #include "PICML/PICML.h"
 
 // Xerces includes
-#include "xercesc/util/PlatformUtils.hpp"
-#include "xercesc/util/XMLString.hpp"
-#include "xercesc/dom/DOM.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
-
 #include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
+
+#include "game/xml/Document.h"
+#include "game/xml/Fragment.h"
 
 #include "XML_Document.h"
 #include "Data_Type_Visitor.h"
 
 #include "DeploymentPlan_Export.h"
 
+/**
+ * @class CollocationGroupMember_Dispatcher
+ */
 class CollocationGroupMember_Dispatcher :
   public UDM_Abstract_Type_Dispatcher_T <PICML::Visitor>
 {
@@ -33,6 +35,9 @@ public:
   }
 };
 
+// Forward decl.
+class Configuration;
+
 /**
  * @class DeploymentPlanVisitor
  */
@@ -44,7 +49,7 @@ public:
   /**
    * Initializing constructor.
    */
-  DeploymentPlanVisitor (const std::string & outputPath);
+  DeploymentPlanVisitor (const Configuration & config);
 
   /// Destructor.
   virtual ~DeploymentPlanVisitor (void);
@@ -142,7 +147,8 @@ private:
 
   xercesc::DOMLSSerializer * serializer_;
 
-  std::string outputPath_;
+  /// The configuration for the generator.
+  const Configuration & config_;
 
   /// The current node for the iteration.
   PICML::NodeReference current_node_;
@@ -151,6 +157,8 @@ private:
   std::map <PICML::ComponentInstance, xercesc::DOMElement *> insts_;
 
   std::map <std::string, xercesc::DOMElement *> connector_insts_;
+
+  std::set <xercesc::DOMElement *> locality_insts_;
 
   /// Collection of implementation in the current deployment.
   std::map <PICML::Implemenation, xercesc::DOMElement *> impls_;
@@ -166,19 +174,19 @@ private:
   /// Collection of plan localities in the current deployment.
   std::map <PICML::CollocationGroup, xercesc::DOMElement *> locality_;
 
-  xercesc::DOMElement * curr_locality_;
+  GAME::Xml::Fragment curr_locality_;
 
-  xercesc::DOMElement * curr_instance_;
+  GAME::Xml::Fragment curr_instance_;
 
-  xercesc::DOMElement * curr_impl_;
+  GAME::Xml::Fragment curr_impl_;
 
-  xercesc::DOMElement * curr_artifact_;
+  GAME::Xml::Fragment curr_artifact_;
 
-  xercesc::DOMElement * param_parent_;
+  GAME::Xml::Fragment param_parent_;
 
-  xercesc::DOMElement * curr_param_;
+  GAME::Xml::Fragment curr_param_;
 
-  xercesc::DOMElement * curr_value_;
+  GAME::Xml::Fragment curr_value_;
 
   PICML::ComponentImplementationArtifact impl_artifact_;
 

@@ -5,15 +5,19 @@
 #include "Deployment_Domain_Visitor.h"
 #include "Nodemap_Generator.h"
 
+#include "Configuration.h"
 #include "Data_Type_Visitor.h"
 #include "Data_Value_Visitor.h"
 #include "Connection_Visitor.h"
 #include "External_Reference_Visitor.h"
 #include "Connector_Visitor.h"
+#include "Locality_Manager.h"
 
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/udm/visit.h"
 #include "Utils/UDM/Position_Sort_T.h"
+
+#include "game/xml/Fragment.h"
 
 #include "UmlExt.h"
 #include "boost/bind.hpp"
@@ -22,7 +26,6 @@
 #include <functional>
 #include <sstream>
 
-using Utils::XStr;
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
 using xercesc::DOMImplementationLS;
@@ -33,16 +36,19 @@ using xercesc::DOMText;
 using xercesc::DOMElement;
 using xercesc::DOMComment;
 
+using GAME::Xml::String;
+using GAME::Xml::Fragment;
+
 //
 // DeploymentPlanVisitor
 //
 DeploymentPlanVisitor::
-DeploymentPlanVisitor (const std::string & outputPath)
+DeploymentPlanVisitor (const Configuration & config)
 : impl_ (0),
   doc_ (0),
   output_ (0),
   serializer_ (0),
-  outputPath_ (outputPath)
+  config_ (config)
 {
   this->init ();
 }
@@ -89,11 +95,11 @@ void DeploymentPlanVisitor::init_document (const std::string& rootName)
     this->doc_->release ();
 
   // Create the document
-  this->doc_ = this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
-                                            XStr (rootName.c_str ()),
+  this->doc_ = this->impl_->createDocument (String ("http://www.omg.org/Deployment"),
+                                            String (rootName),
                                             0);
 
-  this->doc_->setXmlVersion (XStr ("1.0"));
+  this->doc_->setXmlVersion (String ("1.0"));
 }
 
 //
@@ -136,27 +142,25 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 {
   // Start a new XML document for this deployment plan.
   this->init_document ("Deployment:DeploymentPlan");
+  Fragment root (this->doc_->getDocumentElement ());
 
-  // Prepare the XML document for writing.
-  DOMElement * root = this->doc_->getDocumentElement ();
+  root->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
+                        String ("xmlns:Deployment"),
+                        String ("http://www.omg.org/Deployment"));
 
-  root->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                        XStr ("xmlns:Deployment"),
-                        XStr ("http://www.omg.org/Deployment"));
+  root->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
+                        String ("xmlns:xsi"),
+                        String ("http://www.w3.org/2001/XMLSchema-instance"));
 
-  root->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                        XStr ("xmlns:xsi"),
-                        XStr ("http://www.w3.org/2001/XMLSchema-instance"));
+  root->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
+                        String ("xmlns:xmi"),
+                        String ("http://www.omg.org/XMI"));
 
-  root->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                        XStr ("xmlns:xmi"),
-                        XStr ("http://www.omg.org/XMI"));
+  root->setAttribute (String ("xsi:schemaLocation"),
+                      String ("http://www.omg.org/Deployment Deployment.xsd"));
 
-  root->setAttribute (XStr ("xsi:schemaLocation"),
-                      XStr ("http://www.omg.org/Deployment Deployment.xsd"));
-
-  this->create_simple_content (root, "label", plan.label ());
-  this->create_simple_content (root, "UUID", plan.UUID ());
+  root.create_simple_content ("label", String (plan.label ()));
+  root.create_simple_content ("UUID", String (plan.UUID ()));
 
   // Visit all the nodes in the deployment plan. This will gather all
   // the necessary parts of the XML document. We do not process the
@@ -204,15 +208,20 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   std::for_each (this->impls_.begin (),
                  this->impls_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
+                              root.ptr (),
                               boost::bind (&std::map <PICML::Implemenation,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
+
+
+  if (this->config_.has_locality_manager_)
+    Locality_Manager::generate_default_implementation (root);
+
   // <instance>
   std::for_each (this->insts_.begin (),
                  this->insts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
+                              root.ptr (),
                               boost::bind (&std::map <PICML::ComponentInstance,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
@@ -220,37 +229,46 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   std::for_each (this->connector_insts_.begin (),
                  this->connector_insts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
+                              root.ptr (),
                               boost::bind (&std::map <std::string,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
+
+  std::for_each (this->locality_insts_.begin (),
+                 this->locality_insts_.end (),
+                 boost::bind (&xercesc::DOMElement::appendChild,
+                              root.ptr (),
+                              _1));
 
   // <connection>
   std::for_each (this->conns_.begin (),
                  this->conns_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
+                              root.ptr (),
                               _1));
 
   // <artifact>
   std::for_each (this->artifacts_.begin (),
                  this->artifacts_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
+                              root.ptr (),
                               boost::bind (&std::map <PICML::ImplementationArtifact,
                                                       xercesc::DOMElement *>::
                                                       value_type::second, _1)));
+
+  if (this->config_.has_locality_manager_)
+    Locality_Manager::generate_default_artifacts (root);
 
   // <localityConstraint>
   std::for_each (this->locality_.begin (),
                  this->locality_.end (),
                  boost::bind (&xercesc::DOMElement::appendChild,
-                              root,
+                              root.ptr (),
                               boost::bind (&locality_t::value_type::second, _1)));
 
   // Open the XML file for writing.
   std::ostringstream filename;
-  filename << this->outputPath_ << "/" << plan.name () << ".cdp";
+  filename << this->config_.output_ << "/" << plan.name () << ".cdp";
   LocalFileFormatTarget target (filename.str ().c_str ());
 
   // Write the document.
@@ -262,11 +280,11 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   this->reset_state ();
 
   //call visitor that will generate the .cdd file
-  Deployment_Domain_Visitor ddv (this->outputPath_);
+  Deployment_Domain_Visitor ddv (this->config_.output_);
   PICML::DeploymentPlan (plan).Accept (ddv);
 
   //call visitor that will generate the .nodemap file
-  Nodemap_Generator ng (this->outputPath_);
+  Nodemap_Generator ng (this->config_.output_);
   PICML::DeploymentPlan (plan).Accept (ng);
 }
 
@@ -322,11 +340,41 @@ void DeploymentPlanVisitor::
 Visit_CollocationGroup (const PICML::CollocationGroup & group)
 {
   // Start a new plan locality constraint (SameProcess).
-  this->curr_locality_ = this->doc_->createElement (Utils::XStr ("localityConstraint"));
+  this->curr_locality_ = this->doc_->createElement (String ("localityConstraint"));
   this->current_group_ = group;
 
-  this->create_simple_content (curr_locality_, "constraint", "SameProcess");
-  this->locality_.insert (std::make_pair (group, this->curr_locality_));
+  this->curr_locality_.create_simple_content ("constraint", "SameProcess");
+  this->locality_.insert (std::make_pair (group, this->curr_locality_.ptr ()));
+
+  if (this->config_.has_locality_manager_)
+  {
+    const std::string group_name (group.name ());
+    const std::string node_name (this->current_node_.name ());
+
+    const std::string uuid = node_name + "." + group_name;
+
+    // Create the locality manager instance.
+    Fragment instance = this->doc_->createElement (String ("instance"));
+
+    // Initialize the tags for this instance.
+    instance->setAttribute (String ("xmi:id"), String (uuid));
+    instance.create_simple_content ("name", uuid);
+    instance.create_simple_content ("node", node_name);
+    instance.create_simple_content ("source", "");
+
+    Fragment impl = instance.create_element ("implementation");
+    impl->setAttribute (String ("xmi:idref"), Locality_Manager::DEFAULT_IMPLEMENTATION_ID);
+
+    Locality_Manager::generate_default_instance_configs (instance, group);
+
+    // Save this element to the locality instances.
+    this->locality_insts_.insert (instance);
+
+    // Finally, make sure we add the locality manager to the current
+    // locality collection.
+    Fragment constrainedInstance = this->curr_locality_.create_element ("constrainedInstance");
+    constrainedInstance->setAttribute (String ("xmi:idref"), String (uuid));
+  }
 
   std::set <PICML::CollocationGroupMember> members = group.members ();
 
@@ -360,23 +408,23 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   std::string name = inst.getPath (".", false, true, "name", true);
 
   // Create a new instance in the XML document.
-  this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
-  this->insts_.insert (std::make_pair (inst, this->curr_instance_));
+  this->curr_instance_ = this->doc_->createElement (String ("instance"));
+  this->insts_.insert (std::make_pair (inst, this->curr_instance_.ptr ()));
   this->mappings_[inst] = this->current_group_;
 
-  this->curr_instance_->setAttribute (XStr ("xmi:id"), XStr (uuid));
-  this->create_simple_content (this->curr_instance_, "name", name);
-  this->create_simple_content (this->curr_instance_, "node", this->current_node_.name ());
-  this->create_simple_content (this->curr_instance_, "source", "");
+  this->curr_instance_->setAttribute (String ("xmi:id"), String (uuid));
+  this->curr_instance_.create_simple_content ("name", name);
+  this->curr_instance_.create_simple_content ("node", String (this->current_node_.name ()));
+  this->curr_instance_.create_simple_content ("source", "");
 
   // Insert this instance into the current locality and write a comment
   // that shows the constained instances name.
   // TODO make this a debugging feature.
-  DOMComment * comment = this->doc_->createComment (::Utils::XStr (name));
+  DOMComment * comment = this->doc_->createComment (String(name));
   this->curr_locality_->appendChild (comment);
 
-  DOMElement * constrained = this->create_element (this->curr_locality_, "constrainedInstance");
-  constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  Fragment constrained = this->curr_locality_.create_element ("constrainedInstance");
+  constrained->setAttribute (String ("xmi:idref"), String (uuid));
 
   // Visit this instance's implementation.
   PICML::ComponentInstanceType type = inst.ComponentInstanceType_child ();
@@ -429,8 +477,8 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   // Add the implementation to the current instance.
   std::string uuid = std::string ("_") + std::string (impl.UUID ());
 
-  DOMElement * element = this->create_element (this->curr_instance_, "implementation");
-  element->setAttribute (XStr ("xmi:idref"), XStr (uuid));
+  Fragment element = this->curr_instance_.create_element ("implementation");
+  element->setAttribute (String ("xmi:idref"), String (uuid));
 
   // Add all the configProperty elements to the current instance.
   this->param_parent_ = this->curr_instance_;
@@ -449,14 +497,14 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
 
   // Since we have not seen this implementation before, we need to
   // create a new XML element for it.
-  this->curr_impl_ = this->doc_->createElement (XStr ("implementation"));
-  this->impls_.insert (std::make_pair (impl, this->curr_impl_));
+  this->curr_impl_ = this->doc_->createElement (String ("implementation"));
+  this->impls_.insert (std::make_pair (impl, this->curr_impl_.ptr ()));
 
-  this->curr_impl_->setAttribute (XStr ("xmi:id"), XStr (uuid));
+  this->curr_impl_->setAttribute (String ("xmi:id"), String (uuid));
 
   std::string name = impl.getPath (".", false, true, "name", true);
-  this->create_simple_content (this->curr_impl_, "name", name);
-  this->create_simple_content (this->curr_impl_, "source", "");
+  this->curr_impl_.create_simple_content ("name", name);
+  this->curr_impl_.create_simple_content ("source", "");
 
   // The next part of this element is the artifacts. Therefore, visit
   // all the primary artifacts for this component.
@@ -537,8 +585,8 @@ Visit_ImplementationArtifact (const PICML::ImplementationArtifact & artifact)
   std::string uuid = std::string ("_") + std::string (artifact.UUID ());
 
   // Add this artifact's id to the current implementation.
-  DOMElement * element = this->create_element (this->curr_impl_, "artifact");
-  element->setAttribute (XStr ("xmi:idref"), XStr (uuid));
+  Fragment element = this->curr_impl_.create_element ("artifact");
+  element->setAttribute (String ("xmi:idref"), String (uuid));
 
   // There is no need to continue if we have already seen this
   // artifact. Otherwise, we will overwrite the existing one.
@@ -547,15 +595,16 @@ Visit_ImplementationArtifact (const PICML::ImplementationArtifact & artifact)
 
   // We should go ahead and create a new artifact element for
   // the XML document.
-  this->curr_artifact_ = this->doc_->createElement (XStr ("artifact"));
-  this->artifacts_.insert (std::make_pair (artifact, this->curr_artifact_));
+  this->curr_artifact_ = this->doc_->createElement (String ("artifact"));
+  this->artifacts_.insert (std::make_pair (artifact, this->curr_artifact_.ptr ()));
 
-  this->curr_artifact_->setAttribute (XStr ("xmi:id"), XStr (uuid));
+  this->curr_artifact_->setAttribute (String ("xmi:id"), String (uuid));
   std::string name = artifact.getPath (".", false, true, "name", true);
-  this->create_simple_content (this->curr_artifact_, "name", name);
-  this->create_simple_content (this->curr_artifact_, "source", "");
-  this->create_simple_content (this->curr_artifact_, "node", "");
-  this->create_simple_content (this->curr_artifact_, "location", artifact.location ());
+
+  this->curr_artifact_.create_simple_content ("name", name);
+  this->curr_artifact_.create_simple_content ("source", "");
+  this->curr_artifact_.create_simple_content ("node", "");
+  this->curr_artifact_.create_simple_content ("location", String (artifact.location ()));
 
   // Let's generate the artifact exec parameters.
   this->param_parent_ = this->curr_artifact_;
@@ -589,13 +638,12 @@ Visit_MonolithExecParameter (const PICML::MonolithExecParameter & mexec)
   // First, lets create a new executor parameter now since
   // we will not be able to tell what type it is once we reach
   // the property.
-  this->curr_param_ = this->create_element (this->param_parent_, "execParameter");
-
+  this->curr_param_ = this->param_parent_.create_element ("execParameter");
   PICML::Property prop = mexec.dstMonolithExecParameter_end ();
 
-  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+  if (prop.type () == PICML::SimpleProperty::meta)
     PICML::SimpleProperty::Cast (prop).Accept (*this);
-  else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
+  else if (prop.type () == PICML::ComplexProperty::meta)
     PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
@@ -615,13 +663,12 @@ Visit_ArtifactDependsOn (const PICML::ArtifactDependsOn& ado)
 void DeploymentPlanVisitor::
 Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter& param)
 {
-  this->curr_param_ = this->create_element (this->param_parent_, "execParameter");
-
+  this->curr_param_ = this->param_parent_.create_element ("execParameter");
   PICML::Property prop = param.dstArtifactExecParameter_end ();
-  
-  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+
+  if (prop.type () == PICML::SimpleProperty::meta)
     PICML::SimpleProperty::Cast (prop).Accept (*this);
-  else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
+  else if (prop.type () == PICML::ComplexProperty::meta)
     PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
@@ -636,17 +683,17 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
   std::string name = inst.getPath (".", false, true, "name", true);
 
   // Insert this instance into the current locality.
-  DOMElement * locality = this->locality_[group];
+  Fragment locality (this->locality_[group]);
 
   if (0 != locality)
   {
     // Write a comment that shows the constained instances name.
     // TODO make this a debugging feature.
-    DOMComment * comment = this->doc_->createComment (::Utils::XStr (name));
+    DOMComment * comment = this->doc_->createComment (String (name));
     locality->appendChild (comment);
 
-    DOMElement * constrained = this->create_element (locality, "constrainedInstance");
-    constrained->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+    Fragment constrained = locality.create_element ("constrainedInstance");
+    constrained->setAttribute (String ("xmi:idref"), String (uuid));
   }
 
   // Get the target node's name for this instance
@@ -654,19 +701,19 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
   PICML::NodeReference noderef = mapping.dstInstanceMapping_end ();
 
   // Create a new instance in the XML document.
-  this->curr_instance_ = this->doc_->createElement (Utils::XStr ("instance"));
-  this->connector_insts_.insert (std::make_pair (uuid, this->curr_instance_));
+  this->curr_instance_ = this->doc_->createElement (String ("instance"));
+  this->connector_insts_.insert (std::make_pair (uuid, this->curr_instance_.ptr ()));
 
-  this->curr_instance_->setAttribute (XStr ("xmi:id"), XStr (uuid));
-  this->create_simple_content (this->curr_instance_, "name", name);
-
-  // TODO set the node correctly...
-  this->create_simple_content (this->curr_instance_, "node", noderef.name ());
-  this->create_simple_content (this->curr_instance_, "source", "");
+  this->curr_instance_->setAttribute (String ("xmi:id"), String (uuid));
+  this->curr_instance_.create_simple_content ("name", name);
+  this->curr_instance_.create_simple_content ("node", String (noderef.name ()));
+  this->curr_instance_.create_simple_content ("source", "");
 
   // Visit this instance's implementation.
   PICML::ConnectorImplementationType cit = inst.ConnectorImplementationType_child ();
-  cit.Accept (*this);
+
+  if (cit != Udm::null)
+    cit.Accept (*this);
 
   this->param_parent_ = this->curr_instance_;
 
@@ -722,13 +769,13 @@ Visit_SimpleProperty (const PICML::SimpleProperty & prop)
 
   PICML_Data_Type_Dispatcher dt_dispatcher;
 
-  this->create_simple_content (this->curr_param_, "name", name);
-  xercesc::DOMElement * value = this->create_element (this->curr_param_, "value");
+  this->curr_param_.create_simple_content ("name", name);
+  Fragment value = this->curr_param_.create_element ("value");
 
   // First, we need to generate the type for this property
   PICML_Data_Type_Visitor dtv (value);
   PICML_Data_Value_Visitor dvv (value);
-  
+
   // Write the data type for the property.
   dt_dispatcher.dispatch (dtv, prop.ref ());
 
@@ -837,7 +884,7 @@ Visit_ConfigProperty (const PICML::ConfigProperty & cp)
   this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
 
   PICML::Property ref = cp.dstConfigProperty_end ();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
   else if (Udm::IsDerivedFrom (ref.type (), PICML::ComplexProperty::meta))
@@ -865,7 +912,7 @@ Visit_AttributeValue (const PICML::AttributeValue & v)
   this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
 
   PICML::Property prop = v.dstAttributeValue_end ();
-  
+
   if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (prop).Accept (*this);
   else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
@@ -881,7 +928,7 @@ Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty & acp)
   this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
 
   PICML::Property ref = acp.dstAssemblyConfigProperty_end ();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
   else if (Udm::IsDerivedFrom (ref.type (), PICML::ComplexProperty::meta))

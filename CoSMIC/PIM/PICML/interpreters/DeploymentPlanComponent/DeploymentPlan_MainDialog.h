@@ -15,7 +15,8 @@
 #ifndef _DEPLOYMENT_PLAN_DIALOG_H_
 #define _DEPLOYMENT_PLAN_DIALOG_H_
 
-#include "Configuration.h"
+// Forward decl.
+class Configuration;
 
 /**
  * @class Deployment_Plan_Dialog

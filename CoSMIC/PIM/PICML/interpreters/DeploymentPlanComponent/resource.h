@@ -8,6 +8,8 @@
 #define IDC_EDIT1                       204
 #define IDC_OUTPUT_DIR                  204
 #define IDD_MAINDIALOG                  205
+#define IDC_SUPPORTS_LOCALITY_MANAGER   205
+#define IDC_HAS_LOCALITY_MANAGER        205
 #define IDR_XSD2                        207
 
 // Next default values for new objects

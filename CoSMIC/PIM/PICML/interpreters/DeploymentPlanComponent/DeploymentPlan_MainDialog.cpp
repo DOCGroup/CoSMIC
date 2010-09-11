@@ -2,21 +2,56 @@
 
 #include "StdAfx.h"
 #include "DeploymentPlan_MainDialog.h"
+#include "Configuration.h"
 #include "Resource.h"
 #include "Utils/Utils.h"
+#include <string>
 #include <io.h>
 
 //
-// PackageMainDialog
+// DDX_Text
 //
-static int DDV_NonEmptyString (CDataExchange * pDX, CString & str)
+static int DDX_Text (CDataExchange * pDX, int id, std::string & str)
+{
+  CString text;
+
+  if (pDX->m_bSaveAndValidate)
+  {
+    pDX->m_pDlgWnd->GetDlgItemTextA (id, text);
+    str = text.GetBuffer ();
+  }
+  else
+  {
+    pDX->m_pDlgWnd->SetDlgItemTextA (id, str.c_str ());
+  }
+
+  return 0;
+}
+
+//
+// DDX_Check
+//
+static int DDX_Check (CDataExchange * pDX, int id, bool & value)
+{
+  if (pDX->m_bSaveAndValidate)
+    value = pDX->m_pDlgWnd->IsDlgButtonChecked (id) == BST_UNCHECKED ? false : true;
+  else
+    pDX->m_pDlgWnd->CheckDlgButton (id, value ? BST_CHECKED : BST_UNCHECKED);
+
+  return 0;
+}
+
+//
+// DDV_NonEmptyString
+//
+static int DDV_NonEmptyString (CDataExchange * pDX, const std::string & str)
 {
   // No need to continue if we aren't saving anything.
   if (!pDX->m_bSaveAndValidate)
     return -1;
 
   // Remove all the leading and trailing whitespace.
-  if (str.Trim ().GetLength () != 0)
+  if (!str.empty ())
     return 1;
 
   // Since we are empty, display an error messages.
@@ -28,7 +63,7 @@ static int DDV_NonEmptyString (CDataExchange * pDX, CString & str)
 //
 // DDV_DirectoryExists
 //
-static int DDV_DirectoryExists (CDataExchange * pDX, CString & str)
+static int DDV_DirectoryExists (CDataExchange * pDX, std::string & str)
 {
   // Verify we aren't working with an empty string.
   int retval = DDV_NonEmptyString (pDX, str);
@@ -37,7 +72,7 @@ static int DDV_DirectoryExists (CDataExchange * pDX, CString & str)
   {
     // Locate the file descriptor for the string.
     _finddata_t finddata;
-    int handle = _findfirst (str.GetBuffer (), &finddata);
+    int handle = _findfirst (str.c_str (), &finddata);
 
     if (handle != -1)
     {
@@ -97,10 +132,11 @@ void Deployment_Plan_Dialog::DoDataExchange (CDataExchange * pDX)
 {
   CDialog::DoDataExchange (pDX);
 
-  DDX_Text (pDX, IDC_OUTPUT_DIR, this->config_.output_path_);
-  DDV_DirectoryExists (pDX, this->config_.output_path_);
+  DDX_Text (pDX, IDC_OUTPUT_DIR, this->config_.output_);
+  DDV_DirectoryExists (pDX, this->config_.output_);
 
   DDX_Check (pDX, IDC_DISABLE_OPTS, this->config_.disable_optimize_);
+  DDX_Check (pDX, IDC_HAS_LOCALITY_MANAGER, this->config_.has_locality_manager_);
 }
 
 //

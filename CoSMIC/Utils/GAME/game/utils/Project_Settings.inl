@@ -7,10 +7,20 @@ namespace utils
 //
 // Project_Settings
 //
+Project_Settings::Project_Settings (::GAME::Project proj)
+: project_ (proj)
+{
+
+}
+
+//
+// Project_Settings
+//
 GAME_INLINE
-Project_Settings::Project_Settings (::GAME::Project & proj)
-: project_ (proj),
-  default_cache_loc_ ("__OutputDir__/")
+Project_Settings::
+Project_Settings (::GAME::Project project, const std::string & cache_loc)
+: project_ (project),
+  default_cache_loc_ (cache_loc)
 {
 
 }

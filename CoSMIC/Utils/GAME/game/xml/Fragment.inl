@@ -77,7 +77,16 @@ create_simple_content (const String & ns, const String & name, const String & va
 // operator ->
 //
 GAME_INLINE
-xercesc::DOMElement * Fragment::operator -> (void) const
+xercesc::DOMElement * Fragment::operator -> (void)
+{
+  return this->fragment_;
+}
+
+//
+// ptr
+//
+GAME_INLINE
+xercesc::DOMElement * Fragment::ptr (void)
 {
   return this->fragment_;
 }
@@ -89,6 +98,15 @@ GAME_INLINE
 void Fragment::operator = (xercesc::DOMElement * e)
 {
   this->fragment_ = e;
+}
+
+//
+// operator xercesc::DOMElement *
+//
+GAME_INLINE
+Fragment::operator xercesc::DOMElement * (void)
+{
+  return this->fragment_;
 }
 
 }

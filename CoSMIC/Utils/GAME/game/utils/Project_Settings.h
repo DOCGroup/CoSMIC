@@ -13,48 +13,65 @@
 #ifndef _GAME_UTILS_PROJECT_SETTINGS_
 #define _GAME_UTILS_PROJECT_SETTINGS_
 
-#include <string>
-#include "game/config.h"
+#include "game/Project.h"
 #include "GAME_Utils_export.h"
 
 namespace GAME
 {
-// Forward decl.
-class Project;
 
 namespace utils
 {
+/**
+ * @class Project_Settings
+ *
+ * Utility class for managing settings of a GME project.
+ */
+class GAME_UTILS_Export Project_Settings
+{
+public:
   /**
-   * @class Project_Settings
+   * Initializing constructor.
    *
-   * Utility class for managing settings of a GME project.
+   * @param[in]       project       Target project
    */
-  class GAME_UTILS_Export Project_Settings
-  {
-  public:
-    /**
-     * Initializing constructor.
-     */
-    Project_Settings (::GAME::Project & project);
+  Project_Settings (::GAME::Project project);
 
-    /// Destructor.
-    ~Project_Settings (void);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       project       Target project
+   * @param[in]       cache_loc     Location for storing settings.
+   */
+  Project_Settings (::GAME::Project project, const std::string & cache_loc);
 
-    void global_default_output_directory (const std::string & dir);
+  /// Destructor.
+  ~Project_Settings (void);
 
-    std::string global_default_output_directory (void) const;
+  void global_default_output_directory (const std::string & dir);
 
-    void default_output_directory (const std::string & uid,
-                                   const std::string & dir);
+  std::string global_default_output_directory (void) const;
 
-    std::string default_output_directory (const std::string & uid) const;
+  void default_output_directory (const std::string & uid,
+                                 const std::string & dir);
 
-  private:
-    /// Target GME project.
-    GAME::Project & project_;
+  std::string default_output_directory (const std::string & uid) const;
 
-    const std::string default_cache_loc_;
-  };
+  bool set_boolean_value (const std::string & path, bool value);
+  bool get_boolean_value (const std::string & path, bool & value);
+
+  bool set_string_value (const std::string & path,
+                         const std::string & value);
+
+  bool get_string_value (const std::string & path,
+                         std::string & value);
+
+private:
+  /// Target GME project.
+  GAME::Project project_;
+
+  std::string default_cache_loc_;
+};
+
 }
 }
 

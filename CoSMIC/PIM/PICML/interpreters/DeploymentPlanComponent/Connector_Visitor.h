@@ -15,6 +15,7 @@
 
 #include "PICML/PICML.h"
 #include "XML_Document.h"
+#include "game/xml/Fragment.h"
 
 // Forward decl.
 class DeploymentPlanVisitor;
@@ -112,8 +113,10 @@ private:
   /// The target document.
   xercesc::DOMDocument * doc_;
 
-  xercesc::DOMElement * curr_conn_;
-  xercesc::DOMElement * name_element_;
+  GAME::Xml::Fragment curr_conn_;
+
+  GAME::Xml::Fragment name_element_;
+
   std::string connection_name_;
 
   PICML::CollocationGroup group_;

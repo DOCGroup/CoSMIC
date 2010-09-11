@@ -40,8 +40,14 @@ public:
   int set_parameter (const std::string & name, const std::string & value);
 
 private:
-  /// Configuration for the deployment plan generator.
+  /// The configuration for the generator.
   Configuration config_;
+
+  // Helper method to load last configuration.
+  static void load_configuration (GAME::Project proj, Configuration & config);
+
+  // Helper method to s last configuration.
+  static void save_configuration (GAME::Project proj, const Configuration & config);
 };
 
 #endif

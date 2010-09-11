@@ -1,16 +1,18 @@
 // $Id$
 
-project (PICML_DeploymentPlan): boost_base, picml_udm_utils {
+project (PICML_DeploymentPlan): boost_base, game_xml, picml_udm_utils {
   sharedname    = PICML_DeploymentPlan
   dynamicflags += DEPLOYMENTPLAN_BUILD_DLL
 
   Source_Files {
+    Configuration.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp
     Data_Type_Visitor.cpp
     Data_Type_Dispatcher.cpp
     Data_Value_Visitor.cpp
     Deployment_Domain_Visitor.cpp
+    Locality_Manager.cpp
     Nodemap_Generator.cpp
     DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
@@ -43,7 +45,7 @@ project (PICML_DeploymentPlanComponent): picml_udm_utils, game_utils, game_inter
   }
 
   Header_Files {
-    Configuration.h
+
   }
 
   Resource_Files {

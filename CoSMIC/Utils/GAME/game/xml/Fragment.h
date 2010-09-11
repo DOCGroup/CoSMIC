@@ -83,9 +83,13 @@ public:
   xercesc::DOMElement * create_simple_content (const String & ns, const String & name, const String & value);
 
   /// Get a pointer to the fragment.
-  xercesc::DOMElement * operator -> (void) const;
+  xercesc::DOMElement * operator -> (void);
+  xercesc::DOMElement * ptr (void);
+
+  operator xercesc::DOMElement * (void);
 
   void operator = (xercesc::DOMElement * e);
+
 
 protected:
   /// Pointer to the current fragment.

@@ -7,6 +7,9 @@
 #include "Utils/udm/visit.h"
 #include "Utils/Utils.h"
 
+using GAME::Xml::Fragment;
+using GAME::Xml::String;
+
 ///////////////////////////////////////////////////////////////////////////////
 // ProvidedRequestPortInstance_Collector
 
@@ -816,10 +819,8 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst)
 void Connector_Visitor::
 start_new_connection (const PICML::Object & obj)
 {
-  using xercesc::DOMElement;
-
-  this->curr_conn_ = this->doc_->createElement (::Utils::XStr ("connection"));
-  this->name_element_ = this->create_element (this->curr_conn_, "name");
+  this->curr_conn_ = this->doc_->createElement (String ("connection"));
+  this->name_element_ = this->curr_conn_.create_element ("name");
   this->connection_name_ = this->comp_inst_.getPath (".", false, true, "name", true);
 
   // Determine if the interface is local. If this is the case, then we
@@ -839,18 +840,16 @@ append_endpoint (const std::string & portname,
                  const std::string & provider,
                  const std::string & inst)
 {
-  using xercesc::DOMElement;
-
   // Add the portname to the connection name.
   this->connection_name_ += "." + portname;
 
-  DOMElement * ep = this->create_element (this->curr_conn_, "internalEndpoint");
-  this->create_simple_content (ep, "portName", portname);
-  this->create_simple_content (ep, "provider", provider);
-  this->create_simple_content (ep, "kind", kind);
+  Fragment ep = this->curr_conn_.create_element ("internalEndpoint");
+  ep.create_simple_content ("portName", portname);
+  ep.create_simple_content ("provider", provider);
+  ep.create_simple_content ("kind", kind);
 
-  DOMElement * instance = this->create_element (ep, "instance");
-  instance->setAttribute (::Utils::XStr ("xmi:idref"), ::Utils::XStr (inst));
+  Fragment instance = ep.create_element ("instance");
+  instance->setAttribute (String ("xmi:idref"), String (inst));
 }
 
 //
@@ -858,7 +857,7 @@ append_endpoint (const std::string & portname,
 //
 void Connector_Visitor::end_connection (void)
 {
-  this->name_element_->setTextContent (::Utils::XStr (this->connection_name_));
+  this->name_element_->setTextContent (String (this->connection_name_));
   this->conns_.push_back (this->curr_conn_);
 }
 
@@ -868,7 +867,9 @@ void Connector_Visitor::end_connection (void)
 void Connector_Visitor::
 make_connection_local (xercesc::DOMElement * conn)
 {
-  xercesc::DOMElement * deployRequirement = this->create_element (conn, "deployRequirement");
-  this->create_simple_content (deployRequirement, "name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
-  this->create_simple_content (deployRequirement, "resourceType", "Local_Interface");
+  Fragment conn_fragment (conn);
+
+  Fragment deployRequirement = conn_fragment.create_element ("deployRequirement");
+  deployRequirement.create_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+  deployRequirement.create_simple_content ("resourceType", "Local_Interface");
 }
