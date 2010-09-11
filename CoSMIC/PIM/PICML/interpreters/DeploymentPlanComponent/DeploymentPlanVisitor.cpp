@@ -367,6 +367,16 @@ Visit_CollocationGroup (const PICML::CollocationGroup & group)
 
     Locality_Manager::generate_default_instance_configs (instance, group);
 
+    // Generate the remaining configuration properties.
+    this->param_parent_ = instance;
+
+    std::set <PICML::CollocationGroupProperty> props = group.srcCollocationGroupProperty ();
+    std::for_each (props.begin (),
+                   props.end (),
+                   boost::bind (&PICML::CollocationGroupProperty::Accept,
+                                _1,
+                                boost::ref (*this)));
+
     // Save this element to the locality instances.
     this->locality_insts_.insert (instance);
 
@@ -384,6 +394,23 @@ Visit_CollocationGroup (const PICML::CollocationGroup & group)
                               boost::ref (this->cgm_dispatcher_),
                               boost::ref (*this),
                               _1));
+}
+
+//
+// Visit_CollocationGroupProperty
+//
+void DeploymentPlanVisitor::
+Visit_CollocationGroupProperty (const PICML::CollocationGroupProperty & conn)
+{
+  this->curr_param_ = this->create_element (this->param_parent_, "configProperty");
+
+  PICML::Property prop = conn.srcCollocationGroupProperty_end ();
+  const Uml::Class & type = prop.type ();
+
+  if (type == PICML::SimpleProperty::meta)
+    PICML::SimpleProperty::Cast (prop).Accept (*this);
+  else if (type == PICML::ComplexProperty::meta)
+    PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
 //
@@ -764,8 +791,8 @@ Visit_SimpleProperty (const PICML::SimpleProperty & prop)
     name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
   else if (name == "LocalityArguments")
     name = "edu.vanderbilt.dre.DAnCE.LocalityArguments";
-  else if (name == "LocalityManager.ProcessName")
-    name = "edu.vanderbilt.dre.DAnCE.LocalityManager.ProcessName";
+  else if (name == "CPUAffinity")
+    name = "edu.vanderbilt.dre.DAnCE.LocalityManager.CPUAffinity";
 
   PICML_Data_Type_Dispatcher dt_dispatcher;
 
@@ -885,9 +912,9 @@ Visit_ConfigProperty (const PICML::ConfigProperty & cp)
 
   PICML::Property ref = cp.dstConfigProperty_end ();
 
-  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+  if (ref.type () == PICML::SimpleProperty::meta)
     PICML::SimpleProperty::Cast (ref).Accept (*this);
-  else if (Udm::IsDerivedFrom (ref.type (), PICML::ComplexProperty::meta))
+  else if (ref.type () == PICML::ComplexProperty::meta)
     PICML::ComplexProperty::Cast (ref).Accept (*this);
 }
 
@@ -913,9 +940,9 @@ Visit_AttributeValue (const PICML::AttributeValue & v)
 
   PICML::Property prop = v.dstAttributeValue_end ();
 
-  if (Udm::IsDerivedFrom (prop.type (), PICML::SimpleProperty::meta))
+  if (prop.type () == PICML::SimpleProperty::meta)
     PICML::SimpleProperty::Cast (prop).Accept (*this);
-  else if (Udm::IsDerivedFrom (prop.type (), PICML::ComplexProperty::meta))
+  else if (prop.type () == PICML::ComplexProperty::meta)
     PICML::ComplexProperty::Cast (prop).Accept (*this);
 }
 
@@ -929,9 +956,9 @@ Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty & acp)
 
   PICML::Property ref = acp.dstAssemblyConfigProperty_end ();
 
-  if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
+  if (ref.type () == PICML::SimpleProperty::meta)
     PICML::SimpleProperty::Cast (ref).Accept (*this);
-  else if (Udm::IsDerivedFrom (ref.type (), PICML::ComplexProperty::meta))
+  else if (ref.type () == PICML::ComplexProperty::meta)
     PICML::ComplexProperty::Cast (ref).Accept (*this);
 }
 

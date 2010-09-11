@@ -66,6 +66,8 @@ public:
 
   virtual void Visit_CollocationGroup (const PICML::CollocationGroup &);
 
+  virtual void Visit_CollocationGroupProperty (const PICML::CollocationGroupProperty &);
+
   virtual void Visit_ComponentInstanceRef (const PICML::ComponentInstanceRef &);
 
   virtual void Visit_ComponentInstance (const PICML::ComponentInstance &);
