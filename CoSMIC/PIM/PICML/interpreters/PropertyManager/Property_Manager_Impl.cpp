@@ -7,6 +7,7 @@
 
 #include "game/be/Interpreter_T.h"
 #include "game/Transaction.h"
+#include "game/Reference.h"
 
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -71,9 +72,23 @@ void PICML_Property_Mangaer_Impl::handle_property (GAME::FCO fco)
 {
   // Start a new transaction for this property.
   GAME::Transaction t (fco.project ());
-  GAME::Model prop = GAME::Model::_narrow (fco);
 
-  PICML_Property_Manager_Dialog dlg (prop, ::AfxGetMainWnd ());
+  std::string type = fco.meta ().name ();
+
+  if (fco.meta () == "SimpleProperty")
+  {
+    // Make sure property manager is not used on predefined types.
+    GAME::Reference simple = GAME::Reference::_narrow (fco);
+    GAME::FCO simple_type = simple.refers_to ();
+
+    if (simple_type.meta () != "Enum")
+    {
+      ::AfxMessageBox ("Property manager cannot be used on predefined types.", MB_ICONERROR);
+      return;
+    }
+  }
+
+  PICML_Property_Manager_Dialog dlg (fco, ::AfxGetMainWnd ());
 
   if (dlg.DoModal () == IDOK)
     t.commit ();

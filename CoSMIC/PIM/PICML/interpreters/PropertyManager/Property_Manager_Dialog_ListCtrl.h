@@ -31,7 +31,7 @@ public:
   /// Initialize the columns for the control.
   BOOL InitControl (void);
 
-  void SetProperty (const GAME::Model & prop);
+  void SetProperty (const GAME::FCO & prop);
 
 protected:
   void handle_name_click (const LVHITTESTINFO & testinfo);
@@ -66,7 +66,7 @@ private:
   DECLARE_MESSAGE_MAP ();
 
   /// Target value of the operation.
-  GAME::Model prop_;
+  GAME::FCO prop_;
 
   /// Delete item of the operation.
   int target_item_;

@@ -72,9 +72,17 @@ public:
 
   }
 
-  virtual void Visit_Property (const GAME::Model & prop)
+  virtual void Visit_Property (const GAME::FCO & prop)
   {
-    this->visit_property_datavalue_container (prop);
+    if (prop.meta () == "SimpleProperty")
+    {
+      this->Visit_DataValueBase (prop);
+    }
+    else
+    {
+      GAME::Model model = GAME::Model::_narrow (prop);
+      this->visit_property_datavalue_container (model);
+    }
   }
 
   virtual void Visit_DataValueContainer (const GAME::Model & c)
@@ -164,7 +172,7 @@ private:
 
     if (this->collection_ == 0)
     {
-      if (metaname == "DataValue")
+      if (metaname == "DataValue" || metaname == "SimpleProperty")
       {
         item = new Data_Value_Item (value);
       }
@@ -292,7 +300,8 @@ BOOL PICML_Property_Manager_ListCtrl::InitControl (void)
 //
 // SetProperty
 //
-void PICML_Property_Manager_ListCtrl::SetProperty (const GAME::Model & prop)
+void PICML_Property_Manager_ListCtrl::
+SetProperty (const GAME::FCO & prop)
 {
   // Initialize the control based on the property.
   PICML_Property_Manager_ListView_Expand expander (*this, 0, 0);

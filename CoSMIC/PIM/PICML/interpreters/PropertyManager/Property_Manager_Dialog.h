@@ -27,7 +27,7 @@
 class PICML_Property_Manager_Dialog : public CDialog
 {
 public:
-  PICML_Property_Manager_Dialog (const GAME::Model & prop, CWnd * parent = 0);
+  PICML_Property_Manager_Dialog (const GAME::FCO & prop, CWnd * parent = 0);
 
   /// Destructor.
   virtual ~PICML_Property_Manager_Dialog (void);
@@ -42,7 +42,7 @@ private:
   DECLARE_MESSAGE_MAP ();
 
   /// Target property for the dialog.
-  GAME::Model prop_;
+  GAME::FCO prop_;
 
   PICML_Property_Manager_ListCtrl listview_;
 };

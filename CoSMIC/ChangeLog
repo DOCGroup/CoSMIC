@@ -1,3 +1,16 @@
+Sat Sep 11 22:17:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+
+          Updates the property manager to work with the new SimpleProperty
+          and ComplexProperty elements. Right now, the property manager can
+          be used with ComplexProperty elements and SimpleProperty elements
+          that are of type Enum.
+
 Sat Sep 11 21:35:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
