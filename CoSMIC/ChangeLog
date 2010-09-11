@@ -1,3 +1,17 @@
+Sat Sep 11 15:20:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Bug fix where UUIDs were not being generated for elements
+          when there was a library attached to the model.
+
+          Simplified the UUID event handler's implementation.
+
+          Bug fix where the UUID generator would generate a new UUID
+          for imported elements when they already contained a valid
+          UUID.
+
 Thu Sep  9 23:31:16 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
@@ -5,7 +19,7 @@ Thu Sep  9 23:31:16 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
 
           Changed class name from ExtendedPortInstance_Destroyed_Event_Handler
-          to ExtendedPortInstance_Event_Handler and 
+          to ExtendedPortInstance_Event_Handler and
           MirrorPortInstance_Destroyed_Event_Handler to
           MirrorPortInstance_Event_Handler.
 

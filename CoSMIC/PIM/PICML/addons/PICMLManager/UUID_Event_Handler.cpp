@@ -43,24 +43,27 @@ UUID_Event_Handler::~UUID_Event_Handler (void)
 int UUID_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
+  if (obj.is_lib_object ())
+    return 0;
+
+  // Locate the UUID attribute for the FCO.
   GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr;
+  GAME::Attribute uuid_attr = fco.attribute ("UUID");
 
-  if (this->get_uuid_i (fco, uuid_attr))
+  // Get the current value of the attribute. Just because we
+  // are creating the object does not mean that its value does
+  // not already exist (e.g., importing an XME document).
+  std::string uuid = uuid_attr.string_value ();
+  const bool is_valid = uuid.empty () ? false : ::Utils::ValidUuid (uuid);
+
+  if (!is_valid ||
+     (!this->is_importing_ && (fco.is_instance () || fco.is_subtype ())))
   {
-    long status = uuid_attr.status ();
-
-    // This will force the generation of an UUID for any element
-    // that requires an UUID, including instances and subtypes.
-    try
-    {
-      uuid_attr.string_value (Utils::CreateUuid ());
-    }
-    catch (...)
-    {
-      
-    }
+    // We need to generate a new UUID for the element.
+    uuid = ::Utils::CreateUuid ();
+    uuid_attr.string_value (uuid);
   }
+
   return 0;
 }
 
@@ -70,60 +73,24 @@ handle_object_created (GAME::Object obj)
 int UUID_Event_Handler::
 handle_object_attribute (GAME::Object obj)
 {
+  if (obj.is_lib_object ())
+    return 0;
+
+  // Get the UUID attribute for the FCO.
   GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr;
+  GAME::Attribute uuid_attr = fco.attribute ("UUID");
 
-  if (this->get_uuid_i (fco, uuid_attr))
-  {
-    if (Utils::ValidUuid (uuid_attr.string_value ()))
-      return 0;
+  // Validate the current UUID string value.
+  std::string uuid = uuid_attr.string_value ();
 
-    try
-    {
-      uuid_attr.string_value (Utils::CreateUuid ());
-    }
-    catch (GAME::Exception &)
-    {
-      
-    }
-    catch (...)
-    {
+  if (::Utils::ValidUuid (uuid))
+    return 0;
 
-    }
-  }
+  // We need to create a new UUID for the object.
+  uuid = ::Utils::CreateUuid ();
+  uuid_attr.string_value (uuid);
+
   return 0;
-}
-
-//
-// get_uuid_i
-//
-bool UUID_Event_Handler::
-get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr)
-{
-  typedef std::vector <GAME::Attribute> Attribute_Set;
-  Attribute_Set attrs;
-
-  // Get all the attributes of this FCO. It would be nice to query
-  // the FCO for the attribute of interest, however, that capability
-  // seems to be broken in the current MGA library.
-  if (fco.attributes (attrs))
-  {
-    // We need to iterate over all the attribute until we find the
-    // attribute with the name of UUID. That will be the attribute
-    // we return to the caller.
-    for (Attribute_Set::iterator iter = attrs.begin ();
-         iter != attrs.end ();
-         iter ++)
-    {
-      if (iter->meta ().name () == "UUID")
-      {
-        attr = *iter;
-        return true;
-      }
-    }
-  }
-
-  return false;
 }
 
 }

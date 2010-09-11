@@ -36,11 +36,9 @@ public:
   /// Destructor.
   virtual ~UUID_Event_Handler (void);
 
-  int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object obj);
 
-  int handle_object_attribute (GAME::Object obj);
-
-  bool get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr);
+  virtual int handle_object_attribute (GAME::Object obj);
 };
 
 }
