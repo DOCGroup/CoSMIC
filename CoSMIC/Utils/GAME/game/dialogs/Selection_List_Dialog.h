@@ -52,6 +52,7 @@ public:
   GAME::Object selection (void) const;
 
   void title (const char * str);
+  void directions (const char * str);
 
   /**
    * Insert a new object into the dialog.
@@ -101,6 +102,9 @@ private:
 
   /// Title of the dialog box.
   std::string title_;
+
+  /// Directions to display in dialog box.
+  std::string directions_;
 
   /// Set of items for this dialog.
   std::vector <Object> items_;

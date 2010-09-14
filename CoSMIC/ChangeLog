@@ -1,3 +1,48 @@
+Tue Sep 14 20:27:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.h:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.inl:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          Updated the model intelligence to automatically select a PackageType
+          when a TemplatePackageInstance element is added to the model.
+
+          When a PackageType is selected, the model intelligence helps the
+          user select valid elements for the template parameters.
+
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+
+          Added a static label to the dialog, which can be overrided
+          to display a domain-specific message.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Changed the SwitchAggregate enum value for the Type attribute in
+          TypeParameter to SwitchedAggregate.
+
+          Added the Collection enum value to the Type attribute of TypeParameter.
+
+        * Utils/GAME/game/utils/Point.h:
+
+          Formatting updates.
+
 Tue Sep 14 14:55:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/dialogs/Selection_List_Dialog.h:

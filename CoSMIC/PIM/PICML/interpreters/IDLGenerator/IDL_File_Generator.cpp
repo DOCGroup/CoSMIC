@@ -106,11 +106,11 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
   // Write the remaining contents of the package.
   this->idl_ << nl
              << "{" << idt << nl;
-             
+
   std::string name = package.name ();
-  
+
   IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
-  
+
   this->idl_ << uidt_nl << "};" << nl;
 }
 
@@ -159,8 +159,12 @@ Visit_TypeParameter (const PICML::TypeParameter & c)
     this->idl_ << "exception ";
   else if (type == "Object")
     this->idl_ << "interface ";
+  else if (type == "SwitchedAggregate")
+    this->idl_ << "union ";
   else if (type == "ValueObject")
     this->idl_ << "valuetype ";
+  else if (type == "Collection")
+    this->idl_ << "sequence ";
 
   this->idl_ << " " << c.name ();
 }
@@ -210,7 +214,7 @@ void IDL_File_Generator::Visit_Enum (const PICML::Enum & e)
 
   // Create a iterator to visit values
   sorted_values_t::iterator enum_value_iter = values.begin (), enum_value_end = values.end ();
- 
+
   // Visit the first element separately as we write it
   // to the idl file without a comma at the end.
   enum_value_iter->Accept (*this);

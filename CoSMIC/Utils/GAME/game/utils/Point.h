@@ -183,6 +183,7 @@ bool position (const std::string & aspect, const GAME::FCO & fco, Point & pt);
  */
 GAME_UTILS_Export
 bool position (const std::string & aspect, const Point & pt, GAME::FCO & fco);
+
 }
 }
 

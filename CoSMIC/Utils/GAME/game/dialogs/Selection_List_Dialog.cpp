@@ -53,6 +53,9 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
   if (!this->title_.empty ())
     this->SetWindowText (this->title_.c_str ());
 
+  if (!this->directions_.empty ())
+    this->SetDlgItemTextA (IDC_DIRECTIONS, this->directions_.c_str ());
+
   // Initialize the controls of the listing
   std::vector <Object>::iterator
     iter = this->items_.begin (), iter_end = this->items_.end ();
@@ -128,6 +131,14 @@ insert_item (const GAME::Object & item, const std::string & display_name)
 void Selection_List_Dialog::title (const char * str)
 {
   this->title_ = str;
+}
+
+//
+// title
+//
+void Selection_List_Dialog::directions (const char * str)
+{
+  this->directions_ = str;
 }
 
 //

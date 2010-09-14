@@ -18,10 +18,11 @@ project (PICML_Model_Intelligence): game_dialogs, game_component, \
     DefaultImplementationGenerator.cpp
     DefaultArtifactGenerator.cpp
     Dialogs.cpp
+    Scope_Display_Strategy.cpp
 
     Type_Handlers {
       Event_Handler_Config.cpp
-	  
+
       AMI4CCM_Event_Handler.cpp
       AttributeMember_Event_Handler.cpp
       AttributeValue_Event_Handler.cpp
@@ -35,10 +36,11 @@ project (PICML_Model_Intelligence): game_dialogs, game_component, \
       Event_Handler_Base.cpp
       ExternalDelegate_Event_Handler.cpp
       NodeReference_Event_Handler.cpp
+      Package_Type_Handler.cpp
       PortInstance_Event_Handler.cpp
       ToConnector_Event_Handler.cpp
       UUID_Event_Handler.cpp
-      // Template_Module_Instance_Handler.cpp
+      Template_Module_Instance_Handler.cpp
     }
 
     Instance_Handlers {
