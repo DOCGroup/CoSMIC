@@ -27,13 +27,21 @@ Selection_List_Dialog_T <T>::~Selection_List_Dialog_T (void)
 // insert
 //
 template <typename T>
-void Selection_List_Dialog_T <T>::insert (std::vector <T> & items)
+void Selection_List_Dialog_T <T>::insert (const std::vector <T> & items)
 {
-  std::vector <T>::iterator
-    iter = items.begin (), iter_end = items.end ();
+  this->insert (items.begin (), items.end ());
+}
 
-  for (; iter != iter_end; ++ iter)
-    Selection_List_Dialog::insert (*iter);
+//
+// insert
+//
+template <typename T>
+void Selection_List_Dialog_T <T>::
+insert (typename std::vector <T>::const_iterator begin,
+        typename std::vector <T>::const_iterator end)
+{
+  for (; begin != end; ++ begin)
+    Selection_List_Dialog::insert (*begin);
 }
 
 //

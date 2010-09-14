@@ -1,3 +1,13 @@
+Tue Sep 14 14:55:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog_T.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog_T.cpp:
+
+          Overloaded the insert () method once again. Now, it is possible
+          to use iterators to insert elements into the dialog.
+
 Tue Sep 14 03:32:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Locality_Manager.cpp:

@@ -79,25 +79,32 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
 //
 // insert
 //
-void Selection_List_Dialog::
-insert (std::vector <GAME::Object> & items)
+void Selection_List_Dialog::insert (const GAME::Object & object)
 {
-  std::vector <GAME::Object>::const_iterator
-    iter = items.begin (), iter_end = items.end ();
-
-  std::for_each (items.begin (),
-                 items.end (),
-                 boost::bind (&std::vector <GAME::Object>::push_back,
-                              boost::ref (this->items_),
-                              _1));
+  this->items_.push_back (object);
 }
 
 //
 // insert
 //
-void Selection_List_Dialog::insert (const GAME::Object & object)
+void Selection_List_Dialog::
+insert (const std::vector <GAME::Object> & items)
 {
-  this->items_.push_back (object);
+  this->insert (items.begin (), items.end ());
+}
+
+//
+// insert
+//
+void Selection_List_Dialog::
+insert (std::vector <GAME::Object>::const_iterator begin,
+        std::vector <GAME::Object>::const_iterator end)
+{
+  std::for_each (begin,
+                 end,
+                 boost::bind (&std::vector <GAME::Object>::push_back,
+                              boost::ref (this->items_),
+                              _1));
 }
 
 //

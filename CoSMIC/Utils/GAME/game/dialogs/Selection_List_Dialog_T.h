@@ -30,13 +30,23 @@ template <typename T>
 class Selection_List_Dialog_T : public Selection_List_Dialog
 {
 public:
+  /**
+   * Initializing constructor
+   *
+   * @param[in]         strategy          Display strategy for dialog
+   * @param[in]         parent            The parent window.
+   */
   Selection_List_Dialog_T (Dialog_Display_Strategy * strategy = 0,
                            CWnd * parent = 0);
 
+  /// Destructor.
   virtual ~Selection_List_Dialog_T (void);
 
-  void insert (std::vector <T> & items);
+  void insert (const std::vector <T> & items);
+  void insert (typename std::vector <T>::const_iterator begin,
+               typename std::vector <T>::const_iterator end);
 
+  /// Get the current selection.
   T selection (void) const;
 };
 

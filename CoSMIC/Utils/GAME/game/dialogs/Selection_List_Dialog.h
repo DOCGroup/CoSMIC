@@ -53,9 +53,28 @@ public:
 
   void title (const char * str);
 
-  void insert (std::vector <GAME::Object> & items);
-
+  /**
+   * Insert a new object into the dialog.
+   *
+   * @param[in]     object        The new object.
+   */
   void insert (const GAME::Object & object);
+
+  /**
+   * Insert a collection of objects into the dialog listing.
+   *
+   * @param[in]     items         Collection of objects
+   */
+  void insert (const std::vector <GAME::Object> & items);
+
+  /**
+   * @overloaded
+   *
+   * @param[in]     begin         Start of collection
+   * @param[in]     end           End of collection
+   */
+  void insert (std::vector <GAME::Object>::const_iterator begin,
+               std::vector <GAME::Object>::const_iterator end);
 
 protected:
   /**
