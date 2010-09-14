@@ -27,7 +27,7 @@ void Locality_Manager::generate_default_artifacts (xercesc::DOMElement * parent)
   artifact.create_simple_content ("name", DEFAULT_ARTIFACT_NAME);
   artifact.create_simple_content ("source", "");
   artifact.create_simple_content ("node", "");
-  artifact.create_simple_content ("location", "ciao_componentserver");
+  artifact.create_simple_content ("location", "dance_locality_manager");
 }
 
 //
