@@ -100,6 +100,9 @@ private:
   /// The list control for the dialog.
   CListBox list_;
 
+  /// The static control with the directions.
+  CStatic directions_ctrl_;
+
   /// Title of the dialog box.
   std::string title_;
 

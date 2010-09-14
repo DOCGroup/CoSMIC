@@ -207,8 +207,8 @@ select_type_parameter (GAME::Model parent,
       dialog.insert (iter, iter_end);
       dialog.title ("Template Parameter Selector");
 
-      std::string directions =
-        "Select model element for template parameter " +
+      const std::string directions =
+        "Select model element for typed template parameter\r\n" +
         fco.name () + ":";
 
       dialog.directions (directions.c_str ());
@@ -312,7 +312,7 @@ select_name_parameter (GAME::Model parent,
       dialog.title ("Template Parameter Selector");
 
       const std::string directions =
-        "Select model element for template parameter " +
+        "Select model element for named template parameter\r\n" +
         fco.name () + ":";
 
       dialog.directions (directions.c_str ());
@@ -447,7 +447,7 @@ select_collection_parameter (GAME::Model parent,
       dialog.title ("Template Parameter Selector");
 
       std::string directions =
-        "Select model element for template parameter sequence <" +
+        "Select model element for template parameter\r\nsequence <" +
         fco.name () + ">:";
 
       dialog.directions (directions.c_str ());

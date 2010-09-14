@@ -1,3 +1,21 @@
+Tue Sep 14 20:53:28 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Improved the direction layout in the string selection
+          dialog.
+
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+
+          Increased the height and width of the static control that
+          displays the dialog's directions.
+
+          Re-arranged the controls on the dialog so that is favors
+          long strings instead of short strings.
+
 Tue Sep 14 20:27:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

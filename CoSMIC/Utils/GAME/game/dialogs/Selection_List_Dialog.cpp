@@ -54,7 +54,7 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
     this->SetWindowText (this->title_.c_str ());
 
   if (!this->directions_.empty ())
-    this->SetDlgItemTextA (IDC_DIRECTIONS, this->directions_.c_str ());
+    this->directions_ctrl_.SetWindowTextA (this->directions_.c_str ());
 
   // Initialize the controls of the listing
   std::vector <Object>::iterator
@@ -151,6 +151,7 @@ void Selection_List_Dialog::DoDataExchange (CDataExchange * pDX)
 
   // Exchange the control data.
   DDX_Control (pDX, IDC_GAME_SELECTION_LIST_DLG_STRING_LIST, this->list_);
+  DDX_Control (pDX, IDC_GAME_SELECTION_LIST_DLG_DIRECTIONS, this->directions_ctrl_);
 
   if (pDX->m_bSaveAndValidate)
   {
