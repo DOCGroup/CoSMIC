@@ -36,18 +36,18 @@ Package_Decorator_Impl::~Package_Decorator_Impl (void)
 // destroy
 //
 void Package_Decorator_Impl::destroy (void)
-{ 
-  this->bitmap_.release ();
+{
+  this->bitmap_.reset ();
 }
 
 //
 // initialize
 //
 int Package_Decorator_Impl::
-initialize_ex (const GAME::Project & project, 
-               const GAME::Meta::Part & part, 
+initialize_ex (const GAME::Project & project,
+               const GAME::Meta::Part & part,
                const GAME::FCO & fco,
-               IMgaCommonDecoratorEvents * eventSink, 
+               IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
   using GAME::Model;
@@ -61,7 +61,7 @@ initialize_ex (const GAME::Project & project,
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-  
+
   if (!resolver->is_init ())
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
@@ -74,19 +74,22 @@ initialize_ex (const GAME::Project & project,
     // The label is the name of the FCO.
     this->label_ = fco.name ();
 
-    // Determine if this is a package, or a template package. A template
-    // package will have one or more template parameters as a child.
-    Model package = Model::_narrow (fco); 
-    GAME::Meta::Aspect aspect = package.meta ().aspect ("TemplateParameters");
+    if (fco.meta () == "Package")
+    {
+      // Determine if this is a package, or a template package. A template
+      // package will have one or more template parameters as a child.
+      Model package = Model::_narrow (fco);
+      GAME::Meta::Aspect aspect = package.meta ().aspect ("TemplateParameters");
 
-    std::vector <GAME::FCO> children;
-    
-    if (package.children (aspect, children))
-      icon_filename = TEMPLATEPACKAGE_BITMAP;
+      std::vector <GAME::FCO> children;
+
+      if (package.children (aspect, children))
+        icon_filename = TEMPLATEPACKAGE_BITMAP;
+    }
   }
   else
   {
-    // We are in the part browser. The label is just the display name 
+    // We are in the part browser. The label is just the display name
     // for the FCO's type (i.e., the MetaFCO).
     this->label_ = metafco.display_name ();
   }
@@ -132,8 +135,8 @@ int Package_Decorator_Impl::draw (Gdiplus::Graphics & g)
   float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0);
   float py = static_cast <float> (this->location_.y_) + (height + 10.0);
 
-  static const Gdiplus::Font font (L"Arial", 10);
-  static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
+  const Gdiplus::Font font (L"Arial", 10);
+  const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
 
   Gdiplus::StringFormat format;
   format.SetAlignment (Gdiplus::StringAlignmentCenter);
@@ -142,7 +145,7 @@ int Package_Decorator_Impl::draw (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr, 
+  g.DrawString (bstr,
                 this->label_.length (),
                 &font,
                 Gdiplus::PointF (px, py),

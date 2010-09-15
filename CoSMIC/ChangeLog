@@ -1,3 +1,13 @@
+Wed Sep 15 15:27:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:
+
+          Bug fix where the package decorator displayed the incorrect
+          icon for TemplatePackageInstance elements.
+
+          Bug fix where the destroy () method failed to delete the
+          open bitmap.
+
 Wed Sep 15 15:20:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
