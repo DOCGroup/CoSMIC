@@ -86,7 +86,7 @@ Reference Reference::_narrow (const GAME::Object & object)
 //
 // _create
 //
-Reference Reference::_create (Model & parent, const std::string & type)
+Reference Reference::_create (Model parent, const std::string & type)
 {
   Meta::Role role = parent.meta ().role (type);
   return Reference::_create (parent, role);
@@ -95,7 +95,7 @@ Reference Reference::_create (Model & parent, const std::string & type)
 //
 // _create
 //
-Reference Reference::_create (Model & parent, const Meta::Role & role)
+Reference Reference::_create (Model parent, const Meta::Role & role)
 {
   CComPtr <IMgaFCO> child;
   VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));

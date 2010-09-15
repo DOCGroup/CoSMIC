@@ -1,3 +1,40 @@
+Wed Sep 15 13:58:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Filter.h:
+        * Utils/GAME/game/Filter.cpp:
+
+          Implemented two new version of the apply () method for using
+          filters at the folder and model level.
+
+        * Utils/GAME/game/Collection_T.cpp:
+
+          Bug fix where get_children () returned a collection of invalid
+          size under certain circumstances.
+
+        * Utils/GAME/game/ComponentEx.h:
+
+          Added the implementation_type trait for usage
+          with get_children ()
+
+        * Utils/GAME/game/MetaModel.h:
+        * Utils/GAME/game/MetaModel.cpp:
+
+          Updates the signature for the _narrow () method.
+
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+
+          Removed the & quantifier from the _create () methods.
+
+        * Utils/GAME/game/manip/copy.h:
+        * Utils/GAME/game/manip/copy.cpp:
+
+          Updated the copy () method to copy references and setting the
+          location of each copied element to the same location as its
+          source element.
+
 Tue Sep 14 20:53:28 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:

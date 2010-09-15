@@ -45,8 +45,8 @@ public:
    * @param[in]       parent        The parent model.
    * @return          The newly created atom.
    */
-  static Reference _create (Model & parent, const std::string & type);
-  static Reference _create (Model & parent, const Meta::Role & type);
+  static Reference _create (Model parent, const std::string & type);
+  static Reference _create (Model parent, const Meta::Role & type);
 
   /// Default constructor.
   Reference (void);

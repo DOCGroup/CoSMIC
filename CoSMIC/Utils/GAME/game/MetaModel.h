@@ -43,7 +43,7 @@ public:
    * @param[in]       meta        Source meta object.
    * @return          Extracted meta model object.
    */
-  static Model _narrow (Base & meta);
+  static Model _narrow (const Base & meta);
 
   /// Default constructor.
   Model (void);

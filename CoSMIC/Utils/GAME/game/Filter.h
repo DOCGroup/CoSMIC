@@ -24,13 +24,17 @@ class Project;
 /**
  * @class Filter
  *
- * Help class for filter objects in a project.
+ * Help class for filter objects in a project. The main goal of the
+ * filter to the perform a recursive search based on where it starts,
+ * which can be the project, model, or folder.
  */
 class GAME_Export Filter
 {
 public:
   /**
-   * Initializing constructor
+   * Initializing constructor.
+   *
+   * @param[in]       project         Owner of the filter.
    */
   Filter (Project & project);
 
@@ -39,11 +43,26 @@ public:
 
   /**
    * Apply the filter. The elements that match the filter are
-   * returned in \a result.
+   * returned in \a result. This perform a recursive search of the
+   * entire project.
    *
    * @param[in]     result        Number of elements in result.
    */
   size_t apply (std::vector <FCO> & result) const;
+
+  /**
+   * @overloaded
+   *
+   * Performs a recursive search starting at the specified model.
+   */
+  size_t apply (Model model, std::vector <FCO> & result);
+
+  /**
+   * @overloaded
+   *
+   * Performs a recursive search starting at the specified folder.
+   */
+  size_t apply (Folder folder, std::vector <FCO> & result);
 
   /**
    * Set the kind attribute for the filter.
@@ -62,7 +81,7 @@ private:
   GAME::Project & project_;
 
   /// Pointer to the actual filter.
-  mutable ATL::CComPtr <IMgaFilter> filter_;
+  ATL::CComPtr <IMgaFilter> filter_;
 };
 
 }

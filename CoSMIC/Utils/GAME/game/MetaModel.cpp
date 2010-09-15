@@ -47,7 +47,7 @@ Role Model::role (const std::string & name) const
 //
 // _narrow
 //
-Model Model::_narrow (Base & meta)
+Model Model::_narrow (const Base & meta)
 {
   CComPtr <IMgaMetaModel> model;
 

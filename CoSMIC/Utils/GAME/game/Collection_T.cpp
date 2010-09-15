@@ -13,7 +13,11 @@ size_t get_children (ITER iter, std::vector <T> & coll)
   // Resize the collection.
   long count;
   iter->get_Count (&count);
-  coll.resize (count);
+
+  // Make space for the elements, but set the collection's size
+  // to zero. We will grow the collection as we insert elements.
+  coll.reserve (count);
+  coll.resize (0);
 
   if (count == 0)
     return 0;
@@ -33,11 +37,10 @@ size_t get_children (ITER iter, std::vector <T> & coll)
 
   for (long i = 0; i < count; i ++)
   {
-    arr[i].QueryInterface (&temp);
+    if (FAILED (arr[i].QueryInterface (&temp)))
+      continue;
 
-    temp->AddRef ();
-    coll[i].attach (temp);
-
+    coll.push_back (T (temp));
     temp = 0;
   }
 

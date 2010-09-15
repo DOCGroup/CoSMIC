@@ -26,6 +26,9 @@ namespace GAME
 class GAME_Export ComponentEx : public Component
 {
 public:
+  /// Type definition of the interface type.
+  typedef IMgaComponentEx interface_type;
+
   /**
    * Load a extended component into memory. This method will create the
    * extended component with the specified program id. If the component

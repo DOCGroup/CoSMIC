@@ -46,9 +46,9 @@ public:
    * @param[in]       parent        The parent model.
    * @return          The newly created model.
    */
-  static Model _create (Model & parent, const std::string & type);
+  static Model _create (Model parent, const std::string & type);
 
-  static Model _create (Model & parent, const Meta::Role & role);
+  static Model _create (Model parent, const Meta::Role & role);
 
   /**
    * Create a new model element.
@@ -57,9 +57,9 @@ public:
    * @param[in]       parent        Parent folder of the model.
    * @return          The newly created model.
    */
-  static Model _create (Folder & parent, const std::string & type);
+  static Model _create (Folder parent, const std::string & type);
 
-  static Model _create (Folder & parent, const Meta::FCO & type);
+  static Model _create (Folder parent, const Meta::FCO & type);
 
   /// Default constructor.
   Model (void);
@@ -99,13 +99,19 @@ public:
   virtual void accept (GAME::Visitor & visitor);
 
   size_t children (std::vector <GAME::FCO> & children) const;
-
+  size_t children (const std::string & type, std::vector <GAME::FCO> & children) const;
   size_t children (const Meta::Aspect & aspect, std::vector <GAME::FCO> & children) const;
 
-  size_t children (const std::string & type, std::vector <GAME::FCO> & children) const;
   size_t children (const std::string & type, std::vector <GAME::Atom> & children) const;
+
+  size_t children (std::vector <GAME::Model> & children) const;
   size_t children (const std::string & type, std::vector <GAME::Model> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <GAME::Model> & children) const;
+
+  size_t children (std::vector <GAME::Reference> & children) const;
   size_t children (const std::string & type, std::vector <GAME::Reference> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <GAME::Reference> & children) const;
+
   size_t children (const std::string & type, std::vector <GAME::Set> & children) const;
 
   void Model::attach (IMgaModel * model);

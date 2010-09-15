@@ -2,6 +2,8 @@
 
 #include "stdafx.h"
 #include "Filter.h"
+#include "Folder.h"
+#include "Model.h"
 #include "Project.h"
 #include "FCO.h"
 
@@ -25,7 +27,7 @@ struct append_t
   template <typename T>
   void operator () (T t) const
   {
-    this->ostr_ << this->func_ (t) << " "; 
+    this->ostr_ << this->func_ (t) << " ";
   }
 
 private:
@@ -122,6 +124,28 @@ size_t Filter::apply (std::vector <FCO> & result) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->project_.impl ()->AllFCOs (this->filter_, &fcos));
+
+  return get_children (fcos, result);
+}
+
+//
+// apply
+//
+size_t Filter::apply (Model model, std::vector <FCO> & result)
+{
+  CComPtr <IMgaFCOs> fcos;
+  VERIFY_HRESULT (model.impl ()->GetDescendantFCOs (this->filter_, &fcos));
+
+  return get_children (fcos, result);
+}
+
+//
+// apply
+//
+size_t Filter::apply (Folder folder, std::vector <FCO> & result)
+{
+  CComPtr <IMgaFCOs> fcos;
+  VERIFY_HRESULT (folder.impl ()->GetDescendantFCOs (this->filter_, &fcos));
 
   return get_children (fcos, result);
 }
