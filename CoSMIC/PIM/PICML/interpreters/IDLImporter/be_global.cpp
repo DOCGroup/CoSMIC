@@ -44,8 +44,7 @@ IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 
 BE_GlobalData::BE_GlobalData (void)
   : output_file_ ("PICML_default_xme_file"),
-    files_ (proj_),
-    overwrite_ (false)
+    files_ (proj_)
 {
 
 }
@@ -60,9 +59,9 @@ BE_GlobalData::~BE_GlobalData (void)
 //
 // output_dir
 //
-const char * BE_GlobalData::output_dir (void) const
+const ACE_CString & BE_GlobalData::output_dir (void) const
 {
-  return this->output_dir_.c_str ();
+  return this->output_dir_;
 }
 
 //
@@ -73,18 +72,27 @@ void BE_GlobalData::output_dir (const char* s)
   this->output_dir_ = s;
 }
 
+
 //
-// overwrite
+// input_file
 //
-bool BE_GlobalData::overwrite (void) const
+const ACE_CString & BE_GlobalData::input_file (void) const
 {
-  return this->overwrite_;
+  return this->input_file_;
+}
+
+//
+// input_file
+//
+void BE_GlobalData::input_file (const char *val)
+{
+  this->input_file_ = val;
 }
 
 //
 // output_file
 //
-ACE_CString BE_GlobalData::output_file (void) const
+const ACE_CString & BE_GlobalData::output_file (void) const
 {
   return this->output_file_;
 }
@@ -120,6 +128,16 @@ void BE_GlobalData::parse_args (long &i, char **av)
         }
         else
           this->output_file_ = av[i] + 2;
+        break;
+
+      case 'i':
+        if (av[i][2] == '\0')
+        {
+          this->input_file_ = av[i + 1];
+          ++i;
+        }
+        else
+          this->input_file_ = av[i] + 2;
         break;
 
       case 'o':
@@ -171,12 +189,6 @@ void BE_GlobalData::parse_args (long &i, char **av)
         }
         break;
 
-      case '-':
-        if (ACE_OS::strcmp (av[i], "--overwrite") == 0)
-          this->overwrite_ = true;
-
-        break;
-
       default:
         ACE_ERROR ((
             LM_ERROR,
@@ -192,7 +204,7 @@ void BE_GlobalData::parse_args (long &i, char **av)
 }
 
 //
-// xerces_init
+// initialize
 //
 void BE_GlobalData::initialize (void)
 {
@@ -238,10 +250,19 @@ void BE_GlobalData::initialize (void)
     ACE_stat stats;
     bool exists = ACE_OS::stat (filename.c_str (), &stats) == 0;
 
-    if (this->overwrite_ || !exists)
+    if (this->input_file_.empty ())
+    {
+      // Since there is no input file, we should just go ahead and
+      // create a new file for this project.
       this->proj_ = Project::_create (xmefile, PICML, GUID);
+    }
     else
-      this->proj_ = Project::_open (xmefile);
+    {
+      // Since there is an input file, we should start by creating
+      // a copy of the input file before we start processing. ;-)
+      this->proj_ = Project::_open (this->input_file_.c_str ());
+      this->proj_.save (xmefile);
+    }
 
     this->proj_.name (project_name);
     this->proj_.root_folder ().name (project_name);

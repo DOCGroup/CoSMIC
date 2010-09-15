@@ -1,3 +1,16 @@
+Wed Sep 15 15:20:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+
+          Removed the --overwrite option.
+
+          Re-added the -i option and updated its semantics such that
+          it is used to specify an initial (import) model to use when
+          importing IDL, but the final model is still saved to the one
+          specified using the -x option.
+
 Wed Sep 15 14:26:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:

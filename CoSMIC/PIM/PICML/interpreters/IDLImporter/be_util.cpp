@@ -40,6 +40,10 @@ be_util::usage (void)
     ));
   ACE_DEBUG ((
       LM_DEBUG,
+      ACE_TEXT (" -i <filename>\t\tModel to use as starting point.")
+    ));
+  ACE_DEBUG ((
+      LM_DEBUG,
       ACE_TEXT (" -r <pathname>\t\tPath of the directory to iterate")
       ACE_TEXT (" over recursively, processing each IDL file found.\n")
     ));
@@ -57,10 +61,6 @@ be_util::usage (void)
       LM_DEBUG,
       ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
       ACE_TEXT (" Default is c:\\Program Files\\GME\n")
-    ));
-  ACE_DEBUG ((
-      LM_DEBUG,
-      ACE_TEXT (" --overwrite\t\tOverwrite existing XME file.")
     ));
 }
 

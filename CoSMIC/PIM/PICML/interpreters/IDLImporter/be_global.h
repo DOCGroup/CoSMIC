@@ -49,12 +49,15 @@ public:
   // Destructor.
   virtual ~BE_GlobalData (void);
 
-  const char* output_dir (void) const;
+  const ACE_CString & output_dir (void) const;
   void output_dir (const char* s);
 
   // Accessors for the member.
-  ACE_CString output_file (void) const;
+  const ACE_CString & output_file (void) const;
   void output_file (const char *val);
+
+  const ACE_CString & input_file (void) const;
+  void input_file (const char *val);
 
   // Utility methods.
 
@@ -90,8 +93,11 @@ private:
   // directory from which the <idl_to_picml> is called.
   ACE_CString output_dir_;
 
-  // Set from command line or had default value.
+  /// Target output file.
   ACE_CString output_file_;
+
+  /// Input file to use as starting point.
+  ACE_CString input_file_;
 
   // Location of the DTD for GME's XML format.
   ACE_CString schema_path_;
@@ -103,9 +109,6 @@ private:
   PICML_File_Creator files_;
 
   std::vector <std::string> libs_;
-
-  /// Overwrite the current output file.
-  bool overwrite_;
 };
 
 #endif /* IDL_TO_PICML_BE_GLOBAL_H */
