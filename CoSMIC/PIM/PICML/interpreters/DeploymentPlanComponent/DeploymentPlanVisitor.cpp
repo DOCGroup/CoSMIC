@@ -793,6 +793,8 @@ Visit_SimpleProperty (const PICML::SimpleProperty & prop)
     name = "edu.vanderbilt.dre.DAnCE.LocalityArguments";
   else if (name == "CPUAffinity")
     name = "edu.vanderbilt.dre.DAnCE.LocalityManager.CPUAffinity";
+  else if (name == "ProcessPriority")
+    name = "edu.vanderbilt.dre.DAnCE.LocalityManager.ProcessPriority";
 
   PICML_Data_Type_Dispatcher dt_dispatcher;
 

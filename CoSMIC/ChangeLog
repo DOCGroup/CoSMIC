@@ -1,3 +1,9 @@
+Wed Sep 15 14:26:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Added ProcessPriority to as a shorthand property.
+
 Wed Sep 15 13:58:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Filter.h:
