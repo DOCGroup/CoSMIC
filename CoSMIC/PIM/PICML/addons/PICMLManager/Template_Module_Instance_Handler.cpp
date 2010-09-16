@@ -13,6 +13,7 @@
 #include "game/Filter.h"
 #include "game/Project.h"
 #include "game/Reference.h"
+#include "game/dialogs/Name_Dialog.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
 #include "game/utils/Point.h"
 #include <algorithm>
@@ -50,6 +51,11 @@ int Template_Module_Instance_Handler::handle_object_created (GAME::Object obj)
     return 0;
 
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  // First, get the name of the template package.
+  GAME::Dialogs::Name_Dialog name_dialog (obj, ::AfxGetMainWnd ());
+  if (name_dialog.DoModal () == IDCANCEL)
+    return -1;
 
   // Locate all the packages in the object's project.
   GAME::Filter filter (obj.project ());

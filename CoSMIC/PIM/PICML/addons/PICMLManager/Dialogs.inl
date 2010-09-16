@@ -1,10 +1,18 @@
 // -*- C++ -*-
 // $Id$
 
+namespace PICML
+{
+namespace MI
+{
+
 //
-// ~NewComponentDialog
+// ~Default_Implementation_Dialog
 //
 inline
-NewComponentDialog::~NewComponentDialog (void)
+Default_Implementation_Dialog::~Default_Implementation_Dialog (void)
 {
+}
+
+}
 }

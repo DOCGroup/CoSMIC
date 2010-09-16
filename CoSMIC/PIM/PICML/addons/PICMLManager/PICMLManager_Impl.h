@@ -46,16 +46,12 @@ public:
 
   virtual int initialize (GAME::Project & project);
 
-  virtual int handle_global_event (long global_event);
-
-  virtual int handle_object_event (GAME::Object & obj, unsigned long mask);
-
 private:
 
   typedef
     int (PICMLManager_Impl::*_member_function)
     (unsigned long, GAME::Object &);
-  
+
 
   ACE_Hash_Map_Manager <std::string,
                         _member_function,

@@ -13,15 +13,20 @@
 #ifndef _PICML_MANAGER_DIALOGS_H_
 #define _PICML_MANAGER_DIALOGS_H_
 
-#include "ace/SString.h"
+#include <string>
+
+namespace PICML
+{
+namespace MI
+{
 
 /// Forward decl.
-class NewComponentConfig;
+class Implementation_Configuration;
 
 /**
- * @class NewComponentDialog
+ * @class Default_Implementation_Dialog
  */
-class NewComponentDialog : public CDialog
+class Default_Implementation_Dialog : public CDialog
 {
 public:
   /**
@@ -29,25 +34,10 @@ public:
    *
    * @param[in]     parent      Parent window
    */
-  NewComponentDialog (NewComponentConfig & config, CWnd * parent = 0);
+  Default_Implementation_Dialog (Implementation_Configuration & config, CWnd * parent = 0);
 
   /// Destructor.
-  virtual ~NewComponentDialog (void);
-
-  /**
-   * Get the inputed name of the component dialog.
-   *
-   * @return        The component name.
-   */
-  const ACE_CString & component_name (void) const;
-
-  /**
-   * Set the component name. If this is done before the dialog
-   * box is displayed, then the text box will contain this value.
-   *
-   * @param[in]     name        Name of the component
-   */
-  void component_name (const ACE_CString & name);
+  virtual ~Default_Implementation_Dialog (void);
 
 protected:
   /**
@@ -60,8 +50,11 @@ protected:
 
 private:
   /// Configuration of the new component.
-  NewComponentConfig & config_;
+  Implementation_Configuration & config_;
 };
+
+}
+}
 
 #include "Dialogs.inl"
 

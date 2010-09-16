@@ -38,8 +38,9 @@ handle_object_created (GAME::Object obj)
 {
   // Extract the connection from the object and get its endpoints.
   GAME::Connection attr_value = GAME::Connection::_narrow (obj);
-  GAME::Reference attr_inst = GAME::Reference::_narrow (attr_value[std::string ("src")].target ());
-  GAME::Model prop = GAME::Model::_narrow (attr_value[std::string ("dst")].target ());
+  GAME::FCO dst = attr_value[std::string ("dst")].target ();
+  GAME::FCO src = attr_value[std::string ("src")].target ();
+  GAME::Reference attr_inst = GAME::Reference::_narrow (src);
 
   // Get the target attribute.
   GAME::Model attr = GAME::Model::_narrow (attr_inst.refers_to ());
@@ -49,20 +50,31 @@ handle_object_created (GAME::Object obj)
 
   // Set the name of the Property. We want to ensure the name to
   // the prop matches the name of the attribute.
-  if (prop.name () != attr.name ())
-    prop.name (attr.name ());
-
-  GAME::FCO member_type;
-  Reference_Set attr_members;
+  if (dst.name () != attr.name ())
+    dst.name (attr.name ());
 
   // Let's get the data type of the attribute. Since there is only
   // 1 attribute member, we can just get the front element in the
   // container.
+  Reference_Set attr_members;
+  GAME::FCO member_type;
+
   if (1 == attr.children ("AttributeMember", attr_members))
     member_type = attr_members.front ().refers_to ();
 
-  if (!member_type.is_nil ())
-    this->set_property_type (prop, member_type);
+  if (member_type.is_nil ())
+    return 0;
+
+  if (dst.meta () == "SimpleProperty")
+  {
+    GAME::Reference simple = GAME::Reference::_narrow (dst);
+    simple.refers_to (member_type);
+  }
+  else
+  {
+    GAME::Model complex = GAME::Model::_narrow (dst);
+    this->set_property_type (complex, member_type);
+  }
 
   return 0;
 }

@@ -37,7 +37,7 @@ public:
   virtual int handle_object_relation (GAME::Object obj);
 
 private:
-  typedef std::map <GAME::FCO, GAME::FCO> template_map_t;
+  typedef std::map <GAME::FCO, GAME::Reference> template_map_t;
 
   bool select_template_parameter (GAME::Model parent,
                                   GAME::FCO fco,
@@ -59,6 +59,16 @@ private:
                                         GAME::FCO param,
                                         GAME::FCO value,
                                         template_map_t & mapping);
+
+  void instantiate_template_package (const GAME::Model & template_package,
+                                     GAME::Model parent,
+                                     const template_map_t & mapping);
+
+  void substitute_template_parameters (GAME::Model tpi,
+                                       const template_map_t & mapping);
+
+  void substitute_template_parameter_reference (GAME::Reference ref,
+                                                const template_map_t & mapping);
 };
 
 }

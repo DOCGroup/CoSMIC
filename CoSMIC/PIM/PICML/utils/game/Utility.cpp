@@ -20,9 +20,10 @@ std::string scope (const ::GAME::Model & named_type,
   std::stack <::GAME::Object> temp_stack;
 
   // Continue walking up the tree until we reach a File object.
+  static const std::string meta_File ("File");
   ::GAME::Object parent = named_type.parent ();
 
-  while (parent.meta ().name () == "Package")
+  while (parent.meta () != meta_File)
   {
     temp_stack.push (parent);
     parent = parent.parent ();

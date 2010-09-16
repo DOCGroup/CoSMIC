@@ -3,20 +3,7 @@
 #include "StdAfx.h"
 #include "PICMLManager_Impl.h"
 
-#include "game/GAME.h"
 #include "game/be/Event_Handler.h"
-#include "game/dialogs/Selection_List_Dialog_T.h"
-#include "game/utils/modelgen.h"
-#include "game/utils/Point.h"
-
-#include "Dialogs.h"
-#include "DefaultImplementationGenerator.h"
-#include "DefaultArtifactGenerator.h"
-#include "NewComponentConfig.h"
-
-#include "Utils/Utils.h"
-
-#include "boost/bind.hpp"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
@@ -32,6 +19,7 @@
 #include "ComponentInstanceRef_Event_Handler.h"
 #include "ComponentInstanceType_Event_Handler.h"
 #include "ConnectorInstance_Event_Handler.h"
+#include "Default_Implementation_Event_Handler.h"
 #include "Event_Handler_Base.h"
 #include "ExternalDelegate_Event_Handler.h"
 #include "NodeReference_Event_Handler.h"
@@ -111,8 +99,22 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("Component",
-    ACE_Singleton <PICML::MI::Component_Event_Handler,
+    ACE_Singleton <PICML::MI::Default_Implementation_Event_Handler,
                    ACE_Null_Mutex>::instance ());
+
+  PICML::MI::
+    Default_Implementation_Generator::meta_info_t
+    component_meta = {"ComponentImplementations",
+                      "ComponentImplementations",
+                      "ImplementationArtifacts",
+                      "ComponentImplementationContainer",
+                      "MonolithicImplementation",
+                      "ComponentRef",
+                      "Implements"};
+
+  ACE_Singleton <PICML::MI::Default_Implementation_Event_Handler,
+                 ACE_Null_Mutex>::instance ()->insert ("Component",
+                                                       component_meta);
 
   // Handlers for ComponentAssembly
   this->event_handler_->register_handler ("ComponentAssembly",
@@ -166,6 +168,24 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
   this->event_handler_->register_handler ("ConnectorObject",
     ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
+
+  this->event_handler_->register_handler ("ConnectorObject",
+    ACE_Singleton <PICML::MI::Default_Implementation_Event_Handler,
+                   ACE_Null_Mutex>::instance ());
+
+  PICML::MI::
+    Default_Implementation_Generator::meta_info_t
+    connector_meta = {"ConnectorImplementations",
+                      "ConnectorImplementations",
+                      "ImplementationArtifacts",
+                      "ConnectorImplementationContainer",
+                      "ConnectorImplementation",
+                      "ConnectorType",
+                      "ConnectorImplements"};
+
+  ACE_Singleton <PICML::MI::Default_Implementation_Event_Handler,
+                   ACE_Null_Mutex>::instance ()->insert ("ConnectorObject",
+                                                         connector_meta);
 
   // Handlers for ConnectorToFacet
   this->event_handler_->register_handler ("ConnectorToFacet",
@@ -248,68 +268,4 @@ int PICMLManager_Impl::initialize (GAME::Project & project)
                    ACE_Null_Mutex>::instance ());
 
   return 0;
-}
-
-
-//
-// handle_global_event
-//
-int PICMLManager_Impl::handle_global_event (long global_event)
-{
-  switch (global_event)
-  {
-  case APPEVENT_XML_IMPORT_BEGIN:
-    this->is_importing_ = true;
-    break;
-
-  case GLOBALEVENT_OPEN_PROJECT:
-    // this->verify_all_uuids ();
-    break;
-
-  case APPEVENT_XML_IMPORT_END:
-    this->is_importing_ = false;
-    // this->verify_all_uuids ();
-    break;
-
-  case GLOBALEVENT_NOTIFICATION_READY:
-    //this->handle_pending ();
-    break;
-
-  default:
-    /* do nothing */;
-  }
-
-  return S_OK;
-}
-
-//
-// handle_object_event
-//
-int PICMLManager_Impl::
-handle_object_event (GAME::Object & obj, unsigned long eventmask)
-{
-  try
-  {
-    GAME::Object object (obj);
-
-    if (object.is_lib_object ())
-      return 0;
-
-    // Get the meta information for the object.
-    std::string type = object.meta ().name ();
-    _member_function handler;
-
-    if (this->handlers_.find (type, handler) != -1)
-      return 0;
-  }
-  catch (GAME::Exception &)
-  {
-    /* what should we really do right here??? */
-  }
-  catch (...)
-  {
-    /* what should we really do right here??? */
-  }
-
-  return S_OK;
 }

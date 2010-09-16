@@ -3,13 +3,14 @@
 #include "StdAfx.h"
 #include "Dialogs.h"
 #include "resource.h"
-#include "NewComponentConfig.h"
+#include "Implementation_Configuration.h"
+#include "ace/Auto_Ptr.h"
 
 //
 // DDV_ValidChars
 //
 static void DDV_ValidChars (CDataExchange * pDX,
-                            const ACE_CString & str,
+                            const std::string & str,
                             const char * invalid_chars)
 {
   int pos;
@@ -19,10 +20,10 @@ static void DDV_ValidChars (CDataExchange * pDX,
     // Check for the current character in the string.
     pos = str.find (*invalid_chars);
 
-    if (pos != ACE_CString::npos)
+    if (pos != std::string::npos)
     {
       // Prepare the error message.
-      ACE_CString message ("String cannot contain ");
+      std::string message ("String cannot contain ");
       message += invalid_chars;
       message += '.';
 
@@ -37,29 +38,26 @@ static void DDV_ValidChars (CDataExchange * pDX,
 //
 // DDX_Text
 //
-static void DDX_Text (CDataExchange * pDX, int id, ACE_CString & str)
+static void DDX_Text (CDataExchange * pDX, int id, std::string & str)
 {
   // Get the dialog with the specified id.
   CWnd * item = pDX->m_pDlgWnd->GetDlgItem (id);
 
   if (pDX->m_bSaveAndValidate)
   {
-    // Get the size of the text in the window.
-    int length = item->GetWindowTextLength () + 1;
-
     // Allocate a buffer for the text.
-    char * buffer = 0;
-    ACE_NEW (buffer, char [length]);
+    int length = item->GetWindowTextLength () + 1;
+    char * buffer = new char [length];
 
     if (0 == buffer)
       pDX->Fail ();
 
     // Get the text from the window.
-    ACE_Auto_Ptr <char> auto_clean (buffer);
+    ACE_Auto_Array_Ptr <char> auto_clean (buffer);
     item->GetWindowText (buffer, length);
 
     // Store the window's text in the string.
-    str.set (buffer);
+    str = buffer;
     auto_clean.release ();
   }
   else
@@ -68,11 +66,16 @@ static void DDX_Text (CDataExchange * pDX, int id, ACE_CString & str)
   }
 }
 
+namespace PICML
+{
+namespace MI
+{
+
 //
-// NewComponentDialog
+// Default_Implementation_Dialog
 //
-NewComponentDialog::
-NewComponentDialog (NewComponentConfig & config, CWnd * parent)
+Default_Implementation_Dialog::
+Default_Implementation_Dialog (Implementation_Configuration & config, CWnd * parent)
 : CDialog (IDD_NEWCOMPONENT, parent),
   config_ (config)
 {
@@ -82,16 +85,19 @@ NewComponentDialog (NewComponentConfig & config, CWnd * parent)
 //
 // DoDataExchange
 //
-void NewComponentDialog::DoDataExchange (CDataExchange * pDX)
+void Default_Implementation_Dialog::DoDataExchange (CDataExchange * pDX)
 {
   // First, let the base class handle its operations.
   CDialog::DoDataExchange (pDX);
 
   // Get the name from the dialog.
-  DDX_Text (pDX, IDC_NAME, this->config_.component_name_);
+  DDX_Text (pDX, IDC_NAME, this->config_.type_name_);
   DDX_Text (pDX, IDC_EXEC_ARTIFACT_SUFFIX, this->config_.exec_artifact_suffix_);
   DDX_Text (pDX, IDC_SVNT_ARTIFACT_SUFFIX, this->config_.svnt_artifact_suffix_);
 
   // Validate the name (i.e., make sure it contains no spaces).
-  DDV_ValidChars (pDX, this->config_.component_name_, " ");
+  DDV_ValidChars (pDX, this->config_.type_name_, " ");
+}
+
+}
 }

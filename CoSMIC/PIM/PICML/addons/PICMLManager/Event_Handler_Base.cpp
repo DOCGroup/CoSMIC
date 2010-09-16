@@ -10,11 +10,6 @@
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
 
-#include "Dialogs.h"
-#include "DefaultImplementationGenerator.h"
-#include "DefaultArtifactGenerator.h"
-#include "NewComponentConfig.h"
-
 #include "Utils/Utils.h"
 
 #include "boost/bind.hpp"

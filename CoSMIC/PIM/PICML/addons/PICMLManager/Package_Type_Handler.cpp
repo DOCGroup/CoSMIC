@@ -8,6 +8,8 @@
 #endif
 
 #include "Scope_Display_Strategy.h"
+#include "Validation.h"
+
 #include "game/Attribute.h"
 #include "game/Filter.h"
 #include "game/Model.h"
@@ -16,6 +18,7 @@
 #include "game/MetaAspect.h"
 #include "game/MetaModel.h"
 #include "game/utils/Point.h"
+#include "game/manip/copy.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -49,6 +52,89 @@ private:
   const std::string & aspect_;
 };
 
+///////////////////////////////////////////////////////////////////////////////
+// validation functors
+
+/**
+ * @struct is_invalid_type
+ *
+ * Functor for determining if an Alias is of a certain type. This
+ * should only be used on Alias elements. It does not check if the
+ * element is of the specified type if the element is not an Alias.
+ */
+struct is_invalid_type
+{
+  is_invalid_type (const std::string & type)
+    : type_ (type)
+  {
+
+  }
+
+  bool operator () (const GAME::FCO & fco) const
+  {
+    const std::string metaname (fco.meta ().name ());
+
+    if (metaname == "Alias")
+      return this->check_alias (GAME::Reference::_narrow (fco));
+
+    return is_in_template_module (fco) || metaname != this->type_;
+  }
+
+private:
+  inline bool check_alias (const GAME::Reference & ref) const
+  {
+    return (*this) (ref.refers_to ());
+  }
+
+  /// The type to validate against.
+  const std::string & type_;
+};
+
+/**
+ * @struct is_invalid_collection_type
+ */
+struct is_invalid_collection_type
+{
+  is_invalid_collection_type (const GAME::FCO & type)
+    : type_ (type)
+  {
+
+  }
+
+  bool operator () (const GAME::FCO & fco) const
+  {
+    const std::string metaname (fco.meta ().name ());
+
+    if (metaname == "Alias")
+      return this->check_collection_alias (fco);
+
+    // Make sure this is a collection element. Otherwise, there
+    // is not need to continue.
+    if (metaname != "Collection")
+      return true;
+
+    GAME::Reference collection = GAME::Reference::_narrow (fco);
+    GAME::FCO type = collection.refers_to ();
+
+    while (type.meta ().name () == "Alias")
+      type = GAME::Reference::_narrow (type).refers_to ();
+
+    return is_in_template_module (type) || this->type_ != type;
+  }
+
+private:
+  inline bool check_collection_alias (const GAME::FCO & fco) const
+  {
+    GAME::Reference alias = GAME::Reference::_narrow (fco);
+    return (*this) (alias.refers_to ());
+  }
+
+  const GAME::FCO & type_;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// class methods
+
 //
 // handle_object_relation
 //
@@ -59,6 +145,7 @@ int Package_Type_Handler::handle_object_relation (GAME::Object obj)
 
   GAME::Reference package_type = GAME::Reference::_narrow (obj);
   GAME::FCO fco = package_type.refers_to ();
+  GAME::Model tpi = GAME::Model::_narrow (obj.parent ());
 
   if (fco.is_nil ())
   {
@@ -86,48 +173,20 @@ int Package_Type_Handler::handle_object_relation (GAME::Object obj)
                    parameters.end (),
                    boost::bind (&Package_Type_Handler::select_template_parameter,
                                 this,
-                                GAME::Model::_narrow (obj.parent ()),
+                                tpi,
                                 _1,
-                                mapping));
+                                boost::ref (mapping)));
+
+    // Instantiate the template package if we have gathered all the
+    // required template parameters.
+    if (parameters.size () == mapping.size ())
+      this->instantiate_template_package (template_package,
+                                          tpi,
+                                          mapping);
   }
 
   return 0;
 }
-
-/**
- * @struct is_invalid_alias
- *
- * Functor for determining if an Alias is of a certain type. This
- * should only be used on Alias elements. It does not check if the
- * element is of the specified type if the element is not an Alias.
- */
-struct is_invalid_type
-{
-  is_invalid_type (const std::string & type)
-    : type_ (type)
-  {
-
-  }
-
-  bool operator () (const GAME::FCO & fco) const
-  {
-    const std::string metaname (fco.meta ().name ());
-
-    if (metaname == "Alias")
-      return this->check_alias (GAME::Reference::_narrow (fco));
-
-    return metaname == this->type_;
-  }
-
-private:
-  inline bool check_alias (const GAME::Reference & ref) const
-  {
-    return (*this) (ref.refers_to ());
-  }
-
-  /// The type to validate against.
-  const std::string & type_;
-};
 
 //
 // select_template_parameter
@@ -228,34 +287,6 @@ select_type_parameter (GAME::Model parent,
   return true;
 }
 
-/**
- * @struct is_in_template_package
- */
-struct is_in_template_package
-{
-  bool operator () (const GAME::FCO & fco) const
-  {
-    GAME::Model parent = fco.parent_model ();
-    static const std::string meta_File ("File");
-
-    while (parent.meta () != meta_File)
-    {
-      // See if this package contains any template parameters.
-      static const std::string aspect_TemplateParameters ("TemplateParameters");
-      GAME::Meta::Aspect aspect = parent.meta ().aspect (aspect_TemplateParameters);
-
-      std::vector <GAME::FCO> parameters;
-      if (0 != parent.children (aspect, parameters))
-        return true;
-
-      // Move to the next parent model.
-      parent = parent.parent_model ();
-    }
-
-    return false;
-  }
-};
-
 //
 // select_name_parameter
 //
@@ -279,10 +310,10 @@ select_name_parameter (GAME::Model parent,
 
   // Remove all alias elements that are not the correct type.
   std::vector <GAME::FCO>::const_iterator iter = elements.begin ();
-  std::vector <GAME::FCO>::const_iterator iter_end =
+  std::vector <GAME::FCO>::const_iterator iter_end;
     std::remove_if (elements.begin (),
                     elements.end (),
-                    is_in_template_package ());
+                    &is_in_template_module);
 
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
   GAME::FCO selection;
@@ -332,48 +363,6 @@ select_name_parameter (GAME::Model parent,
 
   return true;
 }
-
-/**
- * @struct is_invalid_collection_type
- */
-struct is_invalid_collection_type
-{
-  is_invalid_collection_type (const GAME::FCO & type)
-    : type_ (type)
-  {
-
-  }
-
-  bool operator () (const GAME::FCO & fco) const
-  {
-    const std::string metaname (fco.meta ().name ());
-
-    if (metaname == "Alias")
-      return this->check_collection_alias (fco);
-
-    // Make sure this is a collection element. Otherwise, there
-    // is not need to continue.
-    if (metaname != "Collection")
-      return true;
-
-    GAME::Reference collection = GAME::Reference::_narrow (fco);
-    GAME::FCO type = collection.refers_to ();
-
-    while (type.meta ().name () == "Alias")
-      type = GAME::Reference::_narrow (type).refers_to ();
-
-    return this->type_ != type;
-  }
-
-private:
-  inline bool check_collection_alias (const GAME::FCO & fco) const
-  {
-    GAME::Reference alias = GAME::Reference::_narrow (fco);
-    return (*this) (alias.refers_to ());
-  }
-
-  const GAME::FCO & type_;
-};
 
 //
 // select_collection_parameter
@@ -487,6 +476,68 @@ create_template_value_parameter (GAME::Model parent,
 
   // Save the template parameter mapping.
   mapping[param] = tpv;
+}
+
+//
+// instantiate_template_package
+//
+void Package_Type_Handler::
+instantiate_template_package (const GAME::Model & template_package,
+                              GAME::Model tpi,
+                              const template_map_t & mapping)
+{
+  // Copy all the elements to the template package instance.
+  GAME::copy (template_package, tpi, "InterfaceDefinition");
+
+  // Replace the template parameters with the concrete types.
+  this->substitute_template_parameters (tpi, mapping);
+}
+
+//
+// substitute_template_parameters
+//
+void Package_Type_Handler::
+substitute_template_parameters (GAME::Model tpi,
+                                const template_map_t & mapping)
+{
+  GAME::Meta::Aspect idl_aspect = tpi.meta ().aspect ("InterfaceDefinition");
+
+  // Locate all the references at this level.
+  std::vector <GAME::Reference> refs;
+
+  if (0 != tpi.children (idl_aspect, refs))
+    std::for_each (refs.begin (),
+                   refs.end (),
+                   boost::bind (&Package_Type_Handler::substitute_template_parameter_reference,
+                                this,
+                                _1,
+                                boost::cref (mapping)));
+
+  // Perform the same operation on all the model elements.
+  std::vector <GAME::Model> models;
+
+  if (0 != tpi.children (idl_aspect, models))
+    std::for_each (models.begin (),
+                   models.end (),
+                   boost::bind (&Package_Type_Handler::substitute_template_parameters,
+                                this,
+                                _1,
+                                boost::cref (mapping)));
+}
+
+//
+// substitute_template_parameter
+//
+void Package_Type_Handler::
+substitute_template_parameter_reference (GAME::Reference ref,
+                                         const template_map_t & mapping)
+{
+  // Locate the refered type in the mapping.
+  template_map_t::const_iterator result = mapping.find (ref.refers_to ());
+
+  // Set the reference to the concrete type.
+  if (result != mapping.end ())
+    ref.refers_to (result->second.refers_to ());
 }
 
 }
