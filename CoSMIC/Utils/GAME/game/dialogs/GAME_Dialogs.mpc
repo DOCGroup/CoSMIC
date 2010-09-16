@@ -10,9 +10,10 @@ project (GAME_Dialogs) : game, cosmic_lib {
   pch_source = stdafx.cpp
 
   Source_Files {
-    Object_Path_Dialog_Display_Strategy.cpp
     Dialog_Display_Strategy.cpp
     Module.cpp
+    Name_Dialog.cpp
+    Object_Path_Dialog_Display_Strategy.cpp
     Selection_List_Dialog.cpp
   }
 

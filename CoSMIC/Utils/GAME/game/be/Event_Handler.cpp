@@ -517,7 +517,7 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
 {
   // There is no need to continue if we are not enabled.
   if (!this->enable_)
-    return S_OK;
+    return 0;
 
   try
   {
@@ -525,10 +525,10 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
     {
       // Pass control to the implementation.
       if (0 != this->impl_->handle_global_event (ev))
-        return -1;
+        return E_MGA_MUST_ABORT;
 
       if (0 != this->dispatch_global_event (ev, this->impl_))
-        return -1;
+        return E_MGA_MUST_ABORT;
     }
 
     // Notify all handler's in the master registry. This will prevent
@@ -536,16 +536,19 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
     // event handler, which can be the case when a handler is registered
     // more than once.
     for (handler_set::ITERATOR iter (this->master_); !iter.done (); ++ iter)
-      this->dispatch_global_event (ev, *iter);
+    {
+      if (0 != this->dispatch_global_event (ev, *iter))
+        return E_MGA_MUST_ABORT;
+    }
 
-    return S_OK;
+    return 0;
   }
   catch (...)
   {
 
   }
 
-  return S_FALSE;
+  return E_MGA_MUST_ABORT;
 }
 
 //
@@ -570,7 +573,7 @@ dispatch_global_event (long global_event, Event_Handler_Interface * eh)
     method = __appevent_map__[index];
   }
 
-  return 0 != method ? (*method) (eh) : -1;
+  return (*method) (eh);
 }
 
 //
@@ -581,7 +584,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 {
   // There is no need to continue if we are not enabled.
   if (!this->enable_)
-    return S_OK;
+    return 0;
 
   try
   {
@@ -594,10 +597,10 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       // to use the traditional method for passing the event to the
       // implementation as well as the dispatch method.
       if (0 != this->impl_->handle_object_event (object, eventmask))
-        return S_FALSE;
+        return E_MGA_MUST_ABORT;
 
       if (0 != this->dispatch_object_event (object, bitmask, this->impl_))
-        return S_FALSE;
+        return E_MGA_MUST_ABORT;
     }
 
     // Notify the instance handlers of the event
@@ -609,18 +612,18 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
       if (0 != this->dispatch_object_event (object, bitmask, *handlers))
-        return S_FALSE;
+        return E_MGA_MUST_ABORT;
     }
 
 
-    return S_OK;
+    return 0;
   }
   catch (...)
   {
 
   }
 
-  return S_FALSE;
+  return E_MGA_MUST_ABORT;
 }
 
 //
@@ -701,15 +704,16 @@ dispatch_object_event (GAME::Object obj,
                        const std::bitset <BITMASK_SIZE> & mask,
                        const handler_set & handlers)
 {
-  int retval = 0;
-
-  // Pass the event to each event hanlder.
   handler_set::CONST_ITERATOR iter (handlers);
 
   for (; !iter.done (); ++ iter)
-    retval += Event_Handler::dispatch_object_event (obj, mask, *iter);
+  {
+    // Pass the event to each event hanlder.
+    if (0 != Event_Handler::dispatch_object_event (obj, mask, *iter))
+      return -1;
+  }
 
-  return retval;
+  return 0;
 }
 
 //
@@ -724,7 +728,6 @@ dispatch_object_event (Object obj,
   std::bitset <BITMASK_SIZE> copymask (mask);
   const unsigned long eh_eventmask = static_cast <unsigned long> (eh->event_mask ());
 
-  int retval = 0;
   const handler_entry_t * handler_iter = objectevent_handles;
 
   for (size_t count = copymask.count (); count > 0; -- count)
@@ -737,14 +740,19 @@ dispatch_object_event (Object obj,
     // Ok, we found the next set bit location. We need to check if the
     // event handler is registered for this event.
     if ((handler_iter->bitmask_ & eh_eventmask) != 0 && (0 != handler_iter->method_))
-      retval += (*handler_iter->method_) (eh, obj) == 0 ? 0 : 1;
+    {
+      // Dispatch the event. There is no need to continue if the event
+      // handler does not return success.
+      if (0 != (*handler_iter->method_) (eh, obj))
+        return -1;
+    }
 
     // Move to the next location.
     copymask >>= 1;
     ++ handler_iter;
   }
 
-  return retval;
+  return 0;
 }
 
 }

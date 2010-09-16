@@ -1,3 +1,19 @@
+Thu Sep 16 15:10:30 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Bug fix where the dispatcher did not abort correctly if one
+          of the event handlers failed.
+
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/GAME_Dialogs.mpc:
+        * Utils/GAME/game/dialogs/Name_Dialog.h:
+        * Utils/GAME/game/dialogs/Name_Dialog.inl:
+        * Utils/GAME/game/dialogs/Name_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+
+          Implemented a dialog for setting the name of an element.
+
 Wed Sep 15 15:27:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:
