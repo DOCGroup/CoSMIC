@@ -22,13 +22,6 @@
 #include "ace/Thread_Mutex.h"
 #include "game/config.h"
 
-namespace GAME
-{
-namespace XME
-{
-// Forward decl.
-class GME_ID_Generator;
-
 /**
  * @struct ACE_Hash <xercesc::DOMDocument *>
  *
@@ -39,6 +32,14 @@ struct ACE_Hash <xercesc::DOMDocument *>
 {
   unsigned long operator () (xercesc::DOMDocument * ptr) const;
 };
+
+
+namespace GAME
+{
+namespace XME
+{
+// Forward decl.
+class GME_ID_Generator;
 
 /**
  * @class ID_Generator_Repo

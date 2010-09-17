@@ -1,3 +1,9 @@
+Fri Sep 17 13:36:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/ID_Generator_Repo.h:
+
+          ACE_Hash was declared in the wrong namespace.
+
 Thu Sep 16 15:14:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
