@@ -1,3 +1,19 @@
+Sat Sep 18 02:30:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Parameter_Value_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Parameter_Value_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Readonly_Event_Handler.cpp:
+
+          Bug fix where deleting a template package instance was not
+          allowed.
+
 Fri Sep 17 23:58:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:

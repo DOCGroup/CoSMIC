@@ -8,14 +8,19 @@
 #endif
 
 #include "Scope_Display_Strategy.h"
+
 #include "game/MetaAspect.h"
 #include "game/MetaModel.h"
 #include "game/Filter.h"
 #include "game/Project.h"
 #include "game/Reference.h"
+#include "game/be/Event_Handler.h"
 #include "game/dialogs/Name_Dialog.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
 #include "game/utils/Point.h"
+
+#include "boost/bind.hpp"
+
 #include <algorithm>
 
 namespace PICML
@@ -42,7 +47,7 @@ struct is_standard_package
   }
 };
 
-static const unsigned long mask = OBJEVENT_CREATED;
+static const unsigned long mask = OBJEVENT_CREATED | OBJEVENT_LOSTCHILD;
 
 //
 // Template_Module_Instance_Handler
@@ -132,6 +137,20 @@ int Template_Module_Instance_Handler::handle_object_created (GAME::Object obj)
   GAME::utils::position ("TemplateParameters", Point (100, 100), ref);
 
   return 0;
+}
+
+//
+// handle_lost_child
+//
+int Template_Module_Instance_Handler::handle_lost_child (GAME::Object obj)
+{
+  if (obj.status () != 0)
+    return 0;
+
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+  ::AfxMessageBox ("Must delete parent to delete element.", MB_ICONERROR);
+
+  return -1;
 }
 
 }

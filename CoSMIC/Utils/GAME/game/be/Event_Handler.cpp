@@ -476,6 +476,17 @@ static const handler_entry_t objectevent_handles[OBJECT_EVENT_COUNT] = {
 };
 
 //
+// Event_Handler
+//
+Event_Handler::Event_Handler (Event_Handler_Interface * impl)
+: impl_ (impl),
+  enable_ (true)
+{
+  if (0 != this->impl_)
+    this->impl_->set_event_handler (this);
+}
+
+//
 // attach
 //
 void Event_Handler::attach (Event_Handler_Interface * impl)
@@ -535,9 +546,11 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
     // us from sending the same notification more than once to the same
     // event handler, which can be the case when a handler is registered
     // more than once.
-    for (handler_set::ITERATOR iter (this->master_); !iter.done (); ++ iter)
+    for (global_handler_map_t::ITERATOR iter (this->global_handlers_);
+         !iter.done ();
+         ++ iter)
     {
-      if (0 != this->dispatch_global_event (ev, *iter))
+      if (0 != this->dispatch_global_event (ev, iter->key ()))
         return E_MGA_MUST_ABORT;
     }
 
@@ -652,8 +665,7 @@ register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 int Event_Handler::
 register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
 {
-  // Save the handler to the master set.
-  if (-1 == this->master_.insert (eh))
+  if (0 != this->insert_into_global_handlers (eh))
     return -1;
 
   // Locate the event handler set for this type.
@@ -686,8 +698,7 @@ register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
 int Event_Handler::
 register_handler (const Object & obj, Event_Handler_Interface * eh)
 {
-  // Save the handler to the master set.
-  if (-1 == this->master_.insert (eh))
+  if (0 != this->insert_into_global_handlers (eh))
     return -1;
 
   // Locate the event handler set for this type.
@@ -726,8 +737,10 @@ unregister_handler (const Object & obj, Event_Handler_Interface * eh)
   if (0 != this->inst_handlers_.find (obj, handlers))
     return -1;
 
-  eh->close ();
-  return handlers->remove (eh);
+  if (0 == handlers->remove (eh))
+    this->remove_from_global_handlers (eh);
+
+  return 0;
 }
 
 //
@@ -743,7 +756,7 @@ int Event_Handler::unregister_all (const Object & obj)
 
   // Close all the handlers in the handler set.
   for (handler_set::ITERATOR iter (*handlers); !iter.done (); ++ iter)
-    (*iter)->close ();
+    this->remove_from_global_handlers (*iter);
 
   // Reset the handler set.
   handlers->reset ();
@@ -829,6 +842,50 @@ dispatch_object_event (Object obj,
     copymask >>= 1;
     ++ handler_iter;
   }
+
+  return 0;
+}
+
+//
+// insert_into_global_handlers
+//
+int Event_Handler::
+insert_into_global_handlers (Event_Handler_Interface * eh)
+{
+  // Get the current reference count.
+  size_t refcount = 0;
+  this->global_handlers_.find (eh, refcount);
+
+  // Update the reference count.
+  return this->global_handlers_.rebind (eh, refcount + 1) == -1 ? -1 : 0;
+}
+
+//
+// remove_from_global_handlers
+//
+int Event_Handler::
+remove_from_global_handlers (Event_Handler_Interface * eh)
+{
+  // Get the current reference count.
+  size_t refcount = 0;
+
+  if (0 != this->global_handlers_.find (eh, refcount))
+    return 0;
+
+  // Decrement the reference count.
+  -- refcount;
+
+  if (refcount == 0)
+  {
+    // Remove the event handler.
+    this->global_handlers_.unbind (eh);
+
+    // Close the event handler.
+    eh->close ();
+  }
+  else
+    // Update the event handler's reference count.
+    this->global_handlers_.rebind (eh, refcount);
 
   return 0;
 }

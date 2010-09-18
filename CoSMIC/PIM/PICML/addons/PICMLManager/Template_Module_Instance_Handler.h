@@ -36,7 +36,7 @@ public:
 
   virtual int handle_object_created (GAME::Object obj);
 
-private:
+  virtual int handle_lost_child (GAME::Object obj);
 };
 
 }

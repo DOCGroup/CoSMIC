@@ -16,16 +16,12 @@ namespace GAME
 int Readonly_Event_Handler::
 handle_object_event (Object obj, unsigned long mask)
 {
-  bool regi = mask & OBJEVENT_REGISTRY;
-  bool prop = mask & OBJEVENT_PROPERTIES;
-
   // Determine if this is an event that we do allow.
   if ((mask & this->enabled_) != 0)
     return 0;
 
   // Display an error message since we do not support this event.
-  ::AfxMessageBox ("This operation is not allowed.", MB_ICONINFORMATION);
-
+  ::AfxMessageBox ("This operation is not allowed.", MB_ICONERROR);
   return E_MGA_MUST_ABORT;
 }
 

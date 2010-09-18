@@ -17,6 +17,7 @@
 #include <atlcom.h>
 #include <bitset>
 
+#include "BE_export.h"
 #include "game/Project.h"
 #include "game/stlace.h"
 
@@ -24,7 +25,17 @@
 #include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
 
-#include "Event_Handler_Interface.h"
+namespace GAME
+{
+  class Event_Handler_Interface;
+}
+
+template <>
+class ACE_Hash <GAME::Event_Handler_Interface *>
+{
+public:
+  unsigned long operator () (const GAME::Event_Handler_Interface * t) const;
+};
 
 namespace GAME
 {
@@ -132,11 +143,23 @@ private:
                                     const std::bitset <BITMASK_SIZE> & mask,
                                     Event_Handler_Interface * eh);
 
+  int insert_into_global_handlers (Event_Handler_Interface * eh);
+  int remove_from_global_handlers (Event_Handler_Interface * eh);
+
   /// Pointer to the actual implementation.
   Event_Handler_Interface * impl_;
 
   /// The enable state for the event handler.
   bool enable_;
+
+  // Global collection of registered handlers.
+  typedef
+    ACE_Hash_Map_Manager <Event_Handler_Interface *,
+                          size_t,
+                          ACE_Null_Mutex>
+                          global_handler_map_t;
+
+  global_handler_map_t global_handlers_;
 
   /// Collection of event handlers registered by type.
   ACE_Hash_Map_Manager <Meta::Base,
@@ -149,9 +172,6 @@ private:
                         handler_set *,
                         ACE_Null_Mutex>
                         inst_handlers_;
-
-  /// Master register for all registered handlers.
-  handler_set master_;
 
   /// The current project for the event handler.
   Project project_;

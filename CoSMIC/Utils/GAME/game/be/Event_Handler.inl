@@ -1,18 +1,17 @@
 // $Id$
 
+#include "Event_Handler_Interface.h"
+
+GAME_INLINE
+unsigned long
+ACE_Hash <GAME::Event_Handler_Interface *>::
+operator () (const GAME::Event_Handler_Interface * t) const
+{
+  return  static_cast <unsigned long> (reinterpret_cast<uintptr_t> (t));
+}
+
 namespace GAME
 {
-//
-// Event_Handler
-//
-GAME_INLINE
-Event_Handler::Event_Handler (Event_Handler_Interface * impl)
-: impl_ (impl),
-  enable_ (true)
-{
-  if (0 != this->impl_)
-    this->impl_->set_event_handler (this);
-}
 
 //
 // ~Event_Handler

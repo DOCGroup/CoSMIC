@@ -48,7 +48,7 @@ project (PICML_Model_Intelligence): game_dialogs, game_component, game_manip, \
     }
 
     Instance_Event_Handlers {
-
+      Template_Parameter_Value_Handler.cpp
     }
   }
 

@@ -8,6 +8,7 @@
 #endif
 
 #include "Scope_Display_Strategy.h"
+#include "Template_Parameter_Value_Handler.h"
 #include "Validation.h"
 
 #include "game/Attribute.h"
@@ -226,22 +227,6 @@ finalize_template_package_inst (GAME::Model tpi)
 
   for (; iter != iter_end; ++ iter)
     iter->readonly_access (true, true);
-
-  // Prevent the template parameter values from being deleted.
-  tpi.children ("TemplateParameterValue", items);
-  iter = items.begin (), iter_end = items.end ();
-
-  for (; iter != iter_end; ++ iter)
-  {
-    using GAME::Readonly_Event_Handler;
-
-    std::auto_ptr <
-      GAME::Event_Handler_Impl> eh (
-      new Readonly_Event_Handler (OBJEVENT_RELATION, true));
-
-    if (0 == this->event_handler_->register_handler (*iter, eh.get ()))
-      eh.release ();
-  }
 }
 
 //
@@ -524,6 +509,13 @@ create_template_value_parameter (GAME::Model parent,
   // Create a template parameter value for this element.
   GAME::Reference tpv = GAME::Reference::_create (parent, "TemplateParameterValue");
   tpv.refers_to (value);
+
+  // Setup a read-only event handler for this object.
+  std::auto_ptr <Template_Parameter_Value_Handler>
+    eh (new Template_Parameter_Value_Handler ());
+
+  if (0 == this->event_handler_->register_handler (tpv, eh.get ()))
+    eh.release ();
 
   // Set the position of the template parameter.
   GAME::utils::Point pt (100, 100);
