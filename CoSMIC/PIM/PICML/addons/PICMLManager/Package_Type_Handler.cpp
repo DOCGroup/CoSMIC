@@ -19,7 +19,10 @@
 #include "game/MetaModel.h"
 #include "game/utils/Point.h"
 #include "game/manip/copy.h"
+#include "game/be/Event_Handler.h"
+#include "game/be/Readonly_Event_Handler.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
+
 #include "boost/bind.hpp"
 #include <algorithm>
 
@@ -135,6 +138,18 @@ private:
 ///////////////////////////////////////////////////////////////////////////////
 // class methods
 
+static const unsigned long mask = OBJEVENT_RELATION |
+                                  OBJEVENT_REFERENCED |
+                                  OBJEVENT_REFRELEASED;
+//
+// Package_Type_Handler
+//
+Package_Type_Handler::Package_Type_Handler (void)
+: GAME::Event_Handler_Impl (mask)
+{
+
+}
+
 //
 // handle_object_relation
 //
@@ -177,15 +192,56 @@ int Package_Type_Handler::handle_object_relation (GAME::Object obj)
                                 _1,
                                 boost::ref (mapping)));
 
-    // Instantiate the template package if we have gathered all the
-    // required template parameters.
     if (parameters.size () == mapping.size ())
+    {
+      // Instantiate the template package if we have gathered all the
+      // required template parameters.
       this->instantiate_template_package (template_package,
                                           tpi,
                                           mapping);
+
+      // Put the finishing touches on the template package instance.
+      this->finalize_template_package_inst (tpi);
+    }
   }
 
   return 0;
+}
+
+//
+// finalize_template_package_inst
+//
+void Package_Type_Handler::
+finalize_template_package_inst (GAME::Model tpi)
+{
+  // Make all the elements in the InterfaceDefinition aspect read-only.
+  // This will prevent the modeler from adding any elements without our
+  // permission. :-)
+  std::vector <GAME::FCO> items;
+  GAME::Meta::Aspect aspect = tpi.meta ().aspect ("InterfaceDefinition");
+  tpi.children (aspect, items);
+
+  std::vector <GAME::FCO>::iterator
+    iter = items.begin (), iter_end = items.end ();
+
+  for (; iter != iter_end; ++ iter)
+    iter->readonly_access (true, true);
+
+  // Prevent the template parameter values from being deleted.
+  tpi.children ("TemplateParameterValue", items);
+  iter = items.begin (), iter_end = items.end ();
+
+  for (; iter != iter_end; ++ iter)
+  {
+    using GAME::Readonly_Event_Handler;
+
+    std::auto_ptr <
+      GAME::Event_Handler_Impl> eh (
+      new Readonly_Event_Handler (OBJEVENT_RELATION, true));
+
+    if (0 == this->event_handler_->register_handler (*iter, eh.get ()))
+      eh.release ();
+  }
 }
 
 //

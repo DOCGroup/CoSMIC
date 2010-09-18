@@ -21,11 +21,14 @@ namespace PICML
 {
 namespace MI
 {
+
+static const unsigned long mask = OBJEVENT_ATTR;
+
 //
 // AMI4CCM_Event_Handler
 //
 AMI4CCM_Event_Handler::AMI4CCM_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_ATTR)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }

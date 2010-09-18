@@ -33,14 +33,14 @@ class GAME_BE_Export Event_Handler_Impl :
 {
 public:
   /// Default constructor.
-  Event_Handler_Impl (void);
+  Event_Handler_Impl (bool destroy_on_close = false);
 
   /**
    * Initializing constructor
    *
    * @param[in]       mask            Event handler's mask.
    */
-  Event_Handler_Impl (long mask);
+  Event_Handler_Impl (unsigned long mask, bool destroy_on_close = false);
 
   /// Destructor.
   virtual ~Event_Handler_Impl (void);
@@ -57,7 +57,11 @@ public:
    *
    * @param[in]       project         Project event handler is registered
    */
-  virtual int initialize (GAME::Project & project);
+  virtual int initialize (GAME::Project project);
+
+  /// Close the event handler. This method is invoked when
+  /// the event handler is unregistered.
+  virtual void close (void);
 
   /**
    * General callback for all global events. This method is called
@@ -104,7 +108,7 @@ public:
    * @retval          0               Success
    * @retval          -1              Failure
    */
-  virtual int handle_object_event (Object & obj, unsigned long mask);
+  virtual int handle_object_event (Object obj, unsigned long mask);
 
   virtual int handle_object_created (GAME::Object obj);
   virtual int handle_object_destroyed (Object obj);
@@ -143,13 +147,16 @@ public:
 
 protected:
   /// The mask for the event handler.
-  long current_mask_;
+  unsigned long current_mask_;
 
   /// The project is in import mode.
   bool is_importing_;
 
   /// Event handler assigned to this implementation.
   Event_Handler * event_handler_;
+
+  /// Destroy the event handler when it is closed.
+  bool destroy_on_close_;
 };
 
 }

@@ -36,12 +36,12 @@
 // Type definition
 typedef std::vector <GAME::Reference> Reference_Set;
 
-static const long EVENTMASK =
+static const unsigned long EVENTMASK =
    OBJEVENT_CREATED | OBJEVENT_ATTR |
    OBJEVENT_RELATION |  OBJEVENT_SELECT |
    OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED |
    OBJEVENT_DESTROYED | OBJEVENT_LOSTCHILD |
-   OBJEVENT_REFERENCED | OBJEVENT_REFRELEASED;
+   OBJEVENT_REGISTRY;
 
 //
 // PICMLManager_Impl
@@ -65,7 +65,7 @@ PICMLManager_Impl::~PICMLManager_Impl (void)
 //
 // Initaialize
 //
-int PICMLManager_Impl::initialize (GAME::Project & project)
+int PICMLManager_Impl::initialize (GAME::Project project)
 {
   this->config_->project_ = project;
 

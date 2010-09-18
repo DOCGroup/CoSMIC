@@ -42,6 +42,17 @@ struct is_standard_package
   }
 };
 
+static const unsigned long mask = OBJEVENT_CREATED;
+
+//
+// Template_Module_Instance_Handler
+//
+Template_Module_Instance_Handler::Template_Module_Instance_Handler (void)
+: GAME::Event_Handler_Impl (mask)
+{
+
+}
+
 //
 // handle_object_created
 //

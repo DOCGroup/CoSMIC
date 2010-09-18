@@ -9,11 +9,13 @@ namespace PICML
 namespace MI
 {
 
+static const unsigned long mask = OBJEVENT_CREATED;
+
 //
 // ExternalDelegate_Event_Handler
 //
 ExternalDelegate_Event_Handler::ExternalDelegate_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_CREATED)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }

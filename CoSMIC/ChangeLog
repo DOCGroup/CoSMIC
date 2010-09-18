@@ -1,3 +1,99 @@
+Fri Sep 17 23:58:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Updated signatures on event handler methods to match the
+          framework's expected signatures.
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Updated signatures on event handler methods to match the
+          framework's expected signatures.
+
+          The template parameter values now are marked as read-only to
+          prevent the modeler from accidently deleting them.
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.h:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/utils/udm/functional.h:
+        * PIM/PICML/utils/udm/functional.cpp:
+
+          Updated code to latest version of metamodel.
+
+        * PIM/PICML/migration/CoSMIC-0.8.2.xslt:
+
+          Updated transformation to remove the PrePreprocessor and
+          PostPreprocessor attributes from the model since they are no
+          longer supported. The script still needs to be updates to handle
+          changes to the metamodel that relate to template package instances.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Removed the PrePreprocessor and PostPreprocessor directives
+          from the model.
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+        * Utils/GAME/game/be/Event_Handler_Impl.cpp:
+
+          Added support for registering event handlers for individual instances
+          and objects in the model.
+
+          Bug fix where the initialize () method was not called on an event
+          handler when it was registered.
+
+          Added support for closing an event handler.
+
+          Added support for destroying and event handler when it is closed. This
+          is useful when allowing event handlers for individual instances and
+          do not want to manage their resources.
+
+        * Utils/GAME/game/be/Event_Handler_Interface.h:
+
+          Removed the reference quantifier from several of the methods.
+
+        * Utils/GAME/game/be/Readonly_Event_Handler.h:
+        * Utils/GAME/game/be/Readonly_Event_Handler.inl:
+        * Utils/GAME/game/be/Readonly_Event_Handler.cpp:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+
+          Implemented an event handler for emulating read-only semantics. In
+          addition, the event handler can be customized to allow certain actions
+          while preventing others.
+
 Fri Sep 17 13:36:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/ID_Generator_Repo.h:

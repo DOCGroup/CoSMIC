@@ -9,11 +9,13 @@ namespace PICML
 namespace MI
 {
 
+static const unsigned long mask = OBJEVENT_DESTROYED;
+
 //
 // ExtendedPortInstance_Event_Handler
 //
 ExtendedPortInstance_Event_Handler::ExtendedPortInstance_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_DESTROYED)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }
@@ -39,7 +41,7 @@ handle_object_destroyed (GAME::Object obj)
 // MirrorPortInstance_Event_Handler
 //
 MirrorPortInstance_Event_Handler::MirrorPortInstance_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_DESTROYED)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }

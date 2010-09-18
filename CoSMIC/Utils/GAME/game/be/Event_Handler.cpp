@@ -498,11 +498,11 @@ void Event_Handler::attach (Event_Handler_Interface * impl)
 //
 // initialize
 //
-int Event_Handler::initialize (GAME::Project & project)
+int Event_Handler::initialize (GAME::Project project)
 {
   // Save the project and start a new transaction.
   this->project_ = project;
-  Transaction t (this->project_, TRANSACTION_READ_ONLY);
+  Transaction t (this->project_);
 
   if (0 != this->impl_)
     return this->impl_->initialize (project);
@@ -590,24 +590,23 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
   {
     GAME::Object object (obj);
     const std::bitset <BITMASK_SIZE> bitmask (eventmask);
+    handler_set * handlers = 0;
 
-    if (0 != this->impl_)
+    // Notify all event handlers registered for this instance.
+    if (0 == this->inst_handlers_.find (obj, handlers))
     {
-      // First, pass control to the main implementation. We are going
-      // to use the traditional method for passing the event to the
-      // implementation as well as the dispatch method.
-      if (0 != this->impl_->handle_object_event (object, eventmask))
+      // Notify the type handlers of the event. We are not going to
+      // continue if there are any *errors* in the process.
+      if (0 != this->dispatch_object_event (object, bitmask, *handlers))
         return E_MGA_MUST_ABORT;
 
-      if (0 != this->dispatch_object_event (object, bitmask, this->impl_))
-        return E_MGA_MUST_ABORT;
+      // If this is a destroy event, let's do some house keeping. ;-)
+      if (0 != (eventmask & OBJEVENT_DESTROYED))
+        this->unregister_all (object);
     }
 
-    // Notify the instance handlers of the event
-    handler_set * handlers = 0;
-    const GAME::Meta::Base metabase (object.meta ());
-
-    if (0 == this->type_handlers_.find (metabase, handlers))
+    // Notify all event handlers registered for this type.
+    if (0 == this->type_handlers_.find (object.meta (), handlers))
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
@@ -615,6 +614,12 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
         return E_MGA_MUST_ABORT;
     }
 
+    if (0 != this->impl_)
+    {
+      // Pass control to the main implementation.
+      if (0 != this->dispatch_object_event (object, bitmask, this->impl_))
+        return E_MGA_MUST_ABORT;
+    }
 
     return 0;
   }
@@ -654,24 +659,94 @@ register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
   // Locate the event handler set for this type.
   handler_set * handlers = 0;
 
-  if (0 == this->type_handlers_.find (meta, handlers))
-    return handlers->insert (eh);
+  if (0 != this->type_handlers_.find (meta, handlers))
+  {
+    // Create a new event handler set.
+    ACE_NEW_RETURN (handlers, handler_set (), -1);
+    ACE_Auto_Ptr <handler_set> auto_clean (handlers);
 
-  // Create a new event handler set.
-  ACE_NEW_RETURN (handlers, handler_set (), -1);
-  ACE_Auto_Ptr <handler_set> auto_clean (handlers);
+    if (0 != this->type_handlers_.bind (meta, handlers))
+      return -1;
 
-  if (0 != this->type_handlers_.bind (meta, handlers))
+    auto_clean.release ();
+  }
+
+  // Initialize the event handler.
+  eh->set_event_handler (this);
+  if (0 != eh->initialize (this->project_))
     return -1;
 
-  // Release the auto clean pointer since the hash map now owns
-  // the handler.
-  auto_clean.release ();
+  handlers->insert (eh);
+  return 0;
+}
 
-  // Save the handler to its handler set.
-  if (0 != handlers->insert (eh))
+//
+// register_handler
+//
+int Event_Handler::
+register_handler (const Object & obj, Event_Handler_Interface * eh)
+{
+  // Save the handler to the master set.
+  if (-1 == this->master_.insert (eh))
     return -1;
 
+  // Locate the event handler set for this type.
+  handler_set * handlers = 0;
+
+  if (0 != this->inst_handlers_.find (obj, handlers))
+  {
+    // Create a new event handler set.
+    ACE_NEW_RETURN (handlers, handler_set (), -1);
+    ACE_Auto_Ptr <handler_set> auto_clean (handlers);
+
+    if (0 != this->inst_handlers_.bind (obj, handlers))
+      return -1;
+
+    auto_clean.release ();
+  }
+
+  // Initialize the event handler.
+  eh->set_event_handler (this);
+
+  if (0 != eh->initialize (this->project_))
+    return -1;
+
+  handlers->insert (eh);
+  return 0;
+}
+
+//
+// unregister_handler
+//
+int Event_Handler::
+unregister_handler (const Object & obj, Event_Handler_Interface * eh)
+{
+  handler_set * handlers = 0;
+
+  if (0 != this->inst_handlers_.find (obj, handlers))
+    return -1;
+
+  eh->close ();
+  return handlers->remove (eh);
+}
+
+//
+// unregister_all
+//
+int Event_Handler::unregister_all (const Object & obj)
+{
+  handler_set * handlers = 0;
+
+  // Locate the handler set.
+  if (0 != this->inst_handlers_.find (obj, handlers))
+    return -1;
+
+  // Close all the handlers in the handler set.
+  for (handler_set::ITERATOR iter (*handlers); !iter.done (); ++ iter)
+    (*iter)->close ();
+
+  // Reset the handler set.
+  handlers->reset ();
   return 0;
 }
 
@@ -680,20 +755,20 @@ register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
 //
 void Event_Handler::close (void)
 {
-  // Delete all event handlers sets for the types.
-  typedef ACE_Hash_Map_Manager <Meta::Base,
-                                handler_set *,
-                                ACE_Null_Mutex> hash_map_t;
+  //// Delete all event handlers sets for the types.
+  //typedef ACE_Hash_Map_Manager <Meta::Base,
+  //                              handler_set *,
+  //                              ACE_Null_Mutex> hash_map_t;
 
-  hash_map_t::ITERATOR iter (this->type_handlers_);
+  //hash_map_t::ITERATOR iter (this->type_handlers_);
 
-  // Delete all the handler sets.
-  for (; !iter.done (); ++ iter)
-    delete iter->item ();
+  //// Delete all the handler sets.
+  //for (; !iter.done (); ++ iter)
+  //  iter->item ();
 
-  // Clear all the container's contents.
-  this->type_handlers_.unbind_all ();
-  this->master_.reset ();
+  //// Clear all the container's contents.
+  //this->type_handlers_.unbind_all ();
+  //this->master_.reset ();
 }
 
 //
@@ -724,6 +799,9 @@ dispatch_object_event (Object obj,
                        const std::bitset <BITMASK_SIZE> & mask,
                        Event_Handler_Interface * eh)
 {
+  if (0 != eh->handle_object_event (obj, mask.to_ulong ()))
+    return -1;
+
   // Get the event mask for the event handler.
   std::bitset <BITMASK_SIZE> copymask (mask);
   const unsigned long eh_eventmask = static_cast <unsigned long> (eh->event_mask ());

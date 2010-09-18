@@ -20,11 +20,13 @@ namespace PICML
 namespace MI
 {
 
+static const unsigned long mask = OBJEVENT_CREATED |
+                                  OBJEVENT_ATTR;
 //
 // UUID_Event_Handler
 //
 UUID_Event_Handler::UUID_Event_Handler ()
-: GAME::Event_Handler_Impl (OBJEVENT_CREATED | OBJEVENT_ATTR)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }

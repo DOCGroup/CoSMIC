@@ -45,7 +45,7 @@ public:
   /// Destructor.
   virtual ~Event_Handler (void);
 
-  int initialize (GAME::Project & project);
+  int initialize (GAME::Project project);
 
   /**
    * Attach the event handler to an implementation.
@@ -73,6 +73,27 @@ public:
    */
   int register_handler (const Meta::Base & meta,
                         Event_Handler_Interface * eh);
+
+  /**
+   * @overload
+   *
+   * @param[in]       meta          The type's meta information
+   * @param[in]       eh            Pointer to the event handler
+   */
+  int register_handler (const Object & obj,
+                        Event_Handler_Interface * eh);
+
+  /**
+   * @overload
+   *
+   * @param[in]       meta          The type's meta information
+   * @param[in]       eh            Pointer to the event handler
+   */
+  int unregister_handler (const Object & obj,
+                          Event_Handler_Interface * eh);
+
+  /// Unregister all handlers for an instance.
+  int unregister_all (const Object & obj);
 
   /**
    * Set the enable state of the event handler. If \a enable is
@@ -111,7 +132,6 @@ private:
                                     const std::bitset <BITMASK_SIZE> & mask,
                                     Event_Handler_Interface * eh);
 
-
   /// Pointer to the actual implementation.
   Event_Handler_Interface * impl_;
 
@@ -123,6 +143,12 @@ private:
                         handler_set *,
                         ACE_Null_Mutex>
                         type_handlers_;
+
+  /// Collection of event handlers registered by instance.
+  ACE_Hash_Map_Manager <Object,
+                        handler_set *,
+                        ACE_Null_Mutex>
+                        inst_handlers_;
 
   /// Master register for all registered handlers.
   handler_set master_;

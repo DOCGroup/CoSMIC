@@ -67,6 +67,20 @@
   </xsl:template>
 
   <!--
+    @template RemovePostPreprocessorDirectives
+
+    Removes the post preprocess directive attribute from the model.
+    -->
+  <xsl:template name="RemovePostPreprocessorDirectives" match="attribute[@kind='PostPreprocessorDirectives']"/>
+
+  <!--
+    @template RemovePrePreprocessorDirectives
+
+    Removes the post preprocess directive attribute from the model.
+    -->
+  <xsl:template name="RemovePrePreprocessorDirectives" match="attribute[@kind='PrePreprocessorDirectives']"/>
+
+  <!--
       Default transformation for all nodes
     -->
   <xsl:template match="*|@*">

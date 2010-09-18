@@ -93,7 +93,7 @@ void Find_Forward_Decls::Visit_File (const PICML::File & file)
 void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
 {
   std::vector <PICML::TemplateParameter> params = package.TemplateParameter_kind_children ();
-  
+
   if (params.empty () || (!params.empty () && this->visit_template_module_))
     IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
 }
@@ -312,26 +312,8 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 void Find_Forward_Decls::
 Visit_ExtendedPort (const PICML::ExtendedPort & p)
 {
-  PICML::TemplatePackageInstanceDecl decl = p.srcTemplatePackageInstanceDecl ();
-
-  if (decl != Udm::null)
-    decl.Accept (*this);
-
   Udm::visit_all <PICML::ProvidedRequestPort> (p, *this);
   Udm::visit_all <PICML::RequiredRequestPort> (p, *this);
-}
-
-//
-// Visit_TemplatePackageInstanceDecl
-//
-void Find_Forward_Decls::
-Visit_TemplatePackageInstanceDecl (const PICML::TemplatePackageInstanceDecl & decl)
-{
-  PICML::TemplatePackageInstanceRef ref = decl.srcTemplatePackageInstanceDecl_end ();
-  PICML::File file = this->get_file (ref.ref ());
-
-  if (this->current_file_ != file)
-    this->includes_.insert (file);
 }
 
 //

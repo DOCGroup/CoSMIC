@@ -91,7 +91,7 @@ CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 //
 // initialize
 //
-int CBML_Model_Intelligence::initialize (GAME::Project & project)
+int CBML_Model_Intelligence::initialize (GAME::Project project)
 {
   this->importing_ = false;
   return 0;
@@ -114,7 +114,7 @@ int CBML_Model_Intelligence::handle_global_event (long global_event)
 // handle_object_event
 //
 int CBML_Model_Intelligence::
-handle_object_event (GAME::Object & object, unsigned long eventmask)
+handle_object_event (GAME::Object object, unsigned long eventmask)
 {
   try
   {
@@ -175,7 +175,7 @@ void CBML_Model_Intelligence::save_active_state (void)
 //
 // load_active_state
 //
-void CBML_Model_Intelligence::load_active_state (GAME::Object & model)
+void CBML_Model_Intelligence::load_active_state (GAME::Object model)
 {
   // Get the parent of the active state.
   GAME::FCO parent = GAME::FCO::_narrow (model);
@@ -199,7 +199,7 @@ void CBML_Model_Intelligence::load_active_state (GAME::Object & model)
 //
 // handle_objevent_destroyed
 //
-void CBML_Model_Intelligence::handle_objevent_destroyed (GAME::Object & obj)
+void CBML_Model_Intelligence::handle_objevent_destroyed (GAME::Object obj)
 {
   GAME::FCO fco = GAME::FCO::_narrow (obj);
 
@@ -215,7 +215,7 @@ void CBML_Model_Intelligence::handle_objevent_destroyed (GAME::Object & obj)
 //
 // handle_objevent_select
 //
-void CBML_Model_Intelligence::handle_objevent_select (GAME::Object & obj)
+void CBML_Model_Intelligence::handle_objevent_select (GAME::Object obj)
 {
   if (obj.meta () != "State")
     return;
@@ -228,7 +228,7 @@ void CBML_Model_Intelligence::handle_objevent_select (GAME::Object & obj)
 //
 // handle_objevent_created
 //
-void CBML_Model_Intelligence::handle_objevent_created (GAME::Object & obj)
+void CBML_Model_Intelligence::handle_objevent_created (GAME::Object obj)
 {
   // We need to get the parent of the newly created object and determine
   // its type. We only need to continue if the parent's type is a
@@ -288,7 +288,7 @@ void CBML_Model_Intelligence::handle_objevent_created (GAME::Object & obj)
 // create_state_and_connect
 //
 void CBML_Model_Intelligence::
-create_state_and_connect (GAME::Object & src, const std::string & conntype)
+create_state_and_connect (GAME::Object src, const std::string & conntype)
 {
   if (!this->last_action_.is_nil ())
   {
@@ -376,7 +376,7 @@ create_state_and_connect (GAME::Object & src, const std::string & conntype)
 // handle_objevent_modelopen
 //
 void CBML_Model_Intelligence::
-handle_objevent_modelopen (GAME::Object & obj)
+handle_objevent_modelopen (GAME::Object obj)
 {
   // Get the metaname of the object
   std::string metaname = obj.meta ().name ();
@@ -413,7 +413,7 @@ handle_objevent_modelopen (GAME::Object & obj)
 // handle_objevent_modelopen
 //
 void CBML_Model_Intelligence::
-handle_objevent_modelclose (GAME::Object & obj)
+handle_objevent_modelclose (GAME::Object obj)
 {
   if (obj.meta ().name () == "Component")
   {
@@ -448,7 +448,7 @@ void CBML_Model_Intelligence::cache_worker_type (const GAME::Reference & worker)
 //
 // resolve_output_action
 //
-void CBML_Model_Intelligence::resolve_output_action (GAME::FCO & action)
+void CBML_Model_Intelligence::resolve_output_action (GAME::FCO action)
 {
   GAME::Reference output;
   std::vector <GAME::Reference> refs;
@@ -494,7 +494,7 @@ void CBML_Model_Intelligence::resolve_output_action (GAME::FCO & action)
 //
 // resolve_worker_action
 //
-void CBML_Model_Intelligence::resolve_worker_action (GAME::FCO & action)
+void CBML_Model_Intelligence::resolve_worker_action (GAME::FCO action)
 {
   // Locate the archetype for this action instance.
   GAME::FCO basetype = action.archetype ();

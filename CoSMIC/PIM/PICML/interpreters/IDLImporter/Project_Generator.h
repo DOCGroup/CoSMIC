@@ -176,10 +176,6 @@ private:
                       GAME::XME::FCO & fco,
                       bool use_library = false);
 
-  bool lookup_symbol_in_template_module (AST_Decl * type,
-                                         GAME::XME::FCO & fco,
-                                         bool use_library = false);
-
   bool lookup_symbol (AST_Decl * type,
                       std::vector <GAME::XME::Folder> & lib,
                       GAME::XME::FCO & fco);

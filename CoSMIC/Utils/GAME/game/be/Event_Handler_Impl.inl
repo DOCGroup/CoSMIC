@@ -6,9 +6,10 @@ namespace GAME
 // Event_Handler_Impl
 //
 GAME_INLINE
-Event_Handler_Impl::Event_Handler_Impl (void)
+Event_Handler_Impl::Event_Handler_Impl (bool destroy_on_close)
 : current_mask_ (0),
-  is_importing_ (false)
+  is_importing_ (false),
+  destroy_on_close_ (destroy_on_close)
 {
 
 }
@@ -17,9 +18,10 @@ Event_Handler_Impl::Event_Handler_Impl (void)
 // Event_Handler_Impl
 //
 GAME_INLINE
-Event_Handler_Impl::Event_Handler_Impl (long mask)
+Event_Handler_Impl::Event_Handler_Impl (unsigned long mask, bool destroy_on_close)
 : current_mask_ (mask),
-  is_importing_ (false)
+  is_importing_ (false),
+  destroy_on_close_ (destroy_on_close)
 {
 
 }
@@ -46,7 +48,7 @@ void Event_Handler_Impl::set_event_handler (Event_Handler * eh)
 // initialize
 //
 GAME_INLINE
-int Event_Handler_Impl::initialize (GAME::Project & project)
+int Event_Handler_Impl::initialize (GAME::Project project)
 {
   return 0;
 }
@@ -66,7 +68,7 @@ handle_global_event (long global_event)
 //
 GAME_INLINE
 int Event_Handler_Impl::
-handle_object_event (Object & obj, unsigned long mask)
+handle_object_event (Object obj, unsigned long mask)
 {
   return 0;
 }

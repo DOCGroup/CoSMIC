@@ -35,8 +35,8 @@ namespace MI
 //
 // Event_Handler_Base
 //
-Event_Handler_Base::Event_Handler_Base (objectevent_enum e)
-: Event_Handler_Impl (e),
+Event_Handler_Base::Event_Handler_Base (unsigned long mask)
+: Event_Handler_Impl (mask),
   config_ (ACE_Singleton <PICML::MI::Event_Handler_Config,
                           ACE_Null_Mutex>::instance ())
 {
@@ -55,7 +55,7 @@ Event_Handler_Base::~Event_Handler_Base (void)
 // set_property_type
 //
 void Event_Handler_Base::
-set_property_type (GAME::Model & prop, const GAME::FCO & type)
+set_property_type (GAME::Model prop, const GAME::FCO & type)
 {
   GAME::Meta::FCO metafco = type.meta ();
   GAME::FCO real_type = type;

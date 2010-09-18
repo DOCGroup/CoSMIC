@@ -42,13 +42,13 @@ class Event_Handler_Base :
 {
 public:
   /// Default constructor.
-  Event_Handler_Base (objectevent_enum e);
+  Event_Handler_Base (unsigned long mask);
 
   /// Destructor.
   virtual ~Event_Handler_Base (void);
 
 protected:
-  void set_property_type (GAME::Model & prop, const GAME::FCO & type);
+  void set_property_type (GAME::Model prop, const GAME::FCO & type);
 
   /// Latest member of the collocation group.
   PICML::MI::Event_Handler_Config * config_;

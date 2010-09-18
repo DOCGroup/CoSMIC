@@ -38,7 +38,7 @@ public:
 
   virtual int handle_object_relation (GAME::Object obj);
 
-  void create_DataValue (GAME::Model & container, const GAME::FCO & member);
+  void create_DataValue (GAME::Model container, const GAME::FCO & member);
 };
 
 }

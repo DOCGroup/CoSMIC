@@ -44,19 +44,10 @@ public:
   /// Destructor.
   virtual ~PICMLManager_Impl (void);
 
-  virtual int initialize (GAME::Project & project);
+  virtual int initialize (GAME::Project project);
 
 private:
-
-  typedef
-    int (PICMLManager_Impl::*_member_function)
-    (unsigned long, GAME::Object &);
-
-
-  ACE_Hash_Map_Manager <std::string,
-                        _member_function,
-                        ACE_Null_Mutex> handlers_;
-
+  /// The event handler's configuration.
   PICML::MI::Event_Handler_Config * config_;
 };
 

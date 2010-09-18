@@ -58,11 +58,13 @@ public:
   }
 };
 
+static const unsigned long mask = OBJEVENT_CREATED;
+
 //
 // ToConnector_Event_Handler
 //
 ToConnector_Event_Handler::ToConnector_Event_Handler (void)
-: Event_Handler_Impl (OBJEVENT_CREATED)
+: Event_Handler_Impl (mask)
 {
 
 }

@@ -72,7 +72,6 @@ public:
   virtual void Visit_InEventPort (const PICML::InEventPort & in);
   virtual void Visit_OutEventPort (const PICML::OutEventPort & out);
   virtual void Visit_TemplateParameterValue (const PICML::TemplateParameterValue &);
-  virtual void Visit_TemplatePackageInstanceDecl (const PICML::TemplatePackageInstanceDecl &);
 
   bool has_component (void) const;
   bool has_typesupport (void) const;

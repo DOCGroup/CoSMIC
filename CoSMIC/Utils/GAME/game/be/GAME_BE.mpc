@@ -25,6 +25,7 @@ project (GAME_BE) : game_utils, cosmic_lib {
     Event_Handler_Impl.cpp
     Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp
+    Readonly_Event_Handler.cpp
   }
 
   Inline_Files {

@@ -75,36 +75,6 @@ std::string scope (const PICML::Package & p,
   return _scope (p, separator, leading);
 }
 
-//
-// scope
-//
-std::string scope (const PICML::TemplatePackageRefContainerFCO & fco,
-                   const PICML::MgaObject & object,
-                   const std::string & separator,
-                   bool leading)
-{
-  PICML::TemplatePackageInstanceDecl conn = fco.srcTemplatePackageInstanceDecl ();
-
-  // If there is not template instance association, then just
-  // return the full scope of the object.
-  if (conn == Udm::null)
-    return _scope (object, separator, leading);
-
-  PICML::TemplatePackageInstanceRef ref = conn.srcTemplatePackageInstanceDecl_end ();
-  PICML::TemplatePackageInstance inst = ref.ref ();
-
-  // First, get the scope of the template instance.
-  std::string prefix = _scope (inst, separator, leading);
-  prefix += std::string (inst.name ());
-
-  PICML::PackageType pt = inst.PackageType_child ();
-  PICML::Package package = pt.ref ();
-
-  // Now, get the scope of the object up to the template package.
-  prefix += _scope (object, separator, true, package);
-  return prefix;
-}
-
 
 //
 // fq_type
@@ -143,20 +113,6 @@ std::string fq_type (const PICML::Package & p,
   fq_name << scope (p, separator, leading) << p.name ();
 
   return fq_name.str ();
-}
-
-//
-// fq_type
-//
-std::string fq_type (const PICML::TemplatePackageRefContainerFCO & fco,
-                     const PICML::MgaObject & object,
-                     const std::string & separator,
-                     bool leading)
-{
-  std::string fq_name (scope (fco, object, separator, leading));
-  fq_name += object.name ();
-
-  return fq_name;
 }
 
 //

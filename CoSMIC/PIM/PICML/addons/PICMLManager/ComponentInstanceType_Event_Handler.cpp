@@ -16,11 +16,13 @@ namespace PICML
 namespace MI
 {
 
+static const unsigned long mask = OBJEVENT_RELATION;
+
 //
 // ComponentInstanceType_Event_Handler
 //
 ComponentInstanceType_Event_Handler::ComponentInstanceType_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_RELATION)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }

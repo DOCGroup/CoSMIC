@@ -15,11 +15,14 @@ namespace PICML
 namespace MI
 {
 
+static const unsigned long mask = OBJEVENT_CREATED |
+                                  OBJEVENT_LOSTCHILD;
+
 //
 // ComponentInstance_Event_Handler
 //
 ComponentInstance_Event_Handler::ComponentInstance_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_CREATED | OBJEVENT_LOSTCHILD)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }

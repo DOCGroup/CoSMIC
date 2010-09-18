@@ -18,11 +18,13 @@ namespace PICML
 namespace MI
 {
 
+static const unsigned long mask = OBJEVENT_RELATION;
+
 //
 // ComplexTypeReference_Event_Handler
 //
 ComplexTypeReference_Event_Handler::ComplexTypeReference_Event_Handler (void)
-: GAME::Event_Handler_Impl (OBJEVENT_RELATION)
+: GAME::Event_Handler_Impl (mask)
 {
 
 }
@@ -85,7 +87,7 @@ handle_object_relation (GAME::Object obj)
 // create_DataValue
 //
 void ComplexTypeReference_Event_Handler::
-create_DataValue (GAME::Model & container, const GAME::FCO & fco)
+create_DataValue (GAME::Model container, const GAME::FCO & fco)
 {
   GAME::Reference member = GAME::Reference::_narrow (fco);
   GAME::FCO type = member.refers_to ();

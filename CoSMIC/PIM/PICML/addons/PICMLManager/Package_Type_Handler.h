@@ -69,6 +69,8 @@ private:
 
   void substitute_template_parameter_reference (GAME::Reference ref,
                                                 const template_map_t & mapping);
+
+  void finalize_template_package_inst (GAME::Model tpi);
 };
 
 }

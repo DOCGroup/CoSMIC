@@ -14,7 +14,7 @@
 #define _GAME_BE_EVENT_HANDLER_INTERFACE_H_
 
 #include "BE_Export.h"
-#include "game/Object.h"
+#include "game/Project.h"
 
 namespace GAME
 {
@@ -46,7 +46,11 @@ public:
    *
    * @param[in]       project         Project event handler is registered
    */
-  virtual int initialize (GAME::Project & project) = 0;
+  virtual int initialize (GAME::Project project) = 0;
+
+  /// Close the event handler. This method is invoked when
+  /// the event handler is unregistered.
+  virtual void close (void) = 0;
 
   /**
    * General callback for all global events. This method is called
@@ -93,7 +97,7 @@ public:
    * @retval          0               Success
    * @retval          -1              Failure
    */
-  virtual int handle_object_event (Object & obj, unsigned long mask) = 0;
+  virtual int handle_object_event (Object obj, unsigned long mask) = 0;
 
   virtual int handle_object_created (GAME::Object obj) = 0;
   virtual int handle_object_destroyed (Object obj) = 0;
