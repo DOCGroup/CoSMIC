@@ -1,3 +1,29 @@
+Sat Sep 18 17:05:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Added support for generating default implementation when the
+          model is being imported.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.inl:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+
+          Removed the default implementation generator since it is
+          now handled by the PICML model intelligence.
+
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.inl:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.cpp:
+
+          Removed these files.
+
 Sat Sep 18 02:30:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

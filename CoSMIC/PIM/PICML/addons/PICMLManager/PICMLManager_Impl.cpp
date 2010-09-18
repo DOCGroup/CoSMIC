@@ -47,7 +47,7 @@ static const unsigned long EVENTMASK =
 // PICMLManager_Impl
 //
 PICMLManager_Impl::PICMLManager_Impl (void)
-: GAME::Event_Handler_Impl (EVENTMASK),
+: GAME::Event_Handler_Impl (0xFFFFFFFF, false),
   config_ (ACE_Singleton <PICML::MI::Event_Handler_Config,
                           ACE_Null_Mutex>::instance ())
 {

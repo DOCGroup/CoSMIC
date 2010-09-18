@@ -14,6 +14,7 @@
 #define _PICML_MI_DEFAULT_IMPLEMENTATION_EVENT_HANDLER_H_
 
 #include <map>
+#include <set>
 #include "game/be/Event_Handler_Impl.h"
 #include "Default_Implementation_Generator.h"
 
@@ -39,7 +40,11 @@ public:
   /// Destructor.
   virtual ~Default_Implementation_Event_Handler (void);
 
+  virtual int handle_xml_import_begin (void);
+
   virtual int handle_object_created (GAME::Object obj);
+
+  int generate_default_implementation (const GAME::Object & obj);
 
   bool insert (std::string meta, const meta_info_t & info);
 
@@ -50,6 +55,9 @@ private:
               map_t;
 
   map_t meta_info_;
+
+  /// Imported objects that may need implementations.
+  bool generate_on_import_;
 };
 
 }

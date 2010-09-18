@@ -92,9 +92,6 @@ class PICML_File_Creator;
 // Forward decl.
 class PICML_File_Creator_Item;
 
-// Forward decl.
-class Implementation_Generator;
-
 /**
  * @class Project_Generator
  *
@@ -105,7 +102,6 @@ class Project_Generator : public ast_visitor
 
 public:
   Project_Generator (const PICML_File_Creator & fc,
-                     Implementation_Generator & impl_gen,
                      GAME::XME::Project & proj);
 
   virtual ~Project_Generator (void);
@@ -207,8 +203,6 @@ private:
 
   /// Collection of files captured in this project.
   const PICML_File_Creator & files_;
-
-  Implementation_Generator & impl_gen_;
 
   /// Reference to the target project.
   GAME::XME::Project & proj_;

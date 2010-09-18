@@ -2,7 +2,6 @@
 
 #include "Project_Generator.h"
 #include "File_Creator.h"
-#include "Implementation_Generator.h"
 
 #include "ast_argument.h"
 #include "ast_array.h"
@@ -888,9 +887,6 @@ int Project_Generator::visit_component (AST_Component *node)
       }
     }
   }
-
-  if (0 == retval)
-    this->impl_gen_.generate (component);
 
   return retval;
 }

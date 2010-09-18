@@ -68,7 +68,6 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "Project_Generator.h"
 #include "File_Creator.h"
 #include "Preprocessor_Importer.h"
-#include "Implementation_Generator.h"
 
 #include "global_extern.h"
 #include "be_extern.h"
@@ -127,10 +126,8 @@ void BE_produce (void)
     AST_Root *ast_root = idl_global->root ();
 
     GAME::XME::Folder root_folder = project.root_folder ();
-    Implementation_Generator impl_gen (root_folder);
-
     PICML_File_Creator & fc = be_global->files ();
-    Project_Generator proj_gen (fc, impl_gen, project);
+    Project_Generator proj_gen (fc, project);
 
     ast_root->ast_accept (&proj_gen);
     proj_gen.finalize ();

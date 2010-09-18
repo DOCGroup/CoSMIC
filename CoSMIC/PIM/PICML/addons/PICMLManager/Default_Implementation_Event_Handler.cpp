@@ -8,6 +8,9 @@
 
 #include "game/Model.h"
 
+#include "boost/bind.hpp"
+#include <algorithm>
+
 namespace PICML
 {
 namespace MI
@@ -38,9 +41,37 @@ Default_Implementation_Event_Handler::~Default_Implementation_Event_Handler (voi
 int Default_Implementation_Event_Handler::
 handle_object_created (GAME::Object obj)
 {
-  if (this->is_importing_)
+  if (this->is_importing_ && !this->generate_on_import_)
     return 0;
 
+  if (obj.is_lib_object ())
+    return 0;
+
+  return this->generate_default_implementation (obj);
+}
+
+//
+// handle_notification_ready
+//
+int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
+{
+  GAME::Event_Handler_Impl::handle_xml_import_begin ();
+
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  const char * question = "Generate default implementation for imported models?";
+  int answer = ::AfxMessageBox (question, MB_YESNO);
+  this->generate_on_import_ = answer == IDYES;
+
+  return 0;
+}
+
+//
+// generate_default_implementation
+//
+int Default_Implementation_Event_Handler::
+generate_default_implementation (const GAME::Object & obj)
+{
   ::GAME::Model model = ::GAME::Model::_narrow (obj);
   if (is_in_template_module (model))
     return 0;
@@ -52,8 +83,9 @@ handle_object_created (GAME::Object obj)
     return 0;
 
   Implementation_Configuration config;
+  const std::string name (obj.name ());
 
-  if (obj.name () == obj.meta ().name ())
+  if (name == obj.meta ().name ())
   {
     AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
@@ -69,9 +101,7 @@ handle_object_created (GAME::Object obj)
 
   // Generate the default implementation.
   Default_Implementation_Generator dig (obj.project (), iter->second);
-  dig.generate (config, model);
-
-  return 0;
+  return dig.generate (config, model) ? 0 : -1;
 }
 
 //

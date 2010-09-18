@@ -20,9 +20,7 @@ project(PICML_IDL_TO_PICML_BE) : acelib, core, crosscompile, game_xme, tao_idl_f
     be_util.cpp
     Type_Trait.cpp
 
-    Artifact_Generator.cpp
     File_Creator.cpp
-    Implementation_Generator.cpp
     Preprocessor_Importer.cpp
     Project_Generator.cpp
     Scope.cpp
