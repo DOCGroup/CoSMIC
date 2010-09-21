@@ -18,6 +18,7 @@ namespace XME
 const GAME::Xml::String Object::ATTR_ID ("id");
 const GAME::Xml::String Object::ATTR_KIND ("kind");
 const GAME::Xml::String Object::ATTR_RELID ("relid");
+const GAME::Xml::String Object::ATTR_PERM ("perm");
 const GAME::Xml::String Object::ELEMENT_NAME ("name");
 
 //
@@ -141,6 +142,50 @@ void Object::attach (xercesc::DOMElement *e, bool validate)
   // Save the identified type information.
   this->type_ = info->type;
   this->obj_ = e;
+}
+
+//
+// readonly
+//
+void Object::readonly (bool flag, bool recurse)
+{
+  using GAME::Xml::String;
+
+  if (flag)
+  {
+    // Set the readonly attribute flag.
+    static const String TRUE_VALUE ("1");
+    this->obj_->setAttribute (ATTR_PERM, TRUE_VALUE);
+  }
+  else
+    this->obj_->removeAttribute (ATTR_PERM);
+
+
+  if (recurse &&
+     (this->type_ == Object_Type::OT_FOLDER || this->type_ == Object_Type::OT_MODEL))
+  {
+    // Get all the children of this object.
+    std::vector <FCO> objects;
+    Utils::get_children (this->obj_, objects);
+
+    // Set the readonly flag for all the children.
+    std::vector <FCO>::iterator
+      iter = objects.begin (), iter_end = objects.end ();
+
+    for (; iter != iter_end; ++ iter)
+      iter->readonly (flag, recurse);
+  }
+}
+
+//
+// readonly
+//
+bool Object::readonly (void) const
+{
+  using xercesc::DOMAttr;
+  DOMAttr * attr = this->obj_->getAttributeNode (ATTR_PERM);
+
+  return attr != 0;
 }
 
 }

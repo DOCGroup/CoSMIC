@@ -135,6 +135,15 @@ public:
   xercesc::DOMElement * ptr (void) const;
 
   /**
+   * Set the object as readonly.
+   *
+   */
+  void readonly (bool flag, bool recurse = true);
+
+  /// Get the readonly state of the object.
+  bool readonly (void) const;
+
+  /**
    * Get the object's type. The returned value will be one of the
    * enumeration values in Object_Type::BITMASK.
    *
@@ -172,6 +181,7 @@ private:
   static const GAME::Xml::String ATTR_ID;
   static const GAME::Xml::String ATTR_KIND;
   static const GAME::Xml::String ATTR_RELID;
+  static const GAME::Xml::String ATTR_PERM;
 };
 
 }

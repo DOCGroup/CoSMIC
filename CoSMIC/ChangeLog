@@ -1,3 +1,11 @@
+Tue Sep 21 19:53:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.cpp:
+
+          Added support for setting the readonly attribute for an
+          object.
+
 Sat Sep 18 17:05:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
