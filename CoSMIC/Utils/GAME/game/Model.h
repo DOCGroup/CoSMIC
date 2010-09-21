@@ -98,19 +98,25 @@ public:
 
   virtual void accept (GAME::Visitor & visitor);
 
-  size_t children (std::vector <GAME::FCO> & children) const;
-  size_t children (const std::string & type, std::vector <GAME::FCO> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <GAME::FCO> & children) const;
+  size_t children (std::vector <FCO> & children) const;
+  size_t children (const std::string & type, std::vector <FCO> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <FCO> & children) const;
 
-  size_t children (const std::string & type, std::vector <GAME::Atom> & children) const;
+  size_t children (std::vector <Atom> & children) const;
+  size_t children (const std::string & type, std::vector <Atom> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <Atom> & children) const;
 
-  size_t children (std::vector <GAME::Model> & children) const;
-  size_t children (const std::string & type, std::vector <GAME::Model> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <GAME::Model> & children) const;
+  size_t children (std::vector <Model> & children) const;
+  size_t children (const std::string & type, std::vector <Model> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <Model> & children) const;
 
-  size_t children (std::vector <GAME::Reference> & children) const;
-  size_t children (const std::string & type, std::vector <GAME::Reference> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <GAME::Reference> & children) const;
+  size_t children (std::vector <Reference> & children) const;
+  size_t children (const std::string & type, std::vector <Reference> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <Reference> & children) const;
+
+  size_t children (std::vector <Connection> & children) const;
+  size_t children (const std::string & type, std::vector <Connection> & children) const;
+  size_t children (const Meta::Aspect & aspect, std::vector <Connection> & children) const;
 
   size_t children (const std::string & type, std::vector <GAME::Set> & children) const;
 

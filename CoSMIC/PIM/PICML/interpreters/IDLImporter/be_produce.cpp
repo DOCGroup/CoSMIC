@@ -122,11 +122,11 @@ void BE_produce (void)
   {
     // Visitor all nodes in the AST. This will populate the XME
     // document with the correct hierarchy for parsed IDL files.
-    GAME::XME::Project & project = be_global->project ();
-    AST_Root *ast_root = idl_global->root ();
+    GAME::XME::Project project (be_global->project ());
+    AST_Root * ast_root = idl_global->root ();
 
-    GAME::XME::Folder root_folder = project.root_folder ();
     PICML_File_Creator & fc = be_global->files ();
+    GAME::XME::Folder root_folder = project.root_folder ();
     Project_Generator proj_gen (fc, project);
 
     ast_root->ast_accept (&proj_gen);

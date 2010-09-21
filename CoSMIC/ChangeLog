@@ -1,3 +1,36 @@
+Tue Sep 21 23:48:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+
+          Bug fix where this event handler would crash when they
+          attribute was not properly defined.
+
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.cpp:
+
+          Bug fix where the implementation generator would generate
+          duplicate elements on multiple imports of the same model.
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updates to latest version of CoSMIC.
+
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+
+          Remove the & quantifier from the constructor since it was
+          incorrect usage and caused idl_to_picml crash.
+
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Connection.inl:
+        * Utils/GAME/game/Connection.cpp:
+
+          Implemented src () and dst () methods for easy access the
+          respective endpoint objects.
+
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+
+          Added support for retrieving connections from the model.
+
 Tue Sep 21 19:53:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/Object.h:

@@ -11,6 +11,7 @@
 #include "Folder.h"
 #include "Atom.h"
 #include "Reference.h"
+#include "Connection.h"
 #include "Set.h"
 #include "MetaFolder.h"
 #include "MetaModel.h"
@@ -150,6 +151,18 @@ children (const Meta::Aspect & apsect, std::vector <FCO> & children) const
 // children
 //
 size_t Model::
+children (std::vector <Atom> & children) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+
+  return get_children (fcos, children);
+}
+
+//
+// children
+//
+size_t Model::
 children (const std::string & type, std::vector <Atom> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
@@ -157,6 +170,29 @@ children (const std::string & type, std::vector <Atom> & children) const
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
   return get_children (fcos, children);
+}
+
+//
+// children
+//
+size_t Model::
+children (const Meta::Aspect & apsect, std::vector <Atom> & children) const
+{
+  // Let's get the list of children.
+  std::vector <Atom> temp;
+  this->children (temp);
+
+  std::vector <Atom>::const_iterator
+    iter = temp.begin (), iter_end = temp.end ();
+
+  // Determine what FCO is part of the specified aspect.
+  for (; iter != iter_end; ++ iter)
+  {
+    if (!iter->part (apsect).is_nil ())
+      children.push_back (*iter);
+  }
+
+  return children.size ();
 }
 
 //
@@ -211,7 +247,7 @@ children (const Meta::Aspect & apsect, std::vector <Model> & children) const
 // children
 //
 size_t Model::
-children (std::vector <Reference> & children) const
+children (std::vector <Connection> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
@@ -223,7 +259,7 @@ children (std::vector <Reference> & children) const
 // children
 //
 size_t Model::
-children (const std::string & type, std::vector <Reference> & children) const
+children (const std::string & type, std::vector <Connection> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
@@ -236,7 +272,54 @@ children (const std::string & type, std::vector <Reference> & children) const
 // children
 //
 size_t Model::
+children (const Meta::Aspect & apsect, std::vector <Connection> & children) const
+{
+  // Let's get the list of children.
+  std::vector <Connection> temp;
+  this->children (temp);
+
+  std::vector <Connection>::const_iterator
+    iter = temp.begin (), iter_end = temp.end ();
+
+  // Determine what FCO is part of the specified aspect.
+  for (; iter != iter_end; ++ iter)
+  {
+    if (!iter->part (apsect).is_nil ())
+      children.push_back (*iter);
+  }
+
+  return children.size ();
+}
+
+//
+// children
+//
+size_t Model::
 children (const std::string & type, std::vector <Set> & children) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  CComBSTR bstr (type.length (), type.c_str ());
+  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
+
+  return get_children (fcos, children);
+}
+
+//
+// children
+//
+size_t Model::children (std::vector <Reference> & children) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+
+  return get_children (fcos, children);
+}
+
+//
+// children
+//
+size_t Model::
+children (const std::string & type, std::vector <Reference> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
@@ -290,4 +373,5 @@ void Model::attach (IMgaModel * model)
 {
   VERIFY_HRESULT (model->QueryInterface (&this->object_));
 }
+
 }

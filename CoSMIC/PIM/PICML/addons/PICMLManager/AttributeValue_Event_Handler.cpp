@@ -42,16 +42,18 @@ handle_object_created (GAME::Object obj)
   GAME::FCO src = attr_value[std::string ("src")].target ();
   GAME::Reference attr_inst = GAME::Reference::_narrow (src);
 
-  // Get the target attribute.
-  GAME::Model attr = GAME::Model::_narrow (attr_inst.refers_to ());
-
-  if (attr.is_nil ())
-    return 0;
-
   // Set the name of the Property. We want to ensure the name to
   // the prop matches the name of the attribute.
-  if (dst.name () != attr.name ())
-    dst.name (attr.name ());
+  if (dst.name () != attr_inst.name ())
+    dst.name (attr_inst.name ());
+
+  // Get the target attribute so we know what we are working with.
+  GAME::FCO fco = attr_inst.refers_to ();
+
+  if (fco.is_nil ())
+    return 0;
+
+  GAME::Model attr = GAME::Model::_narrow (fco);
 
   // Let's get the data type of the attribute. Since there is only
   // 1 attribute member, we can just get the front element in the
