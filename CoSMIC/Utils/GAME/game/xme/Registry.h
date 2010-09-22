@@ -14,13 +14,14 @@
 #define _GAME_XME_REGISTRY_H_
 
 #include "Registry_Node.h"
+#include "Object.h"
 
 namespace GAME
 {
 namespace XME
 {
 // Forward decl.
-class FCO;
+class Object;
 
 /**
  * @class Registry
@@ -35,7 +36,7 @@ public:
    *
    * @param[in]       parent        Parent object of the registry
    */
-  Registry (FCO & parent);
+  Registry (Object parent);
 
   /**
    * Copy constructor
@@ -54,15 +55,15 @@ public:
    */
   const Registry & operator = (const Registry & node);
 
-  FCO & owner (void);
+  Object & owner (void);
 
-  const FCO & owner (void) const;
+  const Object & owner (void) const;
 
   Registry_Node child (const GAME::Xml::String & name, bool create);
 
 private:
   /// The parent of the registry.
-  FCO & parent_;
+  Object parent_;
 
   static const GAME::Xml::String TAGNAME;
   static const GAME::Xml::String ATTR_TAGNAME;

@@ -7,6 +7,7 @@
 #endif
 
 #include "Folder.h"
+#include "Registry.h"
 #include "GME_ID_Generator.h"
 #include "ID_Generator_Repo.h"
 #include "Library_Importer.h"
@@ -337,10 +338,10 @@ Folder Project::root_folder (void) const
   return Folder ();
 }
 
-struct find_by_name_t
+struct find_by_libid_t
 {
-  find_by_name_t (const GAME::Xml::String & name)
-    : name_ (name)
+  find_by_libid_t (const GAME::Xml::String & libid)
+    : libid_ (libid)
   {
 
   }
@@ -348,12 +349,26 @@ struct find_by_name_t
   template <typename T>
   bool operator () (T t) const
   {
-    const GAME::Xml::String name (t.name (), false);
-    return name == this->name_;
+    using GAME::Xml::String;
+
+    static const String LibraryId ("LibraryId");
+
+    try
+    {
+      Registry registry (t);
+      const Registry_Node libid_node = registry.child (LibraryId, false);
+      const String libid (libid_node.value (), false);
+
+      return libid == this->libid_;
+    }
+    catch (const Not_Found &)
+    {
+      return false;
+    }
   }
 
 private:
-  const GAME::Xml::String & name_;
+  const GAME::Xml::String & libid_;
 };
 
 //
@@ -382,28 +397,44 @@ Library Project::attach_library (const GAME::Xml::String & libpath)
   Project lib_project = Project::_open (xmefile, this->config_);
   Folder lib_root_folder = lib_project.root_folder ();
 
-  // Make sure this library does not already exist. We do not want
-  // to attached it more than one to the project since it can cause
-  // problems in the long run.
-  std::vector <Library> libs;
-  if (this->attached_libraries (libs))
+  try
   {
-    const GAME::Xml::String libname (lib_root_folder.name ());
+    using GAME::Xml::String;
+    static const String LibraryId ("LibraryId");
 
-    std::vector <Library>::iterator
-      result = std::find_if (libs.begin (),
-                             libs.end (),
-                             find_by_name_t (libname));
+    // Get the library id for the attaching model.
+    Registry registry (lib_root_folder);
+    const Registry_Node libid_node = registry.child (LibraryId, false);
+    const String libid (libid_node.value (), false);
 
-    if (result != libs.end ())
+    // Make sure this library does not already exist. We do not want
+    // to attached it more than one to the project since it can cause
+    // problems in the long run.
+    std::vector <Library> libs;
+
+    if (this->attached_libraries (libs))
     {
-      lib_project.close ();
-      return *result;
+      std::vector <Library>::iterator
+        result = std::find_if (libs.begin (),
+                               libs.end (),
+                               find_by_libid_t (libid));
+
+      if (result != libs.end ())
+      {
+        lib_project.close ();
+        return *result;
+      }
     }
   }
+  catch (const Not_Found &)
+  {
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("*** warning: %s does not have a library id; ")
+                ACE_TEXT ("automatically attaching...\n"),
+                filename.c_str ()));
+  }
 
-  // Since we did not find the library, we can begin the import
-  // process. ;-)
+  // Since we did not find the library, we can begin process. ;-)
   Library_Importer importer (GAME_XME_ID_GENERATOR_REPO->get (this->doc_));
   importer.import (lib_root_folder);
 

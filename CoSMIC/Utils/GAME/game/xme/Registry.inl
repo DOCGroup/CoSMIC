@@ -21,7 +21,7 @@ Registry::Registry (const Registry & r)
 // Registry
 //
 GAME_INLINE
-Registry::Registry (FCO & parent)
+Registry::Registry (Object parent)
 : parent_ (parent)
 {
 
@@ -50,7 +50,7 @@ const Registry & Registry::operator = (const Registry & r)
 // owner
 //
 GAME_INLINE
-FCO & Registry::owner (void)
+Object & Registry::owner (void)
 {
   return this->parent_;
 }
@@ -59,7 +59,7 @@ FCO & Registry::owner (void)
 // owner
 //
 GAME_INLINE
-const FCO & Registry::owner (void) const
+const Object & Registry::owner (void) const
 {
   return this->parent_;
 }

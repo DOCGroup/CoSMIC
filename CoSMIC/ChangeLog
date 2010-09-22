@@ -1,3 +1,14 @@
+Wed Sep 22 00:54:30 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.inl:
+
+          Bug fix where idl_to_picml would attach the same library more
+          than once if already present in the model. This was resolved by
+          adding a LibraryId registry node/value to the root folder of the
+          attaching library. This is used to uniquely identify the library.
+
 Tue Sep 21 23:48:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
