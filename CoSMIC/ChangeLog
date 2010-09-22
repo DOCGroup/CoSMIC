@@ -1,3 +1,21 @@
+Wed Sep 22 16:47:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Removed the ExternalDelegate event handler since the name
+          of the external endpoint must match the name on the external
+          object, and not the name of the source port.
+
+        * PIM/PICML/tests/deployment/ExternalEndpoint.xme:
+
+          Updated to latest version of CoSMIC.
+
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+
+          Removed these files.
+
 Wed Sep 22 14:02:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:

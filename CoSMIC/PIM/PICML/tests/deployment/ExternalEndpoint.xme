@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{F4FC4CF2-05DE-4FB0-A8D6-83935248B1A0}" cdate="Sun Aug 15 22:49:12 2010" mdate="Sun Aug 15 22:49:12 2010" version="" metaguid="{0CB544EE-3EC1-46C2-8A47-6FD31F0563A1}" metaversion="" metaname="PICML">
+<project guid="{F1F890E9-D4AD-47CF-A707-1E06EF26E166}" cdate="Wed Sep 22 12:46:28 2010" mdate="Wed Sep 22 12:46:28 2010" version="" metaguid="{19B49F46-1842-48EF-B06F-79CA779EC2A4}" metaversion="" metaname="PICML">
 	<name>RegisterNaming</name>
 	<comment></comment>
 	<author></author>
@@ -12,12 +12,6 @@
 			<model id="id-0065-00000001" kind="File" guid="{17d1b2ff-3566-41fd-afa9-b86e565a5c34}" relid="0x1" childrelidcntr="0x2">
 				<name>Foo</name>
 				<attribute kind="Path" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="PostPreprocessorDirectives" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="PrePreprocessorDirectives" status="meta">
 					<value></value>
 				</attribute>
 				<attribute kind="PrefixTag" status="meta">
@@ -34,12 +28,6 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="PostPreprocessorDirectives" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="PrePreprocessorDirectives" status="meta">
-						<value></value>
-					</attribute>
 					<attribute kind="SpecifyIdTag" status="meta">
 						<value></value>
 					</attribute>
@@ -52,7 +40,7 @@
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
-					<reference id="id-0067-00000008" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{099574c9-be07-4e07-8563-2d874aa2ac60}" relid="0x1" referred="id-0065-0000000c">
+					<reference id="id-0067-00000008" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{099574c9-be07-4e07-8563-2d874aa2ac60}" relid="0x1" referred="id-0065-00000003">
 						<name>foo_obj</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -92,7 +80,7 @@
 						</attribute>
 					</reference>
 				</model>
-				<model id="id-0065-0000000c" kind="Object" role="Object" guid="{00836740-0eea-487e-b1de-05cd48307eae}" relid="0x2" childrelidcntr="0x0">
+				<model id="id-0065-00000003" kind="Object" role="Object" guid="{00836740-0eea-487e-b1de-05cd48307eae}" relid="0x2" childrelidcntr="0x0">
 					<name>DummyObject</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -105,12 +93,6 @@
 					</regnode>
 					<attribute kind="InterfaceSemantics" status="meta">
 						<value>standard</value>
-					</attribute>
-					<attribute kind="PostPreprocessorDirectives" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="PrePreprocessorDirectives" status="meta">
-						<value></value>
 					</attribute>
 					<attribute kind="PrefixTag" status="meta">
 						<value></value>
@@ -135,7 +117,7 @@
 		</folder>
 		<folder id="id-006a-00000004" relid="0x3" childrelidcntr="0x1" kind="ImplementationArtifacts" guid="{5d02903f-3a12-4953-be34-08e97e89dafe}">
 			<name>ImplementationArtifacts</name>
-			<model id="id-0065-00000003" kind="ArtifactContainer" guid="{78d473d2-ce53-4b2b-ab49-fcb484dc0716}" relid="0x1" childrelidcntr="0x2">
+			<model id="id-0065-00000004" kind="ArtifactContainer" guid="{78d473d2-ce53-4b2b-ab49-fcb484dc0716}" relid="0x1" childrelidcntr="0x2">
 				<name>FooComponentArtifacts</name>
 				<atom id="id-0066-00000002" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{d07e17ee-7e0d-4b09-ae05-b0a2b8b206d1}" relid="0x1">
 					<name>FooComponent_svnt</name>
@@ -207,7 +189,7 @@
 		</folder>
 		<folder id="id-006a-00000005" relid="0x4" childrelidcntr="0x2" kind="ComponentImplementations" guid="{7f2d9ea5-9c3b-4013-9da9-4aef0997d2cf}">
 			<name>ComponentImplementations</name>
-			<model id="id-0065-00000004" kind="ComponentImplementationContainer" guid="{963080d6-92a1-416c-b802-4977ba511c05}" relid="0x1" childrelidcntr="0x7">
+			<model id="id-0065-00000005" kind="ComponentImplementationContainer" guid="{963080d6-92a1-416c-b802-4977ba511c05}" relid="0x1" childrelidcntr="0x7">
 				<name>FooComponentImpl</name>
 				<atom id="id-0066-00000004" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{6f8d019f-480c-4fb7-9fc5-15b7b12bd772}" relid="0x1">
 					<name>FooComponentImpl</name>
@@ -288,9 +270,9 @@
 					<connpoint role="dst" target="id-0067-00000003"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000007" kind="ComponentImplementationContainer" guid="{76fbd7a8-1151-4646-b3b4-d50d750f7c35}" relid="0x2" childrelidcntr="0x1">
+			<model id="id-0065-00000006" kind="ComponentImplementationContainer" guid="{76fbd7a8-1151-4646-b3b4-d50d750f7c35}" relid="0x2" childrelidcntr="0x1">
 				<name>RegisterNamingImpl</name>
-				<model id="id-0065-00000008" kind="ComponentAssembly" role="ComponentAssembly" guid="{e93b890c-b06f-4317-8d13-b279e47a1a3a}" relid="0x1" childrelidcntr="0x6">
+				<model id="id-0065-00000007" kind="ComponentAssembly" role="ComponentAssembly" guid="{e93b890c-b06f-4317-8d13-b279e47a1a3a}" relid="0x1" childrelidcntr="0x7">
 					<name>RegisterNamingImpl</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -307,7 +289,7 @@
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000009" kind="ComponentInstance" role="ComponentInstance" guid="{6d250620-d5ec-474f-87ff-1356fceec285}" relid="0x1" childrelidcntr="0x3">
+					<model id="id-0065-00000008" kind="ComponentInstance" role="ComponentInstance" guid="{6d250620-d5ec-474f-87ff-1356fceec285}" relid="0x1" childrelidcntr="0x3">
 						<name>FooInstance</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -321,7 +303,7 @@
 						<attribute kind="UUID">
 							<value>33C1EA96-A8E1-11DF-8000-000C2958D27B</value>
 						</attribute>
-						<reference id="id-0067-00000009" kind="ComponentInstanceType" role="ComponentInstanceType" guid="{0a24bffb-4271-48ab-87cd-63ad64103ec8}" relid="0x2" referred="id-0066-00000004">
+						<reference id="id-0067-00000004" kind="ComponentInstanceType" role="ComponentInstanceType" guid="{0a24bffb-4271-48ab-87cd-63ad64103ec8}" relid="0x2" referred="id-0066-00000004">
 							<name>FooComponentImpl</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -333,7 +315,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000000a" kind="ProvidedRequestPortInstance" role="ProvidedRequestPortInstance" guid="{23977af0-cfff-4b72-bf11-5ee4be56146f}" relid="0x3" referred="id-0067-00000008">
+						<reference id="id-0067-00000009" kind="ProvidedRequestPortInstance" role="ProvidedRequestPortInstance" guid="{23977af0-cfff-4b72-bf11-5ee4be56146f}" relid="0x3" referred="id-0067-00000008">
 							<name>foo_obj</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -346,35 +328,8 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-0000000a" kind="Property" role="Property" guid="{608e7604-2d7e-4503-a2e0-6b932f06030d}" relid="0x2" childrelidcntr="0x1">
-						<name>RegisterNaming</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>524,265</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<reference id="id-0067-00000005" kind="DataValue" role="DataValue" guid="{fa7b0a02-f83e-451c-9282-88df880eb22b}" relid="0x1" referred="id-0066-00000001">
-							<name>RegisterNaming</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="DataValueAspect" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>407,204</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="Value">
-								<value>corbaname:rir:/NameService#Progressive_B</value>
-							</attribute>
-						</reference>
-					</model>
 					<atom id="id-0066-00000005" kind="ExternalPort" role="ExternalPort" guid="{dcac8ec1-eae7-44cb-b2bb-3884a7a4d55c}" relid="0x4">
-						<name>foo_obj</name>
+						<name>bar_obj</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
 							<regnode name="Packaging" status="undefined">
@@ -388,25 +343,31 @@
 							<value></value>
 						</attribute>
 					</atom>
+					<reference id="id-0067-00000005" kind="SimpleProperty" role="SimpleProperty" guid="{55499400-2f78-479c-9d8c-03f96718cb52}" relid="0x7" referred="id-0066-00000001">
+						<name>RegisterNaming</name>
+						<attribute kind="Value">
+							<value>corbaname:rir:/NameService#Progressive_B</value>
+						</attribute>
+					</reference>
 					<connection id="id-0068-00000004" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{17040e7b-490a-442d-9ac7-2dc7e9540186}" relid="0x3">
 						<name>AssemblyConfigProperty</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>En</value>
 						</regnode>
-						<connpoint role="src" target="id-0065-00000009"/>
-						<connpoint role="dst" target="id-0065-0000000a"/>
+						<connpoint role="src" target="id-0065-00000008"/>
+						<connpoint role="dst" target="id-0067-00000005"/>
 					</connection>
-					<connection id="id-0068-00000007" kind="ExternalDelegate" role="ExternalDelegate" guid="{c936b97f-56e4-42ce-956e-512e7beacbb1}" relid="0x6">
+					<connection id="id-0068-00000005" kind="ExternalDelegate" role="ExternalDelegate" guid="{c936b97f-56e4-42ce-956e-512e7beacbb1}" relid="0x6">
 						<name>ExternalDelegate</name>
 						<connpoint role="src" target="id-0066-00000005"/>
-						<connpoint role="dst" target="id-0067-0000000a"/>
+						<connpoint role="dst" target="id-0067-00000009"/>
 					</connection>
 				</model>
 			</model>
 		</folder>
 		<folder id="id-006a-00000006" relid="0x5" childrelidcntr="0x1" kind="Targets" guid="{830f49da-0797-4909-acf8-002542d03f3c}">
 			<name>Targets</name>
-			<model id="id-0065-00000005" kind="Domain" guid="{5b80df32-f786-4ae7-9c6b-0e15a3169ea7}" relid="0x1" childrelidcntr="0x1">
+			<model id="id-0065-00000009" kind="Domain" guid="{5b80df32-f786-4ae7-9c6b-0e15a3169ea7}" relid="0x1" childrelidcntr="0x1">
 				<name>Domain</name>
 				<attribute kind="UUID">
 					<value>1784EB62-A8E1-11DF-8000-000C2958D27B</value>
@@ -414,7 +375,7 @@
 				<attribute kind="label" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000006" kind="Node" role="Node" guid="{9596ddf2-9a8b-41b8-bbc3-2f955bbe7376}" relid="0x1" childrelidcntr="0x0">
+				<model id="id-0065-0000000a" kind="Node" role="Node" guid="{9596ddf2-9a8b-41b8-bbc3-2f955bbe7376}" relid="0x1" childrelidcntr="0x0">
 					<name>FooNode</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -447,7 +408,7 @@
 				<attribute kind="label" status="meta">
 					<value></value>
 				</attribute>
-				<reference id="id-0067-00000006" kind="NodeReference" role="NodeReference" guid="{b0acdfd4-991e-44ad-b189-fea60ce83a9a}" relid="0x1" referred="id-0065-00000006">
+				<reference id="id-0067-00000006" kind="NodeReference" role="NodeReference" guid="{b0acdfd4-991e-44ad-b189-fea60ce83a9a}" relid="0x1" referred="id-0065-0000000a">
 					<name>FooNode</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -459,7 +420,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000007" kind="ComponentInstanceRef" role="ComponentInstanceRef" guid="{bbf5fc11-20cf-4339-8860-149a65440f31}" relid="0x4" referred="id-0065-00000009">
+				<reference id="id-0067-00000007" kind="ComponentInstanceRef" role="ComponentInstanceRef" guid="{bbf5fc11-20cf-4339-8860-149a65440f31}" relid="0x4" referred="id-0065-00000008">
 					<name>FooInstance</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -471,7 +432,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000005" kind="InstanceMapping" role="InstanceMapping" guid="{efd274c3-5fb7-4adf-9cb7-3e7cc0386532}" relid="0x3">
+				<connection id="id-0068-00000006" kind="InstanceMapping" role="InstanceMapping" guid="{efd274c3-5fb7-4adf-9cb7-3e7cc0386532}" relid="0x3">
 					<name></name>
 					<connpoint role="dst" target="id-0067-00000006"/>
 					<connpoint role="src" target="id-0069-00000001"/>

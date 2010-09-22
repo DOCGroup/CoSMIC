@@ -21,7 +21,6 @@
 #include "ConnectorInstance_Event_Handler.h"
 #include "Default_Implementation_Event_Handler.h"
 #include "Event_Handler_Base.h"
-#include "ExternalDelegate_Event_Handler.h"
 #include "NodeReference_Event_Handler.h"
 #include "Package_Type_Handler.h"
 #include "PortInstance_Event_Handler.h"
@@ -215,11 +214,6 @@ int PICMLManager_Impl::initialize (GAME::Project project)
   // Handlers for ExtendedPortInstance
   this->event_handler_->register_handler ("ExtendedPortInstance",
     ACE_Singleton <PICML::MI::ExtendedPortInstance_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
-  // Handlers for ExternalDelegate
-  this->event_handler_->register_handler ("ExternalDelegate",
-    ACE_Singleton <PICML::MI::ExternalDelegate_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ImplementationArtifact

@@ -39,7 +39,6 @@ project (PICML_Model_Intelligence): game_dialogs, game_component, game_manip, \
       ComponentInstanceType_Event_Handler.cpp
       ConnectorInstance_Event_Handler.cpp
       Event_Handler_Base.cpp
-      ExternalDelegate_Event_Handler.cpp
       NodeReference_Event_Handler.cpp
       Package_Type_Handler.cpp
       PortInstance_Event_Handler.cpp
