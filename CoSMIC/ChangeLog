@@ -1,3 +1,39 @@
+Wed Sep 22 14:02:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Bug fix where the elements in a template package instance where
+          deleted and then re-added. This was causing multiple elements to
+          be regenerated when imported the .xme file.
+
+        * Utils/GAME/game/xme/Auto_Model_T.h:
+        * Utils/GAME/game/xme/Auto_Model_T.inl:
+
+          Overloaded the constructor with the ability to preset the
+          purge set for the auto model. This provide finer control
+          over what elements are monitored.
+
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.cpp:
+
+          Removed the & quantifier from the _create () methods.
+
+        * Utils/GAME/game/xme/functional.h:
+        * Utils/GAME/game/xme/functional.cpp:
+
+          Implemented is_in_aspect (), which is used to test if an object
+          is in the specified aspect.
+
 Wed Sep 22 00:54:30 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/Project.cpp:

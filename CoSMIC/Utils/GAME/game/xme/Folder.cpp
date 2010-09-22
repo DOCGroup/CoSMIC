@@ -21,7 +21,7 @@ const GAME::Xml::String Folder::NO_CHILDREN ("0x0");
 //
 // _create
 //
-Folder Folder::_create (Folder & parent, const GAME::Xml::String & kind)
+Folder Folder::_create (Folder parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();

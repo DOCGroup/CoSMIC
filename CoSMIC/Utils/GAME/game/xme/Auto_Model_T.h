@@ -36,6 +36,9 @@ public:
   /// Collection of the current children.
   typedef std::vector <FCO> collection_type;
 
+  typedef typename collection_type::iterator iterator;
+  typedef typename collection_type::const_iterator const_iterator;
+
   /// Default constructor.
   Auto_Model_T (void);
 
@@ -44,7 +47,21 @@ public:
    *
    * @param[in]     obj       The source object.
    */
-  Auto_Model_T (T & model);
+  Auto_Model_T (T model);
+
+  /**
+   * Initializing constructor. This defines the purge set for the
+   * auto model to be concerned with.
+   *
+   */
+  Auto_Model_T (T model, const collection_type & purge_set);
+
+  /**
+   * Initializing constructor. This defines the purge set for the
+   * auto model to be concerned with.
+   *
+   */
+  Auto_Model_T (T model, iterator begin, iterator end);
 
   /// Destructor.
   ~Auto_Model_T (void);

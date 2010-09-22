@@ -19,7 +19,7 @@ namespace constant
 //
 // get_position
 //
-bool get_position (FCO & fco,
+bool get_position (FCO fco,
                    const GAME::Xml::String & aspect,
                    size_t & x,
                    size_t & y)
@@ -45,7 +45,7 @@ bool get_position (FCO & fco,
 // set_position
 //
 void
-set_position (FCO & fco, const GAME::Xml::String & aspect, size_t x, size_t y)
+set_position (FCO fco, const GAME::Xml::String & aspect, size_t x, size_t y)
 {
   std::ostringstream ostr;
   ostr << x << "," << y;
@@ -57,6 +57,29 @@ set_position (FCO & fco, const GAME::Xml::String & aspect, size_t x, size_t y)
       child (constant::Position, true);
 
   node.value (ostr.str ());
+}
+
+//
+// is_in_aspect
+//
+bool
+is_in_aspect (FCO fco, const GAME::Xml::String & aspect)
+{
+  try
+  {
+    Registry_Node node =
+      fco.registry ().
+        child (constant::PartRegs, true).
+        child (aspect, false);
+
+    return true;
+  }
+  catch (const Not_Found &)
+  {
+
+  }
+
+  return false;
 }
 
 }

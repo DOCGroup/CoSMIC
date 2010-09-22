@@ -35,7 +35,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Model _create (Model & parent, const GAME::Xml::String & kind);
+  static Model _create (Model parent, const GAME::Xml::String & kind);
 
   /**
    * Create a new model
@@ -43,7 +43,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Model _create (Folder & parent, const GAME::Xml::String & kind);
+  static Model _create (Folder parent, const GAME::Xml::String & kind);
 
   /**
    * Narrow an object to an model.
@@ -132,7 +132,7 @@ protected:
 
 private:
   template <typename T>
-  static Model create_impl (T & parent, const GAME::Xml::String & kind);
+  static Model create_impl (T parent, const GAME::Xml::String & kind);
 
   /// Help method for initializing the counter.
   void initialize_counter (void);

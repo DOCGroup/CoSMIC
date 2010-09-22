@@ -34,16 +34,20 @@ namespace XME
 class FCO;
 
 GAME_XME_Export
-bool get_position (FCO & fco,
+bool get_position (FCO fco,
                    const GAME::Xml::String & aspect,
                    size_t & x,
                    size_t & y);
 
 GAME_XME_Export
-void set_position (FCO & fco,
-                   const GAME::Xml::String & name,
+void set_position (FCO fco,
+                   const GAME::Xml::String & aspect,
                    size_t x,
                    size_t y);
+
+GAME_XME_Export
+bool is_in_aspect (FCO fco,
+                   const GAME::Xml::String & aspect);
 
 }
 }

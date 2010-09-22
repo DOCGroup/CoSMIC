@@ -20,7 +20,7 @@ namespace XME
 const GAME::Xml::String Atom::TAGNAME ("atom");
 
 template <typename T>
-Atom Atom::create_impl (T & parent, const GAME::Xml::String & kind)
+Atom Atom::create_impl (T parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();
@@ -51,7 +51,7 @@ Atom (xercesc::DOMElement * parent,
 //
 // _create
 //
-Atom Atom::_create (Folder & parent, const GAME::Xml::String & kind)
+Atom Atom::_create (Folder parent, const GAME::Xml::String & kind)
 {
   return Atom::create_impl (parent, kind);
 }
@@ -59,7 +59,7 @@ Atom Atom::_create (Folder & parent, const GAME::Xml::String & kind)
 //
 // _create
 //
-Atom Atom::_create (Model & parent, const GAME::Xml::String & kind)
+Atom Atom::_create (Model parent, const GAME::Xml::String & kind)
 {
   return Atom::create_impl (parent, kind);
 }

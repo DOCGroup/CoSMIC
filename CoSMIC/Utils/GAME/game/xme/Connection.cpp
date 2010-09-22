@@ -24,7 +24,7 @@ const GAME::Xml::String Connection::ATTR_TARGET ("target");
 // _create
 //
 Connection Connection::
-_create (Model & parent,
+_create (Model parent,
          const GAME::Xml::String & kind,
          const FCO & src,
          const FCO & dst)

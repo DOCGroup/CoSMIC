@@ -50,7 +50,7 @@ Reference (xercesc::DOMElement * parent,
 //
 // _create
 //
-Reference Reference::_create (Folder & parent, const GAME::Xml::String & kind)
+Reference Reference::_create (Folder parent, const GAME::Xml::String & kind)
 {
   return Reference::create_impl (parent, kind);
 }
@@ -58,7 +58,7 @@ Reference Reference::_create (Folder & parent, const GAME::Xml::String & kind)
 //
 // _create
 //
-Reference Reference::_create (Model & parent, const GAME::Xml::String & kind)
+Reference Reference::_create (Model parent, const GAME::Xml::String & kind)
 {
   return Reference::create_impl (parent, kind);
 }

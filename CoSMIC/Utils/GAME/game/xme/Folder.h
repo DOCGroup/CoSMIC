@@ -38,7 +38,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Folder _create (Folder & parent, const GAME::Xml::String & kind);
+  static Folder _create (Folder parent, const GAME::Xml::String & kind);
 
   static Folder _narrow (const Object & obj);
 

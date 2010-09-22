@@ -161,8 +161,6 @@ public:
 
   const Configuration * configuration (void) const;
 
-  size_t select_all (std::vector <Reference> & refs) const;
-
 private:
   static const GAME::Xml::String TAGNAME;
   static const GAME::Xml::String DTD;

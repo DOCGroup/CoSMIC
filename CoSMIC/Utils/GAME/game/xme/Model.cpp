@@ -23,7 +23,7 @@ const GAME::Xml::String Model::NO_CHILDREN ("0x0");
 // _create_impl
 //
 template <typename T>
-Model Model::create_impl (T & parent, const GAME::Xml::String & kind)
+Model Model::create_impl (T parent, const GAME::Xml::String & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();
@@ -69,7 +69,7 @@ Model (xercesc::DOMElement * parent,
 //
 // _create
 //
-Model Model::_create (Model & parent, const GAME::Xml::String & kind)
+Model Model::_create (Model parent, const GAME::Xml::String & kind)
 {
   return Model::create_impl (parent, kind);
 }
@@ -77,7 +77,7 @@ Model Model::_create (Model & parent, const GAME::Xml::String & kind)
 //
 // _create
 //
-Model Model::_create (Folder & parent, const GAME::Xml::String & kind)
+Model Model::_create (Folder parent, const GAME::Xml::String & kind)
 {
   return Model::create_impl (parent, kind);
 }

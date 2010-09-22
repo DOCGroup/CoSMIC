@@ -161,6 +161,49 @@ private:
 };
 
 /**
+ * @struct not_t
+ */
+template <typename FUNC>
+struct not_t
+{
+  not_t (const FUNC & func)
+    : func_ (func)
+  {
+
+  }
+
+  template <typename T>
+  bool operator () (T t) const
+  {
+    return !this->func_ (t);
+  }
+
+private:
+  const FUNC & func_;
+};
+
+/**
+ * @struct aspect_filter_t
+ */
+template <typename T>
+struct aspect_filter_t
+{
+  aspect_filter_t (const GAME::Xml::String & aspect)
+    : aspect_ (aspect)
+  {
+
+  }
+
+  bool operator () (T t) const
+  {
+    return GAME::XME::is_in_aspect (t, this->aspect_);
+  }
+
+private:
+  const GAME::Xml::String & aspect_;
+};
+
+/**
  * @struct arrange_vertical
   *
  * Functor that arranges elements vertically on the screen.
@@ -457,9 +500,6 @@ int Project_Generator::visit_root (AST_Root * node)
     AST_Decl * d = si.item ();
     AST_Decl::NodeType nt = d->node_type ();
 
-
-    const GAME::Xml::String name (d->local_name ()->get_string ());
-
     if (nt == AST_Decl::NT_pre_defined || (nt == AST_Decl::NT_enum_val && !this->is_in_enum_))
       continue;
 
@@ -571,8 +611,9 @@ int Project_Generator::visit_scope (UTL_Scope *node)
 //
 int Project_Generator::visit_module (AST_Module *node)
 {
-  using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
+  using GAME::XME::FCO;
+  using GAME::XME::Model;
 
   Model package;
   Auto_Model_T <Model> * module = 0;
@@ -607,10 +648,22 @@ int Project_Generator::visit_module (AST_Module *node)
     }
   }
 
+  // At this point, we only care about managing the objects that
+  // are in the TemplateParameters aspect.
+  std::vector <FCO> non_parameters;
+  package.children (non_parameters);
+
+  std::vector <FCO>::iterator end_iter =
+    std::remove_if (non_parameters.begin (),
+                    non_parameters.end (),
+                    aspect_filter_t <FCO> (constant::aspect::TemplateParameters));
+
   // We need to store this package in the global space since it
   // is reentrant. We don't want elements deleted on accident. ;-)
   ACE_NEW_RETURN (module,
-                  Auto_Model_T <Model> (package),
+                  Auto_Model_T <Model> (package,
+                                        non_parameters.begin (),
+                                        end_iter),
                   -1);
 
   return this->visit_scope (node, module);
@@ -2655,7 +2708,22 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   }
 
   this->symbols_.bind (node, module_inst);
-  Auto_Model_T <Model> auto_model (module_inst);
+
+  // At this point, we only care about managing the objects that
+  // are in the TemplateParameters aspect.
+  std::vector <FCO> parameters;
+  module_inst.children (parameters);
+
+  aspect_filter_t <FCO> aspect_filter (constant::aspect::TemplateParameters);
+
+  std::vector <FCO>::iterator end_iter =
+    std::remove_if (parameters.begin (),
+                    parameters.end (),
+                    not_t <aspect_filter_t <FCO> > (aspect_filter));
+
+  Auto_Model_T <Model> auto_model (module_inst,
+                                   parameters.begin (),
+                                   end_iter);
 
   // Make sure there is a package type in this element. We also need
   // to reference the correct package.

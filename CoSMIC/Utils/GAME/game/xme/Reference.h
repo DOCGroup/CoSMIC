@@ -39,7 +39,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Reference _create (Folder & parent, const GAME::Xml::String & kind);
+  static Reference _create (Folder parent, const GAME::Xml::String & kind);
 
   /**
    * Create a new folder
@@ -47,7 +47,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Reference _create (Model & parent, const GAME::Xml::String & kind);
+  static Reference _create (Model parent, const GAME::Xml::String & kind);
 
   /**
    * Narrow an object to an atom.

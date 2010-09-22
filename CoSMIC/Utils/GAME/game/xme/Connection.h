@@ -36,7 +36,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Connection _create (Model & parent,
+  static Connection _create (Model parent,
                              const GAME::Xml::String & kind,
                              const FCO & src,
                              const FCO & dst);

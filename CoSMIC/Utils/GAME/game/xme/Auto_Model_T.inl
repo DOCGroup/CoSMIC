@@ -20,11 +20,38 @@ Auto_Model_T <T>::Auto_Model_T (void)
 //
 template <typename T>
 GAME_INLINE
-Auto_Model_T <T>::Auto_Model_T (T & model)
+Auto_Model_T <T>::Auto_Model_T (T model)
 : model_ (model)
 {
   this->model_.children (this->purge_set_);
 }
+
+//
+// Auto_Model_T
+//
+template <typename T>
+GAME_INLINE
+Auto_Model_T <T>::
+Auto_Model_T (T model, const collection_type & purge_set)
+: model_ (model),
+  purge_set_ (purge_set)
+{
+
+}
+
+//
+// Auto_Model_T
+//
+template <typename T>
+GAME_INLINE
+Auto_Model_T <T>::
+Auto_Model_T (T model, iterator begin, iterator end)
+: model_ (model),
+  purge_set_ (begin, end)
+{
+
+}
+
 
 //
 // Auto_Model_T

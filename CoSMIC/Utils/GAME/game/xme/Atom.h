@@ -39,7 +39,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Atom _create (Folder & parent, const GAME::Xml::String & kind);
+  static Atom _create (Folder parent, const GAME::Xml::String & kind);
 
   /**
    * Create a new folder
@@ -47,7 +47,7 @@ public:
    * @param[in]       parent          Parent of the new folder
    * @param[in]       kind            Type folder's type
    */
-  static Atom _create (Model & parent, const GAME::Xml::String & kind);
+  static Atom _create (Model parent, const GAME::Xml::String & kind);
 
   /**
    * Narrow an object to an atom.
@@ -99,7 +99,7 @@ protected:
 private:
   /// Implementation of the creation method.
   template <typename T>
-  static Atom create_impl (T & parent, const GAME::Xml::String & kind);
+  static Atom create_impl (T parent, const GAME::Xml::String & kind);
 };
 
 }
