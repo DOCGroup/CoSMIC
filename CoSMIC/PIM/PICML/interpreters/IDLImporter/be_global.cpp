@@ -26,9 +26,7 @@
 #include "xercesc/parsers/XercesDOMParser.hpp"
 #include "PIM/PICML/interpreters/PICML/PICML_GUID.h"
 
-
 #include "ace/OS_NS_stdio.h"
-#include "ace/OS_NS_sys_stat.h"
 #include "ace/streams.h"
 
 #include <fstream>
@@ -246,9 +244,6 @@ void BE_GlobalData::initialize (void)
     static const String PICML ("PICML");
     static const String GUID (PICML_PARADIGM_GUID);
     const String xmefile (filename.c_str ());
-
-    ACE_stat stats;
-    bool exists = ACE_OS::stat (filename.c_str (), &stats) == 0;
 
     if (this->input_file_.empty ())
     {

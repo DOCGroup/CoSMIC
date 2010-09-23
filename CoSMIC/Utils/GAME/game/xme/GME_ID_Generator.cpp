@@ -30,7 +30,6 @@ namespace ascii = boost::spirit::ascii;
 template <typename IteratorT>
 struct Id_Grammar : qi::grammar <IteratorT, size_t (), ascii::space_type>
 {
-private:
 public:
   /// Type definition of the iterator type.
   typedef IteratorT iterator_type;
@@ -98,12 +97,12 @@ init (xercesc::DOMDocument * proj, const GAME::Xml::String & name, typeinfo_t & 
     const std::string & cstr = idstr.to_string ();
 
     // Parse the string to get the count portion.
+    std::string::const_iterator 
+      iter = cstr.begin (), iter_end = cstr.end ();
+
     size_t count = 0;
-    if (qi::phrase_parse (cstr.begin (),
-                          cstr.end (),
-                          grammar,
-                          ascii::space,
-                          count))
+    
+    if (qi::phrase_parse (iter, iter_end, grammar, ascii::space, count))
     {
       // Determine if this value is larget than the current. We
       // need to make sure we do not overwrite the exist ids

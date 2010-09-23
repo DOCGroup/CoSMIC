@@ -9,6 +9,6 @@ workspace {
 
   PIM/PICML/interpreters/IDLImporter
   PIM/PICML/interpreters/PICML/PICML_GUID.mpc
-  $(COSMIC_ROOT)/Utils/xercesc
-  $(COSMIC_ROOT)/Utils/GAME/game/xme
+
+  ./Utils/GAME/GAME.mwc
 }

@@ -1,5 +1,6 @@
 // $Id$
 
+#include "xercesc/dom/DOMNodeList.hpp"
 #include "game/xml/String.h"
 #include "Exceptions.h"
 
