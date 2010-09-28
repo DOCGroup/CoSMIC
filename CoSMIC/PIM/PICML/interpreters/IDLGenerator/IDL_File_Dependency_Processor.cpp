@@ -11,6 +11,8 @@ namespace IDL_GENERATOR
 // IDL_File_Dependency_Processor
 //
 IDL_File_Dependency_Processor::IDL_File_Dependency_Processor (void)
+: forward_declaration_ (false),
+  idl_file_generator_ (NULL)
 {
 }
 
@@ -26,8 +28,11 @@ IDL_File_Dependency_Processor::~IDL_File_Dependency_Processor (void)
 //
 void IDL_File_Dependency_Processor::
 visit_file (const Udm::Object & object,
-            PICML::Visitor & visitor)
+            PICML::Visitor & visitor,
+            bool forward_declaration)
 {
+  this->forward_declaration_ = forward_declaration;
+  
   this->visit_file_package (object,
                             visitor);
 }
@@ -39,13 +44,28 @@ void IDL_File_Dependency_Processor::
 visit_file_package (const Udm::Object & object,
                     PICML::Visitor & visitor)
 {
-  this->idl_order_proc_.visit_file (object);
-  
-  IDL_File_Ordering_Processor::CONTAINER my_container;
-  
-  this->idl_order_proc_.topological_sort (my_container);
-  
-  this->visit_file_package (my_container, visitor);
+  this->idl_order_proc_.visit_file (object, this->forward_declaration_);
+
+  if (this->forward_declaration_)
+  {
+    this->idl_order_proc_.process_forward_declaration ();
+    this->set_file_generator (reinterpret_cast<IDL_File_Generator *>(&visitor));
+  }
+  else
+  {
+    container_.clear ();
+    this->idl_order_proc_.topological_sort (container_);
+    this->visit_file_package (container_, visitor);
+  }
+}
+
+//
+// no_foward_declaration
+//
+bool IDL_File_Dependency_Processor::
+no_forward_declaration (const Udm::Object o)
+{
+  return this->idl_order_proc_.no_forward_declaration (o);
 }
 
 //
@@ -56,69 +76,52 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
                     PICML::Visitor & visitor)
 {
   Udm::Object o;
+  
   // visit the objects in dependency order
-  for (IDL_File_Ordering_Processor::VECTOR_IT it = container.rbegin (); it != container.rend(); it++)
+  for (IDL_File_Ordering_Processor::VECTOR_IT it = container.rbegin (); it != container.rend (); it++)
   {
-    o = boost::get(IDL_File_Ordering_Processor::Udm_Object (), this->idl_order_proc_.graph (), (*it));
+    o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), this->idl_order_proc_.graph (), (*it));
     
-    if (Udm::IsDerivedFrom (o.type (), PICML::Constant::meta))
+    if (o.type () == PICML::Constant::meta)
       PICML::Constant::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Alias::meta))
+    else if (o.type () == PICML::Alias::meta)
       PICML::Alias::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Collection::meta))
+    else if (o.type () == PICML::Collection::meta)
       PICML::Collection::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Exception::meta))
+    else if (o.type () == PICML::Exception::meta)
       PICML::Exception::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Aggregate::meta))
+    else if (o.type () == PICML::Aggregate::meta)
       PICML::Aggregate::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::SwitchedAggregate::meta))
+    else if (o.type () == PICML::SwitchedAggregate::meta)
      PICML::SwitchedAggregate::Cast (o).Accept (visitor);
-     
-    if (Udm::IsDerivedFrom (o.type (), PICML::ValueObject::meta))
+    else if (o.type () == PICML::ValueObject::meta)
      PICML::ValueObject::Cast (o).Accept (visitor);
-     
-    if (Udm::IsDerivedFrom (o.type (), PICML::TemplatePackageInstance::meta))
+    else if (o.type () == PICML::TemplatePackageInstance::meta)
       PICML::TemplatePackageInstance::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Event::meta))
+    else if (o.type () == PICML::Event::meta)
       PICML::Event::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Object::meta))
+    else if (o.type () == PICML::Object::meta)
       PICML::Object::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::PortType::meta))
+    else if (o.type () == PICML::PortType::meta)
       PICML::PortType::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Component::meta))
+    else if (o.type () == PICML::Component::meta)
       PICML::Component::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::ComponentFactory::meta))
+    else if (o.type () == PICML::ComponentFactory::meta)
       PICML::ComponentFactory::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::ConnectorObject::meta))
+    else if (o.type () == PICML::ConnectorObject::meta)
       PICML::ConnectorObject::Cast (o).Accept (visitor);
-      
-    if (Udm::IsDerivedFrom (o.type (), PICML::Package::meta))
+    else if (o.type () == PICML::Package::meta)
       PICML::Package::Cast (o).Accept (visitor);
   }
 }
 
 //
-// visit_file_package
+// forward_declaration
 //
 bool IDL_File_Dependency_Processor::
-has_children(void)
+forward_declaration (void)
 {
-  IDL_File_Ordering_Processor::CONTAINER my_container;
-  
-  this->idl_order_proc_.topological_sort (my_container);
-  
-  return (my_container.empty () == false);
+  return this->idl_order_proc_.forward_declaration ();
 }
 
 //
@@ -131,6 +134,16 @@ visit_template_module (void)
 }
 
 //
+// clear
+//
+void IDL_File_Dependency_Processor::
+clear (void)
+{
+  return this->idl_order_proc_.clear ();
+}
+
+
+//
 // visit_all
 //
 void IDL_File_Dependency_Processor::
@@ -141,21 +154,31 @@ visit_all (const Udm::Object & o,
 }
 
 //
-// clear
-//
-void IDL_File_Dependency_Processor::
-clear (void)
-{
-  this->idl_order_proc_.clear ();
-}
-
-//
 // visit_template_module
 //
 void IDL_File_Dependency_Processor::
 visit_template_module (bool visit_template_module)
 {
   this->idl_order_proc_.visit_template_module (visit_template_module);
+}
+
+//
+// visit_all_forward_declaration
+//
+void IDL_File_Dependency_Processor::
+visit_all_forward_declaration (const PICML::Package & package)
+{
+  if (this->idl_file_generator_)
+    this->idl_order_proc_.visit_all (package, *(this->idl_file_generator_), true);
+}
+
+//
+// set_file_generator
+//
+void IDL_File_Dependency_Processor::
+set_file_generator (IDL_File_Generator * idl_file_generator)
+{
+  this->idl_file_generator_ = idl_file_generator;
 }
 
 }; // namespace IDL_GENERATOR

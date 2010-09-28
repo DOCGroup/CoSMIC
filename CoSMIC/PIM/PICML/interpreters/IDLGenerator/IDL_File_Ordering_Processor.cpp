@@ -7,12 +7,14 @@
 #include "boost/graph/topological_sort.hpp"
 
 #include "Utils/UDM/visit.h"
+#include "IDL_Cycle_Detector.h"
 
 //
 // IDL_File_Ordering_Processor
 //
 IDL_File_Ordering_Processor::IDL_File_Ordering_Processor (void) :
-  visit_template_module_ (false)
+  visit_template_module_ (false),
+  forward_declaration_ (false)
 {
 }
 
@@ -27,8 +29,11 @@ IDL_File_Ordering_Processor::~IDL_File_Ordering_Processor (void)
 // visit_file
 //
 void IDL_File_Ordering_Processor::
-visit_file (const Udm::Object & object)
+visit_file (const Udm::Object & object, bool forward_declaration)
 {
+  this->clear (forward_declaration);
+  this->forward_declaration_ = forward_declaration;
+  this->insert (object);
   this->visit_file_package (object);
 }
 
@@ -38,6 +43,7 @@ visit_file (const Udm::Object & object)
 void IDL_File_Ordering_Processor::
 Visit_Package (const PICML::Package & package)
 {
+  this->insert (package);
   this->visit_file_package (package);
 }
 
@@ -56,7 +62,8 @@ visit_file_package (const Udm::Object & object)
 void IDL_File_Ordering_Processor::
 Visit_Aggregate (const PICML::Aggregate & a)
 {
-  this->add_edge (a);
+  this->add_edge<PICML::Member, PICML::Aggregate> (a);
+  this->add_edge<PICML::ArrayMember, PICML::Aggregate> (a);
 }
 
 //
@@ -74,7 +81,7 @@ Visit_ArrayMember (const PICML::ArrayMember & m)
 void IDL_File_Ordering_Processor::
 Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 {
-  this->add_edge (s);
+  this->add_node (s);
 }
 
 //
@@ -147,6 +154,7 @@ void IDL_File_Ordering_Processor::
 Visit_Object (const PICML::Object & o)
 {
   this->add_node (o);
+  this->visit_all (o, *this);
 }
 
 //
@@ -182,7 +190,7 @@ Visit_Event (const PICML::Event & e)
 void IDL_File_Ordering_Processor::
 Visit_Component (const PICML::Component & c)
 {
-  this->add_edge (c);
+  this->add_node (c);
 }
 
 //
@@ -204,100 +212,99 @@ Visit_ComponentFactory (const PICML::ComponentFactory & c)
 }
 
 //
+// Visit_TwowayOperation
+//
+void IDL_File_Ordering_Processor::
+Visit_TwowayOperation (const PICML::TwowayOperation & t)
+{
+  this->add_edge <PICML::ReturnType, PICML::Object> (t);
+  this->add_edge <PICML::InParameter, PICML::Object> (t);
+  this->add_edge <PICML::InoutParameter, PICML::Object> (t);
+  this->add_edge <PICML::OutParameter, PICML::Object> (t);
+  this->add_edge <PICML::ExceptionRef, PICML::Object> (t);
+}
+
+//
+// Visit_OnewayOperation
+//
+void IDL_File_Ordering_Processor::
+Visit_OnewayOperation (const PICML::OnewayOperation & o)
+{
+  this->add_edge <PICML::InParameter, PICML::Object> (o);
+}
+
+//
 // add_node
 //
 void IDL_File_Ordering_Processor::
 add_node (const Udm::Object & o)
 {
-  ACCESSOR information = boost::get (Udm_Object (), this->graph_);
-  if (o.GetParent ().type () == PICML::File::meta && this->map_.find (o.uniqueId ()) == this->map_.end ())
+  OBJECT_ACCESSOR information = boost::get (Udm_Object (), *this->current_graph_);
+  
+  if (o.GetParent ().type () == PICML::File::meta && this->map_.find (o) == this->map_.end ())
   {
-    VERTEX vertex = boost::add_vertex (this->graph_);
-    
-    boost::put (information, vertex, o);
-    
-    this->map_.insert (std::pair<UDM_NAMESPACE::ObjectImpl::uniqueId_type, bool>(o.uniqueId (), o.isSubtype ()));
+    this->add_vertex (o, this->current_graph_);
   }
   else
   {
     for (Udm::Object parent = o.GetParent (); parent.type () != PICML::File::meta; parent = parent.GetParent ())
     {
-      if (parent.GetParent ().type () == PICML::File::meta && this->map_.find (parent.uniqueId ()) == this->map_.end ())
+      if (parent.GetParent ().type () == PICML::File::meta && this->map_.find (parent) == this->map_.end ())
       {
-        VERTEX vertex = boost::add_vertex (this->graph_);
-        
-        boost::put (information, vertex, parent);
-        
-        this->map_.insert (std::pair<UDM_NAMESPACE::ObjectImpl::uniqueId_type, bool>(parent.uniqueId (), parent.isSubtype ()));
+        this->add_vertex (parent, this->current_graph_);
       }
     }
   }
 }
 
 //
-// add_edge
+// add_vertex
 //
 void IDL_File_Ordering_Processor::
-add_edge (const Udm::Object & o)
+add_vertex (const Udm::Object & o, 
+            GRAPH_PTR graph)
 {
-  typedef vector <PICML::Member> VECTOR;
-  typedef vector <PICML::Member>::const_iterator ITER;
+  OBJECT_ACCESSOR information = boost::get (Udm_Object (), *graph);
   
-  VECTOR children = Udm::ChildrenAttr <PICML::Member> (o.__impl (), Udm::NULLCHILDROLE);
-  ACCESSOR information = boost::get(Udm_Object (), this->graph_);
-  // Determine child references a another object, if so handle the dependency
-  for (ITER it=children.begin (); it!=children.end (); ++it)
-  { 
-    if ((*it).getReferencedObject () == Udm::null)
-      continue;
-    
-    if (((*it).type () == PICML::Member::meta) && (Udm::IsDerivedFrom ((*it).getReferencedObject ().type (), PICML::PredefinedType::meta) == false))
-    {
-      for (Udm::Object parent = (*it).getReferencedObject (); parent.type () != PICML::File::meta; parent = parent.GetParent ())
-      {
-        // determine if parent is not in graph; add parent and parent child with edge
-        if (parent.GetParent ().type () == PICML::File::meta && this->map_.find (parent.uniqueId ()) == this->map_.end ())
-        {
-          VERTEX parent_root = boost::add_vertex (this->graph_);
-          VERTEX child_parent = boost::add_vertex (this->graph_);
-          
-          boost::put (information, parent_root, parent);
-          boost::put (information, child_parent, (*it).GetParent ());
-          
-          boost::add_edge (parent_root, child_parent, this->graph_);
-          
-          this->map_.insert(MAP::value_type (parent.uniqueId (), parent.isSubtype ()));
-          this->map_.insert(MAP::value_type ((*it).GetParent ().uniqueId (), (*it).GetParent ().isSubtype ()));
-        } // determine if this parent is in graph but child isn't, add child's parent and an edge between parent (already in graph) and child's parent
-        else if (parent.GetParent ().type () == PICML::File::meta && this->map_.find (parent.uniqueId ()) != this->map_.end ())
-        {
-          ACCESSOR accessor;
-          
-          VERTEX parent_root = find_vertex (parent);
-          VERTEX child_parent = boost::add_vertex (this->graph_);
-          
-          boost::put (information, child_parent, (*it).GetParent ());
-          boost::add_edge (parent_root, child_parent, this->graph_);
-          
-          this->map_.insert (std::pair<UDM_NAMESPACE::ObjectImpl::uniqueId_type, bool>((*it).GetParent ().uniqueId (), (*it).GetParent ().isSubtype ()));
-        }
-      }
-    }
-    else
-    {
-      this->add_node (o); // add this object to graph directly - no edge
-    }
-  }
+  VERTEX vertex = boost::add_vertex (*graph);
+
+  boost::put (information, vertex, o);
+
+  this->map_.insert (MAP::value_type(o, o.isSubtype ()));
+}
+
+//
+// add_vertices
+//
+void IDL_File_Ordering_Processor::
+add_vertices (const Udm::Object & parent_ref1,
+              const Udm::Object & parent_ref2, 
+              GRAPH_PTR graph)
+{
+  OBJECT_ACCESSOR information = boost::get (Udm_Object (), *graph);
+  
+  // add the parents to the forward declaration graph
+  VERTEX reference = boost::add_vertex (*graph);
+  VERTEX direct = boost::add_vertex (*graph);
+  
+  boost::put (information, direct, parent_ref2);
+  boost::put (information, reference, parent_ref1);
+  
+  // add the dependency between the parents
+  boost::add_edge (reference, direct, *graph);
+  
+  this->map_.insert (MAP::value_type (parent_ref1, parent_ref1.isSubtype ()));
+  this->map_.insert (MAP::value_type (parent_ref2, parent_ref2.isSubtype ()));
 }
 
 //
 // topological_sort
 //
 void IDL_File_Ordering_Processor::
-topological_sort_i (void)
+topological_sort_i (CONTAINER & container)
 {
-  if (container_.empty ())
-    boost::topological_sort (this->graph_, std::back_inserter (this->container_));
+  this->process_forward_declaration (); // remove any cycles from the graph
+  this->insert (container);
 }
 
 //
@@ -306,48 +313,56 @@ topological_sort_i (void)
 void IDL_File_Ordering_Processor::
 topological_sort (CONTAINER & container)
 {
-  this->topological_sort_i ();
-  container = this->container_;
+  this->topological_sort_i (container);
 }
 
 //
 // graph
 //
 const IDL_File_Ordering_Processor::GRAPH & IDL_File_Ordering_Processor::
-graph (void) const
+graph (void)
 {
-  return this->graph_; 
+  return *this->current_graph_; 
 }
 
 //
 // clear
 //
 void IDL_File_Ordering_Processor::
-clear (void)
+clear (bool clear_forward_declaration)
 {
-  this->graph_.clear ();
-  this->container_.clear ();
+  if (clear_forward_declaration)
+  {
+    this->forward_.clear ();
+    this->forward_decl_.clear ();
+    this->edge_.clear ();
+  }
+  
   this->map_.clear ();
+  this->list_.clear ();
 }
 
 //
 // find_vertex
 //
 IDL_File_Ordering_Processor::VERTEX IDL_File_Ordering_Processor::
-find_vertex (const Udm::Object & o)
+find_vertex (const Udm::Object & o, GRAPH_PTR graph, bool & found)
 {
   boost::graph_traits<IDL_File_Ordering_Processor::GRAPH>::vertex_iterator vi, vi_end;
   
-  ACCESSOR accessor;
   Udm::Object v;
   
-  for (boost::tie (vi, vi_end) = boost::vertices (this->graph_); vi != vi_end; ++vi)
+  for (boost::tie (vi, vi_end) = boost::vertices (*graph); vi != vi_end; ++vi)
   {
-    v = boost::get(Udm_Object (), this->graph_, (*vi)); 
+    v = boost::get (Udm_Object (), *graph, (*vi)); 
     
     if (v.uniqueId () == o.uniqueId ())
+    {
+      found = true;
       break;
+    }
   }
+  
   return *vi;
 }
 
@@ -364,7 +379,7 @@ visit_template_module (void)
 // visit_all
 //
 void IDL_File_Ordering_Processor::
-visit_all (const Udm::Object & o, PICML::Visitor & visitor)
+visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declaration)
 {
   Udm::visit_all <PICML::Constant> (o, visitor);
   Udm::visit_all <PICML::Alias> (o, visitor);
@@ -376,13 +391,20 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor)
 
   Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
 
+  if (forward_declaration || this->forward_declaration_)
+  {
+    Udm::visit_all <PICML::OnewayOperation> (o, visitor);
+    Udm::visit_all <PICML::TwowayOperation> (o, visitor);
+  }
+  
+  Udm::visit_all <PICML::PortType> (o, visitor);
   Udm::visit_all <PICML::Event> (o, visitor);
   Udm::visit_all <PICML::Object> (o, visitor);
-  Udm::visit_all <PICML::PortType> (o, visitor);
+  
   Udm::visit_all <PICML::Component> (o, visitor);
   Udm::visit_all <PICML::ComponentFactory> (o, visitor);
   Udm::visit_all <PICML::ConnectorObject> (o, visitor);
-
+  
   Udm::visit_all <PICML::Package> (o, visitor);
 }
 
@@ -393,4 +415,151 @@ void IDL_File_Ordering_Processor::
 visit_template_module (bool visit_template_module)
 {
   this->visit_template_module_ = visit_template_module;
+}
+
+//
+// visit_template_module
+//
+void IDL_File_Ordering_Processor::
+process_forward_declaration (void)
+{
+  bool has_cycle = false;
+  IDL_Cycle_Detector cycle_detector (has_cycle,
+                                     this->forward_decl_,
+                                     this->edge_);
+
+  for (LIST::iterator it = this->list_.begin (); it != this->list_.end (); ++it)
+  {
+    do
+    {
+      has_cycle = false;
+      cycle_detector.current_graph ((*it).second);
+      
+      boost::depth_first_search (*(*it).second, boost::visitor (cycle_detector));
+      this->remove_back_edges ((*it).second);
+    } while (has_cycle);
+  }
+  
+  this->forward_declaration_i ();
+}
+
+//
+// forward_declaration
+//
+bool IDL_File_Ordering_Processor::
+forward_declaration (void)
+{
+  return (this->forward_decl_.size () > 0);
+}
+
+//
+// forward_declaration_i
+//
+void IDL_File_Ordering_Processor::
+forward_declaration_i (void)
+{
+  for (FORWARD_IT it = this->forward_decl_.begin (); it != this->forward_decl_.end (); ++it)
+  {
+    this->set_forward_declaration ((*it).first, (*it).second);
+  }
+}
+
+//
+// set_forward_declaration
+//
+void IDL_File_Ordering_Processor::
+set_forward_declaration (VERTEX & v, GRAPH_PTR g)
+{
+  Udm::Object o;
+  
+  o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), *g, v);
+  
+  if (o != Udm::null)
+    this->forward_.insert (MAP::value_type (o, o.isSubtype ()));
+}
+
+//
+// remove_back_edges
+//
+void IDL_File_Ordering_Processor::
+remove_back_edges (GRAPH_PTR graph)
+{
+  for (IDL_File_Ordering_Processor::EDGE_IT it = this->edge_.begin (); it != this->edge_.end (); ++it)
+  {
+    boost::remove_edge ((*it), *graph);
+  }
+}
+
+//
+// insert
+//
+void IDL_File_Ordering_Processor::
+insert (const Udm::Object & o)
+{
+  if (o.type () == PICML::File::meta)
+  {
+    this->current_graph_ = GRAPH_PTR (new GRAPH);
+    this->list_.push_back (LIST::value_type (o, this->current_graph_));
+  }
+  else if (this->forward_declaration_ && o.GetParent ().type () == PICML::File::meta)
+  {
+    this->current_graph_ = GRAPH_PTR (new GRAPH);
+    this->list_.push_back (LIST::value_type (o, this->current_graph_));
+    
+    OBJECT_ACCESSOR information = boost::get (Udm_Object (), *this->current_graph_);
+    
+    VERTEX parent = boost::add_vertex (*this->current_graph_);
+    
+    boost::put (information, parent, o);
+    
+  }
+}
+
+//
+// no_forward_declared
+//
+bool IDL_File_Ordering_Processor::
+no_forward_declaration (const Udm::Object & o)
+{
+  MAP::iterator it = this->forward_.find (o);
+  
+  return (it == this->forward_.end ());
+}
+
+//
+// insert
+//
+void IDL_File_Ordering_Processor::
+insert (CONTAINER & c)
+{
+  for (LIST::iterator it = this->list_.begin (); it != this->list_.end (); ++it)
+  {
+    boost::topological_sort (*(*it).second, std::back_inserter (c));
+  }
+}
+
+//
+// same_parent
+//
+bool IDL_File_Ordering_Processor::
+same_parent_before_file (const Udm::Object & o, const Udm::Object & p)
+{
+  return parent_before_file (o).uniqueId () == parent_before_file (p).uniqueId ();
+}
+
+//
+// parent_before_file
+//
+Udm::Object IDL_File_Ordering_Processor::
+parent_before_file (const Udm::Object & o)
+{
+  Udm::Object parent;
+
+  for (parent = o.GetParent (); parent.type () != PICML::File::meta; parent = parent.GetParent ())
+  {
+    if (parent.GetParent ().type () == PICML::File::meta)
+      break;
+  }
+    
+  return parent;
 }

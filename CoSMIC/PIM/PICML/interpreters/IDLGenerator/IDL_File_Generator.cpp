@@ -77,7 +77,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
     return;
   else if (!this->templates_only_ && !parameters.empty ())
     return;
-
+    
   // Start the model specification.
   this->idl_ << "module " << package.name ();
 
@@ -102,13 +102,12 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 
     this->idl_ << " > ";
   }
-
+  
   // Write the remaining contents of the package.
   this->idl_ << nl
              << "{" << idt << nl;
 
-  std::string name = package.name ();
-
+  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all_forward_declaration (package);
   IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
 
   this->idl_ << uidt_nl << "};" << nl;

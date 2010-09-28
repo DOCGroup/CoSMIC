@@ -18,10 +18,16 @@ project (PICML_IDLGeneratorComponent) : picml_udm_utils, game_interpreter, udm, 
 
     IDL_File_Dependency_Processor.cpp
     IDL_File_Ordering_Processor.cpp
+    IDL_Cycle_Detector.cpp
   }
 
   Header_Files {
 
+  }
+  
+  Inline_Files {
+    IDL_Cycle_Detector.inl
+    IDL_File_Ordering_Processor.inl
   }
   
   Resource_Files {

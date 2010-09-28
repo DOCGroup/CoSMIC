@@ -1,3 +1,22 @@
+Tue Sep 28 03:30:42 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Cycle_Detector.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Cycle_Detector.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Cycle_Detector.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Enhanced IDL generator to be more efficient when generating forward
+          declarations and added the ability to detect and resolve circular
+          dependencies.
+
 Thu Sep 23 00:56:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
@@ -5,7 +24,7 @@ Thu Sep 23 00:56:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/GAME.mwc:
         * Utils/GAME/game/xme/GME_ID_Generator.cpp:
         * Utils/GAME/game/xme/XME_Utils_T.cpp:
-        
+
           Fixed build errors on MacOS X, and possibly other non-Windows builds.
 
 Wed Sep 22 16:47:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

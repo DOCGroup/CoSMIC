@@ -1,12 +1,15 @@
-// $Id$
-
+//=============================================================================
 /**
- * @file IDL_File_Ordering_Processor.h
- * @author Harold Owens II <owensh@cs.iupui.edu>
+ *  @file       IDL_File_Ordering_Processor.h
  *
  *  File contains the class IDL_File_Ordering_Processor.
+ *
+ *  $Id:$
+ *
+ *  @author     Harold Owens II <owensh@cs.iupui.edu>
  */
- 
+//=============================================================================
+
 #ifndef _IDL_FILE_ORDERING_PROCESSOR_H_
 #define _IDL_FILE_ORDERING_PROCESSOR_H_
 
@@ -14,6 +17,7 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/properties.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "PICML/PICML.h"
 
@@ -41,11 +45,18 @@ public:
   typedef boost::property<Udm_Object, Udm::Object> VERTEX_PROPERTY;
   typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, VERTEX_PROPERTY> GRAPH;
   typedef boost::graph_traits<GRAPH>::vertex_descriptor VERTEX;
-  typedef boost::graph_traits<IDL_File_Ordering_Processor::GRAPH>::vertex_iterator VERTEX_ITER;
-  typedef boost::property_map<GRAPH, Udm_Object>::type ACCESSOR;
+  typedef boost::graph_traits<GRAPH>::edge_descriptor EDGE;
+  typedef boost::graph_traits<GRAPH>::vertex_iterator VERTEX_ITER;
+  typedef boost::property_map<GRAPH, Udm_Object>::type OBJECT_ACCESSOR;
   typedef std::vector<VERTEX> CONTAINER;
+  typedef std::vector<EDGE> EDGE_CONTAINER;
   typedef std::vector<VERTEX>::const_reverse_iterator VECTOR_IT;
-  typedef std::map<UDM_NAMESPACE::ObjectImpl::uniqueId_type, bool> MAP;
+  typedef std::vector<EDGE>::iterator EDGE_IT;
+  typedef std::map<Udm::Object, bool> MAP;
+  typedef boost::shared_ptr<GRAPH> GRAPH_PTR;
+  typedef std::list<std::pair<Udm::Object, GRAPH_PTR> > LIST;
+  typedef std::list<std::pair<VERTEX, GRAPH_PTR> > VERTEX_GRAPH;
+  typedef std::list<std::pair<VERTEX, GRAPH_PTR> >::iterator FORWARD_IT;
   
 public:
   /// Default constructor.
@@ -119,6 +130,18 @@ public:
   */
   virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & t);
   /**
+  * Visitor methods used to visit the one way operation type
+  *
+  * @param[in]      o      A one way operation instance to visit
+  */
+  virtual void Visit_OnewayOperation (const PICML::OnewayOperation & o);
+  /**
+  * Visitor methods used to visit the two way operation type
+  *
+  * @param[in]      t      A two way operation instance to visit
+  */
+  virtual void Visit_TwowayOperation (const PICML::TwowayOperation & t);
+  /**
   * Visitor methods used to visit the object type
   *
   * @param[in]      t      A template package instance to visit
@@ -164,15 +187,17 @@ public:
   * Visits the file object
   *
   * @param[in]      o      A object to visit
+  * @param[in]      f      Is forward declaration
   */
-  void visit_file (const Udm::Object & o);
+  void visit_file (const Udm::Object & o, bool f = false);
   /**
   * Visits all the children within an object
   *
   * @param[in]      o      A object to visit
   * @param[in]      v      Visitor used to visit the object o
+  * @param[in]      f      Is forward declaration
   */
-  void visit_all (const Udm::Object & o, PICML::Visitor & v);
+  void visit_all (const Udm::Object & o, PICML::Visitor & v, bool f = false);
   /**
   * Gets the objects processed by this in topological order
   *
@@ -181,15 +206,18 @@ public:
   void topological_sort (CONTAINER & c);
   /**
   * Clears the state of file order processor.
+  *
+  * @param[in]      c      A bool that determines if the forward
+  * declarations state should be cleared
   */
-  void clear (void);
+  void clear (bool c = false);
   /**
   * Gets the graph created by file order processor
   *
   * @returns      GRAPH      a directed graph that is a topology of the 
   * objects dependencies
   */
-  const GRAPH & graph (void) const;
+  const GRAPH & graph (void);
   /**
   * Determines if template module should be visited
   *
@@ -197,30 +225,77 @@ public:
   * otherwise
   */
   bool visit_template_module (void);
-    /**
+  /**
   * Sets the visit template module state
   *
-  * @param      bool      true if template modules should be
-  * visited false otherwise
+  * @param[in]      v      true template modules should be
+  * visited false not visited
   */
   void visit_template_module (bool v);
+  /**
+  * Process a file forward declarations
+  */
+  void process_forward_declaration (void);
+  /**
+  * Determines if an element should be visited
+  *
+  * @param[in]      o      a udm object to check for forward declaration
+  * @return      bool      true if object should be forward declared
+  * otherwise false
+  */
+  bool no_forward_declaration (const Udm::Object & o);
+  /**
+  * Determines if there are elements to forward declare
+  *
+  * @return      bool      true if there are forward declarable elements
+  * false otherwise
+  */
+  bool forward_declaration (void);
   
 private:
   /// visit_file_package
   void visit_file_package (const Udm::Object & o);
   /// add_node
   void add_node (const Udm::Object & o);
-  /// add_edge 
+  /// add_edge
+  template <typename T, typename P>
   void add_edge (const Udm::Object & o);
   /// topological_sort_i
-  void topological_sort_i (void);
+  void topological_sort_i (CONTAINER & container);
   /// find_vertex
-  VERTEX find_vertex (const Udm::Object & o);
+  VERTEX find_vertex (const Udm::Object & o, GRAPH_PTR graph, bool & found);
+  /// remove back edges
+  void remove_back_edges (GRAPH_PTR g);
+  /// forward_declartion i
+  void forward_declaration_i (void);
+  /// insert into list
+  void insert (const Udm::Object & o);
+  /// set_forward_declaration
+  void set_forward_declaration (VERTEX & v, GRAPH_PTR g);
+  /// insert into container
+  void insert (CONTAINER & c);
+  /// add vertex to graph g
+  void add_vertex (const Udm::Object & o, GRAPH_PTR g);
+  /// add vertices to graph g
+  void add_vertices (const Udm::Object & p1, const Udm::Object & p2, GRAPH_PTR g);
+  /// find parent of object
+  template <typename T>
+  Udm::Object find_parent (const Udm::Object & o);
+  /// same parent before file
+  bool same_parent_before_file (const Udm::Object & o, const Udm::Object & p);
+  /// parent_before_file
+  Udm::Object parent_before_file (const Udm::Object & o);
 
-  GRAPH                       graph_;///< contains a directed graph of the elements for the file package
-  CONTAINER                   container_;///< holds the elements in topological order
+  GRAPH_PTR                   current_graph_;///< contains current graph that is being processed
+  VERTEX_GRAPH                forward_decl_;///< contains the elements that need to be foward declared
+  EDGE_CONTAINER              edge_;///< contains the back edges in the graph
   MAP                         map_;///< holds the objects unique ids used for look up
+  MAP                         forward_;///< holds the objects unique ids which should be forward declared
   bool                        visit_template_module_;///< visit template module
+  bool                        forward_declaration_;///< processing forward declarations
+  LIST                        list_;///< holds the packages with its associated graph of objects
 };
+
+#include "IDL_File_Ordering_Processor.inl"
 
 #endif   /* _IDL_FILE_ORDERING_PROCESSOR_H_ */

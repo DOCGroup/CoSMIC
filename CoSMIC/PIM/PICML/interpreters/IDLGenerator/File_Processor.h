@@ -35,7 +35,7 @@ public:
 
   virtual void Visit_File (const PICML::File & file);
   virtual void Visit_Package (const PICML::Package & p);
-
+  
   virtual void Visit_Aggregate (const PICML::Aggregate & a);
   virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
 
@@ -48,9 +48,7 @@ public:
 
 private:
   void generate_include_file (const PICML::File & file);
-
-  void Visit_FilePackage (const Udm::Object & object);
-
+  
   IDLStream & idl_;
 };
 
