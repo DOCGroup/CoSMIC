@@ -56,6 +56,8 @@ public:
   const GAME::Atom & exec_artifact (void) const;
 
 private:
+  std::string get_location_basename (const GAME::Model & type);
+
   /// The root folder for the project.
   GAME::Folder artifact_folder_;
 

@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Utility.h"
 #include "game/MetaBase.h"
+#include "game/MetaModel.h"
 #include <stack>
 
 namespace PICML
@@ -55,6 +56,32 @@ std::string fq_type (const ::GAME::Model & named_type,
   return
     scope (named_type, separator, leading) +
     named_type.name ();
+}
+
+//
+// get_template_package_inst
+//
+::GAME::Model get_template_package_inst (const ::GAME::FCO & type)
+{
+  ::GAME::Model parent = type.parent_model ();
+  ::GAME::Meta::Model metamodel = parent.meta ();
+
+  static const std::string meta_File ("File");
+
+  while (metamodel != "File")
+  {
+    static const std::string meta_TemplatePackageInstance ("TemplatePackageInstance");
+
+    // Make sure this is not a template package instance.
+    if (metamodel == meta_TemplatePackageInstance)
+      return parent;
+
+    // Move up the tree one more element.
+    parent = parent.parent_model ();
+    metamodel = parent.meta ();
+  }
+
+  return ::GAME::Model ();
 }
 
 }

@@ -44,6 +44,14 @@ std::string fq_type (const ::GAME::Model & named_type,
                      const std::string & separator,
                      bool leading = false);
 
+/**
+ * Locate the template package instance that contains this element
+ * type. It is assumed the type is an type that appears in a File and
+ * was the result of instantiating a template package.
+ */
+PICML_GAME_UTILS_Export
+::GAME::Model get_template_package_inst (const ::GAME::FCO & type);
+
 }
 }
 

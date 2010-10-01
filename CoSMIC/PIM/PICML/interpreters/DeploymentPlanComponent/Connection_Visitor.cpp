@@ -175,31 +175,30 @@ Visit_InEventPortInstance (const PICML::InEventPortInstance & sink)
 {
   PICML::ComponentInstance inst = sink.ComponentInstance_parent ();
 
-  if (this->insts_.find (inst) != this->insts_.end ())
-  {
-    const std::string uuid = std::string ("_") + std::string (inst.UUID ());
-    PICML::InEventPort port = sink.ref ();
+  if (this->insts_.find (inst) == this->insts_.end ())
+    return;
 
-    // Create the template endpoint for these connections.
-    xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
-    this->create_simple_content (endpoint, "portName", port.name ());
-    this->create_simple_content (endpoint, "provider", "true");
-    this->create_simple_content (endpoint, "kind", "EventConsumer");
+  const std::string uuid = std::string ("_") + std::string (inst.UUID ());
+  PICML::InEventPort port = sink.ref ();
 
-    xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
-    ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  // Create the template endpoint for these connections.
+  xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
+  this->create_simple_content (endpoint, "portName", port.name ());
+  this->create_simple_content (endpoint, "provider", "true");
+  this->create_simple_content (endpoint, "kind", "EventConsumer");
 
-    // Finally, create final connection between the two endpoints.
-    std::string connection_name = this->name_;
-    connection_name.append ("::");
-    connection_name.append (sink.getPath (".", false, true, "name", true));
+  xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
+  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
-    this->create_connection (connection_name,
-                             this->endpoint_->cloneNode (true),
-                             endpoint,
-                             false);
-  }
+  // Finally, create final connection between the two endpoints.
+  std::string connection_name = this->name_;
+  connection_name.append ("::");
+  connection_name.append (sink.getPath (".", false, true, "name", true));
 
+  this->create_connection (connection_name,
+                           this->endpoint_->cloneNode (true),
+                           endpoint,
+                           false);
 }
 
 //
@@ -210,36 +209,35 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
 {
   PICML::ComponentInstance inst = facet.ComponentInstance_parent ();
 
-  if (this->insts_.find (inst) != this->insts_.end ())
-  {
-    const std::string uuid = std::string ("_") + std::string (inst.UUID ());
+  if (this->insts_.find (inst) == this->insts_.end ())
+    return;
 
-    // Create the endpoint for this port.
-    xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
-    this->create_simple_content (endpoint, "portName", facet.name ());
-    this->create_simple_content (endpoint, "provider", "true");
-    this->create_simple_content (endpoint, "kind", "Facet");
+  const std::string uuid = std::string ("_") + std::string (inst.UUID ());
 
-    PICML::ComponentInstance inst = facet.ComponentInstance_parent ();
-    xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
-    ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  // Create the endpoint for this port.
+  xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
+  this->create_simple_content (endpoint, "portName", facet.name ());
+  this->create_simple_content (endpoint, "provider", "true");
+  this->create_simple_content (endpoint, "kind", "Facet");
 
-    std::string connection_name = this->name_;
-    connection_name.append ("::");
-    connection_name.append (facet.getPath (".", false, true, "name", true));
+  xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
+  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
 
-    // Determine if this is a local connection.
-    PICML::ProvidedRequestPort port = facet.ref ();
-    PICML::Object obj = PICML::Object::Cast (port.ref ());
-    const std::string semantics (obj.InterfaceSemantics ());
-    bool is_local = semantics == "local" ? true : false;
+  std::string connection_name = this->name_;
+  connection_name.append ("::");
+  connection_name.append (facet.getPath (".", false, true, "name", true));
 
-    // Finally, create final connection between the two endpoints.
-    this->create_connection (connection_name,
-                             this->endpoint_->cloneNode (true),
-                             endpoint,
-                             is_local);
-  }
+  // Determine if this is a local connection.
+  PICML::ProvidedRequestPort port = facet.ref ();
+  PICML::Object obj = PICML::Object::Cast (port.ref ());
+  const std::string semantics (obj.InterfaceSemantics ());
+  bool is_local = semantics == "local" ? true : false;
+
+  // Finally, create final connection between the two endpoints.
+  this->create_connection (connection_name,
+                           this->endpoint_->cloneNode (true),
+                           endpoint,
+                           is_local);
 }
 
 //

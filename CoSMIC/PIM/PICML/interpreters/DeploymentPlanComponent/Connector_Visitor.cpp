@@ -6,6 +6,7 @@
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/udm/visit.h"
 #include "Utils/Utils.h"
+#include "UdmGme.h"
 
 using GAME::Xml::Fragment;
 using GAME::Xml::String;
@@ -133,7 +134,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 
   // Clear the map of connector uuids.
   this->connector_uuids_.clear ();
-  this->ami4ccm_uuids_.clear ();
+  //this->ami4ccm_uuids_.clear ();
 }
 
 //
@@ -427,8 +428,9 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
 
       // Get the UUID assigned to the facet connection, which represents
       // the UUID for the target connector fragment.
-      std::map <PICML::ProvidedRequestPortInstance, std::string>::
-        const_iterator result = this->ami4ccm_uuids_.find (*iter);
+      std::map <PICML::ProvidedRequestPortInstance,
+                std::string>::const_iterator
+                result = this->ami4ccm_uuids_.find (*iter);
 
       if (result == this->ami4ccm_uuids_.end ())
       {
@@ -460,8 +462,7 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
                              "_" + uuid);
 
       // Overwrite the current connection name.
-      this->connection_name_ = iter->getPath (".", false, true, "name", true);
-
+      this->connection_name_ = UdmGme::UdmId2GmeId (conn.uniqueId ());
 
       // End the current connection.
       this->end_connection ();
@@ -535,8 +536,9 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
 
     // Get the UUID assigned to the facet connection, which represents
     // the UUID for the target connector fragment.
-    std::map <PICML::ProvidedRequestPortInstance, std::string>::
-      const_iterator result = this->ami4ccm_uuids_.find (this->active_facet_);
+    std::map <PICML::ProvidedRequestPortInstance,
+              std::string>::const_iterator
+              result = this->ami4ccm_uuids_.find (this->active_facet_);
 
     if (result == this->ami4ccm_uuids_.end ())
     {
@@ -555,7 +557,7 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
                            "_" + uuid);
 
     // Overwrite the current connection name.
-    this->connection_name_ = this->active_facet_.getPath (".", false, true, "name", true);
+    this->connection_name_ = UdmGme::UdmId2GmeId (conn.uniqueId ());
   }
   else
   {

@@ -117,7 +117,8 @@ invoke_ex (GAME::Project & project,
     }
 
     if (this->is_interactive_)
-      ::AfxMessageBox ("Successfully generated deployment plan descriptors");
+      ::AfxMessageBox ("Successfully generated deployment plan descriptors",
+                       MB_ICONINFORMATION);
 
     // Closing backend
     dngBackend.CloseWithUpdate ();

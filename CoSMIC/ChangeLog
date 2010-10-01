@@ -1,3 +1,29 @@
+Fri Oct  1 00:15:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.h:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+
+          Updated the naming convention for the location of connector
+          artifacts. For now, the location of the connector artifacts
+          is defined by the fully qualified name of the hosting template
+          package.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Bug fix where the location for ami4ccm were invalid due to a recent
+          fix for more complex models with port delegation.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+
+          The success dialog now displays an information icon.
+
+        * PIM/PICML/utils/game/Utility.h:
+        * PIM/PICML/utils/game/Utility.cpp:
+
+          Implemented a utility function to get the template package instance
+          for a given element.
+
 Tue Sep 28 03:30:42 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/File_Processor.h:

@@ -7,7 +7,7 @@
 #include "game/Attribute.h"
 #include "game/Folder.h"
 #include "game/Model.h"
-#include "game/MetaBase.h"
+#include "game/MetaModel.h"
 #include "game/Project.h"
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
@@ -58,6 +58,9 @@ generate (const Implementation_Configuration & config,
   std::string name = PICML::GAME::fq_type (type, "_");
   std::string impl_name = name + config.exec_artifact_suffix_;
   std::string svnt_name = name + config.svnt_artifact_suffix_;
+  const std::string location_basename = this->get_location_basename (type);
+  const std::string impl_location = location_basename + config.exec_artifact_suffix_;
+  const std::string svnt_location = location_basename + config.svnt_artifact_suffix_;
 
   // Create a new container for the component's artifacts.
   std::string container_name = name + "Artifacts";
@@ -80,7 +83,7 @@ generate (const Implementation_Configuration & config,
     this->svnt_artifact_.name (svnt_name);
   }
 
-  this->svnt_artifact_.attribute ("location").string_value (svnt_name);
+  this->svnt_artifact_.attribute ("location").string_value (svnt_location);
   ::GAME::utils::position ("Packaging", ::
                            GAME::utils::Point (150, 150),
                            this->svnt_artifact_);
@@ -94,7 +97,7 @@ generate (const Implementation_Configuration & config,
     this->impl_artifact_.name (impl_name);
   }
 
-  this->impl_artifact_.attribute ("location").string_value (impl_name);
+  this->impl_artifact_.attribute ("location").string_value (impl_location);
   ::GAME::utils::position ("Packaging",
                            ::GAME::utils::Point (450, 150),
                            this->impl_artifact_);
@@ -116,6 +119,28 @@ const ::GAME::Atom & Default_Artifact_Generator::svnt_artifact (void) const
 const ::GAME::Atom & Default_Artifact_Generator::exec_artifact (void) const
 {
   return this->impl_artifact_;
+}
+
+//
+// get_location_basename
+//
+std::string Default_Artifact_Generator::
+get_location_basename (const ::GAME::Model & type)
+{
+  const ::GAME::Meta::Model metamodel = type.meta ();
+  const std::string metaname = metamodel.name ();
+
+  if (metaname == "ConnectorObject")
+  {
+    ::GAME::Model package_inst = PICML::GAME::get_template_package_inst (type);
+
+    if (!package_inst.is_nil ())
+      return PICML::GAME::fq_type (package_inst, "_");
+    else
+      return PICML::GAME::fq_type (type, "_");
+  }
+  else
+    return PICML::GAME::fq_type (type,  "_");
 }
 
 }
