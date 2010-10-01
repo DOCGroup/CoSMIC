@@ -1,3 +1,10 @@
+Fri Oct  1 13:26:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+
+          Added support for setting the default location of ami4ccm
+          connector artifacts under the new naming conventions.
+
 Fri Oct  1 00:15:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.h:

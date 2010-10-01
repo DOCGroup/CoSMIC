@@ -127,17 +127,35 @@ const ::GAME::Atom & Default_Artifact_Generator::exec_artifact (void) const
 std::string Default_Artifact_Generator::
 get_location_basename (const ::GAME::Model & type)
 {
-  const ::GAME::Meta::Model metamodel = type.meta ();
-  const std::string metaname = metamodel.name ();
-
-  if (metaname == "ConnectorObject")
+  if (type.meta () == "ConnectorObject")
   {
-    ::GAME::Model package_inst = PICML::GAME::get_template_package_inst (type);
+    std::string name (type.name ());
 
-    if (!package_inst.is_nil ())
-      return PICML::GAME::fq_type (package_inst, "_");
+    if (name.find ("AMI4CCM_") == 0)
+    {
+#define PREFIX_LENGTH     8
+#define SUFFIX_LENGTH     10
+
+      // Calculate the length of the interface name that is used to
+      // create the connector's name.
+      ::GAME::Model parent = type.parent_model ();
+      name = parent.name ();
+
+      const size_t length = name.length () - (PREFIX_LENGTH + SUFFIX_LENGTH);
+
+      return
+        PICML::GAME::scope (parent, "_") +
+        name.substr (PREFIX_LENGTH, length);
+    }
     else
-      return PICML::GAME::fq_type (type, "_");
+    {
+      ::GAME::Model package_inst = PICML::GAME::get_template_package_inst (type);
+
+      if (!package_inst.is_nil ())
+        return PICML::GAME::fq_type (package_inst, "_");
+      else
+        return PICML::GAME::fq_type (type, "_");
+    }
   }
   else
     return PICML::GAME::fq_type (type,  "_");
