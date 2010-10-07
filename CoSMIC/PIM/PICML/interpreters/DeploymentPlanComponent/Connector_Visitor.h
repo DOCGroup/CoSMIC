@@ -139,6 +139,8 @@ private:
 
   std::map <PICML::ConnectorInstance, std::string> connector_uuids_;
 
+  std::map <PICML::ConnectorInstance, size_t> connector_counter_;
+
   PICML::ProvidedRequestPortInstance active_facet_;
   PICML::RequiredRequestPortInstance active_receptacle_;
 

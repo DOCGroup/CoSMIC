@@ -1,3 +1,10 @@
+Thu Oct  7 19:58:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Bug fix where ami4ccm instances had duplicate names.
+
 Thu Oct  7 14:37:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:

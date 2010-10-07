@@ -454,12 +454,27 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
       // is only deployed for the receptacle. We all need to instantiate
       // a connector fragment for each *FacetToConnector* connection
       // that is connected to this connector.
-      std::string old_uuid = inst.UUID ();
+      const std::string old_uuid = inst.UUID ();
+      const std::string old_name = inst.name ();
+
       inst.UUID () = uuid;
+
+      // Get the current number of connections for the connector.
+      size_t count = this->connector_counter_[inst] + 1;
+
+      std::ostringstream inst_name;
+      inst_name << inst.name () << count;
+
+      inst.name () = inst_name.str ();
 
       this->dpv_.deploy_connector_fragment (inst, this->group_);
 
+      // Update the counter for this connector instance.
+      this->connector_counter_[inst] = count;
+
+      // Restore the UUID and name.
       inst.UUID () = old_uuid;
+      inst.name () = old_name;
 
       // Write the endpoint for the connector's receptacle.
       this->append_endpoint ("ami4ccm_port_ami4ccm_provides",
@@ -468,12 +483,12 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
                              "_" + uuid);
 
       // Overwrite the current connection name.
-      std::ostringstream ostr;
-      ostr << UdmGme::UdmId2GmeId (iter->uniqueId ())
-           << "_"
-           << UdmGme::UdmId2GmeId (this->active_receptacle_.uniqueId ());
+      std::ostringstream connection_name;
+      connection_name << UdmGme::UdmId2GmeId (iter->uniqueId ())
+                      << "_"
+                      << UdmGme::UdmId2GmeId (this->active_receptacle_.uniqueId ());
 
-      this->connection_name_ = ostr.str ();
+      this->connection_name_ = connection_name.str ();
 
       // End the current connection.
       this->end_connection ();
