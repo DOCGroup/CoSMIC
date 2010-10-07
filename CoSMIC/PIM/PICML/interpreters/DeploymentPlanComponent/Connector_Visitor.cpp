@@ -8,6 +8,8 @@
 #include "Utils/Utils.h"
 #include "UdmGme.h"
 
+#include <sstream>
+
 using GAME::Xml::Fragment;
 using GAME::Xml::String;
 
@@ -133,8 +135,8 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
 
   // Clear the map of connector uuids.
-  this->connector_uuids_.clear ();
-  //this->ami4ccm_uuids_.clear ();
+  if (!this->connector_uuid_.empty ())
+    this->connector_uuids_.clear ();
 }
 
 //
@@ -286,6 +288,7 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & in
   this->receptacle_ = inst.ref ();
   this->prefix1_.clear ();
 
+  this->active_receptacle_ = inst;
   this->Visit_RequiredRequestPortEnd (inst);
 }
 
@@ -384,6 +387,9 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
   // for the the receptacle to facet connection.
   PICML::Object obj = PICML::Object::Cast (this->receptacle_.ref ());
 
+  // Start a new connection.
+  this->start_new_connection (obj);
+
   if (this->is_ami4ccm_connector (inst))
   {
     using xercesc::DOMElement;
@@ -462,7 +468,12 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
                              "_" + uuid);
 
       // Overwrite the current connection name.
-      this->connection_name_ = UdmGme::UdmId2GmeId (conn.uniqueId ());
+      std::ostringstream ostr;
+      ostr << UdmGme::UdmId2GmeId (iter->uniqueId ())
+           << "_"
+           << UdmGme::UdmId2GmeId (this->active_receptacle_.uniqueId ());
+
+      this->connection_name_ = ostr.str ();
 
       // End the current connection.
       this->end_connection ();
@@ -470,9 +481,6 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
   }
   else
   {
-    // Start a new connection.
-    this->start_new_connection (obj);
-
     // Deploy the connector fragment.
     this->deploy_connector_fragment (inst);
 
@@ -523,10 +531,10 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
 
   if (this->is_ami4ccm_connector (inst))
   {
-    // Since the connector is ami4ccm, we need to generate a special
-    // connection for it.
     using xercesc::DOMElement;
 
+    // Since this is an ami4ccm connector, we need to generate a special
+    // connection for it.
     this->curr_conn_ = this->doc_->createElement (L"connection");
     this->name_element_ = this->create_element (this->curr_conn_, "name");
 
@@ -557,7 +565,7 @@ Visit_ConnectorToFacet (const PICML::ConnectorToFacet & conn)
                            "_" + uuid);
 
     // Overwrite the current connection name.
-    this->connection_name_ = UdmGme::UdmId2GmeId (conn.uniqueId ());
+    this->connection_name_ = UdmGme::UdmId2GmeId (this->active_facet_.uniqueId ());
   }
   else
   {

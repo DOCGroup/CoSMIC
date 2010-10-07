@@ -140,6 +140,8 @@ private:
   std::map <PICML::ConnectorInstance, std::string> connector_uuids_;
 
   PICML::ProvidedRequestPortInstance active_facet_;
+  PICML::RequiredRequestPortInstance active_receptacle_;
+
   std::map <PICML::ProvidedRequestPortInstance, std::string> ami4ccm_uuids_;
 };
 
