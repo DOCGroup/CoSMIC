@@ -1,3 +1,9 @@
+Fri Oct  8 19:16:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * contrib:
+
+          Updating externals for release.
+
 Fri Oct  8 16:07:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * NEWS:
@@ -1582,8 +1588,8 @@ Sun Aug 22 17:36:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * ChangeLogs/ChangeLog-10e:
         * contrib:
 
-          CoSMIC version 0.7.4 was released. Moved the ChangeLog
-          to ChangeLogs/ChangeLog-09. Reverted contrib svn:externals
+          CoSMIC version 0.8.1 was released. Moved the ChangeLog
+          to ChangeLogs/ChangeLog-10e. Reverted contrib svn:externals
           property back to the HEAD revision.
 
 Local Variables:
