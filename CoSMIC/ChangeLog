@@ -1,3 +1,18 @@
+Fri Oct  8 14:18:41 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Re-designed how actions are modeled in CBML and WML. Now, actions
+          are called operations in WML. Likewise, they now can contain
+          in, out, and inout parmeters and return values. In CBML, the
+          worker actions are no longer instances of actions. Instead, they
+          reference the corresponding action in the target worker.
+
 Thu Oct  7 19:58:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
