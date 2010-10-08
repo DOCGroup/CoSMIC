@@ -1,3 +1,53 @@
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.8.1 and CoSMIC-0.8.2
+============================================================
+
+. Re-designed how actions are modeled in CBML and WML. Now,
+  actions are called operations in WML. Likewise, they now can
+  contain in, out, and inout parmeters and return values. In CBML,
+  the worker actions are no longer instances of actions. Instead,
+  they reference the corresponding action in the target worker.
+
+. Updated the naming convention for the location of connector
+  artifacts. For now, the location of the connector artifacts
+  is defined by the fully qualified name of the hosting template
+  package.
+
+. Enhanced IDL generator to be more efficient when generating
+  forward declarations and added the ability to detect and resolve
+  circular dependencies.
+
+. Added support for generating default implementation for types
+  that support implementations when the .xme model is being
+  imported.
+
+. Removed the --overwrite option in idl_to_picml.
+
+. In idl_to_picml Re-added the -i option and updated its semantics
+  such that it is used to specify an initial (import) model to use
+  when importing IDL, but the final model is still saved to the one
+  specified using the -x option.
+
+. Improved support to generating locality manager information into
+  a deployment plan. The information for the locality manager, if
+  enabled, is derived from the deployment plan model. Each collocation
+  group maps to a locality manager instance. Likewise, the name of
+  the collocation group maps to the ProcessName configuration property
+  on the locality manager instance.
+
+. When adding a component or connector instance to a model, the PICML
+  model intelligence will either (1) automatically select the
+  implementation or (2) present a dialog of valid implementations to
+  select. It will then automatically create the contained type
+  element.
+
+. The location of the generated deployment descriptors is saved
+  and restored during future exeuctions of the deployment plan
+  generator.
+
+. When creating a template module instance, its elements
+  are expanded to contain concrete types. This makes it easier
+  to reference elements in a template module instance.
+
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.8.0 and CoSMIC-0.8.1
 ============================================================
 
