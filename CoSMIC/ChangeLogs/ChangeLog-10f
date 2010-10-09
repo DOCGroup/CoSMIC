@@ -1,0 +1,1612 @@
+Sat Oct  9 17:47:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.wxs:
+
+          Updated version information.
+
+Fri Oct  8 19:51:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * RELEASE-NOTES:
+
+          Updated the release notes.
+
+Fri Oct  8 19:16:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * contrib:
+
+          CCF -r 92149 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+          utility -r 85731 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+
+Fri Oct  8 16:07:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * NEWS:
+
+          Updated the news file.
+
+Fri Oct  8 15:22:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PROBLEM-REPORT-FORM:
+        * README:
+        * VERSION:
+
+          Updated version information.
+
+Fri Oct  8 14:18:41 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Re-designed how actions are modeled in CBML and WML. Now, actions
+          are called operations in WML. Likewise, they now can contain
+          in, out, and inout parmeters and return values. In CBML, the
+          worker actions are no longer instances of actions. Instead, they
+          reference the corresponding action in the target worker.
+
+Thu Oct  7 19:58:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Bug fix where ami4ccm instances had duplicate names.
+
+Thu Oct  7 14:37:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Bug fix where ami4ccm models that contained more then one
+          connection between a facet/receptacle and connector resulted
+          in duplicate connection names.
+
+Fri Oct  1 13:26:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+
+          Added support for setting the default location of ami4ccm
+          connector artifacts under the new naming conventions.
+
+Fri Oct  1 00:15:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.h:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+
+          Updated the naming convention for the location of connector
+          artifacts. For now, the location of the connector artifacts
+          is defined by the fully qualified name of the hosting template
+          package.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+
+          Bug fix where the location for ami4ccm were invalid due to a recent
+          fix for more complex models with port delegation.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+
+          The success dialog now displays an information icon.
+
+        * PIM/PICML/utils/game/Utility.h:
+        * PIM/PICML/utils/game/Utility.cpp:
+
+          Implemented a utility function to get the template package instance
+          for a given element.
+
+Tue Sep 28 03:30:42 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Cycle_Detector.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Cycle_Detector.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Cycle_Detector.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Enhanced IDL generator to be more efficient when generating forward
+          declarations and added the ability to detect and resolve circular
+          dependencies.
+
+Thu Sep 23 00:56:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * Release_idl_to_picml.mwc:
+        * Utils/GAME/GAME.mwc:
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+        * Utils/GAME/game/xme/XME_Utils_T.cpp:
+
+          Fixed build errors on MacOS X, and possibly other non-Windows builds.
+
+Wed Sep 22 16:47:35 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Removed the ExternalDelegate event handler since the name
+          of the external endpoint must match the name on the external
+          object, and not the name of the source port.
+
+        * PIM/PICML/tests/deployment/ExternalEndpoint.xme:
+
+          Updated to latest version of CoSMIC.
+
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+
+          Removed these files.
+
+Wed Sep 22 14:02:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Bug fix where the elements in a template package instance where
+          deleted and then re-added. This was causing multiple elements to
+          be regenerated when imported the .xme file.
+
+        * Utils/GAME/game/xme/Auto_Model_T.h:
+        * Utils/GAME/game/xme/Auto_Model_T.inl:
+
+          Overloaded the constructor with the ability to preset the
+          purge set for the auto model. This provide finer control
+          over what elements are monitored.
+
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.cpp:
+
+          Removed the & quantifier from the _create () methods.
+
+        * Utils/GAME/game/xme/functional.h:
+        * Utils/GAME/game/xme/functional.cpp:
+
+          Implemented is_in_aspect (), which is used to test if an object
+          is in the specified aspect.
+
+Wed Sep 22 00:54:30 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.inl:
+
+          Bug fix where idl_to_picml would attach the same library more
+          than once if already present in the model. This was resolved by
+          adding a LibraryId registry node/value to the root folder of the
+          attaching library. This is used to uniquely identify the library.
+
+Tue Sep 21 23:48:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+
+          Bug fix where this event handler would crash when they
+          attribute was not properly defined.
+
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.cpp:
+
+          Bug fix where the implementation generator would generate
+          duplicate elements on multiple imports of the same model.
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updates to latest version of CoSMIC.
+
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+
+          Remove the & quantifier from the constructor since it was
+          incorrect usage and caused idl_to_picml crash.
+
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Connection.inl:
+        * Utils/GAME/game/Connection.cpp:
+
+          Implemented src () and dst () methods for easy access the
+          respective endpoint objects.
+
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+
+          Added support for retrieving connections from the model.
+
+Tue Sep 21 19:53:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.cpp:
+
+          Added support for setting the readonly attribute for an
+          object.
+
+Sat Sep 18 17:05:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Added support for generating default implementation when the
+          model is being imported.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.inl:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+
+          Removed the default implementation generator since it is
+          now handled by the PICML model intelligence.
+
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.inl:
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.cpp:
+
+          Removed these files.
+
+Sat Sep 18 02:30:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Parameter_Value_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Parameter_Value_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Readonly_Event_Handler.cpp:
+
+          Bug fix where deleting a template package instance was not
+          allowed.
+
+Fri Sep 17 23:58:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Updated signatures on event handler methods to match the
+          framework's expected signatures.
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Updated signatures on event handler methods to match the
+          framework's expected signatures.
+
+          The template parameter values now are marked as read-only to
+          prevent the modeler from accidently deleting them.
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.h:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/utils/udm/functional.h:
+        * PIM/PICML/utils/udm/functional.cpp:
+
+          Updated code to latest version of metamodel.
+
+        * PIM/PICML/migration/CoSMIC-0.8.2.xslt:
+
+          Updated transformation to remove the PrePreprocessor and
+          PostPreprocessor attributes from the model since they are no
+          longer supported. The script still needs to be updates to handle
+          changes to the metamodel that relate to template package instances.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Removed the PrePreprocessor and PostPreprocessor directives
+          from the model.
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+        * Utils/GAME/game/be/Event_Handler_Impl.cpp:
+
+          Added support for registering event handlers for individual instances
+          and objects in the model.
+
+          Bug fix where the initialize () method was not called on an event
+          handler when it was registered.
+
+          Added support for closing an event handler.
+
+          Added support for destroying and event handler when it is closed. This
+          is useful when allowing event handlers for individual instances and
+          do not want to manage their resources.
+
+        * Utils/GAME/game/be/Event_Handler_Interface.h:
+
+          Removed the reference quantifier from several of the methods.
+
+        * Utils/GAME/game/be/Readonly_Event_Handler.h:
+        * Utils/GAME/game/be/Readonly_Event_Handler.inl:
+        * Utils/GAME/game/be/Readonly_Event_Handler.cpp:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+
+          Implemented an event handler for emulating read-only semantics. In
+          addition, the event handler can be customized to allow certain actions
+          while preventing others.
+
+Fri Sep 17 13:36:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/ID_Generator_Repo.h:
+
+          ACE_Hash was declared in the wrong namespace.
+
+Thu Sep 16 15:14:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+
+          Bug fix where the SimpleProperty type was not set when it
+          was connected to an attribute.
+
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.h:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.cpp:
+        * PIM/PICML/addons/PICMLManager/Dialogs.h:
+        * PIM/PICML/addons/PICMLManager/Dialogs.inl:
+        * PIM/PICML/addons/PICMLManager/Dialogs.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/Implementation_Configuration.h:
+        * PIM/PICML/addons/PICMLManager/Implementation_Configuration.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Validation.h:
+        * PIM/PICML/addons/PICMLManager/Validation.cpp:
+
+          First version of expanding the contents of a template package
+          instance to its concrete elements.
+
+          The model intelligence now generates the default implementation
+          for a ConnectorObject when it is added to the model.
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+
+          Fixed specification for non-Windows machines.
+
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          TemplatePackageInstance elements now have the same semantics as
+          a Package. This means that is is possible to insert declarations
+          into a TemplatePackageInstance.
+
+        * PIM/PICML/utils/game/Utility.cpp:
+
+          Updated the scope () method to support calculating the scope
+          for elements inside of a TemplatePackageInstance element.
+
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/NewComponentConfig.h:
+
+          Removed these files.
+
+Thu Sep 16 15:10:30 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Bug fix where the dispatcher did not abort correctly if one
+          of the event handlers failed.
+
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/GAME_Dialogs.mpc:
+        * Utils/GAME/game/dialogs/Name_Dialog.h:
+        * Utils/GAME/game/dialogs/Name_Dialog.inl:
+        * Utils/GAME/game/dialogs/Name_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+
+          Implemented a dialog for setting the name of an element.
+
+Wed Sep 15 15:27:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:
+
+          Bug fix where the package decorator displayed the incorrect
+          icon for TemplatePackageInstance elements.
+
+          Bug fix where the destroy () method failed to delete the
+          open bitmap.
+
+Wed Sep 15 15:20:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+
+          Removed the --overwrite option.
+
+          Re-added the -i option and updated its semantics such that
+          it is used to specify an initial (import) model to use when
+          importing IDL, but the final model is still saved to the one
+          specified using the -x option.
+
+Wed Sep 15 14:26:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Added ProcessPriority to as a shorthand property.
+
+Wed Sep 15 13:58:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Filter.h:
+        * Utils/GAME/game/Filter.cpp:
+
+          Implemented two new version of the apply () method for using
+          filters at the folder and model level.
+
+        * Utils/GAME/game/Collection_T.cpp:
+
+          Bug fix where get_children () returned a collection of invalid
+          size under certain circumstances.
+
+        * Utils/GAME/game/ComponentEx.h:
+
+          Added the implementation_type trait for usage
+          with get_children ()
+
+        * Utils/GAME/game/MetaModel.h:
+        * Utils/GAME/game/MetaModel.cpp:
+
+          Updates the signature for the _narrow () method.
+
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+
+          Removed the & quantifier from the _create () methods.
+
+        * Utils/GAME/game/manip/copy.h:
+        * Utils/GAME/game/manip/copy.cpp:
+
+          Updated the copy () method to copy references and setting the
+          location of each copied element to the same location as its
+          source element.
+
+Tue Sep 14 20:53:28 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Improved the direction layout in the string selection
+          dialog.
+
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+
+          Increased the height and width of the static control that
+          displays the dialog's directions.
+
+          Re-arranged the controls on the dialog so that is favors
+          long strings instead of short strings.
+
+Tue Sep 14 20:27:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.h:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.inl:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          Updated the model intelligence to automatically select a PackageType
+          when a TemplatePackageInstance element is added to the model.
+
+          When a PackageType is selected, the model intelligence helps the
+          user select valid elements for the template parameters.
+
+        * Utils/GAME/game/dialogs/Dialogs.rc:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/resource.h:
+
+          Added a static label to the dialog, which can be overrided
+          to display a domain-specific message.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Changed the SwitchAggregate enum value for the Type attribute in
+          TypeParameter to SwitchedAggregate.
+
+          Added the Collection enum value to the Type attribute of TypeParameter.
+
+        * Utils/GAME/game/utils/Point.h:
+
+          Formatting updates.
+
+Tue Sep 14 14:55:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog.cpp:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog_T.h:
+        * Utils/GAME/game/dialogs/Selection_List_Dialog_T.cpp:
+
+          Overloaded the insert () method once again. Now, it is possible
+          to use iterators to insert elements into the dialog.
+
+Tue Sep 14 03:32:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Locality_Manager.cpp:
+
+          Updates the <location> tag for the location manager
+          artifacts.
+
+Sat Sep 11 22:17:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+
+          Updates the property manager to work with the new SimpleProperty
+          and ComplexProperty elements. Right now, the property manager can
+          be used with ComplexProperty elements and SimpleProperty elements
+          that are of type Enum.
+
+Sat Sep 11 21:35:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Added support for generating configuration information to a
+          deployment plan when Property elements are connected to a
+          CollocationGroup.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Switched the connection direction between Property elements
+          and CollocationGroup elements.
+
+Sat Sep 11 16:25:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Added support for connecting a Property to a CollocationGroup element.
+
+          Removed Property elements from the NodeMapping aspect.
+
+          Added the InstanceMapping connection to the DeploymentProperties
+          aspect. This will help determine what CollocationGroup element is
+          assigned to a particular NodeReference.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Configuration.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Configuration.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Locality_Manager.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Locality_Manager.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/resource.h:
+
+          Improved support to generating locality manager information into
+          a deployment plan. The information for the locality manager, if
+          enabled, is derived from the deployment plan model. Each collocation
+          group maps to a locality manager instance. Likewise, the name of
+          the collocation group maps to the ProcessName configuration property
+          on the locality manager instance.
+
+        * Utils/GAME/game/utils/Project_Settings.h:
+        * Utils/GAME/game/utils/Project_Settings.inl:
+        * Utils/GAME/game/utils/Project_Settings.cpp:
+
+          Added support for storing boolean values to the project settings.
+
+        * Utils/GAME/game/xml/Fragment.h:
+        * Utils/GAME/game/xml/Fragment.inl:
+
+          Implemented the xercesc::DOMElement * conversion operator.
+
+Sat Sep 11 15:20:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Bug fix where UUIDs were not being generated for elements
+          when there was a library attached to the model.
+
+          Simplified the UUID event handler's implementation.
+
+          Bug fix where the UUID generator would generate a new UUID
+          for imported elements when they already contained a valid
+          UUID.
+
+Thu Sep  9 23:31:16 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+
+          Changed class name from ExtendedPortInstance_Destroyed_Event_Handler
+          to ExtendedPortInstance_Event_Handler and
+          MirrorPortInstance_Destroyed_Event_Handler to
+          MirrorPortInstance_Event_Handler.
+
+Thu Sep  9 23:15:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from NodeReference_Create_Event_Handler
+          to NodeReference_Event_Handler.
+
+Thu Sep  9 23:05:39 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Config.h:
+
+          Removed decleration of unused methods.
+
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from ExternalDelegate_Create_Event_Handler
+          to ExternalDelegate_Event_Handler.
+
+Thu Sep  9 22:54:44 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+
+          Added data members to protected access specifier.
+
+Thu Sep  9 22:48:15 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from ComponentInstanceType_Relation_Event_Handler
+          to ComponentInstanceType_Event_Handler.
+
+Thu Sep  9 22:22:40 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from ComponentInstanceRef_Set_Include_Event_Handler
+          to ComponentInstanceRef_Event_Handler.
+
+Thu Sep  9 21:54:29 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from Component_Create_Event_Handler
+          to Component_Event_Handler and added data members to private.
+
+Thu Sep  9 21:15:49 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from ComplexTypeReference_Relation_Event_Handler
+          to ComplexTypeReference_Event_Handler.
+
+Thu Sep  9 21:08:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from CollocationGroup_Relation_Event_Handler
+          to CollocationGroup_Event_Handler.
+
+Thu Sep  9 21:00:43 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from AttributeValue_Relation_Event_Handler
+          to AttributeValue_Event_Handler.
+
+Thu Sep  9 20:16:56 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changed class name from AttributeMember_Relation_Event_Handler
+          to AttributeMember_Event_Handler.
+
+Thu Sep  9 19:47:02 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Instead of multiple classes for different ComponentInstance
+          events created a single class for to handle all the
+          ComponentInstance events.
+
+Thu Sep  9 19:20:09 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Instead of multiple classes for different UUID events
+          created a single class for to handle all the UUID events.
+
+Thu Sep  9 18:32:54 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+
+          Bug fixed that caused some of the event handlers to not work
+          due to wrong default value being set to is_importing_ because of
+          non initailization in one of the overloaded constructors.
+
+Thu Sep  9 14:44:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+
+          Fixed compilation errors.
+
+Thu Sep  9 14:41:31 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+
+          Fixed compilation errors.
+
+Thu Sep  9 06:28:12 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+
+          Added is_importing_ and its related handler methods to
+          Event_Handler_Impl base class in GAME.
+
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Config.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Config.cpp:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ExternalDelegate_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+
+          Classes added to facilitate handling of events using objects
+          instead of events.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+
+          Files added to handle events using objects.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Changes made to handle events using object and not methods.
+
+        * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.h:
+        * PIM/PICML/addons/PICMLManager/PICML_Manager_Addon.cpp:
+
+          Changes made to for the call to the handle methods for importing
+          of the Event_Handler_Config class and not the PICMLManager_Impl class.
+
+        * PIM/PICML/addons/PICMLManager/PICML_Model_Intelligence.reg:
+        * PIM/PICML/addons/PICMLManager/PICML_Model_Intelligenced.reg:
+
+          Changed name of PICML_PICMLManager to PICML_Model_Intelligence.
+
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+
+          Class added to facilitate handling of events using objects
+          instead of events.
+
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Added is_importing_ and its related handler methods to
+          Event_Handler_Impl base class in GAME.
+
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+        * Utils/GAME/game/be/Event_Handler_Impl.h:
+        * Utils/GAME/game/be/Event_Handler_Impl.inl:
+
+          Added is_importing_ and its related methods to this
+          base class.
+
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManagerd.reg:
+
+          Changed name of PICML_PICMLManager to PICML_Model_Intelligence.
+
+          Removed these files.
+
+Wed Sep  8 17:26:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
+
+          Removed dead code from this file.
+
+        * PIM/PICML/interpreters/IDLGenerator/UdmConfig.h:
+
+          Removed this file.
+
+Wed Sep  8 17:09:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Library.cpp:
+
+          Bug fix where the name of the library displayed in the
+          model was incorrect.
+
+Wed Sep  8 15:07:39 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Update the command-line arguments to the following semantics:
+
+            -x : name of the target xme file. If the file does not exist
+                 then it is created. If the file does exist, then it is
+                 reused.
+
+            --overwrite : overwrites an existing file (i.e., force the
+                          creation of a new file.
+
+Wed Sep  8 15:04:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+Wed Sep  8 04:42:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          When adding a connector instance to a model, the PICML model
+          intelligence will either (1) automatically select the implementation
+          or (2) present a dialog of valid implementations to select.
+          It will then automatically create the ComponentImplementationType
+          element.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+
+          Fixed compilation errors.
+
+Wed Sep  8 04:24:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          When adding a component instance to a model, the PICML model
+          intelligence will either (1) automatically select the implementation
+          or (2) present a dialog of valid implementations to select.
+          It will then automatically create the ComponentInstanceType
+          element.
+
+Wed Sep  8 03:20:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          The component assembly and component assembly reference now
+          have the light blue color they originally had in previous
+          versions.
+
+Wed Sep  8 03:07:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmConfig.h:
+
+          Removed these files.
+
+Wed Sep  8 03:04:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Configuration.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator.idl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Module.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          The location of the generated deployment descriptors is saved
+          and restored during future exeuctions of the deployment plan
+          generator.
+
+Tue Sep  7 22:14:48 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+
+          Fixed compilation errors.
+
+Tue Sep  7 21:46:29 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Fixed compilation errors.
+
+Tue Sep  7 16:46:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.inl:
+        * Utils/GAME/game/Object.cpp:
+
+          Removed the operator bool () from Object class.
+
+          Removed send_event () from the Object class.
+
+          Implemented the hash () method for calculating the hash value
+          of an object.
+
+        * Utils/GAME/game/FCO.inl (is_basetype):
+
+          Used is_nil () instead of operator bool ().
+
+Fri Sep  3 01:35:26 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Fixed generation of empty module by idl generator and fixed
+          idl definition re-ordering issue caused by idl generator
+
+        * PIM/PICML/tests/IDL_to_PICML/Array.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.cpp:
+
+          Updated idl to picml test cases
+
+Thu Sep  2 21:16:01 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Artifact_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Implementation_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Scope.h:
+        * PIM/PICML/interpreters/IDLImporter/Scope.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+
+          Replaced the dependency on CoSMIC_Xerces_Utils with GAME_XME
+          and GAME_XML.
+
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Attribute.h:
+        * Utils/GAME/game/xme/Attribute.inl:
+        * Utils/GAME/game/xme/Attribute.cpp:
+        * Utils/GAME/game/xme/Configuration.h:
+        * Utils/GAME/game/xme/Configuration.cpp:
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.inl:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator.h:
+        * Utils/GAME/game/xme/GME_ID_Generator.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+        * Utils/GAME/game/xme/Library.h:
+        * Utils/GAME/game/xme/Library.inl:
+        * Utils/GAME/game/xme/Library.cpp:
+        * Utils/GAME/game/xme/Library_Importer.h:
+        * Utils/GAME/game/xme/Library_Importer.cpp:
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+        * Utils/GAME/game/xme/Object.cpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.cpp:
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+        * Utils/GAME/game/xme/XME_Utils.h:
+        * Utils/GAME/game/xme/XME_Utils.cpp:
+        * Utils/GAME/game/xme/XME_Utils_T.cpp:
+        * Utils/GAME/game/xme/functional.h:
+        * Utils/GAME/game/xme/functional.cpp:
+
+          Broke the dependency on CoSMIC_Xerces_Utils. Now, GAME Xme library
+          is dependent on GAME Xml.
+
+        * Utils/GAME/game/xml/Entity_Resolver.h:
+        * Utils/GAME/game/xml/Entity_Resolver.inl:
+        * Utils/GAME/game/xml/Entity_Resolver.cpp:
+        * Utils/GAME/game/xml/Error_Handler.h:
+        * Utils/GAME/game/xml/Error_Handler.inl:
+        * Utils/GAME/game/xml/Error_Handler.cpp:
+        * Utils/GAME/game/xml/GAME_XML.mpc:
+        * Utils/GAME/game/xml/String.h:
+        * Utils/GAME/game/xml/String.inl:
+        * Utils/GAME/game/xml/String.cpp:
+
+          Broke the dependency on CoSMIC_Xerces_Utils. Now, GAME Xml is a
+          self-contained library.
+
+Wed Sep  1 03:25:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/CoSMIC-0.8.2.xslt:
+
+          Update migration script to support complex types.
+
+          Bug fix where creating a simple property that did not originally
+          reference any type results in a invalid XML document.
+
+Tue Aug 31 22:03:21 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/CoSMIC-0.8.2.xslt:
+
+          First version of the migration script that converts Property elements
+          that are simple type to SimpleProperty elements.
+
+Tue Aug 31 20:07:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/migration/CoSMIC-0.8.1.xslt:
+
+          Missing transformation script.
+
+Tue Aug 31 17:28:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+
+          Added AFX_MANAGE_STATE () to ensure the dialog has the
+          correct title.
+
+        * Utils/GAME/game/MetaBase.inl:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Bug fix where using meta objects to dispatch events failed
+          because the hash () and equality methods were implemented
+          incorrectly.
+
+Sun Aug 29 00:48:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Bug fix where registering the same event handler with
+          different types failed.
+
+Wed Aug 25 03:40:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Updated global event dispatcher to use static methods.
+
+Tue Aug 24 12:05:01 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Updated dispatch_* () methods to use std::bitset instead of the
+          integer version of the event's bitmask.
+
+Tue Aug 24 09:59:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          The initialize () method now starts a new read-only transaction
+          by default.
+
+Tue Aug 24 09:52:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/MetaBase.h:
+        * Utils/GAME/game/MetaBase.inl:
+        * Utils/GAME/game/MetaBase.cpp:
+
+          Implemented a hash () method.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Added a transaction to the initialize () method.
+
+        * Utils/GAME/game/be/Event_Handler.h:
+        * Utils/GAME/game/be/Event_Handler.cpp:
+
+          Re-implemented the type handler using meta objects instead
+          of strings.
+
+Sun Aug 22 23:58:09 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/PICML_CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/PICML_CBMLManagerd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICML_PICMLManagerd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentDecorator/PICML_Component_Decorator.reg:
+        * PIM/PICML/decorators/ComponentDecorator/PICML_Component_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/PICML_ComponentInstance_Decorator.reg:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/PICML_ComponentInstance_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentRefDecorator/PICML_ComponentRef_Decorator.reg:
+        * PIM/PICML/decorators/ComponentRefDecorator/PICML_ComponentRef_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/PICML_ConnectorInstance_Decorator.reg:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/PICML_ConnectorInstance_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.mpc:
+        * PIM/PICML/decorators/NoShowRefersTo/PICML_NoShowRefersTo_Decorator.reg:
+        * PIM/PICML/decorators/NoShowRefersTo/PICML_NoShowRefersTo_Decoratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/PackageDecorator/PICML_Package_Decorator.reg:
+        * PIM/PICML/decorators/PackageDecorator/PICML_Package_Decoratord.reg:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/decorators/ShowReference/PICML_ShowReferenceDecorator.reg:
+        * PIM/PICML/decorators/ShowReference/PICML_ShowReferenceDecoratord.reg:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/BGML/BGML.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/PICML_BGMLComponent.reg:
+        * PIM/PICML/interpreters/BGMLComponent/PICML_BGMLComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.mpc:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/PICML_ComponentImplementationGenerator.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/PICML_ComponentImplementationGeneratord.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PICML_DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PICML_DeploymentPlanComponentd.reg:
+
+          Changed the visitors to handle the new Simple and Complex Property
+          types. Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/EQAL/EQAL.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/PICML_IDLGeneratorComponent.reg:
+        * PIM/PICML/interpreters/IDLGenerator/PICML_IDLGeneratorComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/PICML_IDLTextEditor.reg:
+        * PIM/PICML/interpreters/IDLTextEditor/PICML_IDLTextEditord.reg:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/MPC/MPC_Interpreter.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/MPCComponent/PICML_MPCComponent.reg:
+        * PIM/PICML/interpreters/MPCComponent/PICML_MPCComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/PAM/PAM.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PICML_PAMComponent.reg:
+        * PIM/PICML/interpreters/PAMComponent/PICML_PAMComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/PackageComponent/PICML_PackageComponent.reg:
+        * PIM/PICML/interpreters/PackageComponent/PICML_PackageComponentd.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+
+          Changed the visitor to handle the new Simple and Complex Property
+          types. Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/Path/Path.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/PathComponent/PICML_PathComponent.reg:
+        * PIM/PICML/interpreters/PathComponent/PICML_PathComponentd.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/PropertyManager/PICML_Property_Manager.reg:
+        * PIM/PICML/interpreters/PropertyManager/PICML_Property_Managerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/QED/deployment/PICML_QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QED/deployment/PICML_QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/QED/deployment/QED_Deployment.mpc:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/interpreters/QoSMapping/QoSMapping.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/RTConfig/RTConfig.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/Target/Domain.mpc:
+
+          Added PICML_ to the project name.
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/PICML_DomainComponent.reg:
+        * PIM/PICML/interpreters/TargetComponent/PICML_DomainComponentd.reg:
+
+          Added PICML_ to the project name, .reg file names and
+          .dll file name within the .reg files.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Added two new types of Properties, Simple and Complex,
+          instead of the old one. Also, put Properties in their
+          own Aspect and fixed constraints.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/CBMLManagerd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManagerd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.reg:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.reg:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.reg:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.reg:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.reg:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.reg:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/decorators/ShowReference/ShowReferenceDecorator.reg:
+        * PIM/PICML/decorators/ShowReference/ShowReferenceDecoratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.reg:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGeneratord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponent.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.reg:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditord.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.reg:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.reg:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PathComponent/PathComponent.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager.reg:
+        * PIM/PICML/interpreters/PropertyManager/Property_Managerd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/QED/deployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QED/deployment/QEDDeploymentComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.reg:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponentd.reg:
+
+          Renamed the file by adding PICML_ at the begining of the
+          filename.
+
+          Removed these files.
+
+Sun Aug 22 17:36:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * ChangeLog:
+        * ChangeLogs/ChangeLog-10e:
+        * contrib:
+
+          CoSMIC version 0.8.1 was released. Moved the ChangeLog
+          to ChangeLogs/ChangeLog-10e. Reverted contrib svn:externals
+          property back to the HEAD revision.
+
+Local Variables:
+mode: change-log
+add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+indent-tabs-mode: nil
+End:
