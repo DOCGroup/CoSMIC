@@ -1,3 +1,9 @@
+Sat Oct  9 17:47:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.wxs:
+
+          Updated version information.
+
 Fri Oct  8 19:51:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * RELEASE-NOTES:
@@ -8,7 +14,8 @@ Fri Oct  8 19:16:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * contrib:
 
-          Updating externals for release.
+          CCF -r 92149 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+          utility -r 85731 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
 
 Fri Oct  8 16:07:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
