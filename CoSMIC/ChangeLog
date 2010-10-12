@@ -1,3 +1,9 @@
+Tue Oct 12 15:18:21 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * Utils/GAME/game/FCO.cpp:
+        
+          Bug fixed where in_connections () returned an empty vector.
+
 Sat Oct  9 19:01:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * ChangeLog:

@@ -348,7 +348,7 @@ in_connections (std::vector <Connection> & conns) const
     std::for_each (points.begin (),
                    points.end (),
                    boost::bind (&std::vector <Connection>::push_back,
-                                conns,
+                                boost::ref (conns),
                                 boost::bind (&ConnectionPoint::owner, _1)));
 
   return conns.size ();
