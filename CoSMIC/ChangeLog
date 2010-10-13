@@ -1,3 +1,10 @@
+Wed Oct 13 20:30:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Bug fix where the 'supports' statement on a component was
+          not generated correctly.
+
 Wed Oct 13 15:43:09 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
@@ -5,7 +12,7 @@ Wed Oct 13 15:43:09 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
 
           Enhanced IDL generator to handle circular dependency for all
-          kinds. 
+          kinds.
 
 Tue Oct 12 15:18:21 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 

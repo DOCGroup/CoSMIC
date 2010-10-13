@@ -49,16 +49,8 @@ IDL_File_Generator::~IDL_File_Generator (void)
 //
 void IDL_File_Generator::Visit_File (const PICML::File & file)
 {
-  this->idl_ << nl
-             << "// template module(s)" << nl
-             << nl;
-
   this->templates_only_ = true;
   Udm::visit_all <PICML::Package> (file, *this);
-
-  this->idl_ << nl
-             << "// declaration(s)" << nl
-             << nl;
 
   this->templates_only_ = false;
   this->Visit_FilePackage (file);
@@ -77,7 +69,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
     return;
   else if (!this->templates_only_ && !parameters.empty ())
     return;
-    
+
   // Start the model specification.
   this->idl_ << "module " << package.name ();
 
@@ -102,7 +94,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 
     this->idl_ << " > ";
   }
-  
+
   // Write the remaining contents of the package.
   this->idl_ << nl
              << "{" << idt << nl;
@@ -611,19 +603,19 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
 
   if (!values.empty ())
   {
-    this->idl_ << idt << "supports" << idt_nl;
+    this->idl_ << idt_nl << " supports ";
 
-    sorted_values_t::iterator iter = values.begin (),
-                              iter_end = values.end ();
+    sorted_values_t::iterator
+      iter = values.begin (),
+      iter_end = values.end ();
 
-    this->idl_ << ", " << nl
-               << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
+    this->idl_ << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
 
     for (++ iter; iter != iter_end; ++ iter)
       this->idl_ << ", " << nl
                  << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
 
-    this->idl_ << uidt << uidt;
+    this->idl_ << uidt;
   }
 
   this->idl_ << nl
