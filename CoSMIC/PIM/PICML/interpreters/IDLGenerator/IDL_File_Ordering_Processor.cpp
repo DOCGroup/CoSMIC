@@ -44,6 +44,7 @@ void IDL_File_Ordering_Processor::
 Visit_Package (const PICML::Package & package)
 {
   this->insert (package);
+  this->add_node (package);
   this->visit_file_package (package);
 }
 
@@ -62,8 +63,10 @@ visit_file_package (const Udm::Object & object)
 void IDL_File_Ordering_Processor::
 Visit_Aggregate (const PICML::Aggregate & a)
 {
+  this->add_node (a);
   this->add_edge<PICML::Member, PICML::Aggregate> (a);
   this->add_edge<PICML::ArrayMember, PICML::Aggregate> (a);
+  this->add_edge<PICML::Key, PICML::Aggregate> (a);
 }
 
 //
@@ -82,6 +85,9 @@ void IDL_File_Ordering_Processor::
 Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 {
   this->add_node (s);
+  this->add_edge<PICML::Member, PICML::SwitchedAggregate> (s);
+  this->add_edge<PICML::ArrayMember, PICML::SwitchedAggregate> (s);
+  this->add_edge<PICML::Discriminator, PICML::SwitchedAggregate> (s);
 }
 
 //
@@ -145,6 +151,8 @@ void IDL_File_Ordering_Processor::
 Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & t)
 {
   this->add_node (t);
+  this->add_edge<PICML::PackageType, PICML::TemplatePackageInstance> (t);
+  this->add_edge<PICML::TemplateParameterValue, PICML::TemplatePackageInstance> (t);
 }
 
 //
@@ -182,6 +190,12 @@ void IDL_File_Ordering_Processor::
 Visit_Event (const PICML::Event & e)
 {
   this->add_node (e);
+  this->add_edge<PICML::ArrayMember, PICML::Event> (e);
+  this->add_edge<PICML::Member, PICML::Event> (e);
+  this->add_edge<PICML::Alias, PICML::Event> (e);
+  this->add_edge<PICML::Collection, PICML::Event> (e);
+  this->add_edge<PICML::Supports, PICML::Event> (e);
+  this->add_edge<PICML::Inherits, PICML::Event> (e);
 }
 
 //
@@ -191,6 +205,36 @@ void IDL_File_Ordering_Processor::
 Visit_Component (const PICML::Component & c)
 {
   this->add_node (c);
+  this->add_edge<PICML::ComponentInherits, PICML::Component> (c);
+  this->add_edge<PICML::Supports, PICML::Component> (c);
+  this->add_edge<PICML::RequiredRequestPort, PICML::Component> (c);
+  this->add_edge<PICML::ProvidedRequestPort, PICML::Component> (c);
+  this->add_edge<PICML::OutEventPort, PICML::Component> (c);
+  this->add_edge<PICML::InEventPort, PICML::Component> (c);
+  this->add_edge<PICML::MirrorPort, PICML::Component> (c);
+  this->add_edge<PICML::ExtendedPort, PICML::Component> (c);
+  this->visit_all (c, *this);
+}
+
+//
+// Visit_ReadonlyAttribute
+//
+void IDL_File_Ordering_Processor::
+Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & r)
+{
+  this->add_edge<PICML::AttributeMember, PICML::ReadonlyAttribute> (r);
+  this->add_edge<PICML::GetException, PICML::ReadonlyAttribute> (r);
+}
+
+//
+// Visit_Attribute
+//
+void IDL_File_Ordering_Processor::
+Visit_Attribute (const PICML::Attribute & a)
+{
+  this->add_edge<PICML::AttributeMember, PICML::Attribute> (a);
+  this->add_edge<PICML::GetException, PICML::Attribute> (a);
+  this->add_edge<PICML::SetException, PICML::Attribute> (a);
 }
 
 //
@@ -388,14 +432,13 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declara
   Udm::visit_all <PICML::Aggregate> (o, visitor);
   Udm::visit_all <PICML::SwitchedAggregate> (o, visitor);
   Udm::visit_all <PICML::ValueObject> (o, visitor);
+  Udm::visit_all <PICML::ReadonlyAttribute> (o, visitor);
+  Udm::visit_all <PICML::Attribute> (o, visitor);
 
   Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
 
-  if (forward_declaration || this->forward_declaration_)
-  {
-    Udm::visit_all <PICML::OnewayOperation> (o, visitor);
-    Udm::visit_all <PICML::TwowayOperation> (o, visitor);
-  }
+  Udm::visit_all <PICML::OnewayOperation> (o, visitor);
+  Udm::visit_all <PICML::TwowayOperation> (o, visitor);
   
   Udm::visit_all <PICML::PortType> (o, visitor);
   Udm::visit_all <PICML::Event> (o, visitor);

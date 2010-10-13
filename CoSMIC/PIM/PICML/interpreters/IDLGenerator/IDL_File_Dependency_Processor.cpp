@@ -82,7 +82,9 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
   {
     o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), this->idl_order_proc_.graph (), (*it));
     
-    if (o.type () == PICML::Constant::meta)
+    if (o.GetParent ().type () != PICML::File::meta)
+      continue;
+    else if (o.type () == PICML::Constant::meta)
       PICML::Constant::Cast (o).Accept (visitor);
     else if (o.type () == PICML::Alias::meta)
       PICML::Alias::Cast (o).Accept (visitor);

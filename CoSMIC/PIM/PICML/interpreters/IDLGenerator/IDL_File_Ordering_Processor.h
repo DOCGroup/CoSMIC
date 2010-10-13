@@ -184,6 +184,18 @@ public:
   */
   virtual void Visit_ComponentFactory (const PICML::ComponentFactory & c);
   /**
+  * Visitor methods used to visit the read only type
+  *
+  * @param[in]      r      A read only attribute to visit
+  */
+  virtual void Visit_ReadonlyAttribute(const PICML::ReadonlyAttribute & r);
+  /**
+  * Visitor methods used to visit the attribute type
+  *
+  * @param[in]      a      An attribute to visit
+  */
+  virtual void Visit_Attribute (const PICML::Attribute & a);
+  /**
   * Visits the file object
   *
   * @param[in]      o      A object to visit

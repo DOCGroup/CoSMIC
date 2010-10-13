@@ -1,7 +1,16 @@
+Wed Oct 13 15:43:09 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Enhanced IDL generator to handle circular dependency for all
+          kinds. 
+
 Tue Oct 12 15:18:21 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * Utils/GAME/game/FCO.cpp:
-        
+
           Bug fixed where in_connections () returned an empty vector.
 
 Sat Oct  9 19:01:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
