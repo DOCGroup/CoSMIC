@@ -361,10 +361,12 @@ void Find_Forward_Decls::Visit_Component (const PICML::Component & c)
 {
   this->has_component_ = true;
 
-  Udm::visit_all <PICML::ObjectPort> (c, *this);
-  Udm::visit_all <PICML::EventPort> (c, *this);
-  Udm::visit_all <PICML::ExtendedPort> (c, *this);
   Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
+  Udm::visit_all <PICML::ExtendedPort> (c, *this);
+  Udm::visit_all <PICML::InEventPort> (c, *this);
+  Udm::visit_all <PICML::OutEventPort> (c, *this);
+  Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
+  Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
 }
 
 //
@@ -458,6 +460,15 @@ void Find_Forward_Decls::
 Visit_TemplateParameterValue (const PICML::TemplateParameterValue & tpv)
 {
   this->Visit_MemberType (tpv.ref ());
+}
+
+//
+// Visit_Boxed
+//
+void Find_Forward_Decls::
+Visit_Boxed (const PICML::Boxed & b)
+{
+  this->Visit_MemberType (b.ref ());
 }
 
 //

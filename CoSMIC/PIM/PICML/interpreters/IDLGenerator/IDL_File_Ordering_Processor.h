@@ -88,6 +88,12 @@ public:
   */
   virtual void Visit_ArrayMember (const PICML::ArrayMember & m);
   /**
+  * Visitor methods used to visit the boxed type
+  *
+  * @param[in]      b      A boxed to visit
+  */
+  virtual void Visit_Boxed (const PICML::Boxed & b);
+  /**
   * Visitor methods used to visit the member type
   *
   * @param[in]      a      An array member to visit

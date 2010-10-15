@@ -79,6 +79,15 @@ Visit_ArrayMember (const PICML::ArrayMember & m)
 }
 
 //
+// Visit_Boxed
+//
+void IDL_File_Ordering_Processor::
+Visit_Boxed (const PICML::Boxed & b)
+{
+  this->add_node (b);
+}
+
+//
 // Visit_SwitchedAggregate
 //
 void IDL_File_Ordering_Processor::
@@ -447,6 +456,7 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declara
   Udm::visit_all <PICML::Component> (o, visitor);
   Udm::visit_all <PICML::ComponentFactory> (o, visitor);
   Udm::visit_all <PICML::ConnectorObject> (o, visitor);
+  Udm::visit_all <PICML::Boxed> (o, visitor);
   
   Udm::visit_all <PICML::Package> (o, visitor);
 }
