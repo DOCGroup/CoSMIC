@@ -303,6 +303,10 @@ private:
   bool same_parent_before_file (const Udm::Object & o, const Udm::Object & p);
   /// parent_before_file
   Udm::Object parent_before_file (const Udm::Object & o);
+  /// parent_in_same_file
+  bool parent_in_same_file (const Udm::Object & o, const Udm::Object & p);
+  /// parent_file
+  Udm::Object parent_file (const Udm::Object & o);
 
   GRAPH_PTR                   current_graph_;///< contains current graph that is being processed
   VERTEX_GRAPH                forward_decl_;///< contains the elements that need to be foward declared

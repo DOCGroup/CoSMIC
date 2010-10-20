@@ -344,7 +344,9 @@ add_vertices (const Udm::Object & parent_ref1,
   boost::put (information, reference, parent_ref1);
   
   // add the dependency between the parents
-  boost::add_edge (reference, direct, *graph);
+  EDGE e; 
+  bool added = false; 
+  boost::tie(e,added) = boost::add_edge (reference, direct, *graph);
   
   this->map_.insert (MAP::value_type (parent_ref1, parent_ref1.isSubtype ()));
   this->map_.insert (MAP::value_type (parent_ref2, parent_ref2.isSubtype ()));
@@ -388,9 +390,9 @@ clear (bool clear_forward_declaration)
   {
     this->forward_.clear ();
     this->forward_decl_.clear ();
-    this->edge_.clear ();
   }
   
+  this->edge_.clear ();
   this->map_.clear ();
   this->list_.clear ();
 }
@@ -598,6 +600,29 @@ bool IDL_File_Ordering_Processor::
 same_parent_before_file (const Udm::Object & o, const Udm::Object & p)
 {
   return parent_before_file (o).uniqueId () == parent_before_file (p).uniqueId ();
+}
+
+//
+// parent_in_same_file
+//
+bool IDL_File_Ordering_Processor::
+parent_in_same_file (const Udm::Object & o, const Udm::Object & p)
+{
+  return parent_file (o).uniqueId () == parent_file (p).uniqueId ();
+}
+
+//
+// parent_file
+//
+Udm::Object IDL_File_Ordering_Processor::
+parent_file (const Udm::Object & o)
+{
+  Udm::Object parent;
+
+  for (parent = o.GetParent (); parent.type () != PICML::File::meta; parent = parent.GetParent ())
+  {}
+  
+  return parent;
 }
 
 //

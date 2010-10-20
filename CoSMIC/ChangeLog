@@ -1,3 +1,12 @@
+Wed Oct 20 07:32:23 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Bug fix where definitions from referenced IDL file are included
+          in parent IDL file.
+
 Fri Oct 15 02:02:06 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.h:
