@@ -31,7 +31,8 @@ public:
 //
 IDL_File_Generator::
 IDL_File_Generator (IDLStream & idl)
-: idl_ (idl)
+: idl_ (idl),
+  in_event_ (false)
 {
 
 }
@@ -406,6 +407,10 @@ void IDL_File_Generator::Visit_Member (const PICML::Member & m)
                               boost::ref (*this)));
 
   this->idl_ << nl;
+
+  if (this->in_event_)
+    this->idl_ << "public ";
+
   this->Visit_MemberType (mt);
   this->idl_ << " " << m.name () << ";";
 
@@ -479,7 +484,9 @@ void IDL_File_Generator::Visit_Event (const PICML::Event & e)
   this->idl_ << nl
              << "{" << idt;
 
+  this->in_event_ = true;
   this->Visit_ObjectByValue (e);
+  this->in_event_ = false;
 
   this->idl_ << uidt_nl
              << "};" << nl;

@@ -253,6 +253,8 @@ private:
 
   bool templates_only_;
 
+  bool in_event_;
+
   PredefinedType_Dispatcher <IDL_File_Generator> pt_dispatcher_;
   TemplateParameter_Dispatcher <IDL_File_Generator> tp_dispatcher_;
   ParameterType_Dispatcher <IDL_File_Generator> param_dispatcher_;

@@ -1,3 +1,11 @@
+Thu Oct 21 21:31:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Bug fix where the private/public flags were missing from
+          an event tag.
+
 Wed Oct 20 07:32:23 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
