@@ -9,4 +9,6 @@ project {
 
     keyword gme_upgradeflags = commandflags
   }
+
+  requires += gme_upgrade
 }
