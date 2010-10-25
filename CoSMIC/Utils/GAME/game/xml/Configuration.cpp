@@ -1,6 +1,12 @@
 // $Id$
 
-#include "Static_Configuration.h"
+#include "Configuration.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Configuration.inl"
+#endif
+
+#include "Memory_Manager.h"
 #include "xercesc/util/PlatformUtils.hpp"
 
 namespace GAME
@@ -8,10 +14,19 @@ namespace GAME
 namespace Xml
 {
 //
-// Static_Configuration
+// global_allocator_
 //
-Static_Configuration::Static_Configuration (void)
+Memory_Manager Configuration::global_allocator_;
+
+//
+// Configuration
+//
+Configuration::Configuration (Memory_Manager * allocator)
+: allocator_ (allocator)
 {
+  if (0 == this->allocator_)
+    this->allocator_ = &this->global_allocator_;
+
   using ::xercesc::XMLPlatformUtils;
   using ::xercesc::XMLUni;
 
@@ -23,24 +38,18 @@ Static_Configuration::Static_Configuration (void)
   XMLPlatformUtils::Initialize (XMLUni::fgXercescDefaultLocale,
                                 0,
                                 0,
-                                &this->allocator_);
+                                this->allocator_);
 }
 
 //
-// ~Static_Configuration
+// ~Configuration
 //
-Static_Configuration::~Static_Configuration (void)
+Configuration::~Configuration (void)
 {
   ::xercesc::XMLPlatformUtils::Terminate ();
 }
 
-//
-// memory_manager
-//
-::xercesc::MemoryManager * Static_Configuration::memory_manager (void)
-{
-  return &this->allocator_;
-}
+
 
 }
 }

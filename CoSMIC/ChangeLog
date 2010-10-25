@@ -1,3 +1,20 @@
+Mon Oct 25 17:32:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xml/Configuration.h:
+        * Utils/GAME/game/xml/Configuration.inl:
+        * Utils/GAME/game/xml/Configuration.cpp:
+        * Utils/GAME/game/xml/GAME_XML.mpc:
+        * Utils/GAME/game/xml/Memory_Manager.h:
+        * Utils/GAME/game/xml/String.h:
+
+          Bug fix where deallocating static strings failed since the
+          allocator no longer existed.
+
+        * Utils/GAME/game/xml/Static_Configuration.h:
+        * Utils/GAME/game/xml/Static_Configuration.cpp:
+
+          Removed these files.
+
 Thu Oct 21 21:31:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.h:

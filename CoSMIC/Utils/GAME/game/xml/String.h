@@ -17,7 +17,7 @@
 #include <memory>
 #include <string>
 #include "xercesc/util/XMLString.hpp"
-#include "Static_Configuration.h"
+#include "Configuration.h"
 #include "game/config.h"
 
 namespace GAME
@@ -39,7 +39,7 @@ public:
    *
    * @param[in]         allocator       Pointer to the string's allocator
    */
-  String (xercesc::MemoryManager * const allocator = STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+  String (xercesc::MemoryManager * const allocator = GLOBAL_CONFIGURATION::instance ()->memory_manager ());
 
   /**
    * Initializing constructor.
@@ -47,13 +47,13 @@ public:
    * @param[in]     str         Source string
    */
   String (const char * str,
-        xercesc::MemoryManager * const allocator = STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+        xercesc::MemoryManager * const allocator = GLOBAL_CONFIGURATION::instance ()->memory_manager ());
 
   /**
    * @overload
    */
   String (const std::string & str,
-          xercesc::MemoryManager * const allocator = STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+          xercesc::MemoryManager * const allocator = GLOBAL_CONFIGURATION::instance ()->memory_manager ());
 
   /**
    * @overload
@@ -62,7 +62,7 @@ public:
    */
   String (const XMLCh * wstr,
           bool release = true,
-          xercesc::MemoryManager * const allocator = STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+          xercesc::MemoryManager * const allocator = GLOBAL_CONFIGURATION::instance ()->memory_manager ());
 
   /**
    * Copy constructor
