@@ -15,7 +15,15 @@ namespace Dialogs
 //
 int initialize_module (void)
 {
-   new CDynLinkLibrary (extdll);
+  new CDynLinkLibrary (extdll);
+
+  INITCOMMONCONTROLSEX common_controls;
+  common_controls.dwSize = sizeof (INITCOMMONCONTROLSEX);
+  common_controls.dwICC = ICC_LISTVIEW_CLASSES;
+
+  if (0 == ::AfxInitCommonControlsEx (&common_controls))
+    return -1;
+
    return 0;
 }
 
@@ -31,8 +39,7 @@ int APIENTRY DllMain (HINSTANCE hinst, DWORD reason, LPVOID)
   switch (reason)
   {
   case DLL_PROCESS_ATTACH:
-    // Extension DLL one-time initialization
-    if (!::AfxInitExtensionModule (extdll, hinst))
+    if (0 == ::AfxInitExtensionModule (extdll, hinst))
        return 0;
 
     break;
