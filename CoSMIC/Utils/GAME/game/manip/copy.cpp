@@ -81,58 +81,154 @@ FCO copy_attributes (const FCO & src, FCO dst)
 };
 
 /**
- * @struct copy_into_t
- *
- * Functor for copying an element's contents.
+ * @class copy_into_impl
  */
-struct copy_into_t
+class copy_into_impl
 {
-  typedef std::map <FCO, FCO> map_t;
-
-  copy_into_t (const std::string & aspect, Model parent, map_t & mapping)
-    : aspect_ (aspect),
-      parent_ (parent),
-      mapping_ (mapping)
+public:
+  copy_into_impl (copy_config_t & config)
+    : config_ (config)
   {
 
   }
 
-  void operator () (const Atom & atom)
+  virtual void handle_atom (const Atom & atom) = 0;
+  virtual void handle_model (const Model & model) = 0;
+
+protected:
+  copy_config_t & config_;
+};
+
+/**
+ * @class model_copy_into_impl
+ */
+class model_copy_into_impl : public copy_into_impl
+{
+public:
+  model_copy_into_impl (Model parent, copy_config_t & config)
+    : copy_into_impl (config),
+      parent_ (parent)
+  {
+
+  }
+
+  virtual void handle_atom (const Atom & atom)
   {
     // Create the atom element.
-    Atom new_atom = Atom::_create (this->parent_, atom.meta ().name ());
-    this->mapping_[atom] = new_atom;
+    const std::string metaname = atom.meta ().name ();
+    Atom new_atom = Atom::_create (this->parent_, metaname);
+    this->config_.mapping_[atom] = new_atom;
 
     // Set the name of the atom.
     new_atom.name (atom.name ());
 
     // Copy over its attributes and location.
     copy_attributes (atom, new_atom);
-    copy_location (atom, new_atom, this->aspect_);
+
+    if (this->config_.location_info_)
+      copy_location (atom, new_atom, this->config_.aspect_);
+  }
+
+  virtual void handle_model (const Model & model)
+  {
+    // Create the model element and copy the attributes.
+    const std::string metaname = model.meta ().name ();
+    Model new_model = Model::_create (this->parent_, model.meta ().name ());
+    this->config_.mapping_[model] = new_model;
+
+    new_model.name (model.name ());
+    copy_attributes (model, new_model);
+
+    if (this->config_.location_info_)
+      copy_location (model, new_model, this->config_.aspect_);
+
+    // Now, copy the model elements into the new model.
+    copy (model, new_model, this->config_);
+  }
+
+private:
+  Model parent_;
+};
+
+/**
+ * @class folder_copy_into_impl
+ */
+class folder_copy_into_impl : public copy_into_impl
+{
+public:
+  folder_copy_into_impl (Folder parent, copy_config_t & config)
+    : copy_into_impl (config),
+      parent_ (parent)
+  {
+
+  }
+
+  virtual void handle_atom (const Atom & atom)
+  {
+    // Create the atom element.
+    const std::string metaname = atom.meta ().name ();
+    Atom new_atom = Atom::_create (this->parent_, metaname);
+    this->config_.mapping_[atom] = new_atom;
+
+    // Set the name of the atom.
+    new_atom.name (atom.name ());
+    copy_attributes (atom, new_atom);
+  }
+
+  virtual void handle_model (const Model & model)
+  {
+    // Create the model element and copy the attributes.
+    const std::string metaname = model.meta ().name ();
+    Model new_model = Model::_create (this->parent_, model.meta ().name ());
+    this->config_.mapping_[model] = new_model;
+
+    new_model.name (model.name ());
+    copy_attributes (model, new_model);
+
+    // Now, copy the model elements into the new model.
+    copy (model, new_model, this->config_);
+  }
+
+private:
+  Folder parent_;
+};
+
+/**
+ * @struct copy_into_t
+ *
+ * Functor for copying an element's contents.
+ */
+struct copy_into_t
+{
+  copy_into_t (Object parent, copy_config_t & config)
+    : impl_ (0)
+  {
+    switch (parent.type ())
+    {
+    case OBJTYPE_FOLDER:
+      this->impl_.reset (new folder_copy_into_impl (Folder::_narrow (parent), config));
+      break;
+
+    case OBJTYPE_MODEL:
+      this->impl_.reset (new model_copy_into_impl (Model::_narrow (parent), config));
+      break;
+    }
+  }
+
+  void operator () (const Atom & atom)
+  {
+    if (0 != this->impl_.get ())
+      this->impl_->handle_atom (atom);
   }
 
   void operator () (const Model & model)
   {
-    // Create the model element and copy the attributes.
-    Model new_model = Model::_create (this->parent_, model.meta ().name ());
-    this->mapping_[model] = new_model;
-
-    new_model.name (model.name ());
-    copy_attributes (model, new_model);
-    copy_location (model, new_model, this->aspect_);
-
-    // Now, copy the model elements into the new model.
-    copy (model, new_model, this->aspect_);
+    if (0 != this->impl_.get ())
+      this->impl_->handle_model (model);
   }
 
 private:
-  /// The source aspect.
-  const std::string & aspect_;
-
-  /// The destination model.
-  Model parent_;
-
-  std::map <FCO, FCO> & mapping_;
+  std::auto_ptr <copy_into_impl> impl_;
 };
 
 /**
@@ -143,11 +239,8 @@ private:
  */
 struct copy_simple_t
 {
-  copy_simple_t (const std::string & aspect,
-                 Model dst,
-                 std::map <FCO, FCO> & mapping)
-    : copy_ (aspect, dst, mapping),
-      mapping_ (mapping)
+  copy_simple_t (Object dst, copy_config_t & config)
+    : copy_ (dst, config)
   {
 
   }
@@ -168,8 +261,6 @@ struct copy_simple_t
 
 private:
   copy_into_t copy_;
-
-  std::map <FCO, FCO> & mapping_;
 };
 
 /**
@@ -179,9 +270,9 @@ private:
  */
 struct copy_connection_t
 {
-  copy_connection_t (Model dst, std::map <FCO, FCO> & mapping)
+  copy_connection_t (Model dst, copy_config_t & config)
     : dst_ (dst),
-      mapping_ (mapping)
+      config_ (config)
   {
 
   }
@@ -200,8 +291,8 @@ struct copy_connection_t
     std::string metaname = src_conn.meta ().name ();
     Connection new_conn = Connection::_create (this->dst_,
                                                metaname,
-                                               this->mapping_[src_from],
-                                               this->mapping_[src_to]);
+                                               this->config_.mapping_[src_from],
+                                               this->config_.mapping_[src_to]);
 
     new_conn.name (src_conn.name ());
 
@@ -212,7 +303,7 @@ struct copy_connection_t
 private:
   Model dst_;
 
-  std::map <FCO, FCO> & mapping_;
+  copy_config_t & config_;
 };
 
 /**
@@ -222,12 +313,10 @@ private:
  */
 struct copy_reference_t
 {
-  copy_reference_t (const std::string & aspect,
-                    const Model & dst,
-                    std::map <FCO, FCO> & mapping)
-    : aspect_ (aspect),
-      dst_ (dst),
-      mapping_ (mapping)
+  copy_reference_t (const Model & dst,
+                    copy_config_t & config)
+    : dst_ (dst),
+      config_ (config)
   {
 
   }
@@ -239,54 +328,104 @@ struct copy_reference_t
 
     // Create a new reference based on the source.
     Reference orig = Reference::_narrow (fco);
-    Reference copy = Reference::_create (this->dst_, orig.role ());
+    const std::string metaname = orig.meta ().name ();
 
-    copy.name (orig.name ());
-    copy.refers_to (orig.refers_to ());
+    Reference new_ref = Reference::_create (this->dst_, metaname);
+    this->config_.mapping_[orig] = new_ref;
+
+    new_ref.name (orig.name ());
+
+    // Set the reference element.
+    FCO target = this->config_.mapping_[orig.refers_to ()];
+    new_ref.refers_to (target);
 
     // Finally, copy over the attributes.
-    copy_attributes (orig, copy);
-    copy_location (orig, copy, this->aspect_);
+    copy_attributes (orig, new_ref);
+
+    if (this->config_.location_info_)
+      copy_location (orig, new_ref, this->config_.aspect_);
   }
 
 private:
-  const std::string & aspect_;
-
   const Model & dst_;
 
-  std::map <FCO, FCO> & mapping_;
+  copy_config_t & config_;
 };
+
+//
+// copy_config_t
+//
+copy_config_t::copy_config_t (void)
+: aspect_ (""),
+  location_info_ (true)
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// copy ()
 
 //
 // copy
 //
-Model copy (const Model & src, Model dst, const std::string & aspect)
+Model copy (const Model & src, Model dst)
 {
-  std::map <FCO, FCO> mapping;
+  return copy (src, dst, copy_config_t ());
+}
+
+//
+// copy
+//
+Folder copy (const Folder & src, Folder dst)
+{
+  return copy (src, dst, copy_config_t ());
+}
+
+//
+// copy
+//
+Model copy (const Model & src, Model dst, copy_config_t & config)
+{
+  // Gather all the children at this level.
   std::vector <FCO> fcos;
 
-  // Gather all the children at this level.
-  if (!aspect.empty ())
-    src.children (src.meta ().aspect (aspect), fcos);
+  if (!config.aspect_.empty ())
+    src.children (src.meta ().aspect (config.aspect_), fcos);
   else
     src.children (fcos);
 
   // Copy over the basic types first.
   std::for_each (fcos.begin (),
                  fcos.end (),
-                 copy_simple_t (aspect, dst, mapping));
+                 copy_simple_t (dst, config));
 
   // Next, copy over the connections and the references.
   std::for_each (fcos.begin (),
                  fcos.end (),
-                 copy_connection_t (dst, mapping));
+                 copy_connection_t (dst, config));
 
   std::for_each (fcos.begin (),
                  fcos.end (),
-                 copy_reference_t (aspect, dst, mapping));
+                 copy_reference_t (dst, config));
 
   return dst;
 }
+
+//
+// copy
+//
+Folder copy (const Folder & src, Folder dst, copy_config_t & config)
+{
+  // Gather all the children at this level.
+  std::vector <FCO> fcos;
+  src.children (fcos);
+
+  return copy_into (fcos, dst, config);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// copy_location ()
 
 //
 // copy_location_i
@@ -357,6 +496,34 @@ void copy_location (const FCO & src, FCO dst, const std::string & aspect)
     if (!this_aspect.is_nil ())
       copy_location_i (src, dst, this_aspect);
   }
+}
+
+//
+// copy_into
+//
+Folder copy_into (const std::vector <FCO> & fcos,
+                  Folder dst,
+                  copy_config_t & config)
+{
+  std::for_each (fcos.begin (),
+                 fcos.end (),
+                 copy_simple_t (dst, config));
+
+  return dst;
+}
+
+//
+// copy_into
+//
+Model copy_into (const std::vector <FCO> & fcos,
+                 Model dst,
+                 copy_config_t & config)
+{
+  std::for_each (fcos.begin (),
+                 fcos.end (),
+                 copy_simple_t (dst, config));
+
+  return dst;
 }
 
 }
