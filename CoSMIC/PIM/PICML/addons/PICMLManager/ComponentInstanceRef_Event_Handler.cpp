@@ -34,7 +34,6 @@ ComponentInstanceRef_Event_Handler::~ComponentInstanceRef_Event_Handler (void)
 int ComponentInstanceRef_Event_Handler::
 handle_set_included (GAME::Object obj)
 {
-  this->config_->cg_member_ = GAME::FCO::_narrow (obj);
   return 0;
 }
 

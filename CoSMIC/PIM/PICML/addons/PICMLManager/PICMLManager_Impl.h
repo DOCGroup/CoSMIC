@@ -45,10 +45,6 @@ public:
   virtual ~PICMLManager_Impl (void);
 
   virtual int initialize (GAME::Project project);
-
-private:
-  /// The event handler's configuration.
-  PICML::MI::Event_Handler_Config * config_;
 };
 
 #endif // _PICML_MANAGER_IMPL_H_

@@ -26,16 +26,16 @@
 #include "Event_Handler_Config.h"
 
 GAME_DEFAULT_ADDON_IMPL (PICML_Manager_ComponentEx_Impl,
-                         "PICML Model Intelligence", 
-                         "PICML", 
+                         "PICML Model Intelligence",
+                         "PICML",
                          "MGA.AddOn.PICMLManager");
 
 /**
  * @class PICML_Manager_Impl
  *
  * The factory for the PICML manager add-on. This contains the factory
- * for creating the actual COM object. You will notice that the 
- * CComCoClass < > is parameterized by the actual COM object that 
+ * for creating the actual COM object. You will notice that the
+ * CComCoClass < > is parameterized by the actual COM object that
  * will be created.
  */
 class PICML_Manager_Impl :
@@ -53,8 +53,6 @@ public:
   STDMETHOD (setImplementationFolder) (BSTR folder);
   STDMETHOD (setArtifactFolder) (BSTR folder);
   STDMETHOD (resetConfiguration) (void);
-
-  PICML::MI::Event_Handler_Config * config_;
 
 private:
   typedef GAME::Addon_Impl_T < PICML_Manager_ComponentEx_Impl, PICMLManager_Impl > base_type;

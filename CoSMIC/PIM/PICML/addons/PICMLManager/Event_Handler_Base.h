@@ -13,19 +13,8 @@
 #ifndef _PICML_MI_EVENT_HANDLER_BASE_H_
 #define _PICML_MI_EVENT_HANDLER_BASE_H_
 
-#include <set>
 #include "game/be/Event_Handler_Impl.h"
-#include "game/FCO.h"
-#include "game/Connection.h"
-#include "game/Project.h"
-
-#include "ace/Hash_Map_Manager_T.h"
-#include "ace/Null_Mutex.h"
-
-#include "Event_Handler_Config.h"
-
-// Type definition
-typedef std::vector <GAME::Reference> Reference_Set;
+#include "game/Model.h"
 
 namespace PICML
 {
@@ -49,9 +38,6 @@ public:
 
 protected:
   void set_property_type (GAME::Model prop, const GAME::FCO & type);
-
-  /// Latest member of the collocation group.
-  PICML::MI::Event_Handler_Config * config_;
 };
 
 }

@@ -39,9 +39,6 @@ public:
   virtual ~Component_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Object obj);
-
-private:
-  PICML::MI::Event_Handler_Config * config_;
 };
 
 }

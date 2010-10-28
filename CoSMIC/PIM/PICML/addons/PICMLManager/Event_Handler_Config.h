@@ -13,9 +13,9 @@
 #ifndef _PICML_MI_EVENT_HANDLER_CONFIG_H_
 #define _PICML_MI_EVENT_HANDLER_CONFIG_H_
 
-#include "game/GAME.h"
-
-#include <set>
+#include "ace/Singleton.h"
+#include "ace/Thread_Mutex.h"
+#include <string>
 
 namespace PICML
 {
@@ -25,32 +25,25 @@ namespace MI
 /**
 * @class Event_Handler_Config
 *
-* 
+*
 */
-class Event_Handler_Config
+struct Event_Handler_Config
 {
 public:
-  Event_Handler_Config ();
+  /// Default constructor.
+  Event_Handler_Config (void);
 
-  ~Event_Handler_Config ();
-
-  void set_implementation_folder (const std::string & name);
-  void set_artifact_folder (const std::string & name);
-  void reset_configuration (void);
+  /// Reset the configuration.
+  void reset (void);
 
   std::string impl_folder_;
 
   std::string artifact_folder_;
-
-  /// Latest member of the collocation group.
-  GAME::FCO cg_member_;
-
-  /// Collection of pending FCO's to validate.
-  std::vector <GAME::FCO> pending_;
-
-  /// Interface pointer to the hosting project.
-  GAME::Project project_;
 };
+
+typedef ACE_Singleton <Event_Handler_Config,
+                       ACE_Thread_Mutex>
+                       Global_Configuration;
 
 }
 }

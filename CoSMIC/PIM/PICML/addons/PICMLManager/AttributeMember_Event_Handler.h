@@ -14,6 +14,7 @@
 #define _PICML_MI_ATTRIBUTE_MEMBER_EVENT_HANDLER_H_
 
 #include "Event_Handler_Base.h"
+#include "game/Connection.h"
 
 namespace PICML
 {

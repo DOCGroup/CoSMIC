@@ -535,7 +535,11 @@ instantiate_template_package (const GAME::Model & template_package,
                               const template_map_t & mapping)
 {
   // Copy all the elements to the template package instance.
-  GAME::copy (template_package, tpi, "InterfaceDefinition");
+  GAME::copy_config_t config;
+  config.aspect_ = "InterfaceDefinition";
+  config.location_info_ = true;
+
+  GAME::copy (template_package, tpi, config);
 
   // Replace the template parameters with the concrete types.
   this->substitute_template_parameters (tpi, mapping);

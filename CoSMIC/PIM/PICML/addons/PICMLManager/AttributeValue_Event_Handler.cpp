@@ -5,8 +5,8 @@
 #include "AttributeValue_Event_Handler.h"
 
 #include "game/GAME.h"
-
 #include "boost/bind.hpp"
+#include <set>
 
 namespace PICML
 {
@@ -58,7 +58,7 @@ handle_object_created (GAME::Object obj)
   // Let's get the data type of the attribute. Since there is only
   // 1 attribute member, we can just get the front element in the
   // container.
-  Reference_Set attr_members;
+  std::vector <GAME::Reference> attr_members;
   GAME::FCO member_type;
 
   if (1 == attr.children ("AttributeMember", attr_members))

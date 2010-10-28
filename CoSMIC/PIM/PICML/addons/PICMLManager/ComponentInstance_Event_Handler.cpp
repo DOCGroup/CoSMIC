@@ -9,6 +9,8 @@
 #include "game/Reference.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
 #include "game/dialogs/Dialog_Display_Strategy.h"
+#include "game/utils/modelgen.h"
+#include <functional>
 
 namespace PICML
 {
@@ -45,14 +47,31 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
 
   // There is now need to continue if we are an instance. This is
   // because the implementatation is already selected.
-  GAME::FCO fco = GAME::FCO::_narrow (obj);
-  if (fco.is_instance ())
+  GAME::Model component = GAME::Model::_narrow (obj);
+  if (component.is_instance ())
     return 0;
+
+  // GAME::create_if_not (component, "type", type_info, GAME::count (...));
+  std::vector <GAME::Reference> typeinfo_set;
+  GAME::Reference typeinfo;
+
+  if (0 != component.children ("ComponentInstanceType", typeinfo_set))
+  {
+    typeinfo = typeinfo_set.front ();
+
+    if (!typeinfo.is_nil () && !typeinfo.refers_to ().is_nil ())
+      return 0;
+  }
+  else
+  {
+    typeinfo = GAME::Reference::_create (component, "ComponentInstanceType");
+  }
 
   // Locate all the monolithic implementations in the project.
   GAME::Filter filter (obj.project ());
   filter.kind ("MonolithicImplementation");
 
+  GAME::FCO fco;
   std::vector <GAME::FCO> results;
   filter.apply (results);
 
@@ -77,7 +96,7 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
       dlg.title ("Component Implementation Selector");
       dlg.insert (results);
 
-      if (dlg.DoModal () == IDCANCEL)
+      if (dlg.DoModal () != IDOK)
         return 0;
 
       fco = dlg.selection ();
@@ -89,10 +108,8 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
 
   // Finally, create the component instance's type. Make sure it
   // references the selected FCO, which is a monolithic implementation.
-  Model component = Model::_narrow (obj);
-  Reference typeref = Reference::_create (component, "ComponentInstanceType");
-  typeref.refers_to (fco);
-  typeref.name (fco.name ());
+  typeinfo.refers_to (fco);
+  typeinfo.name (fco.name ());
 
   return 0;
 }

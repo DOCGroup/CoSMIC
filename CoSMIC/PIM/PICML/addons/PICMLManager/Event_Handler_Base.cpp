@@ -36,9 +36,7 @@ namespace MI
 // Event_Handler_Base
 //
 Event_Handler_Base::Event_Handler_Base (unsigned long mask)
-: Event_Handler_Impl (mask),
-  config_ (ACE_Singleton <PICML::MI::Event_Handler_Config,
-                          ACE_Null_Mutex>::instance ())
+: Event_Handler_Impl (mask)
 {
 
 }

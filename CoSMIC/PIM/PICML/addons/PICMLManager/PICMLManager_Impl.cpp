@@ -46,9 +46,7 @@ static const unsigned long EVENTMASK =
 // PICMLManager_Impl
 //
 PICMLManager_Impl::PICMLManager_Impl (void)
-: GAME::Event_Handler_Impl (0xFFFFFFFF, false),
-  config_ (ACE_Singleton <PICML::MI::Event_Handler_Config,
-                          ACE_Null_Mutex>::instance ())
+: GAME::Event_Handler_Impl (0xFFFFFFFF, false)
 {
 
 }
@@ -66,8 +64,6 @@ PICMLManager_Impl::~PICMLManager_Impl (void)
 //
 int PICMLManager_Impl::initialize (GAME::Project project)
 {
-  this->config_->project_ = project;
-
   // The new way of writing event handler's for the model intelligence
   // is to use event handler objects. We are going to preload the objects
   // into memory.
