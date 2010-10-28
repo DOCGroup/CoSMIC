@@ -1,8 +1,23 @@
+Thu Oct 28 14:32:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Bug fix where it was impossible to delete a ComponentInstance
+          element if it contained a MirrorPortInstance or ExtendedPortInstance
+          element.
+
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PortInstance_Event_Handler.cpp:
+
+          Removed these files.
+
 Thu Oct 28 03:37:13 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
 
-         Bug fix where large number of circular dependencies cause crash.
+          Bug fix where large number of circular dependencies cause
+          crash.
 
 Thu Oct 28 03:30:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 

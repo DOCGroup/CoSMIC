@@ -23,7 +23,6 @@
 #include "Event_Handler_Base.h"
 #include "NodeReference_Event_Handler.h"
 #include "Package_Type_Handler.h"
-#include "PortInstance_Event_Handler.h"
 #include "ToConnector_Event_Handler.h"
 #include "Template_Module_Instance_Handler.h"
 #include "UUID_Event_Handler.h"
@@ -207,19 +206,9 @@ int PICMLManager_Impl::initialize (GAME::Project project)
     ACE_Singleton <PICML::MI::UUID_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
-  // Handlers for ExtendedPortInstance
-  this->event_handler_->register_handler ("ExtendedPortInstance",
-    ACE_Singleton <PICML::MI::ExtendedPortInstance_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
   // Handlers for ImplementationArtifact
   this->event_handler_->register_handler ("ImplementationArtifact",
     ACE_Singleton <PICML::MI::UUID_Event_Handler,
-                   ACE_Null_Mutex>::instance ());
-
-  // Handlers for MirrorPortInstance
-  this->event_handler_->register_handler ("MirrorPortInstance",
-    ACE_Singleton <PICML::MI::MirrorPortInstance_Event_Handler,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for MonolithicImplementation
