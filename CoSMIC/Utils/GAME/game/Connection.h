@@ -22,14 +22,11 @@
 
 namespace GAME
 {
-//===========================================================================
 /**
  * @class ConnectionPoint
  *
  * Wrapper class for the IMgaConnection COM interface.
  */
-//===========================================================================
-
 class GAME_Export ConnectionPoint
 {
 public:
@@ -114,7 +111,6 @@ private:
   mutable CComPtr <IMgaConnPoint> point_;
 };
 
-//===========================================================================
 /**
  * @class ConnectionPoints
  *
@@ -122,8 +118,6 @@ private:
  * simplifies accessing individual connection points over the
  * traditional vector approach.
  */
-//===========================================================================
-
 class GAME_Export ConnectionPoints
 {
 public:
@@ -235,14 +229,11 @@ private:
   const ConnectionPoints & operator = (const ConnectionPoints &);
 };
 
-//===========================================================================
 /**
  * @class Connection
  *
  * Wrapper class for the IMgaConnection COM interface.
  */
-//===========================================================================
-
 class GAME_Export Connection : public FCO
 {
 public:

@@ -111,6 +111,9 @@ void Project::close (bool abort)
   // Release the default territory.
   this->terr_.close ();
 
+  if (this->project_.p == 0)
+    return;
+
   // Close the project.
   VERIFY_HRESULT (this->project_->Close (abort ? VARIANT_TRUE : VARIANT_FALSE));
   this->project_.Release ();
@@ -311,7 +314,7 @@ Object Project::object_by_path (const std::string & path) const
 //
 // impl
 //
-IMgaProject * Project::impl (void)
+IMgaProject * Project::impl (void) const
 {
   return this->project_.p;
 }

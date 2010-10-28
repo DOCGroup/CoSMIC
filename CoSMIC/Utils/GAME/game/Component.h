@@ -65,7 +65,7 @@ public:
    *
    * @param[in]   project     The target project.
    */
-  void initialize (GAME::Project & project);
+  void initialize (GAME::Project project);
 
   bool interactive (void) const;
   void interactive (bool flag);
@@ -99,7 +99,9 @@ public:
    * @param[in]     selected      Collection of selected FCOs.
    * @param[in]     param         User-defined parameter.
    */
-  void invoke (Project & project, std::vector <FCO> & selected, long param);
+  void invoke (Project project,
+               const std::vector <FCO> & selected,
+               long param);
 
   /// Set the enable state for the component.
   void enable (bool state);

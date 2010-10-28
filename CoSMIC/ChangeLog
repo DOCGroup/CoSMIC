@@ -1,3 +1,21 @@
+Thu Oct 28 03:27:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+
+          Added const quantifier to the impl () method.
+
+        * Utils/GAME/game/Component.h:
+        * Utils/GAME/game/Component.cpp:
+        * Utils/GAME/game/ComponentEx.h:
+        * Utils/GAME/game/ComponentEx.cpp:
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Transaction.h:
+        * Utils/GAME/game/Transaction.inl:
+
+          Fixed function signatures.
+
+
 Tue Oct 26 21:17:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/dialogs/Module.cpp:

@@ -38,9 +38,9 @@ void ComponentEx::parameter (const std::string & param,
 //
 // invoke
 //
-void ComponentEx::invoke (Project & project,
-                          FCO & current,
-                          std::vector <GAME::FCO> & selected,
+void ComponentEx::invoke (Project project,
+                          FCO current,
+                          const std::vector <GAME::FCO> & selected,
                           long param)
 {
   CComBSTR progid ("Mga.MgaFCOs");

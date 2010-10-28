@@ -193,7 +193,7 @@ public:
 
   Object object_by_path (const std::string & path) const;
 
-  IMgaProject * impl (void);
+  IMgaProject * impl (void) const;
 
   const Project & operator = (IMgaProject * p);
   const Project & operator = (const Project & p);

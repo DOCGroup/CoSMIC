@@ -92,8 +92,8 @@ std::string Component::registered_paradigm (void) const
 //
 // invoke
 //
-void Component::invoke (Project & project,
-                        std::vector <FCO> & selected,
+void Component::invoke (Project project,
+                        const std::vector <FCO> & selected,
                         long param)
 {
   CComBSTR progid ("Mga.MgaFCOs");
@@ -112,7 +112,7 @@ void Component::invoke (Project & project,
 //
 // initialize
 //
-void Component::initialize (Project & project)
+void Component::initialize (Project project)
 {
   VERIFY_HRESULT (this->component_->Initialize (project.impl ()));
 }

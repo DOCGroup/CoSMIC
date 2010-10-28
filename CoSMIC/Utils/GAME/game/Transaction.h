@@ -34,10 +34,10 @@ public:
    *
    * @param[in]     proj        Target project
    */
-  Transaction (Project & proj,
+  Transaction (const Project & proj,
                transactiontype_enum type = TRANSACTION_GENERAL);
 
-  Transaction (Project & proj,
+  Transaction (const Project & proj,
                const Territory & terr,
                transactiontype_enum type = TRANSACTION_GENERAL);
 
@@ -60,7 +60,7 @@ private:
   void init (transactiontype_enum type);
 
   /// Target project for the transaction.
-  Project & proj_;
+  Project proj_;
 
   /// Territory for the transaction.
   Territory terr_;

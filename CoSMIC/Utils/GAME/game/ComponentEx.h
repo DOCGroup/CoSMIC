@@ -73,9 +73,9 @@ public:
    * @param[in]     selected      Collection of selected FCOs.
    * @param[in]     param         User-defined parameter.
    */
-  void invoke (Project & project,
-               FCO & current,
-               std::vector <FCO> & selected,
+  void invoke (Project project,
+               FCO current,
+               const std::vector <FCO> & selected,
                long param);
 
   /**
