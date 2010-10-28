@@ -485,13 +485,18 @@ process_forward_declaration (void)
 
   for (LIST::iterator it = this->list_.begin (); it != this->list_.end (); ++it)
   {
+    this->edge_.clear ();
+    
     do
     {
       has_cycle = false;
       cycle_detector.current_graph ((*it).second);
       
       boost::depth_first_search (*(*it).second, boost::visitor (cycle_detector));
-      this->remove_back_edges ((*it).second);
+      
+      if (has_cycle)
+        this->remove_back_edges ((*it).second);
+        
     } while (has_cycle);
   }
   
