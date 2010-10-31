@@ -230,11 +230,6 @@ private:
                         ACE_Null_Mutex> symbols_;
 
   /// Collection of symbols that can be referenced.
-  ACE_Hash_Map_Manager <ACE_CString,
-                        AST_Template_Module_Inst *,
-                        ACE_Null_Mutex> template_insts_;
-
-  /// Collection of symbols that can be referenced.
   PICML_File_Creator_Item * current_file_;
 
   /// Collection of unresolved references.

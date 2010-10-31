@@ -1,3 +1,11 @@
+Sun Oct 31 15:04:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Bug fix where the IDL_Test/IDL3_Plus test was failing to
+          to incorrect handling of packages and package instances.
+
 Thu Oct 28 14:32:12 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

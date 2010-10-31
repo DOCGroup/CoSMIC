@@ -324,12 +324,35 @@ GAME::Xml::String & operator << (GAME::Xml::String & str, const AST_Expression::
 //
 // operator <<
 //
+GAME::Xml::String & operator << (GAME::Xml::String & str, AST_Expression & expr)
+{
+  const AST_Expression::ExprComb ec = expr.ec ();
+
+  switch (ec)
+  {
+  case AST_Expression::EC_symbol:
+    str.set (expr.param_holder ()->local_name ()->get_string ());
+    break;
+
+  default:
+    str << *expr.ev ();
+  }
+
+  return str;
+}
+
+
+//
+// operator <<
+//
 GAME::Xml::String & operator << (GAME::Xml::String & str, AST_Constant & c)
 {
-  if (c.et () == AST_Expression::EV_enum)
+  const AST_Expression::ExprType et = c.et ();
+
+  if (et == AST_Expression::EV_enum)
     str = c.full_name ();
   else
-    str << *c.constant_value ()->ev ();
+    str << *c.constant_value ();
 
   return str;
 }
@@ -514,9 +537,9 @@ int Project_Generator::visit_root (AST_Root * node)
       }
     }
 
-    // Some of the files will have a full path, and others will
-    // not. So, to be save we just need to make sure we have the
-    // real path for each element.
+    // Some of the files will have a full path, and others will not. So,
+    // to be save we just need to make sure we have the real path for
+    // each element.
     fullpath = ACE_OS::realpath (d->file_name ().c_str (), abspath);
     std::replace (fullpath.begin (),
                   fullpath.end (),
@@ -528,11 +551,12 @@ int Project_Generator::visit_root (AST_Root * node)
 
     this->parent_ = &this->current_file_->file_;
     int retval = d->ast_accept (this);
+    const char * repo_id = d->repoID ();
 
     if (retval != 0)
       ACE_ERROR_RETURN ((LM_ERROR,
                          ACE_TEXT ("%T (%t) - %M - failed to construct %s in %s\n"),
-                         d->local_name ()->get_string (),
+                         d->repoID (),
                          d->file_name ().c_str ()),
                          -1);
   }
@@ -618,24 +642,20 @@ int Project_Generator::visit_module (AST_Module *node)
   Model package;
   Auto_Model_T <Model> * module = 0;
 
-  // First, if the package is from a template instance and is the
-  // root module for the template package, then we need to locate
-  // the model for the template package instance.
-  if (0 != node->from_inst ())
-    this->lookup_symbol (node->from_inst (), package, true);
+  // This is a regular package. We should either locate it or
+  // create a new one.
+  const char * repo_id = node->repoID ();
 
-  if (package.is_nil ())
+  if (0 == node->from_inst ())
   {
-    // Since we did not find the template package instance, or the
-    // element is not from one, we can assume it is a regular package.
-    const char * repo_id = node->repoID ();
-
     if (0 != this->current_file_->modules_.find (repo_id, module))
     {
       // Either locate an existing package, or create a new one.
       static const GAME::Xml::String meta_Package ("Package");
       const GAME::Xml::String name (node->local_name ()->get_string ());
 
+      // Do we really need to perform this check since not finding
+      // a module for this package means it does not exist?!
       if (this->parent_->create_if_not (meta_Package, package,
           GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                        name,
@@ -643,30 +663,44 @@ int Project_Generator::visit_module (AST_Module *node)
       {
         package.name (name);
       }
-
-      this->current_file_->modules_.bind (repo_id, module);
     }
   }
+  else
+  {
+    // We should have already created an element via the template package
+    // instance. So, let's locate and use it when contructing the package.
+    if (0 != this->symbols_.find (node->from_inst (), package))
+      return -1;
+  }
 
-  // At this point, we only care about managing the objects that
-  // are in the TemplateParameters aspect.
-  std::vector <FCO> non_parameters;
-  package.children (non_parameters);
+  if (0 == module && !package.is_nil ())
+  {
+    // At this point, we only care about managing the objects that
+    // are not in the TemplateParameters aspect.
+    std::vector <FCO> non_parameters;
+    package.children (non_parameters);
 
-  std::vector <FCO>::iterator end_iter =
-    std::remove_if (non_parameters.begin (),
-                    non_parameters.end (),
-                    aspect_filter_t <FCO> (constant::aspect::TemplateParameters));
+    std::vector <FCO>::iterator end_iter =
+      std::remove_if (non_parameters.begin (),
+                      non_parameters.end (),
+                      aspect_filter_t <FCO> (constant::aspect::TemplateParameters));
 
-  // We need to store this package in the global space since it
-  // is reentrant. We don't want elements deleted on accident. ;-)
-  ACE_NEW_RETURN (module,
-                  Auto_Model_T <Model> (package,
-                                        non_parameters.begin (),
-                                        end_iter),
-                  -1);
+    // We need to store this package in the global space since it
+    // is reentrant. We don't want elements deleted on accident. ;-)
+    ACE_NEW_RETURN (module,
+                    Auto_Model_T <Model> (package,
+                                          non_parameters.begin (),
+                                          end_iter),
+                    -1);
 
-  return this->visit_scope (node, module);
+    if (0 != this->current_file_->modules_.bind (repo_id, module))
+      return -1;
+  }
+
+  if (0 != module)
+    return this->visit_scope (node, module);
+
+  return -1;
 }
 
 //
@@ -712,14 +746,17 @@ int Project_Generator::visit_interface (AST_Interface *node)
 
   // Check for any interface inheritance.
   static const GAME::Xml::String meta_Inherits ("Inherits");
-  long inherits_count = node->n_inherits ();
-  AST_Interface ** inherits = node->inherits_flat ();
+  long inherits_flat_count = node->n_inherits_flat ();
+  AST_Interface ** inherits_flat = node->inherits_flat ();
 
-  for (long i = 0; i < inherits_count; ++ i)
+  //if (0 == inherits_count)
+  //  long inherits_flat_count = node->n_inherits ();
+
+  for (long i = 0; i < inherits_flat_count; ++ i)
   {
     FCO referred_interface;
 
-    if (!this->lookup_symbol (inherits[i], referred_interface))
+    if (!this->lookup_symbol (inherits_flat[i], referred_interface))
       continue;
 
     Reference inherits_ref;
@@ -2446,9 +2483,6 @@ int Project_Generator::visit_connector (AST_Connector *node)
     this->handle_symbol_resolution (base, ref_inherits);
   }
 
-  //if (0 == retval)
-  //  this->impl_gen_.generate (component);
-
   return retval;
 }
 
@@ -2689,12 +2723,8 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   using GAME::XME::Model;
   using GAME::XME::FCO;
 
-  // First, save this instance for later. Right now, let's not worry
-  // name clashes with other template modules.
-  const char * full_name = node->full_name ();
-  this->template_insts_.bind (full_name, node);
-
-  // Create the template package alias.
+  // Create the template package instance element. Make sure
+  // we save it to the symbols for later usage.
   Model module_inst;
   const GAME::Xml::String name (node->local_name ()->get_string ());
   static const GAME::Xml::String meta_TemplatePackageAlias ("TemplatePackageInstance");
@@ -2706,8 +2736,6 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   {
     module_inst.name (name);
   }
-
-  this->symbols_.bind (node, module_inst);
 
   // At this point, we only care about managing the objects that
   // are in the TemplateParameters aspect.
@@ -2724,6 +2752,8 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   Auto_Model_T <Model> auto_model (module_inst,
                                    parameters.begin (),
                                    end_iter);
+
+  this->symbols_.bind (node, module_inst);
 
   // Make sure there is a package type in this element. We also need
   // to reference the correct package.
