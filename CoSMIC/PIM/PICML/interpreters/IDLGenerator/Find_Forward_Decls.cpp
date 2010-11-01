@@ -459,7 +459,12 @@ Visit_OutEventPort (const PICML::OutEventPort & p)
 void Find_Forward_Decls::
 Visit_TemplateParameterValue (const PICML::TemplateParameterValue & tpv)
 {
-  this->Visit_MemberType (tpv.ref ());
+  PICML::TemplateParameterValueType t = tpv.ref ();
+
+  if (t.type () == PICML::Exception::meta)
+    this->Visit_Exception (PICML::Exception::Cast (t));
+  else
+    this->Visit_MemberType (PICML::MemberType::Cast (t));
 }
 
 //

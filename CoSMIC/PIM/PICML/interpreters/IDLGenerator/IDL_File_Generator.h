@@ -247,6 +247,8 @@ private:
   void Visit_Provideable (const PICML::Provideable & p);
   void Visit_EventType (const PICML::EventType & e);
   void Visit_ObjectByValue (const PICML::ObjectByValue & obv);
+  void Visit_TemplateParameterValueType (const PICML::TemplateParameterValueType &);
+  void Visit_ExceptionType (const PICML::ExceptionType &);
 
   /// Target output stream for the IDL.
   IDLStream & idl_;

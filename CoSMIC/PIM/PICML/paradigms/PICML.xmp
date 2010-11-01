@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{63989457-55EA-4F88-81AE-5BAAA78702DF}" cdate="Fri Oct 01 22:14:48 2010" mdate="Fri Oct 01 22:14:48 2010" >
+<paradigm name="PICML" guid="{0036ADCA-2A43-4F2B-9A4A-2AC2DBD958FA}" cdate="Sun Oct 24 21:38:01 2010" mdate="Sun Oct 24 21:38:01 2010" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2806,6 +2806,8 @@ and
 		</connection>
 		<reference name = "ActionType" metaref = "6269">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyActionType"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Operation"></pointeritem>
 			</pointerspec>
@@ -3647,18 +3649,15 @@ let y = value.toInteger () in
 				<pointeritem desc = "Event"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "ExceptionRef" metaref = "1182">
+		<reference name = "ExceptionRef" metaref = "6273">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyExceptionRef"></regnode>
-			<constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[not refersTo ().isNull ()]]>
-				<dispname>A reference cannot be null</dispname>
-			</constraint>
 			<regnode name = "icon" value ="exceptionref.bmp"></regnode>
 			<regnode name = "isNameEnabled" value ="false"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Exception"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "ExtendedPort" metaref = "5484">
@@ -3737,6 +3736,7 @@ not x.isNull ()]]>
 			<regnode name = "isNameEnabled" value ="false"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Exception"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "ImplementationArtifactReference" metaref = "1186">
@@ -3925,17 +3925,14 @@ not x.isNull ()]]>
 				<pointeritem desc = "WideString"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "LookupKey" metaref = "1191">
+		<reference name = "LookupKey" metaref = "6280">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyLookupKey"></regnode>
-			<constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[not self.refersTo ().isNull ()]]>
-				<dispname>A reference cannot be null</dispname>
-			</constraint>
 			<regnode name = "icon" value ="lookupkey.bmp"></regnode>
 			<regnode name = "isNameEnabled" value ="false"></regnode>
 			<pointerspec name = "ref">
+				<pointeritem desc = "TypeParameter"></pointeritem>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
@@ -4050,14 +4047,6 @@ not x.isNull ()]]>
 			<regnode name = "icon" value ="MirrorPort.gif"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "MirrorPort"></pointeritem>
-			</pointerspec>
-		</reference>
-		<reference name = "MonolithicImplementationReference" metaref = "6012">
-				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "rName" value ="ref"></regnode>
-				<regnode name = "rrName" value ="referedbyMonolithicImplementationReference"></regnode>
-			<pointerspec name = "ref">
-				<pointeritem desc = "MonolithicImplementation"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "NodeReference" metaref = "1193">
@@ -4442,6 +4431,7 @@ not type.multiple_connections => self.attachingConnections(Invoke)->size() <= 1]
 			<regnode name = "isNameEnabled" value ="false"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Exception"></pointeritem>
+				<pointeritem desc = "TypeParameter"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "SimpleProperty" metaref = "5912" attributes = "Value">
@@ -4559,6 +4549,7 @@ not x.isNull ()]]>
 				<pointeritem desc = "DoubleNumber"></pointeritem>
 				<pointeritem desc = "Enum"></pointeritem>
 				<pointeritem desc = "Event"></pointeritem>
+				<pointeritem desc = "Exception"></pointeritem>
 				<pointeritem desc = "FloatNumber"></pointeritem>
 				<pointeritem desc = "GenericObject"></pointeritem>
 				<pointeritem desc = "GenericValue"></pointeritem>
@@ -5308,7 +5299,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "Exception" metaref = "1390" kind = "Exception"></role>
 			<role name = "FactoryOperation" metaref = "1391" kind = "FactoryOperation"></role>
 			<role name = "Inherits" metaref = "1392" kind = "Inherits"></role>
-			<role name = "LookupKey" metaref = "1393" kind = "LookupKey"></role>
+			<role name = "LookupKey" metaref = "6281" kind = "LookupKey"></role>
 			<role name = "LookupOperation" metaref = "1394" kind = "LookupOperation"></role>
 			<role name = "OnewayOperation" metaref = "1395" kind = "OnewayOperation"></role>
 			<role name = "PortType" metaref = "5376" kind = "PortType"></role>
@@ -5326,7 +5317,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<part metaref = "1407" role = "Exception" primary = "yes" linked = "no"></part>
 				<part metaref = "1408" role = "FactoryOperation" primary = "yes" linked = "no"></part>
 				<part metaref = "1409" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "1410" role = "LookupKey" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "6282" role = "LookupKey" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1411" role = "LookupOperation" primary = "yes" linked = "no"></part>
 				<part metaref = "1412" role = "OnewayOperation" primary = "yes" linked = "no"></part>
 				<part metaref = "5377" role = "PortType" primary = "yes" linked = "no"></part>
@@ -5383,12 +5374,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality171" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality172" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5612,7 +5603,9 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
+			<role name = "Aggregate" metaref = "6283" kind = "Aggregate"></role>
 			<role name = "Attribute" metaref = "4324" kind = "Attribute"></role>
+			<role name = "Collection" metaref = "6285" kind = "Collection"></role>
 			<role name = "ConnectorInherits" metaref = "5297" kind = "ConnectorInherits"></role>
 			<role name = "ExtendedPort" metaref = "5491" kind = "ExtendedPort"></role>
 			<role name = "MirrorPort" metaref = "5500" kind = "MirrorPort"></role>
@@ -5620,7 +5613,9 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "ReadonlyAttribute" metaref = "4325" kind = "ReadonlyAttribute"></role>
 			<role name = "RequiredRequestPort" metaref = "5431" kind = "RequiredRequestPort"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5693" attributes = "VersionTag SpecifyIdTag UUID" >
+				<part metaref = "6284" role = "Aggregate" primary = "yes" linked = "no"></part>
 				<part metaref = "4326" role = "Attribute" primary = "yes" linked = "yes"></part>
+				<part metaref = "6286" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "5298" role = "ConnectorInherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "5492" role = "ExtendedPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "5501" role = "MirrorPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
@@ -5717,14 +5712,14 @@ endif]]>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidECRequirementsPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ECRole" ) -> size in
-                     (partCount = 2)]]>
-				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 2.</dispname>
-			</constraint>
-			<constraint name="ValidECRequirementsPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ECBehavior" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidECRequirementsPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ECRole" ) -> size in
+                     (partCount = 2)]]>
+				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 2.</dispname>
 			</constraint>
 			<role name = "ComplexProperty" metaref = "5957" kind = "ComplexProperty"></role>
 			<role name = "ECBehavior" metaref = "4013" kind = "ECBehavior"></role>
@@ -5932,10 +5927,10 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "ExceptionRef" metaref = "1561" kind = "ExceptionRef"></role>
+			<role name = "ExceptionRef" metaref = "6274" kind = "ExceptionRef"></role>
 			<role name = "InParameter" metaref = "1562" kind = "InParameter"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5697" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "1564" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "6277" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1565" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
@@ -6093,10 +6088,10 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "ExceptionRef" metaref = "1621" kind = "ExceptionRef"></role>
+			<role name = "ExceptionRef" metaref = "6275" kind = "ExceptionRef"></role>
 			<role name = "InParameter" metaref = "1622" kind = "InParameter"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5699" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "1624" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "6278" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1625" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
@@ -6405,14 +6400,14 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality185" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
@@ -6420,12 +6415,12 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6481,7 +6476,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Monolithic implementation in a ComponentPackage should all implement the same component interface</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6491,7 +6486,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality191" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6674,12 +6669,12 @@ endif]]>
 				<regnode name = "icon" value ="rtrequirements.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidRTRequirementsPartCardinality192" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRTRequirementsPartCardinality193" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
@@ -6798,14 +6793,14 @@ endif]]>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidServantProjectPartCardinality196" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidServantProjectPartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidServantProjectPartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
@@ -6866,12 +6861,12 @@ endif]]>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidStubProjectPartCardinality200" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
+				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidStubProjectPartCardinality201" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size + self.parts( "ComponentImplementationArtifact" ) -> size + self.parts( "ComponentServantArtifact" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
@@ -6934,12 +6929,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality204" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -7084,19 +7079,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality208" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality209" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTopLevelPackageContainerPartCardinality209" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
 			<role name = "PackageConfigurationReference" metaref = "1840" kind = "PackageConfigurationReference"></role>
 			<role name = "TopLevelPackage" metaref = "1841" kind = "TopLevelPackage"></role>
@@ -7134,13 +7129,13 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "ExceptionRef" metaref = "1848" kind = "ExceptionRef"></role>
+			<role name = "ExceptionRef" metaref = "6276" kind = "ExceptionRef"></role>
 			<role name = "InParameter" metaref = "1849" kind = "InParameter"></role>
 			<role name = "InoutParameter" metaref = "1850" kind = "InoutParameter"></role>
 			<role name = "OutParameter" metaref = "1851" kind = "OutParameter"></role>
 			<role name = "ReturnType" metaref = "1852" kind = "ReturnType"></role>
 			<aspect name = "InterfaceDefinition" metaref = "5706" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "1854" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "6279" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1855" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1856" role = "InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "1857" role = "OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>

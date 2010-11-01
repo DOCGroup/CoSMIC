@@ -18,6 +18,21 @@
 #include "ace/SString.h"
 #include "game/xme/Project.h"
 #include "game/xme/Auto_Model_T.h"
+#include "ast_template_module.h"
+
+/**
+ * @struct ACE_Hash <AST_Template_Module_Inst *>
+ *
+ * Specialization of ACE_Hash for AST_Template_Module_Inst *.
+ */
+template < >
+struct ACE_Hash <AST_Template_Module_Inst *>
+{
+  unsigned long operator () (AST_Template_Module_Inst * t) const
+  {
+    return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (t));
+  }
+};
 
 /**
  * @class PICML_File_Creator_Item
@@ -34,6 +49,10 @@ public:
   ACE_Hash_Map_Manager <ACE_CString,
                         GAME::XME::Auto_Model_T <GAME::XME::Model> *,
                         ACE_Null_Mutex> modules_;
+
+  ACE_Hash_Map_Manager <AST_Template_Module_Inst *,
+                        GAME::XME::Auto_Model_T <GAME::XME::Model> *,
+                        ACE_Null_Mutex> template_modules_;
 };
 
 #if defined (WIN32) || defined (ACE_OPENVMS)

@@ -641,12 +641,10 @@ int Project_Generator::visit_module (AST_Module *node)
 
   Model package;
   Auto_Model_T <Model> * module = 0;
-
-  // This is a regular package. We should either locate it or
-  // create a new one.
+  const bool reg_module = 0 == node->from_inst () ? true : false;
   const char * repo_id = node->repoID ();
 
-  if (0 == node->from_inst ())
+  if (reg_module)
   {
     if (0 != this->current_file_->modules_.find (repo_id, module))
     {
@@ -693,8 +691,16 @@ int Project_Generator::visit_module (AST_Module *node)
                                           end_iter),
                     -1);
 
-    if (0 != this->current_file_->modules_.bind (repo_id, module))
-      return -1;
+    if (reg_module)
+    {
+      if (0 != this->current_file_->modules_.bind (repo_id, module))
+        return -1;
+    }
+    else
+    {
+      if (0 != this->current_file_->template_modules_.bind (node->from_inst (), module))
+        return -1;
+    }
   }
 
   if (0 != module)
@@ -830,8 +836,8 @@ int Project_Generator::visit_valuetype (AST_ValueType *node)
   }
 
   // Set the attributes for the object.
-  value_object.attribute (constant::attr::abstract, true).value (node->is_abstract ());
-  value_object.attribute (constant::attr::local, true).value (node->is_local ());
+  if (node->is_abstract ())
+    value_object.attribute (constant::attr::abstract, true).value (true);
 
   // Store the element as a symbol.
   this->symbols_.bind (node, value_object);
@@ -871,8 +877,8 @@ int Project_Generator::visit_valuetype_fwd (AST_ValueTypeFwd *node)
   }
 
   // Set the attributes for the object.
-  value_object.attribute (constant::attr::abstract, true).value (node->is_abstract ());
-  value_object.attribute (constant::attr::local, true).value (node->is_local ());
+  if (node->is_abstract ())
+    value_object.attribute (constant::attr::abstract, true).value (true);
 
   // Store the element as a symbol.
   this->symbols_.bind (node, value_object);
@@ -1244,6 +1250,7 @@ int Project_Generator::visit_home (AST_Home *node)
   }
 
   // Add a LookupKey to the element, if applicable.
+  Auto_Model_T <Model> auto_clean (component_factory);
   AST_Type * primary_key = node->primary_key ();
 
   if (0 != primary_key)
@@ -1253,7 +1260,7 @@ int Project_Generator::visit_home (AST_Home *node)
     using GAME::XME::Reference;
     Reference lookup_key;
 
-    this->parent_->create_if_not (meta_LookupKey, lookup_key,
+    auto_clean.create_if_not (meta_LookupKey, lookup_key,
       GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    meta_LookupKey,
                                    boost::bind (&Model::kind, _1))));
@@ -1290,7 +1297,6 @@ int Project_Generator::visit_home (AST_Home *node)
   }
 
   // Store the element as a symbol.
-  Auto_Model_T <Model> auto_clean (component_factory);
   return this->visit_scope (node, &auto_clean);
 }
 

@@ -180,12 +180,12 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p)
     iter = parameters.begin (),
     iter_end = parameters.end ();
 
-  this->Visit_MemberType (iter->ref ());
+  this->Visit_TemplateParameterValueType (iter->ref ());
 
   for (++ iter; iter != iter_end; ++ iter)
   {
     this->idl_ << ", ";
-    this->Visit_MemberType (iter->ref ());
+    this->Visit_TemplateParameterValueType (iter->ref ());
   }
 
   this->idl_ << " > " << p.name () << ";" << nl;
@@ -930,10 +930,13 @@ void IDL_File_Generator::Visit_Attribute (const PICML::Attribute & a)
     get_values_t::iterator iter = get_exs.begin (),
                            iter_end = get_exs.end ();
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    this->Visit_ExceptionType (iter->ref ());
 
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    {
+      this->idl_ << ", ";
+      this->Visit_ExceptionType (iter->ref ());
+    }
 
     this->idl_ << ")" << uidt_nl;
   }
@@ -950,10 +953,13 @@ void IDL_File_Generator::Visit_Attribute (const PICML::Attribute & a)
     set_values_t::iterator iter = set_exs.begin (),
                            iter_end = set_exs.end ();
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    this->Visit_ExceptionType (iter->ref ());
 
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    {
+      this->idl_ << ", ";
+      this->Visit_ExceptionType (iter->ref ());
+    }
 
     this->idl_ << ")" << uidt_nl;
   }
@@ -1064,10 +1070,13 @@ Visit_TwowayOperation (const PICML::TwowayOperation & op)
     this->idl_ << idt_nl
                << "raises (";
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    this->Visit_ExceptionType (iter->ref ());
 
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (iter->ref (), "::", true);
+    {
+      this->idl_ << ", ";
+      this->Visit_ExceptionType (iter->ref ());
+    }
 
     this->idl_ << ")" << uidt;
   }
@@ -1190,8 +1199,17 @@ Visit_ComponentFactory (const PICML::ComponentFactory & f)
   PICML::LookupKey key = f.LookupKey_child ();
 
   if (key != Udm::null)
+  {
     this->idl_ << nl
-               << "primarykey " << PICML::utils::fq_type (key.ref (), "::", true);
+               << "primarykey ";
+
+    PICML::LookupKeyType t = key.ref ();
+
+    if (t.type () == PICML::ValueObject::meta)
+      this->idl_ << PICML::utils::fq_type (PICML::ValueObject::Cast (t), "::", true);
+    else
+      this->idl_ << PICML::TypeParameter::Cast (t).name ();
+  }
 
   this->idl_ << nl
              << "{" << idt_nl;
@@ -1263,9 +1281,13 @@ Visit_LookupOperation (const PICML::LookupOperation & op)
     std::vector <PICML::ExceptionRef>::iterator
       iter = excepts.begin (), iter_end = excepts.end ();
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    this->Visit_ExceptionType (iter->ref ());
+
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (iter->ref (), "::", true);
+    {
+      this->idl_ << ", ";
+      this->Visit_ExceptionType (iter->ref ());
+    }
 
     this->idl_ << ")" << uidt;
   }
@@ -1312,9 +1334,13 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
     std::vector <PICML::ExceptionRef>::iterator
       iter = excepts.begin (), iter_end = excepts.end ();
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
+    this->Visit_ExceptionType (iter->ref ());
+
     for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (iter->ref (), "::", true);
+    {
+      this->idl_ << ", ";
+      this->Visit_ExceptionType (iter->ref ());
+    }
 
     this->idl_ << ")" << uidt;
   }
@@ -1506,6 +1532,18 @@ void IDL_File_Generator::Visit_Provideable (const PICML::Provideable & p)
 }
 
 //
+// Visit_TemplateParameterValueType
+//
+void IDL_File_Generator::
+Visit_TemplateParameterValueType (const PICML::TemplateParameterValueType & t)
+{
+  if (t.type () == PICML::Exception::meta)
+    this->idl_ << PICML::utils::fq_type (PICML::Exception::Cast (t), "::", true);
+  else
+    this->Visit_MemberType (PICML::MemberType::Cast (t));
+}
+
+//
 // Visit_MemberType
 //
 void IDL_File_Generator::Visit_MemberType (const PICML::MemberType & mt)
@@ -1543,4 +1581,16 @@ void IDL_File_Generator::Visit_EventType (const PICML::EventType & e)
     this->idl_ << PICML::utils::fq_type (PICML::Event::Cast (e), "::", true);
   else if (Udm::IsDerivedFrom (e.type (), PICML::TemplateParameter::meta))
     this->idl_ << e.name ();
+}
+
+//
+// Visit_ExceptionType
+//
+void IDL_File_Generator::
+Visit_ExceptionType (const PICML::ExceptionType & e)
+{
+  if (e.type () == PICML::Exception::meta)
+    this->idl_ << PICML::utils::fq_type (PICML::Exception::Cast (e), "::", true);
+  else
+    this->idl_ << PICML::TypeParameter::Cast (e).name ();
 }
