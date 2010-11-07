@@ -1,3 +1,29 @@
+Sun Nov  7 18:34:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Module.cpp:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.cpp:
+
+          Bug fix where the CBML model intelligence was not executing
+          because its event mask was not set propertly.
+
+          Updated the add-on to support the latest fixes in the CBML
+          metamodel.
+
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.h:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.cpp:
+
+          Removed these files.
+
 Mon Nov  1 23:06:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:

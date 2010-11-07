@@ -1,6 +1,7 @@
 // $Id$
 
-project (PICML_CBMLManager): boost_base, game_component, game_utils, cosmic_lib {
+project (PICML_CBMLManager): boost_base, game_component, \
+                             game_dialogs, game_utils, cosmic_lib {
   sharedname = PICML_CBMLManager
 
   pch_header = StdAfx.h
@@ -11,11 +12,10 @@ project (PICML_CBMLManager): boost_base, game_component, game_utils, cosmic_lib 
     CBMLManager_Impl.cpp
     CBMLManager_Module.cpp
 
-    String_Selection_Dialog.cpp
-  }
-
-  Header_Files {
-    String_Selection_Dialog.h
+    Action_Handler.cpp
+    Action_Type_Handler.cpp
+    Connection_Generation_Handler.cpp
+    Output_Action_Handler.cpp
   }
 
   Resource_Files {
