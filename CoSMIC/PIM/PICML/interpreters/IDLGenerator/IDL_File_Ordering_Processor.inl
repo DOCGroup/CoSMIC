@@ -43,8 +43,8 @@ add_edge (const Udm::Object & o)
         bool found_parent = false;
         bool found_ref_parent = false;
         
-        VERTEX reference = find_vertex (reference_parent, this->current_graph_, found_ref_parent);
-        VERTEX direct = find_vertex (parent, this->current_graph_, found_parent);
+        VERTEX reference = this->find_vertex (reference_parent, this->current_graph_, found_ref_parent);
+        VERTEX direct = this->find_vertex (parent, this->current_graph_, found_parent);
         
         if (found_parent == true && found_ref_parent == true)
         {
@@ -61,7 +61,7 @@ add_edge (const Udm::Object & o)
         {
           this->add_vertex (parent, this->current_graph_);
           
-          VERTEX direct = find_vertex (parent, this->current_graph_, found_parent);
+          VERTEX direct = this->find_vertex (parent, this->current_graph_, found_parent);
           
           EDGE e; 
           bool added = false; 
@@ -72,7 +72,7 @@ add_edge (const Udm::Object & o)
         {
           this->add_vertex (reference_parent, this->current_graph_);
           
-          VERTEX reference = find_vertex (reference_parent, this->current_graph_, found_ref_parent);
+          VERTEX reference = this->find_vertex (reference_parent, this->current_graph_, found_ref_parent);
           
           EDGE e; 
           bool added = false; 

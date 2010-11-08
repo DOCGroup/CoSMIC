@@ -49,7 +49,7 @@ visit_file_package (const Udm::Object & object,
   if (this->forward_declaration_)
   {
     this->idl_order_proc_.process_forward_declaration ();
-    this->set_file_generator (reinterpret_cast<IDL_File_Generator *>(&visitor));
+    this->file_generator (reinterpret_cast<IDL_File_Generator *>(&visitor));
   }
   else
   {
@@ -177,10 +177,10 @@ visit_all_forward_declaration (const PICML::Package & package)
 }
 
 //
-// set_file_generator
+// file_generator
 //
 void IDL_File_Dependency_Processor::
-set_file_generator (IDL_File_Generator * idl_file_generator)
+file_generator (IDL_File_Generator * idl_file_generator)
 {
   this->idl_file_generator_ = idl_file_generator;
 }

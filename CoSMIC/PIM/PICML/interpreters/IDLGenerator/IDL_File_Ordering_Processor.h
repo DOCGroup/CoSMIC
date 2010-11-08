@@ -202,6 +202,12 @@ public:
   */
   virtual void Visit_Attribute (const PICML::Attribute & a);
   /**
+  * Visitor methods used to visit the aManagesComponent type
+  *
+  * @param[in]      m      A ManagesComponent to visit
+  */
+  virtual void Visit_ManagesComponent (const PICML::ManagesComponent & m);
+  /**
   * Visits the file object
   *
   * @param[in]      o      A object to visit
@@ -277,6 +283,8 @@ private:
   void add_node (const Udm::Object & o);
   /// add_edge
   template <typename T, typename P>
+  void add_edge (const Udm::Object & o);
+  /// add_edge
   void add_edge (const Udm::Object & o);
   /// topological_sort_i
   void topological_sort_i (CONTAINER & container);

@@ -94,8 +94,8 @@ public:
   void visit_all_forward_declaration (const PICML::Package & p);
 
 private:
-  /// set_file_generator
-  void set_file_generator (IDL_File_Generator * v);
+  /// file_generator
+  void file_generator (IDL_File_Generator * v);
   /// visit_file_package
   void visit_file_package (const Udm::Object & o, 
                            PICML::Visitor & v);

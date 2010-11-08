@@ -256,6 +256,15 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
 }
 
 //
+// Visit_ManagesComponent
+//
+void IDL_File_Ordering_Processor::
+Visit_ManagesComponent (const PICML::ManagesComponent & m)
+{
+  this->add_edge (m);
+}
+
+//
 // Visit_ComponentFactory
 //
 void IDL_File_Ordering_Processor::
@@ -455,6 +464,7 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declara
   Udm::visit_all <PICML::Event> (o, visitor);
   Udm::visit_all <PICML::Object> (o, visitor);
   
+  Udm::visit_all <PICML::ManagesComponent> (o, visitor);
   Udm::visit_all <PICML::Component> (o, visitor);
   Udm::visit_all <PICML::ComponentFactory> (o, visitor);
   Udm::visit_all <PICML::ConnectorObject> (o, visitor);
@@ -645,4 +655,31 @@ parent_before_file (const Udm::Object & o)
   }
     
   return parent;
+}
+
+//
+// add_edge
+//
+void IDL_File_Ordering_Processor::
+add_edge (const Udm::Object & o)
+{
+  if (o.type () == PICML::ManagesComponent::meta)
+  {
+    ::PICML::ComponentFactory c = PICML::ManagesComponent::Cast (o).srcManagesComponent_end ();
+    ::PICML::Manageable m = PICML::ManagesComponent::Cast (o).dstManagesComponent_end ();
+    
+    this->add_node (c);
+    this->add_node (m);
+    
+    bool found_component = false;
+    bool found_manageable = false;
+    
+    VERTEX manageable = this->find_vertex (c, this->current_graph_, found_manageable);
+    VERTEX component = this->find_vertex (m, this->current_graph_, found_component);
+    
+    EDGE e; 
+    bool added = false;
+        
+    boost::tie(e,added) = boost::add_edge (component, manageable, *this->current_graph_);
+  }
 }

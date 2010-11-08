@@ -1,3 +1,18 @@
+Mon Nov  8 17:53:44 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Visitor.cpp:
+
+          Bug fix where the IDL generator creates bad declaration
+          ordering with ComponentFactory element.
+
+          Corrected some syntaxes within supporting IDL generator
+          files.
+
 Sun Nov  7 18:34:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/Action_Handler.h:
