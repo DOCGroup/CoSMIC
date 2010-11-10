@@ -1,3 +1,10 @@
+Wed Nov 10 02:15:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * contrib:
+
+          CCF -r 92149 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+          utility -r 85731 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+
 Wed Nov 10 02:10:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * NEWS:
