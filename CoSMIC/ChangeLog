@@ -1,3 +1,17 @@
+Wed Nov 10 02:10:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * NEWS:
+        * RELEASE-NOTES:
+
+          Updated news and release notes.
+
+        * Installer/CoSMIC_Installer.wxs:
+        * PROBLEM-REPORT-FORM:
+        * README:
+        * VERSION:
+
+          Updated version information.
+
 Mon Nov  8 17:53:44 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.h:

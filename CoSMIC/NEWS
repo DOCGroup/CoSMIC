@@ -1,3 +1,29 @@
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.8.2 and CoSMIC-0.8.3
+============================================================
+
+. Bug fix where idl_to_picml failed to import the IDL3_Plus
+  test in CIAO. This was a result of the PICML metamodel not
+  properly supporting some of IDL3+ semantics.
+
+. Bug fix where the IDL generator creates bad declaration ordering
+  with ComponentFactory element.
+
+. Bug fix where the CBML model intelligence was not executing
+  because its event mask was not set propertly.
+
+. Bug fix where it was impossible to delete a ComponentInstance
+  element if it contained a MirrorPortInstance or ExtendedPortInstance
+  element.
+
+. Bug fix where large number of circular dependencies caused crash
+  in IDL generator interpreter.
+
+. Bug fix where the private/public flags were missing from
+  an event tag.
+
+. Bug fix where the 'supports' statement on a component was not
+  generated correctly.
+
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.8.1 and CoSMIC-0.8.2
 ============================================================
 
