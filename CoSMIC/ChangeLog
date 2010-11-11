@@ -1,3 +1,11 @@
+Thu Nov 11 06:01:27 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Bug fix where IDL Generator should not process ReadonlyAttribute in
+          visitall ().
+
 Thu Nov 11 03:52:18 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * Utils/GAME/game/FCO.h:
@@ -68,7 +76,7 @@ Thu Nov 11 03:52:18 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * Utils/GAME/tests/ExtensionClasses/Set:
         * Utils/GAME/tests/ExtensionClasses/Set/Set-UnitTest.xme:
 
-          Added test cases to validate the ExtensionClassesInterpreter. 
+          Added test cases to validate the ExtensionClassesInterpreter.
 
 Wed Nov 10 03:17:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 

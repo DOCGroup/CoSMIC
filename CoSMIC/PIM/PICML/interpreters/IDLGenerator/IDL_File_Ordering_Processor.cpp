@@ -452,7 +452,6 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declara
   Udm::visit_all <PICML::Aggregate> (o, visitor);
   Udm::visit_all <PICML::SwitchedAggregate> (o, visitor);
   Udm::visit_all <PICML::ValueObject> (o, visitor);
-  Udm::visit_all <PICML::ReadonlyAttribute> (o, visitor);
   Udm::visit_all <PICML::Attribute> (o, visitor);
 
   Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
