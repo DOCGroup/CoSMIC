@@ -34,7 +34,7 @@ void Visitor::visit_Object (GAME::Object &)
 // visit_FCO
 //
 GAME_INLINE
-void Visitor::visit_FCO (GAME::FCO &)
+void Visitor::visit_FCO (const GAME::FCO &)
 {
 
 }

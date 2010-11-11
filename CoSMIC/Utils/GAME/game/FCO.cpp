@@ -391,4 +391,14 @@ void FCO::accept (GAME::Visitor & visitor)
 {
   visitor.visit_FCO (*this);
 }
+
+
+size_t FCO::referenced_by (std::vector <GAME::FCO> & references) const
+{
+  CComPtr <IMgaFCOs> temp;
+  VERIFY_HRESULT (this->impl ()->get_ReferencedBy (&temp));
+
+  return get_children (temp, references);;
+}
+
 }

@@ -40,7 +40,7 @@ public:
   virtual void visit_Object (GAME::Object &);
 
   /// Visit a GAME::FCO
-  virtual void visit_FCO (GAME::FCO &);
+  virtual void visit_FCO (const GAME::FCO &);
 
   /// Visit a GAME::Model
   virtual void visit_Model (GAME::Model &);

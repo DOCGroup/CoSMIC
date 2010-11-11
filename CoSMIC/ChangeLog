@@ -1,3 +1,75 @@
+Thu Nov 11 03:52:18 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+
+          Created a wraper for the referenced_by () function.
+
+        * Utils/GAME/game/Visitor.h:
+        * Utils/GAME/game/Visitor.inl:
+
+          Bug fix where visit_FCO () would not get called. Now
+          FCO is passed to the visitor as a constant.
+
+        * Utils/GAME/game/interpreters:
+        * Utils/GAME/game/interpreters/ExtensionClasses:
+        * Utils/GAME/game/interpreters/ExtensionClasses/CompIcon.ico:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Component.aps:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Component.rc:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Configuration.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Configuration.cpp:
+        * Utils/GAME/game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+        * Utils/GAME/game/interpreters/ExtensionClasses/ExtensionClasses.wxs:
+        * Utils/GAME/game/interpreters/ExtensionClasses/ExtensionClasses_Export.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component.idl:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component_Module.cpp:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * Utils/GAME/game/interpreters/ExtensionClasses/GAME_ExtensionClassesComponent.reg:
+        * Utils/GAME/game/interpreters/ExtensionClasses/GAME_ExtensionClassesComponentd.reg:
+        * Utils/GAME/game/interpreters/ExtensionClasses/Resource.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/StdAfx.h:
+        * Utils/GAME/game/interpreters/ExtensionClasses/StdAfx.cpp:
+        * Utils/GAME/game/interpreters/ExtensionClasses/dlldata.c:
+
+          Created the ExtensionClassesInterpreter to traverse through the MetaGME
+          and generate out code. This interpreter is based on GAME.
+
+        * Utils/GAME/tests:
+        * Utils/GAME/tests/ExtensionClasses:
+        * Utils/GAME/tests/ExtensionClasses/Atom:
+        * Utils/GAME/tests/ExtensionClasses/Atom/Atom-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/Atom/AtomProxy.xme:
+        * Utils/GAME/tests/ExtensionClasses/Attributes:
+        * Utils/GAME/tests/ExtensionClasses/Attributes/AttributeTest-Atom.xme:
+        * Utils/GAME/tests/ExtensionClasses/Attributes/AttributeTest-Model.xme:
+        * Utils/GAME/tests/ExtensionClasses/Connection:
+        * Utils/GAME/tests/ExtensionClasses/Connection/Connection-Test1.xme:
+        * Utils/GAME/tests/ExtensionClasses/Connection/Connection-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/FCO:
+        * Utils/GAME/tests/ExtensionClasses/FCO/FCO-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/FCO/FCOProxy.xme:
+        * Utils/GAME/tests/ExtensionClasses/Inheritance:
+        * Utils/GAME/tests/ExtensionClasses/Inheritance/Inheritance-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/Inheritance/InheritanceTest1.xme:
+        * Utils/GAME/tests/ExtensionClasses/Model:
+        * Utils/GAME/tests/ExtensionClasses/Model/Model-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/Model/ModelProxy.xme:
+        * Utils/GAME/tests/ExtensionClasses/Reference:
+        * Utils/GAME/tests/ExtensionClasses/Reference/Reference-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/Set:
+        * Utils/GAME/tests/ExtensionClasses/Set/Set-UnitTest.xme:
+
+          Added test cases to validate the ExtensionClassesInterpreter. 
+
 Wed Nov 10 03:17:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * ChangeLog:

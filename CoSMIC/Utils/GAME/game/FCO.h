@@ -279,6 +279,13 @@ public:
    */
   RegistryNode registry_node (const std::string & path) const;
 
+  /**
+   * Get the referenced objects for this FCO.
+   *
+   * @return      size.
+   */
+  size_t referenced_by (std::vector <GAME::FCO> & references) const;
+
   /// Accept the GAME::Visitor object.
   virtual void accept (GAME::Visitor & visitor);
 
