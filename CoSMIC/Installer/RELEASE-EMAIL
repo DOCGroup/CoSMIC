@@ -1,0 +1,19 @@
+We are pleased to announce the release of CoSMIC x.y.z, which
+is available for download from the following location:
+
+   http://www.dre.vanderbilt.edu/cosmic/html/download.php
+
+We encourage you to download the new release, use it with your
+applications, and let us know if you encounter any problems --
+especially with pre-existing models that do not migrate. If you
+do encounter any problems, please use the:
+
+$COSMIC_ROOT/PROBLEM-REPORT-FORM
+
+The following is a list of key changes since the last micro
+release. Please refer to the corresponding ChangeLog files,
+NEWS files or Bugzilla entries for more details on the problem
+and the nature of fixes applied.
+
+Release CoSMIC-x.y.z
+===================================================================
