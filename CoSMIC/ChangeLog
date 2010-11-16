@@ -1,3 +1,9 @@
+Tue Nov 16 15:02:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils:
+
+          Updated svn:externals property to download GAME.
+
 Tue Nov 16 14:53:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME:
