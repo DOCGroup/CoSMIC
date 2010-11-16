@@ -1,0 +1,35 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Extension_Classes_Component.idl
+ *
+ * $Id: Extension_Classes_Component.idl 2336 2010-07-08 00:11:22Z hillj $
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _Extension_Classes_COMPONENT_IDL_
+#define _Extension_Classes_COMPONENT_IDL_
+
+#include <Gme.idl>
+
+[
+	uuid (E846F962-9A92-4ab4-A6D1-541B949F051C),
+	version (1.0),
+]
+library Extension_Classes_Component
+{
+	importlib ("stdole32.tlb");
+
+	[uuid (425C5DA2-876B-46e0-9BE9-73DD700967D6)]
+	coclass Extension_Classes_Component
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+		interface IMgaVersionInfo;
+	};
+};
+
+#endif  // !defined _Extension_Classes_COMPONENT_IDL_

@@ -1,0 +1,116 @@
+// $Id$
+
+#include "stdafx.h"
+#include "Mga.h"
+#include "Atom.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Atom.inl"
+#endif
+
+#include "Folder.h"
+#include "Model.h"
+#include "MetaFolder.h"
+#include "MetaModel.h"
+#include "MetaRole.h"
+#include "Visitor.h"
+
+namespace GAME
+{
+  //
+  // operator =
+  //
+  const Atom & Atom::operator = (const Atom & atom)
+  {
+    if (this != &atom)
+      this->object_ = atom.object_;
+    return *this;
+  }
+
+  //
+  // attach
+  //
+  void Atom::attach (IMgaAtom * atom)
+  {
+    VERIFY_HRESULT (atom->QueryInterface (&this->object_));
+  }
+
+  //
+  // impl
+  //
+  IMgaAtom * Atom::impl (void) const
+  {
+    if (this->atom_.p == this->object_.p)
+      return this->atom_.p;
+
+    if (this->atom_.p != 0)
+      this->atom_.Release ();
+
+    VERIFY_HRESULT (this->object_.QueryInterface (&this->atom_));
+    return this->atom_;
+  }
+
+  //
+  // _narrow
+  //
+  Atom Atom::_narrow (const GAME::Object & object)
+  {
+    CComPtr <IMgaAtom> atom;
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&atom),
+                             GAME::Invalid_Cast ());
+
+    return atom.p;
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (Model & parent, const std::string & type)
+  {
+    Meta::Role role = parent.meta ().role (type);
+    return Atom::_create (parent, role);
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (Model & parent, const Meta::Role & role)
+  {
+    CComPtr <IMgaFCO> child;
+
+    VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
+
+    return Atom::_narrow (FCO (child));
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (Folder & parent, const std::string & type)
+  {
+    Meta::FCO role = parent.meta ().child (type);
+    return Atom::_create (parent, role);
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (Folder & parent, const Meta::FCO & type)
+  {
+    CComPtr <IMgaFCO> child;
+
+    VERIFY_HRESULT (
+      parent.impl ()->CreateRootObject (type.impl (), &child));
+
+    return Atom::_narrow (FCO (child));
+  }
+
+  //
+  // accept
+  //
+  void Atom::accept (GAME::Visitor & visitor)
+  {
+    visitor.visit_Atom (*this);
+  }
+}

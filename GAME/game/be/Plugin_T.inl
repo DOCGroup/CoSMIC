@@ -1,0 +1,7 @@
+// -*- C++ -*-
+// $Id$
+
+namespace GAME
+{
+
+}

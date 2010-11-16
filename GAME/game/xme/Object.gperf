@@ -1,0 +1,18 @@
+%{
+#include "Object_Type.h"
+%}
+struct object_type
+{
+  /// Name of the object type.
+  char * name;
+
+  /// GME object type value.
+  ::GME::XME::Object_Type type;
+};
+%%
+atom, ::GME::XME::Object_Type::OT_ATOM
+model, ::GME::XME::Object_Type::OT_MODEL
+connection, ::GME::XME::Object_Type::OT_CONNECTION
+reference, ::GME::XME::Object_Type::OT_REFERENCE
+folder, ::GME::XME::Object_Type::OT_FOLDER
+set, ::GME::XME::Object_Type::OT_SET

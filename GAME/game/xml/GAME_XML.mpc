@@ -1,0 +1,18 @@
+// $Id$
+
+project (GAME_XML) : xerces, acelib, cosmic_lib {
+  sharedname    = GAME_XML
+  dynamicflags += GAME_XML_BUILD_DLL
+
+  includes += $(GAME_ROOT)
+
+  Source_Files {
+    Configuration.cpp
+    Document.cpp
+    Entity_Resolver.cpp
+    Error_Handler.cpp
+    Fragment.cpp
+    Memory_Manager.cpp
+    String.cpp
+  }
+}

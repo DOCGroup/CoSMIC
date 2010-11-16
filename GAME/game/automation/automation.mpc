@@ -1,0 +1,16 @@
+// $Id$
+
+project (GAME_Automation) : game, cosmic_bin {
+  exename = game-automation
+
+  specific (prop:microsoft) {
+    subsystem = 1
+  }
+
+  Source_Files {
+    automation.cpp
+    Automation_App.cpp
+    Automation_App_Options.cpp
+    Parameter_Parser.cpp
+  }
+}

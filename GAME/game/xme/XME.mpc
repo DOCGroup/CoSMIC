@@ -1,0 +1,36 @@
+// $Id$
+
+project (GAME_XME) : game_xml, cosmic_lib {
+  sharedname    = GAME_XME
+  dynamicflags += GAME_XME_BUILD_DLL
+
+  Header_Files {
+    Object_Type.h
+  }
+
+  Source_Files {
+    Atom.cpp
+    Attribute.cpp
+    Configuration.cpp
+    Connection.cpp
+    Exceptions.cpp
+    FCO.cpp
+    Folder.cpp
+    functional.cpp
+    GME_ID_Generator.cpp
+    ID_Generator_Repo.cpp
+    Library.cpp
+    Library_Importer.cpp
+    Model.cpp
+    Object.cpp
+    Reference.cpp
+    Registry.cpp
+    Registry_Node.cpp
+    Project.cpp
+    XME_Utils.cpp
+  }
+
+  Template_Files {
+    Auto_Model_T.cpp
+  }
+}
