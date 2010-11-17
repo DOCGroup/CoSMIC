@@ -1,3 +1,27 @@
+Wed Nov 17 03:52:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC:
+        * MPC/config:
+        * MPC/config/game.mpb:
+        * MPC/config/game_be.mpb:
+        * MPC/config/game_common.mpb:
+        * MPC/config/game_component.mpb:
+        * MPC/config/game_decorator.mpb:
+        * MPC/config/game_dialogs.mpb:
+        * MPC/config/game_graphics.mpb:
+        * MPC/config/game_interpreter.mpb:
+        * MPC/config/game_manip.mpb:
+        * MPC/config/game_utils.mpb:
+        * MPC/config/game_xme.mpb:
+        * MPC/config/game_xml.mpb:
+
+          MPC base projects for GAME.
+
+        * bin:
+        * lib:
+
+          Location of compiled artifacts.
+
 Tue Nov 16 15:01:08 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * ChangeLog:

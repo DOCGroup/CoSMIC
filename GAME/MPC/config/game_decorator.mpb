@@ -1,0 +1,20 @@
+// $Id$
+
+project : register, mfc, gdiplus, game_be {
+  macros += _WINDLL _USRDLL
+  
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+
+  specific (prop:microsoft) {
+    includes      += $(GME_ROOT)/Interfaces
+    midl_includes += $(GME_ROOT)/Interfaces
+
+    link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/DecoratorApp.def
+    compile_flags += /wd4996
+  }
+
+  specific (wix) {
+    install_location = bin
+  }
+}

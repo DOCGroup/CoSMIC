@@ -1,0 +1,6 @@
+// $Id$
+
+project : acenosubsets, acedefaults {
+  includes += $(GAME_ROOT) $(GAME_ROOT)/game
+  libpaths += $(COSMIC_ROOT)/lib
+}

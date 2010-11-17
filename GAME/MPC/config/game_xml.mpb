@@ -1,0 +1,6 @@
+// $Id$
+
+project : xerces, game_common {
+  after += GAME_XML
+  libs  += GAME_XML
+}

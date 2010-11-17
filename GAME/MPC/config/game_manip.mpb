@@ -1,0 +1,6 @@
+// $Id$
+
+project : game {
+  libs  += GAME_Manipulation
+  after += GAME_Manipulation
+}
