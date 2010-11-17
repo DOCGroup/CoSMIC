@@ -2,16 +2,4 @@
 
 project : mfc, gdiplus, game_be {
   macros += _WINDLL _USRDLL
-
-  specific (prop:microsoft) {
-    includes      += $(GME_ROOT)/Interfaces
-    midl_includes += $(GME_ROOT)/Interfaces
-
-    link_options  += /DEF:$(GAME_ROOT)/includes/GME/DecoratorApp.def
-    compile_flags += /wd4996
-  }
-
-  specific (wix) {
-    install_location = bin
-  }
 }

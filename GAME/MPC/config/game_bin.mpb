@@ -1,0 +1,9 @@
+// $Id$
+
+project : game_common {
+  install = $(GAME_ROOT)/bin
+
+  specific (wix) {
+    install_location = bin
+  }
+}

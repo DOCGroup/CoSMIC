@@ -1,12 +1,12 @@
 // $Id$
 
-project (GAME_Manipulation) : game, cosmic_lib {
+project (GAME_Manipulation) : game, game_lib {
   sharedname    = GAME_Manipulation
   dynamicflags += GAME_MANIPULATION_BUILD_DLL
-  
+
   pch_header = stdafx.h
   pch_source = stdafx.cpp
-  
+
   Source_Files {
     copy.cpp
   }

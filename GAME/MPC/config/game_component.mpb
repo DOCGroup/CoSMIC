@@ -1,7 +1,5 @@
 // $Id$
 
 project : game_be {
-  specific (wix) {
-    install_location = bin
-  }
+
 }

@@ -1,17 +1,17 @@
 // $Id$
 
-project (GAME_Graphics) : game_utils, gdiplus, cosmic_lib {
+project (GAME_Graphics) : gdiplus, game_utils, game_lib {
   sharedname    = GAME_Graphics
   dynamicflags += GAME_GRAPHICS_BUILD_DLL
-  
+
   pch_header = stdafx.h
   pch_source = stdafx.cpp
-  
+
   Source_Files {
     Image_Resolver.cpp
     Port_Decorator.cpp
   }
-  
+
   Template_Files {
     Image_Manager_T.cpp
   }

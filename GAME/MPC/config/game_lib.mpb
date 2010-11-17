@@ -1,0 +1,10 @@
+// $Id$
+
+project : game_common  {
+  libout = $(GAME_ROOT)/lib
+  dllout = $(GAME_ROOT)/lib
+
+  specific (wix) {
+    install_location = bin
+  }
+}

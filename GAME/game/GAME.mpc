@@ -1,21 +1,19 @@
 // $Id$
 
-project (GAME) : acelib, cosmic_lib {
+project (GAME) : acelib, game_lib {
   sharedname = GAME
 
   dynamicflags += GAME_BUILD_DLL
   staticflags  += GAME_AS_STATIC_LIBS
-  
+
   pch_header = stdafx.h
   pch_source = stdafx.cpp
-  
-  includes += $(COSMIC_ROOT)/Utils/GAME
 
-  macros += _WIN32_DCOM
+  macros   += _WIN32_DCOM
 
   specific {
     compile_flags += /wd4290 /wd4251 /wd4273 /wd4275
-    
+
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
     midl_flags    += /server none /client none
     midl_notlb     = 1
@@ -27,7 +25,7 @@ project (GAME) : acelib, cosmic_lib {
     $(GME_ROOT)/Interfaces/Mga.idl
     $(GME_ROOT)/Interfaces/MgaUtil.idl
     $(GME_ROOT)/Interfaces/Parser.idl
-    
+
     Attribute.cpp
     Atom.cpp
     Connection.cpp

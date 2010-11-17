@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_Automation) : game, cosmic_bin {
+project (GAME_Automation) : boost_base, game, game_bin {
   exename = game-automation
 
   specific (prop:microsoft) {
