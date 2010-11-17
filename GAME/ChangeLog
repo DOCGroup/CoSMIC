@@ -1,3 +1,19 @@
+Wed Nov 17 03:58:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_be.mpb:
+        * MPC/config/game_common.mpb:
+        * MPC/config/game_decorator.mpb:
+        * MPC/config/game_register.mpb:
+
+          Updated variables to use $(GAME_ROOT) locations.
+
+        * includes:
+        * includes/GME:
+        * includes/GME/Component.def:
+        * includes/GME/DecoratorApp.def:
+
+          Definition files used when building GAME components for GME.
+
 Wed Nov 17 03:52:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC:

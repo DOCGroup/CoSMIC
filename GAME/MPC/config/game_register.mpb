@@ -1,0 +1,11 @@
+// $Id$
+
+feature (register) {
+  specific (prop:microsoft) {
+    postbuild += \
+      echo Registering \
+        <%dllout%>/<%libname_prefix%><%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%><%dll_ext%>...\
+      <%and%> \
+      reg.exe import <%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%>.reg
+  }
+}
