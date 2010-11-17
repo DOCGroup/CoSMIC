@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_ConnectorInstance_Decorator): game_graphics, game_decorator {
+project (PICML_ConnectorInstance_Decorator): game_graphics, game_decorator, cosmic_lib {
   sharedname = PICML_ConnectorInstance_Decorator
 
   pch_header = stdafx.h

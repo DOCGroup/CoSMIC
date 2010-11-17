@@ -1,11 +1,11 @@
 // $Id$
 
-project (PICML_ShowReferenceDecorator): game_utils, game_graphics, game_decorator {
+project (PICML_ShowReferenceDecorator): game_utils, game_graphics, game_decorator, cosmic_lib {
   sharedname = PICML_ShowReferenceDecorator
-  
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-  
+
   Source_Files {
     Decorator.cpp
     DecoratorLib.idl

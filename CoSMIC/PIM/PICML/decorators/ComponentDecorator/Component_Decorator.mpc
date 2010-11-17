@@ -1,13 +1,13 @@
 // $Id$
 
-project (PICML_Component_Decorator): game_graphics, game_decorator {
+project (PICML_Component_Decorator): game_graphics, game_decorator, cosmic_lib {
   sharedname = PICML_Component_Decorator
-  
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-  
+
   dynamicflags += COMPONENT_DECORATOR_BUILD_DLL
-  
+
   Source_Files {
     Component_Decorator_Impl.cpp
     Component_Decorator_Module.cpp
@@ -15,7 +15,7 @@ project (PICML_Component_Decorator): game_graphics, game_decorator {
   }
 
   Header_Files {
-  
+
   }
 
   Resource_Files {

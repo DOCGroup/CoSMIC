@@ -1,3 +1,20 @@
+Wed Nov 17 05:45:23 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.mpc:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator.mpc:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator.mpc:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator.mpc:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+
+          Fixed install location for binaries.
+
+        * PIM/PICML/interpreters/BGML/BGML.mpc:
+
+          Added the Id keyword.
+
 Wed Nov 17 04:02:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Release_idl_to_picml.mwc:

@@ -1,13 +1,13 @@
 // $Id$
 
-project (PICML_NoShowRefersTo_Decorator): game_graphics, game_decorator {
+project (PICML_NoShowRefersTo_Decorator): game_graphics, game_decorator, cosmic_lib {
   sharedname = PICML_NoShowRefersTo_Decorator
-  
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-  
+
   dynamicflags += NOSHOWREFERSTO_DECORATOR_BUILD_DLL
-  
+
   Source_Files {
     NoShowRefersTo_Decorator_Impl.cpp
     NoShowRefersTo_Decorator_Module.cpp
@@ -15,7 +15,7 @@ project (PICML_NoShowRefersTo_Decorator): game_graphics, game_decorator {
   }
 
   Header_Files {
-  
+
   }
 
   Resource_Files {
