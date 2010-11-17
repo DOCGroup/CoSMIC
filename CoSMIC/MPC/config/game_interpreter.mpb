@@ -1,7 +1,0 @@
-// $Id$
-
-project : game_component {
-  specific (wix) {
-    gme_component_type = 1
-  }
-}

@@ -1,6 +1,0 @@
-// $Id$
-
-project : mfc, game_common {
-  after += GAME
-  libs  += GAME
-}
