@@ -1,3 +1,11 @@
+Wed Nov 17 04:02:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Release_idl_to_picml.mwc:
+        * cosmic.mwc:
+
+          Updated the cmdline keyword to include the location of
+          GAME's base projects.
+
 Wed Nov 17 04:00:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game.mpb:

@@ -2,15 +2,16 @@
 
 workspace (cosmic) {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
-             -include $COSMIC_ROOT/MPC/config
+             -include $COSMIC_ROOT/MPC/config \
+             -include $GAME_ROOT/MPC/config
 
   PIM/PICML/PICML.mwc
-  
+
   exclude (!prop:windows) {
     PIM/SIML/interpreters/Interpreters.mwc
     PIM/POSAML/interpreters/interpreters.mwc
     PSM/CQML/interpreters/Interpreters.mwc
-    PSM/DQML/interpreters    
+    PSM/DQML/interpreters
   }
 
   exclude (!wix) {
@@ -19,20 +20,20 @@ workspace (cosmic) {
     $(COSMIC_ROOT)/includes
 
     PIM/POSAML/examples
-    PIM/POSAML/paradigms    
+    PIM/POSAML/paradigms
 
     PSM/CQML/examples
-    PSM/CQML/paradigms    
-    
+    PSM/CQML/paradigms
+
     PSM/DQML/examples
     PSM/DQML/paradigms
-  }  
-  
+  }
+
   exclude (wix) {
     cmdline += -static \
-               -include $COSMIC_ROOT/contrib/CCF/MPC/config 
-  
-    $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit      
+               -include $COSMIC_ROOT/contrib/CCF/MPC/config
+
+    $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
   }
 
   // The follow directories and workspaces only apply to

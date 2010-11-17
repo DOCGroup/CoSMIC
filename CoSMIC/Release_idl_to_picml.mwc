@@ -2,7 +2,8 @@
 
 workspace {
   cmdline += -feature_file default.features \
-             -include $COSMIC_ROOT/MPC/config
+             -include $COSMIC_ROOT/MPC/config \
+             -include $GAME_ROOT/MPC/config
 
   $(ACE_ROOT)/ace/ace.mpc
   $(TAO_ROOT)/TAO_IDL/tao_idl_fe.mpc
@@ -10,5 +11,5 @@ workspace {
   PIM/PICML/interpreters/IDLImporter
   PIM/PICML/interpreters/PICML/PICML_GUID.mpc
 
-  ./Utils/GAME/GAME.mwc
+  Utils/GAME/GAME.mwc
 }
