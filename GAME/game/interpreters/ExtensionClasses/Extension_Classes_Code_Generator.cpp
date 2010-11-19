@@ -308,7 +308,7 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   // add the #ifndef preprocessor
   this->out_ << "#ifndef _" << upper_class_name << "_H_" << std::endl
              << "#define _" << upper_class_name << "_H_" << std::endl
-             << std::endl   << "#include \"Mga.h\""      << std::endl;
+             << std::endl;
 
   // include file of the inherited parent if not included
   if (!this->done_inheriting_)

@@ -1,3 +1,11 @@
+Fri Nov 19 18:30:50 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+
+          Bugfix where Mga.h was included in all the generages.h files. Now
+          it is included only in the stdafx.h file.
+
 Fri Nov 19 07:16:11 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:

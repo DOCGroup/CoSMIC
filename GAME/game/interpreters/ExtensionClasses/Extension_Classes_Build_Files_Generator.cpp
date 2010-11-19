@@ -122,6 +122,7 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files ()
   this->out_ << "#ifndef _STDAFX_H_" << std::endl
              << "#define _STDAFX_H_" << std::endl << std::endl
              << "#include \"" << this->uc_paradigm_name_ << "_export.h\""
+             << std::endl << "#include \"Mga.h\""
              << std::endl << "#include <atlcomcli.h>" << std::endl
              << std::endl << "#endif";
 
