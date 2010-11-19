@@ -10,10 +10,12 @@ namespace GAME
 // Extension_Classes_Build_Files_Generator
 //
 Extension_Classes_Build_Files_Generator::Extension_Classes_Build_Files_Generator
-                                          (std::set <GAME::Object> objects,
+                                          (const GAME::Folder & root,
+                                           std::set <GAME::Object> objects,
                                            std::string output,
                                            std::string filename,
                                            std::string uc_paradigm_name):
+  root_ (root),
   objects_ (objects),
   output_ (output),
   filename_ (filename),
@@ -69,7 +71,12 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
   for (; obj_iter != obj_iter_end; ++ obj_iter)
   {
     parents.insert (obj_iter->parent ());
-    source_files << "  ./" << obj_iter->parent ().name () << "/"
+    source_files << "  ./";
+
+    if (obj_iter->parent ().parent () != this->root_)
+      source_files << obj_iter->parent ().parent ().name () << "/";
+    
+    source_files << obj_iter->parent ().name () << "/"
                  << obj_iter->name () << ".cpp" << std::endl;
   }
 
@@ -79,7 +86,14 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
 
   // collect all the folders in a string
   for (; parent_iter != parent_iter_end; ++ parent_iter)
-    includes << ", ./" << parent_iter->name ();
+  {
+    includes << ", ./";
+
+    if (parent_iter->parent () != this->root_)
+      includes << parent_iter->parent ().name () << "/";
+
+    includes << parent_iter->name ();
+  }
 
   includes << std::endl;
 

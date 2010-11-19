@@ -20,6 +20,7 @@
 #include <fstream>
 
 #include "Object.h"
+#include "Folder.h"
 
 namespace GAME
 {
@@ -29,10 +30,11 @@ namespace GAME
 class Extension_Classes_Build_Files_Generator
 {
 public:
-  Extension_Classes_Build_Files_Generator (std::set <GAME::Object>,
-                                          std::string,
-                                          std::string,
-                                          std::string);
+  Extension_Classes_Build_Files_Generator (const GAME::Folder &,
+                                           std::set <GAME::Object>,
+                                           std::string,
+                                           std::string,
+                                           std::string);
   
   ~Extension_Classes_Build_Files_Generator ();
   
@@ -43,6 +45,8 @@ public:
   void generate_stdafx_files ();
   
 private:
+  GAME::Folder root_;
+
   std::set <GAME::Object> objects_;
   
   std::string output_;

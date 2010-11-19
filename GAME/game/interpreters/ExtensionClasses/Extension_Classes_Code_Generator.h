@@ -37,7 +37,8 @@ public:
   Extension_Classes_Code_Generator (std::string fname,
                                     std::string mname,
                                     std::string fpath,
-                                    std::string uc_paradigm_name);
+                                    std::string uc_paradigm_name,
+                                    std::string inner_location);
 
   ~Extension_Classes_Code_Generator (void);
 
@@ -72,6 +73,8 @@ private:
   std::ofstream out_;
 
   std::string uc_paradigm_name_;
+
+  std::string inner_location_;
 
   std::stringstream member_variables_;
 

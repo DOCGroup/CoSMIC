@@ -63,14 +63,24 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
   CONNECTIONS c;
   std::stringstream temp_params, temp_cons;
   std::string src_name, dst_name, lc_meta_name,
-              meta_name, fco_name, cons_name;
+              meta_name, fco_name, cons_name, inner_location;
+
+  if (!this->curr_folder_name_.empty ())
+  {
+    inner_location  = this->curr_folder_name_;
+    inner_location += "_";
+    inner_location += this->curr_sheet_name_;
+  }
+  else
+    inner_location  = this->curr_sheet_name_;
 
   meta_name = lc_meta_name = fco.meta ().name ();
   fco_name = fco.name ();
   Extension_Classes_Code_Generator code_generator (fco_name,
                                                    meta_name,
                                                    this->curr_dir_,
-                                                   this->uc_paradigm_name_);
+                                                   this->uc_paradigm_name_,
+                                                   inner_location);
 
   std::transform (lc_meta_name.begin (), lc_meta_name.end (),
                   lc_meta_name.begin (), ::tolower);
@@ -200,6 +210,10 @@ void Extension_Classes_Visitor::visit_Folder (GAME::Folder & folder)
   this->curr_paradigm_sheet_root_dir_ += "/";
   this->curr_paradigm_sheet_root_dir_ += folder.name ();
 
+  this->curr_folder_name_ = folder.name ();
+  std::transform (this->curr_folder_name_.begin (), this->curr_folder_name_.end (),
+                  this->curr_folder_name_.begin (), ::toupper);
+
   mkdir (this->curr_paradigm_sheet_root_dir_.c_str ());
 
   // collect all the paradigm sheets and traverse them
@@ -234,6 +248,10 @@ void Extension_Classes_Visitor::visit_Model (GAME::Model & model)
     mkdir (filename.c_str ());
 
     this->curr_dir_ = filename;
+
+    this->curr_sheet_name_ = model.name ();
+    std::transform (this->curr_sheet_name_.begin (), this->curr_sheet_name_.end (),
+                    this->curr_sheet_name_.begin (), ::toupper);
 
     // get all the children of this sheet and cll the visitor
     FCOS fcos;

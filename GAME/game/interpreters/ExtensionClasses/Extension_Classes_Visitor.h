@@ -96,6 +96,10 @@ private:
 
   const std::string uc_paradigm_name_;
 
+  std::string curr_folder_name_;
+
+  std::string curr_sheet_name_;
+
   std::string curr_paradigm_sheet_root_dir_;
   
   std::string curr_dir_;

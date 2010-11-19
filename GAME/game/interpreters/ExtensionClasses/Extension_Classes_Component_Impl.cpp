@@ -107,7 +107,8 @@ invoke_ex (GAME::Project & project,
     ecv.get_objects (objects);
 
     GAME::Extension_Classes_Build_Files_Generator generator
-                                        (objects,
+                                        (root,
+                                         objects,
                                          this->output_,
                                          root.name (),
                                          uc_paradigm_name);

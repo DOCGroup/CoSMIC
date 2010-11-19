@@ -1,3 +1,15 @@
+Fri Nov 19 19:45:43 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Bugfix where the #ifndef name was generated inncorrectly.
+
 Fri Nov 19 18:30:50 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:

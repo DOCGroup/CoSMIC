@@ -12,13 +12,15 @@ namespace GAME
 Extension_Classes_Code_Generator::Extension_Classes_Code_Generator (std::string fname,
                                                                     std::string mname,
                                                                     std::string fpath,
-                                                                    std::string uc_paradigm_name)
+                                                                    std::string uc_paradigm_name,
+                                                                    std::string inner_location)
 : indentation_h_ ("  "),
   indentation_cpp_ ("  "),
   class_name_ (fname),
   meta_name_ (mname),
   path_ (fpath),
   uc_paradigm_name_ (uc_paradigm_name),
+  inner_location_ (inner_location),
   done_inheriting_ (false),
   has_attribute_ (false),
   is_in_connections_ (false)
@@ -305,9 +307,13 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   if (!this->out_.is_open ())
     return;
 
+  std::stringstream full_path_ifndef;
+  full_path_ifndef << this->uc_paradigm_name_ << "_" << this->inner_location_
+                   << "_" << upper_class_name << "_H_";
+
   // add the #ifndef preprocessor
-  this->out_ << "#ifndef _" << upper_class_name << "_H_" << std::endl
-             << "#define _" << upper_class_name << "_H_" << std::endl
+  this->out_ << "#ifndef _" << full_path_ifndef.str () << std::endl
+             << "#define _" << full_path_ifndef.str () << std::endl
              << std::endl;
 
   // include file of the inherited parent if not included
@@ -346,7 +352,8 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
     this->out_ << std::endl << "private:" << std::endl 
                << this->member_variables_.str () << std::endl;
 
-  this->out_ << "};" << std::endl << std::endl << "#endif";
+  this->out_ << "};" << std::endl << std::endl
+             << "#endif // !defined " << full_path_ifndef.str ();
 
   // Close the output file.
   this->out_.close ();
