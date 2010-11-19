@@ -3,21 +3,12 @@ namespace GAME
 {
 
 //
-// get_includes
+// get_objects
 //
 GAME_INLINE
-std::string Extension_Classes_Visitor::get_includes ()
+void Extension_Classes_Visitor::get_objects (std::set <GAME::Object> & objects)
 {
-  return this->includes_.str ();
-}
-
-//
-// get_source_files
-//
-GAME_INLINE
-std::string Extension_Classes_Visitor::get_source_files ()
-{
-  return this->source_files_.str ();
+  objects = this->objects_;
 }
 
 //

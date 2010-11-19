@@ -5,6 +5,7 @@
 #include "Extension_Classes_Component_Impl.h"
 
 #include "Extension_Classes_Visitor.h"
+#include "Extension_Classes_Build_Files_Generator.h"
 
 #include "game/be/Interpreter_T.h"
 
@@ -69,10 +70,15 @@ invoke_ex (GAME::Project & project,
 
     GAME::Folder root = project.root_folder ();
 
+    std::string uc_paradigm_name = root.name ();
+
+    std::transform (uc_paradigm_name.begin (), uc_paradigm_name.end (),
+                    uc_paradigm_name.begin (), ::toupper);
+
     root.children ("SheetFolder", folders);
     root.children ("ParadigmSheet", paradigm_sheets);
 
-    this->output_.append ("/");
+    this->output_.append ("\\");
     this->output_.append (project.name ().c_str ());
 
     mkdir (this->output_.c_str ());
@@ -80,7 +86,8 @@ invoke_ex (GAME::Project & project,
     std::stringstream includes;
     std::stringstream source_files;
 
-    GAME::Extension_Classes_Visitor ecv (this->output_);
+    GAME::Extension_Classes_Visitor ecv (this->output_,
+                                         uc_paradigm_name);
 
     // visit all the folders
     std::for_each (folders.begin (),
@@ -96,43 +103,19 @@ invoke_ex (GAME::Project & project,
                                 _1,
                                 boost::ref (ecv)));
 
-    std::ofstream out;
-    std::string temp;
+    std::set <GAME::Object> objects;
+    ecv.get_objects (objects);
 
-    this->output_ += "/";
-    this->output_ += root.name ();
+    GAME::Extension_Classes_Build_Files_Generator generator
+                                        (objects,
+                                         this->output_,
+                                         root.name (),
+                                         uc_paradigm_name);
 
-    temp = this->output_;
-    temp += ".mwc";
-
-    out.open (temp.c_str ());
-
-    out << "workspace (" << root.name () << ") {" <<std::endl
-        << "  cmdline += -features boost=1,xerces3=1,xsc=1,mfc=1" << std::endl
-        << "  cmdline += -include $COSMIC_ROOT/MPC/config" << std::endl << std::endl
-        << "  " << root.name () << ".mpc" << std::endl
-        << "}";
-
-    out.close ();
-
-    temp = this->output_;
-    temp += ".mpc";
-
-    out.open (temp.c_str ());
-
-    out << "project(" << root.name ()
-        << "): acelib, cosmic_lib, game_common, game {"
-        << std::endl
-        << "  sharedname = " << root.name () << std::endl << std::endl
-        << "  includes += $(COSMIC_ROOT)/Utils/GAME" << std::endl
-        << "  includes += " << ecv.get_includes ().c_str ()
-        << std::endl << std::endl
-        << "  Source_Files {" << std::endl
-        << ecv.get_source_files ().c_str ()
-        << "  }" << std::endl
-        << "}";
-
-    out.close ();
+    // generate the mwc, mpc and stdafx files
+    generator.generate_mwc_file ();
+    generator.generate_mpc_file ();
+    generator.generate_stdafx_files ();
   }
   catch (...)
   {

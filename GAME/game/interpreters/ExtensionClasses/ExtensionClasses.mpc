@@ -1,9 +1,6 @@
 // $Id: ExtensionClasses.mpc 2475 2010-09-03 02:00:58Z alhad $
 
-project (GAME_ExtensionClassesComponent) : game, game_dialogs, game_component, \
-                                           game_xml, gme_common, game_xme, \
-                                           game_interpreter, game_utils, udm, \
-                                           cosmic_utils {
+project (GAME_ExtensionClassesComponent) : game_component, gme_common, cosmic_utils {
   sharedname = GAME_ExtensionClassesComponent
 
   Source_Files {
@@ -15,6 +12,7 @@ project (GAME_ExtensionClassesComponent) : game, game_dialogs, game_component, \
 
     Extension_Classes_Visitor.cpp
     Extension_Classes_Code_Generator.cpp
+    Extension_Classes_Build_Files_Generator.cpp
 
     Component.rc
   }

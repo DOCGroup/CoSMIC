@@ -17,16 +17,16 @@
 
 //#include "Mga.h"
 
-
 namespace GAME
 {
 
 //
 // Extension_Clases_Visitor
 //
-Extension_Classes_Visitor::Extension_Classes_Visitor (const std::string & outdir)
+Extension_Classes_Visitor::Extension_Classes_Visitor (const std::string & outdir,
+                                                      const std::string & uc_paradigm_name)
 : outdir_ (outdir),
-  curr_path_from_root_ ("")
+  uc_paradigm_name_ (uc_paradigm_name)
 {
 
 }
@@ -69,41 +69,29 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
   fco_name = fco.name ();
   Extension_Classes_Code_Generator code_generator (fco_name,
                                                    meta_name,
-                                                   this->curr_dir_);
+                                                   this->curr_dir_,
+                                                   this->uc_paradigm_name_);
 
   std::transform (lc_meta_name.begin (), lc_meta_name.end (),
                   lc_meta_name.begin (), ::tolower);
 
-  code_generator.generate_default_functions ("", "", "");
-
+  // it determines the base constructor to be called.
+  // by default we assume that it calls the concrete GAME class.
+  // but if it derived from another object that is it has a
+  // connection whose name is "DerivedInheritance" then call the
+  // base constructor of that object.
   cons_name = "GAME::";
   cons_name += meta_name;
-
-  if (fco.in_connections ("DerivedInheritance", c) > 0)
-  {
-    CONNECTIONS temp_conn;
-    this->get_src_connections (c.front (), "BaseInheritance", temp_conn);
-    cons_name = this->get_src_name (temp_conn.front ());
-  }
-
-  // set parameters and base constructor call for IMga constructor
-  temp_params << "IMga" << meta_name << " * " << lc_meta_name;
-  temp_cons   << " : " << cons_name << " (" << lc_meta_name << ")";
-  code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
-
-  // set parameters and base constructor call for copy constructor
-  temp_params.str ("");
-  temp_params << "const " << fco_name << " & " << lc_meta_name;
-  code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
-
-  // generate the destructor and the _narrow function
-  code_generator.generate_default_functions ("~", "", "");
-  code_generator.generate_narrow ();
 
   // generate code only for these type of objects
   if (meta_name == "FCO" || meta_name == "Atom" || meta_name == "Model" ||
       meta_name == "Reference" || meta_name == "Set" || meta_name == "Connection")
   {
+    code_generator.generate_narrow ();
+
+    // add the object to the set to be used for mpc generation
+    this->objects_.insert (fco);
+
     // if object is abstract then donot generate the _create function
     if (!fco.attribute ("IsAbstract").bool_value ())
       code_generator.generate_create ();
@@ -144,6 +132,9 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
         this->get_src_connections ((*iter), "BaseInheritance", temp_conn);
         code_generator.add_inherited_class (this->get_src_name (temp_conn.front ()));
 
+        // call the constructor of the derived class
+        cons_name = this->get_src_name (temp_conn.front ());
+
         // if the inherited class and the object are of the same meta
         // type then don't inherit the meta class
         if (this->get_src_meta_name (temp_conn.front ()) == meta_name)
@@ -175,14 +166,27 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
         code_generator.generate_connection_end ("src", this->get_src_name (src_conn.front ()));
         code_generator.generate_connection_end ("dst", this->get_dst_name (dst_conn.front ()));
       }
-    }    
+    }
+
+    // generate the constructors and the destructors
+    code_generator.generate_default_functions ("", "", "");
+
+    // set parameters and base constructor call for IMga constructor
+    temp_params << "IMga" << meta_name << " * " << lc_meta_name;
+    temp_cons   << " : " << cons_name << " (" << lc_meta_name << ")";
+    code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
+
+    // set parameters and base constructor call for copy constructor
+    temp_params.str ("");
+    temp_params << "const " << fco_name << " & " << lc_meta_name;
+    code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
+
+    // generate the destructor and the _narrow function
+    code_generator.generate_default_functions ("~", "", "");
 
     // generate out the the .h and the .cpp files
     code_generator.generate_h_file ();
     code_generator.generate_cpp_file ();
-
-    this->source_files_ << this->curr_path_from_root_ << fco_name
-                        << ".cpp" << std::endl;
   }
 }
 
@@ -198,10 +202,6 @@ void Extension_Classes_Visitor::visit_Folder (GAME::Folder & folder)
 
   mkdir (this->curr_paradigm_sheet_root_dir_.c_str ());
 
-  // folder name for the mpc file paths
-  this->inside_dir_ = folder.name ();
-  this->inside_dir_.append ("/");
-
   // collect all the paradigm sheets and traverse them
   MODELS paradigm_sheets;
   folder.children ("ParadigmSheet", paradigm_sheets);
@@ -211,8 +211,6 @@ void Extension_Classes_Visitor::visit_Folder (GAME::Folder & folder)
                  boost::bind (&GAME::Model::accept,
                               _1,
                               boost::ref (*this)));
-
-  this->inside_dir_ = "";
 }
 
 //
@@ -234,22 +232,6 @@ void Extension_Classes_Visitor::visit_Model (GAME::Model & model)
     filename.append (model.name ().c_str ());
 
     mkdir (filename.c_str ());
-
-    // for mpc file
-    if (this->includes_.str () != "")
-      this->includes_ << ", ";
-
-    this->includes_ << "./" << this->inside_dir_
-                    << model.name ();
-
-    
-    this->curr_path_from_root_ = "    ./";
-
-    if (!this->inside_dir_.empty ())
-      this->curr_path_from_root_ += this->inside_dir_;
-
-    this->curr_path_from_root_ += model.name ();
-    this->curr_path_from_root_ += "/";
 
     this->curr_dir_ = filename;
 

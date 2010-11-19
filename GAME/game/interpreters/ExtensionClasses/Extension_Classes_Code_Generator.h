@@ -36,7 +36,8 @@ class Extension_Classes_Code_Generator
 public:
   Extension_Classes_Code_Generator (std::string fname,
                                     std::string mname,
-                                    std::string fpath);
+                                    std::string fpath,
+                                    std::string uc_paradigm_name);
 
   ~Extension_Classes_Code_Generator (void);
 
@@ -63,14 +64,20 @@ public:
 
   void generate_attribute_list (GAME::FCO fco);
 
-  void generate_function_comments_header (std::string name);
+  std::string generate_function_comments_header (std::string name);
 
   void set_inheritance_flag (void);
 
 private:
   std::ofstream out_;
 
+  std::string uc_paradigm_name_;
+
   std::stringstream member_variables_;
+
+  std::stringstream default_member_functions_h_;
+
+  std::stringstream default_member_functions_cpp_;
 
   std::stringstream member_functions_h_;
 

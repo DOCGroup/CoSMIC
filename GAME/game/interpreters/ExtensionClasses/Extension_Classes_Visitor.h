@@ -21,6 +21,7 @@
 #include <fstream>
 #include <cstdio>
 #include <algorithm>
+#include <set>
 //#include <windows.h>
 
 #include "Atom.h"
@@ -53,7 +54,8 @@ public:
 
   typedef std::vector<GAME::Model> MODELS;
 
-  Extension_Classes_Visitor (const std::string & outdir);
+  Extension_Classes_Visitor (const std::string & outdir,
+                             const std::string & uc_paradigm_name);
 
   virtual ~Extension_Classes_Visitor (void);
 
@@ -87,16 +89,12 @@ public:
 
   std::string get_dst_meta_name (GAME::Connection);
 
-  std::string get_includes ();
-
-  std::string get_source_files ();
-
-  //void get_all_attributes (GAME::Folder &);
-
-  //bool is_attribute (GAME::Atom &, GAME::Atom &);
+  void get_objects (std::set <GAME::Object> &);
 
 private:
   const std::string outdir_;
+
+  const std::string uc_paradigm_name_;
 
   std::string curr_paradigm_sheet_root_dir_;
   
@@ -106,13 +104,7 @@ private:
 
   std::vector <GAME::Atom> attribute_list_;
 
-  std::stringstream includes_;
-
-  std::stringstream source_files_;
-
-  std::string curr_path_from_root_;
-
-  std::string inside_dir_;
+  std::set <GAME::Object> objects_;
 };
 }
 

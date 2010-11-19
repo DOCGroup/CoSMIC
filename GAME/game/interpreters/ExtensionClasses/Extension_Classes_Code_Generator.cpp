@@ -11,12 +11,14 @@ namespace GAME
 //
 Extension_Classes_Code_Generator::Extension_Classes_Code_Generator (std::string fname,
                                                                     std::string mname,
-                                                                    std::string fpath)
+                                                                    std::string fpath,
+                                                                    std::string uc_paradigm_name)
 : indentation_h_ ("  "),
   indentation_cpp_ ("  "),
   class_name_ (fname),
   meta_name_ (mname),
   path_ (fpath),
+  uc_paradigm_name_ (uc_paradigm_name),
   done_inheriting_ (false),
   has_attribute_ (false),
   is_in_connections_ (false)
@@ -42,13 +44,15 @@ void Extension_Classes_Code_Generator::generate_default_functions
 {
   prefix_symbol.append (this->class_name_);
 
-  this->member_functions_h_   << this->indentation_h_ << prefix_symbol
-                              << " (" << params.c_str () << ");" << std::endl << std::endl;
+  this->default_member_functions_h_   << this->indentation_h_ << prefix_symbol
+                                      << " (" << params.c_str () << ");"
+                                      << std::endl << std::endl;
 
-  this->generate_function_comments_header (prefix_symbol);
-  this->member_functions_cpp_ << this->class_name_ << "::" << prefix_symbol << " ("
-                              << params.c_str () << ")" << parent_cons.c_str () << std::endl
-                              << "{" << std::endl << "}" << std::endl << std::endl;
+  this->default_member_functions_cpp_ << this->generate_function_comments_header (prefix_symbol);
+  this->default_member_functions_cpp_ << this->class_name_ << "::" << prefix_symbol
+                                      << " (" << params.c_str () << ")"
+                                      << parent_cons.c_str () << std::endl << "{"
+                                      << std::endl << "}" << std::endl << std::endl;
 }
 
 
@@ -63,7 +67,7 @@ void Extension_Classes_Code_Generator::generate_narrow ()
                               << std::endl;
 
   // definition _narrow ()
-  this->generate_function_comments_header ("_narrow");
+  this->member_functions_cpp_ << this->generate_function_comments_header ("_narrow");
   this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                               << "::_narrow (const GAME::Object & object)" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
@@ -94,7 +98,7 @@ void Extension_Classes_Code_Generator::generate_create ()
                                 << std::endl << std::endl;
 
     // definition _create () for CONNECTION type
-    this->generate_function_comments_header ("_create");
+    this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                 << "::_create (const GAME::Model & parent, const std::string & name,"
                                 << " const GAME::FCO & src, const GAME::FCO & dst)" << std::endl
@@ -121,7 +125,7 @@ void Extension_Classes_Code_Generator::generate_create ()
                                 << std::endl << std::endl;
 
     // definition _create (GAME::Model & parent, const std::string & type)
-    this->generate_function_comments_header ("_create");
+    this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                 << "::_create (GAME::Model & parent, const std::string & type)"
                                 << std::endl << "{" << std::endl << this->indentation_cpp_
@@ -136,7 +140,7 @@ void Extension_Classes_Code_Generator::generate_create ()
                                 << std::endl << std::endl;
 
      // definition _create (GAME::Model & parent, const GAME::Meta::Role & type)
-    this->generate_function_comments_header ("_create");
+    this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                 << "::_create (GAME::Model & parent, const GAME::Meta::Role & role)"
                                 << std::endl << "{" << std::endl << this->indentation_cpp_
@@ -162,7 +166,7 @@ void Extension_Classes_Code_Generator::generate_create ()
                                   << std::endl << std::endl;
 
       // definition _create (GAME::Folder & parent, const std::string & type)
-      this->generate_function_comments_header ("_create");
+      this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
       this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                   << "::_create (GAME::Folder & parent, const std::string & type)"
                                   << std::endl << "{" << std::endl << this->indentation_cpp_
@@ -177,7 +181,7 @@ void Extension_Classes_Code_Generator::generate_create ()
                                   << std::endl << std::endl;
 
       // definition _create (GAME::Folder & parent, const GAME::Meta::FCO & type)
-      this->generate_function_comments_header ("_create");
+      this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
       this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                   << "::_create (GAME::Folder & parent, const GAME::Meta::FCO & type)"
                                   << std::endl << "{" << std::endl << this->indentation_cpp_
@@ -239,7 +243,7 @@ void Extension_Classes_Code_Generator::generate_connector_connections (std::stri
                               << std::endl;
 
    // definition in_TYPE_connections ()
-  this->generate_function_comments_header (function_name);
+  this->member_functions_cpp_ << this->generate_function_comments_header (function_name);
   this->member_functions_cpp_ << "void " << this->class_name_ << "::"
                               << function_name << " (std::vector <"
                               << name << "> & conns)" << std::endl << "{" 
@@ -271,7 +275,7 @@ void Extension_Classes_Code_Generator::generate_connection_end (std::string role
                               << std::endl;
 
   // definition src () or dst ()
-  this->generate_function_comments_header (role_name);
+  this->member_functions_cpp_ << this->generate_function_comments_header (role_name);
   this->member_functions_cpp_ << name << " " << this->class_name_ << "::"
                               << role_name << " ()" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
@@ -318,7 +322,8 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
     this->out_ << this->forward_declerations_.str ().c_str ()
                << std::endl << std::endl;
 
-  this->out_ << "class " << this->class_name_;
+  this->out_ << "class " << this->uc_paradigm_name_
+             << "_Export " << this->class_name_;
 
   // if object doesnot inherit object of its same type then
   // inherit the base GAME type
@@ -333,7 +338,8 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   }
 
   this->out_ << this->inherited_classes_.str () << std::endl << "{"
-             << std::endl << "public:" << std::endl 
+             << std::endl << "public:" << std::endl
+             << this->default_member_functions_h_.str ()
              << this->member_functions_h_.str ();
 
   if (!this->member_variables_.str ().empty ())
@@ -370,6 +376,7 @@ void Extension_Classes_Code_Generator::generate_cpp_file (void)
     this->out_ << this->cpp_includes_.str ().c_str ()
                << std::endl << std::endl;
 
+  this->out_ << this->default_member_functions_cpp_.str ();
   this->out_ << this->member_functions_cpp_.str ();
 
   // Close the output file.
@@ -436,7 +443,7 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
                               << " " << name << " ();"
                               << std::endl << std::endl;
 
-  this->generate_function_comments_header (name);
+  this->member_functions_cpp_ << this->generate_function_comments_header (name);
   this->member_functions_cpp_ << return_type << " " << this->class_name_
                               << "::" << name << " ()" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
@@ -449,7 +456,7 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
                               << name << " (" << return_type << " val);"
                               << std::endl << std::endl;
 
-  this->generate_function_comments_header (name);
+  this->member_functions_cpp_ << this->generate_function_comments_header (name);
   this->member_functions_cpp_ << "void " << this->class_name_ << "::"
                               << name << " (" << return_type << " val)"
                               << std::endl << "{" << std::endl
@@ -463,11 +470,14 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
 //
 // generate_function_comments_header
 //
-void Extension_Classes_Code_Generator::generate_function_comments_header (std::string name)
+std::string Extension_Classes_Code_Generator::generate_function_comments_header (std::string name)
 {
-  this->member_functions_cpp_ << "//" << std::endl
-                              << "// " << name << " ()" << std::endl
-                              << "//" << std::endl;
+  std::stringstream header;
+  header << "//" << std::endl
+         << "// " << name << " ()" << std::endl
+         << "//" << std::endl;
+
+  return header.str ();
 }
 
 }

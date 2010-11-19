@@ -1,3 +1,40 @@
+Fri Nov 19 07:16:11 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+
+          Added the above mentioned files to seperate the generation of mpc, mwc and
+          stdafx files from the class files.
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+
+          Bugfix where the proper base class was not called in the constructor
+          in case the inheritance was done using the proxy of the given object.
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+
+          Removed the code generation of the mwc, mpc and stdafx files and
+          added it to a separate file.
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Bugfix where the proper base class was not called in the constructor
+          in case the inheritance was done using the proxy of the given object.
+          Removed the code that seperated the generatio of mpc and mwc files,
+          instead created a set to store all the elements and process later
+          while generating the mwc and mpc files.
+
+          Added the code that creates the _export file to enable the generated
+          code to be exported as a library.
+
 Wed Nov 17 05:27:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_be.mpb:
