@@ -190,6 +190,12 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
 
     // set parameters and base constructor call for copy constructor
     temp_params.str ("");
+    temp_params << "const " << fco_name << " & " << lc_meta_name;
+    code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
+
+    // set parameters and base constructor call for constructor that takes
+    // parameter of base type
+    temp_params.str ("");
     temp_params << "const GAME::" << meta_name << " & " << lc_meta_name;
     code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
 

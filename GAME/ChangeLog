@@ -1,7 +1,13 @@
+Sat Nov 20 14:42:26 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        
+          Bugfix where copy constructor was not generated.
+
 Sat Nov 20 04:19:24 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
-        
+
           Bugfix for the generated _create method for the meta type Connection,Set,
           Reference and FCO.
 
