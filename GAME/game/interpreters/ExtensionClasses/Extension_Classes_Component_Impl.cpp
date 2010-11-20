@@ -1,4 +1,4 @@
-// $Id: Extension_Classes_Component_Impl.cpp 2486 2010-09-08 17:29:09Z hillj $
+// $Id: Extension_Classes_Component_Impl.cpp 2486 2010-09-08 17:29:09Z alhad $
 
 #include "StdAfx.h"
 #include "Extension_Classes_Component.h"

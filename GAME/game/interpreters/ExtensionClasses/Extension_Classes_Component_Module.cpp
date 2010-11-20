@@ -1,4 +1,4 @@
-// $Id: Extension_Classes_Component_Module.cpp 2336 2010-07-08 00:11:22Z hillj $
+// $Id: Extension_Classes_Component_Module.cpp 2336 2010-07-08 00:11:22Z alhad $
 
 #include "StdAfx.h"
 #include "game/be/Component_Module.h"

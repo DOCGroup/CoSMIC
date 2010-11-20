@@ -1,3 +1,5 @@
+// $Id$
+
 #include "StdAfx.h"
 #include "StdAfx.cpp"
 
@@ -76,6 +78,7 @@ void Extension_Classes_Code_Generator::generate_narrow ()
                               << "CComPtr <IMga" << this->meta_name_ << "> curr_type;"
                               << std::endl << std::endl << this->indentation_cpp_
                               << "VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&curr_type),"
+                              << std::endl << "                           "
                               << "GAME::Invalid_Cast ());" << std::endl << std::endl
                               << this->indentation_cpp_ << "return curr_type.p;" << std::endl
                               << "}" << std::endl << std::endl;
@@ -89,111 +92,47 @@ void Extension_Classes_Code_Generator::generate_create ()
 {
   if (this->meta_name_ == "Connection")
   {
-    this->add_includes ("game/FCO");
-    this->add_includes ("game/Model");
-    this->add_includes ("game/MetaModel");
-
-    // declaration _create () for CONNECTION type
-    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                << " _create (const GAME::Model & parent, const std::string & name,"
-                                << "const GAME::FCO & src, const GAME::FCO & dst);"
+    this->member_functions_h_   << this->indentation_h_ << this->class_name_
+                                << " _create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst);"
                                 << std::endl << std::endl;
 
-    // definition _create () for CONNECTION type
+    // definition of _create ()
     this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (const GAME::Model & parent, const std::string & name,"
-                                << " const GAME::FCO & src, const GAME::FCO & dst)" << std::endl
-                                << "{" << std::endl << this->indentation_cpp_
-                                << "GAME::Meta::Role role = parent.meta ().role (name);"
-                                << std::endl << this->indentation_cpp_
-                                << "CComPtr <IMgaFCO> conn;" << std::endl
-                                << this->indentation_cpp_ << "VERIFY_HRESULT (parent.impl ()"
-                                << " ->CreateSimpleConn (role, src.impl (), dst.impl (),"
-                                << " 0, 0, &conn));" << std::endl << this->indentation_cpp_
-                                << "return " << this->class_name_ <<"::_narrow (FCO (conn));"
-                                << std::endl << "}" << std::endl << std::endl;
+                                << "::_create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst)" << std::endl
+                                << "{" << std::endl << "  return " << this->meta_name_
+                                << "::_create (parent, \"Node\", src, dst);" << std::endl
+                                << "}" << std::endl << std::endl;
   }
   else
   {
-    if (this->meta_name_ != "Model")
-      this->add_includes ("game/Model");
+    this->add_includes ("game/FCO");
+    this->add_includes ("game/Model");
+    this->add_includes ("game/Folder");
 
-    this->add_includes ("game/MetaModel");
-
-    // declaration _create (GAME::Model & parent, const std::string & type)
-    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                << "  _create (GAME::Model & parent, const std::string & type);"
+    this->member_functions_h_   << this->indentation_h_ << this->class_name_
+                                << " _create (GAME::Model & parent);"
                                 << std::endl << std::endl;
 
-    // definition _create (GAME::Model & parent, const std::string & type)
+    // definition of _create ()
     this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (GAME::Model & parent, const std::string & type)"
-                                << std::endl << "{" << std::endl << this->indentation_cpp_
-                                << "GAME::Meta::Role role = parent.meta ().role (type);"
-                                << std::endl << std::endl << this->indentation_cpp_ << "return "
-                                << this->class_name_ <<"::_create (parent, role);" << std::endl
+                                << "::_create (GAME::Model & parent)" << std::endl
+                                << "{" << std::endl << "  return " << this->meta_name_
+                                << "::_create (parent, \"Node\");" << std::endl
                                 << "}" << std::endl << std::endl;
 
-    // declaration _create (GAME::Model & parent, const GAME::Meta::Role & type)
-    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                << "  _create (GAME::Model & parent, const GAME::Meta::Role & type);"
+    this->member_functions_h_   << this->indentation_h_ << this->class_name_
+                                << " _create (GAME::Folder & parent);"
                                 << std::endl << std::endl;
 
-     // definition _create (GAME::Model & parent, const GAME::Meta::Role & type)
+    // definition of _create ()
     this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (GAME::Model & parent, const GAME::Meta::Role & role)"
-                                << std::endl << "{" << std::endl << this->indentation_cpp_
-                                << "CComPtr <IMgaFCO> child;" << std::endl << std::endl
-                                << this->indentation_cpp_
-                                << "VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));"
-                                << std::endl << std::endl << this->indentation_cpp_ << "return ";
-
-    // if the current object is of type FCO then retupn it else convert it
-    // to the type of current object using _narrow
-    (this->meta_name_ == "FCO")? this->member_functions_cpp_ << "child.p;" :
-                                 this->member_functions_cpp_ << this->class_name_ << "::_narrow (FCO (child));";
-
-     this->member_functions_cpp_ << std::endl << "}" << std::endl << std::endl;
-
-    if (this->meta_name_ != "FCO")
-    {
-      this->add_includes ("game/Folder");
-
-      // declaration _create (GAME::Folder & parent, const std::string & type)
-      this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                  << "  _create (GAME::Folder & parent, const std::string & type);"
-                                  << std::endl << std::endl;
-
-      // definition _create (GAME::Folder & parent, const std::string & type)
-      this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
-      this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                  << "::_create (GAME::Folder & parent, const std::string & type)"
-                                  << std::endl << "{" << std::endl << this->indentation_cpp_
-                                  << "GAME::Meta::FCO role = parent.meta ().child (type);"
-                                  << std::endl << std::endl << this->indentation_cpp_ << "return "
-                                  << this->class_name_ <<"::_create (parent, role);" << std::endl
-                                  << "}" << std::endl << std::endl;
-
-      // declaration _create (GAME::Folder & parent, const GAME::Meta::FCO & type)
-      this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                  << "  _create (GAME::Folder & parent, const GAME::Meta::FCO & type);"
-                                  << std::endl << std::endl;
-
-      // definition _create (GAME::Folder & parent, const GAME::Meta::FCO & type)
-      this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
-      this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                  << "::_create (GAME::Folder & parent, const GAME::Meta::FCO & type)"
-                                  << std::endl << "{" << std::endl << this->indentation_cpp_
-                                  << "CComPtr <IMgaFCO> child;" << std::endl << std::endl
-                                  << this->indentation_cpp_
-                                  << "VERIFY_HRESULT (parent.impl ()->CreateRootObject (type.impl (), &child));"
-                                  << std::endl << std::endl << this->indentation_cpp_ << "return "
-                                  << this->class_name_ << "::_narrow (FCO (child));" << std::endl
-                                  << "}" << std::endl << std::endl;
-    }
+                                << "::_create (GAME::Folder & parent)" << std::endl
+                                << "{" << std::endl << "  return " << this->meta_name_
+                                << "::_create (parent, \"Node\");" << std::endl
+                                << "}" << std::endl << std::endl;
   }
 }
 
@@ -273,13 +212,13 @@ void Extension_Classes_Code_Generator::generate_connection_end (std::string role
 
   // declaration src () or dst ()
   this->member_functions_h_   << this->indentation_h_ << name << " "
-                              << role_name << " ();" << std::endl
+                              << role_name << " (void);" << std::endl
                               << std::endl;
 
   // definition src () or dst ()
   this->member_functions_cpp_ << this->generate_function_comments_header (role_name);
   this->member_functions_cpp_ << name << " " << this->class_name_ << "::"
-                              << role_name << " ()" << std::endl
+                              << role_name << " (void)" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
                               << "return " << name << "::"
                               << "_narrow (this->connection_point (\""
@@ -306,6 +245,9 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
 
   if (!this->out_.is_open ())
     return;
+
+  // generate the header preamble
+  this->generate_header_preamble ();
 
   std::stringstream full_path_ifndef;
   full_path_ifndef << this->uc_paradigm_name_ << "_" << this->inner_location_
@@ -346,7 +288,9 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   this->out_ << this->inherited_classes_.str () << std::endl << "{"
              << std::endl << "public:" << std::endl
              << this->default_member_functions_h_.str ()
-             << this->member_functions_h_.str ();
+             << this->member_functions_h_.str ()
+             << this->indentation_h_ << "static const std::string metaname;"
+             << std::endl << std::endl;
 
   if (!this->member_variables_.str ().empty ())
     this->out_ << std::endl << "private:" << std::endl 
@@ -375,6 +319,9 @@ void Extension_Classes_Code_Generator::generate_cpp_file (void)
   if (!this->out_.is_open ())
     return;
 
+  this->out_ << "// " << "$" << "Id" << "$"
+             << std::endl << std::endl;
+
   this->out_ << "#include \"stdafx.h\"" << std::endl
              << "#include \"" << this->class_name_ << ".h\""
              << std::endl << std::endl;
@@ -383,8 +330,10 @@ void Extension_Classes_Code_Generator::generate_cpp_file (void)
     this->out_ << this->cpp_includes_.str ().c_str ()
                << std::endl << std::endl;
 
-  this->out_ << this->default_member_functions_cpp_.str ();
-  this->out_ << this->member_functions_cpp_.str ();
+  this->out_ << this->default_member_functions_cpp_.str ()
+             << this->member_functions_cpp_.str ()
+             << "const std::string " << this->class_name_ << "::metaname = "
+             << "\"" << this->class_name_ << "\";" << std::endl;
 
   // Close the output file.
   this->out_.close ();
@@ -447,12 +396,12 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
 
   // generate functions for getting the value
   this->member_functions_h_   << this->indentation_h_ << return_type
-                              << " " << name << " ();"
+                              << " " << name << " (void);"
                               << std::endl << std::endl;
 
   this->member_functions_cpp_ << this->generate_function_comments_header (name);
   this->member_functions_cpp_ << return_type << " " << this->class_name_
-                              << "::" << name << " ()" << std::endl
+                              << "::" << name << " (void)" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
                               << "return this->attribute (\"" << name << "\")."
                               << function_name << " ();" << std::endl
@@ -481,10 +430,34 @@ std::string Extension_Classes_Code_Generator::generate_function_comments_header 
 {
   std::stringstream header;
   header << "//" << std::endl
-         << "// " << name << " ()" << std::endl
+         << "// " << name << std::endl
          << "//" << std::endl;
 
   return header.str ();
+}
+
+//
+// generate_header_preamble
+//
+void Extension_Classes_Code_Generator::generate_header_preamble (void)
+{
+  this->out_ << "//================================================================="
+             << "===============" << std::endl << "/**" << std::endl
+             << " * @file       " << this->class_name_ << ".h" << std::endl
+             << " *" << std::endl
+             << " *" << " $" << "Id" << "$" << std::endl
+             << " *" << std::endl
+             << " * @author     Alhad Mokashi <amokashi at iupui dot edu>" << std::endl
+             << " *             James H. Hill <hillj at cs dot iupui dot edu>"
+             << std::endl << " *" << std::endl
+             << " * This file was generated by the GAME extension "
+             << "class interpreter," << std::endl
+             << " * which is freely available in open-source format "
+             << "for use on any" << std::endl
+             << " * MetaGME project." << std::endl
+             << " */" << std::endl
+             << "//================================================================"
+             << "================" << std::endl << std::endl;
 }
 
 }

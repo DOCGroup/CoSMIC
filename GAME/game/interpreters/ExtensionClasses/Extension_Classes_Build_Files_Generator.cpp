@@ -1,3 +1,5 @@
+// $Id$
+
 #include "StdAfx.h"
 #include "StdAfx.cpp"
 
@@ -42,6 +44,8 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file ()
   filename << this->output_ << "/" << this->filename_ << ".mwc";
 
   this->out_.open (filename.str ().c_str ());
+
+  this->out_ << "// " << "$" << "Id" << "$" << std::endl << std::endl;
 
   // generate the code for mwc file
   this->out_ << "workspace (" << this->filename_ << ") {" <<std::endl
@@ -146,6 +150,8 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files ()
   filename << this->output_ << "/stdafx.cpp";
 
   this->out_.open (filename.str ().c_str ());
+
+  this->out_ << "// " << "$" << "Id" << "$" << std::endl << std::endl;
 
   // generate the code for stdafx.cpp file
   this->out_ << "#include \"stdafx.h\"" << std::endl

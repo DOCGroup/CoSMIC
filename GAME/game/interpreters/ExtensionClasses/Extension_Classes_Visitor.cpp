@@ -1,3 +1,5 @@
+// $Id$
+
 #include "StdAfx.h"
 #include "StdAfx.cpp"
 #include "Extension_Classes_Visitor.h"
@@ -179,20 +181,20 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
     }
 
     // generate the constructors and the destructors
-    code_generator.generate_default_functions ("", "", "");
+    code_generator.generate_default_functions ("", "void", "");
 
     // set parameters and base constructor call for IMga constructor
     temp_params << "IMga" << meta_name << " * " << lc_meta_name;
-    temp_cons   << " : " << cons_name << " (" << lc_meta_name << ")";
+    temp_cons   << std::endl << "  : " << cons_name << " (" << lc_meta_name << ")";
     code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
 
     // set parameters and base constructor call for copy constructor
     temp_params.str ("");
-    temp_params << "const " << fco_name << " & " << lc_meta_name;
+    temp_params << "const GAME::" << meta_name << " & " << lc_meta_name;
     code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
 
     // generate the destructor and the _narrow function
-    code_generator.generate_default_functions ("~", "", "");
+    code_generator.generate_default_functions ("~", "void", "");
 
     // generate out the the .h and the .cpp files
     code_generator.generate_h_file ();

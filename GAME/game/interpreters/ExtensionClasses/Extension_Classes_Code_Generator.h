@@ -63,6 +63,8 @@ public:
 
   void generate_cpp_file (void);
 
+  void generate_header_preamble (void);
+
   void generate_attribute_list (GAME::FCO fco);
 
   std::string generate_function_comments_header (std::string name);
