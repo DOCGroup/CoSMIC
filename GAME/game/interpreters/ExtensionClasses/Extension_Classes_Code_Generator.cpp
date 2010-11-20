@@ -101,8 +101,8 @@ void Extension_Classes_Code_Generator::generate_create ()
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                 << "::_create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst)" << std::endl
                                 << "{" << std::endl << "  return " << this->meta_name_
-                                << "::_create (parent, \"Node\", src, dst);" << std::endl
-                                << "}" << std::endl << std::endl;
+                                << "::_create (parent, \"" << this->class_name_ << "\", src, dst);"
+                                << std::endl << "}" << std::endl << std::endl;
   }
   else
   {
@@ -118,21 +118,29 @@ void Extension_Classes_Code_Generator::generate_create ()
     this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
                                 << "::_create (GAME::Model & parent)" << std::endl
-                                << "{" << std::endl << "  return " << this->meta_name_
-                                << "::_create (parent, \"Node\");" << std::endl
-                                << "}" << std::endl << std::endl;
+                                << "{" << std::endl << "  return GAME::" << this->meta_name_;
 
-    this->member_functions_h_   << this->indentation_h_ << this->class_name_
-                                << " _create (GAME::Folder & parent);"
-                                << std::endl << std::endl;
+    if (this->meta_name_ != "FCO")
+      this->member_functions_cpp_ << "::_create (parent, \"" << this->class_name_ << "\");";
+    else
+      this->member_functions_cpp_ << "::_create (\"" << this->class_name_ << "\", parent);" ;
+                                
+    this->member_functions_cpp_ << std::endl << "}" << std::endl << std::endl;
 
-    // definition of _create ()
-    this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
-    this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (GAME::Folder & parent)" << std::endl
-                                << "{" << std::endl << "  return " << this->meta_name_
-                                << "::_create (parent, \"Node\");" << std::endl
-                                << "}" << std::endl << std::endl;
+    if (this->meta_name_ != "Set" && this->meta_name_ != "Reference" && this->meta_name_ != "FCO")
+    {
+      this->member_functions_h_   << this->indentation_h_ << this->class_name_
+                                  << " _create (GAME::Folder & parent);"
+                                  << std::endl << std::endl;
+
+      // definition of _create ()
+      this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
+      this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
+                                  << "::_create (GAME::Folder & parent)" << std::endl
+                                  << "{" << std::endl << "  return GAME::" << this->meta_name_
+                                  << "::_create (parent, \"" << this->class_name_ << "\");"
+                                  << std::endl << "}" << std::endl << std::endl;
+    }
   }
 }
 
