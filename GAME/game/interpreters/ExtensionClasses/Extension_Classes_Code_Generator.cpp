@@ -302,17 +302,18 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
 
   this->out_ << this->inherited_classes_.str () << std::endl << "{"
              << std::endl << "public:" << std::endl
-             << this->default_member_functions_h_.str ()
-             << this->member_functions_h_.str ()
              << this->indentation_h_ << "static const std::string metaname;"
-             << std::endl << std::endl;
+             << std::endl << std::endl
+             << this->default_member_functions_h_.str ()
+             << this->member_functions_h_.str ();
 
   if (!this->member_variables_.str ().empty ())
     this->out_ << std::endl << "private:" << std::endl 
                << this->member_variables_.str () << std::endl;
 
   this->out_ << "};" << std::endl << std::endl
-             << "#endif // !defined " << full_path_ifndef.str ();
+             << "#endif // !defined " << full_path_ifndef.str ()
+             << std::endl;
 
   // Close the output file.
   this->out_.close ();
@@ -343,12 +344,14 @@ void Extension_Classes_Code_Generator::generate_cpp_file (void)
 
   if (!this->cpp_includes_.str ().empty ())
     this->out_ << this->cpp_includes_.str ().c_str ()
-               << std::endl << std::endl;
+               << std::endl;
+
+  this->out_ << "const std::string " << this->class_name_
+             << "::metaname = " << "\"" << this->class_name_
+             << "\";" << std::endl << std::endl;
 
   this->out_ << this->default_member_functions_cpp_.str ()
-             << this->member_functions_cpp_.str ()
-             << "const std::string " << this->class_name_ << "::metaname = "
-             << "\"" << this->class_name_ << "\";" << std::endl;
+             << this->member_functions_cpp_.str ();
 
   // Close the output file.
   this->out_.close ();
@@ -418,7 +421,9 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
   this->member_functions_cpp_ << return_type << " " << this->class_name_
                               << "::" << name << " (void)" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
-                              << "return this->attribute (\"" << name << "\")."
+                              << "static const std::string attrname (\"" << name << "\");"
+                              << std::endl << this->indentation_cpp_ 
+                              << "return this->attribute (attrname)."
                               << function_name << " ();" << std::endl
                               << "}" << std::endl << std::endl;
   
@@ -431,8 +436,9 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
   this->member_functions_cpp_ << "void " << this->class_name_ << "::"
                               << name << " (" << return_type << " val)"
                               << std::endl << "{" << std::endl
-                              << this->indentation_cpp_
-                              << "this->attribute (\"" << name << "\")."
+                              << this->indentation_cpp_ << "static const std::string attrname (\""
+                              << name << "\");" << std::endl
+                              << this->indentation_cpp_ << "this->attribute (attrname)."
                               << function_name << " (val);" << std::endl
                               << "}" << std::endl << std::endl;  
 }

@@ -1,10 +1,18 @@
+Sun Nov 21 22:01:06 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        
+          Added metaname as the first attribute in .h and .cpp files.
+          Added const static member name decleration in each generated
+          attribute function.
+
 Sun Nov 21 19:39:40 UTC 2010 Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
-        
+
           Removed configuration.cpp from mpc file.
 
         * game/interpreters/ExtensionClasses/Configuration.h:
