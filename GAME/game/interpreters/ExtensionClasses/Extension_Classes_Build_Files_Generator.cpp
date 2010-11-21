@@ -75,7 +75,7 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
   for (; obj_iter != obj_iter_end; ++ obj_iter)
   {
     parents.insert (obj_iter->parent ());
-    source_files << "  ./";
+    source_files << "  ";
 
     if (obj_iter->parent ().parent () != this->root_)
       source_files << obj_iter->parent ().parent ().name () << "/";
@@ -88,10 +88,18 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
     parent_iter = parents.begin (),
     parent_iter_end = parents.end ();
 
-  // collect all the folders in a string
-  for (; parent_iter != parent_iter_end; ++ parent_iter)
+  if (!parents.empty ())
   {
-    includes << ", ./";
+    if (parent_iter->parent () != this->root_)
+      includes << parent_iter->parent ().name () << "/";
+
+    includes << parent_iter->name ();
+  }
+
+  // collect all the folders in a string
+  for (++ parent_iter; parent_iter != parent_iter_end; ++ parent_iter)
+  {
+    includes << ", ";
 
     if (parent_iter->parent () != this->root_)
       includes << parent_iter->parent ().name () << "/";
@@ -107,13 +115,13 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
   this->out_ << "project(" << this->filename_ << "): game {" << std::endl
              << "  sharedname = " << this->filename_ << std::endl << std::endl
              << "  includes += $(GAME_ROOT)" << std::endl
-             << "  includes += ./" << includes.str () << std::endl
+             << "  includes += " << includes.str () << std::endl
              << "  dynamicflags += " << this->uc_paradigm_name_ << "_BUILD_DLL"
              << std::endl << "  staticflags  += " << this->uc_paradigm_name_
              << "_AS_STATIC_LIBS" << std::endl << std::endl
              << "  prebuild += $(ACE_ROOT)/bin/generate_export_file.pl "
-             << this->uc_paradigm_name_ << " > " << this->output_
-             << "\\" << this->uc_paradigm_name_ << "_export.h"
+             << this->uc_paradigm_name_ << " > "
+             << this->uc_paradigm_name_ << "_export.h"
              << std::endl << std::endl << "  pch_header = stdafx.h"
              << std::endl << "  pch_source = stdafx.cpp" << std::endl
              << std::endl << "  Source_Files {"

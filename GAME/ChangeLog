@@ -1,8 +1,14 @@
+Sun Nov 21 05:53:45 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        
+          Removed ./ from front of the filenames that appear in the .mpc file
+
 Sun Nov 21 05:37:37 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
-        
+
           Added  // \-*- C++ -*- at the top of all the generated .h files.
 
 Sun Nov 21 05:18:51 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
