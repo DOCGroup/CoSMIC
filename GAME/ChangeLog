@@ -1,7 +1,14 @@
+Sun Nov 21 22:58:37 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        
+          Changed the includes and the cmdline in the generated mpc amd mwc
+          files respectively.
+
 Sun Nov 21 22:01:06 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
-        
+
           Added metaname as the first attribute in .h and .cpp files.
           Added const static member name decleration in each generated
           attribute function.

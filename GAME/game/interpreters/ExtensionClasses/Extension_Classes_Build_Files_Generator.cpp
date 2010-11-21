@@ -50,7 +50,8 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file ()
   // generate the code for mwc file
   this->out_ << "workspace (" << this->filename_ << ") {" <<std::endl
              << "  cmdline += -features boost=1,xerces3=1,xsc=1,mfc=1"
-             << std::endl << "  cmdline += -include $GAME_ROOT/MPC/config"
+             << std::endl << "  cmdline += -include $GAME_ROOT/MPC/config \\"
+             << std::endl << "             -relative PROJ_ROOT="
              << std::endl << std::endl << "  " << this->filename_ << ".mpc"
              << std::endl << "}";
 
@@ -114,7 +115,7 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
   // generate the code for mpc file
   this->out_ << "project(" << this->filename_ << "): game {" << std::endl
              << "  sharedname = " << this->filename_ << std::endl << std::endl
-             << "  includes += $(GAME_ROOT)" << std::endl
+             << "  includes += $(PROJ_ROOT) $(GAME_ROOT)" << std::endl
              << "  includes += " << includes.str () << std::endl
              << "  dynamicflags += " << this->uc_paradigm_name_ << "_BUILD_DLL"
              << std::endl << "  staticflags  += " << this->uc_paradigm_name_
