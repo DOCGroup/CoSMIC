@@ -50,7 +50,9 @@ public:
 
   void generate_create (void);
 
-  void add_includes (std::string name);
+  void add_h_includes (std::string name);
+
+  void add_cpp_includes (std::string name);
 
   void add_inherited_class (std::string name);
 
@@ -109,8 +111,6 @@ private:
   bool done_inheriting_;
 
   bool has_attribute_;
-
-  bool is_in_connections_;
 };
 
 }

@@ -24,8 +24,7 @@ Extension_Classes_Code_Generator::Extension_Classes_Code_Generator (std::string 
   uc_paradigm_name_ (uc_paradigm_name),
   inner_location_ (inner_location),
   done_inheriting_ (false),
-  has_attribute_ (false),
-  is_in_connections_ (false)
+  has_attribute_ (false)
 {
 }
 
@@ -106,9 +105,8 @@ void Extension_Classes_Code_Generator::generate_create ()
   }
   else
   {
-    this->add_includes ("game/FCO");
-    this->add_includes ("game/Model");
-    this->add_includes ("game/Folder");
+    if (this->meta_name_ == "Reference")
+      this->add_cpp_includes ("game/Model");
 
     this->member_functions_h_   << this->indentation_h_ << this->class_name_
                                 << " _create (GAME::Model & parent);"
@@ -129,6 +127,10 @@ void Extension_Classes_Code_Generator::generate_create ()
 
     if (this->meta_name_ != "Set" && this->meta_name_ != "Reference" && this->meta_name_ != "FCO")
     {
+       if (this->meta_name_ != "Model")
+         this->add_cpp_includes ("game/Model");
+       this->add_cpp_includes ("game/Folder");
+
       this->member_functions_h_   << this->indentation_h_ << this->class_name_
                                   << " _create (GAME::Folder & parent);"
                                   << std::endl << std::endl;
@@ -155,16 +157,24 @@ void Extension_Classes_Code_Generator::add_inherited_class (std::string name)
  else
    this->inherited_classes_ << ", public " << name;
 
-  this->add_includes (name);
+  this->add_h_includes (name);
 }
 
 
 //
-// add_includes
+// add_h_includes
 //
-void Extension_Classes_Code_Generator::add_includes (std::string name)
+void Extension_Classes_Code_Generator::add_h_includes (std::string name)
 {
   this->classes_includes_ << "#include \"" << name << ".h\"" << std::endl;
+}
+
+//
+// add_cpp_includes
+//
+void Extension_Classes_Code_Generator::add_cpp_includes (std::string name)
+{
+  this->cpp_includes_ << "#include \"" << name << ".h\"" << std::endl;
 }
 
 
@@ -173,13 +183,8 @@ void Extension_Classes_Code_Generator::add_includes (std::string name)
 //
 void Extension_Classes_Code_Generator::generate_connector_connections (std::string name)
 {
-  if (!this->is_in_connections_)
-    this->add_includes ("game/Connection");
-
-  this->is_in_connections_ = true;
-
   this->forward_declerations_ << "class " << name << ";" << std::endl;
-  this->cpp_includes_ << "#include \"" << name << ".h\"" << std::endl;
+  this->add_cpp_includes (name);
 
   std::string function_name = "in_";
   function_name.append (name);
@@ -216,7 +221,7 @@ void Extension_Classes_Code_Generator::generate_connector_connections (std::stri
 void Extension_Classes_Code_Generator::generate_connection_end (std::string role_name,
                                                                 std::string name)
 {
-  this->add_includes (name);
+  this->add_h_includes (name);
 
   // declaration src () or dst ()
   this->member_functions_h_   << this->indentation_h_ << name << " "
@@ -365,7 +370,7 @@ void Extension_Classes_Code_Generator::set_inheritance_flag (void)
 void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
 {
   if (!this->has_attribute_)
-    this->add_includes ("game/Attribute");
+    this->add_cpp_includes ("game/Attribute");
 
   this->has_attribute_ = true;
 
