@@ -136,6 +136,8 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files ()
 
   this->out_.open (filename.str ().c_str ());
 
+  this->out_ << "// -*- C++ -*-" << std::endl << std::endl;
+
   this->generate_stdafx_header_preamble ();
 
   // generate the code for stdafx.h file

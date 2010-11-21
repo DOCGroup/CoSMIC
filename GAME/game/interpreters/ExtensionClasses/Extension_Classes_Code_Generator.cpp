@@ -254,6 +254,8 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   if (!this->out_.is_open ())
     return;
 
+  this->out_ << "// -*- C++ -*-" << std::endl << std::endl;
+
   // generate the header preamble
   this->generate_header_preamble ();
 

@@ -1,8 +1,15 @@
+Sun Nov 21 05:37:37 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        
+          Added  // \-*- C++ -*- at the top of all the generated .h files.
+
 Sun Nov 21 05:18:51 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
-        
+
           Added newline at the end of generated stdafx files. Added the header preamble
           to the generated stdafx.h file.
 
