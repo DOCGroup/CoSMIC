@@ -185,7 +185,7 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
 
     // set parameters and base constructor call for IMga constructor
     temp_params << "IMga" << meta_name << " * " << lc_meta_name;
-    temp_cons   << std::endl << "  : " << cons_name << " (" << lc_meta_name << ")";
+    temp_cons   << std::endl << ": " << cons_name << " (" << lc_meta_name << ")";
     code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
 
     // set parameters and base constructor call for copy constructor

@@ -1,7 +1,13 @@
+Sun Nov 21 06:24:22 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        
+          Removed extra spaces at the start of base member initialization.
+
 Sun Nov 21 05:53:45 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
-        
+
           Removed ./ from front of the filenames that appear in the .mpc file
 
 Sun Nov 21 05:37:37 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
