@@ -43,6 +43,8 @@ public:
   void generate_mpc_file ();
 
   void generate_stdafx_files ();
+
+  void generate_stdafx_header_preamble (void);
   
 private:
   GAME::Folder root_;

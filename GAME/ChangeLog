@@ -1,7 +1,15 @@
+Sun Nov 21 05:18:51 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        
+          Added newline at the end of generated stdafx files. Added the header preamble
+          to the generated stdafx.h file.
+
 Sat Nov 20 14:42:26 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
-        
+
           Bugfix where copy constructor was not generated.
 
 Sat Nov 20 04:19:24 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
