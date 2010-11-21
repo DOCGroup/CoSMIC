@@ -1,8 +1,22 @@
+Sun Nov 21 19:39:40 UTC 2010 Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        
+          Removed configuration.cpp from mpc file.
+
+        * game/interpreters/ExtensionClasses/Configuration.h:
+        * game/interpreters/ExtensionClasses/Configuration.cpp:
+
+          Removed these files.
+
 Sun Nov 21 19:00:03 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
-        
+
           Removed unnecessary includes from the header files. Added the necessary
           ones to the cpp file.
 

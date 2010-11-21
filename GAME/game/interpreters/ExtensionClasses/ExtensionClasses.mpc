@@ -4,8 +4,6 @@ project (GAME_ExtensionClassesComponent) : game_component, gme_common, cosmic_ut
   sharedname = GAME_ExtensionClassesComponent
 
   Source_Files {
-    Configuration.cpp
-
     Extension_Classes_Component.idl
     Extension_Classes_Component_Impl.cpp
     Extension_Classes_Component_Module.cpp

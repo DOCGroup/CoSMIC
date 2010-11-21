@@ -6,7 +6,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Wed Nov 17 10:07:54 2010
+/* at Sun Nov 21 14:24:47 2010
  */
 /* Compiler settings for .\Extension_Classes_Component.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)
