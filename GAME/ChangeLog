@@ -1,7 +1,17 @@
+Mon Nov 22 00:34:08 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        
+          Removed gme_common from the list of base projects for the
+          generated mpc.
+
 Sun Nov 21 22:58:37 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
-        
+
           Changed the includes and the cmdline in the generated mpc amd mwc
           files respectively.
 
