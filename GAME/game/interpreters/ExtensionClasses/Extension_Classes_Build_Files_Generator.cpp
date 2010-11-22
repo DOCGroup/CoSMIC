@@ -76,7 +76,7 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
   for (; obj_iter != obj_iter_end; ++ obj_iter)
   {
     parents.insert (obj_iter->parent ());
-    source_files << "  ";
+    source_files << "    ";
 
     if (obj_iter->parent ().parent () != this->root_)
       source_files << obj_iter->parent ().parent ().name () << "/";

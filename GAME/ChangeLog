@@ -1,9 +1,15 @@
+Mon Nov 22 14:23:06 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        
+          Tab spacing corrected in the generated mpc file.
+
 Mon Nov 22 14:14:41 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
-        
+
           Corrected coding style.
 
 Mon Nov 22 01:53:32 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
