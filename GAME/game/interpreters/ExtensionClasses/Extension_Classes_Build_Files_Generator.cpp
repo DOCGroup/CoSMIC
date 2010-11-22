@@ -29,7 +29,7 @@ Extension_Classes_Build_Files_Generator::Extension_Classes_Build_Files_Generator
 //
 // ~Extension_Classes_Build_Files_Generator
 //
-Extension_Classes_Build_Files_Generator::~Extension_Classes_Build_Files_Generator ()
+Extension_Classes_Build_Files_Generator::~Extension_Classes_Build_Files_Generator (void)
 {
 
 }
@@ -37,7 +37,7 @@ Extension_Classes_Build_Files_Generator::~Extension_Classes_Build_Files_Generato
 //
 // generate_mwc_file
 //
-void Extension_Classes_Build_Files_Generator::generate_mwc_file ()
+void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
 {
   std::stringstream filename;
   
@@ -61,7 +61,7 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file ()
 //
 // generate_mpc_file
 //
-void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
+void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
 {
   std::stringstream filename, includes, source_files;
   std::set <GAME::Object> parents;
@@ -138,7 +138,7 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file ()
 //
 // generate_stdafx_files
 //
-void Extension_Classes_Build_Files_Generator::generate_stdafx_files ()
+void Extension_Classes_Build_Files_Generator::generate_stdafx_files (void)
 {
   std::stringstream filename;
   filename << this->output_ << "/stdafx.h";

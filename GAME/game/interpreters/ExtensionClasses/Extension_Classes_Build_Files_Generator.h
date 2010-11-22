@@ -36,13 +36,13 @@ public:
                                            std::string,
                                            std::string);
   
-  ~Extension_Classes_Build_Files_Generator ();
+  ~Extension_Classes_Build_Files_Generator (void);
   
-  void generate_mwc_file ();
+  void generate_mwc_file (void);
   
-  void generate_mpc_file ();
+  void generate_mpc_file (void);
 
-  void generate_stdafx_files ();
+  void generate_stdafx_files (void);
 
   void generate_stdafx_header_preamble (void);
   

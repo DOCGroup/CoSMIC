@@ -38,7 +38,7 @@ Extension_Classes_Code_Generator::~Extension_Classes_Code_Generator (void)
 
 
 //
-// generate_default_functions ()
+// generate_default_functions
 //
 void Extension_Classes_Code_Generator::generate_default_functions
                                        (std::string prefix_symbol,
@@ -60,9 +60,9 @@ void Extension_Classes_Code_Generator::generate_default_functions
 
 
 //
-// generate_narrow ()
+// generate_narrow
 //
-void Extension_Classes_Code_Generator::generate_narrow ()
+void Extension_Classes_Code_Generator::generate_narrow (void)
 {
   // declaration _narrow ()
   this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
@@ -85,9 +85,9 @@ void Extension_Classes_Code_Generator::generate_narrow ()
 
 
 //
-// generate_create ()
+// generate_create
 //
-void Extension_Classes_Code_Generator::generate_create ()
+void Extension_Classes_Code_Generator::generate_create (void)
 {
   if (this->meta_name_ == "Connection")
   {
@@ -98,8 +98,8 @@ void Extension_Classes_Code_Generator::generate_create ()
     // definition of _create ()
     this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
     this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst)" << std::endl
-                                << "{" << std::endl << "  return " << this->meta_name_
+                                << "::_create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst)"
+                                << std::endl << "{" << std::endl << "  return " << this->meta_name_
                                 << "::_create (parent, \"" << this->class_name_ << "\", src, dst);"
                                 << std::endl << "}" << std::endl << std::endl;
   }
@@ -179,7 +179,7 @@ void Extension_Classes_Code_Generator::add_cpp_includes (std::string name)
 
 
 //
-// generate_connector_connections ()
+// generate_connector_connections
 //
 void Extension_Classes_Code_Generator::generate_connector_connections (std::string name)
 {
@@ -216,7 +216,7 @@ void Extension_Classes_Code_Generator::generate_connector_connections (std::stri
 
 
 //
-// generate_connection_end ()
+// generate_connection_end
 //
 void Extension_Classes_Code_Generator::generate_connection_end (std::string role_name,
                                                                 std::string name)
@@ -368,7 +368,7 @@ void Extension_Classes_Code_Generator::set_inheritance_flag (void)
 
 
 //
-// generate_attribute_list ()
+// generate_attribute_list
 //
 void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
 {
