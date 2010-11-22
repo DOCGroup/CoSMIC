@@ -49,11 +49,10 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
 
   // generate the code for mwc file
   this->out_ << "workspace (" << this->filename_ << ") {" <<std::endl
-             << "  cmdline += -features boost=1,xerces3=1,xsc=1,mfc=1"
-             << std::endl << "  cmdline += -include $GAME_ROOT/MPC/config \\"
+             << "  cmdline += -include $GAME_ROOT/MPC/config \\"
              << std::endl << "             -relative PROJ_ROOT="
-             << std::endl << std::endl << "  " << this->filename_ << ".mpc"
-             << std::endl << "}";
+             << std::endl << std::endl << "  " << this->filename_
+             << ".mpc" << std::endl << "}";
 
   this->out_.close ();
 }
