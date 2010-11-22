@@ -104,9 +104,16 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
     // add the object to the set to be used for mpc generation
     this->objects_.insert (fco);
 
+    bool called_create = false;
+    bool is_abstract = fco.attribute ("IsAbstract").bool_value ();
+
     // if object is abstract then donot generate the _create function
-    if (!fco.attribute ("IsAbstract").bool_value ())
+    if (!is_abstract &&
+        fco.attribute ("InRootFolder").bool_value ())
+    {
+      called_create = true;
       code_generator.generate_create ();
+    }
 
     CONNECTIONS connections;
     FCOS proxies;
@@ -177,6 +184,12 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
         this->get_src_connections ((*iter), "ConnectorToDestination", dst_conn);
         code_generator.generate_connection_end ("src", this->get_src_name (src_conn.front ()));
         code_generator.generate_connection_end ("dst", this->get_dst_name (dst_conn.front ()));
+      }
+
+      else if (iter->name () == "Containment")
+      {
+        if (fco_name == src_name && !called_create && !is_abstract)
+          code_generator.generate_create ();
       }
     }
 

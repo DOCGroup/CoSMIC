@@ -1,10 +1,18 @@
+Mon Nov 22 01:53:32 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        
+          Bugfix where the generated create methods were not static. The create methods
+          are generated only when the object has a parent or is in the root folder.
+
 Mon Nov 22 00:34:08 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
-        
+
           Removed gme_common from the list of base projects for the
           generated mpc.
 

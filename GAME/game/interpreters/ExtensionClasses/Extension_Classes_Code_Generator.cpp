@@ -91,7 +91,7 @@ void Extension_Classes_Code_Generator::generate_create ()
 {
   if (this->meta_name_ == "Connection")
   {
-    this->member_functions_h_   << this->indentation_h_ << this->class_name_
+    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
                                 << " _create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst);"
                                 << std::endl << std::endl;
 
@@ -108,7 +108,7 @@ void Extension_Classes_Code_Generator::generate_create ()
     if (this->meta_name_ == "Reference")
       this->add_cpp_includes ("game/Model");
 
-    this->member_functions_h_   << this->indentation_h_ << this->class_name_
+    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
                                 << " _create (GAME::Model & parent);"
                                 << std::endl << std::endl;
 
@@ -131,7 +131,7 @@ void Extension_Classes_Code_Generator::generate_create ()
          this->add_cpp_includes ("game/Model");
        this->add_cpp_includes ("game/Folder");
 
-      this->member_functions_h_   << this->indentation_h_ << this->class_name_
+      this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
                                   << " _create (GAME::Folder & parent);"
                                   << std::endl << std::endl;
 
