@@ -1,7 +1,12 @@
+Tue Nov 23 10:12:36 UTC 2010  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * GAME.mwc:
+          Try to compile everything on non windows
+
 Mon Nov 22 14:32:59 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
-        
+
           Removed the -features line from the generated mwc. Now to generate the wrokspace
           one has to use -features mfc=1.
 

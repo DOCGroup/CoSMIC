@@ -3,11 +3,6 @@
 workspace (GAME) {
   cmdline += -include $COSMIC_ROOT/MPC/config
 
-  exclude (!prop:windows) {
-    game
-  }
-  else {
-    game/xml    
-    game/xme
-  }
+  game/xml
+  game/xme
 }
