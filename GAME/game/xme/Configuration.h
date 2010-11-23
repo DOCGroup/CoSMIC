@@ -37,9 +37,9 @@ public:
 };
 
 typedef ACE_Singleton <Configuration, ACE_Thread_Mutex> GLOBAL_CONFIG;
-GAME_XME_SINGLETON_DECLARE (ACE_Singleton, Configuration, ACE_Thread_Mutex);
+}
+}
 
-}
-}
+GAME_XME_SINGLETON_DECLARE (ACE_Singleton, ::GAME::XME::Configuration, ACE_Thread_Mutex);
 
 #endif
