@@ -12,7 +12,7 @@ namespace IDL_GENERATOR
 //
 IDL_File_Dependency_Processor::IDL_File_Dependency_Processor (void)
 : forward_declaration_ (false),
-  idl_file_generator_ (NULL)
+  idl_file_generator_ (0)
 {
 }
 
@@ -82,7 +82,7 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
   {
     o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), this->idl_order_proc_.graph (), (*it));
     
-    if (o.GetParent ().type () != PICML::File::meta)
+    if (o == Udm::null || o.GetParent ().type () != PICML::File::meta)
       continue;
     else if (o.type () == PICML::Constant::meta)
       PICML::Constant::Cast (o).Accept (visitor);
