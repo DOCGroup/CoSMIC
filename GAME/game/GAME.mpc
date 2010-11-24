@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME) : acelib, game_lib {
+project (GAME) : acelib, game_lib, boost_base {
   sharedname = GAME
 
   dynamicflags += GAME_BUILD_DLL

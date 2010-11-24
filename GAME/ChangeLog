@@ -1,3 +1,23 @@
+Wed Nov 24 04:47:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * GAME.mwc:
+        
+          Added game folder to the list of folders for project generation
+          as the game projects were not being generated.
+          
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+
+        * game/GAME.mpc:
+        * game/dialogs/GAME_Dialogs.mpc:
+        * game/manip/Manipulation.mpc:
+        * game/utils/GAME_Utils.mpc:
+        * game/xme/XME.mpc:
+        
+          Added boost_base as the root project as the files in the projects
+          could not bind the included boost files.
+
 Tue Nov 23 10:16:17 UTC 2010  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * game/xme/Configuration.h:

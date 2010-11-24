@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_XME) : game_xml, game_lib {
+project (GAME_XME) : game_xml, game_lib, boost_base {
   sharedname    = GAME_XME
   dynamicflags += GAME_XME_BUILD_DLL
 
