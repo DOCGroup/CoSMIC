@@ -41,6 +41,8 @@ Extension_Classes_Build_Files_Generator::
 void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
 {
   std::stringstream filename;
+
+  this->normalize (this->filename_);
   
   filename << this->output_ << "/" << this->filename_ << ".mwc";
 
@@ -69,6 +71,8 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
 void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
 {
   std::stringstream filename, source_files;
+
+  this->normalize (this->filename_);
   
   filename << this->output_ << "/" << this->filename_ << ".mpc";
 
@@ -182,5 +186,21 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_header_preamble (v
              << "//================================================================"
              << "==============" << std::endl << std::endl;
 }
+
+//
+// normalize
+//
+void Extension_Classes_Build_Files_Generator::normalize (std::string & text)
+{
+  static const char * special = "{}|[]^.()+*?\\-@#!$%&;'/<>,~`";
+  std::string::size_type found = text.find_first_of (special);
+
+  while (found != std::string::npos)
+  {
+    text.erase (found, 1);
+    found = text.find_first_of (special, found);
+  }
+}
+
 
 }

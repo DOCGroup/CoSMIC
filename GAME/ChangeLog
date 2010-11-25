@@ -1,3 +1,13 @@
+Thu Nov 25 21:48:49 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        
+          Added normalize functions to normalize names of generated mpc/mwc files
+          and the name used in ifndef.
+
 Thu Nov 25 07:30:10 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
@@ -10,7 +20,7 @@ Thu Nov 25 07:30:10 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
         * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
-        
+
           Refactored code and corrected allignment bugs in generated files.
           Bugfix in the generated mpc file where the include tag was generated
           incorrectly.

@@ -226,6 +226,8 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   std::string ifndef  = this->fco_.path ("_", true);
   ifndef += "_H_";
 
+  this->normalize (ifndef);
+
   std::transform (ifndef.begin (),
                   ifndef.end (),
                   ifndef.begin (),
@@ -442,6 +444,21 @@ void Extension_Classes_Code_Generator::generate_header_preamble (void)
              << " */" << std::endl
              << "//================================================================"
              << "================" << std::endl << std::endl;
+}
+
+//
+// normalize
+//
+void Extension_Classes_Code_Generator::normalize (std::string & text)
+{
+  static const char * special = "{}|[]^.()+*?\\-@#!$%&;'/<>,~`";
+  std::string::size_type found = text.find_first_of (special);
+
+  while (found != std::string::npos)
+  {
+    text.erase (found, 1);
+    found = text.find_first_of (special, found);
+  }
 }
 
 }
