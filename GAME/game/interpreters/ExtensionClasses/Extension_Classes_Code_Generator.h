@@ -23,6 +23,7 @@
 
 #include "boost/bind.hpp"
 
+#include "FCO.h"
 #include "Attribute.h"
 #include "MetaFCO.h"
 
@@ -34,11 +35,9 @@ namespace GAME
 class Extension_Classes_Code_Generator
 {
 public:
-  Extension_Classes_Code_Generator (std::string fname,
-                                    std::string mname,
-                                    std::string fpath,
-                                    std::string uc_paradigm_name,
-                                    std::string inner_location);
+  Extension_Classes_Code_Generator (std::string uc_paradigm_name,
+                                    const GAME::FCO fco,
+                                    std::string outdir);
 
   ~Extension_Classes_Code_Generator (void);
 
@@ -48,7 +47,7 @@ public:
 
   void generate_narrow (void);
 
-  void generate_create (void);
+  void generate_create (std::string name);
 
   void add_h_includes (std::string name);
 
@@ -78,8 +77,6 @@ private:
 
   std::string uc_paradigm_name_;
 
-  std::string inner_location_;
-
   std::stringstream member_variables_;
 
   std::stringstream default_member_functions_h_;
@@ -107,6 +104,10 @@ private:
   std::string meta_name_;
 
   std::string path_;
+
+  std::string outdir_;
+
+  GAME::FCO fco_;
 
   bool done_inheriting_;
 

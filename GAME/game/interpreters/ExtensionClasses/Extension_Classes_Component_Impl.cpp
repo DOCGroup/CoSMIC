@@ -72,20 +72,25 @@ invoke_ex (GAME::Project & project,
 
     std::string uc_paradigm_name = root.name ();
 
-    std::transform (uc_paradigm_name.begin (), uc_paradigm_name.end (),
-                    uc_paradigm_name.begin (), ::toupper);
+    // transform the name of paradigm sheet to upper case.
+    std::transform (uc_paradigm_name.begin (),
+                    uc_paradigm_name.end (),
+                    uc_paradigm_name.begin (),
+                    & ::toupper);
 
+    // collect all the folders and paradigm sheets within
+    // the root folder.
     root.children ("SheetFolder", folders);
     root.children ("ParadigmSheet", paradigm_sheets);
 
-    this->output_.append ("\\");
-    this->output_.append (project.name ().c_str ());
+    // set the full path for output directory
+    std::string output = this->output_;
+    output += ("\\");
+    output += project.name ().c_str ();
 
-    mkdir (this->output_.c_str ());
+    mkdir (output.c_str ());
 
-    std::stringstream includes;
-    std::stringstream source_files;
-
+    // visitor to traverse the model
     GAME::Extension_Classes_Visitor ecv (this->output_,
                                          uc_paradigm_name);
 
@@ -103,15 +108,15 @@ invoke_ex (GAME::Project & project,
                                 _1,
                                 boost::ref (ecv)));
 
+    // get all the objects in the model needed for processing mpc/mwc
     std::set <GAME::Object> objects;
     ecv.get_objects (objects);
 
-    GAME::Extension_Classes_Build_Files_Generator generator
-                                        (root,
-                                         objects,
-                                         this->output_,
-                                         root.name (),
-                                         uc_paradigm_name);
+    GAME::Extension_Classes_Build_Files_Generator generator (root,
+                                                             objects,
+                                                             output,
+                                                             root.name (),
+                                                             uc_paradigm_name);
 
     // generate the mwc, mpc and stdafx files
     generator.generate_mwc_file ();
@@ -125,7 +130,6 @@ invoke_ex (GAME::Project & project,
   }
 
   t.commit ();
-
   ::AfxMessageBox ("Files generated successfully", MB_OK);
 
   return 0;

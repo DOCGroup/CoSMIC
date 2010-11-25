@@ -22,7 +22,6 @@
 #include <cstdio>
 #include <algorithm>
 #include <set>
-//#include <windows.h>
 
 #include "Atom.h"
 #include "Attribute.h"
@@ -38,6 +37,8 @@
 #include "MetaFCO.h"
 #include "MetaModel.h"
 
+#include "Extension_Classes_Code_Generator.h"
+
 namespace GAME
 {
 /**
@@ -47,15 +48,15 @@ class Extension_Classes_Visitor :
   public GAME::Visitor
 {
 public:
-  //type defs
-  typedef std::vector<GAME::Connection> CONNECTIONS;
-
+  //type defintions
   typedef std::vector<GAME::FCO> FCOS;
 
   typedef std::vector<GAME::Model> MODELS;
 
-  Extension_Classes_Visitor (const std::string & outdir,
-                             const std::string & uc_paradigm_name);
+  typedef std::vector<GAME::Connection> CONNECTIONS;
+
+  Extension_Classes_Visitor (const std::string &,
+                             const std::string &);
 
   virtual ~Extension_Classes_Visitor (void);
 
@@ -81,35 +82,28 @@ public:
 
   void get_dst_connections (GAME::Connection, std::string, CONNECTIONS &);
 
-  std::string get_src_name (GAME::Connection);
-
-  std::string get_dst_name (GAME::Connection);
-
-  std::string get_src_meta_name (GAME::Connection);
-
-  std::string get_dst_meta_name (GAME::Connection);
-
   void get_objects (std::set <GAME::Object> &);
+
+  void create_directory (std::string);
+
+  void create_default_functions (std::string,
+                                 std::string,
+                                 std::string,
+                                 std::string,
+                                 Extension_Classes_Code_Generator &);
+
+  std::string get_instance_path (GAME::FCO);
 
 private:
   const std::string outdir_;
 
   const std::string uc_paradigm_name_;
 
-  std::string curr_folder_name_;
-
-  std::string curr_sheet_name_;
-
-  std::string curr_paradigm_sheet_root_dir_;
-  
-  std::string curr_dir_;
-
   std::ofstream out_;
-
-  std::vector <GAME::Atom> attribute_list_;
 
   std::set <GAME::Object> objects_;
 };
+
 }
 
 #if defined (__GAME_INLINE__)

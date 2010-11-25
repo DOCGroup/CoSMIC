@@ -1,10 +1,27 @@
+Thu Nov 25 07:30:10 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        
+          Refactored code and corrected allignment bugs in generated files.
+          Bugfix in the generated mpc file where the include tag was generated
+          incorrectly.
+
 Wed Nov 24 04:47:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * GAME.mwc:
-        
+
           Added game folder to the list of folders for project generation
           as the game projects were not being generated.
-          
+
         * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
@@ -14,7 +31,7 @@ Wed Nov 24 04:47:53 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * game/manip/Manipulation.mpc:
         * game/utils/GAME_Utils.mpc:
         * game/xme/XME.mpc:
-        
+
           Added boost_base as the root project as the files in the projects
           could not bind the included boost files.
 

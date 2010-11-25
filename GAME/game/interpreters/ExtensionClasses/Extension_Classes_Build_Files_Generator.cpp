@@ -11,13 +11,13 @@ namespace GAME
 //
 // Extension_Classes_Build_Files_Generator
 //
-Extension_Classes_Build_Files_Generator::Extension_Classes_Build_Files_Generator
-                                          (const GAME::Folder & root,
-                                           std::set <GAME::Object> objects,
-                                           std::string output,
-                                           std::string filename,
-                                           std::string uc_paradigm_name):
-  root_ (root),
+Extension_Classes_Build_Files_Generator::
+Extension_Classes_Build_Files_Generator (const GAME::Folder & root,
+                                         std::set <GAME::Object> objects,
+                                         std::string output,
+                                         std::string filename,
+                                         std::string uc_paradigm_name)
+: root_ (root),
   objects_ (objects),
   output_ (output),
   filename_ (filename),
@@ -29,7 +29,8 @@ Extension_Classes_Build_Files_Generator::Extension_Classes_Build_Files_Generator
 //
 // ~Extension_Classes_Build_Files_Generator
 //
-Extension_Classes_Build_Files_Generator::~Extension_Classes_Build_Files_Generator (void)
+Extension_Classes_Build_Files_Generator::
+~Extension_Classes_Build_Files_Generator (void)
 {
 
 }
@@ -43,12 +44,17 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
   
   filename << this->output_ << "/" << this->filename_ << ".mwc";
 
+  // open
   this->out_.open (filename.str ().c_str ());
+
+  // check if open
+  if (!this->out_.is_open ())
+    return;
 
   this->out_ << "// " << "$" << "Id" << "$" << std::endl << std::endl;
 
   // generate the code for mwc file
-  this->out_ << "workspace (" << this->filename_ << ") {" <<std::endl
+  this->out_ << "workspace (" << this->filename_ << ") {" << std::endl
              << "  cmdline += -include $GAME_ROOT/MPC/config \\"
              << std::endl << "             -relative PROJ_ROOT="
              << std::endl << std::endl << "  " << this->filename_
@@ -62,8 +68,7 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
 //
 void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
 {
-  std::stringstream filename, includes, source_files;
-  std::set <GAME::Object> parents;
+  std::stringstream filename, source_files;
   
   filename << this->output_ << "/" << this->filename_ << ".mpc";
 
@@ -74,7 +79,6 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
   // create a string that lists all the .cpp files
   for (; obj_iter != obj_iter_end; ++ obj_iter)
   {
-    parents.insert (obj_iter->parent ());
     source_files << "    ";
 
     if (obj_iter->parent ().parent () != this->root_)
@@ -84,38 +88,17 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
                  << obj_iter->name () << ".cpp" << std::endl;
   }
 
-  std::set <GAME::Object>::iterator
-    parent_iter = parents.begin (),
-    parent_iter_end = parents.end ();
-
-  if (!parents.empty ())
-  {
-    if (parent_iter->parent () != this->root_)
-      includes << parent_iter->parent ().name () << "/";
-
-    includes << parent_iter->name ();
-  }
-
-  // collect all the folders in a string
-  for (++ parent_iter; parent_iter != parent_iter_end; ++ parent_iter)
-  {
-    includes << ", ";
-
-    if (parent_iter->parent () != this->root_)
-      includes << parent_iter->parent ().name () << "/";
-
-    includes << parent_iter->name ();
-  }
-
-  includes << std::endl;
-
+  // open
   this->out_.open (filename.str ().c_str ());
 
+  // check if open
+  if (!this->out_.is_open ())
+    return;
+
   // generate the code for mpc file
-  this->out_ << "project(" << this->filename_ << "): game {" << std::endl
+  this->out_ << "project (" << this->filename_ << ") : game {" << std::endl
              << "  sharedname = " << this->filename_ << std::endl << std::endl
-             << "  includes += $(PROJ_ROOT) $(GAME_ROOT)" << std::endl
-             << "  includes += " << includes.str () << std::endl
+             << "  includes += $(PROJ_ROOT)" << std::endl << std::endl
              << "  dynamicflags += " << this->uc_paradigm_name_ << "_BUILD_DLL"
              << std::endl << "  staticflags  += " << this->uc_paradigm_name_
              << "_AS_STATIC_LIBS" << std::endl << std::endl
@@ -142,7 +125,12 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files (void)
   std::stringstream filename;
   filename << this->output_ << "/stdafx.h";
 
+  // open
   this->out_.open (filename.str ().c_str ());
+
+  // check if open
+  if (!this->out_.is_open ())
+    return;
 
   this->out_ << "// -*- C++ -*-" << std::endl << std::endl;
 
@@ -166,9 +154,7 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files (void)
   this->out_ << "// " << "$" << "Id" << "$" << std::endl << std::endl;
 
   // generate the code for stdafx.cpp file
-  this->out_ << "#include \"stdafx.h\"" << std::endl
-             << "#include \"ace/Functor_T.h\"" << std::endl
-             << "#include \"ace/ACE.h\"" << std::endl;
+  this->out_ << "#include \"stdafx.h\"" << std::endl;
 
   this->out_.close ();
 }
@@ -179,7 +165,7 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files (void)
 void Extension_Classes_Build_Files_Generator::generate_stdafx_header_preamble (void)
 {
   this->out_ << "//================================================================="
-             << "===============" << std::endl << "/**" << std::endl
+             << "=============" << std::endl << "/**" << std::endl
              << " * @file       stdafx.h" << std::endl
              << " *" << std::endl
              << " *" << " $" << "Id" << "$" << std::endl
@@ -194,7 +180,7 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_header_preamble (v
              << " * MetaGME project." << std::endl
              << " */" << std::endl
              << "//================================================================"
-             << "================" << std::endl << std::endl;
+             << "==============" << std::endl << std::endl;
 }
 
 }

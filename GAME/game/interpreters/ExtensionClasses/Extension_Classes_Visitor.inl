@@ -26,47 +26,23 @@ void Extension_Classes_Visitor::get_src_connections (GAME::Connection connection
 // get_dst_connections
 //
 GAME_INLINE
-void Extension_Classes_Visitor::get_dst_connections (GAME::Connection connection,
-                                                     std::string name,
-                                                     CONNECTIONS & connection_vector)
+void Extension_Classes_Visitor::
+get_dst_connections (GAME::Connection connection,
+                           std::string name,
+                           CONNECTIONS & connection_vector)
 {
   connection["dst"].target ().in_connections (name, connection_vector);
 }
 
 //
-// get_src_name
+// create_directory
 //
 GAME_INLINE
-std::string Extension_Classes_Visitor::get_src_name (GAME::Connection connection)
+void Extension_Classes_Visitor::create_directory (std::string inner_path)
 {
-  return connection["src"].target ().name ();
-}
-
-//
-// get_dst_name
-//
-GAME_INLINE
-std::string Extension_Classes_Visitor::get_dst_name (GAME::Connection connection)
-{
-  return connection["dst"].target ().name ();
-}
-
-//
-// get_src_meta_name
-//
-GAME_INLINE
-std::string Extension_Classes_Visitor::get_src_meta_name (GAME::Connection connection)
-{
-  return connection["src"].target ().meta ().name ();
-}
-
-//
-// get_dst_meta_name
-//
-GAME_INLINE
-std::string Extension_Classes_Visitor::get_dst_meta_name (GAME::Connection connection)
-{
-  return connection["dst"].target ().meta ().name ();
+  // insert the full path at the begining and then create the directory
+  inner_path.insert (0, this->outdir_);
+  mkdir (inner_path.c_str ());
 }
 
 }

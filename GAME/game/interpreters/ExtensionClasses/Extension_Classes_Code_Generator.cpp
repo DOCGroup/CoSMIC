@@ -11,20 +11,20 @@ namespace GAME
 //
 // Extension_Classes_Code_Generator
 //
-Extension_Classes_Code_Generator::Extension_Classes_Code_Generator (std::string fname,
-                                                                    std::string mname,
-                                                                    std::string fpath,
-                                                                    std::string uc_paradigm_name,
-                                                                    std::string inner_location)
+Extension_Classes_Code_Generator::
+Extension_Classes_Code_Generator (std::string uc_paradigm_name,
+                                  const GAME::FCO fco,
+                                  std::string outdir)
 : indentation_h_ ("  "),
   indentation_cpp_ ("  "),
-  class_name_ (fname),
-  meta_name_ (mname),
-  path_ (fpath),
+  class_name_ (fco.name ()),
+  meta_name_ (fco.meta ().name ()),
+  path_ (fco.path ("\\", true)),
   uc_paradigm_name_ (uc_paradigm_name),
-  inner_location_ (inner_location),
   done_inheriting_ (false),
-  has_attribute_ (false)
+  has_attribute_ (false),
+  fco_ (fco),
+  outdir_ (outdir)
 {
 }
 
@@ -40,10 +40,10 @@ Extension_Classes_Code_Generator::~Extension_Classes_Code_Generator (void)
 //
 // generate_default_functions
 //
-void Extension_Classes_Code_Generator::generate_default_functions
-                                       (std::string prefix_symbol,
-                                        std::string params,
-                                        std::string parent_cons)
+void Extension_Classes_Code_Generator::
+generate_default_functions (std::string prefix_symbol,
+                            std::string params,
+                            std::string parent_cons)
 {
   prefix_symbol.append (this->class_name_);
 
@@ -83,81 +83,39 @@ void Extension_Classes_Code_Generator::generate_narrow (void)
                               << "}" << std::endl << std::endl;
 }
 
-
 //
 // generate_create
 //
-void Extension_Classes_Code_Generator::generate_create (void)
+void Extension_Classes_Code_Generator::generate_create (std::string name)
 {
-  if (this->meta_name_ == "Connection")
-  {
-    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                << " _create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst);"
+  this->add_h_includes (name);
+  name.erase (0, (name.find_last_of ("/") + 1));
+
+  this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
+                                << " _create (" << name << " parent);"
                                 << std::endl << std::endl;
 
-    // definition of _create ()
-    this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
-    this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (GAME::Model & parent, GAME::FCO & src, GAME::FCO & dst)"
-                                << std::endl << "{" << std::endl << "  return " << this->meta_name_
-                                << "::_create (parent, \"" << this->class_name_ << "\", src, dst);"
-                                << std::endl << "}" << std::endl << std::endl;
-  }
-  else
-  {
-    if (this->meta_name_ == "Reference")
-      this->add_cpp_includes ("game/Model");
-
-    this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                << " _create (GAME::Model & parent);"
-                                << std::endl << std::endl;
-
-    // definition of _create ()
-    this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
-    this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                << "::_create (GAME::Model & parent)" << std::endl
-                                << "{" << std::endl << "  return GAME::" << this->meta_name_;
-
-    if (this->meta_name_ != "FCO")
-      this->member_functions_cpp_ << "::_create (parent, \"" << this->class_name_ << "\");";
-    else
-      this->member_functions_cpp_ << "::_create (\"" << this->class_name_ << "\", parent);" ;
-                                
-    this->member_functions_cpp_ << std::endl << "}" << std::endl << std::endl;
-
-    if (this->meta_name_ != "Set" && this->meta_name_ != "Reference" && this->meta_name_ != "FCO")
-    {
-       if (this->meta_name_ != "Model")
-         this->add_cpp_includes ("game/Model");
-       this->add_cpp_includes ("game/Folder");
-
-      this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                                  << " _create (GAME::Folder & parent);"
-                                  << std::endl << std::endl;
-
-      // definition of _create ()
-      this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
-      this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                                  << "::_create (GAME::Folder & parent)" << std::endl
-                                  << "{" << std::endl << "  return GAME::" << this->meta_name_
-                                  << "::_create (parent, \"" << this->class_name_ << "\");"
-                                  << std::endl << "}" << std::endl << std::endl;
-    }
-  }
+  // definition of _create ()
+  this->member_functions_cpp_ << this->generate_function_comments_header ("_create");
+  this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
+                              << "::_create (" << name << " parent)" << std::endl
+                              << "{" << std::endl << "  return GAME::" << this->meta_name_
+                              << "::_create (parent, \"" << this->class_name_ << "\");"
+                              << std::endl << "}" << std::endl << std::endl;
 }
-
 
 //
 // add_inherited_class
 //
 void Extension_Classes_Code_Generator::add_inherited_class (std::string name)
 {
+  this->add_h_includes (name);
+  name.erase (0, (name.find_last_of ("/") + 1));
+
   if (this->inherited_classes_.str () == "")
     this->inherited_classes_ << " : public " << name;
  else
    this->inherited_classes_ << ", public " << name;
-
-  this->add_h_includes (name);
 }
 
 
@@ -181,10 +139,13 @@ void Extension_Classes_Code_Generator::add_cpp_includes (std::string name)
 //
 // generate_connector_connections
 //
-void Extension_Classes_Code_Generator::generate_connector_connections (std::string name)
+void Extension_Classes_Code_Generator::
+generate_connector_connections (std::string name)
 {
-  this->forward_declerations_ << "class " << name << ";" << std::endl;
   this->add_cpp_includes (name);
+  name.erase (0, (name.find_last_of ("/") + 1));
+
+  this->forward_declerations_ << "class " << name << ";" << std::endl;
 
   std::string function_name = "in_";
   function_name.append (name);
@@ -218,10 +179,12 @@ void Extension_Classes_Code_Generator::generate_connector_connections (std::stri
 //
 // generate_connection_end
 //
-void Extension_Classes_Code_Generator::generate_connection_end (std::string role_name,
-                                                                std::string name)
+void Extension_Classes_Code_Generator::
+generate_connection_end (std::string role_name,
+                         std::string name)
 {
   this->add_h_includes (name);
+  name.erase (0, (name.find_last_of ("/") + 1));
 
   // declaration src () or dst ()
   this->member_functions_h_   << this->indentation_h_ << name << " "
@@ -247,11 +210,7 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
 {
   // the complete file path
   std::ostringstream filename_h;
-  filename_h << this->path_ << "/" << this->class_name_ << ".h";
-
-  std::string upper_class_name = this->class_name_;
-  std::transform (upper_class_name.begin (), upper_class_name.end (),
-                  upper_class_name.begin (), ::toupper);
+  filename_h << this->outdir_ << this->path_ << ".h";
 
   // open the document for writing the .h file.
   this->out_.open (filename_h.str ().c_str ());
@@ -264,13 +223,17 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   // generate the header preamble
   this->generate_header_preamble ();
 
-  std::stringstream full_path_ifndef;
-  full_path_ifndef << this->uc_paradigm_name_ << "_" << this->inner_location_
-                   << "_" << upper_class_name << "_H_";
+  std::string ifndef  = this->fco_.path ("_", true);
+  ifndef += "_H_";
+
+  std::transform (ifndef.begin (),
+                  ifndef.end (),
+                  ifndef.begin (),
+                  & ::toupper);
 
   // add the #ifndef preprocessor
-  this->out_ << "#ifndef _" << full_path_ifndef.str () << std::endl
-             << "#define _" << full_path_ifndef.str () << std::endl
+  this->out_ << "#ifndef " << ifndef << std::endl
+             << "#define " << ifndef << std::endl
              << std::endl;
 
   // include file of the inherited parent if not included
@@ -312,7 +275,7 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
                << this->member_variables_.str () << std::endl;
 
   this->out_ << "};" << std::endl << std::endl
-             << "#endif // !defined " << full_path_ifndef.str ()
+             << "#endif // !defined " << ifndef
              << std::endl;
 
   // Close the output file.
@@ -327,7 +290,7 @@ void Extension_Classes_Code_Generator::generate_cpp_file (void)
 {
   // the complete file path
   std::ostringstream filename_cpp;
-  filename_cpp << this->path_ << "/" << this->class_name_ << ".cpp";
+  filename_cpp << this->outdir_ << this->path_ << ".cpp";
 
   // Open the document for writing .cpp file.
   this->out_.open (filename_cpp.str ().c_str ());

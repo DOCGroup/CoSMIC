@@ -8,8 +8,6 @@
 #include "Extension_Classes_Visitor.inl"
 #endif
 
-#include "Extension_Classes_Code_Generator.h"
-
 #include "boost/bind.hpp"
 
 #include <direct.h>
@@ -17,16 +15,15 @@
 #include "MetaAttribute.h"
 #include "MetaFCO.h"
 
-//#include "Mga.h"
-
 namespace GAME
 {
 
 //
 // Extension_Clases_Visitor
 //
-Extension_Classes_Visitor::Extension_Classes_Visitor (const std::string & outdir,
-                                                      const std::string & uc_paradigm_name)
+Extension_Classes_Visitor::
+Extension_Classes_Visitor (const std::string & outdir,
+                           const std::string & uc_paradigm_name)
 : outdir_ (outdir),
   uc_paradigm_name_ (uc_paradigm_name)
 {
@@ -36,7 +33,7 @@ Extension_Classes_Visitor::Extension_Classes_Visitor (const std::string & outdir
 //
 // ~Extension_Classes_Visitor
 //
-Extension_Classes_Visitor::~Extension_Classes_Visitor ()
+Extension_Classes_Visitor::~Extension_Classes_Visitor (void)
 {
 
 }
@@ -52,7 +49,8 @@ void Extension_Classes_Visitor::visit_Atom (GAME::Atom & atom)
 //
 // visit_Attribute
 //
-void Extension_Classes_Visitor::visit_Attribute (GAME::Attribute & attribute)
+void Extension_Classes_Visitor::
+visit_Attribute (GAME::Attribute & attribute)
 {
 
 }
@@ -63,29 +61,20 @@ void Extension_Classes_Visitor::visit_Attribute (GAME::Attribute & attribute)
 void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
 { 
   CONNECTIONS c;
-  std::stringstream temp_params, temp_cons;
   std::string src_name, dst_name, lc_meta_name,
-              meta_name, fco_name, cons_name, inner_location;
-
-  if (!this->curr_folder_name_.empty ())
-  {
-    inner_location  = this->curr_folder_name_;
-    inner_location += "_";
-    inner_location += this->curr_sheet_name_;
-  }
-  else
-    inner_location  = this->curr_sheet_name_;
+              meta_name, fco_name, cons_name;
 
   meta_name = lc_meta_name = fco.meta ().name ();
   fco_name = fco.name ();
-  Extension_Classes_Code_Generator code_generator (fco_name,
-                                                   meta_name,
-                                                   this->curr_dir_,
-                                                   this->uc_paradigm_name_,
-                                                   inner_location);
+  Extension_Classes_Code_Generator code_generator (this->uc_paradigm_name_,
+                                                   fco,
+                                                   this->outdir_);
 
-  std::transform (lc_meta_name.begin (), lc_meta_name.end (),
-                  lc_meta_name.begin (), ::tolower);
+  // transform the metaname to lower case.
+  std::transform (lc_meta_name.begin (),
+                  lc_meta_name.end (),
+                  lc_meta_name.begin (),
+                  & ::tolower);
 
   // it determines the base constructor to be called.
   // by default we assume that it calls the concrete GAME class.
@@ -96,24 +85,17 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
   cons_name += meta_name;
 
   // generate code only for these type of objects
-  if (meta_name == "FCO" || meta_name == "Atom" || meta_name == "Model" ||
-      meta_name == "Reference" || meta_name == "Set" || meta_name == "Connection")
+  if (meta_name == "FCO" ||
+      meta_name == "Atom" ||
+      meta_name == "Model" ||
+      meta_name == "Reference" ||
+      meta_name == "Set" ||
+      meta_name == "Connection")
   {
     code_generator.generate_narrow ();
 
     // add the object to the set to be used for mpc generation
     this->objects_.insert (fco);
-
-    bool called_create = false;
-    bool is_abstract = fco.attribute ("IsAbstract").bool_value ();
-
-    // if object is abstract then donot generate the _create function
-    if (!is_abstract &&
-        fco.attribute ("InRootFolder").bool_value ())
-    {
-      called_create = true;
-      code_generator.generate_create ();
-    }
 
     CONNECTIONS connections;
     FCOS proxies;
@@ -134,86 +116,75 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
 
     for (; iter != iter_end; ++ iter)
     {
-      src_name = this->get_src_name ((*iter));
-      dst_name = this->get_dst_name ((*iter));
+      src_name = iter->src ().name ();
+      dst_name = iter->dst ().name ();
 
       if (iter->name () == "HasAttribute")
       {
-        // if object hass attributes add the set and get functions
-        //if (fco_name == dst_name)
-          code_generator.generate_attribute_list ((*iter)["src"].target ());
+        code_generator.generate_attribute_list (iter->src ());
       }
-
       else if (iter->name () == "DerivedInheritance")
       {
         // add the parent class in the inherited list
         CONNECTIONS temp_conn;
-        this->get_src_connections ((*iter), "BaseInheritance", temp_conn);
-        code_generator.add_inherited_class (this->get_src_name (temp_conn.front ()));
+        this->get_src_connections (*iter, "BaseInheritance", temp_conn);
+
+        code_generator.
+          add_inherited_class (this->get_instance_path (temp_conn.front ().src ()));
 
         // call the constructor of the derived class
-        cons_name = this->get_src_name (temp_conn.front ());
+        cons_name = temp_conn.front ().src ().name ();
 
         // if the inherited class and the object are of the same meta
         // type then don't inherit the meta class
-        if (this->get_src_meta_name (temp_conn.front ()) == meta_name)
+        if (temp_conn.front ().src ().meta ().name () == meta_name)
           code_generator.set_inheritance_flag ();
       }
-
       else if (iter->name () == "SourceToConnector")
       {
         // generate function to get all the connections of this type
         CONNECTIONS temp_conn;
-        this->get_dst_connections ((*iter), "AssociationClass", temp_conn);
-        code_generator.generate_connector_connections (this->get_dst_name (temp_conn.front ()));
-      }
+        this->get_dst_connections (*iter, "AssociationClass", temp_conn);
 
+        code_generator.generate_connector_connections
+                       (this->get_instance_path (temp_conn.front ().dst ()));
+      }
       else if (iter->name () == "ConnectorToDestination")
       {
         // generate function to get all the connections of this type
         CONNECTIONS temp_conn;
-        this->get_src_connections ((*iter), "AssociationClass", temp_conn);
-        code_generator.generate_connector_connections (this->get_dst_name (temp_conn.front ()));
-      }
+        this->get_src_connections (*iter, "AssociationClass", temp_conn);
 
+        code_generator.generate_connector_connections
+                       (this->get_instance_path (temp_conn.front ().dst ()));
+      }
       else if (iter->name () == "AssociationClass")
       {
         // generate the src () and the dst () functions
         CONNECTIONS src_conn, dst_conn;
-        this->get_src_connections ((*iter), "SourceToConnector", src_conn);
-        this->get_src_connections ((*iter), "ConnectorToDestination", dst_conn);
-        code_generator.generate_connection_end ("src", this->get_src_name (src_conn.front ()));
-        code_generator.generate_connection_end ("dst", this->get_dst_name (dst_conn.front ()));
-      }
+        this->get_src_connections (*iter, "SourceToConnector", src_conn);
+        this->get_src_connections (*iter, "ConnectorToDestination", dst_conn);
 
+        code_generator.
+          generate_connection_end ("src",
+                                   this->get_instance_path (src_conn.front ().src ()));
+
+        code_generator.
+          generate_connection_end ("dst",
+                                   this->get_instance_path (dst_conn.front ().dst ()));
+      }
       else if (iter->name () == "Containment")
       {
-        if (fco_name == src_name && !called_create && !is_abstract)
-          code_generator.generate_create ();
+        if (fco_name == src_name)
+          code_generator.generate_create (this->get_instance_path (iter->dst ()));
       }
     }
 
-    // generate the constructors and the destructors
-    code_generator.generate_default_functions ("", "void", "");
-
-    // set parameters and base constructor call for IMga constructor
-    temp_params << "IMga" << meta_name << " * " << lc_meta_name;
-    temp_cons   << std::endl << ": " << cons_name << " (" << lc_meta_name << ")";
-    code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
-
-    // set parameters and base constructor call for copy constructor
-    temp_params.str ("");
-    temp_params << "const " << fco_name << " & " << lc_meta_name;
-    code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
-
-    // set parameters and base constructor call for constructor that takes
-    // parameter of base type
-    temp_params.str ("");
-    temp_params << "const GAME::" << meta_name << " & " << lc_meta_name;
-    code_generator.generate_default_functions ("", temp_params.str (), temp_cons.str ());
-
-    // generate the destructor and the _narrow function
-    code_generator.generate_default_functions ("~", "void", "");
+    this->create_default_functions (fco_name,
+                                    meta_name,
+                                    lc_meta_name,
+                                    cons_name,
+                                    code_generator);
 
     // generate out the the .h and the .cpp files
     code_generator.generate_h_file ();
@@ -226,21 +197,13 @@ void Extension_Classes_Visitor::visit_FCO (const GAME::FCO & fco)
 //
 void Extension_Classes_Visitor::visit_Folder (GAME::Folder & folder)
 {
-  // set the path from the root to this folder
-  this->curr_paradigm_sheet_root_dir_  = this->outdir_;
-  this->curr_paradigm_sheet_root_dir_ += "/";
-  this->curr_paradigm_sheet_root_dir_ += folder.name ();
+  this->create_directory (folder.path ("\\", true));
 
-  this->curr_folder_name_ = folder.name ();
-  std::transform (this->curr_folder_name_.begin (), this->curr_folder_name_.end (),
-                  this->curr_folder_name_.begin (), ::toupper);
-
-  mkdir (this->curr_paradigm_sheet_root_dir_.c_str ());
-
-  // collect all the paradigm sheets and traverse them
+  // collect all the paradigm sheets and traverse them.
   MODELS paradigm_sheets;
   folder.children ("ParadigmSheet", paradigm_sheets);
 
+  // visit all the paradigm sheets.
   std::for_each (paradigm_sheets.begin (),
                  paradigm_sheets.end (),
                  boost::bind (&GAME::Model::accept,
@@ -253,36 +216,16 @@ void Extension_Classes_Visitor::visit_Folder (GAME::Folder & folder)
 //
 void Extension_Classes_Visitor::visit_Model (GAME::Model & model)
 {
-  if (model.meta ().name () == "ParadigmSheet")
-  {
-    std::string filename;
+  this->create_directory (model.path ("\\", true));
 
-    // check if the sheet is contained directly in the root folder or not
-    if (model.project ().root_folder ().name () == model.parent_folder ().name ())
-      filename = this->outdir_;
-    else
-      filename = this->curr_paradigm_sheet_root_dir_;
-
-    filename.append ("/");
-    filename.append (model.name ().c_str ());
-
-    mkdir (filename.c_str ());
-
-    this->curr_dir_ = filename;
-
-    this->curr_sheet_name_ = model.name ();
-    std::transform (this->curr_sheet_name_.begin (), this->curr_sheet_name_.end (),
-                    this->curr_sheet_name_.begin (), ::toupper);
-
-    // get all the children of this sheet and cll the visitor
-    FCOS fcos;
-    model.children (fcos);
-    std::for_each (fcos.begin (),
-                   fcos.end (),
-                   boost::bind (&GAME::FCO::accept,
-                                _1,
-                                boost::ref (*this)));
-  }
+  // get all the children of this sheet and call the visitor.
+  FCOS fcos;
+  model.children (fcos);
+  std::for_each (fcos.begin (),
+                 fcos.end (),
+                 boost::bind (&GAME::FCO::accept,
+                              _1,
+                              boost::ref (*this)));
 }
 
 //
@@ -315,6 +258,59 @@ void Extension_Classes_Visitor::visit_Reference (GAME::Reference & reference)
 void Extension_Classes_Visitor::visit_Set (GAME::Set & set)
 {
   
+}
+
+//
+// get_instance_path
+//
+std::string Extension_Classes_Visitor::get_instance_path (GAME::FCO fco)
+{
+  // check if the fco is a reference. if not the return the fco's path
+  // and if yes the return the path of the referred element.
+  std::string path, meta_name = fco.meta ().name ();
+
+  if ((meta_name.length () > 5) &&
+      (meta_name.substr ((meta_name.length () - 5),5) == "Proxy"))
+    path = GAME::Reference::_narrow (fco).refers_to ().path ("/", false);   
+  else
+    path = fco.path ("/", false);
+
+  return path.erase (0, (path.find_first_of ("/") + 1));
+}
+
+//
+// create_default_functions
+//
+void Extension_Classes_Visitor::
+create_default_functions (std::string fco_name,
+                          std::string meta_name,
+                          std::string obj_name,
+                          std::string constructor_name,
+                          Extension_Classes_Code_Generator & generator)
+{
+  std::stringstream params, base_constructor;
+  
+  // generate the constructors and the destructors
+  generator.generate_default_functions ("", "void", "");
+
+  // set parameters and base constructor call for IMga constructor
+  params << "IMga" << meta_name << " * " << obj_name;
+  base_constructor << std::endl << ": " << constructor_name << " (" << obj_name << ")";
+  generator.generate_default_functions ("", params.str (), base_constructor.str ());
+
+  // set parameters and base constructor call for copy constructor
+  params.str ("");
+  params << "const " << fco_name << " & " << obj_name;
+  generator.generate_default_functions ("", params.str (), base_constructor.str ());
+
+  // set parameters and base constructor call for constructor that takes
+  // parameter of base type
+  params.str ("");
+  params << "const GAME::" << meta_name << " & " << obj_name;
+  generator.generate_default_functions ("", params.str (), base_constructor.str ());
+
+  // generate the destructor and the _narrow function
+  generator.generate_default_functions ("~", "void", "");
 }
 
 }
