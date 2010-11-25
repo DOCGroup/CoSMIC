@@ -5,6 +5,8 @@
 
 #include "Extension_Classes_Build_Files_Generator.h"
 
+#include <iomanip>
+
 namespace GAME
 {
 
@@ -168,8 +170,8 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_files (void)
 //
 void Extension_Classes_Build_Files_Generator::generate_stdafx_header_preamble (void)
 {
-  this->out_ << "//================================================================="
-             << "=============" << std::endl << "/**" << std::endl
+  this->out_ << "//" << std::setfill ('=') << std::setw (77) << "="
+             << std::endl << "/**" << std::endl
              << " * @file       stdafx.h" << std::endl
              << " *" << std::endl
              << " *" << " $" << "Id" << "$" << std::endl
@@ -183,8 +185,8 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_header_preamble (v
              << "for use on any" << std::endl
              << " * MetaGME project." << std::endl
              << " */" << std::endl
-             << "//================================================================"
-             << "==============" << std::endl << std::endl;
+             << "//" << std::setfill ('=') << std::setw (77) << "="
+             << std::endl << std::endl;
 }
 
 //

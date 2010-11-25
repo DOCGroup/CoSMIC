@@ -5,6 +5,8 @@
 
 #include "Extension_Classes_Code_Generator.h"
 
+#include <iomanip>
+
 namespace GAME
 {
 
@@ -427,8 +429,8 @@ std::string Extension_Classes_Code_Generator::generate_function_comments_header 
 //
 void Extension_Classes_Code_Generator::generate_header_preamble (void)
 {
-  this->out_ << "//================================================================="
-             << "===============" << std::endl << "/**" << std::endl
+  this->out_ << "//" << std::setfill ('=') << std::setw (77) << "="
+             << std::endl << "/**" << std::endl
              << " * @file       " << this->class_name_ << ".h" << std::endl
              << " *" << std::endl
              << " *" << " $" << "Id" << "$" << std::endl
@@ -442,8 +444,8 @@ void Extension_Classes_Code_Generator::generate_header_preamble (void)
              << "for use on any" << std::endl
              << " * MetaGME project." << std::endl
              << " */" << std::endl
-             << "//================================================================"
-             << "================" << std::endl << std::endl;
+             << "//" << std::setfill ('=') << std::setw (77) << "="
+             << std::endl << std::endl;
 }
 
 //

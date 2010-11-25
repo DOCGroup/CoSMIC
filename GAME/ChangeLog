@@ -1,10 +1,17 @@
+Thu Nov 25 23:27:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        
+          Added iomanip functions to generate repeated patterns in header.
+
 Thu Nov 25 21:48:49 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
         * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
-        
+
           Added normalize functions to normalize names of generated mpc/mwc files
           and the name used in ifndef.
 
