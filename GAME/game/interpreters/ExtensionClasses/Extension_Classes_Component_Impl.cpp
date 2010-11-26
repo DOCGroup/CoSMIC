@@ -88,7 +88,7 @@ invoke_ex (GAME::Project & project,
     output += ("\\");
     output += project.name ().c_str ();
 
-    mkdir (output.c_str ());
+    ::Utils::CreatePath (output);
 
     // visitor to traverse the model
     GAME::Extension_Classes_Visitor ecv (this->output_,
