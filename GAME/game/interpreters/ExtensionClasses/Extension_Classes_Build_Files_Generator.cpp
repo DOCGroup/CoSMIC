@@ -4,6 +4,7 @@
 #include "StdAfx.cpp"
 
 #include "Extension_Classes_Build_Files_Generator.h"
+#include "game/Utils.h"
 
 #include <iomanip>
 
@@ -25,7 +26,6 @@ Extension_Classes_Build_Files_Generator (const GAME::Folder & root,
   filename_ (filename),
   uc_paradigm_name_ (uc_paradigm_name)
 {
-
 }
 
 //
@@ -44,7 +44,7 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
 {
   std::stringstream filename;
 
-  this->normalize (this->filename_);
+  ::GAME::Utils::normalize (this->filename_);
   
   filename << this->output_ << "/" << this->filename_ << ".mwc";
 
@@ -74,7 +74,7 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
 {
   std::stringstream filename, source_files;
 
-  this->normalize (this->filename_);
+  ::GAME::Utils::normalize (this->filename_);
   
   filename << this->output_ << "/" << this->filename_ << ".mpc";
 
@@ -188,21 +188,5 @@ void Extension_Classes_Build_Files_Generator::generate_stdafx_header_preamble (v
              << "//" << std::setfill ('=') << std::setw (77) << "="
              << std::endl << std::endl;
 }
-
-//
-// normalize
-//
-void Extension_Classes_Build_Files_Generator::normalize (std::string & text)
-{
-  static const char * special = "{}|[]^.()+*?\\-@#!$%&;'/<>,~`";
-  std::string::size_type found = text.find_first_of (special);
-
-  while (found != std::string::npos)
-  {
-    text.erase (found, 1);
-    found = text.find_first_of (special, found);
-  }
-}
-
 
 }

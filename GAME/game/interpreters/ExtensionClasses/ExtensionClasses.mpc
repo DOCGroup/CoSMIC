@@ -1,6 +1,6 @@
 // $Id: ExtensionClasses.mpc 2475 2010-09-03 02:00:58Z alhad $
 
-project (GAME_ExtensionClassesComponent) : game_component, boost_base, cosmic_utils {
+project (GAME_ExtensionClassesComponent) : game_component, game_lib, boost_base {
   sharedname = GAME_ExtensionClassesComponent
 
   Source_Files {
@@ -11,7 +11,7 @@ project (GAME_ExtensionClassesComponent) : game_component, boost_base, cosmic_ut
     Extension_Classes_Visitor.cpp
     Extension_Classes_Code_Generator.cpp
     Extension_Classes_Build_Files_Generator.cpp
-
+    
     Component.rc
   }
 

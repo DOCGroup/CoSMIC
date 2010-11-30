@@ -72,8 +72,6 @@ public:
 
   void set_inheritance_flag (void);
 
-  void normalize (std::string &);
-
 private:
   std::ofstream out_;
 

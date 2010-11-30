@@ -10,7 +10,7 @@
 #include "game/be/Interpreter_T.h"
 
 #include "game/utils/Project_Settings.h"
-#include "Utils/Utils.h"
+#include "game/Utils.h"
 
 #include "Transaction.h"
 
@@ -60,7 +60,7 @@ invoke_ex (GAME::Project & project,
 {
   GAME::Transaction t (project, TRANSACTION_READ_ONLY);
 
-  if (!::Utils::getPath ("Select target output directory...", this->output_))
+  if (!::GAME::Utils::get_path ("Select target output directory...", this->output_))
         return 0;
 
   try
@@ -71,6 +71,8 @@ invoke_ex (GAME::Project & project,
     GAME::Folder root = project.root_folder ();
 
     std::string uc_paradigm_name = root.name ();
+
+    ::GAME::Utils::normalize (uc_paradigm_name);
 
     // transform the name of paradigm sheet to upper case.
     std::transform (uc_paradigm_name.begin (),
@@ -88,7 +90,7 @@ invoke_ex (GAME::Project & project,
     output += ("\\");
     output += project.name ().c_str ();
 
-    ::Utils::CreatePath (output);
+    ::GAME::Utils::create_path (output);
 
     // visitor to traverse the model
     GAME::Extension_Classes_Visitor ecv (this->output_,

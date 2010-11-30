@@ -45,8 +45,6 @@ public:
   void generate_stdafx_files (void);
 
   void generate_stdafx_header_preamble (void);
-
-  void normalize (std::string &);
   
 private:
   GAME::Folder root_;

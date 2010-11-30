@@ -1,8 +1,30 @@
+Tue Nov 30 20:54:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
+
+        * game/GAME.mpc:
+        * game/Utils.h:
+        * game/Utils.cpp:
+        
+          Created utility functions file in the GAME directory.
+
+        * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
+        
+          Added all the utility functions to the above directory and used them
+          in extension classes.
+
 Fri Nov 26 00:51:31 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
         * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
-        
+
           Changed the mkdir function to ::Utils::CreatePath.
 
 Thu Nov 25 23:27:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
