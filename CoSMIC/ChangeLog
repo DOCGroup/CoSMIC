@@ -1,3 +1,25 @@
+Wed Dec  1 04:46:58 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/File_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.h:
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Visitor.cpp:
+
+          Removed the IDL_File_Dependency_Processor singleton since it was
+          (1) complicating the overall design and (2) causing run-time errors
+          when the IDL generator was executed via automation.
+
+        * PIM/PICML/tests/IDL_to_PICML/idl2picml.mpb:
+
+          Updated the postcommand specification to reflect the new location
+          of the game-automation exeuctable.
+
 Wed Nov 24 05:12:26 UTC 2010  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:

@@ -8,8 +8,11 @@
 //
 // Find_Forward_Decls
 //
-Find_Forward_Decls::Find_Forward_Decls (bool visit_template_module)
-: has_component_ (false),
+Find_Forward_Decls::
+Find_Forward_Decls (IDL_File_Dependency_Processor & depends_graph,
+                    bool visit_template_module)
+: depends_graph_ (depends_graph),
+  has_component_ (false),
   has_typesupport_ (false),
   has_ami4ccm_ (false),
   visit_template_module_ (visit_template_module)
@@ -65,7 +68,8 @@ bool Find_Forward_Decls::has_ami4ccm (void) const
 //
 // fwd_decls
 //
-const Find_Forward_Decls::fwd_decls_t & Find_Forward_Decls::fwd_decls (void) const
+const Find_Forward_Decls::fwd_decls_t &
+Find_Forward_Decls::fwd_decls (void) const
 {
   return this->fwd_decls_;
 }
@@ -95,7 +99,7 @@ void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
   std::vector <PICML::TemplateParameter> params = package.TemplateParameter_kind_children ();
 
   if (params.empty () || (!params.empty () && this->visit_template_module_))
-    IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
+    this->depends_graph_.visit_all (package, *this);
 }
 
 //
@@ -104,9 +108,9 @@ void Find_Forward_Decls::Visit_Package (const PICML::Package & package)
 void Find_Forward_Decls::Visit_FilePackage (const Udm::Object & fp)
 {
   // the state of the dependency processor is cleared on each request
-  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->clear ();
+  this->depends_graph_.clear ();
   // determine forward declaration kind exists in package
-  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_file (fp, *this);
+  this->depends_graph_.visit_file (fp, *this);
 }
 
 //
@@ -129,7 +133,7 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a)
   PICML::PackageType type = a.PackageType_child ();
   PICML::Package package = type.ref ();
 
-  Find_Forward_Decls inner_fwd (true);
+  Find_Forward_Decls inner_fwd (this->depends_graph_, true);
 
   try
   {

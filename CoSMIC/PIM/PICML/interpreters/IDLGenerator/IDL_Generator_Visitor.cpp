@@ -1,9 +1,10 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "File_Processor.h"
 #include "IDL_Generator_Visitor.h"
 #include "IDL_File_Generator.h"
-#include "File_Processor.h"
+#include "IDL_File_Dependency_Processor.h"
 #include "IDLStream.h"
 
 #include "Utils/Utils.h"
@@ -47,7 +48,7 @@ Visit_RootFolder (const PICML::RootFolder & folder)
 
 //
 // Visit_InterfaceDefinitions
-// 
+//
 void IDL_Generator_Visitor::
 Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder)
 {
@@ -64,7 +65,7 @@ Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder)
 //
 void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
 {
-  // Construct the name of the IDL file. Make sure to include the 
+  // Construct the name of the IDL file. Make sure to include the
   // path of the IDL file.
   std::string filename (this->outdir_);
   const std::string path (file.Path ());
@@ -102,13 +103,14 @@ void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
       << nl;
 
   // Preprocess the file. This will genenerate the necessary
-  // forward declarations for any object at the top of the 
+  // forward declarations for any object at the top of the
   // target output file.
-  IDL_File_Processor idl_proc (idl);
+  IDL_File_Dependency_Processor depends_graph;
+  IDL_File_Processor idl_proc (depends_graph, idl);
   PICML::File (file).Accept (idl_proc);
 
   // Visit the file and generate its contents.
-  IDL_File_Generator generator (idl);
+  IDL_File_Generator generator (depends_graph, idl);
   PICML::File (file).Accept (generator);
 
   idl << nl

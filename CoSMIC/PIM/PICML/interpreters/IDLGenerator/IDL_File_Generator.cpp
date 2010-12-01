@@ -30,8 +30,10 @@ public:
 // IDL_File_Generator
 //
 IDL_File_Generator::
-IDL_File_Generator (IDLStream & idl)
-: idl_ (idl),
+IDL_File_Generator (IDL_File_Dependency_Processor & depends_graph,
+                    IDLStream & idl)
+: depends_graph_ (depends_graph),
+  idl_ (idl),
   in_event_ (false)
 {
 
@@ -100,8 +102,8 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
   this->idl_ << nl
              << "{" << idt << nl;
 
-  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all_forward_declaration (package);
-  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (package, *this);
+  this->depends_graph_.visit_all_forward_declaration (package);
+  this->depends_graph_.visit_all (package, *this);
 
   this->idl_ << uidt_nl << "};" << nl;
 }
@@ -111,7 +113,7 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
 //
 void IDL_File_Generator::Visit_FilePackage (const Udm::Object & object)
 {
-  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_file (object, *this);
+  this->depends_graph_.visit_file (object, *this);
 }
 
 //

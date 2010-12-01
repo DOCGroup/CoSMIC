@@ -18,24 +18,28 @@
 // Forward decl.
 class IDLStream;
 
+// Forward decl.
+class IDL_File_Dependency_Processor;
+
 /**
  * @class IDL_File_Processor
  *
- * Implementation of the PICML::Visitor that is responsible for 
+ * Implementation of the PICML::Visitor that is responsible for
  * preprocessing File elements before generating an IDL file.
  */
 class IDL_File_Processor : public PICML::Visitor
 {
 public:
   /// Default constructor.
-  IDL_File_Processor (IDLStream & idl_stream);
+  IDL_File_Processor (IDL_File_Dependency_Processor & depends_graph,
+                      IDLStream & idl_stream);
 
   /// Destructor.
   ~IDL_File_Processor (void);
 
   virtual void Visit_File (const PICML::File & file);
   virtual void Visit_Package (const PICML::Package & p);
-  
+
   virtual void Visit_Aggregate (const PICML::Aggregate & a);
   virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
 
@@ -48,7 +52,9 @@ public:
 
 private:
   void generate_include_file (const PICML::File & file);
-  
+
+  IDL_File_Dependency_Processor & depends_graph_;
+
   IDLStream & idl_;
 };
 

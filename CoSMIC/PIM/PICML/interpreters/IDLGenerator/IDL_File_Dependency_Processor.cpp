@@ -5,8 +5,6 @@
 #include "IDL_File_Dependency_Processor.h"
 #include "Utils/UDM/visit.h"
 
-namespace IDL_GENERATOR
-{
 //
 // IDL_File_Dependency_Processor
 //
@@ -32,17 +30,14 @@ visit_file (const Udm::Object & object,
             bool forward_declaration)
 {
   this->forward_declaration_ = forward_declaration;
-  
-  this->visit_file_package (object,
-                            visitor);
+  this->visit_file_package (object, visitor);
 }
 
 //
 // visit_file_package
 //
 void IDL_File_Dependency_Processor::
-visit_file_package (const Udm::Object & object,
-                    PICML::Visitor & visitor)
+visit_file_package (const Udm::Object & object, PICML::Visitor & visitor)
 {
   this->idl_order_proc_.visit_file (object, this->forward_declaration_);
 
@@ -76,12 +71,12 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
                     PICML::Visitor & visitor)
 {
   Udm::Object o;
-  
+
   // visit the objects in dependency order
   for (IDL_File_Ordering_Processor::VECTOR_IT it = container.rbegin (); it != container.rend (); it++)
   {
     o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), this->idl_order_proc_.graph (), (*it));
-    
+
     if (o == Udm::null || o.GetParent ().type () != PICML::File::meta)
       continue;
     else if (o.type () == PICML::Constant::meta)
@@ -122,8 +117,7 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
 //
 // forward_declaration
 //
-bool IDL_File_Dependency_Processor::
-forward_declaration (void)
+bool IDL_File_Dependency_Processor::forward_declaration (void)
 {
   return this->idl_order_proc_.forward_declaration ();
 }
@@ -131,8 +125,7 @@ forward_declaration (void)
 //
 // visit_template_module
 //
-bool IDL_File_Dependency_Processor::
-visit_template_module (void)
+bool IDL_File_Dependency_Processor::visit_template_module (void)
 {
   return this->idl_order_proc_.visit_template_module ();
 }
@@ -151,8 +144,7 @@ clear (void)
 // visit_all
 //
 void IDL_File_Dependency_Processor::
-visit_all (const Udm::Object & o,
-           PICML::Visitor & visitor)
+visit_all (const Udm::Object & o, PICML::Visitor & visitor)
 {
   this->idl_order_proc_.visit_all (o, visitor);
 }
@@ -184,5 +176,3 @@ file_generator (IDL_File_Generator * idl_file_generator)
 {
   this->idl_file_generator_ = idl_file_generator;
 }
-
-}; // namespace IDL_GENERATOR

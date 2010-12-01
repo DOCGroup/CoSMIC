@@ -15,6 +15,9 @@
 
 #include "PICML/PICML.h"
 
+// Forward decl.
+class IDL_File_Dependency_Processor;
+
 /**
  * @class Find_Forward_Decls
  *
@@ -31,7 +34,8 @@ public:
   typedef std::set <PICML::File> includes_t;
 
   /// Default constructor.
-  Find_Forward_Decls (bool visit_template_module = false);
+  Find_Forward_Decls (IDL_File_Dependency_Processor & depends_graph,
+                      bool visit_template_module = false);
 
   /// Destructor.
   virtual ~Find_Forward_Decls (void);
@@ -86,6 +90,8 @@ private:
 
   PICML::File get_file (const Udm::Object & obj);
   bool is_visible (const Udm::Object & ref);
+
+  IDL_File_Dependency_Processor & depends_graph_;
 
   bool has_component_;
 

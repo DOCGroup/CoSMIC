@@ -16,12 +16,6 @@
 #include "PICML/PICML.h"
 #include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
 
-// Forward decl.
-class IDLStream;
-
-// Forward decl.
-class IDL_File_Processor;
-
 /**
  * @class PredefinedType_Dispatcher
  */
@@ -148,6 +142,12 @@ public:
   }
 };
 
+// Forward decl.
+class IDL_File_Dependency_Processor;
+
+// Forward decl.
+class IDLStream;
+
 /**
  * @class IDL_File_Generator
  *
@@ -156,7 +156,8 @@ public:
 class IDL_File_Generator : public PICML::Visitor
 {
 public:
-  IDL_File_Generator (IDLStream & idl);
+  IDL_File_Generator (IDL_File_Dependency_Processor & depends_graph,
+                      IDLStream & idl);
 
   virtual ~IDL_File_Generator (void);
 
@@ -249,6 +250,9 @@ private:
   void Visit_ObjectByValue (const PICML::ObjectByValue & obv);
   void Visit_TemplateParameterValueType (const PICML::TemplateParameterValueType &);
   void Visit_ExceptionType (const PICML::ExceptionType &);
+
+  /// The source dependency graph.
+  IDL_File_Dependency_Processor & depends_graph_;
 
   /// Target output stream for the IDL.
   IDLStream & idl_;

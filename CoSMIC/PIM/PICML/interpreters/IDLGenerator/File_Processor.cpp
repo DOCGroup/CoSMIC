@@ -11,8 +11,11 @@
 //
 // IDL_File_Processor
 //
-IDL_File_Processor::IDL_File_Processor (IDLStream & idl_stream)
-: idl_ (idl_stream)
+IDL_File_Processor::
+IDL_File_Processor (IDL_File_Dependency_Processor & depends_graph,
+                    IDLStream & idl_stream)
+: depends_graph_ (depends_graph),
+  idl_ (idl_stream)
 {
 
 }
@@ -31,7 +34,7 @@ IDL_File_Processor::~IDL_File_Processor (void)
 void IDL_File_Processor::Visit_File (const PICML::File & file)
 {
   // Locate all the forward declarations of this file.
-  Find_Forward_Decls fwd_decls;
+  Find_Forward_Decls fwd_decls (this->depends_graph_);
   PICML::File (file).Accept (fwd_decls);
 
   // Generate the basename for this file.
@@ -70,7 +73,7 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
                << "#pragma opendds typesupport \"" << basename << "TypeSupportC.h\"" << nl
                << "#pragma splice typesupport \"" << basename << "DscpC.h\"" << nl;
 
-  IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_file (file, *this, true);
+  this->depends_graph_.visit_file (file, *this, true);
 
   this->idl_ << nl;
 }
@@ -93,17 +96,16 @@ void IDL_File_Processor::generate_include_file (const PICML::File &file)
 //
 void IDL_File_Processor::Visit_Package (const PICML::Package & p)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (p))
+  if (this->depends_graph_.no_forward_declaration (p))
     return;
 
   std::vector <PICML::TemplateParameter> params = p.TemplateParameter_kind_children ();
 
-  using namespace IDL_GENERATOR;
-
-  if (params.empty () && (GLOBAL_IDL_DEPEND_PROCESSOR::instance()->forward_declaration () ||
-      GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_template_module ()))
+  if (params.empty () &&
+     (this->depends_graph_.forward_declaration () ||
+      this->depends_graph_.visit_template_module ()))
   {
-    IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->visit_all (p, *this);
+    this->depends_graph_.visit_all (p, *this);
   }
 }
 
@@ -112,10 +114,8 @@ void IDL_File_Processor::Visit_Package (const PICML::Package & p)
 //
 void IDL_File_Processor::Visit_Aggregate (const PICML::Aggregate & a)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (a))
-    return;
-
-  this->idl_ << nl << "struct " << a.name () << ";" << nl;
+  if (!this->depends_graph_.no_forward_declaration (a))
+    this->idl_ << nl << "struct " << a.name () << ";" << nl;
 }
 
 //
@@ -124,10 +124,8 @@ void IDL_File_Processor::Visit_Aggregate (const PICML::Aggregate & a)
 void IDL_File_Processor::
 Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (s))
-    return;
-
-  this->idl_ << nl << "union " << s.name () << ";" << nl;
+  if (!this->depends_graph_.no_forward_declaration (s))
+    this->idl_ << nl << "union " << s.name () << ";" << nl;
 }
 
 //
@@ -135,9 +133,9 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 //
 void IDL_File_Processor::Visit_Object (const PICML::Object & o)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (o))
+  if (this->depends_graph_.no_forward_declaration (o))
     return;
-    
+
   this->idl_ << nl;
 
   std::string semantics = o.InterfaceSemantics ();
@@ -155,7 +153,7 @@ void IDL_File_Processor::Visit_Object (const PICML::Object & o)
 //
 void IDL_File_Processor::Visit_Event (const PICML::Event & e)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (e))
+  if (this->depends_graph_.no_forward_declaration (e))
     return;
 
   this->idl_ << nl;
@@ -171,7 +169,7 @@ void IDL_File_Processor::Visit_Event (const PICML::Event & e)
 //
 void IDL_File_Processor::Visit_ValueObject (const PICML::ValueObject & v)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (v))
+  if (this->depends_graph_.no_forward_declaration (v))
     return;
 
   this->idl_ << nl;
@@ -188,10 +186,8 @@ void IDL_File_Processor::Visit_ValueObject (const PICML::ValueObject & v)
 void IDL_File_Processor::
 Visit_PortType (const PICML::PortType & p)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (p))
-    return;
-
-  this->idl_ << nl << "porttype " << p.name () << ";" << nl;
+  if (!this->depends_graph_.no_forward_declaration (p))
+    this->idl_ << nl << "porttype " << p.name () << ";" << nl;
 }
 
 //
@@ -199,8 +195,6 @@ Visit_PortType (const PICML::PortType & p)
 //
 void IDL_File_Processor::Visit_Component (const PICML::Component & c)
 {
-  if (IDL_GENERATOR::GLOBAL_IDL_DEPEND_PROCESSOR::instance()->no_forward_declaration (c))
-    return;
-    
-  this->idl_ << nl << "component " << c.name () << ";" << nl;
+  if (!this->depends_graph_.no_forward_declaration (c))
+    this->idl_ << nl << "component " << c.name () << ";" << nl;
 }

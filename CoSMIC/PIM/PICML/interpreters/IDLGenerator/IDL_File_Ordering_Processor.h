@@ -24,8 +24,8 @@
 /**
  * @class IDL_File_Ordering_Processor
  *
- * @brief Implementation of the IDL_File_Ordering_Processor that is responsible for 
- * preprocessing file elements to determine the ordering between elements within a 
+ * @brief Implementation of the IDL_File_Ordering_Processor that is responsible for
+ * preprocessing file elements to determine the ordering between elements within a
  * file.
  */
 class IDL_File_Ordering_Processor  : public PICML::Visitor
@@ -34,13 +34,13 @@ public:
   /**
  * @class Udm_Object
  *
- * @brief Struct used by boost to add properties to vertices. 
+ * @brief Struct used by boost to add properties to vertices.
  */
-  struct Udm_Object 
+  struct Udm_Object
   {
     typedef boost::vertex_property_tag kind;
   };
-  
+
   /// Type definitions
   typedef boost::property<Udm_Object, Udm::Object> VERTEX_PROPERTY;
   typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, VERTEX_PROPERTY> GRAPH;
@@ -57,7 +57,7 @@ public:
   typedef std::list<std::pair<Udm::Object, GRAPH_PTR> > LIST;
   typedef std::list<std::pair<VERTEX, GRAPH_PTR> > VERTEX_GRAPH;
   typedef std::list<std::pair<VERTEX, GRAPH_PTR> >::iterator FORWARD_IT;
-  
+
 public:
   /// Default constructor.
   IDL_File_Ordering_Processor (void);
@@ -238,7 +238,7 @@ public:
   /**
   * Gets the graph created by file order processor
   *
-  * @returns      GRAPH      a directed graph that is a topology of the 
+  * @returns      GRAPH      a directed graph that is a topology of the
   * objects dependencies
   */
   const GRAPH & graph (void);
@@ -275,7 +275,7 @@ public:
   * false otherwise
   */
   bool forward_declaration (void);
-  
+
 private:
   /// visit_file_package
   void visit_file_package (const Udm::Object & o);
