@@ -4,5 +4,5 @@ workspace (IDL_to_PICML) {
   cmdline += -feature_file $COSMIC_ROOT/default.features
 
   *.mpc
-  $(TAO_ROOT)/TAO_IDL/TAO_IDL.mwc
+  $(TAO_ROOT)/TAO_ACE.mwc
 }

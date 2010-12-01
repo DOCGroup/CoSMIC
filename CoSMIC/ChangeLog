@@ -1,3 +1,9 @@
+Wed Dec  1 21:42:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/tests/IDL_to_PICML/IDL_to_PICML.mwc:
+
+          This workspace now builds TAO and ACE.
+
 Wed Dec  1 19:12:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/PICML.mwc:
