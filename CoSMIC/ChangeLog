@@ -1,3 +1,9 @@
+Wed Dec  1 17:40:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/PICML.mwc:
+
+          The PICML workspace now builds the entire tao_idl compiler.
+
 Wed Dec  1 13:48:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
