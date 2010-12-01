@@ -1,3 +1,13 @@
+Wed Dec  1 05:44:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Replaced all instances of ACE_Singleton with ACE_Unmanaged_Singleton
+          because the managed singleton's were being destroyed after the DLL
+          was removed from memory. This was causing the application to have
+          a run-time error becuase it was attempting to free bad memory.
+
 Wed Dec  1 04:46:58 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/File_Processor.h:

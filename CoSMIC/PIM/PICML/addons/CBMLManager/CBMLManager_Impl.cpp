@@ -64,55 +64,55 @@ CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 int CBML_Model_Intelligence::initialize (GAME::Project project)
 {
   this->event_handler_->register_handler ("Action",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("Action",
-    ACE_Singleton <CBML_Action_Handler,
+    ACE_Unmanaged_Singleton <CBML_Action_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("ActionType",
-    ACE_Singleton <CBML_Action_Type_Handler,
+    ACE_Unmanaged_Singleton <CBML_Action_Type_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("RequestAction",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("OutputAction",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("OutputAction",
-    ACE_Singleton <CBML_Output_Action_Handler,
+    ACE_Unmanaged_Singleton <CBML_Output_Action_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("MultiInputAction",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("InputAction",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("State",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("BranchState",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("DoWhileState",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("WhileState",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("ForState",
-    ACE_Singleton <CBML_Connection_Generation_Handler,
+    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
                    ACE_Null_Mutex>::instance ());
 
   return 0;
