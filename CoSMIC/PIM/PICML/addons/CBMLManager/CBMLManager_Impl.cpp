@@ -41,6 +41,27 @@ typedef GAME::Addon_Impl_T <
 
 DECLARE_GAME_COMPONENT_EX (CBML_Model_Intelligence_Impl, CBMLManager_Addon);
 
+#define DLL_NAME "CBML_Model_Intelligence"
+
+/**
+ * Adapter for the ACE_DLL_Singleton_T object. This allows singletons
+ * defined in this module to operate correctly with the ACE framework.
+ */
+template <typename T>
+class Singleton_DLL_Adapter : public T
+{
+public:
+  const ACE_TCHAR * name (void) const
+  {
+    return DLL_NAME;
+  }
+
+  const ACE_TCHAR * dll_name (void) const
+  {
+    return DLL_NAME;
+  }
+};
+
 //
 // CBML_Model_Intelligence
 //
@@ -55,7 +76,7 @@ CBML_Model_Intelligence::CBML_Model_Intelligence (void)
 //
 CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 {
-
+  ACE_Framework_Repository::instance ()->remove_dll_components (DLL_NAME);
 }
 
 //
@@ -64,55 +85,55 @@ CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 int CBML_Model_Intelligence::initialize (GAME::Project project)
 {
   this->event_handler_->register_handler ("Action",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("Action",
-    ACE_Unmanaged_Singleton <CBML_Action_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Action_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("ActionType",
-    ACE_Unmanaged_Singleton <CBML_Action_Type_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Action_Type_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("RequestAction",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("OutputAction",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("OutputAction",
-    ACE_Unmanaged_Singleton <CBML_Output_Action_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Output_Action_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("MultiInputAction",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("InputAction",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("State",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("BranchState",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("DoWhileState",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("WhileState",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   this->event_handler_->register_handler ("ForState",
-    ACE_Unmanaged_Singleton <CBML_Connection_Generation_Handler,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   return 0;

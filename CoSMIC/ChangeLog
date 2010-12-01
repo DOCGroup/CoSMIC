@@ -1,3 +1,22 @@
+Wed Dec  1 13:48:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Defined the singleton elements using ACE_DLL_Singleton_T so that
+          they are managed. To prevent the application from crashing when
+          the singleton's are destroyed, remove_dll_components () on the
+          ACE_Framework_Repository singleton is manaully invoked in the
+          implementation's destructor.
+
+        * PIM/PICML/tests/IDL_to_PICML:
+
+          Added *.xme to the ingore list.
+
+        * PIM/PICML/tests/IDL_to_PICML/generated:
+
+          Added *.idl to the ingore list.
+
 Wed Dec  1 05:44:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
