@@ -1,9 +1,17 @@
+Fri Dec  3 14:45:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * AUTHORS:
+        * COPYING:
+        * VERSION:
+
+          Added project information to the repo.
+
 Tue Nov 30 20:54:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
 
         * game/GAME.mpc:
         * game/Utils.h:
         * game/Utils.cpp:
-        
+
           Created utility functions file in the GAME directory.
 
         * game/interpreters/ExtensionClasses/ExtensionClasses.mpc:
@@ -16,7 +24,7 @@ Tue Nov 30 20:54:52 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
         * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
         * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
-        
+
           Added all the utility functions to the above directory and used them
           in extension classes.
 
