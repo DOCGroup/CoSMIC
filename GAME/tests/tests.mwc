@@ -1,0 +1,5 @@
+// $Id$
+
+workspace (tests) {
+  cmdline += -include $GAME_ROOT/MPC/config
+}

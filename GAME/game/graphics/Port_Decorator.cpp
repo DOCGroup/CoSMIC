@@ -59,8 +59,8 @@ bool Port_Decorator::draw (Gdiplus::Graphics * g)
     format.SetLineAlignment (Gdiplus::StringAlignmentNear);
   }
 
-  static const Gdiplus::Font font (L"Arial", 8);
-  static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
+  const Gdiplus::Font font (L"Arial", 8);
+  const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
 
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 

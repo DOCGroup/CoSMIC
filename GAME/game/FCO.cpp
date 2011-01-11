@@ -345,14 +345,12 @@ in_connections (const std::string & type, std::vector <Connection> & conns) cons
   std::vector <ConnectionPoint>::const_iterator
     iter = points.begin (), iter_end = points.end ();
 
-  const std::string metaname = conn->meta ()->name ();
-
   for (; iter != iter_end; ++ iter)
   {
     // Get the connection that own this point.
     conn = (*iter)->owner ();
 
-    if (metaname == type)
+    if (conn->meta ()->name () == type)
       conns.push_back (conn);
   }
 

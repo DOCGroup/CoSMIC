@@ -103,9 +103,7 @@ size_t get_children (ITER iter, std::vector <T> & coll)
     if (FAILED (arr[i].QueryInterface (&temp)))
       continue;
 
-    // TODO Use factory to create concrete implementation type.
     coll.push_back (temp.p);
-    temp.Release ();
   }
 
   // Release the temp storage.
