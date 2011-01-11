@@ -6,39 +6,29 @@ namespace GAME
 namespace Meta
 {
 //
-// Folder
+// Folder_Impl
 //
 GAME_INLINE
-Folder::Folder (void)
+Folder_Impl::Folder_Impl (void)
 {
 
 }
 
 //
-// Folder
+// Folder_Impl
 //
 GAME_INLINE
-Folder::Folder (IMgaMetaFolder * meta)
-: Base (meta)
+Folder_Impl::Folder_Impl (IMgaMetaFolder * meta)
+: Base_Impl (meta)
 {
 
 }
 
 //
-// Folder
+// ~Folder_Impl
 //
 GAME_INLINE
-Folder::Folder (const Folder & meta)
-: Base (meta)
-{
-
-}
-
-//
-// ~Folder
-//
-GAME_INLINE
-Folder::~Folder (void)
+Folder_Impl::~Folder_Impl (void)
 {
 
 }

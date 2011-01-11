@@ -9,7 +9,7 @@ namespace graphics
 // Port_Decorator
 //
 GAME_INLINE
-Port_Decorator::Port_Decorator (const GAME::FCO & port)
+Port_Decorator::Port_Decorator (const FCO_in port)
 : port_ (port)
 {
 
@@ -20,8 +20,8 @@ Port_Decorator::Port_Decorator (const GAME::FCO & port)
 //
 GAME_INLINE
 Port_Decorator::
-Port_Decorator (const GAME::FCO & port,
-                Gdiplus::Image * image, 
+Port_Decorator (const FCO_in port,
+                Gdiplus::Image * image,
                 const std::string & label,
                 const utils::Point & location,
                 ALIGNMENT alignment)
@@ -80,7 +80,7 @@ void Port_Decorator::alignment (ALIGNMENT align)
 //
 // fco
 //
-const GAME::FCO & Port_Decorator::fco (void) const
+const FCO & Port_Decorator::fco (void) const
 {
   return this->port_;
 }

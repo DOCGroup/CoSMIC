@@ -2,9 +2,9 @@
 
 //=============================================================================
 /**
- * @file        Attribute.h
+ * @file        Attribute_Impl.h
  *
- * Defines the Attribute class wrapper.
+ * Defines the Attribute_Impl class wrapper.
  *
  * $Id$
  *
@@ -20,42 +20,35 @@
 namespace GAME
 {
 /**
- * @class Attribute
+ * @class Attribute_Impl
  *
  * Wrapper class for the IMgaAttribute interface.
  */
-class GAME_Export Attribute
+class GAME_Export Attribute_Impl : public Refcountable
 {
 public:
   /// Type definition of the COM pointer type.
   typedef IMgaAttribute interface_type;
 
   /// Default constructor.
-  Attribute (void);
+  Attribute_Impl (void);
 
   /**
    * Initializing constructor
    *
    * @param[in]     attr      Raw pointer to attribute
    */
-  Attribute (IMgaAttribute * attr);
-
-  /**
-   * Copy consturctor
-   *
-   * @param[in]     attr      Source attribute
-   */
-  Attribute (const Attribute & attr);
+  Attribute_Impl (IMgaAttribute * attr);
 
   /// Destructor.
-  virtual ~Attribute (void);
+  virtual ~Attribute_Impl (void);
 
   void attach (IMgaAttribute * attr);
 
-  const Attribute & operator = (const Attribute & attr);
+  /// Get the contained instance pointer.
+  IMgaAttribute * impl (void) const;
 
-  IMgaAttribute * impl (void);
-
+  /// Get the attribute's status.
   long status (void) const;
 
   /**
@@ -68,8 +61,8 @@ public:
   /**
    * Determine if the attribute has changed.
    *
-   * @retval        true        Attribute has changed.
-   * @retval        false       Attribute has not changed.
+   * @retval        true        Attribute_Impl has changed.
+   * @retval        false       Attribute_Impl has not changed.
    */
   bool has_changed (void) const;
 
@@ -142,6 +135,10 @@ public:
 private:
   /// The underlying COM pointer to the attribute.
   mutable ATL::CComPtr <IMgaAttribute> attr_;
+
+  // prevent the following operations
+  Attribute_Impl (const Attribute_Impl & attr);
+  const Attribute_Impl & operator = (const Attribute_Impl & attr);
 };
 
 };

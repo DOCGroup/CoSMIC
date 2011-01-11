@@ -21,10 +21,12 @@
 namespace GAME
 {
 GAME_MANIPULATION_Export
-FCO copy_attributes (const FCO & src, FCO dst);
+FCO copy_attributes (const FCO_in src, FCO_in dst);
 
 GAME_MANIPULATION_Export
-void copy_location (const FCO & src, FCO dst, const std::string & aspect = "");
+void copy_location (const FCO_in src,
+                    FCO_in dst,
+                    const std::string & aspect = "");
 
 /**
  * @struct copy_config_t
@@ -55,25 +57,29 @@ struct GAME_MANIPULATION_Export copy_config_t
  * version uses the default configuration.
  */
 GAME_MANIPULATION_Export
-Model copy (const Model & src, Model dst);
+Model copy (const Model_in src, Model_in dst);
 
 GAME_MANIPULATION_Export
-Model copy (const Model & src, Model dst, copy_config_t & config);
+Model copy (const Model_in src,
+            Model_in dst,
+            copy_config_t & config);
 
 GAME_MANIPULATION_Export
-Folder copy (const Folder & src, Folder dst);
+Folder copy (const Folder_in src, Folder_in dst);
 
 GAME_MANIPULATION_Export
-Folder copy (const Folder & src, Folder dst, copy_config_t & config);
+Folder copy (const Folder_in src,
+             Folder_in dst,
+             copy_config_t & config);
 
 GAME_MANIPULATION_Export
 Folder copy_into (const std::vector <FCO> & fcos,
-                  Folder dst,
+                  Folder_in dst,
                   copy_config_t & config);
 
 GAME_MANIPULATION_Export
 Model copy_into (const std::vector <FCO> & fcos,
-                 Model dst,
+                 Model_in dst,
                  copy_config_t & config);
 
 }

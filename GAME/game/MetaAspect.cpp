@@ -17,7 +17,7 @@ namespace Meta
 //
 // impl
 //
-IMgaMetaAspect * Aspect::impl (void) const
+IMgaMetaAspect * Aspect_Impl::impl (void) const
 {
   // Optimize for the quick path.
   if (this->aspect_.p == this->metabase_.p)

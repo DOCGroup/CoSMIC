@@ -3,42 +3,32 @@
 
 namespace GAME
 {
-  //
-  // Atom
-  //
-  GAME_INLINE
-  Atom::Atom (void)
-  {
+//
+// Atom_Impl
+//
+GAME_INLINE
+Atom_Impl::Atom_Impl (void)
+{
 
-  }
+}
 
-  //
-  // Atom
-  //
-  GAME_INLINE
-  Atom::Atom (IMgaAtom * atom)
-    : FCO (atom)
-  {
+//
+// Atom_Impl
+//
+GAME_INLINE
+Atom_Impl::Atom_Impl (IMgaAtom * atom)
+: FCO_Impl (atom)
+{
 
-  }
+}
 
-  //
-  // Atom
-  //
-  GAME_INLINE
-  Atom::Atom (const Atom & atom)
-    : FCO (atom)
-  {
+//
+// ~Atom_Impl
+//
+GAME_INLINE
+Atom_Impl::~Atom_Impl (void)
+{
 
-  }
-
-  //
-  // ~Atom
-  //
-  GAME_INLINE
-  Atom::~Atom (void)
-  {
-
-  }
+}
 
 }

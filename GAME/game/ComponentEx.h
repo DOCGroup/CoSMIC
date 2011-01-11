@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      ComponentEx.h
+ * @file      ComponentEx_Impl.h
  *
  * $Id$
  *
@@ -18,12 +18,12 @@
 namespace GAME
 {
 /**
- * @class ComponentEx
+ * @class ComponentEx_Impl
  *
  * Wrapper class for GME extended components.
  */
 
-class GAME_Export ComponentEx : public Component
+class GAME_Export ComponentEx_Impl : public Component_Impl
 {
 public:
   /// Type definition of the interface type.
@@ -39,24 +39,17 @@ public:
   static ComponentEx _load (const std::string & progid);
 
   /// Default constructor.
-  ComponentEx (void);
+  ComponentEx_Impl (void);
 
   /**
    * Initializing constructor
    *
    * @param[in]       ptr       Pointer to the interface
    */
-  ComponentEx (IMgaComponentEx * ptr);
-
-  /**
-   * Copy constructor
-   *
-   * @param[in]       c         The source component
-   */
-  ComponentEx (const ComponentEx & c);
+  ComponentEx_Impl (IMgaComponentEx * ptr);
 
   /// Destructor
-  virtual ~ComponentEx (void);
+  virtual ~ComponentEx_Impl (void);
 
   /**
    * Set a parameter of the component.
@@ -74,7 +67,7 @@ public:
    * @param[in]     param         User-defined parameter.
    */
   void invoke (Project project,
-               FCO current,
+               FCO_in current,
                const std::vector <FCO> & selected,
                long param);
 
@@ -84,8 +77,6 @@ public:
    * @return        The component's program id.
    */
   std::string progid (void) const;
-
-  virtual IMgaComponentEx * operator -> (void) const;
 
   /// Helper method to get the correct implementation.
   IMgaComponentEx * impl () const;

@@ -18,7 +18,7 @@ namespace Meta
 //
 // name
 //
-std::string Base::name (void) const
+std::string Base_Impl::name (void) const
 {
   CComBSTR bstr;
   VERIFY_HRESULT (this->metabase_->get_Name (&bstr));
@@ -30,7 +30,7 @@ std::string Base::name (void) const
 //
 // name
 //
-void Base::name (const std::string & name)
+void Base_Impl::name (const std::string & name)
 {
   CComBSTR bstr (name.length (), name.c_str ());
   VERIFY_HRESULT (this->metabase_->put_Name (bstr));
@@ -39,7 +39,7 @@ void Base::name (const std::string & name)
 //
 // display_name
 //
-std::string Base::display_name (void) const
+std::string Base_Impl::display_name (void) const
 {
   CComBSTR bstr;
   VERIFY_HRESULT (this->metabase_->get_DisplayedName (&bstr));
@@ -51,27 +51,16 @@ std::string Base::display_name (void) const
 //
 // display_name
 //
-void Base::display_name (const std::string & name)
+void Base_Impl::display_name (const std::string & name)
 {
   CComBSTR bstr (name.length (), name.c_str ());
   VERIFY_HRESULT (this->metabase_->put_DisplayedName (bstr));
 }
 
 //
-// operator =
-//
-const Base & Base::operator = (const Base & metabase)
-{
-  if (this != &metabase)
-    this->metabase_ = metabase.metabase_;
-
-  return *this;
-}
-
-//
 // refid
 //
-long Base::refid (void) const
+long Base_Impl::refid (void) const
 {
   long refid;
   VERIFY_HRESULT (this->metabase_->get_MetaRef (&refid));
@@ -82,7 +71,7 @@ long Base::refid (void) const
 //
 // refid
 //
-void Base::refid (long refid)
+void Base_Impl::refid (long refid)
 {
   VERIFY_HRESULT (this->metabase_->put_MetaRef (refid));
 }
@@ -90,7 +79,7 @@ void Base::refid (long refid)
 //
 // type
 //
-objtype_enum Base::type (void) const
+objtype_enum Base_Impl::type (void) const
 {
   objtype_enum type;
   VERIFY_HRESULT (this->metabase_->get_ObjType (&type));
@@ -101,7 +90,7 @@ objtype_enum Base::type (void) const
 //
 // destroy
 //
-void Base::destroy (void)
+void Base_Impl::destroy (void)
 {
   VERIFY_HRESULT (this->metabase_->Delete ());
   this->metabase_.Release ();
@@ -110,7 +99,7 @@ void Base::destroy (void)
 //
 // registry_value
 //
-std::string Base::
+std::string Base_Impl::
 registry_value (const std::string & path) const
 {
   CComBSTR bstrval;
@@ -128,7 +117,7 @@ registry_value (const std::string & path) const
 //
 // registry_value
 //
-void Base::registry_value (const std::string & path, const std::string & value)
+void Base_Impl::registry_value (const std::string & path, const std::string & value)
 {
   CComBSTR bstrpath (path.length (), path.c_str ());
   CComBSTR bstrval (value.length (), value.c_str ());
@@ -139,7 +128,7 @@ void Base::registry_value (const std::string & path, const std::string & value)
 //
 // project
 //
-Project Base::project (void) const
+Project Base_Impl::project (void) const
 {
   CComPtr <IMgaMetaProject> proj;
   VERIFY_HRESULT (this->metabase_->get_MetaProject (&proj));

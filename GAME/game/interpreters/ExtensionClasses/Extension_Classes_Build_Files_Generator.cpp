@@ -15,8 +15,8 @@ namespace GAME
 // Extension_Classes_Build_Files_Generator
 //
 Extension_Classes_Build_Files_Generator::
-Extension_Classes_Build_Files_Generator (const GAME::Folder & root,
-                                         std::set <GAME::Object> objects,
+Extension_Classes_Build_Files_Generator (Folder_Impl * root,
+                                         const std::set <GAME::Object> & objects,
                                          std::string output,
                                          std::string filename,
                                          std::string uc_paradigm_name)
@@ -45,7 +45,7 @@ void Extension_Classes_Build_Files_Generator::generate_mwc_file (void)
   std::stringstream filename;
 
   ::GAME::Utils::normalize (this->filename_);
-  
+
   filename << this->output_ << "/" << this->filename_ << ".mwc";
 
   // open
@@ -75,23 +75,26 @@ void Extension_Classes_Build_Files_Generator::generate_mpc_file (void)
   std::stringstream filename, source_files;
 
   ::GAME::Utils::normalize (this->filename_);
-  
+
   filename << this->output_ << "/" << this->filename_ << ".mpc";
 
-  std::set <GAME::Object>::iterator
+  std::set <GAME::Object>::const_iterator
     obj_iter = this->objects_.begin (),
     obj_iter_end = this->objects_.end ();
 
   // create a string that lists all the .cpp files
+  GAME::Object parent;
+
   for (; obj_iter != obj_iter_end; ++ obj_iter)
   {
-    source_files << "    ";
+    //source_files << "    ";
+    //parent = (*obj_iter)->parent ();
 
-    if (obj_iter->parent ().parent () != this->root_)
-      source_files << obj_iter->parent ().parent ().name () << "/";
-    
-    source_files << obj_iter->parent ().name () << "/"
-                 << obj_iter->name () << ".cpp" << std::endl;
+    //if ((*obj_iter)->parent ().parent () != this->root_)
+    //  source_files << obj_iter->parent ().parent ().name () << "/";
+
+    //source_files << obj_iter->parent ().name () << "/"
+    //             << obj_iter->name () << ".cpp" << std::endl;
   }
 
   // open

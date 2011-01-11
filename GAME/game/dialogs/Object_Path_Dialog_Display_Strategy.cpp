@@ -18,9 +18,9 @@ namespace Dialogs
 // get_display_name
 //
 bool Object_Path_Dialog_Display_Strategy::
-get_display_name (const GAME::Object & obj, std::string & display_name)
+get_display_name (const Object_in obj, std::string & display_name)
 {
-  display_name = obj.path (this->separator_, this->show_leading_);
+  display_name = obj->path (this->separator_, this->show_leading_);
   return true;
 }
 

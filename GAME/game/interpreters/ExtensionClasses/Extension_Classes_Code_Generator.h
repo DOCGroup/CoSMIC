@@ -36,7 +36,7 @@ class Extension_Classes_Code_Generator
 {
 public:
   Extension_Classes_Code_Generator (std::string uc_paradigm_name,
-                                    const GAME::FCO fco,
+                                    GAME::FCO_in fco,
                                     std::string outdir);
 
   ~Extension_Classes_Code_Generator (void);
@@ -66,7 +66,7 @@ public:
 
   void generate_header_preamble (void);
 
-  void generate_attribute_list (GAME::FCO fco);
+  void generate_attribute_list (FCO_in fco);
 
   std::string generate_function_comments_header (std::string name);
 
@@ -107,7 +107,7 @@ private:
 
   std::string outdir_;
 
-  GAME::FCO fco_;
+  FCO fco_;
 
   bool done_inheriting_;
 

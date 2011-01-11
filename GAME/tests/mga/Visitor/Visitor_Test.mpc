@@ -1,0 +1,23 @@
+// $Id$
+
+project (GAME_Visitor_Test) : game_component, game_lib, boost_base {
+  sharedname = GAME_Visitor_Test
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    Visitor_Test.idl
+    Visitor_Test_Impl.cpp
+    Visitor_Test_Module.cpp
+  }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = GAME.Interpreter.VisitorTest
+    gme_uuid        = 9120707E-262F-4430-8BDA-A9DB62E750FB
+    gme_paradigms   = MetaGME
+    gme_description = GAME Visitor Test
+    gme_tooltip     = GAME Visitor Test
+  }
+}

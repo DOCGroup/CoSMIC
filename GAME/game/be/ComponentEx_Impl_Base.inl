@@ -1,5 +1,7 @@
 // $Id$
 
+#include "game/Project.h"
+
 namespace GAME
 {
 //
@@ -32,7 +34,7 @@ ComponentEx_Impl_Base::~ComponentEx_Impl_Base (void)
 // initialize
 //
 GAME_INLINE
-int ComponentEx_Impl_Base::initialize (Project & project)
+int ComponentEx_Impl_Base::initialize (Project project)
 {
   return 0;
 }
@@ -42,7 +44,7 @@ int ComponentEx_Impl_Base::initialize (Project & project)
 //
 GAME_INLINE
 int ComponentEx_Impl_Base::
-invoke (Project & project,
+invoke (Project project,
         std::vector <FCO> & selected,
         long flags)
 {
@@ -54,8 +56,8 @@ invoke (Project & project,
 //
 GAME_INLINE
 int ComponentEx_Impl_Base::
-invoke_ex (Project & project,
-           FCO & fco,
+invoke_ex (Project project,
+           FCO_in fco,
            std::vector <FCO> & selected,
            long flags)
 {
@@ -67,8 +69,8 @@ invoke_ex (Project & project,
 //
 GAME_INLINE
 int ComponentEx_Impl_Base::
-invoke_object_ex (Project & project,
-                  Object & obj,
+invoke_object_ex (Project project,
+                  Object_in obj,
                   std::vector <Object> & selected,
                   long flags)
 {

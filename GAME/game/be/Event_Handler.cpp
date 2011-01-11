@@ -8,6 +8,7 @@
 #endif
 
 #include "game/Transaction.h"
+#include "game/MetaFCO.h"
 
 #include "ace/ACE.h"
 #include "ace/Auto_Ptr.h"
@@ -221,7 +222,7 @@ static const GLOBAL_EVENT_METHOD __appevent_map__[] = {
 // invoke_handle_object_attribute
 //
 static inline int
-invoke_handle_object_attribute (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_attribute (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_attribute (obj);
 }
@@ -230,7 +231,7 @@ invoke_handle_object_attribute (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_registry
 //
 static inline int
-invoke_handle_object_registry (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_registry (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_registry (obj);
 }
@@ -239,7 +240,7 @@ invoke_handle_object_registry (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_new_child
 //
 static inline int
-invoke_handle_new_child (Event_Handler_Interface * impl, Object obj)
+invoke_handle_new_child (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_new_child (obj);
 }
@@ -248,7 +249,7 @@ invoke_handle_new_child (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_relation
 //
 static inline int
-invoke_handle_object_relation (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_relation (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_relation (obj);
 }
@@ -257,7 +258,7 @@ invoke_handle_object_relation (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_properties
 //
 static inline int
-invoke_handle_object_properties (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_properties (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_properties (obj);
 }
@@ -266,7 +267,7 @@ invoke_handle_object_properties (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_instance_subtype
 //
 static inline int
-invoke_handle_instance_subtype (Event_Handler_Interface * impl, Object obj)
+invoke_handle_instance_subtype (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_instance_subtype (obj);
 }
@@ -275,7 +276,7 @@ invoke_handle_instance_subtype (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_parent
 //
 static inline int
-invoke_handle_object_parent (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_parent (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_parent (obj);
 }
@@ -284,7 +285,7 @@ invoke_handle_object_parent (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_lost_child
 //
 static inline int
-invoke_handle_lost_child (Event_Handler_Interface * impl, Object obj)
+invoke_handle_lost_child (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_lost_child (obj);
 }
@@ -293,7 +294,7 @@ invoke_handle_lost_child (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_referenced
 //
 static inline int
-invoke_handle_referenced (Event_Handler_Interface * impl, Object obj)
+invoke_handle_referenced (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_referenced (obj);
 }
@@ -302,7 +303,7 @@ invoke_handle_referenced (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_connected
 //
 static inline int
-invoke_handle_object_connected (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_connected (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_connected (obj);
 }
@@ -311,7 +312,7 @@ invoke_handle_object_connected (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_set_included
 //
 static inline int
-invoke_handle_set_included (Event_Handler_Interface * impl, Object obj)
+invoke_handle_set_included (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_set_included (obj);
 }
@@ -320,7 +321,7 @@ invoke_handle_set_included (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_referenced_release
 //
 static inline int
-invoke_handle_referenced_release (Event_Handler_Interface * impl, Object obj)
+invoke_handle_referenced_release (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_referenced_release (obj);
 }
@@ -329,7 +330,7 @@ invoke_handle_referenced_release (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_disconnected
 //
 static inline int
-invoke_handle_object_disconnected (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_disconnected (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_disconnected (obj);
 }
@@ -338,7 +339,7 @@ invoke_handle_object_disconnected (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_set_excluded
 //
 static inline int
-invoke_handle_set_excluded (Event_Handler_Interface * impl, Object obj)
+invoke_handle_set_excluded (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_set_excluded (obj);
 }
@@ -347,7 +348,7 @@ invoke_handle_set_excluded (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_marked_readonly
 //
 static inline int
-invoke_handle_marked_readonly (Event_Handler_Interface * impl, Object obj)
+invoke_handle_marked_readonly (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_marked_readonly (obj);
 }
@@ -356,7 +357,7 @@ invoke_handle_marked_readonly (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_marked_readwrite
 //
 static inline int
-invoke_handle_marked_readwrite (Event_Handler_Interface * impl, Object obj)
+invoke_handle_marked_readwrite (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_marked_readwrite (obj);
 }
@@ -365,7 +366,7 @@ invoke_handle_marked_readwrite (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_model_open
 //
 static inline int
-invoke_handle_model_open (Event_Handler_Interface * impl, Object obj)
+invoke_handle_model_open (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_model_open (obj);
 }
@@ -374,7 +375,7 @@ invoke_handle_model_open (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_select
 //
 static inline int
-invoke_handle_object_select (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_select (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_select (obj);
 }
@@ -383,7 +384,7 @@ invoke_handle_object_select (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_deselect
 //
 static inline int
-invoke_handle_object_deselect (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_deselect (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_deselect (obj);
 }
@@ -392,7 +393,7 @@ invoke_handle_object_deselect (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_mouseover
 //
 static inline int
-invoke_handle_object_mouseover (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_mouseover (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_mouseover (obj);
 }
@@ -401,7 +402,7 @@ invoke_handle_object_mouseover (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_model_close
 //
 static inline int
-invoke_handle_model_close (Event_Handler_Interface * impl, Object obj)
+invoke_handle_model_close (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_model_close (obj);
 }
@@ -410,7 +411,7 @@ invoke_handle_model_close (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_destroyed
 //
 static inline int
-invoke_handle_object_destroyed (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_destroyed (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_destroyed (obj);
 }
@@ -419,7 +420,7 @@ invoke_handle_object_destroyed (Event_Handler_Interface * impl, Object obj)
 // invoke_handle_object_created
 //
 static inline int
-invoke_handle_object_created (Event_Handler_Interface * impl, Object obj)
+invoke_handle_object_created (Event_Handler_Interface * impl, Object_in obj)
 {
   return impl->handle_object_created (obj);
 }
@@ -430,7 +431,7 @@ invoke_handle_object_created (Event_Handler_Interface * impl, Object obj)
 #define OBJECT_EVENT_COUNT 32
 
 // Type definition for the handler method of an object event.
-typedef int (*HANDLER_METHOD) (Event_Handler_Interface *, Object);
+typedef int (*HANDLER_METHOD) (Event_Handler_Interface *, Object_in);
 
 struct handler_entry_t
 {
@@ -610,27 +611,27 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object, bitmask, *handlers))
+      if (0 != this->dispatch_object_event (object.get (), bitmask, *handlers))
         return E_MGA_MUST_ABORT;
 
       // If this is a destroy event, let's do some house keeping. ;-)
       if (0 != (eventmask & OBJEVENT_DESTROYED))
-        this->unregister_all (object);
+        this->unregister_all (object.get ());
     }
 
     // Notify all event handlers registered for this type.
-    if (0 == this->type_handlers_.find (object.meta (), handlers))
+    if (0 == this->type_handlers_.find (object->meta (), handlers))
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object, bitmask, *handlers))
+      if (0 != this->dispatch_object_event (object.get (), bitmask, *handlers))
         return E_MGA_MUST_ABORT;
     }
 
     if (0 != this->impl_)
     {
       // Pass control to the main implementation.
-      if (0 != this->dispatch_object_event (object, bitmask, this->impl_))
+      if (0 != this->dispatch_object_event (object.get (), bitmask, this->impl_))
         return E_MGA_MUST_ABORT;
     }
 
@@ -650,11 +651,11 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 int Event_Handler::
 register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 {
-  Meta::Folder metafolder = this->project_.root_folder ().meta ();
-  Meta::FCO metafco = metafolder.find (metaname);
+  Folder root = this->project_.root_folder ();
+  Meta::FCO metafco = root->meta ()->find (metaname);
 
   if (!metafco.is_nil ())
-    return this->register_handler (metafco, eh);
+    return this->register_handler (metafco.get (), eh);
 
   return -1;
 }
@@ -663,7 +664,7 @@ register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 // register_handler
 //
 int Event_Handler::
-register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
+register_handler (const Meta::Base_in meta, Event_Handler_Interface * eh)
 {
   if (0 != this->insert_into_global_handlers (eh))
     return -1;
@@ -685,6 +686,7 @@ register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
 
   // Initialize the event handler.
   eh->set_event_handler (this);
+
   if (0 != eh->initialize (this->project_))
     return -1;
 
@@ -696,7 +698,7 @@ register_handler (const Meta::Base & meta, Event_Handler_Interface * eh)
 // register_handler
 //
 int Event_Handler::
-register_handler (const Object & obj, Event_Handler_Interface * eh)
+register_handler (const Object_in obj, Event_Handler_Interface * eh)
 {
   if (0 != this->insert_into_global_handlers (eh))
     return -1;
@@ -730,7 +732,7 @@ register_handler (const Object & obj, Event_Handler_Interface * eh)
 // unregister_handler
 //
 int Event_Handler::
-unregister_handler (const Object & obj, Event_Handler_Interface * eh)
+unregister_handler (const Object_in obj, Event_Handler_Interface * eh)
 {
   handler_set * handlers = 0;
 
@@ -746,7 +748,7 @@ unregister_handler (const Object & obj, Event_Handler_Interface * eh)
 //
 // unregister_all
 //
-int Event_Handler::unregister_all (const Object & obj)
+int Event_Handler::unregister_all (const Object_in obj)
 {
   handler_set * handlers = 0;
 
@@ -788,7 +790,7 @@ void Event_Handler::close (void)
 // dispatch_object_event
 //
 int Event_Handler::
-dispatch_object_event (GAME::Object obj,
+dispatch_object_event (Object_in obj,
                        const std::bitset <BITMASK_SIZE> & mask,
                        const handler_set & handlers)
 {
@@ -808,7 +810,7 @@ dispatch_object_event (GAME::Object obj,
 // dispatch_object_event
 //
 int Event_Handler::
-dispatch_object_event (Object obj,
+dispatch_object_event (const Object_in obj,
                        const std::bitset <BITMASK_SIZE> & mask,
                        Event_Handler_Interface * eh)
 {

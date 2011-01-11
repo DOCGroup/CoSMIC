@@ -20,43 +20,28 @@ namespace GAME
 namespace Meta
 {
 /**
- * @class Aspect
+ * @class Aspect_Impl
  *
  * Wrapper class for the IMgaMetaAspect interface.
  */
-class GAME_Export Aspect : public Base
+class GAME_Export Aspect_Impl : public Base_Impl
 {
 public:
   /// Type definition of the interface pointer.
   typedef IMgaMetaAspect interface_type;
 
   /// Default constructor.
-  Aspect (void);
+  Aspect_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]     meta        Pointer to the meta information.
    */
-  Aspect (IMgaMetaAspect * aspect);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]     meta        The source object.
-   */
-  Aspect (const Aspect & aspect);
+  Aspect_Impl (IMgaMetaAspect * aspect);
 
   /// Destructor.
-  virtual ~Aspect (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]     meta        The source object.
-   * @return        Reference to this object.
-   */
-  const Aspect & operator = (const Aspect & aspect);
+  virtual ~Aspect_Impl (void);
 
   /// Helper method to the correct implementation.
   IMgaMetaAspect * impl (void) const;

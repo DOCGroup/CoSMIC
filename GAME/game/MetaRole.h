@@ -4,7 +4,7 @@
 /**
  * @file        MetaRole.h
  *
- * Defines the GAME::Meta::Role class
+ * Defines the GAME::Meta::Role_Impl class
  *
  * $Id$
  *
@@ -21,50 +21,30 @@ namespace GAME
 {
 namespace Meta
 {
-// Forward decl.
-class Model;
-
-// Forward decl.
-class FCO;
 
 /**
- * @class Role
+ * @class Role_Impl
  *
  * Wrapper class for the IMgaMetaRole interface.
  */
-class GAME_Export Role : public Base
+class GAME_Export Role_Impl : public Base_Impl
 {
 public:
   /// Type definition of the COM interface.
   typedef IMgaMetaRole interface_type;
 
   /// Default constructor.
-  Role (void);
+  Role_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]     role        Pointer to a COM interface.
    */
-  Role (IMgaMetaRole * role);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]     role        The source object.
-   */
-  Role (const Role & role);
+  Role_Impl (IMgaMetaRole * role);
 
   /// Destructor.
-  virtual ~Role (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       role      The source role.
-   * @return          Reference to self.
-   */
-  const Role & operator = (const Role & role);
+  virtual ~Role_Impl (void);
 
   /**
    * Get the meta FCO for the role.
@@ -72,13 +52,6 @@ public:
    * @return          The meta FCO of the role.
    */
   FCO kind (void) const;
-
-  /**
-   * Conversion operator.
-   *
-   * @return          Pointer to the COM interface.
-   */
-  operator IMgaMetaRole * (void) const;
 
   /**
    * Get a raw pointer to the underlying COM object.

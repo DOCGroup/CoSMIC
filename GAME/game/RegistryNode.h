@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      RegistryNode.h
+ * @file      RegistryNode_Impl.h
  *
  * $Id$
  *
@@ -10,189 +10,157 @@
  */
 //=============================================================================
 
-#ifndef _GME_REGISTRYNODE_H_
-#define _GME_REGISTRYNODE_H_
+#ifndef _GAME_REGISTRYNODE_H_
+#define _GAME_REGISTRYNODE_H_
 
-#include "Exception.h"
-#include "Collection_T.h"
+#include <string>
+#include <vector>
+
+#include "Refcountable.h"
+#include "GME_fwd.h"
 
 namespace GAME
 {
-  // Forward decl.
-  class RegistryNode;
+/**
+ * @class RegistryNode_Impl
+ *
+ * Wrapper for the IMgaRegNode interface.
+ */
+class GAME_Export RegistryNode_Impl : public Refcountable
+{
+public:
+  /// Type definition for the interface.
+  typedef IMgaRegNode interface_type;
 
-  //===========================================================================
+  /// Default constructor.
+  RegistryNode_Impl (void);
+
   /**
-   * @class RegistryNode
+   * Initializing constructor.
    *
-   * Wrapper for the IMgaRegNode interface.
+   * @param[in]       node          Source object.
    */
-  //===========================================================================
+  RegistryNode_Impl (IMgaRegNode * node);
 
-  class GAME_Export RegistryNode
-  {
-  public:
-    /// Type definition for the interface.
-    typedef IMgaRegNode interface_type;
 
-    /// Default constructor.
-    RegistryNode (void);
+  /// Destructor.
+  ~RegistryNode_Impl (void);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]       node          Source object.
-     */
-    RegistryNode (IMgaRegNode * node);
+  /**
+   * Attach to an existing node.
+   *
+   * @param[in]       node      The source node.
+   */
+  void attach (IMgaRegNode * node);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]       registry
-     */
-    RegistryNode (const RegistryNode & registry);
+  /**
+   * Get the name of the node.
+   *
+   * @return          Name of the node.
+   */
+  std::string name (void) const;
 
-    /// Destructor.
-    ~RegistryNode (void);
+  /**
+   * Get the status of the registry node.
+   *
+   * @return          The current status.
+   */
+  long status (void) const;
 
-    /**
-     * Attach to an existing node.
-     *
-     * @param[in]       node      The source node.
-     */
-    void attach (IMgaRegNode * node);
+  /**
+   * Determine if this is a first-class node (i.e., not inherited).
+   *
+   * @retval          true        The node is here.
+   * @retval          false       The node is not here.
+   */
+  bool status_here (void) const;
 
-    /**
-     * Assignment operator.
-     *
-     * @param[in]       node      The right-hand side.
-     * @return          Reference to this object.
-     */
-    const RegistryNode & operator = (const RegistryNode & node);
+  /**
+   * Determine if this node is defined in the meta.
+   *
+   * @retval          true        The node is in meta.
+   * @retval          false       The node is not in meta.
+   */
+  bool status_meta (void) const;
 
-    /**
-     * Get the name of the node.
-     *
-     * @return          Name of the node.
-     */
-    std::string name (void) const;
+  /**
+   * Determine if this node is inherited.
+   *
+   * @retval          true        The node is inherited.
+   * @retval          false       The node is not inherited.
+   */
+  bool status_inherited (void) const;
 
-    /**
-     * Get the status of the registry node.
-     *
-     * @return          The current status.
-     */
-    long status (void) const;
+  /**
+   * Get the current value.
+   *
+   * @return          The current value of the node.
+   */
+  std::string value (void) const;
 
-    /**
-     * Determine if this is a first-class node (i.e., not inherited).
-     *
-     * @retval          true        The node is here.
-     * @retval          false       The node is not here.
-     */
-    bool status_here (void) const;
+  /**
+   * Set the value of the registry node.
+   *
+   * @param[in]       value       The new value.
+   */
+  void value (const std::string & value);
 
-    /**
-     * Determine if this node is defined in the meta.
-     *
-     * @retval          true        The node is in meta.
-     * @retval          false       The node is not in meta.
-     */
-    bool status_meta (void) const;
+  /**
+   * Get the path of this node with respect to the root node.
+   *
+   * @return          The path of the node.
+   */
+  std::string path (void) const;
 
-    /**
-     * Determine if this node is inherited.
-     *
-     * @retval          true        The node is inherited.
-     * @retval          false       The node is not inherited.
-     */
-    bool status_inherited (void) const;
+  /**
+   * Get the parent registry node of this registry node.
+   *
+   * @return          The parent node of this node.
+   */
+  RegistryNode parent (void) const;
 
-    /**
-     * Get the current value.
-     *
-     * @return          The current value of the node.
-     */
-    std::string value (void) const;
+  /**
+   * Get a registry node by name.
+   *
+   * @param[in]       name        Name of the node.
+   * @return          The registry node.
+   */
+  RegistryNode child (const std::string & name) const;
 
-    /**
-     * Set the value of the registry node.
-     *
-     * @param[in]       value       The new value.
-     */
-    void value (const std::string & value);
+  /**
+   * Get all the child registry nodes of this node.
+   *
+   * @param[in]       virtualinterface_types       Include the virtual nodes.
+   * @return          Collection of child nodes.
+   */
+  size_t children (std::vector <GAME::RegistryNode> & nodes,
+                   bool vtypes = false) const;
 
-    /**
-     * Get the path of this node with respect to the root node.
-     *
-     * @return          The path of the node.
-     */
-    std::string path (void) const;
+  /// Clear the current value of this node.
+  void clear (void);
 
-    /**
-     * Get the parent registry node of this registry node.
-     *
-     * @return          The parent node of this node.
-     */
-    RegistryNode parent (void) const;
+  /**
+   * Get the opacity value.
+   *
+   * @return          The current opacity value.
+   */
+  bool opacity (void) const;
 
-    /**
-     * Get a registry node by name.
-     *
-     * @param[in]       name        Name of the node.
-     * @return          The registry node.
-     */
-    RegistryNode child (const std::string & name) const;
+  /**
+   * Set the opacity value.
+   *
+   * @param[in]       opacity       The new opacity value.
+   */
+  void opacity (bool opacity);
 
-    /**
-     * Get all the child registry nodes of this node.
-     *
-     * @param[in]       virtualinterface_types       Include the virtual nodes.
-     * @return          Collection of child nodes.
-     */
-    size_t children (std::vector <GAME::RegistryNode> & nodes,
-                     bool vtypes = false) const;
+  /// Destroy the current node and all its children.
+  void destroy (void);
 
-    /// Clear the current value of this node.
-    void clear (void);
+private:
+  /// Pointer to the node.
+  ATL::CComPtr <IMgaRegNode> node_;
+};
 
-    /**
-     * Get the opacity value.
-     *
-     * @return          The current opacity value.
-     */
-    bool opacity (void) const;
-
-    /**
-     * Set the opacity value.
-     *
-     * @param[in]       opacity       The new opacity value.
-     */
-    void opacity (bool opacity);
-
-    /// Destroy the current node and all its children.
-    void destroy (void);
-
-    /**
-     * Convert the node object into a boolean value. This will
-     * test if the node is valid (i.e., is a NIL pointer).
-     *
-     * @retval          true        The object is valid.
-     * @retval          false       The object is NIL.
-     */
-    operator bool (void) const;
-
-    /**
-     * Convert the node to its interface pointer.
-     *
-     * @return          Interface pointer to the object.
-     */
-    operator IMgaRegNode * (void) const;
-
-  private:
-    /// Pointer to the node.
-    ATL::CComPtr <IMgaRegNode> node_;
-  };
 }
 
 #if defined (__GAME_INLINE__)

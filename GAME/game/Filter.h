@@ -13,8 +13,7 @@
 #ifndef _GME_FILTER_H_
 #define _GME_FILTER_H_
 
-#include "Exception.h"
-#include "Collection_T.h"
+#include "Project.h"
 
 namespace GAME
 {
@@ -36,7 +35,7 @@ public:
    *
    * @param[in]       project         Owner of the filter.
    */
-  Filter (Project & project);
+  Filter (Project project);
 
   /// Destructor.
   ~Filter (void);
@@ -55,14 +54,14 @@ public:
    *
    * Performs a recursive search starting at the specified model.
    */
-  size_t apply (Model model, std::vector <FCO> & result);
+  size_t apply (const Model_in & model, std::vector <FCO> & result);
 
   /**
    * @overloaded
    *
    * Performs a recursive search starting at the specified folder.
    */
-  size_t apply (Folder folder, std::vector <FCO> & result);
+  size_t apply (const Folder_in & folder, std::vector <FCO> & result);
 
   /**
    * Set the kind attribute for the filter.
@@ -78,7 +77,7 @@ public:
 
 private:
   /// Reference to the project.
-  GAME::Project & project_;
+  GAME::Project project_;
 
   /// Pointer to the actual filter.
   ATL::CComPtr <IMgaFilter> filter_;

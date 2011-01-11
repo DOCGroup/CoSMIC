@@ -8,6 +8,7 @@
 #include "MetaFolder.inl"
 #endif
 
+#include "MetaFCO.h"
 #include "Collection_T.h"
 
 namespace GAME
@@ -17,33 +18,33 @@ namespace Meta
 //
 // children
 //
-size_t Folder::
+size_t Folder_Impl::
 children (std::vector <GAME::Meta::Folder> & folders) const
 {
   // Get a pointer to all the legal folders.
   CComPtr <IMgaMetaFolders> metas;
   VERIFY_HRESULT (this->impl ()->get_LegalChildFolders (&metas));
 
-  return get_children (metas, folders);
+  return get_children (metas.p, folders);
 }
 
 //
 // children
 //
-size_t Folder::
+size_t Folder_Impl::
 children (std::vector <GAME::Meta::FCO> & fcos) const
 {
   // Get a pointer to all the legal folders.
   CComPtr <IMgaMetaFCOs> metas;
   VERIFY_HRESULT (this->impl ()->get_LegalRootObjects (&metas));
 
-  return get_children (metas, fcos);
+  return get_children (metas.p, fcos);
 }
 
 //
 // folder
 //
-Folder Folder::folder (const std::string & name) const
+Folder Folder_Impl::folder (const std::string & name) const
 {
   CComPtr <IMgaMetaFolder> meta;
   CComBSTR bstr (name.length (), name.c_str ());
@@ -55,7 +56,7 @@ Folder Folder::folder (const std::string & name) const
 //
 // child
 //
-FCO Folder::child (const std::string & name) const
+FCO Folder_Impl::child (const std::string & name) const
 {
   CComPtr <IMgaMetaFCO> meta;
   CComBSTR bstr (name.length (), name.c_str ());
@@ -67,7 +68,7 @@ FCO Folder::child (const std::string & name) const
 //
 // impl
 //
-IMgaMetaFolder * Folder::impl (void) const
+IMgaMetaFolder * Folder_Impl::impl (void) const
 {
   if (this->metabase_.p == this->metafolder_.p)
     return this->metafolder_.p;
@@ -82,7 +83,7 @@ IMgaMetaFolder * Folder::impl (void) const
 //
 // find
 //
-FCO Folder::find (const std::string & name, bool in_scope)
+FCO Folder_Impl::find (const std::string & name, bool in_scope)
 {
   // Convert the parameters values to COM.
   CComBSTR bstr (name.length (), name.c_str ());

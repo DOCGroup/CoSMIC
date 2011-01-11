@@ -19,20 +19,9 @@ namespace Meta
 {
 
 //
-// _narrow
-//
-Reference Reference ::_narrow (const Base & b)
-{
-  CComPtr <IMgaMetaReference> r;
-  VERIFY_HRESULT_THROW_EX (b.impl ()->QueryInterface (&r), Invalid_Cast ());
-
-  return r.p;
-}
-
-//
 // impl
 //
-IMgaMetaReference * Reference::impl (void) const
+IMgaMetaReference * Reference_Impl::impl (void) const
 {
   if (this->ref_.p == this->metabase_.p)
     return this->ref_.p;
@@ -40,16 +29,14 @@ IMgaMetaReference * Reference::impl (void) const
   if (this->ref_.p != 0)
     this->ref_.Release ();
 
-  VERIFY_HRESULT_THROW_EX (this->metabase_.QueryInterface (&this->ref_), 
-                           Invalid_Cast ());
-
+  VERIFY_HRESULT (this->metabase_.QueryInterface (&this->ref_));
   return this->ref_.p;
 }
 
 //
 // targets
 //
-size_t Reference::targets (std::vector <FCO> & fcos)
+size_t Reference_Impl::targets (std::vector <FCO> & fcos)
 {
   // Get the reference pointer specification.
   CComPtr <IMgaMetaPointerSpec> spec;
@@ -65,7 +52,7 @@ size_t Reference::targets (std::vector <FCO> & fcos)
   // Locate each item in the project and store it.
   long count = 0;
   items->get_Count (&count);
-  
+
   for (long i = 0; i < count; ++ i)
   {
     CComBSTR name;
@@ -77,12 +64,12 @@ size_t Reference::targets (std::vector <FCO> & fcos)
 
     // Locate the FCO with the specified name.
     CComPtr <IMgaMetaFCO> fco;
-    VERIFY_HRESULT (root_folder.impl ()->get_DefinedFCOByName (name, VARIANT_TRUE, &fco));
+    VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name, VARIANT_TRUE, &fco));
 
     if (0 != fco.p)
-      fcos.push_back (FCO (fco));
+      fcos.push_back (fco.p);
   }
-  
+
   return 0;
 }
 

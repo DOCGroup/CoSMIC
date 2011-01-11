@@ -7,39 +7,29 @@ namespace GAME
 namespace Meta
 {
 //
-// Base
+// Base_Impl
 //
 GAME_INLINE
-Base::Base (void)
+Base_Impl::Base_Impl (void)
 {
 
 }
 
 //
-// Base
+// Base_Impl
 //
 GAME_INLINE
-Base::Base (IMgaMetaBase * meta)
+Base_Impl::Base_Impl (IMgaMetaBase * meta)
 : metabase_ (meta)
 {
 
 }
 
 //
-// Base
+// ~Base_Impl
 //
 GAME_INLINE
-Base::Base (const Base & meta)
-  : metabase_ (meta.metabase_)
-{
-
-}
-
-//
-// ~Base
-//
-GAME_INLINE
-Base::~Base (void)
+Base_Impl::~Base_Impl (void)
 {
 
 }
@@ -48,70 +38,25 @@ Base::~Base (void)
 // attach
 //
 GAME_INLINE
-void Base::attach (IMgaMetaBase * metabase)
+void Base_Impl::attach (IMgaMetaBase * metabase)
 {
   this->metabase_.Attach (metabase);
-}
-
-//
-// operator ==
-//
-GAME_INLINE
-bool Base::operator == (const std::string & name) const
-{
-  return this->name () == name;
-}
-
-//
-// operator !=
-//
-GAME_INLINE
-bool Base::operator != (const std::string & name) const
-{
-  return !(*this == name);
-}
-
-//
-// operator ==
-//
-GAME_INLINE
-bool Base::operator == (const Base & meta) const
-{
-  return this->metabase_.IsEqualObject (meta.metabase_);
-}
-
-//
-// operator !=
-//
-GAME_INLINE
-bool Base::operator != (const Base & meta) const
-{
-  return !(*this == meta);
 }
 
 //
 // impl
 //
 GAME_INLINE
-IMgaMetaBase * Base::impl (void) const
+IMgaMetaBase * Base_Impl::impl (void) const
 {
   return this->metabase_;
-}
-
-//
-// operator bool
-//
-GAME_INLINE
-bool Base::is_nil (void) const
-{
-  return this->metabase_.p == 0;
 }
 
 //
 // release
 //
 GAME_INLINE
-void Base::release (void)
+void Base_Impl::release (void)
 {
   this->metabase_.Release ();
 }
@@ -120,46 +65,20 @@ void Base::release (void)
 // hash
 //
 GAME_INLINE
-unsigned long Base::hash (void) const
+unsigned long Base_Impl::hash (void) const
 {
   return ACE::hash_pjw (this->name ().c_str ());
 }
 
-}
+//
+// is_equal_to
+//
+bool Base_Impl::is_equal_to (const Base_Impl * impl) const
+{
+  return
+    this->metabase_.p == impl->metabase_.p ||
+    this->name () == impl->name ();
 }
 
-//
-// operator <
-//
-GAME_INLINE
-bool operator < (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
-{
-  return lhs.name () < rhs.name ();
 }
-
-//
-// operator >
-//
-GAME_INLINE
-bool operator > (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
-{
-  return lhs.name () > rhs.name ();
-}
-
-//
-// operator <=
-//
-GAME_INLINE
-bool operator <= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
-{
-  return lhs.name () <= rhs.name ();
-}
-
-//
-// operator >=
-//
-GAME_INLINE
-bool operator >= (const GAME::Meta::Base & lhs, const GAME::Meta::Base & rhs)
-{
-  return lhs.name () >= rhs.name ();
 }

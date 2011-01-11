@@ -8,7 +8,7 @@
 #endif
 
 // We should make a graphics configuration class and place these
-// contants there. This way, they can be customized for different 
+// contants there. This way, they can be customized for different
 // domains.
 #define GME_PORT_WIDTH          11
 #define GME_PORT_HEIGHT         11
@@ -22,17 +22,17 @@ namespace graphics
 //
 // draw
 //
-bool Port_Decorator::draw (Gdiplus::Graphics & g)
+bool Port_Decorator::draw (Gdiplus::Graphics * g)
 {
   if (0 == this->image_)
     return false;
 
   // Draw the port's image.
-  g.DrawImage (this->image_,
-               static_cast <float> (this->location_.x_value ()),
-               static_cast <float> (this->location_.y_value ()),
-               static_cast <float> (GME_PORT_WIDTH),
-               static_cast <float> (GME_PORT_HEIGHT));
+  g->DrawImage (this->image_,
+                static_cast <float> (this->location_.x_value ()),
+                static_cast <float> (this->location_.y_value ()),
+                static_cast <float> (GME_PORT_WIDTH),
+                static_cast <float> (GME_PORT_HEIGHT));
 
   // There is now need to continue if we have no label.
   if (this->label_.empty ())
@@ -65,12 +65,12 @@ bool Port_Decorator::draw (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr, 
-                GME_PORT_LABEL_LENGTH,
-                &font,
-                Gdiplus::PointF (px, py),
-                &format,
-                &brush);
+  g->DrawString (bstr,
+                 GME_PORT_LABEL_LENGTH,
+                 &font,
+                 Gdiplus::PointF (px, py),
+                 &format,
+                 &brush);
 
   return true;
 }

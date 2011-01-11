@@ -20,8 +20,8 @@
  *
  * Implemenation of the Quotas specification interpreter.
  */
-class Extension_Classes_Component_Impl : 
-  public GAME::Interpreter_Impl_Base 
+class Extension_Classes_Component_Impl :
+  public GAME::Interpreter_Impl_Base
 {
 public:
   /// Default constructor.
@@ -31,8 +31,8 @@ public:
   virtual ~Extension_Classes_Component_Impl (void);
 
   // Handle the InvokeEx callback.
-  int invoke_ex (GAME::Project & project,
-                 GAME::FCO & fco,
+  int invoke_ex (GAME::Project project,
+                 GAME::FCO_in focus,
                  std::vector <GAME::FCO> & selected,
                  long flags);
 

@@ -8,39 +8,29 @@
 namespace GAME
 {
 //
-// FCO
+// FCO_Impl
 //
 GAME_INLINE
-FCO::FCO (void)
+FCO_Impl::FCO_Impl (void)
 {
 
 }
 
 //
-// FCO
+// FCO_Impl
 //
 GAME_INLINE
-FCO::FCO (IMgaFCO * fco)
-  : Object (fco)
+FCO_Impl::FCO_Impl (IMgaFCO * fco)
+: Object_Impl (fco)
 {
 
 }
 
 //
-// FCO
+// ~FCO_Impl
 //
 GAME_INLINE
-FCO::FCO (const FCO & fco)
-  : Object (fco)
-{
-
-}
-
-//
-// ~FCO
-//
-GAME_INLINE
-FCO::~FCO (void)
+FCO_Impl::~FCO_Impl (void)
 {
 
 }
@@ -49,18 +39,18 @@ FCO::~FCO (void)
 // attach
 //
 GAME_INLINE
-void FCO::attach (IMgaFCO * fco)
+void FCO_Impl::attach (IMgaFCO * fco)
 {
-  Object::attach (fco);
+  Object_Impl::attach (fco);
 }
 
 //
 // is_subtype
 //
 GAME_INLINE
-bool FCO::is_subtype (void) const
+bool FCO_Impl::is_subtype (void) const
 {
-  return !this->basetype ().is_nil ();
+  return this->basetype ().is_nil ();
 }
 
 
@@ -68,8 +58,9 @@ bool FCO::is_subtype (void) const
 // attribute
 //
 GAME_INLINE
-Attribute FCO::attribute (const std::string & name) const
+Attribute FCO_Impl::attribute (const std::string & name) const
 {
-  return this->attribute (this->meta ().attribute (name));
+  return this->attribute (this->meta ()->attribute (name));
 }
+
 }

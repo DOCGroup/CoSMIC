@@ -22,55 +22,28 @@ namespace GAME
 namespace Meta
 {
 /**
- * @class Attribute
+ * @class Attribute_Impl
  *
  * Wrapper class for the IMgaMetaAttribute inteface.
  */
-class GAME_Export Attribute : public Base
+class GAME_Export Attribute_Impl : public Base_Impl
 {
 public:
-  /**
-   * Extract the meta attribute from the base meta object.
-   *
-   * @param[in]       base        The base meta object.
-   * @return          The extracted meta attribute.
-   */
-  static Attribute _narrow (const Base & base);
+  /// Type definition of the interface type.
+  typedef IMgaMetaAttribute interface_type;
 
   /// Default constructor.
-  Attribute (void);
+  Attribute_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       meta        The COM interface.
    */
-  Attribute (IMgaMetaAttribute * meta);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       meta        The source meta attribute.
-   */
-  Attribute (const Attribute & meta);
+  Attribute_Impl (IMgaMetaAttribute * meta);
 
   /// Destructor.
-  virtual ~Attribute (void);
-
-  /**
-   * Attach to an existing interface pointer.
-   *
-   * @param[in]       attr        The source meta attribute.
-   */
-  void attach (IMgaAttribute * attr);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       attr        The source meta attribute.
-   * @return          Reference to self.
-   */
-  const Attribute & operator = (const Attribute & attr);
+  virtual ~Attribute_Impl (void);
 
   /**
    * Get the meta base object this attribute is defined in
@@ -82,8 +55,8 @@ public:
   /**
    * Get the visibility property of the attribute.
    *
-   * @retval          true        Attribute is visible.
-   * @retval          false       Attribute is not visible.
+   * @retval          true        Attribute_Impl is visible.
+   * @retval          false       Attribute_Impl is not visible.
    */
   bool viewable (void) const;
 

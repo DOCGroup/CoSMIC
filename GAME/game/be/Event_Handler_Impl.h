@@ -108,42 +108,42 @@ public:
    * @retval          0               Success
    * @retval          -1              Failure
    */
-  virtual int handle_object_event (Object obj, unsigned long mask);
+  virtual int handle_object_event (Object_in, unsigned long mask);
 
-  virtual int handle_object_created (GAME::Object obj);
-  virtual int handle_object_destroyed (Object obj);
+  virtual int handle_object_created (GAME::Object_in);
+  virtual int handle_object_destroyed (Object_in);
 
-  virtual int handle_object_attribute (Object obj);
-  virtual int handle_object_properties (Object obj);
-  virtual int handle_object_registry (Object obj);
+  virtual int handle_object_attribute (Object_in);
+  virtual int handle_object_properties (Object_in);
+  virtual int handle_object_registry (Object_in);
 
-  virtual int handle_object_relation (Object obj);
-  virtual int handle_object_parent (Object obj);
+  virtual int handle_object_relation (Object_in);
+  virtual int handle_object_parent (Object_in);
 
-  virtual int handle_instance_subtype (Object obj);
+  virtual int handle_instance_subtype (Object_in);
 
-  virtual int handle_new_child (Object obj);
-  virtual int handle_lost_child (Object obj);
+  virtual int handle_new_child (Object_in);
+  virtual int handle_lost_child (Object_in);
 
-  virtual int handle_referenced (Object obj);
-  virtual int handle_referenced_release (Object obj);
+  virtual int handle_referenced (Object_in);
+  virtual int handle_referenced_release (Object_in);
 
-  virtual int handle_object_connected (Object obj);
-  virtual int handle_object_disconnected (Object obj);
+  virtual int handle_object_connected (Object_in);
+  virtual int handle_object_disconnected (Object_in);
 
-  virtual int handle_set_included (Object obj);
-  virtual int handle_set_excluded (Object obj);
+  virtual int handle_set_included (Object_in);
+  virtual int handle_set_excluded (Object_in);
 
-  virtual int handle_marked_readonly (Object obj);
-  virtual int handle_marked_readwrite (Object obj);
+  virtual int handle_marked_readonly (Object_in);
+  virtual int handle_marked_readwrite (Object_in);
 
-  virtual int handle_model_open (Object obj);
-  virtual int handle_model_close (Object obj);
+  virtual int handle_model_open (Object_in);
+  virtual int handle_model_close (Object_in);
 
-  virtual int handle_object_select (Object obj);
-  virtual int handle_object_deselect (Object obj);
+  virtual int handle_object_select (Object_in);
+  virtual int handle_object_deselect (Object_in);
 
-  virtual int handle_object_mouseover (Object obj);
+  virtual int handle_object_mouseover (Object_in);
 
 protected:
   /// The mask for the event handler.

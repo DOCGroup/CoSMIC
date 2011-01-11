@@ -1,8 +1,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Dialog_Display_Strategy.h"
 #include "Selection_List_Dialog.h"
+#include "Dialog_Display_Strategy.h"
 #include "resource.h"
 
 #include "boost/bind.hpp"
@@ -36,9 +36,9 @@ Selection_List_Dialog::~Selection_List_Dialog (void)
 //
 // selection
 //
-GAME::Object Selection_List_Dialog::selection (void) const
+Object Selection_List_Dialog::selection (void)
 {
-  return this->selection_;
+  return this->selection_.get ();
 }
 
 //
@@ -63,7 +63,7 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
   if (0 == this->strategy_)
   {
     for (; iter != iter_end; ++ iter)
-      this->insert_item (*iter, iter->name ());
+      this->insert_item (iter->get (), (*iter)->name ());
   }
   else
   {
@@ -71,8 +71,8 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
 
     for (; iter != iter_end; ++ iter)
     {
-      if (this->strategy_->get_display_name (*iter, display_name))
-        this->insert_item (*iter, display_name);
+      if (this->strategy_->get_display_name (iter->get (), display_name))
+        this->insert_item (iter->get (), display_name);
     }
   }
 
@@ -82,9 +82,9 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
 //
 // insert
 //
-void Selection_List_Dialog::insert (const GAME::Object & object)
+void Selection_List_Dialog::insert (const Object_in obj)
 {
-  this->items_.push_back (object);
+  this->items_.push_back (obj);
 }
 
 //
@@ -114,7 +114,7 @@ insert (std::vector <GAME::Object>::const_iterator begin,
 // insert_item
 //
 void Selection_List_Dialog::
-insert_item (const GAME::Object & item, const std::string & display_name)
+insert_item (const Object_in & item, const std::string & display_name)
 {
   int index = this->list_.InsertString (-1, display_name.c_str ());
 
@@ -122,7 +122,7 @@ insert_item (const GAME::Object & item, const std::string & display_name)
   // in case the *display* order is not the same as the original
   // vector of items.
   if (-1 != index)
-    this->list_.SetItemData (index, (DWORD_PTR)item.impl ());
+    this->list_.SetItemData (index, (DWORD_PTR)item->impl ());
 }
 
 //
@@ -167,7 +167,7 @@ void Selection_List_Dialog::DoDataExchange (CDataExchange * pDX)
     // Make sure we increment the reference count before attaching
     // the element. We don't want to cause any exceptions.
     impl->AddRef ();
-    this->selection_.attach (impl);
+    this->selection_->attach (impl);
   }
 }
 

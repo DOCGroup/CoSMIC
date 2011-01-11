@@ -4,7 +4,7 @@
 /**
  * @file        MetaModel.h
  *
- * Defines the GAME::Meta::Model class
+ * Defines the GAME::Meta::Model_Impl class
  *
  * $Id$
  *
@@ -17,68 +17,36 @@
 
 #include "MetaFCO.h"
 #include "MetaAspect.h"
-#include "Collection_T.h"
+#include <vector>
 
 namespace GAME
 {
 namespace Meta
 {
-/// Forward decl.
-class Role;
 
 /**
- * @class Model
+ * @class Model_Impl
  *
  * Wrapper class for the IMgaMetaModel COM interface.
  */
-class GAME_Export Model : public FCO
+class GAME_Export Model_Impl : public FCO_Impl
 {
 public:
   /// Type definition of COM type.
   typedef IMgaMetaModel interface_type;
 
-  /**
-   * Extract the meta model object from the base meta object.
-   *
-   * @param[in]       meta        Source meta object.
-   * @return          Extracted meta model object.
-   */
-  static Model _narrow (const Base & meta);
-
   /// Default constructor.
-  Model (void);
+  Model_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       meta        Pointer to the COM interface.
    */
-  Model (IMgaMetaModel * meta);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       model       Source object.
-   */
-  Model (const Model & model);
+  Model_Impl (IMgaMetaModel * meta);
 
   /// Destructor.
-  virtual ~Model (void);
-
-  /**
-   * Asssignment operator.
-   *
-   * @param[in]       meta        Source object.
-   * @return          Reference to self.
-   */
-  const Model & operator = (const Model & meta);
-
-  /**
-   * Conversion operator.
-   *
-   * @return          Pointer to the COM interface.
-   */
-  operator IMgaMetaModel * (void) const;
+  virtual ~Model_Impl (void);
 
   /**
    * Get the role by name.
@@ -95,10 +63,26 @@ public:
    */
   IMgaMetaModel * impl (void) const;
 
-  size_t children (std::vector <GAME::Meta::FCO> & fcos) const;
+  /**
+   * Get the collection of meta FCO objects.
+   *
+   * @param[out]      fcos      List of meta FCO objects.
+   */
+  size_t children (std::vector <FCO> & fcos) const;
 
+  /**
+   * Get the aspect for the specified role.
+   *
+   * @param[in]       name        Name of the aspect.
+   * @return          Reference to the aspect.
+   */
   Aspect aspect (const std::string & name) const;
 
+  /**
+   * Get a listing of all the aspects for this role.
+   *
+   * @param[out]      aspects     List of aspects.
+   */
   size_t aspects (std::vector <Aspect> & children) const;
 
 private:

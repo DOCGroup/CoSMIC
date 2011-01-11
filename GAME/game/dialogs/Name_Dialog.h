@@ -20,9 +20,9 @@ namespace GAME
 namespace Dialogs
 {
 /**
- * @class Selection_List_Dialog
+ * @class Name_Dialog
  *
- * Simple dialog that shows a list of elements.
+ * Simple dialog for setting the name of an element.
  */
 class AFX_EXT_CLASS Name_Dialog : public CDialog
 {
@@ -30,10 +30,10 @@ public:
   /**
    * Initializing constructor.
    *
-   * @param[in]     items       Initial items for the dialog
+   * @param[in]     obj         The target object.
    * @param[in]     parent      Parent of the dialog
    */
-  Name_Dialog (Object obj, CWnd * parent = 0);
+  Name_Dialog (Object_in obj, CWnd * parent = 0);
 
   /// Destructor.
   virtual ~Name_Dialog (void);
@@ -47,6 +47,7 @@ protected:
    */
   virtual void DoDataExchange (CDataExchange * pDX);
 
+  /// Initialize the dialog.
   virtual BOOL OnInitDialog (void);
 
 private:

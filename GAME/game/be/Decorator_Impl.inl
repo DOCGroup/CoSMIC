@@ -26,9 +26,9 @@ Decorator_Impl::~Decorator_Impl (void)
 //
 GAME_INLINE
 int Decorator_Impl::
-initialize (const GAME::Project & proj,
-            const GAME::Meta::Part & part, 
-            const GAME::FCO & fco)
+initialize (const Project & proj,
+            const Meta::Part_in part,
+            const FCO_in fco)
 {
   return 0;
 }
@@ -38,10 +38,10 @@ initialize (const GAME::Project & proj,
 //
 GAME_INLINE
 int Decorator_Impl::
-initialize_ex (const GAME::Project & proj, 
-               const GAME::Meta::Part & part, 
-               const GAME::FCO & fco,
-               IMgaCommonDecoratorEvents * eventSink, 
+initialize_ex (const Project & proj,
+               const Meta::Part_in part,
+               const FCO_in fco,
+               IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
   return 0;
@@ -146,7 +146,7 @@ get_label_location (long & sx, long & sy, long & ex, long & ey)
 //
 GAME_INLINE
 int Decorator_Impl::
-get_port_location (const GAME::FCO & fco, long & sx, long & sy, long & ex, long & ey)
+get_port_location (const FCO_in fco, long & sx, long & sy, long & ex, long & ey)
 {
   return -1;
 }
@@ -155,7 +155,7 @@ get_port_location (const GAME::FCO & fco, long & sx, long & sy, long & ex, long 
 // ports
 //
 GAME_INLINE
-int Decorator_Impl::get_ports (std::vector < ::GAME::FCO > & v)
+int Decorator_Impl::get_ports (std::vector <FCO> & v)
 {
   return 0;
 }
@@ -164,7 +164,7 @@ int Decorator_Impl::get_ports (std::vector < ::GAME::FCO > & v)
 // draw
 //
 GAME_INLINE
-int Decorator_Impl::draw (Gdiplus::Graphics & g)
+int Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
   return 0;
 }
@@ -191,19 +191,19 @@ int Decorator_Impl::operation_canceled (void)
 // mouse_moved
 //
 int Decorator_Impl::
-mouse_moved (int nFlags, 
-                 const GAME::utils::Point & pt, 
-                 CDC & xform)
+mouse_moved (int nFlags,
+             const GAME::utils::Point & pt,
+             CDC & xform)
 {
   return 1;
 }
- 
+
 //
 // mouse_left_button_down
 //
 int Decorator_Impl::
 mouse_left_button_down (int flags,
-                        const GAME::utils::Point & pt, 
+                        const GAME::utils::Point & pt,
                         CDC & xform)
 {
   return 1;
@@ -214,7 +214,7 @@ mouse_left_button_down (int flags,
 //
 int Decorator_Impl::
 mouse_left_button_up (int flags,
-                      const GAME::utils::Point & pt, 
+                      const GAME::utils::Point & pt,
                       CDC & xform)
 {
   return 1;
@@ -224,7 +224,7 @@ mouse_left_button_up (int flags,
 // mouse_left_button_double_click
 //
 int Decorator_Impl::
-mouse_left_button_double_click (int nFlags, 
+mouse_left_button_double_click (int nFlags,
                                 const GAME::utils::Point & pt,
                                 CDC & xform)
 {
@@ -247,7 +247,7 @@ mouse_right_button_down (CMenu & ctxmenu,
 // mouse_right_button_up
 //
 int Decorator_Impl::
-mouse_right_button_up (int flags, 
+mouse_right_button_up (int flags,
                        const GAME::utils::Point & pt,
                        CDC & xform)
 {
@@ -258,7 +258,7 @@ mouse_right_button_up (int flags,
 // mouse_right_button_double_click
 //
 int Decorator_Impl::
-mouse_right_button_double_click (int flags, 
+mouse_right_button_double_click (int flags,
                                  const GAME::utils::Point & pt,
                                  CDC & xform)
 {
@@ -269,7 +269,7 @@ mouse_right_button_double_click (int flags,
 // mouse_middle_button_down
 //
 int Decorator_Impl::
-mouse_middle_button_down (int flags, 
+mouse_middle_button_down (int flags,
                           const GAME::utils::Point & pt,
                           CDC & xform)
 {
@@ -280,7 +280,7 @@ mouse_middle_button_down (int flags,
 // mouse_middle_button_up
 //
 int Decorator_Impl::
-mouse_middle_button_up (int flags, 
+mouse_middle_button_up (int flags,
                         const GAME::utils::Point & pt,
                         CDC & xform)
 {
@@ -291,7 +291,7 @@ mouse_middle_button_up (int flags,
 // mouse_middle_button_double_click
 //
 int Decorator_Impl::
-mouse_middle_button_double_click (int flags, 
+mouse_middle_button_double_click (int flags,
                                   const GAME::utils::Point & pt,
                                   CDC & xform)
 {
@@ -316,8 +316,8 @@ mouse_wheel_turned (int flags,
 int Decorator_Impl::
 drag_enter (unsigned long & effect,
             COleDataObject & pCOleDataObject,
-            int keyState, 
-            const GAME::utils::Point & pt, 
+            int keyState,
+            const GAME::utils::Point & pt,
             CDC & xform)
 {
   return 1;
@@ -329,8 +329,8 @@ drag_enter (unsigned long & effect,
 int Decorator_Impl::
 drag_over (unsigned long & effect,
            COleDataObject & pCOleDataObject,
-           int keyState, 
-           const GAME::utils::Point & pt, 
+           int keyState,
+           const GAME::utils::Point & pt,
            CDC & xform)
 {
   return 1;
@@ -342,7 +342,7 @@ drag_over (unsigned long & effect,
 int Decorator_Impl::
 drop (COleDataObject & pCOleDataObject,
       int effect,
-      const GAME::utils::Point & pt, 
+      const GAME::utils::Point & pt,
       CDC & xform)
 {
   return 1;
@@ -353,7 +353,7 @@ drop (COleDataObject & pCOleDataObject,
 //
 int Decorator_Impl::
 drop_file (ULONGLONG hDropInfo,
-           const GAME::utils::Point & pt, 
+           const GAME::utils::Point & pt,
            CDC & xform)
 {
   return 1;
@@ -363,9 +363,9 @@ drop_file (ULONGLONG hDropInfo,
 // menu_item_selected
 //
 int Decorator_Impl::
-menu_item_selected (int item_id, 
-                    int nFlags,  
-                    const GAME::utils::Point & pt, 
+menu_item_selected (int item_id,
+                    int nFlags,
+                    const GAME::utils::Point & pt,
                     CDC & xform)
 {
   return 1;

@@ -34,7 +34,7 @@ public:
    *
    * @param[in]       project       Target project
    */
-  Project_Settings (::GAME::Project project);
+  Project_Settings (Project project);
 
   /**
    * Initializing constructor.
@@ -42,7 +42,7 @@ public:
    * @param[in]       project       Target project
    * @param[in]       cache_loc     Location for storing settings.
    */
-  Project_Settings (::GAME::Project project, const std::string & cache_loc);
+  Project_Settings (Project project, const std::string & cache_loc);
 
   /// Destructor.
   ~Project_Settings (void);
@@ -59,15 +59,12 @@ public:
   bool set_boolean_value (const std::string & path, bool value);
   bool get_boolean_value (const std::string & path, bool & value);
 
-  bool set_string_value (const std::string & path,
-                         const std::string & value);
-
-  bool get_string_value (const std::string & path,
-                         std::string & value);
+  bool set_string_value (const std::string & path, const std::string & value);
+  bool get_string_value (const std::string & path, std::string & value);
 
 private:
   /// Target GME project.
-  GAME::Project project_;
+  Project project_;
 
   std::string default_cache_loc_;
 };

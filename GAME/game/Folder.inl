@@ -3,41 +3,33 @@
 
 namespace GAME
 {
-  //
-  // Folder
-  //
-  GAME_INLINE
-  Folder::Folder (void)
-  {
 
-  }
+//
+// Folder_Impl
+//
+GAME_INLINE
+Folder_Impl::Folder_Impl (void)
+{
 
-  //
-  // Folder
-  //
-  GAME_INLINE
-  Folder::Folder (IMgaFolder * folder)
-    : GAME::Object (folder)
-  {
+}
 
-  }
+//
+// Folder_Impl
+//
+GAME_INLINE
+Folder_Impl::Folder_Impl (IMgaFolder * folder)
+: Object_Impl (folder)
+{
 
-  //
-  // Folder
-  //
-  GAME_INLINE
-  Folder::Folder (const Folder & folder)
-    : GAME::Object (folder)
-  {
+}
 
-  }
+//
+// Folder_Impl
+//
+GAME_INLINE
+Folder_Impl::~Folder_Impl (void)
+{
 
-  //
-  // Folder
-  //
-  GAME_INLINE
-  Folder::~Folder (void)
-  {
+}
 
-  }
 }

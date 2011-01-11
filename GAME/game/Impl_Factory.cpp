@@ -1,0 +1,124 @@
+// $Id$
+
+#include "stdafx.h"
+#include "mga.h"
+
+#include "Impl_Factory.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Impl_Factory.inl"
+#endif
+
+#include "Atom.h"
+#include "Model.h"
+#include "Folder.h"
+#include "Reference.h"
+#include "Set.h"
+
+#include "MetaAspect.h"
+#include "MetaAtom.h"
+#include "MetaAttribute.h"
+#include "MetaConnection.h"
+#include "MetaFolder.h"
+#include "MetaModel.h"
+#include "MetaPart.h"
+#include "MetaReference.h"
+#include "MetaRole.h"
+#include "MetaSet.h"
+
+#include <assert.h>
+
+namespace GAME
+{
+//
+// allocate_impl
+//
+template <typename T>
+static Object_Impl * allocate_impl (IMgaObject * ptr)
+{
+  CComPtr <typename T::interface_type> temp;
+  VERIFY_HRESULT (ptr->QueryInterface (&temp));
+
+  return new T (temp);
+}
+
+//
+// allocate_meta_impl
+//
+template <typename T>
+static Meta::Base_Impl * allocate_meta_impl (IMgaMetaBase * ptr)
+{
+  CComPtr <typename T::interface_type> temp;
+  VERIFY_HRESULT (ptr->QueryInterface (&temp));
+
+  return new T (temp);
+}
+
+//
+// Default_Impl_Factory
+//
+Default_Impl_Factory::Default_Impl_Factory (void)
+{
+  // Insert the creation methods.
+  this->factory_methods_.resize (7, 0);
+  this->factory_methods_[OBJTYPE_MODEL] = &allocate_impl <Model_Impl>;
+  this->factory_methods_[OBJTYPE_ATOM] = &allocate_impl <Atom_Impl>;
+  this->factory_methods_[OBJTYPE_REFERENCE] = &allocate_impl <Reference_Impl>;
+  this->factory_methods_[OBJTYPE_CONNECTION] = &allocate_impl <Connection_Impl>;
+  this->factory_methods_[OBJTYPE_SET] = &allocate_impl <Set_Impl>;
+  this->factory_methods_[OBJTYPE_FOLDER] = &allocate_impl <Folder_Impl>;
+
+  this->meta_factory_methods_.resize (11, 0);
+  this->meta_factory_methods_[OBJTYPE_MODEL] = &allocate_meta_impl <Meta::Model_Impl>;
+  this->meta_factory_methods_[OBJTYPE_ATOM] = &allocate_meta_impl <Meta::Atom_Impl>;
+  this->meta_factory_methods_[OBJTYPE_REFERENCE] = &allocate_meta_impl <Meta::Reference_Impl>;
+  this->meta_factory_methods_[OBJTYPE_CONNECTION] = &allocate_meta_impl <Meta::Connection_Impl>;
+  this->meta_factory_methods_[OBJTYPE_SET] = &allocate_meta_impl <Meta::Set_Impl>;
+  this->meta_factory_methods_[OBJTYPE_FOLDER] = &allocate_meta_impl <Meta::Folder_Impl>;
+  this->meta_factory_methods_[OBJTYPE_ASPECT] = &allocate_meta_impl <Meta::Aspect_Impl>;
+  this->meta_factory_methods_[OBJTYPE_ROLE] = &allocate_meta_impl <Meta::Role_Impl>;
+  this->meta_factory_methods_[OBJTYPE_ATTRIBUTE] = &allocate_meta_impl <Meta::Attribute_Impl>;
+  this->meta_factory_methods_[OBJTYPE_PART] = &allocate_meta_impl <Meta::Part_Impl>;
+}
+
+//
+// allocate
+//
+Object_Impl * Default_Impl_Factory::allocate (IMgaObject * ptr)
+{
+  if (0 == ptr)
+    return 0;
+
+  // Locate the factory method for this type.
+  objtype_enum type;
+  VERIFY_HRESULT (ptr->get_ObjType (&type));
+
+  FACTORY_METHOD fm = this->factory_methods_[type];
+
+  // Debug assertion.
+  assert (fm != 0);
+
+  return fm (ptr);
+}
+
+//
+// allocate
+//
+Meta::Base_Impl * Default_Impl_Factory::allocate (IMgaMetaBase * ptr)
+{
+  if (0 == ptr)
+    return 0;
+
+  // Locate the factory method for this type.
+  objtype_enum type;
+  VERIFY_HRESULT (ptr->get_ObjType (&type));
+
+  META_FACTORY_METHOD mfm = this->meta_factory_methods_[type];
+
+  // Debug assertion.
+  assert (mfm != 0);
+
+  return mfm (ptr);
+}
+
+}

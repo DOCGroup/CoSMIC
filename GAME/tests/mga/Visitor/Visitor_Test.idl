@@ -1,0 +1,35 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Visitor_Test.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _VISITOR_TEST_IDL_
+#define _VISITOR_TEST_IDL_
+
+#include <Gme.idl>
+
+[
+  uuid (9DA73D07-9AB3-4AAD-B7D9-6DC7AE081CE0),
+  version (1.0),
+]
+library MgaTest
+{
+  importlib ("stdole32.tlb");
+
+  [uuid (9120707E-262F-4430-8BDA-A9DB62E750FB)]
+  coclass VisitorTest
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IMgaVersionInfo;
+  };
+};
+
+#endif  // !defined _VISITOR_TEST_IDL_

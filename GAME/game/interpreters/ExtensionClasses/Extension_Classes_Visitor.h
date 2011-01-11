@@ -13,29 +13,15 @@
 #ifndef _EXTENSION_CLASSES_VISITOR_H_
 #define _EXTENSION_CLASSES_VISITOR_H_
 
-#include "game/Visitor.h"
-
 #include <string>
-#include <sstream>
-#include <iostream>
 #include <fstream>
-#include <cstdio>
-#include <algorithm>
 #include <set>
 
-#include "Atom.h"
-#include "Attribute.h"
-#include "Connection.h"
-#include "FCO.h"
-#include "Folder.h"
-#include "Model.h"
-#include "Object.h"
-#include "Project.h"
-#include "Reference.h"
-#include "Set.h"
-
-#include "MetaFCO.h"
-#include "MetaModel.h"
+#include "game/Project.h"
+#include "game/MetaFCO.h"
+#include "game/MetaModel.h"
+#include "game/Visitor.h"
+#include "game/Connection.h"
 
 #include "Extension_Classes_Code_Generator.h"
 
@@ -44,45 +30,35 @@ namespace GAME
 /**
  * @class Extension_Classes_Visitor
  */
-class Extension_Classes_Visitor :
-  public GAME::Visitor
+class Extension_Classes_Visitor : public Visitor
 {
 public:
-  //type defintions
-  typedef std::vector<GAME::FCO> FCOS;
-
-  typedef std::vector<GAME::Model> MODELS;
-
-  typedef std::vector<GAME::Connection> CONNECTIONS;
-
-  Extension_Classes_Visitor (const std::string &,
-                             const std::string &);
+  Extension_Classes_Visitor (const std::string &, const std::string &);
 
   virtual ~Extension_Classes_Visitor (void);
 
-  virtual void visit_Atom (GAME::Atom &);
+  virtual void visit_Folder (Folder_in folder);
 
-  virtual void visit_Attribute (GAME::Attribute &);
+  virtual void visit_FCO (FCO_in fco);
 
-  virtual void visit_FCO (const GAME::FCO &);
+  virtual void visit_Model (Model_in model);
 
-  virtual void visit_Folder (GAME::Folder &);
+  const std::set <Object> & get_objects (void) const;
 
-  virtual void visit_Model (GAME::Model &);
+private:
+  //type defintions
+  typedef std::vector <FCO> FCOS;
 
-  virtual void visit_Object (GAME::Object &);
+  typedef std::vector <Model> MODELS;
 
-  virtual void visit_Project (GAME::Project &);
+  typedef std::vector <Connection> CONNECTIONS;
 
-  virtual void visit_Reference (GAME::Reference &);
+  void get_src_connections (Connection_in conn,
+                            std::string,
+                            CONNECTIONS &);
 
-  virtual void visit_Set (GAME::Set &);
+  void get_dst_connections (const Connection_in conn, std::string, CONNECTIONS &);
 
-  void get_src_connections (GAME::Connection, std::string, CONNECTIONS &);
-
-  void get_dst_connections (GAME::Connection, std::string, CONNECTIONS &);
-
-  void get_objects (std::set <GAME::Object> &);
 
   void create_directory (std::string);
 
@@ -92,7 +68,7 @@ public:
                                  std::string,
                                  Extension_Classes_Code_Generator &);
 
-  std::string get_instance_path (GAME::FCO);
+  std::string get_instance_path (const FCO_in fco);
 
 private:
   const std::string outdir_;

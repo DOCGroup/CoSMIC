@@ -4,6 +4,73 @@
 
 namespace GAME
 {
+
+template <typename T>
+struct collection_traits
+{
+
+};
+
+template < >
+struct collection_traits <IMgaObjects *>
+{
+  typedef IMgaObject interface_type;
+};
+
+template < >
+struct collection_traits <IMgaFCOs *>
+{
+  typedef IMgaFCO interface_type;
+};
+
+template < >
+struct collection_traits <IMgaFolders *>
+{
+  typedef IMgaFolder interface_type;
+};
+
+template < >
+struct collection_traits <IMgaAttributes *>
+{
+  typedef IMgaAttribute interface_type;
+};
+
+template < >
+struct collection_traits <IMgaComponents *>
+{
+  typedef IMgaComponent interface_type;
+};
+
+template < >
+struct collection_traits <IMgaConnPoints *>
+{
+  typedef IMgaConnPoint interface_type;
+};
+
+template < >
+struct collection_traits <IMgaRegNodes *>
+{
+  typedef IMgaRegNode interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaFolders *>
+{
+  typedef IMgaMetaFolder interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaFCOs *>
+{
+  typedef IMgaMetaFCO interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaAspects *>
+{
+  typedef IMgaMetaAspect interface_type;
+};
+
 //
 // get_collection
 //
@@ -23,25 +90,22 @@ size_t get_children (ITER iter, std::vector <T> & coll)
     return 0;
 
   // Get the interface to all the members.
-  typedef typename collection_traits <
-    typename item_traits <T>::collection_type>::
-    interface_type interface_type;
-
-  ATL::CComPtr <interface_type> * arr =
-    new ATL::CComPtr <interface_type> [count];
+  typedef typename collection_traits <ITER>::interface_type interface_type;
+  ATL::CComPtr <interface_type> * arr = new ATL::CComPtr <interface_type> [count];
 
   VERIFY_HRESULT (iter->GetAll (count, &(*arr)));
 
   // Store the members in a collection.
-  typename T::interface_type * temp = 0;
+  ATL::CComPtr <typename T::interface_type> temp;
 
   for (long i = 0; i < count; i ++)
   {
     if (FAILED (arr[i].QueryInterface (&temp)))
       continue;
 
-    coll.push_back (T (temp));
-    temp = 0;
+    // TODO Use factory to create concrete implementation type.
+    coll.push_back (temp.p);
+    temp.Release ();
   }
 
   // Release the temp storage.

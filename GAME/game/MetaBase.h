@@ -10,10 +10,13 @@
  */
 //=============================================================================
 
-#ifndef _GME_METABASE_H_
-#define _GME_METABASE_H_
+#ifndef _GAME_METABASE_H_
+#define _GAME_METABASE_H_
 
 #include <string>
+#include "Refcountable.h"
+
+#include "GME_fwd.h"
 #include "game/config.h"
 #include "GAME_export.h"
 
@@ -21,35 +24,30 @@ namespace GAME
 {
 namespace Meta
 {
-class Project;
 
 /**
- * @class Base
+ * @class Base_Impl
  *
  * Wrapper class for the IMgaMetaBase interface.
  */
-class GAME_Export Base
+class GAME_Export Base_Impl : public Refcountable
 {
 public:
+  /// Type definition of the interface type.
+  typedef IMgaMetaBase interface_type;
+
   /// Default constructor.
-  Base (void);
+  Base_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       meta        Pointer to the source interface.
    */
-  Base (IMgaMetaBase * meta);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       meta        The source object.
-   */
-  Base (const Base & meta);
+  Base_Impl (IMgaMetaBase * meta);
 
   /// Destructor.
-  virtual ~Base (void);
+  virtual ~Base_Impl (void);
 
   /**
    * Get the actual meta name.
@@ -85,36 +83,6 @@ public:
    * @param[in]       meta        Pointer to the source object.
    */
   void attach (IMgaMetaBase * meta);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       meta        The source meta.
-   * @return          Reference to this object.
-   */
-  const Base & operator = (const Base & meta);
-
-  /**
-   * Determine if the metabase's name is equal to \a name. This
-   * compares the name with the real name, not the displayed name
-   * of the metabase.
-   *
-   * @param[in]       name        Name to compare.
-   * @retval          true        The object matches \a name.
-   * @retval          false       The object does not match \a name.
-   */
-  bool operator == (const std::string & name) const;
-  bool operator != (const std::string & name) const;
-
-  /**
-   * Determine if two Base objects are equal.
-   *
-   * @param[in]       meta        The source object.
-   * @retval          true        The two objects are the same
-   * @retval          false       The two objects are not the name.
-   */
-  bool operator == (const Base & meta) const;
-  bool operator != (const Base & meta) const;
 
   /**
    * Get the meta reference id.
@@ -163,9 +131,6 @@ public:
    */
   IMgaMetaBase * impl (void) const;
 
-  /// Test the validity of the object.
-  bool is_nil (void) const;
-
   /// Release the underlying pointer.
   void release (void);
 
@@ -175,6 +140,9 @@ public:
   /// Get the hash value for the object.
   unsigned long hash (void) const;
 
+  /// Test the equality with this implementation.
+  bool is_equal_to (const Base_Impl * impl) const;
+
 protected:
   /// The underlying interface pointer.
   mutable ATL::CComPtr <IMgaMetaBase> metabase_;
@@ -182,19 +150,6 @@ protected:
 
 }
 }
-
-/**
- * Determine if two Base objects are equal.
- *
- * @param[in]       meta        The source object.
- * @retval          true        The two objects are the same
- * @retval          false       The two objects are not the name.
- */
-bool operator < (const GAME::Meta::Base &, const GAME::Meta::Base &);
-bool operator > (const GAME::Meta::Base &, const GAME::Meta::Base &);
-
-bool operator <= (const GAME::Meta::Base &, const GAME::Meta::Base &);
-bool operator >= (const GAME::Meta::Base &, const GAME::Meta::Base &);
 
 #if defined (__GAME_INLINE__)
 #include "MetaBase.inl"

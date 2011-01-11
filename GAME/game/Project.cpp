@@ -2,6 +2,9 @@
 
 #include "stdafx.h"
 #include "Project.h"
+
+#include "Collection_T.h"
+
 #include "ComponentEx.h"
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -282,7 +285,7 @@ Folder Project::root_folder (void) const
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->project_->get_RootFolder (&folder));
 
-  return Folder (folder);
+  return folder.p;
 }
 
 //
@@ -295,7 +298,7 @@ Folder Project::folder_by_path (const std::string & path) const
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->project_->GetFolderByPath (bstr, &folder));
 
-  return Folder (folder);
+  return folder.p;
 }
 
 //
@@ -308,7 +311,7 @@ Object Project::object_by_path (const std::string & path) const
   CComPtr <IMgaObject> object;
   VERIFY_HRESULT (this->project_->get_ObjectByPath (bstr, &object));
 
-  return Object (object);
+  return object.p;
 }
 
 //
@@ -429,7 +432,7 @@ size_t Project::addon_components (std::vector <Component> & v) const
   CComPtr <IMgaComponents> temp;
   VERIFY_HRESULT (this->project_->get_AddOnComponents (&temp));
 
-  return get_children (temp, v);
+  return get_children (temp.p, v);
 }
 
 //
@@ -440,7 +443,7 @@ size_t Project::addon_components (std::vector <ComponentEx> & v) const
   CComPtr <IMgaComponents> temp;
   VERIFY_HRESULT (this->project_->get_AddOnComponents (&temp));
 
-  return get_children (temp, v);
+  return get_children (temp.p, v);
 }
 
 //
@@ -460,7 +463,8 @@ ComponentEx Project::addon_component (const std::string & progid) const
                            addons.end (),
                            boost::bind (std::equal_to <std::string> (),
                                         progid,
-                                        boost::bind (&GAME::ComponentEx::progid, _1)));
+                                        boost::bind (&GAME::ComponentEx::impl_type::progid,
+                                                     boost::bind (&GAME::ComponentEx::get, _1))));
 
   if (result != addons.end ())
     return *result;

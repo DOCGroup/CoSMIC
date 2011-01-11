@@ -34,22 +34,22 @@ Decorator_T <T, pclsid>::~Decorator_T (void)
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj)
+Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO * fcoptr)
 {
   try
   {
     GAME::Project proj (project);
     GAME::Meta::Part part (metaPart);
-    GAME::FCO fco (obj);
+    GAME::FCO fco (fcoptr);
 
-    int retval = this->impl_.initialize (proj, part, obj);
+    int retval = this->impl_.initialize (proj, part, fco);
 
     if (0 == retval)
       this->is_init_ = true;
   }
   catch (...)
-  { 
-    
+  {
+
   }
 
   return S_OK;
@@ -61,9 +61,9 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj)
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
 InitializeEx (IMgaProject* project,
-              IMgaMetaPart* pPart, 
+              IMgaMetaPart* pPart,
               IMgaFCO* pFCO,
-              IMgaCommonDecoratorEvents* eventSink, 
+              IMgaCommonDecoratorEvents* eventSink,
               ULONGLONG parentWnd)
 {
   try
@@ -104,7 +104,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::Destroy (void)
   }
   catch (...)
   {
-    
+
   }
 
   return S_FALSE;
@@ -137,7 +137,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
   try
   {
     std::auto_ptr <Gdiplus::Graphics> g (Gdiplus::Graphics::FromHDC (hdc));
-    return this->impl_.draw (*g);
+    return this->impl_.draw (g.get ());
   }
   catch (...)
   {
@@ -162,7 +162,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
   try
   {
     Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (graphics);
-    return this->impl_.draw (*g);  
+    return this->impl_.draw (g);
   }
   catch (const GAME::Failed_Result & )
   {
@@ -218,7 +218,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPreferredSize (long* sx, long* sy)
   }
   catch (...)
   {
-    
+
   }
 
   return S_FALSE;

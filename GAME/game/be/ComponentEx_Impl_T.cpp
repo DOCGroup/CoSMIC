@@ -6,6 +6,8 @@
 
 #include "game/Project.h"
 #include "game/FCO.h"
+#include "game/Collection_T.h"
+#include "game/Transaction.h"
 
 namespace GAME
 {
@@ -64,10 +66,23 @@ InvokeEx (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * fcos, long flags)
   {
     AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-    std::vector <FCO> selected;
-    GAME::get_children (fcos, selected);
+    // This transaction is need so we can get the correct implementation
+    // type on our end.
+    Project project (proj);
+    Transaction t_readonly (project);
 
-    return this->impl_.invoke_ex (Project (proj), FCO (current), selected, flags);
+    FCO curr (current);
+
+    std::vector <FCO> selected;
+    get_children (fcos, selected);
+
+    // We need to commit this transaction so the implementation can
+    // create its own transaction. In the future, the implementation
+    // will be able to control the type of transaction to create, as
+    // well as whether to commit it before making the upcall.
+    t_readonly.commit ();
+
+    return this->impl_.invoke_ex (project, curr, selected, flags);
   }
   catch (...)
   {

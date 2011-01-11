@@ -4,39 +4,29 @@
 namespace GAME
 {
 //
-// Reference
+// Reference_Impl
 //
 GAME_INLINE
-Reference::Reference (void)
+Reference_Impl::Reference_Impl (void)
 {
 
 }
 
 //
-// Reference
+// Reference_Impl
 //
 GAME_INLINE
-Reference::Reference (IMgaReference * ref)
-  : FCO (ref)
+Reference_Impl::Reference_Impl (IMgaReference * ref)
+ : FCO_Impl (ref)
 {
 
 }
 
 //
-// Reference
+// ~Reference_Impl
 //
 GAME_INLINE
-Reference::Reference (const Reference & ref)
-  : FCO (ref)
-{
-
-}
-
-//
-// ~Reference
-//
-GAME_INLINE
-Reference::~Reference (void)
+Reference_Impl::~Reference_Impl (void)
 {
 
 }

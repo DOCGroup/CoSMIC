@@ -9,6 +9,7 @@
 #include "Object.inl"
 #endif
 
+#include "Collection_T.h"
 #include "Exception.h"
 #include "MetaBase.h"
 #include "Project.h"
@@ -21,7 +22,7 @@ namespace GAME
 //
 // status
 //
-long Object::status (void) const
+long Object_Impl::status (void) const
 {
   long status;
   VERIFY_HRESULT (this->object_->get_Status (&status));
@@ -32,7 +33,7 @@ long Object::status (void) const
 //
 // id
 //
-std::string Object::id (void) const
+std::string Object_Impl::id (void) const
 {
   CComBSTR bstr;
   VERIFY_HRESULT (this->object_->get_ID (&bstr));
@@ -44,7 +45,7 @@ std::string Object::id (void) const
 //
 // relative_id
 //
-long Object::relative_id (void) const
+long Object_Impl::relative_id (void) const
 {
   long relid;
   VERIFY_HRESULT (this->object_->get_RelID (&relid));
@@ -55,7 +56,7 @@ long Object::relative_id (void) const
 //
 // relative_id
 //
-void Object::relative_id (long relid)
+void Object_Impl::relative_id (long relid)
 {
   VERIFY_HRESULT (this->object_->put_RelID (relid));
 }
@@ -63,7 +64,7 @@ void Object::relative_id (long relid)
 //
 // is_writable
 //
-bool Object::is_writable (void) const
+bool Object_Impl::is_writable (void) const
 {
   VARIANT_BOOL status;
   VERIFY_HRESULT (this->object_->get_IsWritable (&status));
@@ -74,7 +75,7 @@ bool Object::is_writable (void) const
 //
 // is_lib_object
 //
-bool Object::is_lib_object (void) const
+bool Object_Impl::is_lib_object (void) const
 {
   VARIANT_BOOL status;
   VERIFY_HRESULT (this->object_->get_IsLibObject (&status));
@@ -85,7 +86,7 @@ bool Object::is_lib_object (void) const
 //
 // name
 //
-std::string Object::name (void) const
+std::string Object_Impl::name (void) const
 {
   CComBSTR bstr;
   VERIFY_HRESULT (this->object_->get_Name (&bstr));
@@ -97,7 +98,7 @@ std::string Object::name (void) const
 //
 // name
 //
-void Object::name (const std::string & name)
+void Object_Impl::name (const std::string & name)
 {
   CComBSTR bstr (name.c_str ());
   VERIFY_HRESULT (this->object_->put_Name (bstr));
@@ -106,7 +107,7 @@ void Object::name (const std::string & name)
 //
 // absolute_path
 //
-std::string Object::absolute_path (void) const
+std::string Object_Impl::absolute_path (void) const
 {
   CComBSTR bstr;
   VERIFY_HRESULT (this->object_->get_AbsPath (&bstr));
@@ -118,7 +119,7 @@ std::string Object::absolute_path (void) const
 //
 // check
 //
-void Object::check (void)
+void Object_Impl::check (void)
 {
   VERIFY_HRESULT (this->object_->Check ());
 }
@@ -126,7 +127,7 @@ void Object::check (void)
 //
 // check_tree
 //
-void Object::check_tree (void)
+void Object_Impl::check_tree (void)
 {
   VERIFY_HRESULT (this->object_->CheckTree ());
 }
@@ -134,7 +135,7 @@ void Object::check_tree (void)
 //
 // exempt
 //
-bool Object::exempt (void) const
+bool Object_Impl::exempt (void) const
 {
   VARIANT_BOOL status;
   VERIFY_HRESULT (this->object_->get_Exempt (&status));
@@ -145,7 +146,7 @@ bool Object::exempt (void) const
 //
 // exempt
 //
-void Object::exempt (bool exempt)
+void Object_Impl::exempt (bool exempt)
 {
   VARIANT_BOOL status = exempt ? VARIANT_TRUE : VARIANT_FALSE;
   VERIFY_HRESULT (this->object_->put_Exempt (status));
@@ -154,11 +155,10 @@ void Object::exempt (bool exempt)
 //
 // readonly_access
 //
-void Object::readonly_access (bool readonly, bool propagate)
+void Object_Impl::readonly_access (bool readonly, bool propagate)
 {
   // Convert the parameter.
-  VARIANT_BOOL temp_readonly =
-    readonly ? VARIANT_TRUE : VARIANT_FALSE;
+  VARIANT_BOOL temp_readonly = readonly ? VARIANT_TRUE : VARIANT_FALSE;
 
   if (!propagate)
   {
@@ -173,7 +173,7 @@ void Object::readonly_access (bool readonly, bool propagate)
 //
 // readonly_access
 //
-bool Object::readonly_access (void) const
+bool Object_Impl::readonly_access (void) const
 {
   VARIANT_BOOL temp_readonly;
 
@@ -184,7 +184,7 @@ bool Object::readonly_access (void) const
 //
 // meta
 //
-Meta::Base Object::meta (void) const
+Meta::Base Object_Impl::meta (void) const
 {
   CComPtr <IMgaMetaBase> meta;
   VERIFY_HRESULT (this->impl ()->get_MetaBase (&meta));
@@ -195,7 +195,7 @@ Meta::Base Object::meta (void) const
 //
 // objectinterface_type
 //
-objtype_enum Object::type (void) const
+objtype_enum Object_Impl::type (void) const
 {
   objtype_enum type;
   VERIFY_HRESULT (this->object_->get_ObjType (&type));
@@ -206,43 +206,30 @@ objtype_enum Object::type (void) const
 //
 // parent
 //
-Object Object::parent (void) const
+Object Object_Impl::parent (void) const
 {
-  Object object;
-  VERIFY_HRESULT (this->object_->GetParent (&object.object_, 0));
+  CComPtr <IMgaObject> obj;
+  VERIFY_HRESULT (this->object_->GetParent (&obj, 0));
 
-  return object;
-}
-
-//
-// operator =
-//
-const Object & Object::operator = (const Object & object)
-{
-  if (this != &object)
-    this->object_ = object.object_;
-
-  return *this;
+  // TODO Use factory to create the concrete implementation.
+  return obj.p;
 }
 
 //
 // path
 //
-std::string Object::path (const std::string & separator,
-                          bool leading_separator) const
+std::string Object_Impl::
+path (const std::string & separator, bool leading_separator) const
 {
-  // Store the *this object on the bottom of the stack.
-  std::stack <Object> stack_trace;
-  stack_trace.push (*this);
-
   // Place each of the parents onto the stack until we
   // reach the root element.
-  Object parent = this->parent ();
+  std::stack <Object> stack_trace;
+  Object parent (this->parent ());
 
   while (!parent.is_nil ())
   {
     stack_trace.push (parent);
-    parent = parent.parent ();
+    parent = parent->parent ();
   }
 
   // Pop all the element from the stack while adding their
@@ -254,37 +241,28 @@ std::string Object::path (const std::string & separator,
   if (leading_separator)
     pathstr << separator;
 
-  std::string name = stack_trace.top ().name ();
-
-  if (!name.empty ())
-    pathstr << name;
-  else
-    pathstr << "<noname>";
-
+  pathstr << stack_trace.top ()->name ();
   stack_trace.pop ();
 
   while (!stack_trace.empty ())
   {
-    name = stack_trace.top ().name ();
+    // Get the next name on top of the stack.
+    pathstr << separator << stack_trace.top ()->name ();
 
-    pathstr << separator;
-
-    if (!name.empty ())
-      pathstr << name;
-    else
-      pathstr << "<noname>";
-
+    // Remove the element from the top.
     stack_trace.pop ();
   }
 
-  /// @todo Allow an optional trailing separator.
+  // Finally, add the name of this object to the path.
+  pathstr << separator << this->name ();
+
   return pathstr.str ();
 }
 
 //
 // destroy
 //
-void Object::destroy (void)
+void Object_Impl::destroy (void)
 {
   VERIFY_HRESULT (this->object_->DestroyObject ());
   this->object_.Release ();
@@ -293,21 +271,20 @@ void Object::destroy (void)
 //
 // find_object_by_path
 //
-GAME::Object Object::
-find_object_by_path (const std::string & path) const
+Object Object_Impl::find_object_by_path (const std::string & path) const
 {
-  CComPtr <IMgaObject> object;
+  CComPtr <IMgaObject> obj;
   CComBSTR bstr (path.c_str ());
 
-  VERIFY_HRESULT (this->object_->get_ObjectByPath (bstr, &object));
-  return object.p;
+  VERIFY_HRESULT (this->object_->get_ObjectByPath (bstr, &obj));
+
+  return obj.p;
 }
 
 //
 // children
 //
-size_t Object::
-children (std::vector <GAME::Object> & children) const
+size_t Object_Impl::children (std::vector <GAME::Object> & children) const
 {
   switch (this->type ())
   {
@@ -317,7 +294,7 @@ children (std::vector <GAME::Object> & children) const
       CComPtr <IMgaObjects> temp;
       VERIFY_HRESULT (this->object_->get_ChildObjects (&temp));
 
-      return get_children (temp, children);
+      return get_children (temp.p, children);
     }
     break;
 
@@ -332,7 +309,7 @@ children (std::vector <GAME::Object> & children) const
 //
 // project
 //
-GAME::Project Object::project (void) const
+GAME::Project Object_Impl::project (void) const
 {
   CComPtr <IMgaProject> proj;
   VERIFY_HRESULT (this->object_->get_Project (&proj));
@@ -343,15 +320,18 @@ GAME::Project Object::project (void) const
 //
 // is_equal_to
 //
-bool Object::is_equal_to (const GAME::Object & obj) const
+bool Object_Impl::is_equal_to (const Object_in obj) const
 {
   // Check for self comparison.
-  if (this == &obj)
+  if (this == obj)
     return true;
 
+  if (obj == 0)
+    return false;
+
   // Check for NIL values on either side.
-  if ((this->object_.p == 0 && obj.object_.p != 0) ||
-      (this->object_.p != 0 && obj.object_.p == 0))
+  if ((this->object_.p == 0 && obj->object_.p != 0) ||
+      (this->object_.p != 0 && obj->object_.p == 0))
   {
     return false;
   }
@@ -359,7 +339,7 @@ bool Object::is_equal_to (const GAME::Object & obj) const
   // Since we made it this far, we need to further check the
   // values for equality.
   VARIANT_BOOL equal;
-  VERIFY_HRESULT (this->impl ()->get_IsEqual (obj.object_, &equal));
+  VERIFY_HRESULT (this->impl ()->get_IsEqual (obj->object_, &equal));
 
   return equal == VARIANT_TRUE ? true : false;
 }
@@ -367,20 +347,13 @@ bool Object::is_equal_to (const GAME::Object & obj) const
 //
 // child_by_relative_id
 //
-GAME::Object Object::child_by_relative_id (long relid)
+Object Object_Impl::child_by_relative_id (long relid)
 {
   CComPtr <IMgaObject> object;
   VERIFY_HRESULT (this->impl ()->get_ChildObjectByRelID (relid, &object));
 
+  // TODO Use factory to create the concrete implementation.
   return object.p;
-}
-
-//
-// accept
-//
-void Object::accept (GAME::Visitor & visitor)
-{
-  visitor.visit_Object (*this);
 }
 
 }

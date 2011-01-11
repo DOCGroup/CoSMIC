@@ -14,7 +14,7 @@ namespace GAME
 // handle_object_event
 //
 int Readonly_Event_Handler::
-handle_object_event (Object obj, unsigned long mask)
+handle_object_event (Object_in obj, unsigned long mask)
 {
   // Determine if this is an event that we do allow.
   if ((mask & this->enabled_) != 0)

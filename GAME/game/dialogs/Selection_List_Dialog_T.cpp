@@ -41,14 +41,14 @@ insert (typename std::vector <T>::const_iterator begin,
         typename std::vector <T>::const_iterator end)
 {
   for (; begin != end; ++ begin)
-    Selection_List_Dialog::insert (*begin);
+    Selection_List_Dialog::insert (Object_in (begin->get ()));
 }
 
 //
 // selection
 //
 template <typename T>
-T Selection_List_Dialog_T <T>::selection (void) const
+T Selection_List_Dialog_T <T>::selection (void)
 {
   return T::_narrow (this->selection_);
 }

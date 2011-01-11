@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Model.h
+ * @file      Model_Impl.h
  *
  * $Id$
  *
@@ -10,33 +10,23 @@
  */
 //=============================================================================
 
-#ifndef _GME_MODEL_H_
-#define _GME_MODEL_H_
+#ifndef _GAME_MODEL_H_
+#define _GAME_MODEL_H_
 
-#include "GME_fwd.h"
 #include "FCO.h"
-#include "Collection_T.h"
 
 namespace GAME
 {
 /**
- * @class Model
+ * @class Model_Impl
  *
  * Wrapper class for the IMgaModel interface.
  */
-class GAME_Export Model : public GAME::FCO
+class GAME_Export Model_Impl : public FCO_Impl
 {
 public:
   /// Type definition of the COM interface.
   typedef IMgaModel interface_type;
-
-  /**
-   * Convert a FCO into a Model.
-   *
-   * @param[in]       fco           The source FCO object.
-   * @return          The model object.
-   */
-  static Model _narrow (const GAME::Object & object);
 
   /**
    * Create a new model element.
@@ -46,9 +36,8 @@ public:
    * @param[in]       parent        The parent model.
    * @return          The newly created model.
    */
-  static Model _create (Model parent, const std::string & type);
-
-  static Model _create (Model parent, const Meta::Role & role);
+  static Model _create (const Model_in parent, const std::string & type);
+  static Model _create (const Model_in parent, const Meta::Role_in role);
 
   /**
    * Create a new model element.
@@ -57,37 +46,21 @@ public:
    * @param[in]       parent        Parent folder of the model.
    * @return          The newly created model.
    */
-  static Model _create (Folder parent, const std::string & type);
-
-  static Model _create (Folder parent, const Meta::FCO & type);
+  static Model _create (const Folder_in parent, const std::string & type);
+  static Model _create (const Folder_in parent, const Meta::FCO_in type);
 
   /// Default constructor.
-  Model (void);
+  Model_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       model       The source interface.
    */
-  Model (IMgaModel * model);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       model       The source model.
-   */
-  Model (const Model & model);
+  Model_Impl (IMgaModel * model);
 
   /// Destructor.
-  virtual ~Model (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       model       The source object.
-   * @return          Reference to this object.
-   */
-  const Model & operator = (const Model & model);
+  virtual ~Model_Impl (void);
 
   /**
    * Get the meta information for this model.
@@ -96,31 +69,33 @@ public:
    */
   Meta::Model meta (void) const;
 
-  virtual void accept (GAME::Visitor & visitor);
+  virtual void accept (Visitor * v);
 
   size_t children (std::vector <FCO> & children) const;
   size_t children (const std::string & type, std::vector <FCO> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <FCO> & children) const;
+  size_t children (const Meta::Aspect_in aspect, std::vector <FCO> & children) const;
 
   size_t children (std::vector <Atom> & children) const;
   size_t children (const std::string & type, std::vector <Atom> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <Atom> & children) const;
+  size_t children (const Meta::Aspect_in aspect, std::vector <Atom> & children) const;
 
   size_t children (std::vector <Model> & children) const;
   size_t children (const std::string & type, std::vector <Model> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <Model> & children) const;
+  size_t children (const Meta::Aspect_in aspect, std::vector <Model> & children) const;
 
   size_t children (std::vector <Reference> & children) const;
   size_t children (const std::string & type, std::vector <Reference> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <Reference> & children) const;
+  size_t children (const Meta::Aspect_in aspect, std::vector <Reference> & children) const;
 
   size_t children (std::vector <Connection> & children) const;
   size_t children (const std::string & type, std::vector <Connection> & children) const;
-  size_t children (const Meta::Aspect & aspect, std::vector <Connection> & children) const;
+  size_t children (const Meta::Aspect_in aspect, std::vector <Connection> & children) const;
 
-  size_t children (const std::string & type, std::vector <GAME::Set> & children) const;
+  size_t children (std::vector <Set> & children) const;
+  size_t children (const std::string & type, std::vector <Set> & children) const;
+  size_t children (const Meta::Aspect_in aspect, std::vector <Set> & children) const;
 
-  void Model::attach (IMgaModel * model);
+  void attach (IMgaModel * model);
 
   /// Helper method to get the correct implementation.
   IMgaModel * impl (void) const;
@@ -135,4 +110,4 @@ private:
 #include "Model.inl"
 #endif
 
-#endif // !defined _GME_MODEL_H_
+#endif // !defined _GAME_MODEL_H_

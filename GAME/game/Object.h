@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Object.h
+ * @file      Object_Impl.h
  *
  * $Id$
  *
@@ -10,54 +10,44 @@
  */
 //=============================================================================
 
-#ifndef _GME_OBJECT_H_
-#define _GME_OBJECT_H_
+#ifndef _GAME_OBJECT_H_
+#define _GAME_OBJECT_H_
 
 #include <atlbase.h>
 #include <string>
 #include <vector>
+
+#include "GME_fwd.h"
 #include "MetaBase.h"
+#include "Refcountable.h"
 
 namespace GAME
 {
-// Forward decl.
-class Visitor;
-
-// Forward decl.
-class Project;
-
 /**
- * @class Object
+ * @class Object_Impl
  *
  * Wrapper class for the IMgaObject interface. This is also the base
- * class for all the GME modeling elements, such as Model, FCO, and
- * Folder.
+ * class for all the GME modeling elements, such as Model_Impl, FCO_Impl, and
+ * Folder_Impl.
  */
-class GAME_Export Object
+class GAME_Export Object_Impl : public Refcountable
 {
 public:
   /// Type definition of the COM pointer type.
   typedef IMgaObject interface_type;
 
   /// Default constructor.
-  Object (void);
+  Object_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]     object        Source object to manage.
    */
-  Object (IMgaObject * object);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]     object        Source object to copy.
-   */
-  Object (const Object & object);
+  Object_Impl (IMgaObject * object);
 
   /// Destructor.
-  virtual ~Object (void);
+  virtual ~Object_Impl (void);
 
   /**
    * Attach to an existing object.
@@ -68,14 +58,6 @@ public:
 
   /// Delete the object from the model.
   void destroy (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]     object        Source object to copy.
-   * @return        Reference to this object.
-   */
-  const Object & operator = (const Object & object);
 
   /**
    * Get the id of the object.
@@ -92,7 +74,7 @@ public:
   long relative_id (void) const;
 
   /**
-   * Set the relative id of the object.
+   * Set_Impl the relative id of the object.
    *
    * @param[in]     relid   Relative id of the object.
    */
@@ -135,7 +117,7 @@ public:
   std::string name (void) const;
 
   /**
-   * Set the name of the object.
+   * Set_Impl the name of the object.
    *
    * @param[in]   name      The new name of the object.
    */
@@ -169,14 +151,14 @@ public:
   bool exempt (void) const;
 
   /**
-   * Set the exempt privileges for the object.
+   * Set_Impl the exempt privileges for the object.
    *
    * @param[in]     exempt        The exempt status.
    */
   void exempt (bool exempt);
 
   /**
-   * Set the read-only access privileges for this object.
+   * Set_Impl the read-only access privileges for this object.
    *
    * @param[in]     readonly      The readonly status.
    * @param[in]     propagate     Pass priviledges to all child
@@ -222,44 +204,18 @@ public:
   IMgaObject * impl (void) const;
 
   /**
-   * Test the equality of an object with this object.
-   *
-   * @param[in]       object        The source object.
-   * @retval          true          The objects are equal.
-   * @retval          false         The objects are not equal.
-   */
-  bool operator == (const Object & object) const;
-
-  /**
-   * Test the inequality of an object with this object.
-   *
-   * @param[in]       object        The source object.
-   * @retval          true          The objects are not equal.
-   * @retval          false         The objects are equal.
-   */
-  bool operator != (const Object & object) const;
-
-  /**
-   * Determine if the object is NIL.
-   *
-   * @retval          true          Object is NIL.
-   * @retval          false         Object is not NIL.
-   */
-  bool is_nil (void) const;
-
-  /**
    * Test if an object is equal to another object.
    *
-   * @param[in]       obj           Object for comparison.
+   * @param[in]       obj           Implementation for comparison.
    */
-  bool is_equal_to (const GAME::Object & obj) const;
+  bool is_equal_to (const Object_in obj) const;
 
   /**
    * Find a GME object relative to this location.
    *
    * @param[in]       path          Path name of the object.
    */
-  GAME::Object find_object_by_path (const std::string & path) const;
+  Object find_object_by_path (const std::string & path) const;
 
   /**
    * Get the child objects of this object.
@@ -279,7 +235,7 @@ public:
    *
    * @return          The GME project that owns the object.
    */
-  GAME::Project project (void) const;
+  Project project (void) const;
 
   /**
    * Get the child object by its relative id.
@@ -287,21 +243,24 @@ public:
    * @param[in]       relid         Relative id of child object.
    * @return          The child object.
    */
-  GAME::Object child_by_relative_id (long relid);
-
-  bool operator < (const GAME::Object & obj) const;
-  bool operator > (const GAME::Object & obj) const;
-
-  /// Accept the GAME::Visitor object.
-  virtual void accept (GAME::Visitor & visitor);
+  Object child_by_relative_id (long relid);
 
   /// Get the hash value of the object.
   unsigned long hash (void) const;
 
+  /// Force all objects to implement an accept method.
+  virtual void accept (Visitor * v) = 0;
+
 protected:
   /// The underlying COM pointer.
   ATL::CComPtr <IMgaObject> object_;
+
+private:
+  // prevent the following operations
+  Object_Impl (const Object_Impl &);
+  const Object_Impl & operator = (const Object_Impl &);
 };
+
 }
 
 #if defined (__GAME_INLINE__)

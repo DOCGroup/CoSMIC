@@ -115,7 +115,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
       iter = ports.begin (), iter_end = ports.end ();
 
     for (; iter != iter_end; ++ iter)
-      temp->Append (iter->impl ());
+      temp->Append ((*iter)->impl ());
 
     *portFCOs = temp.Detach ();
 

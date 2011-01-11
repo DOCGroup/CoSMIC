@@ -8,7 +8,7 @@ namespace GAME
 //
 template <typename P, typename T, typename META, typename PRED>
 inline
-bool find (P & parent, const META & metaname, T & element, PRED predicate)
+bool find (P parent, const META & metaname, T & element, PRED predicate)
 {
   contains_t <PRED> c (predicate);
   return c (parent, metaname, element);

@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Atom.h
+ * @file      Atom_Impl.h
  *
  * $Id$
  *
@@ -17,83 +17,63 @@
 
 namespace GAME
 {
+/**
+ * @class Atom_Impl
+ *
+ * Wrapper class for the IMgaAtom interface.
+ */
+class GAME_Export Atom_Impl : public FCO_Impl
+{
+public:
+  /// Type definition for the interface.
+  typedef IMgaAtom interface_type;
+
   /**
-   * @class Atom
+   * Create a new atom element.
    *
-   * Wrapper class for the IMgaAtom interface.
+   * @param[in]       role          The role of the new object, i.e.,
+   *                                its meta name.
+   * @param[in]       parent        The parent model.
+   * @return          The newly created atom.
    */
-  class GAME_Export Atom : public FCO
-  {
-  public:
-    /// Type definition for the interface.
-    typedef IMgaAtom interface_type;
+  static Atom _create (const Model_in parent, const std::string & type);
+  static Atom _create (const Model_in parent, const Meta::Role_in type);
 
-    /**
-     * Convert a FCO into an atom.
-     *
-     * @param[in]       fco           The source FCO object.
-     * @return          The atom object.
-     */
-    static Atom _narrow (const GAME::Object & object);
+  static Atom _create (const Folder_in parent, const std::string & type);
+  static Atom _create (const Folder_in parent, const Meta::FCO_in type);
 
-    /**
-     * Create a new atom element.
-     *
-     * @param[in]       role          The role of the new object, i.e.,
-     *                                its meta name.
-     * @param[in]       parent        The parent model.
-     * @return          The newly created atom.
-     */
-    static Atom _create (Model & parent, const std::string & type);
-    static Atom _create (Model & parent, const Meta::Role & type);
+  /// Default constructor.
+  Atom_Impl (void);
 
-    static Atom _create (Folder & parent, const std::string & type);
-    static Atom _create (Folder & parent, const Meta::FCO & type);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       atom        Pointer to the atom.
+   */
+  Atom_Impl (IMgaAtom * atom);
 
-    /// Default constructor.
-    Atom (void);
+  /// Destructor.
+  virtual ~Atom_Impl (void);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]       atom        Pointer to the atom.
-     */
-    Atom (IMgaAtom * atom);
+  /**
+   * Attach to an existing atom.
+   *
+   * @param[in]       atom        The source interface.
+   */
+  void attach (IMgaAtom * atom);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]       atom        The source object.
-     */
-    Atom (const Atom & atom);
+  virtual void accept (Visitor * v);
 
-    /// Destructor.
-    virtual ~Atom (void);
+  /// Get the meta information for this atom.
+  Meta::Atom meta (void) const;
 
-    /**
-     * Assignment operator.
-     *
-     * @param[in]       atom        The source object.
-     * @return          Reference to this object.
-     */
-    const Atom & operator = (const Atom & atom);
+protected:
+  /// Helper method to get the correct implementation.
+  IMgaAtom * impl (void) const;
 
-    /**
-     * Attach to an existing atom.
-     *
-     * @param[in]       atom        The source interface.
-     */
-    void attach (IMgaAtom * atom);
-
-    virtual void accept (GAME::Visitor & visitor);
-
-  protected:
-    /// Helper method to get the correct implementation.
-    IMgaAtom * impl (void) const;
-
-    /// The underlying interface pointer.
-    mutable ATL::CComPtr <IMgaAtom> atom_;
-  };
+  /// The underlying interface pointer.
+  mutable ATL::CComPtr <IMgaAtom> atom_;
+};
 }
 
 #if defined (__GAME_INLINE__)

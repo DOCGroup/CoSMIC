@@ -14,14 +14,13 @@
 #define _GAME_UTILS_POINT_H_
 
 #include <string>
-#include "GAME_Utils_export.h"
+#include "game/GME_fwd.h"
 #include "game/config.h"
+
+#include "GAME_Utils_export.h"
 
 namespace GAME
 {
-// Forward decl.
-class FCO;
-
 namespace utils
 {
 /**
@@ -170,7 +169,7 @@ public:
  * @retval        false         Failed to retrieved position
  */
 GAME_UTILS_Export
-bool position (const std::string & aspect, const GAME::FCO & fco, Point & pt);
+bool position (const std::string & aspect, const GAME::FCO_in fco, Point & pt);
 
 /**
  * Set the current position of the FCO.
@@ -182,7 +181,7 @@ bool position (const std::string & aspect, const GAME::FCO & fco, Point & pt);
  * @retval        false         Failed to set position
  */
 GAME_UTILS_Export
-bool position (const std::string & aspect, const Point & pt, GAME::FCO & fco);
+bool position (const std::string & aspect, const Point & pt, GAME::FCO_in fco);
 
 }
 }

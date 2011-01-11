@@ -1,6 +1,13 @@
 // -*- C++ -*-
 // $Id$
 
+#include "Model.h"
+#include "Atom.h"
+#include "Folder.h"
+#include "Reference.h"
+#include "Set.h"
+#include "Connection.h"
+
 namespace GAME
 {
 //
@@ -22,28 +29,10 @@ Visitor::Visitor (void)
 }
 
 //
-// visit_Object
-//
-GAME_INLINE
-void Visitor::visit_Object (GAME::Object &)
-{
-
-}
-
-//
-// visit_FCO
-//
-GAME_INLINE
-void Visitor::visit_FCO (const GAME::FCO &)
-{
-
-}
-
-//
 // visit_Model
 //
 GAME_INLINE
-void Visitor::visit_Model (GAME::Model &)
+void Visitor::visit_Model (Model_in)
 {
 
 }
@@ -52,7 +41,7 @@ void Visitor::visit_Model (GAME::Model &)
 // visit_Atom
 //
 GAME_INLINE
-void Visitor::visit_Atom (GAME::Atom &)
+void Visitor::visit_Atom (Atom_in)
 {
 
 }
@@ -61,7 +50,7 @@ void Visitor::visit_Atom (GAME::Atom &)
 // visit_Folder
 //
 GAME_INLINE
-void Visitor::visit_Folder (GAME::Folder &)
+void Visitor::visit_Folder (Folder_in)
 {
 
 }
@@ -70,7 +59,7 @@ void Visitor::visit_Folder (GAME::Folder &)
 // visit_Reference
 //
 GAME_INLINE
-void Visitor::visit_Reference (GAME::Reference &)
+void Visitor::visit_Reference (Reference_in)
 {
 
 }
@@ -79,8 +68,19 @@ void Visitor::visit_Reference (GAME::Reference &)
 // visit_Set
 //
 GAME_INLINE
-void Visitor::visit_Set (GAME::Set &)
+void Visitor::visit_Set (Set_in)
 {
 
 }
+
+//
+// visit_Connection
+//
+GAME_INLINE
+void Visitor::
+visit_Connection (Connection_in)
+{
+
+}
+
 }

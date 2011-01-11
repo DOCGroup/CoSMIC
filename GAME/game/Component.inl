@@ -4,39 +4,29 @@
 namespace GAME
 {
 //
-// Component
+// Component_Impl
 //
 GAME_INLINE
-Component::Component (void)
+Component_Impl::Component_Impl (void)
 {
 
 }
 
 //
-// Component
+// Component_Impl
 //
 GAME_INLINE
-Component::Component (const Component & c)
-: component_ (c.component_)
-{
-
-}
-
-//
-// Component
-//
-GAME_INLINE
-Component::Component (IMgaComponent * c)
+Component_Impl::Component_Impl (IMgaComponent * c)
 : component_ (c)
 {
 
 }
 
 //
-// ~Component
+// ~Component_Impl
 //
 GAME_INLINE
-Component::~Component (void)
+Component_Impl::~Component_Impl (void)
 {
 
 }
@@ -45,7 +35,7 @@ Component::~Component (void)
 // operator ->
 //
 GAME_INLINE
-IMgaComponent * Component::impl (void) const
+IMgaComponent * Component_Impl::impl (void) const
 {
   return this->component_.p;
 }
@@ -54,7 +44,7 @@ IMgaComponent * Component::impl (void) const
 // release
 //
 GAME_INLINE
-void Component::release (void)
+void Component_Impl::release (void)
 {
   this->component_.Release ();
 }
@@ -63,7 +53,7 @@ void Component::release (void)
 // attach
 //
 GAME_INLINE
-void Component::attach (IMgaComponent * c)
+void Component_Impl::attach (IMgaComponent * c)
 {
   this->component_.Attach (c);
 }

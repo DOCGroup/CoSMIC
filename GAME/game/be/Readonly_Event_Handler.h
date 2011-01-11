@@ -30,11 +30,11 @@ public :
   Readonly_Event_Handler (bool destroy_on_close = false);
 
   Readonly_Event_Handler (unsigned long enabled,
-                                   bool destroy_on_close = false);
+                          bool destroy_on_close = false);
 
   virtual ~Readonly_Event_Handler (void);
 
-  virtual int handle_object_event (Object obj, unsigned long mask);
+  virtual int handle_object_event (Object_in obj, unsigned long mask);
 
 protected:
   /// Bitmask of enabled events.

@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      FCO.h
+ * @file      FCO_Impl.h
  *
  * $Id$
  *
@@ -16,64 +16,40 @@
 #include "GME_fwd.h"
 #include "Object.h"
 #include "Part.h"
-#include "Collection_T.h"
 
 namespace GAME
 {
 /**
- * @class FCO
+ * @class FCO_Impl
  *
- * Wrapper class for the IMgaFCO interface.
+ * Wrapper class for the IMgaFCO interface. Since an FCO is always abstract,
+ * is not possible to create one. Instead, you can only narrow an existing
+ * object to an FCO type.
  */
-class GAME_Export FCO : public Object
+class GAME_Export FCO_Impl : public Object_Impl
 {
 public:
   /// Type definition of the COM pointer type.
   typedef IMgaFCO interface_type;
 
-  /**
-   * Create a new atom element.
-   *
-   * @param[in]       role          The role of the new object, i.e.,
-   *                                its meta name.
-   * @param[in]       parent        The parent model.
-   * @return          The newly created atom.
-   */
-  static FCO _create (const std::string & role, Model & parent);
-
-  /**
-   * Extract an FCO object from the GME object.
-   *
-   * @param[in]       object        The source object.
-   * @return          The FCO version of the object, if applicable.
-   */
-  static FCO _narrow (const GAME::Object & object);
-
   /// Default constructor.
-  FCO (void);
+  FCO_Impl (void);
 
   /**
    * Initializing constructor.
    *
-   * @param[in]     fco         Pointer to the source FCO.
+   * @param[in]     fco         Pointer to the source FCO_Impl.
    */
-  FCO (IMgaFCO * fco);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]     fco         Reference to the source FCO.
-   */
-  const FCO (const FCO & fco);
+  FCO_Impl (IMgaFCO * fco);
 
   /// Destructor.
-  virtual ~FCO (void);
+  virtual ~FCO_Impl (void);
 
   /**
-   * Determine if the FCO is an instance.
+   * Determine if the FCO_Impl is an instance.
    *
-   * @retval        true        FCO is an instance.
-   * @retval        false       FCO is not an instance.
+   * @retval        true        FCO_Impl is an instance.
+   * @retval        false       FCO_Impl is not an instance.
    */
   bool is_instance (void) const;
 
@@ -86,27 +62,19 @@ public:
   FCO instance_type (void) const;
 
   /**
-   * Determine if the FCO is the first derivation of anohter
+   * Determine if the FCO_Impl is the first derivation of anohter
    * object. If there object is not a subtype, this will always
    * return \a false.
    *
-   * @retval        true        FCO is a first derivation.
-   * @retval        false       FCO is not a first derivation.
+   * @retval        true        FCO_Impl is a first derivation.
+   * @retval        false       FCO_Impl is not a first derivation.
    */
   bool is_primary_derived (void) const;
 
   /**
-   * Assignment operator.
-   *
-   * @param[in]     fco         The source FCO object.
-   * @return        Reference to this object.
-   */
-  const FCO & operator = (const FCO & fco);
-
-  /**
    * Attach the object to another interface.
    *
-   * @param[in]     fco         The source FCO.
+   * @param[in]     fco         The source FCO_Impl.
    */
   void attach (IMgaFCO * fco);
 
@@ -130,7 +98,7 @@ public:
    * for future usage, as long as the underlying object doesn't
    * change. Otherwise, the interface has to be re-cached.
    *
-   * @return      Pointer to the FCO implementation.
+   * @return      Pointer to the FCO_Impl implementation.
    */
   IMgaFCO * impl (void) const;
 
@@ -142,7 +110,7 @@ public:
    * @param[in]       parent        The parent model.
    * @return          The newly created model.
    */
-  FCO create_instance (Model & parent);
+  FCO create_instance (const Model_in parent);
 
   /**
    * Create a new model element.
@@ -152,7 +120,7 @@ public:
    * @param[in]       parent        The parent model.
    * @return          The newly created model.
    */
-  FCO create_subtype (Model & parent);
+  FCO create_subtype (const Model_in parent);
 
   /**
    * Get the archetype for the object. The archetype is the top
@@ -188,7 +156,7 @@ public:
   std::string registry_value (const std::string & path) const;
 
   /**
-   * Set a registry value.
+   * Set_Impl a registry value.
    *
    * @param[in]   path      The path of the value.
    * @param[in]   value     The new value of \a path.
@@ -203,25 +171,25 @@ public:
    */
   Attribute attribute (const std::string & name) const;
 
-  Attribute attribute (const Meta::Attribute & name) const;
+  Attribute attribute (const Meta::Attribute_in name) const;
 
   /**
-   * Get the attributes of the FCO.
+   * Get the attributes of the FCO_Impl.
    *
-   * @param[out]  attrs     The attributes of the FCO.
+   * @param[out]  attrs     The attributes of the FCO_Impl.
    * @return      Number of attributes.
    */
   size_t attributes (std::vector <Attribute> & attrs) const;
 
   /**
-   * Get the parent of the FCO, which is a model.
+   * Get the parent of the FCO_Impl, which is a model.
    *
    * @return      Parent folder object.
    */
   Model parent_model (void) const;
 
   /**
-   * Get the parent of the FCO, which is a folder.
+   * Get the parent of the FCO_Impl, which is a folder.
    *
    * @return      Parent model object.
    */
@@ -229,7 +197,7 @@ public:
 
   /**
    * Get the collection of connection points that are using
-   * this FCO. It can be either the src or dst connection point
+   * this FCO_Impl. It can be either the src or dst connection point
    * of a connection.
    *
    * @param[out]      points      Collection of connection points
@@ -238,17 +206,17 @@ public:
   size_t in_connection_points (ConnectionPoints & points) const;
 
   size_t in_connections (std::vector <Connection> & conns) const;
-  size_t in_connections (const std::string & type, std::vector <Connection> & conns) const; 
+  size_t in_connections (const std::string & type, std::vector <Connection> & conns) const;
 
   /**
    * Get the part information for the given aspect.
    *
    * @param[in]       aspect      The target aspect.
    */
-  Part part (const Meta::Aspect & aspect) const;
+  Part part (const Meta::Aspect_in aspect) const;
 
   /**
-   * Get the sets that contains this FCO.
+   * Get the sets that contains this FCO_Impl.
    *
    * @param[out]      sets        Collection of sets
    * @return          Number of items in \a sets
@@ -259,12 +227,12 @@ public:
    * Get the collection of objects this object is derived
    * from.
    *
-   * @return          The FCO this FCO is derived from.
+   * @return          The FCO_Impl this FCO_Impl is derived from.
    */
   FCO derived_from (void) const;
 
   /**
-   * Get the registry for the FCO.
+   * Get the registry for the FCO_Impl.
    *
    * @param[out]      nodes         The collection of registry nodes
    * @param[in]       vtypes        Include virtual registry nodes
@@ -280,17 +248,14 @@ public:
   RegistryNode registry_node (const std::string & path) const;
 
   /**
-   * Get the referenced objects for this FCO.
+   * Get the referenced objects for this FCO_Impl.
    *
    * @return      size.
    */
   size_t referenced_by (std::vector <GAME::FCO> & references) const;
 
-  /// Accept the GAME::Visitor object.
-  virtual void accept (GAME::Visitor & visitor);
-
 private:
-  /// The COM pointer for the FCO type.
+  /// The COM pointer for the FCO_Impl type.
   mutable ATL::CComPtr <IMgaFCO> fco_;
 };
 

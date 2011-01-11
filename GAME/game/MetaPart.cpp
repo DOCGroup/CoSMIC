@@ -17,7 +17,7 @@ namespace Meta
 //
 // impl
 //
-IMgaMetaPart * Part::impl (void) const
+IMgaMetaPart * Part_Impl::impl (void) const
 {
   if (this->part_.p == this->metabase_.p)
     return this->part_.p;
@@ -27,12 +27,12 @@ IMgaMetaPart * Part::impl (void) const
 
   VERIFY_HRESULT (this->metabase_.QueryInterface (&this->part_));
   return this->part_;
-} 
+}
 
 //
 // kind
 //
-std::string Part::kind_aspect (void) const
+std::string Part_Impl::kind_aspect (void) const
 {
   CComBSTR kind;
   VERIFY_HRESULT (this->impl ()->get_KindAspect (&kind));
@@ -44,7 +44,7 @@ std::string Part::kind_aspect (void) const
 //
 // is_linked
 //
-bool Part::is_linked (void) const
+bool Part_Impl::is_linked (void) const
 {
   VARIANT_BOOL retval;
   VERIFY_HRESULT (this->impl ()->get_IsLinked (&retval));
@@ -55,7 +55,7 @@ bool Part::is_linked (void) const
 //
 // is_primary
 //
-bool Part::is_primary (void) const
+bool Part_Impl::is_primary (void) const
 {
   VARIANT_BOOL retval;
   VERIFY_HRESULT (this->impl ()->get_IsPrimary (&retval));
@@ -65,24 +65,24 @@ bool Part::is_primary (void) const
 
 //
 // role
-// 
-Role Part::role (void) const
+//
+Role Part_Impl::role (void) const
 {
   CComPtr <IMgaMetaRole> role;
   VERIFY_HRESULT (this->impl ()->get_Role (&role));
 
-  return role.Detach ();
+  return role.p;
 }
 
 //
 // role
-// 
-Aspect Part::parent_aspect (void) const
+//
+Aspect Part_Impl::in_aspect (void) const
 {
   CComPtr <IMgaMetaAspect> aspect;
   VERIFY_HRESULT (this->impl ()->get_ParentAspect (&aspect));
 
-  return Aspect (aspect);
+  return aspect.p;
 }
 
 }

@@ -19,7 +19,10 @@ namespace GAME
 {
 
 // Forward decl.
-class Object;
+template <typename T>
+class Smart_Ptr;
+class Object_Impl;
+typedef Smart_Ptr <Object_Impl> Object;
 
 namespace Dialogs
 {
@@ -52,8 +55,8 @@ public:
    * @param[in]        obj                Target object
    * @param[out]       display_name       Display name of the object.
    */
-  virtual bool get_display_name (const GAME::Object & obj,
-                                 std::string & display_name);
+  virtual bool
+    get_display_name (const Object_in obj, std::string & display_name);
 
 private:
   /// Separator value to use in path construction.

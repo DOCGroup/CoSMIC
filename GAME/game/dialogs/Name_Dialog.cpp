@@ -17,7 +17,7 @@ namespace Dialogs
 // Name_Dialog
 //
 Name_Dialog::
-Name_Dialog (Object obj, CWnd * parent)
+Name_Dialog (Object_in obj, CWnd * parent)
 : CDialog (IDD_GAME_NAME_DIALOG, parent),
   obj_ (obj)
 {
@@ -29,7 +29,7 @@ Name_Dialog (Object obj, CWnd * parent)
 //
 BOOL Name_Dialog::OnInitDialog (void)
 {
-  std::string title = this->obj_.meta ().name () + " Name";
+  std::string title = this->obj_->meta ()->name () + " Name";
   this->SetWindowTextA (title.c_str ());
 
   return FALSE;
@@ -47,11 +47,11 @@ void Name_Dialog::DoDataExchange (CDataExchange * pDX)
   if (pDX->m_bSaveAndValidate)
   {
     DDX_Text (pDX, IDC_NAME, name);
-    this->obj_.name (name.GetBuffer ());
+    this->obj_->name (name.GetBuffer ());
   }
   else
   {
-    name = this->obj_.name ().c_str ();
+    name = this->obj_->name ().c_str ();
     DDX_Text (pDX, IDC_NAME, name);
   }
 }

@@ -16,7 +16,6 @@
 #include <vector>
 #include "game/Object.h"
 
-
 namespace GAME
 {
 namespace Dialogs
@@ -49,9 +48,20 @@ public:
    *
    * @return        The selected string value.
    */
-  GAME::Object selection (void) const;
+  Object selection (void);
 
+  /**
+   * Set the dialog's title.
+   *
+   * @param[in]     str         The dialog's title.
+   */
   void title (const char * str);
+
+  /**
+   * Set the dialog's directions that are displayed to the user.
+   *
+   * @param[in]     str         The dialog's directions.
+   */
   void directions (const char * str);
 
   /**
@@ -59,7 +69,7 @@ public:
    *
    * @param[in]     object        The new object.
    */
-  void insert (const GAME::Object & object);
+  void insert (const Object_in object);
 
   /**
    * Insert a collection of objects into the dialog listing.
@@ -89,10 +99,10 @@ protected:
   virtual BOOL OnInitDialog (void);
 
   /// The selected item from the listbox.
-  GAME::Object selection_;
+  Object selection_;
 
 private:
-  void insert_item (const GAME::Object &, const std::string &);
+  void insert_item (const Object_in &, const std::string &);
 
   /// Display strategy for the dialog.
   Dialog_Display_Strategy * strategy_;

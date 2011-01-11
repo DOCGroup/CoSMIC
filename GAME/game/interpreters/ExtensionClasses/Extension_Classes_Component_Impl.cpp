@@ -53,8 +53,8 @@ Extension_Classes_Component_Impl::~Extension_Classes_Component_Impl (void)
 // invoke_ex
 //
 int Extension_Classes_Component_Impl::
-invoke_ex (GAME::Project & project,
-           GAME::FCO & focus,
+invoke_ex (GAME::Project project,
+           GAME::FCO_in focus,
            std::vector <GAME::FCO> & selected,
            long flags)
 {
@@ -70,7 +70,7 @@ invoke_ex (GAME::Project & project,
 
     GAME::Folder root = project.root_folder ();
 
-    std::string uc_paradigm_name = root.name ();
+    std::string uc_paradigm_name = root->name ();
 
     ::GAME::Utils::normalize (uc_paradigm_name);
 
@@ -82,42 +82,39 @@ invoke_ex (GAME::Project & project,
 
     // collect all the folders and paradigm sheets within
     // the root folder.
-    root.children ("SheetFolder", folders);
-    root.children ("ParadigmSheet", paradigm_sheets);
+    root->children ("SheetFolder", folders);
+    root->children ("ParadigmSheet", paradigm_sheets);
 
     // set the full path for output directory
     std::string output = this->output_;
     output += ("\\");
     output += project.name ().c_str ();
 
-    ::GAME::Utils::create_path (output);
+    GAME::Utils::create_path (output);
 
     // visitor to traverse the model
-    GAME::Extension_Classes_Visitor ecv (this->output_,
-                                         uc_paradigm_name);
+    GAME::Extension_Classes_Visitor ecv (this->output_, uc_paradigm_name);
 
     // visit all the folders
     std::for_each (folders.begin (),
                    folders.end (),
-                   boost::bind (&GAME::Folder::accept,
-                                _1,
-                                boost::ref (ecv)));
+                   boost::bind (&GAME::Folder::impl_type::accept,
+                                boost::bind (&GAME::Folder::get, _1),
+                                &ecv));
 
     // visit all the paradigm sheets
     std::for_each (paradigm_sheets.begin (),
                    paradigm_sheets.end (),
-                   boost::bind (&GAME::Model::accept,
-                                _1,
-                                boost::ref (ecv)));
+                   boost::bind (&GAME::Model::impl_type::accept,
+                                boost::bind (&GAME::Model::get, _1),
+                                &ecv));
 
     // get all the objects in the model needed for processing mpc/mwc
-    std::set <GAME::Object> objects;
-    ecv.get_objects (objects);
-
-    GAME::Extension_Classes_Build_Files_Generator generator (root,
+    const std::set <GAME::Object> & objects = ecv.get_objects ();
+    GAME::Extension_Classes_Build_Files_Generator generator (root.get (),
                                                              objects,
                                                              output,
-                                                             root.name (),
+                                                             root->name (),
                                                              uc_paradigm_name);
 
     // generate the mwc, mpc and stdafx files

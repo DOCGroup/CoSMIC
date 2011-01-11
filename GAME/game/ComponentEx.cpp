@@ -14,7 +14,7 @@ namespace GAME
 //
 // _load
 //
-ComponentEx ComponentEx::_load (const std::string & progid)
+ComponentEx ComponentEx_Impl::_load (const std::string & progid)
 {
   CComPtr <IMgaComponentEx> ptr;
   CA2W tempstr (progid.c_str ());
@@ -26,8 +26,8 @@ ComponentEx ComponentEx::_load (const std::string & progid)
 //
 // parameter
 //
-void ComponentEx::parameter (const std::string & param,
-                             const std::string & value)
+void ComponentEx_Impl::
+parameter (const std::string & param, const std::string & value)
 {
   CComBSTR bstr_param (param.length (), param.c_str ());
   CComVariant variant (value.c_str ());
@@ -38,23 +38,26 @@ void ComponentEx::parameter (const std::string & param,
 //
 // invoke
 //
-void ComponentEx::invoke (Project project,
-                          FCO current,
-                          const std::vector <GAME::FCO> & selected,
-                          long param)
+void ComponentEx_Impl::invoke (Project project,
+                               FCO_in current,
+                               const std::vector <GAME::FCO> & selected,
+                               long param)
 {
+  // Allocate a collection of MgaFCOs.
   CComBSTR progid ("Mga.MgaFCOs");
+
   CComPtr <IMgaFCOs> selected_raw;
   VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
 
+  // Insert the selected FCOs into the collection.
   std::vector <GAME::FCO>::const_iterator
     iter = selected.begin (), iter_end = selected.end ();
 
   for ( ; iter != iter_end; ++ iter)
-    VERIFY_HRESULT (selected_raw->Insert (iter->impl (), 0));
+    VERIFY_HRESULT (selected_raw->Insert ((*iter)->impl (), 0));
 
   VERIFY_HRESULT (this->impl ()->InvokeEx (project.impl (),
-                                           current.impl (),
+                                           current->impl (),
                                            selected_raw,
                                            param));
 }
@@ -62,7 +65,7 @@ void ComponentEx::invoke (Project project,
 //
 // progid
 //
-std::string ComponentEx::progid (void) const
+std::string ComponentEx_Impl::progid (void) const
 {
   CComBSTR bstr;
   VERIFY_HRESULT (this->impl ()->get_ComponentProgID (&bstr));
@@ -75,20 +78,12 @@ std::string ComponentEx::progid (void) const
 //
 // impl
 //
-IMgaComponentEx * ComponentEx::impl (void) const
+IMgaComponentEx * ComponentEx_Impl::impl (void) const
 {
   if (this->component_ex_.p != this->component_.p)
     VERIFY_HRESULT (this->component_.QueryInterface (&this->component_ex_));
 
   return this->component_ex_;
-}
-
-//
-// operator ->
-//
-IMgaComponentEx * ComponentEx::operator -> (void) const
-{
-  return this->impl ();
 }
 
 }

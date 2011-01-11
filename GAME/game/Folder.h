@@ -13,39 +13,32 @@
 #ifndef _GME_FOLDER_H_
 #define _GME_FOLDER_H_
 
-#include "Object.h"
+#include "FCO.h"
 #include "MetaFolder.h"
 #include "RegistryNode.h"
 
 namespace GAME
 {
 /**
- * @class Folder
+ * @class Folder_Impl
  *
  * Wrapper class for the IMgaFolder interface.
  */
-class GAME_Export Folder : public Object
+class GAME_Export Folder_Impl : public Object_Impl
 {
 public:
   /// Type definition of the interface type.
   typedef IMgaFolder interface_type;
 
   /// Default constructor.
-  Folder (void);
+  Folder_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       folder        The source folder interface.
    */
-  Folder (IMgaFolder * folder);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       folder        The source folder object.
-   */
-  Folder (const Folder & folder);
+  Folder_Impl (IMgaFolder * folder);
 
   /**
    * Create a folder.
@@ -54,26 +47,11 @@ public:
    * @param[in]       parent        The parent folder.
    * @return          The newly created folder.
    */
-  static Folder _create (Folder & parent, const std::string & type);
-  static Folder _create (Folder & parent, const Meta::Folder & type);
-
-  /**
-   * Extract the folder element from the object.
-   *
-   * @param[in]       object        The source object.
-   */
-  static Folder _narrow (const GAME::Object & object);
+  static Folder _create (const Folder_in parent, const std::string & type);
+  static Folder _create (const Folder_in parent,  const Meta::Folder_in type);
 
   /// Destructor.
-  virtual ~Folder (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       folder        The source folder object.
-   * @return          Reference to this object.
-   */
-  const Folder & operator = (const Folder & folder);
+  virtual ~Folder_Impl (void);
 
   /**
    * Get the parent of this folder.
@@ -150,7 +128,8 @@ public:
    */
   size_t registry (std::vector <GAME::RegistryNode> & nodes, bool vtypes = false) const;
 
-  virtual void accept (GAME::Visitor & visitor);
+  /// Accept the visitor.
+  virtual void accept (Visitor * v);
 
   /**
    * Attach to an existing folder.
@@ -167,6 +146,7 @@ private:
   mutable ATL::CComPtr <IMgaFolder> folder_;
 };
 
+typedef Smart_Ptr <Folder_Impl> Folder;
 }
 
 #if defined (__GAME_INLINE__)

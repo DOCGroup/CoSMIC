@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Component.h
+ * @file      Component_Impl.h
  *
  * $Id$
  *
@@ -15,18 +15,14 @@
 
 #include "Project.h"
 
-#if !defined (__ComponentLib_h__)
-#include "Mga.h"
-#endif
-
 namespace GAME
 {
 /**
- * @class Component
+ * @class Component_Impl
  *
  * Wrapper class for GME components.
  */
-class GAME_Export Component
+class GAME_Export Component_Impl : public Refcountable
 {
 public:
   /// Type definition of the interface type.
@@ -41,33 +37,29 @@ public:
   static Component _load (const std::string & progid);
 
   /// Default constructor.
-  Component (void);
+  Component_Impl (void);
 
   /**
    * Initializing constructor
    *
    * @param[in]         c       Pointer to the component
    */
-  Component (IMgaComponent * c);
-
-  /**
-   * Copy constructor
-   *
-   * @param[in]         c       The source component
-   */
-  Component (const Component & c);
+  Component_Impl (IMgaComponent * c);
 
   /// Destructor
-  virtual ~Component (void);
+  virtual ~Component_Impl (void);
 
   /**
    * Initialize the component.
    *
    * @param[in]   project     The target project.
    */
-  void initialize (GAME::Project project);
+  void initialize (Project project);
 
+  /// Test the iteractive state of the component.
   bool interactive (void) const;
+
+  /// Set the interactive state of the component.
   void interactive (bool flag);
 
   /**

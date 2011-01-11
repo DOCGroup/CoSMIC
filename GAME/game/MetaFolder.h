@@ -15,42 +15,34 @@
 
 #include <vector>
 #include "MetaBase.h"
-#include "MetaFCO.h"
 
 namespace GAME
 {
 namespace Meta
 {
 /**
- * @class Folder
+ * @class Folder_Impl
  *
  * Wrapper class for the IMgaMetaFolder interface.
  */
-class GAME_Export Folder : public Base
+class GAME_Export Folder_Impl : public Base_Impl
 {
 public:
   /// Type definition of the underlying interface.
   typedef IMgaMetaFolder interface_type;
 
   /// Default constructor.
-  Folder (void);
+  Folder_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]     meta        The source object.
    */
-  Folder (IMgaMetaFolder * meta);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]     meta        The meta folder.
-   */
-  Folder (const Folder & meta);
+  Folder_Impl (IMgaMetaFolder * meta);
 
   /// Destructor.
-  virtual ~Folder (void);
+  virtual ~Folder_Impl (void);
 
   /**
    * Get all the subfolders defined by this folder.
@@ -61,16 +53,28 @@ public:
   size_t children (std::vector <Folder> & folders) const;
 
   /**
-   * Get all the subfolders defined by this folder.
+   * Get the specified meta Folder object.
+   *
+   * @param[in]       name            Name of the folder
+   * @return          The meta folder object.
+   */
+  Folder folder (const std::string & name) const;
+
+  /**
+   * Get all the meta FCO objects defined by this folder.
    *
    * @param[out]      metafolder      Collection of meta folders
    * @return          Number of folders in \a metafolders.
    */
   size_t children (std::vector <FCO> & fcos) const;
 
+  /**
+   * Get the specified meta FCO object.
+   *
+   * @param[in]       name            Name of the FCO
+   * @return          The meta FCO object.
+   */
   FCO child (const std::string & name) const;
-
-  Folder folder (const std::string & name) const;
 
   /**
    * Get a pointer to the implementation.

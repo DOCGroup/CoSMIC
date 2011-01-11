@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Reference.h
+ * @file      Reference_Impl.h
  *
  * $Id$
  *
@@ -13,29 +13,21 @@
 #ifndef _GME_REFERENCE_H_
 #define _GME_REFERENCE_H_
 
-#include "MetaReference.h"
 #include "FCO.h"
+#include "MetaReference.h"
 
 namespace GAME
 {
 /**
- * @class Reference
+ * @class Reference_Impl
  *
  * Wrapper class for the IMgaReference interface.
  */
-class GAME_Export Reference : public FCO
+class GAME_Export Reference_Impl : public FCO_Impl
 {
 public:
   /// Type definition of the COM interface.
   typedef IMgaReference interface_type;
-
-  /**
-   * Convert a FCO into an atom.
-   *
-   * @param[in]       fco           The source FCO object.
-   * @return          The atom object.
-   */
-  static Reference _narrow (const GAME::Object & object);
 
   /**
    * Create a new atom element.
@@ -45,36 +37,21 @@ public:
    * @param[in]       parent        The parent model.
    * @return          The newly created atom.
    */
-  static Reference _create (Model parent, const std::string & type);
-  static Reference _create (Model parent, const Meta::Role & type);
+  static Reference _create (const Model_in parent, const std::string & type);
+  static Reference _create (const Model_in parent, const Meta::Role_in type);
 
   /// Default constructor.
-  Reference (void);
+  Reference_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       ref         The source reference interface.
    */
-  Reference (IMgaReference * ref);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       ref         The source object.
-   */
-  Reference (const Reference & ref);
+  Reference_Impl (IMgaReference * ref);
 
   /// Destructor.
-  virtual ~Reference (void);
-
-  /**
-   * Assignment operator
-   *
-   * @param[in]       ref         The source object.
-   * @return          Reference to this object.
-   */
-  const Reference & operator = (const Reference & ref);
+  virtual ~Reference_Impl (void);
 
   /**
    * Get the FCO to which this reference refers to.
@@ -88,9 +65,7 @@ public:
    *
    * @param[in]       fco          The FCO this reference refers to.
    */
-  void refers_to (const FCO & fco);
-
-  virtual void accept (GAME::Visitor & visitor);
+  void refers_to (const FCO_in fco);
 
   /// Get the meta information for this object.
   virtual Meta::Reference meta (void) const;
@@ -98,10 +73,13 @@ public:
   /// Helper method to get the correct implementation.
   IMgaReference * impl (void) const;
 
+  virtual void accept (Visitor * v);
+
 private:
   /// Pointer to the underlying COM interface.
   mutable ATL::CComPtr <IMgaReference> ref_;
 };
+
 }
 
 #if defined (__GAME_INLINE__)

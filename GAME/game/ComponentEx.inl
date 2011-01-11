@@ -4,41 +4,32 @@
 namespace GAME
 {
 //
-// ComponentEx
+// ComponentEx_Impl
 //
 GAME_INLINE
-ComponentEx::ComponentEx (void)
+ComponentEx_Impl::ComponentEx_Impl (void)
 {
 
 }
 
 //
-// ComponentEx
+// ComponentEx_Impl
 //
 GAME_INLINE
-ComponentEx::ComponentEx (IMgaComponentEx * ptr)
-: Component (ptr)
+ComponentEx_Impl::ComponentEx_Impl (IMgaComponentEx * ptr)
+: Component_Impl (ptr)
 {
 
 }
 
 //
-// ComponentEx
+// ~ComponentEx_Impl
 //
 GAME_INLINE
-ComponentEx::ComponentEx (const ComponentEx & c)
-: Component (c)
+ComponentEx_Impl::~ComponentEx_Impl (void)
 {
 
 }
 
-//
-// ~ComponentEx
-//
-GAME_INLINE
-ComponentEx::~ComponentEx (void)
-{
-
-}
 }
 

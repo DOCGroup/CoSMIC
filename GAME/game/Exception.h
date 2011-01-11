@@ -10,14 +10,15 @@
  */
 //=============================================================================
 
-#ifndef _GME_EXCEPTION_H_
-#define _GME_EXCEPTION_H_
+#ifndef _GAME_EXCEPTION_H_
+#define _GAME_EXCEPTION_H_
 
 #include "GAME_export.h"
 #include "game/config.h"
 #include <atlbase.h>
 #include <string>
 
+/// Macro for throwing an exception if the operation fails.
 #define VERIFY_HRESULT_THROW_EX(method, ex) \
   { \
     HRESULT hr = method; \
@@ -25,6 +26,8 @@
       throw ex; \
   }
 
+/// Macro for verifying that a operation succeeded. If the operation
+/// fails then GAME::Failed_Result exception is thrown.
 #define VERIFY_HRESULT(method) \
   VERIFY_HRESULT_THROW_EX (method, GAME::Failed_Result (hr))
 
@@ -102,4 +105,4 @@ public:
 #include "Exception.inl"
 #endif
 
-#endif  // !defined _GME_EXCEPTION_H_
+#endif  // !defined _GAME_EXCEPTION_H_

@@ -97,42 +97,42 @@ public:
    * @retval          0               Success
    * @retval          -1              Failure
    */
-  virtual int handle_object_event (Object obj, unsigned long mask) = 0;
+  virtual int handle_object_event (Object_in obj, unsigned long mask) = 0;
 
-  virtual int handle_object_created (GAME::Object obj) = 0;
-  virtual int handle_object_destroyed (Object obj) = 0;
+  virtual int handle_object_created (Object_in obj) = 0;
+  virtual int handle_object_destroyed (Object_in obj) = 0;
 
-  virtual int handle_object_attribute (Object obj) = 0;
-  virtual int handle_object_properties (Object obj) = 0;
-  virtual int handle_object_registry (Object obj) = 0;
+  virtual int handle_object_attribute (Object_in obj) = 0;
+  virtual int handle_object_properties (Object_in obj) = 0;
+  virtual int handle_object_registry (Object_in obj) = 0;
 
-  virtual int handle_object_relation (Object obj) = 0;
-  virtual int handle_object_parent (Object obj) = 0;
+  virtual int handle_object_relation (Object_in obj) = 0;
+  virtual int handle_object_parent (Object_in obj) = 0;
 
-  virtual int handle_instance_subtype (Object obj) = 0;
+  virtual int handle_instance_subtype (Object_in obj) = 0;
 
-  virtual int handle_new_child (Object obj) = 0;
-  virtual int handle_lost_child (Object obj) = 0;
+  virtual int handle_new_child (Object_in obj) = 0;
+  virtual int handle_lost_child (Object_in obj) = 0;
 
-  virtual int handle_referenced (Object obj) = 0;
-  virtual int handle_referenced_release (Object obj) = 0;
+  virtual int handle_referenced (Object_in obj) = 0;
+  virtual int handle_referenced_release (Object_in obj) = 0;
 
-  virtual int handle_object_connected (Object obj) = 0;
-  virtual int handle_object_disconnected (Object obj) = 0;
+  virtual int handle_object_connected (Object_in obj) = 0;
+  virtual int handle_object_disconnected (Object_in obj) = 0;
 
-  virtual int handle_set_included (Object obj) = 0;
-  virtual int handle_set_excluded (Object obj) = 0;
+  virtual int handle_set_included (Object_in obj) = 0;
+  virtual int handle_set_excluded (Object_in obj) = 0;
 
-  virtual int handle_marked_readonly (Object obj) = 0;
-  virtual int handle_marked_readwrite (Object obj) = 0;
+  virtual int handle_marked_readonly (Object_in obj) = 0;
+  virtual int handle_marked_readwrite (Object_in obj) = 0;
 
-  virtual int handle_model_open (Object obj) = 0;
-  virtual int handle_model_close (Object obj) = 0;
+  virtual int handle_model_open (Object_in obj) = 0;
+  virtual int handle_model_close (Object_in obj) = 0;
 
-  virtual int handle_object_select (Object obj) = 0;
-  virtual int handle_object_deselect (Object obj) = 0;
+  virtual int handle_object_select (Object_in obj) = 0;
+  virtual int handle_object_deselect (Object_in obj) = 0;
 
-  virtual int handle_object_mouseover (Object obj) = 0;
+  virtual int handle_object_mouseover (Object_in obj) = 0;
 };
 
 }

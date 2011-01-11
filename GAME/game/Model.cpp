@@ -8,6 +8,9 @@
 #include "Model.inl"
 #endif
 
+#include "Exception.h"
+#include "Collection_T.h"
+
 #include "Folder.h"
 #include "Atom.h"
 #include "Reference.h"
@@ -21,114 +24,101 @@
 namespace GAME
 {
 //
-// operator =
-//
-const Model & Model::operator = (const Model & model)
-{
-  if (this != &model)
-    this->object_ = model.object_;
-
-  return *this;
-}
-
-//
 // meta
 //
-Meta::Model Model::meta (void) const
+Meta::Model Model_Impl::meta (void) const
 {
-  return Meta::Model::_narrow (FCO::meta ());
-}
-
-//
-// _narrow
-//
-Model Model::_narrow (const Object & object)
-{
-  CComPtr <IMgaModel> model;
-
-  VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&model),
-                           Invalid_Cast ());
-
-  return model.p;
+  Meta::FCO metafco = FCO_Impl::meta ();
+  return Meta::Model::_narrow (metafco.get ());
 }
 
 //
 // _create
 //
-Model Model::_create (Model parent, const std::string & type)
+Model Model_Impl::
+_create (const Model_in parent, const std::string & type)
 {
-  Meta::Role role = parent.meta ().role (type);
-  return Model::_create (parent, role);
+  Meta::Role role = parent->meta ()->role (type);
+  return Model_Impl::_create (parent, role.get ());
 }
 
 //
 // _create
 //
-Model Model::_create (Model parent, const Meta::Role & role)
+Model Model_Impl::
+_create (const Model_in parent, const Meta::Role_in role)
 {
   CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
+  VERIFY_HRESULT (parent->impl ()->CreateChildObject (role->impl (), &child));
 
-  return Model::_narrow (FCO (child));
+  CComPtr <IMgaModel> mga_model;
+  VERIFY_HRESULT (child.QueryInterface (&mga_model));
+
+  return mga_model.p;
 }
 
 //
 // _create
 //
-Model Model::_create (Folder parent, const std::string & type)
+Model Model_Impl::
+_create (const Folder_in parent, const std::string & type)
 {
-  Meta::FCO meta = parent.meta ().child (type);
-  return Model::_create (parent, meta);
+  Meta::FCO meta = parent->meta ()->child (type);
+  return Model_Impl::_create (parent, meta.get ());
 }
 
 //
 // _create
 //
-Model Model::_create (Folder parent, const Meta::FCO & meta)
+Model Model_Impl::
+_create (const Folder_in parent, const Meta::FCO_in meta)
 {
   CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent.impl ()->CreateRootObject (meta.impl (), &child));
+  VERIFY_HRESULT (parent->impl ()->CreateRootObject (meta->impl (), &child));
 
-  return Model::_narrow (FCO (child));
+  CComPtr <IMgaModel> mga_model;
+  VERIFY_HRESULT (child.QueryInterface (&mga_model));
+
+  return mga_model.p;
 }
 
 //
 // accept
 //
-void Model::accept (Visitor & visitor)
+void Model_Impl::accept (Visitor * v)
 {
-  visitor.visit_Model (*this);
+  v->visit_Model (this);
 }
 
 //
 // children
 //
-size_t Model::children (std::vector <FCO> & children) const
+size_t Model_Impl::children (std::vector <FCO> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (const std::string & type, std::vector <FCO> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
-children (const Meta::Aspect & apsect, std::vector <FCO> & children) const
+size_t Model_Impl::
+children (const Meta::Aspect_in apsect, std::vector <FCO> & children) const
 {
   // Let's get the list of children.
   std::vector <FCO> temp;
@@ -137,10 +127,10 @@ children (const Meta::Aspect & apsect, std::vector <FCO> & children) const
   std::vector <FCO>::const_iterator
     iter = temp.begin (), iter_end = temp.end ();
 
-  // Determine what FCO is part of the specified aspect.
+  // Determine what FCO_Impl is part of the specified aspect.
   for (; iter != iter_end; ++ iter)
   {
-    if (!iter->part (apsect).is_nil ())
+    if (!(*iter)->part (apsect).is_nil ())
       children.push_back (*iter);
   }
 
@@ -150,33 +140,33 @@ children (const Meta::Aspect & apsect, std::vector <FCO> & children) const
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (std::vector <Atom> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (const std::string & type, std::vector <Atom> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
-children (const Meta::Aspect & apsect, std::vector <Atom> & children) const
+size_t Model_Impl::
+children (const Meta::Aspect_in apsect, std::vector <Atom> & children) const
 {
   // Let's get the list of children.
   std::vector <Atom> temp;
@@ -185,10 +175,10 @@ children (const Meta::Aspect & apsect, std::vector <Atom> & children) const
   std::vector <Atom>::const_iterator
     iter = temp.begin (), iter_end = temp.end ();
 
-  // Determine what FCO is part of the specified aspect.
+  // Determine what FCO_Impl is part of the specified aspect.
   for (; iter != iter_end; ++ iter)
   {
-    if (!iter->part (apsect).is_nil ())
+    if (!(*iter)->part (apsect).is_nil ())
       children.push_back (*iter);
   }
 
@@ -198,33 +188,32 @@ children (const Meta::Aspect & apsect, std::vector <Atom> & children) const
 //
 // children
 //
-size_t Model::
-children (std::vector <Model> & children) const
+size_t Model_Impl::children (std::vector <Model> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (const std::string & type, std::vector <Model> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
-children (const Meta::Aspect & apsect, std::vector <Model> & children) const
+size_t Model_Impl::
+children (const Meta::Aspect_in apsect, std::vector <Model> & children) const
 {
   // Let's get the list of children.
   std::vector <Model> temp;
@@ -233,10 +222,10 @@ children (const Meta::Aspect & apsect, std::vector <Model> & children) const
   std::vector <Model>::const_iterator
     iter = temp.begin (), iter_end = temp.end ();
 
-  // Determine what FCO is part of the specified aspect.
+  // Determine what FCO_Impl is part of the specified aspect.
   for (; iter != iter_end; ++ iter)
   {
-    if (!iter->part (apsect).is_nil ())
+    if (!(*iter)->part (apsect).is_nil ())
       children.push_back (*iter);
   }
 
@@ -246,33 +235,33 @@ children (const Meta::Aspect & apsect, std::vector <Model> & children) const
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (std::vector <Connection> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (const std::string & type, std::vector <Connection> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
-children (const Meta::Aspect & apsect, std::vector <Connection> & children) const
+size_t Model_Impl::
+children (const Meta::Aspect_in apsect, std::vector <Connection> & children) const
 {
   // Let's get the list of children.
   std::vector <Connection> temp;
@@ -281,10 +270,10 @@ children (const Meta::Aspect & apsect, std::vector <Connection> & children) cons
   std::vector <Connection>::const_iterator
     iter = temp.begin (), iter_end = temp.end ();
 
-  // Determine what FCO is part of the specified aspect.
+  // Determine what FCO_Impl is part of the specified aspect.
   for (; iter != iter_end; ++ iter)
   {
-    if (!iter->part (apsect).is_nil ())
+    if (!(*iter)->part (apsect).is_nil ())
       children.push_back (*iter);
   }
 
@@ -294,45 +283,32 @@ children (const Meta::Aspect & apsect, std::vector <Connection> & children) cons
 //
 // children
 //
-size_t Model::
-children (const std::string & type, std::vector <Set> & children) const
-{
-  CComPtr <IMgaFCOs> fcos;
-  CComBSTR bstr (type.length (), type.c_str ());
-  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
-
-  return get_children (fcos, children);
-}
-
-//
-// children
-//
-size_t Model::children (std::vector <Reference> & children) const
+size_t Model_Impl::children (std::vector <Reference> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
+size_t Model_Impl::
 children (const std::string & type, std::vector <Reference> & children) const
 {
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos, children);
+  return get_children (fcos.p, children);
 }
 
 //
 // children
 //
-size_t Model::
-children (const Meta::Aspect & apsect, std::vector <Reference> & children) const
+size_t Model_Impl::
+children (const Meta::Aspect_in apsect, std::vector <Reference> & children) const
 {
   // Let's get the list of children.
   std::vector <Reference> temp;
@@ -341,10 +317,58 @@ children (const Meta::Aspect & apsect, std::vector <Reference> & children) const
   std::vector <Reference>::const_iterator
     iter = temp.begin (), iter_end = temp.end ();
 
-  // Determine what FCO is part of the specified aspect.
+  // Determine what FCO_Impl is part of the specified aspect.
   for (; iter != iter_end; ++ iter)
   {
-    if (!iter->part (apsect).is_nil ())
+    if (!(*iter)->part (apsect).is_nil ())
+      children.push_back (*iter);
+  }
+
+  return children.size ();
+}
+
+//
+// children
+//
+size_t Model_Impl::
+children (std::vector <Set> & children) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+
+  return get_children (fcos.p, children);
+}
+
+//
+// children
+//
+size_t Model_Impl::
+children (const std::string & type, std::vector <Set> & children) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  CComBSTR bstr (type.length (), type.c_str ());
+  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
+
+  return get_children (fcos.p, children);
+}
+
+//
+// children
+//
+size_t Model_Impl::
+children (const Meta::Aspect_in apsect, std::vector <Set> & children) const
+{
+  // Let's get the list of children.
+  std::vector <Set> temp;
+  this->children (temp);
+
+  std::vector <Set>::const_iterator
+    iter = temp.begin (), iter_end = temp.end ();
+
+  // Determine what FCO_Impl is part of the specified aspect.
+  for (; iter != iter_end; ++ iter)
+  {
+    if (!(*iter)->part (apsect).is_nil ())
       children.push_back (*iter);
   }
 
@@ -354,7 +378,7 @@ children (const Meta::Aspect & apsect, std::vector <Reference> & children) const
 //
 // impl
 //
-IMgaModel * Model::impl (void) const
+IMgaModel * Model_Impl::impl (void) const
 {
   if (this->model_.p == this->object_.p)
     return this->model_.p;
@@ -369,7 +393,7 @@ IMgaModel * Model::impl (void) const
 //
 // attach
 //
-void Model::attach (IMgaModel * model)
+void Model_Impl::attach (IMgaModel * model)
 {
   VERIFY_HRESULT (model->QueryInterface (&this->object_));
 }

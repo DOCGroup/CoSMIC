@@ -1,0 +1,29 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9120707E-262F-4430-8BDA-A9DB62E750FB}]
+@="GAME.Interpreter.VisitorTest"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9120707E-262F-4430-8BDA-A9DB62E750FB}\ProgID]
+@="GAME.Interpreter.VisitorTest"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9120707E-262F-4430-8BDA-A9DB62E750FB}\InProcServer32]
+@="GAME_Visitor_Testd.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.VisitorTest]
+@="GAME.Interpreter.VisitorTest"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.VisitorTest\CLSID]
+@="{9120707E-262F-4430-8BDA-A9DB62E750FB}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.VisitorTest]
+"Tooltip"="GAME Visitor Test"
+"Paradigm"="MetaGME"
+"Type"=dword:00000001
+"Description"="GAME Visitor Test"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.VisitorTest\Associated]
+"MetaGME"=""

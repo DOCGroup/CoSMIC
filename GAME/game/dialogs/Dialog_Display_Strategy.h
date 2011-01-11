@@ -15,13 +15,12 @@
 
 #include <string>
 #include "game/config.h"
+#include "game/GME_fwd.h"
+
 #include "Dialogs_export.h"
 
 namespace GAME
 {
-
-// Forward decl.
-class Object;
 
 namespace Dialogs
 {
@@ -50,8 +49,8 @@ public:
    * @param[in]        obj                Target object
    * @param[out]       display_name       Display name of the object.
    */
-  virtual bool get_display_name (const GAME::Object & obj,
-                                 std::string & display_name) = 0;
+  virtual bool
+    get_display_name (const Object_in obj, std::string & display_name) = 0;
 };
 
 }

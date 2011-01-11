@@ -4,51 +4,51 @@
 #include "Mga.h"
 
 #include "Set.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Set.inl"
+#endif
+
 #include "Model.h"
+#include "Collection_T.h"
+#include "Exception.h"
+#include "Visitor.h"
+
 #include "MetaRole.h"
 #include "MetaModel.h"
-#include "Visitor.h"
+#include "MetaSet.h"
+
 
 namespace GAME
 {
-//
-// Set
-//
-Set::Set (void)
-{
 
+//
+// _create
+//
+Set Set_Impl::_create (const Model_in parent, const std::string & type)
+{
+  Meta::Role role = parent->meta ()->role (type);
+  return Set_Impl::_create (parent, role.get ());
 }
 
 //
-// Set
+// _create
 //
-Set::Set (IMgaSet * set)
-  : FCO (set)
+Set Set_Impl::_create (const Model_in parent, const Meta::Role_in type)
 {
+  CComPtr <IMgaFCO> child;
+  VERIFY_HRESULT (parent->impl ()->CreateChildObject (type->impl (), &child));
 
-}
+  CComPtr <IMgaSet> mga_set;
+  VERIFY_HRESULT (child.QueryInterface (&mga_set));
 
-//
-// Set
-//
-Set::Set (const Set & set)
-  : FCO (set)
-{
-
-}
-
-//
-// ~Set
-//
-Set::~Set (void)
-{
-
+  return mga_set.p;
 }
 
 //
 // clear
 //
-void Set::clear (void)
+void Set_Impl::clear (void)
 {
   VERIFY_HRESULT (this->impl ()->RemoveAll ());
 }
@@ -56,26 +56,26 @@ void Set::clear (void)
 //
 // insert
 //
-void Set::insert (const FCO & fco)
+void Set_Impl::insert (const FCO_in fco)
 {
-  VERIFY_HRESULT (this->impl ()->AddMember (fco.impl ()));
+  VERIFY_HRESULT (this->impl ()->AddMember (fco->impl ()));
 }
 
 //
 // remove
 //
-void Set::remove (const FCO & fco)
+void Set_Impl::remove (const FCO_in fco)
 {
-  VERIFY_HRESULT (this->impl ()->RemoveMember (fco.impl ()));
+  VERIFY_HRESULT (this->impl ()->RemoveMember (fco->impl ()));
 }
 
 //
 // insert
 //
-bool Set::contains (const FCO & fco)
+bool Set_Impl::contains (const FCO_in fco)
 {
   VARIANT_BOOL is_member;
-  VERIFY_HRESULT (this->impl ()->get_IsMember (fco.impl (), &is_member));
+  VERIFY_HRESULT (this->impl ()->get_IsMember (fco->impl (), &is_member));
 
   return is_member == VARIANT_TRUE ? true : false;
 }
@@ -83,19 +83,19 @@ bool Set::contains (const FCO & fco)
 //
 // members
 //
-size_t Set::members (std::vector <GAME::FCO> & members) const
+size_t Set_Impl::members (std::vector <GAME::FCO> & members) const
 {
   // Get all the members in the set.
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_Members (&fcos));
 
-  return get_children (fcos, members);
+  return get_children (fcos.p, members);
 }
 
 //
 // impl
 //
-IMgaSet * Set::impl (void) const
+IMgaSet * Set_Impl::impl (void) const
 {
   if (this->set_.p == this->object_.p)
     return this->set_.p;
@@ -108,63 +108,19 @@ IMgaSet * Set::impl (void) const
 }
 
 //
-// impl
-//
-const Set & Set::operator = (const Set & set)
-{
-  if (this != &set)
-    this->object_ = set.object_;
-
-  return *this;
-}
-
-//
-// _narrow
-//
-Set Set::_narrow (GAME::Object & object)
-{
-  CComPtr <IMgaSet> set;
-
-  VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&set),
-                           GAME::Invalid_Cast ());
-
-  return set.p;
-}
-
-//
-// _create
-//
-Set Set::_create (Model & parent, const std::string & type)
-{
-  Meta::Role role = parent.meta ().role (type);
-  return Set::_create (parent, role);
-}
-
-//
-// _create
-//
-Set Set::_create (Model & parent, const Meta::Role & type)
-{
-  CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent.impl ()->CreateChildObject (type, &child));
-
-  return Set::_narrow (FCO (child));
-}
-
-//
-// attach
-//
-void Set::attach (IMgaSet * set)
-{
-  FCO::attach (set);
-}
-
-//
 // accept
 //
-void Set::accept (GAME::Visitor & visitor)
+void Set_Impl::accept (Visitor * v)
 {
-  visitor.visit_Set (*this);
+  v->visit_Set (this);
+}
+
+//
+// meta
+//
+Meta::Set Set_Impl::meta (void) const
+{
+  return Meta::Set::_narrow (FCO_Impl::meta ());
 }
 
 }

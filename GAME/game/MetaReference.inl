@@ -7,39 +7,29 @@ namespace Meta
 {
 
 //
-// Reference
+// Reference_Impl
 //
 GAME_INLINE
-Reference::Reference (void)
+Reference_Impl::Reference_Impl (void)
 {
 
 }
 
 //
-// Reference
+// Reference_Impl
 //
 GAME_INLINE
-Reference::Reference (const Reference & r)
-: FCO (r)
+Reference_Impl::Reference_Impl (IMgaMetaReference * r)
+: FCO_Impl (r)
 {
 
 }
 
 //
-// Reference
+// ~Reference_Impl
 //
 GAME_INLINE
-Reference::Reference (IMgaMetaReference * r)
-: FCO (r)
-{
-
-}
-
-//
-// ~Reference
-//
-GAME_INLINE
-Reference::~Reference (void)
+Reference_Impl::~Reference_Impl (void)
 {
 
 }

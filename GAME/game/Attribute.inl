@@ -2,68 +2,49 @@
 
 namespace GAME
 {
-  //
-  // Attribute
-  //
-  GAME_INLINE
-  Attribute::Attribute (void)
-  {
+//
+// Attribute_Impl
+//
+GAME_INLINE
+Attribute_Impl::Attribute_Impl (void)
+{
 
-  }
+}
 
-  //
-  // Attribute
-  //
-  GAME_INLINE
-  Attribute::Attribute (IMgaAttribute * attr)
-  : attr_ (attr)
-  {
+//
+// Attribute_Impl
+//
+GAME_INLINE
+Attribute_Impl::Attribute_Impl (IMgaAttribute * attr)
+: attr_ (attr)
+{
 
-  }
+}
 
-  //
-  // Attribute
-  //
-  GAME_INLINE
-  Attribute::Attribute (const Attribute & attr)
-  : attr_ (attr.attr_)
-  {
+//
+// ~Attribute_Impl
+//
+GAME_INLINE
+Attribute_Impl::~Attribute_Impl (void)
+{
 
-  }
+}
 
-  //
-  // ~Attribute
-  //
-  GAME_INLINE
-  Attribute::~Attribute (void)
-  {
+//
+// attach
+//
+GAME_INLINE
+void Attribute_Impl::attach (IMgaAttribute * attr)
+{
+  this->attr_.Attach (attr);
+}
 
-  }
+//
+// impl
+//
+IMgaAttribute * Attribute_Impl::impl (void) const
+{
+  return this->attr_.p;
+}
 
-  //
-  // attach
-  //
-  GAME_INLINE
-  void Attribute::attach (IMgaAttribute * attr)
-  {
-    this->attr_.Attach (attr);
-  }
-
-  //
-  // operator =
-  //
-  GAME_INLINE
-  const Attribute & Attribute::operator = (const Attribute & attr)
-  {
-    this->attr_ = attr.attr_;
-    return *this;
-  }
-
-  //
-  // impl
-  //
-  IMgaAttribute * Attribute::impl (void)
-  {
-    return this->attr_.p;
-  }
 }

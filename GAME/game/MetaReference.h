@@ -21,27 +21,30 @@ namespace GAME
 namespace Meta
 {
 /**
- * @class Reference
+ * @class Reference_Impl
  */
-class GAME_Export Reference : public FCO
+class GAME_Export Reference_Impl : public FCO_Impl
 {
 public:
+  typedef IMgaMetaReference interface_type;
+
   /// Default constructor.
-  Reference (void);
+  Reference_Impl (void);
 
-  Reference (const Reference & r);
-
-  Reference (IMgaMetaReference * r);
-
-  static Reference _narrow (const Base & b);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       r       Pointer to reference.
+   */
+  Reference_Impl (IMgaMetaReference * r);
 
   /// Destructor.
-  virtual ~Reference (void);
+  virtual ~Reference_Impl (void);
 
   /**
    * Get the valid target FCOs for this reference.
    *
-   * @param[out]          fcos      Target FCOs.     
+   * @param[out]          fcos      Target FCOs.
    */
   size_t targets (std::vector <FCO> & fcos);
 
@@ -58,4 +61,4 @@ private:
 #include "MetaReference.inl"
 #endif
 
-#endif  
+#endif

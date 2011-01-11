@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Set.h
+ * @file      Set_Impl.h
  *
  * $Id$
  *
@@ -14,116 +14,102 @@
 #define _GME_SET_H_
 
 #include "FCO.h"
-#include "Collection_T.h"
 
 namespace GAME
 {
+/**
+ * @class Set_Impl
+ *
+ * Wrapper class for the IMgaSet interface.
+ */
+class GAME_Export Set_Impl : public FCO_Impl
+{
+public:
+  /// Type definition for the interface pointer.
+  typedef IMgaSet interface_type;
+
   /**
-   * @class Set
+   * Create a new set element.
    *
-   * Wrapper class for the IMgaSet interface.
+   * @param[in]       role          The role of the new object, i.e.,
+   *                                its meta name.
+   * @param[in]       parent        The parent model.
+   * @return          The newly created set.
    */
-  class GAME_Export Set : public FCO
-  {
-  public:
-    /// Type definition for the interface pointer.
-    typedef IMgaSet interface_type;
+  static Set _create (const Model_in parent, const std::string & type);
+  static Set _create (const Model_in parent, const Meta::Role_in role);
 
-    /**
-     * Convert a FCO into an set.
-     *
-     * @param[in]       fco           The source FCO object.
-     * @return          The atom object.
-     */
-    static Set _narrow (GAME::Object & object);
+  /// Default constructor.
+  Set_Impl (void);
 
-    /**
-     * Create a new set element.
-     *
-     * @param[in]       role          The role of the new object, i.e.,
-     *                                its meta name.
-     * @param[in]       parent        The parent model.
-     * @return          The newly created set.
-     */
-    static Set _create (Model & parent, const std::string & type);
-    static Set _create (Model & parent, const Meta::Role & role);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       set       The source interface.
+   */
+  Set_Impl (IMgaSet * set);
 
-    /// Default constructor.
-    Set (void);
+  /// Destructor.
+  virtual ~Set_Impl (void);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]       set       The source interface.
-     */
-    Set (IMgaSet * set);
+  /**
+   * Attach to an existing set.
+   *
+   * @param[in]       set       The existing set.
+   */
+  void attach (IMgaSet * set);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]       set       The source set.
-     */
-    Set (const Set & set);
+  /**
+   * Insert an FCO into the set.
+   *
+   * @param[in]     fco       The source FCO object.
+   */
+  void insert (const FCO_in fco);
 
-    /// Destructor.
-    virtual ~Set (void);
+  /**
+   * Remove an FCO from the set.
+   *
+   * @param[in]     fco       The source FCO object.
+   */
+  void remove (const FCO_in fco);
 
-    /**
-     * Attach to an existing set.
-     *
-     * @param[in]       set       The existing set.
-     */
-    void attach (IMgaSet * set);
+  /**
+   * Determine if the set contains a specific FCO object.
+   *
+   * @retval        true      The set contains the object.
+   * @retval        false     The set does not contain the object.
+   */
+  bool contains (const FCO_in fco);
 
-    /**
-     * Assignment operator.
-     *
-     * @param[in]     set         The source set.
-     * @return        Reference to this object.
-     */
-    const Set & operator = (const Set & set);
+  /// Clear all the objects from the set.
+  void clear (void);
 
-    /**
-     * Insert an FCO into the set.
-     *
-     * @param[in]     fco       The source FCO object.
-     */
-    void insert (const FCO & fco);
+  /**
+   * Get all the objects in the set.
+   *
+   * @param[out]    members       Collection of objects in the set.
+   * @return        Number of elements in \a members.
+   */
+  size_t members (std::vector <FCO> & members) const;
 
-    /**
-     * Remove an FCO from the set.
-     *
-     * @param[in]     fco       The source FCO object.
-     */
-    void remove (const FCO & fco);
+  /// Accept the visitor.
+  virtual void accept (Visitor * v);
 
-    /**
-     * Determine if the set contains a specific FCO object.
-     *
-     * @retval        true      The set contains the object.
-     * @retval        false     The set does not contain the object.
-     */
-    bool contains (const FCO & fco);
+  /// Get the meta information for this object.
+  Meta::Set meta (void) const;
 
-    /// Clear all the objects from the set.
-    void clear (void);
+protected:
+  /// Helper method for getting the correct implemenation.
+  IMgaSet * impl (void) const;
 
-    /**
-     * Get all the objects in the set.
-     *
-     * @param[out]    members       Collection of objects in the set.
-     * @return        Number of elements in \a members.
-     */
-    size_t members (std::vector <FCO> & members) const;
+  /// The underlying COM interface pointer.
+  mutable ATL::CComPtr <IMgaSet> set_;
+};
 
-    virtual void accept (GAME::Visitor & visitor);
-
-  protected:
-    /// Helper method for getting the correct implemenation.
-    IMgaSet * impl (void) const;
-
-    /// The underlying COM interface pointer.
-    mutable ATL::CComPtr <IMgaSet> set_;
-  };
 }
+
+#if defined (__GAME_INLINE__)
+#include "Set.inl"
+#endif
+
 #endif  // !defined _GME_SET_H_

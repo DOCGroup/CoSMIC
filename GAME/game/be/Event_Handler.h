@@ -82,7 +82,7 @@ public:
    * @param[in]       meta          The type's meta information
    * @param[in]       eh            Pointer to the event handler
    */
-  int register_handler (const Meta::Base & meta,
+  int register_handler (const Meta::Base_in meta,
                         Event_Handler_Interface * eh);
 
   /**
@@ -91,8 +91,7 @@ public:
    * @param[in]       meta          The type's meta information
    * @param[in]       eh            Pointer to the event handler
    */
-  int register_handler (const Object & obj,
-                        Event_Handler_Interface * eh);
+  int register_handler (const Object_in obj, Event_Handler_Interface * eh);
 
   /**
    * @overload
@@ -100,11 +99,10 @@ public:
    * @param[in]       meta          The type's meta information
    * @param[in]       eh            Pointer to the event handler
    */
-  int unregister_handler (const Object & obj,
-                          Event_Handler_Interface * eh);
+  int unregister_handler (const Object_in obj, Event_Handler_Interface * eh);
 
   /// Unregister all handlers for an instance.
-  int unregister_all (const Object & obj);
+  int unregister_all (const Object_in obj);
 
   /**
    * Set the enable state of the event handler. If \a enable is
@@ -135,11 +133,11 @@ private:
   static int dispatch_global_event (long global_event,
                                     Event_Handler_Interface * eh);
 
-  static int dispatch_object_event (Object obj,
+  static int dispatch_object_event (Object_in obj,
                                     const std::bitset <BITMASK_SIZE> & mask,
                                     const handler_set & handlers);
 
-  static int dispatch_object_event (Object obj,
+  static int dispatch_object_event (Object_in obj,
                                     const std::bitset <BITMASK_SIZE> & mask,
                                     Event_Handler_Interface * eh);
 

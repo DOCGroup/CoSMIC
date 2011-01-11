@@ -68,7 +68,7 @@ handle_global_event (long global_event)
 //
 GAME_INLINE
 int Event_Handler_Impl::
-handle_object_event (Object obj, unsigned long mask)
+handle_object_event (Object_in, unsigned long mask)
 {
   return 0;
 }
@@ -250,7 +250,7 @@ int Event_Handler_Impl::handle_library_attach_end (void)
 // handle_object_created
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_created (GAME::Object obj)
+int Event_Handler_Impl::handle_object_created (GAME::Object_in)
 {
   return 0;
 }
@@ -259,7 +259,7 @@ int Event_Handler_Impl::handle_object_created (GAME::Object obj)
 // handle_object_destroyed
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_destroyed (Object obj)
+int Event_Handler_Impl::handle_object_destroyed (Object_in)
 {
   return 0;
 }
@@ -268,7 +268,7 @@ int Event_Handler_Impl::handle_object_destroyed (Object obj)
 // handle_instance_subtype
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_instance_subtype (Object obj)
+int Event_Handler_Impl::handle_instance_subtype (Object_in)
 {
   return 0;
 }
@@ -277,7 +277,7 @@ int Event_Handler_Impl::handle_instance_subtype (Object obj)
 // handle_object_attribute
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_attribute (Object obj)
+int Event_Handler_Impl::handle_object_attribute (Object_in)
 {
   return 0;
 }
@@ -286,7 +286,7 @@ int Event_Handler_Impl::handle_object_attribute (Object obj)
 // handle_object_properties
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_properties (Object obj)
+int Event_Handler_Impl::handle_object_properties (Object_in)
 {
   return 0;
 }
@@ -295,7 +295,7 @@ int Event_Handler_Impl::handle_object_properties (Object obj)
 // handle_object_registry
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_registry (Object obj)
+int Event_Handler_Impl::handle_object_registry (Object_in)
 {
   return 0;
 }
@@ -304,7 +304,7 @@ int Event_Handler_Impl::handle_object_registry (Object obj)
 // handle_object_relation
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_relation (Object obj)
+int Event_Handler_Impl::handle_object_relation (Object_in)
 {
   return 0;
 }
@@ -313,7 +313,7 @@ int Event_Handler_Impl::handle_object_relation (Object obj)
 // handle_object_parent
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_parent (Object obj)
+int Event_Handler_Impl::handle_object_parent (Object_in)
 {
   return 0;
 }
@@ -322,7 +322,7 @@ int Event_Handler_Impl::handle_object_parent (Object obj)
 // handle_new_child
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_new_child (Object obj)
+int Event_Handler_Impl::handle_new_child (Object_in)
 {
   return 0;
 }
@@ -331,7 +331,7 @@ int Event_Handler_Impl::handle_new_child (Object obj)
 // handle_lost_child
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_lost_child (Object obj)
+int Event_Handler_Impl::handle_lost_child (Object_in)
 {
   return 0;
 }
@@ -340,7 +340,7 @@ int Event_Handler_Impl::handle_lost_child (Object obj)
 // handle_referenced
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_referenced (Object obj)
+int Event_Handler_Impl::handle_referenced (Object_in)
 {
   return 0;
 }
@@ -349,7 +349,7 @@ int Event_Handler_Impl::handle_referenced (Object obj)
 // handle_referenced_release
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_referenced_release (Object obj)
+int Event_Handler_Impl::handle_referenced_release (Object_in)
 {
   return 0;
 }
@@ -358,7 +358,7 @@ int Event_Handler_Impl::handle_referenced_release (Object obj)
 // handle_object_connected
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_connected (Object obj)
+int Event_Handler_Impl::handle_object_connected (Object_in)
 {
   return 0;
 }
@@ -367,7 +367,7 @@ int Event_Handler_Impl::handle_object_connected (Object obj)
 // handle_object_disconnected
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_disconnected (Object obj)
+int Event_Handler_Impl::handle_object_disconnected (Object_in)
 {
   return 0;
 }
@@ -376,7 +376,7 @@ int Event_Handler_Impl::handle_object_disconnected (Object obj)
 // handle_set_included
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_set_included (Object obj)
+int Event_Handler_Impl::handle_set_included (Object_in)
 {
   return 0;
 }
@@ -385,7 +385,7 @@ int Event_Handler_Impl::handle_set_included (Object obj)
 // handle_set_excluded
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_set_excluded (Object obj)
+int Event_Handler_Impl::handle_set_excluded (Object_in)
 {
   return 0;
 }
@@ -394,7 +394,7 @@ int Event_Handler_Impl::handle_set_excluded (Object obj)
 // handle_marked_readonly
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_marked_readonly (Object obj)
+int Event_Handler_Impl::handle_marked_readonly (Object_in)
 {
   return 0;
 }
@@ -403,7 +403,7 @@ int Event_Handler_Impl::handle_marked_readonly (Object obj)
 // handle_marked_readwrite
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_marked_readwrite (Object obj)
+int Event_Handler_Impl::handle_marked_readwrite (Object_in)
 {
   return 0;
 }
@@ -412,7 +412,7 @@ int Event_Handler_Impl::handle_marked_readwrite (Object obj)
 // handle_model_open
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_model_open (Object obj)
+int Event_Handler_Impl::handle_model_open (Object_in)
 {
   return 0;
 }
@@ -421,7 +421,7 @@ int Event_Handler_Impl::handle_model_open (Object obj)
 // handle_model_close
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_model_close (Object obj)
+int Event_Handler_Impl::handle_model_close (Object_in)
 {
   return 0;
 }
@@ -430,7 +430,7 @@ int Event_Handler_Impl::handle_model_close (Object obj)
 // handle_object_select
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_select (Object obj)
+int Event_Handler_Impl::handle_object_select (Object_in)
 {
   return 0;
 }
@@ -439,7 +439,7 @@ int Event_Handler_Impl::handle_object_select (Object obj)
 // handle_object_deselect
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_deselect (Object obj)
+int Event_Handler_Impl::handle_object_deselect (Object_in)
 {
   return 0;
 }
@@ -448,7 +448,7 @@ int Event_Handler_Impl::handle_object_deselect (Object obj)
 // handle_object_mouseover
 //
 GAME_INLINE
-int Event_Handler_Impl::handle_object_mouseover (Object obj)
+int Event_Handler_Impl::handle_object_mouseover (Object_in)
 {
   return 0;
 }

@@ -3,42 +3,32 @@
 namespace GAME
 {
 ///////////////////////////////////////////////////////////////////////////////
-// ConnectoinPoint
+// ConnectionPoint_Impl
 
 //
-// ConnectionPoint
+// ConnectionPoint_Impl
 //
 GAME_INLINE
-ConnectionPoint::ConnectionPoint (void)
+ConnectionPoint_Impl::ConnectionPoint_Impl (void)
 {
 
 }
 
 //
-// ConnectionPoint
+// ConnectionPoint_Impl
 //
 GAME_INLINE
-ConnectionPoint::ConnectionPoint (IMgaConnPoint * point)
+ConnectionPoint_Impl::ConnectionPoint_Impl (IMgaConnPoint * point)
   : point_ (point)
 {
 
 }
 
 //
-// ConnectionPoint
+// ~ConnectionPoint_Impl
 //
 GAME_INLINE
-ConnectionPoint::ConnectionPoint (const ConnectionPoint & point)
-  : point_ (point.point_)
-{
-
-}
-
-//
-// ~ConnectionPoint
-//
-GAME_INLINE
-ConnectionPoint::~ConnectionPoint (void)
+ConnectionPoint_Impl::~ConnectionPoint_Impl (void)
 {
 
 }
@@ -47,33 +37,22 @@ ConnectionPoint::~ConnectionPoint (void)
 // impl
 //
 GAME_INLINE
-IMgaConnPoint * ConnectionPoint::impl (void) const
+IMgaConnPoint * ConnectionPoint_Impl::impl (void) const
 {
   return this->point_.p;
-}
-
-//
-// operator =
-//
-GAME_INLINE
-const ConnectionPoint & ConnectionPoint::
-operator = (const ConnectionPoint & point)
-{
-  this->point_ = point.point_;
-  return *this;
 }
 
 //
 // attach
 //
 GAME_INLINE
-void ConnectionPoint::attach (IMgaConnPoint * point)
+void ConnectionPoint_Impl::attach (IMgaConnPoint * point)
 {
   this->point_.Attach (point);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// ConnectionPoint
+// ConnectionPoints
 
 GAME_INLINE
 ConnectionPoints::ConnectionPoints (void)
@@ -146,42 +125,32 @@ ConnectionPoints::const_iterator ConnectionPoints::end (void) const
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Connection
+// Connection_Impl
 
 //
-// Connection
+// Connection_Impl
 //
 GAME_INLINE
-Connection::Connection (void)
+Connection_Impl::Connection_Impl (void)
 {
 
 }
 
 //
-// Connection
+// Connection_Impl
 //
 GAME_INLINE
-Connection::Connection (const Connection & conn)
-: FCO (conn)
+Connection_Impl::Connection_Impl (IMgaConnection * conn)
+: FCO_Impl (conn)
 {
 
 }
 
 //
-// Connection
+// ~Connection_Impl
 //
 GAME_INLINE
-Connection::Connection (IMgaConnection * conn)
-: FCO (conn)
-{
-
-}
-
-//
-// ~Connection
-//
-GAME_INLINE
-Connection::~Connection (void)
+Connection_Impl::~Connection_Impl (void)
 {
 
 }
@@ -190,7 +159,7 @@ Connection::~Connection (void)
 // operator []
 //
 GAME_INLINE
-GAME::ConnectionPoint Connection::operator [] (const std::string & role)
+ConnectionPoint Connection_Impl::operator [] (const std::string & role)
 {
   return this->connection_point (role);
 }
@@ -199,7 +168,7 @@ GAME::ConnectionPoint Connection::operator [] (const std::string & role)
 // operator []
 //
 GAME_INLINE
-GAME::ConnectionPoint Connection::operator [] (const char * role)
+ConnectionPoint Connection_Impl::operator [] (const char * role)
 {
   return this->connection_point (role);
 }
@@ -208,8 +177,7 @@ GAME::ConnectionPoint Connection::operator [] (const char * role)
 // connection_point
 //
 GAME_INLINE
-ConnectionPoint Connection::
-connection_point (const char * role) const
+ConnectionPoint Connection_Impl::connection_point (const char * role) const
 {
   const std::string str_role (role);
   return this->connection_point (str_role);
@@ -219,18 +187,18 @@ connection_point (const char * role) const
 // src
 //
 GAME_INLINE
-FCO Connection::src (void) const
+FCO Connection_Impl::src (void) const
 {
-  return this->connection_point ("src").target ();
+  return this->connection_point ("src")->target ();
 }
 
 //
 // dst
 //
 GAME_INLINE
-FCO Connection::dst (void) const
+FCO Connection_Impl::dst (void) const
 {
-  return this->connection_point ("dst").target ();
+  return this->connection_point ("dst")->target ();
 }
 
 }

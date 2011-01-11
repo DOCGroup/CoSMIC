@@ -1,11 +1,14 @@
 // $Id$
 
 #include "stdafx.h"
+
 #include "Filter.h"
 #include "Folder.h"
 #include "Model.h"
-#include "Project.h"
 #include "FCO.h"
+#include "Collection_T.h"
+
+#include "MetaFCO.h"
 
 #include "boost/bind.hpp"
 
@@ -46,7 +49,7 @@ append_t <F> append (std::ostream & ostr, F & func)
 //
 // Filter
 //
-Filter::Filter (Project & project)
+Filter::Filter (Project project)
 : project_ (project)
 {
   this->project_.impl ()->CreateFilter (&this->filter_);
@@ -90,7 +93,9 @@ void Filter::kind (std::vector <Meta::FCO> & fcos)
   std::ostringstream ostr;
   std::for_each (fcos.begin (),
                  fcos.end (),
-                 append (ostr, boost::bind (&Meta::FCO::name, _1)));
+                 append (ostr,
+                         boost::bind (&Meta::FCO::impl_type::name,
+                                      boost::bind (&Meta::FCO::get, _1))));
 
   this->kind (ostr.str ());
 }
@@ -125,29 +130,29 @@ size_t Filter::apply (std::vector <FCO> & result) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->project_.impl ()->AllFCOs (this->filter_, &fcos));
 
-  return get_children (fcos, result);
+  return get_children (fcos.p, result);
 }
 
 //
 // apply
 //
-size_t Filter::apply (Model model, std::vector <FCO> & result)
+size_t Filter::apply (const Model_in & model, std::vector <FCO> & result)
 {
   CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (model.impl ()->GetDescendantFCOs (this->filter_, &fcos));
+  VERIFY_HRESULT (model->impl ()->GetDescendantFCOs (this->filter_, &fcos));
 
-  return get_children (fcos, result);
+  return get_children (fcos.p, result);
 }
 
 //
 // apply
 //
-size_t Filter::apply (Folder folder, std::vector <FCO> & result)
+size_t Filter::apply (const Folder_in & folder, std::vector <FCO> & result)
 {
   CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (folder.impl ()->GetDescendantFCOs (this->filter_, &fcos));
+  VERIFY_HRESULT (folder->impl ()->GetDescendantFCOs (this->filter_, &fcos));
 
-  return get_children (fcos, result);
+  return get_children (fcos.p, result);
 }
 
 }

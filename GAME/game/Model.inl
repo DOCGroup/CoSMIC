@@ -3,41 +3,33 @@
 
 namespace GAME
 {
-  //
-  // Model
-  //
-  GAME_INLINE
-  Model::Model (void)
-  {
 
-  }
+//
+// Model_Impl
+//
+GAME_INLINE
+Model_Impl::Model_Impl (void)
+{
 
-  //
-  // Model
-  //
-  GAME_INLINE
-  Model::Model (IMgaModel * model)
-    : FCO (model)
-  {
+}
 
-  }
+//
+// Model_Impl
+//
+GAME_INLINE
+Model_Impl::Model_Impl (IMgaModel * model)
+: FCO_Impl (model)
+{
 
-  //
-  // Model
-  //
-  GAME_INLINE
-  Model::Model (const Model & model)
-    : FCO (model)
-  {
+}
 
-  }
+//
+// ~Model_Impl
+//
+GAME_INLINE
+Model_Impl::~Model_Impl (void)
+{
 
-  //
-  // ~Model
-  //
-  GAME_INLINE
-  Model::~Model (void)
-  {
+}
 
-  }
 }

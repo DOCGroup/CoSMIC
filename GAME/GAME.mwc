@@ -1,12 +1,13 @@
 /// $Id$
 
 workspace (GAME) {
-  cmdline += -include $COSMIC_ROOT/MPC/config
+  cmdline += -include $GAME_ROOT/MPC/config
 
   exclude (!prop:windows) {
     game
   }
-  
-  game/xml
-  game/xme
+  else {
+    game/xml
+    game/xme
+  }
 }

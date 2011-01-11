@@ -1,3 +1,181 @@
+Tue Jan 11 17:22:03 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * GAME.mwc:
+
+          Removed the COSMIC_ROOT definition.
+
+        * game/Atom.h:
+        * game/Atom.inl:
+        * game/Atom.cpp:
+        * game/Attribute.h:
+        * game/Attribute.inl:
+        * game/Attribute.cpp:
+        * game/Collection_T.h:
+        * game/Collection_T.cpp:
+        * game/Component.h:
+        * game/Component.inl:
+        * game/Component.cpp:
+        * game/ComponentEx.h:
+        * game/ComponentEx.inl:
+        * game/ComponentEx.cpp:
+        * game/Connection.h:
+        * game/Connection.inl:
+        * game/Connection.cpp:
+        * game/Exception.h:
+        * game/FCO.h:
+        * game/FCO.inl:
+        * game/FCO.cpp:
+        * game/Filter.h:
+        * game/Filter.cpp:
+        * game/Folder.h:
+        * game/Folder.inl:
+        * game/Folder.cpp:
+        * game/GAME.mpc:
+        * game/GME_fwd.h:
+        * game/Impl_Factory.h:
+        * game/Impl_Factory.inl:
+        * game/Impl_Factory.cpp:
+        * game/MetaAspect.h:
+        * game/MetaAspect.inl:
+        * game/MetaAspect.cpp:
+        * game/MetaAtom.h:
+        * game/MetaAtom.inl:
+        * game/MetaAtom.cpp:
+        * game/MetaAttribute.h:
+        * game/MetaAttribute.inl:
+        * game/MetaAttribute.cpp:
+        * game/MetaBase.h:
+        * game/MetaBase.inl:
+        * game/MetaBase.cpp:
+        * game/MetaConnection.h:
+        * game/MetaConnection.inl:
+        * game/MetaConnection.cpp:
+        * game/MetaEnumItem.h:
+        * game/MetaEnumItem.inl:
+        * game/MetaEnumItem.cpp:
+        * game/MetaFCO.h:
+        * game/MetaFCO.inl:
+        * game/MetaFCO.cpp:
+        * game/MetaFolder.h:
+        * game/MetaFolder.inl:
+        * game/MetaFolder.cpp:
+        * game/MetaModel.h:
+        * game/MetaModel.inl:
+        * game/MetaModel.cpp:
+        * game/MetaPart.h:
+        * game/MetaPart.inl:
+        * game/MetaPart.cpp:
+        * game/MetaReference.h:
+        * game/MetaReference.inl:
+        * game/MetaReference.cpp:
+        * game/MetaRole.h:
+        * game/MetaRole.inl:
+        * game/MetaRole.cpp:
+        * game/MetaSet.h:
+        * game/MetaSet.inl:
+        * game/MetaSet.cpp:
+        * game/Model.h:
+        * game/Model.inl:
+        * game/Model.cpp:
+        * game/Object.h:
+        * game/Object.inl:
+        * game/Object.cpp:
+        * game/Project.cpp:
+        * game/Refcountable.h:
+        * game/Refcountable.inl:
+        * game/Refcountable.cpp:
+        * game/Reference.h:
+        * game/Reference.inl:
+        * game/Reference.cpp:
+        * game/RegistryNode.h:
+        * game/RegistryNode.inl:
+        * game/RegistryNode.cpp:
+        * game/Set.h:
+        * game/Set.inl:
+        * game/Set.cpp:
+        * game/Smart_Ptr.h:
+        * game/Smart_Ptr.inl:
+        * game/Smart_Ptr.cpp:
+        * game/Visitor.h:
+        * game/Visitor.inl:
+        * game/Visitor.cpp:
+
+          Re-design the GAME architecture so that it is possible to dispatch
+          to concrete elements. This means that clients no longer need to write
+          custom dispatchers because the visitor does not behave as expected.
+
+        * game/automation/Automation_App.cpp:
+        * game/be/ComponentEx_Impl_Base.h:
+        * game/be/ComponentEx_Impl_Base.inl:
+        * game/be/ComponentEx_Impl_T.cpp:
+        * game/be/Decorator_Impl.h:
+        * game/be/Decorator_Impl.inl:
+        * game/be/Decorator_T.inl:
+        * game/be/Decorator_T.cpp:
+        * game/be/Event_Handler.h:
+        * game/be/Event_Handler.cpp:
+        * game/be/Event_Handler_Impl.h:
+        * game/be/Event_Handler_Impl.inl:
+        * game/be/Event_Handler_Interface.h:
+        * game/be/Readonly_Event_Handler.h:
+        * game/be/Readonly_Event_Handler.cpp:
+        * game/dialogs/Dialog_Display_Strategy.h:
+        * game/dialogs/Name_Dialog.h:
+        * game/dialogs/Name_Dialog.cpp:
+        * game/dialogs/Object_Path_Dialog_Display_Strategy.h:
+        * game/dialogs/Object_Path_Dialog_Display_Strategy.cpp:
+        * game/dialogs/Selection_List_Dialog.h:
+        * game/dialogs/Selection_List_Dialog.cpp:
+        * game/dialogs/Selection_List_Dialog_T.h:
+        * game/dialogs/Selection_List_Dialog_T.cpp:
+        * game/graphics/Port_Decorator.h:
+        * game/graphics/Port_Decorator.inl:
+        * game/graphics/Port_Decorator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
+        * game/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/manip/copy.h:
+        * game/manip/copy.cpp:
+        * game/utils/Point.h:
+        * game/utils/Point.cpp:
+        * game/utils/Project_Settings.h:
+        * game/utils/Project_Settings.cpp:
+        * game/utils/modelgen.h:
+        * game/utils/modelgen.inl:
+        * game/utils/modelgen.cpp:
+
+          Updated the implementation in each of these files to support to
+          new GAME architecture.
+
+        * tests/mga:
+        * tests/mga/Visitor:
+        * tests/mga/Visitor/GAME_Visitor_Testd.reg:
+        * tests/mga/Visitor/Visitor_Test.idl:
+        * tests/mga/Visitor/Visitor_Test.mpc:
+        * tests/mga/Visitor/Visitor_Test.xme:
+        * tests/mga/Visitor/Visitor_Test_Impl.h:
+        * tests/mga/Visitor/Visitor_Test_Impl.cpp:
+        * tests/mga/Visitor/Visitor_Test_Module.cpp:
+        * tests/mga/Visitor/stdafx.h:
+        * tests/mga/Visitor/stdafx.cpp:
+
+          Test to verify the visitor is working correctly, i.e., dispatching
+          to the concrete implementations.
+
+        * game/Interpreter.h:
+        * game/Interpreter.cpp:
+
+          Removed these files.
+
 Fri Dec  3 14:45:10 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * AUTHORS:

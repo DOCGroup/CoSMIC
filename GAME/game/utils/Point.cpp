@@ -18,12 +18,12 @@ namespace utils
 //
 // position
 //
-bool position (const std::string & aspect, const GAME::FCO & fco, Point & pt)
+bool position (const std::string & aspect, const GAME::FCO_in fco, Point & pt)
 {
   // Get the string version of the position
   std::ostringstream regval;
   regval << "PartRegs/" << aspect << "/Position";
-  std::string position = fco.registry_value (regval.str ());
+  std::string position = fco->registry_value (regval.str ());
 
   // Extract the points from the position.
   std::istringstream istr (position);
@@ -47,7 +47,7 @@ bool position (const std::string & aspect, const GAME::FCO & fco, Point & pt)
 //
 // position
 //
-bool position (const std::string & aspect, const Point & pt, GAME::FCO & fco)
+bool position (const std::string & aspect, const Point & pt, GAME::FCO_in fco)
 {
   // Convert the point in a position value.
   std::ostringstream position;
@@ -59,7 +59,7 @@ bool position (const std::string & aspect, const Point & pt, GAME::FCO & fco)
   // Set the string version of the position
   std::ostringstream regval;
   regval << "PartRegs/" << aspect << "/Position";
-  fco.registry_value (regval.str (), position.str ());
+  fco->registry_value (regval.str (), position.str ());
 
   return true;
 }

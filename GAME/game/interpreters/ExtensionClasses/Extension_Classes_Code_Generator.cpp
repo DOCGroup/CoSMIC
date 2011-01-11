@@ -16,13 +16,13 @@ namespace GAME
 //
 Extension_Classes_Code_Generator::
 Extension_Classes_Code_Generator (std::string uc_paradigm_name,
-                                  const GAME::FCO fco,
+                                  GAME::FCO_in fco,
                                   std::string outdir)
 : indentation_h_ ("  "),
   indentation_cpp_ ("  "),
-  class_name_ (fco.name ()),
-  meta_name_ (fco.meta ().name ()),
-  path_ (fco.path ("\\", true)),
+  class_name_ (fco->name ()),
+  meta_name_ (fco->meta ()->name ()),
+  path_ (fco->path ("\\", true)),
   uc_paradigm_name_ (uc_paradigm_name),
   done_inheriting_ (false),
   has_attribute_ (false),
@@ -164,7 +164,7 @@ generate_connector_connections (std::string name)
   this->member_functions_cpp_ << this->generate_function_comments_header (function_name);
   this->member_functions_cpp_ << "void " << this->class_name_ << "::"
                               << function_name << " (std::vector <"
-                              << name << "> & conns)" << std::endl << "{" 
+                              << name << "> & conns)" << std::endl << "{"
                               << std::endl << this->indentation_cpp_
                               << "std::vector <GAME::Connection> v;"
                               << std::endl << this->indentation_cpp_
@@ -226,7 +226,7 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
   // generate the header preamble
   this->generate_header_preamble ();
 
-  std::string ifndef  = this->fco_.path ("_", true);
+  std::string ifndef  = this->fco_->path ("_", true);
   ifndef += "_H_";
 
   ::GAME::Utils::normalize (ifndef);
@@ -276,7 +276,7 @@ void Extension_Classes_Code_Generator::generate_h_file (void)
              << this->member_functions_h_.str ();
 
   if (!this->member_variables_.str ().empty ())
-    this->out_ << std::endl << "private:" << std::endl 
+    this->out_ << std::endl << "private:" << std::endl
                << this->member_variables_.str () << std::endl;
 
   this->out_ << "};" << std::endl << std::endl
@@ -338,7 +338,8 @@ void Extension_Classes_Code_Generator::set_inheritance_flag (void)
 //
 // generate_attribute_list
 //
-void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
+void Extension_Classes_Code_Generator::
+generate_attribute_list (FCO_Impl * fco)
 {
   if (!this->has_attribute_)
     this->add_cpp_includes ("game/Attribute");
@@ -346,8 +347,8 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
   this->has_attribute_ = true;
 
   std::string function_name, return_type;
-  std::string name = fco.name ();
-  std::string meta_name = fco.meta ().name ();
+  std::string name = fco->name ();
+  std::string meta_name = fco->meta ()->name ();
 
   if (meta_name == "BooleanAttribute")
   {
@@ -361,7 +362,8 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
   }
   else if (meta_name == "FieldAttribute")
   {
-    std::string data_type = fco.attribute ("DataType").string_value ();
+    static const std::string attr_DataType ("DataType");
+    std::string data_type = fco->attribute (attr_DataType)->string_value ();
 
     if (data_type == "integer")
     {
@@ -390,11 +392,11 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
                               << "::" << name << " (void)" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
                               << "static const std::string attrname (\"" << name << "\");"
-                              << std::endl << this->indentation_cpp_ 
+                              << std::endl << this->indentation_cpp_
                               << "return this->attribute (attrname)."
                               << function_name << " ();" << std::endl
                               << "}" << std::endl << std::endl;
-  
+
   // generate functions for setting the value
   this->member_functions_h_   << this->indentation_h_ << "void "
                               << name << " (" << return_type << " val);"
@@ -408,7 +410,7 @@ void Extension_Classes_Code_Generator::generate_attribute_list (GAME::FCO fco)
                               << name << "\");" << std::endl
                               << this->indentation_cpp_ << "this->attribute (attrname)."
                               << function_name << " (val);" << std::endl
-                              << "}" << std::endl << std::endl;  
+                              << "}" << std::endl << std::endl;
 }
 
 

@@ -36,11 +36,12 @@ project (GAME) : acelib, game_lib, boost_base {
     Filter.cpp
     Folder.cpp
     GAME.cpp
-    Interpreter.cpp
+    Impl_Factory.cpp
     Model.cpp
     Object.cpp
     Part.cpp
     Project.cpp
+    Refcountable.cpp
     Reference.cpp
     RegistryNode.cpp
     Set.cpp
@@ -48,9 +49,11 @@ project (GAME) : acelib, game_lib, boost_base {
     Transaction.cpp
     XML.cpp
 
+    MetaAtom.cpp
     MetaAspect.cpp
     MetaAttribute.cpp
     MetaBase.cpp
+    MetaConnection.cpp
     MetaEnumItem.cpp
     MetaFolder.cpp
     MetaFCO.cpp
@@ -59,15 +62,17 @@ project (GAME) : acelib, game_lib, boost_base {
     MetaProject.cpp
     MetaRole.cpp
     MetaReference.cpp
+    MetaSet.cpp
 
     stlace.cpp
     Visitor.cpp
-    
+
     Utils.cpp
   }
 
   Template_Files {
     Collection_T.cpp
+    Smart_Ptr.cpp
   }
 
   Header_Files {

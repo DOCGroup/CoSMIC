@@ -43,11 +43,12 @@ public:
   virtual ~Selection_List_Dialog_T (void);
 
   void insert (const std::vector <T> & items);
+
   void insert (typename std::vector <T>::const_iterator begin,
                typename std::vector <T>::const_iterator end);
 
   /// Get the current selection.
-  T selection (void) const;
+  T selection (void);
 };
 
 }

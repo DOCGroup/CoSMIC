@@ -5,61 +5,34 @@ namespace GAME
 {
 namespace Meta
 {
-  //
-  // Role
-  //
-  GAME_INLINE
-  Role::Role (void)
-  {
 
-  }
+//
+// Role_Impl
+//
+GAME_INLINE
+Role_Impl::Role_Impl (void)
+{
 
-  //
-  // Role
-  //
-  GAME_INLINE
-  Role::Role (IMgaMetaRole * meta)
-  : Base (meta)
-  {
+}
 
-  }
+//
+// Role_Impl
+//
+GAME_INLINE
+Role_Impl::Role_Impl (IMgaMetaRole * meta)
+: Base_Impl (meta)
+{
 
-  //
-  // Role
-  //
-  GAME_INLINE
-  Role::Role (const Role & role)
-  : Base (role)
-  {
+}
 
-  }
+//
+// ~Role_Impl
+//
+GAME_INLINE
+Role_Impl::~Role_Impl (void)
+{
 
-  //
-  // ~Role
-  //
-  GAME_INLINE
-  Role::~Role (void)
-  {
+}
 
-  }
-
-  //
-  // operator =
-  //
-  GAME_INLINE
-  const Role & Role::operator = (const Role & role)
-  {
-    Base::attach (role);
-    return *this;
-  }
-
-  //
-  // operater IMgaMetaRole *
-  //
-  GAME_INLINE
-  Role::operator IMgaMetaRole * (void) const
-  {
-    return this->impl ();
-  }
 }
 }

@@ -6,54 +6,31 @@ namespace GAME
 namespace Meta
 {
 //
-// Aspect
+// Aspect_Impl
 //
 GAME_INLINE
-Aspect::Aspect (void)
+Aspect_Impl::Aspect_Impl (void)
 {
 
 }
 
 //
-// Aspect
+// Aspect_Impl
 //
 GAME_INLINE
-Aspect::Aspect (const Aspect & aspect)
-: Base (aspect)
+Aspect_Impl::Aspect_Impl (IMgaMetaAspect * aspect)
+: Base_Impl (aspect)
 {
 
 }
 
 //
-// Aspect
+// ~Aspect_Impl
 //
 GAME_INLINE
-Aspect::Aspect (IMgaMetaAspect * aspect)
-: Base (aspect)
+Aspect_Impl::~Aspect_Impl (void)
 {
 
-}
-
-//
-// ~Aspect
-//
-GAME_INLINE
-Aspect::~Aspect (void)
-{
-
-}
-
-//
-// operator =
-//
-GAME_INLINE
-const Aspect & Aspect::operator = (const Aspect & aspect)
-{
-  if (this == &aspect)
-    return *this;
-
-  Base::attach (aspect.impl ());
-  return *this;
 }
 
 }

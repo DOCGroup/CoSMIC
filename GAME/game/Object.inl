@@ -6,38 +6,29 @@
 namespace GAME
 {
 //
-// Object
+// Object_Impl
 //
 GAME_INLINE
-Object::Object (void)
+Object_Impl::Object_Impl (void)
 {
 
 }
 
 //
-// Object
+// Object_Impl
 //
 GAME_INLINE
-Object::Object (IMgaObject * object)
+Object_Impl::Object_Impl (IMgaObject * object)
 : object_ (object)
 {
 
 }
-//
-// Object
-//
-GAME_INLINE
-Object::Object (const Object & obj)
-: object_ (obj.object_)
-{
-
-}
 
 //
-// ~Object
+// ~Object_Impl
 //
 GAME_INLINE
-Object::~Object (void)
+Object_Impl::~Object_Impl (void)
 {
 
 }
@@ -46,79 +37,34 @@ Object::~Object (void)
 // attach
 //
 GAME_INLINE
-void Object::attach (IMgaObject * object)
+void Object_Impl::attach (IMgaObject * object)
 {
   this->object_.Attach (object);
-}
-
-//
-// operator ==
-//
-GAME_INLINE
-bool Object::operator == (const Object & obj) const
-{
-  return this->is_equal_to (obj);
-}
-
-//
-// operator !=
-//
-GAME_INLINE
-bool Object::operator != (const Object & obj) const
-{
-  return !this->is_equal_to (obj);
 }
 
 //
 // impl
 //
 GAME_INLINE
-IMgaObject * Object::impl (void) const
+IMgaObject * Object_Impl::impl (void) const
 {
   return this->object_.p;
-}
-
-//
-// is_nil
-//
-GAME_INLINE
-bool Object::is_nil (void) const
-{
-  return this->object_.p == 0;
 }
 
 //
 // release
 //
 GAME_INLINE
-void Object::release (void)
+void Object_Impl::release (void)
 {
   this->object_.Release ();
-}
-
-//
-// operator <
-//
-GAME_INLINE
-bool Object::operator < (const GAME::Object & obj) const
-{
-  return this->object_.p < obj.object_.p;
-}
-
-//
-// operator >
-//
-GAME_INLINE
-bool Object::operator > (const GAME::Object & obj) const
-{
-  return this->object_.p > obj.object_.p;
 }
 
 //
 // hash
 //
 GAME_INLINE
-unsigned long Object::hash (void) const
+unsigned long Object_Impl::hash (void) const
 {
   return ACE::hash_pjw (this->id ().c_str ());
 }

@@ -7,20 +7,21 @@ namespace GAME
 // get_objects
 //
 GAME_INLINE
-void Extension_Classes_Visitor::get_objects (std::set <GAME::Object> & objects)
+const std::set <Object> & Extension_Classes_Visitor::get_objects (void) const
 {
-  objects = this->objects_;
+  return this->objects_;
 }
 
 //
 // get_src_connections
 //
 GAME_INLINE
-void Extension_Classes_Visitor::get_src_connections (GAME::Connection connection,
-                                                     std::string name,
-                                                     CONNECTIONS & connection_vector)
+void Extension_Classes_Visitor::
+get_src_connections (Connection_in conn,
+                     std::string name,
+                     CONNECTIONS & connection_vector)
 {
-  connection["src"].target ().in_connections (name, connection_vector);
+  conn->src ()->in_connections (name, connection_vector);
 }
 
 //
@@ -28,11 +29,11 @@ void Extension_Classes_Visitor::get_src_connections (GAME::Connection connection
 //
 GAME_INLINE
 void Extension_Classes_Visitor::
-get_dst_connections (GAME::Connection connection,
-                           std::string name,
-                           CONNECTIONS & connection_vector)
+get_dst_connections (Connection_in conn,
+                     std::string name,
+                     CONNECTIONS & connection_vector)
 {
-  connection["dst"].target ().in_connections (name, connection_vector);
+  conn->dst ()->in_connections (name, connection_vector);
 }
 
 //

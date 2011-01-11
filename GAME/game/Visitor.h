@@ -36,25 +36,23 @@ public:
   /// Destructor.
   virtual ~Visitor (void);
 
-  /// Visit a GAME::Object
-  virtual void visit_Object (GAME::Object &);
+  /// Visit a GAME::Model_Impl
+  virtual void visit_Model (Model_in);
 
-  /// Visit a GAME::FCO
-  virtual void visit_FCO (const GAME::FCO &);
+  /// Visit a GAME::Atom_Impl
+  virtual void visit_Atom (Atom_in);
 
-  /// Visit a GAME::Model
-  virtual void visit_Model (GAME::Model &);
+  /// Visit a GAME::Folder_Impl_Impl
+  virtual void visit_Folder (Folder_in);
 
-  /// Visit a GAME::Atom
-  virtual void visit_Atom (GAME::Atom &);
+  /// Visit a GAME::Reference_Impl
+  virtual void visit_Reference (Reference_in);
 
-  /// Visit a GAME::Folder
-  virtual void visit_Folder (GAME::Folder &);
+  /// Visit a GAME::Set_Impl
+  virtual void visit_Set (Set_in);
 
-  /// Visit a GAME::Reference
-  virtual void visit_Reference (GAME::Reference &);
-
-  virtual void visit_Set (GAME::Set &);
+  /// Visit a GAME::Set_Impl
+  virtual void visit_Connection (Connection_in);
 };
 }
 

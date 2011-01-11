@@ -10,8 +10,8 @@
  */
 //=============================================================================
 
-#ifndef _PICML_UDM_UTILS_MODELGEN_H_
-#define _PICML_UDM_UTILS_MODELGEN_H_
+#ifndef _GAME_UTILS_MODELGEN_H_
+#define _GAME_UTILS_MODELGEN_H_
 
 #include <iterator>
 
@@ -44,7 +44,7 @@ public:
    * @param[out]        element           The child element.
    */
   template <typename P, typename T, typename META>
-  bool operator () (P & parent,
+  bool operator () (P parent,
                     const META & metaname,
                     T & element);
 
@@ -81,7 +81,7 @@ template <typename PRED>
 contains_t <PRED> contains (PRED predicate);
 
 template <typename P, typename T, typename META, typename PRED>
-bool find (P & parent, const META & metaname, T & element, PRED predicate);
+bool find (P parent, const META & metaname, T & element, PRED predicate);
 
 /**
  * Create an element if a child that satifies the specified predicate can
@@ -93,7 +93,7 @@ bool find (P & parent, const META & metaname, T & element, PRED predicate);
  * @param[in]       predicate    Predicate to search for.
  */
 template <typename P, typename T, typename META, typename PRED>
-bool create_if (P & parent, const META & metaname, T & element, PRED predicate);
+bool create_if (P parent, const META & metaname, T & element, PRED predicate);
 
 /**
  * Create an element if a child that satifies the specified predicate can
@@ -105,20 +105,20 @@ bool create_if (P & parent, const META & metaname, T & element, PRED predicate);
  * @param[in]       predicate     Predicate to search for.
  */
 template <typename P, typename T, typename META, typename PRED>
-bool create_if (P & parent,
+bool create_if (P parent,
                 const META & metaname,
                 T collection,
                 typename T::value_type & element,
                 PRED predicate);
 
 template <typename P, typename T, typename META, typename PRED>
-bool create_if_not (P & parent,
+bool create_if_not (P parent,
                     const META & metaname,
                     T & element,
                     PRED predicate);
 
 template <typename P, typename T, typename META, typename PRED>
-bool create_if_not (P & parent,
+bool create_if_not (P parent,
                     const META & metaname,
                     const T & collection,
                     typename T::value_type & element,
@@ -134,22 +134,22 @@ bool create_if_not (P & parent,
  * @param[in]       predicate    Predicate to search for.
  */
 template <typename P, typename T, typename PRED>
-bool create_subtype_if (P & parent, T & element, T & subtype, PRED predicate);
+bool create_subtype_if (P parent, T & element, T & subtype, PRED predicate);
 
 template <typename P, typename T, typename PRED>
-bool create_subtype_if_not (P & parent, T & element, T & subtype, PRED predicate);
+bool create_subtype_if_not (P parent, T & element, T & subtype, PRED predicate);
 
 /**
  *
  */
 template <typename P, typename T, typename PRED>
-bool create_instance_if (P & parent, T & element, T & instance, PRED predicate);
+bool create_instance_if (P parent, T & element, T & instance, PRED predicate);
 
 template <typename P, typename T, typename PRED>
-bool create_instance_if_not (P & parent, T & element, T & instance, PRED predicate);
+bool create_instance_if_not (P parent, T & element, T & instance, PRED predicate);
 }
 
 #include "modelgen.inl"
 #include "modelgen.cpp"
 
-#endif  // !defined _PICML_UDM_UTILS_MODELGEN_H_
+#endif  // !defined _GAME_UTILS_MODELGEN_H_

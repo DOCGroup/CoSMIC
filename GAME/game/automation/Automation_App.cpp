@@ -168,7 +168,7 @@ int GAME_Automation_App::open_gme_project (void)
 {
   // Determine if the project is a MGA file, or an XME file.
   this->is_mga_file_ = this->opts_.project_.rfind (".mga") != std::string::npos;
-    
+
   if (this->is_mga_file_)
   {
     std::ostringstream connstr;
@@ -225,7 +225,7 @@ int GAME_Automation_App::open_gme_project (void)
                          -1);
   }
 
-  // Make sure we have the add-ons enabled. Otherwise, the 
+  // Make sure we have the add-ons enabled. Otherwise, the
   // project may enter an inconsistent state.
   this->project_.enable_auto_addons (this->opts_.enable_auto_addons_);
 
@@ -271,27 +271,30 @@ int GAME_Automation_App::run (const std::string & progid)
               progid.c_str ()));
 
   // Load the specified interpreter.
-  GAME::ComponentEx interpreter = GAME::ComponentEx::_load (progid);
+  GAME::ComponentEx interpreter = GAME::ComponentEx_Impl::_load (progid);
 
   // Set the interactive state.
-  interpreter.interactive (this->opts_.interactive_);
+  interpreter->interactive (this->opts_.interactive_);
 
   // Pass the parameters to the interpreter.
   typedef GAME_Automation_App_Options::param_t param_t;
 
-  std::for_each (this->opts_.params_.begin (),
-                 this->opts_.params_.end (),
-                 boost::bind (&GAME::ComponentEx::parameter,
-                              boost::ref (interpreter),
-                              boost::bind (&param_t::value_type::first, _1),
-                              boost::bind (&param_t::value_type::second, _1)));
+  param_t::const_iterator
+    iter = this->opts_.params_.begin (),
+    iter_end = this->opts_.params_.end ();
+
+  for (; iter != iter_end; ++ iter)
+    interpreter->parameter (iter->first, iter->second );
 
   GAME::FCO focus;
   std::vector <GAME::FCO> selected;
 
   // Initialize the interpreter and then invoke it.
-  interpreter.initialize (this->project_);
-  interpreter.invoke (this->project_, focus, selected, 0);
+  interpreter->initialize (this->project_);
+  interpreter->invoke (this->project_,
+                       focus.get (),
+                       selected,
+                       0);
 
   return 0;
 }

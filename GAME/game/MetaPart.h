@@ -23,43 +23,28 @@ namespace GAME
 namespace Meta
 {
 /**
- * @class Part
+ * @class Part_Impl
  *
  * Wrapper class for the IMgaMetaPart interface.
  */
-class GAME_Export Part : public Base
+class GAME_Export Part_Impl : public Base_Impl
 {
 public:
   /// Type definition of the COM interface.
   typedef IMgaMetaPart interface_type;
 
   /// Default constructor.
-  Part (void);
+  Part_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]     role        Pointer to a COM interface.
    */
-  Part (IMgaMetaPart * role);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]     role        The source object.
-   */
-  Part (const Part & part);
+  Part_Impl (IMgaMetaPart * role);
 
   /// Destructor.
-  virtual ~Part (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       role      The source role.
-   * @return          Reference to self.
-   */
-  const Part & operator = (const Part & role);
+  virtual ~Part_Impl (void);
 
   /**
    * Get the meta FCO for the role.
@@ -82,8 +67,8 @@ public:
   /// Get the role for the part.
   Role role (void) const;
 
-  /// Get the parent aspect for this part.
-  Aspect parent_aspect (void) const;
+  /// Get the aspect for this part.
+  Aspect in_aspect (void) const;
 
 private:
   /// Pointer to the COM object.

@@ -34,7 +34,7 @@ default_output_directory (const std::string & uid) const
                 '_');
 
   // Store the output directory inside the model.
-  return root.registry_value (path);
+  return root->registry_value (path);
 }
 
 //
@@ -54,7 +54,7 @@ default_output_directory (const std::string & uid, const std::string & dir)
                 '_');
 
   // Store the output directory inside the model.
-  root.registry_value (path, dir);
+  root->registry_value (path, dir);
 }
 
 //
@@ -92,7 +92,7 @@ set_string_value (const std::string & path, const std::string & value)
 
   // Construct the registry value path and set its value.
   std::string fullpath = this->default_cache_loc_ + "/" + path;
-  root.registry_value (fullpath, value);
+  root->registry_value (fullpath, value);
 
   return true;
 }
@@ -108,7 +108,7 @@ get_string_value (const std::string & path, std::string & value)
 
   // Construct the registry value path and set its value.
   std::string fullpath = this->default_cache_loc_ + "/" + path;
-  value = root.registry_value (fullpath);
+  value = root->registry_value (fullpath);
 
   return true;
 }

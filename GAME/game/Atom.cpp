@@ -8,109 +8,102 @@
 #include "Atom.inl"
 #endif
 
+#include "Exception.h"
 #include "Folder.h"
+
 #include "Model.h"
 #include "MetaFolder.h"
 #include "MetaModel.h"
+#include "MetaAtom.h"
 #include "MetaRole.h"
 #include "Visitor.h"
 
 namespace GAME
 {
-  //
-  // operator =
-  //
-  const Atom & Atom::operator = (const Atom & atom)
-  {
-    if (this != &atom)
-      this->object_ = atom.object_;
-    return *this;
-  }
 
-  //
-  // attach
-  //
-  void Atom::attach (IMgaAtom * atom)
-  {
-    VERIFY_HRESULT (atom->QueryInterface (&this->object_));
-  }
+//
+// attach
+//
+void Atom_Impl::attach (IMgaAtom * atom)
+{
+  VERIFY_HRESULT (atom->QueryInterface (&this->object_));
+}
 
-  //
-  // impl
-  //
-  IMgaAtom * Atom::impl (void) const
-  {
-    if (this->atom_.p == this->object_.p)
-      return this->atom_.p;
+//
+// impl
+//
+IMgaAtom * Atom_Impl::impl (void) const
+{
+  if (this->atom_.p == this->object_.p)
+    return this->atom_.p;
 
-    if (this->atom_.p != 0)
-      this->atom_.Release ();
+  if (this->atom_.p != 0)
+    this->atom_.Release ();
 
-    VERIFY_HRESULT (this->object_.QueryInterface (&this->atom_));
-    return this->atom_;
-  }
+  VERIFY_HRESULT (this->object_.QueryInterface (&this->atom_));
+  return this->atom_;
+}
 
-  //
-  // _narrow
-  //
-  Atom Atom::_narrow (const GAME::Object & object)
-  {
-    CComPtr <IMgaAtom> atom;
+//
+// _create
+//
+Atom Atom_Impl::_create (const Model_in parent, const std::string & type)
+{
+  Meta::Role role = parent->meta ()->role (type);
+  return Atom_Impl::_create (parent, role);
+}
 
-    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&atom),
-                             GAME::Invalid_Cast ());
+//
+// _create
+//
+Atom Atom_Impl::_create (const Model_in parent, const Meta::Role_in role)
+{
+  CComPtr <IMgaFCO> child;
+  VERIFY_HRESULT (parent->impl ()->CreateChildObject (role->impl (), &child));
 
-    return atom.p;
-  }
+  CComPtr <IMgaAtom> mga_atom;
+  VERIFY_HRESULT (child.QueryInterface (&mga_atom));
 
-  //
-  // _create
-  //
-  Atom Atom::_create (Model & parent, const std::string & type)
-  {
-    Meta::Role role = parent.meta ().role (type);
-    return Atom::_create (parent, role);
-  }
+  return new Atom_Impl (mga_atom);
+}
 
-  //
-  // _create
-  //
-  Atom Atom::_create (Model & parent, const Meta::Role & role)
-  {
-    CComPtr <IMgaFCO> child;
+//
+// _create
+//
+Atom Atom_Impl::_create (const Folder_in parent, const std::string & type)
+{
+  Meta::FCO role = parent->meta ()->child (type);
+  return Atom_Impl::_create (parent, role.get ());
+}
 
-    VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
+//
+// _create
+//
+Atom Atom_Impl::_create (const Folder_in parent, const Meta::FCO_in type)
+{
+  CComPtr <IMgaFCO> child;
+  VERIFY_HRESULT (parent->impl ()->CreateRootObject (type->impl (), &child));
 
-    return Atom::_narrow (FCO (child));
-  }
+  CComPtr <IMgaAtom> mga_atom;
+  VERIFY_HRESULT (child.QueryInterface (&mga_atom));
 
-  //
-  // _create
-  //
-  Atom Atom::_create (Folder & parent, const std::string & type)
-  {
-    Meta::FCO role = parent.meta ().child (type);
-    return Atom::_create (parent, role);
-  }
+  return new Atom_Impl (mga_atom.p);
+}
 
-  //
-  // _create
-  //
-  Atom Atom::_create (Folder & parent, const Meta::FCO & type)
-  {
-    CComPtr <IMgaFCO> child;
+//
+// accept
+//
+void Atom_Impl::accept (Visitor * v)
+{
+  v->visit_Atom (this);
+}
 
-    VERIFY_HRESULT (
-      parent.impl ()->CreateRootObject (type.impl (), &child));
+//
+// meta
+//
+Meta::Atom Atom_Impl::meta (void) const
+{
+  return Meta::Atom::_narrow (FCO_Impl::meta ());
+}
 
-    return Atom::_narrow (FCO (child));
-  }
-
-  //
-  // accept
-  //
-  void Atom::accept (GAME::Visitor & visitor)
-  {
-    visitor.visit_Atom (*this);
-  }
 }

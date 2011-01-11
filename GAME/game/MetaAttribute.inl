@@ -5,39 +5,29 @@ namespace GAME
 namespace Meta
 {
 //
-// Attribute
+// Attribute_Impl
 //
 GAME_INLINE
-Attribute::Attribute (void)
+Attribute_Impl::Attribute_Impl (void)
 {
 
 }
 
 //
-// Attribute
+// Attribute_Impl
 //
 GAME_INLINE
-Attribute::Attribute (IMgaMetaAttribute * meta)
-  : Base (meta)
+Attribute_Impl::Attribute_Impl (IMgaMetaAttribute * meta)
+: Base_Impl (meta)
 {
 
 }
 
 //
-// Attribute
+// ~Attribute_Impl
 //
 GAME_INLINE
-Attribute::Attribute (const Attribute & meta)
-  : Base (meta)
-{
-
-}
-
-//
-// ~Attribute
-//
-GAME_INLINE
-Attribute::~Attribute (void)
+Attribute_Impl::~Attribute_Impl (void)
 {
 
 }

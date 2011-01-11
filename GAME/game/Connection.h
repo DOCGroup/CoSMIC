@@ -2,9 +2,9 @@
 
 //=============================================================================
 /**
- * @file        Connection.h
+ * @file        Connection_Impl.h
  *
- * Defines the GAME::Connection object.
+ * Defines the GAME::Connection_Impl object.
  *
  * $Id$
  *
@@ -12,54 +12,44 @@
  */
 //=============================================================================
 
-#ifndef _GME_CONNECTION_H_
-#define _GME_CONNECTION_H_
+#ifndef _GAME_CONNECTION_H_
+#define _GAME_CONNECTION_H_
 
-#include "FCO.h"
-#include "stlace.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
 
+#include "FCO.h"
+#include "stlace.h"
+#include "Refcountable.h"
+
 namespace GAME
 {
+// Forward decl.
+class Connection_Impl;
+
 /**
- * @class ConnectionPoint
+ * @class ConnectionPoint_Impl
  *
  * Wrapper class for the IMgaConnection COM interface.
  */
-class GAME_Export ConnectionPoint
+class GAME_Export ConnectionPoint_Impl : public Refcountable
 {
 public:
   /// Type definition of the interface type.
   typedef IMgaConnPoint interface_type;
 
   /// Default constructor.
-  ConnectionPoint (void);
+  ConnectionPoint_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       point       Pointer to the interface.
    */
-  ConnectionPoint (IMgaConnPoint * point);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       point       The source connection point.
-   */
-  ConnectionPoint (const ConnectionPoint & point);
+  ConnectionPoint_Impl (IMgaConnPoint * point);
 
   /// Destructor.
-  virtual ~ConnectionPoint (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       point       The source object.
-   * @return          Reference to self.
-   */
-  const ConnectionPoint & operator = (const ConnectionPoint & point);
+  virtual ~ConnectionPoint_Impl (void);
 
   /**
    * Get a pointer to the underlying interface.
@@ -76,7 +66,7 @@ public:
   void attach (IMgaConnPoint * point);
 
   /**
-   * Get the owner of this connection point, which is Connection.
+   * Get the owner of this connection point, which is Connection_Impl.
    *
    * @return          Owner of the connection.
    */
@@ -148,19 +138,19 @@ public:
   /**
    * Locate a connection point in the container.
    *
-   * @param[in]       role        Connection point's role (e.g., 'dst')
-   * @retval          true        Connection point for \a role found.
-   * @retval          false       Connection point for \a role not found.
+   * @param[in]       role        Connection_Impl point's role (e.g., 'dst')
+   * @retval          true        Connection_Impl point for \a role found.
+   * @retval          false       Connection_Impl point for \a role not found.
    */
   bool find (const std::string & role);
 
   /**
    * @overload
    *
-   * @param[in]       role        Connection point's role (e.g., 'dst')
+   * @param[in]       role        Connection_Impl point's role (e.g., 'dst')
    * @param[out]      point       The connnection point.
-   * @retval          true        Connection point for \a role found.
-   * @retval          false       Connection point for \a role not found.
+   * @retval          true        Connection_Impl point for \a role found.
+   * @retval          false       Connection_Impl point for \a role not found.
    */
   bool find (const std::string & role, ConnectionPoint & point);
 
@@ -169,7 +159,7 @@ public:
    * connection point does exist. The caller is responsible for
    * checking the validity of the returned collection points.
    *
-   * @param[in]       role        Connection point's role (e.g., 'dst')
+   * @param[in]       role        Connection_Impl point's role (e.g., 'dst')
    * @return          The target collection point.
    */
   ConnectionPoint operator [] (const std::string & role) const;
@@ -230,11 +220,11 @@ private:
 };
 
 /**
- * @class Connection
+ * @class Connection_Impl
  *
  * Wrapper class for the IMgaConnection COM interface.
  */
-class GAME_Export Connection : public FCO
+class GAME_Export Connection_Impl : public FCO_Impl
 {
 public:
   /// Type definition of the interface type.
@@ -249,46 +239,23 @@ public:
    * @param[in]       dst         Destination FCO of the connection.
    * @return          Newly created connection object.
    */
-  static Connection _create (const Model & parent,
+  static Connection _create (const Model_in parent,
                              const std::string & role,
-                             const FCO & src,
-                             const FCO & dst);
-
-  /**
-   * Extract a Connection object from an Object.
-   *
-   * @param[in]       obj         The source object.
-   * @return          The extracted connection.
-   */
-  static Connection _narrow (const Object & obj);
+                             const FCO_in src,
+                             const FCO_in dst);
 
   /// Default constructor.
-  Connection (void);
+  Connection_Impl (void);
 
   /**
    * Initializing constructor.
    *
    * @param[in]       conn        Pointer to the connection object.
    */
-  Connection (IMgaConnection * conn);
-
-  /**
-   * Copy constructor.
-   *
-   * @param[in]       conn        The source connection object.
-   */
-  Connection (const Connection & conn);
+  Connection_Impl (IMgaConnection * conn);
 
   /// Destructor.
-  virtual ~Connection (void);
-
-  /**
-   * Assignment operator.
-   *
-   * @param[in]       conn        The source connection object.
-   * @return          Reference to self.
-   */
-  const Connection & operator = (const Connection & conn);
+  virtual ~Connection_Impl (void);
 
   /**
    * Get a pointer to the raw COM implementation.
@@ -317,8 +284,14 @@ public:
   ConnectionPoint operator [] (const std::string & role);
   ConnectionPoint operator [] (const char * role);
 
+  /// Get the source FCO for this connection.
   FCO src (void) const;
+
+  /// Get the destination FCO for this connection.
   FCO dst (void) const;
+
+  /// Accept the visitor.
+  virtual void accept (Visitor * v);
 
 private:
   /// Pointer to the connection object.

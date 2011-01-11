@@ -8,30 +8,32 @@
 #include "Connection.inl"
 #endif
 
+#include "Exception.h"
 #include "Model.h"
 #include "MetaModel.h"
 #include "MetaRole.h"
+#include "Visitor.h"
 
 namespace GAME
 {
-//===========================================================================
-// ConnectionPoint
+///////////////////////////////////////////////////////////////////////////////
+// ConnectionPoint_Impl
 
 //
 // owner
 //
-Connection ConnectionPoint::owner (void) const
+Connection ConnectionPoint_Impl::owner (void) const
 {
   CComPtr <IMgaConnection> conn;
   VERIFY_HRESULT (this->impl ()->get_Owner (&conn));
 
-  return conn.p;
+  return new Connection_Impl (conn.p);
 }
 
 //
 // role
 //
-void ConnectionPoint::role (const std::string & name)
+void ConnectionPoint_Impl::role (const std::string & name)
 {
   CComBSTR bstr (name.c_str ());
   VERIFY_HRESULT (this->impl ()->put_ConnRole (bstr));
@@ -40,7 +42,7 @@ void ConnectionPoint::role (const std::string & name)
 //
 // role
 //
-std::string ConnectionPoint::role (void) const
+std::string ConnectionPoint_Impl::role (void) const
 {
   CComBSTR bstr ;
   VERIFY_HRESULT (this->impl ()->get_ConnRole (&bstr));
@@ -52,7 +54,7 @@ std::string ConnectionPoint::role (void) const
 //
 // remove
 //
-void ConnectionPoint::remove (void)
+void ConnectionPoint_Impl::remove (void)
 {
   VERIFY_HRESULT (this->impl ()->Remove ());
 }
@@ -60,7 +62,7 @@ void ConnectionPoint::remove (void)
 //
 // target
 //
-FCO ConnectionPoint::target (void) const
+FCO ConnectionPoint_Impl::target (void) const
 {
   CComPtr <IMgaFCO> fco;
   VERIFY_HRESULT (this->impl ()->get_Target (&fco));
@@ -68,7 +70,7 @@ FCO ConnectionPoint::target (void) const
   return fco.p;
 }
 
-//===========================================================================
+///////////////////////////////////////////////////////////////////////////////
 // ConnectionPoints
 
 ConnectionPoints::ConnectionPoints (IMgaConnPoints * points)
@@ -100,20 +102,18 @@ void ConnectionPoints::populate (void)
   if (count > 0)
   {
     // Get the interface to all the members.
-    CComPtr <IMgaConnPoint> * array =
-      new CComPtr <IMgaConnPoint> [count];
-
-    VERIFY_HRESULT (this->points_->GetAll (count, &(*array)));
+    CComPtr <IMgaConnPoint> * arr = new CComPtr <IMgaConnPoint> [count];
+    VERIFY_HRESULT (this->points_->GetAll (count, &(*arr)));
 
     // Store the members in a collection.
     for (long i = 0; i < count; i ++)
     {
-      ConnectionPoint point (array[i]);
-      this->points_mgr_.bind (point.role (), point);
+      ConnectionPoint point (arr[i]);
+      this->points_mgr_.bind (point->role (), point);
     }
 
     // Release the temp storage.
-    delete [] array;
+    delete [] arr;
   }
 }
 
@@ -129,62 +129,41 @@ operator [] (const std::string & role) const
   return point;
 }
 
-//===========================================================================
-// Connection
+///////////////////////////////////////////////////////////////////////////////
+// Connection_Impl
+
 
 //
-// _narrow
+// _create
 //
-Connection Connection::_narrow (const Object & obj)
+Connection Connection_Impl::_create (const Model_in parent,
+                                     const std::string & name,
+                                     const FCO_in src,
+                                     const FCO_in dst)
 {
-  CComPtr <IMgaConnection> conn;
+  // Locate the role by name.
+  Meta::Role role = parent->meta ()->role (name);
 
-  VERIFY_HRESULT_THROW_EX (obj.impl ()->QueryInterface (&conn),
-                           GAME::Invalid_Cast ());
+  // Create a new connection.
+  CComPtr <IMgaFCO> fco;
+
+  VERIFY_HRESULT (parent->impl ()->CreateSimpleConn (role->impl (),
+                                                     src->impl (),
+                                                     dst->impl (),
+                                                     0,
+                                                     0,
+                                                     &fco));
+
+  CComPtr <IMgaConnection> conn;
+  fco.QueryInterface (&conn);
 
   return conn.p;
 }
 
 //
-// _create
-//
-Connection Connection::_create (const Model & parent,
-                                const std::string & name,
-                                const FCO & src,
-                                const FCO & dst)
-{
-  // Locate the role by name.
-  Meta::Role role = parent.meta ().role (name);
-
-  // Create a new connection.
-  CComPtr <IMgaFCO> conn;
-
-  VERIFY_HRESULT (parent.impl ()->CreateSimpleConn (role,
-                                                    src.impl (),
-                                                    dst.impl (),
-                                                    0,
-                                                    0,
-                                                    &conn));
-
-  return Connection::_narrow (FCO (conn));
-}
-
-//
-// operator =
-//
-GAME_INLINE
-const Connection & Connection::operator = (const Connection & conn)
-{
-  if (this != &conn)
-    this->object_ = conn.object_;
-
-  return *this;
-}
-
-//
 // impl
 //
-IMgaConnection * Connection::impl (void) const
+IMgaConnection * Connection_Impl::impl (void) const
 {
   if (this->conn_.p == this->object_.p)
     return this->conn_.p;
@@ -199,7 +178,7 @@ IMgaConnection * Connection::impl (void) const
 //
 // points
 //
-size_t Connection::connection_points (ConnectionPoints & points) const
+size_t Connection_Impl::connection_points (ConnectionPoints & points) const
 {
   CComPtr <IMgaConnPoints> temp;
   VERIFY_HRESULT (this->impl ()->get_ConnPoints (&temp));
@@ -211,7 +190,7 @@ size_t Connection::connection_points (ConnectionPoints & points) const
 //
 // connection_point
 //
-ConnectionPoint Connection::
+ConnectionPoint Connection_Impl::
 connection_point (const std::string & role) const
 {
   GAME::ConnectionPoints points;
@@ -221,6 +200,14 @@ connection_point (const std::string & role) const
     point = points[role];
 
   return point;
+}
+
+//
+// accept
+//
+void Connection_Impl::accept (Visitor * v)
+{
+  v->visit_Connection (this);
 }
 
 }

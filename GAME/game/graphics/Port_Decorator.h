@@ -44,13 +44,13 @@ public:
   };
 
   /// Default constructor.
-  Port_Decorator (const GAME::FCO & port);
+  Port_Decorator (const FCO_in port);
 
   /**
    * Initializing constructor.
    */
-  Port_Decorator (const GAME::FCO & port,
-                  Gdiplus::Image *, 
+  Port_Decorator (const FCO_in port,
+                  Gdiplus::Image *,
                   const std::string & label,
                   const utils::Point & location,
                   ALIGNMENT alignment = ALIGNMENT_LEFT);
@@ -58,24 +58,24 @@ public:
   /// Decorator.
   ~Port_Decorator (void);
 
-  bool draw (Gdiplus::Graphics & g);
+  bool draw (Gdiplus::Graphics * g);
 
   void location (const utils::Point & loc);
   const utils::Point & location (void) const;
-  
+
   ALIGNMENT alignment (void) const;
   void alignment (ALIGNMENT align);
 
-  const GAME::FCO & fco (void) const;
+  const FCO & fco (void) const;
 
-  void get_location (long & sx, 
-                     long & sy, 
-                     long & ex, 
+  void get_location (long & sx,
+                     long & sy,
+                     long & ex,
                      long & ey);
 
 private:
   /// FCO associated with the port.
-  GAME::FCO port_;
+  const FCO port_;
 
   /// The image to draw for the port.
   Gdiplus::Image * image_;
