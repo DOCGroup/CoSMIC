@@ -1,3 +1,11 @@
+Wed Jan 12 22:51:56 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/utils/Point.h:
+        * game/utils/Point.cpp:
+
+          Implemented set_position () and get_position (). These will take
+          the place of the overloadded position () methods.
+
 Wed Jan 12 01:03:58 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/be/Decorator_Impl.h:

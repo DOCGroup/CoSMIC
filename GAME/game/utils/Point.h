@@ -171,6 +171,9 @@ public:
 GAME_UTILS_Export
 bool position (const std::string & aspect, const GAME::FCO_in fco, Point & pt);
 
+GAME_UTILS_Export
+bool get_position (const std::string & aspect, const GAME::FCO_in fco, Point & pt);
+
 /**
  * Set the current position of the FCO.
  *
@@ -182,6 +185,9 @@ bool position (const std::string & aspect, const GAME::FCO_in fco, Point & pt);
  */
 GAME_UTILS_Export
 bool position (const std::string & aspect, const Point & pt, GAME::FCO_in fco);
+
+GAME_UTILS_Export
+bool set_position (const std::string & aspect, const Point & pt, GAME::FCO_in fco);
 
 }
 }

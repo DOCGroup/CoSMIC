@@ -8,8 +8,12 @@
 #endif
 
 #include "game/FCO.h"
+#include "game/Model.h"
+#include "game/MetaAspect.h"
+#include "game/MetaModel.h"
+#include "game/Part.h"
+
 #include "Utils/Point.h"
-#include <sstream>
 
 namespace GAME
 {
@@ -20,28 +24,49 @@ namespace utils
 //
 bool position (const std::string & aspect, const GAME::FCO_in fco, Point & pt)
 {
-  // Get the string version of the position
-  std::ostringstream regval;
-  regval << "PartRegs/" << aspect << "/Position";
-  std::string position = fco->registry_value (regval.str ());
+  return get_position (aspect, fco, pt);
+}
 
-  // Extract the points from the position.
-  std::istringstream istr (position);
+//
+// get_position
+//
+bool get_position (const std::string & aspect, const GAME::FCO_in fco, Point & pt)
+{
+  // Convert the point in a position value.
+  Meta::Aspect meta_aspect = fco->parent_model ()->meta ()->aspect (aspect);
 
-  int value;
+  if (meta_aspect.is_nil ())
+    return false;
 
-  // Read the x-coordinate
-  istr >> value;
-  pt.x_value (value);
+  Part part = fco->part (meta_aspect);
 
-  // Skip the comma in the string.
-  istr.ignore (1);
+  if (part.is_nil ())
+    return false;
 
-  // Read the y-coordinate
-  istr >> value;
-  pt.y_value (value);
+  long x, y;
+  part.get_location (x, y);
 
-  return istr.good ();
+  return true;
+}
+
+//
+// set_position
+//
+bool set_position (const std::string & aspect, const Point & pt, GAME::FCO_in fco)
+{
+  // Convert the point in a position value.
+  Meta::Aspect meta_aspect = fco->parent_model ()->meta ()->aspect (aspect);
+
+  if (meta_aspect.is_nil ())
+    return false;
+
+  Part part = fco->part (meta_aspect);
+
+  if (part.is_nil ())
+    return false;
+
+  part.set_location (pt.x_value (), pt.y_value ());
+  return true;
 }
 
 //
@@ -49,19 +74,7 @@ bool position (const std::string & aspect, const GAME::FCO_in fco, Point & pt)
 //
 bool position (const std::string & aspect, const Point & pt, GAME::FCO_in fco)
 {
-  // Convert the point in a position value.
-  std::ostringstream position;
-  position << pt.x_value () << "," << pt.y_value ();
-
-  if (!position.good ())
-    return false;
-
-  // Set the string version of the position
-  std::ostringstream regval;
-  regval << "PartRegs/" << aspect << "/Position";
-  fco->registry_value (regval.str (), position.str ());
-
-  return true;
+  return set_position (aspect, pt, fco);
 }
 
 }
