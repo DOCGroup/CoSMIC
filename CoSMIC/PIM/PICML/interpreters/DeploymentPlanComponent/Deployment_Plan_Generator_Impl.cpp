@@ -28,9 +28,9 @@ struct insert_udm_t
 
   }
 
-  void operator () (const GAME::FCO & fco) const
+  void operator () (const GAME::FCO_in fco) const
   {
-    this->coll_.insert (this->network_.Gme2Udm (fco.impl ()));
+    this->coll_.insert (this->network_.Gme2Udm (fco->impl ()));
   }
 
 private:
@@ -62,8 +62,8 @@ Deployment_Plan_Generator_Impl::~Deployment_Plan_Generator_Impl (void)
 // invoke_ex
 //
 int Deployment_Plan_Generator_Impl::
-invoke_ex (GAME::Project & project,
-           GAME::FCO & focus,
+invoke_ex (GAME::Project project,
+           GAME::FCO_in focus,
            std::vector <GAME::FCO> & selected,
            long flags)
 {

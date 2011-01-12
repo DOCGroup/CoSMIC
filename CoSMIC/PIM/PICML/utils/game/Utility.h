@@ -28,7 +28,7 @@ namespace GAME
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string scope (const ::GAME::Model & named_type,
+std::string scope (const ::GAME::Model_in named_type,
                    const std::string & separator,
                    bool leading = false);
 
@@ -40,7 +40,7 @@ std::string scope (const ::GAME::Model & named_type,
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string fq_type (const ::GAME::Model & named_type,
+std::string fq_type (const ::GAME::Model_in named_type,
                      const std::string & separator,
                      bool leading = false);
 
@@ -50,7 +50,7 @@ std::string fq_type (const ::GAME::Model & named_type,
  * was the result of instantiating a template package.
  */
 PICML_GAME_UTILS_Export
-::GAME::Model get_template_package_inst (const ::GAME::FCO & type);
+::GAME::Model get_template_package_inst (const ::GAME::FCO_in type);
 
 }
 }
