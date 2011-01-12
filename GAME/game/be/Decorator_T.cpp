@@ -107,23 +107,31 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
     ATL::CComPtr <IMgaFCOs> temp;
     VERIFY_HRESULT (temp.CoCreateInstance (L"Mga.MgaFCOs"));
 
-    std::vector <GAME::FCO> ports;
+    std::vector <FCO> ports;
     if (0 != this->impl_.get_ports (ports))
       return S_FALSE;
 
-    std::vector <GAME::FCO>::const_iterator
+    std::vector <FCO>::const_iterator
       iter = ports.begin (), iter_end = ports.end ();
 
     for (; iter != iter_end; ++ iter)
-      temp->Append ((*iter)->impl ());
+    {
+      try
+      {
+        VERIFY_HRESULT (temp->Append ((*iter)->impl ()));
+      }
+      catch (const GAME::Failed_Result & )
+      {
+
+      }
+    }
 
     *portFCOs = temp.Detach ();
-
     return S_OK;
   }
   catch (...)
   {
-    
+
   }
 
   return S_FALSE;
@@ -134,9 +142,9 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseMoved (ULONG flags, 
-            LONG px, 
-            LONG py, 
+MouseMoved (ULONG flags,
+            LONG px,
+            LONG py,
             ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -148,7 +156,7 @@ MouseMoved (ULONG flags,
   {
     HDC hdc = reinterpret_cast <HDC> (transformHDC);
     context.Attach (hdc);
-    
+
     int retval = this->impl_.mouse_moved (flags, GAME::utils::Point (px, py), context);
 
     // Make sure we release the context.
@@ -168,9 +176,9 @@ MouseMoved (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseLeftButtonDown (ULONG flags, 
-                     LONG px, 
-                     LONG py, 
+MouseLeftButtonDown (ULONG flags,
+                     LONG px,
+                     LONG py,
                      ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -179,7 +187,7 @@ MouseLeftButtonDown (ULONG flags,
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_left_button_down (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -193,9 +201,9 @@ MouseLeftButtonDown (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseLeftButtonUp (ULONG flags, 
-                   LONG px, 
-                   LONG py, 
+MouseLeftButtonUp (ULONG flags,
+                   LONG px,
+                   LONG py,
                    ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -204,7 +212,7 @@ MouseLeftButtonUp (ULONG flags,
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_left_button_up (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -218,9 +226,9 @@ MouseLeftButtonUp (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseLeftButtonDoubleClick (ULONG flags, 
-                            LONG px, 
-                            LONG py, 
+MouseLeftButtonDoubleClick (ULONG flags,
+                            LONG px,
+                            LONG py,
                             ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -229,7 +237,7 @@ MouseLeftButtonDoubleClick (ULONG flags,
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_left_button_double_click (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -243,9 +251,9 @@ MouseLeftButtonDoubleClick (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseRightButtonDown (ULONGLONG hCtxMenu, 
-                      ULONG flags, 
-                      LONG px, 
+MouseRightButtonDown (ULONGLONG hCtxMenu,
+                      ULONG flags,
+                      LONG px,
                       LONG py,
                       ULONGLONG transformHDC)
 {
@@ -261,7 +269,7 @@ MouseRightButtonDown (ULONGLONG hCtxMenu,
   context.Attach (hdc);
   context_menu.Attach (menu);
 
-  int retval = this->impl_.mouse_right_button_down (context_menu, 
+  int retval = this->impl_.mouse_right_button_down (context_menu,
                                                     flags,
                                                     GAME::utils::Point (px, py),
                                                     context);
@@ -278,9 +286,9 @@ MouseRightButtonDown (ULONGLONG hCtxMenu,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseRightButtonUp (ULONG flags, 
-                    LONG px, 
-                    LONG py, 
+MouseRightButtonUp (ULONG flags,
+                    LONG px,
+                    LONG py,
                     ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -289,7 +297,7 @@ MouseRightButtonUp (ULONG flags,
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_right_button_up (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -303,8 +311,8 @@ MouseRightButtonUp (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseRightButtonDoubleClick (ULONG flags, 
-                             LONG px, 
+MouseRightButtonDoubleClick (ULONG flags,
+                             LONG px,
                              LONG py,
                              ULONGLONG transformHDC)
 {
@@ -314,7 +322,7 @@ MouseRightButtonDoubleClick (ULONG flags,
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_right_button_double_click (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -328,9 +336,9 @@ MouseRightButtonDoubleClick (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseMiddleButtonDown (ULONG flags, 
-                       LONG px, 
-                       LONG py, 
+MouseMiddleButtonDown (ULONG flags,
+                       LONG px,
+                       LONG py,
                        ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -339,7 +347,7 @@ MouseMiddleButtonDown (ULONG flags,
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_middle_button_down (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -353,9 +361,9 @@ MouseMiddleButtonDown (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseMiddleButtonUp (ULONG flags, 
+MouseMiddleButtonUp (ULONG flags,
                      LONG px,
-                     LONG py, 
+                     LONG py,
                      ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -365,7 +373,7 @@ MouseMiddleButtonUp (ULONG flags,
 
   CDC context;
   context.Attach (hdc);
-  
+
   int retval = this->impl_.mouse_middle_button_up (flags, GAME::utils::Point (px, py), context);
 
   // Make sure we release the context.
@@ -379,9 +387,9 @@ MouseMiddleButtonUp (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseMiddleButtonDoubleClick (ULONG flags, 
-                              LONG px, 
-                              LONG py, 
+MouseMiddleButtonDoubleClick (ULONG flags,
+                              LONG px,
+                              LONG py,
                               ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -391,8 +399,8 @@ MouseMiddleButtonDoubleClick (ULONG flags,
 
   CDC context;
   context.Attach (hdc);
-  
-  int retval = this->impl_.mouse_middle_button_double_click (flags, 
+
+  int retval = this->impl_.mouse_middle_button_double_click (flags,
                                                              GAME::utils::Point (px, py),
                                                              context);
 
@@ -407,10 +415,10 @@ MouseMiddleButtonDoubleClick (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MouseWheelTurned (ULONG flags, 
-                  LONG distance, 
-                  LONG px, 
-                  LONG py, 
+MouseWheelTurned (ULONG flags,
+                  LONG distance,
+                  LONG px,
+                  LONG py,
                   ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -420,8 +428,8 @@ MouseWheelTurned (ULONG flags,
 
   CDC context;
   context.Attach (hdc);
-  
-  int retval = this->impl_.mouse_wheel_turned (flags, 
+
+  int retval = this->impl_.mouse_wheel_turned (flags,
                                                distance,
                                                GAME::utils::Point (px, py),
                                                context);
@@ -437,11 +445,11 @@ MouseWheelTurned (ULONG flags,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-DragEnter (ULONG* effect, 
-           ULONGLONG pCOleDataObject, 
-           ULONG keystate, 
-           LONG px, 
-           LONG py, 
+DragEnter (ULONG* effect,
+           ULONGLONG pCOleDataObject,
+           ULONG keystate,
+           LONG px,
+           LONG py,
            ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -452,8 +460,8 @@ DragEnter (ULONG* effect,
 
   CDC context;
   context.Attach (hdc);
-  
-  int retval = this->impl_.drag_enter (*effect, 
+
+  int retval = this->impl_.drag_enter (*effect,
                                        *data_object,
                                        keystate,
                                        GAME::utils::Point (px, py),
@@ -470,11 +478,11 @@ DragEnter (ULONG* effect,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-DragOver (ULONG* effect, 
+DragOver (ULONG* effect,
           ULONGLONG pCOleDataObject,
-          ULONG keystate, 
+          ULONG keystate,
           LONG px,
-          LONG py, 
+          LONG py,
           ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -485,8 +493,8 @@ DragOver (ULONG* effect,
 
   CDC context;
   context.Attach (hdc);
-  
-  int retval = this->impl_.drag_over (*effect, 
+
+  int retval = this->impl_.drag_over (*effect,
                                       *data_object,
                                       keystate,
                                       GAME::utils::Point (px, py),
@@ -503,10 +511,10 @@ DragOver (ULONG* effect,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-Drop (ULONGLONG pCOleDataObject, 
-      ULONG drop_effect, 
-      LONG px, 
-      LONG py, 
+Drop (ULONGLONG pCOleDataObject,
+      ULONG drop_effect,
+      LONG px,
+      LONG py,
       ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -520,7 +528,7 @@ Drop (ULONGLONG pCOleDataObject,
 
   int retval = this->impl_.drop (*data_object,
                                  drop_effect,
-                                 GAME::utils::Point (px, py), 
+                                 GAME::utils::Point (px, py),
                                  context);
 
   context.Detach ();
@@ -533,7 +541,7 @@ Drop (ULONGLONG pCOleDataObject,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-DropFile (ULONGLONG drop_info, 
+DropFile (ULONGLONG drop_info,
           LONG px,
           LONG py,
           ULONGLONG transformHDC)
@@ -547,7 +555,7 @@ DropFile (ULONGLONG drop_info,
   context.Attach (hdc);
 
   int retval = this->impl_.drop_file (drop_info,
-                                      GAME::utils::Point (px, py), 
+                                      GAME::utils::Point (px, py),
                                       context);
 
   // Make sure we release the context.
@@ -561,10 +569,10 @@ DropFile (ULONGLONG drop_info,
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-MenuItemSelected (ULONG menuItemId, 
-                  ULONG flags, 
-                  LONG px, 
-                  LONG py, 
+MenuItemSelected (ULONG menuItemId,
+                  ULONG flags,
+                  LONG px,
+                  LONG py,
                   ULONGLONG transformHDC)
 {
   if (!this->is_init_)
@@ -575,7 +583,7 @@ MenuItemSelected (ULONG menuItemId,
   CDC context;
   context.Attach (hdc);
 
-  int retval = this->impl_.menu_item_selected (menuItemId, 
+  int retval = this->impl_.menu_item_selected (menuItemId,
                                                flags,
                                                GAME::utils::Point (px, py),
                                                context);

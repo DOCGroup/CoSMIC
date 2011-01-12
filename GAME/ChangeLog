@@ -1,3 +1,13 @@
+Wed Jan 12 01:03:58 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/be/Decorator_Impl.h:
+
+          Removed the GAME:: scope since it is not necessary.
+
+        * game/be/Decorator_T.cpp:
+
+          Aded exception handler to inserting elements into the collection.
+
 Tue Jan 11 21:56:25 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/FCO.cpp:

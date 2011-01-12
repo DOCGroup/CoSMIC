@@ -61,9 +61,9 @@ public:
   /**
    * Initailize the decorator.
    */
-  int initialize (const GAME::Project & proj,
+  int initialize (const Project & proj,
                   const Meta::Part_in part,
-                  const GAME::FCO_in fco);
+                  const FCO_in fco);
 
   int initialize_ex (const Project & proj,
                      const Meta::Part_in part,
