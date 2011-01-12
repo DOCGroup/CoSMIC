@@ -10,7 +10,7 @@ Auto_Model_Impl::Auto_Model_Impl (void)
 }
 
 inline
-Auto_Model_Impl::Auto_Model_Impl (const ::GAME::Object & model)
+Auto_Model_Impl::Auto_Model_Impl (const ::GAME::Object_in model)
 : ref_count_ (1)
 {
   this->store (model);
@@ -23,13 +23,13 @@ Auto_Model_Impl::~Auto_Model_Impl (void)
 }
 
 inline
-::GAME::Object & Auto_Model_Impl::model (void)
+::GAME::Object Auto_Model_Impl::model (void)
 {
   return this->model_;
 }
 
 inline
-const ::GAME::Object & Auto_Model_Impl::model (void) const
+const ::GAME::Object Auto_Model_Impl::model (void) const
 {
   return this->model_;
 }

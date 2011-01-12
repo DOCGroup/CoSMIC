@@ -28,14 +28,14 @@ void Auto_Model_Impl::dec_refcount (void)
 //
 // store
 //
-void Auto_Model_Impl::store (const ::GAME::Object & model)
+void Auto_Model_Impl::store (const ::GAME::Object_in model)
 {
   // Check the type of the element. We do not need to store the
   // children if the element cannot have any children. ;-)
-  int type = model.meta ().type ();
+  int type = model->meta ()->type ();
 
-  if (!model.is_nil () && (type == OBJTYPE_FOLDER || type == OBJTYPE_MODEL))
-    model.children (this->existing_);
+  if (0 != model && (type == OBJTYPE_FOLDER || type == OBJTYPE_MODEL))
+    model->children (this->existing_);
 
   // Store the model.
   this->model_ = model;
@@ -70,7 +70,7 @@ void Auto_Model_Impl::cleanup (void)
         listener->handle_delete_object (*iter);
 
         // Destroy the element.
-        iter->destroy ();
+        (*iter)->destroy ();
       }
 
       // Notify the handler the object is closing.
@@ -81,7 +81,8 @@ void Auto_Model_Impl::cleanup (void)
       // Destroy all the elements.
       std::for_each (this->existing_.begin (),
                      this->existing_.end (),
-                     boost::bind (&GAME::Object::destroy, _1));
+                     boost::bind (&GAME::Object_Impl::destroy,
+                                  boost::bind (&GAME::Object::get, _1)));
     }
   }
   catch (...)
@@ -93,7 +94,7 @@ void Auto_Model_Impl::cleanup (void)
 //
 // handle_new_object
 //
-void Auto_Model_Impl::handle_new_object (const GAME::Object & obj)
+void Auto_Model_Impl::handle_new_object (const GAME::Object_in obj)
 {
   std::vector <GAME::Object>::iterator iter =
     std::find (this->existing_.begin (),

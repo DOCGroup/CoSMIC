@@ -1,3 +1,21 @@
+Wed Jan 12 20:48:13 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/T3/t3/runtime/Auto_Model.h:
+        * Utils/T3/t3/runtime/Auto_Model.inl:
+        * Utils/T3/t3/runtime/Auto_Model.cpp:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.h:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.inl:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.cpp:
+        * Utils/T3/t3/runtime/Event_Listener.h:
+        * Utils/T3/t3/runtime/Event_Listener.inl:
+        * Utils/T3/t3/runtime/Runtime_Engine.h:
+        * Utils/T3/t3/runtime/Runtime_Engine.inl:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+
+          Update T3 to build against latest version of GAME. In the near future,
+          T3 will be moved into the GAME project since its a general purpose
+          framework.
+
 Wed Dec  1 21:42:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/tests/IDL_to_PICML/IDL_to_PICML.mwc:

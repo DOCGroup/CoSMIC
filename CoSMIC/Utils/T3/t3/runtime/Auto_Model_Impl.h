@@ -12,24 +12,24 @@ class T3_RUNTIME_Export Auto_Model_Impl
 public:
   Auto_Model_Impl (void);
 
-  Auto_Model_Impl (const ::GAME::Object & model);
+  Auto_Model_Impl (const ::GAME::Object_in model);
 
   ~Auto_Model_Impl (void);
 
-  ::GAME::Object & model (void);
+  ::GAME::Object model (void);
 
-  const ::GAME::Object & model (void) const;
+  const ::GAME::Object model (void) const;
 
   void inc_refcount (void);
 
   void dec_refcount (void);
 
-  void handle_new_object (const GAME::Object & obj);
+  void handle_new_object (const GAME::Object_in obj);
 
   size_t refcount (void) const;
 
 private:
-  void store (const ::GAME::Object & model);
+  void store (const ::GAME::Object_in model);
 
   void cleanup (void);
 

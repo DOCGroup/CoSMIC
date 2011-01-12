@@ -16,9 +16,9 @@
 // create_element
 //
 GAME::Object T3_Runtime_Engine::
-create_element (GAME::Object & parent, const std::string & type)
+create_element (GAME::Object_in parent, const std::string & type)
 {
-  switch (parent.type ())
+  switch (parent->type ())
   {
   case OBJTYPE_FOLDER:
     return this->create_element (GAME::Folder::_narrow (parent), type);
@@ -35,22 +35,23 @@ create_element (GAME::Object & parent, const std::string & type)
 // create_element
 //
 GAME::Object T3_Runtime_Engine::
-create_element (GAME::Folder & parent, const std::string & type)
+create_element (GAME::Folder_in parent, const std::string & type)
 {
+  GAME::Object object;
+
   try
   {
     // Attempt to the get the FCO meta information.
-    GAME::Meta::FCO meta_fco = parent.meta ().child (type);
-    GAME::Object object;
+    GAME::Meta::FCO meta_fco = parent->meta ()->child (type);
 
-    switch (meta_fco.type ())
+    switch (meta_fco->type ())
     {
     case OBJTYPE_ATOM:
-      object = GAME::Atom::_create (parent, meta_fco);
+      object = GAME::Atom_Impl::_create (parent, meta_fco);
       break;
 
     case OBJTYPE_MODEL:
-      object = GAME::Model::_create (parent, meta_fco);
+      object = GAME::Model_Impl::_create (parent, meta_fco);
       break;
 
     default:
@@ -58,47 +59,48 @@ create_element (GAME::Folder & parent, const std::string & type)
       throw T3::bad_parent (parent);
     }
 
-    if (this->listener_ != 0)
-      this->listener_->handle_new_object (object);
-
-    return object;
   }
   catch (const GAME::Exception &)
   {
     // Since we failed to locate the FCO meta information,
     // this must be a folder type.
-    GAME::Meta::Folder meta_folder = parent.meta ().folder (type);
-    return GAME::Folder::_create (parent, meta_folder);
+    GAME::Meta::Folder meta_folder = parent->meta ()->folder (type);
+    object = GAME::Folder_Impl::_create (parent, meta_folder);
   }
+
+  if (this->listener_ != 0)
+    this->listener_->handle_new_object (object);
+
+  return object;
 }
 
 //
 // create_element
 //
 GAME::Object T3_Runtime_Engine::
-create_element (GAME::Model & parent, const std::string & type)
+create_element (GAME::Model_in parent, const std::string & type)
 {
   GAME::Object object;
 
-  GAME::Meta::Role role = parent.meta ().role (type);
-  int obj_type = role.kind ().type ();
+  GAME::Meta::Role role = parent->meta ()->role (type);
+  int obj_type = role->kind ()->type ();
 
   switch (obj_type)
   {
   case OBJTYPE_ATOM:
-    object = GAME::Atom::_create (parent, role);
+    object = GAME::Atom_Impl::_create (parent, role);
     break;
 
   case OBJTYPE_MODEL:
-    object = GAME::Model::_create (parent, role);
+    object = GAME::Model_Impl::_create (parent, role);
     break;
 
   case OBJTYPE_REFERENCE:
-    object = GAME::Reference::_create (parent, role);
+    object = GAME::Reference_Impl::_create (parent, role);
     break;
 
   case OBJTYPE_SET:
-    object = GAME::Set::_create (parent, role);
+    object = GAME::Set_Impl::_create (parent, role);
     break;
 
   default:
@@ -115,12 +117,12 @@ create_element (GAME::Model & parent, const std::string & type)
 // set_attribute
 //
 void T3_Runtime_Engine::
-set_attribute (GAME::FCO & fco, const std::string & name, const std::string & value)
+set_attribute (GAME::FCO_in fco, const std::string & name, const std::string & value)
 {
   if (name == "name")
-    fco.name (value);
+    fco->name (value);
   else
-    fco.attribute (name).string_value (value);
+    fco->attribute (name)->string_value (value);
 }
 
 /**
@@ -132,7 +134,7 @@ struct set_attr_boolean
 {
   typedef T3_Runtime_Engine::FLAG_TABLE::CONST_ITERATOR const_iterator;
 
-  set_attr_boolean (GAME::FCO & fco)
+  set_attr_boolean (GAME::FCO_in fco)
     : fco_ (fco)
   {
 
@@ -141,18 +143,18 @@ struct set_attr_boolean
   void operator () (const_iterator::value_type & value) const
   {
     // Locate the attribute and set its boolean value.
-    GAME::Attribute attr = this->fco_.attribute (value.key ().c_str ());
-    attr.bool_value (value.item ());
+    GAME::Attribute attr = this->fco_->attribute (value.key ().c_str ());
+    attr->bool_value (value.item ());
   }
 
 private:
-  GAME::FCO & fco_;
+  GAME::FCO fco_;
 };
 
 //
 // init_fco
 //
-void T3_Runtime_Engine::init_fco (GAME::FCO & fco)
+void T3_Runtime_Engine::init_fco (GAME::FCO_in fco)
 {
   // Set any outstanding attributes
   std::for_each (this->stored_flags_.begin (),
@@ -160,14 +162,11 @@ void T3_Runtime_Engine::init_fco (GAME::FCO & fco)
                  set_attr_boolean (fco));
 
   // If applicable, set the reference for the object.
-  if (!this->stored_ref_.is_nil () && fco.type () == OBJTYPE_REFERENCE)
+  if (!this->stored_ref_.is_nil () && fco->type () == OBJTYPE_REFERENCE)
   {
     // Set the reference for the object.
     GAME::Reference ref = GAME::Reference::_narrow (fco);
-    ref.refers_to (this->stored_ref_);
-
-    // Release the stored reference.
-    this->stored_ref_.release ();
+    ref->refers_to (this->stored_ref_);
   }
 }
 
@@ -175,14 +174,14 @@ void T3_Runtime_Engine::init_fco (GAME::FCO & fco)
 // store_predefined_reference
 //
 bool T3_Runtime_Engine::
-store_predefined_reference (const GAME::Object & obj, const char * pt)
+store_predefined_reference (const GAME::Object_in obj, const char * pt)
 {
   // Check our symbol table first.
   if (0 == this->sym_table_.find (pt, this->stored_ref_))
     return true;
 
   // Create a filter for the project.
-  GAME::Project project = obj.project ();
+  GAME::Project project = obj->project ();
   GAME::Filter filter (project);
 
   // Set its properties.
@@ -209,14 +208,15 @@ store_predefined_reference (const GAME::Object & obj, const char * pt)
                              predefined_types,
                              GAME::contains (boost::bind (std::equal_to <std::string> (),
                                              name,
-                                             boost::bind (&GAME::Folder::name, _1)))))
+                                             boost::bind (&GAME::Folder_Impl::name,
+                                                          boost::bind (&GAME::Folder::get, _1))))))
     {
-      predefined_types.name (name);
+      predefined_types->name (name);
     }
 
     // Create the new predefined type.
-    fco = GAME::Atom::_create (predefined_types, pt);
-    fco.name (pt);
+    fco = GAME::Atom_Impl::_create (predefined_types, pt);
+    fco->name (pt);
   }
 
   // Store the type for later usage.
@@ -229,7 +229,7 @@ store_predefined_reference (const GAME::Object & obj, const char * pt)
 // store_reference
 //
 bool T3_Runtime_Engine::
-store_reference (const GAME::Object & parent, const std::string & symbol)
+store_reference (const GAME::Object_in parent, const std::string & symbol)
 {
   return this->resolve (parent, symbol, this->stored_ref_);
 }
@@ -238,15 +238,15 @@ store_reference (const GAME::Object & parent, const std::string & symbol)
 // get_scope
 //
 void T3_Runtime_Engine::
-get_scope (const GAME::Object & obj, std::string & scope)
+get_scope (const GAME::Object_in obj, std::string & scope)
 {
   std::stack <GAME::Object> scope_stack;
   ::GAME::Object parent (obj);
 
-  while (parent.meta ().name () != "File")
+  while (parent->meta ()->name () != "File")
   {
     scope_stack.push (parent);
-    parent = parent.parent ();
+    parent = parent->parent ();
   }
 
   // Use the stack to generate the fully qualified name of the
@@ -256,7 +256,7 @@ get_scope (const GAME::Object & obj, std::string & scope)
   while (!scope_stack.empty ())
   {
     // Write the name of the current level.
-    scope += scope_stack.top ().name ();
+    scope += scope_stack.top ()->name ();
     scope += "::";
 
     // Remove the level of the scope.
@@ -268,14 +268,14 @@ get_scope (const GAME::Object & obj, std::string & scope)
 // preprocess
 //
 void T3_Runtime_Engine::
-preprocess (GAME::Object & parent, const std::string & include_file)
+preprocess (GAME::Object_in parent, const std::string & include_file)
 {
   // Remove the extension from the filename.
   size_t npos = include_file.find_last_of ('.');
   std::string basename = include_file.substr (0, npos);
 
   // Create a filter for the project.
-  GAME::Filter filter (parent.project ());
+  GAME::Filter filter (parent->project ());
 
   // Locate the File with this name.
   filter.kind ("File");
@@ -291,11 +291,11 @@ preprocess (GAME::Object & parent, const std::string & include_file)
 //
 // preprocess_impl
 //
-void T3_Runtime_Engine::preprocess_impl (GAME::Model & model)
+void T3_Runtime_Engine::preprocess_impl (GAME::Model_in model)
 {
   // Go through all the packages in the file.
   std::vector <GAME::Model> packages;
-  model.children ("Package", packages);
+  model->children ("Package", packages);
 
   std::for_each (packages.begin (),
                  packages.end (),
@@ -327,7 +327,7 @@ void T3_Runtime_Engine::preprocess_impl (GAME::Model & model)
   {
     // Add all named type elements to the symbol table.
     std::vector <GAME::FCO> children;
-    model.children (*type, children);
+    model->children (*type, children);
 
     std::string fq_name;
 
@@ -335,7 +335,7 @@ void T3_Runtime_Engine::preprocess_impl (GAME::Model & model)
          iter_end = children.end (); iter != iter_end; ++ iter)
     {
       // Construct the fully qualified name for this element.
-      fq_name = scope + iter->name ();
+      fq_name = scope + (*iter)->name ();
 
       // Save the element to the symbol table.
       this->sym_table_.bind (fq_name.c_str (), *iter);
@@ -347,7 +347,7 @@ void T3_Runtime_Engine::preprocess_impl (GAME::Model & model)
 // resolve
 //
 bool T3_Runtime_Engine::
-resolve (const GAME::Object & parent, const std::string & symbol, GAME::FCO & fco)
+resolve (const GAME::Object_in parent, const std::string & symbol, GAME::FCO & fco)
 {
   // We are using a fully qualified scope.
   if (symbol[0] == ':' && symbol[1] == ':')
@@ -355,7 +355,7 @@ resolve (const GAME::Object & parent, const std::string & symbol, GAME::FCO & fc
 
   std::string fq_name;
 
-  if (parent.meta () == "File")
+  if (parent->meta ()->name () == "File")
   {
     fq_name = "::" + symbol;
     return this->sym_table_.find (fq_name.c_str (), fco) == 0 ? true : false;
@@ -363,8 +363,8 @@ resolve (const GAME::Object & parent, const std::string & symbol, GAME::FCO & fc
 
   GAME::Object current (parent);
 
-  while (current.meta ().name () != "Package")
-    current = current.parent ();
+  while (current->meta ()->name () != "Package")
+    current = current->parent ();
 
   // We are using a relative scope. We start at the current
   // level and work our way to the root.
@@ -379,8 +379,8 @@ resolve (const GAME::Object & parent, const std::string & symbol, GAME::FCO & fc
       return true;
 
     // Move up one level.
-    current = current.parent ();
-  } while (current.meta ().name () != "File");
+    current = current->parent ();
+  } while (current->meta ()->name () != "File");
 
   // We are at the root. Let's give it one last try.
   fq_name = "::" + symbol;
@@ -398,10 +398,10 @@ struct refers_to
 
   }
 
-  bool operator () (const GAME::Object & obj) const
+  bool operator () (const GAME::Object_in obj) const
   {
     GAME::Reference ref = GAME::Reference::_narrow (obj);
-    return ref.refers_to () == this->ref_element_;
+    return ref->refers_to () == this->ref_element_;
   }
 
 private:
@@ -412,7 +412,7 @@ private:
 // create_unique_reference
 //
 bool T3_Runtime_Engine::
-create_unique_reference (GAME::Object & parent,
+create_unique_reference (GAME::Object_in parent,
                          const std::string & symbol,
                          const std::string & type)
 {
@@ -424,7 +424,7 @@ create_unique_reference (GAME::Object & parent,
 // create_unique_reference
 //
 bool T3_Runtime_Engine::
-create_unique_reference (GAME::Object & parent,
+create_unique_reference (GAME::Object_in parent,
                          const std::string & symbol,
                          const std::string & type,
                          GAME::FCO & ref_element)
@@ -441,8 +441,8 @@ create_unique_reference (GAME::Object & parent,
   // Make sure we have the correct reference.
   GAME::Reference ref = GAME::Reference::_narrow (object);
 
-  if (ref.refers_to () != ref_element)
-    ref.refers_to (ref_element);
+  if (ref->refers_to () != ref_element)
+    ref->refers_to (ref_element);
 
   return true;
 }
@@ -451,18 +451,18 @@ create_unique_reference (GAME::Object & parent,
 // create_connection_to
 //
 bool T3_Runtime_Engine::
-create_connection_to (const GAME::Object & src,
+create_connection_to (const GAME::Object_in src,
                       const std::string & dest,
                       const std::string & type)
 {
   GAME::FCO dst_fco;
 
-  GAME::Model parent = GAME::Model::_narrow (src.parent ());
+  GAME::Model parent = GAME::Model::_narrow (src->parent ());
 
   if (!this->resolve (parent, dest, dst_fco))
     return false;
 
   GAME::FCO src_fco = GAME::FCO::_narrow (src);
-  GAME::Connection::_create (parent, type, src_fco, dst_fco);
+  GAME::Connection_Impl::_create (parent, type, src_fco, dst_fco);
   return true;
 }
