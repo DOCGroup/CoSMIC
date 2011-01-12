@@ -10,23 +10,28 @@
 
 #include <algorithm>
 
+namespace attr
+{
+  static const std::string Value ("Value");
+}
+
 //
 // DDX_Text
 //
 void DDX_Text (CDataExchange * pDX, int id, GAME::Reference & value)
 {
-  GAME::Attribute attr = value.attribute ("Value");
+  GAME::Attribute attr = value->attribute (attr::Value);
 
   if (pDX->m_bSaveAndValidate)
   {
     CString str;
     pDX->m_pDlgWnd->GetDlgItemText (id, str);
 
-    attr.string_value (str.GetBuffer ());
+    attr->string_value (str.GetBuffer ());
   }
   else
   {
-    pDX->m_pDlgWnd->SetDlgItemText (id, attr.string_value ().c_str ());
+    pDX->m_pDlgWnd->SetDlgItemText (id, attr->string_value ().c_str ());
   }
 }
 
@@ -52,7 +57,7 @@ PICML_Data_Value_Control::~PICML_Data_Value_Control (void)
 //
 // InitControl
 //
-void PICML_Data_Value_Control::InitControl (const GAME::FCO & value)
+void PICML_Data_Value_Control::InitControl (const GAME::FCO_in value)
 {
   this->value_ = value;
 }
@@ -96,7 +101,7 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
   this->SetFont (parent->GetFont ());
 
   // Set the text in the window.
-  const std::string v (this->value_.attribute ("Value").string_value ());
+  const std::string v (this->value_->attribute (attr::Value)->string_value ());
   this->SetWindowText (v.c_str ());
 
   // Get the control focus.
@@ -114,7 +119,7 @@ BOOL PICML_Simple_Data_Value_Control <CEdit>::Destroy (void)
   this->GetWindowText (text);
 
   // Save the text in the value.
-  this->value_.attribute ("Value").string_value (text.GetBuffer ());
+  this->value_->attribute (attr::Value)->string_value (text.GetBuffer ());
 
   // Destroy the control.
   return this->DestroyWindow ();
@@ -166,7 +171,7 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
   this->InsertString (-1, "false");
 
   // Select the current value.
-  std::string s (this->value_.attribute ("Value").string_value ());
+  std::string s (this->value_->attribute (attr::Value)->string_value ());
 
   if (!s.empty ())
     this->SelectString (-1, s.c_str ());
@@ -218,10 +223,10 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
 
   // Populate the control with the enumeration values.
   GAME::Reference ref = GAME::Reference::_narrow (this->value_);
-  GAME::Model e = GAME::Model::_narrow (ref.refers_to ());
+  GAME::Model e = GAME::Model::_narrow (ref->refers_to ());
   std::vector <GAME::Atom> values;
 
-  if (e.children ("EnumValue", values))
+  if (e->children ("EnumValue", values))
   {
     std::for_each (values.begin (),
                    values.end (),
@@ -231,7 +236,8 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
   }
 
   // Select the current value.
-  const std::string selection = this->value_.attribute ("Value").string_value ();
+  const std::string selection =
+    this->value_->attribute (attr::Value)->string_value ();
 
   if (!selection.empty ())
     this->SelectString (-1, selection.c_str ());
@@ -245,7 +251,7 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
 void PICML_Enum_Data_Value_Control::
 visit_enum_value (const GAME::Atom & ev)
 {
-  this->InsertString (-1, ev.name ().c_str ());
+  this->InsertString (-1, ev->name ().c_str ());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

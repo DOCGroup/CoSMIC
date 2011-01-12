@@ -50,7 +50,7 @@ get_display_info (std::string & name, std::string & value) const
 //
 // get_item
 //
-GAME::FCO Collection_Item::get_item (void) const
+GAME::FCO Collection_Item::get_item (void)
 {
   return this->real_item_->get_item ();
 }

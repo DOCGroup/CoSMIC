@@ -10,6 +10,7 @@
 #include "New_Collection_Item.h"
 #include "Data_Value_Item.h"
 
+#include "game/Visitor.h"
 #include "game/utils/Point.h"
 #include "boost/bind.hpp"
 
@@ -24,13 +25,20 @@
  */
 struct top_to_bottom_t
 {
-  template <typename T>
-  bool operator () (const T & lhs, const T & rhs) const
+  bool operator () (const GAME::FCO & lhs, const GAME::FCO & rhs)
   {
     GAME::utils::Point pt_lhs, pt_rhs;
 
-    GAME::utils::position ("DataValueAspect", lhs, pt_lhs);
-    GAME::utils::position ("DataValueAspect", rhs, pt_rhs);
+    // For some reason, I have to cast the pointers inside the FCO_in
+    // object when the conversion operator returns the same type as
+    // FCO_in!!
+    GAME::utils::get_position ("DataValueAspect",
+                               GAME::FCO_in (lhs.get ()),
+                               pt_lhs);
+
+    GAME::utils::get_position ("DataValueAspect",
+                               GAME::FCO_in (rhs.get ()),
+                               pt_rhs);
 
     return pt_lhs.y_value () < pt_rhs.y_value ();
   }
@@ -40,21 +48,21 @@ struct top_to_bottom_t
 // get_complex_type
 //
 static bool
-get_complex_type (const GAME::Model & container, GAME::FCO & complex)
+get_complex_type (const GAME::Model_in container, GAME::FCO & complex)
 {
   std::vector <GAME::Reference> complex_types;
-  if (0 == container.children ("ComplexTypeReference", complex_types))
+  if (0 == container->children ("ComplexTypeReference", complex_types))
     return false;
 
   // Get the complex type.
-  complex = complex_types.front ().refers_to ();
+  complex = complex_types.front ()->refers_to ();
   return !complex.is_nil ();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // PICML_Property_Manager_ListView_Expand
 
-class PICML_Property_Manager_ListView_Expand
+class PICML_Property_Manager_ListView_Expand : public GAME::Visitor
 {
 public:
   PICML_Property_Manager_ListView_Expand (CListCtrl & parent, int index, int indent)
@@ -72,29 +80,21 @@ public:
 
   }
 
-  virtual void Visit_Property (const GAME::FCO & prop)
+  virtual void visit_Reference (GAME::Reference_in prop)
   {
-    if (prop.meta () == "SimpleProperty")
-    {
-      this->Visit_DataValueBase (prop);
-    }
-    else
-    {
-      GAME::Model model = GAME::Model::_narrow (prop);
-      this->visit_property_datavalue_container (model);
-    }
+    this->Visit_DataValueBase (prop);
   }
 
-  virtual void Visit_DataValueContainer (const GAME::Model & c)
+  virtual void visit_Model (GAME::Model_in prop)
   {
-    this->visit_property_datavalue_container (c);
+    this->visit_property_datavalue_container (prop);
   }
 
 private:
   //
   // visit_property_datavalue_container
   //
-  void visit_property_datavalue_container (const GAME::Model & model)
+  void visit_property_datavalue_container (const GAME::Model_in model)
   {
     // We are going to make the assumption the elements contained
     // in the property are correct. This means that simple types
@@ -103,12 +103,12 @@ private:
     GAME::FCO complex_type;
     ::get_complex_type (model, complex_type);
 
-    if (!complex_type.is_nil () && complex_type.meta () == "Collection")
+    if (!complex_type.is_nil () && complex_type->meta ()->name () == "Collection")
       this->collection_ = new Collection_Container_Data_Item (model);
 
     std::vector <GAME::FCO> data_values, data_value_containers;
-    model.children ("DataValue", data_values);
-    model.children ("DataValueContainer", data_value_containers);
+    model->children ("DataValue", data_values);
+    model->children ("DataValueContainer", data_value_containers);
 
     std::set <GAME::FCO, top_to_bottom_t> sorted_values;
 
@@ -136,14 +136,14 @@ private:
     if (0 != this->collection_)
     {
       GAME::Reference collection = GAME::Reference::_narrow (complex_type);
-      this->insert_collection_footer (collection.refers_to ());
+      this->insert_collection_footer (collection->refers_to ());
     }
   }
 
   //
   // insert_collection_footer
   //
-  void insert_collection_footer (const GAME::FCO & type)
+  void insert_collection_footer (const GAME::FCO_in type)
   {
     // Insert the blank item into the listing. This will be used
     // to determine when the sequence is clicked.
@@ -163,9 +163,9 @@ private:
   //
   // Visit_DataValueBase
   //
-  void Visit_DataValueBase (const GAME::FCO & value)
+  void Visit_DataValueBase (const GAME::FCO_in value)
   {
-    std::string metaname (value.meta ().name ());
+    std::string metaname (value->meta ()->name ());
     const bool expand = (metaname == "DataValueContainer");
 
     Data_Value_Item_Base * item = 0;
@@ -187,7 +187,7 @@ private:
         if (!::get_complex_type (container, complex))
           return;
 
-        metaname = complex.meta ().name ();
+        metaname = complex->meta ()->name ();
 
         if (metaname == "Collection")
           item = new Collection_Container_Data_Item (container);
@@ -301,11 +301,11 @@ BOOL PICML_Property_Manager_ListCtrl::InitControl (void)
 // SetProperty
 //
 void PICML_Property_Manager_ListCtrl::
-SetProperty (const GAME::FCO & prop)
+SetProperty (const GAME::FCO_in prop)
 {
   // Initialize the control based on the property.
   PICML_Property_Manager_ListView_Expand expander (*this, 0, 0);
-  expander.Visit_Property (prop);
+  prop->accept (&expander);
 
   this->prop_ = prop;
 }
@@ -540,7 +540,7 @@ handle_name_click (const LVHITTESTINFO & testinfo)
     // Insert the child items into the control.
     GAME::Model container = GAME::Model::_narrow (fco);
     PICML_Property_Manager_ListView_Expand builder (*this, lvitem.iItem + 1, lvitem.iIndent + 1);
-    builder.Visit_DataValueContainer (container);
+    container->accept (&builder);
 
     // Set to collapse image since we have expanded list.
     lvitem.iImage = 2;

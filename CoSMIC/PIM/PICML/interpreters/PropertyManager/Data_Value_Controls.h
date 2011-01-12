@@ -32,7 +32,7 @@ public:
   /// Destructor.
   virtual ~PICML_Data_Value_Control (void);
 
-  void InitControl (const GAME::FCO & value);
+  void InitControl (const GAME::FCO_in value);
 
   virtual BOOL Create (DWORD style, const RECT & rect, CWnd * parent, UINT id) = 0;
 

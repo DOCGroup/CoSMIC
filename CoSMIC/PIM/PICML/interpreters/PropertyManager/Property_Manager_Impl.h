@@ -30,13 +30,10 @@ public:
   virtual ~PICML_Property_Mangaer_Impl (void);
 
   // Handle the InvokeEx callback.
-  int invoke_ex (GAME::Project & project,
-                 GAME::FCO & fco,
+  int invoke_ex (GAME::Project project,
+                 GAME::FCO_in fco,
                  std::vector <GAME::FCO> & selected,
                  long flags);
-
-private:
-  void handle_property (GAME::FCO fco);
 };
 
 #endif  // !defined _PROPERTY_MANAGER_IMPL_H_

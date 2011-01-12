@@ -95,7 +95,7 @@ private:
 //
 // Data_Value_Item
 //
-Data_Value_Item::Data_Value_Item (const GAME::FCO & item)
+Data_Value_Item::Data_Value_Item (const GAME::FCO_in item)
 : item_ (item),
   control_ (0)
 {
@@ -113,7 +113,7 @@ bool Data_Value_Item::is_complex (void) const
 //
 // get_item
 //
-GAME::FCO Data_Value_Item::get_item (void) const
+GAME::FCO Data_Value_Item::get_item (void)
 {
   return this->item_;
 }
@@ -124,8 +124,8 @@ GAME::FCO Data_Value_Item::get_item (void) const
 void Data_Value_Item::
 get_display_info (std::string & name, std::string & value) const
 {
-  name = this->item_.name ();
-  value = this->item_.attribute ("Value").string_value ();
+  name = this->item_->name ();
+  value = this->item_->attribute ("Value")->string_value ();
 }
 
 //
@@ -136,9 +136,9 @@ value_click_begin (CWnd * parent, int item, const CRect & rect)
 {
   // Select the correct control based on the value's type.
   GAME::Reference data_value = GAME::Reference::_narrow (this->item_);
-  GAME::FCO fco = data_value.refers_to ();
+  GAME::FCO fco = data_value->refers_to ();
 
-  const std::string metaname (fco.meta ().name ());
+  const std::string metaname = fco->meta ()->name ();
 
   if (0 != PICML_GLOBAL_CONTROL_SELECTOR->select (metaname, this->control_))
     return;

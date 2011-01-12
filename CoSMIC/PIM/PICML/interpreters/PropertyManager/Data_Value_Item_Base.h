@@ -24,7 +24,7 @@
 class Data_Value_Item_Base : public Data_Item
 {
 public:
-  virtual GAME::FCO get_item (void) const = 0;
+  virtual GAME::FCO get_item (void) = 0;
 
   virtual bool is_complex (void) const = 0;
 

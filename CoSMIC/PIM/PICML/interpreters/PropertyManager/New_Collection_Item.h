@@ -30,7 +30,7 @@ class New_Collection_Item : public Data_Item
 {
 public:
   New_Collection_Item (Collection_Container_Data_Item * parent,
-                       GAME::FCO type,
+                       GAME::FCO_in type,
                        int indent);
 
   virtual void get_display_info (std::string & name, std::string & value) const;

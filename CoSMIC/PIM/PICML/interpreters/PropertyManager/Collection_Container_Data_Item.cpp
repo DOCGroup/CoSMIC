@@ -15,9 +15,9 @@
 //
 // is_complex_type
 //
-static bool is_complex_type (const GAME::FCO & fco)
+static bool is_complex_type (const GAME::FCO_in fco)
 {
-  const std::string metaname (fco.meta ().name ());
+  const std::string metaname = fco->meta ()->name ();
   return metaname == "Collection" || metaname == "Aggregate";
 }
 
@@ -25,14 +25,14 @@ static bool is_complex_type (const GAME::FCO & fco)
 // get_complex_type
 //
 static bool
-get_complex_type (const GAME::Model & container, GAME::FCO & complex)
+get_complex_type (const GAME::Model_in container, GAME::FCO & complex)
 {
   std::vector <GAME::Reference> complex_types;
-  if (0 == container.children ("ComplexTypeReference", complex_types))
+  if (0 == container->children ("ComplexTypeReference", complex_types))
     return false;
 
   // Get the complex type.
-  complex = complex_types.front ().refers_to ();
+  complex = complex_types.front ()->refers_to ();
   return !complex.is_nil ();
 }
 
@@ -40,7 +40,7 @@ get_complex_type (const GAME::Model & container, GAME::FCO & complex)
 // Collection_Container_Data_Item
 //
 Collection_Container_Data_Item::
-Collection_Container_Data_Item (const GAME::Model & item)
+Collection_Container_Data_Item (const GAME::Model_in item)
 : Container_Data_Item (item),
   is_complex_type_ (false)
 {
@@ -50,7 +50,7 @@ Collection_Container_Data_Item (const GAME::Model & item)
   {
     // Get the collection's type information.
     GAME::Reference coll = GAME::Reference::_narrow (fco);
-    this->type_ = coll.refers_to ();
+    this->type_ = coll->refers_to ();
 
     // Cache the type's complexity.
     this->is_complex_type_ = ::is_complex_type (this->type_);
@@ -74,9 +74,9 @@ Collection_Container_Data_Item::new_item (void)
     using GAME::Reference;
 
     // We need to create a DataValueContainer element.
-    Model container = Model::_create (this->item_, "DataValueContainer");
-    Reference ctr = Reference::_create (container, "ComplexTypeReference");
-    ctr.refers_to (this->type_);
+    Model container = GAME::Model_Impl::_create (this->item_, "DataValueContainer");
+    Reference ctr = GAME::Reference_Impl::_create (container, "ComplexTypeReference");
+    ctr->refers_to (this->type_);
 
     // Save the container.
     value_base = container;
@@ -84,8 +84,8 @@ Collection_Container_Data_Item::new_item (void)
   else
   {
     // We are create space for a predefined type, or an enumeration.
-    GAME::Reference data_value = GAME::Reference::_create (this->item_, "DataValue");
-    data_value.refers_to (this->type_);
+    GAME::Reference data_value = GAME::Reference_Impl::_create (this->item_, "DataValue");
+    data_value->refers_to (this->type_);
 
     value_base = data_value;
   }
@@ -122,7 +122,7 @@ Collection_Container_Data_Item::new_item (GAME::FCO item)
   {
     GAME::Model container = GAME::Model::_narrow (item);
 
-    if (this->type_.meta ().name () == "Collection")
+    if (this->type_->meta ()->name () == "Collection")
       data_item.reset (new Collection_Container_Data_Item (container));
     else
       data_item.reset (new Container_Data_Item (container));
@@ -177,7 +177,7 @@ bool Collection_Container_Data_Item::delete_item (Collection_Item * item)
     return false;
 
   // Delete the element from the model.
-  item->get_item ().destroy ();
+  item->get_item ()->destroy ();
 
   // Remove the element from the collection.
   this->items_.erase (this->items_.begin () + index);

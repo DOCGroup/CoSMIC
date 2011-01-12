@@ -27,7 +27,7 @@ class Collection_Item;
 class Collection_Container_Data_Item : public Container_Data_Item
 {
 public:
-  Collection_Container_Data_Item (const GAME::Model & item);
+  Collection_Container_Data_Item (const GAME::Model_in item);
 
   Collection_Item * new_item (void);
   Collection_Item * new_item (GAME::FCO item);

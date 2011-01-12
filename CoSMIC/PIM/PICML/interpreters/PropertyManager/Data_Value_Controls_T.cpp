@@ -55,7 +55,7 @@ BOOL PICML_Simple_Data_Value_Control <CONTROL>::Destroy (void)
   CONTROL::GetWindowText (text);
 
   // Save the text in the value.
-  this->value_.attribute ("Value").string_value (text.GetBuffer ());
+  this->value_->attribute ("Value")->string_value (text.GetBuffer ());
 
   // Destroy the control.
   return CONTROL::DestroyWindow ();

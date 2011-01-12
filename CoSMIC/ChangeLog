@@ -1,3 +1,28 @@
+Wed Jan 12 22:51:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PropertyManager/Collection_Container_Data_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Container_Data_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Collection_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Container_Data_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Container_Data_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Controls_T.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Data_Value_Item_Base.h:
+        * PIM/PICML/interpreters/PropertyManager/New_Collection_Item.h:
+        * PIM/PICML/interpreters/PropertyManager/New_Collection_Item.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Dialog_ListCtrl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+
+          Updated to the latest version of GAME.
+
 Wed Jan 12 21:05:27 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.h:

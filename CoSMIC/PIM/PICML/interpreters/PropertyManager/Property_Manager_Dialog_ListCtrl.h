@@ -31,7 +31,7 @@ public:
   /// Initialize the columns for the control.
   BOOL InitControl (void);
 
-  void SetProperty (const GAME::FCO & prop);
+  void SetProperty (const GAME::FCO_in prop);
 
 protected:
   void handle_name_click (const LVHITTESTINFO & testinfo);

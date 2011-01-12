@@ -12,7 +12,7 @@ END_MESSAGE_MAP ()
 // PICML_Property_Manager_Dialog
 //
 PICML_Property_Manager_Dialog::
-PICML_Property_Manager_Dialog (const GAME::FCO & prop, CWnd * parent)
+PICML_Property_Manager_Dialog (const GAME::FCO_in prop, CWnd * parent)
 : CDialog (IDD_PROPERTY_MANAGER, parent),
   prop_ (prop)
 {

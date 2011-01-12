@@ -24,9 +24,9 @@
 class Container_Data_Item : public Data_Value_Item_Base
 {
 public:
-  Container_Data_Item (const GAME::Model & item);
+  Container_Data_Item (const GAME::Model_in item);
 
-  virtual GAME::FCO get_item (void) const;
+  virtual GAME::FCO get_item (void);
   virtual void get_display_info (std::string & name, std::string & value) const;
 
   virtual bool is_complex (void) const;

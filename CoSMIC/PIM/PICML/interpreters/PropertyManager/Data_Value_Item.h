@@ -27,9 +27,9 @@ class Data_Value_Item : public Data_Value_Item_Base
 {
 public:
   /// Initalizing constructor.
-  Data_Value_Item (const GAME::FCO & item);
+  Data_Value_Item (const GAME::FCO_in item);
 
-  virtual GAME::FCO get_item (void) const;
+  virtual GAME::FCO get_item (void);
   virtual void get_display_info (std::string & name, std::string & value) const;
 
   virtual void value_click_begin (CWnd * parent, int item, const CRect & rect);

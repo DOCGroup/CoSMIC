@@ -27,7 +27,7 @@
 class PICML_Property_Manager_Dialog : public CDialog
 {
 public:
-  PICML_Property_Manager_Dialog (const GAME::FCO & prop, CWnd * parent = 0);
+  PICML_Property_Manager_Dialog (const GAME::FCO_in prop, CWnd * parent = 0);
 
   /// Destructor.
   virtual ~PICML_Property_Manager_Dialog (void);
