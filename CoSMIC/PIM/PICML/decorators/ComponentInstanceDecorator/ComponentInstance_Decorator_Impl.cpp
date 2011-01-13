@@ -113,8 +113,8 @@ void ComponentInstance_Decorator_Impl::destroy (void)
 //
 int ComponentInstance_Decorator_Impl::
 initialize_ex (const GAME::Project & proj,
-               const GAME::Meta::Part & part,
-               const GAME::FCO & fco,
+               const GAME::Meta::Part_in part,
+               const GAME::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
@@ -126,8 +126,8 @@ initialize_ex (const GAME::Project & proj,
 //
 int ComponentInstance_Decorator_Impl::
 initialize (const GAME::Project & project,
-            const GAME::Meta::Part & part,
-            const GAME::FCO & fco)
+            const GAME::Meta::Part_in part,
+            const GAME::FCO_in fco)
 {
   using GAME::utils::GLOBAL_REGISTRAR;
   using GAME::utils::Registrar;
@@ -142,37 +142,35 @@ initialize (const GAME::Project & project,
   if (!resolver->is_init ())
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
-  if (fco.is_nil ())
+  if (0 == fco)
   {
     // We are going to show the metaname.
-    GAME::Meta::FCO metafco = part.role ().kind ();
-    this->label_ = metafco.display_name ().c_str ();
+    this->label_ = part->role ()->kind ()->display_name ();
   }
   else
   {
     // We also show the name of the instance regardless of what the
     // end-user wants use to show. :-)
-    this->label_ = fco.name ();
+    this->label_ = fco->name ();
 
     // We also need to determine the implementation to show. This is
     // done by getting the name of the implementation.
     GAME::Model model = GAME::Model::_narrow (fco);
 
     std::vector <GAME::Reference> typeset;
-    if (model.children ("ComponentInstanceType", typeset))
+    if (model->children ("ComponentInstanceType", typeset))
     {
-      const GAME::Reference & impl_type = typeset.front ();
-      GAME::FCO refers_to = impl_type.refers_to ();
+      GAME::FCO refers_to =  typeset.front ()->refers_to ();
 
       if (!refers_to.is_nil ())
-        this->impl_label_ = refers_to.name ();
+        this->impl_label_ = refers_to->name ();
     }
 
     if (this->impl_label_.empty ())
       this->impl_label_ = "<undefined>";
   }
 
-  if (!fco.is_nil ())
+  if (0 != fco)
     this->initialize_ports ("ComponentInterface", fco, resolver);
 
   // Finally, sort the ports from top to bottom.
@@ -192,24 +190,22 @@ initialize (const GAME::Project & project,
 //
 int ComponentInstance_Decorator_Impl::
 initialize_ports (const std::string & aspect_name,
-                  const GAME::FCO & fco,
+                  const GAME::FCO_in fco,
                   GAME::graphics::Image_Resolver * resolver)
 {
-  GAME::Model model = GAME::Model::_narrow (fco);
-  GAME::Meta::Model metamodel = model.meta ();
-
   // Get the target aspect.
-  GAME::Meta::Aspect aspect = metamodel.aspect (aspect_name);
+  GAME::Model model = GAME::Model::_narrow (fco);
+  GAME::Meta::Aspect aspect = model->meta ()->aspect (aspect_name);
 
   if (aspect.is_nil ())
     return 0;
 
   // Select all the FCO elements in the specified aspect.
   std::vector <GAME::FCO> ports;
-  if (model.children (aspect, ports) == 0)
+  if (model->children (aspect, ports) == 0)
     return 0;
 
-  std::vector <GAME::FCO>::const_iterator
+  std::vector <GAME::FCO>::iterator
     iter = ports.begin (), iter_end = ports.end ();
 
   GAME::Part part;
@@ -220,13 +216,13 @@ initialize_ports (const std::string & aspect_name,
   {
     // First, let's determine if the element is indeed a port. If
     // it is not a port, let's just continue to the next iteration.
-    part = iter->part (aspect);
+    part = (*iter)->part (aspect);
 
-    if (!part.meta ().is_linked ())
+    if (!part.meta ()->is_linked ())
       continue;
 
     // Load the icon for the specified element.
-    icon_filename = iter->meta ().registry_value ("icon");
+    icon_filename = (*iter)->meta ()->registry_value ("icon");
 
     if (resolver->lookup_icon (icon_filename, filename))
       this->port_bitmaps_.associate_image (*iter, filename, image);
@@ -239,7 +235,10 @@ initialize_ports (const std::string & aspect_name,
     using GAME::graphics::Port_Decorator;
 
     GAME::utils::Point location (x, y);
-    Port_Decorator * port = new Port_Decorator (*iter, image, iter->name (), location);
+    Port_Decorator * port = new Port_Decorator (*iter,
+                                                image,
+                                                (*iter)->name (),
+                                                location);
 
     if (x < 200)
     {
@@ -256,10 +255,9 @@ initialize_ports (const std::string & aspect_name,
   // We need to get all the ports that we inherit.
   std::vector <GAME::Reference> inherits;
 
-  if (model.children ("ComponentInherits", inherits))
+  if (model->children ("ComponentInherits", inherits))
   {
-    GAME::Reference inherit = inherits[0];
-    GAME::FCO refers_to = inherit.refers_to ();
+    GAME::FCO refers_to = inherits.front ()->refers_to ();
 
     if (!refers_to.is_nil ())
       this->initialize_ports ("InterfaceDefinition", refers_to, resolver);
@@ -349,7 +347,7 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int ComponentInstance_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
   return ((this->draw_component (g) == 0) &&
           (this->draw_label (g) == 0) &&
@@ -359,14 +357,14 @@ int ComponentInstance_Decorator_Impl::draw (Gdiplus::Graphics & g)
 //
 // draw_component
 //
-int ComponentInstance_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw_component (Gdiplus::Graphics * g)
 {
   // Start drawing the component image.
   static const Gdiplus::SolidBrush brush (Gdiplus::Color (210, 210, 210));
-  g.FillPath (&brush, &this->graphics_path_);
+  g->FillPath (&brush, &this->graphics_path_);
 
   static const Gdiplus::Pen pen (Gdiplus::Color (100, 100, 100), COMPONENT_LINE_WIDTH);
-  g.DrawPath (&pen, &this->graphics_path_);
+  g->DrawPath (&pen, &this->graphics_path_);
 
   return 0;
 }
@@ -374,7 +372,7 @@ int ComponentInstance_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
 //
 // draw_label
 //
-int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics * g)
 {
   float height = (float)this->location_.height ();
   float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
@@ -391,12 +389,12 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr,
-                this->label_.length (),
-                &font,
-                Gdiplus::PointF (px, py),
-                &format,
-                &brush);
+  g->DrawString (bstr,
+                 this->label_.length (),
+                 &font,
+                 Gdiplus::PointF (px, py),
+                 &format,
+                 &brush);
 
   if (this->impl_label_.empty ())
     return 0;
@@ -405,12 +403,12 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
   inst_label += this->impl_label_ + "]";
 
   CComBSTR inst_bstr (inst_label.length (), inst_label.c_str ());
-  g.DrawString (inst_bstr,
-                inst_label.length (),
-                &inst_font,
-                Gdiplus::PointF (px, py + 15),
-                &format,
-                &brush);
+  g->DrawString (inst_bstr,
+                 inst_label.length (),
+                 &inst_font,
+                 Gdiplus::PointF (px, py + 15),
+                 &format,
+                 &brush);
 
   return 0;
 }
@@ -418,7 +416,7 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
 //
 // draw
 //
-int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
+int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics * g)
 {
   using GAME::graphics::Port_Decorator;
 
@@ -467,7 +465,7 @@ get_ports (std::vector < ::GAME::FCO > & v)
  */
 struct is_matching_port
 {
-  is_matching_port (const GAME::FCO & fco)
+  is_matching_port (const GAME::FCO_in fco)
     : fco_ (fco)
   {
 
@@ -475,18 +473,18 @@ struct is_matching_port
 
   bool operator () (GAME::graphics::Port_Decorator * d) const
   {
-    return d->fco () == this->fco_;
+    return this->fco_ == d->fco ();
   }
 
 private:
-  const GAME::FCO & fco_;
+  const GAME::FCO fco_;
 };
 
 //
 // get_port_location
 //
 int ComponentInstance_Decorator_Impl::
-get_port_location (const GAME::FCO & fco,
+get_port_location (const GAME::FCO_in fco,
                    long & sx,
                    long & sy,
                    long & ex,
@@ -499,32 +497,23 @@ get_port_location (const GAME::FCO & fco,
                          this->l_ports_.end (),
                          is_matching_port (fco));
 
-  if (result != this->l_ports_.end ())
+  if (result == this->l_ports_.end ())
   {
-    (*result)->get_location (sx, sy, ex, ey);
-    sx -= this->location_.x_;
-    sy -= this->location_.y_;
-    ex -= this->location_.x_;
-    ey -= this->location_.y_;
+    // Search the right ports for the FCO.
+    result = std::find_if (this->r_ports_.begin (),
+                           this->r_ports_.end (),
+                           is_matching_port (fco));
 
-    return 0;
+    if (result == this->r_ports_.end ())
+      return -1;
   }
 
-  // Search the right ports for the FCO.
-  result = std::find_if (this->r_ports_.begin (),
-                         this->r_ports_.end (),
-                         is_matching_port (fco));
 
-  if (result != this->r_ports_.end ())
-  {
-    (*result)->get_location (sx, sy, ex, ey);
+  (*result)->get_location (sx, sy, ex, ey);
 
-    sx -= this->location_.x_;
-    sy -= this->location_.y_;
-    ex -= this->location_.x_;
-    ey -= this->location_.y_;
-    return 0;
-  }
-
-  return -1;
+  sx -= this->location_.x_;
+  sy -= this->location_.y_;
+  ex -= this->location_.x_;
+  ey -= this->location_.y_;
+  return 0;
 }
