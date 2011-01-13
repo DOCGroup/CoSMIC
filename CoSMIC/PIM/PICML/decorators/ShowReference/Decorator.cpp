@@ -33,10 +33,10 @@ Show_Reference_Decorator_Impl::~Show_Reference_Decorator_Impl (void)
 // initialize
 //
 int Show_Reference_Decorator_Impl::
-initialize_ex (const GAME::Project & project, 
-               const GAME::Meta::Part & part, 
-               const GAME::FCO & fco,
-               IMgaCommonDecoratorEvents * eventSink, 
+initialize_ex (const GAME::Project & project,
+               const GAME::Meta::Part_in part,
+               const GAME::FCO_in fco,
+               IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
   using GAME::utils::GLOBAL_REGISTRAR;
@@ -47,37 +47,37 @@ initialize_ex (const GAME::Project & project,
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-  
+
   if (!resolver->is_init ())
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   std::string icon_filename;
 
-  if (fco.is_nil ())
+  if (0 == fco)
   {
     // Get the icon for the element in the parts browser.
-    GAME::Meta::FCO metafco = part.role ().kind ();
+    GAME::Meta::FCO metafco = part->role ()->kind ();
 
-    icon_filename = metafco.registry_value ("icon");
-    this->label_ = metafco.display_name ().c_str ();
+    icon_filename = metafco->registry_value ("icon");
+    this->label_ = metafco->display_name ().c_str ();
   }
   else
   {
-    // Get the icon filename for the referenced element. If no 
+    // Get the icon filename for the referenced element. If no
     // element is referenced, then display the reference's icon.
     GAME::Reference ref = GAME::Reference::_narrow (fco);
-    GAME::FCO refers_to = ref.refers_to ();
+    GAME::FCO refers_to = ref->refers_to ();
 
     if (!refers_to.is_nil ())
-      icon_filename = refers_to.registry_value ("icon");
+      icon_filename = refers_to->registry_value ("icon");
     else
-      icon_filename = ref.registry_value ("icon");
+      icon_filename = ref->registry_value ("icon");
 
     // Determine if we need to show the label for the element.
-    std::string show_name = ref.registry_value ("isNameEnabled");
+    std::string show_name = ref->registry_value ("isNameEnabled");
 
     if (show_name.empty () || show_name == "true")
-      this->label_ = ref.name ().c_str ();
+      this->label_ = ref->name ().c_str ();
   }
 
   // Load the file for later usage.
@@ -106,20 +106,20 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int Show_Reference_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int Show_Reference_Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
-  g.DrawImage (this->bitmap_.get (),
-               this->location_.x_,
-               this->location_.y_,
-               this->location_.cx_ - this->location_.x_,
-               this->location_.cy_ - this->location_.y_);
+  g->DrawImage (this->bitmap_.get (),
+                this->location_.x_,
+                this->location_.y_,
+                this->location_.cx_ - this->location_.x_,
+                this->location_.cy_ - this->location_.y_);
 
   if (this->label_.empty ())
     return 0;
 
-  float height = this->location_.height ();
-  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0);
-  float py = static_cast <float> (this->location_.y_) + (height + 15.0);
+  float height = static_cast <float> (this->location_.height ());
+  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
+  float py = static_cast <float> (this->location_.y_) + (height + 15.0f);
 
   static const Gdiplus::Font font (L"Arial", 10);
   static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
@@ -131,12 +131,12 @@ int Show_Reference_Decorator_Impl::draw (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr, 
-                this->label_.length (),
-                &font,
-                Gdiplus::PointF (px, py),
-                &format,
-                &brush);
+  g->DrawString (bstr,
+                 this->label_.length (),
+                 &font,
+                 Gdiplus::PointF (px, py),
+                 &format,
+                 &brush);
 
   return 0;
 }

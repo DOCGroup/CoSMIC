@@ -33,14 +33,14 @@ public:
   ~Show_Reference_Decorator_Impl (void);
 
   int initialize_ex (const GAME::Project & proj, 
-                     const GAME::Meta::Part & part, 
-                     const GAME::FCO & fco,
+                     const GAME::Meta::Part_in part, 
+                     const GAME::FCO_in fco,
                      IMgaCommonDecoratorEvents * eventSink, 
                      ULONGLONG parentWnd);
 
   int get_preferred_size (long & sx, long & sy);
 
-  int draw (Gdiplus::Graphics & g);
+  int draw (Gdiplus::Graphics * g);
 
 private:
   /// The bitmap image for the element.
