@@ -20,8 +20,8 @@
  *
  * Implemenation of the Quotas specification interpreter.
  */
-class IDL_Generator_Component_Impl : 
-  public GAME::Interpreter_Impl_Base 
+class IDL_Generator_Component_Impl :
+  public GAME::Interpreter_Impl_Base
 {
 public:
   /// Default constructor.
@@ -31,8 +31,8 @@ public:
   virtual ~IDL_Generator_Component_Impl (void);
 
   // Handle the InvokeEx callback.
-  int invoke_ex (GAME::Project & project,
-                 GAME::FCO & fco,
+  int invoke_ex (GAME::Project project,
+                 GAME::FCO fco,
                  std::vector <GAME::FCO> & selected,
                  long flags);
 

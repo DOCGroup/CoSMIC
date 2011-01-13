@@ -46,9 +46,9 @@ struct insert_udm_t
 
   }
 
-  void operator () (const GAME::FCO & fco) const
+  void operator () (const GAME::FCO_in fco) const
   {
-    this->coll_.insert (this->network_.Gme2Udm (fco.impl ()));
+    this->coll_.insert (this->network_.Gme2Udm (fco->impl ()));
   }
 
 private:
@@ -61,8 +61,8 @@ private:
 // invoke_ex
 //
 int IDL_Generator_Component_Impl::
-invoke_ex (GAME::Project & project,
-           GAME::FCO & focus,
+invoke_ex (GAME::Project project,
+           GAME::FCO focus,
            std::vector <GAME::FCO> & selected,
            long flags)
 {
@@ -74,8 +74,8 @@ invoke_ex (GAME::Project & project,
     dngBackend.OpenExisting (project.impl ());
 
     Udm::Object currentObject;
-    if (!focus.is_nil ())
-      currentObject = dngBackend.Gme2Udm (focus.impl ());
+    if (0 != focus)
+      currentObject = dngBackend.Gme2Udm (focus->impl ());
 
     set <Udm::Object> selectedObjects;
     std::for_each (selected.begin (),

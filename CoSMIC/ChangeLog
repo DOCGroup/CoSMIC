@@ -1,3 +1,10 @@
+Thu Jan 13 03:36:32 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
+
+          Updated to the latest version of GAME.
+
 Wed Jan 12 22:51:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PropertyManager/Collection_Container_Data_Item.h:
