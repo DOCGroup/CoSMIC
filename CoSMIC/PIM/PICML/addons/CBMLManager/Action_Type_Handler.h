@@ -35,10 +35,11 @@ public:
   /// Destructor.
   virtual ~CBML_Action_Type_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object obj);
+  virtual int handle_object_relation (GAME::Object_in obj);
 
 private:
-  void create_property (GAME::Model action, const GAME::Reference & parameter);
+  void create_property (GAME::Model_in action,
+                        const GAME::Reference_in parameter);
 };
 
 #endif  // !defined _CBML_CONNECTION_GENERATION_HANDLER_H_

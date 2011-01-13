@@ -39,14 +39,14 @@ public:
   /// Destructor.
   virtual ~CBML_Connection_Generation_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 
-  virtual int handle_object_destroyed (GAME::Object obj);
+  virtual int handle_object_destroyed (GAME::Object_in obj);
 
-  virtual int handle_object_select (GAME::Object obj);
+  virtual int handle_object_select (GAME::Object_in obj);
 
 private:
-  void create_state_and_connect (GAME::FCO action,
+  void create_state_and_connect (GAME::FCO_in action,
                                  const std::string & conntype);
 
   /// The active state.

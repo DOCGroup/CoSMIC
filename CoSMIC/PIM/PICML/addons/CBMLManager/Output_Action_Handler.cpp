@@ -27,16 +27,16 @@ CBML_Output_Action_Handler::~CBML_Output_Action_Handler (void)
 //
 // handle_object_created
 //
-int CBML_Output_Action_Handler::handle_object_created (GAME::Object obj)
+int CBML_Output_Action_Handler::handle_object_created (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
   // Locate the event sources for this component.
-  GAME::Model component = GAME::Model::_narrow (obj.parent ());
+  GAME::Model component = GAME::Model::_narrow (obj->parent ());
 
   std::vector <GAME::Reference> sources;
-  if (0 == component.children ("OutEventPort", sources))
+  if (0 == component->children ("OutEventPort", sources))
     return 0;
 
   GAME::Reference source;
@@ -63,7 +63,7 @@ int CBML_Output_Action_Handler::handle_object_created (GAME::Object obj)
   }
 
   if (!source.is_nil ())
-    obj.name (source.name ());
+    obj->name (source->name ());
 
   return 0;
 }

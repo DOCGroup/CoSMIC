@@ -28,12 +28,12 @@ CBML_Action_Handler::~CBML_Action_Handler (void)
 //
 // handle_object_created
 //
-int CBML_Action_Handler::handle_object_created (GAME::Object obj)
+int CBML_Action_Handler::handle_object_created (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
-  GAME::Model component = GAME::Model::_narrow (obj.parent ());
+  GAME::Model component = GAME::Model::_narrow (obj->parent ());
 
   // Locate the worker type. This will be used to determine the
   // action type of the abstract action.
@@ -41,16 +41,16 @@ int CBML_Action_Handler::handle_object_created (GAME::Object obj)
   if (!this->get_worker_type (component, worker_type))
     return 0;
 
-  obj.name (worker_type.name ());
+  obj->name (worker_type->name ());
 
-  GAME::FCO fco = worker_type.refers_to ();
+  GAME::FCO fco = worker_type->refers_to ();
   if (fco.is_nil ())
     return 0;
 
   GAME::Model worker = GAME::Model::_narrow (fco);
 
   std::vector <GAME::Model> operations;
-  if (0 == worker.children ("Operation", operations))
+  if (0 == worker->children ("Operation", operations))
     return 0;
 
   GAME::Model operation;
@@ -78,10 +78,10 @@ int CBML_Action_Handler::handle_object_created (GAME::Object obj)
   }
 
   GAME::Model action = GAME::Model::_narrow (obj);
-  GAME::Reference action_type = GAME::Reference::_create (action, "ActionType");
+  GAME::Reference action_type = GAME::Reference_Impl::_create (action, "ActionType");
 
-  action_type.name (operation.name ());
-  action_type.refers_to (operation);
+  action_type->name (operation->name ());
+  action_type->refers_to (operation);
 
   return 0;
 }
@@ -90,12 +90,11 @@ int CBML_Action_Handler::handle_object_created (GAME::Object obj)
 // get_worker_type
 //
 bool CBML_Action_Handler::
-get_worker_type (const GAME::Model & component,
-                 GAME::Reference & worker_type)
+get_worker_type (const GAME::Model_in component, GAME::Reference & worker_type)
 {
   // First, select the worker types in the component model.
   std::vector <GAME::Reference> worker_types;
-  if (0 == component.children ("WorkerType", worker_types))
+  if (0 == component->children ("WorkerType", worker_types))
     return 0;
 
   using GAME::Dialogs::Selection_List_Dialog_T;

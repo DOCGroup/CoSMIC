@@ -33,11 +33,10 @@ public:
   /// Destructor.
   virtual ~CBML_Action_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 
 private:
-  bool get_worker_type (const GAME::Model & component,
-                        GAME::Reference & worker_type);
+  bool get_worker_type (const GAME::Model_in, GAME::Reference &);
 };
 
 #endif  // !defined _CBML_CONNECTION_GENERATION_HANDLER_H_

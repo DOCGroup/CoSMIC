@@ -1,3 +1,16 @@
+Thu Jan 13 14:21:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.cpp:
+
+          Updated to the latest version of GAME.
+
 Thu Jan 13 14:04:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.h:

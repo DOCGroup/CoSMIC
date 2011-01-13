@@ -33,7 +33,7 @@ public:
   /// Destructor.
   virtual ~CBML_Output_Action_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 };
 
 #endif  // !defined _CBML_CONNECTION_GENERATION_HANDLER_H_
