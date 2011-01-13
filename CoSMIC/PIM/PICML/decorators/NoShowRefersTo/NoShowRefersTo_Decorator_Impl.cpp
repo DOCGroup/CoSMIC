@@ -32,7 +32,7 @@ NoShowRefersTo_Decorator_Impl::~NoShowRefersTo_Decorator_Impl (void)
 // destroy
 //
 void NoShowRefersTo_Decorator_Impl::destroy (void)
-{ 
+{
   this->bitmap_.release ();
 }
 
@@ -40,10 +40,10 @@ void NoShowRefersTo_Decorator_Impl::destroy (void)
 // initialize
 //
 int NoShowRefersTo_Decorator_Impl::
-initialize_ex (const GAME::Project & project, 
-               const GAME::Meta::Part & part, 
-               const GAME::FCO & fco,
-               IMgaCommonDecoratorEvents * eventSink, 
+initialize_ex (const GAME::Project & project,
+               const GAME::Meta::Part_in part,
+               const GAME::FCO_in fco,
+               IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
   using GAME::utils::GLOBAL_REGISTRAR;
@@ -55,16 +55,16 @@ initialize_ex (const GAME::Project & project,
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-  
+
   if (!resolver->is_init ())
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Get the icon for the element in the parts browser.
-  GAME::Meta::FCO metafco = part.role ().kind ();
-  std::string icon_filename = metafco.registry_value ("icon");
+  GAME::Meta::FCO metafco = part->role ()->kind ();
+  std::string icon_filename = metafco->registry_value ("icon");
 
-  if (fco.is_nil ())
-    this->label_ = metafco.display_name ();
+  if (0 == fco)
+    this->label_ = metafco->display_name ();
 
   // Load the file for later usage.
   std::string abs_filename;
@@ -92,13 +92,13 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int NoShowRefersTo_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int NoShowRefersTo_Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
-  g.DrawImage (this->bitmap_.get (),
-               this->location_.x_,
-               this->location_.y_,
-               this->location_.cx_ - this->location_.x_,
-               this->location_.cy_ - this->location_.y_);
+  g->DrawImage (this->bitmap_.get (),
+                this->location_.x_,
+                this->location_.y_,
+                this->location_.cx_ - this->location_.x_,
+                this->location_.cy_ - this->location_.y_);
 
   if (this->label_.empty ())
     return 0;
@@ -117,12 +117,12 @@ int NoShowRefersTo_Decorator_Impl::draw (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr, 
-                this->label_.length (),
-                &font,
-                Gdiplus::PointF (px, py),
-                &format,
-                &brush);
+  g->DrawString (bstr,
+                 this->label_.length (),
+                 &font,
+                 Gdiplus::PointF (px, py),
+                 &format,
+                 &brush);
 
   return 0;
 }
