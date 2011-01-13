@@ -37,8 +37,8 @@ ConnectorInstance_Decorator_Impl::~ConnectorInstance_Decorator_Impl (void)
 //
 int ConnectorInstance_Decorator_Impl::
 initialize_ex (const GAME::Project & proj,
-               const GAME::Meta::Part & part,
-               const GAME::FCO & fco,
+               const GAME::Meta::Part_in part,
+               const GAME::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
@@ -50,8 +50,8 @@ initialize_ex (const GAME::Project & proj,
 //
 int ConnectorInstance_Decorator_Impl::
 initialize (const GAME::Project & project,
-            const GAME::Meta::Part & part,
-            const GAME::FCO & fco)
+            const GAME::Meta::Part_in part,
+            const GAME::FCO_in fco)
 {
   using GAME::FCO;
   using GAME::Reference;
@@ -66,30 +66,28 @@ initialize (const GAME::Project & project,
   if (!this->impl_label_.empty ())
     this->impl_label_.clear ();
 
-  if (fco.is_nil ())
+  if (0 == fco)
   {
     // We can only initialize the label for this element since we
     // are in the part's browser.
-    GAME::Meta::FCO metafco = part.role ().kind ();
-    this->label_ = metafco.display_name ();
+    GAME::Meta::FCO metafco = part->role ()->kind ();
+    this->label_ = metafco->display_name ();
   }
   else
   {
     // The label is the name of the object. We also can initialize
     // the implementation label for this element since we are in the
     // active window.
-    this->label_ = fco.name ();
-
+    this->label_ = fco->name ();
     Model model = Model::_narrow (fco);
 
     std::vector <Reference> typerefs;
-    if (model.children ("ConnectorImplementationType", typerefs))
+    if (model->children ("ConnectorImplementationType", typerefs))
     {
-      Reference typeref = typerefs.front ();
-      FCO refers_to = typeref.refers_to ();
+      FCO refers_to = typerefs.front ()->refers_to ();
 
       if (!refers_to.is_nil ())
-        this->impl_label_ = refers_to.name ();
+        this->impl_label_ = refers_to->name ();
     }
 
     // Since there is no implementation label, we should set it
@@ -106,8 +104,8 @@ initialize (const GAME::Project & project,
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Get the icon for the element in the parts browser.
-  GAME::Meta::FCO metafco = part.role ().kind ();
-  std::string icon_filename = metafco.registry_value ("icon");
+  GAME::Meta::FCO metafco = part->role ()->kind ();
+  std::string icon_filename = metafco->registry_value ("icon");
 
   // Load the file for later usage.
   std::string abs_filename;
@@ -135,13 +133,13 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int ConnectorInstance_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int ConnectorInstance_Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
-  g.DrawImage (this->bitmap_.get (),
-               this->location_.x_,
-               this->location_.y_,
-               this->location_.cx_ - this->location_.x_,
-               this->location_.cy_ - this->location_.y_);
+  g->DrawImage (this->bitmap_.get (),
+                this->location_.x_,
+                this->location_.y_,
+                this->location_.cx_ - this->location_.x_,
+                this->location_.cy_ - this->location_.y_);
 
   float height = (float)this->location_.height ();
   float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
@@ -158,12 +156,12 @@ int ConnectorInstance_Decorator_Impl::draw (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr,
-                this->label_.length (),
-                &font,
-                Gdiplus::PointF (px, py),
-                &format,
-                &brush);
+  g->DrawString (bstr,
+                 this->label_.length (),
+                 &font,
+                 Gdiplus::PointF (px, py),
+                 &format,
+                 &brush);
 
   if (this->impl_label_.empty ())
     return 0;
@@ -172,12 +170,12 @@ int ConnectorInstance_Decorator_Impl::draw (Gdiplus::Graphics & g)
   inst_label += this->impl_label_ + "]";
 
   CComBSTR inst_bstr (inst_label.length (), inst_label.c_str ());
-  g.DrawString (inst_bstr,
-                inst_label.length (),
-                &inst_font,
-                Gdiplus::PointF (px, py + 15),
-                &format,
-                &brush);
+  g->DrawString (inst_bstr,
+                 inst_label.length (),
+                 &inst_font,
+                 Gdiplus::PointF (px, py + 15),
+                 &format,
+                 &brush);
 
   return 0;
 }
