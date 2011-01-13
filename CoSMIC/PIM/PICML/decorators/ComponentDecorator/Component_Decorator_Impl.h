@@ -37,42 +37,42 @@ public:
   /// Destructor.
   ~Component_Decorator_Impl (void);
 
-  int initialize (const GAME::Project & proj, 
-                  const GAME::Meta::Part & part, 
-                  const GAME::FCO & fco);
+  int initialize (const GAME::Project & proj,
+                  const GAME::Meta::Part_in part,
+                  const GAME::FCO_in fco);
 
-  int initialize_ex (const GAME::Project & proj, 
-                     const GAME::Meta::Part & part, 
-                     const GAME::FCO & fco,
-                     IMgaCommonDecoratorEvents * eventSink, 
+  int initialize_ex (const GAME::Project & proj,
+                     const GAME::Meta::Part_in part,
+                     const GAME::FCO_in fco,
+                     IMgaCommonDecoratorEvents * eventSink,
                      ULONGLONG parentWnd);
 
   /// Destory the decorator.
   void destroy (void);
 
-  void set_location (const GAME::utils::Rect & location);    
+  void set_location (const GAME::utils::Rect & location);
 
   int get_preferred_size (long & sx, long & sy);
 
   /// Draw the component. This will draw the component's ports
   /// and the components label.
-  int draw (Gdiplus::Graphics & g);
+  int draw (Gdiplus::Graphics * g);
 
   /// Draw the actual component.
-  int draw_component (Gdiplus::Graphics & g);
+  int draw_component (Gdiplus::Graphics * g);
 
   /// Draw the component's ports.
-  int draw_ports (Gdiplus::Graphics & g);
+  int draw_ports (Gdiplus::Graphics * g);
 
   /// Draw the label for the component.
-  int draw_label (Gdiplus::Graphics & g);
+  int draw_label (Gdiplus::Graphics * g);
 
   /// Type definition of the port type.
   typedef std::vector <GAME::graphics::Port_Decorator *> port_set_t;
 
 protected:
   int initialize_ports (const std::string & aspect,
-                        const GAME::FCO &, 
+                        const GAME::FCO_in,
                         GAME::graphics::Image_Resolver *);
 
   int initialize_graphics_path (void);

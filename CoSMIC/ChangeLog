@@ -1,3 +1,10 @@
+Thu Jan 13 06:24:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+
+          Updated to the latest version of GAME.
+
 Thu Jan 13 03:36:32 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.h:
