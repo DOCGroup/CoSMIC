@@ -32,21 +32,21 @@ public:
   /// Destructor.
   ~ComponentRef_Decorator_Impl (void);
 
-  int initialize_ex (const GAME::Project & proj, 
-                     const GAME::Meta::Part & part, 
-                     const GAME::FCO & fco,
-                     IMgaCommonDecoratorEvents * eventSink, 
+  int initialize_ex (const GAME::Project & proj,
+                     const GAME::Meta::Part_in part,
+                     const GAME::FCO_in fco,
+                     IMgaCommonDecoratorEvents * eventSink,
                      ULONGLONG parentWnd);
 
   /// Destory the decorator.
   void destroy (void);
 
-  void set_location (const GAME::utils::Rect & location);    
+  void set_location (const GAME::utils::Rect & location);
 
   int get_preferred_size (long & sx, long & sy);
 
   /// Draw the component reference.
-  int draw (Gdiplus::Graphics & g);
+  int draw (Gdiplus::Graphics * g);
 
 private:
   /// The overlay image for the reference.

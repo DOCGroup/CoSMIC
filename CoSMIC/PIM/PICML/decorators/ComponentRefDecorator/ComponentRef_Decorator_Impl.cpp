@@ -39,10 +39,10 @@ ComponentRef_Decorator_Impl::~ComponentRef_Decorator_Impl (void)
 // initialize
 //
 int ComponentRef_Decorator_Impl::
-initialize_ex (const GAME::Project & project, 
-               const GAME::Meta::Part & part, 
-               const GAME::FCO & fco,
-               IMgaCommonDecoratorEvents * eventSink, 
+initialize_ex (const GAME::Project & project,
+               const GAME::Meta::Part_in part,
+               const GAME::FCO_in fco,
+               IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
   AFX_MANAGE_STATE (AfxGetStaticModuleState ());
@@ -60,19 +60,19 @@ initialize_ex (const GAME::Project & project,
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Load the reference arrow into memory.
-  HINSTANCE hinst = ::AfxFindResourceHandle (MAKEINTRESOURCEA (IDB_REFARROW), 
+  HINSTANCE hinst = ::AfxFindResourceHandle (MAKEINTRESOURCEA (IDB_REFARROW),
                                              RT_BITMAP);
 
-  Gdiplus::Bitmap * bitmap = 
-    Gdiplus::Bitmap::FromResource (hinst, 
+  Gdiplus::Bitmap * bitmap =
+    Gdiplus::Bitmap::FromResource (hinst,
                                    MAKEINTRESOURCEW (IDB_REFARROW));
 
   std::string filename;
   this->refarrow_.reset (bitmap);
 
-  if (fco.is_nil ())
+  if (0 == fco)
   {
-    // We are in the part browser. So, let's just load the 
+    // We are in the part browser. So, let's just load the
     // component bitmap ourselves.
     if (!resolver->lookup_icon (icons::component, filename))
       return E_DECORATOR_INIT_WITH_NULL;
@@ -83,11 +83,11 @@ initialize_ex (const GAME::Project & project,
   else
   {
     GAME::Reference ref = GAME::Reference::_narrow (fco);
-    GAME::FCO refers_to = ref.refers_to ();
+    GAME::FCO refers_to = ref->refers_to ();
 
     if (refers_to.is_nil ())
     {
-      // The component reference is null. So, let's just load the 
+      // The component reference is null. So, let's just load the
       // component bitmap ourselves.
       if (!resolver->lookup_icon (icons::component, filename))
         return E_DECORATOR_INIT_WITH_NULL;
@@ -101,7 +101,7 @@ initialize_ex (const GAME::Project & project,
       this->delegate_.reset (new Component_Decorator_Impl ());
 
       // Let's delegate the work to the component decorator.
-      this->delegate_->initialize (project, GAME::Meta::Part (), model);
+      this->delegate_->initialize (project, 0, model);
     }
   }
 
@@ -146,7 +146,7 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int ComponentRef_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int ComponentRef_Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
   if (0 != this->delegate_.get ())
   {
@@ -157,21 +157,21 @@ int ComponentRef_Decorator_Impl::draw (Gdiplus::Graphics & g)
   else
   {
     // Draw an blank component.
-    g.DrawImage (this->component_.get (),
-                 this->location_.x_,
-                 this->location_.y_,
-                 this->location_.cx_ - this->location_.x_,
-                 this->location_.cy_ - this->location_.y_);
+    g->DrawImage (this->component_.get (),
+                  this->location_.x_,
+                  this->location_.y_,
+                  this->location_.cx_ - this->location_.x_,
+                  this->location_.cy_ - this->location_.y_);
   }
 
   const long py = (this->location_.y_ + this->location_.height ()) - this->refarrow_->GetHeight ();
 
   // Draw the overlay image.
-  g.DrawImage (this->refarrow_.get (),
-               this->location_.x_,
-               py, 
-               this->refarrow_->GetWidth (),
-               this->refarrow_->GetHeight ());
+  g->DrawImage (this->refarrow_.get (),
+                this->location_.x_,
+                py,
+                this->refarrow_->GetWidth (),
+                this->refarrow_->GetHeight ());
 
   return 0;
 }
