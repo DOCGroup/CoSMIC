@@ -45,8 +45,8 @@ void Package_Decorator_Impl::destroy (void)
 //
 int Package_Decorator_Impl::
 initialize_ex (const GAME::Project & project,
-               const GAME::Meta::Part & part,
-               const GAME::FCO & fco,
+               const GAME::Meta::Part_in part,
+               const GAME::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
@@ -66,24 +66,24 @@ initialize_ex (const GAME::Project & project,
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Let's initialize the icon file to the default one.
-  GAME::Meta::FCO metafco = part.role ().kind ();
-  std::string icon_filename = metafco.registry_value ("icon");
+  GAME::Meta::FCO metafco = part->role ()->kind ();
+  std::string icon_filename = metafco->registry_value ("icon");
 
-  if (!fco.is_nil ())
+  if (0 == fco)
   {
     // The label is the name of the FCO.
-    this->label_ = fco.name ();
+    this->label_ = fco->name ();
 
-    if (fco.meta () == "Package")
+    if (fco->meta ()->name () == "Package")
     {
       // Determine if this is a package, or a template package. A template
       // package will have one or more template parameters as a child.
       Model package = Model::_narrow (fco);
-      GAME::Meta::Aspect aspect = package.meta ().aspect ("TemplateParameters");
+      GAME::Meta::Aspect aspect = package->meta ()->aspect ("TemplateParameters");
 
       std::vector <GAME::FCO> children;
 
-      if (package.children (aspect, children))
+      if (package->children (aspect, children))
         icon_filename = TEMPLATEPACKAGE_BITMAP;
     }
   }
@@ -91,7 +91,7 @@ initialize_ex (const GAME::Project & project,
   {
     // We are in the part browser. The label is just the display name
     // for the FCO's type (i.e., the MetaFCO).
-    this->label_ = metafco.display_name ();
+    this->label_ = metafco->display_name ();
   }
 
   // Load the file for later usage.
@@ -120,20 +120,20 @@ get_preferred_size (long & sx, long & sy)
 //
 // draw
 //
-int Package_Decorator_Impl::draw (Gdiplus::Graphics & g)
+int Package_Decorator_Impl::draw (Gdiplus::Graphics * g)
 {
-  g.DrawImage (this->bitmap_.get (),
-               this->location_.x_,
-               this->location_.y_,
-               this->location_.cx_ - this->location_.x_,
-               this->location_.cy_ - this->location_.y_);
+  g->DrawImage (this->bitmap_.get (),
+                this->location_.x_,
+                this->location_.y_,
+                this->location_.cx_ - this->location_.x_,
+                this->location_.cy_ - this->location_.y_);
 
   if (this->label_.empty ())
     return 0;
 
-  float height = this->location_.height ();
-  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0);
-  float py = static_cast <float> (this->location_.y_) + (height + 10.0);
+  float height = static_cast <float> (this->location_.height ());
+  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
+  float py = static_cast <float> (this->location_.y_) + (height + 10.0f);
 
   const Gdiplus::Font font (L"Arial", 10);
   const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
@@ -145,12 +145,12 @@ int Package_Decorator_Impl::draw (Gdiplus::Graphics & g)
   CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
   // Draw the label for the element.
-  g.DrawString (bstr,
-                this->label_.length (),
-                &font,
-                Gdiplus::PointF (px, py),
-                &format,
-                &brush);
+  g->DrawString (bstr,
+                 this->label_.length (),
+                 &font,
+                 Gdiplus::PointF (px, py),
+                 &format,
+                 &brush);
 
   return 0;
 }

@@ -1,3 +1,10 @@
+Thu Jan 13 13:44:56 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.h:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:
+
+          Updated to the latest version of GAME.
+
 Thu Jan 13 13:41:06 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ShowReference/Decorator.h:
