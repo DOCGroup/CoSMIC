@@ -40,7 +40,7 @@ ComponentInstance_Event_Handler::~ComponentInstance_Event_Handler (void)
 //
 // handle_object_created
 //
-int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
+int ComponentInstance_Event_Handler::handle_object_created (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
@@ -48,27 +48,27 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
   // There is now need to continue if we are an instance. This is
   // because the implementatation is already selected.
   GAME::Model component = GAME::Model::_narrow (obj);
-  if (component.is_instance ())
+  if (component->is_instance ())
     return 0;
 
   // GAME::create_if_not (component, "type", type_info, GAME::count (...));
   std::vector <GAME::Reference> typeinfo_set;
   GAME::Reference typeinfo;
 
-  if (0 != component.children ("ComponentInstanceType", typeinfo_set))
+  if (0 != component->children ("ComponentInstanceType", typeinfo_set))
   {
     typeinfo = typeinfo_set.front ();
 
-    if (!typeinfo.is_nil () && !typeinfo.refers_to ().is_nil ())
+    if (!typeinfo.is_nil () && !typeinfo->refers_to ().is_nil ())
       return 0;
   }
   else
   {
-    typeinfo = GAME::Reference::_create (component, "ComponentInstanceType");
+    typeinfo = GAME::Reference_Impl::_create (component, "ComponentInstanceType");
   }
 
   // Locate all the monolithic implementations in the project.
-  GAME::Filter filter (obj.project ());
+  GAME::Filter filter (obj->project ());
   filter.kind ("MonolithicImplementation");
 
   GAME::FCO fco;
@@ -108,8 +108,8 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
 
   // Finally, create the component instance's type. Make sure it
   // references the selected FCO, which is a monolithic implementation.
-  typeinfo.refers_to (fco);
-  typeinfo.name (fco.name ());
+  typeinfo->refers_to (fco);
+  typeinfo->name (fco->name ());
 
   return 0;
 }
@@ -118,11 +118,11 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object obj)
 // handle_lost_child
 //
 int ComponentInstance_Event_Handler::
-handle_lost_child (GAME::Object obj)
+handle_lost_child (GAME::Object_in obj)
 {
   GAME::FCO fco = GAME::FCO::_narrow (obj);
 
-  if (this->is_importing_ || fco.is_instance ())
+  if (this->is_importing_ || fco->is_instance ())
     return 0;
 
   static const std::string meta_ComponentInstanceType ("ComponentInstanceType");
@@ -130,17 +130,19 @@ handle_lost_child (GAME::Object obj)
 
   std::vector <GAME::Reference> types;
 
-  if (model.children (meta_ComponentInstanceType, types) == 0 ||
+  if (model->children (meta_ComponentInstanceType, types) == 0 ||
       types.front ().is_nil ())
   {
     // Delete all the children in the inferface.
     std::vector <GAME::FCO> children;
-    GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
+    GAME::Meta::Aspect aspect = model->meta ()->aspect ("ComponentInterface");
 
-    model.children (aspect, children);
+    model->children (aspect, children);
     std::for_each (children.begin (),
                    children.end (),
-                   boost::bind (&GAME::FCO::destroy, _1));
+                   boost::bind (&GAME::FCO::impl_type::destroy,
+                                boost::bind (&GAME::FCO::get, _1)));
+
     return 0;
   }
   else

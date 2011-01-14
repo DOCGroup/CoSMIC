@@ -34,43 +34,43 @@ public:
   /// Destructor.
   virtual ~Package_Type_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object obj);
+  virtual int handle_object_relation (GAME::Object_in obj);
 
 private:
   typedef std::map <GAME::FCO, GAME::Reference> template_map_t;
 
-  bool select_template_parameter (GAME::Model parent,
-                                  GAME::FCO fco,
+  bool select_template_parameter (GAME::Model_in parent,
+                                  const GAME::FCO_in fco,
                                   template_map_t & mapping);
 
-  bool select_type_parameter (GAME::Model parent,
-                              GAME::FCO fco,
+  bool select_type_parameter (GAME::Model_in parent,
+                              const GAME::FCO_in fco,
                               template_map_t & mapping);
 
-  bool select_name_parameter (GAME::Model parent,
-                              GAME::FCO fco,
+  bool select_name_parameter (GAME::Model_in parent,
+                              const GAME::FCO_in fco,
                               template_map_t & mapping);
 
-  bool select_collection_parameter (GAME::Model parent,
-                                    GAME::FCO fco,
+  bool select_collection_parameter (GAME::Model_in parent,
+                                    const GAME::FCO_in fco,
                                     template_map_t & mapping);
 
   void create_template_value_parameter (GAME::Model parent,
-                                        GAME::FCO param,
-                                        GAME::FCO value,
+                                        const GAME::FCO_in param,
+                                        const GAME::FCO_in value,
                                         template_map_t & mapping);
 
-  void instantiate_template_package (const GAME::Model & template_package,
-                                     GAME::Model parent,
+  void instantiate_template_package (const GAME::Model_in template_package,
+                                     GAME::Model_in tpi,
                                      const template_map_t & mapping);
 
-  void substitute_template_parameters (GAME::Model tpi,
+  void substitute_template_parameters (const GAME::Model_in tpi,
                                        const template_map_t & mapping);
 
-  void substitute_template_parameter_reference (GAME::Reference ref,
+  void substitute_template_parameter_reference (GAME::Reference_in ref,
                                                 const template_map_t & mapping);
 
-  void finalize_template_package_inst (GAME::Model tpi);
+  void finalize_template_package_inst (GAME::Model_in tpi);
 };
 
 }

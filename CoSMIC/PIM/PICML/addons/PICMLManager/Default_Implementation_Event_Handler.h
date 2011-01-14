@@ -42,9 +42,9 @@ public:
 
   virtual int handle_xml_import_begin (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 
-  int generate_default_implementation (const GAME::Object & obj);
+  int generate_default_implementation (const GAME::Object_in obj);
 
   bool insert (std::string meta, const meta_info_t & info);
 

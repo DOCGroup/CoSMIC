@@ -36,9 +36,10 @@ public:
   /// Destructor.
   virtual ~ComplexTypeReference_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object obj);
+  virtual int handle_object_relation (GAME::Object_in obj);
 
-  void create_DataValue (GAME::Model container, const GAME::FCO & member);
+  void create_DataValue (GAME::Model_in container,
+                         const GAME::FCO_in member);
 };
 
 }

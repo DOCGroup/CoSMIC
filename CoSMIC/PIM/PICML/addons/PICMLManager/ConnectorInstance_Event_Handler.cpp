@@ -37,7 +37,7 @@ ConnectorInstance_Event_Handler::~ConnectorInstance_Event_Handler (void)
 //
 // handle_object_created
 //
-int ConnectorInstance_Event_Handler::handle_object_created (GAME::Object obj)
+int ConnectorInstance_Event_Handler::handle_object_created (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
@@ -45,11 +45,11 @@ int ConnectorInstance_Event_Handler::handle_object_created (GAME::Object obj)
   // There is now need to continue if we are an instance. This is
   // because the implementatation is already selected.
   GAME::FCO fco = GAME::FCO::_narrow (obj);
-  if (fco.is_instance ())
+  if (fco->is_instance ())
     return 0;
 
   // Locate all the monolithic implementations in the project.
-  GAME::Filter filter (obj.project ());
+  GAME::Filter filter (obj->project ());
   filter.kind ("ConnectorImplementation");
 
   std::vector <GAME::FCO> results;
@@ -89,9 +89,9 @@ int ConnectorInstance_Event_Handler::handle_object_created (GAME::Object obj)
   // Finally, create the component instance's type. Make sure it
   // references the selected FCO, which is a monolithic implementation.
   Model component = Model::_narrow (obj);
-  Reference typeref = Reference::_create (component, "ConnectorImplementationType");
-  typeref.refers_to (fco);
-  typeref.name (fco.name ());
+  Reference typeref = Reference::impl_type::_create (component, "ConnectorImplementationType");
+  typeref->refers_to (fco);
+  typeref->name (fco->name ());
 
   return 0;
 }

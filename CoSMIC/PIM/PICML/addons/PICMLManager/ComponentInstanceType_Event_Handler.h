@@ -39,7 +39,7 @@ public:
   /// Destructor.
   virtual ~ComponentInstanceType_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object obj);
+  virtual int handle_object_relation (GAME::Object_in obj);
 
   void generate_port_instances (GAME::Model inst,
                                 const GAME::Model & component);

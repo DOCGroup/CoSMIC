@@ -32,7 +32,7 @@ CollocationGroup_Event_Handler::~CollocationGroup_Event_Handler (void)
 // handle_object_created
 //
 int CollocationGroup_Event_Handler::
-handle_object_relation (GAME::Object obj)
+handle_object_relation (GAME::Object_in obj)
 {
   //if (this->config_->cg_member_.is_nil ())
   //  return 0;

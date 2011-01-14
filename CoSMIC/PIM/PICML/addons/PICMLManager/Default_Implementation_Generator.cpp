@@ -37,9 +37,10 @@ Default_Implementation_Generator (::GAME::Project project, const meta_info_t & i
   if (::GAME::create_if_not (root_folder, info.impl_folder_, this->impl_folder_,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         info.impl_folder_name_,
-                        boost::bind (&::GAME::Model::name, _1)))))
+                        boost::bind (&::GAME::Folder::impl_type::name,
+                                     boost::bind (&::GAME::Folder::get, _1))))))
   {
-    this->impl_folder_.name (info.impl_folder_name_);
+    this->impl_folder_->name (info.impl_folder_name_);
   }
 }
 
@@ -55,7 +56,8 @@ Default_Implementation_Generator::~Default_Implementation_Generator (void)
 // generate
 //
 bool Default_Implementation_Generator::
-generate (const Implementation_Configuration & config, const ::GAME::Model & type)
+generate (const Implementation_Configuration & config,
+          const ::GAME::Model_in type)
 {
   using ::GAME::Atom;
   using ::GAME::Connection;
@@ -67,7 +69,7 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
   this->artifact_gen_.generate (config, type);
 
   // Generate the monolithic implementation.
-  std::string name = type.name ();
+  std::string name = type->name ();
   std::string fq_type = PICML::GAME::fq_type (type, "_");
   std::string impl_name = fq_type + "Impl";
 
@@ -77,9 +79,10 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
   if (::GAME::create_if_not (this->impl_folder_, this->info_.container_type_, container,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         impl_name,
-                        boost::bind (&Model::name, _1)))))
+                        boost::bind (&::GAME::Model::impl_type::name,
+                                     boost::bind (&::GAME::Model::get, _1))))))
   {
-    container.name (impl_name);
+    container->name (impl_name);
   }
 
   // Create the monolithic implementation for the component.
@@ -88,15 +91,16 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
   if (::GAME::create_if_not (container, this->info_.impl_type_, impl,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         impl_name,
-                        boost::bind (&Atom::name, _1)))))
+                        boost::bind (&::GAME::Atom::impl_type::name,
+                                     boost::bind (&::GAME::Atom::get, _1))))))
   {
-    impl.name (impl_name);
+    impl->name (impl_name);
   }
 
   // Set the location of the implementation.
-  ::GAME::utils::position ("Packaging",
-                           ::GAME::utils::Point (250, 250),
-                           impl);
+  ::GAME::utils::set_position ("Packaging",
+                               ::GAME::utils::Point (250, 250),
+                               impl);
 
   // Create the reference to the target component.
   Reference ref;
@@ -104,17 +108,18 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
   if (::GAME::create_if_not (container, this->info_.type_ref_, ref,
       ::GAME::contains (boost::bind (std::equal_to <FCO> (),
                         type,
-                        boost::bind (&Reference::refers_to, _1)))))
+                        boost::bind (&::GAME::Reference::impl_type::refers_to,
+                                     boost::bind (&::GAME::Reference::get, _1))))))
   {
-    ref.refers_to (type);
+    ref->refers_to (type);
   }
 
   // Set the name and location of the reference.
-  ref.name (name);
+  ref->name (name);
 
-  ::GAME::utils::position ("Packaging",
-                           ::GAME::utils::Point (187, 75),
-                           ref);
+  ::GAME::utils::set_position ("Packaging",
+                               ::GAME::utils::Point (187, 75),
+                               ref);
 
   Connection implements;
 
@@ -122,17 +127,20 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
         boost::bind (std::logical_and <bool> (),
           boost::bind (std::equal_to <FCO> (),
                        impl,
-                       boost::bind (&Connection::src, _1)),
+                       boost::bind (&::GAME::Connection::impl_type::src,
+                                    boost::bind (&::GAME::Connection::get, _1))),
           boost::bind (std::equal_to <FCO> (),
                        ref,
-                       boost::bind (&Connection::dst, _1)))))
+                       boost::bind (&::GAME::Connection::impl_type::dst,
+                                    boost::bind (&::GAME::Connection::get, _1))))))
   {
-    implements = Connection::_create (container,
-                                      this->info_.implements_type_,
-                                      impl,
-                                      ref);
+    implements =
+      ::GAME::Connection_Impl::_create (container,
+                                        this->info_.implements_type_,
+                                        impl,
+                                        ref);
 
-    implements.name (this->info_.implements_type_);
+    implements->name (this->info_.implements_type_);
   }
 
   // Insert the servant artifact for this component.
@@ -141,18 +149,20 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
   if (::GAME::create_if_not (container, "ComponentServantArtifact", svnt_artifact,
       ::GAME::contains (boost::bind (std::equal_to <FCO> (),
                         this->artifact_gen_.svnt_artifact (),
-                        boost::bind (&Reference::refers_to, _1)))))
+                        boost::bind (&::GAME::Reference::impl_type::refers_to,
+                                     boost::bind (&::GAME::Reference::get, _1))))))
   {
-    svnt_artifact.refers_to (this->artifact_gen_.svnt_artifact ());
+    svnt_artifact->refers_to (this->artifact_gen_.svnt_artifact ());
   }
 
-  svnt_artifact.name (this->artifact_gen_.svnt_artifact ().name ());
+  svnt_artifact->name (this->artifact_gen_.svnt_artifact ()->name ());
 
   std::string entrypoint ("create_" + fq_type + "_Servant");
-  svnt_artifact.attribute ("EntryPoint").string_value (entrypoint);
-  ::GAME::utils::position ("Packaging",
-                           ::GAME::utils::Point (506,347),
-                           svnt_artifact);
+  svnt_artifact->attribute ("EntryPoint")->string_value (entrypoint);
+
+  ::GAME::utils::set_position ("Packaging",
+                               ::GAME::utils::Point (506,347),
+                               svnt_artifact);
 
   Connection pa;
   static const std::string meta_MonolithprimaryArtifact ("MonolithprimaryArtifact");
@@ -161,17 +171,20 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
         boost::bind (std::logical_and <bool> (),
           boost::bind (std::equal_to <FCO> (),
                        impl,
-                       boost::bind (&Connection::src, _1)),
+                       boost::bind (&::GAME::Connection::impl_type::src,
+                                    boost::bind (&::GAME::Connection::get, _1))),
           boost::bind (std::equal_to <FCO> (),
                        svnt_artifact,
-                       boost::bind (&Connection::dst, _1)))))
+                       boost::bind (&::GAME::Connection::impl_type::dst,
+                                    boost::bind (&::GAME::Connection::get, _1))))))
   {
-    pa = Connection::_create (container,
-                              meta_MonolithprimaryArtifact,
-                              impl,
-                              svnt_artifact);
+    pa =
+      ::GAME::Connection_Impl::_create (container,
+                                        meta_MonolithprimaryArtifact,
+                                        impl,
+                                        svnt_artifact);
 
-    pa.name (meta_MonolithprimaryArtifact);
+    pa->name (meta_MonolithprimaryArtifact);
   }
 
   // Insert the implementation artifact for this component.
@@ -180,35 +193,39 @@ generate (const Implementation_Configuration & config, const ::GAME::Model & typ
   if (::GAME::create_if_not (container, "ComponentImplementationArtifact", impl_artifact,
       ::GAME::contains (boost::bind (std::equal_to <FCO> (),
                         this->artifact_gen_.exec_artifact (),
-                        boost::bind (&Reference::refers_to, _1)))))
+                        boost::bind (&::GAME::Reference::impl_type::refers_to,
+                                     boost::bind (&::GAME::Reference::get, _1))))))
   {
-    impl_artifact.refers_to (this->artifact_gen_.exec_artifact ());
+    impl_artifact->refers_to (this->artifact_gen_.exec_artifact ());
   }
 
-  impl_artifact.name (this->artifact_gen_.exec_artifact ().name ());
+  impl_artifact->name (this->artifact_gen_.exec_artifact ()->name ());
 
   entrypoint = "create_" + fq_type + "_Impl";
-  impl_artifact.attribute ("EntryPoint").string_value (entrypoint);
+  impl_artifact->attribute ("EntryPoint")->string_value (entrypoint);
 
-  ::GAME::utils::position ("Packaging",
-                           ::GAME::utils::Point (506,151),
-                           impl_artifact);
+  ::GAME::utils::set_position ("Packaging",
+                               ::GAME::utils::Point (506,151),
+                               impl_artifact);
 
   if (!::GAME::find (container, meta_MonolithprimaryArtifact, pa,
         boost::bind (std::logical_and <bool> (),
           boost::bind (std::equal_to <FCO> (),
                        impl,
-                       boost::bind (&Connection::src, _1)),
+                       boost::bind (&::GAME::Connection::impl_type::src,
+                                    boost::bind (&::GAME::Connection::get, _1))),
           boost::bind (std::equal_to <FCO> (),
                        impl_artifact,
-                       boost::bind (&Connection::dst, _1)))))
+                       boost::bind (&::GAME::Connection::impl_type::dst,
+                                    boost::bind (&::GAME::Connection::get, _1))))))
   {
-    pa = Connection::_create (container,
-                              meta_MonolithprimaryArtifact,
-                              impl,
-                              impl_artifact);
+    pa =
+      ::GAME::Connection_Impl::_create (container,
+                                        meta_MonolithprimaryArtifact,
+                                        impl,
+                                        impl_artifact);
 
-    pa.name (meta_MonolithprimaryArtifact);
+    pa->name (meta_MonolithprimaryArtifact);
   }
 
   return true;

@@ -66,7 +66,7 @@ public:
    * @param[in]       component         Compent
    */
   bool generate (const Implementation_Configuration & config,
-                 const GAME::Model & type);
+                 const GAME::Model_in type);
 
 private:
   /// Target implementation folder.

@@ -39,7 +39,7 @@ ComponentInstanceType_Event_Handler::~ComponentInstanceType_Event_Handler (void)
 // handle_object_relation
 //
 int ComponentInstanceType_Event_Handler::
-handle_object_relation (GAME::Object obj)
+handle_object_relation (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
@@ -50,38 +50,38 @@ handle_object_relation (GAME::Object obj)
   using GAME::Connection;
   using GAME::FCO;
 
-  Model inst = Model::_narrow (obj.parent ());
+  Model inst = Model::_narrow (obj->parent ());
 
   // The the component's implementation.
   Reference ref = GAME::Reference::_narrow (obj);
-  FCO fco = ref.refers_to ();
+  FCO fco = ref->refers_to ();
 
   if (fco.is_nil ())
   {
-    GAME::Model model = GAME::Model::_narrow (obj.parent ());
+    GAME::Model model = GAME::Model::_narrow (obj->parent ());
 
     // Delete the ports in the model.
     std::vector <GAME::FCO> children;
-    GAME::Meta::Aspect aspect = model.meta ().aspect ("ComponentInterface");
+    GAME::Meta::Aspect aspect = model->meta ()->aspect ("ComponentInterface");
 
-    model.children (aspect, children);
+    model->children (aspect, children);
     std::for_each (children.begin (),
                    children.end (),
-                   boost::bind (&GAME::FCO::destroy, _1));
+                   boost::bind (&GAME::FCO::impl_type::destroy,
+                                boost::bind (&GAME::FCO::get, _1)));
   }
   else
   {
     // Walk this until we locate the component interface.
-    Atom impl = Atom::_narrow (ref.refers_to ());
+    Atom impl = Atom::_narrow (ref->refers_to ());
     std::vector <Connection> implements;
-    impl.in_connections ("Implements", implements);
+    impl->in_connections ("Implements", implements);
 
     if (implements.empty ())
       return 0;
 
-    Connection implement = implements[0];
-    ref = Reference::_narrow (implement[std::string ("dst")].target ());
-    Model component = Model::_narrow (ref.refers_to ());
+    ref = Reference::_narrow (implements.front ()->dst ());
+    Model component = Model::_narrow (ref->refers_to ());
 
     this->generate_port_instances (inst, component);
   }
@@ -91,14 +91,14 @@ handle_object_relation (GAME::Object obj)
 
 struct generate_instance_t
 {
-  generate_instance_t (GAME::Model & parent, const std::string & type)
+  generate_instance_t (GAME::Model_in parent, const std::string & type)
     : parent_ (parent),
       type_ (type)
   {
 
   }
 
-  void operator () (const GAME::FCO & target) const
+  void operator () (const GAME::FCO_in target) const
   {
     using GAME::Reference;
     using GAME::FCO;
@@ -108,15 +108,16 @@ struct generate_instance_t
     if (GAME::create_if_not (this->parent_, this->type_, ref,
         GAME::contains (boost::bind (std::equal_to <FCO> (),
                         target,
-                        boost::bind (&Reference::refers_to, _1)))))
+                        boost::bind (&GAME::Reference::impl_type::refers_to,
+                                     boost::bind (&GAME::Reference::get, _1))))))
     {
-      ref.refers_to (target);
-      ref.name (target.name ());
+      ref->refers_to (target);
+      ref->name (target->name ());
     }
   }
 
 private:
-  GAME::Model & parent_;
+  GAME::Model parent_;
 
   const std::string & type_;
 };
@@ -132,42 +133,42 @@ generate_port_instances (GAME::Model inst,  const GAME::Model & component)
 
   std::vector <GAME::FCO> ports;
 
-  if (component.children ("InEventPort", ports))
+  if (component->children ("InEventPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "InEventPortInstance"));
 
-  if (component.children ("OutEventPort", ports))
+  if (component->children ("OutEventPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "OutEventPortInstance"));
 
-  if (component.children ("ProvidedRequestPort", ports))
+  if (component->children ("ProvidedRequestPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "ProvidedRequestPortInstance"));
 
-  if (component.children ("RequiredRequestPort", ports))
+  if (component->children ("RequiredRequestPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "RequiredRequestPortInstance"));
 
-  if (component.children ("Attribute", ports))
+  if (component->children ("Attribute", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "AttributeInstance"));
 
-  if (component.children ("ReadonlyAttribute", ports))
+  if (component->children ("ReadonlyAttribute", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "AttributeInstance"));
 
-  if (component.children ("ExtendedPort", ports))
+  if (component->children ("ExtendedPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "ExtendedPortInstance"));
 
-  if (component.children ("MirrorPort", ports))
+  if (component->children ("MirrorPort", ports))
     std::for_each (ports.begin (),
                    ports.end (),
                    generate_instance_t (inst, "MirrorPortInstance"));
@@ -176,9 +177,9 @@ generate_port_instances (GAME::Model inst,  const GAME::Model & component)
   // component instance.
   std::vector <Reference> inherits;
 
-  if (component.children ("ComponentInherits", inherits))
+  if (component->children ("ComponentInherits", inherits))
   {
-    Model basetype = Model::_narrow (inherits.begin ()->refers_to ());
+    Model basetype = Model::_narrow (inherits.front ()->refers_to ());
     this->generate_port_instances (inst, basetype);
   }
 }

@@ -43,27 +43,27 @@ UUID_Event_Handler::~UUID_Event_Handler (void)
 // handle_object_created
 //
 int UUID_Event_Handler::
-handle_object_created (GAME::Object obj)
+handle_object_created (GAME::Object_in obj)
 {
-  if (obj.is_lib_object ())
+  if (obj->is_lib_object ())
     return 0;
 
   // Locate the UUID attribute for the FCO.
   GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr = fco.attribute ("UUID");
+  GAME::Attribute uuid_attr = fco->attribute ("UUID");
 
   // Get the current value of the attribute. Just because we
   // are creating the object does not mean that its value does
   // not already exist (e.g., importing an XME document).
-  std::string uuid = uuid_attr.string_value ();
+  std::string uuid = uuid_attr->string_value ();
   const bool is_valid = uuid.empty () ? false : ::Utils::ValidUuid (uuid);
 
   if (!is_valid ||
-     (!this->is_importing_ && (fco.is_instance () || fco.is_subtype ())))
+     (!this->is_importing_ && (fco->is_instance () || fco->is_subtype ())))
   {
     // We need to generate a new UUID for the element.
     uuid = ::Utils::CreateUuid ();
-    uuid_attr.string_value (uuid);
+    uuid_attr->string_value (uuid);
   }
 
   return 0;
@@ -73,24 +73,24 @@ handle_object_created (GAME::Object obj)
 // handle_object_attribute
 //
 int UUID_Event_Handler::
-handle_object_attribute (GAME::Object obj)
+handle_object_attribute (GAME::Object_in obj)
 {
-  if (obj.is_lib_object ())
+  if (obj->is_lib_object ())
     return 0;
 
   // Get the UUID attribute for the FCO.
   GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr = fco.attribute ("UUID");
+  GAME::Attribute uuid_attr = fco->attribute ("UUID");
 
   // Validate the current UUID string value.
-  std::string uuid = uuid_attr.string_value ();
+  std::string uuid = uuid_attr->string_value ();
 
   if (::Utils::ValidUuid (uuid))
     return 0;
 
   // We need to create a new UUID for the object.
   uuid = ::Utils::CreateUuid ();
-  uuid_attr.string_value (uuid);
+  uuid_attr->string_value (uuid);
 
   return 0;
 }

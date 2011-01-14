@@ -34,9 +34,10 @@ Default_Artifact_Generator (::GAME::Project project,
   if (::GAME::create_if_not (root_folder, "ImplementationArtifacts", this->artifact_folder_,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         folder_name,
-                        boost::bind (&::GAME::Model::name, _1)))))
+                        boost::bind (&::GAME::Folder::impl_type::name,
+                                     boost::bind (&::GAME::Folder::get, _1))))))
   {
-    this->artifact_folder_.name (folder_name);
+    this->artifact_folder_->name (folder_name);
   }
 }
 
@@ -53,7 +54,7 @@ Default_Artifact_Generator::~Default_Artifact_Generator (void)
 //
 bool Default_Artifact_Generator::
 generate (const Implementation_Configuration & config,
-          const ::GAME::Model & type)
+          const ::GAME::Model_in type)
 {
   std::string name = PICML::GAME::fq_type (type, "_");
   std::string impl_name = name + config.exec_artifact_suffix_;
@@ -69,38 +70,43 @@ generate (const Implementation_Configuration & config,
   if (::GAME::create_if_not (this->artifact_folder_, "ArtifactContainer", container,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         container_name,
-                        boost::bind (&::GAME::Model::name, _1)))))
+                        boost::bind (&::GAME::Model::impl_type::name,
+                                     boost::bind (&::GAME::Model::get, _1))))))
   {
-    container.name (container_name);
+    container->name (container_name);
   }
 
   // Create the servant artifact for the component.
   if (::GAME::create_if_not (container, "ImplementationArtifact", this->svnt_artifact_,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         svnt_name,
-                        boost::bind (&::GAME::Atom::name, _1)))))
+                        boost::bind (&::GAME::Atom::impl_type::name,
+                                     boost::bind (&::GAME::Atom::get, _1))))))
   {
-    this->svnt_artifact_.name (svnt_name);
+    this->svnt_artifact_->name (svnt_name);
   }
 
-  this->svnt_artifact_.attribute ("location").string_value (svnt_location);
-  ::GAME::utils::position ("Packaging", ::
-                           GAME::utils::Point (150, 150),
-                           this->svnt_artifact_);
+  this->svnt_artifact_->attribute ("location")->string_value (svnt_location);
+
+  ::GAME::utils::set_position ("Packaging",
+                               ::GAME::utils::Point (150, 150),
+                               this->svnt_artifact_);
 
   // Create the implementation artifact for the component.
   if (::GAME::create_if_not (container, "ImplementationArtifact", this->impl_artifact_,
       ::GAME::contains (boost::bind (std::equal_to <std::string> (),
                         impl_name,
-                        boost::bind (&::GAME::Atom::name, _1)))))
+                        boost::bind (&::GAME::Atom::impl_type::name,
+                                     boost::bind (&::GAME::Atom::get, _1))))))
   {
-    this->impl_artifact_.name (impl_name);
+    this->impl_artifact_->name (impl_name);
   }
 
-  this->impl_artifact_.attribute ("location").string_value (impl_location);
-  ::GAME::utils::position ("Packaging",
-                           ::GAME::utils::Point (450, 150),
-                           this->impl_artifact_);
+  this->impl_artifact_->attribute ("location")->string_value (impl_location);
+
+  ::GAME::utils::set_position ("Packaging",
+                               ::GAME::utils::Point (450, 150),
+                               this->impl_artifact_);
 
   return true;
 }
@@ -108,7 +114,7 @@ generate (const Implementation_Configuration & config,
 //
 // svnt_artifact
 //
-const ::GAME::Atom & Default_Artifact_Generator::svnt_artifact (void) const
+::GAME::Atom Default_Artifact_Generator::svnt_artifact (void)
 {
   return this->svnt_artifact_;
 }
@@ -116,7 +122,7 @@ const ::GAME::Atom & Default_Artifact_Generator::svnt_artifact (void) const
 //
 // exec_artifact
 //
-const ::GAME::Atom & Default_Artifact_Generator::exec_artifact (void) const
+::GAME::Atom Default_Artifact_Generator::exec_artifact (void)
 {
   return this->impl_artifact_;
 }
@@ -125,11 +131,11 @@ const ::GAME::Atom & Default_Artifact_Generator::exec_artifact (void) const
 // get_location_basename
 //
 std::string Default_Artifact_Generator::
-get_location_basename (const ::GAME::Model & type)
+get_location_basename (const ::GAME::Model_in type)
 {
-  if (type.meta () == "ConnectorObject")
+  if (type->meta ()->name () == "ConnectorObject")
   {
-    std::string name (type.name ());
+    std::string name = type->name ();
 
     if (name.find ("AMI4CCM_") == 0)
     {
@@ -138,8 +144,8 @@ get_location_basename (const ::GAME::Model & type)
 
       // Calculate the length of the interface name that is used to
       // create the connector's name.
-      ::GAME::Model parent = type.parent_model ();
-      name = parent.name ();
+      ::GAME::Model parent = type->parent_model ();
+      name = parent->name ();
 
       const size_t length = name.length () - (PREFIX_LENGTH + SUFFIX_LENGTH);
 

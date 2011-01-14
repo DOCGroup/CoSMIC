@@ -36,13 +36,13 @@ public:
   /// Destructor.
   virtual ~AttributeMember_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object obj);
+  virtual int handle_object_relation (GAME::Object_in obj);
 
   void verify_property_datatype (GAME::ConnectionPoint & attr,
-                                 const GAME::FCO & attr_type);
+                                 const GAME::FCO_in attr_type);
 
   void verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
-                                       const GAME::FCO & attr_type);
+                                       const GAME::FCO_in attr_type);
 };
 
 }

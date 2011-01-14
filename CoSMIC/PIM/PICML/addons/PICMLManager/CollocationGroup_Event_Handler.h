@@ -35,7 +35,7 @@ public:
   /// Destructor.
   virtual ~CollocationGroup_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object obj);
+  virtual int handle_object_relation (GAME::Object_in obj);
 };
 
 }

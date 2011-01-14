@@ -39,12 +39,12 @@ Default_Implementation_Event_Handler::~Default_Implementation_Event_Handler (voi
 // handle_object_created
 //
 int Default_Implementation_Event_Handler::
-handle_object_created (GAME::Object obj)
+handle_object_created (GAME::Object_in obj)
 {
   if (this->is_importing_ && !this->generate_on_import_)
     return 0;
 
-  if (obj.is_lib_object ())
+  if (obj->is_lib_object ())
     return 0;
 
   return this->generate_default_implementation (obj);
@@ -70,22 +70,22 @@ int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
 // generate_default_implementation
 //
 int Default_Implementation_Event_Handler::
-generate_default_implementation (const GAME::Object & obj)
+generate_default_implementation (const GAME::Object_in obj)
 {
   ::GAME::Model model = ::GAME::Model::_narrow (obj);
   if (is_in_template_module (model))
     return 0;
 
   // Locate the object's type in the map.
-  map_t::const_iterator iter = this->meta_info_.find (obj.meta ().name ());
+  map_t::const_iterator iter = this->meta_info_.find (obj->meta ()->name ());
 
   if (iter == this->meta_info_.end ())
     return 0;
 
   Implementation_Configuration config;
-  const std::string name (obj.name ());
+  const std::string name (obj->name ());
 
-  if (name == obj.meta ().name ())
+  if (name == obj->meta ()->name ())
   {
     AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
@@ -96,11 +96,11 @@ generate_default_implementation (const GAME::Object & obj)
       return 0;
 
     // Set the name of the object.
-    model.name (config.type_name_);
+    model->name (config.type_name_);
   }
 
   // Generate the default implementation.
-  Default_Implementation_Generator dig (obj.project (), iter->second);
+  Default_Implementation_Generator dig (obj->project (), iter->second);
   return dig.generate (config, model) ? 0 : -1;
 }
 

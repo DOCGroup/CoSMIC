@@ -49,14 +49,14 @@ public:
    * @param[in]       component         Compent
    */
   bool generate (const Implementation_Configuration & config,
-                 const GAME::Model & type);
+                 const GAME::Model_in type);
 
-  const GAME::Atom & svnt_artifact (void) const;
+  GAME::Atom svnt_artifact (void);
 
-  const GAME::Atom & exec_artifact (void) const;
+  GAME::Atom exec_artifact (void);
 
 private:
-  std::string get_location_basename (const GAME::Model & type);
+  std::string get_location_basename (const GAME::Model_in type);
 
   /// The root folder for the project.
   GAME::Folder artifact_folder_;

@@ -35,7 +35,7 @@ public:
   /// Destructor.
   virtual ~AMI4CCM_Event_Handler (void);
 
-  virtual int handle_object_attribute (GAME::Object obj);
+  virtual int handle_object_attribute (GAME::Object_in obj);
 };
 }
 }

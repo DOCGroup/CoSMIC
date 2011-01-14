@@ -36,25 +36,25 @@ public:
   virtual ~ToConnector_Event_Handler (void);
 
 protected:
-  int create_connection (GAME::Object obj,
+  int create_connection (GAME::Object_in obj,
                          const std::string & port_role,
                          const std::string & connector_role,
                          const std::string & target_port_type);
 
-  bool get_connector_object (const GAME::Model & inst, GAME::Model & conobj);
+  bool get_connector_object (const GAME::Model_in inst, GAME::Model & conobj);
 
-  void get_matching_ports (const GAME::Model & connector,
-                           const GAME::Model & object,
+  void get_matching_ports (const GAME::Model_in connector,
+                           const GAME::Model_in object,
                            const std::string & type,
                            std::vector <GAME::Reference> & ports);
 
-  void get_matching_inner_ports (const GAME::Reference & extended,
-                                 const GAME::Model & object,
+  void get_matching_inner_ports (const GAME::Reference_in extended,
+                                 const GAME::Model_in object,
                                  const std::string & type,
                                  std::vector <GAME::Reference> & ports);
 
-  void get_matching_extended_ports (const GAME::Model & connector,
-                                    const GAME::FCO & porttype,
+  void get_matching_extended_ports (const GAME::Model_in connector,
+                                    const GAME::FCO_in porttype,
                                     const std::string & metaname,
                                     std::vector <GAME::Reference> & ports);
 };
@@ -74,7 +74,7 @@ public:
   /// Destructor.
   virtual ~FacetToConnector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 };
 
 /**
@@ -92,7 +92,7 @@ public:
   /// Destructor.
   virtual ~ReceptacleToConnector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 };
 
 /**
@@ -107,14 +107,14 @@ public:
   virtual ~PortType_To_Connector_Event_Handler (void);
 
 protected:
-  int set_connection_name (const GAME::Model & connector,
-                           const GAME::FCO & port,
+  int set_connection_name (const GAME::Model_in connector,
+                           const GAME::FCO_in port,
                            GAME::Connection connection);
 
-  bool get_extended_port_instance (const GAME::FCO & portend,
+  bool get_extended_port_instance (const GAME::FCO_in portend,
                                    GAME::FCO & port_inst);
 
-  bool get_mirror_port_instance (const GAME::FCO & portend,
+  bool get_mirror_port_instance (const GAME::FCO_in portend,
                                  GAME::FCO & port_inst);
 };
 
@@ -134,7 +134,7 @@ public:
   /// Destructor.
   virtual ~Publish_To_Connector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 };
 
 /**
@@ -153,7 +153,7 @@ public:
   /// Destructor.
   virtual ~Consume_To_Connector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 };
 
 }

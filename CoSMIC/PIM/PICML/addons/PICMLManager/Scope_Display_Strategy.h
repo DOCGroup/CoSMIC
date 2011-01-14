@@ -38,7 +38,7 @@ public:
   virtual ~Scope_Display_Strategy (void);
 
   // Get the display name for the object.
-  bool get_display_name (const GAME::Object & obj, std::string & display_name);
+  bool get_display_name (const GAME::Object_in, std::string &);
 };
 
 }

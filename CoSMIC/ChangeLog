@@ -1,3 +1,56 @@
+Fri Jan 14 06:16:36 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AttributeValue_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.h:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.h:
+        * PIM/PICML/addons/PICMLManager/Scope_Display_Strategy.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Validation.h:
+        * PIM/PICML/addons/PICMLManager/Validation.cpp:
+
+          Updated to the latest version of GAME.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+
+          Moved code in get_port_location () into the template
+          decorator class.
+
 Thu Jan 13 14:21:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/Action_Handler.h:

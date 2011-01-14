@@ -37,7 +37,7 @@ public:
   virtual ~Event_Handler_Base (void);
 
 protected:
-  void set_property_type (GAME::Model prop, const GAME::FCO & type);
+  void set_property_type (GAME::Model_in prop, const GAME::FCO_in type);
 };
 
 }

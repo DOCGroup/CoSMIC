@@ -473,11 +473,11 @@ struct is_matching_port
 
   bool operator () (GAME::graphics::Port_Decorator * d) const
   {
-    return this->fco_ == d->fco ();
+    return this->fco_->is_equal_to (d->fco ());
   }
 
 private:
-  const GAME::FCO fco_;
+  const GAME::FCO_in fco_;
 };
 
 //
@@ -508,12 +508,6 @@ get_port_location (const GAME::FCO_in fco,
       return -1;
   }
 
-
   (*result)->get_location (sx, sy, ex, ey);
-
-  sx -= this->location_.x_;
-  sy -= this->location_.y_;
-  ex -= this->location_.x_;
-  ey -= this->location_.y_;
   return 0;
 }

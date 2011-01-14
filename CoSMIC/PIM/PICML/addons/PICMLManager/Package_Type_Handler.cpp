@@ -42,12 +42,12 @@ struct left_to_right_t
 
   }
 
-  bool operator () (const GAME::FCO & lhs, const GAME::FCO & rhs)
+  bool operator () (const GAME::FCO_in lhs, const GAME::FCO_in rhs)
   {
     GAME::utils::Point pt_lhs, pt_rhs;
 
-    GAME::utils::position (this->aspect_, lhs, pt_lhs);
-    GAME::utils::position (this->aspect_, rhs, pt_rhs);
+    GAME::utils::get_position (this->aspect_, lhs, pt_lhs);
+    GAME::utils::get_position (this->aspect_, rhs, pt_rhs);
 
     return pt_lhs.x_value () < pt_rhs.x_value ();
   }
@@ -74,9 +74,15 @@ struct is_invalid_type
 
   }
 
-  bool operator () (const GAME::FCO & fco) const
+  bool operator () (const GAME::FCO_in fco) const
   {
-    const std::string metaname (fco.meta ().name ());
+    return this->is_invalid_type_i (fco);
+  }
+
+private:
+  inline bool is_invalid_type_i (const GAME::FCO_in fco) const
+  {
+    const std::string metaname (fco->meta ()->name ());
 
     if (metaname == "Alias")
       return this->check_alias (GAME::Reference::_narrow (fco));
@@ -84,10 +90,9 @@ struct is_invalid_type
     return is_in_template_module (fco) || metaname != this->type_;
   }
 
-private:
-  inline bool check_alias (const GAME::Reference & ref) const
+  inline bool check_alias (const GAME::Reference_in ref) const
   {
-    return (*this) (ref.refers_to ());
+    return this->is_invalid_type_i (ref->refers_to ());
   }
 
   /// The type to validate against.
@@ -99,15 +104,21 @@ private:
  */
 struct is_invalid_collection_type
 {
-  is_invalid_collection_type (const GAME::FCO & type)
+  is_invalid_collection_type (const GAME::FCO_in type)
     : type_ (type)
   {
 
   }
 
-  bool operator () (const GAME::FCO & fco) const
+  bool operator () (const GAME::FCO_in fco) const
   {
-    const std::string metaname (fco.meta ().name ());
+    return this->is_invalid_collection_type_i (fco);
+  }
+
+private:
+  inline bool is_invalid_collection_type_i (const GAME::FCO_in fco) const
+  {
+    const std::string metaname (fco->meta ()->name ());
 
     if (metaname == "Alias")
       return this->check_collection_alias (fco);
@@ -118,22 +129,21 @@ struct is_invalid_collection_type
       return true;
 
     GAME::Reference collection = GAME::Reference::_narrow (fco);
-    GAME::FCO type = collection.refers_to ();
+    GAME::FCO type = collection->refers_to ();
 
-    while (type.meta ().name () == "Alias")
-      type = GAME::Reference::_narrow (type).refers_to ();
+    while (type->meta ()->name () == "Alias")
+      type = GAME::Reference::_narrow (type)->refers_to ();
 
     return is_in_template_module (type) || this->type_ != type;
   }
 
-private:
-  inline bool check_collection_alias (const GAME::FCO & fco) const
+  inline bool check_collection_alias (const GAME::FCO_in fco) const
   {
     GAME::Reference alias = GAME::Reference::_narrow (fco);
-    return (*this) (alias.refers_to ());
+    return this->is_invalid_collection_type_i (alias);
   }
 
-  const GAME::FCO & type_;
+  const GAME::FCO type_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -154,14 +164,14 @@ Package_Type_Handler::Package_Type_Handler (void)
 //
 // handle_object_relation
 //
-int Package_Type_Handler::handle_object_relation (GAME::Object obj)
+int Package_Type_Handler::handle_object_relation (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
   GAME::Reference package_type = GAME::Reference::_narrow (obj);
-  GAME::FCO fco = package_type.refers_to ();
-  GAME::Model tpi = GAME::Model::_narrow (obj.parent ());
+  GAME::FCO fco = package_type->refers_to ();
+  GAME::Model tpi = GAME::Model::_narrow (obj->parent ());
 
   if (fco.is_nil ())
   {
@@ -172,10 +182,10 @@ int Package_Type_Handler::handle_object_relation (GAME::Object obj)
     // Get the template parameters for the template package.
     GAME::Model template_package = GAME::Model::_narrow (fco);
     static const std::string aspect_TemplateParameters ("TemplateParameters");
-    GAME::Meta::Aspect aspect = template_package.meta ().aspect (aspect_TemplateParameters);
+    GAME::Meta::Aspect aspect = template_package->meta ()->aspect (aspect_TemplateParameters);
 
     std::vector <GAME::FCO> parameters;
-    template_package.children (aspect, parameters);
+    template_package->children (aspect, parameters);
 
     // Sort the children from left to right.
     std::sort (parameters.begin (),
@@ -213,31 +223,31 @@ int Package_Type_Handler::handle_object_relation (GAME::Object obj)
 // finalize_template_package_inst
 //
 void Package_Type_Handler::
-finalize_template_package_inst (GAME::Model tpi)
+finalize_template_package_inst (GAME::Model_in tpi)
 {
   // Make all the elements in the InterfaceDefinition aspect read-only.
   // This will prevent the modeler from adding any elements without our
   // permission. :-)
   std::vector <GAME::FCO> items;
-  GAME::Meta::Aspect aspect = tpi.meta ().aspect ("InterfaceDefinition");
-  tpi.children (aspect, items);
+  GAME::Meta::Aspect aspect = tpi->meta ()->aspect ("InterfaceDefinition");
+  tpi->children (aspect, items);
 
   std::vector <GAME::FCO>::iterator
     iter = items.begin (), iter_end = items.end ();
 
   for (; iter != iter_end; ++ iter)
-    iter->readonly_access (true, true);
+    (*iter)->readonly_access (true, true);
 }
 
 //
 // select_template_parameter
 //
 bool Package_Type_Handler::
-select_template_parameter (GAME::Model parent,
-                           GAME::FCO fco,
+select_template_parameter (GAME::Model_in parent,
+                           const GAME::FCO_in fco,
                            template_map_t & mapping)
 {
-  const std::string metaname = fco.meta ().name ();
+  const std::string metaname = fco->meta ()->name ();
 
   if (metaname == "TypeParameter")
     return this->select_type_parameter (parent, fco, mapping);
@@ -253,18 +263,18 @@ select_template_parameter (GAME::Model parent,
 // select_type_parameter
 //
 bool Package_Type_Handler::
-select_type_parameter (GAME::Model parent,
-                       GAME::FCO fco,
+select_type_parameter (GAME::Model_in parent,
+                       const GAME::FCO_in fco,
                        template_map_t & mapping)
 {
   // This is a restricted parameter type. The value of the Type
   // attribute will determine what elements are valid for this
   // template parameter. We also need to check all the Alias
   // elements since they may reference a valid choice.
-  const std::string type = fco.attribute ("Type").string_value ();
+  const std::string type = fco->attribute ("Type")->string_value ();
   const std::string kind = type + " Alias";
 
-  GAME::Filter filter (fco.project ());
+  GAME::Filter filter (fco->project ());
   filter.kind (kind);
 
   std::vector <GAME::FCO> elements;
@@ -309,7 +319,7 @@ select_type_parameter (GAME::Model parent,
 
       const std::string directions =
         "Select model element for typed template parameter\r\n" +
-        fco.name () + ":";
+        fco->name () + ":";
 
       dialog.directions (directions.c_str ());
 
@@ -332,8 +342,8 @@ select_type_parameter (GAME::Model parent,
 // select_name_parameter
 //
 bool Package_Type_Handler::
-select_name_parameter (GAME::Model parent,
-                       GAME::FCO fco,
+select_name_parameter (GAME::Model_in parent,
+                       const GAME::FCO_in fco,
                        template_map_t & mapping)
 {
   // The value of this parameter can be anything! So, we just need to
@@ -343,7 +353,7 @@ select_name_parameter (GAME::Model parent,
     "Constant Enum Event Exception NativeValue Object PortType "
     "SwitchedAggregate ValueObject";
 
-  GAME::Filter filter (fco.project ());
+  GAME::Filter filter (fco->project ());
   filter.kind (kind);
 
   std::vector <GAME::FCO> elements;
@@ -385,7 +395,7 @@ select_name_parameter (GAME::Model parent,
 
       const std::string directions =
         "Select model element for named template parameter\r\n" +
-        fco.name () + ":";
+        fco->name () + ":";
 
       dialog.directions (directions.c_str ());
 
@@ -409,15 +419,15 @@ select_name_parameter (GAME::Model parent,
 // select_collection_parameter
 //
 bool Package_Type_Handler::
-select_collection_parameter (GAME::Model parent,
-                             GAME::FCO fco,
+select_collection_parameter (GAME::Model_in parent,
+                             const GAME::FCO_in fco,
                              template_map_t & mapping)
 {
   // This parameter is a reference to a previous template
   // parameter. This means, we need to find all the elements
   // that are collections of the referenced type.
   GAME::Reference ref = GAME::Reference::_narrow (fco);
-  GAME::FCO param = ref.refers_to ();
+  GAME::FCO param = ref->refers_to ();
 
   // Now, locate this parameter in the mapping. It will let
   // us know what concrete element we need to search for.
@@ -428,10 +438,10 @@ select_collection_parameter (GAME::Model parent,
   // Get the type that the mapped template parameter value is
   // referencing in the model.
   GAME::Reference tpv = GAME::Reference::_narrow (result->second);
-  GAME::FCO type = tpv.refers_to ();
+  GAME::FCO type = tpv->refers_to ();
 
   // Now, locate all collection (or sequence) element in model.
-  GAME::Filter filter (fco.project ());
+  GAME::Filter filter (fco->project ());
   filter.kind ("Collection Alias");
 
   std::vector <GAME::FCO> elements;
@@ -455,7 +465,7 @@ select_collection_parameter (GAME::Model parent,
     {
       const std::string msg =
         "Project does not contain any sequence <" +
-        type.name () + "> model elements.";
+        type->name () + "> model elements.";
 
       ::AfxMessageBox (msg.c_str (), MB_ICONERROR);
     }
@@ -478,7 +488,7 @@ select_collection_parameter (GAME::Model parent,
 
       std::string directions =
         "Select model element for template parameter\r\nsequence <" +
-        fco.name () + ">:";
+        fco->name () + ">:";
 
       dialog.directions (directions.c_str ());
 
@@ -502,13 +512,13 @@ select_collection_parameter (GAME::Model parent,
 //
 void Package_Type_Handler::
 create_template_value_parameter (GAME::Model parent,
-                                 GAME::FCO param,
-                                 GAME::FCO value,
+                                 const GAME::FCO_in param,
+                                 const GAME::FCO_in value,
                                  template_map_t & mapping)
 {
   // Create a template parameter value for this element.
-  GAME::Reference tpv = GAME::Reference::_create (parent, "TemplateParameterValue");
-  tpv.refers_to (value);
+  GAME::Reference tpv = GAME::Reference_Impl::_create (parent, "TemplateParameterValue");
+  tpv->refers_to (value);
 
   // Setup a read-only event handler for this object.
   std::auto_ptr <Template_Parameter_Value_Handler>
@@ -520,7 +530,7 @@ create_template_value_parameter (GAME::Model parent,
   // Set the position of the template parameter.
   GAME::utils::Point pt (100, 100);
   pt.shift (100 + (100 * mapping.size ()), 0);
-  GAME::utils::position ("TemplateParameters", pt, tpv);
+  GAME::utils::set_position ("TemplateParameters", pt, tpv);
 
   // Save the template parameter mapping.
   mapping[param] = tpv;
@@ -530,8 +540,8 @@ create_template_value_parameter (GAME::Model parent,
 // instantiate_template_package
 //
 void Package_Type_Handler::
-instantiate_template_package (const GAME::Model & template_package,
-                              GAME::Model tpi,
+instantiate_template_package (const GAME::Model_in template_package,
+                              GAME::Model_in tpi,
                               const template_map_t & mapping)
 {
   // Copy all the elements to the template package instance.
@@ -549,15 +559,15 @@ instantiate_template_package (const GAME::Model & template_package,
 // substitute_template_parameters
 //
 void Package_Type_Handler::
-substitute_template_parameters (GAME::Model tpi,
+substitute_template_parameters (const GAME::Model_in tpi,
                                 const template_map_t & mapping)
 {
-  GAME::Meta::Aspect idl_aspect = tpi.meta ().aspect ("InterfaceDefinition");
+  GAME::Meta::Aspect idl_aspect = tpi->meta ()->aspect ("InterfaceDefinition");
 
   // Locate all the references at this level.
   std::vector <GAME::Reference> refs;
 
-  if (0 != tpi.children (idl_aspect, refs))
+  if (0 != tpi->children (idl_aspect, refs))
     std::for_each (refs.begin (),
                    refs.end (),
                    boost::bind (&Package_Type_Handler::substitute_template_parameter_reference,
@@ -568,7 +578,7 @@ substitute_template_parameters (GAME::Model tpi,
   // Perform the same operation on all the model elements.
   std::vector <GAME::Model> models;
 
-  if (0 != tpi.children (idl_aspect, models))
+  if (0 != tpi->children (idl_aspect, models))
     std::for_each (models.begin (),
                    models.end (),
                    boost::bind (&Package_Type_Handler::substitute_template_parameters,
@@ -581,15 +591,15 @@ substitute_template_parameters (GAME::Model tpi,
 // substitute_template_parameter
 //
 void Package_Type_Handler::
-substitute_template_parameter_reference (GAME::Reference ref,
+substitute_template_parameter_reference (GAME::Reference_in ref,
                                          const template_map_t & mapping)
 {
   // Locate the refered type in the mapping.
-  template_map_t::const_iterator result = mapping.find (ref.refers_to ());
+  template_map_t::const_iterator result = mapping.find (ref->refers_to ());
 
   // Set the reference to the concrete type.
   if (result != mapping.end ())
-    ref.refers_to (result->second.refers_to ());
+    ref->refers_to (result->second->refers_to ());
 }
 
 }

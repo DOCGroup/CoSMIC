@@ -53,34 +53,35 @@ Event_Handler_Base::~Event_Handler_Base (void)
 // set_property_type
 //
 void Event_Handler_Base::
-set_property_type (GAME::Model prop, const GAME::FCO & type)
+set_property_type (GAME::Model_in prop, const GAME::FCO_in type)
 {
-  GAME::Meta::FCO metafco = type.meta ();
+  GAME::Meta::FCO metafco = type->meta ();
   GAME::FCO real_type = type;
 
   // We need to remove all the mask of this alias. Only then can
   // we really set the property's type.
-  while (metafco == "Alias")
+  while (metafco->name () == "Alias")
   {
     GAME::Reference alias = GAME::Reference::_narrow (real_type);
-    real_type = alias.refers_to ();
-    metafco = real_type.meta ();
+    real_type = alias->refers_to ();
+    metafco = real_type->meta ();
   }
 
-  if (metafco == "Aggregate" || metafco == "Collection")
+  std::string metaname = metafco->name ();
+  if (metaname == "Aggregate" || metaname == "Collection")
   {
     GAME::Reference complex;
     std::vector <GAME::Reference> complex_refs;
 
     // We are working with a predefined type, or an Enum.
-    if (0 == prop.children ("ComplexTypeReference", complex_refs))
-      complex = GAME::Reference::_create (prop, "ComplexTypeReference");
+    if (0 == prop->children ("ComplexTypeReference", complex_refs))
+      complex = GAME::Reference::impl_type::_create (prop, "ComplexTypeReference");
     else
       complex = complex_refs.front ();
-
+\
     // Set the reference for the type. This will force the
     // add-on to make sure each member is set correct.
-    complex.refers_to (type);
+    complex->refers_to (type);
   }
   else
   {
@@ -88,20 +89,21 @@ set_property_type (GAME::Model prop, const GAME::FCO & type)
     std::vector <GAME::Reference> datavalues;
 
     // We are working with a predefined type, or an Enum.
-    if (0 == prop.children ("DataValue", datavalues))
-      datavalue = GAME::Reference::_create (prop, "DataValue");
+    if (0 == prop->children ("DataValue", datavalues))
+      datavalue = GAME::Reference::impl_type::_create (prop, "DataValue");
     else
       datavalue = datavalues.front ();
 
     // Set the name of the data type and its reference.
-    if (datavalue.name () != prop.name ())
-      datavalue.name (prop.name ());
+    const std::string propname = prop->name ();
+    if (datavalue->name () != propname)
+      datavalue->name (propname);
 
     // Get the current data type.
-    GAME::FCO current = datavalue.refers_to ();
+    GAME::FCO current = datavalue->refers_to ();
 
     if (current.is_nil () || (current != type))
-      datavalue.refers_to (type);
+      datavalue->refers_to (type);
   }
 }
 

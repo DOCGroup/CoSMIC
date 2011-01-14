@@ -49,7 +49,7 @@ Component_Event_Handler::~Component_Event_Handler (void)
 // handle_object_created
 //
 int Component_Event_Handler::
-handle_object_created (GAME::Object obj)
+handle_object_created (GAME::Object_in obj)
 {
   return 0;
 }

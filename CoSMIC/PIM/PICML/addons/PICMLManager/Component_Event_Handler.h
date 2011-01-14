@@ -38,7 +38,7 @@ public:
   /// Destructor.
   virtual ~Component_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object obj);
+  virtual int handle_object_created (GAME::Object_in obj);
 };
 
 }

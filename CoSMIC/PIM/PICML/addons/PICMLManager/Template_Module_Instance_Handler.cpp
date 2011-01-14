@@ -35,15 +35,15 @@ namespace MI
  */
 struct is_standard_package
 {
-  bool operator () (const GAME::FCO & fco) const
+  bool operator () (const GAME::FCO_in fco) const
   {
     GAME::Model package = GAME::Model::_narrow (fco);
-    std::string path = package.path ("/");
+    std::string path = package->path ("/");
 
-    GAME::Meta::Aspect aspect = package.meta ().aspect ("TemplateParameters");
+    GAME::Meta::Aspect aspect = package->meta ()->aspect ("TemplateParameters");
 
     std::vector <GAME::FCO> parameters;
-    return package.children (aspect, parameters) == 0;
+    return package->children (aspect, parameters) == 0;
   }
 };
 
@@ -61,7 +61,8 @@ Template_Module_Instance_Handler::Template_Module_Instance_Handler (void)
 //
 // handle_object_created
 //
-int Template_Module_Instance_Handler::handle_object_created (GAME::Object obj)
+int Template_Module_Instance_Handler::
+handle_object_created (GAME::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
@@ -74,7 +75,7 @@ int Template_Module_Instance_Handler::handle_object_created (GAME::Object obj)
     return -1;
 
   // Locate all the packages in the object's project.
-  GAME::Filter filter (obj.project ());
+  GAME::Filter filter (obj->project ());
   filter.kind ("Package");
 
   std::vector <GAME::FCO> packages;
@@ -129,12 +130,13 @@ int Template_Module_Instance_Handler::handle_object_created (GAME::Object obj)
 
   // Create the template package type.
   GAME::Model tpi = GAME::Model::_narrow (obj);
-  GAME::Reference ref = GAME::Reference::_create (tpi, "PackageType");
-  ref.refers_to (template_package);
+  GAME::Reference ref = GAME::Reference_Impl::_create (tpi, "PackageType");
+  ref->refers_to (template_package);
 
   // Set the position of the reference.
-  using GAME::utils::Point;
-  GAME::utils::position ("TemplateParameters", Point (100, 100), ref);
+  GAME::utils::set_position ("TemplateParameters",
+                             GAME::utils::Point (100, 100),
+                             ref);
 
   return 0;
 }
@@ -142,9 +144,9 @@ int Template_Module_Instance_Handler::handle_object_created (GAME::Object obj)
 //
 // handle_lost_child
 //
-int Template_Module_Instance_Handler::handle_lost_child (GAME::Object obj)
+int Template_Module_Instance_Handler::handle_lost_child (GAME::Object_in obj)
 {
-  if (obj.status () != 0)
+  if (obj->status () != 0)
     return 0;
 
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
