@@ -104,6 +104,7 @@ size_t get_children (ITER iter, std::vector <T> & coll)
       continue;
 
     coll.push_back (temp.p);
+    temp.Release ();
   }
 
   // Release the temp storage.

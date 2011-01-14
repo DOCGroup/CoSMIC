@@ -5,6 +5,8 @@
 #endif
 
 #include "game/Exception.h"
+#include "game/Transaction.h"
+
 #include <gdiplus.h>
 
 namespace GAME
@@ -79,17 +81,50 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 
   try
   {
-    GAME::FCO fco (pFCO);
-    int retval = this->impl_.get_port_location (fco, *sx, *sy, *ex, *ey);
+    port_map_t::iterator iter = this->ports_.find (pFCO);
 
-    return 0 == retval ? S_OK : E_DECORATOR_PORTNOTFOUND;
+    if (iter != this->ports_.end ())
+    {
+      *sx = iter->second.x_;
+      *sy = iter->second.y_;
+      *ex = iter->second.cx_;
+      *ey = iter->second.cy_;
+    }
+    else
+    {
+      // Since there is no guarantee that this method is called within
+      // a transactions, we are going to wrap the object in an implementation.
+      GAME::FCO fco (pFCO);
+      int retval = this->impl_.get_port_location (fco,
+                                                  *sx,
+                                                  *sy,
+                                                  *ex,
+                                                  *ey);
+
+      if (0 != retval)
+        return E_DECORATOR_PORTNOTFOUND;
+
+      // Get the object's current location.
+      const GAME::utils::Rect & loc = this->impl_.get_location ();
+
+      // Convert the locations into relative locations.
+      *sx -= loc.x_;
+      *sy -= loc.y_;
+      *ex -= loc.x_;
+      *ey -= loc.y_;
+
+      // Save the port's location for later.
+      this->ports_[pFCO] = GAME::utils::Rect (*sx, *sy, *ex, *ey);
+    }
+
+    return S_OK;
   }
   catch (...)
   {
 
   }
 
-  return S_FALSE;
+  return E_DECORATOR_PORTNOTFOUND;
 }
 
 //
@@ -126,7 +161,13 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
       }
     }
 
+    // Return the collection to the client.
     *portFCOs = temp.Detach ();
+
+    // Clear the cached ports.
+    if (!this->ports_.empty ())
+      this->ports_.clear ();
+
     return S_OK;
   }
   catch (...)

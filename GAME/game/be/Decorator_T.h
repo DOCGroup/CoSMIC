@@ -13,8 +13,10 @@
 #ifndef _GAME_BE_DECORATOR_T_H_
 #define _GAME_BE_DECORATOR_T_H_
 
-#include "game/config.h"
-#include "GAME_export.h"
+
+#include <map>
+#include "game/FCO.h"
+#include "game/utils/Point.h"
 
 namespace GAME
 {
@@ -25,7 +27,7 @@ template <typename T, const CLSID * pclsid = &CLSID_NULL>
 class ATL_NO_VTABLE Decorator_T :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
   public ATL::CComCoClass < Decorator_T <T>, pclsid >,
-	public IMgaElementDecorator
+  public IMgaElementDecorator
 {
 public:
   /// Default constructor.
@@ -38,55 +40,62 @@ public:
   DECLARE_NO_REGISTRY ()
 
   BEGIN_COM_MAP (Decorator_T <T>)
-	  COM_INTERFACE_ENTRY (IMgaElementDecorator)
+    COM_INTERFACE_ENTRY (IMgaElementDecorator)
   END_COM_MAP()
 
-	// IMgaDecorator
-	STDMETHOD (Initialize) (IMgaProject* pProject, IMgaMetaPart* pPart, IMgaFCO* pFCO);
-	STDMETHOD (Destroy) (void);
-	STDMETHOD (GetMnemonic)	(BSTR * bstrMnemonic );
-	STDMETHOD (GetFeatures)	(feature_code* pFeatureCodes );
-	STDMETHOD (SetParam) (BSTR bstrName, VARIANT vValue );
-	STDMETHOD (GetParam) (BSTR bstrName, VARIANT* pvValue );
-	STDMETHOD (SetActive) (VARIANT_BOOL bIsActive );
-	STDMETHOD (GetPreferredSize) (LONG* plWidth, LONG* plHeight );
-	STDMETHOD (SetLocation) (LONG sx, LONG sy, LONG ex, LONG ey );
-	STDMETHOD (GetLocation) (LONG* sx, LONG* sy, LONG* ex, LONG* ey );
-	STDMETHOD (GetLabelLocation) (LONG* sx, LONG* sy, LONG* ex, LONG* ey );
-	STDMETHOD (GetPortLocation) (IMgaFCO* fco, LONG* sx, LONG* sy, LONG* ex, LONG* ey );
-	STDMETHOD (GetPorts) (IMgaFCOs** portFCOs);
-	STDMETHOD (Draw) (HDC hdc);
-	STDMETHOD (SaveState) (void);
+  // IMgaDecorator
+  STDMETHOD (Initialize) (IMgaProject* pProject, IMgaMetaPart* pPart, IMgaFCO* pFCO);
+  STDMETHOD (Destroy) (void);
+  STDMETHOD (GetMnemonic)  (BSTR * bstrMnemonic );
+  STDMETHOD (GetFeatures)  (feature_code* pFeatureCodes );
+  STDMETHOD (SetParam) (BSTR bstrName, VARIANT vValue );
+  STDMETHOD (GetParam) (BSTR bstrName, VARIANT* pvValue );
+  STDMETHOD (SetActive) (VARIANT_BOOL bIsActive );
+  STDMETHOD (GetPreferredSize) (LONG* plWidth, LONG* plHeight );
+  STDMETHOD (SetLocation) (LONG sx, LONG sy, LONG ex, LONG ey );
+  STDMETHOD (GetLocation) (LONG* sx, LONG* sy, LONG* ex, LONG* ey );
+  STDMETHOD (GetLabelLocation) (LONG* sx, LONG* sy, LONG* ex, LONG* ey );
+  STDMETHOD (GetPortLocation) (IMgaFCO* fco, LONG* sx, LONG* sy, LONG* ex, LONG* ey );
+  STDMETHOD (GetPorts) (IMgaFCOs** portFCOs);
+  STDMETHOD (Draw) (HDC hdc);
+  STDMETHOD (SaveState) (void);
 
-	//  IMgaElementDecorator
-	STDMETHOD (InitializeEx) (IMgaProject* pProject, IMgaMetaPart* pPart, IMgaFCO* pFCO, IMgaCommonDecoratorEvents* eventSink, ULONGLONG parentWnd);
-	STDMETHOD (DrawEx) (HDC hdc, ULONGLONG gdipGraphics );
-	STDMETHOD (SetSelected) (VARIANT_BOOL bIsSelected );
-	STDMETHOD (MouseMoved) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseLeftButtonDown) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseLeftButtonUp) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseLeftButtonDoubleClick) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseRightButtonDown) (ULONGLONG hCtxMenu, ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseRightButtonUp) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseRightButtonDoubleClick)	(ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseMiddleButtonDown) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseMiddleButtonUp) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseMiddleButtonDoubleClick) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MouseWheelTurned) (ULONG nFlags, LONG distance, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (DragEnter) (ULONG* dropEffect, ULONGLONG pCOleDataObject, ULONG keyState, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (DragOver) (ULONG* dropEffect, ULONGLONG pCOleDataObject, ULONG keyState, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (Drop) (ULONGLONG pCOleDataObject, ULONG dropEffect, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (DropFile) (ULONGLONG hDropInfo, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (MenuItemSelected) (ULONG menuItemId, ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
-	STDMETHOD (OperationCanceled) (void);
+  //  IMgaElementDecorator
+  STDMETHOD (InitializeEx) (IMgaProject* pProject, IMgaMetaPart* pPart, IMgaFCO* pFCO, IMgaCommonDecoratorEvents* eventSink, ULONGLONG parentWnd);
+  STDMETHOD (DrawEx) (HDC hdc, ULONGLONG gdipGraphics );
+  STDMETHOD (SetSelected) (VARIANT_BOOL bIsSelected );
+  STDMETHOD (MouseMoved) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseLeftButtonDown) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseLeftButtonUp) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseLeftButtonDoubleClick) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseRightButtonDown) (ULONGLONG hCtxMenu, ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseRightButtonUp) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseRightButtonDoubleClick)  (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseMiddleButtonDown) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseMiddleButtonUp) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseMiddleButtonDoubleClick) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MouseWheelTurned) (ULONG nFlags, LONG distance, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (DragEnter) (ULONG* dropEffect, ULONGLONG pCOleDataObject, ULONG keyState, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (DragOver) (ULONG* dropEffect, ULONGLONG pCOleDataObject, ULONG keyState, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (Drop) (ULONGLONG pCOleDataObject, ULONG dropEffect, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (DropFile) (ULONGLONG hDropInfo, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (MenuItemSelected) (ULONG menuItemId, ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
+  STDMETHOD (OperationCanceled) (void);
 
 private:
   /// The implementation of the decorator.
   T impl_;
 
+  /// Initializing state for the decorator.
   bool is_init_;
 
+  /// State that determines if the location is set.
   bool is_loc_set_;
+
+  /// Collection of ports and their location.
+  typedef std::map <IMgaFCO *, GAME::utils::Rect> port_map_t;
+
+  port_map_t ports_;
 };
 
 }

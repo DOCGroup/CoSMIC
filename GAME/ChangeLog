@@ -1,3 +1,32 @@
+Fri Jan 14 06:08:39 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/Collection_T.cpp:
+
+          Bug fix where the CComPtr was not reset between interaction. This
+          resulted in failed assertions.
+
+        * game/GME_fwd.h:
+
+          Added a missing typedef.
+
+        * game/Smart_Ptr.inl:
+
+          Fixed compile errors for the constructor related to const objects.
+
+        * game/be/Decorator_T.h:
+        * game/be/Decorator_T.cpp:
+
+          Bug fix where GetPortLocation () in called only once in transaction.
+          It is the responsbility of the decorator to no invoke any methods
+          on the FCO after the initial call. This problem was solved by caching
+          each port's location.
+
+        * game/graphics/Port_Decorator.h:
+        * game/graphics/Port_Decorator.inl:
+
+          Removed the 'const' keyword from the return value for the
+          fco () method.
+
 Wed Jan 12 22:51:56 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/utils/Point.h:

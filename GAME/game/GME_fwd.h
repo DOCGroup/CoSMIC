@@ -19,9 +19,8 @@ namespace GAME
 {
   // Forward decl.
   class Attribute_Impl;
-
-  /// Type definition of an Attribute type.
   typedef Smart_Ptr <Attribute_Impl> Attribute;
+  typedef Attribute_Impl * Attribute_in;
 
   // Forward decl.
   class Object_Impl;

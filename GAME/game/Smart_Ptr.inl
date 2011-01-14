@@ -244,7 +244,7 @@ template <typename T>
 template <typename T1>
 GAME_INLINE
 Smart_Ptr <T>::Smart_Ptr (const Smart_Ptr <T1> & ptr)
-: Smart_Ptr_Base (ptr.get ())
+: Smart_Ptr_Base (const_cast <T1 *> (ptr.get ()))
 {
   if (0 != this->impl_)
     this->impl_->increment ();

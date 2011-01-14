@@ -80,7 +80,7 @@ void Port_Decorator::alignment (ALIGNMENT align)
 //
 // fco
 //
-const FCO & Port_Decorator::fco (void) const
+FCO Port_Decorator::fco (void) const
 {
   return this->port_;
 }

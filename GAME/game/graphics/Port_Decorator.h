@@ -61,12 +61,13 @@ public:
   bool draw (Gdiplus::Graphics * g);
 
   void location (const utils::Point & loc);
+
   const utils::Point & location (void) const;
 
   ALIGNMENT alignment (void) const;
   void alignment (ALIGNMENT align);
 
-  const FCO & fco (void) const;
+  FCO fco (void) const;
 
   void get_location (long & sx,
                      long & sy,
