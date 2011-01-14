@@ -70,65 +70,6 @@ protected:
 };
 
 /**
- * @class Smart_Ptr_In
- *
- * Wrapper class for input parameters. This prevents the client from
- * passing around naked pointers. Moreover, this managers reference
- * counting correctly for input parameters.
- */
-template <typename T>
-class Smart_Ptr_In : public Smart_Ptr_Base <T>
-{
-public:
-  /// Type definition for the implementation type.
-  typedef T impl_type;
-
-  /// Type definition for the interface type.
-  typedef typename T::interface_type interface_type;
-
-  /**
-   * Initializing constructor.
-   *
-   * @param[in]         in        Pointer to the implementation.
-   */
-  Smart_Ptr_In (T * in);
-
-  /**
-   * Copy constructor. This version works between two in pointers
-   * of the same time.
-   *
-   * @param[in]         in        Source input pointer.
-   */
-  Smart_Ptr_In (const Smart_Ptr_In & in);
-
-  template <typename T1>
-  Smart_Ptr_In (Smart_Ptr_In <T1> & in);
-
-  /// Destructor.
-  ~Smart_Ptr_In (void);
-
-private:
-  // prevent the following operation
-  Smart_Ptr_In (void);
-};
-
-/**
- * @class Smart_Ptr_Out
- *
- * Smart poiner for
- */
-template <typename T>
-class Smart_Ptr_Out
-{
-public:
-  /// Type definition for the implementation type.
-  typedef T impl_type;
-
-  /// Type definition for the interface type.
-  typedef typename T::interface_type interface_type;
-};
-
-/**
  * @class Smart_Ptr
  *
  * Smart pointer class for standard object types, and return values.

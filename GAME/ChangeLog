@@ -1,3 +1,10 @@
+Fri Jan 14 06:20:20 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/Smart_Ptr.h:
+        * game/Smart_Ptr.cpp:
+
+          Removed dead code.
+
 Fri Jan 14 06:08:39 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/Collection_T.cpp:
