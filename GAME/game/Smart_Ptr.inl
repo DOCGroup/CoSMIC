@@ -167,52 +167,6 @@ bool Smart_Ptr_Base <T>::is_nil (void) const
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Smart_Ptr_In
-
-//
-// Smart_Ptr_In
-//
-template <typename T>
-GAME_INLINE
-Smart_Ptr_In <T>::Smart_Ptr_In (T * in)
-: Smart_Ptr_Base (in)
-{
-
-}
-
-//
-// Smart_Ptr_In
-//
-template <typename T>
-GAME_INLINE
-Smart_Ptr_In <T>::Smart_Ptr_In (const Smart_Ptr_In <T> & in)
-: Smart_Ptr_Base (in)
-{
-
-}
-
-//
-// Smart_Ptr_In
-//
-template <typename T>
-template <typename T1>
-Smart_Ptr_In <T>::Smart_Ptr_In (Smart_Ptr_In <T1> & in)
-: Smart_Ptr_Base (in.get ())
-{
-
-}
-
-//
-// ~Smart_Ptr_In
-//
-template <typename T>
-GAME_INLINE
-Smart_Ptr_In <T>::~Smart_Ptr_In (void)
-{
-
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // Smart_Ptr
 
 //
