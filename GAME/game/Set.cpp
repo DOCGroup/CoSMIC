@@ -89,7 +89,7 @@ size_t Set_Impl::members (std::vector <GAME::FCO> & members) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_Members (&fcos));
 
-  return get_children (fcos.p, members);
+  return iter_to_collection (fcos.p, members);
 }
 
 //

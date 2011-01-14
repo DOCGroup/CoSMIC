@@ -194,7 +194,7 @@ size_t FCO_Impl::attributes (std::vector <Attribute> & attrs) const
   CComPtr <IMgaAttributes> coll;
   VERIFY_HRESULT (this->impl ()->get_Attributes (&coll));
 
-  return get_children (coll.p, attrs);
+  return iter_to_collection (coll.p, attrs);
 }
 
 //
@@ -268,7 +268,7 @@ registry (std::vector <GAME::RegistryNode> & nodes,
   VARIANT_BOOL vtypes = !virtual_types ? VARIANT_FALSE : VARIANT_TRUE;
   VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
-  return get_children (rawnodes.p, nodes);
+  return iter_to_collection (rawnodes.p, nodes);
 }
 
 //
@@ -291,7 +291,7 @@ size_t FCO_Impl::in_sets (std::vector <GAME::Set> & sets) const
   CComPtr <IMgaFCOs> temp;
   VERIFY_HRESULT (this->impl ()->get_MemberOfSets (&temp));
 
-  return get_children (temp.p, sets);
+  return iter_to_collection (temp.p, sets);
 }
 
 //
@@ -316,7 +316,7 @@ in_connections (std::vector <Connection> & conns) const
 
   std::vector <ConnectionPoint> points;
 
-  if (get_children (temp.p, points) > 0)
+  if (iter_to_collection (temp.p, points) > 0)
     std::for_each (points.begin (),
                    points.end (),
                    boost::bind (&std::vector <Connection>::push_back,
@@ -338,7 +338,7 @@ in_connections (const std::string & type, std::vector <Connection> & conns) cons
 
   std::vector <ConnectionPoint> points;
 
-  if (0 == get_children (temp.p, points))
+  if (0 == iter_to_collection (temp.p, points))
     return 0;
 
   GAME::Connection conn;
@@ -365,7 +365,7 @@ size_t FCO_Impl::referenced_by (std::vector <GAME::FCO> & references) const
   CComPtr <IMgaFCOs> temp;
   VERIFY_HRESULT (this->impl ()->get_ReferencedBy (&temp));
 
-  return get_children (temp.p, references);;
+  return iter_to_collection (temp.p, references);;
 }
 
 }

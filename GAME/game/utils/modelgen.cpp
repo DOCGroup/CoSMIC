@@ -5,18 +5,20 @@
 
 namespace GAME
 {
+
 //
 // contains_t::operator ()
 //
-template <typename PRED>
+template <typename ARCH, typename PRED>
 template <typename P, typename T, typename META>
-bool contains_t <PRED>::
+bool contains_t <ARCH, PRED>::
 operator () (P parent, const META & metaname, T & element)
 {
   // Get the children of the parent.
   std::vector <T> children;
+  get_children <ARCH> f;
 
-  if (0 != parent->children (metaname, children))
+  if (0 != f (parent, metaname, children))
     return this->find_i (children.begin (), children.end (), element);
 
   return false;
@@ -25,9 +27,9 @@ operator () (P parent, const META & metaname, T & element)
 //
 // find_i
 //
-template <typename PRED>
+template <typename ARCH, typename PRED>
 template <typename T>
-bool contains_t <PRED>::
+bool contains_t <ARCH, PRED>::
 find_i (T iter_begin,
         T iter_end,
         typename std::iterator_traits <T>::value_type & element)
@@ -44,7 +46,7 @@ find_i (T iter_begin,
 //
 // create_if
 //
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if (P parent, const META & metaname, T & element, PRED predicate)
 {
   // Determine if the parent has an element that matches the specified
@@ -53,14 +55,16 @@ bool create_if (P parent, const META & metaname, T & element, PRED predicate)
   if (!predicate (parent, metaname, element))
     return false;
 
-  element = T::_create (parent, metaname);
+  create_element <ARCH, T> factory_method;
+  element = factory_method (parent, metaname);
+
   return true;
 }
 
 //
 // create_if
 //
-template <typename P, typename T, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if (P parent,
                 const std::string & metaname,
                 const T & collection,
@@ -73,14 +77,16 @@ bool create_if (P parent,
   if (!predicate (collection, element))
     return false;
 
-  element = T::_create (parent, metaname);
+  create_element <ARCH, T> factory_method;
+  element = factory_method (parent, metaname);
+
   return true;
 }
 
 //
 // create_if_not
 //
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
                     const META & metaname,
                     T & element,
@@ -92,15 +98,16 @@ bool create_if_not (P parent,
   if (predicate (parent, metaname, element))
     return false;
 
-  typedef typename T::impl_type impl_type;
-  element = impl_type::_create (parent, metaname);
+  create_element <ARCH, T> factory_method;
+  element = factory_method (parent, metaname);
+
   return true;
 }
 
 //
 // create_if_not
 //
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
                     const META & metaname,
                     const T & collection,
@@ -112,6 +119,9 @@ bool create_if_not (P parent,
   // create one for the caller.
   if (predicate (collection, element))
     return false;
+
+  create_element <ARCH, typename T::value_type> factory_method;
+  element = factory_method (parent, metaname);
 
   element = T::value_type::_create (parent, metaname);
   return true;
@@ -132,6 +142,7 @@ bool create_subtype_if (P parent,
   if (!predicate (parent, element.meta ().name (), subtype))
     return false;
 
+  // subtype = create_subtype <BACKEND> (element, parent);
   subtype = element.create_subtype (parent);
   return true;
 }
@@ -148,6 +159,7 @@ bool create_subtype_if_not (P parent, T & element, T & subtype, PRED predicate)
   if (predicate (parent, element.meta ().name (), subtype))
     return false;
 
+  // subtype = create_subtype <BACKEND> (element, parent);
   subtype = element.create_subtype (parent);
   return true;
 }
@@ -165,6 +177,7 @@ bool create_instance_if (P parent, T & element,
   if (!predicate (parent, element.meta ().name (), instance))
     return false;
 
+  // subtype = create_instance <BACKEND> (element, parent);
   instance = element.create_instance (parent);
   return true;
 }
@@ -182,7 +195,9 @@ bool create_instance_if_not (P parent, T & element,
   if (predicate (parent, element.meta ().name (), instance))
     return false;
 
+  // subtype = create_instance <BACKEND> (element, parent);
   instance = element.create_instance (parent);
   return true;
 }
+
 }

@@ -57,7 +57,7 @@ children (std::vector <GAME::Meta::FCO> & fcos) const
   CComPtr <IMgaMetaFCOs> metas;
   VERIFY_HRESULT (this->impl ()->get_DefinedFCOs (&metas));
 
-  return get_children (metas.p, fcos);
+  return iter_to_collection (metas.p, fcos);
 }
 
 //
@@ -81,7 +81,7 @@ size_t Model_Impl::aspects (std::vector <Aspect> & aspects) const
   CComPtr <IMgaMetaAspects> temp;
   VERIFY_HRESULT (this->impl ()->get_Aspects (&temp));
 
-  return get_children (temp.p, aspects);
+  return iter_to_collection (temp.p, aspects);
 }
 
 }

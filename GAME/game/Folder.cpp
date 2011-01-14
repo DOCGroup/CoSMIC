@@ -52,7 +52,7 @@ size_t Folder_Impl::children (std::vector <GAME::Folder> & folders) const
   CComPtr <IMgaFolders> tempptr;
   VERIFY_HRESULT (this->impl ()->get_ChildFolders (&tempptr));
 
-  return get_children (tempptr.p, folders);
+  return iter_to_collection (tempptr.p, folders);
 }
 
 /**
@@ -109,7 +109,7 @@ size_t Folder_Impl::children (std::vector <FCO> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -122,7 +122,7 @@ children (const std::string & type, std::vector <GAME::Atom> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -135,7 +135,7 @@ children (const std::string & type, std::vector <GAME::Model> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -148,7 +148,7 @@ children (const std::string & type, std::vector <GAME::Reference> & children) co
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -161,7 +161,7 @@ children (const std::string & type, std::vector <GAME::Set> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -235,7 +235,7 @@ size_t Folder_Impl::registry (std::vector <GAME::RegistryNode> & nodes,
   VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
   VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
-  return get_children (rawnodes.p, nodes);
+  return iter_to_collection (rawnodes.p, nodes);
 }
 
 //

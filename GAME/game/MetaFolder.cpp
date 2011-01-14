@@ -25,7 +25,7 @@ children (std::vector <GAME::Meta::Folder> & folders) const
   CComPtr <IMgaMetaFolders> metas;
   VERIFY_HRESULT (this->impl ()->get_LegalChildFolders (&metas));
 
-  return get_children (metas.p, folders);
+  return iter_to_collection (metas.p, folders);
 }
 
 //
@@ -38,7 +38,7 @@ children (std::vector <GAME::Meta::FCO> & fcos) const
   CComPtr <IMgaMetaFCOs> metas;
   VERIFY_HRESULT (this->impl ()->get_LegalRootObjects (&metas));
 
-  return get_children (metas.p, fcos);
+  return iter_to_collection (metas.p, fcos);
 }
 
 //

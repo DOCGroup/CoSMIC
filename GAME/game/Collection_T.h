@@ -29,10 +29,10 @@ namespace GAME
 {
 
 //
-// get_children
+// iter_to_collection
 //
 template <typename ITER, typename T>
-size_t get_children (ITER iter, std::vector <T> & coll);
+size_t iter_to_collection (ITER iter, std::vector <T> & coll);
 
 }
 

@@ -75,7 +75,7 @@ struct collection_traits <IMgaMetaAspects *>
 // get_collection
 //
 template <typename ITER, typename T>
-size_t get_children (ITER iter, std::vector <T> & coll)
+size_t iter_to_collection (ITER iter, std::vector <T> & coll)
 {
   // Resize the collection.
   long count;

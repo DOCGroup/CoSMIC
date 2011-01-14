@@ -1,3 +1,43 @@
+Fri Jan 14 23:43:15 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/Collection_T.h:
+        * game/Collection_T.cpp:
+
+          Renamed the get_children () method to iter_to_collection () since
+          its name clashed with the get_children () method defined in the
+          modelgen framework.
+
+        * game/utils/modelgen.h:
+        * game/utils/modelgen.inl:
+        * game/utils/modelgen.cpp:
+
+          Abstracted implementation that is architecture dependent. Now
+          each architecture must specialize the following functors:
+
+            . create_element ()
+            . get_children ()
+
+        * game/xme/Auto_Model_T.cpp:
+        * game/xme/XME.mpc:
+        * game/xme/modelgen.h:
+        * game/xme/modelgen.cpp:
+        * game/FCO.cpp:
+        * game/Filter.cpp:
+        * game/Folder.cpp:
+        * game/GAME.mpc:
+        * game/MetaFolder.cpp:
+        * game/MetaModel.cpp:
+        * game/Model.cpp:
+        * game/Object.cpp:
+        * game/Project.cpp:
+        * game/RegistryNode.cpp:
+        * game/Set.cpp:
+        * game/be/ComponentEx_Impl_T.cpp:
+        * game/modelgen.h:
+        * game/modelgen.cpp:
+
+          Updated code to support the new modelgen framework.
+
 Fri Jan 14 14:13:30 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/Smart_Ptr.inl:

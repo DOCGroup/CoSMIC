@@ -294,7 +294,7 @@ size_t Object_Impl::children (std::vector <GAME::Object> & children) const
       CComPtr <IMgaObjects> temp;
       VERIFY_HRESULT (this->object_->get_ChildObjects (&temp));
 
-      return get_children (temp.p, children);
+      return iter_to_collection (temp.p, children);
     }
     break;
 

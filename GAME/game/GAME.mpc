@@ -72,6 +72,7 @@ project (GAME) : acelib, game_lib, boost_base {
 
   Template_Files {
     Collection_T.cpp
+    modelgen.cpp
     Smart_Ptr.cpp
   }
 

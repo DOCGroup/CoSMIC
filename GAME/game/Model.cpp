@@ -98,7 +98,7 @@ size_t Model_Impl::children (std::vector <FCO> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -111,7 +111,7 @@ children (const std::string & type, std::vector <FCO> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -146,7 +146,7 @@ children (std::vector <Atom> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -159,7 +159,7 @@ children (const std::string & type, std::vector <Atom> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -193,7 +193,7 @@ size_t Model_Impl::children (std::vector <Model> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -206,7 +206,7 @@ children (const std::string & type, std::vector <Model> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -241,7 +241,7 @@ children (std::vector <Connection> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -254,7 +254,7 @@ children (const std::string & type, std::vector <Connection> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -288,7 +288,7 @@ size_t Model_Impl::children (std::vector <Reference> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -301,7 +301,7 @@ children (const std::string & type, std::vector <Reference> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -336,7 +336,7 @@ children (std::vector <Set> & children) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //
@@ -349,7 +349,7 @@ children (const std::string & type, std::vector <Set> & children) const
   CComBSTR bstr (type.length (), type.c_str ());
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-  return get_children (fcos.p, children);
+  return iter_to_collection (fcos.p, children);
 }
 
 //

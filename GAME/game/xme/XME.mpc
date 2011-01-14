@@ -32,5 +32,6 @@ project (GAME_XME) : game_xml, game_lib, boost_base {
 
   Template_Files {
     Auto_Model_T.cpp
+    modelgen.cpp
   }
 }

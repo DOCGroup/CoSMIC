@@ -432,7 +432,7 @@ size_t Project::addon_components (std::vector <Component> & v) const
   CComPtr <IMgaComponents> temp;
   VERIFY_HRESULT (this->project_->get_AddOnComponents (&temp));
 
-  return get_children (temp.p, v);
+  return iter_to_collection (temp.p, v);
 }
 
 //
@@ -443,7 +443,7 @@ size_t Project::addon_components (std::vector <ComponentEx> & v) const
   CComPtr <IMgaComponents> temp;
   VERIFY_HRESULT (this->project_->get_AddOnComponents (&temp));
 
-  return get_children (temp.p, v);
+  return iter_to_collection (temp.p, v);
 }
 
 //

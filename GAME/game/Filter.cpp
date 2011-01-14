@@ -130,7 +130,7 @@ size_t Filter::apply (std::vector <FCO> & result) const
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->project_.impl ()->AllFCOs (this->filter_, &fcos));
 
-  return get_children (fcos.p, result);
+  return iter_to_collection (fcos.p, result);
 }
 
 //
@@ -141,7 +141,7 @@ size_t Filter::apply (const Model_in & model, std::vector <FCO> & result)
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (model->impl ()->GetDescendantFCOs (this->filter_, &fcos));
 
-  return get_children (fcos.p, result);
+  return iter_to_collection (fcos.p, result);
 }
 
 //
@@ -152,7 +152,7 @@ size_t Filter::apply (const Folder_in & folder, std::vector <FCO> & result)
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (folder->impl ()->GetDescendantFCOs (this->filter_, &fcos));
 
-  return get_children (fcos.p, result);
+  return iter_to_collection (fcos.p, result);
 }
 
 }

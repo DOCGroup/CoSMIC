@@ -4,7 +4,7 @@
 #include "Auto_Model_T.inl"
 #endif
 
-#include "game/utils/modelgen.h"
+#include "game/xme/modelgen.h"
 #include "boost/bind.hpp"
 
 namespace GAME
@@ -114,12 +114,14 @@ create_if_not (const META & metaname,
                T1 & element,
                PRED predicate)
 {
+  using GAME::Xme_t;
+
   // Attempt to create the requested element.
   bool retval =
-    GAME::create_if_not (this->model_,
-                         metaname,
-                         element,
-                         predicate);
+    GAME::create_if_not <Xme_t> (this->model_,
+                                 metaname,
+                                 element,
+                                 predicate);
 
   if (!retval)
   {

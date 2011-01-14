@@ -108,7 +108,7 @@ children (std::vector <GAME::RegistryNode> & nodes, bool types) const
   VARIANT_BOOL vtypes = !types ? VARIANT_FALSE : VARIANT_TRUE;
   VERIFY_HRESULT (this->node_->get_SubNodes (vtypes, &rawnodes));
 
-  return get_children (rawnodes.p, nodes);
+  return iter_to_collection (rawnodes.p, nodes);
 }
 
 //

@@ -43,7 +43,7 @@ Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
   try
   {
     std::vector <FCO> selected;
-    GAME::get_children (fcos, selected);
+    GAME::iter_to_collection (fcos, selected);
 
     return this->impl_.invoke (Project (proj), selected, flags);
   }
@@ -74,7 +74,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * fcos, long flags)
     FCO curr (current);
 
     std::vector <FCO> selected;
-    get_children (fcos, selected);
+    GAME::iter_to_collection (fcos, selected);
 
     // We need to commit this transaction so the implementation can
     // create its own transaction. In the future, the implementation

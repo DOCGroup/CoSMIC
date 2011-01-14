@@ -17,16 +17,34 @@
 
 namespace GAME
 {
+
+template <typename ARCH>
+struct get_children
+{
+  template <typename P, typename T, typename META>
+  size_t operator () (P parent, const META & metaname, T & element);
+};
+
+template <typename ARCH, typename T>
+struct create_element
+{
+  template <typename P, typename META>
+  T operator () (P parent, const META & metaname);
+};
+
 /**
  * @class contains_t
  *
  * Functor that determines if a container contains an element that
  * matches the specified predicate.
  */
-template <typename PRED>
+template <typename ARCH, typename PRED>
 class contains_t
 {
 public:
+  /// Type definition of the architecture type.
+  typedef ARCH arch_type;
+
   /**
    * Initializing constructor.
    *
@@ -77,10 +95,10 @@ private:
  * @param[in]     predicate          The predicate for comparison.
  * @return        The contain_t functor.
  */
-template <typename PRED>
-contains_t <PRED> contains (PRED predicate);
+template <typename ARCH, typename PRED>
+contains_t <ARCH, PRED> contains (PRED predicate);
 
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool find (P parent, const META & metaname, T & element, PRED predicate);
 
 /**
@@ -92,7 +110,7 @@ bool find (P parent, const META & metaname, T & element, PRED predicate);
  * @param[out]      element     Target storage for child element.
  * @param[in]       predicate    Predicate to search for.
  */
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if (P parent, const META & metaname, T & element, PRED predicate);
 
 /**
@@ -104,20 +122,20 @@ bool create_if (P parent, const META & metaname, T & element, PRED predicate);
  * @param[out]      element       Target storage for child element.
  * @param[in]       predicate     Predicate to search for.
  */
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if (P parent,
                 const META & metaname,
                 T collection,
                 typename T::value_type & element,
                 PRED predicate);
 
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
                     const META & metaname,
                     T & element,
                     PRED predicate);
 
-template <typename P, typename T, typename META, typename PRED>
+template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
                     const META & metaname,
                     const T & collection,
@@ -147,6 +165,7 @@ bool create_instance_if (P parent, T & element, T & instance, PRED predicate);
 
 template <typename P, typename T, typename PRED>
 bool create_instance_if_not (P parent, T & element, T & instance, PRED predicate);
+
 }
 
 #include "modelgen.inl"
