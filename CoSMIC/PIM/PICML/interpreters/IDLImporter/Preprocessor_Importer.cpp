@@ -2,7 +2,7 @@
 
 #include "Preprocessor_Importer.h"
 #include "game/xme/Model.h"
-#include "game/utils/modelgen.h"
+#include "game/xme/modelgen.h"
 
 #include "boost/spirit/include/qi.hpp"
 #include "boost/spirit/include/support_istream_iterator.hpp"
@@ -86,12 +86,13 @@ public:
     void operator () (const std::string & name, qi::unused_type, qi::unused_type) const
     {
       using GAME::XME::Model;
+      using GAME::Xme_t;
 
       Model child;
       Model model = this->stack_.top ();
       static const GAME::Xml::String meta_Package ("Package");
 
-      if (GAME::find (model, meta_Package, child,
+      if (GAME::find <Xme_t> (model, meta_Package, child,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        name,
                        boost::bind (&Model::name, _1))))
@@ -201,6 +202,7 @@ public:
     void operator () (const std::string & ident, qi::unused_type, qi::unused_type) const
     {
       using GAME::XME::Model;
+      using GAME::Xme_t;
 
       // Locate the Aggregate in the current scope that has the
       // name identified in <val>.
@@ -209,7 +211,7 @@ public:
       static const GAME::Xml::String meta_Aggregate ("Aggregate");
       Model aggregate;
 
-      if (GAME::find (model, meta_Aggregate, aggregate,
+      if (GAME::find <Xme_t> (model, meta_Aggregate, aggregate,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        GAME::Xml::String (ident),
                        boost::bind (&Model::name, _1))))
@@ -220,8 +222,8 @@ public:
         Atom key;
         static const GAME::Xml::String meta_Key ("Key");
 
-        if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+        if (GAME::create_if_not <Xme_t> (aggregate, meta_Key, key,
+            GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
                                          GAME::Xml::String (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
@@ -251,6 +253,7 @@ public:
     void operator () (const data::ident2_t & val, qi::unused_type, qi::unused_type) const
     {
       using GAME::XME::Model;
+      using GAME::Xme_t;
 
       // Locate the Aggregate in the current scope that has the
       // name identified in <val>.
@@ -260,7 +263,7 @@ public:
       static const GAME::Xml::String meta_Aggregate ("Aggregate");
       Model aggregate;
 
-      if (GAME::find (model, meta_Aggregate, aggregate,
+      if (GAME::find <Xme_t> (model, meta_Aggregate, aggregate,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        GAME::Xml::String (val.ident1_),
                        boost::bind (&Model::name, _1))))
@@ -274,8 +277,8 @@ public:
         Atom key;
 
         // Make sure the key element exists, and retrieve it.
-        if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+        if (GAME::create_if_not <Xme_t> (aggregate, meta_Key, key,
+            GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
                                          GAME::Xml::String (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
@@ -286,7 +289,7 @@ public:
         using GAME::XME::FCO;
         FCO member;
 
-        if (GAME::find (aggregate, meta_Member, member,
+        if (GAME::find <Xme_t> (aggregate, meta_Member, member,
             boost::bind (std::equal_to < GAME::Xml::String > (),
                          GAME::Xml::String (val.ident2_),
                          boost::bind (&FCO::name, _1))))
@@ -296,7 +299,7 @@ public:
           using GAME::XME::Connection;
           Connection key_member;
 
-          if (!GAME::find (aggregate, meta_KeyMember, key_member,
+          if (!GAME::find <Xme_t> (aggregate, meta_KeyMember, key_member,
                boost::bind (std::logical_and <bool> (),
                             boost::bind (std::equal_to <FCO> (),
                                          key,
@@ -332,6 +335,7 @@ public:
     void operator () (const data::keylist_t & keylist, qi::unused_type, qi::unused_type) const
     {
       using GAME::XME::Model;
+      using GAME::Xme_t;
 
       // Locate the Aggregate in the current scope that has the
       // name identified in <val>.
@@ -340,7 +344,7 @@ public:
       static const GAME::Xml::String meta_Aggregate ("Aggregate");
       Model aggregate;
 
-      if (GAME::find (model, meta_Aggregate, aggregate,
+      if (GAME::find <Xme_t> (model, meta_Aggregate, aggregate,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        GAME::Xml::String (keylist.ident_),
                        boost::bind (&Model::name, _1))))
@@ -351,8 +355,8 @@ public:
         Atom key;
         static const GAME::Xml::String meta_Key ("Key");
 
-        if (GAME::create_if_not (aggregate, meta_Key, key,
-            GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+        if (GAME::create_if_not <Xme_t> (aggregate, meta_Key, key,
+            GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
                                          GAME::Xml::String (meta_Key),
                                          boost::bind (&Atom::kind, _1)))))
         {
@@ -371,7 +375,7 @@ public:
 
           static const GAME::Xml::String meta_Member ("Member");
 
-          if (GAME::find (aggregate, meta_Member, member,
+          if (GAME::find <Xme_t> (aggregate, meta_Member, member,
               boost::bind (std::equal_to < GAME::Xml::String > (),
                            GAME::Xml::String (*iter),
                            boost::bind (&FCO::name, _1))))
@@ -383,7 +387,7 @@ public:
 
             static const GAME::Xml::String meta_KeyMember ("KeyMember");
 
-            if (!GAME::find (aggregate, meta_KeyMember, key_member,
+            if (!GAME::find <Xme_t> (aggregate, meta_KeyMember, key_member,
                  boost::bind (std::logical_and <bool> (),
                               boost::bind (std::equal_to <FCO> (),
                                            key,
@@ -416,6 +420,8 @@ public:
 
     void operator () (const data::scope_t & fq_type, qi::unused_type, qi::unused_type) const
     {
+      using GAME::Xme_t;
+
       data::scope_t::const_iterator
         iter = fq_type.begin (), iter_end = fq_type.end () - 1;
 
@@ -426,7 +432,7 @@ public:
         static const GAME::Xml::String meta_Package ("Package");
 
         // Locate the Package with this name.
-        if (!GAME::find (parent, meta_Package, parent,
+        if (!GAME::find <Xme_t> (parent, meta_Package, parent,
             boost::bind (std::equal_to < GAME::Xml::String > (),
                          GAME::Xml::String (*iter),
                          boost::bind (&GAME::XME::Model::name, _1))))
@@ -440,7 +446,7 @@ public:
       GAME::XME::Model object;
       static const GAME::Xml::String meta_Object ("Object");
 
-      if (GAME::find (parent, meta_Object, object,
+      if (GAME::find <Xme_t> (parent, meta_Object, object,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        GAME::Xml::String (*iter),
                        boost::bind (&GAME::XME::Model::name, _1))))
@@ -464,6 +470,8 @@ public:
 
     void operator () (const data::scope_t & fq_type, qi::unused_type, qi::unused_type) const
     {
+      using GAME::Xme_t;
+
       data::scope_t::const_iterator
         iter = fq_type.begin (), iter_end = fq_type.end () - 2;
 
@@ -474,7 +482,7 @@ public:
         static const GAME::Xml::String meta_Package ("Package");
 
         // Locate the Package with this name.
-        if (!GAME::find (parent, meta_Package, parent,
+        if (!GAME::find <Xme_t> (parent, meta_Package, parent,
             boost::bind (std::equal_to < GAME::Xml::String > (),
                          GAME::Xml::String (*iter),
                          boost::bind (&GAME::XME::Model::name, _1))))
@@ -488,7 +496,7 @@ public:
       GAME::XME::Model component;
       static const GAME::Xml::String meta_Object ("Component");
 
-      if (!GAME::find (parent, meta_Object, component,
+      if (!GAME::find <Xme_t> (parent, meta_Object, component,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        GAME::Xml::String (*iter ++),
                        boost::bind (&GAME::XME::Model::name, _1))))
@@ -501,7 +509,7 @@ public:
       GAME::XME::Reference receptacle;
       static const GAME::Xml::String meta_RequiredRequestPort ("RequiredRequestPort");
 
-      if (GAME::find (component, meta_RequiredRequestPort, receptacle,
+      if (GAME::find <Xme_t> (component, meta_RequiredRequestPort, receptacle,
           boost::bind (std::equal_to < GAME::Xml::String > (),
                        GAME::Xml::String (*iter),
                        boost::bind (&GAME::XME::Reference::name, _1))))

@@ -4,10 +4,10 @@
 #include "StdAfx.h"
 #include "AttributeMember_Event_Handler.h"
 
-#include "game/GAME.h"
-#include "game/utils/modelgen.h"
-#include "game/utils/Point.h"
 #include "game/Model.h"
+#include "game/Connection.h"
+#include "game/Reference.h"
+#include "game/utils/Point.h"
 
 #include "boost/bind.hpp"
 

@@ -4,7 +4,7 @@
 #include "StdAfx.h"
 #include "ComplexTypeReference_Event_Handler.h"
 
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 
 #include "Utils/Utils.h"
@@ -87,6 +87,8 @@ handle_object_relation (GAME::Object_in obj)
 void ComplexTypeReference_Event_Handler::
 create_DataValue (GAME::Model_in container, const GAME::FCO_in fco)
 {
+  using GAME::Mga_t;
+
   GAME::Reference member = GAME::Reference::_narrow (fco);
   GAME::FCO type = member->refers_to ();
 
@@ -116,11 +118,11 @@ create_DataValue (GAME::Model_in container, const GAME::FCO_in fco)
     // same name as <fco> input parameter.
     GAME::Model child_container;
 
-    if (GAME::create_if_not (container, "DataValueContainer", child_container,
-        GAME::contains (boost::bind (std::equal_to <std::string> (),
-                        name,
-                        boost::bind (&GAME::Model::impl_type::name,
-                                     boost::bind (&GAME::Model::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (container, "DataValueContainer", child_container,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                name,
+                                boost::bind (&GAME::Model::impl_type::name,
+                                             boost::bind (&GAME::Model::get, _1))))))
     {
       child_container->name (name);
     }
@@ -150,11 +152,11 @@ create_DataValue (GAME::Model_in container, const GAME::FCO_in fco)
     // same name as <fco> input parameter.
     GAME::Reference data_value;
 
-    if (GAME::create_if_not (container, "DataValue", data_value,
-        GAME::contains (boost::bind (std::equal_to <std::string> (),
-                        name,
-                        boost::bind (&GAME::Reference::impl_type::name,
-                                     boost::bind (&GAME::Reference::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (container, "DataValue", data_value,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                name,
+                                boost::bind (&GAME::Reference::impl_type::name,
+                                             boost::bind (&GAME::Reference::get, _1))))))
     {
       data_value->name (name);
     }

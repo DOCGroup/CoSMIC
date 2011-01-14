@@ -8,7 +8,7 @@
 #include "game/Folder.h"
 #include "game/Filter.h"
 #include "game/Reference.h"
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 #include "game/Project.h"
 
@@ -46,6 +46,8 @@ AMI4CCM_Event_Handler::~AMI4CCM_Event_Handler (void)
 //
 int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
 {
+  using GAME::Mga_t;
+
   if (this->is_importing_)
     return 0;
 
@@ -76,11 +78,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
   const std::string connector_filename = file->name () + "A";
   GAME::Folder idl_folder = GAME::Folder::_narrow (file->parent ());
 
-  if (GAME::create_if_not (idl_folder, "File", connector_file,
-      GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      connector_filename,
-                      boost::bind (&GAME::Model::impl_type::name,
-                                   boost::bind (&GAME::Model::get, _1))))))
+  if (GAME::create_if_not <Mga_t> (idl_folder, "File", connector_file,
+      GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                              connector_filename,
+                              boost::bind (&GAME::Model::impl_type::name,
+                                           boost::bind (&GAME::Model::get, _1))))))
   {
     connector_file->name (connector_filename);
   }
@@ -98,11 +100,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
     const std::string package_name (scope.top ()->name ());
 
     // Make sure the package exists in the model.
-    if (GAME::create_if_not (connector_file, "Package", connector_file,
-        GAME::contains (boost::bind (std::equal_to <std::string> (),
-                        package_name,
-                        boost::bind (&GAME::Model::impl_type::name,
-                                     boost::bind (&GAME::Model::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (connector_file, "Package", connector_file,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                package_name,
+                                boost::bind (&GAME::Model::impl_type::name,
+                                             boost::bind (&GAME::Model::get, _1))))))
     {
       connector_file->name (package_name);
     }
@@ -116,11 +118,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
   const std::string ami4ccm_replyhandler_name = "AMI4CCM_" + name + "ReplyHandler";
 
   GAME::Model ami4ccm_interface;
-  if (GAME::create_if_not (connector_file, "Object", ami4ccm_interface,
-      GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      ami4ccm_interface_name,
-                      boost::bind (&GAME::Model::impl_type::name,
-                                   boost::bind (&GAME::Model::get, _1))))))
+  if (GAME::create_if_not <Mga_t> (connector_file, "Object", ami4ccm_interface,
+      GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                              ami4ccm_interface_name,
+                              boost::bind (&GAME::Model::impl_type::name,
+                                           boost::bind (&GAME::Model::get, _1))))))
   {
     ami4ccm_interface->name (ami4ccm_interface_name);
   }
@@ -129,11 +131,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
 
   // Create the standard ami4ccm replyhandler interface.
   GAME::Model ami4ccm_replyhandler;
-  if (GAME::create_if_not (connector_file, "Object", ami4ccm_replyhandler,
-      GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      ami4ccm_replyhandler_name,
-                      boost::bind (&GAME::Model::impl_type::name,
-                                   boost::bind (&GAME::Model::get, _1))))))
+  if (GAME::create_if_not <Mga_t> (connector_file, "Object", ami4ccm_replyhandler,
+      GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                              ami4ccm_replyhandler_name,
+                              boost::bind (&GAME::Model::impl_type::name,
+                                           boost::bind (&GAME::Model::get, _1))))))
   {
     ami4ccm_replyhandler->name (ami4ccm_replyhandler_name);
   }
@@ -155,11 +157,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
     GAME::Model tpi;
     const std::string tpi_name = "AMI4CCM_" + name + "_Connector";
 
-    if (GAME::create_if_not (connector_file, "TemplatePackageInstance", tpi,
-        GAME::contains (boost::bind (std::equal_to <std::string> (),
-                        tpi_name,
-                        boost::bind (&GAME::Model::impl_type::name,
-                                     boost::bind (&GAME::Model::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (connector_file, "TemplatePackageInstance", tpi,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                tpi_name,
+                                boost::bind (&GAME::Model::impl_type::name,
+                                             boost::bind (&GAME::Model::get, _1))))))
     {
       tpi->name (tpi_name);
     }
@@ -171,11 +173,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
 
 
     GAME::Reference package_type;
-    if (GAME::create_if_not (tpi, "PackageType", package_type,
-        GAME::contains (boost::bind (std::equal_to <GAME::FCO> (),
-                        template_package,
-                        boost::bind (&GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&GAME::Reference::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (tpi, "PackageType", package_type,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <GAME::FCO> (),
+                                template_package,
+                                boost::bind (&GAME::Reference::impl_type::refers_to,
+                                             boost::bind (&GAME::Reference::get, _1))))))
     {
       package_type->refers_to (template_package);
     }
@@ -187,11 +189,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
     GAME::Reference tpv_interface;
     model = GAME::Model::_narrow (obj);
 
-    if (GAME::create_if_not (tpi, "TemplateParameterValue", tpv_interface,
-        GAME::contains (boost::bind (std::equal_to <GAME::FCO> (),
-                        model,
-                        boost::bind (&GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&GAME::Reference::get, _1 ))))))
+    if (GAME::create_if_not <Mga_t> (tpi, "TemplateParameterValue", tpv_interface,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <GAME::FCO> (),
+                                model,
+                                boost::bind (&GAME::Reference::impl_type::refers_to,
+                                             boost::bind (&GAME::Reference::get, _1 ))))))
     {
       tpv_interface->refers_to (model);
     }
@@ -202,11 +204,11 @@ int AMI4CCM_Event_Handler::handle_object_attribute (GAME::Object_in obj)
     // Create the template parameter value for the reply handler.
     GAME::Reference tpv_replyhandler;
 
-    if (GAME::create_if_not (tpi, "TemplateParameterValue", tpv_replyhandler,
-        GAME::contains (boost::bind (std::equal_to <GAME::FCO> (),
-                        ami4ccm_replyhandler,
-                        boost::bind (&GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&GAME::Reference::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (tpi, "TemplateParameterValue", tpv_replyhandler,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <GAME::FCO> (),
+                                ami4ccm_replyhandler,
+                                boost::bind (&GAME::Reference::impl_type::refers_to,
+                                             boost::bind (&GAME::Reference::get, _1))))))
     {
       tpv_replyhandler->refers_to (ami4ccm_replyhandler);
     }

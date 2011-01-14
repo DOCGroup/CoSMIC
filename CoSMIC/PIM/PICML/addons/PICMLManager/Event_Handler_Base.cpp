@@ -7,7 +7,7 @@
 #include "game/GAME.h"
 #include "game/be/Event_Handler.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 
 #include "Utils/Utils.h"

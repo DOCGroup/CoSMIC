@@ -9,7 +9,7 @@
 #include "game/Reference.h"
 #include "game/dialogs/Selection_List_Dialog_T.h"
 #include "game/dialogs/Dialog_Display_Strategy.h"
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include <functional>
 
 namespace PICML
@@ -51,7 +51,7 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Object_in obj)
   if (component->is_instance ())
     return 0;
 
-  // GAME::create_if_not (component, "type", type_info, GAME::count (...));
+  // GAME::create_if_not <Mga_t> (component, "type", type_info, GAME::count (...));
   std::vector <GAME::Reference> typeinfo_set;
   GAME::Reference typeinfo;
 

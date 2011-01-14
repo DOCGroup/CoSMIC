@@ -1,7 +1,7 @@
 // $Id$
 
 #include "File_Creator.h"
-#include "game/utils/modelgen.h"
+#include "game/xme/modelgen.h"
 #include "boost/bind.hpp"
 #include <functional>
 
@@ -71,6 +71,7 @@ create_files (const char * const * files, size_t n_files, const char * dest)
 {
   using GAME::XME::Folder;
   using GAME::XME::Model;
+  using GAME::Xme_t;
 
   Folder root_folder = this->proj_.root_folder ();
   static const GAME::Xml::String meta_InterfaceDefinitions ("InterfaceDefinitions");
@@ -78,8 +79,8 @@ create_files (const char * const * files, size_t n_files, const char * dest)
 
   // Locate the interface definitions folder.
   Folder idl_folder;
-  if (GAME::create_if_not (root_folder, meta_InterfaceDefinitions, idl_folder,
-      GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+  if (GAME::create_if_not <Xme_t> (root_folder, meta_InterfaceDefinitions, idl_folder,
+      GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
                                    dest_name,
                                    boost::bind (&GAME::XME::Folder::name, _1)))))
   {
@@ -124,8 +125,8 @@ create_files (const char * const * files, size_t n_files, const char * dest)
     GAME::Xml::String name (tmp.substr (pos + 1));
 
     // Either, create a new element or get the existing one.
-    if (GAME::create_if_not (idl_folder, meta_File, idl_files, idl_file,
-        GAME::contains (boost::bind (std::equal_to < GAME::Xml::String > (),
+    if (GAME::create_if_not <Xme_t> (idl_folder, meta_File, idl_files, idl_file,
+        GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
                                      name,
                                      boost::bind (&Model::name, _1)))))
     {

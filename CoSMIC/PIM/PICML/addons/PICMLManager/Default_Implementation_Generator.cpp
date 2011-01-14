@@ -4,7 +4,7 @@
 
 #include "Default_Implementation_Generator.h"
 
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 #include "game/Attribute.h"
 #include "game/Model.h"
@@ -32,10 +32,13 @@ Default_Implementation_Generator (::GAME::Project project, const meta_info_t & i
 : info_ (info),
   artifact_gen_ (project, info.artifact_folder_)
 {
+  using ::GAME::Mga_t;
+
   ::GAME::Folder root_folder = project.root_folder ();
 
-  if (::GAME::create_if_not (root_folder, info.impl_folder_, this->impl_folder_,
-      ::GAME::contains (boost::bind (std::equal_to <std::string> (),
+  if (::GAME::create_if_not <Mga_t> (root_folder, info.impl_folder_, this->impl_folder_,
+      ::GAME::contains <Mga_t> (
+                        boost::bind (std::equal_to <std::string> (),
                         info.impl_folder_name_,
                         boost::bind (&::GAME::Folder::impl_type::name,
                                      boost::bind (&::GAME::Folder::get, _1))))))
@@ -59,6 +62,8 @@ bool Default_Implementation_Generator::
 generate (const Implementation_Configuration & config,
           const ::GAME::Model_in type)
 {
+  using ::GAME::Mga_t;
+
   using ::GAME::Atom;
   using ::GAME::Connection;
   using ::GAME::FCO;
@@ -76,11 +81,11 @@ generate (const Implementation_Configuration & config,
   // Create a new container for the component implementation.
   Model container;
 
-  if (::GAME::create_if_not (this->impl_folder_, this->info_.container_type_, container,
-      ::GAME::contains (boost::bind (std::equal_to <std::string> (),
-                        impl_name,
-                        boost::bind (&::GAME::Model::impl_type::name,
-                                     boost::bind (&::GAME::Model::get, _1))))))
+  if (::GAME::create_if_not <Mga_t> (this->impl_folder_, this->info_.container_type_, container,
+      ::GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                impl_name,
+                                boost::bind (&::GAME::Model::impl_type::name,
+                                             boost::bind (&::GAME::Model::get, _1))))))
   {
     container->name (impl_name);
   }
@@ -88,11 +93,11 @@ generate (const Implementation_Configuration & config,
   // Create the monolithic implementation for the component.
   Atom impl;
 
-  if (::GAME::create_if_not (container, this->info_.impl_type_, impl,
-      ::GAME::contains (boost::bind (std::equal_to <std::string> (),
-                        impl_name,
-                        boost::bind (&::GAME::Atom::impl_type::name,
-                                     boost::bind (&::GAME::Atom::get, _1))))))
+  if (::GAME::create_if_not <Mga_t> (container, this->info_.impl_type_, impl,
+      ::GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                impl_name,
+                                boost::bind (&::GAME::Atom::impl_type::name,
+                                             boost::bind (&::GAME::Atom::get, _1))))))
   {
     impl->name (impl_name);
   }
@@ -105,11 +110,11 @@ generate (const Implementation_Configuration & config,
   // Create the reference to the target component.
   Reference ref;
 
-  if (::GAME::create_if_not (container, this->info_.type_ref_, ref,
-      ::GAME::contains (boost::bind (std::equal_to <FCO> (),
-                        type,
-                        boost::bind (&::GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&::GAME::Reference::get, _1))))))
+  if (::GAME::create_if_not <Mga_t> (container, this->info_.type_ref_, ref,
+      ::GAME::contains <Mga_t> (boost::bind (std::equal_to <FCO> (),
+                                type,
+                                boost::bind (&::GAME::Reference::impl_type::refers_to,
+                                             boost::bind (&::GAME::Reference::get, _1))))))
   {
     ref->refers_to (type);
   }
@@ -123,7 +128,7 @@ generate (const Implementation_Configuration & config,
 
   Connection implements;
 
-  if (!::GAME::find (container, this->info_.implements_type_, implements,
+  if (!::GAME::find <Mga_t> (container, this->info_.implements_type_, implements,
         boost::bind (std::logical_and <bool> (),
           boost::bind (std::equal_to <FCO> (),
                        impl,
@@ -146,11 +151,11 @@ generate (const Implementation_Configuration & config,
   // Insert the servant artifact for this component.
   Reference svnt_artifact;
 
-  if (::GAME::create_if_not (container, "ComponentServantArtifact", svnt_artifact,
-      ::GAME::contains (boost::bind (std::equal_to <FCO> (),
-                        this->artifact_gen_.svnt_artifact (),
-                        boost::bind (&::GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&::GAME::Reference::get, _1))))))
+  if (::GAME::create_if_not <Mga_t> (container, "ComponentServantArtifact", svnt_artifact,
+      ::GAME::contains <::GAME::Mga_t> (boost::bind (std::equal_to <FCO> (),
+                                        this->artifact_gen_.svnt_artifact (),
+                                        boost::bind (&::GAME::Reference::impl_type::refers_to,
+                                                     boost::bind (&::GAME::Reference::get, _1))))))
   {
     svnt_artifact->refers_to (this->artifact_gen_.svnt_artifact ());
   }
@@ -167,7 +172,7 @@ generate (const Implementation_Configuration & config,
   Connection pa;
   static const std::string meta_MonolithprimaryArtifact ("MonolithprimaryArtifact");
 
-  if (!::GAME::find (container, meta_MonolithprimaryArtifact, pa,
+  if (!::GAME::find <Mga_t> (container, meta_MonolithprimaryArtifact, pa,
         boost::bind (std::logical_and <bool> (),
           boost::bind (std::equal_to <FCO> (),
                        impl,
@@ -190,11 +195,11 @@ generate (const Implementation_Configuration & config,
   // Insert the implementation artifact for this component.
   Reference impl_artifact;
 
-  if (::GAME::create_if_not (container, "ComponentImplementationArtifact", impl_artifact,
-      ::GAME::contains (boost::bind (std::equal_to <FCO> (),
-                        this->artifact_gen_.exec_artifact (),
-                        boost::bind (&::GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&::GAME::Reference::get, _1))))))
+  if (::GAME::create_if_not <Mga_t> (container, "ComponentImplementationArtifact", impl_artifact,
+      ::GAME::contains <::GAME::Mga_t> (boost::bind (std::equal_to <FCO> (),
+                                        this->artifact_gen_.exec_artifact (),
+                                        boost::bind (&::GAME::Reference::impl_type::refers_to,
+                                                     boost::bind (&::GAME::Reference::get, _1))))))
   {
     impl_artifact->refers_to (this->artifact_gen_.exec_artifact ());
   }
@@ -208,7 +213,7 @@ generate (const Implementation_Configuration & config,
                                ::GAME::utils::Point (506,151),
                                impl_artifact);
 
-  if (!::GAME::find (container, meta_MonolithprimaryArtifact, pa,
+  if (!::GAME::find <Mga_t> (container, meta_MonolithprimaryArtifact, pa,
         boost::bind (std::logical_and <bool> (),
           boost::bind (std::equal_to <FCO> (),
                        impl,

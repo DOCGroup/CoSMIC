@@ -4,7 +4,7 @@
 #include "Runtime_Engine.h"
 
 #include "game/Filter.h"
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 
 #include "boost/bind.hpp"
 
@@ -176,6 +176,8 @@ void T3_Runtime_Engine::init_fco (GAME::FCO_in fco)
 bool T3_Runtime_Engine::
 store_predefined_reference (const GAME::Object_in obj, const char * pt)
 {
+  using GAME::Mga_t;
+
   // Check our symbol table first.
   if (0 == this->sym_table_.find (pt, this->stored_ref_))
     return true;
@@ -203,13 +205,11 @@ store_predefined_reference (const GAME::Object_in obj, const char * pt)
     GAME::Folder predefined_types;
 
     const char * name = "PredefinedTypes";
-    if (GAME::create_if_not (root_folder,
-                             name,
-                             predefined_types,
-                             GAME::contains (boost::bind (std::equal_to <std::string> (),
-                                             name,
-                                             boost::bind (&GAME::Folder_Impl::name,
-                                                          boost::bind (&GAME::Folder::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (root_folder, name, predefined_types,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                name,
+                                boost::bind (&GAME::Folder_Impl::name,
+                                             boost::bind (&GAME::Folder::get, _1))))))
     {
       predefined_types->name (name);
     }

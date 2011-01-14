@@ -10,7 +10,7 @@
 #include "Implementation_Configuration.h"
 #include "Validation.h"
 
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 
 #include "Utils/Utils.h"

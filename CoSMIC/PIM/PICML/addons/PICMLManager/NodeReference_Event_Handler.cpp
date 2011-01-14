@@ -4,7 +4,7 @@
 #include "StdAfx.h"
 #include "NodeReference_Event_Handler.h"
 
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 #include "game/Model.h"
 

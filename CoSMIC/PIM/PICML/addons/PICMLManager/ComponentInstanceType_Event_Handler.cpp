@@ -4,7 +4,7 @@
 #include "StdAfx.h"
 #include "ComponentInstanceType_Event_Handler.h"
 
-#include "game/utils/modelgen.h"
+#include "game/modelgen.h"
 #include "game/utils/Point.h"
 
 #include "Utils/Utils.h"
@@ -100,16 +100,18 @@ struct generate_instance_t
 
   void operator () (const GAME::FCO_in target) const
   {
+    using GAME::Mga_t;
+
     using GAME::Reference;
     using GAME::FCO;
 
     Reference ref;
 
-    if (GAME::create_if_not (this->parent_, this->type_, ref,
-        GAME::contains (boost::bind (std::equal_to <FCO> (),
-                        target,
-                        boost::bind (&GAME::Reference::impl_type::refers_to,
-                                     boost::bind (&GAME::Reference::get, _1))))))
+    if (GAME::create_if_not <Mga_t> (this->parent_, this->type_, ref,
+        GAME::contains <Mga_t> (boost::bind (std::equal_to <FCO> (),
+                                target,
+                                boost::bind (&GAME::Reference::impl_type::refers_to,
+                                             boost::bind (&GAME::Reference::get, _1))))))
     {
       ref->refers_to (target);
       ref->name (target->name ());

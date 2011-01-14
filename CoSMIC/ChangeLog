@@ -1,3 +1,22 @@
+Fri Jan 14 23:47:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/AttributeMember_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Generator.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/interpreters/IDLImporter/File_Creator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+
+          Updated code to support the new modelgen framework in GAME.
+
 Fri Jan 14 06:16:36 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
