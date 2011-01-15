@@ -69,7 +69,7 @@ initialize_ex (const GAME::Project & project,
   GAME::Meta::FCO metafco = part->role ()->kind ();
   std::string icon_filename = metafco->registry_value ("icon");
 
-  if (0 == fco)
+  if (0 != fco)
   {
     // The label is the name of the FCO.
     this->label_ = fco->name ();
