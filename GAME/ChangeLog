@@ -1,3 +1,9 @@
+Mon Jan 17 04:21:36 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/utils/modelgen.cpp:
+
+          Fixed compile error.
+
 Fri Jan 14 23:43:15 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/Collection_T.h:

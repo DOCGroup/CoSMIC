@@ -123,7 +123,6 @@ bool create_if_not (P parent,
   create_element <ARCH, typename T::value_type> factory_method;
   element = factory_method (parent, metaname);
 
-  element = T::value_type::_create (parent, metaname);
   return true;
 }
 
