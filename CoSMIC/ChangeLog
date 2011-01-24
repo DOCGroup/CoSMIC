@@ -1,3 +1,16 @@
+Mon Jan 24 15:10:14 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.h:
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+
+          Bug fix where the IDL preprocessor failed to correctly import
+          keylist pragma statements.
+
+          Bug fix where the keylist generation was incorrect if there
+          were no members in the keylist.
+
 Mon Jan 24 01:26:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.h:

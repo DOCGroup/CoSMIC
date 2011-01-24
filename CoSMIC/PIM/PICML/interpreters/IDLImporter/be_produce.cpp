@@ -96,22 +96,26 @@ void BE_abort (void)
   throw Bailout ();
 }
 
+/**
+ * @struct BE_import_directives
+ *
+ * Functor for importing an IDL file's preprocessor directives.
+ */
 struct BE_import_directives
 {
-  BE_import_directives (const Project_Generator & proj_gen)
-    : proj_gen_ (proj_gen)
-  {
-
-  }
-
+  //
+  // operator ()
+  //
   void operator () (PICML_File_Creator::item_map::ENTRY & e) const
   {
     Preprocessor_Importer importer;
-    importer.parse (e.key ().c_str (), e.item ()->file_.get ());
-  }
 
-private:
-  const Project_Generator & proj_gen_;
+    if (!importer.parse (e.key ().c_str (), e.item ()->file_.get (), false))
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("%T (%t) - %M - failed to import preprocessor ")
+                  ACE_TEXT ("directives for %s\n"),
+                  e.key ().c_str ()));
+  }
 };
 
 // Do the work of this BE. This is the starting point for code generation.
@@ -136,7 +140,7 @@ void BE_produce (void)
     // to do manually since the AST does not preserve them.
     std::for_each (fc.files ().begin (),
                    fc.files ().end (),
-                   BE_import_directives (proj_gen));
+                   BE_import_directives ());
 
     // Save the project.
     project.save ();

@@ -351,7 +351,8 @@ public:
       {
         using GAME::XME::Atom;
 
-        // This is a signal for use to create a Key element.
+        // We are going to add a key element to this aggregate. This does
+        // not necessarily mean there are members of the key.
         Atom key;
         static const GAME::Xml::String meta_Key ("Key");
 
@@ -559,7 +560,7 @@ public:
     this->model_stack_.push (file);
 
     this->file_content_ =
-      * (this->pragma_stmts_ |
+      * (this->pragma_ |
          this->module_ |
          this->ignorable_scope_ |
          this->garbage_);
@@ -567,21 +568,26 @@ public:
     // We need to set the structure as the active model.
     this->module_ =
       qi::lit ("module") >> this->ident_[open_module (this->model_stack_)] >>
-      qi::lit ('{') >> *this->module_content_ >>
+      qi::lit ('{') >>
+      *this->module_content_ >>
       qi::lit ('}') >>
       qi::lit (';')[close_module (this->model_stack_)];
 
     this->module_content_ =
       this->module_ |
       this->ignorable_scope_ |
-      this->pragma_stmts_ |
+      this->pragma_ |
       this->garbage_;
 
     // List of keyworks that we must be able to recognize. This will
     // stop the parser from gobbling unused characters.
     this->keywords_ =
       qi::lit ("#pragma") |
-      qi::lit ("module");
+      qi::lit ("module") |
+      this->ignorable_scope_keyword_;
+
+    this->pragma_ =
+      qi::lit ("#pragma") >> this->pragma_stmts_;
 
     // Rules for recognizing #pragma statements in the code.
     this->pragma_stmts_ =
@@ -594,26 +600,22 @@ public:
       this->pragma_ami4ccm_interface_[enable_ami4ccm_interface_t (file)];
 
     this->pragma_typesupport_ %=
-      qi::lit ("#pragma") >>
       this->ident_ >>
       qi::lit ("typesupport") >>
       this->usr_filepath_;
 
     this->pragma_lem_ %=
-      qi::lit ("#pragma") >>
       this->ident_ >>
       qi::lit ("lem") >>
       this->usr_filepath_;
 
     this->pragma_dcps_data_type_ %=
-      qi::lit ("#pragma") >>
       qi::lit ("DCPS_DATA_TYPE") >>
       qi::lit ("\"") >>
       this->ident_ >>
       qi::lit ("\"");
 
     this->pragma_ami4ccm_interface_ %=
-      qi::lit ("#pragma") >>
       qi::lit ("ciao") >>
       qi::lit ("ami4ccm") >>
       qi::lit ("interface") >>
@@ -622,7 +624,6 @@ public:
       qi::lit ("\"");
 
     this->pragma_ami4ccm_receptacle_ %=
-      qi::lit ("#pragma") >>
       qi::lit ("ciao") >>
       qi::lit ("ami4ccm") >>
       qi::lit ("receptacle") >>
@@ -631,7 +632,6 @@ public:
       qi::lit ("\"");
 
     this->pragma_dcps_data_key_ %=
-      qi::lit ("#pragma") >>
       qi::lit ("DCPS_DATA_KEY") >>
       qi::lit ("\"") >>
       this->ident_ >>
@@ -639,9 +639,11 @@ public:
       qi::lit ("\"");
 
     this->pragma_keylist_ %=
-      qi::lit ("#pragma") >>
       qi::lit ("keylist") >>
-      this->ident_ >> +this->ident_;
+      qi::lexeme[
+        qi::skip[this->ident_] >>
+          *(qi::omit[+ascii::blank] >> qi::skip[this->ident_]) >>
+          qi::omit[*ascii::blank] >> qi::eol];
 
     // The actual value of the string literal.
     this->quoted_string_ %=
@@ -725,6 +727,7 @@ private:
 
   qi::rule <IteratorT, void (), ascii::space_type> module_content_;
 
+  qi::rule <IteratorT, void (), ascii::space_type> pragma_;
   qi::rule <IteratorT, void (), ascii::space_type> pragma_stmts_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_typesupport_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_lem_;
@@ -780,12 +783,8 @@ Preprocessor_Importer::~Preprocessor_Importer (void)
 // parse
 //
 bool Preprocessor_Importer::
-parse (const char * filename, GAME::XME::Model & model)
+parse (const char * filename, GAME::XME::Model & model, bool debug)
 {
-  //ACE_DEBUG ((LM_DEBUG,
-  //            ACE_TEXT ("%T (%t) - %M - importing %s preprocessor directives\n"),
-  //            filename));
-
   // Open the specified file for reading.
   std::ifstream infile;
   infile.open (filename);
@@ -801,7 +800,7 @@ parse (const char * filename, GAME::XME::Model & model)
   spirit::istream_iterator end_iter;
 
   // Parse the open file using the iterators above.
-  Preprocessor_Importer_Grammar <spirit::istream_iterator> g (model, false);
+  Preprocessor_Importer_Grammar <spirit::istream_iterator> g (model, debug);
   bool retval = qi::phrase_parse (begin_iter,
                                   end_iter,
                                   g,

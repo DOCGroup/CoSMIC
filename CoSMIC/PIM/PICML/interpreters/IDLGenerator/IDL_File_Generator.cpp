@@ -303,15 +303,14 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
                    boost::bind (&sorted_values_t::insert,
                                 boost::ref (key_values),
                                 boost::bind (&PICML::KeyMember::dstKeyMember_end, _1)));
-  }
 
-  if (!key_values.empty ())
-  {
+    // We can declare this as a DDS type.
     this->idl_ << "#pragma DCPS_DATA_TYPE \"" << a.name () << "\"" << nl;
 
     sorted_values_t::iterator
       iter = key_values.begin (), iter_end = key_values.end ();
 
+    // Write all members of the key.
     for (; iter != iter_end; ++ iter)
       this->idl_ << "#pragma DCPS_DATA_KEY \""
                    << a.name () << " " << iter->name () << "\"" << nl;
@@ -341,17 +340,21 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
   this->idl_ << uidt_nl << "};" << nl
              << nl;
 
-  // Now, right the key list. Future version of the IDL generator
-  // should enable a user to enable/disable such pragma statements.
-  if (!key_values.empty ())
+  if (key != Udm::null)
   {
+    // Since there is a key in this aggregate, we need to write at
+    // least an empty key list.
     this->idl_ << "#pragma keylist " << a.name ();
 
-    sorted_values_t::iterator
-      iter = key_values.begin (), iter_end = key_values.end ();
+    if (!key_values.empty ())
+    {
+      // We can now generate members of the key list.
+      sorted_values_t::iterator
+        iter = key_values.begin (), iter_end = key_values.end ();
 
-    for (; iter != iter_end; ++ iter)
-      this->idl_ << " " << iter->name ();
+      for (; iter != iter_end; ++ iter)
+        this->idl_ << " " << iter->name ();
+    }
 
     this->idl_ << nl << nl;
   }
