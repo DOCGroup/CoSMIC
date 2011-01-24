@@ -166,8 +166,7 @@ void Selection_List_Dialog::DoDataExchange (CDataExchange * pDX)
 
     // Make sure we increment the reference count before attaching
     // the element. We don't want to cause any exceptions.
-    impl->AddRef ();
-    this->selection_->attach (impl);
+    this->selection_ = impl;
   }
 }
 

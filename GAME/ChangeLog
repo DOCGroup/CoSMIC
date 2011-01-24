@@ -1,3 +1,9 @@
+Mon Jan 24 01:24:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/dialogs/Selection_List_Dialog.cpp:
+
+          Fixed runtime errors.
+
 Mon Jan 17 04:21:36 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/utils/modelgen.cpp:
