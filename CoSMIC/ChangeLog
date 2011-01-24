@@ -1,3 +1,23 @@
+Mon Jan 24 01:26:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/actors.hpp:
+        * Utils/T3/t3/runtime/Symbol.h:
+        * Utils/T3/t3/runtime/actors.hpp:
+
+          Updated to latest version of GAME.
+
 Sat Jan 15 19:38:15 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:

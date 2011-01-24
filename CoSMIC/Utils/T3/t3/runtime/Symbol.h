@@ -15,12 +15,7 @@
 
 #include "Runtime_export.h"
 #include "ace/SString.h"
-
-namespace GAME
-{
-  // Forward decl.
-  class FCO;
-}
+#include "game/GME_fwd.h"
 
 /**
  * @class T3_Symbol

@@ -111,13 +111,14 @@ namespace T3
           parent.create_element_if_not (this->type_,
                                         boost::bind (std::equal_to <std::string> (),
                                                      name,
-                                                     boost::bind (&GAME::FCO::name, _1)));
+                                                     boost::bind (&GAME::FCO::impl_type::name,
+                                                                  boost::bind (&GAME::FCO::get, _1))));
 
         // Since we know its the name, let's set the name.
-        object.name (name);
+        object->name (name);
 
         // Store the new object as the return value (i.e., qi::_val).
-        fusion::at_c <0> (ctx.attributes) = object;
+        fusion::at_c <0> (ctx.attributes) = object.get ();
         result = true;
       }
       catch (...)

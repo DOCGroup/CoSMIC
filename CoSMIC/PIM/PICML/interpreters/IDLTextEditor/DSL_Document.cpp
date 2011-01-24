@@ -131,7 +131,7 @@ void DSL_Document::OnInitialUpdate (void)
     return;
 
   // Set the title to the object's name.
-  this->SetTitle (this->obj_.name ().c_str ());
+  this->SetTitle (this->obj_->name ().c_str ());
 
   // Get a reference to the RichEdit control.
   CRichEditCtrl & richedit = this->GetView ()->GetRichEditCtrl ();
@@ -159,5 +159,5 @@ configure (DSL_Serializer * serializer, DSL_Deserializer * deserializer)
 //
 bool DSL_Document::is_readonly (void) const
 {
-  return this->obj_.is_lib_object () || this->obj_.readonly_access ();
+  return this->obj_->is_lib_object () || this->obj_->readonly_access ();
 }

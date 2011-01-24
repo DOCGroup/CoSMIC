@@ -14,12 +14,7 @@
 #define _DSL_SERIALIZER_H_
 
 #include <ostream>
-
-namespace GAME
-{
-  // Forward decl.
-  class Object;
-}
+#include "game/GME_fwd.h"
 
 /**
  * @class DSL_Serializer
@@ -44,7 +39,7 @@ public:
    * @retval          0         Success
    * @retval          -1        Failure
    */
-  virtual int serialize (const ::GAME::Object & obj, std::ostream & stream) = 0;
+  virtual int serialize (const ::GAME::Object_in obj, std::ostream & stream) = 0;
 };
 
 #endif  // !define _DSL_SERIALIZER_H_

@@ -39,7 +39,7 @@ struct create_embedded_type
         parent.create_element_if_not (this->type_, exists ());
 
       // Since we know its the name, let's set the name.
-      object.name (this->type_);
+      object->name (this->type_);
       result = true;
     }
     catch (...)

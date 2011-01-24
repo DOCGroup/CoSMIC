@@ -35,7 +35,7 @@ Layout_Manager::~Layout_Manager (void)
 
 }
 
-void Layout_Manager::handle_open_model (GAME::Object & obj)
+void Layout_Manager::handle_open_model (GAME::Object_in)
 {
   // Save the current state.
   this->stack_.push (this->current_);
@@ -47,11 +47,11 @@ void Layout_Manager::handle_open_model (GAME::Object & obj)
 //
 // handle_close_model
 //
-void Layout_Manager::handle_close_model (GAME::Object & obj)
+void Layout_Manager::handle_close_model (GAME::Object_in obj)
 {
   // Prepare the current state for deletion.
   std::auto_ptr <object_list> auto_clean (this->current_);
-  std::string metaname = obj.meta ().name ();
+  std::string metaname = obj->meta ()->name ();
 
   if (this->horizontal_models_.find (metaname) != this->horizontal_models_.end ())
     this->arrange_objects (false);
@@ -69,7 +69,7 @@ void Layout_Manager::handle_close_model (GAME::Object & obj)
 //
 // handle_new_object
 //
-void Layout_Manager::handle_new_object (GAME::Object & obj)
+void Layout_Manager::handle_new_object (GAME::Object_in obj)
 {
   // We need to perserve the order the objects were created
   // since some models require preservation of this property.
@@ -94,7 +94,7 @@ void Layout_Manager::arrange_objects (bool vertical)
     fco = GAME::FCO::_narrow (*iter);
 
     // Set the position of the object.
-    GAME::utils::position ("InterfaceDefinition", pt, fco);
+    GAME::utils::set_position ("InterfaceDefinition", pt, fco);
 
     // Move to the next position.
     pt.shift (cx, cy);
