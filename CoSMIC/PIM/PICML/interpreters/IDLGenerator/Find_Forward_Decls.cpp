@@ -282,6 +282,7 @@ void Find_Forward_Decls::Visit_ValueObject (const PICML::ValueObject & v)
 void Find_Forward_Decls::
 Visit_ObjectByValue (const PICML::ObjectByValue & v)
 {
+  Udm::visit_all <PICML::Member> (v, *this);
   Udm::visit_all <PICML::Aggregate> (v, *this);
   Udm::visit_all <PICML::SwitchedAggregate> (v, *this);
   Udm::visit_all <PICML::Alias> (v, *this);

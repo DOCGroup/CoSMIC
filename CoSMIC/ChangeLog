@@ -1,3 +1,10 @@
+Wed Feb  2 05:07:06 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/Find_Forward_Decls.cpp:
+
+          Bug fix where the include directive is missing in the 
+          generated IDL.
+
 Mon Jan 24 15:10:14 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
