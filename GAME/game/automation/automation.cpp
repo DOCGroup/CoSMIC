@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "ace/Null_Mutex.h"
 #include "ace/Singleton.h"
 #include "Automation_App.h"

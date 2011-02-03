@@ -1,0 +1,27 @@
+ACKNOWLEDGEMENTS
+
+GAME has been deeply influenced and improved by the following
+graduate studets in my research group at Indiana University-
+Purdue University Indianapolis in Indianapolis, IN.
+
+. Alhad Mokashi <amokashi at iupui dot edu>
+. Harold Owens <owensh at iupui dot edu>
+. Tanumoy Pati <tpati at cs dot iupui dot edu>
+. Manjula Peiris <tmpeiris at cs dot iupui dot edu>
+
+Our goal is to see GAME continue to evolve and become a more
+comprehensive, robust, and well-documented framework for
+domain-specific modeling langugages design and implemented in
+the Generic Modeling Environment (GME) that is freely available
+to researchers and developers. If you have any improvements,
+suggestions, and or comments, we'd like to hear about it.
+Please see
+
+  $GAME_ROOT/PROBLEM-REPORT-FORM
+
+for instructions on submitting suggestions or fixes.
+
+Thanks,
+
+James H. Hill, M.S., Ph.D.
+hillj at cs dot iupui dot edu

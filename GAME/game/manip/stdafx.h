@@ -14,6 +14,6 @@
 #define _STDAFX_H_
 
 #include <atlcomcli.h>
-#include "game/Mga.h"
+#include "game/mga/Mga.h"
 
 #endif  // !defined _STDAFX_H_

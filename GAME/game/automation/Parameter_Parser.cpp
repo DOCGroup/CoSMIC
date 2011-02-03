@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Parameter_Parser.h"
 
 #include "boost/spirit/include/qi.hpp"
@@ -26,7 +27,7 @@ BOOST_FUSION_ADAPT_STRUCT (
  * Boost.Spirit grammar for the parameter parser.
  */
 template <typename IteratorT>
-struct Parameter_Parser_Grammar : 
+struct Parameter_Parser_Grammar :
   qi::grammar <IteratorT, param_t (), ascii::space_type>
 {
 public:
@@ -37,15 +38,15 @@ public:
     : Parameter_Parser_Grammar::base_type (this->parser_),
       parser_ (std::string ("parser"))
   {
-    this->parser_ %= 
-      qi::lexeme[*(ascii::char_ - '=')] >> 
-      qi::lit ("=") >> 
+    this->parser_ %=
+      qi::lexeme[*(ascii::char_ - '=')] >>
+      qi::lit ("=") >>
       qi::lexeme[*ascii::char_];
   }
 
 private:
-  qi::rule <IteratorT, 
-            param_t (), 
+  qi::rule <IteratorT,
+            param_t (),
             ascii::space_type> parser_;
 };
 
@@ -70,9 +71,9 @@ parse (const char * str, std::map <std::string, std::string> & out)
   Parameter_Parser_Grammar <std::string::iterator> grammar;
   param_t param;
 
-  if (!qi::phrase_parse (tempstr.begin (),  
-                         tempstr.end (), 
-                         grammar, 
+  if (!qi::phrase_parse (tempstr.begin (),
+                         tempstr.end (),
+                         grammar,
                          ascii::space,
                          param))
   {

@@ -1,11 +1,14 @@
 // $Id$
 
-project (GAME_Automation) : boost_base, game, game_bin {
+project (GAME_Automation) : boost_base, game_mga, game_bin {
   exename = game-automation
 
   specific (prop:microsoft) {
     subsystem = 1
   }
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
 
   Source_Files {
     automation.cpp

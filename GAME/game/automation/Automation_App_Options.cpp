@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Automation_App_Options.h"
 
 #if !defined (__GAME_INLINE__)

@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Automation_App.h"
 
 #if !defined (__GAME_INLINE__)
@@ -8,9 +9,8 @@
 
 #include "Parameter_Parser.h"
 
-#include "game/XML.h"
-#include "game/ComponentEx.h"
-#include "game/GAME.h"
+#include "game/mga/XML.h"
+#include "game/mga/ComponentEx.h"
 
 #include "ace/ACE.h"
 #include "ace/Get_Opt.h"
@@ -66,13 +66,13 @@ int GAME_Automation_App::run_main (int argc, char * argv [])
     // Close the GAME project.
     this->save_gme_project ();
   }
-  catch (const GAME::Failed_Result & ex)
+  catch (const GAME::Mga::Failed_Result & ex)
   {
     ACE_ERROR ((LM_ERROR,
                 ACE_TEXT ("%T (%t) - %M - caught GAME exception [0x%X]\n"),
                 ex.value ()));
   }
-  catch (const GAME::Exception &)
+  catch (const GAME::Mga::Exception &)
   {
 
   }
@@ -178,13 +178,13 @@ int GAME_Automation_App::open_gme_project (void)
                 ACE_TEXT ("%T (%t) - %M - opening %s for processing\n"),
                 this->opts_.project_.c_str ()));
 
-    this->project_ = GAME::Project::_open (connstr.str ());
+    this->project_ = GAME::Mga::Project::_open (connstr.str ());
   }
   else
   {
     // Get information about the XML file.
-    GAME::XML_Parser parser;
-    GAME::XML_Info info;
+    GAME::Mga::XML_Parser parser;
+    GAME::Mga::XML_Info info;
 
     parser.get_info (this->opts_.project_, info);
 
@@ -216,7 +216,7 @@ int GAME_Automation_App::open_gme_project (void)
                   ACE_TEXT ("%T (%t) - %M - importing '%s' for processing\n"),
                   this->opts_.project_.c_str ()));
 
-      this->project_ = GAME::Project::_create (connstr.str (), info.paradigm_);
+      this->project_ = GAME::Mga::Project::_create (connstr.str (), info.paradigm_);
       parser.parse (this->opts_.project_, this->project_);
     }
     else
@@ -252,7 +252,7 @@ int GAME_Automation_App::save_gme_project (void)
                 tempfile.c_str ()));
 
     // Export the project to the source XML file.
-    GAME::XML_Dumper dumper;
+    GAME::Mga::XML_Dumper dumper;
     dumper.write (this->opts_.project_, this->project_);
 
     ACE_OS::unlink (tempfile.c_str ());
@@ -271,7 +271,7 @@ int GAME_Automation_App::run (const std::string & progid)
               progid.c_str ()));
 
   // Load the specified interpreter.
-  GAME::ComponentEx interpreter = GAME::ComponentEx_Impl::_load (progid);
+  GAME::Mga::ComponentEx interpreter = GAME::Mga::ComponentEx_Impl::_load (progid);
 
   // Set the interactive state.
   interpreter->interactive (this->opts_.interactive_);
@@ -286,8 +286,8 @@ int GAME_Automation_App::run (const std::string & progid)
   for (; iter != iter_end; ++ iter)
     interpreter->parameter (iter->first, iter->second );
 
-  GAME::FCO focus;
-  std::vector <GAME::FCO> selected;
+  GAME::Mga::FCO focus;
+  std::vector <GAME::Mga::FCO> selected;
 
   // Initialize the interpreter and then invoke it.
   interpreter->initialize (this->project_);

@@ -1,0 +1,27 @@
+// $Id$
+
+project (GAME_Dialogs) : game_mga, game_lib, boost_base {
+  sharedname    = GAME_Dialogs
+  dynamicflags += GAME_DIALOGS_BUILD_DLL
+
+  macros += _AFXEXT
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    Dialog_Display_Strategy.cpp
+    Module.cpp
+    Name_Dialog.cpp
+    Object_Path_Dialog_Display_Strategy.cpp
+    Selection_List_Dialog.cpp
+  }
+
+  Resource_Files {
+    Dialogs.rc
+  }
+
+  Template_Files {
+    Selection_List_Dialog_T.cpp
+  }
+}

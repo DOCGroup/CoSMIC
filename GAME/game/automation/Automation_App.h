@@ -13,7 +13,7 @@
 #ifndef _GAME_AUTOMATION_APP_H_
 #define _GAME_AUTOMATION_APP_H_
 
-#include "game/Project.h"
+#include "game/mga/Project.h"
 #include "Automation_App_Options.h"
 
 /**
@@ -30,25 +30,37 @@ public:
   /// Destructor.
   ~GAME_Automation_App (void);
 
+  /**
+   * Main entry point for the wrapper application.
+   *
+   * @param[in]     argc          Number of command-line arguments
+   * @param[in]     argv          The command-line arguments
+   */
   int run_main (int argc, char * argv []);
 
 private:
+  /// Run the specified interpreter.
   int run (const std::string & progid);
 
+  /// Parse the command-line arguments.
   int parse_args (int argc, char * argv []);
 
+  /// Open a GME project.
   int open_gme_project (void);
 
+  /// Save the previously open GME project.
   int save_gme_project (void);
 
   /// Print the help screen for the application.
   void print_help (void);
 
   /// The GAME project managed by this application.
-  GAME::Project project_;
+  GAME::Mga::Project project_;
 
+  /// Options for the application.
   GAME_Automation_App_Options opts_;
 
+  /// The project is an MGA file.
   bool is_mga_file_;
 };
 

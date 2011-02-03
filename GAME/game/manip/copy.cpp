@@ -3,23 +3,25 @@
 #include "stdafx.h"
 #include "copy.h"
 
-#include "game/Atom.h"
-#include "game/Attribute.h"
-#include "game/Connection.h"
-#include "game/Reference.h"
-#include "game/FCO.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Attribute.h"
+#include "game/mga/Connection.h"
+#include "game/mga/Reference.h"
+#include "game/mga/FCO.h"
 
-#include "game/MetaAttribute.h"
-#include "game/MetaModel.h"
-#include "game/MetaAtom.h"
-
-#include <map>
+#include "game/mga/MetaAttribute.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaAtom.h"
 
 #include "boost/bind.hpp"
 
+#include <map>
+
+
 namespace GAME
 {
-
+namespace Mga
+{
 /**
  * @struct copy_attribute_t
  *
@@ -461,7 +463,7 @@ copy_location_i (const FCO_in src,
                  const Meta::Aspect_in src_aspect)
 {
   // Let's make sure this element is in this aspect.
-  GAME::Part part = src->part (src_aspect);
+  Part part = src->part (src_aspect);
 
   if (part.is_nil ())
     return;
@@ -471,12 +473,12 @@ copy_location_i (const FCO_in src,
   part.get_location (x, y);
 
   // Locate the parent element of the destination model.
-  GAME::Model parent = dst->parent_model ();
+  Model parent = dst->parent_model ();
   if (parent.is_nil ())
     return;
 
   const std::string name = src_aspect->name ();
-  GAME::Meta::Aspect dst_aspect = parent->meta ()->aspect (name);
+  Meta::Aspect dst_aspect = parent->meta ()->aspect (name);
 
   if (dst_aspect.is_nil ())
     return;
@@ -515,12 +517,12 @@ void copy_location (const FCO_in src, FCO_in dst, const std::string & aspect)
   }
   else
   {
-    GAME::Meta::Model metamodel = parent->meta ();
+    Meta::Model metamodel = parent->meta ();
 
     if (metamodel.is_nil ())
       return;
 
-    GAME::Meta::Aspect this_aspect = metamodel->aspect (aspect);
+    Meta::Aspect this_aspect = metamodel->aspect (aspect);
 
     if (!this_aspect.is_nil ())
       copy_location_i (src, dst, this_aspect);
@@ -555,4 +557,5 @@ Model copy_into (const std::vector <FCO> & fcos,
   return dst;
 }
 
+}
 }

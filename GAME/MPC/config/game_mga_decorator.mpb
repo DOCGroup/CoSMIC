@@ -1,0 +1,5 @@
+// $Id$
+
+project : mfc, gdiplus, game_mga_be {
+  macros += _WINDLL _USRDLL
+}

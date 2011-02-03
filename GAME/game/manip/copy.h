@@ -14,12 +14,15 @@
 #define _GAME_MANIP_COPY_H_
 
 #include <map>
-#include "game/Model.h"
-#include "game/Folder.h"
+#include "game/mga/Model.h"
+#include "game/mga/Folder.h"
 #include "Manipulation_export.h"
 
 namespace GAME
 {
+namespace Mga
+{
+
 GAME_MANIPULATION_Export
 FCO copy_attributes (const FCO_in src, FCO_in dst);
 
@@ -81,7 +84,7 @@ GAME_MANIPULATION_Export
 Model copy_into (const std::vector <FCO> & fcos,
                  Model_in dst,
                  copy_config_t & config);
-
+}
 }
 
 #endif  // !defined _GAME_MANIP_COPY_H_
