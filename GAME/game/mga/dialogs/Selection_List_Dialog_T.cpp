@@ -41,7 +41,7 @@ insert (typename std::vector <T>::const_iterator begin,
         typename std::vector <T>::const_iterator end)
 {
   for (; begin != end; ++ begin)
-    Selection_List_Dialog::insert (Object_in (begin->get ()));
+    Selection_List_Dialog::insert (Mga::Object_in (begin->get ()));
 }
 
 //

@@ -1,6 +1,6 @@
 // $Id$
 
-project : gdiplus, game_utils {
+project : gdiplus, game_mga_utils {
   libs  += GAME_Graphics
   after += GAME_Graphics
 }

@@ -1,3 +1,25 @@
+Fri Feb  4 22:56:26 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_graphics.mpb:
+        * MPC/config/game_mga_interpreter.mpb:
+        * game/mga/be/Addon_Impl_T.h:
+        * game/mga/be/Addon_Impl_T.cpp:
+        * game/mga/be/ComponentEx_T.h:
+        * game/mga/be/Decorator_T.h:
+        * game/mga/be/Decorator_T.inl:
+        * game/mga/be/Decorator_T.cpp:
+        * game/mga/dialogs/Selection_List_Dialog_T.cpp:
+        * game/mga/graphics/Image_Manager_T.h:
+        * game/mga/graphics/Image_Manager_T.inl:
+        * game/mga/graphics/Image_Manager_T.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * game/mga/modelgen.h:
+        * game/xme/modelgen.h:
+
+          Fixed build errors that were not able to be located by just
+          building the GAME project. This means we need more test cases
+          to cover such cases.
+
 Thu Feb  3 21:21:23 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * THANKS:

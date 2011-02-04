@@ -18,10 +18,10 @@
 #include "Event_Handler.h"
 
 #define GAME_DEFAULT_ADDON_IMPL(type, name, paradigm, progid) \
-  class type : public GAME::Addon_Impl_Base { \
+  class type : public GAME::Mga::Addon_Impl_Base { \
   public: \
     type (void) \
-      : GAME::Addon_Impl_Base (name, paradigm, progid) { }\
+    : GAME::Mga::Addon_Impl_Base (name, paradigm, progid) { } \
     virtual ~type (void) { } \
   }
 

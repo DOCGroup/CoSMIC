@@ -13,7 +13,7 @@
 #ifndef _GAME_XME_MODELGEN_H_
 #define _GAME_XME_MODELGEN_H_
 
-#include "game/utils/modelgen.h"
+#include "game/mga/utils/modelgen.h"
 
 namespace GAME
 {

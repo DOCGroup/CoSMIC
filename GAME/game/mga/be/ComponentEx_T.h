@@ -43,7 +43,7 @@ public:
 }
 
 #define DECLARE_GAME_COMPONENT_EX(impl, type) \
-  typedef GAME::ComponentEx_T < impl, &CLSID_##type > type##_ComponentEx; \
+  typedef GAME::Mga::ComponentEx_T < impl, &CLSID_##type > type##_ComponentEx; \
   OBJECT_ENTRY_AUTO (__uuidof (type), type##_ComponentEx)
 
 #if defined (__GAME_INLINE__)

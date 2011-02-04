@@ -5,10 +5,13 @@
 #endif
 
 #include "Event_Handler.h"
-#include "game/Project.h"
+#include "game/mga/Project.h"
 
 namespace GAME
 {
+namespace Mga
+{
+
 //
 // Addon_Impl_T
 //
@@ -46,7 +49,7 @@ STDMETHODIMP Addon_Impl_T <T, SINK>::Initialize (IMgaProject * proj)
     VERIFY_HRESULT (proj->CreateAddOn (this->sink_, &this->addon_));
     VERIFY_HRESULT (this->addon_->put_EventMask (this->impl_.event_mask ()));
 
-    return this->sink_->initialize (GAME::Project (proj));
+    return this->sink_->initialize (GAME::Mga::Project (proj));
   }
   catch (...)
   {
@@ -73,4 +76,5 @@ STDMETHODIMP Addon_Impl_T <T, SINK>::Enable (VARIANT_BOOL enable)
   }
 }
 
+}
 }

@@ -15,8 +15,8 @@
 
 
 #include <map>
-#include "game/FCO.h"
-#include "game/utils/Point.h"
+#include "game/mga/FCO.h"
+#include "game/mga/utils/Point.h"
 
 namespace GAME
 {
@@ -105,7 +105,7 @@ private:
 }
 
 #define DECLARE_DECORATOR(type, impl) \
-  typedef GAME::Decorator_T <impl, &CLSID_##type> impl##_AutoImpl; \
+  typedef GAME::Mga::Decorator_T <impl, &CLSID_##type> impl##_AutoImpl; \
   OBJECT_ENTRY_AUTO (__uuidof (type), impl##_AutoImpl)
 
 #if defined (__GAME_INLINE__)

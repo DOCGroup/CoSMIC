@@ -6,6 +6,8 @@
 
 namespace GAME
 {
+namespace Mga
+{
 namespace graphics
 {
 //
@@ -13,7 +15,7 @@ namespace graphics
 //
 template <typename T>
 bool Image_Manager_T <T>::
-associate_image (const T & key, 
+associate_image (const T & key,
                  const std::string & filename,
                  Gdiplus::Bitmap * & image)
 {
@@ -81,5 +83,6 @@ void Image_Manager_T <T>::clear (void)
   this->assoc_.clear ();
 }
 
+}
 }
 }

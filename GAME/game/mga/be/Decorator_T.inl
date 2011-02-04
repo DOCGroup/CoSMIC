@@ -1,9 +1,9 @@
 // -*- C++ -*-
 // $Id$
 
-#include "game/Project.h"
-#include "game/MetaPart.h"
-#include "game/FCO.h"
+#include "game/mga/Project.h"
+#include "game/mga/MetaPart.h"
+#include "game/mga/FCO.h"
 
 namespace GAME
 {
@@ -41,9 +41,9 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO * fcoptr)
 {
   try
   {
-    GAME::Project proj (project);
-    GAME::Meta::Part part (metaPart);
-    GAME::FCO fco (fcoptr);
+    GAME::Mga::Project proj (project);
+    GAME::Mga::Meta::Part part (metaPart);
+    GAME::Mga::FCO fco (fcoptr);
 
     int retval = this->impl_.initialize (proj, part, fco);
 
@@ -71,9 +71,9 @@ InitializeEx (IMgaProject* project,
 {
   try
   {
-    GAME::Project proj (project);
-    GAME::Meta::Part part (pPart);
-    GAME::FCO fco (pFCO);
+    GAME::Mga::Project proj (project);
+    GAME::Mga::Meta::Part part (pPart);
+    GAME::Mga::FCO fco (pFCO);
 
     int retval = this->impl_.initialize_ex (proj, part, fco, eventSink, parentWnd);
 
@@ -167,7 +167,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
     Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (graphics);
     return this->impl_.draw (g);
   }
-  catch (const GAME::Failed_Result & )
+  catch (const GAME::Mga::Failed_Result & )
   {
 
   }

@@ -18,6 +18,8 @@
 
 namespace GAME
 {
+namespace Mga
+{
 namespace graphics
 {
 /**
@@ -52,6 +54,7 @@ private:
   std::map <T, Gdiplus::Bitmap *> assoc_;
 };
 
+}
 }
 }
 

@@ -3,6 +3,8 @@
 
 namespace GAME
 {
+namespace Mga
+{
 namespace graphics
 {
 //
@@ -37,5 +39,6 @@ associate_image (const T & key, const std::string & filename)
   return this->associate_image (key, filename, image);
 }
 
+}
 }
 }

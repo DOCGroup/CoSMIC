@@ -4,13 +4,16 @@
 #include "Decorator_T.inl"
 #endif
 
-#include "game/Exception.h"
-#include "game/Transaction.h"
+#include "game/mga/Exception.h"
+#include "game/mga/Transaction.h"
 
 #include <gdiplus.h>
 
 namespace GAME
 {
+namespace Mga
+{
+
 //
 // SetParam
 //
@@ -94,7 +97,7 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
     {
       // Since there is no guarantee that this method is called within
       // a transactions, we are going to wrap the object in an implementation.
-      GAME::FCO fco (pFCO);
+      GAME::Mga::FCO fco (pFCO);
       int retval = this->impl_.get_port_location (fco,
                                                   *sx,
                                                   *sy,
@@ -155,7 +158,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
       {
         VERIFY_HRESULT (temp->Append ((*iter)->impl ()));
       }
-      catch (const GAME::Failed_Result & )
+      catch (const GAME::Mga::Failed_Result & )
       {
 
       }
@@ -635,4 +638,5 @@ MenuItemSelected (ULONG menuItemId,
   return retval;
 }
 
+}
 }

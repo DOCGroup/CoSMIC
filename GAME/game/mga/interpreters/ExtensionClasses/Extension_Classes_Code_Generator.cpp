@@ -71,13 +71,13 @@ void Extension_Classes_Code_Generator::generate_narrow (void)
 {
   // declaration _narrow ()
   this->member_functions_h_   << this->indentation_h_ << "static " << this->class_name_
-                              << " _narrow (const GAME::Object & object);" << std::endl
+                              << " _narrow (const GAME::Mga::Object & object);" << std::endl
                               << std::endl;
 
   // definition _narrow ()
   this->member_functions_cpp_ << this->generate_function_comments_header ("_narrow");
   this->member_functions_cpp_ << this->class_name_ << " " << this->class_name_
-                              << "::_narrow (const GAME::Object & object)" << std::endl
+                              << "::_narrow (const GAME::Mga::Object & object)" << std::endl
                               << "{" << std::endl << this->indentation_cpp_
                               << "CComPtr <IMga" << this->meta_name_ << "> curr_type;"
                               << std::endl << std::endl << this->indentation_cpp_
@@ -168,11 +168,11 @@ generate_connector_connections (std::string name)
                               << function_name << " (std::vector <"
                               << name << "> & conns)" << std::endl << "{"
                               << std::endl << this->indentation_cpp_
-                              << "std::vector <GAME::Connection> v;"
+                              << "std::vector <GAME::Mga::Connection> v;"
                               << std::endl << this->indentation_cpp_
                               << "this->in_connections (\"" << name << "\", v);"
                               << std::endl << std::endl << this->indentation_cpp_
-                              << "std::vector <GAME::Connection>::iterator iter = v.begin ();"
+                              << "std::vector <GAME::Mga::Connection>::iterator iter = v.begin ();"
                               << std::endl << this->indentation_cpp_
                               << "for (; iter != v.end (); ++ iter)" << std::endl
                               << this->indentation_cpp_ << "  v.push_back ("
