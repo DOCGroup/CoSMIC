@@ -11,11 +11,11 @@
 
 #define STRICT
 #ifndef _WIN32_WINNT
-	#if _MSC_VER > 1400
-		#define _WIN32_WINNT 0x0500
-	#else
-		#define _WIN32_WINNT 0x0400
-	#endif 
+  #if _MSC_VER > 1400
+    #define _WIN32_WINNT 0x0500
+  #else
+    #define _WIN32_WINNT 0x0400
+  #endif
 #endif
 
 #define _ATL_APARTMENT_THREADED
@@ -32,5 +32,6 @@
 #include <Gdiplus.h>
 
 #include "ComponentRef_Decorator.h"
+#include "game/mga/MgaUtil.h"
 
 #endif // !defined(AFX_STDAFX_H__8B8917B1_B409_43D6_9604_73055641403B__INCLUDED)

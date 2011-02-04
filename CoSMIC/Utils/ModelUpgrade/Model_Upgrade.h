@@ -13,7 +13,7 @@
 #ifndef _GME_MODEL_UPGRADE_H_
 #define _GME_MODEL_UPGRADE_H_
 
-#include "game/Project.h"
+#include "game/mga/Project.h"
 #include "ace/SString.h"
 #include "ace/Unbounded_Set.h"
 
@@ -51,7 +51,7 @@ private:
   filelist_t xme_files_;
 
   /// The GME project.
-  GAME::Project project_;
+  GAME::Mga::Project project_;
 };
 
 #endif  // !defined _GME_MODEL_UPGRADE_H_

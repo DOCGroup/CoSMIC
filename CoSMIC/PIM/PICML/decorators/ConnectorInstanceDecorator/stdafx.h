@@ -32,5 +32,6 @@
 #include <Gdiplus.h>
 
 #include "ConnectorInstance_Decorator.h"
+#include "game/mga/MgaUtil.h"
 
 #endif // !defined(AFX_STDAFX_H__8B8917B1_B409_43D6_9604_73055641403B__INCLUDED)

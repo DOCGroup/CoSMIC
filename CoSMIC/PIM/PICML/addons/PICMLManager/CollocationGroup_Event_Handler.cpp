@@ -4,8 +4,6 @@
 #include "StdAfx.h"
 #include "CollocationGroup_Event_Handler.h"
 
-#include "game/GAME.h"
-
 namespace PICML
 {
 namespace MI
@@ -32,7 +30,7 @@ CollocationGroup_Event_Handler::~CollocationGroup_Event_Handler (void)
 // handle_object_created
 //
 int CollocationGroup_Event_Handler::
-handle_object_relation (GAME::Object_in obj)
+handle_object_relation (GAME::Mga::Object_in obj)
 {
   //if (this->config_->cg_member_.is_nil ())
   //  return 0;

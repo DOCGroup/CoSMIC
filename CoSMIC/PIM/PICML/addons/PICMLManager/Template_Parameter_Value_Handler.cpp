@@ -12,7 +12,7 @@ namespace MI
 // NodeReference_Event_Handler
 //
 Template_Parameter_Value_Handler::Template_Parameter_Value_Handler (void)
-: GAME::Readonly_Event_Handler (OBJEVENT_RELATION | OBJEVENT_DESTROYED, true)
+: GAME::Mga::Readonly_Event_Handler (OBJEVENT_RELATION | OBJEVENT_DESTROYED, true)
 {
 
 }

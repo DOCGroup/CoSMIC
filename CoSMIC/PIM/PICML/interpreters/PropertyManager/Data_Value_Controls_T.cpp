@@ -1,8 +1,8 @@
 // $Id$
 
-#include "game/Attribute.h"
+#include "game/mga/Attribute.h"
 
-void DDX_Text (CDataExchange * , int , GAME::Reference & );
+void DDX_Text (CDataExchange * , int , GAME::Mga::Reference & );
 
 //
 // PICML_Simple_Data_Value_Control

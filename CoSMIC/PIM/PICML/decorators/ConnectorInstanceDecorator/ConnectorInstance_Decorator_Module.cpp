@@ -1,7 +1,7 @@
 // $Id$
 
 #include "stdafx.h"
-#include "game/be/Decorator_Module.h"
+#include "game/mga/be/Decorator_Module.h"
 #include "ConnectorInstance_Decorator_i.c"
 
 DECLARE_DECORATOR_MODULE (LIBID_ConnectorInstance_DecoratorLib,

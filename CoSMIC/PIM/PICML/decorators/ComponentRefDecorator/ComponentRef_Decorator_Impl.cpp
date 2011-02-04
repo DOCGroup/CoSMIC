@@ -6,11 +6,11 @@
 #include "ComponentRef_Decorator_Impl.h"
 #include "../ComponentDecorator/Component_Decorator_Impl.h"
 
-#include "game/graphics/Image_Resolver.h"
-#include "game/utils/Registrar.h"
+#include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/utils/Registrar.h"
 
-#include "game/Model.h"
-#include "game/Reference.h"
+#include "game/mga/Model.h"
+#include "game/mga/Reference.h"
 
 DECLARE_DECORATOR (ComponentRef_Decorator, ComponentRef_Decorator_Impl);
 
@@ -39,19 +39,19 @@ ComponentRef_Decorator_Impl::~ComponentRef_Decorator_Impl (void)
 // initialize
 //
 int ComponentRef_Decorator_Impl::
-initialize_ex (const GAME::Project & project,
-               const GAME::Meta::Part_in part,
-               const GAME::FCO_in fco,
+initialize_ex (const GAME::Mga::Project & project,
+               const GAME::Mga::Meta::Part_in part,
+               const GAME::Mga::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
   AFX_MANAGE_STATE (AfxGetStaticModuleState ());
 
-  using GAME::utils::GLOBAL_REGISTRAR;
-  using GAME::utils::Registrar;
+  using GAME::Mga::GLOBAL_REGISTRAR;
+  using GAME::Mga::Registrar;
 
-  using GAME::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::graphics::Image_Resolver;
+  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+  using GAME::Mga::graphics::Image_Resolver;
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
@@ -82,8 +82,8 @@ initialize_ex (const GAME::Project & project,
   }
   else
   {
-    GAME::Reference ref = GAME::Reference::_narrow (fco);
-    GAME::FCO refers_to = ref->refers_to ();
+    GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (fco);
+    GAME::Mga::FCO refers_to = ref->refers_to ();
 
     if (refers_to.is_nil ())
     {
@@ -97,7 +97,7 @@ initialize_ex (const GAME::Project & project,
     }
     else
     {
-      GAME::Model model = GAME::Model::_narrow (refers_to);
+      GAME::Mga::Model model = GAME::Mga::Model::_narrow (refers_to);
       this->delegate_.reset (new Component_Decorator_Impl ());
 
       // Let's delegate the work to the component decorator.
@@ -121,12 +121,12 @@ void ComponentRef_Decorator_Impl::destroy (void)
 // set_location
 //
 void ComponentRef_Decorator_Impl::
-set_location (const GAME::utils::Rect & location)
+set_location (const GAME::Mga::Rect & location)
 {
   if (this->delegate_.get () != 0)
     this->delegate_->set_location (location);
 
-  GAME::Decorator_Impl::set_location (location);
+  GAME::Mga::Decorator_Impl::set_location (location);
 }
 
 //

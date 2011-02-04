@@ -15,8 +15,8 @@
 #ifndef _PICML_DATA_VALUE_CONTROLS_H_
 #define _PICML_DATA_VALUE_CONTROLS_H_
 
-#include "game/Reference.h"
-#include "game/Model.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Model.h"
 
 /**
  * @class PICML_Data_Value_Control
@@ -32,7 +32,7 @@ public:
   /// Destructor.
   virtual ~PICML_Data_Value_Control (void);
 
-  void InitControl (const GAME::FCO_in value);
+  void InitControl (const GAME::Mga::FCO_in value);
 
   virtual BOOL Create (DWORD style, const RECT & rect, CWnd * parent, UINT id) = 0;
 
@@ -40,7 +40,7 @@ public:
 
 protected:
   /// The current data value.
-  GAME::FCO value_;
+  GAME::Mga::FCO value_;
 };
 
 /**
@@ -242,7 +242,7 @@ public:
   virtual BOOL Create (DWORD style, const RECT & rect, CWnd * parent, UINT id);
 
 private:
-  void visit_enum_value (const GAME::Atom & ev);
+  void visit_enum_value (const GAME::Mga::Atom & ev);
 };
 
 #include "Data_Value_Controls_T.cpp"

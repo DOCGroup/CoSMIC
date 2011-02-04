@@ -21,8 +21,8 @@
 #include "UdmUtil.h"
 
 #include "UdmApp.h"
-#include "game/Project.h"
-#include "game/utils/Project_Settings.h"
+#include "game/mga/Project.h"
+#include "game/mga/utils/Project_Settings.h"
 
 // Global config object
 _config config;
@@ -310,8 +310,8 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask
 //
 void RawComponent::LoadPackageOptions (PackageOptions & options)
 {
-  GAME::Project proj (this->project_);
-  GAME::utils::Project_Settings settings (proj);
+  GAME::Mga::Project proj (this->project_);
+  GAME::Mga::Project_Settings settings (proj);
 
   options.descriptor_directory_ = settings.default_output_directory (PACKAGE_DESCRIPTOR_UUID);
   options.implementation_directory_ = settings.default_output_directory (PACKAGE_IMPLEMNATION_UUID);
@@ -323,8 +323,8 @@ void RawComponent::LoadPackageOptions (PackageOptions & options)
 //
 void RawComponent::SavePackageOptions (const PackageOptions & options)
 {
-  GAME::Project proj (this->project_);
-  GAME::utils::Project_Settings settings (proj);
+  GAME::Mga::Project proj (this->project_);
+  GAME::Mga::Project_Settings settings (proj);
 
   // Only store the options that were used during this execution
   // of the interpreter.

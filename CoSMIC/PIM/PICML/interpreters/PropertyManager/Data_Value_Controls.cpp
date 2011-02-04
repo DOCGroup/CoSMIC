@@ -3,8 +3,8 @@
 #include "stdafx.h"
 #include "Data_Value_Controls.h"
 
-#include "game/Atom.h"
-#include "game/Attribute.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Attribute.h"
 
 #include "boost/bind.hpp"
 
@@ -18,9 +18,9 @@ namespace attr
 //
 // DDX_Text
 //
-void DDX_Text (CDataExchange * pDX, int id, GAME::Reference & value)
+void DDX_Text (CDataExchange * pDX, int id, GAME::Mga::Reference & value)
 {
-  GAME::Attribute attr = value->attribute (attr::Value);
+  GAME::Mga::Attribute attr = value->attribute (attr::Value);
 
   if (pDX->m_bSaveAndValidate)
   {
@@ -57,7 +57,7 @@ PICML_Data_Value_Control::~PICML_Data_Value_Control (void)
 //
 // InitControl
 //
-void PICML_Data_Value_Control::InitControl (const GAME::FCO_in value)
+void PICML_Data_Value_Control::InitControl (const GAME::Mga::FCO_in value)
 {
   this->value_ = value;
 }
@@ -222,18 +222,16 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
     return FALSE;
 
   // Populate the control with the enumeration values.
-  GAME::Reference ref = GAME::Reference::_narrow (this->value_);
-  GAME::Model e = GAME::Model::_narrow (ref->refers_to ());
-  std::vector <GAME::Atom> values;
+  GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (this->value_);
+  GAME::Mga::Model e = GAME::Mga::Model::_narrow (ref->refers_to ());
+  std::vector <GAME::Mga::Atom> values;
 
   if (e->children ("EnumValue", values))
-  {
     std::for_each (values.begin (),
                    values.end (),
                    boost::bind (&PICML_Enum_Data_Value_Control::visit_enum_value,
                                 this,
                                 _1));
-  }
 
   // Select the current value.
   const std::string selection =
@@ -249,7 +247,7 @@ Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
 // Visit_EnumValue
 //
 void PICML_Enum_Data_Value_Control::
-visit_enum_value (const GAME::Atom & ev)
+visit_enum_value (const GAME::Mga::Atom & ev)
 {
   this->InsertString (-1, ev->name ().c_str ());
 }

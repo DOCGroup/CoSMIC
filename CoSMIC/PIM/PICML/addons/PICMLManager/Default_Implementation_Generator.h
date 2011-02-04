@@ -13,7 +13,7 @@
 #ifndef _PICML_MANAGER_DEFAULT_IMPLEMENTATION_GENERATOR_H_
 #define _PICML_MANAGER_DEFAULT_IMPLEMENTATION_GENERATOR_H_
 
-#include "game/Folder.h"
+#include "game/mga/Folder.h"
 #include "Default_Artifact_Generator.h"
 
 namespace PICML
@@ -54,7 +54,7 @@ public:
    * @param[in]       root        Root folder for the project
    * @param[in]       config      Configuration for the new component.
    */
-  Default_Implementation_Generator (::GAME::Project project,
+  Default_Implementation_Generator (::GAME::Mga::Project project,
                                     const meta_info_t & info);
 
   /// Destructor.
@@ -66,11 +66,11 @@ public:
    * @param[in]       component         Compent
    */
   bool generate (const Implementation_Configuration & config,
-                 const GAME::Model_in type);
+                 const GAME::Mga::Model_in type);
 
 private:
   /// Target implementation folder.
-  GAME::Folder impl_folder_;
+  GAME::Mga::Folder impl_folder_;
 
   const meta_info_t & info_;
 

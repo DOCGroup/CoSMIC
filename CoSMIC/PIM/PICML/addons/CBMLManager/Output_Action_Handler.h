@@ -13,7 +13,7 @@
 #ifndef _CBML_OUTPUT_ACTION_HANDLER_H_
 #define _CBML_OUTPUT_ACTION_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
+#include "game/mga/be/Event_Handler_Impl.h"
 
 /**
  * @class CBML_Output_Action_Handler
@@ -22,7 +22,7 @@
  * connect with the State element.
  */
 class CBML_Output_Action_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;
@@ -33,7 +33,7 @@ public:
   /// Destructor.
   virtual ~CBML_Output_Action_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
 #endif  // !defined _CBML_CONNECTION_GENERATION_HANDLER_H_

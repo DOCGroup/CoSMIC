@@ -4,9 +4,12 @@
 #include "StdAfx.h"
 #include "NodeReference_Event_Handler.h"
 
-#include "game/modelgen.h"
-#include "game/utils/Point.h"
-#include "game/Model.h"
+#include "game/mga/modelgen.h"
+#include "game/mga/utils/Point.h"
+#include "game/mga/Connection.h"
+#include "game/mga/Model.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Set.h"
 
 namespace PICML
 {
@@ -18,7 +21,7 @@ static const unsigned long mask = OBJEVENT_CREATED;
 // NodeReference_Event_Handler
 //
 NodeReference_Event_Handler::NodeReference_Event_Handler (void)
-: GAME::Event_Handler_Impl (mask)
+: GAME::Mga::Event_Handler_Impl (mask)
 {
 
 }
@@ -35,30 +38,33 @@ NodeReference_Event_Handler::~NodeReference_Event_Handler (void)
 // handle_object_created
 //
 int NodeReference_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
   // Get the parent model for the node reference.
-  GAME::Reference node = GAME::Reference::_narrow (obj);
-  GAME::Model parent = GAME::Model::_narrow (node->parent ());
+  GAME::Mga::Reference node = GAME::Mga::Reference::_narrow (obj);
+  GAME::Mga::Model parent = GAME::Mga::Model::_narrow (node->parent ());
 
   // Create a 'default' collocation group for the node reference
-  GAME::Set group = GAME::Set_Impl::_create (parent, "CollocationGroup");
+  GAME::Mga::Set group = GAME::Mga::Set_Impl::_create (parent, "CollocationGroup");
   group->name ("DefaultGroup");
 
   // Create an InstanceMapping connection between the node reference
   // and the collocation group.
-  GAME::Connection mapping =
-    GAME::Connection_Impl::_create (parent, "InstanceMapping", group, node);
+  GAME::Mga::Connection mapping =
+    GAME::Mga::Connection_Impl::_create (parent,
+                                         "InstanceMapping",
+                                         group,
+                                         node);
 
   // Align the collocation group with its corresponding node.
-  GAME::utils::Point pt;
-  GAME::utils::get_position ("NodeMapping", node, pt);
+  GAME::Mga::Point pt;
+  GAME::Mga::get_position ("NodeMapping", node, pt);
   pt.shift (4, 128);
 
-  GAME::utils::set_position ("NodeMapping", pt, group);
+  GAME::Mga::set_position ("NodeMapping", pt, group);
 
   return 0;
 }

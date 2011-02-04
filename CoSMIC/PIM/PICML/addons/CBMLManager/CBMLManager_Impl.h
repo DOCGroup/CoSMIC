@@ -21,10 +21,10 @@
 #include "ace/Null_Mutex.h"
 #include "ace/SString.h"
 
-#include "game/FCO.h"
-#include "game/be/Addon_Impl_T.h"
-#include "game/be/ComponentEx_T.h"
-#include "game/be/Event_Handler_Impl.h"
+#include "game/mga/FCO.h"
+#include "game/mga/be/Addon_Impl_T.h"
+#include "game/mga/be/ComponentEx_T.h"
+#include "game/mga/be/Event_Handler_Impl.h"
 
 GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
                          "CBML Model Intelligence",
@@ -36,7 +36,7 @@ GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
  *
  * Raw component interface for the add-on.
  */
-class CBML_Model_Intelligence : public GAME::Event_Handler_Impl
+class CBML_Model_Intelligence : public GAME::Mga::Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED |
@@ -50,7 +50,7 @@ public:
   /// Destructor.
   virtual ~CBML_Model_Intelligence (void);
 
-  virtual int initialize (GAME::Project project);
+  virtual int initialize (GAME::Mga::Project project);
 };
 
 #endif  // !defined RAWCOMPONENT_H

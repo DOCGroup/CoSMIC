@@ -1,6 +1,8 @@
 // -*- C++ -*-
 // $Id$
 
+#include "game/mga/Attribute.h"
+
 //
 // T3_Runtime_Engine
 //
@@ -24,7 +26,7 @@ T3_Runtime_Engine::~T3_Runtime_Engine (void)
 //
 inline
 void T3_Runtime_Engine::
-set_attribute (GAME::FCO_in fco, const std::string & name, bool value)
+set_attribute (GAME::Mga::FCO_in fco, const std::string & name, bool value)
 {
   fco->attribute (name)->bool_value (value);
 }
@@ -34,7 +36,7 @@ set_attribute (GAME::FCO_in fco, const std::string & name, bool value)
 //
 inline
 void T3_Runtime_Engine::
-set_attribute (GAME::FCO_in fco, const std::string & name, long value)
+set_attribute (GAME::Mga::FCO_in fco, const std::string & name, long value)
 {
   fco->attribute (name)->int_value (value);
 }
@@ -44,7 +46,7 @@ set_attribute (GAME::FCO_in fco, const std::string & name, long value)
 //
 inline
 void T3_Runtime_Engine::
-set_attribute (GAME::FCO_in fco, const std::string & name, double value)
+set_attribute (GAME::Mga::FCO_in fco, const std::string & name, double value)
 {
   fco->attribute (name)->float_value (value);
 }

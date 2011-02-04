@@ -6,7 +6,7 @@
 #include "Implementation_Configuration.h"
 #include "Validation.h"
 
-#include "game/Model.h"
+#include "game/mga/Model.h"
 
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -22,7 +22,7 @@ static const unsigned long mask = OBJEVENT_CREATED;
 // Default_Implementation_Event_Handler
 //
 Default_Implementation_Event_Handler::Default_Implementation_Event_Handler (void)
-: ::GAME::Event_Handler_Impl (mask)
+: ::GAME::Mga::Event_Handler_Impl (mask)
 {
 
 }
@@ -39,7 +39,7 @@ Default_Implementation_Event_Handler::~Default_Implementation_Event_Handler (voi
 // handle_object_created
 //
 int Default_Implementation_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_ && !this->generate_on_import_)
     return 0;
@@ -55,7 +55,7 @@ handle_object_created (GAME::Object_in obj)
 //
 int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
 {
-  GAME::Event_Handler_Impl::handle_xml_import_begin ();
+  GAME::Mga::Event_Handler_Impl::handle_xml_import_begin ();
 
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
@@ -70,9 +70,9 @@ int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
 // generate_default_implementation
 //
 int Default_Implementation_Event_Handler::
-generate_default_implementation (const GAME::Object_in obj)
+generate_default_implementation (const GAME::Mga::Object_in obj)
 {
-  ::GAME::Model model = ::GAME::Model::_narrow (obj);
+  ::GAME::Mga::Model model = ::GAME::Mga::Model::_narrow (obj);
   if (is_in_template_module (model))
     return 0;
 

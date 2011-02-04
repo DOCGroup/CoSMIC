@@ -13,8 +13,7 @@
 #ifndef _PICML_MI_COMPLEX_TYPE_REFERENCE_EVENT_HANDLER_H_
 #define _PICML_MI_COMPLEX_TYPE_REFERENCE_EVENT_HANDLER_H_
 
-#include "game/GAME.h"
-#include "game/be/Event_Handler_Impl.h"
+#include "game/mga/be/Event_Handler_Impl.h"
 
 namespace PICML
 {
@@ -27,7 +26,7 @@ namespace MI
  * This class creates a ComplexTypeReference and the related references.
  */
 class ComplexTypeReference_Event_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Default constructor.
@@ -36,10 +35,10 @@ public:
   /// Destructor.
   virtual ~ComplexTypeReference_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object_in obj);
+  virtual int handle_object_relation (GAME::Mga::Object_in obj);
 
-  void create_DataValue (GAME::Model_in container,
-                         const GAME::FCO_in member);
+  void create_DataValue (GAME::Mga::Model_in container,
+                         const GAME::Mga::FCO_in member);
 };
 
 }

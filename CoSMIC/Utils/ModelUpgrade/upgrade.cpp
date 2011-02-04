@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Model_Upgrade.h"
 #include "ace/Log_Msg.h"
 
@@ -16,7 +17,7 @@ int main (int argc, char * argv [])
   catch (...)
   {
     ACE_ERROR ((LM_ERROR,
-                "%T (%t) - %M - caught unknown exception\n"));
+                ACE_TEXT ("%T (%t) - %M - caught unknown exception\n")));
   }
 
   return 1;

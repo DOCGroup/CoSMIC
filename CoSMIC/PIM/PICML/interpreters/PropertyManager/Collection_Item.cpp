@@ -8,7 +8,7 @@
 #include "resource.h"
 
 #include <sstream>
-#include "game/utils/Point.h"
+#include "game/mga/utils/Point.h"
 
 //
 // Collection_Item
@@ -50,7 +50,7 @@ get_display_info (std::string & name, std::string & value) const
 //
 // get_item
 //
-GAME::FCO Collection_Item::get_item (void)
+GAME::Mga::FCO Collection_Item::get_item (void)
 {
   return this->real_item_->get_item ();
 }
@@ -106,12 +106,12 @@ void Collection_Item::swap (Collection_Item * lhs, Collection_Item * rhs)
   std::swap (lhs->real_item_, rhs->real_item_);
 
   // Swap the position of the items.
-  GAME::utils::Point pt_lhs, pt_rhs;
-  GAME::utils::position ("DataValueAspect", lhs->real_item_->get_item (), pt_lhs);
-  GAME::utils::position ("DataValueAspect", rhs->real_item_->get_item (), pt_rhs);
+  GAME::Mga::Point pt_lhs, pt_rhs;
+  GAME::Mga::position ("DataValueAspect", lhs->real_item_->get_item (), pt_lhs);
+  GAME::Mga::position ("DataValueAspect", rhs->real_item_->get_item (), pt_rhs);
 
-  GAME::utils::position ("DataValueAspect", pt_lhs, rhs->real_item_->get_item ());
-  GAME::utils::position ("DataValueAspect", pt_rhs, lhs->real_item_->get_item ());
+  GAME::Mga::position ("DataValueAspect", pt_lhs, rhs->real_item_->get_item ());
+  GAME::Mga::position ("DataValueAspect", pt_rhs, lhs->real_item_->get_item ());
 }
 
 //

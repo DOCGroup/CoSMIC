@@ -4,13 +4,13 @@
 #include "Package_Decorator.h"
 #include "Package_Decorator_Impl.h"
 
-#include "game/MetaFCO.h"
-#include "game/Model.h"
-#include "game/MetaAspect.h"
-#include "game/MetaModel.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/Model.h"
+#include "game/mga/MetaAspect.h"
+#include "game/mga/MetaModel.h"
 
-#include "game/graphics/Image_Resolver.h"
-#include "game/utils/Registrar.h"
+#include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/utils/Registrar.h"
 
 DECLARE_DECORATOR (Package_Decorator, Package_Decorator_Impl);
 
@@ -44,20 +44,20 @@ void Package_Decorator_Impl::destroy (void)
 // initialize
 //
 int Package_Decorator_Impl::
-initialize_ex (const GAME::Project & project,
-               const GAME::Meta::Part_in part,
-               const GAME::FCO_in fco,
+initialize_ex (const GAME::Mga::Project & project,
+               const GAME::Mga::Meta::Part_in part,
+               const GAME::Mga::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
-  using GAME::Model;
+  using GAME::Mga::Model;
 
-  using GAME::utils::GLOBAL_REGISTRAR;
-  using GAME::utils::Registrar;
+  using GAME::Mga::GLOBAL_REGISTRAR;
+  using GAME::Mga::Registrar;
 
-  using GAME::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::graphics::Image_Manager_T;
-  using GAME::graphics::Image_Resolver;
+  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+  using GAME::Mga::graphics::Image_Manager_T;
+  using GAME::Mga::graphics::Image_Resolver;
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
@@ -66,7 +66,7 @@ initialize_ex (const GAME::Project & project,
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Let's initialize the icon file to the default one.
-  GAME::Meta::FCO metafco = part->role ()->kind ();
+  GAME::Mga::Meta::FCO metafco = part->role ()->kind ();
   std::string icon_filename = metafco->registry_value ("icon");
 
   if (0 != fco)
@@ -79,9 +79,9 @@ initialize_ex (const GAME::Project & project,
       // Determine if this is a package, or a template package. A template
       // package will have one or more template parameters as a child.
       Model package = Model::_narrow (fco);
-      GAME::Meta::Aspect aspect = package->meta ()->aspect ("TemplateParameters");
+      GAME::Mga::Meta::Aspect aspect = package->meta ()->aspect ("TemplateParameters");
 
-      std::vector <GAME::FCO> children;
+      std::vector <GAME::Mga::FCO> children;
 
       if (package->children (aspect, children))
         icon_filename = TEMPLATEPACKAGE_BITMAP;

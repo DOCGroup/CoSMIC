@@ -13,7 +13,7 @@
 #ifndef _PICML_PROPERTY_MANAGER_LISTCTRL_DIALOG_H_
 #define _PICML_PROPERTY_MANAGER_LISTCTRL_DIALOG_H_
 
-#include "game/Model.h"
+#include "game/mga/Model.h"
 
 // Forward decl.
 class Data_Item;
@@ -31,7 +31,7 @@ public:
   /// Initialize the columns for the control.
   BOOL InitControl (void);
 
-  void SetProperty (const GAME::FCO_in prop);
+  void SetProperty (const GAME::Mga::FCO_in prop);
 
 protected:
   void handle_name_click (const LVHITTESTINFO & testinfo);
@@ -66,7 +66,7 @@ private:
   DECLARE_MESSAGE_MAP ();
 
   /// Target value of the operation.
-  GAME::FCO prop_;
+  GAME::Mga::FCO prop_;
 
   /// Delete item of the operation.
   int target_item_;

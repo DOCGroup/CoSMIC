@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_VALIDATION_H_
 #define _PICML_MI_VALIDATION_H_
 
-#include "game/GME_fwd.h"
+#include "game/mga/GME_fwd.h"
 
 namespace PICML
 {
@@ -27,7 +27,7 @@ namespace MI
  * @retval        true        Element is inside a template module
  * @retval        false       Element is not inside a template module
  */
-bool is_in_template_module (const GAME::FCO_in fco);
+bool is_in_template_module (const GAME::Mga::FCO_in fco);
 
 /**
  * Test if an element is inside a template module instance.
@@ -36,7 +36,7 @@ bool is_in_template_module (const GAME::FCO_in fco);
  * @retval        true        Element is inside a template module
  * @retval        false       Element is not inside a template module
  */
-bool is_in_template_module_instance (const GAME::FCO_in fco);
+bool is_in_template_module_instance (const GAME::Mga::FCO_in fco);
 
 }
 }

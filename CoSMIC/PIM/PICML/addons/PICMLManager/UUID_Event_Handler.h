@@ -13,8 +13,8 @@
 #ifndef _PICML_MI_UUID_EVENT_HANDLER_H_
 #define _PICML_MI_UUID_EVENT_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
-#include "game/Model.h"
+#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
@@ -27,7 +27,7 @@ namespace MI
  * UUID handlers.
  */
 class UUID_Event_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Default constructor.
@@ -36,9 +36,9 @@ public:
   /// Destructor.
   virtual ~UUID_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 
-  virtual int handle_object_attribute (GAME::Object_in obj);
+  virtual int handle_object_attribute (GAME::Mga::Object_in obj);
 };
 
 }

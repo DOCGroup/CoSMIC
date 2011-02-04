@@ -1,11 +1,11 @@
 // $Id$
 
-project (T3_Runtime) : game, cosmic_lib {
+project (T3_Runtime) : game_mga, cosmic_lib {
   sharedname    = t3_runtime
   dynamicflags += T3_RUNTIME_BUILD_DLL
 
   macros += _WIN32_WINNT=0x0400
-  
+
   pch_header = stdafx.h
   pch_source = stdafx.cpp
 

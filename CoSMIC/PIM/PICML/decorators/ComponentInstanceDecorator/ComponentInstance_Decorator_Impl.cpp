@@ -4,12 +4,12 @@
 #include "ComponentInstance_Decorator.h"
 #include "ComponentInstance_Decorator_Impl.h"
 
-#include "game/MetaFCO.h"
-#include "game/MetaModel.h"
-#include "game/Model.h"
-#include "game/Reference.h"
-#include "game/graphics/Image_Resolver.h"
-#include "game/utils/Registrar.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/Model.h"
+#include "game/mga/Reference.h"
+#include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/utils/Registrar.h"
 
 #include "boost/bind.hpp"
 
@@ -50,7 +50,7 @@ struct set_port_location_t
 {
   typedef ComponentInstance_Decorator_Impl::port_set_t::value_type value_type;
 
-  set_port_location_t (GAME::utils::Point & next)
+  set_port_location_t (GAME::Mga::Point & next)
     : next_ (next) { }
 
   void operator () (value_type & port)
@@ -61,7 +61,7 @@ struct set_port_location_t
 
 private:
   /// The next port location.
-  GAME::utils::Point & next_;
+  GAME::Mga::Point & next_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -101,20 +101,20 @@ void ComponentInstance_Decorator_Impl::destroy (void)
 
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
-                 delete_t <GAME::graphics::Port_Decorator> ());
+                 delete_t <GAME::Mga::graphics::Port_Decorator> ());
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
-                 delete_t <GAME::graphics::Port_Decorator> ());
+                 delete_t <GAME::Mga::graphics::Port_Decorator> ());
 }
 
 //
 // initialize
 //
 int ComponentInstance_Decorator_Impl::
-initialize_ex (const GAME::Project & proj,
-               const GAME::Meta::Part_in part,
-               const GAME::FCO_in fco,
+initialize_ex (const GAME::Mga::Project & proj,
+               const GAME::Mga::Meta::Part_in part,
+               const GAME::Mga::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
@@ -125,16 +125,16 @@ initialize_ex (const GAME::Project & proj,
 // initialize
 //
 int ComponentInstance_Decorator_Impl::
-initialize (const GAME::Project & project,
-            const GAME::Meta::Part_in part,
-            const GAME::FCO_in fco)
+initialize (const GAME::Mga::Project & project,
+            const GAME::Mga::Meta::Part_in part,
+            const GAME::Mga::FCO_in fco)
 {
-  using GAME::utils::GLOBAL_REGISTRAR;
-  using GAME::utils::Registrar;
+  using GAME::Mga::GLOBAL_REGISTRAR;
+  using GAME::Mga::Registrar;
 
-  using GAME::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::graphics::Image_Manager_T;
-  using GAME::graphics::Image_Resolver;
+  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+  using GAME::Mga::graphics::Image_Manager_T;
+  using GAME::Mga::graphics::Image_Resolver;
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
@@ -155,12 +155,12 @@ initialize (const GAME::Project & project,
 
     // We also need to determine the implementation to show. This is
     // done by getting the name of the implementation.
-    GAME::Model model = GAME::Model::_narrow (fco);
+    GAME::Mga::Model model = GAME::Mga::Model::_narrow (fco);
 
-    std::vector <GAME::Reference> typeset;
+    std::vector <GAME::Mga::Reference> typeset;
     if (model->children ("ComponentInstanceType", typeset))
     {
-      GAME::FCO refers_to =  typeset.front ()->refers_to ();
+      GAME::Mga::FCO refers_to =  typeset.front ()->refers_to ();
 
       if (!refers_to.is_nil ())
         this->impl_label_ = refers_to->name ();
@@ -190,25 +190,25 @@ initialize (const GAME::Project & project,
 //
 int ComponentInstance_Decorator_Impl::
 initialize_ports (const std::string & aspect_name,
-                  const GAME::FCO_in fco,
-                  GAME::graphics::Image_Resolver * resolver)
+                  const GAME::Mga::FCO_in fco,
+                  GAME::Mga::graphics::Image_Resolver * resolver)
 {
   // Get the target aspect.
-  GAME::Model model = GAME::Model::_narrow (fco);
-  GAME::Meta::Aspect aspect = model->meta ()->aspect (aspect_name);
+  GAME::Mga::Model model = GAME::Mga::Model::_narrow (fco);
+  GAME::Mga::Meta::Aspect aspect = model->meta ()->aspect (aspect_name);
 
   if (aspect.is_nil ())
     return 0;
 
   // Select all the FCO elements in the specified aspect.
-  std::vector <GAME::FCO> ports;
+  std::vector <GAME::Mga::FCO> ports;
   if (model->children (aspect, ports) == 0)
     return 0;
 
-  std::vector <GAME::FCO>::iterator
+  std::vector <GAME::Mga::FCO>::iterator
     iter = ports.begin (), iter_end = ports.end ();
 
-  GAME::Part part;
+  GAME::Mga::Part part;
   std::string icon_filename, filename;
   Gdiplus::Bitmap * image = 0;
 
@@ -232,9 +232,9 @@ initialize_ports (const std::string & aspect_name,
     long x, y;
     part.get_location (x, y);
 
-    using GAME::graphics::Port_Decorator;
+    using GAME::Mga::graphics::Port_Decorator;
 
-    GAME::utils::Point location (x, y);
+    GAME::Mga::Point location (x, y);
     Port_Decorator * port = new Port_Decorator (*iter,
                                                 image,
                                                 (*iter)->name (),
@@ -253,11 +253,11 @@ initialize_ports (const std::string & aspect_name,
   }
 
   // We need to get all the ports that we inherit.
-  std::vector <GAME::Reference> inherits;
+  std::vector <GAME::Mga::Reference> inherits;
 
   if (model->children ("ComponentInherits", inherits))
   {
-    GAME::FCO refers_to = inherits.front ()->refers_to ();
+    GAME::Mga::FCO refers_to = inherits.front ()->refers_to ();
 
     if (!refers_to.is_nil ())
       this->initialize_ports ("InterfaceDefinition", refers_to, resolver);
@@ -270,11 +270,11 @@ initialize_ports (const std::string & aspect_name,
 // location
 //
 void ComponentInstance_Decorator_Impl::
-set_location (const GAME::utils::Rect & loc)
+set_location (const GAME::Mga::Rect & loc)
 {
   // Now that we know our dimensions, let's draw the bitmap
   // for this component to size.
-  GAME::utils::Point pt (loc.x_, loc.y_);
+  GAME::Mga::Point pt (loc.x_, loc.y_);
 
   // Set the port locations for the left side of model.
   pt.shift (GME_PORT_MARGIN_X, GME_PORT_MARGIN_Y);
@@ -291,7 +291,7 @@ set_location (const GAME::utils::Rect & loc)
                  set_port_location_t (pt));
 
   // Pass control to the base class and set the graphics path.
-  GAME::Decorator_Impl::set_location (loc);
+  GAME::Mga::Decorator_Impl::set_location (loc);
 
   // Initialize the graphics path for the component.
   this->initialize_graphics_path ();
@@ -418,7 +418,7 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics * g)
 //
 int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics * g)
 {
-  using GAME::graphics::Port_Decorator;
+  using GAME::Mga::graphics::Port_Decorator;
 
   // Draw the ports for the model.
   std::for_each (this->l_ports_.begin (),
@@ -440,19 +440,19 @@ int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics * g)
 // get_ports
 //
 int ComponentInstance_Decorator_Impl::
-get_ports (std::vector < ::GAME::FCO > & v)
+get_ports (std::vector < ::GAME::Mga::FCO> & v)
 {
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
-                 boost::bind (&std::vector < ::GAME::FCO >::push_back,
+                 boost::bind (&std::vector < ::GAME::Mga::FCO>::push_back,
                               boost::ref (v),
-                              boost::bind (&GAME::graphics::Port_Decorator::fco, _1)));
+                              boost::bind (&GAME::Mga::graphics::Port_Decorator::fco, _1)));
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
-                 boost::bind (&std::vector < ::GAME::FCO >::push_back,
+                 boost::bind (&std::vector < ::GAME::Mga::FCO>::push_back,
                               boost::ref (v),
-                              boost::bind (&GAME::graphics::Port_Decorator::fco, _1)));
+                              boost::bind (&GAME::Mga::graphics::Port_Decorator::fco, _1)));
 
   return 0;
 }
@@ -465,33 +465,33 @@ get_ports (std::vector < ::GAME::FCO > & v)
  */
 struct is_matching_port
 {
-  is_matching_port (const GAME::FCO_in fco)
+  is_matching_port (const GAME::Mga::FCO_in fco)
     : fco_ (fco)
   {
 
   }
 
-  bool operator () (GAME::graphics::Port_Decorator * d) const
+  bool operator () (GAME::Mga::graphics::Port_Decorator * d) const
   {
     return this->fco_->is_equal_to (d->fco ());
   }
 
 private:
-  const GAME::FCO_in fco_;
+  const GAME::Mga::FCO_in fco_;
 };
 
 //
 // get_port_location
 //
 int ComponentInstance_Decorator_Impl::
-get_port_location (const GAME::FCO_in fco,
+get_port_location (const GAME::Mga::FCO_in fco,
                    long & sx,
                    long & sy,
                    long & ex,
                    long & ey)
 {
   // Search the left ports for the FCO.
-  std::vector <GAME::graphics::Port_Decorator *>::const_iterator result;
+  std::vector <GAME::Mga::graphics::Port_Decorator *>::const_iterator result;
 
   result = std::find_if (this->l_ports_.begin (),
                          this->l_ports_.end (),

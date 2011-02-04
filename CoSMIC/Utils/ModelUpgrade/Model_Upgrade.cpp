@@ -1,7 +1,8 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Model_Upgrade.h"
-#include "game/XML.h"
+#include "game/mga/XML.h"
 #include "ace/Get_Opt.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/streams.h"
@@ -61,7 +62,7 @@ int GME_Model_Upgrade::run_main (int argc, char * argv [])
 
     return 0;
   }
-  catch (const GAME::Exception & )
+  catch (const GAME::Mga::Exception & )
   {
     ACE_ERROR ((LM_ERROR,
                 "%T - %M - caught unknown GME exception\n"));
@@ -87,12 +88,12 @@ int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
   mgafile += ".mga";
 
   // Get information about the XML file.
-  GAME::XML_Parser parser;
-  GAME::XML_Info info;
+  GAME::Mga::XML_Parser parser;
+  GAME::Mga::XML_Info info;
   parser.get_info (xmefile.c_str (), info);
 
   // Create a empty PICML project and import the XML file.
-  this->project_ = GAME::Project::_create (mgafile.c_str (), info.paradigm_);
+  this->project_ = GAME::Mga::Project::_create (mgafile.c_str (), info.paradigm_);
   parser.parse (xmefile.c_str (), this->project_);
 
   return 0;
@@ -104,7 +105,7 @@ int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
 int GME_Model_Upgrade::export_project_file (const ACE_CString & file)
 {
   // Export the project to the source XML file.
-  GAME::XML_Dumper dumper;
+  GAME::Mga::XML_Dumper dumper;
   dumper.write (file.c_str (), this->project_);
 
   return 0;

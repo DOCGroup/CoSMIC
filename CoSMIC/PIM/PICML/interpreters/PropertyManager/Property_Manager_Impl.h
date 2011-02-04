@@ -13,14 +13,14 @@
 #ifndef _PROPERTY_MANAGER_IMPL_H_
 #define _PROPERTY_MANAGER_IMPL_H_
 
-#include "game/be/Interpreter_Impl_Base.h"
-#include "game/FCO.h"
+#include "game/mga/be/Interpreter_Impl_Base.h"
+#include "game/mga/FCO.h"
 
 /**
  * @class PICML_Property_Mangaer_Impl
  */
 class PICML_Property_Mangaer_Impl :
-  public GAME::Interpreter_Impl_Base
+  public GAME::Mga::Interpreter_Impl_Base
 {
 public:
   /// Default constructor.
@@ -30,9 +30,9 @@ public:
   virtual ~PICML_Property_Mangaer_Impl (void);
 
   // Handle the InvokeEx callback.
-  int invoke_ex (GAME::Project project,
-                 GAME::FCO_in fco,
-                 std::vector <GAME::FCO> & selected,
+  int invoke_ex (GAME::Mga::Project project,
+                 GAME::Mga::FCO_in fco,
+                 std::vector <GAME::Mga::FCO> & selected,
                  long flags);
 };
 

@@ -3,11 +3,11 @@
 #include "StdAfx.h"
 #include "Connection_Generation_Handler.h"
 
-#include "game/Atom.h"
-#include "game/Connection.h"
-#include "game/MetaFCO.h"
-#include "game/Model.h"
-#include "game/utils/Point.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Connection.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/Model.h"
+#include "game/mga/utils/Point.h"
 
 #define PREF_AUTOROUTER           "autorouterPref"
 #define PREF_AUTOROUTER_ALL       "NEWSnews"
@@ -36,7 +36,7 @@ namespace meta
 // CBML_Connection_Generation_Handler
 //
 CBML_Connection_Generation_Handler::CBML_Connection_Generation_Handler (void)
-: GAME::Event_Handler_Impl (eventmask)
+: GAME::Mga::Event_Handler_Impl (eventmask)
 {
   this->state_transition_map_.bind ("State", "Transition");
   this->state_transition_map_.bind ("ForState", "LoopTransition");
@@ -57,12 +57,12 @@ CBML_Connection_Generation_Handler::~CBML_Connection_Generation_Handler (void)
 // handle_object_created
 //
 int CBML_Connection_Generation_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
-  GAME::FCO fco = GAME::FCO::_narrow (obj);
+  GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
 
   // This event handler only works with non-instance elements.
   if (fco->is_instance ())
@@ -100,7 +100,7 @@ handle_object_created (GAME::Object_in obj)
 // handle_object_destroyed
 //
 int CBML_Connection_Generation_Handler::
-handle_object_destroyed (GAME::Object_in obj)
+handle_object_destroyed (GAME::Mga::Object_in obj)
 {
   if (this->active_state_ == obj)
     this->active_state_ = 0;
@@ -112,10 +112,10 @@ handle_object_destroyed (GAME::Object_in obj)
 // handle_object_select
 //
 int CBML_Connection_Generation_Handler::
-handle_object_select (GAME::Object_in obj)
+handle_object_select (GAME::Mga::Object_in obj)
 {
   if (0 == this->state_transition_map_.find (obj->meta ()->name ().c_str ()))
-    this->active_state_ = GAME::FCO::_narrow (obj);
+    this->active_state_ = GAME::Mga::FCO::_narrow (obj);
 
   return 0;
 }
@@ -124,52 +124,54 @@ handle_object_select (GAME::Object_in obj)
 // create_state_and_connect
 //
 void CBML_Connection_Generation_Handler::
-create_state_and_connect (GAME::FCO_in action, const std::string & effect_type)
+create_state_and_connect (GAME::Mga::FCO_in action, const std::string & effect_type)
 {
   // Update the connection routing information.
-  GAME::utils::Point position;
+  GAME::Mga::Point position;
   action->registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
-  GAME::Model parent = action->parent_model ();
+  GAME::Mga::Model parent = action->parent_model ();
 
   if (!this->active_state_.is_nil ())
   {
     // Align newly created action with previous state.
-    GAME::utils::get_position ("Behavior", this->active_state_, position);
+    GAME::Mga::get_position ("Behavior", this->active_state_, position);
     position.shift (OFFSET_X, OFFSET_Y);
-    GAME::utils::set_position ("Behavior", position, action);
+    GAME::Mga::set_position ("Behavior", position, action);
 
     // Create connection between active state and new action.
     std::string transition_metaname;
-    GAME::Meta::FCO metafco = this->active_state_->meta ();
+    GAME::Mga::Meta::FCO metafco = this->active_state_->meta ();
 
     int retval =
       this->state_transition_map_.find (metafco->name ().c_str (),
                                         transition_metaname);
 
     if (retval == 0)
-      GAME::Connection transition =
-        GAME::Connection_Impl::_create (parent,
-                                        transition_metaname,
-                                        this->active_state_,
-                                        action);
+    {
+      GAME::Mga::Connection transition =
+        GAME::Mga::Connection_Impl::_create (parent,
+                                             transition_metaname,
+                                             this->active_state_,
+                                             action);
+    }
   }
 
   // Create the new State element for the action.
-  GAME::Atom state = GAME::Atom_Impl::_create (parent, "State");
+  GAME::Mga::Atom state = GAME::Mga::Atom_Impl::_create (parent, "State");
   state->registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
   // Create the effect connection from the action to the state.
-  GAME::Connection effect =
-    GAME::Connection_Impl::_create (parent,
-                                    effect_type,
-                                    action,
-                                    state);
+  GAME::Mga::Connection effect =
+    GAME::Mga::Connection_Impl::_create (parent,
+                                         effect_type,
+                                         action,
+                                         state);
 
   // Use the action's position if there is no active state.
   if (this->active_state_.is_nil ())
-    GAME::utils::get_position ("Behavior", action, position);
+    GAME::Mga::get_position ("Behavior", action, position);
 
   // Align the <state> to the right of the <action>.
   position.shift (OFFSET_X, -OFFSET_Y);
-  GAME::utils::set_position ("Behavior", position, state);
+  GAME::Mga::set_position ("Behavior", position, state);
 }

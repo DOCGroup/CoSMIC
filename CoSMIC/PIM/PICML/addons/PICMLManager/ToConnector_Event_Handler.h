@@ -13,8 +13,8 @@
 #ifndef _PICML_MI_TO_CONNECTOR_EVENT_HANDLER_H_
 #define _PICML_MI_TO_CONNECTOR_EVENT_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
-#include "game/Model.h"
+#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
@@ -26,7 +26,7 @@ namespace MI
  * name of the connection, which represents the target port.
  */
 class ToConnector_Event_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Default constructor.
@@ -36,27 +36,27 @@ public:
   virtual ~ToConnector_Event_Handler (void);
 
 protected:
-  int create_connection (GAME::Object_in obj,
+  int create_connection (GAME::Mga::Object_in obj,
                          const std::string & port_role,
                          const std::string & connector_role,
                          const std::string & target_port_type);
 
-  bool get_connector_object (const GAME::Model_in inst, GAME::Model & conobj);
+  bool get_connector_object (const GAME::Mga::Model_in inst, GAME::Mga::Model & conobj);
 
-  void get_matching_ports (const GAME::Model_in connector,
-                           const GAME::Model_in object,
+  void get_matching_ports (const GAME::Mga::Model_in connector,
+                           const GAME::Mga::Model_in object,
                            const std::string & type,
-                           std::vector <GAME::Reference> & ports);
+                           std::vector <GAME::Mga::Reference> & ports);
 
-  void get_matching_inner_ports (const GAME::Reference_in extended,
-                                 const GAME::Model_in object,
+  void get_matching_inner_ports (const GAME::Mga::Reference_in extended,
+                                 const GAME::Mga::Model_in object,
                                  const std::string & type,
-                                 std::vector <GAME::Reference> & ports);
+                                 std::vector <GAME::Mga::Reference> & ports);
 
-  void get_matching_extended_ports (const GAME::Model_in connector,
-                                    const GAME::FCO_in porttype,
+  void get_matching_extended_ports (const GAME::Mga::Model_in connector,
+                                    const GAME::Mga::FCO_in porttype,
                                     const std::string & metaname,
-                                    std::vector <GAME::Reference> & ports);
+                                    std::vector <GAME::Mga::Reference> & ports);
 };
 
 /**
@@ -74,7 +74,7 @@ public:
   /// Destructor.
   virtual ~FacetToConnector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
 /**
@@ -92,7 +92,7 @@ public:
   /// Destructor.
   virtual ~ReceptacleToConnector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
 /**
@@ -107,15 +107,15 @@ public:
   virtual ~PortType_To_Connector_Event_Handler (void);
 
 protected:
-  int set_connection_name (const GAME::Model_in connector,
-                           const GAME::FCO_in port,
-                           GAME::Connection connection);
+  int set_connection_name (const GAME::Mga::Model_in connector,
+                           const GAME::Mga::FCO_in port,
+                           GAME::Mga::Connection connection);
 
-  bool get_extended_port_instance (const GAME::FCO_in portend,
-                                   GAME::FCO & port_inst);
+  bool get_extended_port_instance (const GAME::Mga::FCO_in portend,
+                                   GAME::Mga::FCO& port_inst);
 
-  bool get_mirror_port_instance (const GAME::FCO_in portend,
-                                 GAME::FCO & port_inst);
+  bool get_mirror_port_instance (const GAME::Mga::FCO_in portend,
+                                 GAME::Mga::FCO& port_inst);
 };
 
 /**
@@ -134,7 +134,7 @@ public:
   /// Destructor.
   virtual ~Publish_To_Connector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
 /**
@@ -153,7 +153,7 @@ public:
   /// Destructor.
   virtual ~Consume_To_Connector_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
 }

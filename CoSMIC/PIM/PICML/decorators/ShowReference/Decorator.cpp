@@ -5,11 +5,11 @@
 #include "resource.h"
 #include "DecoratorLib_i.c"
 
-#include "game/be/Decorator_Module.h"
-#include "game/MetaFCO.h"
-#include "game/graphics/Image_Resolver.h"
-#include "game/utils/Registrar.h"
-#include "game/Reference.h"
+#include "game/mga/be/Decorator_Module.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/utils/Registrar.h"
+#include "game/mga/Reference.h"
 
 DECLARE_DECORATOR_MODULE (LIBID_ShowReferenceDecoratorLibrary, IDR_DECORATOR, "{CDD72C3A-3340-4225-83D6-46B10E9A763E}")
 
@@ -33,17 +33,17 @@ Show_Reference_Decorator_Impl::~Show_Reference_Decorator_Impl (void)
 // initialize
 //
 int Show_Reference_Decorator_Impl::
-initialize_ex (const GAME::Project & project,
-               const GAME::Meta::Part_in part,
-               const GAME::FCO_in fco,
+initialize_ex (const GAME::Mga::Project & project,
+               const GAME::Mga::Meta::Part_in part,
+               const GAME::Mga::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
-  using GAME::utils::GLOBAL_REGISTRAR;
-  using GAME::utils::Registrar;
+  using GAME::Mga::GLOBAL_REGISTRAR;
+  using GAME::Mga::Registrar;
 
-  using GAME::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::graphics::Image_Resolver;
+  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+  using GAME::Mga::graphics::Image_Resolver;
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
@@ -56,7 +56,7 @@ initialize_ex (const GAME::Project & project,
   if (0 == fco)
   {
     // Get the icon for the element in the parts browser.
-    GAME::Meta::FCO metafco = part->role ()->kind ();
+    GAME::Mga::Meta::FCO metafco = part->role ()->kind ();
 
     icon_filename = metafco->registry_value ("icon");
     this->label_ = metafco->display_name ().c_str ();
@@ -65,8 +65,8 @@ initialize_ex (const GAME::Project & project,
   {
     // Get the icon filename for the referenced element. If no
     // element is referenced, then display the reference's icon.
-    GAME::Reference ref = GAME::Reference::_narrow (fco);
-    GAME::FCO refers_to = ref->refers_to ();
+    GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (fco);
+    GAME::Mga::FCO refers_to = ref->refers_to ();
 
     if (!refers_to.is_nil ())
       icon_filename = refers_to->registry_value ("icon");

@@ -27,10 +27,10 @@ class Collection_Item;
 class Collection_Container_Data_Item : public Container_Data_Item
 {
 public:
-  Collection_Container_Data_Item (const GAME::Model_in item);
+  Collection_Container_Data_Item (const GAME::Mga::Model_in item);
 
   Collection_Item * new_item (void);
-  Collection_Item * new_item (GAME::FCO item);
+  Collection_Item * new_item (GAME::Mga::FCO item);
 
   size_t get_size (void) const;
 
@@ -43,7 +43,7 @@ private:
   /// The collection of items.
   std::vector <Collection_Item *> items_;
 
-  GAME::FCO type_;
+  GAME::Mga::FCO type_;
 
   bool is_complex_type_;
 };

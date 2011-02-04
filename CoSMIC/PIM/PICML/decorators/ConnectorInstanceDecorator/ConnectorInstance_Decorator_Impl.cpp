@@ -4,13 +4,13 @@
 #include "ConnectorInstance_Decorator.h"
 #include "ConnectorInstance_Decorator_Impl.h"
 
-#include "game/MetaFCO.h"
-#include "game/MetaModel.h"
-#include "game/Model.h"
-#include "game/Reference.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/Model.h"
+#include "game/mga/Reference.h"
 
-#include "game/graphics/Image_Resolver.h"
-#include "game/utils/Registrar.h"
+#include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/utils/Registrar.h"
 
 #include "boost/bind.hpp"
 
@@ -36,9 +36,9 @@ ConnectorInstance_Decorator_Impl::~ConnectorInstance_Decorator_Impl (void)
 // initialize
 //
 int ConnectorInstance_Decorator_Impl::
-initialize_ex (const GAME::Project & proj,
-               const GAME::Meta::Part_in part,
-               const GAME::FCO_in fco,
+initialize_ex (const GAME::Mga::Project & proj,
+               const GAME::Mga::Meta::Part_in part,
+               const GAME::Mga::FCO_in fco,
                IMgaCommonDecoratorEvents * eventSink,
                ULONGLONG parentWnd)
 {
@@ -49,19 +49,19 @@ initialize_ex (const GAME::Project & proj,
 // initialize
 //
 int ConnectorInstance_Decorator_Impl::
-initialize (const GAME::Project & project,
-            const GAME::Meta::Part_in part,
-            const GAME::FCO_in fco)
+initialize (const GAME::Mga::Project & project,
+            const GAME::Mga::Meta::Part_in part,
+            const GAME::Mga::FCO_in fco)
 {
-  using GAME::FCO;
-  using GAME::Reference;
-  using GAME::Model;
+  using GAME::Mga::FCO;
+  using GAME::Mga::Reference;
+  using GAME::Mga::Model;
 
-  using GAME::utils::GLOBAL_REGISTRAR;
-  using GAME::utils::Registrar;
+  using GAME::Mga::GLOBAL_REGISTRAR;
+  using GAME::Mga::Registrar;
 
-  using GAME::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::graphics::Image_Resolver;
+  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+  using GAME::Mga::graphics::Image_Resolver;
 
   if (!this->impl_label_.empty ())
     this->impl_label_.clear ();
@@ -70,7 +70,7 @@ initialize (const GAME::Project & project,
   {
     // We can only initialize the label for this element since we
     // are in the part's browser.
-    GAME::Meta::FCO metafco = part->role ()->kind ();
+    GAME::Mga::Meta::FCO metafco = part->role ()->kind ();
     this->label_ = metafco->display_name ();
   }
   else
@@ -104,7 +104,7 @@ initialize (const GAME::Project & project,
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Get the icon for the element in the parts browser.
-  GAME::Meta::FCO metafco = part->role ()->kind ();
+  GAME::Mga::Meta::FCO metafco = part->role ()->kind ();
   std::string icon_filename = metafco->registry_value ("icon");
 
   // Load the file for later usage.

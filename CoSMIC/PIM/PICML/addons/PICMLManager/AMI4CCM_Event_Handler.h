@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_AMI4CCM_EVENT_HANDLER_H_
 #define _PICML_MI_AMI4CCM_EVENT_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
+#include "game/mga/be/Event_Handler_Impl.h"
 
 namespace PICML
 {
@@ -26,7 +26,7 @@ namespace MI
  * event handler will auto-generate the necessary artifact so that
  * moders can correctly leverage ami4ccm support in CoSMIC.
  */
-class AMI4CCM_Event_Handler : public GAME::Event_Handler_Impl
+class AMI4CCM_Event_Handler : public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Default constructor
@@ -35,7 +35,7 @@ public:
   /// Destructor.
   virtual ~AMI4CCM_Event_Handler (void);
 
-  virtual int handle_object_attribute (GAME::Object_in obj);
+  virtual int handle_object_attribute (GAME::Mga::Object_in obj);
 };
 }
 }

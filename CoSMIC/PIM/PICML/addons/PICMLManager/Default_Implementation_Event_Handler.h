@@ -15,7 +15,7 @@
 
 #include <map>
 #include <set>
-#include "game/be/Event_Handler_Impl.h"
+#include "game/mga/be/Event_Handler_Impl.h"
 #include "Default_Implementation_Generator.h"
 
 namespace PICML
@@ -29,7 +29,7 @@ namespace MI
  * for a given object.
  */
 class Default_Implementation_Event_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   typedef Default_Implementation_Generator::meta_info_t meta_info_t;
@@ -42,9 +42,9 @@ public:
 
   virtual int handle_xml_import_begin (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 
-  int generate_default_implementation (const GAME::Object_in obj);
+  int generate_default_implementation (const GAME::Mga::Object_in obj);
 
   bool insert (std::string meta, const meta_info_t & info);
 

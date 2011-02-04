@@ -2,27 +2,25 @@
 
 #include "stdafx.h"
 #include "Utility.h"
-#include "game/MetaBase.h"
-#include "game/MetaModel.h"
+#include "game/mga/MetaBase.h"
+#include "game/mga/MetaModel.h"
 #include <stack>
 
 namespace PICML
 {
-namespace GAME
-{
 //
 // scope
 //
-std::string scope (const ::GAME::Model_in named_type,
+std::string scope (const GAME::Mga::Model_in named_type,
                    const std::string & separator,
                    bool leading)
 {
   std::string scope;
-  std::stack <::GAME::Object> temp_stack;
+  std::stack <GAME::Mga::Object> temp_stack;
 
   // Continue walking up the tree until we reach a File object.
   static const std::string meta_File ("File");
-  ::GAME::Object parent = named_type->parent ();
+  GAME::Mga::Object parent = named_type->parent ();
 
   while (parent->meta ()->name () != meta_File)
   {
@@ -49,7 +47,7 @@ std::string scope (const ::GAME::Model_in named_type,
 //
 // fq_type
 //
-std::string fq_type (const ::GAME::Model_in named_type,
+std::string fq_type (const GAME::Mga::Model_in named_type,
                      const std::string & separator,
                      bool leading)
 {
@@ -61,9 +59,9 @@ std::string fq_type (const ::GAME::Model_in named_type,
 //
 // get_template_package_inst
 //
-::GAME::Model get_template_package_inst (const ::GAME::FCO_in type)
+GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type)
 {
-  ::GAME::Model parent = type->parent_model ();
+  ::GAME::Mga::Model parent = type->parent_model ();
   static const std::string meta_File ("File");
   std::string metaname = parent->meta ()->name ();
 
@@ -80,8 +78,7 @@ std::string fq_type (const ::GAME::Model_in named_type,
     metaname = parent->meta ()->name ();
   }
 
-  return ::GAME::Model ();
+  return GAME::Mga::Model ();
 }
 
-}
 }

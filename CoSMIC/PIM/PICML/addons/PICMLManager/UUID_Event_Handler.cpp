@@ -3,13 +3,13 @@
 #include "StdAfx.h"
 #include "UUID_Event_Handler.h"
 
-#include "game/Connection.h"
-#include "game/Model.h"
-#include "game/MetaModel.h"
-#include "game/Reference.h"
-#include "game/Attribute.h"
-#include "game/dialogs/Selection_List_Dialog_T.h"
-#include "game/dialogs/Dialog_Display_Strategy.h"
+#include "game/mga/Connection.h"
+#include "game/mga/Model.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Attribute.h"
+#include "game/mga/dialogs/Selection_List_Dialog_T.h"
+#include "game/mga/dialogs/Dialog_Display_Strategy.h"
 
 #include "Utils/Utils.h"
 
@@ -26,7 +26,7 @@ static const unsigned long mask = OBJEVENT_CREATED |
 // UUID_Event_Handler
 //
 UUID_Event_Handler::UUID_Event_Handler ()
-: GAME::Event_Handler_Impl (mask)
+: GAME::Mga::Event_Handler_Impl (mask)
 {
 
 }
@@ -43,14 +43,14 @@ UUID_Event_Handler::~UUID_Event_Handler (void)
 // handle_object_created
 //
 int UUID_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   if (obj->is_lib_object ())
     return 0;
 
   // Locate the UUID attribute for the FCO.
-  GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr = fco->attribute ("UUID");
+  GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
+  GAME::Mga::Attribute uuid_attr = fco->attribute ("UUID");
 
   // Get the current value of the attribute. Just because we
   // are creating the object does not mean that its value does
@@ -73,14 +73,14 @@ handle_object_created (GAME::Object_in obj)
 // handle_object_attribute
 //
 int UUID_Event_Handler::
-handle_object_attribute (GAME::Object_in obj)
+handle_object_attribute (GAME::Mga::Object_in obj)
 {
   if (obj->is_lib_object ())
     return 0;
 
   // Get the UUID attribute for the FCO.
-  GAME::FCO fco = GAME::FCO::_narrow (obj);
-  GAME::Attribute uuid_attr = fco->attribute ("UUID");
+  GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
+  GAME::Mga::Attribute uuid_attr = fco->attribute ("UUID");
 
   // Validate the current UUID string value.
   std::string uuid = uuid_attr->string_value ();

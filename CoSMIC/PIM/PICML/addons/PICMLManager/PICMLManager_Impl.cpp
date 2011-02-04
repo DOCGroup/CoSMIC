@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "PICMLManager_Impl.h"
 
-#include "game/be/Event_Handler.h"
+#include "game/mga/be/Event_Handler.h"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
@@ -32,7 +32,7 @@
 #include <functional>
 
 // Type definition
-typedef std::vector <GAME::Reference> Reference_Set;
+typedef std::vector <GAME::Mga::Reference> Reference_Set;
 
 static const unsigned long EVENTMASK =
    OBJEVENT_CREATED | OBJEVENT_ATTR |
@@ -66,7 +66,7 @@ public:
 // PICMLManager_Impl
 //
 PICMLManager_Impl::PICMLManager_Impl (void)
-: GAME::Event_Handler_Impl (0xFFFFFFFF, false)
+: GAME::Mga::Event_Handler_Impl (0xFFFFFFFF, false)
 {
 
 }
@@ -82,7 +82,7 @@ PICMLManager_Impl::~PICMLManager_Impl (void)
 //
 // Initaialize
 //
-int PICMLManager_Impl::initialize (GAME::Project project)
+int PICMLManager_Impl::initialize (GAME::Mga::Project project)
 {
   // The new way of writing event handler's for the model intelligence
   // is to use event handler objects. We are going to preload the objects

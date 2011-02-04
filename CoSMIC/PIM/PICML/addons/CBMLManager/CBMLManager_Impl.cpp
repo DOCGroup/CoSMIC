@@ -7,18 +7,18 @@
 #include "Action_Handler.h"
 #include "Action_Type_Handler.h"
 
-#include "game/be/ComponentEx_T.h"
-#include "game/Atom.h"
-#include "game/Model.h"
-#include "game/Object.h"
-#include "game/Connection.h"
-#include "game/MetaBase.h"
-#include "game/MetaFCO.h"
-#include "game/Reference.h"
-#include "game/utils/Point.h"
+#include "game/mga/be/ComponentEx_T.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Model.h"
+#include "game/mga/Object.h"
+#include "game/mga/Connection.h"
+#include "game/mga/MetaBase.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/Reference.h"
+#include "game/mga/utils/Point.h"
 
-#include "game/dialogs/Module.h"
-#include "game/dialogs/Selection_List_Dialog_T.h"
+#include "game/mga/dialogs/Module.h"
+#include "game/mga/dialogs/Selection_List_Dialog_T.h"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
@@ -34,10 +34,10 @@
 #define PREF_AUTOROUTER           "autorouterPref"
 #define PREF_AUTOROUTER_ALL       "NEWSnews"
 
-typedef GAME::Addon_Impl_T <
-  CBML_Manager_ComponentEx_Impl,
-  CBML_Model_Intelligence >
-  CBML_Model_Intelligence_Impl;
+/// Type definition of the add-on implementation.
+typedef GAME::Mga::Addon_Impl_T <CBML_Manager_ComponentEx_Impl,
+                                 CBML_Model_Intelligence>
+                                 CBML_Model_Intelligence_Impl;
 
 DECLARE_GAME_COMPONENT_EX (CBML_Model_Intelligence_Impl, CBMLManager_Addon);
 
@@ -66,7 +66,7 @@ public:
 // CBML_Model_Intelligence
 //
 CBML_Model_Intelligence::CBML_Model_Intelligence (void)
-: GAME::Event_Handler_Impl (eventmask, false)
+: GAME::Mga::Event_Handler_Impl (eventmask, false)
 {
 
 }
@@ -82,7 +82,7 @@ CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 //
 // initialize
 //
-int CBML_Model_Intelligence::initialize (GAME::Project project)
+int CBML_Model_Intelligence::initialize (GAME::Mga::Project project)
 {
   this->event_handler_->register_handler ("Action",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,

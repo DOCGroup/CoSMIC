@@ -4,8 +4,12 @@
 #include "StdAfx.h"
 #include "ComponentInstanceType_Event_Handler.h"
 
-#include "game/modelgen.h"
-#include "game/utils/Point.h"
+#include "game/mga/modelgen.h"
+#include "game/mga/utils/Point.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Connection.h"
+#include "game/mga/Reference.h"
+#include "game/mga/MetaModel.h"
 
 #include "Utils/Utils.h"
 
@@ -22,7 +26,7 @@ static const unsigned long mask = OBJEVENT_RELATION;
 // ComponentInstanceType_Event_Handler
 //
 ComponentInstanceType_Event_Handler::ComponentInstanceType_Event_Handler (void)
-: GAME::Event_Handler_Impl (mask)
+: GAME::Mga::Event_Handler_Impl (mask)
 {
 
 }
@@ -39,36 +43,36 @@ ComponentInstanceType_Event_Handler::~ComponentInstanceType_Event_Handler (void)
 // handle_object_relation
 //
 int ComponentInstanceType_Event_Handler::
-handle_object_relation (GAME::Object_in obj)
+handle_object_relation (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
-  using GAME::Reference;
-  using GAME::Model;
-  using GAME::Atom;
-  using GAME::Connection;
-  using GAME::FCO;
+  using GAME::Mga::Reference;
+  using GAME::Mga::Model;
+  using GAME::Mga::Atom;
+  using GAME::Mga::Connection;
+  using GAME::Mga::FCO;
 
   Model inst = Model::_narrow (obj->parent ());
 
   // The the component's implementation.
-  Reference ref = GAME::Reference::_narrow (obj);
+  Reference ref = GAME::Mga::Reference::_narrow (obj);
   FCO fco = ref->refers_to ();
 
   if (fco.is_nil ())
   {
-    GAME::Model model = GAME::Model::_narrow (obj->parent ());
+    GAME::Mga::Model model = GAME::Mga::Model::_narrow (obj->parent ());
 
     // Delete the ports in the model.
-    std::vector <GAME::FCO> children;
-    GAME::Meta::Aspect aspect = model->meta ()->aspect ("ComponentInterface");
+    std::vector <GAME::Mga::FCO> children;
+    GAME::Mga::Meta::Aspect aspect = model->meta ()->aspect ("ComponentInterface");
 
     model->children (aspect, children);
     std::for_each (children.begin (),
                    children.end (),
-                   boost::bind (&GAME::FCO::impl_type::destroy,
-                                boost::bind (&GAME::FCO::get, _1)));
+                   boost::bind (&GAME::Mga::FCO::impl_type::destroy,
+                                boost::bind (&GAME::Mga::FCO::get, _1)));
   }
   else
   {
@@ -91,27 +95,27 @@ handle_object_relation (GAME::Object_in obj)
 
 struct generate_instance_t
 {
-  generate_instance_t (GAME::Model_in parent, const std::string & type)
+  generate_instance_t (GAME::Mga::Model_in parent, const std::string & type)
     : parent_ (parent),
       type_ (type)
   {
 
   }
 
-  void operator () (const GAME::FCO_in target) const
+  void operator () (const GAME::Mga::FCO_in target) const
   {
     using GAME::Mga_t;
 
-    using GAME::Reference;
-    using GAME::FCO;
+    using GAME::Mga::Reference;
+    using GAME::Mga::FCO;
 
     Reference ref;
 
     if (GAME::create_if_not <Mga_t> (this->parent_, this->type_, ref,
         GAME::contains <Mga_t> (boost::bind (std::equal_to <FCO> (),
                                 target,
-                                boost::bind (&GAME::Reference::impl_type::refers_to,
-                                             boost::bind (&GAME::Reference::get, _1))))))
+                                boost::bind (&GAME::Mga::Reference::impl_type::refers_to,
+                                             boost::bind (&GAME::Mga::Reference::get, _1))))))
     {
       ref->refers_to (target);
       ref->name (target->name ());
@@ -119,7 +123,7 @@ struct generate_instance_t
   }
 
 private:
-  GAME::Model parent_;
+  GAME::Mga::Model parent_;
 
   const std::string & type_;
 };
@@ -128,12 +132,12 @@ private:
 // generate_port_instances
 //
 void ComponentInstanceType_Event_Handler::
-generate_port_instances (GAME::Model inst,  const GAME::Model & component)
+generate_port_instances (GAME::Mga::Model inst,  const GAME::Mga::Model & component)
 {
-  using GAME::Reference;
-  using GAME::Model;
+  using GAME::Mga::Reference;
+  using GAME::Mga::Model;
 
-  std::vector <GAME::FCO> ports;
+  std::vector <GAME::Mga::FCO> ports;
 
   if (component->children ("InEventPort", ports))
     std::for_each (ports.begin (),

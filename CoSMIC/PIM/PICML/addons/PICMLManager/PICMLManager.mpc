@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_Model_Intelligence): game_dialogs, game_component, game_manip, \
+project (PICML_Model_Intelligence): game_dialogs, game_mga_component, game_manip, \
                                     picml_game_utils, boost_base, cosmic_utils, \
                                     cosmic_lib {
   sharedname = PICML_Model_Intelligence

@@ -7,7 +7,7 @@
 #include "Scope_Display_Strategy.inl"
 #endif
 
-#include "game/Object.h"
+#include "game/mga/Object.h"
 #include <stack>
 
 namespace PICML
@@ -19,11 +19,11 @@ namespace MI
 // get_display_name
 //
 bool Scope_Display_Strategy::
-get_display_name (const GAME::Object_in obj, std::string & display_name)
+get_display_name (const GAME::Mga::Object_in obj, std::string & display_name)
 {
   // Get the parent of the object current object.
-  std::stack <GAME::Object> scope;
-  GAME::Object parent = obj->parent ();
+  std::stack <GAME::Mga::Object> scope;
+  GAME::Mga::Object parent = obj->parent ();
   static const std::string meta_File ("File");
 
   // Keep getting the parent until we have found the File element.

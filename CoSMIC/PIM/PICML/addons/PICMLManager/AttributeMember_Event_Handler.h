@@ -14,7 +14,7 @@
 #define _PICML_MI_ATTRIBUTE_MEMBER_EVENT_HANDLER_H_
 
 #include "Event_Handler_Base.h"
-#include "game/Connection.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
@@ -36,13 +36,13 @@ public:
   /// Destructor.
   virtual ~AttributeMember_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object_in obj);
+  virtual int handle_object_relation (GAME::Mga::Object_in obj);
 
-  void verify_property_datatype (GAME::ConnectionPoint & attr,
-                                 const GAME::FCO_in attr_type);
+  void verify_property_datatype (GAME::Mga::ConnectionPoint & attr,
+                                 const GAME::Mga::FCO_in attr_type);
 
-  void verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
-                                       const GAME::FCO_in attr_type);
+  void verify_property_datatype_entry (GAME::Mga::ConnectionPoints::value_type & attr,
+                                       const GAME::Mga::FCO_in attr_type);
 };
 
 }

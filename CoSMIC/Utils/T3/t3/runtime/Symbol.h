@@ -15,7 +15,7 @@
 
 #include "Runtime_export.h"
 #include "ace/SString.h"
-#include "game/GME_fwd.h"
+#include "game/mga/GME_fwd.h"
 
 /**
  * @class T3_Symbol
@@ -38,7 +38,7 @@ public:
    * @retval        0           Success
    * @retval        -1          Failure
    */
-  virtual int generate (const ::GAME::FCO & fco, ACE_CString & symbol) = 0;
+  virtual int generate (const GAME::Mga::FCO & fco, ACE_CString & symbol) = 0;
 };
 
 #include "Symbol.inl"

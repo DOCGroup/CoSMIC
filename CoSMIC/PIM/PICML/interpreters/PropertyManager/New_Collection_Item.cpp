@@ -10,7 +10,7 @@
 //
 New_Collection_Item::
 New_Collection_Item (Collection_Container_Data_Item * parent,
-                     GAME::FCO_in type,
+                     GAME::Mga::FCO_in type,
                      int indent)
 : parent_ (parent),
   type_ (type),

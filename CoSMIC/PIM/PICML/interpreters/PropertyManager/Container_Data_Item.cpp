@@ -7,7 +7,7 @@
 // Container_Data_Item
 //
 Container_Data_Item::
-Container_Data_Item (const GAME::Model_in item)
+Container_Data_Item (const GAME::Mga::Model_in item)
 : item_ (item)
 {
 
@@ -29,7 +29,7 @@ get_display_info (std::string & name, std::string & value) const
 //
 // get_item
 //
-GAME::FCO Container_Data_Item::get_item (void)
+GAME::Mga::FCO Container_Data_Item::get_item (void)
 {
   return this->item_.get ();
 }

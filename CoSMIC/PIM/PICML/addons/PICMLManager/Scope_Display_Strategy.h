@@ -10,7 +10,7 @@
  */
 //=============================================================================
 
-#include "game/dialogs/Dialog_Display_Strategy.h"
+#include "game/mga/dialogs/Dialog_Display_Strategy.h"
 
 #ifndef _PICML_MI_SCOPE_DISPLAY_STRATEGY_H_
 #define _PICML_MI_SCOPE_DISPLAY_STRATEGY_H_
@@ -38,7 +38,7 @@ public:
   virtual ~Scope_Display_Strategy (void);
 
   // Get the display name for the object.
-  bool get_display_name (const GAME::Object_in, std::string &);
+  bool get_display_name (const GAME::Mga::Object_in, std::string &);
 };
 
 }

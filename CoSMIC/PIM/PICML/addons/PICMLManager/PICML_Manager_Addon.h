@@ -16,8 +16,8 @@
 #include "PICMLManager.h"
 #include "PICMLManager_i.c"
 
-#include "game/be/Addon_Impl_T.h"
-#include "game/be/ComponentEx_T.h"
+#include "game/mga/be/Addon_Impl_T.h"
+#include "game/mga/be/ComponentEx_T.h"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
@@ -39,7 +39,7 @@ GAME_DEFAULT_ADDON_IMPL (PICML_Manager_ComponentEx_Impl,
  * will be created.
  */
 class PICML_Manager_Impl :
-  public GAME::Addon_Impl_T < PICML_Manager_ComponentEx_Impl, PICMLManager_Impl >,
+  public GAME::Mga::Addon_Impl_T < PICML_Manager_ComponentEx_Impl, PICMLManager_Impl >,
   public IConfigurator
 {
 public:
@@ -55,7 +55,7 @@ public:
   STDMETHOD (resetConfiguration) (void);
 
 private:
-  typedef GAME::Addon_Impl_T < PICML_Manager_ComponentEx_Impl, PICMLManager_Impl > base_type;
+  typedef GAME::Mga::Addon_Impl_T < PICML_Manager_ComponentEx_Impl, PICMLManager_Impl > base_type;
 
   BEGIN_COM_MAP (PICML_Manager_Impl)
     COM_INTERFACE_ENTRY (IConfigurator)

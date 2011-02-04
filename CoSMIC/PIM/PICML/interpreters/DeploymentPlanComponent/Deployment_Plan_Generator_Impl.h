@@ -13,7 +13,7 @@
 #ifndef _DEPLOYMENT_PLAN_GENERATOR_IMPL_H_
 #define _DEPLOYMENT_PLAN_GENERATOR_IMPL_H_
 
-#include "game/be/Interpreter_Impl_Base.h"
+#include "game/mga/be/Interpreter_Impl_Base.h"
 #include "Configuration.h"
 
 /**
@@ -22,7 +22,7 @@
  * Implemenation of the Quotas specification interpreter.
  */
 class Deployment_Plan_Generator_Impl :
-  public GAME::Interpreter_Impl_Base
+  public GAME::Mga::Interpreter_Impl_Base
 {
 public:
   /// Default constructor.
@@ -32,9 +32,9 @@ public:
   virtual ~Deployment_Plan_Generator_Impl (void);
 
   // Handle the InvokeEx callback.
-  int invoke_ex (GAME::Project project,
-                 GAME::FCO_in fco,
-                 std::vector <GAME::FCO> & selected,
+  int invoke_ex (GAME::Mga::Project project,
+                 GAME::Mga::FCO_in fco,
+                 std::vector <GAME::Mga::FCO> & selected,
                  long flags);
 
   int set_parameter (const std::string & name, const std::string & value);
@@ -44,10 +44,10 @@ private:
   Configuration config_;
 
   // Helper method to load last configuration.
-  static void load_configuration (GAME::Project proj, Configuration & config);
+  static void load_configuration (GAME::Mga::Project proj, Configuration & config);
 
   // Helper method to s last configuration.
-  static void save_configuration (GAME::Project proj, const Configuration & config);
+  static void save_configuration (GAME::Mga::Project proj, const Configuration & config);
 };
 
 #endif

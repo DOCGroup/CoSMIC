@@ -13,8 +13,8 @@
 #ifndef _CBML_CONNECTION_GENERATION_HANDLER_H_
 #define _CBML_CONNECTION_GENERATION_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
-#include "game/FCO.h"
+#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/FCO.h"
 #include "ace/Hash_Map_Manager.h"
 #include "ace/Null_Mutex.h"
 #include "ace/SString.h"
@@ -26,7 +26,7 @@
  * connect with the State element.
  */
 class CBML_Connection_Generation_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_SELECT |
@@ -39,18 +39,18 @@ public:
   /// Destructor.
   virtual ~CBML_Connection_Generation_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 
-  virtual int handle_object_destroyed (GAME::Object_in obj);
+  virtual int handle_object_destroyed (GAME::Mga::Object_in obj);
 
-  virtual int handle_object_select (GAME::Object_in obj);
+  virtual int handle_object_select (GAME::Mga::Object_in obj);
 
 private:
-  void create_state_and_connect (GAME::FCO_in action,
+  void create_state_and_connect (GAME::Mga::FCO_in action,
                                  const std::string & conntype);
 
   /// The active state.
-  GAME::FCO active_state_;
+  GAME::Mga::FCO active_state_;
 
   ACE_Hash_Map_Manager <ACE_CString,
                         std::string,

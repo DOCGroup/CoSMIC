@@ -13,14 +13,14 @@
 #ifndef _COMPONENT_DECORATOR_IMPL_H_
 #define _COMPONENT_DECORATOR_IMPL_H_
 
-#include "game/be/Decorator_T.h"
-#include "game/be/Decorator_Impl.h"
+#include "game/mga/be/Decorator_T.h"
+#include "game/mga/be/Decorator_Impl.h"
 
-#include "game/MetaAspect.h"
-#include "game/Part.h"
-#include "game/graphics/Image_Manager_T.h"
-#include "game/graphics/Image_Resolver.h"
-#include "game/graphics/Port_Decorator.h"
+#include "game/mga/MetaAspect.h"
+#include "game/mga/Part.h"
+#include "game/mga/graphics/Image_Manager_T.h"
+#include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/graphics/Port_Decorator.h"
 
 #include "Component_Decorator_export.h"
 
@@ -28,7 +28,7 @@
  * @class Component_Decorator_Impl
  */
 class COMPONENT_DECORATOR_Export Component_Decorator_Impl :
-  public GAME::Decorator_Impl
+  public GAME::Mga::Decorator_Impl
 {
 public:
   /// Default constructor
@@ -37,20 +37,20 @@ public:
   /// Destructor.
   ~Component_Decorator_Impl (void);
 
-  int initialize (const GAME::Project & proj,
-                  const GAME::Meta::Part_in part,
-                  const GAME::FCO_in fco);
+  int initialize (const GAME::Mga::Project & proj,
+                  const GAME::Mga::Meta::Part_in part,
+                  const GAME::Mga::FCO_in fco);
 
-  int initialize_ex (const GAME::Project & proj,
-                     const GAME::Meta::Part_in part,
-                     const GAME::FCO_in fco,
+  int initialize_ex (const GAME::Mga::Project & proj,
+                     const GAME::Mga::Meta::Part_in part,
+                     const GAME::Mga::FCO_in fco,
                      IMgaCommonDecoratorEvents * eventSink,
                      ULONGLONG parentWnd);
 
   /// Destory the decorator.
   void destroy (void);
 
-  void set_location (const GAME::utils::Rect & location);
+  void set_location (const GAME::Mga::Rect & location);
 
   int get_preferred_size (long & sx, long & sy);
 
@@ -68,12 +68,12 @@ public:
   int draw_label (Gdiplus::Graphics * g);
 
   /// Type definition of the port type.
-  typedef std::vector <GAME::graphics::Port_Decorator *> port_set_t;
+  typedef std::vector <GAME::Mga::graphics::Port_Decorator *> port_set_t;
 
 protected:
   int initialize_ports (const std::string & aspect,
-                        const GAME::FCO_in,
-                        GAME::graphics::Image_Resolver *);
+                        const GAME::Mga::FCO_in,
+                        GAME::Mga::graphics::Image_Resolver *);
 
   int initialize_graphics_path (void);
 
@@ -89,7 +89,7 @@ protected:
   /// Collection of ports on the right side.
   port_set_t r_ports_;
 
-  GAME::graphics::Image_Manager_T <GAME::FCO> port_bitmaps_;
+  GAME::Mga::graphics::Image_Manager_T <GAME::Mga::FCO> port_bitmaps_;
 };
 
 #endif  // !defined _PORT_LAYOUT_DECORATOR_IMPL_H_

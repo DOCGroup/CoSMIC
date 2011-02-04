@@ -3,11 +3,11 @@
 #include "StdAfx.h"
 #include "Action_Type_Handler.h"
 
-#include "game/Reference.h"
-#include "game/Model.h"
-#include "game/MetaModel.h"
-#include "game/MetaAspect.h"
-#include "game/utils/Point.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Model.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaAspect.h"
+#include "game/mga/utils/Point.h"
 
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -25,7 +25,7 @@ namespace meta
 // CBML_Action_Type_Handler
 //
 CBML_Action_Type_Handler::CBML_Action_Type_Handler (void)
-: GAME::Event_Handler_Impl (eventmask)
+: GAME::Mga::Event_Handler_Impl (eventmask)
 {
 
 }
@@ -62,40 +62,40 @@ private:
 //
 // handle_object_created
 //
-int CBML_Action_Type_Handler::handle_object_relation (GAME::Object_in obj)
+int CBML_Action_Type_Handler::handle_object_relation (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
-  GAME::Reference action_type = GAME::Reference::_narrow (obj);
-  GAME::FCO fco = action_type->refers_to ();
-  GAME::Model action = action_type->parent_model ();
+  GAME::Mga::Reference action_type = GAME::Mga::Reference::_narrow (obj);
+  GAME::Mga::FCO fco = action_type->refers_to ();
+  GAME::Mga::Model action = action_type->parent_model ();
 
   if (fco.is_nil ())
   {
     // Locate all the parameters for this action.
-    std::vector <GAME::FCO> parameters;
-    GAME::Meta::Aspect behavior_aspect = action->meta ()->aspect (meta::Behavior);
+    std::vector <GAME::Mga::FCO> parameters;
+    GAME::Mga::Meta::Aspect behavior_aspect = action->meta ()->aspect (meta::Behavior);
     action->children (behavior_aspect, parameters);
 
     // Remove all the parameters from the model.
     std::for_each (parameters.begin (),
                    parameters.end (),
-                   boost::bind (&GAME::FCO_Impl::destroy,
-                                boost::bind (&GAME::FCO::get, _1)));
+                   boost::bind (&GAME::Mga::FCO_Impl::destroy,
+                                boost::bind (&GAME::Mga::FCO::get, _1)));
   }
   else
   {
     // Get the operation's parameters. If there are no parameters, then
     // there is no need continue.
-    GAME::Model operation = GAME::Model::_narrow (fco);
-    std::vector <GAME::Reference> parameters;
+    GAME::Mga::Model operation = GAME::Mga::Model::_narrow (fco);
+    std::vector <GAME::Mga::Reference> parameters;
 
     if (0 == operation->children (parameters))
       return 0;
 
     // Remove all the ReturnType parameters.
-    std::vector <GAME::Reference>::iterator iter_tail =
+    std::vector <GAME::Mga::Reference>::iterator iter_tail =
       std::remove_if (parameters.begin (),
                       parameters.end (),
                       metaname_equal_to (meta::ReturnType));
@@ -116,24 +116,24 @@ int CBML_Action_Type_Handler::handle_object_relation (GAME::Object_in obj)
 // create_property
 //
 void CBML_Action_Type_Handler::
-create_property (GAME::Model_in action, const GAME::Reference_in parameter)
+create_property (GAME::Mga::Model_in action, const GAME::Mga::Reference_in parameter)
 {
   try
   {
     // Right now, we are only supporting simple property elements.
-    GAME::Reference simple_property =
-      GAME::Reference_Impl::_create (action, meta::SimpleProperty);
+    GAME::Mga::Reference simple_property =
+      GAME::Mga::Reference_Impl::_create (action, meta::SimpleProperty);
 
     // Set the property's reference to that of the parameter.
     simple_property->name (parameter->name ());
     simple_property->refers_to (parameter->refers_to ());
 
     // Update the property's location.
-    GAME::utils::Point pos;
-    GAME::utils::get_position (meta::WorkerBehavior, parameter, pos);
-    GAME::utils::set_position (meta::Behavior, pos, simple_property);
+    GAME::Mga::Point pos;
+    GAME::Mga::get_position (meta::WorkerBehavior, parameter, pos);
+    GAME::Mga::set_position (meta::Behavior, pos, simple_property);
   }
-  catch (const GAME::Failed_Result & )
+  catch (const GAME::Mga::Failed_Result & )
   {
 
   }

@@ -36,7 +36,7 @@ public:
   /// Destructor.
   virtual ~ComponentInstanceRef_Event_Handler (void);
 
-  virtual int handle_set_included (GAME::Object_in obj);
+  virtual int handle_set_included (GAME::Mga::Object_in obj);
 };
 
 }

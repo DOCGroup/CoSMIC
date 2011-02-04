@@ -35,7 +35,7 @@ public:
   /// Destructor.
   virtual ~AttributeValue_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
 }

@@ -1,6 +1,8 @@
 // $Id$
 
-project (PICML_NoShowRefersTo_Decorator): game_graphics, game_decorator, cosmic_lib {
+project (PICML_NoShowRefersTo_Decorator) : \
+  game_graphics, game_mga_decorator, cosmic_lib {
+
   sharedname = PICML_NoShowRefersTo_Decorator
 
   pch_header = StdAfx.h

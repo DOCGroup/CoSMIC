@@ -13,8 +13,8 @@
 #ifndef _PICML_MI_TEMPLATE_MODULE_INSTANCE_HANDLER_H_
 #define _PICML_MI_TEMPLATE_MODULE_INSTANCE_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
-#include "game/Model.h"
+#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
@@ -25,7 +25,7 @@ namespace MI
  *
  * Event handler for the TemplateModuleInst
  */
-class Template_Module_Instance_Handler : public GAME::Event_Handler_Impl
+class Template_Module_Instance_Handler : public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Default constructor.
@@ -34,9 +34,9 @@ public:
   /// Destructor.
   virtual ~Template_Module_Instance_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 
-  virtual int handle_lost_child (GAME::Object_in obj);
+  virtual int handle_lost_child (GAME::Mga::Object_in obj);
 };
 
 }

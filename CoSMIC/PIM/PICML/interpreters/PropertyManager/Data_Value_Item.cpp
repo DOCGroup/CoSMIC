@@ -10,7 +10,7 @@
 
 #include "resource.h"
 
-#include "game/stlace.h"
+#include "game/mga/stlace.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // class PICML_Data_Value_Control_Selector
@@ -95,7 +95,7 @@ private:
 //
 // Data_Value_Item
 //
-Data_Value_Item::Data_Value_Item (const GAME::FCO_in item)
+Data_Value_Item::Data_Value_Item (const GAME::Mga::FCO_in item)
 : item_ (item),
   control_ (0)
 {
@@ -113,7 +113,7 @@ bool Data_Value_Item::is_complex (void) const
 //
 // get_item
 //
-GAME::FCO Data_Value_Item::get_item (void)
+GAME::Mga::FCO Data_Value_Item::get_item (void)
 {
   return this->item_;
 }
@@ -135,8 +135,8 @@ void Data_Value_Item::
 value_click_begin (CWnd * parent, int item, const CRect & rect)
 {
   // Select the correct control based on the value's type.
-  GAME::Reference data_value = GAME::Reference::_narrow (this->item_);
-  GAME::FCO fco = data_value->refers_to ();
+  GAME::Mga::Reference data_value = GAME::Mga::Reference::_narrow (this->item_);
+  GAME::Mga::FCO fco = data_value->refers_to ();
 
   const std::string metaname = fco->meta ()->name ();
 

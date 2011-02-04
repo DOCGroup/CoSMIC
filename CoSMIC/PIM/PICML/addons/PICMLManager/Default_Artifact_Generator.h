@@ -13,8 +13,8 @@
 #ifndef _PICML_MANAGER_DEFAULT_ARTIFACT_GENERATOR_H_
 #define _PICML_MANAGER_DEFAULT_ARTIFACT_GENERATOR_H_
 
-#include "game/Atom.h"
-#include "game/Project.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Project.h"
 
 namespace PICML
 {
@@ -38,7 +38,7 @@ public:
    *
    * @param[in]       root        Root folder for the project
    */
-  Default_Artifact_Generator (::GAME::Project project, const std::string & folder);
+  Default_Artifact_Generator (::GAME::Mga::Project project, const std::string & folder);
 
   /// Destructor.
   ~Default_Artifact_Generator (void);
@@ -49,23 +49,23 @@ public:
    * @param[in]       component         Compent
    */
   bool generate (const Implementation_Configuration & config,
-                 const GAME::Model_in type);
+                 const GAME::Mga::Model_in type);
 
-  GAME::Atom svnt_artifact (void);
+  GAME::Mga::Atom svnt_artifact (void);
 
-  GAME::Atom exec_artifact (void);
+  GAME::Mga::Atom exec_artifact (void);
 
 private:
-  std::string get_location_basename (const GAME::Model_in type);
+  std::string get_location_basename (const GAME::Mga::Model_in type);
 
   /// The root folder for the project.
-  GAME::Folder artifact_folder_;
+  GAME::Mga::Folder artifact_folder_;
 
   /// The servant's artifact.
-  GAME::Atom svnt_artifact_;
+  GAME::Mga::Atom svnt_artifact_;
 
   /// The implementation's artifact.
-  GAME::Atom impl_artifact_;
+  GAME::Mga::Atom impl_artifact_;
 };
 
 }

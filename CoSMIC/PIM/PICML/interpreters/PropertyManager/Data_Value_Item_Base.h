@@ -14,7 +14,7 @@
 #define _PROPERTY_MANAGER_DATA_VALUE_BASE_H_
 
 #include "Data_Item.h"
-#include "game/FCO.h"
+#include "game/mga/FCO.h"
 
 /**
  * @class Data_Value_Item
@@ -24,7 +24,7 @@
 class Data_Value_Item_Base : public Data_Item
 {
 public:
-  virtual GAME::FCO get_item (void) = 0;
+  virtual GAME::Mga::FCO get_item (void) = 0;
 
   virtual bool is_complex (void) const = 0;
 

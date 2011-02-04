@@ -1,18 +1,20 @@
 // $Id$
 
-project (PICML_IDLGeneratorComponent) : picml_udm_utils, game_interpreter, udm, cosmic_utils {
+project (PICML_IDLGeneratorComponent) : \
+  picml_udm_utils, game_mga_interpreter, udm, cosmic_utils {
+
   sharedname = PICML_IDLGeneratorComponent
 
   Source_Files {
     IDL_Generator_Component.idl
     IDL_Generator_Component_Impl.cpp
     IDL_Generator_Component_Module.cpp
-    
+
     Component.rc
     Find_Forward_Decls.cpp
     File_Processor.cpp
     IDLStream.cpp
-    
+
     IDL_File_Generator.cpp
     IDL_Generator_Visitor.cpp
 
@@ -24,12 +26,12 @@ project (PICML_IDLGeneratorComponent) : picml_udm_utils, game_interpreter, udm, 
   Header_Files {
 
   }
-  
+
   Inline_Files {
     IDL_Cycle_Detector.inl
     IDL_File_Ordering_Processor.inl
   }
-  
+
   Resource_Files {
     CompIcon.ico
   }

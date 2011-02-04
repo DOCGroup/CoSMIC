@@ -28,7 +28,7 @@ void Auto_Model_Impl::dec_refcount (void)
 //
 // store
 //
-void Auto_Model_Impl::store (const ::GAME::Object_in model)
+void Auto_Model_Impl::store (const GAME::Mga::Object_in model)
 {
   // Check the type of the element. We do not need to store the
   // children if the element cannot have any children. ;-)
@@ -61,7 +61,7 @@ void Auto_Model_Impl::cleanup (void)
 
     if (listener)
     {
-      typedef std::vector <GAME::Object>::iterator iterator;
+      typedef std::vector <GAME::Mga::Object>::iterator iterator;
 
       for (iterator iter = this->existing_.begin (),
            iter_end = this->existing_.end (); iter != iter_end; ++ iter)
@@ -81,8 +81,8 @@ void Auto_Model_Impl::cleanup (void)
       // Destroy all the elements.
       std::for_each (this->existing_.begin (),
                      this->existing_.end (),
-                     boost::bind (&GAME::Object_Impl::destroy,
-                                  boost::bind (&GAME::Object::get, _1)));
+                     boost::bind (&GAME::Mga::Object_Impl::destroy,
+                                  boost::bind (&GAME::Mga::Object::get, _1)));
     }
   }
   catch (...)
@@ -94,9 +94,9 @@ void Auto_Model_Impl::cleanup (void)
 //
 // handle_new_object
 //
-void Auto_Model_Impl::handle_new_object (const GAME::Object_in obj)
+void Auto_Model_Impl::handle_new_object (const GAME::Mga::Object_in obj)
 {
-  std::vector <GAME::Object>::iterator iter =
+  std::vector <GAME::Mga::Object>::iterator iter =
     std::find (this->existing_.begin (),
                this->existing_.end (),
                obj);

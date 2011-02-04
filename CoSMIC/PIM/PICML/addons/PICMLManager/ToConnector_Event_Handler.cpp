@@ -3,13 +3,13 @@
 #include "StdAfx.h"
 #include "ToConnector_Event_Handler.h"
 
-#include "game/Connection.h"
-#include "game/Model.h"
-#include "game/MetaModel.h"
-#include "game/Reference.h"
-#include "game/Attribute.h"
-#include "game/dialogs/Selection_List_Dialog_T.h"
-#include "game/dialogs/Dialog_Display_Strategy.h"
+#include "game/mga/Connection.h"
+#include "game/mga/Model.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Attribute.h"
+#include "game/mga/dialogs/Selection_List_Dialog_T.h"
+#include "game/mga/dialogs/Dialog_Display_Strategy.h"
 
 #include "boost/bind.hpp"
 
@@ -45,9 +45,9 @@ public:
 
   }
 
-  bool get_display_name (const GAME::Object_in obj, std::string & display_name)
+  bool get_display_name (const GAME::Mga::Object_in obj, std::string & display_name)
   {
-    GAME::Object parent = obj->parent ();
+    GAME::Mga::Object parent = obj->parent ();
 
     if (parent->meta ()->name () == "ConnectorObject")
       display_name = obj->name ();
@@ -81,7 +81,7 @@ ToConnector_Event_Handler::~ToConnector_Event_Handler (void)
 // handle_object_created
 //
 int ToConnector_Event_Handler::
-create_connection (GAME::Object_in obj,
+create_connection (GAME::Mga::Object_in obj,
                    const std::string & port_role,
                    const std::string & connector_role,
                    const std::string & target_port_type)
@@ -91,34 +91,34 @@ create_connection (GAME::Object_in obj,
 
   // Get the source port (i.e., facet). We are going to use its
   // type when look for the receptacle on the target connector.
-  GAME::Connection conn = GAME::Connection::_narrow (obj);
-  GAME::FCO fco = conn->connection_point (port_role)->target ();
-  GAME::Reference port_inst = GAME::Reference::_narrow (fco);
+  GAME::Mga::Connection conn = GAME::Mga::Connection::_narrow (obj);
+  GAME::Mga::FCO fco = conn->connection_point (port_role)->target ();
+  GAME::Mga::Reference port_inst = GAME::Mga::Reference::_narrow (fco);
 
   fco = port_inst->refers_to ();
 
   if (fco.is_nil ())
     return 0;
 
-  GAME::Reference port = GAME::Reference::_narrow (fco);
+  GAME::Mga::Reference port = GAME::Mga::Reference::_narrow (fco);
   fco = port->refers_to ();
 
   if (fco.is_nil ())
     return 0;
 
-  GAME::Model target_object = GAME::Model::_narrow (fco);
+  GAME::Mga::Model target_object = GAME::Mga::Model::_narrow (fco);
 
   // Get the connector instance.
   fco = conn->connection_point (connector_role)->target ();
-  GAME::Model connector_inst = GAME::Model::_narrow (fco);
+  GAME::Mga::Model connector_inst = GAME::Mga::Model::_narrow (fco);
 
   // Get the connector object for this instance.
-  GAME::Model connector;
+  GAME::Mga::Model connector;
   if (!this->get_connector_object (connector_inst, connector))
     return 0;
 
   // Locate the target receptacles that match this object.
-  std::vector <GAME::Reference> matching_ports;
+  std::vector <GAME::Mga::Reference> matching_ports;
   this->get_matching_ports (connector,
                             target_object,
                             target_port_type,
@@ -127,12 +127,12 @@ create_connection (GAME::Object_in obj,
   if (matching_ports.empty ())
     return 0;
 
-  GAME::Reference matching_port;
+  GAME::Mga::Reference matching_port;
 
   if (matching_ports.size () > 1)
   {
     using GAME::Dialogs::Selection_List_Dialog_T;
-    using GAME::Reference;
+    using GAME::Mga::Reference;
 
     // Display the set of ports so the modeler can select
     // which one they want to connect with.
@@ -160,7 +160,7 @@ create_connection (GAME::Object_in obj,
   // port type. If the parent is a connector, then set the name of the
   // connection to the name of the selected receptacle. If the parent
   // is an extended port, then sent the inner name as well.
-  GAME::Model parent = matching_port->parent_model ();
+  GAME::Mga::Model parent = matching_port->parent_model ();
   const std::string metaname = parent->meta ()->name ();
 
   if (metaname == "ConnectorObject")
@@ -180,11 +180,11 @@ create_connection (GAME::Object_in obj,
 // get_connector_object
 //
 bool ToConnector_Event_Handler::
-get_connector_object (const GAME::Model_in inst, GAME::Model & conobj)
+get_connector_object (const GAME::Mga::Model_in inst, GAME::Mga::Model & conobj)
 {
-  using GAME::Connection;
-  using GAME::FCO;
-  using GAME::Reference;
+  using GAME::Mga::Connection;
+  using GAME::Mga::FCO;
+  using GAME::Mga::Reference;
 
   // Get the connector implementation reference.
   std::vector <Reference> connector_impls;
@@ -210,7 +210,7 @@ get_connector_object (const GAME::Model_in inst, GAME::Model & conobj)
     return false;
 
   // Convert the object into the model.
-  conobj = GAME::Model::_narrow (fco);
+  conobj = GAME::Mga::Model::_narrow (fco);
 
   return true;
 }
@@ -219,12 +219,12 @@ get_connector_object (const GAME::Model_in inst, GAME::Model & conobj)
 // get_matching_ports
 //
 void ToConnector_Event_Handler::
-get_matching_ports (const GAME::Model_in connector,
-                    const GAME::Model_in object,
+get_matching_ports (const GAME::Mga::Model_in connector,
+                    const GAME::Mga::Model_in object,
                     const std::string & type,
-                    std::vector <GAME::Reference> & ports)
+                    std::vector <GAME::Mga::Reference> & ports)
 {
-  using GAME::Reference;
+  using GAME::Mga::Reference;
 
   // Get all the receptacles in this connector object. We then need
   // to locate the receptacles that match the target object's type.
@@ -287,7 +287,7 @@ get_matching_ports (const GAME::Model_in connector,
 
     for (; iter != iter_end; ++ iter)
     {
-      GAME::Model base_connector = GAME::Model::_narrow ((*iter)->refers_to ());
+      GAME::Mga::Model base_connector = GAME::Mga::Model::_narrow ((*iter)->refers_to ());
       this->get_matching_ports (base_connector, object, type, ports);
     }
   }
@@ -297,12 +297,12 @@ get_matching_ports (const GAME::Model_in connector,
 // get_matching_extended_ports
 //
 void ToConnector_Event_Handler::
-get_matching_extended_ports (const GAME::Model_in connector,
-                             const GAME::FCO_in porttype,
+get_matching_extended_ports (const GAME::Mga::Model_in connector,
+                             const GAME::Mga::FCO_in porttype,
                              const std::string & metaname,
-                             std::vector <GAME::Reference> & ports)
+                             std::vector <GAME::Mga::Reference> & ports)
 {
-  using GAME::Reference;
+  using GAME::Mga::Reference;
 
   // Get all the exposed porttypes in this connector that are
   // of the specified metaname (i.e., extended/mirror port).
@@ -333,7 +333,7 @@ get_matching_extended_ports (const GAME::Model_in connector,
 
     for (; iter != iter_end; ++ iter)
     {
-      GAME::Model base_connector = GAME::Model::_narrow ((*iter)->refers_to ());
+      GAME::Mga::Model base_connector = GAME::Mga::Model::_narrow ((*iter)->refers_to ());
       this->get_matching_extended_ports (base_connector, porttype, metaname, ports);
     }
   }
@@ -343,20 +343,20 @@ get_matching_extended_ports (const GAME::Model_in connector,
 // get_matching_inner_ports
 //
 void ToConnector_Event_Handler::
-get_matching_inner_ports (const GAME::Reference_in extended,
-                          const GAME::Model_in object,
+get_matching_inner_ports (const GAME::Mga::Reference_in extended,
+                          const GAME::Mga::Model_in object,
                           const std::string & type,
-                          std::vector <GAME::Reference> & ports)
+                          std::vector <GAME::Mga::Reference> & ports)
 {
-  using GAME::FCO;
-  using GAME::Reference;
+  using GAME::Mga::FCO;
+  using GAME::Mga::Reference;
 
   FCO fco = extended->refers_to ();
 
   if (fco.is_nil ())
     return;
 
-  GAME::Model porttype = GAME::Model::_narrow (fco);
+  GAME::Mga::Model porttype = GAME::Mga::Model::_narrow (fco);
   std::vector <Reference> receptacles;
 
   if (porttype->children (type, receptacles))
@@ -395,7 +395,7 @@ FacetToConnector_Event_Handler::~FacetToConnector_Event_Handler (void)
 // handle_object_created
 //
 int FacetToConnector_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   return this->create_connection (obj, "dst", "src", "RequiredRequestPort");
 }
@@ -423,7 +423,7 @@ ReceptacleToConnector_Event_Handler::~ReceptacleToConnector_Event_Handler (void)
 // handle_object_created
 //
 int ReceptacleToConnector_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   return this->create_connection (obj, "src", "dst", "ProvidedRequestPort");
 }
@@ -453,17 +453,17 @@ PortType_To_Connector_Event_Handler::
 // set_connection_name
 //
 int PortType_To_Connector_Event_Handler::
-set_connection_name (const GAME::Model_in connector,
-                     const GAME::FCO_in portend,
-                     GAME::Connection connection)
+set_connection_name (const GAME::Mga::Model_in connector,
+                     const GAME::Mga::FCO_in portend,
+                     GAME::Mga::Connection connection)
 {
   if (this->is_importing_)
     return 0;
 
-  using GAME::Reference;
-  using GAME::Model;
+  using GAME::Mga::Reference;
+  using GAME::Mga::Model;
 
-  GAME::FCO the_portend (portend);
+  GAME::Mga::FCO the_portend (portend);
   std::string metaname = portend->meta ()->name ();
 
   if (metaname == "ExtendedPortDelegate")
@@ -480,13 +480,13 @@ set_connection_name (const GAME::Model_in connector,
   // The port is either an extended or mirror port instance. We need
   // to get the instance's type information (i.e., what it refers to).
   Reference inst = Reference::_narrow (the_portend);
-  Reference extended = GAME::Reference::_narrow (inst->refers_to ());
+  Reference extended = GAME::Mga::Reference::_narrow (inst->refers_to ());
 
   if (extended.is_nil ())
     return 0;
 
   // We can now get the actual port type.
-  GAME::FCO porttype = extended->refers_to ();
+  GAME::Mga::FCO porttype = extended->refers_to ();
 
   if (porttype.is_nil ())
     return 0;
@@ -510,7 +510,7 @@ set_connection_name (const GAME::Model_in connector,
                                      metaname,
                                      valid_ports);
 
-  GAME::Reference valid_port;
+  GAME::Mga::Reference valid_port;
 
   switch (valid_ports.size ())
   {
@@ -552,12 +552,12 @@ set_connection_name (const GAME::Model_in connector,
 // get_extended_port_instance
 //
 bool PortType_To_Connector_Event_Handler::
-get_extended_port_instance (const GAME::FCO_in portend, GAME::FCO & port_inst)
+get_extended_port_instance (const GAME::Mga::FCO_in portend, GAME::Mga::FCO& port_inst)
 {
-  using GAME::Connection;
-  using GAME::ConnectionPoints;
-  using GAME::ConnectionPoint;
-  using GAME::FCO;
+  using GAME::Mga::Connection;
+  using GAME::Mga::ConnectionPoints;
+  using GAME::Mga::ConnectionPoint;
+  using GAME::Mga::FCO;
 
   // Since we are walking the model from the connector to the
   // target port type, we need to find the connection point where
@@ -586,12 +586,12 @@ get_extended_port_instance (const GAME::FCO_in portend, GAME::FCO & port_inst)
 // get_mirror_port_instance
 //
 bool PortType_To_Connector_Event_Handler::
-get_mirror_port_instance (const GAME::FCO_in portend, GAME::FCO & port_inst)
+get_mirror_port_instance (const GAME::Mga::FCO_in portend, GAME::Mga::FCO& port_inst)
 {
-  using GAME::Connection;
-  using GAME::ConnectionPoints;
-  using GAME::ConnectionPoint;
-  using GAME::FCO;
+  using GAME::Mga::Connection;
+  using GAME::Mga::ConnectionPoints;
+  using GAME::Mga::ConnectionPoint;
+  using GAME::Mga::FCO;
 
   // Since we are walking the model from the connector to the
   // target port type, we need to find the connection point where
@@ -641,15 +641,15 @@ Publish_To_Connector_Event_Handler::
 // handle_object_created
 //
 int Publish_To_Connector_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
-  using GAME::Connection;
-  using GAME::Model;
+  using GAME::Mga::Connection;
+  using GAME::Mga::Model;
 
   // Get the connection endpoints.
   Connection publish = Connection::_narrow (obj);
   Model connector_inst = Model::_narrow (publish->dst ());
-  GAME::FCO portend = publish->src ();
+  GAME::Mga::FCO portend = publish->src ();
 
   return this->set_connection_name (connector_inst, portend, publish);
 }
@@ -677,17 +677,17 @@ Consume_To_Connector_Event_Handler::~Consume_To_Connector_Event_Handler (void)
 // handle_object_created
 //
 int Consume_To_Connector_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
-  using GAME::Connection;
-  using GAME::Model;
+  using GAME::Mga::Connection;
+  using GAME::Mga::Model;
 
   // This is a publish connection.
   Connection publish = Connection::_narrow (obj);
 
   // First, let's get the source PortType that wants to connect to
   // the target connector.
-  GAME::FCO port =  publish->dst ();
+  GAME::Mga::FCO port =  publish->dst ();
   Model connector_inst = Model::_narrow (publish->src ());
 
   return this->set_connection_name (connector_inst, port, publish);

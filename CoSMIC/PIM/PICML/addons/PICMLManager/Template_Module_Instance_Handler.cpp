@@ -9,15 +9,15 @@
 
 #include "Scope_Display_Strategy.h"
 
-#include "game/MetaAspect.h"
-#include "game/MetaModel.h"
-#include "game/Filter.h"
-#include "game/Project.h"
-#include "game/Reference.h"
-#include "game/be/Event_Handler.h"
-#include "game/dialogs/Name_Dialog.h"
-#include "game/dialogs/Selection_List_Dialog_T.h"
-#include "game/utils/Point.h"
+#include "game/mga/MetaAspect.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/Filter.h"
+#include "game/mga/Project.h"
+#include "game/mga/Reference.h"
+#include "game/mga/be/Event_Handler.h"
+#include "game/mga/dialogs/Name_Dialog.h"
+#include "game/mga/dialogs/Selection_List_Dialog_T.h"
+#include "game/mga/utils/Point.h"
 
 #include "boost/bind.hpp"
 
@@ -35,14 +35,14 @@ namespace MI
  */
 struct is_standard_package
 {
-  bool operator () (const GAME::FCO_in fco) const
+  bool operator () (const GAME::Mga::FCO_in fco) const
   {
-    GAME::Model package = GAME::Model::_narrow (fco);
+    GAME::Mga::Model package = GAME::Mga::Model::_narrow (fco);
     std::string path = package->path ("/");
 
-    GAME::Meta::Aspect aspect = package->meta ()->aspect ("TemplateParameters");
+    GAME::Mga::Meta::Aspect aspect = package->meta ()->aspect ("TemplateParameters");
 
-    std::vector <GAME::FCO> parameters;
+    std::vector <GAME::Mga::FCO> parameters;
     return package->children (aspect, parameters) == 0;
   }
 };
@@ -53,7 +53,7 @@ static const unsigned long mask = OBJEVENT_CREATED | OBJEVENT_LOSTCHILD;
 // Template_Module_Instance_Handler
 //
 Template_Module_Instance_Handler::Template_Module_Instance_Handler (void)
-: GAME::Event_Handler_Impl (mask)
+: GAME::Mga::Event_Handler_Impl (mask)
 {
 
 }
@@ -62,7 +62,7 @@ Template_Module_Instance_Handler::Template_Module_Instance_Handler (void)
 // handle_object_created
 //
 int Template_Module_Instance_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
@@ -75,10 +75,10 @@ handle_object_created (GAME::Object_in obj)
     return -1;
 
   // Locate all the packages in the object's project.
-  GAME::Filter filter (obj->project ());
+  GAME::Mga::Filter filter (obj->project ());
   filter.kind ("Package");
 
-  std::vector <GAME::FCO> packages;
+  std::vector <GAME::Mga::FCO> packages;
 
   if (0 == filter.apply (packages))
   {
@@ -88,8 +88,8 @@ handle_object_created (GAME::Object_in obj)
 
   // From the selected packages, select the packages that are template
   // packages (i.e., have at least one template parameter in the package).
-  std::vector <GAME::FCO>::iterator iter = packages.begin ();
-  std::vector <GAME::FCO>::iterator iter_end =
+  std::vector <GAME::Mga::FCO>::iterator iter = packages.begin ();
+  std::vector <GAME::Mga::FCO>::iterator iter_end =
     std::remove_if (iter,
                     packages.end (),
                     is_standard_package ());
@@ -98,7 +98,7 @@ handle_object_created (GAME::Object_in obj)
   // necessary since it will determine if we must bail out, auto
   // select the element, or display a dialog.
   size_t count = std::distance (iter, iter_end);
-  GAME::FCO template_package;
+  GAME::Mga::FCO template_package;
 
   switch (count)
   {
@@ -117,7 +117,7 @@ handle_object_created (GAME::Object_in obj)
       using GAME::Dialogs::Selection_List_Dialog_T;
 
       Scope_Display_Strategy display;
-      Selection_List_Dialog_T <GAME::FCO> dialog (&display, ::AfxGetMainWnd ());
+      Selection_List_Dialog_T <GAME::Mga::FCO> dialog (&display, ::AfxGetMainWnd ());
 
       dialog.insert (iter, iter_end);
 
@@ -129,13 +129,13 @@ handle_object_created (GAME::Object_in obj)
   }
 
   // Create the template package type.
-  GAME::Model tpi = GAME::Model::_narrow (obj);
-  GAME::Reference ref = GAME::Reference_Impl::_create (tpi, "PackageType");
+  GAME::Mga::Model tpi = GAME::Mga::Model::_narrow (obj);
+  GAME::Mga::Reference ref = GAME::Mga::Reference_Impl::_create (tpi, "PackageType");
   ref->refers_to (template_package);
 
   // Set the position of the reference.
-  GAME::utils::set_position ("TemplateParameters",
-                             GAME::utils::Point (100, 100),
+  GAME::Mga::set_position ("TemplateParameters",
+                             GAME::Mga::Point (100, 100),
                              ref);
 
   return 0;
@@ -144,7 +144,7 @@ handle_object_created (GAME::Object_in obj)
 //
 // handle_lost_child
 //
-int Template_Module_Instance_Handler::handle_lost_child (GAME::Object_in obj)
+int Template_Module_Instance_Handler::handle_lost_child (GAME::Mga::Object_in obj)
 {
   if (obj->status () != 0)
     return 0;

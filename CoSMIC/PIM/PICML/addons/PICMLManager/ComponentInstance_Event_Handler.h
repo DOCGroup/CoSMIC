@@ -13,9 +13,8 @@
 #ifndef _PICML_MI_COMPONENT_INSTANCE_HANDLER_H_
 #define _PICML_MI_COMPONENT_INSTANCE_HANDLER_H_
 
-#include "game/GAME.h"
-#include "game/be/Event_Handler_Impl.h"
-#include "game/Model.h"
+#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/Model.h"
 
 #include "boost/bind.hpp"
 
@@ -30,7 +29,7 @@ namespace MI
  * Event handler for managing the functionality of a ComponentInstance
  * in PICML.
  */
-class ComponentInstance_Event_Handler : public GAME::Event_Handler_Impl
+class ComponentInstance_Event_Handler : public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Default constructor.
@@ -39,9 +38,9 @@ public:
   /// Destructor.
   virtual ~ComponentInstance_Event_Handler (void);
 
-  virtual int handle_object_created (GAME::Object_in obj);
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
 
-  virtual int handle_lost_child (GAME::Object_in obj);
+  virtual int handle_lost_child (GAME::Mga::Object_in obj);
 };
 
 }

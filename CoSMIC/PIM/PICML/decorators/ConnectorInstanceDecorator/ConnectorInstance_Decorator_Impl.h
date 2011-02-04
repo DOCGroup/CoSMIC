@@ -13,14 +13,14 @@
 #ifndef _PICML_CONNECTOR_INSTANCE_DECORATOR_IMPL_H_
 #define _PICML_CONNECTOR_INSTANCE_DECORATOR_IMPL_H_
 
-#include "game/be/Decorator_T.h"
-#include "game/be/Decorator_Impl.h"
+#include "game/mga/be/Decorator_T.h"
+#include "game/mga/be/Decorator_Impl.h"
 
 /**
  * @class ConnectorInstance_Decorator_Impl
  */
 class ConnectorInstance_Decorator_Impl :
-  public GAME::Decorator_Impl
+  public GAME::Mga::Decorator_Impl
 {
 public:
   /// Default constructor
@@ -29,13 +29,13 @@ public:
   /// Destructor.
   ~ConnectorInstance_Decorator_Impl (void);
 
-  int initialize (const GAME::Project & proj,
-                  const GAME::Meta::Part_in part,
-                  const GAME::FCO_in fco);
+  int initialize (const GAME::Mga::Project & proj,
+                  const GAME::Mga::Meta::Part_in part,
+                  const GAME::Mga::FCO_in fco);
 
-  int initialize_ex (const GAME::Project & proj,
-                     const GAME::Meta::Part_in part,
-                     const GAME::FCO_in fco,
+  int initialize_ex (const GAME::Mga::Project & proj,
+                     const GAME::Mga::Meta::Part_in part,
+                     const GAME::Mga::FCO_in fco,
                      IMgaCommonDecoratorEvents * eventSink,
                      ULONGLONG parentWnd);
 

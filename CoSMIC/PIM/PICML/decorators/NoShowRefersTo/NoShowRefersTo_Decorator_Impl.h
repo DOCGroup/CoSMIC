@@ -13,11 +13,11 @@
 #ifndef _COMPONENT_DECORATOR_IMPL_H_
 #define _COMPONENT_DECORATOR_IMPL_H_
 
-#include "game/be/Decorator_Impl.h"
-#include "game/MetaAspect.h"
-#include "game/Part.h"
-#include "game/graphics/Image_Manager_T.h"
-#include "game/graphics/Image_Resolver.h"
+#include "game/mga/be/Decorator_Impl.h"
+#include "game/mga/MetaAspect.h"
+#include "game/mga/Part.h"
+#include "game/mga/graphics/Image_Manager_T.h"
+#include "game/mga/graphics/Image_Resolver.h"
 
 #include "NoShowRefersTo_Decorator_export.h"
 
@@ -30,7 +30,7 @@ class Bitmap;
  * @class NoShowRefersTo_Decorator_Impl
  */
 class NoShowRefersTo_Decorator_Impl :
-  public GAME::Decorator_Impl
+  public GAME::Mga::Decorator_Impl
 {
 public:
   /// Default constructor
@@ -39,9 +39,9 @@ public:
   /// Destructor.
   ~NoShowRefersTo_Decorator_Impl (void);
 
-  int initialize_ex (const GAME::Project & proj,
-                     const GAME::Meta::Part_in part,
-                     const GAME::FCO_in fco,
+  int initialize_ex (const GAME::Mga::Project & proj,
+                     const GAME::Mga::Meta::Part_in part,
+                     const GAME::Mga::FCO_in fco,
                      IMgaCommonDecoratorEvents * eventSink,
                      ULONGLONG parentWnd);
 

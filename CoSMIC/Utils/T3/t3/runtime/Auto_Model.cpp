@@ -7,6 +7,9 @@
 
 namespace T3
 {
+//
+// Auto_Model
+//
 Auto_Model::Auto_Model (const Auto_Model & copy)
 : impl_ (copy.impl_)
 {
@@ -47,7 +50,7 @@ const Auto_Model  & Auto_Model::operator = (const Auto_Model & rhs)
 //
 // operator =
 //
-void Auto_Model::attach (const ::GAME::Object_in obj)
+void Auto_Model::attach (const GAME::Mga::Object_in obj)
 {
   if (0 == this->impl_ || this->impl_->model () != obj)
   {
@@ -66,10 +69,10 @@ void Auto_Model::attach (const ::GAME::Object_in obj)
 //
 // create_element
 //
-GAME::Object Auto_Model::
+GAME::Mga::Object Auto_Model::
 create_element (const std::string & type)
 {
-  GAME::Object object =
+  GAME::Mga::Object object =
     T3_RUNTIME_ENGINE->create_element (this->impl_->model (), type);
 
   this->impl_->handle_new_object (object);
@@ -83,7 +86,7 @@ create_element (const std::string & type)
 bool Auto_Model::
 create_unique_reference (const std::string & symbol, const std::string & type)
 {
-  GAME::FCO ref_element;
+  GAME::Mga::FCO ref_element;
 
   bool result =
     T3_RUNTIME_ENGINE->create_unique_reference (this->impl_->model (),

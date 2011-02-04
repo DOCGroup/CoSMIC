@@ -1,11 +1,14 @@
 // $Id$
 
-project (GME_Model_Upgrade) : game, aceexe, cosmic_bin {
+project (GME_Model_Upgrade) : game_mga, aceexe, cosmic_bin {
   exename = gme-upgrade
 
   specific {
     subsystem = 1
   }
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
 
   Source_Files {
     Model_Upgrade.cpp

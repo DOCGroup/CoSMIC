@@ -4,8 +4,6 @@
 #include "StdAfx.h"
 #include "ComponentInstanceRef_Event_Handler.h"
 
-#include "game/GAME.h"
-
 namespace PICML
 {
 namespace MI
@@ -32,7 +30,7 @@ ComponentInstanceRef_Event_Handler::~ComponentInstanceRef_Event_Handler (void)
 // handle_set_included
 //
 int ComponentInstanceRef_Event_Handler::
-handle_set_included (GAME::Object_in obj)
+handle_set_included (GAME::Mga::Object_in obj)
 {
   return 0;
 }

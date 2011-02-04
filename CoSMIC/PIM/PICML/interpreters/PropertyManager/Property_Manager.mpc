@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_PropertyManager): game_interpreter, game_utils, cosmic_lib {
+project (PICML_PropertyManager): game_mga_interpreter, game_mga_utils, cosmic_lib {
   sharedname = PICML_Property_Manager
 
   pch_header = StdAfx.h

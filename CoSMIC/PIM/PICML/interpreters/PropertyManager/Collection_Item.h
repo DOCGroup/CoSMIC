@@ -36,7 +36,7 @@ public:
 
   virtual ~Collection_Item (void);
 
-  virtual GAME::FCO get_item (void);
+  virtual GAME::Mga::FCO get_item (void);
 
   virtual void get_display_info (std::string & name, std::string & value) const;
 

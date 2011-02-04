@@ -1,6 +1,8 @@
 // $Id$
 
-project (PICML_ComponentRef_Decorator): game_graphics, game_decorator, cosmic_lib {
+project (PICML_ComponentRef_Decorator) : \
+  game_graphics, game_mga_decorator, cosmic_lib {
+
   sharedname = PICML_ComponentRef_Decorator
 
   libs  += PICML_Component_Decorator

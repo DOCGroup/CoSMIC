@@ -14,8 +14,8 @@
 #define _PROPERTY_MANAGER_NEW_COLLECTION_ITEM_H_
 
 #include <memory>
-#include "game/utils/Point.h"
-#include "game/FCO.h"
+#include "game/mga/utils/Point.h"
+#include "game/mga/FCO.h"
 #include "Data_Item.h"
 
 // Forward decl.
@@ -30,7 +30,7 @@ class New_Collection_Item : public Data_Item
 {
 public:
   New_Collection_Item (Collection_Container_Data_Item * parent,
-                       GAME::FCO_in type,
+                       GAME::Mga::FCO_in type,
                        int indent);
 
   virtual void get_display_info (std::string & name, std::string & value) const;
@@ -42,7 +42,7 @@ private:
   std::auto_ptr <Collection_Container_Data_Item> parent_;
 
   /// The type for the collection.
-  GAME::FCO type_;
+  GAME::Mga::FCO type_;
 
   /// The current indentation.
   int indent_;
@@ -51,7 +51,7 @@ private:
   size_t next_index_;
 
   /// The last location for the element.
-  GAME::utils::Point last_location_;
+  GAME::Mga::Point last_location_;
 };
 
 

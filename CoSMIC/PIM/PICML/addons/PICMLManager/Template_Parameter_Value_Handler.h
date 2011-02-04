@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_TEMPLATE_PARAMETER_VALUE_HANDLER_H_
 #define _PICML_MI_TEMPLATE_PARAMETER_VALUE_HANDLER_H_
 
-#include "game/be/Readonly_Event_Handler.h"
+#include "game/mga/be/Readonly_Event_Handler.h"
 
 namespace PICML
 {
@@ -26,7 +26,7 @@ namespace MI
  * This class creates a NodeReference for the desired object.
  */
 class Template_Parameter_Value_Handler :
-  public GAME::Readonly_Event_Handler
+  public GAME::Mga::Readonly_Event_Handler
 {
 public:
   /// Default constructor.

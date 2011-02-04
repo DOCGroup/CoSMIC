@@ -14,16 +14,15 @@
 #define __DECORATOR_H_
 
 #include "DecoratorLib.h"
-#include "game/be/Decorator_T.h"
-#include "game/be/Decorator_Impl.h"
-#include "MaskedBitmap.h"
+#include "game/mga/be/Decorator_T.h"
+#include "game/mga/be/Decorator_Impl.h"
 
 /**
  * @class Show_Reference_Decorator_Impl
  *
  * Implementation of the ShowReferenceDecorator.
  */
-class Show_Reference_Decorator_Impl : public GAME::Decorator_Impl
+class Show_Reference_Decorator_Impl : public GAME::Mga::Decorator_Impl
 {
 public:
   /// Default constructor.
@@ -32,10 +31,10 @@ public:
   /// Destructor
   ~Show_Reference_Decorator_Impl (void);
 
-  int initialize_ex (const GAME::Project & proj, 
-                     const GAME::Meta::Part_in part, 
-                     const GAME::FCO_in fco,
-                     IMgaCommonDecoratorEvents * eventSink, 
+  int initialize_ex (const GAME::Mga::Project & proj,
+                     const GAME::Mga::Meta::Part_in part,
+                     const GAME::Mga::FCO_in fco,
+                     IMgaCommonDecoratorEvents * eventSink,
                      ULONGLONG parentWnd);
 
   int get_preferred_size (long & sx, long & sy);

@@ -6,13 +6,13 @@
 #include "DeploymentPlan_MainDialog.h"
 #include "DeploymentPlanVisitor.h"
 
-#include "game/be/Interpreter_T.h"
+#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/utils/Project_Settings.h"
+
+#include "Utils/Utils.h"
 
 #include "UdmGme.h"
 #include "UdmStatic.h"
-
-#include "game/utils/Project_Settings.h"
-#include "Utils/Utils.h"
 
 GAME_DECLARE_INTERPRETER (Deployment_Plan_Generator, Deployment_Plan_Generator_Impl);
 
@@ -28,7 +28,7 @@ struct insert_udm_t
 
   }
 
-  void operator () (const GAME::FCO_in fco) const
+  void operator () (const GAME::Mga::FCO_in fco) const
   {
     this->coll_.insert (this->network_.Gme2Udm (fco->impl ()));
   }
@@ -43,9 +43,9 @@ private:
 // Deployment_Plan_Generator_Impl
 //
 Deployment_Plan_Generator_Impl::Deployment_Plan_Generator_Impl (void)
-: GAME::Interpreter_Impl_Base ("DAnCE Deployment Plan Generator",
-                               "MGA.Interpreter.DeploymentPlan",
-                               "PICML")
+: GAME::Mga::Interpreter_Impl_Base ("DAnCE Deployment Plan Generator",
+                                    "MGA.Interpreter.DeploymentPlan",
+                                    "PICML")
 {
 
 }
@@ -62,9 +62,9 @@ Deployment_Plan_Generator_Impl::~Deployment_Plan_Generator_Impl (void)
 // invoke_ex
 //
 int Deployment_Plan_Generator_Impl::
-invoke_ex (GAME::Project project,
-           GAME::FCO_in focus,
-           std::vector <GAME::FCO> & selected,
+invoke_ex (GAME::Mga::Project project,
+           GAME::Mga::FCO_in focus,
+           std::vector <GAME::Mga::FCO> & selected,
            long flags)
 {
   UdmGme::GmeDataNetwork dngBackend (PICML::diagram);
@@ -150,9 +150,9 @@ set_parameter (const std::string & name, const std::string & value)
 // load_configuration
 //
 void Deployment_Plan_Generator_Impl::
-load_configuration (GAME::Project proj, Configuration & config)
+load_configuration (GAME::Mga::Project proj, Configuration & config)
 {
-  GAME::utils::Project_Settings settings (proj, "DeploymentPlanGenerator");
+  GAME::Mga::Project_Settings settings (proj, "DeploymentPlanGenerator");
 
   settings.get_string_value ("OutputPath", config.output_);
   settings.get_boolean_value ("HasLocalityManager", config.has_locality_manager_);
@@ -163,9 +163,9 @@ load_configuration (GAME::Project proj, Configuration & config)
 // save_configuration
 //
 void Deployment_Plan_Generator_Impl::
-save_configuration (GAME::Project proj, const Configuration & config)
+save_configuration (GAME::Mga::Project proj, const Configuration & config)
 {
-  GAME::utils::Project_Settings settings (proj, "DeploymentPlanGenerator");
+  GAME::Mga::Project_Settings settings (proj, "DeploymentPlanGenerator");
 
   settings.set_string_value ("OutputPath", config.output_);
   settings.set_boolean_value ("HasLocalityManager", config.has_locality_manager_);

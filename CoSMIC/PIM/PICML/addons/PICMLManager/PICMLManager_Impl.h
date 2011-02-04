@@ -13,14 +13,14 @@
 #ifndef _PICML_MANAGER_IMPL_H_
 #define _PICML_MANAGER_IMPL_H_
 
-#include "game/be/Event_Handler_Impl.h"
+#include "game/mga/be/Event_Handler_Impl.h"
 
 /**
  * @class PICMLManager_Impl
  *
  * Raw COM implementation of the PICML manager add-on.
  */
-class PICMLManager_Impl : public GAME::Event_Handler_Impl
+class PICMLManager_Impl : public GAME::Mga::Event_Handler_Impl
 {
 public:
   /// Constructor.
@@ -29,7 +29,7 @@ public:
   /// Destructor.
   virtual ~PICMLManager_Impl (void);
 
-  virtual int initialize (GAME::Project project);
+  virtual int initialize (GAME::Mga::Project project);
 };
 
 #endif // _PICML_MANAGER_IMPL_H_

@@ -5,17 +5,17 @@
 #include "Collection_Item.h"
 #include "Data_Value_Item.h"
 
-#include "game/MetaFCO.h"
-#include "game/Model.h"
-#include "game/Reference.h"
-#include "game/utils/Point.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/Model.h"
+#include "game/mga/Reference.h"
+#include "game/mga/utils/Point.h"
 
 #include <algorithm>
 
 //
 // is_complex_type
 //
-static bool is_complex_type (const GAME::FCO_in fco)
+static bool is_complex_type (const GAME::Mga::FCO_in fco)
 {
   const std::string metaname = fco->meta ()->name ();
   return metaname == "Collection" || metaname == "Aggregate";
@@ -25,9 +25,9 @@ static bool is_complex_type (const GAME::FCO_in fco)
 // get_complex_type
 //
 static bool
-get_complex_type (const GAME::Model_in container, GAME::FCO & complex)
+get_complex_type (const GAME::Mga::Model_in container, GAME::Mga::FCO& complex)
 {
-  std::vector <GAME::Reference> complex_types;
+  std::vector <GAME::Mga::Reference> complex_types;
   if (0 == container->children ("ComplexTypeReference", complex_types))
     return false;
 
@@ -40,16 +40,16 @@ get_complex_type (const GAME::Model_in container, GAME::FCO & complex)
 // Collection_Container_Data_Item
 //
 Collection_Container_Data_Item::
-Collection_Container_Data_Item (const GAME::Model_in item)
+Collection_Container_Data_Item (const GAME::Mga::Model_in item)
 : Container_Data_Item (item),
   is_complex_type_ (false)
 {
-  GAME::FCO fco;
+  GAME::Mga::FCO fco;
 
   if (::get_complex_type (this->item_, fco))
   {
     // Get the collection's type information.
-    GAME::Reference coll = GAME::Reference::_narrow (fco);
+    GAME::Mga::Reference coll = GAME::Mga::Reference::_narrow (fco);
     this->type_ = coll->refers_to ();
 
     // Cache the type's complexity.
@@ -66,16 +66,16 @@ Collection_Container_Data_Item::new_item (void)
   // The user wants to insert a new item into a sequence. We
   // need to find the parent of this item. This will be the
   // item that's one indentation less than the current one.
-  GAME::FCO value_base;
+  GAME::Mga::FCO value_base;
 
   if (this->is_complex_type_)
   {
-    using GAME::Model;
-    using GAME::Reference;
+    using GAME::Mga::Model;
+    using GAME::Mga::Reference;
 
     // We need to create a DataValueContainer element.
-    Model container = GAME::Model_Impl::_create (this->item_, "DataValueContainer");
-    Reference ctr = GAME::Reference_Impl::_create (container, "ComplexTypeReference");
+    Model container = GAME::Mga::Model_Impl::_create (this->item_, "DataValueContainer");
+    Reference ctr = GAME::Mga::Reference_Impl::_create (container, "ComplexTypeReference");
     ctr->refers_to (this->type_);
 
     // Save the container.
@@ -84,7 +84,7 @@ Collection_Container_Data_Item::new_item (void)
   else
   {
     // We are create space for a predefined type, or an enumeration.
-    GAME::Reference data_value = GAME::Reference_Impl::_create (this->item_, "DataValue");
+    GAME::Mga::Reference data_value = GAME::Mga::Reference_Impl::_create (this->item_, "DataValue");
     data_value->refers_to (this->type_);
 
     value_base = data_value;
@@ -97,21 +97,21 @@ Collection_Container_Data_Item::new_item (void)
 // new_item
 //
 Collection_Item *
-Collection_Container_Data_Item::new_item (GAME::FCO item)
+Collection_Container_Data_Item::new_item (GAME::Mga::FCO item)
 {
   // Increase the y-value for the last location to represent the
   // new created item.
-  GAME::utils::Point location (100, 0);
+  GAME::Mga::Point location (100, 0);
 
   if (!this->items_.empty ())
-    GAME::utils::position ("DataValueAspect",
+    GAME::Mga::position ("DataValueAspect",
                            this->items_.back ()->get_item (),
                            location);
 
   // Move down to the next location.
   location.shift (0, 100);
 
-  GAME::utils::position ("DataValueAspect",
+  GAME::Mga::position ("DataValueAspect",
                          location,
                          item);
 
@@ -120,7 +120,7 @@ Collection_Container_Data_Item::new_item (GAME::FCO item)
 
   if (this->is_complex_type_)
   {
-    GAME::Model container = GAME::Model::_narrow (item);
+    GAME::Mga::Model container = GAME::Mga::Model::_narrow (item);
 
     if (this->type_->meta ()->name () == "Collection")
       data_item.reset (new Collection_Container_Data_Item (container));

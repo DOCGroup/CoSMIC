@@ -5,12 +5,12 @@
 #include "IDL_Generator_Component_Impl.h"
 #include "IDL_Generator_Visitor.h"
 
-#include "game/be/Interpreter_T.h"
+#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/utils/Project_Settings.h"
 
 #include "UdmGme.h"
 #include "UdmStatic.h"
 
-#include "game/utils/Project_Settings.h"
 #include "Utils/Utils.h"
 
 GAME_DECLARE_INTERPRETER (IDL_Generator_Component, IDL_Generator_Component_Impl);
@@ -19,9 +19,9 @@ GAME_DECLARE_INTERPRETER (IDL_Generator_Component, IDL_Generator_Component_Impl)
 // Quotas_Integrator_Impl
 //
 IDL_Generator_Component_Impl::IDL_Generator_Component_Impl (void)
-: GAME::Interpreter_Impl_Base ("IDL File Generator",
-                               "MGA.Interpreter.IDLGenerator",
-                               "PICML")
+: GAME::Mga::Interpreter_Impl_Base ("IDL File Generator",
+                                    "MGA.Interpreter.IDLGenerator",
+                                    "PICML")
 {
 
 }
@@ -46,7 +46,7 @@ struct insert_udm_t
 
   }
 
-  void operator () (const GAME::FCO_in fco) const
+  void operator () (const GAME::Mga::FCO_in fco) const
   {
     this->coll_.insert (this->network_.Gme2Udm (fco->impl ()));
   }
@@ -61,9 +61,9 @@ private:
 // invoke_ex
 //
 int IDL_Generator_Component_Impl::
-invoke_ex (GAME::Project project,
-           GAME::FCO focus,
-           std::vector <GAME::FCO> & selected,
+invoke_ex (GAME::Mga::Project project,
+           GAME::Mga::FCO focus,
+           std::vector <GAME::Mga::FCO> & selected,
            long flags)
 {
   UdmGme::GmeDataNetwork dngBackend (PICML::diagram);

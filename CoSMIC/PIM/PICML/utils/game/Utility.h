@@ -13,12 +13,10 @@
 #ifndef _PICML_GAME_UTILITY_H_
 #define _PICML_GAME_UTILITY_H_
 
-#include "game/Model.h"
+#include "game/mga/Model.h"
 #include "PICML_GAME_Utils_export.h"
 
 namespace PICML
-{
-namespace GAME
 {
 /**
  * Generate the full scope of a PICML named type.
@@ -28,7 +26,7 @@ namespace GAME
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string scope (const ::GAME::Model_in named_type,
+std::string scope (const GAME::Mga::Model_in named_type,
                    const std::string & separator,
                    bool leading = false);
 
@@ -40,7 +38,7 @@ std::string scope (const ::GAME::Model_in named_type,
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string fq_type (const ::GAME::Model_in named_type,
+std::string fq_type (const GAME::Mga::Model_in named_type,
                      const std::string & separator,
                      bool leading = false);
 
@@ -50,9 +48,8 @@ std::string fq_type (const ::GAME::Model_in named_type,
  * was the result of instantiating a template package.
  */
 PICML_GAME_UTILS_Export
-::GAME::Model get_template_package_inst (const ::GAME::FCO_in type);
+GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type);
 
-}
 }
 
 #endif  // !defined _PICML_GAME_UTILITY_H_

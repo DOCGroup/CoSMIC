@@ -5,10 +5,10 @@
 #include "Property_Manager_Impl.h"
 #include "Property_Manager_Dialog.h"
 
-#include "game/be/Interpreter_T.h"
-#include "game/Transaction.h"
-#include "game/Reference.h"
-#include "game/Visitor.h"
+#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/Transaction.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Visitor.h"
 
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -18,16 +18,16 @@ GAME_DECLARE_INTERPRETER (Property_Manager_Component, PICML_Property_Mangaer_Imp
 /**
  * @class Property_Handler
  */
-class Property_Handler : public GAME::Visitor
+class Property_Handler : public GAME::Mga::Visitor
 {
 public:
-  virtual void visit_Reference (GAME::Reference_in ref)
+  virtual void visit_Reference (GAME::Mga::Reference_in ref)
   {
     // Start a new transaction for this property.
-    GAME::Transaction t (ref->project ());
+    GAME::Mga::Transaction t (ref->project ());
 
     // Make sure property manager is not used on predefined types.
-    GAME::FCO simple_type = ref->refers_to ();
+    GAME::Mga::FCO simple_type = ref->refers_to ();
 
     if (simple_type->meta ()->name () == "Enum")
     {
@@ -41,10 +41,10 @@ public:
       ::AfxMessageBox ("Property manager cannot be used on predefined types.", MB_ICONERROR);
   }
 
-  virtual void visit_Model (GAME::Model_in model)
+  virtual void visit_Model (GAME::Mga::Model_in model)
   {
     // Start a new transaction for this property.
-    GAME::Transaction t (model->project ());
+    GAME::Mga::Transaction t (model->project ());
 
     // Show the dialog to the user.
     PICML_Property_Manager_Dialog dlg (model, ::AfxGetMainWnd ());
@@ -58,7 +58,9 @@ public:
 // PICML_Property_Mangaer_Impl
 //
 PICML_Property_Mangaer_Impl::PICML_Property_Mangaer_Impl (void)
-: GAME::Interpreter_Impl_Base ("Property Manager", "MGA.Interpreter.PropertyManager", "PICML")
+: GAME::Mga::Interpreter_Impl_Base ("Property Manager",
+                                    "MGA.Interpreter.PropertyManager",
+                                    "PICML")
 {
 
 }
@@ -75,9 +77,9 @@ PICML_Property_Mangaer_Impl::~PICML_Property_Mangaer_Impl (void)
 // invoke_ex
 //
 int PICML_Property_Mangaer_Impl::
-invoke_ex (GAME::Project project,
-           GAME::FCO_in fco,
-           std::vector <GAME::FCO> & selected,
+invoke_ex (GAME::Mga::Project project,
+           GAME::Mga::FCO_in fco,
+           std::vector <GAME::Mga::FCO> & selected,
            long flags)
 {
   try
@@ -88,8 +90,8 @@ invoke_ex (GAME::Project project,
 
       std::for_each (selected.begin (),
                      selected.end (),
-                     boost::bind (&GAME::FCO_Impl::accept,
-                                  boost::bind (&GAME::FCO::get, _1),
+                     boost::bind (&GAME::Mga::FCO_Impl::accept,
+                                  boost::bind (&GAME::Mga::FCO::get, _1),
                                   &handler));
     }
     else
@@ -97,7 +99,7 @@ invoke_ex (GAME::Project project,
 
     return 0;
   }
-  catch (const GAME::Exception &)
+  catch (const GAME::Mga::Exception &)
   {
 
   }

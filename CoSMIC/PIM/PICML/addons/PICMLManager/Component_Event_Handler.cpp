@@ -10,8 +10,8 @@
 #include "Implementation_Configuration.h"
 #include "Validation.h"
 
-#include "game/modelgen.h"
-#include "game/utils/Point.h"
+#include "game/mga/modelgen.h"
+#include "game/mga/utils/Point.h"
 
 #include "Utils/Utils.h"
 
@@ -32,7 +32,7 @@ static const unsigned long mask = OBJEVENT_CREATED;
 // Component_Event_Handler
 //
 Component_Event_Handler::Component_Event_Handler (void)
-: GAME::Event_Handler_Impl (mask)
+: GAME::Mga::Event_Handler_Impl (mask)
 {
 
 }
@@ -49,7 +49,7 @@ Component_Event_Handler::~Component_Event_Handler (void)
 // handle_object_created
 //
 int Component_Event_Handler::
-handle_object_created (GAME::Object_in obj)
+handle_object_created (GAME::Mga::Object_in obj)
 {
   return 0;
 }

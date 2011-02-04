@@ -13,7 +13,7 @@
 #ifndef _IDL_GENERATOR_COMPONENT_IMPL_H_
 #define _IDL_GENERATOR_COMPONENT_IMPL_H_
 
-#include "game/be/Interpreter_Impl_Base.h"
+#include "game/mga/be/Interpreter_Impl_Base.h"
 
 /**
  * @class Quotas_Specification_Impl
@@ -21,7 +21,7 @@
  * Implemenation of the Quotas specification interpreter.
  */
 class IDL_Generator_Component_Impl :
-  public GAME::Interpreter_Impl_Base
+  public GAME::Mga::Interpreter_Impl_Base
 {
 public:
   /// Default constructor.
@@ -31,9 +31,9 @@ public:
   virtual ~IDL_Generator_Component_Impl (void);
 
   // Handle the InvokeEx callback.
-  int invoke_ex (GAME::Project project,
-                 GAME::FCO fco,
-                 std::vector <GAME::FCO> & selected,
+  int invoke_ex (GAME::Mga::Project project,
+                 GAME::Mga::FCO fco,
+                 std::vector <GAME::Mga::FCO> & selected,
                  long flags);
 
   int set_parameter (const std::string & name, const std::string & value);

@@ -13,9 +13,9 @@
 #ifndef _CBML_ACTION_TYPE_HANDLER_H_
 #define _CBML_ACTION_TYPE_HANDLER_H_
 
-#include "game/be/Event_Handler_Impl.h"
-#include "game/Model.h"
-#include "game/Reference.h"
+#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/Model.h"
+#include "game/mga/Reference.h"
 
 /**
  * @class CBML_Action_Type_Handler
@@ -24,7 +24,7 @@
  * connect with the State element.
  */
 class CBML_Action_Type_Handler :
-  public GAME::Event_Handler_Impl
+  public GAME::Mga::Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_RELATION;
@@ -35,11 +35,11 @@ public:
   /// Destructor.
   virtual ~CBML_Action_Type_Handler (void);
 
-  virtual int handle_object_relation (GAME::Object_in obj);
+  virtual int handle_object_relation (GAME::Mga::Object_in obj);
 
 private:
-  void create_property (GAME::Model_in action,
-                        const GAME::Reference_in parameter);
+  void create_property (GAME::Mga::Model_in action,
+                        const GAME::Mga::Reference_in parameter);
 };
 
 #endif  // !defined _CBML_CONNECTION_GENERATION_HANDLER_H_
