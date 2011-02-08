@@ -1,3 +1,14 @@
+Tue Feb  8 21:24:00 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * acircle:
+        * acircle/ACircle.h:
+        * acircle/ACircle.inl:
+        * acircle/ACircle_Tag_Dispatch.h:
+        * acircle/ACircle_Tag_Dispatch.inl:
+        * acircle/ACircle_Traits.h:
+
+          Added A-Circle to GAME project.
+
 Fri Feb  4 22:56:26 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_graphics.mpb:
