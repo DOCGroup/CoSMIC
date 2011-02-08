@@ -14,7 +14,7 @@
 #define _T3_RUNTIME_ENGINE_H_
 
 #include "game/mga/utils/modelgen.h"
-#include "game/mga/FCO.h"
+#include "game/mga/Model.h"
 
 #include "ace/Null_Mutex.h"
 #include "ace/Singleton.h"

@@ -29,7 +29,7 @@ public:
   /// Destructor.
   virtual ~IDL_File_Serializer (void);
 
-  virtual int serialize (const ::GAME::Object_in obj, std::ostream & stream);
+  virtual int serialize (const ::GAME::Mga::Object_in obj, std::ostream & stream);
 };
 
 #endif  // !defined _IDL_FILE_SERIALIZER_H_

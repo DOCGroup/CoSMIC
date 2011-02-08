@@ -4,7 +4,7 @@
 #include "IDL_File_Serializer.h"
 #include "IDLEmitVisitor.h"
 #include "DependencyVisitor.h"
-#include "game/Object.h"
+#include "game/mga/Object.h"
 
 //
 // IDL_File_Serializer
@@ -26,7 +26,7 @@ IDL_File_Serializer::~IDL_File_Serializer (void)
 // serialize
 //
 int IDL_File_Serializer::
-serialize (const ::GAME::Object_in obj, std::ostream & stream)
+serialize (const ::GAME::Mga::Object_in obj, std::ostream & stream)
 {
   // Make this an BON object type.
   BON::Object bon_obj (::BON::Object::attach (obj->impl ()));

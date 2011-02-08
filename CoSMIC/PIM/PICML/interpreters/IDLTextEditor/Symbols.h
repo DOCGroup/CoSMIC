@@ -17,6 +17,8 @@
 
 /**
  * @class fq_name
+ *
+ * Fully qualified name symbol generator.
  */
 class fq_name : public T3_Symbol
 {
@@ -28,7 +30,7 @@ public:
   virtual ~fq_name (void);
 
   // Generate the symbol.
-  virtual int generate (const GAME::FCO & fco, ACE_CString & symbol);
+  virtual int generate (const GAME::Mga::FCO_in fco, ACE_CString & symbol);
 };
 
 #endif  // !defined _IDML_SYMBOLS_H_

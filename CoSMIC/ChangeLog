@@ -1,3 +1,28 @@
+Tue Feb  8 14:52:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/t3_runtime.mpb:
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/actors.hpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.h:
+        * Utils/T3/t3/runtime/Symbol.h:
+        * Utils/T3/t3/runtime/grammar.hpp:
+
+          Updated to latest version of GAME.
+
 Fri Feb  4 23:08:03 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/picml_game_utils.mpb:

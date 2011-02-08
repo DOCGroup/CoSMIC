@@ -104,7 +104,7 @@ void Component::invokeEx (Project& project,
 void Component::processFile (const IDML::File & file)
 {
   // Create a new document for the model element.
-  GAME::Object obj (file->getObjectI ());
+  GAME::Mga::Object obj (file->getObjectI ());
   DSL_Document * dsl_doc = new DSL_Document (obj);
 
 

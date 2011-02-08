@@ -1,6 +1,6 @@
 // $Id$
 
-project : game, boost_base {
+project : game_mga, boost_base {
   after += T3_Runtime
 
   includes += $(COSMIC_ROOT)/Utils/T3

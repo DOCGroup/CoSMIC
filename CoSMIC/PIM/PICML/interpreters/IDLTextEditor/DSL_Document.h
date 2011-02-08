@@ -14,7 +14,7 @@
 #define _DSL_DOCUMENT_H_
 
 #include <afxrich.h>
-#include "game/Object.h"
+#include "game/mga/Object.h"
 
 // Forward decl.
 class DSL_Serializer;
@@ -38,11 +38,12 @@ public:
    *
    * @param[in]       obj       Source object.
    */
-  DSL_Document (const ::GAME::Object & obj);
+  DSL_Document (GAME::Mga::Object_in obj);
 
   /// Destructor.
   virtual ~DSL_Document (void);
 
+  /// Declare this as a dynamically creatable document.
   DECLARE_DYNCREATE (DSL_Document);
 
   virtual CRichEditCntrItem * CreateClientItem (REOBJECT * obj) const;
@@ -53,6 +54,7 @@ public:
    */
   virtual void OnFileSave (void);
 
+  /// Handle the initial update command.
   void OnInitialUpdate (void);
 
   /**
@@ -73,7 +75,7 @@ protected:
   DECLARE_MESSAGE_MAP ()
 
   /// Object associated with the document.
-  ::GAME::Object obj_;
+  GAME::Mga::Object obj_;
 
   /// Serializer for the document.
   DSL_Serializer * serializer_;

@@ -3,8 +3,8 @@
 #include "StdAfx.h"
 #include "Symbols.h"
 
-#include "game/FCO.h"
-#include "game/MetaBase.h"
+#include "game/mga/FCO.h"
+#include "game/mga/MetaBase.h"
 #include <stack>
 
 //
@@ -26,12 +26,12 @@ fq_name::~fq_name (void)
 //
 // generate
 //
-int fq_name::generate (const GAME::FCO &fco, ACE_CString & symbol)
+int fq_name::generate (const GAME::Mga::FCO_in fco, ACE_CString & symbol)
 {
   // Keep pushing the names of the parent onto the stack until
   // we reach the File.
-  std::stack <GAME::Object> scope;
-  GAME::Object parent = fco->parent ();
+  std::stack <GAME::Mga::Object> scope;
+  GAME::Mga::Object parent = fco->parent ();
 
   while (parent->meta ()->name () == "Package")
   {

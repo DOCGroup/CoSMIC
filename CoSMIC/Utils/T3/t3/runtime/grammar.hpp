@@ -17,7 +17,7 @@
 #include "boost/spirit/include/phoenix_core.hpp"
 #include "boost/spirit/include/phoenix_operator.hpp"
 #include "boost/spirit/include/phoenix_stl.hpp"
-#include "game/Object.h"
+#include "game/mga/Object.h"
 #include "Auto_Model.h"
 
 namespace T3

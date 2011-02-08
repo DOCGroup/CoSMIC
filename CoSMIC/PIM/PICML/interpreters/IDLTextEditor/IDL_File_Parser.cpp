@@ -4,7 +4,7 @@
 #include "IDL_File_Parser.hpp"
 #include "rules/grammar.hpp"
 #include "t3/runtime/Auto_Model.h"
-#include "game/Object.h"
+#include "game/mga/Object.h"
 
 //
 // parse
@@ -12,7 +12,7 @@
 bool IDL_File_Parser::
 parse (std::string::const_iterator begin,
        std::string::const_iterator end,
-       GAME::Object_in obj)
+       GAME::Mga::Object_in obj)
 {
   using boost::phoenix::ref;
   namespace qi = boost::spirit::qi;

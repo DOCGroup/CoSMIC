@@ -2,9 +2,9 @@
 
 #include "StdAfx.h"
 #include "Layout_Manager.h"
-#include "game/utils/Point.h"
-#include "game/FCO.h"
-#include "game/MetaBase.h"
+#include "game/mga/utils/Point.h"
+#include "game/mga/FCO.h"
+#include "game/mga/MetaBase.h"
 
 std::set <std::string> Layout_Manager::horizontal_models_;
 
@@ -35,7 +35,7 @@ Layout_Manager::~Layout_Manager (void)
 
 }
 
-void Layout_Manager::handle_open_model (GAME::Object_in)
+void Layout_Manager::handle_open_model (GAME::Mga::Object_in)
 {
   // Save the current state.
   this->stack_.push (this->current_);
@@ -47,7 +47,7 @@ void Layout_Manager::handle_open_model (GAME::Object_in)
 //
 // handle_close_model
 //
-void Layout_Manager::handle_close_model (GAME::Object_in obj)
+void Layout_Manager::handle_close_model (GAME::Mga::Object_in obj)
 {
   // Prepare the current state for deletion.
   std::auto_ptr <object_list> auto_clean (this->current_);
@@ -69,7 +69,7 @@ void Layout_Manager::handle_close_model (GAME::Object_in obj)
 //
 // handle_new_object
 //
-void Layout_Manager::handle_new_object (GAME::Object_in obj)
+void Layout_Manager::handle_new_object (GAME::Mga::Object_in obj)
 {
   // We need to perserve the order the objects were created
   // since some models require preservation of this property.
@@ -82,8 +82,9 @@ void Layout_Manager::handle_new_object (GAME::Object_in obj)
 //
 void Layout_Manager::arrange_objects (bool vertical)
 {
-  GAME::FCO fco;
-  GAME::utils::Point pt (60, 60);
+  GAME::Mga::FCO fco;
+  GAME::Mga::Point pt (60, 60);
+
   int cx = vertical ? 0 : 100;
   int cy = vertical ? 100 : 0;
 
@@ -91,10 +92,10 @@ void Layout_Manager::arrange_objects (bool vertical)
        iter_end = this->current_->end (); iter != iter_end; ++ iter)
   {
     // Get the FCO from the object.
-    fco = GAME::FCO::_narrow (*iter);
+    fco = GAME::Mga::FCO::_narrow (*iter);
 
     // Set the position of the object.
-    GAME::utils::set_position ("InterfaceDefinition", pt, fco);
+    GAME::Mga::set_position ("InterfaceDefinition", pt, fco);
 
     // Move to the next position.
     pt.shift (cx, cy);

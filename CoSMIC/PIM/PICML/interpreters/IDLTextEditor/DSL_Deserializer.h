@@ -14,7 +14,7 @@
 #define _DSL_DESERIALIZER_H_
 
 #include <istream>
-#include "game/GME_fwd.h"
+#include "game/mga/GME_fwd.h"
 
 /**
  * @class DSL_Deserializer
@@ -39,7 +39,7 @@ public:
    * @retval          0         Success
    * @retval          -1        Failure
    */
-  virtual int deserialize (std::istream & stream, ::GAME::Object_in obj) = 0;
+  virtual int deserialize (std::istream & stream, GAME::Mga::Object_in obj) = 0;
 };
 
 #endif  // !define _DSL_SERIALIZER_H_

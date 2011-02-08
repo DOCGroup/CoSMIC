@@ -38,7 +38,7 @@ public:
    * @retval        0           Success
    * @retval        -1          Failure
    */
-  virtual int generate (const GAME::Mga::FCO & fco, ACE_CString & symbol) = 0;
+  virtual int generate (const GAME::Mga::FCO_in fco, ACE_CString & symbol) = 0;
 };
 
 #include "Symbol.inl"

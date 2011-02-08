@@ -7,34 +7,37 @@
 #include <set>
 
 /**
+ * @class Layout_Manager
  *
+ * An event listener that controls the layout of PICML objects.
  */
-class Layout_Manager :
-  public T3_Event_Listener
+class Layout_Manager : public T3_Event_Listener
 {
 public:
+  /// Default constructor.
   Layout_Manager (void);
 
+  /// Destructor.
   virtual ~Layout_Manager (void);
 
   /**
    * We are starting a new model. This will save the current
    * state of the event handler.
    */
-  virtual void handle_open_model (GAME::Object_in obj);
+  virtual void handle_open_model (GAME::Mga::Object_in obj);
 
   /**
    * Handle the closing of a model. When this method is invoked,
    * we can correctly arrange the elements in the model.
    */
-  virtual void handle_close_model (GAME::Object_in obj);
+  virtual void handle_close_model (GAME::Mga::Object_in obj);
 
-  virtual void handle_new_object (GAME::Object_in obj);
+  virtual void handle_new_object (GAME::Mga::Object_in obj);
 
 private:
   void arrange_objects (bool vertical);
 
-  typedef std::vector <GAME::Object> object_list;
+  typedef std::vector <GAME::Mga::Object> object_list;
 
   object_list * current_;
 
