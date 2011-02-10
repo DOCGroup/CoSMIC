@@ -1,3 +1,10 @@
+Thu Feb 10 21:13:39 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * game/acircle/ACircle_Traits.h:
+        * game/acircle/Udm_Traits.h:
+
+          Separated Udm Traits into its own header file.
+
 Wed Feb  9 00:08:42 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * game/acircle:
@@ -6,7 +13,7 @@ Wed Feb  9 00:08:42 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
         * game/acircle/ACircle_Tag_Dispatch.h:
         * game/acircle/ACircle_Tag_Dispatch.inl:
         * game/acircle/ACircle_Traits.h:
-	
+
           Added these files to GAME project.
 
         * acircle:
