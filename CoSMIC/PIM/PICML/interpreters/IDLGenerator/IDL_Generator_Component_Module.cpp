@@ -1,7 +1,7 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "game/be/Component_Module.h"
+#include "game/mga/be/Component_Module.h"
 #include "IDL_Generator_Component_i.c"
 
 DECLARE_COMPONENT_MODULE ("IDL File Generator",

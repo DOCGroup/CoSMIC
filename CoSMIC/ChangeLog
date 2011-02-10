@@ -1,3 +1,9 @@
+Thu Feb 10 22:26:03 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Module.cpp:
+
+          Fixed compilation error.
+
 Tue Feb  8 14:52:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/t3_runtime.mpb:
