@@ -1,3 +1,21 @@
+Thu Feb 10 23:32:37 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Module.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Module.cpp:
+        * PIM/PICML/addons/PICMLManager/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Module.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Module.cpp:
+        * PIM/PICML/utils/game/stdafx.h:
+
+          Fixed compilation errors.
+
+Thu Feb 10 22:47:04 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Module.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Module.cpp:
+
+          Fixed compilation errors.
+
 Thu Feb 10 22:26:03 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Module.cpp:

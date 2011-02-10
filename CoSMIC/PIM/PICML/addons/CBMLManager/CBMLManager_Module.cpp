@@ -2,7 +2,7 @@
 
 #include "StdAfx.h"
 #include "CBMLManager_i.c"
-#include "game/dialogs/Module.h"
+#include "game/mga/dialogs/Module.h"
 
 namespace GAME
 {

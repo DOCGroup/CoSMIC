@@ -4,7 +4,7 @@
 #include "PICMLManager_i.c"
 #include "resource.h"
 
-#include "game/dialogs/Module.h"
+#include "game/mga/dialogs/Module.h"
 
 namespace GAME
 {
