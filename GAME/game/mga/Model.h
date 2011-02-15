@@ -30,6 +30,9 @@ public:
   /// Type definition of the COM interface.
   typedef IMgaModel interface_type;
 
+  /// Type definition of the type tag.
+  typedef model_tag_t type_tag;
+
   /**
    * Create a new model element.
    *
@@ -71,32 +74,49 @@ public:
    */
   Meta::Model meta (void) const;
 
+  /// Accept a visitor object.
   virtual void accept (Visitor * v);
 
-  size_t children (std::vector <FCO> & children) const;
-  size_t children (const std::string & type, std::vector <FCO> & children) const;
-  size_t children (const Meta::Aspect_in aspect, std::vector <FCO> & children) const;
+  /**
+   * Generic implementation for gathering the children. This version
+   * of the children () method is designed to work with extension
+   * classes.
+   *
+   * @param[in]         children      The selected children
+   * @return            Number of children selected
+   */
+  template <typename T>
+  size_t children (std::vector <T> & items) const;
 
-  size_t children (std::vector <Atom> & children) const;
-  size_t children (const std::string & type, std::vector <Atom> & children) const;
-  size_t children (const Meta::Aspect_in aspect, std::vector <Atom> & children) const;
+  /**
+   * @overloaded
+   *
+   * This version of the children () method will not only select child
+   * elements of /a type, but it will also cast them to an Mga object
+   * of type T.
+   *
+   * @param[in]         type          Type to select
+   * @param[in]         children      The selected children
+   * @return            Number of children selected
+   */
+  template <typename T>
+  size_t children (const std::string & type, std::vector <T> & children) const;
 
-  size_t children (std::vector <Model> & children) const;
-  size_t children (const std::string & type, std::vector <Model> & children) const;
-  size_t children (const Meta::Aspect_in aspect, std::vector <Model> & children) const;
+  /**
+   * @overloaded
+   *
+   * This version of the children () method will not only select child
+   * elements in \a aspect, but it will also cast them to an Mga object
+   * of type T.
+   *
+   * @param[in]         aspect        Aspect to select from
+   * @param[in]         children      The selected children
+   * @return            Number of children selected
+   */
+  template <typename T>
+  size_t children (const Meta::Aspect_in aspect, std::vector <T> & children) const;
 
-  size_t children (std::vector <Reference> & children) const;
-  size_t children (const std::string & type, std::vector <Reference> & children) const;
-  size_t children (const Meta::Aspect_in aspect, std::vector <Reference> & children) const;
-
-  size_t children (std::vector <Connection> & children) const;
-  size_t children (const std::string & type, std::vector <Connection> & children) const;
-  size_t children (const Meta::Aspect_in aspect, std::vector <Connection> & children) const;
-
-  size_t children (std::vector <Set> & children) const;
-  size_t children (const std::string & type, std::vector <Set> & children) const;
-  size_t children (const Meta::Aspect_in aspect, std::vector <Set> & children) const;
-
+  /// Attach to the IMgaModel interface.
   void attach (IMgaModel * model);
 
   /// Helper method to get the correct implementation.
@@ -113,5 +133,7 @@ private:
 #if defined (__GAME_INLINE__)
 #include "Model.inl"
 #endif
+
+#include "Model_T.cpp"
 
 #endif // !defined _GAME_MODEL_H_

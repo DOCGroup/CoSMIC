@@ -17,9 +17,6 @@
 
 #include <vector>
 
-#include "Exception.h"
-#include "GME_fwd.h"
-
 namespace GAME
 {
 namespace Mga

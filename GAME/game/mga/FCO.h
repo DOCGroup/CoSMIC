@@ -35,6 +35,9 @@ public:
   /// Type definition of the COM pointer type.
   typedef IMgaFCO interface_type;
 
+  /// Type definition of the type tag.
+  typedef fco_tag_t type_tag;
+
   /// Default constructor.
   FCO_Impl (void);
 

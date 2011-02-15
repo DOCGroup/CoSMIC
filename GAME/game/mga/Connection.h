@@ -233,6 +233,9 @@ public:
   /// Type definition of the interface type.
   typedef IMgaConnection interface_type;
 
+  /// Type definition of the type tag.
+  typedef connection_tag_t type_tag;
+
   /**
    * Create a new connection in an existing model.
    *

@@ -119,14 +119,14 @@ public:
    *
    * @return        The float value of the attribute.
    */
-  double float_value (void) const;
+  double double_value (void) const;
 
   /**
    * Set the float value of the attribute.
    *
    * @param[in]     val     The float value of the attribute.
    */
-  void float_value (double val);
+  void double_value (double val);
 
   /**
    * Retrieve the attributes meta information

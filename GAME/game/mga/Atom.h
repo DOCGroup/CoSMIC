@@ -30,6 +30,9 @@ public:
   /// Type definition for the interface.
   typedef IMgaAtom interface_type;
 
+  /// Type definition of the type tag.
+  typedef atom_tag_t type_tag;
+
   /**
    * Create a new atom element.
    *

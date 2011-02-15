@@ -5,7 +5,9 @@
 #include "Extension_Classes_Component_Impl.h"
 
 #include "Extension_Classes_Visitor.h"
-#include "Extension_Classes_Build_Files_Generator.h"
+#include "Mpc_File_Generator.h"
+#include "Mwc_File_Generator.h"
+#include "Pch_File_Generator.h"
 
 #include "game/mga/Atom.h"
 #include "game/mga/Model.h"
@@ -55,69 +57,50 @@ invoke_ex (GAME::Mga::Project project,
            std::vector <GAME::Mga::FCO> & selected,
            long flags)
 {
-  GAME::Mga::Transaction t_readonly (project, TRANSACTION_READ_ONLY);
-
-  if (!::GAME::Utils::get_path ("Select target output directory...", this->output_))
-        return 0;
-
   try
   {
-    std::vector <GAME::Mga::Folder> folders;
-    std::vector <GAME::Mga::Model> paradigm_sheets;
+    // Start a new transaction.
+    GAME::Mga::Transaction t_readonly (project, TRANSACTION_READ_ONLY);
+
+    // Get the output directory for the extension classes.
+    if (!::GAME::Utils::get_path ("Select target output directory...", this->output_))
+      return 0;
 
     GAME::Mga::Folder root = project.root_folder ();
+    std::string root_name = root->name ();
+    GAME::Utils::normalize (root_name);
 
-    std::string uc_paradigm_name = root->name ();
-
-    GAME::Utils::normalize (uc_paradigm_name);
-
-    // transform the name of paradigm sheet to upper case.
+    // Transform the name of paradigm sheet to upper case.
+    std::string uc_paradigm_name = root_name;
     std::transform (uc_paradigm_name.begin (),
                     uc_paradigm_name.end (),
                     uc_paradigm_name.begin (),
-                    & ::toupper);
+                    &::toupper);
 
-    // collect all the folders and paradigm sheets within
-    // the root folder.
-    root->children ("SheetFolder", folders);
-    root->children ("ParadigmSheet", paradigm_sheets);
+    // Make sure the output directory has been created.
+    const std::string pch_basename = "stdafx";
+    const std::string source_path = this->output_ + "/" + project.name ();
+    GAME::Utils::create_path (source_path);
 
-    // set the full path for output directory
-    std::string output = this->output_;
-    output += ("\\");
-    output += project.name ().c_str ();
+    // Visit all element in the model and generate an extension
+    // class for each valid model.
+    std::set <GAME::Mga::Object> ext_classes;
+    GAME::Mga::Extension_Classes_Visitor ecv (source_path,
+                                              root,
+                                              pch_basename,
+                                              ext_classes);
 
-    GAME::Utils::create_path (output);
+    root->accept (&ecv);
 
-    // visitor to traverse the model
-    GAME::Mga::Extension_Classes_Visitor ecv (this->output_, uc_paradigm_name);
+    // Generate workspace, project, and precompiled header files.
+    GAME::Mga::Mwc_File_Generator mwc_gen;
+    mwc_gen.generate (source_path, project);
 
-    // visit all the folders
-    std::for_each (folders.begin (),
-                   folders.end (),
-                   boost::bind (&GAME::Mga::Folder::impl_type::accept,
-                                boost::bind (&GAME::Mga::Folder::get, _1),
-                                &ecv));
+    GAME::Mga::Mpc_File_Generator mpc_gen;
+    mpc_gen.generate (source_path, project, pch_basename, ext_classes);
 
-    // visit all the paradigm sheets
-    std::for_each (paradigm_sheets.begin (),
-                   paradigm_sheets.end (),
-                   boost::bind (&GAME::Mga::Model::impl_type::accept,
-                                boost::bind (&GAME::Mga::Model::get, _1),
-                                &ecv));
-
-    // get all the objects in the model needed for processing mpc/mwc
-    using GAME::Mga::Extension_Classes_Build_Files_Generator;
-    Extension_Classes_Build_Files_Generator generator (root.get (),
-                                                       ecv.get_objects (),
-                                                       output,
-                                                       root->name (),
-                                                       uc_paradigm_name);
-
-    // generate the mwc, mpc and stdafx files
-    generator.generate_mwc_file ();
-    generator.generate_mpc_file ();
-    generator.generate_stdafx_files ();
+    GAME::Mga::Pch_File_Generator pch_gen;
+    pch_gen.generate (source_path, project, pch_basename);
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Files generated successfully", MB_OK);

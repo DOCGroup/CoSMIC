@@ -6,15 +6,6 @@ namespace Mga
 {
 
 //
-// get_objects
-//
-GAME_INLINE
-const std::set <Object> & Extension_Classes_Visitor::get_objects (void) const
-{
-  return this->objects_;
-}
-
-//
 // get_src_connections
 //
 GAME_INLINE

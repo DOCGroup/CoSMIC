@@ -1,3 +1,92 @@
+Tue Feb 15 19:21:08 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/codegenerationkit.mpb:
+
+          New base class for the code generation kit.
+
+        * game/config.h:
+        * game/manip/copy.cpp:
+        * game/manip/stdafx.h:
+        * game/mga/Atom.h:
+        * game/mga/Attribute.h:
+        * game/mga/Attribute.cpp:
+        * game/mga/Collection_T.h:
+        * game/mga/Connection.h:
+        * game/mga/FCO.h:
+        * game/mga/Folder.h:
+        * game/mga/Folder.cpp:
+        * game/mga/Folder_T.cpp:
+        * game/mga/Mga.mpc:
+        * game/mga/Model.h:
+        * game/mga/Model.cpp:
+        * game/mga/Model_T.cpp:
+        * game/mga/Object.h:
+        * game/mga/Reference.h:
+        * game/mga/Set.h:
+        * game/mga/Smart_Ptr.h:
+        * game/mga/Tags.h:
+        * game/mga/Utils.h:
+        * game/mga/Utils.cpp:
+        * game/mga/be/stdafx.h:
+
+          Added element tags to each of the classes.
+
+        * game/mga/dialogs/stdafx.h:
+        * game/mga/graphics/stdafx.h:
+        * game/mga/stdafx.h:
+        * game/mga/utils/stdafx.h:
+        * game/automation/stdafx.h:
+
+          The precompiled headers now include the GAME configuration file.
+
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.h:
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_i.c:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_p.c:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.inl:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/Functors.h:
+        * game/mga/interpreters/ExtensionClasses/Functors.cpp:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mpc_File_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Mpc_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mwc_File_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Mwc_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Pch_File_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Pch_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/StdAfx.h:
+
+          Checkpoint the extension class generator. It is able to generate
+          the extension class for all elements in a model, compile the source,
+          and create an import library.
+
+        * tests/ExtensionClasses/Atom/AtomTest.xme:
+        * tests/ExtensionClasses/Containment:
+        * tests/ExtensionClasses/Containment/ContainmentTest.xme:
+        * tests/ExtensionClasses/Inheritance/InheritanceTest.xme:
+
+          Test for the extension class generator.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Build_Files_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Code_Generator.cpp:
+        * tests/ExtensionClasses/Atom/Atom-UnitTest.xme:
+        * tests/ExtensionClasses/Inheritance/InheritanceTest1.xme:
+
+          Removed these files.
+
 Thu Feb 10 21:13:39 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * game/acircle/ACircle_Traits.h:

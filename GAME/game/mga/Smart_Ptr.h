@@ -20,6 +20,12 @@ template <typename T>
 class Smart_Ptr_Base
 {
 protected:
+  /// Type definition for the implementation type.
+  typedef T impl_type;
+
+  /// Type definition of the interface type.
+  typedef typename T::interface_type interface_type;
+
   /// Default constructor.
   Smart_Ptr_Base (void);
 
@@ -79,15 +85,19 @@ template <typename T>
 class Smart_Ptr : public Smart_Ptr_Base <T>
 {
 public:
+  /// Type definition of the base type.
+  typedef Smart_Ptr_Base <T> base_type;
+
   /// Type definition for the implementation type.
-  typedef T impl_type;
+  typedef typename base_type::impl_type impl_type;
 
   /// Type definition for the interface type.
-  typedef typename T::interface_type interface_type;
+  typedef typename base_type::interface_type interface_type;
 
   /// Default constructor.
   Smart_Ptr (void);
 
+  /// Copy constructor.
   Smart_Ptr (const Smart_Ptr & ptr);
 
   template <typename T1>

@@ -32,6 +32,9 @@ public:
   /// Type definition of the COM interface.
   typedef IMgaReference interface_type;
 
+  /// Type definition of the type tag.
+  typedef reference_tag_t type_tag;
+
   /**
    * Create a new atom element.
    *

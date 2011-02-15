@@ -183,16 +183,18 @@ bool valid_uuid (const std::string & uuid_str)
 //
 // normalize
 //
-void normalize (std::string & text)
+std::string & normalize (std::string & text)
 {
   static const char * special = "{}|[]^.()+*?\\-@#!$%&;'/<>,~`";
   std::string::size_type found = text.find_first_of (special);
 
   while (found != std::string::npos)
   {
-    text.erase (found, 1);
+    text[found] = '_';
     found = text.find_first_of (special, found);
   }
+
+  return text;
 }
 
 } // namespace Utils

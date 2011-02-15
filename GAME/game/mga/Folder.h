@@ -33,6 +33,9 @@ public:
   /// Type definition of the interface type.
   typedef IMgaFolder interface_type;
 
+  /// Type definition of the type tag.
+  typedef folder_tag_t type_tag;
+
   /// Default constructor.
   Folder_Impl (void);
 
@@ -75,29 +78,30 @@ public:
    *
    * @return      Collection of folder objects.
    */
-  size_t children (std::vector <Folder> & folders) const;
+  size_t children (std::vector <Folder> & items) const;
 
   /**
    * Get all the first-level child folders of this folder.
    *
    * @return      Collection of folder objects.
    */
-  size_t children (const std::string & type,
-                   std::vector <Folder> & folders) const;
+  size_t children (const std::string & type, std::vector <Folder> & items) const;
 
-  size_t children (std::vector <FCO> & children) const;
+  /**
+   * Get all the first-level child folders of this folder.
+   *
+   * @return      Collection of folder objects.
+   */
+  template <typename T>
+  size_t children (std::vector <T> & items) const;
 
-  size_t children (const std::string & type,
-                   std::vector <Atom> & children) const;
-
-  size_t children (const std::string & type,
-                   std::vector <Model> & children) const;
-
-  size_t children (const std::string & type,
-                   std::vector <Reference> & children) const;
-
-  size_t children (const std::string & type,
-                   std::vector <Set> & children) const;
+  /**
+   * Get all the first-level child folders of this folder.
+   *
+   * @return      Collection of folder objects.
+   */
+  template <typename T>
+  size_t children (const std::string & type, std::vector <T> & items) const;
 
   /**
    * Get a registry value.
@@ -155,5 +159,7 @@ private:
 #if defined (__GAME_INLINE__)
 #include "Folder.inl"
 #endif
+
+#include "Folder_T.cpp"
 
 #endif  // !defined _GME_FOLDER_H_

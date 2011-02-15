@@ -31,6 +31,9 @@ public:
   /// Type definition for the interface pointer.
   typedef IMgaSet interface_type;
 
+  /// Type definition of the type tag.
+  typedef set_tag_t type_tag;
+
   /**
    * Create a new set element.
    *

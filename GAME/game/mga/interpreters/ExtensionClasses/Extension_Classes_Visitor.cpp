@@ -1,35 +1,212 @@
 // $Id$
 
-#include "StdAfx.h"
-#include "StdAfx.cpp"
+#include "stdafx.h"
 #include "Extension_Classes_Visitor.h"
 
 #if !defined (__GAME_INLINE__)
 #include "Extension_Classes_Visitor.inl"
 #endif
 
+#include "Attribute_Generator.h"
+#include "Base_Class_Locator.h"
+#include "Containment_Generator.h"
+#include "Functors.h"
+#include "InConnection_Generator.h"
+
+#include "game/mga/Attribute.h"
+#include "game/mga/Atom.h"
 #include "game/mga/Model.h"
 #include "game/mga/MetaAttribute.h"
+#include "game/mga/MetaAtom.h"
 #include "game/mga/MetaFCO.h"
 #include "game/mga/Reference.h"
 
 #include "boost/bind.hpp"
 
+#include "CCF/CodeGenerationKit/IndentationCxx.hpp"
+#include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
+
+#include <iomanip>
+
 namespace GAME
 {
 namespace Mga
 {
+/**
+ * @struct include_base_classes_t
+ *
+ * Functor that generates the include statement for a base class. This
+ * should only be used to generate include statements in the header file
+ * of an extension class.
+ */
+struct include_base_classes_t
+{
+  include_base_classes_t (std::ofstream & header)
+    : header_ (header)
+  {
+
+  }
+
+  void operator () (const Atom & a) const
+  {
+    this->header_ << include_t (a->path ("/", false) + ".h");
+  }
+
+private:
+  std::ofstream & header_;
+};
+
+/**
+ * @struct generate_base_classes_t
+ *
+ * Functor that generates the include statement for a base class. This
+ * should only be used to generate include statements in the header file
+ * of an extension class.
+ */
+struct generate_base_class_t
+{
+  generate_base_class_t (std::ofstream & header)
+    : header_ (header)
+  {
+
+  }
+
+  void operator () (const Atom & a) const
+  {
+    this->header_
+      << " ," << std::endl
+      << a->name () << "_Impl";
+  }
+
+private:
+  std::ofstream & header_;
+};
+
+/**
+ * @struct generate_bmi_t
+ *
+ * Functor that generates the include statement for a base class. This
+ * should only be used to generate include statements in the header file
+ * of an extension class.
+ */
+struct generate_bmi_t
+{
+  generate_bmi_t (std::ofstream & header)
+    : header_ (header)
+  {
+
+  }
+
+  void operator () (const Atom & a) const
+  {
+    this->header_
+      << " ," << std::endl
+      << a->name () << "_Impl (ptr)";
+  }
+
+private:
+  std::ofstream & header_;
+};
+
+/**
+ * @class Include_Generator
+ *
+ * Internal visitor that generates the include statments that appear
+ * in the source file. The files that are included are those for object
+ * that appear in a different file.
+ */
+class Include_Generator : public Visitor
+{
+public:
+  /**
+   * Initializing constructor.
+   */
+  Include_Generator (FCO_in self, std::ofstream & source)
+    : self_ (self),
+      source_ (source)
+  {
+
+  }
+
+  /// Destructor.
+  virtual ~Include_Generator (void)
+  {
+
+  }
+
+  /// Visit an Atom element.
+  virtual void visit_Atom (Atom_in a)
+  {
+    // We do not want to process ourself in this case.
+    if (this->self_->is_equal_to (a))
+      return;
+
+    const std::string metaname = a->meta ()->name ();
+
+    if (metaname == "Connector")
+    {
+      // The connector is one of the Atom element where we must traverse
+      // the AssoicationClass connection to locate the actual FCO that
+      // we need to include.
+      std::vector <Connection> associations;
+      a->in_connections ("AssociationClass", associations);
+
+      Connection association = associations.front ();
+
+      if (association->src ()->is_equal_to (a))
+        association->dst ()->accept (this);
+      else
+        association->src ()->accept (this);
+    }
+    else if (this->seen_objects_.find (a) == this->seen_objects_.end ())
+    {
+      // We can generate an include statement since we have not
+      // seen this object before. Make sure we save the object since
+      // we don't want to include the same header more than once.
+      const std::string path = a->path ("/", false);
+      this->source_ << include_t (path + ".h");
+      this->seen_objects_.insert (a);
+    }
+  }
+
+  /// Visit a Connection element.
+  virtual void visit_Connection (Connection_in c)
+  {
+    if (c->src ()->is_equal_to (this->self_))
+      c->dst ()->accept (this);
+    else
+      c->src ()->accept (this);
+  }
+
+private:
+  /// The current object.
+  FCO self_;
+
+  /// The target source file.
+  std::ofstream & source_;
+
+  /// Collection of seen objects.
+  std::set <Object> seen_objects_;
+};
 
 //
 // Extension_Clases_Visitor
 //
 Extension_Classes_Visitor::
 Extension_Classes_Visitor (const std::string & outdir,
-                           const std::string & uc_paradigm_name)
+                           const Folder_in root,
+                           const std::string & pch_basename,
+                           std::set <Object> & generated)
 : outdir_ (outdir),
-  uc_paradigm_name_ (uc_paradigm_name)
+  define_prefix_ (root->name ()),
+  pch_basename_ (pch_basename),
+  generated_ (generated)
 {
-
+  GAME::Utils::normalize (this->define_prefix_);
+  std::transform (this->define_prefix_.begin (),
+                  this->define_prefix_.end (),
+                  this->define_prefix_.begin (),
+                  &::toupper);
 }
 
 //
@@ -41,154 +218,277 @@ Extension_Classes_Visitor::~Extension_Classes_Visitor (void)
 }
 
 //
+// visit_Atom
+//
+void Extension_Classes_Visitor::visit_Atom (Atom_in atom)
+{
+  const std::string metaname = atom->meta ()->name ();
+
+  if (metaname == "FCO" ||
+      metaname == "Atom" ||
+      metaname == "Model" ||
+      metaname == "Reference" ||
+      metaname == "Set" ||
+      metaname == "Connection")
+  {
+    // Start a new extension class.
+    const std::string basename = this->outdir_ + "/" + atom->name ();
+    const std::string hxx_filename = basename + ".h";
+    const std::string cpp_filename = basename + ".cpp";
+
+    this->header_.open (hxx_filename.c_str ());
+    this->source_.open (cpp_filename.c_str ());
+
+    if (!this->header_.is_open () || !this->source_.is_open ())
+      return;
+
+    this->visit_FCO (atom);
+    this->generated_.insert (atom);
+
+    // Close the file handles.
+    this->header_.close ();
+    this->source_.close ();
+  }
+}
+
+//
 // visit_FCO
 //
 void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 {
-  std::string src_name, dst_name, lc_meta_name,
-              meta_name, fco_name, cons_name;
+  // Set the indentation implanter for this extension class.
+  Indentation::Implanter <Indentation::Cxx, char> header_indent (this->header_);
+  Indentation::Implanter <Indentation::Cxx, char> source_indent (this->source_);
 
-  meta_name = lc_meta_name = fco->meta ()->name ();
-  fco_name = fco->name ();
+  const std::string name = fco->name ();
+  const std::string metaname = fco->meta ()->name ();
+  const std::string default_base_classname = "GAME::Mga::" + metaname + "_Impl";
+  const std::string project_name = GAME::Utils::normalize (fco->project ().name ());
 
-  Extension_Classes_Code_Generator code_generator (this->uc_paradigm_name_,
-                                                   fco,
-                                                   this->outdir_);
+  bool is_abstract = (metaname == "FCO" || fco->attribute ("IsAbstract")->bool_value ());
+  bool is_connection = metaname == "Connection";
+  bool is_model = metaname == "Model";
 
-  // transform the metaname to lower case.
-  std::transform (lc_meta_name.begin (),
-                  lc_meta_name.end (),
-                  lc_meta_name.begin (),
-                  &::tolower);
+  this->classname_ = name + "_Impl";
 
-  // it determines the base constructor to be called.
-  // by default we assume that it calls the concrete GAME class.
-  // but if it derived from another object that is it has a
-  // connection whose name is "DerivedInheritance" then call the
-  // base constructor of that object.
-  cons_name = "";
-  cons_name += meta_name;
+  std::string export_name = project_name;
+  std::transform (export_name.begin (),
+                  export_name.end (),
+                  export_name.begin (),
+                  &::toupper);
+  export_name += "_Export";
 
-  // generate code only for these type of objects
-  if (meta_name == "FCO" ||
-      meta_name == "Atom" ||
-      meta_name == "Model" ||
-      meta_name == "Reference" ||
-      meta_name == "Set" ||
-      meta_name == "Connection")
+  // Let's locate the base classes for this element. If we are able to
+  // locate any base class, then we can assume that this extension class
+  // is derived from a fundamental type.
+  std::set <Atom> base_classes;
+  Base_Class_Locator bc_locator (base_classes);
+  fco->accept (&bc_locator);
+
+  // Generate the default data members for the type.
+  this->header_
+    << "// -*- C++ -*-" << std::endl
+    << std::endl
+    << std::left << std::setw (78) << std::setfill ('=') << "//" << std::endl
+    << "/**" << std::endl
+    << " * @file    " << name << ".h" << std::endl
+    << " *" << std::endl
+    << " * $" << "Id" << "$" << std::endl
+    << " *" << std::endl
+    << " * @author  Alhad Mokashi <amokashi at iupui dot edu>" << std::endl
+    << " *          James H. Hill <hillj at cs dot iupui dot edu>" << std::endl
+    << " */" << std::endl
+    << std::left << std::setw (78) << std::setfill ('=') << "//" << std::endl
+    << std::endl;
+
+  // Make sure we construct the correct macro definition name.
+  std::string define_name = name;
+  std::transform (define_name.begin (),
+                  define_name.end (),
+                  define_name.begin (),
+                  &::toupper);
+
+  this->header_
+    << "#ifndef _" << this->define_prefix_ << "_" << define_name << "_H_" << std::endl
+    << "#define _" << this->define_prefix_ << "_" << define_name << "_H_" << std::endl
+    << std::endl;
+
+  // Include the correct header files for the base classes.
+  if (base_classes.empty ())
+    this->header_ << include_t ("game/mga/" + metaname + ".h");
+  else
+    std::for_each (base_classes.begin (),
+                   base_classes.end (),
+                   include_base_classes_t (this->header_));
+
+  this->source_
+    << "// $" << "Id" << "$" << std::endl
+    << std::endl
+    << include_t (this->pch_basename_ + ".h")
+    << include_t (name + ".h");
+
+  // First, we need to gather all connections from this FCO that could
+  // lead to another FCO that must be included in the header file.
+  std::vector <Connection> src_to_connector;
+  fco->in_connections ("SourceToConnector", src_to_connector);
+
+  std::vector <Connection> connector_to_dst;
+  fco->in_connections ("ConnectorToDestination", connector_to_dst);
+
+  // Generate the include statements for this attached FCOs.
+  Include_Generator includes (fco, this->source_);
+  std::for_each (src_to_connector.begin (),
+                 src_to_connector.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &includes));
+
+  std::for_each (connector_to_dst.begin (),
+                 connector_to_dst.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &includes));
+
+  // This is only required by a Model type.
+  std::vector <Connection> containment;
+  fco->in_connections ("Containment", containment);
+
+  if (is_model)
+    std::for_each (containment.begin (),
+                   containment.end (),
+                   boost::bind (&Connection::impl_type::accept,
+                                boost::bind (&Connection::get, _1),
+                                &includes));
+
+  // Write the class definition and default methods, such as default
+  // constructor, destructor, and _create () method. When writing the
+  // create method, we want to make sure that the parents are type-safe.
+  this->header_
+    << include_t (project_name + "_export.h")
+    << std::endl
+    << "namespace " << project_name
+    << "{"
+    << "class " << export_name << " " << this->classname_ << " : ";
+
+  // Write the base classes for this derived class.
+  if (base_classes.empty ())
   {
-    code_generator.generate_narrow ();
-
-    // add the object to the set to be used for mpc generation
-    this->objects_.insert (fco);
-
-    CONNECTIONS connections;
-    FCOS proxies;
-
-    // get all the object proxies and also add the object to that list
-    fco->referenced_by (proxies);
-    proxies.push_back (fco);
-
-    // get all the connections of the objects in the above list
-    std::for_each (proxies.begin (),
-                   proxies.end (),
-                   boost::bind (&FCO::impl_type::in_connections,
-                                boost::bind (&FCO::get, _1),
-                                boost::ref (connections)));
-
-    CONNECTIONS::iterator iter = connections.begin (),
-                          iter_end = connections.end ();
-
-    for (; iter != iter_end; ++ iter)
-    {
-      const std::string name = (*iter)->name ();
-
-      FCO src = (*iter)->src ();
-      FCO dst = (*iter)->dst ();
-
-      src_name = src->name ();
-      dst_name = dst->name ();
-
-      if (name == "HasAttribute")
-      {
-        code_generator.generate_attribute_list (src);
-      }
-      else if (name == "DerivedInheritance")
-      {
-        // add the parent class in the inherited list
-        CONNECTIONS temp_conn;
-        this->get_src_connections (iter->get (),
-                                   "BaseInheritance",
-                                   temp_conn);
-
-        FCO temp_src = temp_conn.front ()->src ();
-        const std::string inst_path = this->get_instance_path (temp_src);
-        code_generator.add_inherited_class (inst_path);
-
-        // call the constructor of the derived class
-        cons_name = temp_src->name ();
-
-        // if the inherited class and the object are of the same meta
-        // type then don't inherit the meta class
-        if (temp_src->meta ()->name () == meta_name)
-          code_generator.set_inheritance_flag ();
-      }
-      else if (name == "SourceToConnector")
-      {
-        // generate function to get all the connections of this type
-        CONNECTIONS temp_conn;
-        this->get_dst_connections (iter->get (), "AssociationClass", temp_conn);
-
-        FCO dst = temp_conn.front ()->dst ();
-        const std::string inst_path = this->get_instance_path (dst);
-        code_generator.generate_connector_connections (inst_path);
-      }
-      else if (name == "ConnectorToDestination")
-      {
-        // generate function to get all the connections of this type
-        CONNECTIONS temp_conn;
-        this->get_src_connections (iter->get (), "AssociationClass", temp_conn);
-
-        FCO dst = temp_conn.front ()->dst ();
-        const std::string inst_path = this->get_instance_path (dst);
-        code_generator.generate_connector_connections (inst_path);
-      }
-      else if (name == "AssociationClass")
-      {
-        // generate the src () and the dst () functions
-        CONNECTIONS src_conn, dst_conn;
-        this->get_src_connections (iter->get (), "SourceToConnector", src_conn);
-        this->get_src_connections (iter->get (), "ConnectorToDestination", dst_conn);
-
-        FCO src = src_conn.front ()->src ();
-        const std::string src_inst_path = this->get_instance_path (src);
-        code_generator.generate_connection_end ("src", src_inst_path);
-
-        FCO dst = dst_conn.front ()->dst ();
-        const std::string dst_inst_path = this->get_instance_path (dst);
-        code_generator.generate_connection_end ("dst", dst_inst_path);
-      }
-      else if ((*iter)->name () == "Containment")
-      {
-        if (fco_name == src_name)
-        {
-          FCO fco = (*iter)->dst ();
-          const std::string inst_path = this->get_instance_path (fco);
-          code_generator.generate_create (inst_path);
-        }
-      }
-    }
-
-    this->create_default_functions (fco_name,
-                                    meta_name,
-                                    lc_meta_name,
-                                    cons_name,
-                                    code_generator);
-
-    // generate out the the .h and the .cpp files
-    code_generator.generate_h_file ();
-    code_generator.generate_cpp_file ();
+    this->header_ << "public " << default_base_classname;
   }
+  else
+  {
+    this->header_ << "public " << (*base_classes.begin ())->name () << "_Impl";
+
+    std::for_each (++ base_classes.begin (),
+                   base_classes.end (),
+                   generate_base_class_t (this->header_));
+  }
+
+  this->header_
+    << "{"
+    << "public:" << std::endl
+    << "/// Default constructor" << std::endl
+    << this->classname_ << " (void);"
+    << std::endl
+    << "/// Initializing constructor" << std::endl
+    << this->classname_ << " (IMga" << metaname << " * ptr);"
+    << std::endl
+    << "/// Destructor" << std::endl
+    << "virtual ~" << this->classname_ << " (void)"
+    << (is_abstract ? " = 0" : "") << ";";
+
+  this->source_
+    << std::endl
+    << "namespace " << project_name
+    << "{"
+    << function_header_t (this->classname_)
+    << this->classname_ << "::" << this->classname_ << " (void)"
+    << "{"
+    << "}"
+    << function_header_t (this->classname_)
+    << this->classname_ << "::"
+    << this->classname_ << " (IMga" << metaname << " * ptr)" << std::endl
+    << ": ";
+
+  // Write the base member initialiation section. This should include
+  // invoking the constructor on each base class for this extension
+  // class definition.
+  if (base_classes.empty ())
+  {
+    this->source_ << default_base_classname << " (ptr)";
+  }
+  else
+  {
+    this->source_ << (*base_classes.begin ())->name () << "_Impl (ptr)";
+
+    std::for_each (++ base_classes.begin (),
+                   base_classes.end (),
+                   generate_bmi_t (this->source_));
+  }
+
+
+  this->source_
+    << "{"
+    << "}"
+    << function_header_t ("~" + this->classname_)
+    << this->classname_ << "::~"<< this->classname_ << " (void)"
+    << "{"
+    << "}";
+
+  if (is_connection)
+    this->generate_connection_points (fco);
+
+  // Let's write the attributes for this extension class.
+  std::vector <Connection> has_attributes;
+  fco->in_connections ("HasAttribute", has_attributes);
+
+  Attribute_Generator attr_gen (this->classname_, this->header_, this->source_);
+  std::for_each (has_attributes.begin (),
+                 has_attributes.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &attr_gen));
+
+  // Let's the write in_connection methods for this extension class.
+  InConnection_Generator in_connection_gen (this->classname_, this->header_, this->source_);
+  std::for_each (src_to_connector.begin (),
+                 src_to_connector.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &in_connection_gen));
+
+  std::for_each (connector_to_dst.begin (),
+                 connector_to_dst.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &in_connection_gen));
+
+  if (is_model)
+  {
+    // Let's write the containment methods. This code is only valid
+    // when dealing with a Model element.
+    Containment_Generator containment_gen (this->classname_, this->header_, this->source_);
+
+    std::for_each (containment.begin (),
+                   containment.end (),
+                   boost::bind (&Connection::impl_type::accept,
+                                boost::bind (&Connection::get, _1),
+                                &containment_gen));
+  }
+
+  // End the class definition for this extension class.
+  this->header_
+    << "};"
+    << "/// Type definition of the input parameter." << std::endl
+    << "typedef " << this->classname_ << " * " << this->classname_ << "_in;"
+    << std::endl
+    << "/// Type definition of the smart pointer type." << std::endl
+    << "typedef ::GAME::Mga::Smart_Ptr <" << this->classname_ << "> " << name << ";"
+    << "}"
+    << "#endif" << std::endl;
+
+  this->source_
+    << "}";
 }
 
 //
@@ -196,18 +496,35 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 //
 void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
 {
-  this->create_directory (folder->path ("\\", true));
+  // Save the current output directory.
+  std::string prev_outdir = this->outdir_;
+
+  // Create the directory for this model, and its elements.
+  this->outdir_ += "/" + GAME::Utils::normalize (folder->name ());
+  GAME::Utils::create_path (this->outdir_);
 
   // collect all the paradigm sheets and traverse them.
-  MODELS paradigm_sheets;
+  std::vector <Model> paradigm_sheets;
   folder->children ("ParadigmSheet", paradigm_sheets);
 
   // visit all the paradigm sheets.
   std::for_each (paradigm_sheets.begin (),
                  paradigm_sheets.end (),
                  boost::bind (&Model::impl_type::accept,
-                 boost::bind (&Model::get, _1),
+                              boost::bind (&Model::get, _1),
                               this));
+
+  // Visit all the SheetFolder elements in the model.
+  std::vector <GAME::Mga::Folder> folders;
+  folder->children ("SheetFolder", folders);
+
+  std::for_each (folders.begin (),
+                 folders.end (),
+                 boost::bind (&Folder::impl_type::accept,
+                              boost::bind (&Folder::get, _1),
+                              this));
+
+  this->outdir_ = prev_outdir;
 }
 
 //
@@ -215,10 +532,15 @@ void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
 //
 void Extension_Classes_Visitor::visit_Model (Model_in model)
 {
-  this->create_directory (model->path ("\\", true));
+  // Save the current output directory.
+  std::string prev_outdir = this->outdir_;
+
+  // Create the directory for this model, and its elements.
+  this->outdir_ += "/" + GAME::Utils::normalize (model->name ());
+  GAME::Utils::create_path (this->outdir_);
 
   // get all the children of this sheet and call the visitor.
-  FCOS fcos;
+  std::vector <FCO> fcos;
   model->children (fcos);
 
   std::for_each (fcos.begin (),
@@ -226,6 +548,68 @@ void Extension_Classes_Visitor::visit_Model (Model_in model)
                  boost::bind (&FCO::impl_type::accept,
                               boost::bind (&FCO::get, _1),
                               this));
+
+  // Restore the previous directory.
+  this->outdir_ = prev_outdir;
+}
+
+//
+// generate_connection_points
+//
+void Extension_Classes_Visitor::generate_connection_points (FCO_in fco)
+{
+  std::vector <Connection> association_class;
+  fco->in_connections ("AssociationClass", association_class);
+
+  // Locate the connector in the connection.
+  Connection conn = association_class.front ();
+  FCO connector = conn->dst ()->is_equal_to (fco) ? conn->src () : conn->dst ();
+
+  // Locate the source connection point method.
+  std::vector <Connection> in_connections;
+  connector->in_connections ("SourceToConnector", in_connections);
+
+  conn = in_connections.front ();
+  std::string rolename = conn->attribute ("srcRolename")->string_value ();
+  std::string connpt_type = conn->src ()->name ();
+
+  // Write the source connection point method.
+  this->header_
+    << std::endl
+    << "/// Get the " << rolename << " connection point." << std::endl
+    << connpt_type << " " << rolename << " (void);";
+
+  this->source_
+    << function_header_t (rolename)
+    << connpt_type << " " << this->classname_ << "::" << rolename << " (void)"
+    << "{"
+    << "GAME::Mga::FCO target = this->connection_point (\"" << rolename << "\")->target ();"
+    << "return " << connpt_type << "::_narrow (target);"
+    << "}";
+
+  // Reset the container.
+  in_connections.clear ();
+
+  // Locate the destination connection point method.
+  connector->in_connections ("ConnectorToDestination", in_connections);
+
+  conn = in_connections.front ();
+  rolename = conn->attribute ("dstRolename")->string_value ();
+  connpt_type = conn->dst ()->name ();
+
+  // Write the destination connection point method.
+  this->header_
+    << std::endl
+    << "/// Get the " << rolename << " connection point." << std::endl
+    << connpt_type << " " << rolename << " (void);";
+
+  this->source_
+    << function_header_t (rolename)
+    << connpt_type << " " << this->classname_ << "::" << rolename << " (void)"
+    << "{"
+    << "GAME::Mga::FCO target = this->connection_point (\"" << rolename << "\")->target ();"
+    << "return " << connpt_type << "::_narrow (target);"
+    << "}";
 }
 
 //
@@ -251,41 +635,6 @@ std::string Extension_Classes_Visitor::get_instance_path (FCO_in fco)
   }
 
   return path.erase (0, (path.find_first_of ("/") + 1));
-}
-
-//
-// create_default_functions
-//
-void Extension_Classes_Visitor::
-create_default_functions (std::string fco_name,
-                          std::string meta_name,
-                          std::string obj_name,
-                          std::string constructor_name,
-                          Extension_Classes_Code_Generator & generator)
-{
-  std::stringstream params, base_constructor;
-
-  // generate the constructors and the destructors
-  generator.generate_default_functions ("", "void", "");
-
-  // set parameters and base constructor call for IMga constructor
-  params << "IMga" << meta_name << " * " << obj_name;
-  base_constructor << std::endl << ": " << constructor_name << " (" << obj_name << ")";
-  generator.generate_default_functions ("", params.str (), base_constructor.str ());
-
-  // set parameters and base constructor call for copy constructor
-  params.str ("");
-  params << "const " << fco_name << " & " << obj_name;
-  generator.generate_default_functions ("", params.str (), base_constructor.str ());
-
-  // set parameters and base constructor call for constructor that takes
-  // parameter of base type
-  params.str ("");
-  params << "const " << meta_name << " & " << obj_name;
-  generator.generate_default_functions ("", params.str (), base_constructor.str ());
-
-  // generate the destructor and the _narrow function
-  generator.generate_default_functions ("~", "void", "");
 }
 
 }

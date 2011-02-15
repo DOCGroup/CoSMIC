@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{F988D068-65F3-48EB-A71B-956FE00FC2C3}" cdate="Mon Nov 01 19:18:25 2010" mdate="Mon Nov 01 19:18:25 2010" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
-	<name>Atom-UnitTest</name>
+<project guid="{6B8E3500-24CB-4CE4-A05B-DEB4EB5B37E2}" cdate="Tue Feb 15 11:29:01 2011" mdate="Tue Feb 15 11:29:01 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+	<name>AtomTest</name>
 	<comment></comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{26773714-7465-41da-9518-9027c403d52e}">
-		<name>Atom-UnitTest</name>
+		<name>AtomTest</name>
 		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{e22f49b8-c943-4f36-8e84-b6d2729dba31}" relid="0x1" childrelidcntr="0x1">
 			<name>AtomSheet</name>
 			<atom id="id-0066-00000001" kind="Atom" role="Atom" guid="{45b3db9b-d294-450c-a5ce-606075625de8}" relid="0x1">

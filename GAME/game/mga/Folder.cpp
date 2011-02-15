@@ -8,8 +8,6 @@
 #include "Folder.inl"
 #endif
 
-#include "Exception.h"
-#include "Collection_T.h"
 #include "Atom.h"
 #include "Set.h"
 #include "Reference.h"
@@ -46,17 +44,6 @@ _create (const Folder_in parent, const Meta::Folder_in meta)
   return folder.p;
 }
 
-//
-// children
-//
-size_t Folder_Impl::children (std::vector <Folder> & folders) const
-{
-  CComPtr <IMgaFolders> tempptr;
-  VERIFY_HRESULT (this->impl ()->get_ChildFolders (&tempptr));
-
-  return iter_to_collection (tempptr.p, folders);
-}
-
 /**
  * @struct filter_t
  *
@@ -86,84 +73,29 @@ private:
 //
 // children
 //
-size_t Folder_Impl::
-children (const std::string & type, std::vector <Folder> & folders) const
+size_t Folder_Impl::children (std::vector <Folder> & children) const
 {
-  // Clear the folders in the collection.
-  folders.clear ();
+  CComPtr <IMgaFolders> folders;
+  VERIFY_HRESULT (this->impl ()->get_ChildFolders (&folders));
 
-  // Get all the child folders in this folder.
-  std::vector <Folder> temp_set;
-
-  if (this->children (temp_set) > 0)
-    std::for_each (temp_set.begin (),
-                   temp_set.end (),
-                   filter_t (type, folders));
-
-  return folders.size ();
-}
-
-//
-// children
-//
-size_t Folder_Impl::children (std::vector <FCO> & children) const
-{
-  CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
-
-  return iter_to_collection (fcos.p, children);
+  return iter_to_collection (folders.p, children);
 }
 
 //
 // children
 //
 size_t Folder_Impl::
-children (const std::string & type, std::vector <Atom> & children) const
+children (const std::string & type, std::vector <Folder> & children) const
 {
-  CComPtr <IMgaFCOs> fcos;
-  CComBSTR bstr (type.length (), type.c_str ());
-  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
+  std::vector <Folder> temp;
+  if (0 == this->children (temp))
+    return 0;
 
-  return iter_to_collection (fcos.p, children);
-}
+  std::for_each (temp.begin (),
+                 temp.end (),
+                 filter_t (type, children));
 
-//
-// children
-//
-size_t Folder_Impl::
-children (const std::string & type, std::vector <Model> & children) const
-{
-  CComPtr <IMgaFCOs> fcos;
-  CComBSTR bstr (type.length (), type.c_str ());
-  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
-
-  return iter_to_collection (fcos.p, children);
-}
-
-//
-// children
-//
-size_t Folder_Impl::
-children (const std::string & type, std::vector <Reference> & children) const
-{
-  CComPtr <IMgaFCOs> fcos;
-  CComBSTR bstr (type.length (), type.c_str ());
-  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
-
-  return iter_to_collection (fcos.p, children);
-}
-
-//
-// children
-//
-size_t Folder_Impl::
-children (const std::string & type, std::vector <Set> & children) const
-{
-  CComPtr <IMgaFCOs> fcos;
-  CComBSTR bstr (type.length (), type.c_str ());
-  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
-
-  return iter_to_collection (fcos.p, children);
+  return children.size ();
 }
 
 //

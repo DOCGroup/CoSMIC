@@ -47,7 +47,7 @@ struct copy_attribute_t
       break;
 
     case ATTVAL_DOUBLE:
-      dst->float_value (src->float_value ());
+      dst->double_value (src->double_value ());
       break;
 
     case ATTVAL_ENUM:

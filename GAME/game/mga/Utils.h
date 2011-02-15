@@ -78,7 +78,7 @@ std::string create_uuid (void);
  * normalize
  */
 GAME_MGA_Export
-void normalize (std::string & text);
+std::string & normalize (std::string & text);
 
 }
 }

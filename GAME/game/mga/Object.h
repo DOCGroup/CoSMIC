@@ -20,6 +20,7 @@
 #include "GME_fwd.h"
 #include "MetaBase.h"
 #include "Refcountable.h"
+#include "Tags.h"
 
 namespace GAME
 {
@@ -38,6 +39,9 @@ class GAME_MGA_Export Object_Impl : public Refcountable
 public:
   /// Type definition of the COM pointer type.
   typedef IMgaObject interface_type;
+
+  /// Type definition of the type tag.
+  typedef object_tag_t type_tag;
 
   /// Default constructor.
   Object_Impl (void);

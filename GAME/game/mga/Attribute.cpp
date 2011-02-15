@@ -121,7 +121,7 @@ void Attribute_Impl::bool_value (bool val)
 //
 // float_value
 //
-double Attribute_Impl::float_value (void) const
+double Attribute_Impl::double_value (void) const
 {
   double val;
   VERIFY_HRESULT (this->attr_->get_FloatValue (&val));
@@ -132,7 +132,7 @@ double Attribute_Impl::float_value (void) const
 //
 // float_value
 //
-void Attribute_Impl::float_value (double val)
+void Attribute_Impl::double_value (double val)
 {
   VERIFY_HRESULT (this->attr_->put_FloatValue (val));
 }
