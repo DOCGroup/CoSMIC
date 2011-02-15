@@ -1,3 +1,9 @@
+Tue Feb 15 19:36:52 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Updated generator to include tag information in extension classes.
+
 Tue Feb 15 19:21:08 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/codegenerationkit.mpb:

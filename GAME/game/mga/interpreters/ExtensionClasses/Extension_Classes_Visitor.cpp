@@ -364,6 +364,7 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   // constructor, destructor, and _create () method. When writing the
   // create method, we want to make sure that the parents are type-safe.
   this->header_
+    << std::endl
     << include_t (project_name + "_export.h")
     << std::endl
     << "namespace " << project_name
@@ -384,9 +385,15 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                    generate_base_class_t (this->header_));
   }
 
+  // Determine the tag type for this extension class.
+  std::string tag_type = metaname;
+  tag_type[0] = ::tolower (tag_type[0]);
+
   this->header_
     << "{"
     << "public:" << std::endl
+    << "/// Tag type of this extension class." << std::endl
+    << "typedef ::GAME::Mga::" << tag_type << "_tag_t tag_type;" << std::endl
     << "/// Default constructor" << std::endl
     << this->classname_ << " (void);"
     << std::endl
