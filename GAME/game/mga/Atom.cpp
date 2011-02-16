@@ -9,6 +9,7 @@
 #endif
 
 #include "Exception.h"
+#include "Factory_T.h"
 #include "Folder.h"
 
 #include "Model.h"
@@ -22,6 +23,38 @@ namespace GAME
 {
 namespace Mga
 {
+
+//
+// _create
+//
+Atom Atom_Impl::_create (const Folder_in parent, const std::string & type)
+{
+  return create_root_object <Atom> (parent, type);
+}
+
+//
+// _create
+//
+Atom Atom_Impl::_create (const Folder_in parent, const Meta::FCO_in metafco)
+{
+  return create_root_object <Atom> (parent, metafco);
+}
+
+//
+// _create
+//
+Atom Atom_Impl::_create (const Model_in parent, const std::string & type)
+{
+  return create_object <Atom> (parent, type);
+}
+
+//
+// _create
+//
+Atom Atom_Impl::_create (const Model_in parent, const Meta::Role_in role)
+{
+  return create_object <Atom> (parent, role);
+}
 
 //
 // attach
@@ -44,52 +77,6 @@ IMgaAtom * Atom_Impl::impl (void) const
 
   VERIFY_HRESULT (this->object_.QueryInterface (&this->atom_));
   return this->atom_;
-}
-
-//
-// _create
-//
-Atom Atom_Impl::_create (const Model_in parent, const std::string & type)
-{
-  Meta::Role role = parent->meta ()->role (type);
-  return Atom_Impl::_create (parent, role);
-}
-
-//
-// _create
-//
-Atom Atom_Impl::_create (const Model_in parent, const Meta::Role_in role)
-{
-  CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent->impl ()->CreateChildObject (role->impl (), &child));
-
-  CComPtr <IMgaAtom> mga_atom;
-  VERIFY_HRESULT (child.QueryInterface (&mga_atom));
-
-  return new Atom_Impl (mga_atom);
-}
-
-//
-// _create
-//
-Atom Atom_Impl::_create (const Folder_in parent, const std::string & type)
-{
-  Meta::FCO role = parent->meta ()->child (type);
-  return Atom_Impl::_create (parent, role.get ());
-}
-
-//
-// _create
-//
-Atom Atom_Impl::_create (const Folder_in parent, const Meta::FCO_in type)
-{
-  CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent->impl ()->CreateRootObject (type->impl (), &child));
-
-  CComPtr <IMgaAtom> mga_atom;
-  VERIFY_HRESULT (child.QueryInterface (&mga_atom));
-
-  return new Atom_Impl (mga_atom.p);
 }
 
 //

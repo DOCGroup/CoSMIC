@@ -68,6 +68,11 @@ namespace Mga
   typedef Folder_Impl * Folder_in;
 
   // Forward decl.
+  class RootFolder_Impl;
+  typedef Smart_Ptr <RootFolder_Impl> RootFolder;
+  typedef RootFolder_Impl * RootFolder_in;
+
+  // Forward decl.
   class Connection_Impl;
   typedef Smart_Ptr <Connection_Impl> Connection;
   typedef Connection_Impl * Connection_in;

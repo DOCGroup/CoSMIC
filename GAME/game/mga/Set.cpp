@@ -9,15 +9,15 @@
 #include "Set.inl"
 #endif
 
-#include "Model.h"
 #include "Collection_T.h"
 #include "Exception.h"
 #include "Visitor.h"
+#include "Factory_T.h"
+#include "Model.h"
 
 #include "MetaRole.h"
 #include "MetaModel.h"
 #include "MetaSet.h"
-
 
 namespace GAME
 {
@@ -29,8 +29,7 @@ namespace Mga
 //
 Set Set_Impl::_create (const Model_in parent, const std::string & type)
 {
-  Meta::Role role = parent->meta ()->role (type);
-  return Set_Impl::_create (parent, role.get ());
+  return create_object <Set> (parent, type);
 }
 
 //
@@ -38,13 +37,7 @@ Set Set_Impl::_create (const Model_in parent, const std::string & type)
 //
 Set Set_Impl::_create (const Model_in parent, const Meta::Role_in type)
 {
-  CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent->impl ()->CreateChildObject (type->impl (), &child));
-
-  CComPtr <IMgaSet> mga_set;
-  VERIFY_HRESULT (child.QueryInterface (&mga_set));
-
-  return mga_set.p;
+  return create_object <Set> (parent, type);
 }
 
 //

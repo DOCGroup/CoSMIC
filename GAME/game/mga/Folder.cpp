@@ -13,6 +13,7 @@
 #include "Reference.h"
 #include "Model.h"
 #include "Visitor.h"
+#include "Factory_T.h"
 
 #include <algorithm>
 
@@ -27,8 +28,7 @@ namespace Mga
 Folder Folder_Impl::
 _create (const Folder_in parent, const std::string & type)
 {
-  Meta::Folder meta = parent->meta ()->folder (type);
-  return Folder_Impl::_create (parent, meta.get ());
+  return create_folder <Folder> (parent, type);
 }
 
 //
@@ -37,11 +37,7 @@ _create (const Folder_in parent, const std::string & type)
 Folder Folder_Impl::
 _create (const Folder_in parent, const Meta::Folder_in meta)
 {
-  CComPtr <IMgaFolder> folder;
-  VERIFY_HRESULT (parent->impl ()->CreateFolder (meta->impl (), &folder));
-
-  // Use factory to create concrete implementation type.
-  return folder.p;
+  return create_folder <Folder> (parent, meta);
 }
 
 /**

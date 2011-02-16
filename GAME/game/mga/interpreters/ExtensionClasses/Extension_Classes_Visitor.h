@@ -44,6 +44,7 @@ public:
   virtual ~Extension_Classes_Visitor (void);
 
   // Visit a Folder element.
+  virtual void visit_RootFolder (RootFolder_in folder);
   virtual void visit_Folder (Folder_in folder);
 
   // Visit an Atom element.

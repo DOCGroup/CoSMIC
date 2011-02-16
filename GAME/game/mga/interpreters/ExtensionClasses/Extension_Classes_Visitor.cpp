@@ -20,6 +20,7 @@
 #include "game/mga/MetaAtom.h"
 #include "game/mga/MetaFCO.h"
 #include "game/mga/Reference.h"
+#include "game/mga/RootFolder.h"
 
 #include "boost/bind.hpp"
 
@@ -262,12 +263,13 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   const std::string name = fco->name ();
   const std::string metaname = fco->meta ()->name ();
-  const std::string default_base_classname = "GAME::Mga::" + metaname + "_Impl";
+  const std::string default_base_classname = "::GAME::Mga::" + metaname + "_Impl";
   const std::string project_name = GAME::Utils::normalize (fco->project ().name ());
 
   bool is_abstract = (metaname == "FCO" || fco->attribute ("IsAbstract")->bool_value ());
   bool is_connection = metaname == "Connection";
   bool is_model = metaname == "Model";
+  bool is_in_root_folder = fco->attribute ("InRootFolder")->bool_value ();
 
   this->classname_ = name + "_Impl";
 
@@ -327,6 +329,9 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << include_t (this->pch_basename_ + ".h")
     << include_t (name + ".h");
 
+  if (!is_abstract)
+    this->source_ << include_t ("game/mga/Factory_T.h");
+
   // First, we need to gather all connections from this FCO that could
   // lead to another FCO that must be included in the header file.
   std::vector <Connection> src_to_connector;
@@ -360,6 +365,9 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                                 boost::bind (&Connection::get, _1),
                                 &includes));
 
+  if (is_in_root_folder)
+    this->header_ << include_t ("game/mga/RootFolder.h");
+
   // Write the class definition and default methods, such as default
   // constructor, destructor, and _create () method. When writing the
   // create method, we want to make sure that the parents are type-safe.
@@ -369,6 +377,15 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << std::endl
     << "namespace " << project_name
     << "{"
+    << "// Forward decl." << std::endl
+    << "class " << this->classname_ << ";"
+    << std::endl
+    << "/// Type definition of the input parameter." << std::endl
+    << "typedef " << this->classname_ << " * " << name << "_in;"
+    << std::endl
+    << "/// Type definition of the smart pointer type." << std::endl
+    << "typedef ::GAME::Mga::Smart_Ptr <" << this->classname_ << "> " << name << ";"
+    << std::endl
     << "class " << export_name << " " << this->classname_ << " : ";
 
   // Write the base classes for this derived class.
@@ -392,8 +409,22 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   this->header_
     << "{"
     << "public:" << std::endl
+    << "/// Metaname for this extension class." << std::endl
+    << "static const std::string metaname;"
+    << std::endl
     << "/// Tag type of this extension class." << std::endl
-    << "typedef ::GAME::Mga::" << tag_type << "_tag_t tag_type;" << std::endl
+    << "typedef ::GAME::Mga::" << tag_type << "_tag_t tag_type;";
+
+  if (!is_abstract && is_in_root_folder)
+  {
+    // Declare the root folder creation function.
+    this->header_
+      << std::endl
+      << "static " << name << " _create (const ::GAME::Mga::RootFolder_in parent);";
+  }
+
+  this->header_
+    << std::endl
     << "/// Default constructor" << std::endl
     << this->classname_ << " (void);"
     << std::endl
@@ -408,6 +439,24 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << std::endl
     << "namespace " << project_name
     << "{"
+    << function_header_t ("metaname")
+    << "const std::string " << this->classname_ << "::metaname = \"" << name << "\";"
+    << std::endl;
+
+  if (is_in_root_folder)
+  {
+    // Implement the root folder creation function.
+    this->source_
+      << function_header_t ("_create")
+      << name << " " << this->classname_
+      << "::_create (const ::GAME::Mga::RootFolder_in parent)"
+      << "{"
+      << "return ::GAME::Mga::create_root_object <"
+      << name << "> (parent, " << this->classname_ << "::metaname);"
+      << "}";
+  }
+
+  this->source_
     << function_header_t (this->classname_)
     << this->classname_ << "::" << this->classname_ << " (void)"
     << "{"
@@ -486,16 +535,19 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   // End the class definition for this extension class.
   this->header_
     << "};"
-    << "/// Type definition of the input parameter." << std::endl
-    << "typedef " << this->classname_ << " * " << this->classname_ << "_in;"
-    << std::endl
-    << "/// Type definition of the smart pointer type." << std::endl
-    << "typedef ::GAME::Mga::Smart_Ptr <" << this->classname_ << "> " << name << ";"
     << "}"
     << "#endif" << std::endl;
 
   this->source_
     << "}";
+}
+
+//
+// visit_Folder
+//
+void Extension_Classes_Visitor::visit_RootFolder (RootFolder_in folder)
+{
+  this->visit_Folder (folder);
 }
 
 //

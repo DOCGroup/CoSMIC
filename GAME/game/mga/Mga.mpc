@@ -43,6 +43,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
     Refcountable.cpp
     Reference.cpp
     RegistryNode.cpp
+    RootFolder.cpp
     Set.cpp
     Territory.cpp
     Transaction.cpp
@@ -71,6 +72,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
 
   Template_Files {
     Collection_T.cpp
+    Factory_T.cpp
     Folder_T.cpp
     Model_T.cpp
     modelgen.cpp

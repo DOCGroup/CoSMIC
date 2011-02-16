@@ -1,12 +1,10 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Mga.h"
-#include "Project.h"
-
-#include "Collection_T.h"
-
 #include "ComponentEx.h"
+#include "Project.h"
+#include "RootFolder.h"
+
 #include "boost/bind.hpp"
 #include <algorithm>
 #include <functional>
@@ -289,7 +287,7 @@ Folder Project::root_folder (void) const
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->project_->get_RootFolder (&folder));
 
-  return folder.p;
+  return new RootFolder_Impl (folder.p);
 }
 
 //

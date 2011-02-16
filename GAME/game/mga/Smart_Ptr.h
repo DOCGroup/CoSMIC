@@ -127,7 +127,13 @@ public:
   static T * _narrow (T1 * impl);
 
   template <typename T1>
+  static T * _narrow_nocheck (T1 * impl);
+
+  template <typename T1>
   static T * _narrow (const Smart_Ptr <T1> & impl);
+
+  template <typename T1>
+  static T * _narrow_nocheck (const Smart_Ptr <T1> & impl);
 
   /// Release the contained implementation. This will not decrement
   /// the reference count for the previously contained implementation.

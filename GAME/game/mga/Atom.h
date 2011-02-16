@@ -14,6 +14,7 @@
 #define _GAME_MGA_ATOM_H_
 
 #include "FCO.h"
+#include "MetaFCO.h"
 
 namespace GAME
 {
@@ -47,6 +48,7 @@ public:
   static Atom _create (const Folder_in parent, const std::string & type);
   static Atom _create (const Folder_in parent, const Meta::FCO_in type);
 
+public:
   /// Default constructor.
   Atom_Impl (void);
 

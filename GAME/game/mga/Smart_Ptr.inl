@@ -243,6 +243,17 @@ Smart_Ptr <T>::~Smart_Ptr (void)
 }
 
 //
+// _narrow_no_check
+//
+template <typename T>
+template <typename T1>
+GAME_INLINE
+static T * Smart_Ptr <T>::_narrow_nocheck (T1 * impl)
+{
+  return dynamic_cast <T *> (impl);
+}
+
+//
 // operator =
 //
 template <typename T>
@@ -326,6 +337,17 @@ GAME_INLINE
 static T * Smart_Ptr <T>::_narrow (const Smart_Ptr <T1> & impl)
 {
   return Smart_Ptr <T>::_narrow (const_cast <T1 *> (impl.get ()));
+}
+
+//
+// _narrow
+//
+template <typename T>
+template <typename T1>
+GAME_INLINE
+static T * Smart_Ptr <T>::_narrow_nocheck (const Smart_Ptr <T1> & impl)
+{
+  return Smart_Ptr <T>::_narrow_nocheck (const_cast <T1 *> (impl.get ()));
 }
 
 }

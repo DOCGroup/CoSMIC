@@ -15,6 +15,7 @@
 
 #include "game/config.h"
 #include "GME_fwd.h"
+
 #include "Mga_export.h"
 
 namespace GAME
@@ -33,28 +34,31 @@ namespace Mga
 class GAME_MGA_Export Visitor
 {
 public:
-  /// Default constructor
+  /// Default constructor.
   Visitor (void);
 
   /// Destructor.
   virtual ~Visitor (void);
 
-  /// Visit a Model_Impl
+  /// Visit a Model_Impl element.
   virtual void visit_Model (Model_in);
 
-  /// Visit a Atom_Impl
+  /// Visit a Atom_Impl element.
   virtual void visit_Atom (Atom_in);
 
-  /// Visit a Folder_Impl_Impl
+  /// Visit a Folder_Impl element.
   virtual void visit_Folder (Folder_in);
 
-  /// Visit a Reference_Impl
+  /// Visit a RootFolder_Impl element.
+  virtual void visit_RootFolder (RootFolder_in);
+
+  /// Visit a Reference_Impl element.
   virtual void visit_Reference (Reference_in);
 
-  /// Visit a Set_Impl
+  /// Visit a Set_Impl element.
   virtual void visit_Set (Set_in);
 
-  /// Visit a Set_Impl
+  /// Visit a Set_Impl element.
   virtual void visit_Connection (Connection_in);
 };
 

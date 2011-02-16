@@ -8,6 +8,7 @@
 #include "Reference.inl"
 #endif
 
+#include "Factory_T.h"
 #include "Model.h"
 #include "Visitor.h"
 #include "Exception.h"
@@ -26,8 +27,7 @@ namespace Mga
 Reference Reference_Impl::
 _create (const Model_in parent, const std::string & type)
 {
-  Meta::Role role = parent->meta ()->role (type);
-  return Reference_Impl::_create (parent, role.get ());
+  return create_object <Reference> (parent, type);
 }
 
 //
@@ -36,13 +36,7 @@ _create (const Model_in parent, const std::string & type)
 Reference Reference_Impl::
 _create (const Model_in parent, const Meta::Role_in role)
 {
-  CComPtr <IMgaFCO> child;
-  VERIFY_HRESULT (parent->impl ()->CreateChildObject (role->impl (), &child));
-
-  CComPtr <IMgaReference> mga_reference;
-  VERIFY_HRESULT (child.QueryInterface (&mga_reference));
-
-  return new Reference_Impl (mga_reference);
+  return create_object <Reference> (parent, role);
 }
 
 //

@@ -1,3 +1,48 @@
+Wed Feb 16 00:49:38 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/stdafx.h:
+        * game/mga/stdafx.cpp:
+        * game/mga/Atom.h:
+        * game/mga/Atom.cpp:
+        * game/mga/Factory_T.h:
+        * game/mga/Factory_T.cpp:
+        * game/mga/Folder.cpp:
+        * game/mga/GME_fwd.h:
+        * game/mga/Mga.mpc:
+        * game/mga/Model.inl:
+        * game/mga/Model.cpp:
+        * game/mga/Project.cpp:
+        * game/mga/Reference.cpp:
+        * game/mga/Set.cpp:
+        * game/mga/Smart_Ptr.h:
+        * game/mga/Smart_Ptr.inl:
+
+          Implemented a generic factory method for creating Mga objects
+          and binding them to an implementation.
+
+          Reimplemented the _create () methods using the generic factory
+          method.
+
+        * game/mga/RootFolder.h:
+        * game/mga/RootFolder.inl:
+        * game/mga/RootFolder.cpp:
+        * game/mga/Visitor.h:
+        * game/mga/Visitor.inl:
+
+          Implemented a concrete root folder element.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Implemented the _create () method for objects that appear in
+          the RootFolder.
+
+        * tests/ExtensionClasses/RootFolder:
+        * tests/ExtensionClasses/RootFolder/RootFolderTest.xme:
+
+          Validation test for objects in the RootFolder.
+
 Tue Feb 15 19:36:52 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:

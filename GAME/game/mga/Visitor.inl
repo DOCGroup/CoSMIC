@@ -59,6 +59,15 @@ void Visitor::visit_Folder (Folder_in)
 }
 
 //
+// visit_RootFolder
+//
+GAME_INLINE
+void Visitor::visit_RootFolder (RootFolder_in)
+{
+
+}
+
+//
 // visit_Reference
 //
 GAME_INLINE
