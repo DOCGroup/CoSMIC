@@ -11,6 +11,7 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_component
     Base_Class_Locator.cpp
     Containment_Generator.cpp
     Functors.cpp
+    Fwd_Decl_Generator.cpp
     Extension_Classes_Component.idl
     Extension_Classes_Component_Impl.cpp
     Extension_Classes_Component_Module.cpp

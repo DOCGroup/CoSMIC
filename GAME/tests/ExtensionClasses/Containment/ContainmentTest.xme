@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{EAE263AE-5B11-4527-8847-3366C8112200}" cdate="Thu Feb 10 01:02:04 2011" mdate="Thu Feb 10 01:02:04 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+<project guid="{9D590EC8-FA1A-416C-8436-DB451EE36B5E}" cdate="Thu Feb 10 01:02:04 2011" mdate="Thu Feb 10 01:02:04 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
 	<name>ContainmentTest</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{95ac7220-9ba4-4264-a5f3-49b9797f0177}">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x2" kind="RootFolder" guid="{95ac7220-9ba4-4264-a5f3-49b9797f0177}">
 		<name>ContainmentTest</name>
-		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{b9b61102-b21b-422a-b332-b0feb7f8ae27}" relid="0x1" childrelidcntr="0x5">
-			<name>ContainmentTest</name>
+		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{b9b61102-b21b-422a-b332-b0feb7f8ae27}" relid="0x1" childrelidcntr="0x7">
+			<name>ContainmentSheet</name>
 			<atom id="id-0066-00000001" kind="Model" role="Model" guid="{eb0bd035-0a19-46de-b1a6-c9d8f75b5965}" relid="0x1">
 				<name>Foo</name>
 				<regnode name="PartRegs" status="undefined">
@@ -357,6 +357,48 @@
 					<value></value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-00000004" kind="Folder" role="Folder" guid="{3849590a-27a1-4580-b3a7-6f0387e03797}" relid="0x6">
+				<name>ParentFolder</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>536,105</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>536,105</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>522,98</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>536,105</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>536,105</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>true</value>
+				</attribute>
+			</atom>
 			<connection id="id-0068-00000001" kind="Containment" role="Containment" guid="{a178f4a4-6113-4877-860d-4250fe1eb9b3}" relid="0x4">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -390,6 +432,17 @@
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000001"/>
 				<connpoint role="src" target="id-0066-00000003"/>
+			</connection>
+			<connection id="id-0068-00000003" kind="FolderContainment" role="FolderContainment" guid="{85821af6-8b95-4104-9861-c5f0e5a50d94}" relid="0x7">
+				<name>FolderContainment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000001"/>
+				<connpoint role="dst" target="id-0066-00000004"/>
 			</connection>
 		</model>
 	</folder>

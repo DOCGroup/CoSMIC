@@ -1,3 +1,21 @@
+Wed Feb 16 02:36:35 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpreters/ExtensionClasses:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/Fwd_Decl_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Fwd_Decl_Generator.cpp:
+        * tests/ExtensionClasses/Containment/ContainmentTest.xme:
+
+          Added support for generating a forward declaration file for
+          the project. This removes the requirement of generating many
+          include statements in the header file.
+
+        * game/mga/interpreters/ExtensionClasses/ExtensionClasses.mpc:
+
+          Removed this file.
+
 Wed Feb 16 00:49:38 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/stdafx.h:

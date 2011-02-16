@@ -230,7 +230,8 @@ void Extension_Classes_Visitor::visit_Atom (Atom_in atom)
       metaname == "Model" ||
       metaname == "Reference" ||
       metaname == "Set" ||
-      metaname == "Connection")
+      metaname == "Connection" ||
+      metaname == "Folder")
   {
     // Start a new extension class.
     const std::string basename = this->outdir_ + "/" + atom->name ();
@@ -266,7 +267,10 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   const std::string default_base_classname = "::GAME::Mga::" + metaname + "_Impl";
   const std::string project_name = GAME::Utils::normalize (fco->project ().name ());
 
-  bool is_abstract = (metaname == "FCO" || fco->attribute ("IsAbstract")->bool_value ());
+  bool is_abstract =
+    (metaname == "FCO" ||
+    (metaname != "Folder" && fco->attribute ("IsAbstract")->bool_value ()));
+
   bool is_connection = metaname == "Connection";
   bool is_model = metaname == "Model";
   bool is_in_root_folder = fco->attribute ("InRootFolder")->bool_value ();
@@ -373,17 +377,14 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   // create method, we want to make sure that the parents are type-safe.
   this->header_
     << std::endl
+    << include_t (project_name + "_fwd.h")
     << include_t (project_name + "_export.h")
     << std::endl
     << "namespace " << project_name
     << "{"
-    << "// Forward decl." << std::endl
+    << "// Forward decl. and type definitions" << std::endl
     << "class " << this->classname_ << ";"
-    << std::endl
-    << "/// Type definition of the input parameter." << std::endl
     << "typedef " << this->classname_ << " * " << name << "_in;"
-    << std::endl
-    << "/// Type definition of the smart pointer type." << std::endl
     << "typedef ::GAME::Mga::Smart_Ptr <" << this->classname_ << "> " << name << ";"
     << std::endl
     << "class " << export_name << " " << this->classname_ << " : ";
