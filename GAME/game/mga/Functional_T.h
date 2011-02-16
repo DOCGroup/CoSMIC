@@ -10,8 +10,8 @@
  */
 //=============================================================================
 
-#ifndef _GAME_MGA_FACTORY_T_H_
-#define _GAME_MGA_FACTORY_T_H_
+#ifndef _GAME_MGA_FUNCTIONAL_T_H_
+#define _GAME_MGA_FUNCTIONAL_T_H_
 
 namespace GAME
 {
@@ -36,9 +36,12 @@ T create_folder (P parent, const std::string & metaname);
 template <typename T, typename P>
 T create_folder (P parent, const Meta::Folder_in meta);
 
+template <typename T>
+T get_parent (IMgaObject * obj);
+
 }
 }
 
-#include "Factory_T.cpp"
+#include "Functional_T.cpp"
 
 #endif  // !defined _GAME_MGA_FACTORY_T_H_

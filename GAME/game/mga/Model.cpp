@@ -10,7 +10,7 @@
 
 #include "Atom.h"
 #include "Folder.h"
-#include "Factory_T.h"
+#include "Functional_T.h"
 #include "Reference.h"
 #include "Connection.h"
 #include "Set.h"

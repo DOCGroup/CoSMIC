@@ -15,7 +15,10 @@
 #define _EXTENSION_CLASSES_CONTAINMENT_GENERATOR_H_
 
 #include <fstream>
+#include <set>
+
 #include "game/mga/Visitor.h"
+#include "game/mga/FCO.h"
 
 namespace GAME
 {
@@ -38,7 +41,8 @@ public:
    * @param[in]       header            Target header file
    * @param[in]       source            Target source file
    */
-  Containment_Generator (const std::string & classname,
+  Containment_Generator (FCO_in fco,
+                         const std::string & classname,
                          std::ofstream & header,
                          std::ofstream & source);
 
@@ -52,6 +56,9 @@ public:
   virtual void visit_Atom (Atom_in a);
 
 private:
+  /// The parent extension class object for the generation.
+  FCO fco_;
+
   /// Name of the extension class.
   const std::string & classname_;
 
@@ -62,6 +69,9 @@ private:
   std::ofstream & source_;
 
   std::string cardinality_;
+
+  /// Collection of seen elements.
+  std::set <Atom> seen_;
 };
 
 }

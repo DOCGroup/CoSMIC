@@ -10,8 +10,10 @@
 #include "Attribute_Generator.h"
 #include "Base_Class_Locator.h"
 #include "Containment_Generator.h"
+#include "Factory_Method_Generator.h"
 #include "Functors.h"
 #include "InConnection_Generator.h"
+#include "Parent_Generator.h"
 
 #include "game/mga/Attribute.h"
 #include "game/mga/Atom.h"
@@ -331,10 +333,12 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << "// $" << "Id" << "$" << std::endl
     << std::endl
     << include_t (this->pch_basename_ + ".h")
-    << include_t (name + ".h");
-
-  if (!is_abstract)
-    this->source_ << include_t ("game/mga/Factory_T.h");
+    << include_t (name + ".h")
+    << std::endl
+    << include_t ("game/mga/MetaModel.h")
+    << include_t ("game/mga/MetaFolder.h")
+    << include_t ("game/mga/Functional_T.h")
+    << std::endl;
 
   // First, we need to gather all connections from this FCO that could
   // lead to another FCO that must be included in the header file.
@@ -343,6 +347,13 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   std::vector <Connection> connector_to_dst;
   fco->in_connections ("ConnectorToDestination", connector_to_dst);
+
+  std::vector <Connection> containment;
+  fco->in_connections ("Containment", containment);
+  fco->in_connections ("FolderContainment", containment);
+
+  std::set <Connection> unique_containment (containment.begin (),
+                                            containment.end ());
 
   // Generate the include statements for this attached FCOs.
   Include_Generator includes (fco, this->source_);
@@ -358,16 +369,11 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                               boost::bind (&Connection::get, _1),
                               &includes));
 
-  // This is only required by a Model type.
-  std::vector <Connection> containment;
-  fco->in_connections ("Containment", containment);
-
-  if (is_model)
-    std::for_each (containment.begin (),
-                   containment.end (),
-                   boost::bind (&Connection::impl_type::accept,
-                                boost::bind (&Connection::get, _1),
-                                &includes));
+  std::for_each (containment.begin (),
+                 containment.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &includes));
 
   if (is_in_root_folder)
     this->header_ << include_t ("game/mga/RootFolder.h");
@@ -410,21 +416,11 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   this->header_
     << "{"
     << "public:" << std::endl
+    << "/// Tag type of this extension class." << std::endl
+    << "typedef ::GAME::Mga::" << tag_type << "_tag_t tag_type;"
+    << std::endl
     << "/// Metaname for this extension class." << std::endl
     << "static const std::string metaname;"
-    << std::endl
-    << "/// Tag type of this extension class." << std::endl
-    << "typedef ::GAME::Mga::" << tag_type << "_tag_t tag_type;";
-
-  if (!is_abstract && is_in_root_folder)
-  {
-    // Declare the root folder creation function.
-    this->header_
-      << std::endl
-      << "static " << name << " _create (const ::GAME::Mga::RootFolder_in parent);";
-  }
-
-  this->header_
     << std::endl
     << "/// Default constructor" << std::endl
     << this->classname_ << " (void);"
@@ -442,22 +438,7 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << "{"
     << function_header_t ("metaname")
     << "const std::string " << this->classname_ << "::metaname = \"" << name << "\";"
-    << std::endl;
-
-  if (is_in_root_folder)
-  {
-    // Implement the root folder creation function.
-    this->source_
-      << function_header_t ("_create")
-      << name << " " << this->classname_
-      << "::_create (const ::GAME::Mga::RootFolder_in parent)"
-      << "{"
-      << "return ::GAME::Mga::create_root_object <"
-      << name << "> (parent, " << this->classname_ << "::metaname);"
-      << "}";
-  }
-
-  this->source_
+    << std::endl
     << function_header_t (this->classname_)
     << this->classname_ << "::" << this->classname_ << " (void)"
     << "{"
@@ -483,7 +464,6 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                    generate_bmi_t (this->source_));
   }
 
-
   this->source_
     << "{"
     << "}"
@@ -492,6 +472,54 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << "{"
     << "}";
 
+  if (!is_abstract)
+  {
+    this->header_
+      << std::endl
+      << "/**" << std::endl
+      << " * @name Factory Methods" << std::endl
+      << " */" << std::endl
+      << "///@{" << std::endl;
+
+    // Since this is not an abstract class, we can implement the
+    // factory methods for it.
+    if (is_in_root_folder)
+    {
+      // This object is contained in the root folder. We need to
+      // define and implement the factory method bound to the root
+      // folder of the project.
+      this->header_
+        << "static " << name << " _create (const ::GAME::Mga::RootFolder_in parent);";
+
+      // Implement the root folder creation function.
+      this->source_
+        << function_header_t ("_create")
+        << name << " " << this->classname_
+        << "::_create (const ::GAME::Mga::RootFolder_in parent)"
+        << "{"
+        << "return ::GAME::Mga::create_root_object <"
+        << name << "> (parent, " << this->classname_ << "::metaname);"
+        << "}";
+    }
+
+    // Let's generate the remaining factory methods for this object so
+    // we are able to actually create it. ;-)
+    Factory_Method_Generator factory_gen (fco,
+                                          this->classname_,
+                                          this->header_,
+                                          this->source_);
+
+    std::for_each (containment.begin (),
+                   containment.end (),
+                   boost::bind (&Connection::impl_type::accept,
+                                boost::bind (&Connection::get, _1),
+                                &factory_gen));
+
+    this->header_
+      << "///@}"
+      << std::endl;
+  }
+
   if (is_connection)
     this->generate_connection_points (fco);
 
@@ -499,12 +527,26 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   std::vector <Connection> has_attributes;
   fco->in_connections ("HasAttribute", has_attributes);
 
-  Attribute_Generator attr_gen (this->classname_, this->header_, this->source_);
-  std::for_each (has_attributes.begin (),
-                 has_attributes.end (),
-                 boost::bind (&Connection::impl_type::accept,
-                              boost::bind (&Connection::get, _1),
-                              &attr_gen));
+  if (!has_attributes.empty ())
+  {
+    this->header_
+      << std::endl
+      << "/**" << std::endl
+      << " * @name Attribute Methods" << std::endl
+      << " */" << std::endl
+      << "///@{" << std::endl;
+
+    Attribute_Generator attr_gen (this->classname_, this->header_, this->source_);
+    std::for_each (has_attributes.begin (),
+                   has_attributes.end (),
+                   boost::bind (&Connection::impl_type::accept,
+                                boost::bind (&Connection::get, _1),
+                                &attr_gen));
+
+    this->header_
+      << "///@}"
+      << std::endl;
+  }
 
   // Let's the write in_connection methods for this extension class.
   InConnection_Generator in_connection_gen (this->classname_, this->header_, this->source_);
@@ -522,15 +564,52 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   if (is_model)
   {
+    this->header_
+      << std::endl
+      << "/**" << std::endl
+      << " * @name Containment Methods" << std::endl
+      << " */" << std::endl
+      << "///@{" << std::endl;
+
     // Let's write the containment methods. This code is only valid
     // when dealing with a Model element.
-    Containment_Generator containment_gen (this->classname_, this->header_, this->source_);
+    Containment_Generator containment_gen (fco,
+                                           this->classname_,
+                                           this->header_,
+                                           this->source_);
 
     std::for_each (containment.begin (),
                    containment.end (),
                    boost::bind (&Connection::impl_type::accept,
                                 boost::bind (&Connection::get, _1),
                                 &containment_gen));
+    this->header_
+      << "///@}"
+      << std::endl;
+  }
+  else
+  {
+    this->header_
+      << std::endl
+      << "/**" << std::endl
+      << " * @name Parent Methods" << std::endl
+      << " */" << std::endl
+      << "///@{" << std::endl;
+
+    // We are going to generate the parent method for this class.
+    Parent_Generator parent_gen (this->classname_,
+                                 this->header_,
+                                 this->source_);
+
+    std::for_each (containment.begin (),
+                   containment.end (),
+                   boost::bind (&Connection::impl_type::accept,
+                                boost::bind (&Connection::get, _1),
+                                &parent_gen));
+
+    this->header_
+      << "///@}"
+      << std::endl;
   }
 
   // End the class definition for this extension class.

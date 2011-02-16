@@ -8,7 +8,7 @@
 #include "Reference.inl"
 #endif
 
-#include "Factory_T.h"
+#include "Functional_T.h"
 #include "Model.h"
 #include "Visitor.h"
 #include "Exception.h"

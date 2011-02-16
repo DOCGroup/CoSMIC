@@ -214,7 +214,6 @@ Object Object_Impl::parent (void) const
   CComPtr <IMgaObject> obj;
   VERIFY_HRESULT (this->object_->GetParent (&obj, 0));
 
-  // TODO Use factory to create the concrete implementation.
   return obj.p;
 }
 

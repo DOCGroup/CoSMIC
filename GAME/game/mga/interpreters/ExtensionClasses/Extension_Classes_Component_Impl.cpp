@@ -61,10 +61,17 @@ invoke_ex (GAME::Mga::Project project,
   try
   {
     // Start a new transaction.
-    GAME::Mga::Transaction t_readonly (project, TRANSACTION_READ_ONLY);
+    GAME::Mga::Transaction t_readonly (project);
+
+    // Load the project settings for next time.
+    this->save_project_settings (project);
 
     // Get the output directory for the extension classes.
-    if (!::GAME::Utils::get_path ("Select target output directory...", this->output_))
+    bool retval = GAME::Utils::get_path ("Select target output directory...",
+                                         this->output_,
+                                         this->output_);
+
+    if (!retval)
       return 0;
 
     GAME::Mga::Folder root = project.root_folder ();
@@ -108,6 +115,9 @@ invoke_ex (GAME::Mga::Project project,
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Files generated successfully", MB_OK);
+
+    // Save the project settings for next time.
+    this->save_project_settings (project);
   }
   catch (const GAME::Mga::Exception & )
   {
@@ -128,4 +138,24 @@ set_parameter (const std::string & name, const std::string & value)
     this->output_ = value;
 
   return 0;
+}
+
+//
+// load_project_settings
+//
+void Extension_Classes_Component_Impl::
+load_project_settings (GAME::Mga::Project proj)
+{
+  GAME::Mga::Project_Settings settings (proj);
+  settings.get_string_value ("GAME/ExtensionClasses/OutputDirectory", this->output_);
+}
+
+//
+// save_project_settings
+//
+void Extension_Classes_Component_Impl::
+save_project_settings (GAME::Mga::Project proj)
+{
+  GAME::Mga::Project_Settings settings (proj);
+  settings.set_string_value ("GAME/ExtensionClasses/OutputDirectory", this->output_);
 }

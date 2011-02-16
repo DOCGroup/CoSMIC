@@ -11,11 +11,14 @@
  */
 //=============================================================================
 
-#ifndef _EXTENSION_CLASSES_PARENT_GENERATOR_H_
-#define _EXTENSION_CLASSES_PARENT_GENERATOR_H_
+#ifndef _EXTENSION_CLASSES_FACTORY_METHOD_GENERATOR_H_
+#define _EXTENSION_CLASSES_FACTORY_METHOD_GENERATOR_H_
 
 #include <fstream>
+#include <set>
+
 #include "game/mga/Visitor.h"
+#include "game/mga/FCO.h"
 
 namespace GAME
 {
@@ -28,7 +31,7 @@ namespace Mga
  * Visitor that generates concrete in_connection methods for an
  * extension class.
  */
-class Parent_Generator : public Visitor
+class Factory_Method_Generator : public Visitor
 {
 public:
   /**
@@ -38,12 +41,13 @@ public:
    * @param[in]       header            Target header file
    * @param[in]       source            Target source file
    */
-  Parent_Generator (const std::string & classname,
-                    std::ofstream & header,
-                    std::ofstream & source);
+  Factory_Method_Generator (FCO_in fco,
+                            const std::string & classname,
+                            std::ofstream & header,
+                            std::ofstream & source);
 
   /// Destructor.
-  virtual ~Parent_Generator (void);
+  virtual ~Factory_Method_Generator (void);
 
   // Visit the HasAttribute connection.
   virtual void visit_Connection (Connection_in c);
@@ -52,6 +56,9 @@ public:
   virtual void visit_Atom (Atom_in a);
 
 private:
+  /// The FCO being created.
+  GAME::Mga::FCO fco_;
+
   /// Name of the extension class.
   const std::string & classname_;
 
@@ -60,9 +67,12 @@ private:
 
   /// The source file for the extension class.
   std::ofstream & source_;
+
+  /// Collection of seen elements.
+  std::set <Atom> seen_;
 };
 
 }
 }
 
-#endif  // !defined _EXTENSION_CLASSES_PARENT_GENERATOR_H_
+#endif  // !defined _EXTENSION_CLASSES_FACTORY_METHOD_GENERATOR_H_

@@ -1,3 +1,46 @@
+Wed Feb 16 19:10:48 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Atom.cpp:
+        * game/mga/Folder.cpp:
+        * game/mga/Mga.mpc:
+        * game/mga/Model.cpp:
+        * game/mga/Object.cpp:
+        * game/mga/Reference.cpp:
+        * game/mga/Set.cpp:
+        * game/mga/Functional_T.h:
+        * game/mga/Functional_T.cpp:
+
+          Renamed the Factory_T{.h., cpp} files to Functional_T{.h, .cpp}.
+
+          Implemented the template version of get_parent (), which creates
+          a concrete implementation while selecting the parent element.
+
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/Factory_Method_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Factory_Method_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.cpp:
+
+          Added more Doxygen documentation to the generated extension
+          classes.
+
+          Implemented the _create () method for each extension class such
+          that its bound to a concrete parent object.
+
+        * tests/ExtensionClasses/Containment/ContainmentTest.xme:
+
+          Updated test to validate self/recursive containment.
+
+        * game/mga/Factory_T.h:
+        * game/mga/Factory_T.cpp:
+
+          Removed these files.
+
 Wed Feb 16 02:36:35 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses:

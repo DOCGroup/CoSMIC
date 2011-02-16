@@ -86,5 +86,25 @@ T create_folder (P parent, const Meta::Folder_in meta)
   return new impl_type (folder.p);
 }
 
+//
+// get_parent
+//
+template <typename T>
+T get_parent (IMgaObject * obj)
+{
+  // Locate the parent.
+  CComPtr <IMgaObject> parent;
+  VERIFY_HRESULT (obj->GetParent (&parent, 0));
+
+  // Get the correct interface type.
+  typedef typename T::interface_type interface_type;
+  CComPtr <interface_type> mga_type;
+  VERIFY_HRESULT (parent.QueryInterface (&mga_type));
+
+  // Allocate a new implementation.
+  typedef typename T::impl_type impl_type;
+  return new impl_type (mga_type.p);
+}
+
 }
 }

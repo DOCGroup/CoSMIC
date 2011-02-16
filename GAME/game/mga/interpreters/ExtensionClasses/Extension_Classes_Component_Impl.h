@@ -39,6 +39,12 @@ public:
   int set_parameter (const std::string & name, const std::string & value);
 
 private:
+  /// Load the save project settings.
+  void load_project_settings (GAME::Mga::Project proj);
+
+  /// Save the project settings for next time.
+  void save_project_settings (GAME::Mga::Project proj);
+
   /// The target location for the generation.
   std::string output_;
 };
