@@ -1,3 +1,29 @@
+Thu Feb 17 14:55:29 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Functional_T.h:
+        * game/mga/Functional_T.cpp:
+        * game/mga/Impl_Factory.h:
+        * game/mga/Impl_Factory.inl:
+        * game/mga/Impl_Factory.cpp:
+
+          Updated certain template functions to use the GLOBAL_IMPL_FACTORY
+          instead of directly creating the implementations. This will ensure
+          that the correct implementation is created when request elements
+          that derived from other implementations.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Impl_Factory_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Impl_Factory_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Init_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Init_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mpc_File_Generator.cpp:
+
+          Added support for generating the implementation factory for the
+          extension classes.
+
+          Added support for generating the initializer class.
+
 Thu Feb 17 03:02:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:

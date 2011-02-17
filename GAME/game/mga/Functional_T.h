@@ -13,6 +13,8 @@
 #ifndef _GAME_MGA_FUNCTIONAL_T_H_
 #define _GAME_MGA_FUNCTIONAL_T_H_
 
+#include "GME_fwd.h"
+
 namespace GAME
 {
 namespace Mga
@@ -41,6 +43,9 @@ T get_parent (IMgaObject * obj);
 
 template <typename T, typename R>
 T get_refers_to (R ref);
+
+template <typename T>
+Object_Impl * allocate_impl (IMgaObject * ptr);
 
 }
 }

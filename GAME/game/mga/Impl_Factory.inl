@@ -56,5 +56,11 @@ ConnectionPoint_Impl * Default_Impl_Factory::allocate (IMgaConnPoint * ptr)
   return 0 != ptr ? new ConnectionPoint_Impl (ptr) : 0;
 }
 
+GAME_INLINE
+void Default_Impl_Factory::impl_factory (Impl_Factory * impl)
+{
+  this->impl_ = impl;
+}
+
 }
 }

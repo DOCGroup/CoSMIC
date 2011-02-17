@@ -100,6 +100,8 @@ generate (const std::string & location,
     << export_name << " > " << name << "_export.h" << std::endl
     << std::endl
     << "  Source_Files {" << std::endl
+    << "    " << proj.root_folder ()->name () << "/Impl_Factory.cpp" << std::endl
+    << "    " << proj.root_folder ()->name () << "/Init.cpp" << std::endl
     << "    " << proj.root_folder ()->name () << "/Visitor.cpp" << std::endl;
 
   // Write the extension class source files.

@@ -24,13 +24,11 @@ namespace GAME
 {
 namespace Mga
 {
-
 // Forward decl.
 class Object_Impl;
 
 namespace Meta
 {
-// Forward decl.
 class Base_Impl;
 }
 
@@ -104,6 +102,9 @@ public:
    */
   virtual Meta::Base_Impl * allocate (IMgaMetaBase * ptr);
 
+  /// Set the implementation factory.
+  void impl_factory (Impl_Factory * impl);
+
 private:
   /// Type definition of a meta factory method.
   typedef Meta::Base_Impl * (*META_FACTORY_METHOD) (IMgaMetaBase *);
@@ -113,6 +114,9 @@ private:
 
   /// Collection of factory methods for meta objects.
   std::vector <META_FACTORY_METHOD> meta_factory_methods_;
+
+  /// Pointer to the factory implementation.
+  Impl_Factory * impl_;
 };
 
 /// Type definition of the global implementation factory. This version

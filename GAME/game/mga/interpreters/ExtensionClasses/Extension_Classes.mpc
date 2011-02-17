@@ -17,7 +17,9 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpret
     Extension_Classes_Component_Impl.cpp
     Extension_Classes_Component_Module.cpp
     Extension_Classes_Visitor.cpp
+    Impl_Factory_Generator.cpp
     InConnection_Generator.cpp
+    Init_Generator.cpp
     Pch_File_Generator.cpp
     Mpc_File_Generator.cpp
     Mwc_File_Generator.cpp

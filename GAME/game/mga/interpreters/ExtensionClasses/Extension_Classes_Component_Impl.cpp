@@ -5,10 +5,12 @@
 #include "Extension_Classes_Component_Impl.h"
 
 #include "Extension_Classes_Visitor.h"
+#include "Fwd_Decl_Generator.h"
+#include "Impl_Factory_Generator.h"
+#include "Init_Generator.h"
 #include "Mpc_File_Generator.h"
 #include "Mwc_File_Generator.h"
 #include "Pch_File_Generator.h"
-#include "Fwd_Decl_Generator.h"
 #include "Visitor_Generator.h"
 
 #include "game/mga/Atom.h"
@@ -116,6 +118,12 @@ invoke_ex (GAME::Mga::Project project,
 
     GAME::Mga::Visitor_Generator visitor_gen;
     visitor_gen.generate (source_path, project, pch_basename, ext_classes);
+
+    GAME::Mga::Init_Generator init_gen;
+    init_gen.generate (source_path, project, pch_basename);
+
+    GAME::Mga::Impl_Factory_Generator impl_factory_gen;
+    impl_factory_gen.generate (source_path, project, pch_basename, ext_classes);
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Files generated successfully", MB_OK);

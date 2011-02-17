@@ -14,6 +14,7 @@
 #include "Folder.h"
 #include "Reference.h"
 #include "Set.h"
+#include "Functional_T.h"
 
 #include "MetaAspect.h"
 #include "MetaAtom.h"
@@ -34,18 +35,6 @@ namespace Mga
 {
 
 //
-// allocate_impl
-//
-template <typename T>
-static Object_Impl * allocate_impl (IMgaObject * ptr)
-{
-  CComPtr <typename T::interface_type> temp;
-  VERIFY_HRESULT (ptr->QueryInterface (&temp));
-
-  return new T (temp);
-}
-
-//
 // allocate_meta_impl
 //
 template <typename T>
@@ -61,6 +50,7 @@ static Meta::Base_Impl * allocate_meta_impl (IMgaMetaBase * ptr)
 // Default_Impl_Factory
 //
 Default_Impl_Factory::Default_Impl_Factory (void)
+: impl_ (0)
 {
   // Insert the creation methods.
   this->factory_methods_.resize (7, 0);
@@ -92,10 +82,20 @@ Object_Impl * Default_Impl_Factory::allocate (IMgaObject * ptr)
   if (0 == ptr)
     return 0;
 
+  if (0 != this->impl_)
+  {
+    // Try and create an implementation using the installed
+    // implementation factory. If we fail to create an implementation,
+    // then we must fallback to the fundamental implementatations.
+    Object_Impl * impl = this->impl_->allocate (ptr);
+
+    if (0 != impl)
+      return impl;
+  }
+
   // Locate the factory method for this type.
   objtype_enum type;
   VERIFY_HRESULT (ptr->get_ObjType (&type));
-
   FACTORY_METHOD fm = this->factory_methods_[type];
 
   // Debug assertion.

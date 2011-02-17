@@ -1,6 +1,7 @@
 // $Id$
 
 #include "MetaFCO.h"
+#include "Impl_Factory.h"
 
 namespace GAME
 {
@@ -32,6 +33,8 @@ T create_root_object (P parent, const Meta::FCO_in metafco)
   CComPtr <interface_type> mga_type;
   VERIFY_HRESULT (child.QueryInterface (&mga_type));
 
+  // Since we are creating a concrete type, we can directly allocate
+  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
   typedef typename T::impl_type impl_type;
   return new impl_type (mga_type.p);
 }
@@ -59,6 +62,8 @@ T create_object (P parent, const Meta::Role_in role)
   CComPtr <interface_type> mga_type;
   VERIFY_HRESULT (child.QueryInterface (&mga_type));
 
+  // Since we are creating a concrete type, we can directly allocate
+  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
   typedef typename T::impl_type impl_type;
   return new impl_type (mga_type.p);
 }
@@ -82,6 +87,8 @@ T create_folder (P parent, const Meta::Folder_in meta)
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (parent->impl ()->CreateFolder (meta->impl (), &folder));
 
+  // Since we are creating a concrete type, we can directly allocate
+  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
   typedef typename T::impl_type impl_type;
   return new impl_type (folder.p);
 }
@@ -96,29 +103,33 @@ T get_parent (IMgaObject * obj)
   CComPtr <IMgaObject> parent;
   VERIFY_HRESULT (obj->GetParent (&parent, 0));
 
-  // Get the correct interface type.
-  typedef typename T::interface_type interface_type;
-  CComPtr <interface_type> mga_type;
-  VERIFY_HRESULT (parent.QueryInterface (&mga_type));
-
-  // Allocate a new implementation.
-  typedef typename T::impl_type impl_type;
-  return new impl_type (mga_type.p);
+  Object_Impl * impl = GLOBAL_IMPL_FACTORY::instance ()->allocate (parent.p);
+  return T::_narrow_nocheck (impl);
 }
 
+//
+// get_refers_to
+//
 template <typename T, typename R>
 T get_refers_to (R ref)
 {
   CComPtr <IMgaFCO> fco;
   VERIFY_HRESULT (ref->impl ()->get_Referred (&fco));
 
-  // Get the correct interface type.
-  typedef typename T::interface_type interface_type;
-  CComPtr <interface_type> mga_type;
-  VERIFY_HRESULT (fco.QueryInterface (&mga_type));
+  Object_Impl * impl = GLOBAL_IMPL_FACTORY::instance ()->allocate (fco.p);
+  return T::_narrow_nocheck (impl);
+}
 
-  typedef typename T::impl_type impl_type;
-  return new impl_type (mga_type.p);
+//
+// allocate_impl
+//
+template <typename T>
+Object_Impl * allocate_impl (IMgaObject * ptr)
+{
+  CComPtr <typename T::interface_type> temp;
+  VERIFY_HRESULT (ptr->QueryInterface (&temp));
+
+  return new T (temp);
 }
 
 }
