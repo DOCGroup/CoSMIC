@@ -39,6 +39,9 @@ T create_folder (P parent, const Meta::Folder_in meta);
 template <typename T>
 T get_parent (IMgaObject * obj);
 
+template <typename T, typename R>
+T get_refers_to (R ref);
+
 }
 }
 

@@ -106,5 +106,20 @@ T get_parent (IMgaObject * obj)
   return new impl_type (mga_type.p);
 }
 
+template <typename T, typename R>
+T get_refers_to (R ref)
+{
+  CComPtr <IMgaFCO> fco;
+  VERIFY_HRESULT (ref->impl ()->get_Referred (&fco));
+
+  // Get the correct interface type.
+  typedef typename T::interface_type interface_type;
+  CComPtr <interface_type> mga_type;
+  VERIFY_HRESULT (fco.QueryInterface (&mga_type));
+
+  typedef typename T::impl_type impl_type;
+  return new impl_type (mga_type.p);
+}
+
 }
 }

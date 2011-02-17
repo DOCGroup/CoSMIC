@@ -1,6 +1,6 @@
 // $Id: ExtensionClasses.mpc 2475 2010-09-03 02:00:58Z alhad $
 
-project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_intepreter, game_mga_utils, game_lib, boost_base {
+project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpreter, game_mga_utils, game_lib, boost_base {
   sharedname = GAME_ExtensionClassesComponent
 
   pch_header = StdAfx.h
@@ -22,6 +22,7 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_inteprete
     Mpc_File_Generator.cpp
     Mwc_File_Generator.cpp
     Parent_Generator.cpp
+    RefersTo_Method_Generator.cpp
   }
 
   Resource_Files {

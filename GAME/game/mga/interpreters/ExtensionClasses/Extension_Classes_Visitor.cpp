@@ -14,6 +14,7 @@
 #include "Functors.h"
 #include "InConnection_Generator.h"
 #include "Parent_Generator.h"
+#include "RefersTo_Method_Generator.h"
 
 #include "game/mga/Attribute.h"
 #include "game/mga/Atom.h"
@@ -352,8 +353,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   fco->in_connections ("Containment", containment);
   fco->in_connections ("FolderContainment", containment);
 
-  std::set <Connection> unique_containment (containment.begin (),
-                                            containment.end ());
+  std::vector <Connection> refers_to;
+  fco->in_connections ("ReferTo", refers_to);
 
   // Generate the include statements for this attached FCOs.
   Include_Generator includes (fco, this->source_);
@@ -371,6 +372,12 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   std::for_each (containment.begin (),
                  containment.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &includes));
+
+  std::for_each (refers_to.begin (),
+                 refers_to.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &includes));
@@ -587,30 +594,64 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
       << "///@}"
       << std::endl;
   }
-  else
+
+  this->header_
+    << std::endl
+    << "/**" << std::endl
+    << " * @name Parent Methods" << std::endl
+    << " */" << std::endl
+    << "///@{" << std::endl;
+
+  if (is_in_root_folder)
   {
+    // Write the parent method for getting the root folder.
     this->header_
-      << std::endl
-      << "/**" << std::endl
-      << " * @name Parent Methods" << std::endl
-      << " */" << std::endl
-      << "///@{" << std::endl;
+      << "RootFolder parent_RootFolder (void) const;";
 
-    // We are going to generate the parent method for this class.
-    Parent_Generator parent_gen (this->classname_,
-                                 this->header_,
-                                 this->source_);
-
-    std::for_each (containment.begin (),
-                   containment.end (),
-                   boost::bind (&Connection::impl_type::accept,
-                                boost::bind (&Connection::get, _1),
-                                &parent_gen));
-
-    this->header_
-      << "///@}"
-      << std::endl;
+    this->source_
+      << "RootFolder " << this->classname_ << "::parent_RootFolder (void) const"
+      << "{"
+      << "return ::GAME::Mga::get_parent <RootFolder> (this->object_.p);"
+      << "}";
   }
+
+  // Let's generate the remaining parent methods.
+  Parent_Generator parent_gen (this->classname_,
+                               this->header_,
+                               this->source_);
+
+  std::for_each (containment.begin (),
+                 containment.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &parent_gen));
+
+  this->header_
+    << "///@}"
+    << std::endl;
+
+  // Let's generate the methods for a reference.
+  this->header_
+    << std::endl
+    << "/**" << std::endl
+    << " * @name Reference Methods" << std::endl
+    << " */" << std::endl
+    << "///@{" << std::endl;
+
+  RefersTo_Method_Generator refers_to_gen (fco,
+                                           this->classname_,
+                                           this->header_,
+                                           this->source_);
+
+  std::for_each (refers_to.begin (),
+                 refers_to.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &refers_to_gen));
+
+  this->header_
+    << "///@}"
+    << std::endl;
 
   // End the class definition for this extension class.
   this->header_

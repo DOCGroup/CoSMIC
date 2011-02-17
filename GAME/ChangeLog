@@ -1,3 +1,21 @@
+Wed Feb 16 23:56:06 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Functional_T.h:
+        * game/mga/Functional_T.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/RefersTo_Method_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/RefersTo_Method_Generator.cpp:
+        * tests/ExtensionClasses/Reference/ReferenceTest.xme:
+
+          Reference extension classes now have concrete methods for
+          getting the object being referenced.
+
+        * tests/ExtensionClasses/Reference/Reference-UnitTest.xme:
+
+          Removed this file.
+
 Wed Feb 16 19:10:48 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Atom.cpp:

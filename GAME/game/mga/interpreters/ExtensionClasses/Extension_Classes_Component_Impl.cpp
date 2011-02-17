@@ -61,10 +61,10 @@ invoke_ex (GAME::Mga::Project project,
   try
   {
     // Start a new transaction.
-    GAME::Mga::Transaction t_readonly (project);
+    GAME::Mga::Transaction t (project);
 
     // Load the project settings for next time.
-    this->save_project_settings (project);
+    this->load_project_settings (project);
 
     // Get the output directory for the extension classes.
     bool retval = GAME::Utils::get_path ("Select target output directory...",
@@ -118,6 +118,7 @@ invoke_ex (GAME::Mga::Project project,
 
     // Save the project settings for next time.
     this->save_project_settings (project);
+    t.commit ();
   }
   catch (const GAME::Mga::Exception & )
   {
@@ -146,8 +147,8 @@ set_parameter (const std::string & name, const std::string & value)
 void Extension_Classes_Component_Impl::
 load_project_settings (GAME::Mga::Project proj)
 {
-  GAME::Mga::Project_Settings settings (proj);
-  settings.get_string_value ("GAME/ExtensionClasses/OutputDirectory", this->output_);
+  GAME::Mga::Project_Settings settings (proj, "GAME/ExtensionClasses");
+  settings.get_string_value ("OutputPath", this->output_);
 }
 
 //
@@ -156,6 +157,6 @@ load_project_settings (GAME::Mga::Project proj)
 void Extension_Classes_Component_Impl::
 save_project_settings (GAME::Mga::Project proj)
 {
-  GAME::Mga::Project_Settings settings (proj);
-  settings.set_string_value ("GAME/ExtensionClasses/OutputDirectory", this->output_);
+  GAME::Mga::Project_Settings settings (proj, "GAME/ExtensionClasses");
+  settings.set_string_value ("OutputPath", this->output_);
 }
