@@ -204,6 +204,9 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
   // End the project namespace.
   this->hxx_file_
     << "///@}" << std::endl
+    << "private:" << std::endl
+    << "// prevent the following operation(s)" << std::endl
+    << "const Visitor & operator = (const Visitor &);"
     << "};"
     << "}"
     << "#endif" << std::endl;

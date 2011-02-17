@@ -1,0 +1,6 @@
+// $Id$
+
+project : game_mga {
+  libout = ./lib
+  dllout = ./lib
+}

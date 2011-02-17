@@ -12,6 +12,24 @@ namespace Mga
 {
 
 //
+// Impl_Factory
+//
+GAME_INLINE
+Impl_Factory::Impl_Factory (void)
+{
+
+}
+
+//
+// ~Impl_Factory
+//
+GAME_INLINE
+Impl_Factory::~Impl_Factory (void)
+{
+
+}
+
+//
 // Default_Impl_Factory
 //
 GAME_INLINE

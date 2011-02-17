@@ -39,9 +39,15 @@ class Base_Impl;
  * factory is responsible for converting an raw COM pointer to its correct
  * implementation type.
  */
-class Impl_Factory
+class GAME_MGA_Export Impl_Factory
 {
 public:
+  /// Default constructor.
+  Impl_Factory (void);
+
+  /// Destructor.
+  virtual ~Impl_Factory (void);
+
   /**
    * Allocate the implementation pointer for an object.
    *
@@ -52,6 +58,10 @@ public:
 
   /// Type definition of a factory method.
   typedef Object_Impl * (*FACTORY_METHOD) (IMgaObject *);
+
+private:
+  Impl_Factory (const Impl_Factory &);
+  const Impl_Factory & operator = (const Impl_Factory &);
 };
 
 // Forward decl.

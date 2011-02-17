@@ -42,8 +42,8 @@ generate (const std::string & location,
   // Open the .mpc file for writing.
   Folder root = proj.root_folder ();
   const std::string name = GAME::Utils::normalize (root->name ());
-  const std::string pch_header = location + "/" + basename + ".h";
-  const std::string pch_source = location + "/" + basename + ".cpp";
+  const std::string pch_header = location + "/" + name + "/" + basename + ".h";
+  const std::string pch_source = location + "/" + name + "/" + basename + ".cpp";
 
   return
     this->generate_pch_header (pch_header) &&

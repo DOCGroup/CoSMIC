@@ -42,7 +42,7 @@ generate (const std::string & location, const Project & proj)
   if (!mwc_file.is_open ())
     return false;
 
-  const std::string mpc_filename = project_name + "_Mga.mpc";
+  const std::string mpc_filename = project_name + "_GAME_Mga.mpc";
 
   // Generate the contents of the .mpc file.
   mwc_file

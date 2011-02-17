@@ -90,13 +90,11 @@ invoke_ex (GAME::Mga::Project project,
 
     // Make sure the output directory has been created.
     const std::string pch_basename = "stdafx";
-    const std::string source_path = this->output_ + "/" + project.name ();
-    GAME::Utils::create_path (source_path);
 
     // Visit all element in the model and generate an extension
     // class for each valid model.
     std::set <GAME::Mga::Object> ext_classes;
-    GAME::Mga::Extension_Classes_Visitor ecv (source_path,
+    GAME::Mga::Extension_Classes_Visitor ecv (this->output_,
                                               root,
                                               pch_basename,
                                               ext_classes);
@@ -105,25 +103,25 @@ invoke_ex (GAME::Mga::Project project,
 
     // Generate workspace, project, and precompiled header files.
     GAME::Mga::Mwc_File_Generator mwc_gen;
-    mwc_gen.generate (source_path, project);
+    mwc_gen.generate (this->output_, project);
 
     GAME::Mga::Mpc_File_Generator mpc_gen;
-    mpc_gen.generate (source_path, project, pch_basename, ext_classes);
+    mpc_gen.generate (this->output_, project, pch_basename, ext_classes);
 
     GAME::Mga::Pch_File_Generator pch_gen;
-    pch_gen.generate (source_path, project, pch_basename);
+    pch_gen.generate (this->output_, project, pch_basename);
 
     GAME::Mga::Fwd_Decl_Generator fwd_gen;
-    fwd_gen.generate (source_path, project, ext_classes);
+    fwd_gen.generate (this->output_, project, ext_classes);
 
     GAME::Mga::Visitor_Generator visitor_gen;
-    visitor_gen.generate (source_path, project, pch_basename, ext_classes);
+    visitor_gen.generate (this->output_, project, pch_basename, ext_classes);
 
     GAME::Mga::Init_Generator init_gen;
-    init_gen.generate (source_path, project, pch_basename);
+    init_gen.generate (this->output_, project, pch_basename);
 
     GAME::Mga::Impl_Factory_Generator impl_factory_gen;
-    impl_factory_gen.generate (source_path, project, pch_basename, ext_classes);
+    impl_factory_gen.generate (this->output_, project, pch_basename, ext_classes);
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Files generated successfully", MB_OK);

@@ -73,7 +73,9 @@ generate (const std::string & location,
 {
   // Open the .mpc file for writing.
   const std::string name = proj.name ();
-  const std::string filename = location + "/" + name + "_fwd.h";
+  const std::string root_name = proj.root_folder ()->name ();
+
+  const std::string filename = location + "/" + root_name + "/" + name + "_fwd.h";
 
   std::string macro_name = name;
   std::transform (macro_name.begin (),

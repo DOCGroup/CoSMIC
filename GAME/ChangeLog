@@ -1,3 +1,27 @@
+Thu Feb 17 15:50:07 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Impl_Factory.h:
+        * game/mga/Impl_Factory.inl:
+
+          Implemented the default constructor and destructor.
+
+          The class definition was missing the export macro.
+
+        * game/mga/Visitor.h:
+
+          Added the copy constructor and assignment operator to the private
+          section of this class.
+
+        * MPC/config/game_extension_classes.mpb:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Fwd_Decl_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mpc_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mwc_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Pch_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Visitor_Generator.cpp:
+
+          Base class for all extension class projects.
+
 Thu Feb 17 14:55:29 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Functional_T.h:

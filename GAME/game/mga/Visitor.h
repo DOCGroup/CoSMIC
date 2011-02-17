@@ -60,6 +60,10 @@ public:
 
   /// Visit a Set_Impl element.
   virtual void visit_Connection (Connection_in);
+
+private:
+  Visitor (const Visitor &);
+  const Visitor & operator = (const Visitor &);
 };
 
 }

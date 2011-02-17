@@ -5,6 +5,8 @@
 
 #include "game/mga/Object.h"
 #include "game/mga/Project.h"
+#include "game/mga/Utils.h"
+
 #include <fstream>
 
 namespace GAME
@@ -62,8 +64,9 @@ generate (const std::string & location,
 {
   // Open the .mpc file for writing.
   const std::string name = proj.name ();
-  const std::string project_name = name + "_Mga";
+  const std::string project_name = name + "_GAME_Mga";
   const std::string mpc_filename = location + "/" + project_name + ".mpc";
+  const std::string root_name = GAME::Utils::normalize (proj.root_folder ()->name ());
 
   std::string export_name = name;
   std::transform (export_name.begin (),
@@ -81,23 +84,17 @@ generate (const std::string & location,
   mpc_file
     << "// $" << "Id" << "$" << std::endl
     << std::endl
-    << "project (" << project_name << ") : game_mga {" << std::endl
+    << "project (" << project_name << ") : game_extension_classes {" << std::endl
     << "  sharedname = " << project_name << std::endl
     << std::endl
-    << "  includes += ." << std::endl
-
-    // @note We should allow the client to customize the output location for
-    //       both the .lib and .dll files.
-
-    << "  libout = ./lib" << std::endl
-    << "  dllout = ./lib" << std::endl
+    << "  includes += . " << proj.root_folder ()->name () << std::endl
     << std::endl
     << "  pch_header = " << pch_basename << ".h" << std::endl
-    << "  pch_source = " << pch_basename << ".cpp" << std::endl
+    << "  pch_source = " << root_name << "/" << pch_basename << ".cpp" << std::endl
     << std::endl
     << "  dynamicflags += " << export_name << "_BUILD_DLL" << std::endl
     << "  prebuild     += $(ACE_ROOT)/bin/generate_export_file.pl "
-    << export_name << " > " << name << "_export.h" << std::endl
+    << export_name << " > " << root_name << "/" << name << "_export.h" << std::endl
     << std::endl
     << "  Source_Files {" << std::endl
     << "    " << proj.root_folder ()->name () << "/Impl_Factory.cpp" << std::endl
