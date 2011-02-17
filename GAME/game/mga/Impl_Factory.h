@@ -16,8 +16,6 @@
 #include <vector>
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
-
-#include "game/config.h"
 #include "Mga_export.h"
 
 namespace GAME
@@ -134,9 +132,9 @@ private:
 
 /// Type definition of the global implementation factory. This version
 /// of the global implementation factory is not thread safe.
-typedef ACE_Singleton <Default_Impl_Factory,
-                       ACE_Null_Mutex>
-                       GLOBAL_IMPL_FACTORY;
+typedef ACE_Singleton <Default_Impl_Factory, ACE_Null_Mutex> GLOBAL_IMPL_FACTORY;
+
+GAME_MGA_SINGLETON_DECLARE (ACE_Singleton, Default_Impl_Factory, ACE_Null_Mutex);
 
 }
 }

@@ -4,6 +4,9 @@
 #include "Mga.h"
 #include "Exception.h"
 
+#include "ace/Framework_Component.h"
+#include "ace/OS_NS_unistd.h"
+
 namespace GAME
 {
 namespace Mga
