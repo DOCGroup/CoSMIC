@@ -9,6 +9,7 @@
 #include "Mwc_File_Generator.h"
 #include "Pch_File_Generator.h"
 #include "Fwd_Decl_Generator.h"
+#include "Visitor_Generator.h"
 
 #include "game/mga/Atom.h"
 #include "game/mga/Model.h"
@@ -112,6 +113,9 @@ invoke_ex (GAME::Mga::Project project,
 
     GAME::Mga::Fwd_Decl_Generator fwd_gen;
     fwd_gen.generate (source_path, project, ext_classes);
+
+    GAME::Mga::Visitor_Generator visitor_gen;
+    visitor_gen.generate (source_path, project, pch_basename, ext_classes);
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Files generated successfully", MB_OK);

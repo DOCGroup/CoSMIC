@@ -1,3 +1,14 @@
+Thu Feb 17 03:02:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mpc_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Visitor_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Visitor_Generator.cpp:
+
+          Added Visitor support to the extension classes.
+
 Wed Feb 16 23:56:06 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Functional_T.h:

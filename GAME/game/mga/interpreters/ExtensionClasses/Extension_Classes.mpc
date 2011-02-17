@@ -23,6 +23,7 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpret
     Mwc_File_Generator.cpp
     Parent_Generator.cpp
     RefersTo_Method_Generator.cpp
+    Visitor_Generator.cpp
   }
 
   Resource_Files {

@@ -341,6 +341,14 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << include_t ("game/mga/Functional_T.h")
     << std::endl;
 
+  if (!is_abstract)
+  {
+    // Make sure we include the visitor header file for this project.
+    this->source_
+      << include_t (project_name + "/Visitor.h")
+      << std::endl;
+  }
+
   // First, we need to gather all connections from this FCO that could
   // lead to another FCO that must be included in the header file.
   std::vector <Connection> src_to_connector;
@@ -398,7 +406,17 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << "// Forward decl. and type definitions" << std::endl
     << "class " << this->classname_ << ";"
     << "typedef " << this->classname_ << " * " << name << "_in;"
-    << "typedef ::GAME::Mga::Smart_Ptr <" << this->classname_ << "> " << name << ";"
+    << "typedef ::GAME::Mga::Smart_Ptr <" << this->classname_ << "> " << name << ";";
+
+  if (!is_abstract)
+  {
+    this->header_
+      << std::endl
+      << "// Forward declare the project's visitor." << std::endl
+      << "class Visitor;";
+  }
+
+  this->header_
     << std::endl
     << "class " << export_name << " " << this->classname_ << " : ";
 
@@ -478,6 +496,21 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << this->classname_ << "::~"<< this->classname_ << " (void)"
     << "{"
     << "}";
+
+  if (!is_abstract)
+  {
+    this->header_
+      << std::endl
+      << "/// Accept a visitor for this project." << std::endl
+      << "virtual void accept (Visitor * v);";
+
+    this->source_
+      << function_header_t ("accept")
+      << "void " << this->classname_ << "::accept (Visitor * v)"
+      << "{"
+      << "v->visit_" << name << " (this);"
+      << "}";
+  }
 
   if (!is_abstract)
   {

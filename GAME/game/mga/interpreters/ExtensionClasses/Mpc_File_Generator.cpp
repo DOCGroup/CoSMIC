@@ -99,7 +99,8 @@ generate (const std::string & location,
     << "  prebuild     += $(ACE_ROOT)/bin/generate_export_file.pl "
     << export_name << " > " << name << "_export.h" << std::endl
     << std::endl
-    << "  Source_Files {" << std::endl;
+    << "  Source_Files {" << std::endl
+    << "    " << proj.root_folder ()->name () << "/Visitor.cpp" << std::endl;
 
   // Write the extension class source files.
   std::for_each (items.begin (),
