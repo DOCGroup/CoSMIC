@@ -1,0 +1,14 @@
+// $Id$
+
+project : game_common {
+  after += GAME_ExtensionClassesComponent
+
+  Define_Custom (Extension_Class) {
+    dependent         = $(GAME_ROOT)/bin/game-automation
+    command           = <%quote%>$(GAME_ROOT)<%quote%>/bin/game-automation -x GAME.Interpreter.ExtensionClasses
+    inputext          = .xme
+    generic_outputext = _GAME_Mga.mwc,_GAME_Mga.mpc
+
+    keyword extclsflags  = commandflags
+  }
+}

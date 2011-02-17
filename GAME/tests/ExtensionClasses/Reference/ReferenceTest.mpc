@@ -1,0 +1,9 @@
+// $Id$
+
+project (ReferenceTest_Gen) : game_extension_classes_autogen {
+  extclsflags += -p OutputPath=.
+
+  Extension_Class_Files {
+    ReferenceTest.xme
+  }
+}

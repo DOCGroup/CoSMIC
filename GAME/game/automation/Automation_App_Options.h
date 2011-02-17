@@ -15,6 +15,8 @@
 
 #include <string>
 #include <map>
+#include <set>
+
 #include "game/config.h"
 
 /**
@@ -28,7 +30,7 @@ struct GAME_Automation_App_Options
   /// for this class, and the application.
   GAME_Automation_App_Options (void);
 
-  std::string project_;
+  std::set <std::string> project_;
 
   std::string interpreter_;
 

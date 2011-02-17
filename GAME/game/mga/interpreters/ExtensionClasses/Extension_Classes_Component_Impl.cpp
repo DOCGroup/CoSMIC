@@ -69,13 +69,16 @@ invoke_ex (GAME::Mga::Project project,
     // Load the project settings for next time.
     this->load_project_settings (project);
 
-    // Get the output directory for the extension classes.
-    bool retval = GAME::Utils::get_path ("Select target output directory...",
-                                         this->output_,
-                                         this->output_);
+    if (this->is_interactive_)
+    {
+      // Get the output directory for the extension classes.
+      bool retval = GAME::Utils::get_path ("Select target output directory...",
+                                           this->output_,
+                                           this->output_);
 
-    if (!retval)
-      return 0;
+      if (!retval)
+        return 0;
+    }
 
     GAME::Mga::Folder root = project.root_folder ();
     std::string root_name = root->name ();
@@ -158,7 +161,9 @@ void Extension_Classes_Component_Impl::
 load_project_settings (GAME::Mga::Project proj)
 {
   GAME::Mga::Project_Settings settings (proj, "GAME/ExtensionClasses");
-  settings.get_string_value ("OutputPath", this->output_);
+
+  if (this->output_.empty ())
+    settings.get_string_value ("OutputPath", this->output_);
 }
 
 //

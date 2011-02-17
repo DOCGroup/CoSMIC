@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{CB0BB034-9217-4911-A1AF-0372A2D7AAF3}" cdate="Wed Feb 16 15:46:38 2011" mdate="Wed Feb 16 15:46:38 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+<project guid="{E2EC1A8B-9CBF-45BD-AB6E-E8B516675122}" cdate="Thu Feb 17 12:36:56 2011" mdate="Thu Feb 17 12:36:56 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
 	<name>ReferenceTest</name>
 	<comment></comment>
 	<author></author>

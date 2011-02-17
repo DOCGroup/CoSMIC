@@ -15,6 +15,11 @@
 #include "Reference.h"
 #include "Set.h"
 #include "Functional_T.h"
+#include "RegistryNode.h"
+#include "Component.h"
+#include "ComponentEx.h"
+#include "Attribute.h"
+#include "Connection.h"
 
 #include "MetaAspect.h"
 #include "MetaAtom.h"
@@ -122,6 +127,46 @@ Meta::Base_Impl * Default_Impl_Factory::allocate (IMgaMetaBase * ptr)
   assert (mfm != 0);
 
   return mfm (ptr);
+}
+
+//
+// allocate
+//
+RegistryNode_Impl * Default_Impl_Factory::allocate (IMgaRegNode * ptr)
+{
+  return 0 != ptr ? new RegistryNode_Impl (ptr) : 0;
+}
+
+//
+// allocate
+//
+Component_Impl * Default_Impl_Factory::allocate (IMgaComponent * ptr)
+{
+  return 0 != ptr ? new Component_Impl (ptr) : 0;
+}
+
+//
+// allocate
+//
+ComponentEx_Impl * Default_Impl_Factory::allocate (IMgaComponentEx * ptr)
+{
+  return 0 != ptr ? new ComponentEx_Impl (ptr) : 0;
+}
+
+//
+// allocate
+//
+Attribute_Impl * Default_Impl_Factory::allocate (IMgaAttribute * ptr)
+{
+  return 0 != ptr ? new Attribute_Impl (ptr) : 0;
+}
+
+//
+// allocate
+//
+ConnectionPoint_Impl * Default_Impl_Factory::allocate (IMgaConnPoint * ptr)
+{
+  return 0 != ptr ? new ConnectionPoint_Impl (ptr) : 0;
 }
 
 }

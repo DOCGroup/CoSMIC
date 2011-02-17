@@ -25,10 +25,9 @@
 static const char * __HELP__ =
 "GME's automation modeling engine (GAME) application\n"
 "\n"
-"USAGE: game-automation [OPTIONS]\n"
+"USAGE: game-automation [OPTIONS] FILE\n"
 "\n"
 "General Options:\n"
-"  -p, --project=FILE              use FILE for input\n"
 "  -x, --interpreter=PROGID        program id of interpreter\n"
 "\n"
 "  --param=NAME=VALUE              set the value of a parameter\n"
@@ -53,18 +52,11 @@ int GAME_Automation_App::run_main (int argc, char * argv [])
 
   try
   {
-    // Open the project for writing.
-    if (this->open_gme_project () != 0)
-      ACE_ERROR_RETURN ((LM_ERROR,
-                         ACE_TEXT ("%T (%t) - %M - failed to open GAME project [file=%s]\n"),
-                         this->opts_.project_.c_str ()),
-                         -1);
+    std::for_each (this->opts_.project_.begin (),
+                   this->opts_.project_.end (),
+                   boost::bind (&GAME_Automation_App::process_file, this, _1));
 
-    if (!this->opts_.interpreter_.empty ())
-      this->run (this->opts_.interpreter_);
-
-    // Close the GAME project.
-    this->save_gme_project ();
+    return 0;
   }
   catch (const GAME::Mga::Failed_Result & ex)
   {
@@ -74,10 +66,30 @@ int GAME_Automation_App::run_main (int argc, char * argv [])
   }
   catch (const GAME::Mga::Exception &)
   {
-
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - caught unknown GME exception\n")));
   }
 
+  return -1;
+}
+
+//
+// process_file
+//
+int GAME_Automation_App::process_file (const std::string & file)
+{
+  // Open the project for writing.
+  if (this->open_gme_project (file) != 0)
+    ACE_ERROR_RETURN ((LM_ERROR,
+                       ACE_TEXT ("%T (%t) - %M - failed to open GAME project [file=%s]\n"),
+                       file.c_str ()),
+                       -1);
+
+  if (!this->opts_.interpreter_.empty ())
+    this->run (this->opts_.interpreter_);
+
   // Close the GAME project.
+  this->save_gme_project ();
   this->project_.close ();
 
   return 0;
@@ -93,7 +105,6 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
   ACE_Get_Opt get_opt (argc, argv, optargs);
 
   get_opt.long_option ("help", 'h');
-  get_opt.long_option ("project", 'p', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("interepter", 'x', ACE_Get_Opt::ARG_REQUIRED);
 
   get_opt.long_option ("param", ACE_Get_Opt::ARG_REQUIRED);
@@ -108,11 +119,7 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
     switch (opt)
     {
     case 0:
-      if (ACE_OS::strcmp ("project", get_opt.long_option ()) == 0)
-      {
-        this->opts_.project_ = get_opt.opt_arg ();
-      }
-      else if (ACE_OS::strcmp ("interpreter", get_opt.long_option ()) == 0)
+      if (ACE_OS::strcmp ("interpreter", get_opt.long_option ()) == 0)
       {
         this->opts_.interpreter_ = get_opt.opt_arg ();
       }
@@ -139,15 +146,20 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
       this->print_help ();
       break;
 
-    case 'p':
-      this->opts_.project_ = get_opt.opt_arg ();
-      break;
-
     case 'x':
       this->opts_.interpreter_ = get_opt.opt_arg ();
       break;
     }
   }
+
+  // The remaining arguments are the project file.
+  for (int i = get_opt.opt_ind (); i < get_opt.argc (); ++ i)
+    this->opts_.project_.insert (get_opt.argv ()[i]);
+
+  if (this->opts_.project_.empty ())
+    ACE_ERROR_RETURN ((LM_ERROR,
+                       ACE_TEXT ("%T (%t) - %M - missing project file\n")),
+                       -1);
 
   return 0;
 }
@@ -164,19 +176,19 @@ void GAME_Automation_App::print_help (void)
 //
 // open_gme_project
 //
-int GAME_Automation_App::open_gme_project (void)
+int GAME_Automation_App::open_gme_project (const std::string & file)
 {
   // Determine if the project is a MGA file, or an XME file.
-  this->is_mga_file_ = this->opts_.project_.rfind (".mga") != std::string::npos;
+  this->is_mga_file_ = file.rfind (".mga") != std::string::npos;
 
   if (this->is_mga_file_)
   {
     std::ostringstream connstr;
-    connstr << "MGA=" << this->opts_.project_;
+    connstr << "MGA=" << file;
 
     ACE_DEBUG ((LM_INFO,
                 ACE_TEXT ("%T (%t) - %M - opening %s for processing\n"),
-                this->opts_.project_.c_str ()));
+                file.c_str ()));
 
     this->project_ = GAME::Mga::Project::_open (connstr.str ());
   }
@@ -186,7 +198,7 @@ int GAME_Automation_App::open_gme_project (void)
     GAME::Mga::XML_Parser parser;
     GAME::Mga::XML_Info info;
 
-    parser.get_info (this->opts_.project_, info);
+    parser.get_info (file, info);
 
     ACE_TCHAR pathname[MAX_PATH];
 
@@ -214,10 +226,10 @@ int GAME_Automation_App::open_gme_project (void)
       // Create a empty PICML project and import the XML file.
       ACE_DEBUG ((LM_INFO,
                   ACE_TEXT ("%T (%t) - %M - importing '%s' for processing\n"),
-                  this->opts_.project_.c_str ()));
+                  file.c_str ()));
 
       this->project_ = GAME::Mga::Project::_create (connstr.str (), info.paradigm_);
-      parser.parse (this->opts_.project_, this->project_);
+      parser.parse (file, this->project_);
     }
     else
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -227,6 +239,7 @@ int GAME_Automation_App::open_gme_project (void)
 
   // Make sure we have the add-ons enabled. Otherwise, the
   // project may enter an inconsistent state.
+  this->current_file_ = file;
   this->project_.enable_auto_addons (this->opts_.enable_auto_addons_);
 
   return 0;
@@ -248,12 +261,11 @@ int GAME_Automation_App::save_gme_project (void)
 
     ACE_DEBUG ((LM_INFO,
                 ACE_TEXT ("%T (%t) - %M - exporting project as %s\n"),
-                this->opts_.project_.c_str (),
                 tempfile.c_str ()));
 
     // Export the project to the source XML file.
     GAME::Mga::XML_Dumper dumper;
-    dumper.write (this->opts_.project_, this->project_);
+    dumper.write (this->current_file_, this->project_);
 
     ACE_OS::unlink (tempfile.c_str ());
   }

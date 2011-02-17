@@ -61,7 +61,7 @@ void ComponentEx_Impl::invoke (Project project,
     VERIFY_HRESULT (selected_raw->Insert ((*iter)->impl (), 0));
 
   VERIFY_HRESULT (this->impl ()->InvokeEx (project.impl (),
-                                           current->impl (),
+                                           current != 0 ? current->impl () : 0,
                                            selected_raw,
                                            param));
 }

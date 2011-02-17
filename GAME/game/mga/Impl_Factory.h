@@ -67,6 +67,7 @@ private:
 // Forward decl.
 class Attribute_Impl;
 class Component_Impl;
+class ComponentEx_Impl;
 class ConnectionPoint_Impl;
 class RegistryNode_Impl;
 
@@ -99,6 +100,8 @@ public:
   RegistryNode_Impl * allocate (IMgaRegNode * ptr);
 
   Component_Impl * allocate (IMgaComponent * ptr);
+
+  ComponentEx_Impl * allocate (IMgaComponentEx * ptr);
 
   Attribute_Impl * allocate (IMgaAttribute * ptr);
 

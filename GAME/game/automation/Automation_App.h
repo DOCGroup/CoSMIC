@@ -39,6 +39,9 @@ public:
   int run_main (int argc, char * argv []);
 
 private:
+  /// Process the specified file.
+  int process_file (const std::string & file);
+
   /// Run the specified interpreter.
   int run (const std::string & progid);
 
@@ -46,7 +49,7 @@ private:
   int parse_args (int argc, char * argv []);
 
   /// Open a GME project.
-  int open_gme_project (void);
+  int open_gme_project (const std::string & file);
 
   /// Save the previously open GME project.
   int save_gme_project (void);
@@ -62,6 +65,8 @@ private:
 
   /// The project is an MGA file.
   bool is_mga_file_;
+
+  std::string current_file_;
 };
 
 #if defined (__GAME_INLINE__)

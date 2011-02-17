@@ -1,3 +1,40 @@
+Thu Feb 17 17:38:02 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_extension_classes_autogen.mpb:
+
+          Base project to auto-generating the extension classes.
+
+        * game/automation/Automation_App.h:
+        * game/automation/Automation_App.cpp:
+        * game/automation/Automation_App_Options.h:
+
+          Removed the -p option so that any argument not associated with
+          a parameter is considered a project file.
+
+        * game/mga/ComponentEx.cpp:
+
+          Bug fix where invoke () would crash if the current object
+          was NIL.
+
+        * game/mga/Impl_Factory.h:
+        * game/mga/Impl_Factory.inl:
+        * game/mga/Impl_Factory.cpp:
+
+          Bug fix where the default implementation factory was not allocating
+          the correct implementation for an extended component.
+
+        * game/mga/interpreters/ExtensionClasses/Mwc_File_Generator.cpp:
+
+          Added the _GAME.mwc extension to the generated workspace
+          file.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * tests/ExtensionClasses/Reference/ReferenceTest.mpc:
+        * tests/ExtensionClasses/Reference/ReferenceTest.mwc:
+        * tests/ExtensionClasses/Reference/ReferenceTest.xme:
+
+          Update test to support automated testing.
+
 Thu Feb 17 15:50:07 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Impl_Factory.h:

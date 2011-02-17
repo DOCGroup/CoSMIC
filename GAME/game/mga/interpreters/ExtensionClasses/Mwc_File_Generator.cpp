@@ -34,7 +34,7 @@ generate (const std::string & location, const Project & proj)
 {
   // Open the .mpc file for writing.
   const std::string project_name = proj.name ();
-  const std::string mwc_filename = location + "/" + project_name + ".mwc";
+  const std::string mwc_filename = location + "/" + project_name + "_GAME_Mga.mwc";
 
   std::ofstream mwc_file;
   mwc_file.open (mwc_filename.c_str ());
