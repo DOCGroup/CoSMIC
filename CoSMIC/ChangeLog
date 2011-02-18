@@ -1,3 +1,17 @@
+Fri Feb 18 22:59:59 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_File.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_File.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Visitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_export.h:
+
+          Extracted the portion of code that generates the IDL file into
+          its own class. This will allow third-party applications to
+          programmatically re-use the IDL generator's logic without manually
+          invoking the interpreter.
+
 Fri Feb 18 22:14:19 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PackageComponent/Component.rc:

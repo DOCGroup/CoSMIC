@@ -1,19 +1,14 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "File_Processor.h"
 #include "IDL_Generator_Visitor.h"
-#include "IDL_File_Generator.h"
-#include "IDL_File_Dependency_Processor.h"
-#include "IDLStream.h"
+#include "IDL_Generator_File.h"
 
 #include "Utils/Utils.h"
-
 #include "boost/bind.hpp"
 
 #include <algorithm>
 #include <fstream>
-#include <sstream>
 
 //
 // IDL_Generator_Visitor
@@ -38,12 +33,13 @@ IDL_Generator_Visitor::~IDL_Generator_Visitor (void)
 void IDL_Generator_Visitor::
 Visit_RootFolder (const PICML::RootFolder & folder)
 {
-  typedef std::vector <PICML::InterfaceDefinitions> vector_t;
-  vector_t folders = folder.InterfaceDefinitions_children ();
+  std::vector <PICML::InterfaceDefinitions> folders = folder.InterfaceDefinitions_children ();
 
   std::for_each (folders.begin (),
                  folders.end (),
-                 boost::bind (&vector_t::value_type::Accept, _1, boost::ref (*this)));
+                 boost::bind (&PICML::InterfaceDefinitions::Accept, 
+                              _1,
+                              boost::ref (*this)));
 }
 
 //
@@ -52,12 +48,12 @@ Visit_RootFolder (const PICML::RootFolder & folder)
 void IDL_Generator_Visitor::
 Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder)
 {
-  typedef std::vector <PICML::File> vector_t;
-  vector_t files = folder.File_children ();
-
+  std::vector <PICML::File> files = folder.File_children ();
   std::for_each (files.begin (),
                  files.end (),
-                 boost::bind (&vector_t::value_type::Accept, _1, boost::ref (*this)));
+                 boost::bind (&PICML::File::Accept, 
+                              _1, 
+                              boost::ref (*this)));
 }
 
 //
@@ -85,38 +81,6 @@ void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
   if (!outfile.is_open ())
     return;
 
-  // First, preprocess the file. This will help sort out any
-  // dependency issues between objects and files.
-  IDLStream idl (outfile);
-
-  // Construct the hash definition for this file.
-  std::string hashdef ("_");
-  hashdef += std::string (file.name ()) + "_IDL_";
-
-  std::transform (hashdef.begin (),
-                  hashdef.end (),
-                  hashdef.begin (),
-                  &::toupper);
-
-  idl << "#ifndef " << hashdef << nl
-      << "#define " << hashdef << nl
-      << nl;
-
-  // Preprocess the file. This will genenerate the necessary
-  // forward declarations for any object at the top of the
-  // target output file.
-  IDL_File_Dependency_Processor depends_graph;
-  IDL_File_Processor idl_proc (depends_graph, idl);
-  PICML::File (file).Accept (idl_proc);
-
-  // Visit the file and generate its contents.
-  IDL_File_Generator generator (depends_graph, idl);
-  PICML::File (file).Accept (generator);
-
-  idl << nl
-      << "#endif    // !defined " << hashdef << nl
-      << nl;
-
-  // Close the output file.
-  outfile.close ();
+  IDL_Generator_File idl_file (outfile);
+  idl_file.generate (file);
 }

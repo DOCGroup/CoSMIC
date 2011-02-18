@@ -5,6 +5,8 @@ project (PICML_IDLGeneratorComponent) : \
 
   sharedname = PICML_IDLGeneratorComponent
 
+  dynamicflags += IDL_GENERATOR_BUILD_DLL
+
   Source_Files {
     IDL_Generator_Component.idl
     IDL_Generator_Component_Impl.cpp
@@ -16,6 +18,7 @@ project (PICML_IDLGeneratorComponent) : \
     IDLStream.cpp
 
     IDL_File_Generator.cpp
+    IDL_Generator_File.cpp
     IDL_Generator_Visitor.cpp
 
     IDL_File_Dependency_Processor.cpp
