@@ -2,6 +2,8 @@
 
 #include "stdafx.h"
 #include "stlace.h"
+
+#if defined (ACE_LACKS_STL_STRING_FUNCTORS)
 #include "ace/ACE.h"
 #include "ace/Functor_T.h"
 
@@ -22,3 +24,4 @@ operator () (const std::wstring & str) const
 {
   return ACE::hash_pjw (str.c_str (), str.length ());
 }
+#endif

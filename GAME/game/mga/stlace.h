@@ -4,23 +4,21 @@
 /**
  * @file        stlace.h
  *
- * Template specializations for enabling STL to work with ACE
- *
  * $Id$
  *
  * @author      James H. Hill
  */
 //=============================================================================
 
-#ifndef _STLACE_H_
-#define _STLACE_H_
+#ifndef _GAME_STLACE_H_
+#define _GAME_STLACE_H_
 
 #include <string>
 #include "Mga_export.h"
 
+#if defined (ACE_LACKS_STL_STRING_FUNCTORS)
 // Forward decl.
-template <typename T>
-class ACE_Hash;
+template <typename T> class ACE_Hash;
 
 /**
  * @class ACE_Hash <std::string>
@@ -45,5 +43,6 @@ class GAME_MGA_Export ACE_Hash <std::wstring>
 public:
   unsigned long operator () (const std::wstring & lhs) const;
 };
+#endif
 
 #endif
