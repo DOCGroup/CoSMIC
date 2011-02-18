@@ -15,15 +15,12 @@
 
 #include <string>
 
-//=============================================================================
 /**
  * @class PackageOptions
  *
  * Contains options that clients can modify to affect how the
  * package component executes.
  */
-//=============================================================================
-
 class PackageOptions
 {
 public:

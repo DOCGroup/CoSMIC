@@ -22,17 +22,21 @@ project(PICML_Package): acelib, picmllib, boost_base, zlib, minizip {
    }
 }
 
-project (PICML_PackageComponent): game_mga_utils, picmllib, gme_udm_component {
-  sharedname = PICML_PackageComponent
 
-  // prevent build if Package project does not build.
+project (PICML_PackageComponent): picml_udm_utils, game_mga_utils, game_mga_interpreter, udm, cosmic_utils {
+  sharedname = PICML_PackageComponent
   requires += zlib
+
   after    += PICML_Package
   libs     += PICML_Package
 
   Source_Files {
     PackageMainDialog.cpp
     PackageOptions.cpp
+
+    Package_Component.idl
+    Package_Component_Impl.cpp
+    Package_Component_Module.cpp
   }
 
   Header_Files {

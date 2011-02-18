@@ -1,0 +1,35 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Package_Component.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PACKAGE_COMPONENT_IDL_
+#define _PACKAGE_COMPONENT_IDL_
+
+#include <Gme.idl>
+
+[
+  uuid (A31E667F-0AD0-4421-B333-2610B3F3F25C),
+  version (1.0),
+]
+library Package_Component
+{
+  importlib ("stdole32.tlb");
+
+  [uuid (61C41FFD-3A5E-468D-9B1E-BD2A89FED148)]
+  coclass Package_Component
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IMgaVersionInfo;
+  };
+};
+
+#endif  // !defined _IDL_GENERATOR_COMPONENT_IDL_
