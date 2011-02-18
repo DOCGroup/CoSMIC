@@ -1,3 +1,24 @@
+Fri Feb 18 01:09:02 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/automation/Automation_App.cpp:
+        * game/automation/Automation_App_Options.h:
+        * game/automation/Automation_App_Options.inl:
+
+          Added a --save argument. This is used to save any updates to
+          the model after interpretation.
+
+        * game/automation/Parameter_Parser.cpp:
+
+          The value of the parameter is now optional.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+
+          Used macros to define the interpreter's configuration.
+
+        * tests/ExtensionClasses/Reference/ReferenceTest.mpc:
+
+          Added custom_only property to the project.
+
 Thu Feb 17 23:05:30 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Impl_Factory.h:

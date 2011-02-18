@@ -40,8 +40,7 @@ public:
   {
     this->parser_ %=
       qi::lexeme[*(ascii::char_ - '=')] >>
-      qi::lit ("=") >>
-      qi::lexeme[*ascii::char_];
+      -(qi::lit ("=") >> qi::lexeme[*ascii::char_]);
   }
 
 private:

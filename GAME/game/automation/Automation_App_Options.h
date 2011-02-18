@@ -41,6 +41,8 @@ struct GAME_Automation_App_Options
   bool enable_auto_addons_;
 
   bool interactive_;
+
+  bool autosave_;
 };
 
 #if defined (__GAME_INLINE__)

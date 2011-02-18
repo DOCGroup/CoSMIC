@@ -33,13 +33,17 @@
 
 GAME_DECLARE_INTERPRETER (Extension_Classes_Component, Extension_Classes_Component_Impl);
 
+#define INTERPRETER_NAME        "GAME Extension Class Generator"
+#define INTERPRETER_PARADIGM    "MetaGME"
+#define INTERPRETER_PROGID      "GAME.Interpreter.ExtensionClasses"
+
 //
 // Quotas_Integrator_Impl
 //
 Extension_Classes_Component_Impl::Extension_Classes_Component_Impl (void)
-: GAME::Mga::Interpreter_Impl_Base ("GAME Extension Class Generator",
-                                    "MetaGME",
-                                    "GAME.Interpreter.ExtensionClasses")
+: GAME::Mga::Interpreter_Impl_Base (INTERPRETER_NAME,
+                                    INTERPRETER_PARADIGM,
+                                    INTERPRETER_PROGID)
 {
 
 }

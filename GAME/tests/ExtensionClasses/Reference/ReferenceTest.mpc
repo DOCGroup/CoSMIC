@@ -1,6 +1,8 @@
 // $Id$
 
 project (ReferenceTest_Gen) : game_extension_classes_autogen {
+  custom_only = 1
+
   extclsflags += -p OutputPath=.
 
   Extension_Class_Files {

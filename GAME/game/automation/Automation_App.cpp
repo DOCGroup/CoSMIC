@@ -28,6 +28,7 @@ static const char * __HELP__ =
 "USAGE: game-automation [OPTIONS] FILE\n"
 "\n"
 "General Options:\n"
+"  -s, --save                      save project after usage\n"
 "  -x, --interpreter=PROGID        program id of interpreter\n"
 "\n"
 "  --param=NAME=VALUE              set the value of a parameter\n"
@@ -89,7 +90,9 @@ int GAME_Automation_App::process_file (const std::string & file)
     this->run (this->opts_.interpreter_);
 
   // Close the GAME project.
-  this->save_gme_project ();
+  if (this->opts_.autosave_)
+    this->save_gme_project ();
+
   this->project_.close ();
 
   return 0;
@@ -100,17 +103,19 @@ int GAME_Automation_App::process_file (const std::string & file)
 //
 int GAME_Automation_App::parse_args (int argc, char * argv [])
 {
-  const char * optargs = "hp:x:";
+  const char * optargs = "hp:x:s";
 
   ACE_Get_Opt get_opt (argc, argv, optargs);
 
-  get_opt.long_option ("help", 'h');
   get_opt.long_option ("interepter", 'x', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("save", 's', ACE_Get_Opt::NO_ARG);
 
   get_opt.long_option ("param", ACE_Get_Opt::ARG_REQUIRED);
 
   get_opt.long_option ("disable-addons");
   get_opt.long_option ("interactive");
+
+  get_opt.long_option ("help", 'h');
 
   char opt;
 
@@ -136,10 +141,15 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
         Parameter_Parser p;
         p.parse (get_opt.opt_arg (), this->opts_.params_);
       }
+      else if (ACE_OS::strcmp ("save", get_opt.long_option ()) == 0)
+      {
+        this->opts_.autosave_ = true;
+      }
       else if (ACE_OS::strcmp ("help", get_opt.long_option ()) == 0)
       {
         this->print_help ();
       }
+
       break;
 
     case 'h':
