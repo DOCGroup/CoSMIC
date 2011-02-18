@@ -1,3 +1,10 @@
+Fri Feb 18 01:35:25 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpreters/ExtensionClasses/Impl_Factory_Generator.cpp:
+
+          Bug fix where the implementation factory for the extension
+          classes was not exported from the module.
+
 Fri Feb 18 01:09:02 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/automation/Automation_App.cpp:
