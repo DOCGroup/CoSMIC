@@ -1,0 +1,53 @@
+// -*- MPC -*-
+// $Id$
+
+project (Array_Expected) : taoclient {
+  exename = Array_Expected
+  install = .
+
+  Source_Files {
+    Array.cpp
+  }
+
+  IDL_Files {
+    Array.idl
+  }
+}
+
+project (Array_IDLTOPICML) : idl2picml {
+  custom_only = 1
+
+  after += Array_Expected
+  idl2picml_flags += -x Array.xme
+
+  IDL2PICML_Files {
+    Array.idl
+  }
+}
+
+project (Array_IDL_Gen) : idlgen {
+  custom_only = 1
+
+  after += Array_IDLTOPICML
+
+  IDL_Gen_Files {
+    Array.xme >> generated/Array.idl
+  }
+}
+
+project (Array) : taoclient {
+  exename = Array
+  install = .
+
+  after += Array_IDL_Gen
+
+  Source_Files {
+    Array.cpp
+  }
+
+  IDL_Files {
+    gendir = .
+
+    generated/Array.idl
+  }
+}

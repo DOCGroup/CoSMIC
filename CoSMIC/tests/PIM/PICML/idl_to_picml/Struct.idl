@@ -1,26 +1,73 @@
-// -*- IDL -*-
+// $Id$
 
-//=============================================================================
-/**
- *  @file       Struct.idl
- *
- *  $Id$
- *
- *  @author     James H. Hill
- */
-//=============================================================================
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    Struct.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    struct types
+//
+// = AUTHORS
+//    Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
 
-#ifndef _PICML_STRUCT_IDL_H_
-#define _PICML_STRUCT_IDL_H_
+#ifndef _STRUCT_IDL_
+#define _STRUCT_IDL_
 
-module Example
+module StructNoun
 {
-  struct StockInfo
+  struct Person
   {
-    string name;
-
-    long price;
+    string m_name;
+    boolean m_is_member;
+    short m_age;
   };
+
+  struct Place;
+  struct Event;
+  
+  struct Place
+  {
+    string m_name_of;
+    long   m_how_many;
+    boolean m_has_more;
+  };
+
+  struct Event;
+  struct Thing;
+  
+  typedef short MyType;
+
+  struct Thing
+  {
+    string m_name;
+    MyType  m_class_of;
+    boolean m_has_more;
+  };
+
+
+  struct Idea
+  {
+    string  m_name;    
+    boolean m_is_great;
+    MyType  m_id;
+    char    m_begin_letter;
+  };
+
+  struct Event
+  {
+    long    m_type;
+    double  m_my_double;
+    boolean m_action;
+    Idea    m_an_idea;
+  };
+
 };
 
 #endif

@@ -1,0 +1,44 @@
+// -*- MPC -*-
+// $Id$
+
+project (MultipleInterfaces_Expected) : taoclient {
+  exename = MultipleInterfaces_Expected
+  install = .
+
+  Source_Files {
+    MultipleInterfaces.cpp
+    MultipleInterfacesC.cpp
+    
+  }
+
+  IDL_Files {
+    MultipleInterfaces.idl
+  }
+}
+
+project (MultipleInterfaces_IDLTOPICML) : idl2picml {
+  custom_only = 1
+
+  after += MultipleInterfaces_Expected
+
+  IDL2PICML_Files {
+    MultipleInterfaces.idl
+  }
+}
+
+project (MultipleInterfaces) : taoclient {
+  exename = MultipleInterfaces
+  install = .
+
+  after += MultipleInterfaces_IDLTOPICML
+
+  Source_Files {
+    MultipleInterfaces.cpp
+    MultipleInterfacesC.cpp
+  }
+
+  IDL_Files {
+    gendir = .
+    ./generated/MultipleInterfaces.idl
+  }
+}

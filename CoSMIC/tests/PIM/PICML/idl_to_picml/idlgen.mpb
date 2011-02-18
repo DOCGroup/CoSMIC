@@ -1,0 +1,13 @@
+// $Id$
+
+project {
+  Define_Custom (IDL_Gen) {
+    automatic_in     = 0
+    automatic_out    = 0
+    command          = <%quote%>$(GAME_ROOT)<%quote%>/bin/game-automation -x MGA.Interpreter.IDLGenerator \
+                        --param=<%quote%>OutputPath=<%input_dirname%>/generated<%quote%>
+    inputext         = .xme
+
+    keyword idlgen_flags = commandflags
+  }
+}

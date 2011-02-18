@@ -1,8 +1,0 @@
-// $Id$
-
-workspace (IDL_to_PICML) {
-  cmdline += -feature_file $COSMIC_ROOT/default.features
-
-  *.mpc
-  $(TAO_ROOT)/TAO_ACE.mwc
-}

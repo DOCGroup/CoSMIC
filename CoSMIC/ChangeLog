@@ -1,3 +1,101 @@
+Fri Feb 18 03:36:00 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/T3/t3/runtime/Runtime_Engine.inl:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Module.cpp:
+        * PIM/PICML/addons/PICMLManager/StdAfx.h:
+
+          Updated to latest version of GAME.
+
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+
+          Fixed the displayed help
+
+        * tests/PIM/PICML/idl_to_picml/Array.idl:
+        * tests/PIM/PICML/idl_to_picml/Array.cpp:
+        * tests/PIM/PICML/idl_to_picml/Array.mpc:
+        * tests/PIM/PICML/idl_to_picml/Constant.idl:
+        * tests/PIM/PICML/idl_to_picml/Constant.mpc:
+        * tests/PIM/PICML/idl_to_picml/Constant.cpp:
+        * tests/PIM/PICML/idl_to_picml/Enum.idl:
+        * tests/PIM/PICML/idl_to_picml/Enum.cpp:
+        * tests/PIM/PICML/idl_to_picml/Enum.mpc:
+        * tests/PIM/PICML/idl_to_picml/Enum_within_Struct.idl:
+        * tests/PIM/PICML/idl_to_picml/Enum_within_Struct.mpc:
+        * tests/PIM/PICML/idl_to_picml/Enum_within_Struct.cpp:
+        * tests/PIM/PICML/idl_to_picml/IDL_to_PICML.mwc:
+        * tests/PIM/PICML/idl_to_picml/Interface.cpp:
+        * tests/PIM/PICML/idl_to_picml/Interface.idl:
+        * tests/PIM/PICML/idl_to_picml/Interface.mpc:
+        * tests/PIM/PICML/idl_to_picml/MultipleInterfaces.idl:
+        * tests/PIM/PICML/idl_to_picml/MultipleInterfaces.mpc:
+        * tests/PIM/PICML/idl_to_picml/MultipleInterfaces.cpp:
+        * tests/PIM/PICML/idl_to_picml/Sequence.idl:
+        * tests/PIM/PICML/idl_to_picml/Sequence.mpc:
+        * tests/PIM/PICML/idl_to_picml/Sequence.cpp:
+        * tests/PIM/PICML/idl_to_picml/String.idl:
+        * tests/PIM/PICML/idl_to_picml/String.cpp:
+        * tests/PIM/PICML/idl_to_picml/String.mpc:
+        * tests/PIM/PICML/idl_to_picml/Struct.cpp:
+        * tests/PIM/PICML/idl_to_picml/Struct.idl:
+        * tests/PIM/PICML/idl_to_picml/Struct.mpc:
+        * tests/PIM/PICML/idl_to_picml/Struct_Enum.cpp:
+        * tests/PIM/PICML/idl_to_picml/Struct_Enum.idl:
+        * tests/PIM/PICML/idl_to_picml/Struct_Enum.mpc:
+        * tests/PIM/PICML/idl_to_picml/Typedef.idl:
+        * tests/PIM/PICML/idl_to_picml/Typedef.cpp:
+        * tests/PIM/PICML/idl_to_picml/Typedef.mpc:
+        * tests/PIM/PICML/idl_to_picml/Union.cpp:
+        * tests/PIM/PICML/idl_to_picml/Union.idl:
+        * tests/PIM/PICML/idl_to_picml/Union.mpc:
+        * tests/PIM/PICML/idl_to_picml/generated:
+        * tests/PIM/PICML/idl_to_picml/idl2picml.mpb:
+        * tests/PIM/PICML/idl_to_picml/idlgen.mpb:
+
+          Moved the idl_to_picml test a new location.
+
+        * PIM/PICML/tests/IDL_to_PICML:
+        * PIM/PICML/tests/IDL_to_PICML/Array.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Array.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Array.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Constant.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Constant.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Constant.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Enum.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Enum.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Enum.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Enum_within_Struct.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/IDL_to_PICML.mwc:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Interface.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.idl:
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/MultipleInterfaces.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Sequence.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Sequence.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Sequence.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/String.idl:
+        * PIM/PICML/tests/IDL_to_PICML/String.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/String.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Struct.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Struct.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Struct.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Struct_Enum.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Typedef.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Typedef.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Typedef.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/Union.cpp:
+        * PIM/PICML/tests/IDL_to_PICML/Union.idl:
+        * PIM/PICML/tests/IDL_to_PICML/Union.mpc:
+        * PIM/PICML/tests/IDL_to_PICML/generated:
+        * PIM/PICML/tests/IDL_to_PICML/idl2picml.mpb:
+
+          Removed these files.
+
 Thu Feb 10 23:32:37 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager_Module.cpp:
@@ -22,6 +120,7 @@ Thu Feb 10 22:26:03 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
 
           Fixed compilation error.
 
+>>>>>>> .r2669
 Tue Feb  8 14:52:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/t3_runtime.mpb:

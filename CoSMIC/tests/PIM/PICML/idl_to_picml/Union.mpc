@@ -1,0 +1,41 @@
+// -*- MPC -*-
+// $Id$
+
+project (Union_Expected) : taoclient {
+  exename = Union_Expected
+  install = .
+
+  Source_Files {
+    Union.cpp
+  }
+
+  IDL_Files {
+    Union.idl
+  }
+}
+
+project (Union_IDLTOPICML) : idl2picml {
+  custom_only = 1
+
+  after += Union_Expected
+
+  IDL2PICML_Files {
+    Union.idl
+  }
+}
+
+project (Union) : taoclient {
+  exename = Union
+  install = .
+
+  after += Union_IDLTOPICML
+
+  Source_Files {
+    Union.cpp
+  }
+
+  IDL_Files {
+    gendir = .
+    ./generated/Union.idl
+  }
+}

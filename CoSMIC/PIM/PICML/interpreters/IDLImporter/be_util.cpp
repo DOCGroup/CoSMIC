@@ -40,7 +40,7 @@ be_util::usage (void)
     ));
   ACE_DEBUG ((
       LM_DEBUG,
-      ACE_TEXT (" -i <filename>\t\tModel to use as starting point.")
+      ACE_TEXT (" -i <filename>\t\tModel to use as starting point.\n")
     ));
   ACE_DEBUG ((
       LM_DEBUG,

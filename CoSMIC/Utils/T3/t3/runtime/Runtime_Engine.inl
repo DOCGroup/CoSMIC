@@ -48,7 +48,7 @@ inline
 void T3_Runtime_Engine::
 set_attribute (GAME::Mga::FCO_in fco, const std::string & name, double value)
 {
-  fco->attribute (name)->float_value (value);
+  fco->attribute (name)->double_value (value);
 }
 
 //

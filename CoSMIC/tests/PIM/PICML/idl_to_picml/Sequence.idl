@@ -1,0 +1,47 @@
+// $Id$
+
+// ============================================================================
+//
+// = LIBRARY
+//    PICML/tests/IDL_to_PICML
+//
+// = FILENAME
+//    Sequence.idl
+//
+// = DESCRIPTION
+//    This file contains examples of IDL code that test
+//    sequence types using the basic types
+//
+// = AUTHORS
+//    Harold Owens II <owensh@cs.iupui.edu>
+//
+// ============================================================================
+
+#ifndef _SEQUENCE_IDL_
+#define _SEQUENCE_IDL_
+
+module SequenceBasicTypes
+{
+  typedef sequence<boolean> SeqBoolean;
+  typedef sequence<boolean, 10> Seq10Boolean;
+
+  typedef sequence<short> SeqShort;
+  typedef sequence<short, 10> Seq10Short;
+
+  typedef sequence<long> SeqLong;
+  typedef sequence<long, 10> Seq10Long;
+
+  typedef sequence<char> SeqChar;
+  typedef sequence<char, 10> Seq10Char;
+
+  typedef sequence<octet> SeqOctet;
+  typedef sequence<octet, 10> Seq10Octet;
+
+  typedef sequence<float> SeqFloat;
+  typedef sequence<float, 10> Seq10Float;
+
+  typedef sequence<double> SeqDouble;
+  typedef sequence<double, 10> Seq10Double;
+};
+
+#endif

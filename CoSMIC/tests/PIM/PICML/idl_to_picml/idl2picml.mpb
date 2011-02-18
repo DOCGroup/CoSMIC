@@ -1,0 +1,13 @@
+// $Id$
+
+project {
+  Define_Custom (IDL2PICML) {
+    automatic_in     = 0
+    automatic_out    = 0
+    command          = <%quote%>$(COSMIC_ROOT)<%quote%>/bin/idl_to_picml
+    inputext         = .idl
+    source_outputext = .xme
+
+    keyword idl2picml_flags = commandflags
+  }
+}

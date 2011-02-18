@@ -1,0 +1,18 @@
+#ifndef _ENUM_WITHIN_STRUCT_IDL_
+#define _ENUM_WITHIN_STRUCT_IDL_
+
+module EnumTypes
+{
+  struct Person
+  {
+    string m_name;
+    enum Ecolor
+    { 
+      RED,
+      BLUE,
+      GREEN
+    } e;
+  }; 
+};
+
+#endif

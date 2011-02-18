@@ -1,0 +1,41 @@
+// -*- MPC -*-
+// $Id$
+
+project (Enum_Expected) : taoclient {
+  exename = Enum_Expected
+  install = .
+
+  Source_Files {
+    Enum.cpp
+  }
+
+  IDL_Files {
+    Enum.idl
+  }
+}
+
+project (Enum_IDLTOPICML) : idl2picml {
+  custom_only = 1
+
+  after += Enum_Expected
+
+  IDL2PICML_Files {
+    Enum.idl
+  }
+}
+
+project (Enum) : taoclient {
+  exename = Enum
+  install = .
+
+  after += Enum_IDLTOPICML
+
+  Source_Files {
+    Enum.cpp
+  }
+
+  IDL_Files {
+    gendir = .
+    ./generated/Enum.idl
+  }
+}
