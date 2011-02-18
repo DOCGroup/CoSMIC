@@ -71,7 +71,7 @@ int GAME_Automation_App::run_main (int argc, char * argv [])
                 ACE_TEXT ("%T (%t) - %M - caught unknown GME exception\n")));
   }
 
-  return -1;
+  return 1;
 }
 
 //
