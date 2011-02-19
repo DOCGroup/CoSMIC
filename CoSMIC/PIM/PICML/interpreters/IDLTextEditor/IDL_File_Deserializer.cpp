@@ -4,6 +4,8 @@
 #include "IDL_File_Deserializer.h"
 #include "Layout_Manager.h"
 #include "t3/runtime/Runtime_Engine.h"
+#include "game/mga/Transaction.h"
+
 #include <iterator>
 
 //
@@ -28,6 +30,8 @@ IDL_File_Deserializer::~IDL_File_Deserializer (void)
 int IDL_File_Deserializer::
 deserialize (std::istream & stream, ::GAME::Mga::Object_in obj)
 {
+  GAME::Mga::Transaction t (obj->project ());
+
   // Right now, we are going to copy the contents to a string
   // and process it from there. Later version will work directly
   // on the stream once we figure out why things are not working!!
@@ -52,6 +56,7 @@ deserialize (std::istream & stream, ::GAME::Mga::Object_in obj)
 
   // Remove the current event listener.
   T3_RUNTIME_ENGINE->event_listener (0);
+  t.commit ();
 
   return retval ? 0 : -1;
 }

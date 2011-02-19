@@ -1,3 +1,46 @@
+Sat Feb 19 19:36:51 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/picml_udm_utils.mpb:
+
+          Derived project from udm project.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+
+          Simplified the project specification.
+
+        * PIM/PICML/interpreters/IDLTextEditor:
+        * PIM/PICML/interpreters/IDLTextEditor/Component.rc:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.idl:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor_Impl.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor_Impl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor_Module.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/StdAfx.h:
+        * PIM/PICML/interpreters/IDLTextEditor/StdAfx.cpp:
+
+          Re-implemented the component's implementation using the GAME
+          backend instead of BON2.
+
+        * PIM/PICML/interpreters/IDLTextEditor/rules/ident_impl.hpp:
+
+          Bug fix where identifiers could not begin with an underscore (_).
+
+        * PIM/PICML/interpreters/IDLTextEditor/rules/preprocessor_impl.hpp:
+
+          Bug fix where the #endif rule was incorrect.
+
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.h:
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLTextEditor/ComponentLib_h.h:
+
+          Removed these files.
+
 Fri Feb 18 22:59:59 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator:

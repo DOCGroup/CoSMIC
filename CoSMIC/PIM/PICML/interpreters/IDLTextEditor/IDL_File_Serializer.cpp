@@ -2,9 +2,13 @@
 
 #include "StdAfx.h"
 #include "IDL_File_Serializer.h"
-#include "IDLEmitVisitor.h"
-#include "DependencyVisitor.h"
+#include "IDL_Generator_File.h"
+
 #include "game/mga/Object.h"
+#include "PICML/PICML.h"
+
+#include "UdmGme.h"
+#include "UdmStatic.h"
 
 //
 // IDL_File_Serializer
@@ -28,22 +32,27 @@ IDL_File_Serializer::~IDL_File_Serializer (void)
 int IDL_File_Serializer::
 serialize (const ::GAME::Mga::Object_in obj, std::ostream & stream)
 {
-  // Make this an BON object type.
-  BON::Object bon_obj (::BON::Object::attach (obj->impl ()));
+  UdmGme::GmeDataNetwork dngBackend (PICML::diagram);
 
-  // Now, we can use IDML::File BON extension object.
-  IDML::File file (bon_obj);
+  try
+  {
+    // Turn this into a UDM object.
+    Udm::Object udm_obj = dngBackend.Gme2Udm (obj->impl ());
 
-  if (!file)
-    return -1;
+    // Generate the file to the provided stream.
+    PICML::File file = PICML::File::Cast (udm_obj);
+    IDL_Generator_File file_gen (stream);
+    file_gen.generate (file);
 
-  // Make sure the dependencies exist for the file.
-  IDML::DependencyVisitor depend_visitor;
-  depend_visitor.visitOrderableImpl (file);
+    // Closing backend
+    dngBackend.CloseWithUpdate ();
+    return 0;
+  }
+  catch (udm_exception & exc)
+  {
+    ::AfxMessageBox (exc.what ());
+    dngBackend.CloseNoUpdate ();
+  }
 
-  // Generate the text version of the IDL file.
-  IDML::IDLEmitVisitor emit_visitor (stream);
-  emit_visitor.visitOrderableImpl (file);
-
-  return 0;
+  return -1;
 }

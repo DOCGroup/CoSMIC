@@ -1,9 +1,13 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "game/mga/Mga.h"
+
 #include "IDL_File_Parser.hpp"
 #include "rules/grammar.hpp"
 #include "t3/runtime/Auto_Model.h"
+
+#include "game/mga/Mga.h"
 #include "game/mga/Object.h"
 
 //

@@ -4,6 +4,7 @@
 #include "DSL_Document.h"
 #include "DSL_Serializer.h"
 #include "DSL_Deserializer.h"
+
 #include <sstream>
 
 IMPLEMENT_DYNCREATE (DSL_Document, CRichEditDoc)

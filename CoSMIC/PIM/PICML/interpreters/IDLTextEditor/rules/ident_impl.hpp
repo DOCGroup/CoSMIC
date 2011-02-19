@@ -10,8 +10,7 @@ template <typename IteratorT>
 ident <IteratorT>::ident (void)
 : ident::base_type (ident_)
 {
-  this->ident_ %=
-    qi::lexeme[qi::alpha >> *(qi::alnum | '_')];
+  this->ident_ %= qi::lexeme[(qi::alpha | '_') >> *(qi::alnum | '_')];
 }
 
 #endif

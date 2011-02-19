@@ -1,8 +1,13 @@
 // $Id$
 
-project (PICML_IDLTextEditor_Core) : gme_common, t3_runtime, acelib, cosmic_lib {
-  sharedname    = PICML_IDLTextEditor_Core
-  dynamicflags += IDLTEXTEDITOR_CORE_BUILD_DLL
+project (PICML_IDLTextEditor) : t3_runtime, picml_udm_utils, game_mga_interpreter, \
+                                game_mga_utils, cosmic_common, cosmic_lib {
+  sharedname = PICML_IDLTextEditor
+
+  includes += ../IDLGenerator
+
+  after    += PICML_IDLGeneratorComponent
+  libs     += PICML_IDLGeneratorComponent
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -14,44 +19,15 @@ project (PICML_IDLTextEditor_Core) : gme_common, t3_runtime, acelib, cosmic_lib 
     DisableSpecificWarnings += 4355 4180 4290
   }
 
-  Source_Files {
-    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
-
-    IDL_File_Parser.cpp
-    Symbols.cpp
-
-    Rules {
-      rules/*.cpp
-    }
-  }
-
   specific (vc71, vc8) {
     link_options += /FORCE:MULTIPLE
   }
 
-  Header_Files {
-    Rules {
-      rules/*.hpp
-    }
-  }
-
-  Template_Files {
-  }
-
-  Resource_Files {
-
-  }
-}
-
-project (PICML_IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_mga_utils, cosmic_common {
-  sharedname = PICML_IDLTextEditor
-
-  includes += ../IDLGenerator
-
-  after    += PICML_IDLTextEditor_Core
-  libs     += PICML_IDLTextEditor_Core
-
   Source_Files {
+    Rules {
+      rules/*.cpp
+    }
+
     Component.rc
     DSL_Document.cpp
     DSL_DocTemplate.cpp
@@ -60,21 +36,22 @@ project (PICML_IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_mga
     DSL_TextEditor.cpp
     DSL_View.cpp
 
+    IDLTextEditor.idl
+    IDLTextEditor_Impl.cpp
+    IDLTextEditor_Module.cpp
+
+    IDL_File_Parser.cpp
     IDL_File_Deserializer.cpp
     IDL_File_Serializer.cpp
 
-    ../IDLGenerator/DependencyVisitor.cpp
-    ../IDLGenerator/IDMLBonExtension.cpp
-    ../IDLGenerator/IDLEmitVisitor.cpp
-    ../IDLGenerator/IDLStream.cpp
-
     Layout_Manager.cpp
+    Symbols.cpp
   }
 
   Header_Files {
-    ../IDLGenerator/DependencyVisitor.h
-    ../IDLGenerator/IDLEmitVisitor.h
-    ../IDLGenerator/IDMLBonExtension.h
+    Rules {
+      rules/*.hpp
+    }
   }
 
   Resource_Files {
@@ -89,7 +66,7 @@ project (PICML_IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_mga
     gme_progid      = MGA.Interpreter.IDLTextEditor
     gme_uuid        = C8483E54-94D8-4F6C-97AB-9E3337E6AFD9
     gme_paradigms   = PICML
-    gme_description = IDL text editor for PICML
+    gme_description = IDL Text Editor
     gme_tooltip     = IDL Text Editor
   }
 }

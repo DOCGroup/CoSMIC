@@ -20,7 +20,7 @@ preprocessor <IteratorT>::preprocessor (void)
   this->hashdef_ =
     (qi::lit ("#ifndef") >> this->ident_) |
     (qi::lit ("#define") >> this->ident_) |
-    (qi::lit ("#endif") >> this->ident_);
+     qi::lit ("#endif");
 
   this->usr_filepath_ %=
     qi::lexeme[*(qi::char_ - '"')];

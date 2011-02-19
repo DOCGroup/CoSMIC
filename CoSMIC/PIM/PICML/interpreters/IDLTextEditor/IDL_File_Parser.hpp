@@ -13,14 +13,13 @@
 #ifndef _IDL_FILE_PARSER_HPP_
 #define _IDL_FILE_PARSER_HPP_
 
-#include "IDLTextEditor_Core_export.h"
 #include <string>
 #include "game/mga/GME_fwd.h"
 
 /**
  * @class IDL_File_Parser
  */
-class IDLTEXTEDITOR_CORE_Export IDL_File_Parser
+class IDL_File_Parser
 {
 public:
   bool parse (std::string::const_iterator begin,
