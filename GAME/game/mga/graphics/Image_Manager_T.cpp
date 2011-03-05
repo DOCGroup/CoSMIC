@@ -17,12 +17,12 @@ template <typename T>
 bool Image_Manager_T <T>::
 associate_image (const T & key,
                  const std::string & filename,
-                 Gdiplus::Bitmap * & image)
+                 Gdiplus::Image * & image)
 {
   if (!this->get_image (filename, image))
   {
     CA2W tempstr (filename.c_str ());
-    image = Gdiplus::Bitmap::FromFile (tempstr);
+    image = Gdiplus::Image::FromFile (tempstr);
   }
 
   this->assoc_[key] = image;
@@ -34,9 +34,9 @@ associate_image (const T & key,
 //
 template <typename T>
 bool Image_Manager_T <T>::
-get_image (const T & key, Gdiplus::Bitmap * & image) const
+get_image (const T & key, Gdiplus::Image * & image) const
 {
-  std::map <T, Gdiplus::Bitmap *>::const_iterator iter = this->assoc_.find (key);
+  std::map <T, Gdiplus::Image *>::const_iterator iter = this->assoc_.find (key);
 
   if (iter != this->assoc_.end ())
   {
@@ -52,9 +52,9 @@ get_image (const T & key, Gdiplus::Bitmap * & image) const
 //
 template <typename T>
 bool Image_Manager_T <T>::
-get_image (const std::string & filename, Gdiplus::Bitmap * & image) const
+get_image (const std::string & filename, Gdiplus::Image * & image) const
 {
-  std::map <std::string, Gdiplus::Bitmap *>::
+  std::map <std::string, Gdiplus::Image *>::
     const_iterator iter = this->images_.find (filename);
 
   if (iter != this->images_.end ())

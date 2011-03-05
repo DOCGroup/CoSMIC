@@ -35,6 +35,11 @@ namespace graphics
 {
 /**
  * @class Image_Resolver
+ *
+ * Utility class that resolves the location of an image. It uses the
+ * icon paths defined in the element projects to resolve the correct
+ * location. If the icon exists in multiple locations, then the first
+ * path where the image is located is used.
  */
 class GAME_GRAPHICS_Export Image_Resolver
 {
@@ -56,6 +61,7 @@ public:
              const Registrar & r,
              Registrar::ACCESS_MODE mode);
 
+  /// Test if the resolver is initialized.
   bool is_init (void) const;
 
 private:
@@ -66,9 +72,10 @@ private:
   std::vector <std::string> paths_;
 };
 
-typedef ACE_Singleton <Image_Resolver, ACE_RW_Thread_Mutex> GLOBAL_IMAGE_RESOLVER;
+/// Type definition of the global image resolver.
+typedef ACE_Singleton <Image_Resolver, ACE_Null_Mutex> GLOBAL_IMAGE_RESOLVER;
 
-GAME_GRAPHICS_SINGLETON_DECLARE (ACE_Singleton, Image_Resolver, ACE_RW_Thread_Mutex);
+GAME_GRAPHICS_SINGLETON_DECLARE (ACE_Singleton, Image_Resolver, ACE_Null_Mutex);
 
 }
 }

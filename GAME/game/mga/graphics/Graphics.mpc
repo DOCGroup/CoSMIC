@@ -9,7 +9,9 @@ project (GAME_Graphics) : gdiplus, game_mga_utils, game_lib {
 
   Source_Files {
     Image_Resolver.cpp
+    Image_Resource.cpp
     Port_Decorator.cpp
+    Stock_Objects.cpp
   }
 
   Template_Files {

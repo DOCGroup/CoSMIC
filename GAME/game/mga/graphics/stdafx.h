@@ -8,6 +8,11 @@
 #include "game/config.h"
 
 #include <afxwin.h>
+#include <afxdisp.h>
+
+#include <atlbase.h>
+#include <atlcom.h>
+
 #include <Gdiplus.h>
 
 #include "game/mga/Mga.h"

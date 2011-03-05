@@ -35,7 +35,7 @@ GAME_INLINE
 bool Image_Manager_T <T>::
 associate_image (const T & key, const std::string & filename)
 {
-  Gdiplus::Bitmap * image = 0;
+  Gdiplus::Image * image = 0;
   return this->associate_image (key, filename, image);
 }
 
