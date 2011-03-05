@@ -17,6 +17,7 @@ project (GAME_Mga_Utils) : boost_base, acelib, game_mga, game_lib {
   Source_Files {
     $(GME_ROOT)/Interfaces/MgaUtil.idl
 
+    Preferences.cpp
     Project_Settings.cpp
     Point.cpp
     Registrar.cpp
