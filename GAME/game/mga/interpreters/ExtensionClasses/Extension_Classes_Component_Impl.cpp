@@ -84,19 +84,8 @@ invoke_ex (GAME::Mga::Project project,
         return 0;
     }
 
-    GAME::Mga::Folder root = project.root_folder ();
-    std::string root_name = root->name ();
-    GAME::Utils::normalize (root_name);
-
-    // Transform the name of paradigm sheet to upper case.
-    std::string uc_paradigm_name = root_name;
-    std::transform (uc_paradigm_name.begin (),
-                    uc_paradigm_name.end (),
-                    uc_paradigm_name.begin (),
-                    &::toupper);
-
-    // Make sure the output directory has been created.
     const std::string pch_basename = "stdafx";
+    GAME::Mga::Folder root = project.root_folder ();
 
     // Visit all element in the model and generate an extension
     // class for each valid model.
@@ -106,29 +95,41 @@ invoke_ex (GAME::Mga::Project project,
                                               pch_basename,
                                               ext_classes);
 
-    root->accept (&ecv);
+    if (selected.empty ())
+    {
+      // Make sure the output directory has been created.
+      root->accept (&ecv);
 
-    // Generate workspace, project, and precompiled header files.
-    GAME::Mga::Mwc_File_Generator mwc_gen;
-    mwc_gen.generate (this->output_, project);
+      // Generate workspace, project, and precompiled header files.
+      GAME::Mga::Mwc_File_Generator mwc_gen;
+      mwc_gen.generate (this->output_, project);
 
-    GAME::Mga::Mpc_File_Generator mpc_gen;
-    mpc_gen.generate (this->output_, project, pch_basename, ext_classes);
+      GAME::Mga::Mpc_File_Generator mpc_gen;
+      mpc_gen.generate (this->output_, project, pch_basename, ext_classes);
 
-    GAME::Mga::Pch_File_Generator pch_gen;
-    pch_gen.generate (this->output_, project, pch_basename);
+      GAME::Mga::Pch_File_Generator pch_gen;
+      pch_gen.generate (this->output_, project, pch_basename);
 
-    GAME::Mga::Fwd_Decl_Generator fwd_gen;
-    fwd_gen.generate (this->output_, project, ext_classes);
+      GAME::Mga::Fwd_Decl_Generator fwd_gen;
+      fwd_gen.generate (this->output_, project, ext_classes);
 
-    GAME::Mga::Visitor_Generator visitor_gen;
-    visitor_gen.generate (this->output_, project, pch_basename, ext_classes);
+      GAME::Mga::Visitor_Generator visitor_gen;
+      visitor_gen.generate (this->output_, project, pch_basename, ext_classes);
 
-    GAME::Mga::Init_Generator init_gen;
-    init_gen.generate (this->output_, project, pch_basename);
+      GAME::Mga::Init_Generator init_gen;
+      init_gen.generate (this->output_, project, pch_basename);
 
-    GAME::Mga::Impl_Factory_Generator impl_factory_gen;
-    impl_factory_gen.generate (this->output_, project, pch_basename, ext_classes);
+      GAME::Mga::Impl_Factory_Generator impl_factory_gen;
+      impl_factory_gen.generate (this->output_, project, pch_basename, ext_classes);
+    }
+    else
+    {
+      std::for_each (selected.begin (),
+                     selected.end (),
+                     boost::bind (&GAME::Mga::FCO::impl_type::accept,
+                                  boost::bind (&GAME::Mga::FCO::get, _1),
+                                  &ecv));
+    }
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Files generated successfully", MB_OK);
@@ -136,6 +137,13 @@ invoke_ex (GAME::Mga::Project project,
     // Save the project settings for next time.
     this->save_project_settings (project);
     t.commit ();
+  }
+  catch (const GAME::Mga::Failed_Result & ex)
+  {
+    HRESULT hr = ex.value ();
+
+    if (this->is_interactive_)
+      ::AfxMessageBox ("Caught Failed_Result exception", MB_OK);
   }
   catch (const GAME::Mga::Exception & )
   {

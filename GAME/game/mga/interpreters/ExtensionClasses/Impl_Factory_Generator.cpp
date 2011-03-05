@@ -35,12 +35,15 @@ struct bind_generator_t
 
   void operator () (const Object & obj) const
   {
-    // Make sure this object is not abstract. We are not allow to
-    // visit any object that is abstract. Only concrete elements can
-    // in a project can be visited by a visitor.
-    FCO fco = FCO::_narrow (obj);
-    if (fco->attribute ("IsAbstract")->bool_value ())
-      return;
+    if (obj->meta ()->name () != "Folder")
+    {
+      // Make sure this object is not abstract. We are not allow to
+      // visit any object that is abstract. Only concrete elements can
+      // in a project can be visited by a visitor.
+      FCO fco = FCO::_narrow (obj);
+      if (fco->attribute ("IsAbstract")->bool_value ())
+        return;
+    }
 
     const std::string name = obj->name ();
     const std::string impl_name = name + "_Impl";
@@ -71,12 +74,15 @@ struct include_generator_t
 
   void operator () (const Object & obj) const
   {
-    // Make sure this object is not abstract. We are not allow to
-    // visit any object that is abstract. Only concrete elements can
-    // in a project can be visited by a visitor.
-    FCO fco = FCO::_narrow (obj);
-    if (fco->attribute ("IsAbstract")->bool_value ())
-      return;
+    if (obj->meta ()->name () != "Folder")
+    {
+      // Make sure this object is not abstract. We are not allow to
+      // visit any object that is abstract. Only concrete elements can
+      // in a project can be visited by a visitor.
+      FCO fco = FCO::_narrow (obj);
+      if (fco->attribute ("IsAbstract")->bool_value ())
+        return;
+    }
 
     this->cfile_ << include_t (obj->path ("/", false) + ".h");
   }

@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Base_Class_Locator.h"
 #include "game/mga/Connection.h"
+#include "game/mga/Reference.h"
 #include "game/mga/MetaAtom.h"
 
 #include "boost/bind.hpp"
@@ -74,10 +75,19 @@ void Base_Class_Locator::visit_Connection (Connection_in c)
   // We need to save the destination point if it is the actual
   // derived class.
   if (metaname == "BaseInheritance")
-    this->bc_.insert (Atom::_narrow (src));
+  {
+    // Make sure we have located the atom, and walked through
+    // all the proxy elements.
+    while (src->type () == OBJTYPE_REFERENCE)
+      src = Reference::_narrow (src)->refers_to ();
 
-  // Visit the destination connection point.
-  src->accept (this);
+    this->bc_.insert (Atom::_narrow (src));
+  }
+  else
+  {
+    // Visit the destination connection point.
+    src->accept (this);
+  }
 }
 
 }

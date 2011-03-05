@@ -1,3 +1,26 @@
+Sat Mar  5 20:44:31 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.cpp
+
+          Bug where base classes were not resolved properly for
+          proxy elements.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+
+          Added support for generating extension class for selected
+          elements.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Bug fix where the extension class interpreter crashed if a connection
+          did not have any outgoing connection points.
+
+        * game/mga/interpreters/ExtensionClasses/Impl_Factory_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Visitor_Generator.cpp:
+
+          Bug fix where the generation failed of the object was a Folder.
+
 Fri Feb 18 22:22:12 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/stlace.h:

@@ -237,7 +237,7 @@ void Extension_Classes_Visitor::visit_Atom (Atom_in atom)
       metaname == "Folder")
   {
     // Start a new extension class.
-    const std::string basename = this->outdir_ + "/" + atom->name ();
+    const std::string basename = this->outdir_ + atom->path ("/");
     const std::string hxx_filename = basename + ".h";
     const std::string cpp_filename = basename + ".cpp";
 
@@ -701,7 +701,10 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 //
 void Extension_Classes_Visitor::visit_RootFolder (RootFolder_in folder)
 {
-  this->visit_Folder (folder);
+  const std::string path = this->outdir_ + "/" + folder->name ();
+  GAME::Utils::create_path (path);
+
+  this->visit_Folder_i (folder);
 }
 
 //
@@ -709,26 +712,31 @@ void Extension_Classes_Visitor::visit_RootFolder (RootFolder_in folder)
 //
 void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
 {
-  // Save the current output directory.
-  std::string prev_outdir = this->outdir_;
-
   // Create the directory for this model, and its elements.
-  this->outdir_ += "/" + GAME::Utils::normalize (folder->name ());
-  GAME::Utils::create_path (this->outdir_);
+  const std::string path = this->outdir_ + folder->path ("/");
+  GAME::Utils::create_path (path);
 
+  this->visit_Folder_i (folder);
+}
+
+//
+// visit_Folder_i
+//
+void Extension_Classes_Visitor::visit_Folder_i (Folder_in folder)
+{
   // collect all the paradigm sheets and traverse them.
-  std::vector <Model> paradigm_sheets;
-  folder->children ("ParadigmSheet", paradigm_sheets);
+  std::vector <FCO> paradigm_sheets;
+  folder->children (paradigm_sheets);
 
   // visit all the paradigm sheets.
   std::for_each (paradigm_sheets.begin (),
                  paradigm_sheets.end (),
-                 boost::bind (&Model::impl_type::accept,
-                              boost::bind (&Model::get, _1),
+                 boost::bind (&FCO::impl_type::accept,
+                              boost::bind (&FCO::get, _1),
                               this));
 
   // Visit all the SheetFolder elements in the model.
-  std::vector <GAME::Mga::Folder> folders;
+  std::vector <Folder> folders;
   folder->children ("SheetFolder", folders);
 
   std::for_each (folders.begin (),
@@ -736,8 +744,6 @@ void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
                  boost::bind (&Folder::impl_type::accept,
                               boost::bind (&Folder::get, _1),
                               this));
-
-  this->outdir_ = prev_outdir;
 }
 
 //
@@ -745,12 +751,9 @@ void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
 //
 void Extension_Classes_Visitor::visit_Model (Model_in model)
 {
-  // Save the current output directory.
-  std::string prev_outdir = this->outdir_;
-
   // Create the directory for this model, and its elements.
-  this->outdir_ += "/" + GAME::Utils::normalize (model->name ());
-  GAME::Utils::create_path (this->outdir_);
+  const std::string path = this->outdir_ + model->path ("/");
+  GAME::Utils::create_path (path);
 
   // get all the children of this sheet and call the visitor.
   std::vector <FCO> fcos;
@@ -761,9 +764,6 @@ void Extension_Classes_Visitor::visit_Model (Model_in model)
                  boost::bind (&FCO::impl_type::accept,
                               boost::bind (&FCO::get, _1),
                               this));
-
-  // Restore the previous directory.
-  this->outdir_ = prev_outdir;
 }
 
 //
@@ -772,7 +772,8 @@ void Extension_Classes_Visitor::visit_Model (Model_in model)
 void Extension_Classes_Visitor::generate_connection_points (FCO_in fco)
 {
   std::vector <Connection> association_class;
-  fco->in_connections ("AssociationClass", association_class);
+  if (0 == fco->in_connections ("AssociationClass", association_class))
+    return;
 
   // Locate the connector in the connection.
   Connection conn = association_class.front ();

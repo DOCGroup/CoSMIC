@@ -45,6 +45,7 @@ public:
 
   // Visit a Folder element.
   virtual void visit_RootFolder (RootFolder_in folder);
+
   virtual void visit_Folder (Folder_in folder);
 
   // Visit an Atom element.
@@ -56,6 +57,8 @@ public:
 private:
   /// Helper method for visiting an FCO.
   void visit_FCO (FCO_in fco);
+
+  void visit_Folder_i (Folder_in folder);
 
   //type defintions
   typedef std::vector <FCO> FCOS;

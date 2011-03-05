@@ -36,12 +36,16 @@ struct visitor_method_generator_t
 
   void operator () (const Object & obj) const
   {
-    // Make sure this object is not abstract. We are not allow to
-    // visit any object that is abstract. Only concrete elements can
-    // in a project can be visited by a visitor.
-    FCO fco = FCO::_narrow (obj);
-    if (fco->attribute ("IsAbstract")->bool_value ())
-      return;
+    if (obj->meta ()->name () != "Folder")
+    {
+      // Make sure this object is not abstract. We are not allow to
+      // visit any object that is abstract. Only concrete elements can
+      // in a project can be visited by a visitor.
+      FCO fco = FCO::_narrow (obj);
+
+      if (fco->attribute ("IsAbstract")->bool_value ())
+        return;
+    }
 
     const std::string type = obj->name ();
     const std::string in_type = type + "_in";
