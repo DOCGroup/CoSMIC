@@ -243,16 +243,22 @@ path (const std::string & separator, bool leading_separator) const
   if (leading_separator)
     pathstr << separator;
 
-  pathstr << stack_trace.top ()->name ();
-  stack_trace.pop ();
-
-  while (!stack_trace.empty ())
+  if (!stack_trace.empty ())
   {
-    // Get the next name on top of the stack.
-    pathstr << separator << stack_trace.top ()->name ();
-
-    // Remove the element from the top.
+    // Prep the path string with the top element in the stack.
+    // After the first element, we will insert a seperator between
+    // each element on the stack.
+    pathstr << stack_trace.top ()->name ();
     stack_trace.pop ();
+
+    while (!stack_trace.empty ())
+    {
+      // Get the next name on top of the stack.
+      pathstr << separator << stack_trace.top ()->name ();
+
+      // Remove the element from the top.
+      stack_trace.pop ();
+    }
   }
 
   // Finally, add the name of this object to the path.

@@ -46,4 +46,8 @@
 # define WINVER 0x0501
 #endif
 
+#if !defined (GDIPVER)
+#define GDIPVER 0x0110
+#endif
+
 #endif

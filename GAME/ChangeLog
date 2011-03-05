@@ -1,3 +1,14 @@
+Sat Mar  5 21:31:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/config.h:
+
+          Added the GDI+ version number to the configuration.
+
+        * game/mga/Object.cpp:
+
+          Bug fix where requesting the path of the root folder
+          caused run-time failure.
+
 Sat Mar  5 21:20:09 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/utils/Mga_Utils.mpc:
