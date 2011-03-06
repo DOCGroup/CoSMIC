@@ -10,9 +10,8 @@
  */
 //=============================================================================
 
-#ifndef _GAME_BE_DECORATOR_T_H_
-#define _GAME_BE_DECORATOR_T_H_
-
+#ifndef _GAME_MGA_DECORATOR_T_H_
+#define _GAME_MGA_DECORATOR_T_H_
 
 #include <map>
 #include "game/mga/FCO.h"

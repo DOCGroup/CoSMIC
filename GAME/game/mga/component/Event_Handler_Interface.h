@@ -13,14 +13,13 @@
 #ifndef _GAME_BE_EVENT_HANDLER_INTERFACE_H_
 #define _GAME_BE_EVENT_HANDLER_INTERFACE_H_
 
-#include "BE_Export.h"
+#include "Component_export.h"
 #include "game/mga/Project.h"
 
 namespace GAME
 {
 namespace Mga
 {
-
 // Forward decl.
 class Event_Handler;
 
@@ -29,7 +28,7 @@ class Event_Handler;
  *
  * Base class implementation for the event sink.
  */
-class GAME_BE_Export Event_Handler_Interface
+class GAME_MGA_COMPONENT_Export Event_Handler_Interface
 {
 public:
   virtual ~Event_Handler_Interface (void) = 0 { }

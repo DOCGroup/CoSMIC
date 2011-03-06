@@ -27,7 +27,7 @@ namespace Mga
  * concrete add-on components to define their name, paradigm, and
  * program id.
  */
-class GAME_BE_Export Addon_Impl_Base : public ComponentEx_Impl_Base
+class GAME_MGA_COMPONENT_Export Addon_Impl_Base : public ComponentEx_Impl_Base
 {
 protected:
   Addon_Impl_Base (const std::string & name,

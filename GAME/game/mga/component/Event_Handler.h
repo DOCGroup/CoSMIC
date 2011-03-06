@@ -17,7 +17,7 @@
 #include <atlcom.h>
 #include <bitset>
 
-#include "BE_export.h"
+#include "Component_export.h"
 #include "game/mga/Project.h"
 #include "game/mga/stlace.h"
 
@@ -51,7 +51,7 @@ namespace Mga
  * The actual implementation of the event handler. This class
  * acts as a bridge between GME and the event sinks.
  */
-class GAME_BE_Export Event_Handler :
+class GAME_MGA_COMPONENT_Export Event_Handler :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
   public IMgaEventSink
 {

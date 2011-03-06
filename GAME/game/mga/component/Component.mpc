@@ -1,8 +1,8 @@
 // $Id$
 
-project (GAME_BE) : game_mga_utils, game_lib {
-  sharedname    = GAME_BE
-  dynamicflags += GAME_BE_BUILD_DLL
+project (GAME_Mga_Component) : game_mga_utils, game_lib {
+  sharedname    = GAME_Mga_Component
+  dynamicflags += GAME_MGA_COMPONENT_BUILD_DLL
 
   pch_header = stdafx.h
   pch_source = stdafx.cpp
@@ -10,6 +10,7 @@ project (GAME_BE) : game_mga_utils, game_lib {
   specific (prop:microsoft) {
     midl_flags    += /server none /client none
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    midl_notlb     = 1
   }
 
   Header_Files {
@@ -20,7 +21,6 @@ project (GAME_BE) : game_mga_utils, game_lib {
   Source_Files {
     Addon_Impl_Base.cpp
     ComponentEx_Impl_Base.cpp
-    Decorator_Impl.cpp
     Event_Handler.cpp
     Event_Handler_Impl.cpp
     Interpreter_Impl_Base.cpp
@@ -36,7 +36,6 @@ project (GAME_BE) : game_mga_utils, game_lib {
     Addon_Impl_T.cpp
     ComponentEx_T.cpp
     ComponentEx_Impl_T.cpp
-    Decorator_T.cpp
     Interpreter_T.cpp
     Plugin_T.cpp
   }

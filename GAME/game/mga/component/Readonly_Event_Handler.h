@@ -26,7 +26,7 @@ namespace Mga
  * Event handler that emulates read-only semantics. The client can
  * customize what is read-only by specifying what events are enabled.
  */
-class GAME_BE_Export Readonly_Event_Handler :
+class GAME_MGA_COMPONENT_Export Readonly_Event_Handler :
   public Event_Handler_Impl
 {
 public :

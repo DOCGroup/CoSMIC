@@ -1,0 +1,26 @@
+// $Id$
+
+project (GAME_Mga_Decorator) : gdiplus, game_mga_utils, game_lib {
+  sharedname    = GAME_Mga_Decorator
+  dynamicflags += GAME_MGA_DECORATOR_BUILD_DLL
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  specific {
+    midl_flags    += /server none /client none
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    midl_notlb     = 1
+  }
+
+  Source_Files {
+    $(GME_ROOT)/Interfaces/MgaDecorator.idl
+
+    Decorator_Impl.cpp
+    Reference_Decorator.cpp
+  }
+
+  Template_Files {
+    Decorator_T.cpp
+  }
+}

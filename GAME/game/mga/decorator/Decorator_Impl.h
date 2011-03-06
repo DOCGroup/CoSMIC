@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        Decorator_T.h
+ * @file        Decorator_Impl.h
  *
  * $Id$
  *
@@ -10,13 +10,14 @@
  */
 //=============================================================================
 
-#ifndef _GAME_DECORATOR_IMPL_H_
-#define _GAME_DECORATOR_IMPL_H_
+#ifndef _GAME_MGA_DECORATOR_IMPL_H_
+#define _GAME_MGA_DECORATOR_IMPL_H_
 
 #include <vector>
 #include "game/mga/GME_fwd.h"
 #include "game/mga/utils/Point.h"
-#include "BE_export.h"
+
+#include "Decorator_export.h"
 
 // Forward decl.
 class CDC;
@@ -46,7 +47,7 @@ class Point;
 /**
  * @class Decorator_Impl
  */
-class GAME_BE_Export Decorator_Impl
+class GAME_MGA_DECORATOR_Export Decorator_Impl
 {
 protected:
   /// Default constructor.
@@ -54,7 +55,7 @@ protected:
 
 public:
   /// Destructor.
-  ~Decorator_Impl (void);
+  virtual ~Decorator_Impl (void);
 
   /**
    * Initailize the decorator.

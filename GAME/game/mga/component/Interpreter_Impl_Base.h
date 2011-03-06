@@ -26,7 +26,7 @@ namespace Mga
  * Base implemenation for all interperters. Subclasses of this class
  * are used as the second parameter for GAME::Interpreter_T
  */
-class GAME_BE_Export Interpreter_Impl_Base :
+class GAME_MGA_COMPONENT_Export Interpreter_Impl_Base :
   public ComponentEx_Impl_Base 
 {
 protected:

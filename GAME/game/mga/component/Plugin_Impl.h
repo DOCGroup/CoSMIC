@@ -27,7 +27,7 @@ namespace Mga
  * should derive from this class. The subclass should then be used
  * as the IMPL parameter in Plugin_T class.
  */
-class GAME_BE_Export Plugin_Impl : public ComponentEx_Impl_Base
+class GAME_MGA_COMPONENT_Export Plugin_Impl : public ComponentEx_Impl_Base
 {
 public:
   /**

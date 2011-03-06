@@ -17,7 +17,7 @@
 #include "game/mga/Model.h"
 #include "game/mga/Transaction.h"
 #include "game/mga/Utils.h"
-#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/component/Interpreter_T.h"
 #include "game/mga/utils/Project_Settings.h"
 
 #include "boost/bind.hpp"

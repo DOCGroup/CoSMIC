@@ -19,7 +19,7 @@
 #include "game/mga/GME_fwd.h"
 #include "game/config.h"
 
-#include "BE_export.h"
+#include "Component_export.h"
 
 namespace GAME
 {
@@ -31,7 +31,7 @@ namespace Mga
  *
  * Base implemenation for all components.
  */
-class GAME_BE_Export ComponentEx_Impl_Base
+class GAME_MGA_COMPONENT_Export ComponentEx_Impl_Base
 {
 protected:
   ComponentEx_Impl_Base (const std::string & name,

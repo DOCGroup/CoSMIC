@@ -1,3 +1,114 @@
+Sun Mar  6 18:56:02 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component:
+        * game/mga/component/Addon_Impl_Base.h:
+        * game/mga/component/Component.mpc:
+        * game/mga/component/ComponentEx_Impl_Base.h:
+        * game/mga/component/Component_export.h:
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler_Impl.h:
+        * game/mga/component/Event_Handler_Interface.h:
+        * game/mga/component/Interpreter_Impl_Base.h:
+        * game/mga/component/Plugin_Impl.h:
+        * game/mga/component/Readonly_Event_Handler.h:
+        * MPC/config/game_mga_component.mpb:
+
+          Relocated the MGA component library.
+
+        * game/mga/decorator:
+        * game/mga/decorator/Decorator.mpc:
+        * game/mga/decorator/Decorator_Impl.h:
+        * game/mga/decorator/Decorator_Impl.inl:
+        * game/mga/decorator/Decorator_Impl.cpp:
+        * game/mga/decorator/Decorator_Module.h:
+        * game/mga/decorator/Decorator_T.h:
+        * game/mga/decorator/Decorator_T.inl:
+        * game/mga/decorator/Decorator_T.cpp:
+        * game/mga/decorator/Decorator_export.h:
+        * game/mga/decorator/MgaDecorator.h:
+        * game/mga/decorator/Reference_Decorator.h:
+        * game/mga/decorator/Reference_Decorator.inl:
+        * game/mga/decorator/Reference_Decorator.cpp:
+        * game/mga/decorator/stdafx.h:
+        * game/mga/decorator/stdafx.cpp:
+        * MPC/config/game_mga_decorator.mpb:
+
+          Moved the decorator architecture to its own project/library.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.h:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Module.cpp:
+
+          Fixed build errors related to relocation of component
+          library.
+
+        * game/mga/be:
+        * game/mga/be/Addon_Impl_Base.h:
+        * game/mga/be/Addon_Impl_Base.inl:
+        * game/mga/be/Addon_Impl_Base.cpp:
+        * game/mga/be/Addon_Impl_T.h:
+        * game/mga/be/Addon_Impl_T.inl:
+        * game/mga/be/Addon_Impl_T.cpp:
+        * game/mga/be/BE_export.h:
+        * game/mga/be/ComponentDLL.h:
+        * game/mga/be/ComponentDLL.cpp:
+        * game/mga/be/ComponentEx_Impl_Base.h:
+        * game/mga/be/ComponentEx_Impl_Base.inl:
+        * game/mga/be/ComponentEx_Impl_Base.cpp:
+        * game/mga/be/ComponentEx_Impl_T.h:
+        * game/mga/be/ComponentEx_Impl_T.inl:
+        * game/mga/be/ComponentEx_Impl_T.cpp:
+        * game/mga/be/ComponentEx_T.h:
+        * game/mga/be/ComponentEx_T.inl:
+        * game/mga/be/ComponentEx_T.cpp:
+        * game/mga/be/Component_Module.h:
+        * game/mga/be/Decorator_Impl.h:
+        * game/mga/be/Decorator_Impl.inl:
+        * game/mga/be/Decorator_Impl.cpp:
+        * game/mga/be/Decorator_Module.h:
+        * game/mga/be/Decorator_T.h:
+        * game/mga/be/Decorator_T.inl:
+        * game/mga/be/Decorator_T.cpp:
+        * game/mga/be/Event_Handler.h:
+        * game/mga/be/Event_Handler.inl:
+        * game/mga/be/Event_Handler.cpp:
+        * game/mga/be/Event_Handler_Impl.h:
+        * game/mga/be/Event_Handler_Impl.inl:
+        * game/mga/be/Event_Handler_Impl.cpp:
+        * game/mga/be/Event_Handler_Interface.h:
+        * game/mga/be/Event_Sink_T.h:
+        * game/mga/be/Event_Sink_T.inl:
+        * game/mga/be/Event_Sink_T.cpp:
+        * game/mga/be/GAME_BE.mpc:
+        * game/mga/be/Interpreter_Impl_Base.h:
+        * game/mga/be/Interpreter_Impl_Base.inl:
+        * game/mga/be/Interpreter_Impl_Base.cpp:
+        * game/mga/be/Interpreter_T.h:
+        * game/mga/be/Interpreter_T.inl:
+        * game/mga/be/Interpreter_T.cpp:
+        * game/mga/be/Plugin_Impl.h:
+        * game/mga/be/Plugin_Impl.inl:
+        * game/mga/be/Plugin_Impl.cpp:
+        * game/mga/be/Plugin_T.h:
+        * game/mga/be/Plugin_T.inl:
+        * game/mga/be/Plugin_T.cpp:
+        * game/mga/be/Readonly_Event_Handler.h:
+        * game/mga/be/Readonly_Event_Handler.inl:
+        * game/mga/be/Readonly_Event_Handler.cpp:
+        * game/mga/be/stdafx.h:
+        * game/mga/be/stdafx.cpp:
+        * game/mga/component/Decorator_Impl.h:
+        * game/mga/component/Decorator_Impl.inl:
+        * game/mga/component/Decorator_Impl.cpp:
+        * game/mga/component/Decorator_Module.h:
+        * game/mga/component/Decorator_T.h:
+        * game/mga/component/Decorator_T.inl:
+        * game/mga/component/Decorator_T.cpp:
+        * game/mga/component/GAME_BE.mpc:
+        * MPC/config/game_mga_be.mpb:
+
+          Removed these files.
+
 Sat Mar  5 21:31:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/config.h:

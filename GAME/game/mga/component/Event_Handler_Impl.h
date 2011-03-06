@@ -31,7 +31,7 @@ class Event_Handler;
  *
  * Base class implementation for the event sink.
  */
-class GAME_BE_Export Event_Handler_Impl :
+class GAME_MGA_COMPONENT_Export Event_Handler_Impl :
   public Event_Handler_Interface
 {
 public:
