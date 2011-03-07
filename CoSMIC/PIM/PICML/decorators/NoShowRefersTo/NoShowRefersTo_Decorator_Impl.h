@@ -13,7 +13,7 @@
 #ifndef _COMPONENT_DECORATOR_IMPL_H_
 #define _COMPONENT_DECORATOR_IMPL_H_
 
-#include "game/mga/be/Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_Impl.h"
 #include "game/mga/MetaAspect.h"
 #include "game/mga/Part.h"
 #include "game/mga/graphics/Image_Manager_T.h"

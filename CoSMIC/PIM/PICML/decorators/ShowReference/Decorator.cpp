@@ -5,7 +5,7 @@
 #include "resource.h"
 #include "DecoratorLib_i.c"
 
-#include "game/mga/be/Decorator_Module.h"
+#include "game/mga/be/decorator/Decorator_Module.h"
 #include "game/mga/MetaFCO.h"
 #include "game/mga/graphics/Image_Resolver.h"
 #include "game/mga/utils/Registrar.h"

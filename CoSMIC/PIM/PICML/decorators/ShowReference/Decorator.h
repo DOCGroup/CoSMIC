@@ -10,12 +10,12 @@
  */
 //=============================================================================
 
-#ifndef __DECORATOR_H_
-#define __DECORATOR_H_
+#ifndef _PICML_SHOW_REFERENCE_DECORATOR_IMPL_H_
+#define _PICML_SHOW_REFERENCE_DECORATOR_IMPL_H_
 
 #include "DecoratorLib.h"
-#include "game/mga/be/Decorator_T.h"
-#include "game/mga/be/Decorator_Impl.h"
+#include "game/mga/be/decorator/Decorator_T.h"
+#include "game/mga/be/decorator/Decorator_Impl.h"
 
 /**
  * @class Show_Reference_Decorator_Impl
@@ -51,4 +51,4 @@ private:
 
 DECLARE_DECORATOR (ShowReferenceDecorator, Show_Reference_Decorator_Impl);
 
-#endif //__DECORATOR_H_
+#endif  //_PICML_SHOW_REFERENCE_DECORATOR_IMPL_H_

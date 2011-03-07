@@ -13,8 +13,8 @@
 #ifndef _COMPONENTREF_DECORATOR_IMPL_H_
 #define _COMPONENTREF_DECORATOR_IMPL_H_
 
-#include "game/mga/be/Decorator_T.h"
-#include "game/mga/be/Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_T.h"
+#include "game/mga/decorator/Decorator_Impl.h"
 #include "ComponentRef_Decorator_export.h"
 
 class Component_Decorator_Impl;

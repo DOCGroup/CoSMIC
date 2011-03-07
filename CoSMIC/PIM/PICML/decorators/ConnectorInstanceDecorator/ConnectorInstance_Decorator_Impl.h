@@ -13,8 +13,8 @@
 #ifndef _PICML_CONNECTOR_INSTANCE_DECORATOR_IMPL_H_
 #define _PICML_CONNECTOR_INSTANCE_DECORATOR_IMPL_H_
 
-#include "game/mga/be/Decorator_T.h"
-#include "game/mga/be/Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_T.h"
+#include "game/mga/decorator/Decorator_Impl.h"
 
 /**
  * @class ConnectorInstance_Decorator_Impl

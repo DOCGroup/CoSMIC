@@ -201,7 +201,7 @@ initialize_ports (const std::string & aspect_name,
 
   GAME::Mga::Part part;
   std::string icon_filename, filename;
-  Gdiplus::Bitmap * image = 0;
+  Gdiplus::Image * image = 0;
 
   for (; iter != iter_end; ++ iter)
   {
