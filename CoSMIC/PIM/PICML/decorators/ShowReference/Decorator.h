@@ -14,8 +14,8 @@
 #define _PICML_SHOW_REFERENCE_DECORATOR_IMPL_H_
 
 #include "DecoratorLib.h"
-#include "game/mga/be/decorator/Decorator_T.h"
-#include "game/mga/be/decorator/Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_T.h"
+#include "game/mga/decorator/Decorator_Impl.h"
 
 /**
  * @class Show_Reference_Decorator_Impl
