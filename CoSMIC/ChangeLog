@@ -1,3 +1,24 @@
+Mon Mar  7 04:35:39 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/interpreters/DBE/ComponentConfig.h:
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/DBE/DQML_DBE_Interpreterd.reg:
+        * PSM/DQML/interpreters/XML/ComponentConfig.h:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML_XML_Interpreterd.reg:
+
+          Simplified the project specification.
+
+          Fixed errors in the registration file that was causing all
+          DSML interpreters to register under the same program id.
+
+        * PSM/DQML/examples/my-DDSWoS.xme:
+        * PSM/DQML/paradigms/DQML.mta:
+        * PSM/DQML/paradigms/DQML.xme:
+        * PSM/DQML/paradigms/DQML.xmp:
+
+          Changed the paradigm name from DDSQoS to DQML.
+
 Mon Mar  7 03:39:22 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ShowReference/Decorator.h:

@@ -1,14 +1,10 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by ConfigureComponent on Wed Nov 08 21:07:48 2006
 
-
-#define BON2COMPONENT
-
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "7FB31A56-DB6A-43EF-8C50-64269A786DA0"
 #define TYPELIB_NAME "MGA Interpreter TypeLibrary (DQML)"
-//#define COCLASS_UUID "34DA5EC5-548D-4614-B338-A2E96CF6B1E0"
 #define COCLASS_UUID "1823CCC1-1661-43dc-AAB1-903E31759198"
 #define COCLASS_NAME "MGA Interpreter CoClass (DQML XML)"
 #define COCLASS_PROGID "MGA.Interpreter.DQML.XML"

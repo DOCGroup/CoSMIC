@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D929F24F-078C-4488-A0F0-DD53E9AFD1A8}" cdate="Wed Nov 01 16:39:49 2006" mdate="Wed Nov 01 16:39:49 2006" version="" metaguid="{A04AA6CA-BB73-40DB-B0AB-D86CBB664F01}" metaversion="" metaname="DDSQoS">
+<project guid="{D929F24F-078C-4488-A0F0-DD53E9AFD1A8}" cdate="Sun Mar 06 23:17:20 2011" mdate="Sun Mar 06 23:17:20 2011" version="" metaguid="{6F51F0DB-8CAF-43C2-8687-7DC01E235B2A}" metaversion="" metaname="DQML">
 	<name>Root Folder</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{015e64b5-e2a8-44a1-b2c2-2e03752a4239}">
 		<name>Root Folder</name>
-		<model id="id-0065-00000001" kind="DDSQoS" relid="0x1" childrelidcntr="0x7d">
+		<model id="id-0065-00000001" kind="DDSQoS" guid="{fdfbefc5-8a51-458b-91f0-adf114e86184}" relid="0x1" childrelidcntr="0x7d">
 			<name>NewDDSQoS</name>
-			<model id="id-0065-00000003" kind="DataReader" role="DataReader" relid="0x2" childrelidcntr="0x0">
+			<model id="id-0065-00000002" kind="DataReader" role="DataReader" guid="{5bac5f55-be01-4323-af1c-ad691d89f6e4}" relid="0x2" childrelidcntr="0x0">
 				<name>DataReader2</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -21,7 +21,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-00000004" kind="DataWriter" role="DataWriter" relid="0x3" childrelidcntr="0x0">
+			<model id="id-0065-00000003" kind="DataWriter" role="DataWriter" guid="{71b6a4eb-0797-482a-9f1d-ed876c367277}" relid="0x3" childrelidcntr="0x0">
 				<name>DataWriter1</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -33,7 +33,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-00000005" kind="DataWriter" role="DataWriter" relid="0x4" childrelidcntr="0x0">
+			<model id="id-0065-00000004" kind="DataWriter" role="DataWriter" guid="{aea52129-d6a5-4785-9fef-840e04b27765}" relid="0x4" childrelidcntr="0x0">
 				<name>DataWriter2</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -45,7 +45,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-00000006" kind="Topic" role="Topic" relid="0x7" childrelidcntr="0x0">
+			<model id="id-0065-00000005" kind="Topic" role="Topic" guid="{f0247a28-1245-41be-909a-526be8d12366}" relid="0x7" childrelidcntr="0x0">
 				<name>Topic1</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -57,7 +57,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-00000008" kind="DataWriter" role="DataWriter" relid="0x17" childrelidcntr="0x0">
+			<model id="id-0065-00000006" kind="DataWriter" role="DataWriter" guid="{232d21a3-99c4-4e02-be7a-e533723157a6}" relid="0x17" childrelidcntr="0x0">
 				<name>DataWriter3</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -69,7 +69,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-00000009" kind="DataReader" role="DataReader" relid="0x3e" childrelidcntr="0x0">
+			<model id="id-0065-00000007" kind="DataReader" role="DataReader" guid="{19145cca-c48b-4855-b610-fc8ca37cd621}" relid="0x3e" childrelidcntr="0x0">
 				<name>DataReader1</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -81,7 +81,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-0000000a" kind="DataReader" role="DataReader" relid="0x3f" childrelidcntr="0x0">
+			<model id="id-0065-00000008" kind="DataReader" role="DataReader" guid="{03ea9c9a-8d7f-42cc-be7a-21760e0f3d25}" relid="0x3f" childrelidcntr="0x0">
 				<name>DataReader3</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -93,7 +93,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-0000000b" kind="DataWriter" role="DataWriter" relid="0x40" childrelidcntr="0x0">
+			<model id="id-0065-00000009" kind="DataWriter" role="DataWriter" guid="{854eb575-bc1a-49c5-a496-d970e5a90570}" relid="0x40" childrelidcntr="0x0">
 				<name>DataWriter5</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -105,7 +105,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-0000000c" kind="DataWriter" role="DataWriter" relid="0x41" childrelidcntr="0x0">
+			<model id="id-0065-0000000a" kind="DataWriter" role="DataWriter" guid="{d1f8fe9f-76df-4505-9f3f-5b473f76d992}" relid="0x41" childrelidcntr="0x0">
 				<name>DataWriter4</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -117,7 +117,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-0000000d" kind="Publisher" role="Publisher" relid="0x74" childrelidcntr="0x0">
+			<model id="id-0065-0000000b" kind="Publisher" role="Publisher" guid="{04566218-62fc-444c-b07a-c00c1518b838}" relid="0x74" childrelidcntr="0x0">
 				<name>Publisher</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -129,7 +129,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<model id="id-0065-0000000e" kind="Subscriber" role="Subscriber" relid="0x75" childrelidcntr="0x0">
+			<model id="id-0065-0000000c" kind="Subscriber" role="Subscriber" guid="{abb922b3-2b31-4ff9-a731-9808cbb4e0ed}" relid="0x75" childrelidcntr="0x0">
 				<name>Subscriber</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -141,7 +141,7 @@
 					</regnode>
 				</regnode>
 			</model>
-			<atom id="id-0066-00000001" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" relid="0x5">
+			<atom id="id-0066-00000001" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" guid="{97bcff2b-ffa5-49b4-9d93-77fd542dfba2}" relid="0x5">
 				<name>Durability-Volatile</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -152,14 +152,14 @@
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="DurabilityQosKind">
+				<attribute kind="kind" status="meta">
 					<value>VOLATILE</value>
 				</attribute>
-				<attribute kind="Name" status="meta">
+				<attribute kind="name" status="meta">
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000002" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" relid="0x6">
+			<atom id="id-0066-00000002" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" guid="{a84ea587-77bf-4689-822d-ecce12488a96}" relid="0x6">
 				<name>Durability-Persistent</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -170,14 +170,14 @@
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="DurabilityQosKind">
-					<value>PERSISTENT</value>
+				<attribute kind="kind" status="meta">
+					<value>VOLATILE</value>
 				</attribute>
-				<attribute kind="Name" status="meta">
+				<attribute kind="name" status="meta">
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000003" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" relid="0x13">
+			<atom id="id-0066-00000003" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" guid="{0d145562-f0c9-4e9a-ad59-6d96edf25300}" relid="0x13">
 				<name>Durability-Transient</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -188,14 +188,14 @@
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="DurabilityQosKind">
-					<value>TRANSIENT</value>
+				<attribute kind="kind" status="meta">
+					<value>VOLATILE</value>
 				</attribute>
-				<attribute kind="Name" status="meta">
+				<attribute kind="name" status="meta">
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000004" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" relid="0x16">
+			<atom id="id-0066-00000004" kind="DurabilityQosPolicy" role="DurabilityQosPolicy" guid="{6e3d960e-b333-4cb7-8f61-58f2315ddb58}" relid="0x16">
 				<name>Durability-TransientLocal</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -206,97 +206,97 @@
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="DurabilityQosKind">
-					<value>TRANSIENT_LOCAL</value>
+				<attribute kind="kind" status="meta">
+					<value>VOLATILE</value>
 				</attribute>
-				<attribute kind="Name" status="meta">
+				<attribute kind="name" status="meta">
 					<value></value>
 				</attribute>
 			</atom>
-			<connection id="id-0068-0000000c" kind="dr_topic_Connection" role="dr_topic_Connection" relid="0x1a">
+			<connection id="id-0068-00000001" kind="dr_topic_Connection" role="dr_topic_Connection" guid="{1553d826-6cc4-45c9-92b2-3b689ce08fb1}" relid="0x1a">
 				<name>dr_topic_Connection</name>
+				<connpoint role="src" target="id-0065-00000002"/>
+				<connpoint role="dst" target="id-0065-00000005"/>
+			</connection>
+			<connection id="id-0068-00000002" kind="dw_topic_Connection" role="dw_topic_Connection" guid="{3f158444-8109-425b-8ab0-a5f7789e9ffe}" relid="0x1f">
+				<name>dw_topic_Connection</name>
 				<connpoint role="src" target="id-0065-00000003"/>
-				<connpoint role="dst" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0065-00000005"/>
 			</connection>
-			<connection id="id-0068-0000000f" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x1f">
+			<connection id="id-0068-00000003" kind="dw_topic_Connection" role="dw_topic_Connection" guid="{b37338a4-1ccb-4592-9b78-1220982e56d5}" relid="0x3b">
 				<name>dw_topic_Connection</name>
-				<connpoint role="src" target="id-0065-00000004"/>
-				<connpoint role="dst" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0065-00000005"/>
+				<connpoint role="src" target="id-0065-00000006"/>
 			</connection>
-			<connection id="id-0068-0000002b" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x3b">
+			<connection id="id-0068-00000004" kind="dw_topic_Connection" role="dw_topic_Connection" guid="{a2ab02cf-432c-4236-b9f1-3b6e2ffd4f79}" relid="0x42">
 				<name>dw_topic_Connection</name>
-				<connpoint role="dst" target="id-0065-00000006"/>
-				<connpoint role="src" target="id-0065-00000008"/>
-			</connection>
-			<connection id="id-0068-0000002e" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x42">
-				<name>dw_topic_Connection</name>
-				<connpoint role="dst" target="id-0065-00000006"/>
-				<connpoint role="src" target="id-0065-0000000c"/>
-			</connection>
-			<connection id="id-0068-0000002f" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x43">
-				<name>dw_topic_Connection</name>
-				<connpoint role="src" target="id-0065-00000005"/>
-				<connpoint role="dst" target="id-0065-00000006"/>
-			</connection>
-			<connection id="id-0068-00000030" kind="dr_topic_Connection" role="dr_topic_Connection" relid="0x44">
-				<name>dr_topic_Connection</name>
-				<connpoint role="dst" target="id-0065-00000006"/>
-				<connpoint role="src" target="id-0065-00000009"/>
-			</connection>
-			<connection id="id-0068-00000031" kind="dr_topic_Connection" role="dr_topic_Connection" relid="0x45">
-				<name>dr_topic_Connection</name>
-				<connpoint role="dst" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0065-00000005"/>
 				<connpoint role="src" target="id-0065-0000000a"/>
 			</connection>
-			<connection id="id-0068-00000032" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x46">
+			<connection id="id-0068-00000005" kind="dw_topic_Connection" role="dw_topic_Connection" guid="{47fc611e-3d14-4c75-a2aa-2d195bef2643}" relid="0x43">
 				<name>dw_topic_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0065-00000005"/>
+			</connection>
+			<connection id="id-0068-00000006" kind="dr_topic_Connection" role="dr_topic_Connection" guid="{75af375a-3d4f-4744-af41-ee4ae57ec85d}" relid="0x44">
+				<name>dr_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000005"/>
+				<connpoint role="src" target="id-0065-00000007"/>
+			</connection>
+			<connection id="id-0068-00000007" kind="dr_topic_Connection" role="dr_topic_Connection" guid="{f751634d-f0e1-4bc2-81cc-94ffc9f9814f}" relid="0x45">
+				<name>dr_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000005"/>
+				<connpoint role="src" target="id-0065-00000008"/>
+			</connection>
+			<connection id="id-0068-00000008" kind="dw_topic_Connection" role="dw_topic_Connection" guid="{20941639-561c-41af-a172-d827f7495bcf}" relid="0x46">
+				<name>dw_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000005"/>
+				<connpoint role="src" target="id-0065-00000009"/>
+			</connection>
+			<connection id="id-0068-00000009" kind="dr_durqos_Connection" role="dr_durqos_Connection" guid="{0ccbb130-553f-4684-8fbe-5111c0e67c93}" relid="0x70">
+				<name>dr_durqos_Connection</name>
+				<connpoint role="src" target="id-0065-00000002"/>
+				<connpoint role="dst" target="id-0066-00000004"/>
+			</connection>
+			<connection id="id-0068-0000000a" kind="dr_sub_Connection" role="dr_sub_Connection" guid="{0266e1ff-72f0-4486-af49-ac0cc486aeef}" relid="0x76">
+				<name>dr_sub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000008"/>
+				<connpoint role="src" target="id-0065-0000000c"/>
+			</connection>
+			<connection id="id-0068-0000000b" kind="dr_sub_Connection" role="dr_sub_Connection" guid="{c951314b-a94f-47df-9fcd-ff96850005ce}" relid="0x77">
+				<name>dr_sub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000002"/>
+				<connpoint role="src" target="id-0065-0000000c"/>
+			</connection>
+			<connection id="id-0068-0000000c" kind="dr_sub_Connection" role="dr_sub_Connection" guid="{6a161dbc-0424-4082-918d-96df02c0dd1a}" relid="0x78">
+				<name>dr_sub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000007"/>
+				<connpoint role="src" target="id-0065-0000000c"/>
+			</connection>
+			<connection id="id-0068-0000000d" kind="dw_pub_Connection" role="dw_pub_Connection" guid="{5fdbd67e-d715-43f1-aa90-5b0142b567a9}" relid="0x79">
+				<name>dw_pub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000003"/>
+				<connpoint role="src" target="id-0065-0000000b"/>
+			</connection>
+			<connection id="id-0068-0000000e" kind="dw_pub_Connection" role="dw_pub_Connection" guid="{85740f36-fdf7-4ecb-bc64-88c6d1acb5b8}" relid="0x7a">
+				<name>dw_pub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-0000000b"/>
+			</connection>
+			<connection id="id-0068-0000000f" kind="dw_pub_Connection" role="dw_pub_Connection" guid="{bf5050c5-ea72-4e27-ac45-9655fb491e96}" relid="0x7b">
+				<name>dw_pub_Connection</name>
 				<connpoint role="dst" target="id-0065-00000006"/>
 				<connpoint role="src" target="id-0065-0000000b"/>
 			</connection>
-			<connection id="id-0068-0000005b" kind="dr_durqos_Connection" role="dr_durqos_Connection" relid="0x70">
-				<name>dr_durqos_Connection</name>
-				<connpoint role="src" target="id-0065-00000003"/>
-				<connpoint role="dst" target="id-0066-00000004"/>
-			</connection>
-			<connection id="id-0068-0000005f" kind="dr_sub_Connection" role="dr_sub_Connection" relid="0x76">
-				<name>dr_sub_Connection</name>
+			<connection id="id-0068-00000010" kind="dw_pub_Connection" role="dw_pub_Connection" guid="{344184c5-8767-4dec-acf9-f04d4593dc90}" relid="0x7c">
+				<name>dw_pub_Connection</name>
 				<connpoint role="dst" target="id-0065-0000000a"/>
-				<connpoint role="src" target="id-0065-0000000e"/>
+				<connpoint role="src" target="id-0065-0000000b"/>
 			</connection>
-			<connection id="id-0068-00000060" kind="dr_sub_Connection" role="dr_sub_Connection" relid="0x77">
-				<name>dr_sub_Connection</name>
-				<connpoint role="dst" target="id-0065-00000003"/>
-				<connpoint role="src" target="id-0065-0000000e"/>
-			</connection>
-			<connection id="id-0068-00000061" kind="dr_sub_Connection" role="dr_sub_Connection" relid="0x78">
-				<name>dr_sub_Connection</name>
+			<connection id="id-0068-00000011" kind="dw_pub_Connection" role="dw_pub_Connection" guid="{42578abe-46fd-49f4-8496-66eb6ac27dcd}" relid="0x7d">
+				<name>dw_pub_Connection</name>
 				<connpoint role="dst" target="id-0065-00000009"/>
-				<connpoint role="src" target="id-0065-0000000e"/>
-			</connection>
-			<connection id="id-0068-00000062" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x79">
-				<name>dw_pub_Connection</name>
-				<connpoint role="dst" target="id-0065-00000004"/>
-				<connpoint role="src" target="id-0065-0000000d"/>
-			</connection>
-			<connection id="id-0068-00000063" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x7a">
-				<name>dw_pub_Connection</name>
-				<connpoint role="dst" target="id-0065-00000005"/>
-				<connpoint role="src" target="id-0065-0000000d"/>
-			</connection>
-			<connection id="id-0068-00000064" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x7b">
-				<name>dw_pub_Connection</name>
-				<connpoint role="dst" target="id-0065-00000008"/>
-				<connpoint role="src" target="id-0065-0000000d"/>
-			</connection>
-			<connection id="id-0068-00000065" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x7c">
-				<name>dw_pub_Connection</name>
-				<connpoint role="dst" target="id-0065-0000000c"/>
-				<connpoint role="src" target="id-0065-0000000d"/>
-			</connection>
-			<connection id="id-0068-00000066" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x7d">
-				<name>dw_pub_Connection</name>
-				<connpoint role="dst" target="id-0065-0000000b"/>
-				<connpoint role="src" target="id-0065-0000000d"/>
+				<connpoint role="src" target="id-0065-0000000b"/>
 			</connection>
 		</model>
 	</folder>

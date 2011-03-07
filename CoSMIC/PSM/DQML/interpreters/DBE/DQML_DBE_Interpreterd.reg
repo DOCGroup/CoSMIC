@@ -16,15 +16,15 @@ REGEDIT4
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.DQML.DBE]
 @="MGA.Interpreter.DQML.DBE"
 
-[HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.DQML\CLSID]
+[HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.DQML.DBE\CLSID]
 @="{86F02B3A-37AB-4926-9EC5-3B8EDA7694BB}"
 
-[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.DQML]
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.DQML.DBE]
 "Tooltip"="DQML DBE"
 "Icon"=",IDI_COMPICON"
 "Paradigm"="DQML"
 "Type"=dword:00000001
 "Description"="DQML DBE"
 
-[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.DQML\Associated]
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.DQML.DBE\Associated]
 "DQML"=""

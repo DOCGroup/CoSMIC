@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{B563DE1A-F03F-4E20-A3B6-44BF50758BBF}" cdate="Mon Jun 28 13:14:53 2010" mdate="Mon Jun 28 13:14:53 2010" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
-	<name>DDSQoS</name>
+<project guid="{CEA88F41-31B2-4D3C-AF46-9009A7C309E7}" cdate="Sun Mar 06 23:16:00 2011" mdate="Sun Mar 06 23:16:00 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+	<name>DQML</name>
 	<comment></comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1a" kind="RootFolder" guid="{b6ea1f87-88f4-4828-b8e7-f3ccfd6df751}">
-		<name>DDSQoS</name>
+		<name>DQML</name>
 		<regnode name="AspectRegistry" status="undefined">
 			<value></value>
 			<regnode name="AspectMetaRefs" status="undefined">
