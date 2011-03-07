@@ -6,7 +6,7 @@
 
 #include "PackageMainDialog.h"
 
-#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/component/Interpreter_T.h"
 #include "game/mga/Project.h"
 #include "game/mga/utils/Project_Settings.h"
 

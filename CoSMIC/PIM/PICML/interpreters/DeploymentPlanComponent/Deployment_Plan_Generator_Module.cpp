@@ -1,7 +1,7 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "game/mga/be/Component_Module.h"
+#include "game/mga/component/Component_Module.h"
 #include "Deployment_Plan_Generator_i.c"
 
 DECLARE_COMPONENT_MODULE ("DAnCE Deployment Plan Generator",

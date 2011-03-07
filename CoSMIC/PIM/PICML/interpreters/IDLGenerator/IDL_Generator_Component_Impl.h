@@ -13,7 +13,7 @@
 #ifndef _IDL_GENERATOR_COMPONENT_IMPL_H_
 #define _IDL_GENERATOR_COMPONENT_IMPL_H_
 
-#include "game/mga/be/Interpreter_Impl_Base.h"
+#include "game/mga/component/Interpreter_Impl_Base.h"
 
 /**
  * @class Quotas_Specification_Impl

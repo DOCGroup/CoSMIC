@@ -13,7 +13,7 @@
 #ifndef _DEPLOYMENT_PLAN_GENERATOR_IMPL_H_
 #define _DEPLOYMENT_PLAN_GENERATOR_IMPL_H_
 
-#include "game/mga/be/Interpreter_Impl_Base.h"
+#include "game/mga/component/Interpreter_Impl_Base.h"
 #include "Configuration.h"
 
 /**

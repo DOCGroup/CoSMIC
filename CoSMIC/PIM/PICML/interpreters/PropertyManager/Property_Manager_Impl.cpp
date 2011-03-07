@@ -5,7 +5,7 @@
 #include "Property_Manager_Impl.h"
 #include "Property_Manager_Dialog.h"
 
-#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/component/Interpreter_T.h"
 #include "game/mga/Transaction.h"
 #include "game/mga/Reference.h"
 #include "game/mga/Visitor.h"

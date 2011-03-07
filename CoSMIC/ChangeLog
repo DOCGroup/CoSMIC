@@ -1,3 +1,22 @@
+Mon Mar  7 03:30:38 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Module.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Impl.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_Component_Module.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Package_Component_Impl.h:
+        * PIM/PICML/interpreters/PackageComponent/Package_Component_Impl.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Package_Component_Module.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.h:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Impl.cpp:
+        * PIM/PICML/interpreters/PropertyManager/Property_Manager_Module.cpp:
+
+          Updated the builds to reflect the latest changes to GAME.
+
 Mon Mar  7 01:51:48 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
