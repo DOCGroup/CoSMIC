@@ -9,6 +9,7 @@
 
 #include "Attribute_Generator.h"
 #include "Base_Class_Locator.h"
+#include "Connection_Point_Generator.h"
 #include "Containment_Generator.h"
 #include "Factory_Method_Generator.h"
 #include "Functors.h"
@@ -119,6 +120,83 @@ private:
  * in the source file. The files that are included are those for object
  * that appear in a different file.
  */
+class Connection_Point_Include_Generator : public Visitor
+{
+public:
+  /**
+   * Initializing constructor.
+   */
+  Connection_Point_Include_Generator (FCO_in self,
+                                      std::ofstream & source,
+                                      std::set <Object> & seen)
+    : self_ (self),
+      source_ (source),
+      seen_ (seen)
+  {
+
+  }
+
+  /// Destructor.
+  virtual ~Connection_Point_Include_Generator (void)
+  {
+
+  }
+
+  /// Visit an Atom element.
+  virtual void visit_Atom (Atom_in a)
+  {
+    const std::string metaname = a->meta ()->name ();
+
+    if (metaname == "Connector")
+    {
+      // Get the source connection point.
+      std::vector <Connection> src_to_connector;
+      a->in_connections ("SourceToConnector", src_to_connector);
+      src_to_connector.front ()->src ()->accept (this);
+
+      // Visit the destination connectation point.
+      std::vector <Connection> connector_to_dst;
+      a->in_connections ("ConnectorToDestination", connector_to_dst);
+      connector_to_dst.front ()->dst ()->accept (this);
+    }
+    else if (this->seen_.find (a) == this->seen_.end ())
+    {
+      // We can generate an include statement since we have not
+      // seen this object before. Make sure we save the object since
+      // we don't want to include the same header more than once.
+      const std::string path = a->path ("/", false);
+      this->source_ << include_t (path + ".h");
+      this->seen_.insert (a);
+    }
+  }
+
+  /// Visit a Connection element.
+  virtual void visit_Connection (Connection_in c)
+  {
+    if (c->src () == this->self_)
+      c->dst ()->accept (this);
+    else
+      c->src ()->accept (this);
+  }
+
+private:
+  /// The current object.
+  FCO self_;
+
+  /// The target source file.
+  std::ofstream & source_;
+
+  /// Collection of seen objects.
+  std::set <Object> & seen_;
+};
+
+/**
+ * @class Include_Generator
+ *
+ * Internal visitor that generates the include statments that appear
+ * in the source file. The files that are included are those for object
+ * that appear in a different file.
+ */
 class Include_Generator : public Visitor
 {
 public:
@@ -180,6 +258,14 @@ public:
       c->dst ()->accept (this);
     else
       c->src ()->accept (this);
+  }
+
+  //
+  // seen_objects
+  //
+  std::set <Object> & seen_objects (void)
+  {
+    return this->seen_objects_;
   }
 
 private:
@@ -369,7 +455,6 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   std::vector <Connection> refers_to;
   fco->in_connections ("ReferTo", refers_to);
 
-
   // Generate the include statements for this attached FCOs.
   Include_Generator includes (fco, this->source_);
   std::for_each (src_to_connector.begin (),
@@ -395,6 +480,18 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &includes));
+
+  std::vector <Connection> association_class;
+  fco->in_connections ("AssociationClass", association_class);
+
+  Connection_Point_Include_Generator cp_includes (fco,
+                                                  this->source_,
+                                                  includes.seen_objects ());
+  std::for_each (association_class.begin (),
+                 association_class.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &cp_includes));
 
   if (is_in_root_folder)
     this->header_ << include_t ("game/mga/RootFolder.h");
@@ -567,7 +664,19 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   }
 
   if (is_connection)
-    this->generate_connection_points (fco);
+  {
+    // Generate the connection points for this class.
+    Connection_Point_Generator cp_gen (fco,
+                                       this->classname_,
+                                       this->header_,
+                                       this->source_);
+
+    std::for_each (association_class.begin (),
+                   association_class.end (),
+                   boost::bind (&Connection::impl_type::accept,
+                                boost::bind (&Connection::get, _1),
+                                &cp_gen));
+  }
 
   if (!has_attributes.empty ())
   {
