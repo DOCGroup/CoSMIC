@@ -1,3 +1,35 @@
+Tue Mar  8 15:56:31 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * examples:
+        * examples/Library:
+        * examples/Library/Library.xme:
+
+          Library example.
+
+        * examples/Library/ext:
+        * examples/Library/ext/Library:
+        * examples/Library/ext/Library/Impl_Factory.h:
+        * examples/Library/ext/Library/Impl_Factory.cpp:
+        * examples/Library/ext/Library/Init.cpp:
+        * examples/Library/ext/Library/Library:
+        * examples/Library/ext/Library/Library/Book.h:
+        * examples/Library/ext/Library/Library/Book.cpp:
+        * examples/Library/ext/Library/Library/Borrow.h:
+        * examples/Library/ext/Library/Library/Borrow.cpp:
+        * examples/Library/ext/Library/Library/Library.h:
+        * examples/Library/ext/Library/Library/Library.cpp:
+        * examples/Library/ext/Library/Library/Patron.h:
+        * examples/Library/ext/Library/Library/Patron.cpp:
+        * examples/Library/ext/Library/Library_fwd.h:
+        * examples/Library/ext/Library/Visitor.h:
+        * examples/Library/ext/Library/Visitor.cpp:
+        * examples/Library/ext/Library/stdafx.h:
+        * examples/Library/ext/Library/stdafx.cpp:
+        * examples/Library/ext/Library_GAME_Mga.mpc:
+        * examples/Library/ext/Library_GAME_Mga.mwc:
+
+          Extension classes for the library example.
+
 Tue Mar  8 15:55:28 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses/Connection_Point_Generator.h:

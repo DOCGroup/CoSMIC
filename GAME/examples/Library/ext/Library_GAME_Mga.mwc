@@ -1,0 +1,7 @@
+// $Id$
+
+workspace (Library_GAME_Mga) {
+  cmdline += -include $GAME_ROOT/MPC/config
+
+  Library_GAME_Mga.mpc
+}

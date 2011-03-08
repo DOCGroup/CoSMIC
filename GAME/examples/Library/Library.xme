@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{3049776C-1044-49DF-B39A-7B6D6DDB9CB6}" cdate="Mon Mar 07 23:57:27 2011" mdate="Mon Mar 07 23:57:27 2011" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+	<name>Library</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{de1da8a7-5575-4d1c-bd66-1cc43f15572a}">
+		<name>Library</name>
+		<regnode name="AspectRegistry" status="undefined">
+			<value></value>
+			<regnode name="AspectMetaRefs" status="undefined">
+				<value></value>
+				<regnode name="IPLaspect" status="undefined">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="Library" isopaque="yes">
+							<value>1019</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="GAME" status="undefined">
+			<value></value>
+			<regnode name="ExtensionClasses" status="undefined">
+				<value></value>
+				<regnode name="OutputPath" isopaque="yes">
+					<value>E:\proj\vc9\CoSMIC\Utils\GAME\examples\Library\ext</value>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="IPL" status="undefined">
+			<value></value>
+			<regnode name="Age-11-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1001</value>
+				</regnode>
+			</regnode>
+			<regnode name="Author-3-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1002</value>
+				</regnode>
+			</regnode>
+			<regnode name="Book-1-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1022</value>
+					<regnode name="Library" status="undefined">
+						<value></value>
+						<regnode name="Book" isopaque="yes">
+							<value>1024</value>
+							<regnode name="IPLaspect" isopaque="yes">
+								<value>1026</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Book" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Books-1-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1013</value>
+					<regnode name="Library" status="undefined">
+						<value></value>
+						<regnode name="Books" isopaque="yes">
+							<value>1016</value>
+							<regnode name="IPLaspect" isopaque="yes">
+								<value>1020</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Books" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Borrow-21-Connection" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1014</value>
+					<regnode name="Library" status="undefined">
+						<value></value>
+						<regnode name="Borrow" isopaque="yes">
+							<value>1017</value>
+							<regnode name="IPLaspect" isopaque="yes">
+								<value>1021</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Borrow" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Gender-10-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1003</value>
+				</regnode>
+			</regnode>
+			<regnode name="Genre-4-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1004</value>
+				</regnode>
+			</regnode>
+			<regnode name="HomeAddress-f-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1005</value>
+				</regnode>
+			</regnode>
+			<regnode name="ISBN-6-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1006</value>
+				</regnode>
+			</regnode>
+			<regnode name="Library-17-Model" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1015</value>
+				</regnode>
+			</regnode>
+			<regnode name="LibraryAddress-1b-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1007</value>
+				</regnode>
+			</regnode>
+			<regnode name="LibraryName-1a-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1008</value>
+				</regnode>
+			</regnode>
+			<regnode name="Name-d-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1009</value>
+				</regnode>
+			</regnode>
+			<regnode name="Patron-26-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1023</value>
+					<regnode name="Library" status="undefined">
+						<value></value>
+						<regnode name="Patron" isopaque="yes">
+							<value>1025</value>
+							<regnode name="IPLaspect" isopaque="yes">
+								<value>1027</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Patron" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Patrons-26-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1022</value>
+					<regnode name="Library" status="undefined">
+						<value></value>
+						<regnode name="Patrons" isopaque="yes">
+							<value>1023</value>
+							<regnode name="IPLaspect" isopaque="yes">
+								<value>1024</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Patrons" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Patrons-c-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Patrons" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1023</value>
+					<regnode name="Library" status="undefined">
+						<value></value>
+						<regnode name="Patrons" isopaque="yes">
+							<value>1018</value>
+							<regnode name="IPLaspect" isopaque="yes">
+								<value>1022</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Library:Patrons" status="undefined">
+						<value></value>
+						<regnode name="IPLaspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Quantity-5-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1010</value>
+				</regnode>
+			</regnode>
+			<regnode name="SSN-e-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1011</value>
+				</regnode>
+			</regnode>
+			<regnode name="Title-2-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1012</value>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="MetaGME_Options" status="undefined">
+			<value></value>
+			<regnode name="GeneratedConstraints" status="undefined">
+				<value></value>
+				<regnode name="ConnectionEndEventMask" isopaque="yes">
+					<value>0x00000000</value>
+				</regnode>
+				<regnode name="FolderContainmentEventMask" isopaque="yes">
+					<value>0x00000000</value>
+				</regnode>
+				<regnode name="Priority" isopaque="yes">
+					<value>1</value>
+				</regnode>
+				<regnode name="RegularContainmentEventMask" isopaque="yes">
+					<value>0x00000000</value>
+				</regnode>
+			</regnode>
+		</regnode>
+		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{eb2493f1-a1b8-4c3e-a4ac-e6f4755c0756}" relid="0x1" childrelidcntr="0x40">
+			<name>Library</name>
+			<atom id="id-0066-00000001" kind="Atom" role="Atom" guid="{9934f4f4-3729-438f-b393-924747e047d8}" relid="0x1">
+				<name>Book</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>9,343</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>63,119</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>114,147</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>133,105</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>133,105</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AutoRouterPref" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GradientFillColor" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GradientFillDirection" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="HelpURL" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsGradientFillEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsResizable" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsRoundRectangleEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsShadowCastEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="RoundRectangleRadius" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowColor" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowDirection" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowThickness" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="FieldAttribute" role="FieldAttribute" guid="{adb03485-8157-40d5-9947-ad2ab7f6b36f}" relid="0x2">
+				<name>Title</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>13,273</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>48,266</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000003" kind="FieldAttribute" role="FieldAttribute" guid="{eff35d15-9bee-48e6-88d1-1e901fcbb440}" relid="0x3">
+				<name>Author</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>146,259</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>181,231</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000004" kind="FieldAttribute" role="FieldAttribute" guid="{8929900d-c4e7-4516-bba0-e76d68d51e54}" relid="0x4">
+				<name>Genre</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>13,203</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>13,28</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000005" kind="FieldAttribute" role="FieldAttribute" guid="{9d3a070c-9721-454e-8282-5d47e514fd3c}" relid="0x5">
+				<name>Quantity</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>55,133</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>146,28</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000006" kind="FieldAttribute" role="FieldAttribute" guid="{44325dfb-4241-43d7-8373-2a892e3b88d5}" relid="0x6">
+				<name>ISBN</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>90,63</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>202,119</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>double</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000007" kind="FieldAttribute" role="FieldAttribute" guid="{501ab29f-470a-403b-a620-e64b142e6227}" relid="0xd">
+				<name>Name</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>370,217</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>321,189</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000008" kind="FieldAttribute" role="FieldAttribute" guid="{529771b0-e1ff-40f9-83f7-fefd91db0134}" relid="0xe">
+				<name>SSN</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>510,210</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>489,308</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>double</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000009" kind="FieldAttribute" role="FieldAttribute" guid="{d85e17a6-08c2-40de-98e9-0d868a6edd84}" relid="0xf">
+				<name>HomeAddress</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>412,14</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>349,49</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000a" kind="FieldAttribute" role="FieldAttribute" guid="{b042ea94-e084-4636-9e4d-1120684dfaa8}" relid="0x10">
+				<name>Gender</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>440,105</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>496,49</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000b" kind="FieldAttribute" role="FieldAttribute" guid="{b1efe574-1214-402b-812b-c69b609ccd95}" relid="0x11">
+				<name>Age</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>580,133</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>608,182</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000c" kind="Model" role="Model" guid="{63cd14ef-f128-4bb1-8fff-d042c9aefd40}" relid="0x17">
+				<name>Library</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>277,49</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>313,371</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>277,49</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>277,49</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>250,28</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AutoRouterPref" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GradientFillColor" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GradientFillDirection" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="HelpURL" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsGradientFillEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsModelAutoRouted" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsResizable" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsRoundRectangleEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsShadowCastEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="RoundRectangleRadius" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowColor" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowDirection" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowThickness" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000d" kind="FieldAttribute" role="FieldAttribute" guid="{d97b3986-a917-4964-bcd3-0e9d2862939e}" relid="0x1a">
+				<name>LibraryName</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>132,371</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>118,364</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000e" kind="FieldAttribute" role="FieldAttribute" guid="{a0336257-9f79-4f7d-8c5b-fe516dea5a8a}" relid="0x1b">
+				<name>LibraryAddress</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>363,385</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>307,455</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000f" kind="Connector" role="Connector" guid="{877bdda8-bf22-4675-83c1-4849bf5a4281}" relid="0x1e">
+				<name>Connector</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>319,235</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>319,235</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>319,235</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000010" kind="Connection" role="Connection" guid="{8aa94ab2-ca7e-4f57-8a79-be65cdefcf23}" relid="0x21">
+				<name>Borrow</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>284,301</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>284,301</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>270,315</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>284,301</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>284,301</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineEnd" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsAutoRouted" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="LabelFormatStr" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000011" kind="Atom" role="Atom" guid="{c3164b2d-b7dc-4e9c-abbd-3a6954716adf}" relid="0x26">
+				<name>Patron</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>455,168</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>469,161</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>455,168</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>455,168</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>455,168</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AutoRouterPref" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GradientFillColor" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GradientFillDirection" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="HelpURL" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsGradientFillEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsResizable" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsRoundRectangleEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsShadowCastEnabled" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="RoundRectangleRadius" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowColor" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowDirection" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ShadowThickness" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<connection id="id-0068-00000001" kind="HasAttribute" role="HasAttribute" guid="{6c963d41-2d5e-46f3-a26f-4f5881430b44}" relid="0x7">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000004"/>
+			</connection>
+			<connection id="id-0068-00000002" kind="HasAttribute" role="HasAttribute" guid="{b132ae20-c6ee-4ba8-b35c-f5365611a70e}" relid="0x8">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000005"/>
+			</connection>
+			<connection id="id-0068-00000003" kind="HasAttribute" role="HasAttribute" guid="{377353c5-db63-419b-8540-ded07e3f10e1}" relid="0x9">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000006"/>
+			</connection>
+			<connection id="id-0068-00000004" kind="HasAttribute" role="HasAttribute" guid="{3434ca68-d423-4a2d-a65b-0f00e8e89149}" relid="0xa">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000002"/>
+			</connection>
+			<connection id="id-0068-00000005" kind="HasAttribute" role="HasAttribute" guid="{7542d815-6dca-4fcd-b25d-425110824b9b}" relid="0xb">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000003"/>
+			</connection>
+			<connection id="id-0068-00000006" kind="Containment" role="Containment" guid="{fd00b223-830a-49c2-ba81-dae775341d99}" relid="0x18">
+				<name>Containment</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000001"/>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+			</connection>
+			<connection id="id-0068-00000007" kind="HasAttribute" role="HasAttribute" guid="{66b459c9-93b2-48b3-839b-360969c16d11}" relid="0x1c">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+				<connpoint role="src" target="id-0066-0000000d"/>
+			</connection>
+			<connection id="id-0068-00000008" kind="HasAttribute" role="HasAttribute" guid="{a5a50f3a-81b0-484b-828d-916480ef3011}" relid="0x1d">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+				<connpoint role="src" target="id-0066-0000000e"/>
+			</connection>
+			<connection id="id-0068-00000009" kind="SourceToConnector" role="SourceToConnector" guid="{8bbac6a4-96f2-41bd-bc23-30e269153b3f}" relid="0x1f">
+				<name>SourceToConnector</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000001"/>
+				<connpoint role="dst" target="id-0066-0000000f"/>
+			</connection>
+			<connection id="id-0068-0000000a" kind="AssociationClass" role="AssociationClass" guid="{49c50a01-b2d5-4854-a608-a3a9eaed2ae1}" relid="0x22">
+				<name>AssociationClass</name>
+				<connpoint role="dst" target="id-0066-0000000f"/>
+				<connpoint role="src" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-0000000b" kind="Containment" role="Containment" guid="{8755a545-325c-4b38-afd1-24d9e1705856}" relid="0x23">
+				<name>Containment</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+				<connpoint role="src" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-0000000c" kind="HasAspect" role="HasAspect" guid="{ccdff614-a4e2-4972-b0ee-850e13228958}" relid="0x25">
+				<name>HasAspect</name>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+				<connpoint role="src" target="id-0069-00000001"/>
+			</connection>
+			<connection id="id-0068-0000000d" kind="HasAttribute" role="HasAttribute" guid="{f407d246-cd5f-4708-bd6a-0a94cb6bdda2}" relid="0x2c">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000007"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-0000000e" kind="HasAttribute" role="HasAttribute" guid="{f41df0dc-2e84-4caa-955e-7178e9c07b6c}" relid="0x2d">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000008"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-0000000f" kind="HasAttribute" role="HasAttribute" guid="{79bd5bb4-dc12-45f8-b761-a84c5800ce2c}" relid="0x2e">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000000b"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-00000010" kind="HasAttribute" role="HasAttribute" guid="{ee37faf4-b36d-4c9e-b782-5849f11743e2}" relid="0x2f">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000000a"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-00000011" kind="HasAttribute" role="HasAttribute" guid="{f8058f61-e9e5-4f95-bc01-0d85058677af}" relid="0x30">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000009"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-00000012" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{45d8fa91-221e-4e77-8a3a-1d43ca67b0d3}" relid="0x31">
+				<name>ConnectorToDestination</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-0000000f"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-00000013" kind="Containment" role="Containment" guid="{937f3dbe-b170-4067-bc18-f399440ff442}" relid="0x32">
+				<name>Containment</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+				<connpoint role="src" target="id-0066-00000011"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" guid="{2c59e294-966b-49af-82d4-49c3c6cc21f6}" relid="0x24" members="id-0066-00000001 id-0066-0000000c id-0066-00000010 id-0066-00000011">
+				<name>LibraryAspect</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="All" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>541,35</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>541,35</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+			</set>
+		</model>
+	</folder>
+</project>

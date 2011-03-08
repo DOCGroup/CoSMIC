@@ -1,0 +1,23 @@
+// $Id$
+
+project (Library_GAME_Mga) : game_extension_classes {
+  sharedname = Library_GAME_Mga
+
+  includes += . Library
+
+  pch_header = stdafx.h
+  pch_source = Library/stdafx.cpp
+
+  dynamicflags += LIBRARY_BUILD_DLL
+  prebuild     += $(ACE_ROOT)/bin/generate_export_file.pl LIBRARY > Library/Library_export.h
+
+  Source_Files {
+    Library/Impl_Factory.cpp
+    Library/Init.cpp
+    Library/Visitor.cpp
+    Library/Library/Patron.cpp
+    Library/Library/Borrow.cpp
+    Library/Library/Library.cpp
+    Library/Library/Book.cpp
+  }
+}
