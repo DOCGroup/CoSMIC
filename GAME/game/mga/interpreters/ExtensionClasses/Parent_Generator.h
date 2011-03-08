@@ -14,8 +14,9 @@
 #ifndef _EXTENSION_CLASSES_PARENT_GENERATOR_H_
 #define _EXTENSION_CLASSES_PARENT_GENERATOR_H_
 
-#include <fstream>
+#include <iosfwd>
 #include "game/mga/Visitor.h"
+#include "game/mga/FCO.h"
 
 namespace GAME
 {
@@ -38,7 +39,8 @@ public:
    * @param[in]       header            Target header file
    * @param[in]       source            Target source file
    */
-  Parent_Generator (const std::string & classname,
+  Parent_Generator (FCO_in fco,
+                    const std::string & classname,
                     std::ofstream & header,
                     std::ofstream & source);
 
@@ -52,6 +54,9 @@ public:
   virtual void visit_Atom (Atom_in a);
 
 private:
+  /// FCO under generation.
+  FCO fco_;
+
   /// Name of the extension class.
   const std::string & classname_;
 

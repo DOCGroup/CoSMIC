@@ -214,6 +214,9 @@ public:
   size_t in_connections (std::vector <Connection> & conns) const;
   size_t in_connections (const std::string & type, std::vector <Connection> & conns) const;
 
+  template <typename T>
+  size_t in_connections (std::vector <T> & conns) const;
+
   /**
    * Get the part information for the given aspect.
    *
@@ -271,5 +274,7 @@ private:
 #if defined (__GAME_INLINE__)
 #include "FCO.inl"
 #endif
+
+#include "FCO_T.cpp"
 
 #endif  // !define _GME_FCO_H_

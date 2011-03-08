@@ -48,7 +48,7 @@ generate (const std::string & location, const Project & proj)
   mwc_file
     << "// $" << "Id" << "$" << std::endl
     << std::endl
-    << "workspace (" << project_name << ") {" << std::endl
+    << "workspace (" << project_name << "_GAME_Mga) {" << std::endl
     << "  cmdline += -include $GAME_ROOT/MPC/config" << std::endl
     << std::endl
     << "  " << mpc_filename << std::endl

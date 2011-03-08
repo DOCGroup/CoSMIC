@@ -1,3 +1,19 @@
+Tue Mar  8 05:42:32 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/FCO.h:
+        * game/mga/FCO_T.cpp:
+
+          Implemented a generic version of in_connections ().
+
+        * game/mga/Mga.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Mwc_File_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.cpp:
+
+          Fixed compilation errors in generated extension classes.
+
 Sun Mar  6 18:56:02 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component:

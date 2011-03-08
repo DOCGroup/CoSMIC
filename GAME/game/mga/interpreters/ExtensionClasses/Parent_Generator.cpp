@@ -9,7 +9,7 @@
 #include "game/mga/Connection.h"
 #include "game/mga/MetaAtom.h"
 
-#include <sstream>
+#include <fstream>
 
 namespace GAME
 {
@@ -20,10 +20,12 @@ namespace Mga
 // Parent_Generator
 //
 Parent_Generator::
-Parent_Generator (const std::string & classname,
+Parent_Generator (FCO_in fco,
+                  const std::string & classname,
                   std::ofstream & header,
                   std::ofstream & source)
-: classname_ (classname),
+: fco_ (fco),
+  classname_ (classname),
   header_ (header),
   source_ (source)
 {
@@ -43,7 +45,8 @@ Parent_Generator::~Parent_Generator (void)
 //
 void Parent_Generator::visit_Connection (Connection_in c)
 {
-  c->dst ()->accept (this);
+  if (c->dst () != this->fco_)
+    c->dst ()->accept (this);
 }
 
 //

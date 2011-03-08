@@ -335,19 +335,24 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << std::endl
     << include_t (this->pch_basename_ + ".h")
     << include_t (name + ".h")
-    << std::endl
+    << std::endl;
+
+  // We need to make sure we include the correct header for accessing
+  // the object's attributes.
+  std::vector <Connection> has_attributes;
+  fco->in_connections ("HasAttribute", has_attributes);
+
+  if (!has_attributes.empty ())
+    this->source_ << include_t ("game/mga/Attribute.h");
+
+  this->source_
     << include_t ("game/mga/MetaModel.h")
     << include_t ("game/mga/MetaFolder.h")
     << include_t ("game/mga/Functional_T.h")
     << std::endl;
 
   if (!is_abstract)
-  {
-    // Make sure we include the visitor header file for this project.
-    this->source_
-      << include_t (project_name + "/Visitor.h")
-      << std::endl;
-  }
+    this->source_ << include_t (project_name + "/Visitor.h");
 
   // First, we need to gather all connections from this FCO that could
   // lead to another FCO that must be included in the header file.
@@ -363,6 +368,7 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   std::vector <Connection> refers_to;
   fco->in_connections ("ReferTo", refers_to);
+
 
   // Generate the include statements for this attached FCOs.
   Include_Generator includes (fco, this->source_);
@@ -563,12 +569,9 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   if (is_connection)
     this->generate_connection_points (fco);
 
-  // Let's write the attributes for this extension class.
-  std::vector <Connection> has_attributes;
-  fco->in_connections ("HasAttribute", has_attributes);
-
   if (!has_attributes.empty ())
   {
+    // Let's generate concrete methods for accessing the attributes.
     this->header_
       << std::endl
       << "/**" << std::endl
@@ -639,17 +642,18 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   {
     // Write the parent method for getting the root folder.
     this->header_
-      << "RootFolder parent_RootFolder (void) const;";
+      << "::GAME::Mga::RootFolder parent_RootFolder (void) const;";
 
     this->source_
-      << "RootFolder " << this->classname_ << "::parent_RootFolder (void) const"
+      << "::GAME::Mga::RootFolder " << this->classname_ << "::parent_RootFolder (void) const"
       << "{"
-      << "return ::GAME::Mga::get_parent <RootFolder> (this->object_.p);"
+      << "return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);"
       << "}";
   }
 
   // Let's generate the remaining parent methods.
-  Parent_Generator parent_gen (this->classname_,
+  Parent_Generator parent_gen (fco,
+                               this->classname_,
                                this->header_,
                                this->source_);
 

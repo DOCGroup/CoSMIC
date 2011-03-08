@@ -85,16 +85,15 @@ void InConnection_Generator::visit_Atom (Atom_in a)
     // Declare the function.
     this->header_
       << std::endl
-      << "void " << method_name << " (std::vector <" << name << "> & conns) const;";
+      << "size_t " << method_name << " (std::vector <" << name << "> & conns) const;";
 
     // Implement the function.
     this->source_
       << function_header_t (method_name)
-      << "void " << this->classname_ << "::"
+      << "size_t " << this->classname_ << "::"
       << method_name << " (std::vector <" << name << "> & conns) const"
       << "{"
-      << "static const std::string meta_" << name << " (\"" << name << "\");"
-      << "this->in_connections (meta_" << name << ", conns);"
+      << "return this->in_connections (conns);"
       << "}";
   }
 }

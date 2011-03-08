@@ -73,6 +73,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
   Template_Files {
     Collection_T.cpp
     Factory_T.cpp
+    FCO_T.cpp
     Functional_T.cpp
     Model_T.cpp
     modelgen.cpp
