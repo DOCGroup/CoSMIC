@@ -1,3 +1,10 @@
+Tue Mar  8 15:58:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * examples/Library/ext:
+        * examples/Library/ext/Library:
+
+          Updated the svn:ignore property.
+
 Tue Mar  8 15:56:31 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * examples:
