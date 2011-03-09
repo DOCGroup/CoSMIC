@@ -36,8 +36,12 @@ bool get_position (const std::string & aspect, const FCO_in fco, Point & pt)
   if (part.is_nil ())
     return false;
 
+  // Get the position from the part.
   long x, y;
   part.get_location (x, y);
+
+  // Update the position value.
+  pt.set (x, y);
 
   return true;
 }
