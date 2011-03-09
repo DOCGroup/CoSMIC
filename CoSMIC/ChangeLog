@@ -1,3 +1,10 @@
+Wed Mar  9 22:08:09 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.cpp:
+
+          If there is a single worker type, then the add-on automatically
+          selects that worker type when adding an action to the model.
+
 Wed Mar  9 18:36:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/Action_Handler.h:

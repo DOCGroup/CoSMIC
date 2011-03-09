@@ -100,17 +100,31 @@ get_worker_type (const GAME::Mga::Model_in component, GAME::Mga::Reference & wor
   using GAME::Dialogs::Selection_List_Dialog_T;
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-  Selection_List_Dialog_T <GAME::Mga::Reference> dlg (0, ::AfxGetMainWnd ());
-
-  dlg.insert (worker_types);
-  dlg.title ("Target Workload Generator");
-  dlg.directions ("Select target worker generator for the action. If this is an\r\n"
-                  "an abstract action, then press the Cancel button.");
-
-  if (IDOK != dlg.DoModal ())
+  switch (worker_types.size ())
+  {
+  case 0:
     return false;
 
-  // Set the name of the action to the target workload generator.
-  worker_type = dlg.selection ();
+  case 1:
+    worker_type = worker_types.front ();
+    break;
+
+  default:
+    {
+      Selection_List_Dialog_T <GAME::Mga::Reference> dlg (0, ::AfxGetMainWnd ());
+
+      dlg.insert (worker_types);
+      dlg.title ("Target Workload Generator");
+      dlg.directions ("Select target worker generator for the action. If this is an\r\n"
+                      "an abstract action, then press the Cancel button.");
+
+      if (IDOK != dlg.DoModal ())
+        return false;
+
+      // Set the name of the action to the target workload generator.
+      worker_type = dlg.selection ();
+    }
+  }
+
   return true;
 }
