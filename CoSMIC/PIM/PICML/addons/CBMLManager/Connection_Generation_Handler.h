@@ -13,7 +13,7 @@
 #ifndef _CBML_CONNECTION_GENERATION_HANDLER_H_
 #define _CBML_CONNECTION_GENERATION_HANDLER_H_
 
-#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/component/Event_Handler_Impl.h"
 #include "game/mga/FCO.h"
 #include "ace/Hash_Map_Manager.h"
 #include "ace/Null_Mutex.h"

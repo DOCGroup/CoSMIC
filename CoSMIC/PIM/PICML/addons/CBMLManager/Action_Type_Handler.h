@@ -13,7 +13,7 @@
 #ifndef _CBML_ACTION_TYPE_HANDLER_H_
 #define _CBML_ACTION_TYPE_HANDLER_H_
 
-#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/component/Event_Handler_Impl.h"
 #include "game/mga/Model.h"
 #include "game/mga/Reference.h"
 

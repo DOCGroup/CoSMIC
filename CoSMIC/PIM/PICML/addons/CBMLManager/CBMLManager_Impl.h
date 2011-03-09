@@ -22,9 +22,9 @@
 #include "ace/SString.h"
 
 #include "game/mga/FCO.h"
-#include "game/mga/be/Addon_Impl_T.h"
-#include "game/mga/be/ComponentEx_T.h"
-#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/component/Addon_Impl_T.h"
+#include "game/mga/component/ComponentEx_T.h"
+#include "game/mga/component/Event_Handler_Impl.h"
 
 GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
                          "CBML Model Intelligence",

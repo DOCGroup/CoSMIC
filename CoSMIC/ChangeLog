@@ -1,3 +1,14 @@
+Wed Mar  9 18:36:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.h:
+
+          Fixed compile errors related to the latest release of GAME.
+
 Wed Mar  9 18:10:42 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:

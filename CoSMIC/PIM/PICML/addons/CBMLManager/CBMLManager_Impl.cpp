@@ -7,7 +7,8 @@
 #include "Action_Handler.h"
 #include "Action_Type_Handler.h"
 
-#include "game/mga/be/ComponentEx_T.h"
+#include "game/mga/component/ComponentEx_T.h"
+
 #include "game/mga/Atom.h"
 #include "game/mga/Model.h"
 #include "game/mga/Object.h"
