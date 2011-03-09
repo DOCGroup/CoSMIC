@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_NODE_REFERENCE_EVENT_HANDLER_H_
 #define _PICML_MI_NODE_REFERENCE_EVENT_HANDLER_H_
 
-#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/component/Event_Handler_Impl.h"
 
 namespace PICML
 {

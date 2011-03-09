@@ -15,7 +15,7 @@
 
 #include <map>
 #include <set>
-#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/component/Event_Handler_Impl.h"
 #include "Default_Implementation_Generator.h"
 
 namespace PICML

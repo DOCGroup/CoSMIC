@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_TEMPLATE_PARAMETER_VALUE_HANDLER_H_
 #define _PICML_MI_TEMPLATE_PARAMETER_VALUE_HANDLER_H_
 
-#include "game/mga/be/Readonly_Event_Handler.h"
+#include "game/mga/component/Readonly_Event_Handler.h"
 
 namespace PICML
 {

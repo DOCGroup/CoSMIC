@@ -13,7 +13,7 @@
 #ifndef _PICML_MANAGER_IMPL_H_
 #define _PICML_MANAGER_IMPL_H_
 
-#include "game/mga/be/Event_Handler_Impl.h"
+#include "game/mga/component/Event_Handler_Impl.h"
 
 /**
  * @class PICMLManager_Impl

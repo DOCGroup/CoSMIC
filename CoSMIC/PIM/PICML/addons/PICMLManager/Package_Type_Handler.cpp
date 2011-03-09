@@ -20,8 +20,8 @@
 #include "game/mga/MetaModel.h"
 #include "game/mga/utils/Point.h"
 #include "game/manip/copy.h"
-#include "game/mga/be/Event_Handler.h"
-#include "game/mga/be/Readonly_Event_Handler.h"
+#include "game/mga/component/Event_Handler.h"
+#include "game/mga/component/Readonly_Event_Handler.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 
 #include "boost/bind.hpp"

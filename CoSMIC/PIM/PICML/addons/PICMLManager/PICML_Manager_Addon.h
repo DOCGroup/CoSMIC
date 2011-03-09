@@ -16,8 +16,8 @@
 #include "PICMLManager.h"
 #include "PICMLManager_i.c"
 
-#include "game/mga/be/Addon_Impl_T.h"
-#include "game/mga/be/ComponentEx_T.h"
+#include "game/mga/component/Addon_Impl_T.h"
+#include "game/mga/component/ComponentEx_T.h"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"

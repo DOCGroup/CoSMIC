@@ -2,7 +2,7 @@
 
 #include "StdAfx.h"
 #include "PICML_Manager_Addon.h"
-#include "game/mga/be/ComponentEx_T.h"
+#include "game/mga/component/ComponentEx_T.h"
 
 DECLARE_GAME_COMPONENT_EX (PICML_Manager_Impl, PICMLManager_Addon);
 

@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "PICMLManager_Impl.h"
 
-#include "game/mga/be/Event_Handler.h"
+#include "game/mga/component/Event_Handler.h"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
