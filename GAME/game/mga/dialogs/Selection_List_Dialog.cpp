@@ -162,12 +162,10 @@ void Selection_List_Dialog::DoDataExchange (CDataExchange * pDX)
     // Get the actual object based on the selection. We need to save
     // the item's data in the selection variable.
     DWORD_PTR item_data = this->list_.GetItemData (index);
-    IMgaObject * impl = reinterpret_cast <IMgaObject *> (item_data);
 
     // Make sure we increment the reference count before attaching
     // the element. We don't want to cause any exceptions.
-    impl->AddRef ();
-    this->selection_->attach (impl);
+    this->selection_ = reinterpret_cast <IMgaObject *> (item_data);
   }
 }
 
