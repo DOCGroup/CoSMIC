@@ -1,3 +1,9 @@
+Thu Mar 10 20:25:06 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * bin/generate_gme_interpreter.py:
+
+          Placed the interpreter skeleton generator script in GAME
+
 Wed Mar  9 21:56:52 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/utils/Point.cpp:
