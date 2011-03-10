@@ -132,7 +132,8 @@ invoke_ex (GAME::Mga::Project project,
     }
 
     if (this->is_interactive_)
-      ::AfxMessageBox ("Files generated successfully", MB_OK);
+      ::AfxMessageBox ("Successfully generated extension class files.",
+                       MB_OK | MB_ICONINFORMATION);
 
     // Save the project settings for next time.
     this->save_project_settings (project);

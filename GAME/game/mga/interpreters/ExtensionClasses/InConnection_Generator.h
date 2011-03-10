@@ -16,6 +16,7 @@
 
 #include <fstream>
 #include "game/mga/Visitor.h"
+#include <set>
 
 namespace GAME
 {
@@ -51,6 +52,8 @@ public:
   // Visit the Attribute atom.
   virtual void visit_Atom (Atom_in a);
 
+  virtual void visit_Reference (Reference_in ref);
+
 private:
   /// Name of the extension class.
   const std::string & classname_;
@@ -60,6 +63,9 @@ private:
 
   /// The source file for the extension class.
   std::ofstream & source_;
+
+  /// Collection of seen atoms.
+  std::set <std::string> seen_;
 };
 
 }

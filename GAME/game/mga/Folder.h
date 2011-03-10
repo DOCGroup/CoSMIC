@@ -27,7 +27,7 @@ namespace Mga
  *
  * Wrapper class for the IMgaFolder interface.
  */
-class GAME_MGA_Export Folder_Impl : public Object_Impl
+class GAME_MGA_Export Folder_Impl : public virtual Object_Impl
 {
 public:
   /// Type definition of the interface type.

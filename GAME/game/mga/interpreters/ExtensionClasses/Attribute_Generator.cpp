@@ -7,6 +7,7 @@
 #include "game/mga/Atom.h"
 #include "game/mga/Attribute.h"
 #include "game/mga/Connection.h"
+#include "game/mga/Reference.h"
 #include "game/mga/MetaAtom.h"
 
 namespace GAME
@@ -118,6 +119,14 @@ void Attribute_Generator::visit_Atom (Atom_in a)
     << "static const std::string attr_" << name << " (\"" << name << "\");"
     << "return this->attribute (attr_" << name << ")->" << function_name << " ();"
     << "}";
+}
+
+//
+// visit_Reference
+//
+void Attribute_Generator::visit_Reference (Reference_in ref)
+{
+  ref->refers_to ()->accept (this);
 }
 
 }

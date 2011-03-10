@@ -25,7 +25,7 @@ namespace Mga
  *
  * Wrapper class for the IMgaSet interface.
  */
-class GAME_MGA_Export Set_Impl : public FCO_Impl
+class GAME_MGA_Export Set_Impl : public virtual FCO_Impl
 {
 public:
   /// Type definition for the interface pointer.

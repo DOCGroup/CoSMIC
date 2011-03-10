@@ -72,5 +72,14 @@ unsigned long Object_Impl::hash (void) const
   return ACE::hash_pjw (this->id ().c_str ());
 }
 
+//
+// is_equal_to
+//
+GAME_INLINE
+bool Object_Impl::is_equal_to (const Object_in obj) const
+{
+  return this == obj ? true : this->id () == obj->id ();
+}
+
 }
 }

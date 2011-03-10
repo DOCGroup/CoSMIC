@@ -20,9 +20,9 @@ Reference_Impl::Reference_Impl (void)
 //
 GAME_INLINE
 Reference_Impl::Reference_Impl (IMgaReference * ref)
- : FCO_Impl (ref)
+//: FCO_Impl (ref)
 {
-
+  this->object_ = ref;
 }
 
 //

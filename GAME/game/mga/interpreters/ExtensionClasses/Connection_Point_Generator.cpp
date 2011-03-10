@@ -7,6 +7,7 @@
 #include "game/mga/Atom.h"
 #include "game/mga/Attribute.h"
 #include "game/mga/Connection.h"
+#include "game/mga/Reference.h"
 #include "game/mga/MetaAtom.h"
 
 #include <fstream>
@@ -60,7 +61,12 @@ void Connection_Point_Generator::visit_Atom (Atom_in connector)
 
   Connection conn = in_connections.front ();
   std::string rolename = conn->attribute ("srcRolename")->string_value ();
-  std::string connpt_type = conn->src ()->name ();
+
+  FCO src = conn->src ();
+  while (src->type () == OBJTYPE_REFERENCE)
+    src = Reference::_narrow (src)->refers_to ();
+
+  std::string connpt_type = src->name ();
 
   // Write the source connection point method.
   this->generate_connection_point (rolename, connpt_type);
@@ -71,7 +77,12 @@ void Connection_Point_Generator::visit_Atom (Atom_in connector)
 
   conn = in_connections.front ();
   rolename = conn->attribute ("dstRolename")->string_value ();
-  connpt_type = conn->dst ()->name ();
+
+  FCO dst = conn->dst ();
+  while (dst->type () == OBJTYPE_REFERENCE)
+    dst = Reference::_narrow (dst)->refers_to ();
+
+  connpt_type = dst->name ();
 
   // Write the destination connection point.
   this->generate_connection_point (rolename, connpt_type);
@@ -101,6 +112,15 @@ generate_connection_point (const std::string & rolename,
     << "return " << pt_type << "::_narrow (target);"
     << "}";
 }
+
+//
+// visit_Reference
+//
+void Connection_Point_Generator::visit_Reference (Reference_in ref)
+{
+  ref->refers_to ()->accept (this);
+}
+
 
 }
 }

@@ -24,9 +24,9 @@ FCO_Impl::FCO_Impl (void)
 //
 GAME_INLINE
 FCO_Impl::FCO_Impl (IMgaFCO * fco)
-: Object_Impl (fco)
+//: Object_Impl (fco)
 {
-
+  this->object_ = fco;
 }
 
 //

@@ -25,7 +25,7 @@ namespace Mga
  * The root folder for the project. It is not possible to create a root
  * folder
  */
-class GAME_MGA_Export RootFolder_Impl : public Folder_Impl
+class GAME_MGA_Export RootFolder_Impl : public virtual Folder_Impl
 {
 public:
   /// Default constructor.

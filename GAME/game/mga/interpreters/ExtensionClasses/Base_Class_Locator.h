@@ -41,6 +41,8 @@ public:
 
   virtual void visit_Connection (Connection_in c);
 
+  virtual void visit_Reference (Reference_in ref);
+
 private:
   /// Collection of located base classes.
   std::set <Atom> & bc_;

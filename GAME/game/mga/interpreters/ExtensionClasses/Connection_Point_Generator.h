@@ -52,6 +52,9 @@ public:
   // Visit the Attribute atom.
   virtual void visit_Atom (Atom_in a);
 
+  // Visit the Reference element.
+  virtual void visit_Reference (Reference_in ref);
+
 private:
   void generate_connection_point (const std::string & rolename,
                                   const std::string & pt_type);

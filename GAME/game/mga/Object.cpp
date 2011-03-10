@@ -326,33 +326,6 @@ Project Object_Impl::project (void) const
 }
 
 //
-// is_equal_to
-//
-bool Object_Impl::is_equal_to (const Object_in obj) const
-{
-  // Check for self comparison.
-  if (this == obj)
-    return true;
-
-  if (obj == 0)
-    return false;
-
-  // Check for NIL values on either side.
-  if ((this->object_.p == 0 && obj->object_.p != 0) ||
-      (this->object_.p != 0 && obj->object_.p == 0))
-  {
-    return false;
-  }
-
-  // Since we made it this far, we need to further check the
-  // values for equality.
-  VARIANT_BOOL equal;
-  VERIFY_HRESULT (this->impl ()->get_IsEqual (obj->object_, &equal));
-
-  return equal == VARIANT_TRUE ? true : false;
-}
-
-//
 // child_by_relative_id
 //
 Object Object_Impl::child_by_relative_id (long relid)

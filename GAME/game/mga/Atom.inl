@@ -20,9 +20,9 @@ Atom_Impl::Atom_Impl (void)
 //
 GAME_INLINE
 Atom_Impl::Atom_Impl (IMgaAtom * atom)
-: FCO_Impl (atom)
+//: FCO_Impl (atom)
 {
-
+  this->object_ = atom;
 }
 
 //

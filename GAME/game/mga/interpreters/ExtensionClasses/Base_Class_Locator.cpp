@@ -90,5 +90,13 @@ void Base_Class_Locator::visit_Connection (Connection_in c)
   }
 }
 
+//
+// visit_Reference
+//
+void Base_Class_Locator::visit_Reference (Reference_in ref)
+{
+  ref->refers_to ()->accept (this);
+}
+
 }
 }

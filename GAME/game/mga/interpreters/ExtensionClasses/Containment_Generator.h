@@ -55,6 +55,9 @@ public:
   // Visit the Attribute atom.
   virtual void visit_Atom (Atom_in a);
 
+  // Visit the Reference element.
+  virtual void visit_Reference (Reference_in ref);
+
 private:
   /// The parent extension class object for the generation.
   FCO fco_;
@@ -71,7 +74,7 @@ private:
   std::string cardinality_;
 
   /// Collection of seen elements.
-  std::set <Atom> seen_;
+  std::set <std::string> seen_;
 };
 
 }

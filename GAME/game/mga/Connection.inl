@@ -22,7 +22,7 @@ ConnectionPoint_Impl::ConnectionPoint_Impl (void)
 //
 GAME_INLINE
 ConnectionPoint_Impl::ConnectionPoint_Impl (IMgaConnPoint * point)
-  : point_ (point)
+: point_ (point)
 {
 
 }
@@ -144,9 +144,9 @@ Connection_Impl::Connection_Impl (void)
 //
 GAME_INLINE
 Connection_Impl::Connection_Impl (IMgaConnection * conn)
-: FCO_Impl (conn)
+//: FCO_Impl (conn)
 {
-
+  this->object_ = conn;
 }
 
 //

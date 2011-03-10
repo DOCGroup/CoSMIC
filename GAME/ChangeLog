@@ -1,3 +1,42 @@
+Thu Mar 10 20:48:03 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Atom.h:
+        * game/mga/Atom.inl:
+        * game/mga/Connection.h:
+        * game/mga/Connection.inl:
+        * game/mga/FCO.h:
+        * game/mga/FCO.inl:
+        * game/mga/Folder.h:
+        * game/mga/Folder.inl:
+        * game/mga/Model.h:
+        * game/mga/Model.inl:
+        * game/mga/Object.h:
+        * game/mga/Object.inl:
+        * game/mga/Object.cpp:
+        * game/mga/Reference.h:
+        * game/mga/Reference.inl:
+        * game/mga/RootFolder.h:
+        * game/mga/Set.h:
+        * game/mga/Set.inl:
+
+          All implementations are subclassed using virtual inheritance. This
+          required updating the constructors for all the classes.
+
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.h:
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Connection_Point_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Connection_Point_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.cpp:
+
+          Fixed several bugs in the auto-generated extension classes.
+
 Thu Mar 10 20:25:06 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * bin/generate_gme_interpreter.py:

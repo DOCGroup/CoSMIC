@@ -48,6 +48,9 @@ public:
   // Visit the Attribute atom.
   virtual void visit_Atom (Atom_in a);
 
+  // Visit a Reference element.
+  virtual void visit_Reference (Reference_in ref);
+
 private:
   /// Name of the extension class.
   const std::string & classname_;

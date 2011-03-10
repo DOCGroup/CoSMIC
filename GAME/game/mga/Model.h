@@ -24,7 +24,7 @@ namespace Mga
  *
  * Wrapper class for the IMgaModel interface.
  */
-class GAME_MGA_Export Model_Impl : public FCO_Impl
+class GAME_MGA_Export Model_Impl : public virtual FCO_Impl
 {
 public:
   /// Type definition of the COM interface.

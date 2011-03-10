@@ -29,7 +29,7 @@ namespace Mga
  * is not possible to create one. Instead, you can only narrow an existing
  * object to an FCO type.
  */
-class GAME_MGA_Export FCO_Impl : public Object_Impl
+class GAME_MGA_Export FCO_Impl : public virtual Object_Impl
 {
 public:
   /// Type definition of the COM pointer type.

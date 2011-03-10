@@ -20,9 +20,9 @@ Set_Impl::Set_Impl (void)
 //
 GAME_INLINE
 Set_Impl::Set_Impl (IMgaSet * set)
-: FCO_Impl (set)
+//: FCO_Impl (set)
 {
-
+  this->object_ = set;
 }
 
 //

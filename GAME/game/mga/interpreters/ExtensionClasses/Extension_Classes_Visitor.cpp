@@ -79,8 +79,8 @@ struct generate_base_class_t
   void operator () (const Atom & a) const
   {
     this->header_
-      << " ," << std::endl
-      << a->name () << "_Impl";
+      << "," << std::endl
+      << "  public virtual " << a->name () << "_Impl";
   }
 
 private:
@@ -170,13 +170,23 @@ public:
     }
   }
 
-  /// Visit a Connection element.
+  //
+  // visit_Connection
+  //
   virtual void visit_Connection (Connection_in c)
   {
     if (c->src () == this->self_)
       c->dst ()->accept (this);
     else
       c->src ()->accept (this);
+  }
+
+  //
+  // visit_Reference
+  //
+  virtual void visit_Reference (Reference_in ref)
+  {
+    ref->refers_to ()->accept (this);
   }
 
 private:
@@ -258,6 +268,14 @@ public:
       c->dst ()->accept (this);
     else
       c->src ()->accept (this);
+  }
+
+  //
+  // visit_Reference
+  //
+  virtual void visit_Reference (Reference_in ref)
+  {
+    ref->refers_to ()->accept (this);
   }
 
   //
@@ -397,24 +415,23 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << std::endl;
 
   // Make sure we construct the correct macro definition name.
-  std::string define_name = name;
+  std::string define_name = fco->path ("_");
   std::transform (define_name.begin (),
                   define_name.end (),
                   define_name.begin (),
                   &::toupper);
 
   this->header_
-    << "#ifndef _" << this->define_prefix_ << "_" << define_name << "_H_" << std::endl
-    << "#define _" << this->define_prefix_ << "_" << define_name << "_H_" << std::endl
+    << "#ifndef " << define_name << "_H_" << std::endl
+    << "#define " << define_name << "_H_" << std::endl
     << std::endl;
 
   // Include the correct header files for the base classes.
-  if (base_classes.empty ())
-    this->header_ << include_t ("game/mga/" + metaname + ".h");
-  else
-    std::for_each (base_classes.begin (),
-                   base_classes.end (),
-                   include_base_classes_t (this->header_));
+  this->header_ << include_t ("game/mga/" + metaname + ".h");
+
+  std::for_each (base_classes.begin (),
+                 base_classes.end (),
+                 include_base_classes_t (this->header_));
 
   this->source_
     << "// $" << "Id" << "$" << std::endl
@@ -515,37 +532,46 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   {
     this->header_
       << std::endl
-      << "// Forward declare the project's visitor." << std::endl
+      << "// Forward decl." << std::endl
       << "class Visitor;";
   }
 
   this->header_
     << std::endl
-    << "class " << export_name << " " << this->classname_ << " : ";
+    << "class " << export_name << " " << this->classname_ << " :"
+    << std::endl;
 
   // Write the base classes for this derived class.
-  if (base_classes.empty ())
+  if (!base_classes.empty ())
   {
-    this->header_ << "public " << default_base_classname;
-  }
-  else
-  {
-    this->header_ << "public " << (*base_classes.begin ())->name () << "_Impl";
+    this->header_
+      << "  public virtual " << (*base_classes.begin ())->name () << "_Impl";
 
     std::for_each (++ base_classes.begin (),
                    base_classes.end (),
                    generate_base_class_t (this->header_));
+
+    this->header_ << "," << std::endl;
   }
+
+  this->header_
+    << "  public virtual " << default_base_classname;
 
   // Determine the tag type for this extension class.
   std::string tag_type = metaname;
-  tag_type[0] = ::tolower (tag_type[0]);
+  std::transform (tag_type.begin (),
+                  tag_type.end (),
+                  tag_type.begin (),
+                  &::tolower);
 
   this->header_
     << "{"
     << "public:" << std::endl
     << "/// Tag type of this extension class." << std::endl
-    << "typedef ::GAME::Mga::" << tag_type << "_tag_t tag_type;"
+    << "typedef ::GAME::Mga::" << tag_type << "_tag_t type_tag;"
+    << std::endl
+    << "/// Type definition of this class's interface." << std::endl
+    << "typedef IMga" << metaname << " interface_type;"
     << std::endl
     << "/// Metaname for this extension class." << std::endl
     << "static const std::string metaname;"
@@ -574,26 +600,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     << function_header_t (this->classname_)
     << this->classname_ << "::"
     << this->classname_ << " (IMga" << metaname << " * ptr)" << std::endl
-    << ": ";
-
-  // Write the base member initialiation section. This should include
-  // invoking the constructor on each base class for this extension
-  // class definition.
-  if (base_classes.empty ())
-  {
-    this->source_ << default_base_classname << " (ptr)";
-  }
-  else
-  {
-    this->source_ << (*base_classes.begin ())->name () << "_Impl (ptr)";
-
-    std::for_each (++ base_classes.begin (),
-                   base_classes.end (),
-                   generate_bmi_t (this->source_));
-  }
-
-  this->source_
     << "{"
+    << "this->object_ = ptr;"
     << "}"
     << function_header_t ("~" + this->classname_)
     << this->classname_ << "::~"<< this->classname_ << " (void)"

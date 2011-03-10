@@ -8,6 +8,7 @@
 #include "game/mga/Attribute.h"
 #include "game/mga/Connection.h"
 #include "game/mga/MetaAtom.h"
+#include "game/mga/Reference.h"
 
 namespace GAME
 {
@@ -19,8 +20,8 @@ namespace Mga
 //
 InConnection_Generator::
 InConnection_Generator (const std::string & classname,
-                     std::ofstream & header,
-                     std::ofstream & source)
+                        std::ofstream & header,
+                        std::ofstream & source)
 : classname_ (classname),
   header_ (header),
   source_ (source)
@@ -63,28 +64,31 @@ void InConnection_Generator::visit_Atom (Atom_in a)
     std::vector <Connection> assocation_classes;
     a->in_connections ("AssociationClass", assocation_classes);
 
-    if (!assocation_classes.empty ())
-    {
-      // Determine the order of the connection. For some reason, the
-      // MetaGME paradigm supports bi-directional connections for its
-      // AssociationClass connection. So, we need to make sure we
-      // visit the endpoint that is not this atom.
-      Connection association = assocation_classes.front ();
+    if (assocation_classes.empty ())
+      return;
 
-      if (association->src ()->is_equal_to (a))
-        association->dst ()->accept (this);
-      else
-        association->src ()->accept (this);
-    }
+    // Determine the order of the connection. For some reason, the
+    // MetaGME paradigm supports bi-directional connections for its
+    // AssociationClass connection. So, we need to make sure we
+    // visit the endpoint that is not this atom.
+    Connection association = assocation_classes.front ();
+
+    if (association->src ()->is_equal_to (a))
+      association->dst ()->accept (this);
+    else
+      association->src ()->accept (this);
   }
   else if (metaname == "Connection")
   {
+    // Determine if we have seen this element before.
+    if (this->seen_.find (a->id ()) != this->seen_.end ())
+      return;
+
     const std::string name = a->name ();
     const std::string method_name = "in_" + name + "_connections";
 
     // Declare the function.
     this->header_
-      << std::endl
       << "size_t " << method_name << " (std::vector <" << name << "> & conns) const;";
 
     // Implement the function.
@@ -95,7 +99,17 @@ void InConnection_Generator::visit_Atom (Atom_in a)
       << "{"
       << "return this->in_connections (conns);"
       << "}";
+
+    this->seen_.insert (a->id ());
   }
+}
+
+//
+// visit_Reference
+//
+void InConnection_Generator::visit_Reference (Reference_in ref)
+{
+  ref->refers_to ()->accept (this);
 }
 
 }

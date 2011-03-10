@@ -25,7 +25,7 @@ namespace Mga
  *
  * Wrapper class for the IMgaAtom interface.
  */
-class GAME_MGA_Export Atom_Impl : public FCO_Impl
+class GAME_MGA_Export Atom_Impl : public virtual FCO_Impl
 {
 public:
   /// Type definition for the interface.

@@ -7,6 +7,7 @@
 #include "game/mga/Atom.h"
 #include "game/mga/Attribute.h"
 #include "game/mga/Connection.h"
+#include "game/mga/Reference.h"
 #include "game/mga/MetaAtom.h"
 
 #include <sstream>
@@ -59,7 +60,7 @@ void Containment_Generator::visit_Connection (Connection_in c)
 //
 void Containment_Generator::visit_Atom (Atom_in a)
 {
-  if (this->seen_.find (a) != this->seen_.end ())
+  if (this->seen_.find (a->id ()) != this->seen_.end ())
     return;
 
   // Extract the concrete values for the cardinality.
@@ -94,11 +95,11 @@ void Containment_Generator::visit_Atom (Atom_in a)
       << function_header_t (method_name)
       << name << " " << this->classname_ << "::" << method_name << " (void) const"
       << "{"
-      << "static const std::string meta_" << name << " (\"" << name << "\");"
+      << "// Get the collection of children." << std::endl
       << "std::vector <" << name << "> items;"
+      << "this->children (items);"
       << std::endl
-      << "this->children (meta_" << name << ", items);"
-      << "return items.front ();"
+      << "return !items.empty () ? items.front () : " << name << " ();"
       << "}";
   }
   else
@@ -116,13 +117,20 @@ void Containment_Generator::visit_Atom (Atom_in a)
       << "size_t " << this->classname_ << "::"
       << method_name << " (std::vector <" << name << "> & items) const"
       << "{"
-      << "static const std::string meta_" << name << " (\"" << name << "\");"
-      << "return this->children (meta_" << name << ", items);"
+      << "return this->children (items);"
       << "}";
   }
 
   // Make this item as seen.
-  this->seen_.insert (a);
+  this->seen_.insert (a->id ());
+}
+
+//
+// visit_Reference
+//
+void Containment_Generator::visit_Reference (Reference_in ref)
+{
+  ref->refers_to ()->accept (this);
 }
 
 }

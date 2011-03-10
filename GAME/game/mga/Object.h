@@ -34,7 +34,7 @@ namespace Mga
  * class for all the GME modeling elements, such as Model_Impl, FCO_Impl, and
  * Folder_Impl.
  */
-class GAME_MGA_Export Object_Impl : public Refcountable
+class GAME_MGA_Export Object_Impl : public virtual Refcountable
 {
 public:
   /// Type definition of the COM pointer type.

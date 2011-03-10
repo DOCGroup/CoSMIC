@@ -227,7 +227,7 @@ private:
  *
  * Wrapper class for the IMgaConnection COM interface.
  */
-class GAME_MGA_Export Connection_Impl : public FCO_Impl
+class GAME_MGA_Export Connection_Impl : public virtual FCO_Impl
 {
 public:
   /// Type definition of the interface type.
