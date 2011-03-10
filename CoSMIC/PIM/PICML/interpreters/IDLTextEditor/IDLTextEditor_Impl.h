@@ -13,7 +13,7 @@
 #ifndef _PICML_IDL_TEXT_EDITOR_IMPL_H_
 #define _PICML_IDL_TEXT_EDITOR_IMPL_H_
 
-#include "game/mga/be/Interpreter_Impl_Base.h"
+#include "game/mga/component/Interpreter_Impl_Base.h"
 
 /**
  * @class IDLTextEditor_Impl
