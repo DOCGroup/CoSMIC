@@ -4,7 +4,7 @@
 #include "IDLTextEditor.h"
 #include "IDLTextEditor_Impl.h"
 
-#include "game/mga/be/Interpreter_T.h"
+#include "game/mga/component/Interpreter_T.h"
 
 #include "DSL_DocTemplate.h"
 #include "DSL_Document.h"

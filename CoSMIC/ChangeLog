@@ -1,3 +1,13 @@
+Fri Mar 11 21:24:28 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor_Impl.cpp:
+
+          Updated to latest version of GAME.
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+
+          Adding the PICML metamodel information.
+
 Thu Mar 10 21:25:32 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor_Impl.h:
