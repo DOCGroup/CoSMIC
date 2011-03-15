@@ -4,31 +4,27 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  exclude (!prop:microsoft, !wix) {
-    ComponentImplementationGenerator
-    DeploymentPlanComponent
-    IDLGenerator
-    IDLTextEditor
-    MPC
-    MPCComponent
+  ComponentImplementationGenerator
+  DeploymentPlanComponent
+  IDLGenerator
+  IDLTextEditor
+  MPC
+  MPCComponent
 
-    PackageComponent
-    PICML/PICML.mpc
-    PropertyManager
+  PackageComponent
+  PICML/PICML.mpc
 
-    Target
-    TargetComponent
-  }
+  PropertyManager
 
-  exclude (wix) {
-    PICML/PICML_GUID.mpc
-  }
-
-    //Path
-    //PathComponent
-    //PAM
-    //PAMComponent
-    //QED
+  Target
+  TargetComponent
 
   IDLImporter
+
+  // This seems to be a bug. This scope is not processed by the
+  // latest version of MPC when the project types is part of a
+  // microsoft property.
+  exclude (!prop:microsoft, wix) {
+    PICML/PICML_GUID.mpc
+  }
 }

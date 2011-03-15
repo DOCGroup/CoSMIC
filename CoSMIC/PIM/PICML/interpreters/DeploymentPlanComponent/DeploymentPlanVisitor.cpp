@@ -305,6 +305,7 @@ void DeploymentPlanVisitor::reset_state (void)
   this->conns_.clear ();
   this->mappings_.clear ();
   this->locality_.clear ();
+  this->locality_insts_.clear ();
 }
 
 //

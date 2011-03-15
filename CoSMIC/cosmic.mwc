@@ -29,7 +29,10 @@ workspace (cosmic) {
     PSM/DQML/paradigms
   }
 
-  exclude (wix) {
+  // This seems to be a bug. This scope is not processed by the
+  // latest version of MPC when the project types is part of a
+  // windows property.
+  exclude (!prop:microsoft, wix) {
     cmdline += -static \
                -include $COSMIC_ROOT/contrib/CCF/MPC/config
 

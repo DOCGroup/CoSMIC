@@ -153,6 +153,9 @@ public:
 
   /// Destructor.
   virtual ~PICML_String_Data_Value_Control (void);
+
+  // Create the control for usage.
+  virtual BOOL Create (DWORD style, const RECT & rect, CWnd * parent, UINT id);
 };
 
 /**

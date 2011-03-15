@@ -348,7 +348,7 @@ PICML_Char_Data_Value_Control::~PICML_Char_Data_Value_Control (void)
 }
 
 //
-// create
+// Create
 //
 BOOL PICML_Char_Data_Value_Control::
 Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
@@ -377,4 +377,21 @@ PICML_String_Data_Value_Control::PICML_String_Data_Value_Control (void)
 PICML_String_Data_Value_Control::~PICML_String_Data_Value_Control (void)
 {
 
+}
+
+//
+// Create
+//
+BOOL PICML_String_Data_Value_Control::
+Create (DWORD style, const RECT & rect, CWnd * parent, UINT id)
+{
+  // Make sure that auto scrolling is enabled. Otherwise, uses will
+  // not be able to input more characters than can currently be
+  // viewed.
+  style |= ES_AUTOHSCROLL;
+
+  return PICML_Simple_Data_Value_Control <CEdit>::Create (style,
+                                                          rect,
+                                                          parent,
+                                                          id);
 }
