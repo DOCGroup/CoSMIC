@@ -1,3 +1,11 @@
+Wed Mar 16 01:37:41 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentLib.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.cpp:
+
+          Missing source files due to svn:ingore properties.
+
 Tue Mar 15 23:12:07 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
