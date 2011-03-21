@@ -1,0 +1,35 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      VisitPatron_Component.idl
+ *
+ * $Id$
+ *
+ * @author    Tanumoy Pati
+ */
+//=============================================================================
+
+#ifndef _VISITPATRON_COMPONENT_IDL_
+#define _VISITPATRON_COMPONENT_IDL_
+
+#include <Gme.idl>
+
+[
+	uuid (09d0f531-557b-4326-a6ab-69b3aa6f3637),
+	version (1.0),
+]
+library VisitPatron_Component
+{
+	importlib ("stdole32.tlb");
+
+	[uuid (1db2a901-aeba-4e19-a55c-42b80af08148)]
+	coclass VisitPatron_Component
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+		interface IMgaVersionInfo;
+	};
+};
+
+#endif  // !defined _VISITPATRON_COMPONENT_IDL_

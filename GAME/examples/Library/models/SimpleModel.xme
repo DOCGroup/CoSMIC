@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{D7FFC10F-83E3-457B-A9D2-1DAA33DEE914}" cdate="Wed Mar 16 10:55:09 2011" mdate="Wed Mar 16 10:55:09 2011" version="" metaguid="{C6434EF2-DF07-4CAB-B280-4C83BA36C71D}" metaversion="" metaname="Library">
+	<name>SimpleModel</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{9c8f9539-53b7-4912-b8d5-63a08e96b7e7}">
+		<name>SimpleModel</name>
+		<model id="id-0065-00000001" kind="Library" guid="{ebc04f8f-04ba-4cb2-a26a-b7c0c0d3b4d5}" relid="0x1" childrelidcntr="0x2">
+			<name>Library</name>
+			<attribute kind="LibraryAddress" status="meta">
+				<value></value>
+			</attribute>
+			<attribute kind="LibraryName" status="meta">
+				<value></value>
+			</attribute>
+			<atom id="id-0066-00000001" kind="Book" role="Book" guid="{c584a382-f65f-4d2a-ba40-678508b47a82}" relid="0x1">
+				<name>Book</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LibraryAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>152,40</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Author" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Genre" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ISBN" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="Quantity" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="Title" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="Patron" role="Patron" guid="{d61cb7ff-680b-47c8-b171-a3e14344e083}" relid="0x2">
+				<name>Patron</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LibraryAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>348,82</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Age">
+					<value>45</value>
+				</attribute>
+				<attribute kind="Gender" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="HomeAddress" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SSN" status="meta">
+					<value>0</value>
+				</attribute>
+			</atom>
+		</model>
+	</folder>
+</project>

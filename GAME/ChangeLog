@@ -1,3 +1,30 @@
+Mon Mar 21 15:37:49 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * examples/Library/interpreters:
+        * examples/Library/interpreters/VisitPatron:
+        * examples/Library/interpreters/VisitPatron/Component.rc:
+        * examples/Library/interpreters/VisitPatron/GAME_VisitPatronComponent.reg:
+        * examples/Library/interpreters/VisitPatron/GAME_VisitPatronComponentd.reg:
+        * examples/Library/interpreters/VisitPatron/Patron_Only_Visitor.h:
+        * examples/Library/interpreters/VisitPatron/Patron_Only_Visitor.cpp:
+        * examples/Library/interpreters/VisitPatron/Resource.h:
+        * examples/Library/interpreters/VisitPatron/StdAfx.h:
+        * examples/Library/interpreters/VisitPatron/StdAfx.cpp:
+        * examples/Library/interpreters/VisitPatron/VisitPatron.mpc:
+        * examples/Library/interpreters/VisitPatron/VisitPatron.mwc:
+        * examples/Library/interpreters/VisitPatron/VisitPatron_Component.h:
+        * examples/Library/interpreters/VisitPatron/VisitPatron_Component.idl:
+        * examples/Library/interpreters/VisitPatron/VisitPatron_Component_Impl.h:
+        * examples/Library/interpreters/VisitPatron/VisitPatron_Component_Impl.cpp:
+        * examples/Library/interpreters/VisitPatron/VisitPatron_Component_Module.cpp:
+
+          An example interpreter for this paradigm.
+
+        * examples/Library/models:
+        * examples/Library/models/SimpleModel.xme:
+
+          An example model for this paradigm.
+
 Mon Mar 21 15:36:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * examples/Library/Library.xmp:

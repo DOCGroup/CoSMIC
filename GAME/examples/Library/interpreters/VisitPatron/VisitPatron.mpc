@@ -1,0 +1,34 @@
+// $Id$
+
+project (GAME_VisitPatronComponent) : boost_base, game_mga_interpreter, game_lib {
+  sharedname = GAME_VisitPatronComponent
+
+  after += Library_GAME_Mga
+  libs  += Library_GAME_Mga
+
+  includes += ../.. ../../ext
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    Patron_Only_Visitor.cpp
+    VisitPatron_Component.idl
+    VisitPatron_Component_Impl.cpp
+    VisitPatron_Component_Module.cpp
+  }
+
+  Resource_Files {
+    Component.rc
+  }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = GAME.Interpreter.VisitPatron
+    gme_uuid        = 1db2a901-aeba-4e19-a55c-42b80af08148
+    gme_paradigms   = Library
+    gme_description = GAME VisitPatron
+    gme_tooltip     = GAME VisitPatron
+  }
+
+}

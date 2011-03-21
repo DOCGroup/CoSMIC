@@ -1,0 +1,8 @@
+
+
+workspace (VisitPatron) {
+  cmdline += -include $COSMIC_ROOT/MPC/config \
+             -include $GAME_ROOT/MPC/config \
+             
+  VisitPatron.mpc
+}
