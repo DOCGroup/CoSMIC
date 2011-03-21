@@ -27,6 +27,12 @@ namespace GAME
 namespace Mga
 {
 
+template <typename T>
+struct object_type_t
+{
+  static const int result_type = OBJTYPE_NULL;
+};
+
 /**
  * @class Object_Impl
  *

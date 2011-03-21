@@ -1,6 +1,6 @@
 // $Id$
 
 project : game_mga {
-  libout = ./lib
-  dllout = ./lib
+  libout = $(GAME_ROOT)/lib
+  dllout = $(GAME_ROOT)/lib
 }

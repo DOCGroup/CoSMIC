@@ -19,6 +19,7 @@ namespace GAME
 {
 namespace Mga
 {
+
 /**
  * @class Model_Impl
  *
@@ -125,6 +126,17 @@ public:
 private:
   /// Pointer to the underlying COM interface.
   mutable ATL::CComPtr <IMgaModel> model_;
+};
+
+/**
+ * @struct object_type_t
+ *
+ * Specialization of the object type for Model_Impl.
+ */
+template < >
+struct object_type_t <Model_Impl>
+{
+  static const int result_type = OBJTYPE_MODEL;
 };
 
 }

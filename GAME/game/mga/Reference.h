@@ -86,6 +86,18 @@ private:
   mutable ATL::CComPtr <IMgaReference> ref_;
 };
 
+
+/**
+ * @struct object_type_t
+ *
+ * Specialization of the object type for Folder_Impl.
+ */
+template < >
+struct object_type_t <Reference_Impl>
+{
+  static const int result_type = OBJTYPE_MODEL;
+};
+
 }
 }
 

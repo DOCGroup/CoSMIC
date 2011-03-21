@@ -516,10 +516,13 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   // Write the class definition and default methods, such as default
   // constructor, destructor, and _create () method. When writing the
   // create method, we want to make sure that the parents are type-safe.
+  const std::string root_name = fco->project ().root_folder ()->name ();
+  const std::string base_name = root_name + "/" + project_name;
+
   this->header_
     << std::endl
-    << include_t (project_name + "_fwd.h")
-    << include_t (project_name + "_export.h")
+    << include_t (base_name + "_fwd.h")
+    << include_t (base_name + "_export.h")
     << std::endl
     << "namespace " << project_name
     << "{"
@@ -613,13 +616,23 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     this->header_
       << std::endl
       << "/// Accept a visitor for this project." << std::endl
-      << "virtual void accept (Visitor * v);";
+      << "virtual void accept (::GAME::Mga::Visitor * v);";
 
     this->source_
       << function_header_t ("accept")
-      << "void " << this->classname_ << "::accept (Visitor * v)"
+      << "void " << this->classname_ << "::accept (::GAME::Mga::Visitor * v)"
       << "{"
-      << "v->visit_" << name << " (this);"
+      << "try"
+      << "{"
+      << "// See if this is a visitor we know." << std::endl
+      << "Visitor * this_visitor = dynamic_cast <Visitor *> (v);"
+      << "this_visitor->visit_" << name << " (this);"
+      << "}"
+      << "catch (const std::bad_cast & )"
+      << "{"
+      << "// Fallback to the standard visit method." << std::endl
+      << "v->visit_" << metaname << " (this);"
+      << "}"
       << "}";
   }
 

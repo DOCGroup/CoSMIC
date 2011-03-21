@@ -304,6 +304,17 @@ private:
   mutable CComPtr <IMgaConnection> conn_;
 };
 
+/**
+ * @struct object_type_t
+ *
+ * Specialization of the object type for Connection_Impl.
+ */
+template < >
+struct object_type_t <Connection_Impl>
+{
+  static const int result_type = OBJTYPE_CONNECTION;
+};
+
 }
 }
 

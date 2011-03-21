@@ -1,3 +1,28 @@
+Mon Mar 21 15:32:01 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_extension_classes.mpb:
+
+          The default location for the binaries is now GAME's library
+          directory.
+
+        * game/mga/Atom.h:
+        * game/mga/Connection.h:
+        * game/mga/Folder.h:
+        * game/mga/Model.h:
+        * game/mga/Model_T.cpp:
+        * game/mga/Object.h:
+        * game/mga/Reference.h:
+        * game/mga/Set.h:
+
+          Implemented the object_type_t trait class that is used to get
+          the an object's GME OBJTYPE_* at compile time.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Bug fix where certain include statements were missing the root
+          folder directory. This prevent extension classes from building
+          correctly because the files in question could not be located.
+
 Thu Mar 10 20:48:03 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Atom.h:

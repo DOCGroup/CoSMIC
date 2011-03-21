@@ -112,6 +112,17 @@ protected:
   mutable ATL::CComPtr <IMgaSet> set_;
 };
 
+/**
+ * @struct object_type_t
+ *
+ * Specialization of the object type for Atom_Impl.
+ */
+template < >
+struct object_type_t <Set_Impl>
+{
+  static const int result_type = OBJTYPE_SET;
+};
+
 }
 }
 

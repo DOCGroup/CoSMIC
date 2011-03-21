@@ -20,6 +20,7 @@ namespace GAME
 {
 namespace Mga
 {
+
 /**
  * @class Atom_Impl
  *
@@ -80,6 +81,17 @@ protected:
 
   /// The underlying interface pointer.
   mutable ATL::CComPtr <IMgaAtom> atom_;
+};
+
+/**
+ * @struct object_type_t
+ *
+ * Specialization of the object type for Atom_Impl.
+ */
+template < >
+struct object_type_t <Atom_Impl>
+{
+  static const int result_type = OBJTYPE_ATOM;
 };
 
 }
