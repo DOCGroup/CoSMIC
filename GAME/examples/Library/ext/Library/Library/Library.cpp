@@ -31,8 +31,8 @@ namespace Library
   // Library_Impl
   //
   Library_Impl::Library_Impl (IMgaModel * ptr)
-  : ::GAME::Mga::Model_Impl (ptr)
   {
+    this->object_ = ptr;
   }
 
   //
@@ -45,9 +45,20 @@ namespace Library
   //
   // accept
   //
-  void Library_Impl::accept (Visitor * v)
+  void Library_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Library (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Library (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -99,8 +110,7 @@ namespace Library
   //
   size_t Library_Impl::get_Patrons (std::vector <Patron> & items) const
   {
-    static const std::string meta_Patron ("Patron");
-    return this->children (meta_Patron, items);
+    return this->children (items);
   }
 
   //
@@ -108,8 +118,7 @@ namespace Library
   //
   size_t Library_Impl::get_Borrows (std::vector <Borrow> & items) const
   {
-    static const std::string meta_Borrow ("Borrow");
-    return this->children (meta_Borrow, items);
+    return this->children (items);
   }
 
   //
@@ -117,8 +126,7 @@ namespace Library
   //
   size_t Library_Impl::get_Books (std::vector <Book> & items) const
   {
-    static const std::string meta_Book ("Book");
-    return this->children (meta_Book, items);
+    return this->children (items);
   }
 
   ::GAME::Mga::RootFolder Library_Impl::parent_RootFolder (void) const

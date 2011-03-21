@@ -1,3 +1,17 @@
+Mon Mar 21 15:36:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * examples/Library/Library.xmp:
+        * examples/Library/ext/Library/Library/Book.h:
+        * examples/Library/ext/Library/Library/Book.cpp:
+        * examples/Library/ext/Library/Library/Borrow.h:
+        * examples/Library/ext/Library/Library/Borrow.cpp:
+        * examples/Library/ext/Library/Library/Library.h:
+        * examples/Library/ext/Library/Library/Library.cpp:
+        * examples/Library/ext/Library/Library/Patron.h:
+        * examples/Library/ext/Library/Library/Patron.cpp:
+
+          Re-generated the paradigms and extension classes.
+
 Mon Mar 21 15:32:01 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_extension_classes.mpb:

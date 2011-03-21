@@ -11,14 +11,14 @@
  */
 //============================================================================
 
-#ifndef _LIBRARY_LIBRARY_H_
-#define _LIBRARY_LIBRARY_H_
+#ifndef _LIBRARY_LIBRARY_LIBRARY_H_
+#define _LIBRARY_LIBRARY_LIBRARY_H_
 
 #include "game/mga/Model.h"
 #include "game/mga/RootFolder.h"
 
-#include "Library_fwd.h"
-#include "Library_export.h"
+#include "Library/Library_fwd.h"
+#include "Library/Library_export.h"
 
 namespace Library
 {
@@ -27,14 +27,18 @@ namespace Library
   typedef Library_Impl * Library_in;
   typedef ::GAME::Mga::Smart_Ptr <Library_Impl> Library;
 
-  // Forward declare the project's visitor.
+  // Forward decl.
   class Visitor;
 
-  class LIBRARY_Export Library_Impl : public ::GAME::Mga::Model_Impl
+  class LIBRARY_Export Library_Impl :
+    public virtual ::GAME::Mga::Model_Impl
   {
     public:
     /// Tag type of this extension class.
-    typedef ::GAME::Mga::model_tag_t tag_type;
+    typedef ::GAME::Mga::model_tag_t type_tag;
+
+    /// Type definition of this class's interface.
+    typedef IMgaModel interface_type;
 
     /// Metaname for this extension class.
     static const std::string metaname;
@@ -49,7 +53,7 @@ namespace Library
     virtual ~Library_Impl (void);
 
     /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Factory Methods

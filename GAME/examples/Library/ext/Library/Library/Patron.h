@@ -11,13 +11,13 @@
  */
 //============================================================================
 
-#ifndef _LIBRARY_PATRON_H_
-#define _LIBRARY_PATRON_H_
+#ifndef _LIBRARY_LIBRARY_PATRON_H_
+#define _LIBRARY_LIBRARY_PATRON_H_
 
 #include "game/mga/Atom.h"
 
-#include "Library_fwd.h"
-#include "Library_export.h"
+#include "Library/Library_fwd.h"
+#include "Library/Library_export.h"
 
 namespace Library
 {
@@ -26,14 +26,18 @@ namespace Library
   typedef Patron_Impl * Patron_in;
   typedef ::GAME::Mga::Smart_Ptr <Patron_Impl> Patron;
 
-  // Forward declare the project's visitor.
+  // Forward decl.
   class Visitor;
 
-  class LIBRARY_Export Patron_Impl : public ::GAME::Mga::Atom_Impl
+  class LIBRARY_Export Patron_Impl :
+    public virtual ::GAME::Mga::Atom_Impl
   {
     public:
     /// Tag type of this extension class.
-    typedef ::GAME::Mga::atom_tag_t tag_type;
+    typedef ::GAME::Mga::atom_tag_t type_tag;
+
+    /// Type definition of this class's interface.
+    typedef IMgaAtom interface_type;
 
     /// Metaname for this extension class.
     static const std::string metaname;
@@ -48,7 +52,7 @@ namespace Library
     virtual ~Patron_Impl (void);
 
     /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Factory Methods
@@ -92,7 +96,6 @@ namespace Library
     /// Get the value of Name
     std::string Name (void) const;
     ///@}
-
     size_t in_Borrow_connections (std::vector <Borrow> & conns) const;
 
     /**

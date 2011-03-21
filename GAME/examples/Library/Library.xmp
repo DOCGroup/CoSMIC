@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="Library" guid="{C6434EF2-DF07-4CAB-B280-4C83BA36C71D}" cdate="Mon Mar 07 23:57:27 2011" mdate="Mon Mar 07 23:57:27 2011" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "Library" >
+		<attrdef name="Age" metaref = "1001" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="Author" metaref = "1002" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Gender" metaref = "1003" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Genre" metaref = "1004" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="HomeAddress" metaref = "1005" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="ISBN" metaref = "1006" valuetype = "double" defvalue = "">
+		</attrdef>
+		<attrdef name="LibraryAddress" metaref = "1007" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="LibraryName" metaref = "1008" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Name" metaref = "1009" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Quantity" metaref = "1010" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="SSN" metaref = "1011" valuetype = "double" defvalue = "">
+		</attrdef>
+		<attrdef name="Title" metaref = "1012" valuetype = "string" defvalue = "">
+		</attrdef>
+		<atom name = "Book" metaref = "1013"  attributes = "Genre Quantity ISBN Author Title">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "Patron" metaref = "1014"  attributes = "HomeAddress Gender Age Name SSN">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<connection name = "Borrow" metaref = "1015" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Book"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Patron"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<model name = "Library" metaref = "1016" attributes = "LibraryName LibraryAddress" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<role name = "Book" metaref = "1017" kind = "Book"></role>
+			<role name = "Borrow" metaref = "1018" kind = "Borrow"></role>
+			<role name = "Patron" metaref = "1019" kind = "Patron"></role>
+			<aspect name = "LibraryAspect" metaref = "1020" attributes = "LibraryName LibraryAddress" >
+				<part metaref = "1021" role = "Book" primary = "yes" linked = "no"></part>
+				<part metaref = "1022" role = "Borrow" primary = "yes" linked = "no"></part>
+				<part metaref = "1023" role = "Patron" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+	</folder>
+</paradigm>

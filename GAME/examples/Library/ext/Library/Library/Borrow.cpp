@@ -30,8 +30,8 @@ namespace Library
   // Borrow_Impl
   //
   Borrow_Impl::Borrow_Impl (IMgaConnection * ptr)
-  : ::GAME::Mga::Connection_Impl (ptr)
   {
+    this->object_ = ptr;
   }
 
   //
@@ -44,9 +44,20 @@ namespace Library
   //
   // accept
   //
-  void Borrow_Impl::accept (Visitor * v)
+  void Borrow_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Borrow (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Borrow (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //

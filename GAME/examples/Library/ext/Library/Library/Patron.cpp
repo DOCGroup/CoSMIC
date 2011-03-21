@@ -30,8 +30,8 @@ namespace Library
   // Patron_Impl
   //
   Patron_Impl::Patron_Impl (IMgaAtom * ptr)
-  : ::GAME::Mga::Atom_Impl (ptr)
   {
+    this->object_ = ptr;
   }
 
   //
@@ -44,9 +44,20 @@ namespace Library
   //
   // accept
   //
-  void Patron_Impl::accept (Visitor * v)
+  void Patron_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Patron (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Patron (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
