@@ -1,3 +1,9 @@
+Tue Mar 22 20:09:59 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * bin/generate_gme_interpreter.py:
+		
+		Updated the interpreter skeleton generator script
+
 Mon Mar 21 15:37:49 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * examples/Library/interpreters:

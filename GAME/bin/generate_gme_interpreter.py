@@ -32,9 +32,14 @@ workspace (${filename}) {
 
 #######################################################################################################
 
-def generate_mpc_file (filename, pathname, comp_guid, paradigm):
+def generate_mpc_file (filename, pathname, comp_guid, paradigm, flag):
 
     filename_mpc = filename + ".mpc"
+
+    ico = ""
+
+    if flag == 1:
+        ico = "gme_has_icon    ="
 
     #Creating string template for .mpc file
     temp_mpc = string.Template ("""// $$Id$$
@@ -60,9 +65,9 @@ project (${project_name}) : game_mga_interpreter, game_lib {
     gme_progid      = GAME.Interpreter.$filename
     gme_uuid        = $uuid_value
     gme_paradigms   = $paradigm
-    gme_has_icon    = 
     gme_description = GAME $filename
     gme_tooltip     = GAME $filename
+    $icon
   }
 
 }""")
@@ -74,7 +79,8 @@ project (${project_name}) : game_mga_interpreter, game_lib {
                    'module_filename' : filename + '_Component_Module.cpp',
                    'idl_filename' : filename + '_Component.idl',
                    'uuid_value' : comp_guid,
-                   'paradigm' : paradigm}
+                   'paradigm' : paradigm,
+                   'icon' : ico}
 
     #Creating a file object in write mode.
     FILE_mpc = open (pathname + filename_mpc, "w")
@@ -182,11 +188,16 @@ def generate_resource_hfile (pathname):
 
 ############################################################################################
 
-def generate_component_rcfile (pathname):
+def generate_component_rcfile (pathname, flag):
     filename_componentrc = "Component.rc"
 
+    ico = ""
+    if flag == 1:
+        ico = "IDI_COMPICON            ICON    DISCARDABLE     \"compicon.ico\""
+        
+
     #Creating file contents for Component.rc file
-    temp_componentrc = ("""
+    temp_componentrc = string.Template ("""
 //Microsoft Developer Studio generated resource script.
 //
 #include "resource.h"
@@ -276,11 +287,11 @@ END
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
-//
+//$icon
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-//IDI_COMPICON            ICON    DISCARDABLE     "compicon.ico"
+//
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -308,10 +319,12 @@ END
 
 """)
 
+    replace_componentrc = {'icon' : ico}
+
     #Creating a file object in write mode.
     FILE_componentrc = open (pathname + filename_componentrc, "w")
 
-    FILE_componentrc.write (temp_componentrc)
+    FILE_componentrc.write (temp_componentrc.substitute (replace_componentrc))
 
     FILE_componentrc.close ()
 
@@ -540,8 +553,12 @@ def validity_check (guid):
     
 #############################################################################################
 
-def generate_reg_file (filename, pathname, comp_guid, paradigm):
+def generate_reg_file (filename, pathname, comp_guid, paradigm, flag):
     filename_reg = 'GAME_' + filename + 'Component.reg'
+
+    ico = ""
+    if flag == 1:
+        ico = "\"Icon\"=\",IDI_COMPICON\""
 
     #Creating string template for *.reg file
     temp_reg = string.Template ("""REGEDIT4
@@ -567,10 +584,10 @@ def generate_reg_file (filename, pathname, comp_guid, paradigm):
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.${filename}]
 "Tooltip"="${filename} Interpreter"
-"Icon"=",IDI_COMPICON"
 "Paradigm"="${paradigm}"
 "Type"=dword:00000001
 "Description"="${filename}"
+$icon
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.${filename}\Associated]
 "${paradigm}"=""
@@ -579,7 +596,8 @@ def generate_reg_file (filename, pathname, comp_guid, paradigm):
 
     replace_reg = {'filename' : filename,
                    'comp_guid' : comp_guid,
-                   'paradigm' : paradigm}
+                   'paradigm' : paradigm,
+                   'icon' : ico}
 
     #Creating a file object in write mode.
     FILE_reg = open (pathname + filename_reg, "w")
@@ -590,8 +608,12 @@ def generate_reg_file (filename, pathname, comp_guid, paradigm):
 
 #############################################################################################
 
-def generate_dreg_file (filename, pathname, comp_guid, paradigm):
+def generate_dreg_file (filename, pathname, comp_guid, paradigm, flag):
     filename_dreg = 'GAME_' + filename + 'Componentd.reg'
+
+    ico = ""
+    if flag == 1:
+        ico = "\"Icon\"=\",IDI_COMPICON\""
 
     #Creating string template for *d.reg file
     temp_dreg = string.Template ("""REGEDIT4
@@ -617,10 +639,10 @@ def generate_dreg_file (filename, pathname, comp_guid, paradigm):
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.${filename}]
 "Tooltip"="${filename} Interpreter"
-"Icon"=",IDI_COMPICON"
 "Paradigm"="${paradigm}"
 "Type"=dword:00000001
 "Description"="${filename}"
+$icon
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.${filename}\Associated]
 "${paradigm}"=""
@@ -629,7 +651,8 @@ def generate_dreg_file (filename, pathname, comp_guid, paradigm):
 
     replace_dreg = {'filename' : filename,
                    'comp_guid' : comp_guid,
-                    'paradigm' : paradigm}
+                    'paradigm' : paradigm,
+                    'icon' : ico}
 
     #Creating a file object in write mode.
     FILE_dreg = open (pathname + filename_dreg, "w")
@@ -649,12 +672,14 @@ def main (*argv):
     lib_guid = uuid.uuid4 ()
     pathname = os.getcwd () + "\\"
     filename = 'Default'
+    flag = 0
     
     #setting options and corresponding argument values
     options, remainder = getopt.getopt (sys.argv[1:], 'o:',['name=',
                                                             'component-guid=',
                                                             'library-guid=',
-                                                            'paradigm='])
+                                                            'paradigm=',
+                                                            'has-icon'])
 
     for opt, arg in options:
         if opt == '--name' :
@@ -663,6 +688,8 @@ def main (*argv):
             pathname = arg
         elif opt == '--paradigm' :
             paradigm = arg
+        elif opt == '--has-icon' :
+            flag =1
         elif opt == '--component-guid' :
             if (not validity_check (arg)):
                 return 1
@@ -677,7 +704,7 @@ def main (*argv):
     generate_mwc_file (filename, pathname)
 
     #Calling respective function for creating .mpc file
-    generate_mpc_file (filename, pathname, comp_guid, paradigm)
+    generate_mpc_file (filename, pathname, comp_guid, paradigm, flag)
 
     #Calling respective function for creating .idl file
     generate_idl_file (filename, pathname, comp_guid, lib_guid)
@@ -692,16 +719,16 @@ def main (*argv):
     generate_resource_hfile (pathname)
 
     #Calling respective function for creating Component.rc file
-    generate_component_rcfile (pathname)
+    generate_component_rcfile (pathname, flag)
 
     #Calling respective function for creating _Module.cpp file
     generate_module_cpp_file (filename, pathname, lib_guid)
 
     #Calling respective function for creating *d.reg file
-    generate_dreg_file (filename, pathname, comp_guid, paradigm)
+    generate_dreg_file (filename, pathname, comp_guid, paradigm, flag)
 
     #Calling respective function for creating *.reg file
-    generate_reg_file (filename, pathname, comp_guid, paradigm)
+    generate_reg_file (filename, pathname, comp_guid, paradigm, flag)
 
     #Calling respective function for creating _Impl.h file
     generate_impl_h_file (filename, pathname)
