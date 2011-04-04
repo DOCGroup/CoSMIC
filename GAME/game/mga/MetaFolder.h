@@ -94,6 +94,7 @@ public:
    * @return          Meta FCO object.
    */
   FCO find (const std::string & name, bool in_scope = true);
+  Folder find_folder (const std::string & name, bool in_scope = true);
 
 private:
   /// Cached pointer to the metafolder.

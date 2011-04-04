@@ -282,7 +282,7 @@ void Project::abort_transaction (void)
 //
 // root_folder
 //
-Folder Project::root_folder (void) const
+RootFolder Project::root_folder (void) const
 {
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->project_->get_RootFolder (&folder));

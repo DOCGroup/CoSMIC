@@ -100,6 +100,26 @@ FCO Folder_Impl::find (const std::string & name, bool in_scope)
   return fco.p;
 }
 
+//
+// find_folder
+//
+Folder Folder_Impl::find_folder (const std::string & name, bool in_scope)
+{
+  // Convert the parameters values to COM.
+  CComBSTR bstr (name.length (), name.c_str ());
+  VARIANT_BOOL scope = in_scope ? VARIANT_TRUE : VARIANT_FALSE;
+
+  CComPtr <IMgaMetaFolder> folder;
+
+  // Get the defined meta FCO.
+  VERIFY_HRESULT (this->impl ()->get_DefinedFolderByName (bstr, scope, &folder));
+  Folder f (folder.p);
+
+  std::string n = f->name ();
+
+  return folder.p;
+}
+
 }
 }
 }

@@ -648,16 +648,56 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 }
 
 //
+// register_global_handler
+//
+int Event_Handler::
+register_global_handler (Event_Handler_Interface * eh)
+{
+  int retval = this->insert_into_global_handlers (eh);
+
+  if (0 == retval)
+    eh->initialize (this->project_);
+
+  return retval;
+}
+
+//
+// unregister_global_handler
+//
+int Event_Handler::unregister_global_handler (Event_Handler_Interface * eh)
+{
+  return this->remove_from_global_handlers (eh);
+}
+
+//
 // register_handler
 //
 int Event_Handler::
 register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 {
   Folder root = this->project_.root_folder ();
-  Meta::FCO metafco = root->meta ()->find (metaname);
+  Meta::Folder metafolder = root->meta ();
 
-  if (!metafco.is_nil ())
-    return this->register_handler (metafco.get (), eh);
+  try
+  {
+    Meta::FCO metafco = metafolder->find (metaname);
+
+    if (!metafco.is_nil ())
+      return this->register_handler (metafco.get (), eh);
+  }
+  catch (const GAME::Mga::Failed_Result & ex)
+  {
+    // We only care about the E_NOTFOUND exception. All other exception
+    // we are just going to re-throw...
+    if (ex.value () != 0x80731007)
+      throw;
+
+    // Maybe the type is a folder.
+    Meta::Folder folder = metafolder->find_folder (metaname);
+
+    if (!folder.is_nil ())
+      return this->register_handler (folder.get (), eh);
+  }
 
   return -1;
 }

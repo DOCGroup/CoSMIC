@@ -76,6 +76,8 @@ public:
    */
   void attach (Event_Handler_Interface * impl = 0);
 
+  int register_global_handler (Event_Handler_Interface * eh);
+
   /**
    * Register event handler for the specified type. If an event
    * occurs for the specfied type and the event handler registers
@@ -111,6 +113,14 @@ public:
    * @param[in]       eh            Pointer to the event handler
    */
   int unregister_handler (const Object_in obj, Event_Handler_Interface * eh);
+
+  /**
+   * @overload
+   *
+   * @param[in]       meta          The type's meta information
+   * @param[in]       eh            Pointer to the event handler
+   */
+  int unregister_global_handler (Event_Handler_Interface * eh);
 
   /// Unregister all handlers for an instance.
   int unregister_all (const Object_in obj);

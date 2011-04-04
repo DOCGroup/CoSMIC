@@ -14,8 +14,7 @@
 #define _GAME_MGA_PROJECT_H_
 
 #include "Territory.h"
-#include "Folder.h"
-#include "Object.h"
+#include "RootFolder.h"
 
 namespace GAME
 {
@@ -190,7 +189,7 @@ public:
    *
    * @return      The root folder.
    */
-  Folder root_folder (void) const;
+  RootFolder root_folder (void) const;
 
   Folder folder_by_path (const std::string & path) const;
 

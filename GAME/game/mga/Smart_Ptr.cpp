@@ -12,6 +12,29 @@ namespace Mga
 {
 
 ///////////////////////////////////////////////////////////////////////////////
+// Smart_Ptr_Base
+
+//
+// _narrow
+//
+template <typename T>
+template <typename T1>
+static T * Smart_Ptr_Base <T>::_narrow (T1 * impl)
+{
+  // Make sure we are not narrowing on a nil pointer.
+  if (impl == 0)
+    return 0;
+
+  // Try to cast the implementation.
+  T * temp = dynamic_cast <T *> (impl);
+
+  if (0 != temp)
+    return temp;
+
+  throw Invalid_Cast ();
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Smart_Ptr
 
 //
@@ -61,25 +84,6 @@ T * Smart_Ptr <T>::_retn (void)
   return impl;
 }
 
-//
-// _narrow
-//
-template <typename T>
-template <typename T1>
-static T * Smart_Ptr <T>::_narrow (T1 * impl)
-{
-  // Make sure we are not narrowing on a nil pointer.
-  if (impl == 0)
-    return 0;
-
-  // Try to cast the implementation.
-  T * temp = dynamic_cast <T *> (impl);
-
-  if (0 != temp)
-    return temp;
-
-  throw Invalid_Cast ();
-}
 
 }
 }

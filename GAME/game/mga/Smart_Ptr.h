@@ -71,6 +71,24 @@ public:
 
   bool is_nil (void) const;
 
+  /**
+   * Cast the implementation type to this implementation type.
+   *
+   * @param[in]     impl        Pointer to the implementation.
+   * @return        Pointer
+   */
+  template <typename T1>
+  static T * _narrow (T1 * impl);
+
+  template <typename T1>
+  static T * _narrow_nocheck (T1 * impl);
+
+  template <typename T1>
+  static T * _narrow (const Smart_Ptr_Base <T1> & impl);
+
+  template <typename T1>
+  static T * _narrow_nocheck (const Smart_Ptr_Base <T1> & impl);
+
 protected:
   /// Pointer to the actual implementation.
   T * impl_;
@@ -116,24 +134,6 @@ public:
 
   template <typename T1>
   const Smart_Ptr & operator = (const Smart_Ptr <T1> & ptr);
-
-  /**
-   * Cast the implementation type to this implementation type.
-   *
-   * @param[in]     impl        Pointer to the implementation.
-   * @return        Pointer
-   */
-  template <typename T1>
-  static T * _narrow (T1 * impl);
-
-  template <typename T1>
-  static T * _narrow_nocheck (T1 * impl);
-
-  template <typename T1>
-  static T * _narrow (const Smart_Ptr <T1> & impl);
-
-  template <typename T1>
-  static T * _narrow_nocheck (const Smart_Ptr <T1> & impl);
 
   /// Release the contained implementation. This will not decrement
   /// the reference count for the previously contained implementation.

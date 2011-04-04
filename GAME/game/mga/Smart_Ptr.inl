@@ -40,7 +40,7 @@ template <typename T>
 template <typename T1>
 GAME_INLINE
 Smart_Ptr_Base <T>::Smart_Ptr_Base (T1 * impl)
-: impl_ (impl)
+: impl_ (Smart_Ptr_Base::_narrow (impl))
 {
 
 }
@@ -168,6 +168,39 @@ bool Smart_Ptr_Base <T>::is_nil (void) const
   return this->impl_ == 0;
 }
 
+//
+// _narrow
+//
+template <typename T>
+template <typename T1>
+GAME_INLINE
+static T * Smart_Ptr_Base <T>::_narrow (const Smart_Ptr_Base <T1> & impl)
+{
+  return Smart_Ptr_Base <T>::_narrow (const_cast <T1 *> (impl.get ()));
+}
+
+//
+// _narrow_no_check
+//
+template <typename T>
+template <typename T1>
+GAME_INLINE
+static T * Smart_Ptr_Base <T>::_narrow_nocheck (T1 * impl)
+{
+  return dynamic_cast <T *> (impl);
+}
+
+//
+// _narrow_nocheck
+//
+template <typename T>
+template <typename T1>
+GAME_INLINE
+static T * Smart_Ptr_Base <T>::_narrow_nocheck (const Smart_Ptr_Base <T1> & impl)
+{
+  return Smart_Ptr_Base <T>::_narrow_nocheck (const_cast <T1 *> (impl.get ()));
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Smart_Ptr
 
@@ -213,7 +246,7 @@ template <typename T>
 template <typename T1>
 GAME_INLINE
 Smart_Ptr <T>::Smart_Ptr (T1 * impl)
-: Smart_Ptr_Base (impl)
+: Smart_Ptr_Base (Smart_Ptr::_narrow (impl))
 {
   if (0 != this->impl_)
     this->impl_->increment ();
@@ -240,17 +273,6 @@ Smart_Ptr <T>::~Smart_Ptr (void)
 {
   if (0 != this->impl_)
     this->impl_->decrement ();
-}
-
-//
-// _narrow_no_check
-//
-template <typename T>
-template <typename T1>
-GAME_INLINE
-static T * Smart_Ptr <T>::_narrow_nocheck (T1 * impl)
-{
-  return dynamic_cast <T *> (impl);
 }
 
 //
@@ -326,28 +348,6 @@ GAME_INLINE
 bool Smart_Ptr <T>::operator != (const Smart_Ptr <T1> & rhs) const
 {
   return !(*this == rhs);
-}
-
-//
-// _narrow
-//
-template <typename T>
-template <typename T1>
-GAME_INLINE
-static T * Smart_Ptr <T>::_narrow (const Smart_Ptr <T1> & impl)
-{
-  return Smart_Ptr <T>::_narrow (const_cast <T1 *> (impl.get ()));
-}
-
-//
-// _narrow
-//
-template <typename T>
-template <typename T1>
-GAME_INLINE
-static T * Smart_Ptr <T>::_narrow_nocheck (const Smart_Ptr <T1> & impl)
-{
-  return Smart_Ptr <T>::_narrow_nocheck (const_cast <T1 *> (impl.get ()));
 }
 
 }

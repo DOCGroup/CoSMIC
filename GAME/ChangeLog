@@ -1,8 +1,37 @@
+Mon Apr  4 21:35:40 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/MetaBase.inl:
+
+          Re-implemented the is_equal_to () method.
+
+        * game/mga/MetaFolder.h:
+        * game/mga/MetaFolder.cpp:
+
+          Implemented the find_folders () method.
+
+        * game/mga/Project.h:
+        * game/mga/Project.cpp:
+
+          Changed the return type for root_folder () to RootFolder.
+
+        * game/mga/Smart_Ptr.h:
+        * game/mga/Smart_Ptr.inl:
+        * game/mga/Smart_Ptr.cpp:
+
+          Moved the _narrow () methods to Smart_Ptr_Base class. This
+          will allow those methods to be used in all derived classes.
+
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler.cpp:
+
+          Implemented a method for registering/unregistering global
+          event handlers.
+
 Tue Mar 22 20:09:59 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * bin/generate_gme_interpreter.py:
-		
-		Updated the interpreter skeleton generator script
+
+          Updated the interpreter skeleton generator script
 
 Mon Mar 21 15:37:49 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 

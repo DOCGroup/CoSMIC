@@ -76,11 +76,10 @@ unsigned long Base_Impl::hash (void) const
 //
 // is_equal_to
 //
+GAME_INLINE
 bool Base_Impl::is_equal_to (const Base_Impl * impl) const
 {
-  return
-    this->metabase_.p == impl->metabase_.p ||
-    this->name () == impl->name ();
+  return this == impl ? true : this->name () == impl->name ();
 }
 
 }
