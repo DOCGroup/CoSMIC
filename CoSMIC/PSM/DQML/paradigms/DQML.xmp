@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="DQML" guid="{6F51F0DB-8CAF-43C2-8687-7DC01E235B2A}" cdate="Sun Mar 06 23:16:00 2011" mdate="Sun Mar 06 23:16:00 2011" >
+<paradigm name="DQML" guid="{E79DC094-F699-4705-A403-0A92B577E955}" cdate="Sun Mar 06 23:16:00 2011" mdate="Sun Mar 06 23:16:00 2011" >
 
 	<comment></comment>
 
 	<author></author>
 
-	<folder name = "RootFolder" metaref = "1000"  rootobjects = "DDSQoS" >
+	<folder name = "RootFolder" metaref = "1000"  subfolders = "iCCM" rootobjects = "DDSQoS" >
 		<constraint type="function" name="Are_Deadlines_Compatible">
 			<![CDATA[method;gme::Model;reader: DataReader, writers: ocl::Set;ocl::Boolean;
 			let dr_deadline_set = reader.connectedFCOs(dr_deadline_Connection) in
@@ -490,14 +490,14 @@ endif]]>
 		</attrdef>
 		<attrdef name="lease_duration" metaref = "1169" valuetype = "integer" defvalue = "-1">
 		</attrdef>
-		<attrdef name="lifespan_duration" metaref = "1307" valuetype = "integer" defvalue = "-1">
+		<attrdef name="lifespan_duration" metaref = "1485" valuetype = "integer" defvalue = "-1">
 		</attrdef>
 		<attrdef name="liveliness_kind" metaref = "1170" valuetype = "enum" defvalue = "AUTOMATIC">
 			<enumitem dispname = "AUTOMATIC" value = "AUTOMATIC"></enumitem>
 			<enumitem dispname = "MANUAL_BY_PARTICIPANT" value = "MANUAL_BY_PARTICIPANT"></enumitem>
 			<enumitem dispname = "MANUAL_BY_TOPIC" value = "MANUAL_BY_TOPIC"></enumitem>
 		</attrdef>
-		<attrdef name="max_blocking_time" metaref = "1183" valuetype = "integer" defvalue = "100">
+		<attrdef name="max_blocking_time" metaref = "1486" valuetype = "integer" defvalue = "100">
 		</attrdef>
 		<attrdef name="max_instances" metaref = "1235" valuetype = "integer" defvalue = "-1">
 		</attrdef>
@@ -565,7 +565,7 @@ endif]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="latency-50x50"></regnode>
 		</atom>
-		<atom name = "LifespanQosPolicy" metaref = "1310"  attributes = "name lifespan_duration">
+		<atom name = "LifespanQosPolicy" metaref = "1487"  attributes = "name lifespan_duration">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="lifespan-50x50"></regnode>
 		</atom>
@@ -584,6 +584,9 @@ endif]]>
 		<atom name = "PartitionQosPolicy" metaref = "1303"  attributes = "name partition_name">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="partition-50x50"></regnode>
+		</atom>
+		<atom name = "Placeholder" metaref = "1667" >
+				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "PresentationQosPolicy" metaref = "1111"  attributes = "name ordered_access access_scope coherent_access">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -621,7 +624,7 @@ endif]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="writer-data-50x50"></regnode>
 		</atom>
-		<connection name = "dp_entityfactory_Connection" metaref = "1347" >
+		<connection name = "dp_entityfactory_Connection" metaref = "1099" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -635,7 +638,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dp_pub_Connection" metaref = "1388" >
+		<connection name = "dp_pub_Connection" metaref = "1100" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -649,7 +652,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dp_sub_Connection" metaref = "1389" >
+		<connection name = "dp_sub_Connection" metaref = "1101" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -663,7 +666,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dp_topic_Connection" metaref = "1390" >
+		<connection name = "dp_topic_Connection" metaref = "1102" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -677,7 +680,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dp_userdata_Connection" metaref = "1214" >
+		<connection name = "dp_userdata_Connection" metaref = "1103" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -691,7 +694,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dpf_dp_Connection" metaref = "1391" >
+		<connection name = "dpf_dp_Connection" metaref = "1104" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -705,7 +708,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dpfactory_entityfactory_Connection" metaref = "1348" >
+		<connection name = "dpfactory_entityfactory_Connection" metaref = "1105" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -719,7 +722,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_deadline_Connection" metaref = "1243" >
+		<connection name = "dr_deadline_Connection" metaref = "1106" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -733,7 +736,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_dstOrder_Connection" metaref = "1199" >
+		<connection name = "dr_dstOrder_Connection" metaref = "1107" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -747,7 +750,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_durqos_Connection" metaref = "1244" >
+		<connection name = "dr_durqos_Connection" metaref = "1108" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -761,7 +764,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_history_Connection" metaref = "1312" >
+		<connection name = "dr_history_Connection" metaref = "1488" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -775,7 +778,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_latency_Connection" metaref = "1245" >
+		<connection name = "dr_latency_Connection" metaref = "1489" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -789,7 +792,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_liveliness_Connection" metaref = "1172" >
+		<connection name = "dr_liveliness_Connection" metaref = "1490" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -803,7 +806,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_ownership_Connection" metaref = "1158" >
+		<connection name = "dr_ownership_Connection" metaref = "1112" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -817,7 +820,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_readerdatalifecycle_Connection" metaref = "1349" >
+		<connection name = "dr_readerdatalifecycle_Connection" metaref = "1113" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -831,7 +834,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_reliability_Connection" metaref = "1186" >
+		<connection name = "dr_reliability_Connection" metaref = "1491" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -845,7 +848,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_res_Connection" metaref = "1350" >
+		<connection name = "dr_res_Connection" metaref = "1115" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -859,7 +862,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_sub_Connection" metaref = "1102" >
+		<connection name = "dr_sub_Connection" metaref = "1116" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -873,7 +876,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_timebased_Connection" metaref = "1246" >
+		<connection name = "dr_timebased_Connection" metaref = "1492" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -887,7 +890,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_topic_Connection" metaref = "1093" >
+		<connection name = "dr_topic_Connection" metaref = "1118" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -901,7 +904,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dr_userdata_Connection" metaref = "1215" >
+		<connection name = "dr_userdata_Connection" metaref = "1119" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -915,7 +918,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_deadline_Connection" metaref = "1247" >
+		<connection name = "dw_deadline_Connection" metaref = "1493" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -929,7 +932,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_dstOrder_Connection" metaref = "1200" >
+		<connection name = "dw_dstOrder_Connection" metaref = "1494" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -943,7 +946,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_durqos_Connection" metaref = "1248" >
+		<connection name = "dw_durqos_Connection" metaref = "1495" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -957,7 +960,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_dursvc_Connection" metaref = "1249" >
+		<connection name = "dw_dursvc_Connection" metaref = "1496" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -971,7 +974,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_history_Connection" metaref = "1313" >
+		<connection name = "dw_history_Connection" metaref = "1497" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -985,7 +988,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_latency_Connection" metaref = "1250" >
+		<connection name = "dw_latency_Connection" metaref = "1498" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -999,7 +1002,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_lifespan_Connection" metaref = "1314" >
+		<connection name = "dw_lifespan_Connection" metaref = "1499" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1013,7 +1016,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_liveliness_Connection" metaref = "1173" >
+		<connection name = "dw_liveliness_Connection" metaref = "1500" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1027,7 +1030,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_ownership_Connection" metaref = "1159" >
+		<connection name = "dw_ownership_Connection" metaref = "1501" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1041,7 +1044,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_ownerstrength_Connection" metaref = "1251" >
+		<connection name = "dw_ownerstrength_Connection" metaref = "1502" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1055,7 +1058,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_pub_Connection" metaref = "1103" >
+		<connection name = "dw_pub_Connection" metaref = "1130" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1069,7 +1072,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_reliability_Connection" metaref = "1187" >
+		<connection name = "dw_reliability_Connection" metaref = "1131" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1083,7 +1086,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_res_Connection" metaref = "1351" >
+		<connection name = "dw_res_Connection" metaref = "1132" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1097,7 +1100,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_topic_Connection" metaref = "1094" >
+		<connection name = "dw_topic_Connection" metaref = "1133" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1111,7 +1114,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_transpri_Connection" metaref = "1315" >
+		<connection name = "dw_transpri_Connection" metaref = "1134" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1125,7 +1128,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_userdata_Connection" metaref = "1216" >
+		<connection name = "dw_userdata_Connection" metaref = "1135" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1139,7 +1142,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "dw_writerdatalifecycle_Connection" metaref = "1352" >
+		<connection name = "dw_writerdatalifecycle_Connection" metaref = "1136" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1153,7 +1156,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "pub_entityfactory_Connection" metaref = "1353" >
+		<connection name = "pub_entityfactory_Connection" metaref = "1137" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1167,7 +1170,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "pub_groupdata_Connection" metaref = "1252" >
+		<connection name = "pub_groupdata_Connection" metaref = "1138" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1181,7 +1184,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "pub_part_Connection" metaref = "1400" >
+		<connection name = "pub_part_Connection" metaref = "1139" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1195,7 +1198,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "pub_presqos_Connection" metaref = "1253" >
+		<connection name = "pub_presqos_Connection" metaref = "1140" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1209,7 +1212,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "sub_entityfactory_Connection" metaref = "1354" >
+		<connection name = "sub_entityfactory_Connection" metaref = "1141" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1223,7 +1226,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "sub_groupdata_Connection" metaref = "1254" >
+		<connection name = "sub_groupdata_Connection" metaref = "1142" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1237,7 +1240,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "sub_part_Connection" metaref = "1401" >
+		<connection name = "sub_part_Connection" metaref = "1503" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1251,7 +1254,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "sub_presqos_Connection" metaref = "1255" >
+		<connection name = "sub_presqos_Connection" metaref = "1504" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1265,7 +1268,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "top_deadline_Connection" metaref = "1256" >
+		<connection name = "top_deadline_Connection" metaref = "1145" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1279,7 +1282,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "top_latency_Connection" metaref = "1257" >
+		<connection name = "top_latency_Connection" metaref = "1146" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1293,7 +1296,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_dstOrder_Connection" metaref = "1201" >
+		<connection name = "topic_dstOrder_Connection" metaref = "1147" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1307,7 +1310,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_durqos_Connection" metaref = "1258" >
+		<connection name = "topic_durqos_Connection" metaref = "1505" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1321,7 +1324,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_dursvc_Connection" metaref = "1259" >
+		<connection name = "topic_dursvc_Connection" metaref = "1149" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1335,7 +1338,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_history_Connection" metaref = "1316" >
+		<connection name = "topic_history_Connection" metaref = "1150" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1349,7 +1352,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_lifespan_Connection" metaref = "1317" >
+		<connection name = "topic_lifespan_Connection" metaref = "1151" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1363,7 +1366,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_liveliness_Connection" metaref = "1174" >
+		<connection name = "topic_liveliness_Connection" metaref = "1506" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1377,7 +1380,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_ownership_Connection" metaref = "1160" >
+		<connection name = "topic_ownership_Connection" metaref = "1153" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1391,7 +1394,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_reliability_Connection" metaref = "1188" >
+		<connection name = "topic_reliability_Connection" metaref = "1154" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1405,7 +1408,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_res_Connection" metaref = "1355" >
+		<connection name = "topic_res_Connection" metaref = "1155" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1419,7 +1422,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_topicdata_Connection" metaref = "1260" >
+		<connection name = "topic_topicdata_Connection" metaref = "1507" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1433,7 +1436,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "topic_transpri_Connection" metaref = "1318" >
+		<connection name = "topic_transpri_Connection" metaref = "1508" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -1447,15 +1450,293 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<model name = "DDSQoS" metaref = "1002" >
+		<model name = "DDSDataReader" metaref = "1682" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
-			<role name = "DataReader" metaref = "1004" kind = "DataReader"></role>
-			<role name = "DataWriter" metaref = "1005" kind = "DataWriter"></role>
+			<constraint name="ValidDDSDataReaderPartCardinality119" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DestinationOrderQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality120" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TimeBasedFilterQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality121" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality122" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "OwnershipQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality123" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality124" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality125" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality126" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DurabilityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality127" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LatencyBudgetQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality128" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality129" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ReaderDataLifecycleQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataReaderPartCardinality130" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataReader, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSPublisherSubscriberPartCardinality149" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DDSTopic" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSPublisherSubscriber, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "DDSTopic" metaref = "1683" kind = "DDSTopic"></role>
+			<role name = "DeadlineQosPolicy" metaref = "1684" kind = "DeadlineQosPolicy"></role>
+			<role name = "DestinationOrderQosPolicy" metaref = "1685" kind = "DestinationOrderQosPolicy"></role>
+			<role name = "DurabilityQosPolicy" metaref = "1686" kind = "DurabilityQosPolicy"></role>
+			<role name = "HistoryQosPolicy" metaref = "1687" kind = "HistoryQosPolicy"></role>
+			<role name = "LatencyBudgetQosPolicy" metaref = "1688" kind = "LatencyBudgetQosPolicy"></role>
+			<role name = "LivelinessQosPolicy" metaref = "1689" kind = "LivelinessQosPolicy"></role>
+			<role name = "OwnershipQosPolicy" metaref = "1690" kind = "OwnershipQosPolicy"></role>
+			<role name = "PublisherQoS" metaref = "1691" kind = "PublisherQoS"></role>
+			<role name = "ReaderDataLifecycleQosPolicy" metaref = "1692" kind = "ReaderDataLifecycleQosPolicy"></role>
+			<role name = "ReliabilityQosPolicy" metaref = "1693" kind = "ReliabilityQosPolicy"></role>
+			<role name = "ResourceLimitsQosPolicy" metaref = "1694" kind = "ResourceLimitsQosPolicy"></role>
+			<role name = "SubscriberQoS" metaref = "1695" kind = "SubscriberQoS"></role>
+			<role name = "TimeBasedFilterQosPolicy" metaref = "1696" kind = "TimeBasedFilterQosPolicy"></role>
+			<role name = "UserDataQosPolicy" metaref = "1697" kind = "UserDataQosPolicy"></role>
+			<aspect name = "Interface" metaref = "1698" >
+				<part metaref = "1699" role = "DDSTopic" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "PublisherSubscriberQoS" metaref = "1700" >
+				<dispname>QoS</dispname>
+				<part metaref = "1701" role = "PublisherQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1702" role = "SubscriberQoS" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "DataReaderQoS" metaref = "1703" >
+				<dispname>QoS</dispname>
+				<part metaref = "1704" role = "DeadlineQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1705" role = "DestinationOrderQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1706" role = "DurabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1707" role = "HistoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1708" role = "LatencyBudgetQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1709" role = "LivelinessQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1710" role = "OwnershipQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1711" role = "ReaderDataLifecycleQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1712" role = "ReliabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1713" role = "ResourceLimitsQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1714" role = "TimeBasedFilterQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1715" role = "UserDataQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DDSDataWriter" metaref = "1716" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<constraint name="ValidDDSDataWriterPartCardinality131" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DestinationOrderQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality132" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality133" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "OwnershipQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality134" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality135" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality136" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality137" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DurabilityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality138" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LatencyBudgetQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality139" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LifespanQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality140" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "WriterDataLifecycleQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality141" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality142" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TransportPriorityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality143" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDataWriterPartCardinality144" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "OwnershipStrengthQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDataWriter, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSPublisherSubscriberPartCardinality149" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DDSTopic" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSPublisherSubscriber, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "DDSTopic" metaref = "1717" kind = "DDSTopic"></role>
+			<role name = "DeadlineQosPolicy" metaref = "1718" kind = "DeadlineQosPolicy"></role>
+			<role name = "DestinationOrderQosPolicy" metaref = "1719" kind = "DestinationOrderQosPolicy"></role>
+			<role name = "DurabilityQosPolicy" metaref = "1720" kind = "DurabilityQosPolicy"></role>
+			<role name = "HistoryQosPolicy" metaref = "1721" kind = "HistoryQosPolicy"></role>
+			<role name = "LatencyBudgetQosPolicy" metaref = "1722" kind = "LatencyBudgetQosPolicy"></role>
+			<role name = "LifespanQosPolicy" metaref = "1723" kind = "LifespanQosPolicy"></role>
+			<role name = "LivelinessQosPolicy" metaref = "1724" kind = "LivelinessQosPolicy"></role>
+			<role name = "OwnershipQosPolicy" metaref = "1725" kind = "OwnershipQosPolicy"></role>
+			<role name = "OwnershipStrengthQosPolicy" metaref = "1726" kind = "OwnershipStrengthQosPolicy"></role>
+			<role name = "PublisherQoS" metaref = "1727" kind = "PublisherQoS"></role>
+			<role name = "ReliabilityQosPolicy" metaref = "1728" kind = "ReliabilityQosPolicy"></role>
+			<role name = "ResourceLimitsQosPolicy" metaref = "1729" kind = "ResourceLimitsQosPolicy"></role>
+			<role name = "SubscriberQoS" metaref = "1730" kind = "SubscriberQoS"></role>
+			<role name = "TransportPriorityQosPolicy" metaref = "1731" kind = "TransportPriorityQosPolicy"></role>
+			<role name = "UserDataQosPolicy" metaref = "1732" kind = "UserDataQosPolicy"></role>
+			<role name = "WriterDataLifecycleQosPolicy" metaref = "1733" kind = "WriterDataLifecycleQosPolicy"></role>
+			<aspect name = "Interface" metaref = "1734" >
+				<part metaref = "1735" role = "DDSTopic" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "PublisherSubscriberQoS" metaref = "1736" >
+				<dispname>QoS</dispname>
+				<part metaref = "1737" role = "PublisherQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1738" role = "SubscriberQoS" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "DataWriterQoS" metaref = "1739" >
+				<dispname>QoS</dispname>
+				<part metaref = "1740" role = "DeadlineQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1741" role = "DestinationOrderQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1742" role = "DurabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1743" role = "HistoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1744" role = "LatencyBudgetQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1745" role = "LifespanQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1746" role = "LivelinessQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1747" role = "OwnershipQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1748" role = "OwnershipStrengthQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1749" role = "ReliabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1750" role = "ResourceLimitsQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1751" role = "TransportPriorityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1752" role = "UserDataQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1753" role = "WriterDataLifecycleQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DDSDomain" metaref = "1754" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<constraint name="ValidDDSDomainPartCardinality145" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDomain, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDomainPartCardinality146" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DDSDomainParticipant" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDomain, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "DDSDomainParticipant" metaref = "1755" kind = "DDSDomainParticipant"></role>
+			<role name = "EntityFactoryQosPolicy" metaref = "1756" kind = "EntityFactoryQosPolicy"></role>
+			<aspect name = "Interface" metaref = "1757" >
+				<part metaref = "1758" role = "DDSDomainParticipant" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "DomainQoS" metaref = "1759" >
+				<dispname>QoS</dispname>
+				<part metaref = "1760" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DDSDomainParticipant" metaref = "1761" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<constraint name="ValidDDSDomainParticipantPartCardinality147" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDomainParticipant, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSDomainParticipantPartCardinality148" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSDomainParticipant, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "DDSDataReader" metaref = "1762" kind = "DDSDataReader"></role>
+			<role name = "DDSDataWriter" metaref = "1763" kind = "DDSDataWriter"></role>
+			<role name = "EntityFactoryQosPolicy" metaref = "1764" kind = "EntityFactoryQosPolicy"></role>
+			<role name = "UserDataQosPolicy" metaref = "1765" kind = "UserDataQosPolicy"></role>
+			<aspect name = "Interface" metaref = "1766" >
+				<part metaref = "1767" role = "DDSDataReader" primary = "yes" linked = "no"></part>
+				<part metaref = "1768" role = "DDSDataWriter" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "DomainParticipantQoS" metaref = "1769" >
+				<dispname>QoS</dispname>
+				<part metaref = "1770" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1771" role = "UserDataQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DDSQoS" metaref = "1158" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<role name = "DataReader" metaref = "1159" kind = "DataReader"></role>
+			<role name = "DataWriter" metaref = "1160" kind = "DataWriter"></role>
 			<role name = "DeadlineQosPolicy" metaref = "1127" kind = "DeadlineQosPolicy"></role>
 			<role name = "DestinationOrderQosPolicy" metaref = "1202" kind = "DestinationOrderQosPolicy"></role>
-			<role name = "DomainParticipant" metaref = "1217" kind = "DomainParticipant"></role>
-			<role name = "DomainParticipantFactory" metaref = "1356" kind = "DomainParticipantFactory"></role>
+			<role name = "DomainParticipant" metaref = "1163" kind = "DomainParticipant"></role>
+			<role name = "DomainParticipantFactory" metaref = "1164" kind = "DomainParticipantFactory"></role>
 			<role name = "DurabilityQosPolicy" metaref = "1056" kind = "DurabilityQosPolicy"></role>
 			<role name = "DurabilityServiceQosPolicy" metaref = "1261" kind = "DurabilityServiceQosPolicy"></role>
 			<role name = "EntityFactoryQosPolicy" metaref = "1357" kind = "EntityFactoryQosPolicy"></role>
@@ -1468,83 +1749,83 @@ endif]]>
 			<role name = "OwnershipStrengthQosPolicy" metaref = "1263" kind = "OwnershipStrengthQosPolicy"></role>
 			<role name = "PartitionQosPolicy" metaref = "1304" kind = "PartitionQosPolicy"></role>
 			<role name = "PresentationQosPolicy" metaref = "1114" kind = "PresentationQosPolicy"></role>
-			<role name = "Publisher" metaref = "1011" kind = "Publisher"></role>
+			<role name = "Publisher" metaref = "1177" kind = "Publisher"></role>
 			<role name = "ReaderDataLifecycleQosPolicy" metaref = "1358" kind = "ReaderDataLifecycleQosPolicy"></role>
-			<role name = "ReliabilityQosPolicy" metaref = "1189" kind = "ReliabilityQosPolicy"></role>
+			<role name = "ReliabilityQosPolicy" metaref = "1509" kind = "ReliabilityQosPolicy"></role>
 			<role name = "ResourceLimitsQosPolicy" metaref = "1359" kind = "ResourceLimitsQosPolicy"></role>
-			<role name = "Subscriber" metaref = "1012" kind = "Subscriber"></role>
+			<role name = "Subscriber" metaref = "1181" kind = "Subscriber"></role>
 			<role name = "TimeBasedFilterQosPolicy" metaref = "1128" kind = "TimeBasedFilterQosPolicy"></role>
-			<role name = "Topic" metaref = "1013" kind = "Topic"></role>
+			<role name = "Topic" metaref = "1183" kind = "Topic"></role>
 			<role name = "TopicDataQosPolicy" metaref = "1218" kind = "TopicDataQosPolicy"></role>
 			<role name = "TransportPriorityQosPolicy" metaref = "1321" kind = "TransportPriorityQosPolicy"></role>
-			<role name = "UserDataQosPolicy" metaref = "1219" kind = "UserDataQosPolicy"></role>
+			<role name = "UserDataQosPolicy" metaref = "1510" kind = "UserDataQosPolicy"></role>
 			<role name = "WriterDataLifecycleQosPolicy" metaref = "1360" kind = "WriterDataLifecycleQosPolicy"></role>
-			<role name = "dp_entityfactory_Connection" metaref = "1361" kind = "dp_entityfactory_Connection"></role>
-			<role name = "dp_pub_Connection" metaref = "1392" kind = "dp_pub_Connection"></role>
-			<role name = "dp_sub_Connection" metaref = "1393" kind = "dp_sub_Connection"></role>
-			<role name = "dp_topic_Connection" metaref = "1394" kind = "dp_topic_Connection"></role>
-			<role name = "dp_userdata_Connection" metaref = "1220" kind = "dp_userdata_Connection"></role>
-			<role name = "dpf_dp_Connection" metaref = "1395" kind = "dpf_dp_Connection"></role>
-			<role name = "dpfactory_entityfactory_Connection" metaref = "1362" kind = "dpfactory_entityfactory_Connection"></role>
-			<role name = "dr_deadline_Connection" metaref = "1264" kind = "dr_deadline_Connection"></role>
-			<role name = "dr_dstOrder_Connection" metaref = "1203" kind = "dr_dstOrder_Connection"></role>
-			<role name = "dr_durqos_Connection" metaref = "1265" kind = "dr_durqos_Connection"></role>
-			<role name = "dr_history_Connection" metaref = "1322" kind = "dr_history_Connection"></role>
-			<role name = "dr_latency_Connection" metaref = "1266" kind = "dr_latency_Connection"></role>
-			<role name = "dr_liveliness_Connection" metaref = "1176" kind = "dr_liveliness_Connection"></role>
-			<role name = "dr_ownership_Connection" metaref = "1162" kind = "dr_ownership_Connection"></role>
-			<role name = "dr_readerdatalifecycle_Connection" metaref = "1363" kind = "dr_readerdatalifecycle_Connection"></role>
-			<role name = "dr_reliability_Connection" metaref = "1191" kind = "dr_reliability_Connection"></role>
-			<role name = "dr_res_Connection" metaref = "1364" kind = "dr_res_Connection"></role>
-			<role name = "dr_sub_Connection" metaref = "1104" kind = "dr_sub_Connection"></role>
-			<role name = "dr_timebased_Connection" metaref = "1267" kind = "dr_timebased_Connection"></role>
-			<role name = "dr_topic_Connection" metaref = "1096" kind = "dr_topic_Connection"></role>
-			<role name = "dr_userdata_Connection" metaref = "1221" kind = "dr_userdata_Connection"></role>
-			<role name = "dw_deadline_Connection" metaref = "1268" kind = "dw_deadline_Connection"></role>
-			<role name = "dw_dstOrder_Connection" metaref = "1204" kind = "dw_dstOrder_Connection"></role>
-			<role name = "dw_durqos_Connection" metaref = "1269" kind = "dw_durqos_Connection"></role>
-			<role name = "dw_dursvc_Connection" metaref = "1270" kind = "dw_dursvc_Connection"></role>
-			<role name = "dw_history_Connection" metaref = "1323" kind = "dw_history_Connection"></role>
-			<role name = "dw_latency_Connection" metaref = "1271" kind = "dw_latency_Connection"></role>
-			<role name = "dw_lifespan_Connection" metaref = "1324" kind = "dw_lifespan_Connection"></role>
-			<role name = "dw_liveliness_Connection" metaref = "1177" kind = "dw_liveliness_Connection"></role>
-			<role name = "dw_ownership_Connection" metaref = "1163" kind = "dw_ownership_Connection"></role>
-			<role name = "dw_ownerstrength_Connection" metaref = "1272" kind = "dw_ownerstrength_Connection"></role>
-			<role name = "dw_pub_Connection" metaref = "1105" kind = "dw_pub_Connection"></role>
-			<role name = "dw_reliability_Connection" metaref = "1192" kind = "dw_reliability_Connection"></role>
-			<role name = "dw_res_Connection" metaref = "1365" kind = "dw_res_Connection"></role>
-			<role name = "dw_topic_Connection" metaref = "1097" kind = "dw_topic_Connection"></role>
-			<role name = "dw_transpri_Connection" metaref = "1325" kind = "dw_transpri_Connection"></role>
-			<role name = "dw_userdata_Connection" metaref = "1222" kind = "dw_userdata_Connection"></role>
-			<role name = "dw_writerdatalifecycle_Connection" metaref = "1366" kind = "dw_writerdatalifecycle_Connection"></role>
-			<role name = "pub_entityfactory_Connection" metaref = "1367" kind = "pub_entityfactory_Connection"></role>
-			<role name = "pub_groupdata_Connection" metaref = "1273" kind = "pub_groupdata_Connection"></role>
-			<role name = "pub_part_Connection" metaref = "1402" kind = "pub_part_Connection"></role>
-			<role name = "pub_presqos_Connection" metaref = "1274" kind = "pub_presqos_Connection"></role>
-			<role name = "sub_entityfactory_Connection" metaref = "1368" kind = "sub_entityfactory_Connection"></role>
-			<role name = "sub_groupdata_Connection" metaref = "1275" kind = "sub_groupdata_Connection"></role>
-			<role name = "sub_part_Connection" metaref = "1403" kind = "sub_part_Connection"></role>
-			<role name = "sub_presqos_Connection" metaref = "1276" kind = "sub_presqos_Connection"></role>
-			<role name = "top_deadline_Connection" metaref = "1277" kind = "top_deadline_Connection"></role>
-			<role name = "top_latency_Connection" metaref = "1278" kind = "top_latency_Connection"></role>
-			<role name = "topic_dstOrder_Connection" metaref = "1205" kind = "topic_dstOrder_Connection"></role>
-			<role name = "topic_durqos_Connection" metaref = "1279" kind = "topic_durqos_Connection"></role>
-			<role name = "topic_dursvc_Connection" metaref = "1280" kind = "topic_dursvc_Connection"></role>
-			<role name = "topic_history_Connection" metaref = "1326" kind = "topic_history_Connection"></role>
-			<role name = "topic_lifespan_Connection" metaref = "1327" kind = "topic_lifespan_Connection"></role>
-			<role name = "topic_liveliness_Connection" metaref = "1178" kind = "topic_liveliness_Connection"></role>
-			<role name = "topic_ownership_Connection" metaref = "1164" kind = "topic_ownership_Connection"></role>
-			<role name = "topic_reliability_Connection" metaref = "1193" kind = "topic_reliability_Connection"></role>
-			<role name = "topic_res_Connection" metaref = "1369" kind = "topic_res_Connection"></role>
-			<role name = "topic_topicdata_Connection" metaref = "1281" kind = "topic_topicdata_Connection"></role>
-			<role name = "topic_transpri_Connection" metaref = "1328" kind = "topic_transpri_Connection"></role>
+			<role name = "dp_entityfactory_Connection" metaref = "1188" kind = "dp_entityfactory_Connection"></role>
+			<role name = "dp_pub_Connection" metaref = "1189" kind = "dp_pub_Connection"></role>
+			<role name = "dp_sub_Connection" metaref = "1190" kind = "dp_sub_Connection"></role>
+			<role name = "dp_topic_Connection" metaref = "1191" kind = "dp_topic_Connection"></role>
+			<role name = "dp_userdata_Connection" metaref = "1192" kind = "dp_userdata_Connection"></role>
+			<role name = "dpf_dp_Connection" metaref = "1193" kind = "dpf_dp_Connection"></role>
+			<role name = "dpfactory_entityfactory_Connection" metaref = "1194" kind = "dpfactory_entityfactory_Connection"></role>
+			<role name = "dr_deadline_Connection" metaref = "1195" kind = "dr_deadline_Connection"></role>
+			<role name = "dr_dstOrder_Connection" metaref = "1196" kind = "dr_dstOrder_Connection"></role>
+			<role name = "dr_durqos_Connection" metaref = "1511" kind = "dr_durqos_Connection"></role>
+			<role name = "dr_history_Connection" metaref = "1512" kind = "dr_history_Connection"></role>
+			<role name = "dr_latency_Connection" metaref = "1199" kind = "dr_latency_Connection"></role>
+			<role name = "dr_liveliness_Connection" metaref = "1200" kind = "dr_liveliness_Connection"></role>
+			<role name = "dr_ownership_Connection" metaref = "1201" kind = "dr_ownership_Connection"></role>
+			<role name = "dr_readerdatalifecycle_Connection" metaref = "1513" kind = "dr_readerdatalifecycle_Connection"></role>
+			<role name = "dr_reliability_Connection" metaref = "1203" kind = "dr_reliability_Connection"></role>
+			<role name = "dr_res_Connection" metaref = "1204" kind = "dr_res_Connection"></role>
+			<role name = "dr_sub_Connection" metaref = "1205" kind = "dr_sub_Connection"></role>
+			<role name = "dr_timebased_Connection" metaref = "1514" kind = "dr_timebased_Connection"></role>
+			<role name = "dr_topic_Connection" metaref = "1207" kind = "dr_topic_Connection"></role>
+			<role name = "dr_userdata_Connection" metaref = "1208" kind = "dr_userdata_Connection"></role>
+			<role name = "dw_deadline_Connection" metaref = "1209" kind = "dw_deadline_Connection"></role>
+			<role name = "dw_dstOrder_Connection" metaref = "1515" kind = "dw_dstOrder_Connection"></role>
+			<role name = "dw_durqos_Connection" metaref = "1516" kind = "dw_durqos_Connection"></role>
+			<role name = "dw_dursvc_Connection" metaref = "1517" kind = "dw_dursvc_Connection"></role>
+			<role name = "dw_history_Connection" metaref = "1518" kind = "dw_history_Connection"></role>
+			<role name = "dw_latency_Connection" metaref = "1214" kind = "dw_latency_Connection"></role>
+			<role name = "dw_lifespan_Connection" metaref = "1215" kind = "dw_lifespan_Connection"></role>
+			<role name = "dw_liveliness_Connection" metaref = "1216" kind = "dw_liveliness_Connection"></role>
+			<role name = "dw_ownership_Connection" metaref = "1217" kind = "dw_ownership_Connection"></role>
+			<role name = "dw_ownerstrength_Connection" metaref = "1519" kind = "dw_ownerstrength_Connection"></role>
+			<role name = "dw_pub_Connection" metaref = "1219" kind = "dw_pub_Connection"></role>
+			<role name = "dw_reliability_Connection" metaref = "1220" kind = "dw_reliability_Connection"></role>
+			<role name = "dw_res_Connection" metaref = "1221" kind = "dw_res_Connection"></role>
+			<role name = "dw_topic_Connection" metaref = "1222" kind = "dw_topic_Connection"></role>
+			<role name = "dw_transpri_Connection" metaref = "1223" kind = "dw_transpri_Connection"></role>
+			<role name = "dw_userdata_Connection" metaref = "1520" kind = "dw_userdata_Connection"></role>
+			<role name = "dw_writerdatalifecycle_Connection" metaref = "1521" kind = "dw_writerdatalifecycle_Connection"></role>
+			<role name = "pub_entityfactory_Connection" metaref = "1226" kind = "pub_entityfactory_Connection"></role>
+			<role name = "pub_groupdata_Connection" metaref = "1227" kind = "pub_groupdata_Connection"></role>
+			<role name = "pub_part_Connection" metaref = "1228" kind = "pub_part_Connection"></role>
+			<role name = "pub_presqos_Connection" metaref = "1229" kind = "pub_presqos_Connection"></role>
+			<role name = "sub_entityfactory_Connection" metaref = "1230" kind = "sub_entityfactory_Connection"></role>
+			<role name = "sub_groupdata_Connection" metaref = "1231" kind = "sub_groupdata_Connection"></role>
+			<role name = "sub_part_Connection" metaref = "1522" kind = "sub_part_Connection"></role>
+			<role name = "sub_presqos_Connection" metaref = "1523" kind = "sub_presqos_Connection"></role>
+			<role name = "top_deadline_Connection" metaref = "1524" kind = "top_deadline_Connection"></role>
+			<role name = "top_latency_Connection" metaref = "1525" kind = "top_latency_Connection"></role>
+			<role name = "topic_dstOrder_Connection" metaref = "1526" kind = "topic_dstOrder_Connection"></role>
+			<role name = "topic_durqos_Connection" metaref = "1527" kind = "topic_durqos_Connection"></role>
+			<role name = "topic_dursvc_Connection" metaref = "1528" kind = "topic_dursvc_Connection"></role>
+			<role name = "topic_history_Connection" metaref = "1529" kind = "topic_history_Connection"></role>
+			<role name = "topic_lifespan_Connection" metaref = "1530" kind = "topic_lifespan_Connection"></role>
+			<role name = "topic_liveliness_Connection" metaref = "1531" kind = "topic_liveliness_Connection"></role>
+			<role name = "topic_ownership_Connection" metaref = "1532" kind = "topic_ownership_Connection"></role>
+			<role name = "topic_reliability_Connection" metaref = "1243" kind = "topic_reliability_Connection"></role>
+			<role name = "topic_res_Connection" metaref = "1244" kind = "topic_res_Connection"></role>
+			<role name = "topic_topicdata_Connection" metaref = "1245" kind = "topic_topicdata_Connection"></role>
+			<role name = "topic_transpri_Connection" metaref = "1246" kind = "topic_transpri_Connection"></role>
 			<aspect name = "Configuration" metaref = "1014" >
-				<part metaref = "1016" role = "DataReader" primary = "yes" linked = "no"></part>
-				<part metaref = "1017" role = "DataWriter" primary = "yes" linked = "no"></part>
+				<part metaref = "1247" role = "DataReader" primary = "yes" linked = "no"></part>
+				<part metaref = "1248" role = "DataWriter" primary = "yes" linked = "no"></part>
 				<part metaref = "1129" role = "DeadlineQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1206" role = "DestinationOrderQosPolicy" primary = "yes" linked = "no"></part>
-				<part metaref = "1223" role = "DomainParticipant" primary = "yes" linked = "no"></part>
-				<part metaref = "1370" role = "DomainParticipantFactory" primary = "yes" linked = "no"></part>
+				<part metaref = "1251" role = "DomainParticipant" primary = "yes" linked = "no"></part>
+				<part metaref = "1252" role = "DomainParticipantFactory" primary = "yes" linked = "no"></part>
 				<part metaref = "1061" role = "DurabilityQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1282" role = "DurabilityServiceQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1371" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
@@ -1557,79 +1838,179 @@ endif]]>
 				<part metaref = "1284" role = "OwnershipStrengthQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1305" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1117" role = "PresentationQosPolicy" primary = "yes" linked = "no"></part>
-				<part metaref = "1023" role = "Publisher" primary = "yes" linked = "no"></part>
+				<part metaref = "1265" role = "Publisher" primary = "yes" linked = "no"></part>
 				<part metaref = "1372" role = "ReaderDataLifecycleQosPolicy" primary = "yes" linked = "no"></part>
-				<part metaref = "1190" role = "ReliabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1533" role = "ReliabilityQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1373" role = "ResourceLimitsQosPolicy" primary = "yes" linked = "no"></part>
-				<part metaref = "1024" role = "Subscriber" primary = "yes" linked = "no"></part>
-				<part metaref = "1130" role = "TimeBasedFilterQosPolicy" primary = "yes" linked = "no"></part>
-				<part metaref = "1025" role = "Topic" primary = "yes" linked = "no"></part>
+				<part metaref = "1269" role = "Subscriber" primary = "yes" linked = "no"></part>
+				<part metaref = "1534" role = "TimeBasedFilterQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1271" role = "Topic" primary = "yes" linked = "no"></part>
 				<part metaref = "1224" role = "TopicDataQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1331" role = "TransportPriorityQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1225" role = "UserDataQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1374" role = "WriterDataLifecycleQosPolicy" primary = "yes" linked = "no"></part>
-				<part metaref = "1375" role = "dp_entityfactory_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1396" role = "dp_pub_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1397" role = "dp_sub_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1398" role = "dp_topic_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1226" role = "dp_userdata_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1399" role = "dpf_dp_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1376" role = "dpfactory_entityfactory_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1285" role = "dr_deadline_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1207" role = "dr_dstOrder_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1286" role = "dr_durqos_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1336" role = "dr_history_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1276" role = "dp_entityfactory_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1277" role = "dp_pub_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1278" role = "dp_sub_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1279" role = "dp_topic_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1280" role = "dp_userdata_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1281" role = "dpf_dp_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1535" role = "dpfactory_entityfactory_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1536" role = "dr_deadline_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1537" role = "dr_dstOrder_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1285" role = "dr_durqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1286" role = "dr_history_Connection" primary = "yes" linked = "no"></part>
 				<part metaref = "1287" role = "dr_latency_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1180" role = "dr_liveliness_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1166" role = "dr_ownership_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1377" role = "dr_readerdatalifecycle_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1194" role = "dr_reliability_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1378" role = "dr_res_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1106" role = "dr_sub_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1288" role = "dr_timebased_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1099" role = "dr_topic_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1227" role = "dr_userdata_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1289" role = "dw_deadline_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1208" role = "dw_dstOrder_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1290" role = "dw_durqos_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1291" role = "dw_dursvc_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1337" role = "dw_history_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1292" role = "dw_latency_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1332" role = "dw_lifespan_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1181" role = "dw_liveliness_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1167" role = "dw_ownership_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1293" role = "dw_ownerstrength_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1107" role = "dw_pub_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1195" role = "dw_reliability_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1379" role = "dw_res_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1100" role = "dw_topic_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1333" role = "dw_transpri_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1228" role = "dw_userdata_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1380" role = "dw_writerdatalifecycle_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1381" role = "pub_entityfactory_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1294" role = "pub_groupdata_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1404" role = "pub_part_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1295" role = "pub_presqos_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1382" role = "sub_entityfactory_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1296" role = "sub_groupdata_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1405" role = "sub_part_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1297" role = "sub_presqos_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1298" role = "top_deadline_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1299" role = "top_latency_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1209" role = "topic_dstOrder_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1300" role = "topic_durqos_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1301" role = "topic_dursvc_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1338" role = "topic_history_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1334" role = "topic_lifespan_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1182" role = "topic_liveliness_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1168" role = "topic_ownership_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1196" role = "topic_reliability_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1383" role = "topic_res_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1302" role = "topic_topicdata_Connection" primary = "yes" linked = "no"></part>
-				<part metaref = "1335" role = "topic_transpri_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1288" role = "dr_liveliness_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1289" role = "dr_ownership_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1290" role = "dr_readerdatalifecycle_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1291" role = "dr_reliability_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1292" role = "dr_res_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1293" role = "dr_sub_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1294" role = "dr_timebased_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1295" role = "dr_topic_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1296" role = "dr_userdata_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1297" role = "dw_deadline_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1298" role = "dw_dstOrder_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1299" role = "dw_durqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1300" role = "dw_dursvc_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1301" role = "dw_history_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1302" role = "dw_latency_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1538" role = "dw_lifespan_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1539" role = "dw_liveliness_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1540" role = "dw_ownership_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1541" role = "dw_ownerstrength_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1307" role = "dw_pub_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1542" role = "dw_reliability_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1543" role = "dw_res_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1310" role = "dw_topic_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1544" role = "dw_transpri_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1312" role = "dw_userdata_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1313" role = "dw_writerdatalifecycle_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1314" role = "pub_entityfactory_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1315" role = "pub_groupdata_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1316" role = "pub_part_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1317" role = "pub_presqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1318" role = "sub_entityfactory_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1545" role = "sub_groupdata_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1546" role = "sub_part_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1547" role = "sub_presqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1322" role = "top_deadline_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1323" role = "top_latency_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1324" role = "topic_dstOrder_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1325" role = "topic_durqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1326" role = "topic_dursvc_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1327" role = "topic_history_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1328" role = "topic_lifespan_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1548" role = "topic_liveliness_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1549" role = "topic_ownership_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1550" role = "topic_reliability_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1332" role = "topic_res_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1333" role = "topic_topicdata_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1334" role = "topic_transpri_Connection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "DataReader" metaref = "1026" >
+		<model name = "DDSTopic" metaref = "1772" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<constraint name="ValidDDSTopicPartCardinality150" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DestinationOrderQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality151" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "OwnershipQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality152" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DurabilityServiceQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality153" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TopicDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality157" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DurabilityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality158" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LatencyBudgetQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality159" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LifespanQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality160" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality161" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TransportPriorityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDDSTopicPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DDSTopic, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "DeadlineQosPolicy" metaref = "1773" kind = "DeadlineQosPolicy"></role>
+			<role name = "DestinationOrderQosPolicy" metaref = "1774" kind = "DestinationOrderQosPolicy"></role>
+			<role name = "DurabilityQosPolicy" metaref = "1775" kind = "DurabilityQosPolicy"></role>
+			<role name = "DurabilityServiceQosPolicy" metaref = "1776" kind = "DurabilityServiceQosPolicy"></role>
+			<role name = "HistoryQosPolicy" metaref = "1777" kind = "HistoryQosPolicy"></role>
+			<role name = "LatencyBudgetQosPolicy" metaref = "1778" kind = "LatencyBudgetQosPolicy"></role>
+			<role name = "LifespanQosPolicy" metaref = "1779" kind = "LifespanQosPolicy"></role>
+			<role name = "LivelinessQosPolicy" metaref = "1780" kind = "LivelinessQosPolicy"></role>
+			<role name = "OwnershipQosPolicy" metaref = "1781" kind = "OwnershipQosPolicy"></role>
+			<role name = "ReliabilityQosPolicy" metaref = "1782" kind = "ReliabilityQosPolicy"></role>
+			<role name = "ResourceLimitsQosPolicy" metaref = "1783" kind = "ResourceLimitsQosPolicy"></role>
+			<role name = "TopicDataQosPolicy" metaref = "1784" kind = "TopicDataQosPolicy"></role>
+			<role name = "TransportPriorityQosPolicy" metaref = "1785" kind = "TransportPriorityQosPolicy"></role>
+			<aspect name = "Interface" metaref = "1786" >
+			</aspect>
+			<aspect name = "TopicQoS" metaref = "1787" >
+				<dispname>QoS</dispname>
+				<part metaref = "1788" role = "DeadlineQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1789" role = "DestinationOrderQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1790" role = "DurabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1791" role = "DurabilityServiceQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1792" role = "HistoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1793" role = "LatencyBudgetQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1794" role = "LifespanQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1795" role = "LivelinessQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1796" role = "OwnershipQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1797" role = "ReliabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1798" role = "ResourceLimitsQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1799" role = "TopicDataQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1800" role = "TransportPriorityQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DataReader" metaref = "1368" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="sink-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -1765,10 +2146,12 @@ else
 endif]]>
 				<dispname>For consistency, the History depth must be less than or equal to  Resource_Limits max_samples_per_instance.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1406" >
+			<role name = "Placeholder" metaref = "1668" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1027" >
+				<part metaref = "1669" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "DataWriter" metaref = "1028" >
+		<model name = "DataWriter" metaref = "1407" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="faucet-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -1920,10 +2303,12 @@ else
 endif]]>
 				<dispname>For consistency, the History depth must be less than or equal to  Resource_Limits max_samples_per_instance.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1407" >
+			<role name = "Placeholder" metaref = "1670" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1029" >
+				<part metaref = "1671" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "DomainParticipant" metaref = "1231" >
+		<model name = "DomainParticipant" metaref = "1425" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="participant-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -1957,10 +2342,12 @@ endif]]>
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to DomainParticipant as &quot;src&quot; over dpf_dp_Connection, has to match 1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1408" >
+			<role name = "Placeholder" metaref = "1672" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1620" >
+				<part metaref = "1673" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "DomainParticipantFactory" metaref = "1387" >
+		<model name = "DomainParticipantFactory" metaref = "1427" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="participant-factory-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -1974,10 +2361,12 @@ endif]]>
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to DomainParticipantFactory as &quot;dst&quot; over dpfactory_entityfactory_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1409" >
+			<role name = "Placeholder" metaref = "1674" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1621" >
+				<part metaref = "1675" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Publisher" metaref = "1040" >
+		<model name = "Publisher" metaref = "1429" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="printing-press-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -2011,10 +2400,47 @@ endif]]>
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Publisher as &quot;dst&quot; over pub_presqos_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1410" >
+			<role name = "Placeholder" metaref = "1676" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1041" >
+				<part metaref = "1677" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Subscriber" metaref = "1042" >
+		<model name = "PublisherQoS" metaref = "1431" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<constraint name="ValidPublisherQoSPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PublisherQoS, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPublisherQoSPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PartitionQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PublisherQoS, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPublisherQoSPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PresentationQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PublisherQoS, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPublisherQoSPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "GroupDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PublisherQoS, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "EntityFactoryQosPolicy" metaref = "1622" kind = "EntityFactoryQosPolicy"></role>
+			<role name = "GroupDataQosPolicy" metaref = "1623" kind = "GroupDataQosPolicy"></role>
+			<role name = "PartitionQosPolicy" metaref = "1624" kind = "PartitionQosPolicy"></role>
+			<role name = "PresentationQosPolicy" metaref = "1625" kind = "PresentationQosPolicy"></role>
+			<aspect name = "PublisherSubscriberQoS" metaref = "1626" >
+				<dispname>QoS</dispname>
+				<part metaref = "1627" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1628" role = "GroupDataQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1629" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1630" role = "PresentationQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Subscriber" metaref = "1441" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="paper-stack-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -2048,10 +2474,47 @@ endif]]>
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Subscriber as &quot;dst&quot; over sub_presqos_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1411" >
+			<role name = "Placeholder" metaref = "1678" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1043" >
+				<part metaref = "1679" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Topic" metaref = "1044" >
+		<model name = "SubscriberQoS" metaref = "1443" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "isTypeInfoShown" value ="true"></regnode>
+			<constraint name="ValidSubscriberQoSPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SubscriberQoS, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSubscriberQoSPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PartitionQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SubscriberQoS, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSubscriberQoSPartCardinality169" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PresentationQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SubscriberQoS, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSubscriberQoSPartCardinality170" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "GroupDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SubscriberQoS, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "EntityFactoryQosPolicy" metaref = "1631" kind = "EntityFactoryQosPolicy"></role>
+			<role name = "GroupDataQosPolicy" metaref = "1632" kind = "GroupDataQosPolicy"></role>
+			<role name = "PartitionQosPolicy" metaref = "1633" kind = "PartitionQosPolicy"></role>
+			<role name = "PresentationQosPolicy" metaref = "1634" kind = "PresentationQosPolicy"></role>
+			<aspect name = "PublisherSubscriberQoS" metaref = "1635" >
+				<dispname>QoS</dispname>
+				<part metaref = "1636" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1637" role = "GroupDataQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1638" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1639" role = "PresentationQosPolicy" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Topic" metaref = "1482" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bookshelves-70x70"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -2289,8 +2752,12 @@ else
 endif]]>
 				<dispname>For consistency, the History depth must be less than or equal to  Resource_Limits max_samples_per_instance.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1412" >
+			<role name = "Placeholder" metaref = "1680" kind = "Placeholder"></role>
+			<aspect name = "Configuration" metaref = "1045" >
+				<part metaref = "1681" role = "Placeholder" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
+		<folder name = "iCCM" metaref = "1484"  rootobjects = "DDSDomain" >
+		</folder>
 	</folder>
 </paradigm>
