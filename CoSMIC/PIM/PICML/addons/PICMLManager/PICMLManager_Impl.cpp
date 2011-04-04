@@ -21,6 +21,7 @@
 #include "ConnectorInstance_Event_Handler.h"
 #include "Default_Implementation_Event_Handler.h"
 #include "Event_Handler_Base.h"
+#include "PredefinedTypes_Handler.h"
 #include "NodeReference_Event_Handler.h"
 #include "Package_Type_Handler.h"
 #include "ToConnector_Event_Handler.h"
@@ -265,6 +266,11 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
   // Handlers for TemplatePackageInstance
   this->event_handler_->register_handler ("TemplatePackageInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Template_Module_Instance_Handler>,
+                             ACE_Null_Mutex>::instance ());
+
+  // Handlers for TemplatePackageInstance
+  this->event_handler_->register_handler ("PredefinedTypes",
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::PredefinedTypes_Handler>,
                              ACE_Null_Mutex>::instance ());
 
   return 0;

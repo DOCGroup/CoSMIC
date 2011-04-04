@@ -1,3 +1,15 @@
+Mon Apr  4 21:20:43 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Configurator.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
+
+          Implemented a new event handler that will initialize the predefined
+          types folder with all the allowable predefined types.
+
 Wed Mar 16 01:37:41 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentLib.h:
