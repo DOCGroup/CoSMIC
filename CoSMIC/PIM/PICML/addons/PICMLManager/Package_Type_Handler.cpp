@@ -166,9 +166,6 @@ Package_Type_Handler::Package_Type_Handler (void)
 //
 int Package_Type_Handler::handle_object_relation (GAME::Mga::Object_in obj)
 {
-  if (this->is_importing_)
-    return 0;
-
   GAME::Mga::Reference package_type = GAME::Mga::Reference::_narrow (obj);
   GAME::Mga::FCO fco = package_type->refers_to ();
   GAME::Mga::Model tpi = GAME::Mga::Model::_narrow (obj->parent ());
@@ -179,16 +176,19 @@ int Package_Type_Handler::handle_object_relation (GAME::Mga::Object_in obj)
   }
   else
   {
-    // We don't need to continue if the parameters have already been
-    // set. This is really a workaround for the fact that this event
-    // handler is being called twice by GME.
+    static const std::string aspect_TemplateParameters ("TemplateParameters");
+
+    // See if there are any template parameter values. If there are,
+    // then we are going to use them instead of selecting any new ones.
     std::vector <GAME::Mga::Reference> values;
-    if (0 != tpi->children ("TemplateParameterValue", values))
-      return 0;
+    tpi->children ("TemplateParameterValue", values);
+
+    std::sort (values.begin (),
+               values.end (),
+               left_to_right_t (aspect_TemplateParameters));
 
     // Get the template parameters for the template package.
     GAME::Mga::Model template_package = GAME::Mga::Model::_narrow (fco);
-    static const std::string aspect_TemplateParameters ("TemplateParameters");
     GAME::Mga::Meta::Aspect aspect = template_package->meta ()->aspect (aspect_TemplateParameters);
 
     std::vector <GAME::Mga::FCO> parameters;
@@ -202,13 +202,23 @@ int Package_Type_Handler::handle_object_relation (GAME::Mga::Object_in obj)
     // Select a concrete type for each template parameter.
     template_map_t mapping;
 
-    std::for_each (parameters.begin (),
-                   parameters.end (),
-                   boost::bind (&Package_Type_Handler::select_template_parameter,
-                                this,
-                                tpi,
-                                _1,
-                                boost::ref (mapping)));
+    if (parameters.size () != values.size ())
+    {
+      // We are going to select new template parameter values.
+      std::for_each (parameters.begin (),
+                     parameters.end (),
+                     boost::bind (&Package_Type_Handler::select_template_parameter,
+                                  this,
+                                  tpi,
+                                  _1,
+                                  boost::ref (mapping)));
+    }
+    else
+    {
+      // We are going to reuse the current parameter values.
+      for (size_t i = 0; i < values.size (); ++ i)
+        mapping[parameters[i]] = values[i];
+    }
 
     if (parameters.size () == mapping.size ())
     {
@@ -556,6 +566,12 @@ instantiate_template_package (const GAME::Mga::Model_in template_package,
   config.aspect_ = "InterfaceDefinition";
   config.location_info_ = true;
 
+  template_map_t::const_iterator
+    iter = mapping.begin (), iter_end = mapping.end ();
+
+  for (; iter != iter_end; ++ iter)
+    config.ignorable_fcos_.insert (iter->first);
+
   GAME::Mga::copy (template_package, tpi, config);
 
   // Replace the template parameters with the concrete types.
@@ -603,17 +619,18 @@ substitute_template_parameter_reference (GAME::Mga::Reference_in ref,
 {
   // Locate the refered type in the mapping.
   GAME::Mga::FCO refers_to = ref->refers_to ();
-
-  if (refers_to.is_nil ())
-    return;
-
   template_map_t::const_iterator result = mapping.find (refers_to);
 
+  // Determine the correct target.
+  GAME::Mga::FCO target =
+    result != mapping.end () ?
+    result->second->refers_to () : refers_to;
+
   // Set the reference to the concrete type.
-  if (result != mapping.end ())
-    ref->refers_to (result->second->refers_to ());
-  else
-    ref->refers_to (refers_to);
+  refers_to = ref->refers_to ();
+
+  if (refers_to != target)
+    ref->refers_to (target);
 }
 
 }

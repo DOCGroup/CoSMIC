@@ -35,7 +35,13 @@ public:
   /// Destructor.
   virtual ~AMI4CCM_Event_Handler (void);
 
+  virtual int handle_object_created (GAME::Mga::Object_in obj);
+
   virtual int handle_object_attribute (GAME::Mga::Object_in obj);
+
+private:
+  /// Helper method to instantiate a AMI4CCM connector.
+  int instantiate_connector (GAME::Mga::Object_in obj);
 };
 }
 }

@@ -1,3 +1,31 @@
+Thu Apr  7 23:42:22 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Configurator.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Bug fix where the connector implementation was not generated
+          when importing a new/existing model.
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+
+          Re-generated the header file.
+
+Thu Apr  7 15:50:30 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Added a check to validate that there are no template parameter value
+          model elements before continuing with selecting template parameter
+          values.
+
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          Added a check to validate that there is no PackageValue elmenet
+          before continuing.
+
 Mon Apr  4 21:20:43 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Configurator.h:
@@ -2265,6 +2293,28 @@ Thu Nov 11 03:52:18 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * Utils/GAME/tests/ExtensionClasses/Model/Model-UnitTest.xme:
         * Utils/GAME/tests/ExtensionClasses/Model/ModelProxy.xme:
         * Utils/GAME/tests/ExtensionClasses/Reference:
+        * Utils/GAME/tests/ExtensionClasses/Reference/Reference-UnitTest.xme:
+        * Utils/GAME/tests/ExtensionClasses/Set:
+        * Utils/GAME/tests/ExtensionClasses/Set/Set-UnitTest.xme:
+
+          Added test cases to validate the ExtensionClassesInterpreter.
+
+Wed Nov 10 03:17:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * ChangeLog:
+        * ChangeLogs/ChangeLog-10g:
+        * contrib:
+
+          CoSMIC version 0.8.3 was released. Moved the ChangeLog
+          to ChangeLogs/ChangeLog-10g. Reverted contrib svn:externals
+          property back to the HEAD revision.
+
+Local Variables:
+mode: change-log
+add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+indent-tabs-mode: nil
+End:
+nClasses/Reference:
         * Utils/GAME/tests/ExtensionClasses/Reference/Reference-UnitTest.xme:
         * Utils/GAME/tests/ExtensionClasses/Set:
         * Utils/GAME/tests/ExtensionClasses/Set/Set-UnitTest.xme:
