@@ -95,7 +95,7 @@ private:
 template < >
 struct object_type_t <Reference_Impl>
 {
-  static const int result_type = OBJTYPE_MODEL;
+  static const int result_type = OBJTYPE_REFERENCE;
 };
 
 }

@@ -302,28 +302,20 @@ const Smart_Ptr <T> & Smart_Ptr <T>::operator = (const Smart_Ptr <T1> & obj)
 // operator <
 //
 template <typename T>
+GAME_INLINE
 bool Smart_Ptr <T>::operator < (const Smart_Ptr <T> & ptr) const
 {
-  if (this->impl_ == ptr.impl_)
-    return false;
-
-  return
-    this->impl_ == 0 ||
-    (!this->impl_->is_equal_to (ptr.impl_) && this->impl_ < ptr.impl_);
+  return this->impl_ == ptr.impl_ ? false : this->impl_->id () < ptr.impl_->id ();
 }
 
 //
 // operator >
 //
 template <typename T>
+GAME_INLINE
 bool Smart_Ptr <T>::operator > (const Smart_Ptr <T> & ptr) const
 {
-  if (this->impl_ == ptr.impl_)
-    return false;
-
-  return
-    ptr.impl_ == 0 ||
-    (!this->impl_->is_equal_to (ptr.impl_) && this->impl_ > ptr.impl_);
+  return this->impl_ == ptr.impl_ ? false : this->impl_->id () > ptr.impl_->id ();
 }
 
 //

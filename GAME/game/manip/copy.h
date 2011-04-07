@@ -16,6 +16,7 @@
 #include <map>
 #include "game/mga/Model.h"
 #include "game/mga/Folder.h"
+
 #include "Manipulation_export.h"
 
 namespace GAME

@@ -122,7 +122,7 @@ public:
     Atom new_atom = Atom_Impl::_create (this->parent_.get (), metaname);
 
     // Save the atom in the configuration map.
-    this->config_.mapping_[atom] = new_atom;
+    this->config_.mapping_.insert (std::make_pair (atom, new_atom));
 
     // Set the name of the atom, and copy the attributes.
     new_atom->name (atom->name ());
@@ -140,7 +140,7 @@ public:
     Model new_model = Model_Impl::_create (this->parent_.get (), metaname);
 
     // Save the model in the configuration map.
-    this->config_.mapping_[model] = new_model;
+    this->config_.mapping_.insert (std::make_pair (model, new_model));
 
     new_model->name (model->name ());
     copy_attributes (model, new_model.get ());
@@ -175,7 +175,7 @@ public:
     const std::string metaname = src->meta ()->name ();
     Atom atom = Atom_Impl::_create (this->parent_.get (), metaname);
 
-    this->config_.mapping_[src] = atom;
+    this->config_.mapping_.insert (std::make_pair (src, atom));
 
     // Set the name of the atom.
     atom->name (src->name ());
@@ -188,7 +188,10 @@ public:
     const std::string metaname = model->meta ()->name ();
     Model new_model = Model_Impl::_create (this->parent_.get (), metaname);
 
-    this->config_.mapping_[model] = new_model;
+    const std::string path = model->path ("/");
+    const std::string id = model->id ();
+
+    this->config_.mapping_.insert (std::make_pair (model, new_model));
 
     new_model->name (model->name ());
     copy_attributes (model, new_model.get ());
@@ -313,8 +316,8 @@ struct copy_connection_t
     Connection new_conn =
       Connection_Impl::_create (this->dst_.get (),
                                 metaname,
-                                this->config_.mapping_[src_from].get (),
-                                this->config_.mapping_[src_to].get ());
+                                this->config_.mapping_[src_from],
+                                this->config_.mapping_[src_to]);
 
     new_conn->name (src_conn->name ());
 
@@ -354,13 +357,18 @@ struct copy_reference_t
     Reference new_ref = Reference_Impl::_create (this->dst_.get (), metaname);
 
     // Save the new element in the configuration mapping.
-    this->config_.mapping_[fco] = new_ref;
+    this->config_.mapping_.insert (std::make_pair  (fco, new_ref));
 
     new_ref->name (orig->name ());
 
     // Set the reference element.
-    FCO target = this->config_.mapping_[FCO (orig->refers_to ())];
-    new_ref->refers_to (target.get ());
+    FCO refers_to = orig->refers_to ();
+    FCO target = this->config_.mapping_[refers_to];
+
+    if (target.is_nil ())
+      new_ref->refers_to (refers_to);
+    else
+      new_ref->refers_to (target.get ());
 
     // Finally, copy over the attributes.
     copy_attributes (orig.get (), new_ref.get ());

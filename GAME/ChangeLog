@@ -1,3 +1,21 @@
+Thu Apr  7 15:31:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/manip/copy.h:
+        * game/manip/copy.cpp:
+
+          Bug fix where resolving references failed if the target object was
+          not involved in the original copy. This was resolved by failing back
+          to the object referring to the original referenced object.
+
+        * game/mga/Reference.h:
+
+          Bug fix where object_type_t was incorrectly specialized.
+
+        * game/mga/Smart_Ptr.inl:
+
+          Bug fix where operator < and operator > where implemented incorrectly.
+          Instead, we they are now implemented in terms of the id () method.
+
 Mon Apr  4 21:35:40 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/MetaBase.inl:
