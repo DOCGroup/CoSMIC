@@ -14,6 +14,8 @@
 #define _GAME_MANIP_COPY_H_
 
 #include <map>
+#include <set>
+
 #include "game/mga/Model.h"
 #include "game/mga/Folder.h"
 
@@ -54,6 +56,15 @@ struct GAME_MANIPULATION_Export copy_config_t
 
   /// Copy location information.
   bool location_info_;
+
+  /// Allow objects with duplicate names.
+  bool allow_duplicate_names_;
+
+  /// Allow duplicate connections in model.
+  bool allow_duplicate_connections_;
+
+  /// Set of ignorable FCOs.
+  std::set <FCO> ignorable_fcos_;
 };
 
 /**

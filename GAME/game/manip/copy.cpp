@@ -8,10 +8,12 @@
 #include "game/mga/Connection.h"
 #include "game/mga/Reference.h"
 #include "game/mga/FCO.h"
-
 #include "game/mga/MetaAttribute.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaAtom.h"
+
+#include "game/mga/modelgen.h"
+#include "game/manip/copy.h"
 
 #include "boost/bind.hpp"
 
@@ -43,20 +45,24 @@ struct copy_attribute_t
     switch (dst->meta ()->type ())
     {
     case ATTVAL_BOOLEAN:
-      dst->bool_value (src->bool_value ());
+      if (src->bool_value () != dst->bool_value ())
+        dst->bool_value (src->bool_value ());
       break;
 
     case ATTVAL_DOUBLE:
-      dst->double_value (src->double_value ());
+      if (dst->double_value () != src->double_value ())
+        dst->double_value (src->double_value ());
       break;
 
     case ATTVAL_ENUM:
     case ATTVAL_STRING:
-      dst->string_value (src->string_value ());
+      if (dst->string_value () != src->string_value ())
+        dst->string_value (src->string_value ());
       break;
 
     case ATTVAL_INTEGER:
-      dst->int_value (src->int_value ());
+      if (dst->int_value () != src->int_value ())
+        dst->int_value (src->int_value ());
       break;
     }
   }
@@ -117,15 +123,34 @@ public:
 
   virtual void handle_atom (Atom_in atom)
   {
-    // Create the atom element.
+    Atom new_atom;
     const std::string metaname = atom->meta ()->name ();
-    Atom new_atom = Atom_Impl::_create (this->parent_.get (), metaname);
+    const std::string name = atom->name ();
+
+    if (this->config_.allow_duplicate_names_)
+    {
+      // Create the new atom element.
+      new_atom = Atom_Impl::_create (this->parent_, metaname);
+      new_atom->name (name);
+    }
+    else
+    {
+      using GAME::Mga_t;
+
+      if (GAME::create_if_not <Mga_t> (this->parent_, metaname, new_atom,
+          GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                  name,
+                                  boost::bind (&GAME::Mga::Atom::impl_type::name,
+                                               boost::bind (&GAME::Mga::Atom::get, _1))))))
+      {
+        new_atom->name (name);
+      }
+    }
 
     // Save the atom in the configuration map.
     this->config_.mapping_.insert (std::make_pair (atom, new_atom));
 
     // Set the name of the atom, and copy the attributes.
-    new_atom->name (atom->name ());
     copy_attributes (atom, new_atom.get ());
 
     // Copy over the location information.
@@ -135,21 +160,42 @@ public:
 
   virtual void handle_model (Model_in model)
   {
-    // Create the model element and copy the attributes.
+    const std::string name = model->name ();
     const std::string metaname = model->meta ()->name ();
-    Model new_model = Model_Impl::_create (this->parent_.get (), metaname);
+
+    Model new_model;
+
+    if (this->config_.allow_duplicate_names_)
+    {
+      // Create the model element.
+      new_model = Model_Impl::_create (this->parent_, metaname);
+      new_model->name (name);
+    }
+    else
+    {
+      using GAME::Mga_t;
+
+      if (GAME::create_if_not <Mga_t> (this->parent_, metaname, new_model,
+          GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                  name,
+                                  boost::bind (&GAME::Mga::Model::impl_type::name,
+                                               boost::bind (&GAME::Mga::Model::get, _1))))))
+      {
+        new_model->name (name);
+      }
+    }
 
     // Save the model in the configuration map.
     this->config_.mapping_.insert (std::make_pair (model, new_model));
 
-    new_model->name (model->name ());
+    // Copy the attributes and the location.
     copy_attributes (model, new_model.get ());
 
     if (this->config_.location_info_)
       copy_location (model, new_model.get (), this->config_.aspect_);
 
     // Now, copy the model elements into the new model.
-    copy (model, new_model.get (), this->config_);
+    copy (model, new_model, this->config_);
   }
 
 private:
@@ -169,35 +215,74 @@ public:
 
   }
 
-  virtual void handle_atom (Atom_in src)
+  virtual void handle_atom (Atom_in atom)
   {
-    // Create the atom element.
-    const std::string metaname = src->meta ()->name ();
-    Atom atom = Atom_Impl::_create (this->parent_.get (), metaname);
+    Atom new_atom;
+    const std::string metaname = atom->meta ()->name ();
+    const std::string name = atom->name ();
 
-    this->config_.mapping_.insert (std::make_pair (src, atom));
+    if (this->config_.allow_duplicate_names_)
+    {
+      // Create the new atom element.
+      new_atom = Atom_Impl::_create (this->parent_, metaname);
+      new_atom->name (name);
+    }
+    else
+    {
+      using GAME::Mga_t;
 
-    // Set the name of the atom.
-    atom->name (src->name ());
-    copy_attributes (src, atom.get ());
+      if (GAME::create_if_not <Mga_t> (this->parent_, metaname, new_atom,
+          GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                  name,
+                                  boost::bind (&GAME::Mga::Atom::impl_type::name,
+                                               boost::bind (&GAME::Mga::Atom::get, _1))))))
+      {
+        new_atom->name (name);
+      }
+    }
+
+    // Save the new atom.
+    this->config_.mapping_.insert (std::make_pair (atom, new_atom));
+
+    // Copy over the attributes.
+    copy_attributes (atom, new_atom);
   }
 
   virtual void handle_model (Model_in model)
   {
-    // Create the model element and copy the attributes.
+    const std::string name = model->name ();
     const std::string metaname = model->meta ()->name ();
-    Model new_model = Model_Impl::_create (this->parent_.get (), metaname);
 
-    const std::string path = model->path ("/");
-    const std::string id = model->id ();
+    Model new_model;
 
+    if (this->config_.allow_duplicate_names_)
+    {
+      // Create the model element.
+      new_model = Model_Impl::_create (this->parent_, metaname);
+      new_model->name (name);
+    }
+    else
+    {
+      using GAME::Mga_t;
+
+      if (GAME::create_if_not <Mga_t> (this->parent_, metaname, new_model,
+          GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                  name,
+                                  boost::bind (&GAME::Mga::Model::impl_type::name,
+                                               boost::bind (&GAME::Mga::Model::get, _1))))))
+      {
+        new_model->name (name);
+      }
+    }
+
+    // Save the new model.
     this->config_.mapping_.insert (std::make_pair (model, new_model));
 
-    new_model->name (model->name ());
-    copy_attributes (model, new_model.get ());
+    // Copy over the attributes.
+    copy_attributes (model, new_model);
 
     // Now, copy the model elements into the new model.
-    copy (model, new_model.get (), this->config_);
+    copy (model, new_model, this->config_);
   }
 
 private:
@@ -311,18 +396,51 @@ struct copy_connection_t
     FCO src_to = src_conn->dst ();
 
     // Now, let's create the new connection.
-    std::string metaname = src_conn->meta ()->name ();
+    const std::string metaname = src_conn->meta ()->name ();
+    const std::string name = src_conn->name ();
 
-    Connection new_conn =
-      Connection_Impl::_create (this->dst_.get (),
-                                metaname,
-                                this->config_.mapping_[src_from],
-                                this->config_.mapping_[src_to]);
+    Connection new_conn;
 
-    new_conn->name (src_conn->name ());
+    if (this->config_.allow_duplicate_connections_)
+    {
+      // We can safely create a new connection without worrying about
+      // dealing with duplicate connections.
+      new_conn =
+        Connection_Impl::_create (this->dst_,
+                                  metaname,
+                                  this->config_.mapping_[src_from],
+                                  this->config_.mapping_[src_to]);
+
+      // Update the connection's name.
+      new_conn->name (name);
+    }
+    else
+    {
+      using GAME::Mga_t;
+
+      if (!GAME::find <Mga_t> (this->dst_, metaname, new_conn,
+            boost::bind (std::logical_and <bool> (),
+              boost::bind (std::equal_to <FCO> (),
+                           this->config_.mapping_[src_from],
+                           boost::bind (&GAME::Mga::Connection::impl_type::src,
+                                        boost::bind (&GAME::Mga::Connection::get, _1))),
+              boost::bind (std::equal_to <FCO> (),
+                           this->config_.mapping_[src_to],
+                           boost::bind (&GAME::Mga::Connection::impl_type::dst,
+                                        boost::bind (&GAME::Mga::Connection::get, _1))))))
+      {
+        new_conn =
+          GAME::Mga::Connection_Impl::_create (this->dst_,
+                                               metaname,
+                                               this->config_.mapping_[src_from],
+                                               this->config_.mapping_[src_to]);
+
+        new_conn->name (name);
+      }
+    }
 
     // Finally, copy over the attributes.
-    copy_attributes (src_conn.get (), new_conn.get ());
+    copy_attributes (src_conn, new_conn);
   }
 
 private:
@@ -350,25 +468,52 @@ struct copy_reference_t
     if (fco->type () != OBJTYPE_REFERENCE)
       return;
 
-    // Create a new reference based on the source.
     Reference orig = Reference::_narrow (fco);
     const std::string metaname = orig->meta ()->name ();
+    const std::string name = orig->name ();
 
-    Reference new_ref = Reference_Impl::_create (this->dst_.get (), metaname);
+    Reference new_ref;
+
+    if (this->config_.allow_duplicate_names_)
+    {
+      // Create a new reference based on the source.
+      new_ref = Reference_Impl::_create (this->dst_, metaname);
+      new_ref->name (name);
+    }
+    else
+    {
+      using GAME::Mga_t;
+
+      if (GAME::create_if_not <Mga_t> (this->dst_, metaname, new_ref,
+          GAME::contains <Mga_t> (boost::bind (std::equal_to <std::string> (),
+                                  name,
+                                  boost::bind (&GAME::Mga::Reference::impl_type::name,
+                                               boost::bind (&GAME::Mga::Reference::get, _1))))))
+      {
+        new_ref->name (name);
+      }
+    }
 
     // Save the new element in the configuration mapping.
-    this->config_.mapping_.insert (std::make_pair  (fco, new_ref));
+    this->config_.mapping_.insert (std::make_pair  (orig, new_ref));
 
-    new_ref->name (orig->name ());
-
-    // Set the reference element.
+    // Determine what should be the FCO that the newly created
+    // reference to refer to.
     FCO refers_to = orig->refers_to ();
     FCO target = this->config_.mapping_[refers_to];
 
     if (target.is_nil ())
-      new_ref->refers_to (refers_to);
-    else
-      new_ref->refers_to (target.get ());
+      target = refers_to;
+
+    // Set the newly created references target object if they are
+    // not the same.
+    refers_to = new_ref->refers_to ();
+
+    if (this->config_.ignorable_fcos_.find (refers_to) != this->config_.ignorable_fcos_.end  ())
+    {
+      if (refers_to != target)
+        new_ref->refers_to (refers_to);
+    }
 
     // Finally, copy over the attributes.
     copy_attributes (orig.get (), new_ref.get ());
@@ -388,7 +533,9 @@ private:
 //
 copy_config_t::copy_config_t (void)
 : aspect_ (""),
-  location_info_ (true)
+  location_info_ (true),
+  allow_duplicate_names_ (false),
+  allow_duplicate_connections_ (false)
 {
 
 }
@@ -415,9 +562,7 @@ Folder copy (const Folder_in src, Folder_in dst)
 //
 // copy
 //
-Model copy (const Model_in src,
-            Model_in dst,
-            copy_config_t & config)
+Model copy (const Model_in src, Model_in dst, copy_config_t & config)
 {
   // Gather all the children at this level.
   std::vector <FCO> fcos;
@@ -447,9 +592,7 @@ Model copy (const Model_in src,
 //
 // copy
 //
-Folder copy (const Folder_in src,
-             Folder_in dst,
-             copy_config_t & config)
+Folder copy (const Folder_in src, Folder_in dst, copy_config_t & config)
 {
   // Gather all the children at this level.
   std::vector <FCO> fcos;
@@ -496,7 +639,15 @@ copy_location_i (const FCO_in src,
   // something weird may happen on the GME end.
   part = dst->part (dst_aspect);
 
-  if (!part.is_nil ())
+  if (part.is_nil ())
+    return;
+
+  // Set the location for the new element iff the locations are
+  // different. Otherwise, we need to update the location.
+  long curr_x, curr_y;
+  part.get_location (curr_x, curr_y);
+
+  if (curr_x != x || curr_y != y)
     part.set_location (x, y);
 }
 
@@ -540,9 +691,8 @@ void copy_location (const FCO_in src, FCO_in dst, const std::string & aspect)
 //
 // copy_into
 //
-Folder copy_into (const std::vector <FCO> & fcos,
-                  Folder_in dst,
-                  copy_config_t & config)
+Folder
+copy_into (const std::vector <FCO> & fcos, Folder_in dst, copy_config_t & config)
 {
   std::for_each (fcos.begin (),
                  fcos.end (),
@@ -554,9 +704,8 @@ Folder copy_into (const std::vector <FCO> & fcos,
 //
 // copy_into
 //
-Model copy_into (const std::vector <FCO> & fcos,
-                 Model_in dst,
-                 copy_config_t & config)
+Model
+copy_into (const std::vector <FCO> & fcos, Model_in dst, copy_config_t & config)
 {
   std::for_each (fcos.begin (),
                  fcos.end (),
