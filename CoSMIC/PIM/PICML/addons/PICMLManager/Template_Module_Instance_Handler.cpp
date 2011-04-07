@@ -67,24 +67,22 @@ handle_object_created (GAME::Mga::Object_in obj)
   if (this->is_importing_)
     return 0;
 
-  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+  // First, let's check if there is already a PackageType in this
+  // TemplatePackageInstance model element. THere is no need to
+  // continue if there is already a PackageType element present!
+  GAME::Mga::Model tpi = GAME::Mga::Model::_narrow (obj);
+  std::vector <GAME::Mga::Reference> package_types;
 
-  // First, get the name of the template package.
-  GAME::Dialogs::Name_Dialog name_dialog (obj, ::AfxGetMainWnd ());
-  if (name_dialog.DoModal () == IDCANCEL)
-    return -1;
+  if (0 != tpi->children ("PackageType", package_types))
+    return 0;
 
-  // Locate all the packages in the object's project.
+  // Locate all the packages in the object's project. This is done
+  // by creating a filter and applying it to this project.
   GAME::Mga::Filter filter (obj->project ());
   filter.kind ("Package");
 
   std::vector <GAME::Mga::FCO> packages;
-
-  if (0 == filter.apply (packages))
-  {
-    ::AfxMessageBox ("Project does not contain any packages.", MB_ICONWARNING);
-    return -1;
-  }
+  filter.apply (packages);
 
   // From the selected packages, select the packages that are template
   // packages (i.e., have at least one template parameter in the package).
@@ -129,14 +127,13 @@ handle_object_created (GAME::Mga::Object_in obj)
   }
 
   // Create the template package type.
-  GAME::Mga::Model tpi = GAME::Mga::Model::_narrow (obj);
   GAME::Mga::Reference ref = GAME::Mga::Reference_Impl::_create (tpi, "PackageType");
   ref->refers_to (template_package);
 
   // Set the position of the reference.
   GAME::Mga::set_position ("TemplateParameters",
-                             GAME::Mga::Point (100, 100),
-                             ref);
+                           GAME::Mga::Point (100, 100),
+                           ref);
 
   return 0;
 }

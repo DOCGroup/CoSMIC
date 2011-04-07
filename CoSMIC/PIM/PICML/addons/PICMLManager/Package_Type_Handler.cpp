@@ -175,10 +175,17 @@ int Package_Type_Handler::handle_object_relation (GAME::Mga::Object_in obj)
 
   if (fco.is_nil ())
   {
-    // We need to delete the instantiate template package.
+    // We need to delete the instantiated template package.
   }
   else
   {
+    // We don't need to continue if the parameters have already been
+    // set. This is really a workaround for the fact that this event
+    // handler is being called twice by GME.
+    std::vector <GAME::Mga::Reference> values;
+    if (0 != tpi->children ("TemplateParameterValue", values))
+      return 0;
+
     // Get the template parameters for the template package.
     GAME::Mga::Model template_package = GAME::Mga::Model::_narrow (fco);
     static const std::string aspect_TemplateParameters ("TemplateParameters");
@@ -595,11 +602,18 @@ substitute_template_parameter_reference (GAME::Mga::Reference_in ref,
                                          const template_map_t & mapping)
 {
   // Locate the refered type in the mapping.
-  template_map_t::const_iterator result = mapping.find (ref->refers_to ());
+  GAME::Mga::FCO refers_to = ref->refers_to ();
+
+  if (refers_to.is_nil ())
+    return;
+
+  template_map_t::const_iterator result = mapping.find (refers_to);
 
   // Set the reference to the concrete type.
   if (result != mapping.end ())
     ref->refers_to (result->second->refers_to ());
+  else
+    ref->refers_to (refers_to);
 }
 
 }
