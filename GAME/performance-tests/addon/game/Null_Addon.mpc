@@ -1,0 +1,19 @@
+// $Id$
+
+project (GAME_Null_Addon) : game_mga_component {
+  sharedname = GAME_Null_Addon
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Header_Files {
+    Null_Addon.h
+  }
+
+  Source_Files {
+    Null_Addon.idl
+
+    Null_Addon_Impl.cpp
+    Null_Addon_Module.cpp
+  }
+}

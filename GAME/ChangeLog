@@ -1,3 +1,26 @@
+Fri Apr  8 19:55:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * performance-tests:
+        * performance-tests/Performance_Tests.mwc:
+
+          Directory for performance tests.
+
+        * performance-tests/addon:
+        * performance-tests/addon/game:
+        * performance-tests/addon/game/GAME_Null_Addon.reg:
+        * performance-tests/addon/game/GAME_Null_Addond.reg:
+        * performance-tests/addon/game/Null_Addon.idl:
+        * performance-tests/addon/game/Null_Addon.mpc:
+        * performance-tests/addon/game/Null_Addon.cpp:
+        * performance-tests/addon/game/Null_Addon_Impl.h:
+        * performance-tests/addon/game/Null_Addon_Impl.cpp:
+        * performance-tests/addon/game/Null_Addon_Module.cpp:
+        * performance-tests/addon/game/StdAfx.h:
+        * performance-tests/addon/game/StdAfx.cpp:
+
+          Implementation of a null (or no-op) addon for benchmarking
+          the overhead of GAME.
+
 Thu Apr  7 23:39:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/manip/copy.h:

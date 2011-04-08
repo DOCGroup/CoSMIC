@@ -1,0 +1,36 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Null_Addon.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _GAME_NULL_ADDON_IDL_
+#define _GAME_NULL_ADDON_IDL_
+
+#include <Gme.idl>
+
+[
+  uuid (3E1E6EDF-211A-4D7B-BDA9-E16E669B2440),
+  version(1.0),
+]
+library Null_Addon
+{
+  importlib("stdole32.tlb");
+
+  [uuid (661324BA-2532-4981-89EA-B01B9B183B94)]
+  coclass Null_Addon
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IMgaVersionInfo;
+  };
+};
+
+#endif
+

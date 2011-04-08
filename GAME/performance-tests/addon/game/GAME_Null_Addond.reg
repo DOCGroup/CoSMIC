@@ -1,0 +1,29 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{661324BA-2532-4981-89EA-B01B9B183B94}]
+@="GAME.AddOn.Null"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{661324BA-2532-4981-89EA-B01B9B183B94}\ProgID]
+@="GAME.AddOn.Null"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{661324BA-2532-4981-89EA-B01B9B183B94}\InProcServer32]
+@="GAME_Null_Addond.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.AddOn.Null]
+@="GAME.AddOn.Null"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.AddOn.Null\CLSID]
+@="{661324BA-2532-4981-89EA-B01B9B183B94}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.AddOn.Null]
+"Tooltip"="GAME Null Addon"
+"Paradigm"="Library"
+"Type"=dword:00000002
+"Description"="GAME Null Addon"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.AddOn.Null\Associated]
+"Library"=""
