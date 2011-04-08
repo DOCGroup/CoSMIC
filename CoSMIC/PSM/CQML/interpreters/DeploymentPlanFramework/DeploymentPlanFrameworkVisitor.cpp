@@ -1,9 +1,10 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/Utils.h"
-
+#include "ace/config.h"
 #include "DeploymentPlanFrameworkVisitor.h"
+
+#include "Utils/Utils.h"
+#include "game/xml/String.h"
 
 #include <algorithm>
 #include <functional>
@@ -19,8 +20,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-#include "Utils/Utils.h"
-using Utils::XStr;
 using Utils::CreateUuid;
 
 namespace CQML
@@ -68,7 +67,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::init()
   {
-    this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+    this->impl_ = DOMImplementationRegistry::getDOMImplementation( GAME::Xml::String("LS"));
     this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
     // Set features if the serializer supports the feature/mode
@@ -120,28 +119,28 @@ namespace CQML
       }
     // Create the document
     this->doc_ =
-      this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
-                                   XStr (rootName.c_str()),
+      this->impl_->createDocument (GAME::Xml::String ("http://www.omg.org/Deployment"),
+                                   GAME::Xml::String (rootName.c_str()),
                                    0);
   }
 
   void DeploymentPlanFrameworkVisitor::initRootAttributes()
   {
-    //this->doc_->setEncoding (XStr("UTF-8"));
-    this->doc_->setXmlVersion (XStr("1.0"));
+    //this->doc_->setEncoding (GAME::Xml::String("UTF-8"));
+    this->doc_->setXmlVersion (GAME::Xml::String("1.0"));
     this->root_ = this->doc_->getDocumentElement();
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                                 XStr ("xmlns:Deployment"),
-                                 XStr ("http://www.omg.org/Deployment"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                                 XStr ("xmlns:xsi"),
-                                 XStr
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                                 GAME::Xml::String ("xmlns:Deployment"),
+                                 GAME::Xml::String ("http://www.omg.org/Deployment"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                                 GAME::Xml::String ("xmlns:xsi"),
+                                 GAME::Xml::String
                                  ("http://www.w3.org/2001/XMLSchema-instance"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                                 XStr ("xmlns:xmi"),
-                                 XStr ("http://www.omg.org/XMI"));
-    this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                               XStr
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                                 GAME::Xml::String ("xmlns:xmi"),
+                                 GAME::Xml::String ("http://www.omg.org/XMI"));
+    this->root_->setAttribute (GAME::Xml::String ("xsi:schemaLocation"),
+                               GAME::Xml::String
                               ("http://www.omg.org/Deployment Deployment.xsd"));
     this->curr_ = this->root_;
   }
@@ -176,8 +175,8 @@ namespace CQML
   DOMElement* DeploymentPlanFrameworkVisitor::createSimpleContent (const std::string& name,
                                                                    const std::string& value)
   {
-    DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
-    DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
+    DOMElement* pName = this->doc_->createElement (GAME::Xml::String (name.c_str()));
+    DOMText* pValue = this->doc_->createTextNode (GAME::Xml::String (value.c_str()));
     pName->appendChild (pValue);
     return pName;
   }
@@ -199,7 +198,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_LongInteger(const LongInteger&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -210,7 +209,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_RealNumber(const RealNumber& real)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -221,7 +220,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_Boolean(const Boolean&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -232,7 +231,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_ShortInteger(const ShortInteger&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -270,7 +269,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::generate_infoproperties (const DeploymentPlan &plan)
     {
-      DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+      DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("infoProperty"));
       this->curr_->appendChild (ele);
       this->push();
       this->curr_ = ele;
@@ -290,7 +289,7 @@ namespace CQML
                    const ImplementationArtifact& ia)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("artifact"));
 
     std::string artifactName = ia.getPath (".",false,true,"name",true);
     std::string uniqueName = ia.UUID();
@@ -300,11 +299,11 @@ namespace CQML
       }
     uniqueName = std::string ("_") + uniqueName;
 
-    ele->setAttribute (XStr ("id"), XStr (uniqueName));
+    ele->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (uniqueName));
     ele->appendChild (this->createSimpleContent ("name", artifactName));
     //ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
-    ele->appendChild (this->doc_->createElement (XStr ("source")));
-    ele->appendChild (this->doc_->createElement (XStr ("node")));
+    ele->appendChild (this->doc_->createElement (GAME::Xml::String ("source")));
+    ele->appendChild (this->doc_->createElement (GAME::Xml::String ("node")));
     std::string location = ia.location();
     if (!location.empty())
       {
@@ -313,7 +312,7 @@ namespace CQML
       }
     else
       {
-        ele->appendChild (this->doc_->createElement (XStr ("location")));
+        ele->appendChild (this->doc_->createElement (GAME::Xml::String ("location")));
       }
     this->curr_->appendChild (ele);
     this->curr_ = ele;
@@ -338,13 +337,13 @@ namespace CQML
                    const ImplementationArtifactReference& iar)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("dependsOn"));
     ele->appendChild (this->createSimpleContent ("name", iar.name()));
     const ImplementationArtifact ref = iar.ref();
     std::string refName (ref.name());
     refName += ".iad";
-    DOMElement* refEle = this->doc_->createElement (XStr ("referencedArtifact"));
-    refEle->setAttribute (XStr ("href"), XStr (refName));
+    DOMElement* refEle = this->doc_->createElement (GAME::Xml::String ("referencedArtifact"));
+    refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
     ele->appendChild (refEle);
     this->curr_->appendChild (ele);
     this->pop();
@@ -354,7 +353,7 @@ namespace CQML
                     const ArtifactExecParameter& param)
   {
     this->push();
-    DOMElement* value = this->doc_->createElement (XStr ("execParameter"));
+    DOMElement* value = this->doc_->createElement (GAME::Xml::String ("execParameter"));
     this->curr_->appendChild (value);
     this->curr_ = value;
     Property ref = param.dstArtifactExecParameter_end();
@@ -373,14 +372,14 @@ namespace CQML
     this->push();
     this->curr_->appendChild (this->createSimpleContent ("name", name));
     // Property's value
-    DOMElement* value = this->doc_->createElement (XStr ("value"));
+    DOMElement* value = this->doc_->createElement (GAME::Xml::String ("value"));
     this->curr_->appendChild (value);
     this->curr_ = value;
     // Property's type
     DataType type = property.DataType_child();
     type.Accept (*this);
     // Property's type's value
-    DOMElement* val = this->doc_->createElement (XStr ("value"));
+    DOMElement* val = this->doc_->createElement (GAME::Xml::String ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
     PredefinedType ref = CQML::PredefinedType::Cast (type.ref());
@@ -457,7 +456,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_String(const String& str)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -468,7 +467,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_Byte(const Byte& byte)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -509,7 +508,7 @@ namespace CQML
                    (const MonolithicImplementation& mimpl)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("implementation"));
 
     Implements iface = mimpl.dstImplements();
     const ComponentRef iface_ref = iface.dstImplements_end();
@@ -527,9 +526,9 @@ namespace CQML
       }
     uniqueName = std::string ("_") + uniqueName;
 
-    ele->setAttribute (XStr ("id"), XStr (uniqueName));
+    ele->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (uniqueName));
     ele->appendChild (this->createSimpleContent ("name", implName));
-    ele->appendChild (this->doc_->createElement (XStr ("source")));
+    ele->appendChild (this->doc_->createElement (GAME::Xml::String ("source")));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
 
@@ -568,7 +567,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_MonolithExecParameter(const MonolithExecParameter& mexec)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("execParameter"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
     Property ref = mexec.dstMonolithExecParameter_end();
@@ -583,8 +582,8 @@ namespace CQML
     const Component ref = iface.ref();
     std::string refName (ref.name());
     refName += ".ccd";
-    DOMElement* refEle = this->doc_->createElement (XStr ("implements"));
-    refEle->setAttribute (XStr ("href"), XStr (refName));
+    DOMElement* refEle = this->doc_->createElement (GAME::Xml::String ("implements"));
+    refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
     this->curr_->appendChild (refEle);
     this->pop();
   }
@@ -613,7 +612,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_ConfigProperty(const ConfigProperty& cp)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
     Property ref = cp.dstConfigProperty_end();
@@ -625,7 +624,7 @@ namespace CQML
           (const AssemblyConfigProperty& acp)
   {
     this->push();
-    DOMElement* value = this->doc_->createElement (XStr ("configProperty"));
+    DOMElement* value = this->doc_->createElement (GAME::Xml::String ("configProperty"));
     this->curr_->appendChild (value);
     this->curr_ = value;
     Property ref = acp.dstAssemblyConfigProperty_end();
@@ -842,7 +841,7 @@ namespace CQML
             != this->selected_instances_.end ())
           {
             // Create a connection
-            DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+            DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("connection"));
 
             this->curr_->appendChild (ele);
 
@@ -851,7 +850,7 @@ namespace CQML
 
             // Source endPoint
             DOMElement* endPoint
-               = this->doc_->createElement (XStr ("internalEndpoint"));
+               = this->doc_->createElement (GAME::Xml::String ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName",
                                    srcPortName));
             endPoint->appendChild (this->createSimpleContent ("kind",
@@ -870,7 +869,7 @@ namespace CQML
             source_connection.port_kind = dest_kind;
 
             // Destination endPoint
-            endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+            endPoint = this->doc_->createElement (GAME::Xml::String ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName",
                                    dstPortName));
             endPoint->appendChild (this->createSimpleContent ("kind",
@@ -1198,7 +1197,7 @@ namespace CQML
     (InstanceConnection const &source_comp,
      InstanceConnection const &dest_comp)
   {
-            DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+            DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("connection"));
             this->curr_->appendChild (ele);
 
             std::string connection = source_comp.port_name + "_" + dest_comp.port_name +
@@ -1207,7 +1206,7 @@ namespace CQML
 
             // Source endPoint
             DOMElement* endPoint
-               = this->doc_->createElement (XStr ("internalEndpoint"));
+               = this->doc_->createElement (GAME::Xml::String ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName",
                                    source_comp.port_name));
             endPoint->appendChild (this->createSimpleContent ("kind",
@@ -1217,7 +1216,7 @@ namespace CQML
             ele->appendChild (endPoint);
 
             // Destination endPoint
-            endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+            endPoint = this->doc_->createElement (GAME::Xml::String ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName",
                                    dest_comp.port_name));
             endPoint->appendChild (this->createSimpleContent ("kind",
@@ -1582,7 +1581,7 @@ namespace CQML
           {
             this->push();
             DOMElement*
-              ele = this->doc_->createElement (XStr ("configProperty"));
+              ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
             this->curr_->appendChild (ele);
             this->curr_ = ele;
             Property val = attrVal.second;
@@ -1670,7 +1669,7 @@ namespace CQML
      std::string set_name ("CIAO:InstancePolicy");
 
      this->push();
-     DOMElement* ele = this->doc_->createElement (XStr ("deployedResource"));
+     DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("deployedResource"));
      this->curr_->appendChild (ele);
      this->curr_ = ele;
 
@@ -1684,7 +1683,7 @@ namespace CQML
        resource_name));
 
 
-     DOMElement* property = this->doc_->createElement (XStr ("property"));
+     DOMElement* property = this->doc_->createElement (GAME::Xml::String ("property"));
      this->curr_->appendChild (property);
      this->curr_ = property;
 
@@ -1692,12 +1691,12 @@ namespace CQML
      this->curr_->appendChild (this->createSimpleContent ("name", set_name));
 
      this->push ();
-     DOMElement* value = this->doc_->createElement (XStr ("value"));
+     DOMElement* value = this->doc_->createElement (GAME::Xml::String ("value"));
      this->curr_->appendChild (value);
      this->curr_ = value;
 
      this->push ();
-     DOMElement* type = this->doc_->createElement (XStr ("type"));
+     DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
      this->curr_->appendChild (type);
      this->curr_ = type;
      this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -1705,7 +1704,7 @@ namespace CQML
      this->pop();
 
      // Property's type's value
-     DOMElement* val = this->doc_->createElement (XStr ("value"));
+     DOMElement* val = this->doc_->createElement (GAME::Xml::String ("value"));
      this->curr_->appendChild (val);
      this->curr_ = val;
      this->curr_->appendChild (this->createSimpleContent ("string",
@@ -1723,7 +1722,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::create_component_instance (Component& comp, std::string& instance_name)
   {
-    DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("instance"));
 
     /*std::string instanceName =
         comp.getPath (".",false,true,"name",true);
@@ -1742,8 +1741,8 @@ namespace CQML
     //std::string id_name = std::string ("_") + instance_name;
     std::string id_name = instance_name;
 
-    // ele->setAttribute (XStr ("id"), XStr (uniqueName));
-    ele->setAttribute (XStr ("id"), XStr (id_name));
+    // ele->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (uniqueName));
+    ele->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (id_name));
 
     /*ele->appendChild
         (this->createSimpleContent ("name", instanceName));*/
@@ -1754,7 +1753,7 @@ namespace CQML
     ele->appendChild
         (this->createSimpleContent ("node", nodeRefName));
 
-    ele->appendChild (this->doc_->createElement (XStr ("source")));
+    ele->appendChild (this->doc_->createElement (GAME::Xml::String ("source")));
 
     this->curr_->appendChild (ele);
     this->curr_ = ele;
@@ -2200,7 +2199,7 @@ namespace CQML
          ++iter)
       {
         Component comp = *iter;
-        DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+        DOMElement* instance = this->doc_->createElement (GAME::Xml::String ("instance"));
         this->curr_->appendChild (instance);
         this->push();
         this->curr_ = instance;
@@ -2213,7 +2212,7 @@ namespace CQML
           }
         uniqueName = std::string ("_") + uniqueName;
 
-        instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+        instance->setAttribute (GAME::Xml::String ("xmi:id"), GAME::Xml::String (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
                                                           uniqueName));
         Component typeParent;
@@ -2226,8 +2225,8 @@ namespace CQML
         std::string interfaceName = typeParent.name();
         std::string refName = this->interfaces_[interfaceName];
         refName += ".cpd";
-        DOMElement* refEle = this->doc_->createElement (XStr ("package"));
-        refEle->setAttribute (XStr ("href"), XStr (refName));
+        DOMElement* refEle = this->doc_->createElement (GAME::Xml::String ("package"));
+        refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
         instance->appendChild (refEle);
         std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
         for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
@@ -2257,7 +2256,7 @@ namespace CQML
               {
                 this->push();
                 DOMElement*
-                  ele = this->doc_->createElement (XStr ("configProperty"));
+                  ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
                 Property val = attrVal.second;
@@ -2280,7 +2279,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_AttributeValue(const AttributeValue& value)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
     Property ref = value.dstAttributeValue_end();

@@ -1,6 +1,6 @@
 // $Id$
 
-project (DeploymentPlanFramework): cosmic_xerces_utils, cqmllib {
+project (DeploymentPlanFramework): game_xml, cqmllib {
   sharedname    = DeploymentPlanFramework
   dynamicflags += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL
 

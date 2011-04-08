@@ -1,3 +1,36 @@
+Fri Apr  8 18:47:47 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+
+          Removed the cosmic_xerces_utils base project.
+
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEvents.mpc:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+          Re-implemented the intepreters using the XML framework
+          in GAME.
+
+        * MPC/config/cosmic_xerces_utils.mpb:
+        * Utils/xercesc:
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+        * Utils/xercesc/Memory_Manager.h:
+        * Utils/xercesc/Memory_Manager.cpp:
+        * Utils/xercesc/Static_Configuration.h:
+        * Utils/xercesc/Static_Configuration.cpp:
+        * Utils/xercesc/XML_Error_Handler.h:
+        * Utils/xercesc/XML_Error_Handler.cpp:
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+        * Utils/xercesc/Xerces_Utils.mpc:
+        * Utils/xercesc/Xerces_Utils_export.h:
+
+          Removed these files.
+
 Thu Apr  7 23:42:22 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:

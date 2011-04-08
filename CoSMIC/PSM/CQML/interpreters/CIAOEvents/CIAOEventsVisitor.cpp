@@ -1,12 +1,15 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/Utils.h"
-
+#include "ace/config.h"
 #include "CIAOEvents/CIAOEventsVisitor.h"
+
+#include "game/xml/String.h"
+#include "Utils/Utils.h"
 
 #include "UmlExt.h"
 #include "UdmUtil.h"
+
+#include <sstream>
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -16,10 +19,7 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using Utils::XStr;
 using Utils::CreateUuid;
-
-#include <sstream>
 
 
 namespace CQML
@@ -44,7 +44,7 @@ namespace CQML
 
   void CIAOEventsVisitor::init()
   {
-    this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+    this->impl_ = DOMImplementationRegistry::getDOMImplementation(GAME::Xml::String("LS"));
     this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
     // Set features if the serializer supports the feature/mode
@@ -111,28 +111,28 @@ namespace CQML
 
     xercesc::DOMDocument* doc =
       this->impl_->createDocument (
-      XStr ("http://www.dre.vanderbilt.edu/CIAOEvents"),
-      XStr ("CIAO:CIAOEvents"),
+      GAME::Xml::String ("http://www.dre.vanderbilt.edu/CIAOEvents"),
+      GAME::Xml::String ("CIAO:CIAOEvents"),
       0);
 
-    //doc->setEncoding (XStr("UTF-8"));
-    doc->setXmlVersion (XStr("1.0"));
+    //doc->setEncoding (GAME::Xml::String("UTF-8"));
+    doc->setXmlVersion (GAME::Xml::String("1.0"));
     xercesc::DOMElement* root_node = doc->getDocumentElement();
     root_node->setAttributeNS (
-      XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:CIAO"),
-      XStr ("http://www.dre.vanderbilt.edu/CIAOEvents"));
+      GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:CIAO"),
+      GAME::Xml::String ("http://www.dre.vanderbilt.edu/CIAOEvents"));
     root_node->setAttributeNS (
-      XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xmi"),
-      XStr ("http://www.omg.org/XMI"));
+      GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:xmi"),
+      GAME::Xml::String ("http://www.omg.org/XMI"));
     root_node->setAttributeNS (
-      XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xsi"),
-      XStr ("http://www.w3.org/2001/XMLSchema-instance"));
+      GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:xsi"),
+      GAME::Xml::String ("http://www.w3.org/2001/XMLSchema-instance"));
     root_node->setAttribute (
-      XStr ("xsi:schemaLocation"),
-      XStr ("http://www.dre.vanderbilt.edu/CIAOEvents CIAOEvents.xsd"));
+      GAME::Xml::String ("xsi:schemaLocation"),
+      GAME::Xml::String ("http://www.dre.vanderbilt.edu/CIAOEvents CIAOEvents.xsd"));
 
     std::set<CQML::eventServiceConfiguration> es_models =
       event_config.eventServiceConfiguration_kind_children ();
@@ -171,38 +171,38 @@ namespace CQML
     // create dom element
     xercesc::DOMElement* ec =
       node->getOwnerDocument ()->createElement (
-      XStr("eventServiceConfiguration"));
-    ec->setAttribute (XStr("id"), XStr ((std::string)esc.configuration_id ()));
+      GAME::Xml::String("eventServiceConfiguration"));
+    ec->setAttribute (GAME::Xml::String("id"), GAME::Xml::String ((std::string)esc.configuration_id ()));
 
     // add name node
     xercesc::DOMElement* name_elem =
-      node->getOwnerDocument ()->createElement (XStr ("name"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("name"));
     xercesc::DOMText* name_text =
-      node->getOwnerDocument ()->createTextNode (XStr ((std::string)esc.name ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String ((std::string)esc.name ()));
     name_elem->appendChild (name_text);
     ec->appendChild (name_elem);
 
     // add node node
     xercesc::DOMElement* node_elem =
-      node->getOwnerDocument ()->createElement (XStr ("node"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("node"));
     xercesc::DOMText* node_text =
-      node->getOwnerDocument ()->createTextNode (XStr ((std::string)esc.node ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String ((std::string)esc.node ()));
     node_elem->appendChild (node_text);
     ec->appendChild (node_elem);
 
     // add type node
     xercesc::DOMElement* type_elem =
-      node->getOwnerDocument ()->createElement (XStr ("type"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("type"));
     xercesc::DOMText* type_text =
-      node->getOwnerDocument ()->createTextNode (XStr ((std::string)esc.type ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String ((std::string)esc.type ()));
     type_elem->appendChild (type_text);
     ec->appendChild (type_elem);
 
     // add svc_cfg_file node
     xercesc::DOMElement* svc_elem =
-      node->getOwnerDocument ()->createElement (XStr ("svc_cfg_file"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("svc_cfg_file"));
     xercesc::DOMText* svc_text =
-      node->getOwnerDocument ()->createTextNode (XStr ((std::string)esc.svc_cfg_file ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String ((std::string)esc.svc_cfg_file ()));
     svc_elem->appendChild (svc_text);
     ec->appendChild (svc_elem);
 
@@ -246,26 +246,26 @@ namespace CQML
   {
     // create dom element
     xercesc::DOMElement* filter_elem =
-      node->getOwnerDocument ()->createElement (XStr("filter"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String("filter"));
     if (!((std::string)filter.filter_id ()).empty ())
     {
-      filter_elem->setAttribute (XStr("id"),
-        XStr ((std::string)filter.filter_id ()));
+      filter_elem->setAttribute (GAME::Xml::String("id"),
+        GAME::Xml::String ((std::string)filter.filter_id ()));
     }
 
     // add name element
     xercesc::DOMElement* name_elem =
-      node->getOwnerDocument ()->createElement (XStr ("name"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("name"));
     xercesc::DOMText* name_text =
-      node->getOwnerDocument ()->createTextNode (XStr ((std::string)filter.name ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String ((std::string)filter.name ()));
     name_elem->appendChild (name_text);
     filter_elem->appendChild (name_elem);
 
     // add type element
     xercesc::DOMElement* type_elem =
-      node->getOwnerDocument ()->createElement (XStr ("type"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("type"));
     xercesc::DOMText* type_text =
-      node->getOwnerDocument ()->createTextNode (XStr ((std::string)filter.filter_type ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String ((std::string)filter.filter_type ()));
     type_elem->appendChild (type_text);
     filter_elem->appendChild (type_elem);
 
@@ -307,9 +307,9 @@ namespace CQML
 
       // add source element
       xercesc::DOMElement* source_elem =
-        node->getOwnerDocument ()->createElement (XStr ("source"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("source"));
       xercesc::DOMText* source_text =
-        node->getOwnerDocument ()->createTextNode (XStr (source_name));
+        node->getOwnerDocument ()->createTextNode (GAME::Xml::String (source_name));
       source_elem->appendChild (source_text);
       filter_elem->appendChild (source_elem);
     }
@@ -325,9 +325,9 @@ namespace CQML
       source_name = esrc_it->name ();
       // add source element
       xercesc::DOMElement* source_elem =
-        node->getOwnerDocument ()->createElement (XStr ("source"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("source"));
       xercesc::DOMText* source_text =
-        node->getOwnerDocument ()->createTextNode (XStr (source_name));
+        node->getOwnerDocument ()->createTextNode (GAME::Xml::String (source_name));
       source_elem->appendChild (source_text);
       filter_elem->appendChild (source_elem);
     }
@@ -344,7 +344,7 @@ namespace CQML
   {
     // create an addr_serv element
     xercesc::DOMElement* addr_serv_elem =
-      node->getOwnerDocument ()->createElement (XStr("addr_serv"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String("addr_serv"));
 
     // construct name and make it unique by adding a number
     std::stringstream name;
@@ -352,9 +352,9 @@ namespace CQML
 
     // add name element
     xercesc::DOMElement* name_elem =
-      node->getOwnerDocument ()->createElement (XStr ("name"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("name"));
     xercesc::DOMText* name_text =
-      node->getOwnerDocument ()->createTextNode (XStr (name.str ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String (name.str ()));
     name_elem->appendChild (name_text);
     addr_serv_elem->appendChild (name_elem);
 
@@ -364,18 +364,18 @@ namespace CQML
 
     // add port element
     xercesc::DOMElement* port_elem =
-      node->getOwnerDocument ()->createElement (XStr ("port"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("port"));
     xercesc::DOMText* port_text =
-      node->getOwnerDocument ()->createTextNode (XStr (port.str ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String (port.str ()));
     port_elem->appendChild (port_text);
     addr_serv_elem->appendChild (port_elem);
 
     // add address element
     xercesc::DOMElement* address_elem =
-      node->getOwnerDocument ()->createElement (XStr ("address"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("address"));
     xercesc::DOMText* address_text =
       node->getOwnerDocument ()->createTextNode (
-      XStr ((std::string)comm_point.address ()));
+      GAME::Xml::String ((std::string)comm_point.address ()));
     address_elem->appendChild (address_text);
     addr_serv_elem->appendChild (address_elem);
 
@@ -386,7 +386,7 @@ namespace CQML
     {
       // create udp_sender element
       xercesc::DOMElement* udp_sender_elem =
-        node->getOwnerDocument ()->createElement (XStr("udp_sender"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String("udp_sender"));
 
       // construct name for udp sender
       std::stringstream udp_sender_name;
@@ -394,19 +394,19 @@ namespace CQML
 
       // add name element
       xercesc::DOMElement* udp_name_elem =
-        node->getOwnerDocument ()->createElement (XStr ("name"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("name"));
       xercesc::DOMText* udp_name_text =
         node->getOwnerDocument ()->createTextNode (
-        XStr (udp_sender_name.str ()));
+        GAME::Xml::String (udp_sender_name.str ()));
       udp_name_elem->appendChild (udp_name_text);
       udp_sender_elem->appendChild (udp_name_elem);
 
       // add name referencing the addr_serv element
       xercesc::DOMElement* asid_elem =
-        node->getOwnerDocument ()->createElement (XStr ("addr_serv_id"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("addr_serv_id"));
       xercesc::DOMText* asid_text =
         node->getOwnerDocument ()->createTextNode (
-        XStr (name.str ()));
+        GAME::Xml::String (name.str ()));
       asid_elem->appendChild (asid_text);
       udp_sender_elem->appendChild (asid_elem);
 
@@ -424,7 +424,7 @@ namespace CQML
   {
     // create an addr_serv element
     xercesc::DOMElement* addr_serv_elem =
-      node->getOwnerDocument ()->createElement (XStr("addr_serv"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String("addr_serv"));
 
     // construct name and make it unique by adding a number
     std::stringstream name;
@@ -432,9 +432,9 @@ namespace CQML
 
     // add name element
     xercesc::DOMElement* name_elem =
-      node->getOwnerDocument ()->createElement (XStr ("name"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("name"));
     xercesc::DOMText* name_text =
-      node->getOwnerDocument ()->createTextNode (XStr (name.str ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String (name.str ()));
     name_elem->appendChild (name_text);
     addr_serv_elem->appendChild (name_elem);
 
@@ -444,18 +444,18 @@ namespace CQML
 
     // add port element
     xercesc::DOMElement* port_elem =
-      node->getOwnerDocument ()->createElement (XStr ("port"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("port"));
     xercesc::DOMText* port_text =
-      node->getOwnerDocument ()->createTextNode (XStr (port.str ()));
+      node->getOwnerDocument ()->createTextNode (GAME::Xml::String (port.str ()));
     port_elem->appendChild (port_text);
     addr_serv_elem->appendChild (port_elem);
 
     // add address element
     xercesc::DOMElement* address_elem =
-      node->getOwnerDocument ()->createElement (XStr ("address"));
+      node->getOwnerDocument ()->createElement (GAME::Xml::String ("address"));
     xercesc::DOMText* address_text =
       node->getOwnerDocument ()->createTextNode (
-      XStr ((std::string)comm_point.address ()));
+      GAME::Xml::String ((std::string)comm_point.address ()));
     address_elem->appendChild (address_text);
     addr_serv_elem->appendChild (address_elem);
 
@@ -466,7 +466,7 @@ namespace CQML
     {
       // create udp_receiver element
       xercesc::DOMElement* udp_receiver_elem =
-        node->getOwnerDocument ()->createElement (XStr("udp_receiver"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String("udp_receiver"));
 
       // construct name for udp sender
       std::stringstream udp_receiver_name;
@@ -474,19 +474,19 @@ namespace CQML
 
       // add name element
       xercesc::DOMElement* udp_name_elem =
-        node->getOwnerDocument ()->createElement (XStr ("name"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("name"));
       xercesc::DOMText* udp_name_text =
         node->getOwnerDocument ()->createTextNode (
-        XStr (udp_receiver_name.str ()));
+        GAME::Xml::String (udp_receiver_name.str ()));
       udp_name_elem->appendChild (udp_name_text);
       udp_receiver_elem->appendChild (udp_name_elem);
 
       // add name referencing the addr_serv element
       xercesc::DOMElement* asid_elem =
-        node->getOwnerDocument ()->createElement (XStr ("addr_serv_id"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("addr_serv_id"));
       xercesc::DOMText* asid_text =
         node->getOwnerDocument ()->createTextNode (
-        XStr (name.str ()));
+        GAME::Xml::String (name.str ()));
       asid_elem->appendChild (asid_text);
       udp_receiver_elem->appendChild (asid_elem);
 
@@ -502,17 +502,17 @@ namespace CQML
       }
 
       xercesc::DOMElement* multicast_elem =
-        node->getOwnerDocument ()->createElement (XStr ("is_multicast"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("is_multicast"));
       xercesc::DOMText* multicast_text =
-        node->getOwnerDocument ()->createTextNode (XStr (is_multicast));
+        node->getOwnerDocument ()->createTextNode (GAME::Xml::String (is_multicast));
       multicast_elem->appendChild (multicast_text);
       udp_receiver_elem->appendChild (multicast_elem);
 
       // add listen_port element that listens to the same port than the addr_serv
       xercesc::DOMElement* udp_port_elem =
-        node->getOwnerDocument ()->createElement (XStr ("listen_port"));
+        node->getOwnerDocument ()->createElement (GAME::Xml::String ("listen_port"));
       xercesc::DOMText* udp_port_text =
-        node->getOwnerDocument ()->createTextNode (XStr (port.str ()));
+        node->getOwnerDocument ()->createTextNode (GAME::Xml::String (port.str ()));
       udp_port_elem->appendChild (udp_port_text);
       udp_receiver_elem->appendChild (udp_port_elem);
 

@@ -1,6 +1,6 @@
 // $Id$
 
-project (CIAOEvents): cqmllib {
+project (CIAOEvents): game_xml, cqmllib {
 
    after += CQML
    sharedname = CIAOEvents

@@ -1,6 +1,0 @@
-// $Id$
-
-project : xerces, acelib, cosmic_common {
-  libs  += CoSMIC_Xerces_Utils
-  after += CoSMIC_Xerces_Utils
-}

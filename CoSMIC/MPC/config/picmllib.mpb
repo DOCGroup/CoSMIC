@@ -1,6 +1,6 @@
 // $Id$
 
-project : udm, cosmic_xerces_utils, cosmic_utils {
+project : udm, cosmic_utils {
   after    += PICML
   libs     += PICML
 
