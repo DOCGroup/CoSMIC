@@ -193,6 +193,7 @@ int Client_App::execute_test (GAME::Mga::Project p)
 {
   ACE_Time_Value duration;
 
+  // Execute the correct test.
   if (this->test_ == "OBJEVENT_CREATED")
     ::execute_object_create_test (p, this->iterations_, duration);
   else
@@ -201,6 +202,7 @@ int Client_App::execute_test (GAME::Mga::Project p)
                        this->test_.c_str ()),
                        -1);
 
+  // Print the test results.
   std::cout
     << "# Test              Duration" << std::endl
     << this->test_ << "     " << duration << std::endl;

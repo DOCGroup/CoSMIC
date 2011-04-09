@@ -1,3 +1,9 @@
+Sat Apr  9 14:13:07 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * performance-tests/addon/Client_App.cpp:
+
+          Added more comments.
+
 Sat Apr  9 14:12:01 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * performance-tests/addon/Client_App.cpp:
