@@ -1,0 +1,18 @@
+// $Id$
+
+project (GAME_Addon_Client) : game_mga {
+  exename = client
+  install = .
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  specific (prop:microsoft) {
+    subsystem = 1
+  }
+
+  Source_Files {
+    Client_App.cpp
+    client.cpp
+  }
+}

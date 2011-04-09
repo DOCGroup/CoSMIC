@@ -1,3 +1,16 @@
+Sat Apr  9 03:28:42 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * performance-tests/addon/Client_App.h:
+        * performance-tests/addon/Client_App.cpp:
+        * performance-tests/addon/README:
+        * performance-tests/addon/StdAfx.h:
+        * performance-tests/addon/StdAfx.cpp:
+        * performance-tests/addon/client.mpc:
+        * performance-tests/addon/client.cpp:
+
+          Implemented the performance test client for benchmarking an
+          add-on. The current version only handles OBJEVENT_CREATED.
+
 Sat Apr  9 03:12:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Addon.h:

@@ -1,0 +1,19 @@
+File: $Id$
+Last Updated: $Date$
+
+I. README
+--------------------
+This performance test benchmarks a GME add-on. The following command
+is used to execute the test:
+
+  %> client --test=TEST [--progid=PROGID] [--iterations=N]
+
+where:
+
+  . TEST   - the event test to execute (e.g., OBJEVENT_CREATED)
+  . PROGID - COM program id of the add-on [optional]
+  . N      - number of iterations [default=10000, optional]
+
+If you omit the --progid option, then this test will benchmark GME
+without any add-on loaded. This can be used to compare the performance
+of GME with and without an add-on.
