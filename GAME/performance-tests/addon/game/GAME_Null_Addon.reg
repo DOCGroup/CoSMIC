@@ -21,9 +21,7 @@ REGEDIT4
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.AddOn.Null]
 "Tooltip"="GAME Null Addon"
-"Paradigm"="Library"
 "Type"=dword:00000002
 "Description"="GAME Null Addon"
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.AddOn.Null\Associated]
-"Library"=""

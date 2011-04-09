@@ -13,7 +13,7 @@ project (GAME_Null_Addon) : game_mga_component {
   Source_Files {
     Null_Addon.idl
 
-    Null_Addon_Impl.cpp
+    Null_Addon_Sink.cpp
     Null_Addon_Module.cpp
   }
 }

@@ -14,7 +14,7 @@
 #include <atlcom.h>
 #include <atlcoll.h>
 
-#include "game/mga/Mga.h"
+#include "Null_Addon.h"
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

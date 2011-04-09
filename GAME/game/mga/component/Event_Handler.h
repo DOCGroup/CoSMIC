@@ -155,14 +155,17 @@ private:
                                     Event_Handler_Interface * eh);
 
   static int dispatch_object_event (Object_in obj,
-                                    const std::bitset <BITMASK_SIZE> & mask,
+                                    unsigned long mask,
                                     const handler_set & handlers);
 
   static int dispatch_object_event (Object_in obj,
-                                    const std::bitset <BITMASK_SIZE> & mask,
+                                    unsigned long mask,
                                     Event_Handler_Interface * eh);
 
+  /// Insert a new global event handler.
   int insert_into_global_handlers (Event_Handler_Interface * eh);
+
+  /// Remove an existing global event handler.
   int remove_from_global_handlers (Event_Handler_Interface * eh);
 
   /// Pointer to the actual implementation.

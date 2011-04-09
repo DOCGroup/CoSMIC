@@ -14,6 +14,7 @@ project (GAME_Mga_Component) : game_mga_utils, game_lib {
   }
 
   Header_Files {
+    Addon.h
     Component_Module.h
     Event_Handler_Interface.h
   }

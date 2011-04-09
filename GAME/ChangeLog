@@ -1,3 +1,26 @@
+Sat Apr  9 03:12:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Addon.h:
+        * game/mga/component/Component.mpc:
+
+          Implemented macro for declaring a GAME addon.
+
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler.cpp:
+
+          Short-circuited many of the comparisons optimize the handler.
+
+          Removed all std::bitmask code to reduce overhead.
+
+        * performance-tests/addon/game/GAME_Null_Addon.reg:
+        * performance-tests/addon/game/GAME_Null_Addond.reg:
+        * performance-tests/addon/game/Null_Addon.mpc:
+        * performance-tests/addon/game/Null_Addon_Impl.h:
+        * performance-tests/addon/game/Null_Addon_Impl.cpp:
+        * performance-tests/addon/game/StdAfx.h:
+
+          Bug fix where the add-on failed to load.
+
 Fri Apr  8 19:55:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * performance-tests:

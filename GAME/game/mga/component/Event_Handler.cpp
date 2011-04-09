@@ -589,7 +589,8 @@ dispatch_global_event (long global_event, Event_Handler_Interface * eh)
     method = __appevent_map__[index];
   }
 
-  return (*method) (eh);
+
+  return 0 != method ? (*method) (eh) : -1;
 }
 
 //
@@ -605,36 +606,34 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
   try
   {
     Object object (obj);
-    const std::bitset <BITMASK_SIZE> bitmask (eventmask);
     handler_set * handlers = 0;
 
-    // Notify all event handlers registered for this instance.
-    if (0 == this->inst_handlers_.find (obj, handlers))
+    if (0 != this->inst_handlers_.current_size () &&
+        0 == this->inst_handlers_.find (object, handlers))
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object.get (), bitmask, *handlers))
+      if (0 != this->dispatch_object_event (object, eventmask, *handlers))
         return E_MGA_MUST_ABORT;
 
       // If this is a destroy event, let's do some house keeping. ;-)
       if (0 != (eventmask & OBJEVENT_DESTROYED))
-        this->unregister_all (object.get ());
+        this->unregister_all (object);
     }
 
-    // Notify all event handlers registered for this type.
-    if (0 == this->type_handlers_.find (object->meta (), handlers))
+    if (0 != this->type_handlers_.current_size () &&
+        0 == this->type_handlers_.find (object->meta (), handlers))
     {
       // Notify the type handlers of the event. We are not going to
       // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object.get (), bitmask, *handlers))
+      if (0 != this->dispatch_object_event (object, eventmask, *handlers))
         return E_MGA_MUST_ABORT;
     }
 
-    if (0 != this->impl_)
+    if (0 != this->impl_ &&
+        0 != this->dispatch_object_event (object, eventmask, this->impl_))
     {
-      // Pass control to the main implementation.
-      if (0 != this->dispatch_object_event (object.get (), bitmask, this->impl_))
-        return E_MGA_MUST_ABORT;
+      return E_MGA_MUST_ABORT;
     }
 
     return 0;
@@ -833,7 +832,7 @@ void Event_Handler::close (void)
 //
 int Event_Handler::
 dispatch_object_event (Object_in obj,
-                       const std::bitset <BITMASK_SIZE> & mask,
+                       unsigned long mask,
                        const handler_set & handlers)
 {
   handler_set::CONST_ITERATOR iter (handlers);
@@ -853,37 +852,34 @@ dispatch_object_event (Object_in obj,
 //
 int Event_Handler::
 dispatch_object_event (const Object_in obj,
-                       const std::bitset <BITMASK_SIZE> & mask,
+                       unsigned long mask,
                        Event_Handler_Interface * eh)
 {
-  if (0 != eh->handle_object_event (obj, mask.to_ulong ()))
+  // First, let's invoke the general event handler method.
+  if (0 != eh->handle_object_event (obj, mask))
     return -1;
 
   // Get the event mask for the event handler.
-  std::bitset <BITMASK_SIZE> copymask (mask);
-  const unsigned long eh_eventmask = static_cast <unsigned long> (eh->event_mask ());
-
+  const unsigned long eh_eventmask = eh->event_mask ();
   const handler_entry_t * handler_iter = objectevent_handles;
 
-  for (size_t count = copymask.count (); count > 0; -- count)
+  while (0 != (mask & 0xFFFFFFFF))
   {
     // Locate the first set bit in the current mask. We must increment
     // the handler iterator for each bit we skip.
-    for (; !copymask.test (0); copymask >>= 1)
+    for (; !(0x00000001 & mask); mask >>= 1)
       ++ handler_iter;
 
     // Ok, we found the next set bit location. We need to check if the
     // event handler is registered for this event.
-    if ((handler_iter->bitmask_ & eh_eventmask) != 0 && (0 != handler_iter->method_))
+    if (0 != (handler_iter->bitmask_ & eh_eventmask) != 0 &&
+        0 != (*handler_iter->method_) (eh, obj))
     {
-      // Dispatch the event. There is no need to continue if the event
-      // handler does not return success.
-      if (0 != (*handler_iter->method_) (eh, obj))
-        return -1;
+      return -1;
     }
 
     // Move to the next location.
-    copymask >>= 1;
+    mask >>= 1;
     ++ handler_iter;
   }
 
