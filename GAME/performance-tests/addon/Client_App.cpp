@@ -49,7 +49,7 @@ execute_object_create_test (GAME::Mga::Project & proj,
 // Client_App
 //
 Client_App::Client_App (void)
-: test_ ("OBJEVENT_CREATE"),
+: test_ ("OBJEVENT_CREATED"),
   iterations_ (10000)
 {
 
@@ -193,7 +193,7 @@ int Client_App::execute_test (GAME::Mga::Project p)
 {
   ACE_Time_Value duration;
 
-  if (this->test_ == "OBJEVENT_CREATE")
+  if (this->test_ == "OBJEVENT_CREATED")
     ::execute_object_create_test (p, this->iterations_, duration);
   else
     ACE_ERROR_RETURN ((LM_ERROR,
