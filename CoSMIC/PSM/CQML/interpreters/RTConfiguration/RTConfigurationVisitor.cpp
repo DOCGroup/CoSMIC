@@ -1,8 +1,11 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
+#include "ace/config.h"
+
 #include "Utils/Utils.h"
 #include "RTConfigurationVisitor.h"
+
+#include "game/xml/String.h"
 
 #include <algorithm>
 #include <functional>
@@ -18,8 +21,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using Utils::XStr;
-using xercesc::XMLString;
 using Utils::CreateUuid;
 
 namespace CQML
@@ -57,7 +58,7 @@ namespace CQML
 
   void RTConfigurationVisitor::init()
   {
-    this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+    this->impl_ = DOMImplementationRegistry::getDOMImplementation (GAME::Xml::String("LS"));
     this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
 
@@ -85,8 +86,8 @@ namespace CQML
       this->doc_->release();
     // Create the document
     this->doc_ =
-      this->impl_->createDocument (XStr ("http://www.dre.vanderbilt.edu/ServerResources"),
-      XStr (rootName.c_str()),
+      this->impl_->createDocument (GAME::Xml::String ("http://www.dre.vanderbilt.edu/ServerResources"),
+      GAME::Xml::String (rootName.c_str()),
       0);
 
     //erase all elements currently present in the element maps
@@ -98,24 +99,24 @@ namespace CQML
 
   void RTConfigurationVisitor::initRootAttributes()
   {
-    //this->doc_->setEncoding (XStr("UTF-8"));
-    this->doc_->setXmlVersion (XStr("1.0"));
+    //this->doc_->setEncoding (GAME::Xml::String("UTF-8"));
+    this->doc_->setXmlVersion (GAME::Xml::String("1.0"));
     this->root_ = this->doc_->getDocumentElement();
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:CIAO"),
-      XStr ("http://www.dre.vanderbilt.edu/ServerResources"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xsi"),
-      XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xmi"),
-      XStr ("http://www.omg.org/XMI"));
-    this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-      XStr ("http://www.dre.vanderbilt.edu/ServerResources CIAOServerResources.xsd"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:CIAO"),
+      GAME::Xml::String ("http://www.dre.vanderbilt.edu/ServerResources"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:xsi"),
+      GAME::Xml::String ("http://www.w3.org/2001/XMLSchema-instance"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:xmi"),
+      GAME::Xml::String ("http://www.omg.org/XMI"));
+    this->root_->setAttribute (GAME::Xml::String ("xsi:schemaLocation"),
+      GAME::Xml::String ("http://www.dre.vanderbilt.edu/ServerResources CIAOServerResources.xsd"));
     std::string id = "_";
     id += Utils::CreateUuid ();
-    this->root_->setAttribute (XStr ("id"),
-      XStr (id.c_str ()));
+    this->root_->setAttribute (GAME::Xml::String ("id"),
+      GAME::Xml::String (id.c_str ()));
     this->artifact_name_ = id;
     this->curr_ = this->root_;
     this->resources_ = 0;
@@ -151,8 +152,8 @@ namespace CQML
   DOMElement* RTConfigurationVisitor::createSimpleContent (const std::string& name,
     const std::string& value)
   {
-    DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
-    DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
+    DOMElement* pName = this->doc_->createElement (GAME::Xml::String (name.c_str()));
+    DOMText* pValue = this->doc_->createTextNode (GAME::Xml::String (value.c_str()));
     pName->appendChild (pValue);
     return pName;
   }
@@ -228,14 +229,14 @@ namespace CQML
     this->add_env_conf (assembly);
 
     //ORB configuration parameters
-    DOMElement* oc = this->doc_->createElement (XStr ("orbConfigs"));
+    DOMElement* oc = this->doc_->createElement (GAME::Xml::String ("orbConfigs"));
     this->curr_->appendChild (oc);
     this->curr_ = oc;
 
     //add the orbResources
     this->push ();
     //Create the <orbResources> as a child of the <orbConfigs>
-    DOMElement* or = this->doc_->createElement (XStr ("resources"));
+    DOMElement* or = this->doc_->createElement (GAME::Xml::String ("resources"));
     this->curr_->appendChild (or);
     this->curr_ = or;
     this->resources_ = this->curr_;
@@ -368,7 +369,7 @@ namespace CQML
       ////add the orbResources
       //this->push ();
       ////Create the <orbResources> as a child of the <orbConfigs>
-      //DOMElement* or = this->doc_->createElement (XStr ("resources"));
+      //DOMElement* or = this->doc_->createElement (GAME::Xml::String ("resources"));
       //this->curr_->appendChild (or);
       //this->curr_ = or;
       //this->resources_ = this->curr_;
@@ -392,9 +393,9 @@ namespace CQML
         this->push ();
 
         //Create the <connectionBands> element
-        DOMElement* e = this->doc_->createElement (XStr ("connectionBands"));
+        DOMElement* e = this->doc_->createElement (GAME::Xml::String ("connectionBands"));
         std::string bcID ("band");
-        e->setAttribute (XStr ("id"), XStr (bcID));
+        e->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (bcID));
         this->curr_->appendChild (e);
         this->curr_ = e;
 
@@ -424,9 +425,9 @@ namespace CQML
       this->push ();
 
       //Create the <threadpoolWithLanes> element
-      DOMElement* e = this->doc_->createElement (XStr ("policySet"));
+      DOMElement* e = this->doc_->createElement (GAME::Xml::String ("policySet"));
       std::string psID (object.name ());
-      e->setAttribute (XStr ("id"), XStr (psID));
+      e->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (psID));
       this->curr_->appendChild (e);
       this->curr_ = e;
 
@@ -478,7 +479,7 @@ namespace CQML
     this->push ();
 
     //Add the <cmdline> options
-    DOMElement* cmd = this->doc_->createElement (XStr ("cmdline"));
+    DOMElement* cmd = this->doc_->createElement (GAME::Xml::String ("cmdline"));
     this->curr_->appendChild (cmd);
     this->curr_ = cmd;
 
@@ -496,7 +497,7 @@ namespace CQML
     this->push ();
 
     //Add the <svcconf> options
-    DOMElement* svc = this->doc_->createElement (XStr ("svcconf"));
+    DOMElement* svc = this->doc_->createElement (GAME::Xml::String ("svcconf"));
     this->curr_->appendChild (svc);
     this->curr_ = svc;
 
@@ -582,9 +583,9 @@ namespace CQML
     this->push ();
 
     //Create the <threadpool> element
-    DOMElement* e = this->doc_->createElement (XStr (pooltype.c_str ()));
+    DOMElement* e = this->doc_->createElement (GAME::Xml::String (pooltype.c_str ()));
     std::string tpID (tp.name ());
-    e->setAttribute (XStr ("id"), XStr (tpID));
+    e->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (tpID));
     this->curr_->appendChild (e);
     this->curr_ = e;
 
@@ -666,7 +667,7 @@ namespace CQML
     this->push ();
 
     //Add the <band> element
-    DOMElement* band = this->doc_->createElement (XStr ("band"));
+    DOMElement* band = this->doc_->createElement (GAME::Xml::String ("band"));
     this->curr_->appendChild (band);
     this->curr_ = band;
 
@@ -703,7 +704,7 @@ namespace CQML
     this->push ();
 
     //Add the <threadpoolLane> element
-    DOMElement* lane = this->doc_->createElement (XStr ("threadpoolLane"));
+    DOMElement* lane = this->doc_->createElement (GAME::Xml::String ("threadpoolLane"));
     this->curr_->appendChild (lane);
     this->curr_ = lane;
 
@@ -744,7 +745,7 @@ namespace CQML
     this->push ();
 
     //Create the <priorityModel> element
-    DOMElement* e = this->doc_->createElement (XStr ("priorityModel"));
+    DOMElement* e = this->doc_->createElement (GAME::Xml::String ("priorityModel"));
 
     std::ostringstream temp;
 
@@ -755,7 +756,7 @@ namespace CQML
     // Only set the server_priority if model is CLIENT_PROPAGATED
 
     //if (p_type.compare ("CLIENT_PROPAGATED") != 0 )
-      e->setAttribute (XStr ("server_priority"), XStr (temp.str ()));
+      e->setAttribute (GAME::Xml::String ("server_priority"), GAME::Xml::String (temp.str ()));
 
     this->curr_->appendChild (e);
     this->curr_ = e;
@@ -782,7 +783,7 @@ namespace CQML
   void RTConfigurationVisitor::Visit_Boolean(const CQML::Boolean& boolean)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -794,7 +795,7 @@ namespace CQML
   void RTConfigurationVisitor::Visit_Byte(const CQML::Byte&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -806,7 +807,7 @@ namespace CQML
   void RTConfigurationVisitor::Visit_String(const CQML::String&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -818,7 +819,7 @@ namespace CQML
   void RTConfigurationVisitor::Visit_RealNumber(const CQML::RealNumber&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -830,7 +831,7 @@ namespace CQML
   void RTConfigurationVisitor::Visit_ShortInteger(const CQML::ShortInteger&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -842,7 +843,7 @@ namespace CQML
   void RTConfigurationVisitor::Visit_LongInteger(const CQML::LongInteger&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",

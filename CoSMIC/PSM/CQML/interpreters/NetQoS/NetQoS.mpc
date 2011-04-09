@@ -1,4 +1,6 @@
-project(NetQoS): cqmllib {
+// $Id$
+
+project(NetQoS): game_xml, cqmllib {
 
    after += DeploymentPlanFramework
    sharedname = NetQoS

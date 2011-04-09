@@ -1,4 +1,6 @@
-project(RTSchedulability): cqmllib {
+// $Id$
+
+project(RTSchedulability): game_xml, cqmllib {
 
    after += DeploymentPlanFramework
    sharedname = RTSchedulability

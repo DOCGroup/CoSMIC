@@ -1,9 +1,11 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/Utils.h"
+#include "ace/config.h"
 
+#include "Utils/Utils.h"
 #include "NetQoSVisitor.h"
+
+#include "game/xml/String.h"
 
 #include <algorithm>
 #include <functional>
@@ -20,7 +22,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using Utils::XStr;
 using Utils::CreateUuid;
 
 namespace CQML
@@ -43,7 +44,7 @@ namespace CQML
 
   void NetQoSVisitor::init()
   {
-    this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+    this->impl_ = DOMImplementationRegistry::getDOMImplementation(GAME::Xml::String("LS"));
     this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
     // Set features if the serializer supports the feature/mode
@@ -70,24 +71,24 @@ namespace CQML
       this->doc_->release();
     // Create the document
     this->doc_ =
-      this->impl_->createDocument (XStr ("http://www.dre.vanderbilt.edu/NetQoSRequirements"),
-                                   XStr (rootName.c_str()),
+      this->impl_->createDocument (GAME::Xml::String ("http://www.dre.vanderbilt.edu/NetQoSRequirements"),
+                                   GAME::Xml::String (rootName.c_str()),
                                    0);
   }
 
   void NetQoSVisitor::initRootAttributes()
   {
-    //this->doc_->setEncoding (XStr("UTF-8"));
-    this->doc_->setXmlVersion (XStr("1.0"));
+    //this->doc_->setEncoding (GAME::Xml::String("UTF-8"));
+    this->doc_->setXmlVersion (GAME::Xml::String("1.0"));
     this->doc_->setXmlStandalone (false);
     this->root_ = this->doc_->getDocumentElement();
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                                 XStr ("xmlns:xsi"),
-                                 XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-    this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                               XStr ("http://www.dre.vanderbilt.edu/NetQoSRequirements NetQoSRequirements.xsd"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                                 GAME::Xml::String ("xmlns:xsi"),
+                                 GAME::Xml::String ("http://www.w3.org/2001/XMLSchema-instance"));
+    this->root_->setAttribute (GAME::Xml::String ("xsi:schemaLocation"),
+                               GAME::Xml::String ("http://www.dre.vanderbilt.edu/NetQoSRequirements NetQoSRequirements.xsd"));
     std::string id = std::string ("_") + Utils::CreateUuid();
-    this->root_->setAttribute (XStr("id"), XStr (id));
+    this->root_->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (id));
     this->curr_ = this->root_;
   }
 
@@ -211,7 +212,7 @@ namespace CQML
 
   void NetQoSVisitor::Visit_NetQoS (const NetQoS &netqos)
     {
-       DOMElement *conn_qos = this->doc_->createElement(XStr ("connectionQoS"));
+       DOMElement *conn_qos = this->doc_->createElement(GAME::Xml::String ("connectionQoS"));
     this->curr_->appendChild (conn_qos);
     this->push (); // push connectionQoS
     this->curr_ = conn_qos;
@@ -225,7 +226,7 @@ namespace CQML
         {
           this->curr_->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name));
 /*
-          DOMElement *connection_info = this->doc_->createElement (XStr ("connectionInfo"));
+          DOMElement *connection_info = this->doc_->createElement (GAME::Xml::String ("connectionInfo"));
           connection_info->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name));
           connection_info->appendChild (this->createSimpleContent ("client", itr->second.client));
           connection_info->appendChild (this->createSimpleContent ("clientPortName", itr->second.client_port_name));
@@ -500,8 +501,8 @@ namespace CQML
   DOMElement* NetQoSVisitor::createSimpleContent (const std::string& name,
                                                   const std::string& value)
   {
-    DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
-    DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
+    DOMElement* pName = this->doc_->createElement (GAME::Xml::String (name.c_str()));
+    DOMText* pValue = this->doc_->createTextNode (GAME::Xml::String (value.c_str()));
     pName->appendChild (pValue);
     return pName;
   }

@@ -45,5 +45,4 @@ workspace (cosmic) {
   Utils/GAME/GAME.mwc
   Utils/ModelUpgrade
   Utils/T3/t3/runtime
-  Utils/xercesc
 }

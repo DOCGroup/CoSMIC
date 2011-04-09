@@ -1,3 +1,21 @@
+Sat Apr  9 04:10:06 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/CQML/interpreters/NetQoS/NetQoS.mpc:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfiguration.mpc:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability.mpc:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoS.mpc:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+        * cosmic.mwc:
+
+          Fixed compilation errors related to delete the CoSMIC
+          Xerces utils project.
+
 Fri Apr  8 18:47:47 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/cqmllib.mpb:

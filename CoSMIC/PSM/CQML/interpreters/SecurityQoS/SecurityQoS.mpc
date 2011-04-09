@@ -1,4 +1,6 @@
-project(SecurityQoS): cqmllib {
+// $Id$
+
+project (SecurityQoS): game_xml, cqmllib {
 
    after += DeploymentPlanFramework
    sharedname = SecurityQoS

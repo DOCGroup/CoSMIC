@@ -1,9 +1,11 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/Utils.h"
+#include "ace/config.h"
 
+#include "Utils/Utils.h"
 #include "SecurityQoSDumper.h"
+
+#include "game/xml/String.h"
 
 #include <algorithm>
 #include <functional>
@@ -20,7 +22,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using Utils::XStr;
 using Utils::CreateUuid;
 
 namespace CQML
@@ -43,8 +44,8 @@ namespace CQML
           {
             Object object = itr->first;
             Auto_DOM dom (*this, "Interface");
-            dom.curr()->setAttribute (XStr("name"), XStr (std::string (object.name ())));
-            dom.curr()->setAttribute (XStr("version"), XStr (std::string (object.VersionTag())));
+            dom.curr()->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (object.name ())));
+            dom.curr()->setAttribute (GAME::Xml::String("version"), GAME::Xml::String (std::string (object.VersionTag())));
 
             Operation2RightsSet op2rts_set = itr->second;
 
@@ -55,9 +56,9 @@ namespace CQML
                 OperationBase opn = itr1->first;
                 RequiredRights rts = itr1->second;
                 Auto_DOM dom (*this, "Operation");
-                dom.curr()->setAttribute (XStr("name"), XStr (std::string (opn.name ())));
-                dom.curr()->setAttribute (XStr("required_rights"), XStr (this->getRightsString(rts)));
-                dom.curr()->setAttribute (XStr("combinator"), XStr (std::string (rts.combinator())));
+                dom.curr()->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (opn.name ())));
+                dom.curr()->setAttribute (GAME::Xml::String("required_rights"), GAME::Xml::String (this->getRightsString(rts)));
+                dom.curr()->setAttribute (GAME::Xml::String("combinator"), GAME::Xml::String (std::string (rts.combinator())));
               }
           }
         this->dumpDocument();
@@ -80,8 +81,8 @@ namespace CQML
             GrantedRights gr = itr->second;
 
             Auto_DOM dom (*this, "security-role-mapping");
-            dom.curr()->setAttribute (XStr("role-name"), XStr (std::string (role.name ())));
-            dom.curr()->setAttribute (XStr("granted-rights"), XStr (this->getRightsString(gr)));
+            dom.curr()->setAttribute (GAME::Xml::String("role-name"), GAME::Xml::String (std::string (role.name ())));
+            dom.curr()->setAttribute (GAME::Xml::String("granted-rights"), GAME::Xml::String (this->getRightsString(gr)));
           }
         this->dumpDocument();
       }
@@ -103,7 +104,7 @@ namespace CQML
             RuleSet rules_set = policy_itr->second;
 
             Auto_DOM dom (*this, "security-policy");
-            dom.curr()->setAttribute (XStr("policy-name"), XStr (std::string (policy.name ())));
+            dom.curr()->setAttribute (GAME::Xml::String("policy-name"), GAME::Xml::String (std::string (policy.name ())));
             for (RuleSet::iterator rule_itr=rules_set.begin();
                   rule_itr != rules_set.end();
                   ++rule_itr)
@@ -120,14 +121,14 @@ namespace CQML
         Role role = rule.role_;
 
         Auto_DOM dom (*this, "security-rule");
-        dom.curr()->setAttribute (XStr("rule-name"), XStr (std::string (rule_base.name())));
+        dom.curr()->setAttribute (GAME::Xml::String("rule-name"), GAME::Xml::String (std::string (rule_base.name())));
 
-        DOMElement *role_elm = this->doc_->createElement(XStr ("security-role"));
-        role_elm->setAttribute (XStr("role-name"), XStr (std::string (role.name ())));
+        DOMElement *role_elm = this->doc_->createElement(GAME::Xml::String ("security-role"));
+        role_elm->setAttribute (GAME::Xml::String("role-name"), GAME::Xml::String (std::string (role.name ())));
         dom.curr()->appendChild (role_elm);
 
         Udm::Object target = rule.target_;
-        DOMElement *target_elm = this->doc_->createElement(XStr ("resource"));
+        DOMElement *target_elm = this->doc_->createElement(GAME::Xml::String ("resource"));
         // Generate rule specific info
 
         if (rule_base.type() == PortRule::meta)
@@ -136,7 +137,7 @@ namespace CQML
             if (Udm::null != target && Udm::IsDerivedFrom (target.type(), Object::meta))
               {
                 Object obj = Object::Cast (target);
-                target_elm->setAttribute (XStr("Port"), XStr (std::string (obj.name ())));
+                target_elm->setAttribute (GAME::Xml::String("Port"), GAME::Xml::String (std::string (obj.name ())));
               }
           }
         else if (rule_base.type() == ComponentRule::meta)
@@ -145,8 +146,8 @@ namespace CQML
             if (Udm::null != target && Udm::IsDerivedFrom (target.type(), Component::meta))
               {
                 Component comp = Component::Cast (target);
-                target_elm->setAttribute (XStr("Component"), XStr (std::string (comp.name ())));
-                dom.curr()->setAttribute (XStr("id"), XStr (std::string (comp.UUID ())));
+                target_elm->setAttribute (GAME::Xml::String("Component"), GAME::Xml::String (std::string (comp.name ())));
+                dom.curr()->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (std::string (comp.UUID ())));
               }
           }
         else if (rule_base.type() == AssemblyRule::meta)
@@ -155,8 +156,8 @@ namespace CQML
             if (Udm::null != target && Udm::IsDerivedFrom (target.type(), ComponentAssembly::meta))
               {
                 ComponentAssembly assm = ComponentAssembly::Cast (target);
-                target_elm->setAttribute (XStr("Assembly"), XStr (std::string (assm.name ())));
-                dom.curr()->setAttribute (XStr("id"), XStr (std::string (assm.UUID ())));
+                target_elm->setAttribute (GAME::Xml::String("Assembly"), GAME::Xml::String (std::string (assm.name ())));
+                dom.curr()->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (std::string (assm.UUID ())));
               }
           }
         dom.curr()->appendChild (target_elm);
@@ -173,8 +174,8 @@ namespace CQML
               {
                 OperationRef op_ref = OperationRef::Cast (action);
                 OperationBase op_base = op_ref.ref();
-                DOMElement *op_elm = this->doc_->createElement(XStr ("Operation"));
-                op_elm ->setAttribute (XStr("name"), XStr (std::string (op_base.name ())));
+                DOMElement *op_elm = this->doc_->createElement(GAME::Xml::String ("Operation"));
+                op_elm ->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (op_base.name ())));
                 this->curr_->appendChild (op_elm);
               }
             // Check if the action is a set of operations
@@ -188,8 +189,8 @@ namespace CQML
                   {
                     OperationRef op_ref = (*itr);
                     OperationBase op_base = op_ref.ref();
-                    DOMElement *op_elm = this->doc_->createElement(XStr ("Operation"));
-                    op_elm ->setAttribute (XStr("name"), XStr (std::string (op_base.name ())));
+                    DOMElement *op_elm = this->doc_->createElement(GAME::Xml::String ("Operation"));
+                    op_elm ->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (op_base.name ())));
                     this->curr_->appendChild (op_elm);
                   }
               }
@@ -216,8 +217,8 @@ namespace CQML
 
                             if (getRightsString(op_rr) == getRightsString(rr))
                               {
-                                DOMElement *op_elm = this->doc_->createElement(XStr ("Operation"));
-                                op_elm ->setAttribute (XStr("name"), XStr (std::string (op_base.name ())));
+                                DOMElement *op_elm = this->doc_->createElement(GAME::Xml::String ("Operation"));
+                                op_elm ->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (op_base.name ())));
                                 this->curr_->appendChild (op_elm);
                               }
                           }
@@ -232,8 +233,8 @@ namespace CQML
         if (Udm::null != rule.action_ && Udm::IsDerivedFrom (rule.action_.type(), Attribute::meta))
           {
             Attribute attr = Attribute::Cast (rule.action_);
-            DOMElement *attr_elm = this->doc_->createElement(XStr ("Attribute"));
-            attr_elm ->setAttribute (XStr("name"), XStr (std::string (attr.name ())));
+            DOMElement *attr_elm = this->doc_->createElement(GAME::Xml::String ("Attribute"));
+            attr_elm ->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (attr.name ())));
             this->curr_->appendChild (attr_elm);
           }
       }
@@ -243,8 +244,8 @@ namespace CQML
         if (Udm::null != rule.action_ && Udm::IsDerivedFrom (rule.action_.type(), Path::meta))
           {
             Path path = Path::Cast (rule.action_);
-            DOMElement *path_elm = this->doc_->createElement(XStr ("CriticalPath"));
-            path_elm ->setAttribute (XStr("name"), XStr (std::string (path.name ())));
+            DOMElement *path_elm = this->doc_->createElement(GAME::Xml::String ("CriticalPath"));
+            path_elm ->setAttribute (GAME::Xml::String("name"), GAME::Xml::String (std::string (path.name ())));
             this->curr_->appendChild (path_elm);
           }
       }
@@ -281,14 +282,14 @@ namespace CQML
             RuleSet rule_set = secqosinfo.rule_set_;
 
             Auto_DOM rootdom (*this, "security-qos-requirements");
-            rootdom.curr()->setAttribute (XStr("authentication"), XStr (std::string (secqos.Authentication()?"true":"false")));
-            rootdom.curr()->setAttribute (XStr("audit-level"), XStr (std::string (secqos.AuditLevel())));
-            rootdom.curr()->setAttribute (XStr("delegation-policy"), XStr (std::string (secqos.DelegationPolicy())));
-            rootdom.curr()->setAttribute (XStr("integrity-level"), XStr (std::string (secqos.IntegrityLevel())));
-            rootdom.curr()->setAttribute (XStr("confidentiality-level"), XStr (std::string (secqos.ConfidentialityLevel())));
-            rootdom.curr()->setAttribute (XStr("security-level"), XStr (std::string (secqos.SecurityLevel())));
-            rootdom.curr()->setAttribute (XStr("security-policy"), XStr (std::string (secqos.SecurityLevel())));
-            rootdom.curr()->setAttribute (XStr("nonrepudiation"), XStr (std::string (secqos.NonRepudiation()?"true":"false")));
+            rootdom.curr()->setAttribute (GAME::Xml::String("authentication"), GAME::Xml::String (std::string (secqos.Authentication()?"true":"false")));
+            rootdom.curr()->setAttribute (GAME::Xml::String("audit-level"), GAME::Xml::String (std::string (secqos.AuditLevel())));
+            rootdom.curr()->setAttribute (GAME::Xml::String("delegation-policy"), GAME::Xml::String (std::string (secqos.DelegationPolicy())));
+            rootdom.curr()->setAttribute (GAME::Xml::String("integrity-level"), GAME::Xml::String (std::string (secqos.IntegrityLevel())));
+            rootdom.curr()->setAttribute (GAME::Xml::String("confidentiality-level"), GAME::Xml::String (std::string (secqos.ConfidentialityLevel())));
+            rootdom.curr()->setAttribute (GAME::Xml::String("security-level"), GAME::Xml::String (std::string (secqos.SecurityLevel())));
+            rootdom.curr()->setAttribute (GAME::Xml::String("security-policy"), GAME::Xml::String (std::string (secqos.SecurityLevel())));
+            rootdom.curr()->setAttribute (GAME::Xml::String("nonrepudiation"), GAME::Xml::String (std::string (secqos.NonRepudiation()?"true":"false")));
 
             outfile << "For "<<secqos.name()<<" "<< seqqos_tgtset.size() <<" targets \n";
             for (SecurityQoSTargetSet::iterator tgt_itr = seqqos_tgtset.begin();
@@ -305,22 +306,22 @@ namespace CQML
                     if (Udm::IsDerivedFrom (target.type(), Object::meta))
                       {
                         Object obj = Object::Cast (target);
-                        dom.curr()->setAttribute (XStr("Port"), XStr (std::string (obj.name ())));
-                        dom.curr()->setAttribute (XStr("id"), XStr (std::string (obj.VersionTag ())));
+                        dom.curr()->setAttribute (GAME::Xml::String("Port"), GAME::Xml::String (std::string (obj.name ())));
+                        dom.curr()->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (std::string (obj.VersionTag ())));
                         outfile << "Port Target "<<obj.name()<<"\n";
                       }
                     else if (Udm::IsDerivedFrom (target.type(), Component::meta))
                       {
                         Component comp = Component::Cast (target);
-                        dom.curr()->setAttribute (XStr("Component"), XStr (std::string (comp.name ())));
-                        dom.curr()->setAttribute (XStr("id"), XStr (std::string (comp.UUID ())));
+                        dom.curr()->setAttribute (GAME::Xml::String("Component"), GAME::Xml::String (std::string (comp.name ())));
+                        dom.curr()->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (std::string (comp.UUID ())));
                         outfile << "Component Target "<<comp.name()<<"\n";
                       }
                     else if (Udm::IsDerivedFrom (target.type(), ComponentAssembly::meta))
                       {
                         ComponentAssembly assm = ComponentAssembly::Cast (target);
-                        dom.curr()->setAttribute (XStr("Assembly"), XStr (std::string (assm.name ())));
-                        dom.curr()->setAttribute (XStr("id"), XStr (std::string (assm.UUID ())));
+                        dom.curr()->setAttribute (GAME::Xml::String("Assembly"), GAME::Xml::String (std::string (assm.name ())));
+                        dom.curr()->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (std::string (assm.UUID ())));
                         outfile << "Assembly Target "<<assm.name()<<"\n";
                       }
                   }
@@ -335,15 +336,15 @@ namespace CQML
                       {
                         outfile << "Rule "<<rule.rule_base_.name()<<"\n";
                         Auto_DOM dom1 (*this, "role-permission");
-                        dom1.curr()->setAttribute (XStr("role-name"), XStr (std::string (rule.role_.name())));
+                        dom1.curr()->setAttribute (GAME::Xml::String("role-name"), GAME::Xml::String (std::string (rule.role_.name())));
 
                         if (rule.rule_base_.allow())
                           {
-                            dom1.curr()->setAttribute (XStr("access-decision"), XStr (std::string ("allow")));
+                            dom1.curr()->setAttribute (GAME::Xml::String("access-decision"), GAME::Xml::String (std::string ("allow")));
                           }
                         else
                           {
-                            dom1.curr()->setAttribute (XStr("access-decision"), XStr (std::string ("deny")));
+                            dom1.curr()->setAttribute (GAME::Xml::String("access-decision"), GAME::Xml::String (std::string ("deny")));
                           }
 
                         // Generate rule specific info

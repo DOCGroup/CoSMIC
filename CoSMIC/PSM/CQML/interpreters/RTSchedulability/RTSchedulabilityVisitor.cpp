@@ -1,9 +1,11 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
+#include "ace/config.h"
 #include "Utils/Utils.h"
 
 #include "RTSchedulabilityVisitor.h"
+
+#include "game/xml/String.h"
 
 #include <algorithm>
 #include <functional>
@@ -19,7 +21,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using Utils::XStr;
 using Utils::CreateUuid;
 
 namespace CQML

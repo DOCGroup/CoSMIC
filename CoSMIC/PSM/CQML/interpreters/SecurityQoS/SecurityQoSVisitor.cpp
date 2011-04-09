@@ -1,6 +1,5 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
 
 #include "SecurityQoS/SecurityQoSVisitor.h"
@@ -18,7 +17,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using Utils::XStr;
 using Utils::CreateUuid;
 
 namespace CQML
@@ -205,19 +203,19 @@ namespace CQML
 
         OperationInvokeConn opn_invoke_conn = port_rule.dstOperationInvokeConn();
 
-        if (Udm::null == opn_invoke_conn) 
+        if (Udm::null == opn_invoke_conn)
           return;
-        
+
         ResourceActionBase res_act_base = opn_invoke_conn.dstOperationInvokeConn_end();
         rule.action_ = res_act_base;
 
         OnInterfaceConn on_iface_conn = port_rule.dstOnInterfaceConn();
-        if (Udm::null == on_iface_conn) 
+        if (Udm::null == on_iface_conn)
           return;
 
         TargetObjectRef obj_ref = on_iface_conn.dstOnInterfaceConn_end();
-        
-        if (Udm::null == obj_ref.ref ()) 
+
+        if (Udm::null == obj_ref.ref ())
           return;
 
         CQML::Object obj = CQML::Object::Cast (obj_ref.ref ());
@@ -447,7 +445,7 @@ namespace CQML
     {
       // Dump the top-level pointer to the critical path
 /*      this->push();
-      DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+      DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
       this->curr_->appendChild (ele);
       this->curr_ = ele;
       std::string pname = "edu.vanderbilt.dre.CIAO.RACE.criticalPath";
@@ -463,7 +461,7 @@ namespace CQML
            ++iter)
         {
           this->push();
-          DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+          DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
           this->curr_->appendChild (ele);
           this->curr_ = ele;
           PathProperty pprop = *iter;
@@ -489,7 +487,7 @@ namespace CQML
               // Dump the value of the criticalPath
               this->push();
               DOMElement* ele =
-                this->doc_->createElement (XStr ("configProperty"));
+                this->doc_->createElement (GAME::Xml::String ("configProperty"));
               this->curr_->appendChild (ele);
               this->curr_ = ele;
               std::string pvalue = this->CreatePath (node);

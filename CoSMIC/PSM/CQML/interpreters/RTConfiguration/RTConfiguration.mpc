@@ -1,4 +1,6 @@
-project(RTConfiguration): cqmllib {
+// $Id$
+
+project(RTConfiguration): game_xml, cqmllib {
 
    after += DeploymentPlanFramework
    sharedname = RTConfiguration

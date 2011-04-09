@@ -1,9 +1,12 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
+#include "ace/config.h"
+
 #include "Utils/Utils.h"
 #include "common.h"
 #include "UmlExt.h"
+
+#include "game/xml/String.h"
 
 namespace CQML
   {
@@ -68,7 +71,7 @@ namespace CQML
 
     void DOMBuilder::init()
     {
-      this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+      this->impl_ = DOMImplementationRegistry::getDOMImplementation(GAME::Xml::String("LS"));
       this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
       // Set features if the serializer supports the feature/mode
@@ -95,24 +98,24 @@ namespace CQML
         this->doc_->release();
       // Create the document
       this->doc_ =
-        this->impl_->createDocument (XStr ("http://www.dre.vanderbilt.edu/SecurityQoSRequirements"),
-                                     XStr (rootName.c_str()),
+        this->impl_->createDocument (GAME::Xml::String ("http://www.dre.vanderbilt.edu/SecurityQoSRequirements"),
+                                     GAME::Xml::String (rootName.c_str()),
                                      0);
     }
 
     void DOMBuilder::initRootAttributes()
     {
-      // this->doc_->setEncoding (XStr("UTF-8"));
-      this->doc_->setXmlVersion (XStr("1.0"));
+      // this->doc_->setEncoding (GAME::Xml::String("UTF-8"));
+      this->doc_->setXmlVersion (GAME::Xml::String("1.0"));
       this->doc_->setXmlStandalone (false);
       this->root_ = this->doc_->getDocumentElement();
-      this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                                   XStr ("xmlns:xsi"),
-                                   XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-      this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                                 XStr ("http://www.dre.vanderbilt.edu/SecurityQoSRequirements SecurityQoSRequirements.xsd"));
+      this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                                   GAME::Xml::String ("xmlns:xsi"),
+                                   GAME::Xml::String ("http://www.w3.org/2001/XMLSchema-instance"));
+      this->root_->setAttribute (GAME::Xml::String ("xsi:schemaLocation"),
+                                 GAME::Xml::String ("http://www.dre.vanderbilt.edu/SecurityQoSRequirements SecurityQoSRequirements.xsd"));
       std::string id = std::string ("_") + Utils::CreateUuid();
-      this->root_->setAttribute (XStr("id"), XStr (id));
+      this->root_->setAttribute (GAME::Xml::String("id"), GAME::Xml::String (id));
       this->curr_ = this->root_;
     }
 
@@ -128,7 +131,7 @@ namespace CQML
     Auto_DOM::Auto_DOM (DOMBuilder& b, std::string tag)
       : dom_builder_(&b)
       {
-        DOMElement *e = dom_builder_->doc()->createElement(XStr (tag));
+        DOMElement *e = dom_builder_->doc()->createElement(GAME::Xml::String (tag));
         dom_builder_->curr()->appendChild (e);
         dom_builder_->push();
         dom_builder_->curr(e);
