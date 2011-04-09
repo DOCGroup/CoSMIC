@@ -549,12 +549,15 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
     // us from sending the same notification more than once to the same
     // event handler, which can be the case when a handler is registered
     // more than once.
-    for (global_handler_map_t::ITERATOR iter (this->global_handlers_);
-         !iter.done ();
-         ++ iter)
+    if (0 != this->global_handlers_.current_size ())
     {
-      if (0 != this->dispatch_global_event (ev, iter->key ()))
-        return E_MGA_MUST_ABORT;
+      for (global_handler_map_t::ITERATOR iter (this->global_handlers_);
+           !iter.done ();
+           ++ iter)
+      {
+        if (0 != this->dispatch_global_event (ev, iter->key ()))
+          return E_MGA_MUST_ABORT;
+      }
     }
 
     return 0;

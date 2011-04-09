@@ -1,3 +1,16 @@
+Sat Apr  9 13:51:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Event_Handler.cpp:
+
+          Short circuited the for-loop that dispatches the global event
+          to all event handlers.
+
+        * performance-tests/addon/Client_App.cpp:
+
+          Updated the documentation.
+
+          Added an error message if the specified test is not found.
+
 Sat Apr  9 03:28:42 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * performance-tests/addon/Client_App.h:

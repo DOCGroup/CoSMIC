@@ -14,21 +14,23 @@
 
 #include <sstream>
 
-static int execute_object_create_test (GAME::Mga::Project & proj,
-                                       size_t iters,
-                                       ACE_Time_Value & duration)
+static int
+execute_object_create_test (GAME::Mga::Project & proj,
+                            size_t iters,
+                            ACE_Time_Value & duration)
 {
-  // We are going to time how long it execute the specified
-  // number of iterations.
+  // Start a new transaction.
   GAME::Mga::Transaction t (proj);
   GAME::Mga::RootFolder root = proj.root_folder ();
 
+  // Start the test's timer.
   ACE_High_Res_Timer timer;
   timer.start ();
 
   for (size_t i = 0; i < iters; ++ i)
   {
-    // Create a model element.
+    // Create a new Library element. This element appears in the
+    // root folder.
     using GAME::Mga::Model;
     Model lib = Model::impl_type::_create (root, "Library");
 
@@ -109,9 +111,12 @@ int Client_App::run_main (int argc, char * argv [])
     ACE_DEBUG ((LM_DEBUG,
                 ACE_TEXT ("%T (%t) - %M - running the benchmark test\n")));
 
-    this->execute_test (proj);
+    if (0 != this->execute_test (proj))
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         ACE_TEXT ("%T (%t) - %M - failed to execute test\n")),
+                         -1);
 
-    // Close the project.
+    // Gracefully close the project.
     proj.close ();
 
     return 0;
@@ -190,6 +195,11 @@ int Client_App::execute_test (GAME::Mga::Project p)
 
   if (this->test_ == "OBJEVENT_CREATE")
     ::execute_object_create_test (p, this->iterations_, duration);
+  else
+    ACE_ERROR_RETURN ((LM_ERROR,
+                       ACE_TEXT ("%T (%t) - %M - %s test no found\n"),
+                       this->test_.c_str ()),
+                       -1);
 
   std::cout
     << "# Test              Duration" << std::endl
