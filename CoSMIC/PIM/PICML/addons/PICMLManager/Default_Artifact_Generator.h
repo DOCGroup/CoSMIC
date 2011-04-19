@@ -58,6 +58,8 @@ public:
 private:
   std::string get_location_basename (const GAME::Mga::Model_in type);
 
+  GAME::Mga::Model get_file (const GAME::Mga::Model_in type);
+
   /// The root folder for the project.
   GAME::Mga::Folder artifact_folder_;
 

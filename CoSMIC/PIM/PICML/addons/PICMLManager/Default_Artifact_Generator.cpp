@@ -63,9 +63,14 @@ generate (const Implementation_Configuration & config,
   std::string name = PICML::fq_type (type, "_");
   std::string impl_name = name + config.exec_artifact_suffix_;
   std::string svnt_name = name + config.svnt_artifact_suffix_;
+
   const std::string location_basename = this->get_location_basename (type);
+  const std::string svnt_location_basename =
+    config.svnt_artifact_location_based_on_filename_ ?
+    this->get_file (type)->name () : location_basename;
+
   const std::string impl_location = location_basename + config.exec_artifact_suffix_;
-  const std::string svnt_location = location_basename + config.svnt_artifact_suffix_;
+  const std::string svnt_location = svnt_location_basename + config.svnt_artifact_suffix_;
 
   // Create a new container for the component's artifacts.
   std::string container_name = name + "Artifacts";
@@ -169,6 +174,21 @@ get_location_basename (const GAME::Mga::Model_in type)
   }
   else
     return PICML::fq_type (type,  "_");
+}
+
+//
+// get_file
+//
+GAME::Mga::Model
+Default_Artifact_Generator::get_file (const GAME::Mga::Model_in type)
+{
+  const std::string meta_File ("File");
+  GAME::Mga::Model parent = GAME::Mga::Model::_narrow (type->parent ());
+
+  while (parent->meta ()->name () != meta_File)
+    parent = GAME::Mga::Model::_narrow (parent->parent ());
+
+  return parent;
 }
 
 }

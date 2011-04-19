@@ -94,6 +94,7 @@ void Default_Implementation_Dialog::DoDataExchange (CDataExchange * pDX)
   DDX_Text (pDX, IDC_NAME, this->config_.type_name_);
   DDX_Text (pDX, IDC_EXEC_ARTIFACT_SUFFIX, this->config_.exec_artifact_suffix_);
   DDX_Text (pDX, IDC_SVNT_ARTIFACT_SUFFIX, this->config_.svnt_artifact_suffix_);
+  DDX_Check (pDX, IDC_USE_COMPONENT_FILENAME, (int &)this->config_.svnt_artifact_location_based_on_filename_);
 
   // Validate the name (i.e., make sure it contains no spaces).
   DDV_ValidChars (pDX, this->config_.type_name_, " ");

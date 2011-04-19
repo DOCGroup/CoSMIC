@@ -39,6 +39,9 @@ public:
 
   /// Suffix for the executor artifact.
   std::string exec_artifact_suffix_;
+
+  /// Generate the servant location based on the component's filename.
+  bool svnt_artifact_location_based_on_filename_;
 };
 
 }
