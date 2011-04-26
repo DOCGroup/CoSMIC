@@ -10,10 +10,17 @@
 
 #include "game/mga/ComponentEx.h"
 #include "game/mga/Model.h"
+#include "game/mga/Atom.h"
+#include "game/mga/Attribute.h"
+#include "game/mga/FCO.h"
+#include "game/mga/Reference.h"
 #include "game/mga/Transaction.h"
 
 #include <sstream>
-
+#include <set>
+//
+//execute_object_create_test
+//
 static int
 execute_object_create_test (GAME::Mga::Project & proj,
                             size_t iters,
@@ -46,11 +53,492 @@ execute_object_create_test (GAME::Mga::Project & proj,
 };
 
 //
+//execute_object_destroyed_test
+//
+static int
+execute_object_destroyed_test (GAME::Mga::Project & proj,
+                               size_t iters,
+                               ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Model> input;
+ 
+  for (size_t i = 0; i < iters; ++ i)
+  {
+    // Create a new Library element. This element appears in the
+    // root folder.
+    using GAME::Mga::Model;
+	Model lib = Model::impl_type::_create (root, "Library");
+
+	input.push_back(lib);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+ 
+  std::vector <GAME::Mga::Model>::iterator 
+	  iter = input.begin (), iter_end = input.end ();
+
+   // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+
+  for ( ; iter != iter_end; ++ iter)
+  {
+	  (*iter)->destroy ();
+       t1.flush ();	 
+  }
+ 
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_newchild_test
+//
+static int
+execute_object_newchild_test (GAME::Mga::Project & proj,
+                            size_t iters,
+                            ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  // Create a new Library element. This element appears in the
+  // root folder.
+  using GAME::Mga::Model;
+  Model lib = Model::impl_type::_create (root, "Library");
+  
+	// Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	  
+	  using GAME::Mga::Atom;
+	  Atom boo = Atom::impl_type::_create (lib, "Book");
+
+    // Force the OBJEVENT_NEWCHILD notification.
+    t.flush ();
+  }
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+  
+  return 0;
+};
+
+//
+//execute_object_parent_test
+//
+static int
+execute_object_parent_test (GAME::Mga::Project & proj,
+                            size_t iters,
+                            ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Atom> input;
+  
+  // Create a new Library element. This element appears in the
+  // root folder.
+  using GAME::Mga::Model;
+	Model lib = Model::impl_type::_create (root, "Library");
+
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	using GAME::Mga::Atom;
+	  Atom boo = Atom::impl_type::_create (lib, "Book");
+    
+	input.push_back(boo);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+
+  std::vector <GAME::Mga::Atom>::iterator
+	  iter = input.begin (), iter_end = input.end ();
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for ( ; iter != iter_end; ++ iter)
+	 {
+		 (*iter)->parent();
+
+		 // Force the OBJEVENT_PARENT notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_attribute_test
+//
+static int
+execute_object_attribute_test (GAME::Mga::Project & proj,
+                               size_t iters,
+                               ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Atom> input;
+  std::vector<GAME::Mga::Atom>::iterator traverse;
+
+  // Create a new Library element. This element appears in the
+  // root folder.
+  using GAME::Mga::Model;
+	Model lib = Model::impl_type::_create (root, "Library");
+
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	using GAME::Mga::Atom;
+	  Atom boo = Atom::impl_type::_create (lib, "Book");
+    
+	input.push_back(boo);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+  GAME::Mga::Attribute atr ;
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for (traverse = input.begin(); traverse != input.end() ; ++traverse)
+	 {
+		 atr = (*traverse)->attribute("Quantity");
+		 atr->int_value (20);
+
+		 // Force the OBJEVENT_ATTRIBUTE notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_subt_inst_test
+//
+static int
+execute_object_subt_inst_test (GAME::Mga::Project & proj,
+                            size_t iters,
+                            ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Atom> input;
+  std::vector<GAME::Mga::Atom>::iterator traverse;
+
+  // Create a new Library element. This element appears in the
+  // root folder.
+  using GAME::Mga::Model;
+	Model lib = Model::impl_type::_create (root, "Library");
+
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	using GAME::Mga::Atom;
+	  Atom boo = Atom::impl_type::_create (lib, "Book");
+    
+	input.push_back(boo);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for (traverse = input.begin(); traverse != input.end() ; ++traverse)
+	 {
+		 (*traverse)->create_subtype (lib); 
+
+		 // Force the OBJEVENT_SUBT_INST notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_markedro_test
+//
+static int
+execute_object_markedro_test (GAME::Mga::Project & proj,
+                                 size_t iters,
+                                 ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Model> input;
+  std::vector<GAME::Mga::Model>::iterator traverse;
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	// Create a new Library element. This element appears in the
+    // root folder.
+    using GAME::Mga::Model;
+	  Model lib = Model::impl_type::_create (root, "Library");
+    
+	input.push_back(lib);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for (traverse = input.begin(); traverse != input.end() ; ++traverse)
+	 {
+		 (*traverse)->readonly_access(true, true); 
+
+		 // Force the OBJEVENT_MARKEDRO notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_markedrw_test
+//
+static int
+execute_object_markedrw_test (GAME::Mga::Project & proj,
+                              size_t iters,
+                              ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Model> input;
+  std::vector<GAME::Mga::Model>::iterator traverse;
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	// Create a new Library element. This element appears in the
+    // root folder.
+    using GAME::Mga::Model;
+	  Model lib = Model::impl_type::_create (root, "Library");
+    
+	input.push_back(lib);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for (traverse = input.begin(); traverse != input.end() ; ++traverse)
+	 {
+		 (*traverse)->readonly_access(false, true);  
+
+		 // Force the OBJEVENT_MARKEDRW notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_referenced_test
+//
+static int
+execute_object_referenced_test (GAME::Mga::Project & proj,
+                              size_t iters,
+                              ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Atom> input;
+  std::vector<GAME::Mga::Atom>::iterator traverse;
+
+  // Create a new Library element. This element appears in the
+  // root folder.
+    using GAME::Mga::Model;
+	  Model lib = Model::impl_type::_create (root, "Library");
+  
+  //Creating a reference to which the objects will refer.
+  using GAME::Mga::Reference;
+	Reference ref = Reference::impl_type::_create (lib, "Shelf");
+
+
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	  using GAME::Mga::Atom;
+	    Atom boo = Atom::impl_type::_create (lib, "Book");
+
+	  input.push_back(boo);
+
+	  t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for (traverse = input.begin(); traverse != input.end() ; ++traverse)
+	 {
+		 ref->refers_to (*traverse); 
+
+		 // Force the OBJEVENT_REFERENCED notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+//
+//execute_object_properties_test
+//
+static int
+execute_object_properties_test (GAME::Mga::Project & proj,
+                                 size_t iters,
+                                 ACE_Time_Value & duration)
+{
+  // Start a new transaction.
+  GAME::Mga::Transaction t (proj);
+  GAME::Mga::RootFolder root = proj.root_folder ();
+
+  std::vector <GAME::Mga::Model> input;
+  std::vector<GAME::Mga::Model>::iterator traverse;
+  
+  for (size_t i = 0; i < iters; ++ i)
+  {
+	// Create a new Library element. This element appears in the
+    // root folder.
+    using GAME::Mga::Model;
+	  Model lib = Model::impl_type::_create (root, "Library");
+    
+	input.push_back(lib);
+
+	t.flush ();
+  }
+
+  t.commit ();
+
+  //Start another transaction
+  GAME::Mga::Transaction t1 (proj);
+
+  // Start the test's timer.
+  ACE_High_Res_Timer timer;
+  timer.start ();
+  
+ for (traverse = input.begin(); traverse != input.end() ; ++traverse)
+	 {
+		 (*traverse)->name ("University Library");
+
+		 // Force the OBJEVENT_PROPERTIES notification.
+		 t1.flush ();
+	 }
+
+
+  // Return the duration of the test.
+  timer.stop ();
+  timer.elapsed_time (duration);
+
+  return 0;
+};
+
+
+
+//
 // Client_App
 //
 Client_App::Client_App (void)
 : test_ ("OBJEVENT_CREATED"),
-  iterations_ (10000)
+  iterations_ (10000),
+  block_size_ (10)
 {
 
 }
@@ -141,6 +629,7 @@ int Client_App::run_main (int argc, char * argv [])
 //
 int Client_App::parse_args (int argc, char * argv [])
 {
+
   // Initialize the command-line parser.
   const char * optargs = "";
   ACE_Get_Opt get_opt (argc, argv, optargs);
@@ -148,6 +637,7 @@ int Client_App::parse_args (int argc, char * argv [])
   get_opt.long_option ("progid", 'p', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("test", 't', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("iterations", ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("block", ACE_Get_Opt::ARG_REQUIRED);
 
   char opt;
 
@@ -171,6 +661,11 @@ int Client_App::parse_args (int argc, char * argv [])
         std::istringstream istr (get_opt.opt_arg ());
         istr >> this->iterations_;
       }
+	   else if (0 == ACE_OS::strcmp ("block", get_opt.long_option ()))
+      {
+        std::istringstream pstr (get_opt.opt_arg ());
+		pstr >> this->block_size_;
+      }
       break;
 
     case 'p':
@@ -182,7 +677,7 @@ int Client_App::parse_args (int argc, char * argv [])
       break;
     }
   }
-
+	
   return 0;
 }
 
@@ -193,19 +688,51 @@ int Client_App::execute_test (GAME::Mga::Project p)
 {
   ACE_Time_Value duration;
 
-  // Execute the correct test.
-  if (this->test_ == "OBJEVENT_CREATED")
-    ::execute_object_create_test (p, this->iterations_, duration);
-  else
-    ACE_ERROR_RETURN ((LM_ERROR,
-                       ACE_TEXT ("%T (%t) - %M - %s test no found\n"),
-                       this->test_.c_str ()),
-                       -1);
+  ACE_Time_Value temp [50];
 
-  // Print the test results.
-  std::cout
-    << "# Test              Duration" << std::endl
-    << this->test_ << "     " << duration << std::endl;
+  for (int i = 0; i < this->block_size_; i++)
+  {
+	  // Execute the correct test.
+	  if (this->test_ == "OBJEVENT_CREATED")
+		  ::execute_object_create_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_DESTROYED")
+		  ::execute_object_destroyed_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_NEWCHILD")
+		  ::execute_object_newchild_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_PARENT")
+		  ::execute_object_parent_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_ATTR")
+		  ::execute_object_attribute_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_SUBT_INST")
+		  ::execute_object_subt_inst_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_MARKEDRO")
+		  ::execute_object_markedro_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_MARKEDRW")
+		  ::execute_object_markedrw_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_REFERENCED")
+		  ::execute_object_referenced_test (p, this->iterations_, duration);
+	  else if (this->test_ == "OBJEVENT_PROPERTIES")
+		  ::execute_object_properties_test (p, this->iterations_, duration);
+	  else
+		  ACE_ERROR_RETURN ((LM_ERROR,
+                             ACE_TEXT ("%T (%t) - %M - %s test no found\n"),
+                             this->test_.c_str ()),
+                             -1);
 
+	  //Store data in a temporary array
+	  temp [i] = duration;
+
+      // Print the test results.
+      std::cout
+		  << "\n" << "# Test [ "<< i+1 <<" ]              Duration" << std::endl
+		  << this->test_ << "     " << duration << std::endl;
+  }
+
+  ACE_Time_Value sum;
+  for ( int j = 0; j < this->block_size_; j++)
+	  sum = sum + temp [j];
+
+  std::cout<<"\n\n"<<"Total sum     "<<sum;
+  
   return 0;
 }

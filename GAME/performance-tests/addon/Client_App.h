@@ -49,6 +49,9 @@ private:
 
   /// Number of iterations in test.
   size_t iterations_;
+
+  /// Size of test block
+  int block_size_;
 };
 
 #endif
