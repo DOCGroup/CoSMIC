@@ -30,7 +30,6 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "Utils/xercesc/XercesString.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"
@@ -47,7 +46,6 @@ using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using xercesc::DOMException;
 using xercesc::XMLString;
-using Utils::XStr;
 
 //#include <windows.h>
 //#include <shlobj.h>

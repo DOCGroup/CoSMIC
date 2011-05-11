@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Thu Apr 07 13:56:56 2011
+/* at Wed May 11 12:13:35 2011
  */
 /* Compiler settings for .\PICMLManager.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

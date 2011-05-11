@@ -179,6 +179,11 @@ generate_port_instances (GAME::Mga::Model inst,  const GAME::Mga::Model & compon
                    ports.end (),
                    generate_instance_t (inst, "MirrorPortInstance"));
 
+  if (component->children ("Supports", ports))
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   generate_instance_t (inst, "SupportsInstance"));
+
   // Finally, generate the ports of the base type in this
   // component instance.
   std::vector <Reference> inherits;

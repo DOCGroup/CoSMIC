@@ -7,7 +7,6 @@
 #include "UdmConfig.h"
 #include "Uml.h"
 
-#include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
 #include "xercesc/util/PlatformUtils.hpp"
 #include "CQML/CQML.h"

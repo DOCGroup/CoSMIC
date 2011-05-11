@@ -1,6 +1,6 @@
 // $Id$
 
-project(PICML_Package): acelib, picmllib, boost_base, zlib, minizip {
+project (PICML_Package): game_xml, acelib, picmllib, boost_base, zlib, minizip {
    sharedname    = PICML_Package
    dynamicflags += PACKAGE_BUILD_DLL PACKAGER_BUILD_DLL
 

@@ -1,6 +1,5 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
 #include "BIRSpecificationVisitor.h"
 #include "UmlExt.h"
@@ -8,7 +7,6 @@
 #include <algorithm>
 #include <functional>
 #include <sstream>
-
 
 namespace CQML
   {

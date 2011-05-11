@@ -13,7 +13,6 @@
 #include "Connector_Visitor.h"
 #include "Locality_Manager.h"
 
-#include "Utils/xercesc/XercesString.h"
 #include "Utils/udm/visit.h"
 #include "Utils/UDM/Position_Sort_T.h"
 

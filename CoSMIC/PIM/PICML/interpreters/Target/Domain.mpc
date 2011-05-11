@@ -1,4 +1,6 @@
-project(PICML_Domain): picmllib {
+// $Id$
+
+project(PICML_Domain): game_xml, picmllib {
    sharedname = PICML_Domain
    macros += DOMAIN_BUILD_DLL
 

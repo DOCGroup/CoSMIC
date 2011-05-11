@@ -3,10 +3,11 @@
 #include "Data_Type_Visitor.h"
 #include "Data_Value_Visitor.h"
 #include "External_Reference_Visitor.h"
-#include "Utils/UDM/Position_Sort_T.h"
 
-#include "Utils/xercesc/XercesString.h"
+#include "Utils/UDM/Position_Sort_T.h"
 #include "Utils/udm/visit.h"
+
+#include "game/xml/String.h"
 
 #include "UmlExt.h"
 #include "boost/bind.hpp"
@@ -15,7 +16,8 @@
 #include <functional>
 #include <sstream>
 
-using Utils::XStr;
+using GAME::Xml::String;
+
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
 using xercesc::DOMImplementationLS;
@@ -83,15 +85,16 @@ init (void)
 void Deployment_Domain_Visitor::
 init_document (const std::string& rootName)
 {
+
   if (this->doc_)
     this->doc_->release ();
 
   // Create the document
-  this->doc_ = this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
-                                            XStr (rootName.c_str ()),
+  this->doc_ = this->impl_->createDocument (String ("http://www.omg.org/Deployment"),
+                                            String (rootName.c_str ()),
                                             0);
 
-  this->doc_->setXmlVersion (XStr ("1.0"));
+  this->doc_->setXmlVersion (String ("1.0"));
 }
 
 
@@ -107,20 +110,20 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   // Prepare the XML document for writing.
   this->curr_root_ = this->doc_->getDocumentElement ();
 
-  this->curr_root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                        XStr ("xmlns:Deployment"),
-                        XStr ("http://www.omg.org/Deployment"));
+  this->curr_root_->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
+                                    String ("xmlns:Deployment"),
+                                    String ("http://www.omg.org/Deployment"));
 
-  this->curr_root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                        XStr ("xmlns:xsi"),
-                        XStr ("http://www.w3.org/2001/XMLSchema-instance"));
+  this->curr_root_->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
+                                    String ("xmlns:xsi"),
+                                    String ("http://www.w3.org/2001/XMLSchema-instance"));
 
-  this->curr_root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                        XStr ("xmlns:xmi"),
-                        XStr ("http://www.omg.org/XMI"));
+  this->curr_root_->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
+                                    String ("xmlns:xmi"),
+                                    String ("http://www.omg.org/XMI"));
 
-  this->curr_root_->setAttribute (XStr ("xsi:schemaLocation"),
-                      XStr ("http://www.omg.org/Deployment Deployment.xsd"));
+  this->curr_root_->setAttribute (String ("xsi:schemaLocation"),
+                      String ("http://www.omg.org/Deployment Deployment.xsd"));
 
   this->create_simple_content (this->curr_root_, "UUID", plan.UUID ());
   this->create_simple_content (this->curr_root_, "label", plan.label ());

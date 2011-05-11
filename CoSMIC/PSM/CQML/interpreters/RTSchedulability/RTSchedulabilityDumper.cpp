@@ -1,8 +1,6 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
-
 #include "RTSchedulabilityDumper.h"
 
 #include <algorithm>
@@ -19,8 +17,6 @@ using xercesc::DOMException;
 using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
-
-using Utils::XStr;
 using Utils::CreateUuid;
 
 namespace CQML

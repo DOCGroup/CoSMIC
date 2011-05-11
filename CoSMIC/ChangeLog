@@ -1,3 +1,37 @@
+Wed May 11 18:32:01 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+
+          Removed disfunct code.
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Added some debug messages.
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Configurator.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connector_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Domain_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.cpp:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Package_Component.mpc:
+        * PIM/PICML/interpreters/PackageComponent/Package_Component_Impl.cpp:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/Target/Domain.mpc:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+        * PSM/CQML/interpreters/CIAOEventsComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+
+          Fixed compilation errors.
+
 Tue Apr 19 16:03:19 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/Default_Artifact_Generator.h:

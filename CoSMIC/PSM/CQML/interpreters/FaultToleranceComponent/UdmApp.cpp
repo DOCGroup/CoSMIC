@@ -16,7 +16,6 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
 
 #include "CQML/CQML.h"
@@ -26,7 +25,6 @@ using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using xercesc::DOMException;
 using xercesc::XMLString;
-using Utils::XStr;
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 

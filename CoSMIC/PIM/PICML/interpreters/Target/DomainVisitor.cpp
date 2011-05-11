@@ -1,8 +1,11 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
+#include "ace/config.h"
 #include "Utils/Utils.h"
 #include "DomainVisitor.h"
+
+#include "game/xml/String.h"
+
 #include "Uml.h"
 
 using xercesc::LocalFileFormatTarget;
@@ -12,8 +15,6 @@ using xercesc::DOMException;
 using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
-
-using Utils::XStr;
 
 namespace PICML
 {
@@ -33,7 +34,7 @@ namespace PICML
 
   void DomainVisitor::init()
   {
-    this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+    this->impl_ = DOMImplementationRegistry::getDOMImplementation(L"LS");
     this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
     // Set features if the serializer supports the feature/mode
@@ -60,27 +61,27 @@ namespace PICML
       this->doc_->release();
     // Create the document
     this->doc_ =
-      this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
-      XStr (rootName.c_str()),
+      this->impl_->createDocument (GAME::Xml::String ("http://www.omg.org/Deployment"),
+      GAME::Xml::String (rootName.c_str()),
       0);
   }
 
   void DomainVisitor::initRootAttributes()
   {
-    //this->doc_->setEncoding (XStr("UTF-8"));
-    this->doc_->setXmlVersion (XStr("1.0"));
+    //this->doc_->setEncoding (GAME::Xml::String("UTF-8"));
+    this->doc_->setXmlVersion (GAME::Xml::String("1.0"));
     this->root_ = this->doc_->getDocumentElement();
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:Deployment"),
-      XStr ("http://www.omg.org/Deployment"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xsi"),
-      XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xmi"),
-      XStr ("http://www.omg.org/XMI"));
-    this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-      XStr ("http://www.omg.org/Deployment Deployment.xsd"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:Deployment"),
+      GAME::Xml::String ("http://www.omg.org/Deployment"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:xsi"),
+      GAME::Xml::String ("http://www.w3.org/2001/XMLSchema-instance"));
+    this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+      GAME::Xml::String ("xmlns:xmi"),
+      GAME::Xml::String ("http://www.omg.org/XMI"));
+    this->root_->setAttribute (GAME::Xml::String ("xsi:schemaLocation"),
+      GAME::Xml::String ("http://www.omg.org/Deployment Deployment.xsd"));
     this->curr_ = this->root_;
   }
 
@@ -114,8 +115,8 @@ namespace PICML
   DOMElement* DomainVisitor::createSimpleContent (const std::string& name,
     const std::string& value)
   {
-    DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
-    DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
+    DOMElement* pName = this->doc_->createElement (GAME::Xml::String (name.c_str()));
+    DOMText* pValue = this->doc_->createTextNode (GAME::Xml::String (value.c_str()));
     pName->appendChild (pValue);
     return pName;
   }
@@ -216,7 +217,7 @@ namespace PICML
   {
     this->push();
 
-    DOMElement* ele = this->doc_->createElement (XStr ("node"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("node"));
     ele->appendChild (this->createSimpleContent ("name", node.name()));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
@@ -253,7 +254,7 @@ namespace PICML
   void DomainVisitor::Visit_Interconnect(const Interconnect& ic)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("interconnect"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("interconnect"));
     ele->appendChild (this->createSimpleContent ("name", ic.name()));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
@@ -269,7 +270,7 @@ namespace PICML
       ++iter)
     {
       Resource ic_res = *iter;
-      DOMElement* res_ele = this->doc_->createElement (XStr ("resource"));
+      DOMElement* res_ele = this->doc_->createElement (GAME::Xml::String ("resource"));
       res_ele->appendChild (this->createSimpleContent ("name", ic_res.name()));
       this->curr_->appendChild (res_ele);
     }
@@ -302,7 +303,7 @@ namespace PICML
   {
     this->push();
 
-    DOMElement* ele = this->doc_->createElement (XStr ("bridge"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("bridge"));
     ele->appendChild (this->createSimpleContent ("name", br.name()));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
@@ -332,7 +333,7 @@ namespace PICML
   void DomainVisitor::Visit_SharedResource(const SharedResource& sr)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("sharedResource"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("sharedResource"));
     ele->appendChild (this->createSimpleContent ("name", sr.name()));
     ele->appendChild (this->createSimpleContent ("resourceType",
       sr.resourceType()));
@@ -361,7 +362,7 @@ namespace PICML
   void DomainVisitor::Visit_Resource(const Resource& res)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("resource"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("resource"));
     ele->appendChild (this->createSimpleContent ("name", res.name()));
     ele->appendChild (this->createSimpleContent ("resourceType",
       res.resourceType()));
@@ -382,7 +383,7 @@ namespace PICML
   void DomainVisitor::Visit_SatisfierProperty(const SatisfierProperty& property)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("property"));
+    DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("property"));
     ele->appendChild (this->createSimpleContent ("name", property.name()));
     ele->appendChild (this->createSimpleContent ("kind", property.SatisfierPropertyKind()));
     ele->appendChild (this->createSimpleContent ("dynamic",
@@ -390,14 +391,14 @@ namespace PICML
     this->curr_->appendChild (ele);
     this->curr_ = ele;
     // Property's value
-    DOMElement* value = this->doc_->createElement (XStr ("value"));
+    DOMElement* value = this->doc_->createElement (GAME::Xml::String ("value"));
     this->curr_->appendChild (value);
     this->curr_ = value;
     // Property's type
     DataType type = property.DataType_child();
     type.Accept (*this);
     // Property's type's value
-    DOMElement* val = this->doc_->createElement (XStr ("value"));
+    DOMElement* val = this->doc_->createElement (GAME::Xml::String ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
 
@@ -492,7 +493,7 @@ namespace PICML
   void DomainVisitor::Visit_Boolean(const Boolean& boolean)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -504,7 +505,7 @@ namespace PICML
   void DomainVisitor::Visit_Byte(const Byte& byte)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -515,7 +516,7 @@ namespace PICML
   void DomainVisitor::Visit_String(const String& str)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -526,7 +527,7 @@ namespace PICML
   void DomainVisitor::Visit_FloatNumber (const FloatNumber & real)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -537,7 +538,7 @@ namespace PICML
   void DomainVisitor::Visit_DoubleNumber (const DoubleNumber & real)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -548,7 +549,7 @@ namespace PICML
   void DomainVisitor::Visit_ShortInteger(const ShortInteger&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -559,7 +560,7 @@ namespace PICML
   void DomainVisitor::Visit_LongInteger(const LongInteger&)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",

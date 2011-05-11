@@ -25,15 +25,6 @@ namespace ascii = boost::spirit::ascii;
 ///////////////////////////////////////////////////////////////////////////////
 // Preprocessor_Importer_Grammar
 
-namespace constants
-{
-namespace attrs
-{
-  static const GAME::Xml::String PrePreprocessorDirectives ("PrePreprocessorDirectives");
-  static const GAME::Xml::String PostPreprocessorDirectives ("PostPreprocessorDirectives");
-}
-};
-
 namespace data
 {
   struct ident2_t

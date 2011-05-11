@@ -11,7 +11,6 @@
 #include "game/mga/utils/Project_Settings.h"
 
 #include "Utils/Utils.h"
-#include "Utils/xercesc/XercesString.h"
 
 #include "UdmGme.h"
 #include "UdmStatic.h"

@@ -1,10 +1,13 @@
 // $Id$
 
 #include "Connection_Visitor.h"
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
+
 #include "Utils/udm/visit.h"
 #include "boost/bind.hpp"
 #include <algorithm>
+
+using GAME::Xml::String;
 
 //
 // Connection_Visitor
@@ -57,13 +60,13 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
 
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
-  this->endpoint_ = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
+  this->endpoint_ = this->doc_->createElement (String ("internalEndpoint"));
   this->create_simple_content (this->endpoint_, "portName", source.name ());
   this->create_simple_content (this->endpoint_, "provider", "false");
   this->create_simple_content (this->endpoint_, "kind", kind);
 
   xercesc::DOMElement * ele = this->create_simple_content (this->endpoint_, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  ele->setAttribute (String ("xmi:idref"), String (uuid));
 
   this->name_ = source.getPath (".", false, true, "name", true);
 
@@ -103,13 +106,13 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
 
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
-  this->endpoint_ = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
+  this->endpoint_ = this->doc_->createElement (String ("internalEndpoint"));
   this->create_simple_content (this->endpoint_, "portName", receptacle.name ());
   this->create_simple_content (this->endpoint_, "provider", "false");
   this->create_simple_content (this->endpoint_, "kind", kind);
 
   xercesc::DOMElement * ele = this->create_simple_content (this->endpoint_, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  ele->setAttribute (String ("xmi:idref"), String (uuid));
 
   this->name_ = receptacle.getPath (".", false, true, "name", true);
 
@@ -182,13 +185,13 @@ Visit_InEventPortInstance (const PICML::InEventPortInstance & sink)
   PICML::InEventPort port = sink.ref ();
 
   // Create the template endpoint for these connections.
-  xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
+  xercesc::DOMElement * endpoint = this->doc_->createElement (String ("internalEndpoint"));
   this->create_simple_content (endpoint, "portName", port.name ());
   this->create_simple_content (endpoint, "provider", "true");
   this->create_simple_content (endpoint, "kind", "EventConsumer");
 
   xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  ele->setAttribute (String ("xmi:idref"), String (uuid));
 
   // Finally, create final connection between the two endpoints.
   std::string connection_name = this->name_;
@@ -215,13 +218,13 @@ Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance & fa
   const std::string uuid = std::string ("_") + std::string (inst.UUID ());
 
   // Create the endpoint for this port.
-  xercesc::DOMElement * endpoint = this->doc_->createElement (Utils::XStr ("internalEndpoint"));
+  xercesc::DOMElement * endpoint = this->doc_->createElement (String ("internalEndpoint"));
   this->create_simple_content (endpoint, "portName", facet.name ());
   this->create_simple_content (endpoint, "provider", "true");
   this->create_simple_content (endpoint, "kind", "Facet");
 
   xercesc::DOMElement * ele = this->create_simple_content (endpoint, "instance", "");
-  ele->setAttribute (Utils::XStr ("xmi:idref"), Utils::XStr (uuid));
+  ele->setAttribute (String ("xmi:idref"), String (uuid));
 
   std::string connection_name = this->name_;
   connection_name.append ("::");
@@ -371,7 +374,7 @@ create_connection (const std::string & name,
                    bool is_local)
 {
   // Create the new connection.
-  xercesc::DOMElement * conn = this->doc_->createElement (Utils::XStr ("connection"));
+  xercesc::DOMElement * conn = this->doc_->createElement (String ("connection"));
   this->create_simple_content (conn, "name", name);
 
   if (is_local)

@@ -55,8 +55,6 @@
 #include "fe_extern.h"
 #include "be_extern.h"
 
-#include "Utils/xercesc/XercesString.h"
-
 #include "game/xme/Project.h"
 #include "game/xme/Connection.h"
 #include "game/xme/functional.h"
@@ -636,6 +634,10 @@ int Project_Generator::visit_scope (UTL_Scope *node)
 //
 int Project_Generator::visit_module (AST_Module *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Auto_Model_T;
   using GAME::XME::FCO;
   using GAME::XME::Model;
@@ -716,6 +718,10 @@ int Project_Generator::visit_module (AST_Module *node)
 //
 int Project_Generator::visit_interface (AST_Interface *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
@@ -788,6 +794,10 @@ int Project_Generator::visit_interface (AST_Interface *node)
 //
 int Project_Generator::visit_interface_fwd (AST_InterfaceFwd *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building forward decl %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::Xme_t;
 
@@ -822,6 +832,10 @@ int Project_Generator::visit_interface_fwd (AST_InterfaceFwd *node)
 //
 int Project_Generator::visit_valuetype (AST_ValueType *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -865,6 +879,10 @@ int Project_Generator::visit_valuetype (AST_ValueType *node)
 //
 int Project_Generator::visit_valuetype_fwd (AST_ValueTypeFwd *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building forward decl. %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::Xme_t;
 
@@ -896,6 +914,10 @@ int Project_Generator::visit_valuetype_fwd (AST_ValueTypeFwd *node)
 //
 int Project_Generator::visit_component (AST_Component *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
@@ -1000,6 +1022,10 @@ int Project_Generator::visit_component (AST_Component *node)
 //
 int Project_Generator::visit_component_fwd (AST_ComponentFwd *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building forward decl. %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::Xme_t;
 
@@ -1028,6 +1054,10 @@ int Project_Generator::visit_component_fwd (AST_ComponentFwd *node)
 //
 int Project_Generator::visit_provides (AST_Provides *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1056,6 +1086,10 @@ int Project_Generator::visit_provides (AST_Provides *node)
 //
 int Project_Generator::visit_uses (AST_Uses *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1086,6 +1120,10 @@ int Project_Generator::visit_uses (AST_Uses *node)
 //
 int Project_Generator::visit_publishes (AST_Publishes *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1117,6 +1155,10 @@ int Project_Generator::visit_publishes (AST_Publishes *node)
 //
 int Project_Generator::visit_emits (AST_Emits *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1148,6 +1190,10 @@ int Project_Generator::visit_emits (AST_Emits *node)
 //
 int Project_Generator::visit_consumes (AST_Consumes *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1176,6 +1222,10 @@ int Project_Generator::visit_consumes (AST_Consumes *node)
 //
 int Project_Generator::visit_eventtype (AST_EventType *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1215,6 +1265,10 @@ int Project_Generator::visit_eventtype (AST_EventType *node)
 //
 int Project_Generator::visit_eventtype_fwd (AST_EventTypeFwd *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building forward decl. %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::Xme_t;
 
@@ -1243,6 +1297,10 @@ int Project_Generator::visit_eventtype_fwd (AST_EventTypeFwd *node)
 //
 int Project_Generator::visit_home (AST_Home *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1317,6 +1375,10 @@ int Project_Generator::visit_home (AST_Home *node)
 //
 int Project_Generator::visit_factory (AST_Factory *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1352,6 +1414,10 @@ int Project_Generator::visit_factory (AST_Factory *node)
 //
 int Project_Generator::visit_finder (AST_Finder *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1387,6 +1453,10 @@ int Project_Generator::visit_finder (AST_Finder *node)
 //
 int Project_Generator::visit_structure (AST_Structure *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1425,6 +1495,10 @@ int Project_Generator::visit_structure (AST_Structure *node)
 //
 int Project_Generator::visit_structure_fwd (AST_StructureFwd *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building forward decl. %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::Xme_t;
 
@@ -1451,6 +1525,10 @@ int Project_Generator::visit_structure_fwd (AST_StructureFwd *node)
 //
 int Project_Generator::visit_exception (AST_Exception *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1482,6 +1560,10 @@ int Project_Generator::visit_expression (AST_Expression *node){ return 0; }
 //
 int Project_Generator::visit_enum (AST_Enum *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1523,6 +1605,10 @@ int Project_Generator::visit_enum (AST_Enum *node)
 //
 int Project_Generator::visit_enum_val (AST_EnumVal *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Atom;
   using GAME::Xme_t;
 
@@ -1547,6 +1633,10 @@ int Project_Generator::visit_enum_val (AST_EnumVal *node)
 //
 int Project_Generator::visit_operation (AST_Operation *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1622,6 +1712,10 @@ int Project_Generator::visit_operation (AST_Operation *node)
 //
 int Project_Generator::visit_field (AST_Field *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1672,6 +1766,10 @@ int Project_Generator::visit_array (AST_Array *node)
 //
 int Project_Generator::visit_attribute (AST_Attribute *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1752,6 +1850,10 @@ int Project_Generator::visit_attribute (AST_Attribute *node)
 //
 int Project_Generator::visit_argument (AST_Argument *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1788,6 +1890,10 @@ int Project_Generator::visit_argument (AST_Argument *node)
 //
 int Project_Generator::visit_union (AST_Union *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::FCO;
   using GAME::XME::Auto_Model_T;
@@ -1846,6 +1952,10 @@ int Project_Generator::visit_union (AST_Union *node)
 //
 int Project_Generator::visit_union_fwd (AST_UnionFwd *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building forward decl. %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -1873,6 +1983,10 @@ int Project_Generator::visit_union_fwd (AST_UnionFwd *node)
 //
 int Project_Generator::visit_union_branch (AST_UnionBranch *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -1955,6 +2069,10 @@ int Project_Generator::visit_union_label (AST_UnionLabel *node)
 //
 int Project_Generator::visit_constant (AST_Constant *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -2048,6 +2166,10 @@ int Project_Generator::visit_constant (AST_Constant *node)
 //
 int Project_Generator::visit_typedef (AST_Typedef *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   AST_Type * base_type = node->base_type ();
 
   static const GAME::Xml::String meta_list[2] =
@@ -2102,6 +2224,10 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
 //
 int Project_Generator::visit_valuebox (AST_ValueBox *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -2357,6 +2483,10 @@ lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
 //
 int Project_Generator::visit_native (AST_Native *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Atom;
   using GAME::Xme_t;
 
@@ -2384,6 +2514,10 @@ int Project_Generator::visit_native (AST_Native *node)
 //
 int Project_Generator::visit_porttype (AST_PortType *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::Xme_t;
@@ -2421,6 +2555,10 @@ int Project_Generator::visit_porttype (AST_PortType *node)
 //
 int Project_Generator::visit_extended_port (AST_Extended_Port *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -2449,6 +2587,10 @@ int Project_Generator::visit_extended_port (AST_Extended_Port *node)
 //
 int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Reference;
   using GAME::Xme_t;
 
@@ -2477,6 +2619,10 @@ int Project_Generator::visit_mirror_port (AST_Mirror_Port *node)
 //
 int Project_Generator::visit_connector (AST_Connector *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;
@@ -2532,6 +2678,10 @@ int Project_Generator::visit_connector (AST_Connector *node)
 //
 int Project_Generator::visit_template_module (AST_Template_Module *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Atom;
@@ -2762,6 +2912,10 @@ int Project_Generator::visit_param_holder (AST_Param_Holder *node)
 //
 int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *node)
 {
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              node->flat_name ()));
+
   // Store the element as a symbol.
   using GAME::XME::Auto_Model_T;
   using GAME::XME::Reference;

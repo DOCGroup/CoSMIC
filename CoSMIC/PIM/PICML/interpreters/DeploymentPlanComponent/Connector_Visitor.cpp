@@ -3,7 +3,7 @@
 #include "Connector_Visitor.h"
 #include "DeploymentPlanVisitor.h"
 
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "Utils/udm/visit.h"
 #include "Utils/Utils.h"
 #include "UdmGme.h"

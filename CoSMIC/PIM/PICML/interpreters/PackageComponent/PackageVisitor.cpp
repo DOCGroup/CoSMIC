@@ -1,20 +1,22 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
+#include "ace/config.h"
 #include "Utils/Utils.h"
 #include "PackageVisitor.h"
 
-#include <algorithm>
-#include <functional>
+#include "game/xml/String.h"
+
 #include "boost/bind.hpp"
 #include "boost/ref.hpp"
 #include "UmlExt.h"
+
+#include <algorithm>
+#include <functional>
 #include <sstream>
 
 namespace PICML
 {
 
-using Utils::XStr;
 using Utils::CreateUuid;
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -47,7 +49,7 @@ PackageVisitor::~PackageVisitor ()
 
 void PackageVisitor::init()
 {
-  this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
+  this->impl_ = DOMImplementationRegistry::getDOMImplementation(GAME::Xml::String("LS"));
   this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
   // Set features if the serializer supports the feature/mode
@@ -74,27 +76,27 @@ void PackageVisitor::initDocument (const string& rootName)
     this->doc_->release();
   // Create the document
   this->doc_ =
-    this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
-                                 XStr (rootName.c_str()),
+    this->impl_->createDocument (GAME::Xml::String ("http://www.omg.org/Deployment"),
+                                 GAME::Xml::String (rootName.c_str()),
                                  0);
 }
 
 void PackageVisitor::initRootAttributes()
 {
-  //this->doc_->setEncoding (XStr("UTF-8"));
-  this->doc_->setXmlVersion (XStr("1.0"));
+  //this->doc_->setEncoding (GAME::Xml::String("UTF-8"));
+  this->doc_->setXmlVersion (GAME::Xml::String("1.0"));
   this->root_ = this->doc_->getDocumentElement();
-  this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                               XStr ("xmlns:Deployment"),
-                               XStr ("http://www.omg.org/Deployment"));
-  this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                               XStr ("xmlns:xsi"),
-                               XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-  this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-                               XStr ("xmlns:xmi"),
-                               XStr ("http://www.omg.org/XMI"));
-  this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                             XStr ("http://www.omg.org/Deployment Deployment.xsd"));
+  this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                               GAME::Xml::String ("xmlns:Deployment"),
+                               GAME::Xml::String ("http://www.omg.org/Deployment"));
+  this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                               GAME::Xml::String ("xmlns:xsi"),
+                               GAME::Xml::String ("http://www.w3.org/2001/XMLSchema-instance"));
+  this->root_->setAttributeNS (GAME::Xml::String ("http://www.w3.org/2000/xmlns/"),
+                               GAME::Xml::String ("xmlns:xmi"),
+                               GAME::Xml::String ("http://www.omg.org/XMI"));
+  this->root_->setAttribute (GAME::Xml::String ("xsi:schemaLocation"),
+                             GAME::Xml::String ("http://www.omg.org/Deployment Deployment.xsd"));
   this->curr_ = this->root_;
 }
 
@@ -128,8 +130,8 @@ void PackageVisitor::pop()
 DOMElement* PackageVisitor::createSimpleContent (const string& name,
                                                  const string& value)
 {
-  DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
-  DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
+  DOMElement* pName = this->doc_->createElement (GAME::Xml::String (name.c_str()));
+  DOMText* pValue = this->doc_->createTextNode (GAME::Xml::String (value.c_str()));
   pName->appendChild (pValue);
   return pName;
 }
@@ -245,14 +247,14 @@ void PackageVisitor::Visit_ArtifactDependency(const ArtifactDependency& ado)
 {
   this->push();
   ImplementationArtifact ia = ado.dstArtifactDependency_end();
-  DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("dependsOn"));
   ele->appendChild (this->createSimpleContent ("name",
                                                ia.getPath (".", false, true, "name", true)));
   string iaName (ia.name());
   iaName += ".iad";
   DOMElement*
-    iaEle = this->doc_->createElement (XStr ("referencedArtifact"));
-  iaEle->setAttribute (XStr ("href"), XStr (iaName));
+    iaEle = this->doc_->createElement (GAME::Xml::String ("referencedArtifact"));
+  iaEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (iaName));
   ele->appendChild (iaEle);
   this->curr_->appendChild (ele);
   this->pop();
@@ -261,15 +263,15 @@ void PackageVisitor::Visit_ArtifactDependency(const ArtifactDependency& ado)
 void PackageVisitor::Visit_ImplementationArtifactReference(const ImplementationArtifactReference& iar)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("dependsOn"));
   const ImplementationArtifact ref = iar.ref();
   ele->appendChild (this->createSimpleContent ("name",
                                                ref.getPath (".", false, true, "name", true)));
   string refName (ref.name());
   refName += ".iad";
   DOMElement*
-    refEle = this->doc_->createElement (XStr ("referencedArtifact"));
-  refEle->setAttribute (XStr ("href"), XStr (refName));
+    refEle = this->doc_->createElement (GAME::Xml::String ("referencedArtifact"));
+  refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   ele->appendChild (refEle);
   this->curr_->appendChild (ele);
   this->pop();
@@ -278,11 +280,11 @@ void PackageVisitor::Visit_ImplementationArtifactReference(const ImplementationA
 void PackageVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& param)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("execParameter"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = param.dstArtifactExecParameter_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -303,7 +305,7 @@ void PackageVisitor::GenerateExecParameters (const ImplementationArtifact& ia)
     {
       this->push();
       pair<string,string> param = *iter;
-      DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+      DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("execParameter"));
       this->curr_->appendChild (ele);
       this->curr_ = ele;
       this->DumpStringProperty (param.first, param.second);
@@ -322,15 +324,15 @@ void PackageVisitor::CreateSimplePropertyElement (string name, const SimplePrope
   this->curr_->appendChild (this->createSimpleContent ("name", name));
 
   // Property's value
-  DOMElement* value = this->doc_->createElement (XStr ("value"));
+  DOMElement* value = this->doc_->createElement (GAME::Xml::String ("value"));
   this->curr_->appendChild (value);
   this->curr_ = value;
 
   // Property's type
   this->Evaluate_SimpleProperty_Reference (prop);
-  
+
   // Property's type's value
-  DOMElement* val = this->doc_->createElement (XStr ("value"));
+  DOMElement* val = this->doc_->createElement (GAME::Xml::String ("value"));
   this->curr_->appendChild (val);
   this->curr_ = val;
 
@@ -423,7 +425,7 @@ void PackageVisitor::Evaluate_SimpleProperty_Reference (const PICML::SimplePrope
 void PackageVisitor::Visit_Boolean(const Boolean& boolean)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -435,7 +437,7 @@ void PackageVisitor::Visit_Boolean(const Boolean& boolean)
 void PackageVisitor::Visit_Byte(const Byte& byte)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -446,7 +448,7 @@ void PackageVisitor::Visit_Byte(const Byte& byte)
 void PackageVisitor::Visit_String(const String& str)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -457,7 +459,7 @@ void PackageVisitor::Visit_String(const String& str)
 void PackageVisitor::Visit_FloatNumber(const FloatNumber& real)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -468,7 +470,7 @@ void PackageVisitor::Visit_FloatNumber(const FloatNumber& real)
 void PackageVisitor::Visit_DoubleNumber(const DoubleNumber& real)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -479,7 +481,7 @@ void PackageVisitor::Visit_DoubleNumber(const DoubleNumber& real)
 void PackageVisitor::Visit_ShortInteger(const ShortInteger&)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -490,7 +492,7 @@ void PackageVisitor::Visit_ShortInteger(const ShortInteger&)
 void PackageVisitor::Visit_LongInteger(const LongInteger&)
 {
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind",
@@ -504,11 +506,11 @@ void PackageVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequire
 void PackageVisitor::Visit_ArtifactInfoProperty(const ArtifactInfoProperty& aip)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("infoProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = aip.dstArtifactInfoProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -560,11 +562,11 @@ void PackageVisitor::Visit_package(const package& pkg)
 void PackageVisitor::Visit_PackageConfigurationReference(const PackageConfigurationReference& pcr)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("basePackage"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("basePackage"));
   const PackageConfiguration pc = pcr.ref();
   string refName (pc.name());
   refName += ".pcd";
-  ele->setAttribute (XStr ("href"), XStr (refName));
+  ele->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   this->curr_->appendChild (ele);
   this->pop();
 }
@@ -628,11 +630,11 @@ void PackageVisitor::Visit_PackageConfiguration(const PackageConfiguration& pc)
 void PackageVisitor::Visit_PackageConfBasePackage(const PackageConfBasePackage& pcbp)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("basePackage"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("basePackage"));
   const ComponentPackage pkg = pcbp.dstPackageConfBasePackage_end();
   string pkgName (pkg.name());
   pkgName += ".cpd";
-  ele->setAttribute (XStr ("href"), XStr (pkgName));
+  ele->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (pkgName));
   this->curr_->appendChild (ele);
   this->pop();
 }
@@ -647,11 +649,11 @@ void PackageVisitor::Visit_PackageConfReference(const PackageConfReference& pkgc
 void PackageVisitor::Visit_ComponentPackageReference(const ComponentPackageReference& pkgref)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("basePackage"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("basePackage"));
   ComponentPackage pkg = pkgref.ref();
   string pkgName (pkg.name());
   pkgName += ".cpd";
-  ele->setAttribute (XStr ("href"), XStr (pkgName));
+  ele->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (pkgName));
   this->curr_->appendChild (ele);
   this->pop();
 }
@@ -659,11 +661,11 @@ void PackageVisitor::Visit_ComponentPackageReference(const ComponentPackageRefer
 void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty& pccp)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = pccp.dstPackageConfConfigProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -740,12 +742,12 @@ void PackageVisitor::Visit_ComponentPackage(const ComponentPackage& cp)
 void PackageVisitor::Visit_PackageInterface(const PackageInterface& pi)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("realizes"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("realizes"));
   const ComponentRef cref = pi.dstPackageInterface_end();
   const Component comp  = cref.ref();
   string refName (comp.name());
   refName += ".ccd";
-  ele->setAttribute (XStr ("href"), XStr (refName));
+  ele->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   this->curr_->appendChild (ele);
   this->pop();
 }
@@ -759,15 +761,15 @@ void PackageVisitor::Visit_Implementation(const Implementation& impl)
 void PackageVisitor::Visit_ComponentImplementationReference(const ComponentImplementationReference& cir)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("implementation"));
   const ComponentImplementation ref = cir.ref();
   ele->appendChild (this->createSimpleContent ("name",
                                                ref.getPath (".", false, true, "name", true)));
   string refName (ref.name());
   refName += ".cid";
   DOMElement*
-    refEle = this->doc_->createElement (XStr ("referencedImplementation"));
-  refEle->setAttribute (XStr ("href"), XStr (refName));
+    refEle = this->doc_->createElement (GAME::Xml::String ("referencedImplementation"));
+  refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   ele->appendChild (refEle);
   this->curr_->appendChild (ele);
   this->pop();
@@ -776,11 +778,11 @@ void PackageVisitor::Visit_ComponentImplementationReference(const ComponentImple
 void PackageVisitor::Visit_PackageConfigProperty(const PackageConfigProperty& pcp)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = pcp.dstPackageConfigProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -790,7 +792,7 @@ void PackageVisitor::Visit_PackageConfigProperty(const PackageConfigProperty& pc
 void PackageVisitor::Visit_PackageInfoProperty(const PackageInfoProperty& pip)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("infoProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = pip.dstPackageInfoProperty_end();
@@ -1117,7 +1119,7 @@ void PackageVisitor::Visit_Component(const Component& comp)
 void PackageVisitor::Visit_OutEventPort(const OutEventPort& oep)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("port"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("port"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
 
@@ -1166,7 +1168,7 @@ void PackageVisitor::Visit_OutEventPort(const OutEventPort& oep)
 void PackageVisitor::Visit_InEventPort(const InEventPort& iep)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("port"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("port"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
 
@@ -1200,7 +1202,7 @@ void PackageVisitor::Visit_InEventPort(const InEventPort& iep)
 void PackageVisitor::Visit_ProvidedRequestPort(const ProvidedRequestPort& facet)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("port"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("port"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   this->curr_->appendChild (this->createSimpleContent ("name", facet.name()));
@@ -1233,7 +1235,7 @@ void PackageVisitor::Visit_ProvidedRequestPort(const ProvidedRequestPort& facet)
 void PackageVisitor::Visit_RequiredRequestPort(const RequiredRequestPort& recep)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("port"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("port"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
 
@@ -1273,11 +1275,11 @@ void PackageVisitor::Visit_ComponentProperty(const ComponentProperty&)
 void PackageVisitor::Visit_ComponentInfoProperty(const ComponentInfoProperty& cip)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("infoProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = cip.dstComponentInfoProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -1288,11 +1290,11 @@ void PackageVisitor::Visit_ComponentInfoProperty(const ComponentInfoProperty& ci
 void PackageVisitor::Visit_ComponentConfigProperty(const ComponentConfigProperty& ccp)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = ccp.dstComponentConfigProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -1346,7 +1348,7 @@ void PackageVisitor::Visit_MonolithicImplementation(const MonolithicImplementati
   iface.Accept (*this);
 
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("monolithicImpl"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("monolithicImpl"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
 
@@ -1372,8 +1374,8 @@ void PackageVisitor::Visit_Implements(const Implements& impl)
   string refName (ref.name());
   refName += ".ccd";
   DOMElement*
-    refEle = this->doc_->createElement (XStr ("implements"));
-  refEle->setAttribute (XStr ("href"), XStr (refName));
+    refEle = this->doc_->createElement (GAME::Xml::String ("implements"));
+  refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   this->curr_->appendChild (refEle);
   this->pop();
 }
@@ -1381,7 +1383,7 @@ void PackageVisitor::Visit_Implements(const Implements& impl)
 void PackageVisitor::Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact& mpa)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("primaryArtifact"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("primaryArtifact"));
   const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end();
   const ImplementationArtifact ref = iaref.ref();
   ele->appendChild (this->createSimpleContent ("name",
@@ -1389,8 +1391,8 @@ void PackageVisitor::Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact
   string refName = ref.name();
   refName += ".iad";
   DOMElement*
-    refEle = this->doc_->createElement (XStr ("referencedArtifact"));
-  refEle->setAttribute (XStr ("href"), XStr (refName));
+    refEle = this->doc_->createElement (GAME::Xml::String ("referencedArtifact"));
+  refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   ele->appendChild (refEle);
   this->curr_->appendChild (ele);
   this->pop();
@@ -1399,11 +1401,11 @@ void PackageVisitor::Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact
 void PackageVisitor::Visit_ConfigProperty(const ConfigProperty& cp)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = cp.dstConfigProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -1413,11 +1415,11 @@ void PackageVisitor::Visit_ConfigProperty(const ConfigProperty& cp)
 void PackageVisitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty& acp)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = acp.dstAssemblyConfigProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -1495,7 +1497,7 @@ void PackageVisitor::Visit_Path (const Path& path)
 {
   // Dump the top-level pointer to the critical path
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   string pname = "edu.vanderbilt.dre.CIAO.RACE.criticalPath";
@@ -1511,7 +1513,7 @@ void PackageVisitor::Visit_Path (const Path& path)
        ++iter)
     {
       this->push();
-      DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+      DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
       this->curr_->appendChild (ele);
       this->curr_ = ele;
       PathProperty pprop = *iter;
@@ -1540,7 +1542,7 @@ void PackageVisitor::Visit_Path (const Path& path)
           // Dump the value of the criticalPath
           this->push();
           DOMElement* ele =
-            this->doc_->createElement (XStr ("configProperty"));
+            this->doc_->createElement (GAME::Xml::String ("configProperty"));
           this->curr_->appendChild (ele);
           this->curr_ = ele;
           string pvalue = this->CreatePath (node);
@@ -1655,13 +1657,13 @@ void PackageVisitor::DumpStringProperty (const string& name,
   // Property's name
   this->curr_->appendChild (this->createSimpleContent ("name", name));
   // Property's value
-  DOMElement* value = this->doc_->createElement (XStr ("value"));
+  DOMElement* value = this->doc_->createElement (GAME::Xml::String ("value"));
   this->curr_->appendChild (value);
   this->curr_ = value;
 
   // Property's type
   this->push();
-  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  DOMElement* type = this->doc_->createElement (GAME::Xml::String ("type"));
   this->curr_->appendChild (type);
   this->curr_ = type;
   this->curr_->appendChild (this->createSimpleContent ("kind", "tk_string"));
@@ -1669,7 +1671,7 @@ void PackageVisitor::DumpStringProperty (const string& name,
 
   // Property's type's value
   this->push();
-  DOMElement* val = this->doc_->createElement (XStr ("value"));
+  DOMElement* val = this->doc_->createElement (GAME::Xml::String ("value"));
   this->curr_->appendChild (val);
   this->curr_ = val;
   this->curr_->appendChild (this->createSimpleContent ("string", pvalue));
@@ -1682,7 +1684,7 @@ void PackageVisitor::DumpStringProperty (const string& name,
 void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("assemblyImpl"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("assemblyImpl"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
 
@@ -1695,7 +1697,7 @@ void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
   //// shared Component is implemented as a reference to a Component.  So
   //// just traverse the reference and add it to the set.
   //set<ComponentRef> scomps = assembly.ComponentRef_kind_children();
-  //for_each (scomps.begin(), 
+  //for_each (scomps.begin(),
   //          scomps.end(),
   //          bind (&ComponentRef::Accept, _1, ref (*this)));
 
@@ -1708,7 +1710,7 @@ void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
   // Like shared components, shared assemblies are also implemented as
   // references.  So just traverse the references, and add them to the set.
   set <ComponentAssemblyReference> sasms = assembly.ComponentAssemblyReference_kind_children();
-  for_each (sasms.begin(),  
+  for_each (sasms.begin(),
             sasms.end(),
             bind (&ComponentAssemblyReference::Accept, _1, ref (*this)));
 
@@ -1734,14 +1736,14 @@ void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
     // Get the components of the current assembly
     set <ComponentInstance> rcomps = rassembly.ComponentInstance_children ();
 
-    // TODO When shared component support is re-enabled, the code 
+    // TODO When shared component support is re-enabled, the code
     // below needs to be updated.
 
     // Get the shared components of the current assembly
     //scomps = rassembly.ComponentRef_kind_children ();
     //std::for_each (scomps.begin (),
     //               scomps.end (),
-    //               boost::bind (&set <ComponentInstance>::insert, 
+    //               boost::bind (&set <ComponentInstance>::insert,
     //                            boost::ref (rcomps),
     //                            boost::bind (&ComponentRef::ref, _1)));
     // Insert both into the component list.
@@ -1878,7 +1880,7 @@ void PackageVisitor::GetAttributeComponents (const AttributeMapping& mapping,
 void PackageVisitor::
 CreateAssemblyInstance (const ComponentInstance & comp)
 {
-  DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+  DOMElement* instance = this->doc_->createElement (GAME::Xml::String ("instance"));
 
   this->curr_->appendChild (instance);
   this->push();
@@ -1887,15 +1889,15 @@ CreateAssemblyInstance (const ComponentInstance & comp)
   string uniqueName = comp.UUID();
 
   uniqueName = string ("_") + uniqueName;
-  instance->setAttribute (XStr ("id"), XStr (uniqueName));
+  instance->setAttribute (GAME::Xml::String ("id"), GAME::Xml::String (uniqueName));
   instance->appendChild (this->createSimpleContent ("name",
                                                     comp.getPath (".", false, true, "name", true)));
 
   string interfaceName = typeParent.name();
   string refName = this->interfaces_[interfaceName];
   refName += ".cpd";
-  DOMElement* refEle = this->doc_->createElement (XStr ("basePackage"));
-  refEle->setAttribute (XStr ("href"), XStr (refName));
+  DOMElement* refEle = this->doc_->createElement (GAME::Xml::String ("basePackage"));
+  refEle->setAttribute (GAME::Xml::String ("href"), GAME::Xml::String (refName));
   instance->appendChild (refEle);
 
   // TODO Add AssemblyConfigProperty back to PICML.
@@ -1919,14 +1921,14 @@ CreateAssemblyInstance (const ComponentInstance & comp)
         {
           this->push();
           DOMElement*
-            ele = this->doc_->createElement (XStr ("configProperty"));
+            ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
           this->curr_->appendChild (ele);
           this->curr_ = ele;
           PICML::Property val = attrVal.second;
 
           if (Udm::IsDerivedFrom (val.type (), PICML::SimpleProperty::meta))
             this->CreateSimplePropertyElement (compAttr.second, PICML::SimpleProperty::Cast (val));
-          
+
           this->pop();
         }
     }
@@ -1952,13 +1954,13 @@ void PackageVisitor::Visit_AttributeValue (const AttributeValue& value)
 {
   this->push();
 
-  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("configProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
 
   Property ref = value.dstAttributeValue_end();
   AttributeInstance attr = value.srcAttributeValue_end ();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -1978,7 +1980,7 @@ CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
     ComponentAssembly subasm = *iter;
     set <Invoke> invokes = subasm.Invoke_kind_children ();
 
-    for_each (invokes.begin(), 
+    for_each (invokes.begin(),
               invokes.end(),
               bind (&Invoke::Accept, _1, ref (*this)));
 
@@ -1989,23 +1991,23 @@ CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
 
     //set <emit> emits = subasm.emit_kind_children();
 
-    //for_each (emits.begin(), 
+    //for_each (emits.begin(),
     //          emits.end(),
     //          bind (&emit::Accept, _1, ref (*this)));
 
     //set <publish> publishers = subasm.publish_kind_children();
 
-    //for_each (publishers.begin(), 
+    //for_each (publishers.begin(),
     //          publishers.end(),
     //          bind (&publish::Accept, _1, ref (*this)));
 
     //set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
-    //for_each (deliverTos.begin(), 
+    //for_each (deliverTos.begin(),
     //          deliverTos.end(),
     //          bind (&deliverTo::Accept, _1, ref (*this)));
 
     //set<PublishConnector> connectors = subasm.PublishConnector_kind_children();
-    //for_each (connectors.begin(), 
+    //for_each (connectors.begin(),
     //          connectors.end(),
     //          bind (&PublishConnector::Accept, _1, ref (*this)));
 
@@ -2144,7 +2146,7 @@ void PackageVisitor::CreateConnection (const Component& srcComp,
                                        const string& dstPortName)
 {
   // Create a connection
-  DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("connection"));
   this->curr_->appendChild (ele);
 
   string connection = srcPortName + "_" + dstPortName;
@@ -2152,7 +2154,7 @@ void PackageVisitor::CreateConnection (const Component& srcComp,
 
   // Source endPoint
   DOMElement* endPoint
-    = this->doc_->createElement (XStr ("internalEndpoint"));
+    = this->doc_->createElement (GAME::Xml::String ("internalEndpoint"));
   endPoint->appendChild (this->createSimpleContent ("portName",
                                                     srcPortName));
   // Source instance
@@ -2162,7 +2164,7 @@ void PackageVisitor::CreateConnection (const Component& srcComp,
   ele->appendChild (endPoint);
 
   // Destination endPoint
-  endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+  endPoint = this->doc_->createElement (GAME::Xml::String ("internalEndpoint"));
   endPoint->appendChild (this->createSimpleContent ("portName",
                                                     dstPortName));
   // Destination instance
@@ -2261,11 +2263,11 @@ void PackageVisitor::Visit_sendsTo (const PICML::SendsTo & s)
 void PackageVisitor::Visit_InfoProperty(const InfoProperty& ip)
 {
   this->push();
-  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  DOMElement* ele = this->doc_->createElement (GAME::Xml::String ("infoProperty"));
   this->curr_->appendChild (ele);
   this->curr_ = ele;
   Property ref = ip.dstInfoProperty_end();
-  
+
   if (Udm::IsDerivedFrom (ref.type (), PICML::SimpleProperty::meta))
     PICML::SimpleProperty::Cast (ref).Accept (*this);
 
@@ -2283,7 +2285,7 @@ string PackageVisitor::ExtractName(Udm::Object ob)
 
   for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
     {
-      if(string(ai->type())=="String")
+      if(string(ai->type())=="GAME::Xml::String")
         {
           string str=ai->name();
           if(str=="name")

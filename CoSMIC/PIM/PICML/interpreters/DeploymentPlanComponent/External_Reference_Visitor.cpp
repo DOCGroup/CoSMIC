@@ -2,7 +2,7 @@
 
 #include "External_Reference_Visitor.h"
 
-#include "Utils/xercesc/XercesString.h"
+#include "game/xml/String.h"
 #include "Utils/udm/visit.h"
 
 #include "boost/bind.hpp"
@@ -117,10 +117,10 @@ Visit_Port (const PICML::MgaObject & port,
             const PICML::ExternalDelegate & ed)
 {
   using namespace xercesc;
-  using namespace Utils;
+  using namespace GAME::Xml;
 
   // Create the <connection> element.
-  DOMElement * conn = this->doc_->createElement (Utils::XStr ("connection"));
+  DOMElement * conn = this->doc_->createElement (String ("connection"));
 
   // Set the name of the connection.
   std::string name (port.getPath (".", false, true, "name", true));
@@ -142,7 +142,7 @@ Visit_Port (const PICML::MgaObject & port,
   std::string id = std::string ("_") + std::string (parent.UUID ());
 
   DOMElement * inst = this->create_element (endpoint, "instance");
-  inst->setAttribute (XStr ("xmi:idref"), XStr (id));
+  inst->setAttribute (String ("xmi:idref"), String (id));
 
   // Create the <externalReference> element.
   PICML::ExternalPort ex = ed.srcExternalDelegate_end ();
