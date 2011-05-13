@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Thu Apr 07 12:53:50 2011
+/* at Thu May 12 16:39:20 2011
  */
 /* Compiler settings for c:\Program Files\GME\Interfaces\MgaDecorator.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

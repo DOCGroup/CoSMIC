@@ -45,6 +45,10 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO * fcoptr)
     GAME::Mga::Meta::Part part (metaPart);
     GAME::Mga::FCO fco (fcoptr);
 
+    // Reset the state variables.
+    this->is_loc_set_ = false;
+    this->is_init_ = false;
+
     int retval = this->impl_.initialize (proj, part, fco);
 
     if (0 == retval)
@@ -74,6 +78,10 @@ InitializeEx (IMgaProject* project,
     GAME::Mga::Project proj (project);
     GAME::Mga::Meta::Part part (pPart);
     GAME::Mga::FCO fco (pFCO);
+
+    // Reset the state variables.
+    this->is_loc_set_ = false;
+    this->is_init_ = false;
 
     int retval = this->impl_.initialize_ex (proj, part, fco, eventSink, parentWnd);
 
