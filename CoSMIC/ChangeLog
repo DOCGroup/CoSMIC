@@ -1,3 +1,25 @@
+Fri May 13 15:59:17 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.wxs:
+
+          Updated the GME version check to 10.8.18.
+
+        * Installer/CoSMIC_Installer.old:
+        * Installer/CoSMIC_Installer.old/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer.old/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer.old/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer.old/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer.old/CoSMIC_Installer.mwc:
+        * Installer/CoSMIC_Installer.old/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer.old/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer.old/CustomActions.wxs:
+        * Installer/CoSMIC_Installer.old/Directories.wxs:
+        * Installer/CoSMIC_Installer.old/EnvironmentVars.wxi:
+        * Installer/CoSMIC_Installer.old/list_icons.sh:
+        * Installer/CoSMIC_Installer.old/vc8_assemblies.wxs:
+
+          Removed these files.
+
 Fri May 13 00:36:35 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PICML/PICML_GUID.h:

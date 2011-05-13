@@ -28,8 +28,8 @@
       Privileged
     </Condition>
 
-<?if $(var.GME_VERSION) = 10.2.9 ?>
-    <Condition Message="This version of CoSMIC requires GME 10.2.9. Please install GME 10.2.9 first.">
+<?if $(var.GME_VERSION) = 10.8.18 ?>
+    <Condition Message="This version of CoSMIC requires GME 10.8.18. Please install GME 10.8.18 first.">
       GMEINSTALLED
     </Condition>
 <?endif ?>
