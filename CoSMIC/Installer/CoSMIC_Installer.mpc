@@ -3,26 +3,26 @@
 project (Custom_Actions) : acedefaults {
   sharedname    = Custom_Actions
   dynamicflags += CUSTOM_ACTIONS_BUILD_DLL
-  
+
   dllout = .
 
   requires -= boost
 
-  // This needs to be pushed to the MPC repo.  
+  // This needs to be pushed to the MPC repo.
   lit_libs += msi
 
   Source_Files {
     Custom_Actions.cpp
-  }  
+  }
 }
 
 project (CoSMIC) : wix_ui, wix_xml {
   custom_only = 1
-  
+
   after += Custom_Actions
-  
+
   specific {
-    wix_flags += -I$(COSMIC_ROOT) -dGME_VERSION=10.2.9
+    wix_flags += -I$(COSMIC_ROOT) -dGME_VERSION=10.8.18
     light_flags += -cultures:en-us
   }
 
