@@ -16,9 +16,14 @@ BE_version (void)
 //
 // BE_init
 //
-IDL_TO_PICML_BE_Export 
+IDL_TO_PICML_BE_Export
 int BE_init (int &, char *[])
 {
+  u_long default_mask =
+    LM_EMERGENCY | LM_ALERT | LM_CRITICAL | LM_ERROR | LM_WARNING | LM_NOTICE;
+
+  ACE_Log_Msg::instance ()->priority_mask (default_mask, ACE_Log_Msg::PROCESS);
+
   // Initialize BE global data object.
   ACE_NEW_RETURN (be_global,
                   BE_GlobalData,
@@ -30,7 +35,7 @@ int BE_init (int &, char *[])
 //
 // BE_post_init
 //
-IDL_TO_PICML_BE_Export 
+IDL_TO_PICML_BE_Export
 void BE_post_init (char *files[], long nfiles)
 {
   idl_global->multi_file_input (true);

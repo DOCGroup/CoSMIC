@@ -635,7 +635,7 @@ int Project_Generator::visit_scope (UTL_Scope *node)
 int Project_Generator::visit_module (AST_Module *node)
 {
   ACE_DEBUG ((LM_DEBUG,
-              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+              ACE_TEXT ("%T (%t) - %M - building module %s...\n"),
               node->flat_name ()));
 
   using GAME::XME::Auto_Model_T;
@@ -672,8 +672,18 @@ int Project_Generator::visit_module (AST_Module *node)
     // We should have already created an element via the template package
     // instance. So, let's locate and use it when contructing the package.
     if (0 != this->symbols_.find (node->from_inst (), package))
-      return -1;
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         ACE_TEXT ("%T (%t) - %M - failed to locate from_inst (%s)\n"),
+                         node->from_inst ()->flat_name ()),
+                         -1);
   }
+
+  // First, let's see if we have already creating this element and bound
+  // it to the template module hash map.
+  if (reg_module)
+    this->current_file_->modules_.find (repo_id, module);
+  else
+    this->current_file_->template_modules_.find (node->from_inst (), module);
 
   if (0 == module && !package.is_nil ())
   {
@@ -698,12 +708,18 @@ int Project_Generator::visit_module (AST_Module *node)
     if (reg_module)
     {
       if (0 != this->current_file_->modules_.bind (repo_id, module))
-        return -1;
+        ACE_ERROR_RETURN ((LM_ERROR,
+                           ACE_TEXT ("%T (%t) - %M - failed to bind %s\n"),
+                           repo_id),
+                           -1);
     }
     else
     {
       if (0 != this->current_file_->template_modules_.bind (node->from_inst (), module))
-        return -1;
+        ACE_ERROR_RETURN ((LM_ERROR,
+                           ACE_TEXT ("%T (%t) - %M - failed to bind %s\n"),
+                           node->from_inst ()->flat_name ()),
+                           -1);
     }
   }
 

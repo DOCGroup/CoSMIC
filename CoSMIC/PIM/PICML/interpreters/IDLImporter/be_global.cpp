@@ -128,6 +128,15 @@ void BE_GlobalData::parse_args (long &i, char **av)
           this->output_file_ = av[i] + 2;
         break;
 
+      case 'v':
+        {
+          u_long mask = ACE_Log_Msg::instance ()->priority_mask ();
+          mask |= LM_DEBUG | LM_INFO;
+
+          ACE_Log_Msg::instance ()->priority_mask (mask, ACE_Log_Msg::PROCESS);
+        }
+        break;
+
       case 'i':
         if (av[i][2] == '\0')
         {
