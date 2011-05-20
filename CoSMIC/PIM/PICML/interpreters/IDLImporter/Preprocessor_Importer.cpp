@@ -540,7 +540,8 @@ public:
       sys_filepath_ (std::string ("sys_filepath")),
       ident_ (std::string ("ident")),
       pragma_ami4ccm_interface_ (std::string ("pragma_ami4ccm_interface")),
-      pragma_ami4ccm_receptacle_ (std::string ("pragma_ami4ccm_receptacle"))
+      pragma_ami4ccm_receptacle_ (std::string ("pragma_ami4ccm_receptacle")),
+      pragma_ami4ccm_idl_ (std::string ("pragma_ami4ccm_idl"))
   {
     namespace phoenix = boost::phoenix;
     namespace repo = boost::spirit::repository;
@@ -588,7 +589,8 @@ public:
       this->pragma_dcps_data_key_[append_dcps_data_key (this->model_stack_)] |
       this->pragma_keylist_[append_keylist (this->model_stack_)] |
       this->pragma_ami4ccm_receptacle_[enable_ami4ccm_receptacle_t (file)] |
-      this->pragma_ami4ccm_interface_[enable_ami4ccm_interface_t (file)];
+      this->pragma_ami4ccm_interface_[enable_ami4ccm_interface_t (file)] |
+      this->pragma_ami4ccm_idl_;
 
     this->pragma_typesupport_ %=
       this->ident_ >>
@@ -621,6 +623,12 @@ public:
       qi::lit ("\"") >>
       this->scoped_name_ >>
       qi::lit ("\"");
+
+    this->pragma_ami4ccm_idl_ %=
+      qi::lit ("ciao") >>
+      qi::lit ("ami4ccm") >>
+      qi::lit ("idl") >>
+      this->usr_filepath_;
 
     this->pragma_dcps_data_key_ %=
       qi::lit ("DCPS_DATA_KEY") >>
@@ -703,6 +711,7 @@ private:
     debug (this->ident_);
     debug (this->pragma_ami4ccm_receptacle_);
     debug (this->pragma_ami4ccm_interface_);
+    debug (this->pragma_ami4ccm_idl_);
   }
 
   GAME::XME::Model & file_;
@@ -725,6 +734,7 @@ private:
 
   qi::rule <IteratorT, data::scope_t (), ascii::space_type> pragma_ami4ccm_receptacle_;
   qi::rule <IteratorT, data::scope_t (), ascii::space_type> pragma_ami4ccm_interface_;
+  qi::rule <IteratorT, std::string (), ascii::space_type> pragma_ami4ccm_idl_;
 
   qi::rule <IteratorT, std::string (), ascii::space_type> pragma_dcps_data_type_;
   qi::rule <IteratorT, data::ident2_t (), ascii::space_type> pragma_dcps_data_key_;

@@ -1,3 +1,19 @@
+Fri May 20 05:51:40 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Configurator.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.h:
+
+          Updated to GME 10.8.18.
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+
+          Stored part of the evaluation in handle_object_create () in
+          a temporary variable.
+
+        * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:
+
+          Added temp support for the new #pragma ciao ami4ccm idl statement.
+
 Wed May 18 02:33:12 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:

@@ -66,8 +66,9 @@ int AMI4CCM_Event_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
   GAME::Mga::Model model = GAME::Mga::Model::_narrow (obj);
   GAME::Mga::Attribute attr = model->attribute ("SupportsAsync");
+  bool supports_async = attr->bool_value ();
 
-  return attr->bool_value () ? this->instantiate_connector (obj) : 0;
+  return supports_async ? this->instantiate_connector (obj) : 0;
 }
 
 
