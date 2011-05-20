@@ -305,7 +305,13 @@ template <typename T>
 GAME_INLINE
 bool Smart_Ptr <T>::operator < (const Smart_Ptr <T> & ptr) const
 {
-  return this->impl_ == ptr.impl_ ? false : this->impl_->id () < ptr.impl_->id ();
+  if (this->impl_ == ptr.impl_ || (0 != this->impl_ && 0 == ptr.impl_))
+    return false;
+
+  if (0 == this->impl_ && 0 != ptr.impl_)
+    return true;
+
+  return this->impl_->id () < ptr.impl_->id ();
 }
 
 //
@@ -315,7 +321,13 @@ template <typename T>
 GAME_INLINE
 bool Smart_Ptr <T>::operator > (const Smart_Ptr <T> & ptr) const
 {
-  return this->impl_ == ptr.impl_ ? false : this->impl_->id () > ptr.impl_->id ();
+  if (this->impl_ == ptr.impl_ || (0 == this->impl_ && 0 != ptr.impl_))
+    return false;
+
+  if (0 != ptr.impl_ && 0 == this->impl_)
+    return true;
+
+  return this->impl_->id () > ptr.impl_->id ();
 }
 
 //
@@ -323,6 +335,7 @@ bool Smart_Ptr <T>::operator > (const Smart_Ptr <T> & ptr) const
 //
 template <typename T>
 template <typename T1>
+GAME_INLINE
 bool Smart_Ptr <T>::operator == (const Smart_Ptr <T1> & rhs) const
 {
   if (this->impl_ == rhs.impl_)

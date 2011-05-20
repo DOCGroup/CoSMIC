@@ -1,3 +1,14 @@
+Fri May 20 05:49:23 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Smart_Ptr.inl:
+
+          Bug fix where if either implementation was nil, then the application
+          would crash.
+
+        * game/mga/decorator/MgaDecorator.h:
+
+          Updated to GME 10.8.18
+
 Fri May 13 00:39:03 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/decorator/Decorator_T.inl:
