@@ -1,3 +1,10 @@
+Tue Jun  7 15:49:52 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Bug fix where the UUID was set on readonly objects. This caused
+          GME to throw an exception.
+
 Tue Jun  7 00:41:59 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.h:
