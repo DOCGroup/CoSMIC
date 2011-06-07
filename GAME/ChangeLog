@@ -1,3 +1,9 @@
+Tue Jun  7 15:55:04 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Event_Handler.cpp:
+
+          Temp removal of the debug messages.
+
 Tue Jun  7 15:46:48 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Event_Handler.cpp:
