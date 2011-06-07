@@ -12,6 +12,7 @@
 
 #include "ace/ACE.h"
 #include "ace/Auto_Ptr.h"
+#include "ace/streams.h"
 
 namespace GAME
 {
@@ -226,6 +227,10 @@ static const GLOBAL_EVENT_METHOD __appevent_map__[] = {
 static inline int
 invoke_handle_object_attribute (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_attribute (" << obj->path ("/") << ")" << std::endl;
+
   return impl->handle_object_attribute (obj);
 }
 
@@ -235,6 +240,10 @@ invoke_handle_object_attribute (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_registry (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_registry ()" << std::endl;
+
   return impl->handle_object_registry (obj);
 }
 
@@ -244,6 +253,10 @@ invoke_handle_object_registry (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_new_child (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_new_child ()" << std::endl;
+
   return impl->handle_new_child (obj);
 }
 
@@ -253,6 +266,9 @@ invoke_handle_new_child (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_relation (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_relation ()" << std::endl;
   return impl->handle_object_relation (obj);
 }
 
@@ -262,6 +278,9 @@ invoke_handle_object_relation (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_properties (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_properties ()" << std::endl;
   return impl->handle_object_properties (obj);
 }
 
@@ -271,6 +290,9 @@ invoke_handle_object_properties (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_instance_subtype (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_instance_subtype ()" << std::endl;
   return impl->handle_instance_subtype (obj);
 }
 
@@ -280,6 +302,9 @@ invoke_handle_instance_subtype (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_parent (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_attribute ()" << std::endl;
   return impl->handle_object_parent (obj);
 }
 
@@ -289,6 +314,9 @@ invoke_handle_object_parent (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_lost_child (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_lost_child ()" << std::endl;
   return impl->handle_lost_child (obj);
 }
 
@@ -298,6 +326,9 @@ invoke_handle_lost_child (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_referenced (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_referenced ()" << std::endl;
   return impl->handle_referenced (obj);
 }
 
@@ -307,6 +338,9 @@ invoke_handle_referenced (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_connected (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_connected ()" << std::endl;
   return impl->handle_object_connected (obj);
 }
 
@@ -316,6 +350,9 @@ invoke_handle_object_connected (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_set_included (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_set_included ()" << std::endl;
   return impl->handle_set_included (obj);
 }
 
@@ -325,6 +362,9 @@ invoke_handle_set_included (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_referenced_release (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_referenced_release ()" << std::endl;
   return impl->handle_referenced_release (obj);
 }
 
@@ -334,6 +374,9 @@ invoke_handle_referenced_release (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_disconnected (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_disconnected ()" << std::endl;
   return impl->handle_object_disconnected (obj);
 }
 
@@ -343,6 +386,9 @@ invoke_handle_object_disconnected (Event_Handler_Interface * impl, Object_in obj
 static inline int
 invoke_handle_set_excluded (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_set_excluded ()" << std::endl;
   return impl->handle_set_excluded (obj);
 }
 
@@ -352,6 +398,9 @@ invoke_handle_set_excluded (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_marked_readonly (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_marked_readonly ()" << std::endl;
   return impl->handle_marked_readonly (obj);
 }
 
@@ -361,6 +410,9 @@ invoke_handle_marked_readonly (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_marked_readwrite (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_marked_readwrite ()" << std::endl;
   return impl->handle_marked_readwrite (obj);
 }
 
@@ -370,6 +422,9 @@ invoke_handle_marked_readwrite (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_model_open (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_model_open ()" << std::endl;
   return impl->handle_model_open (obj);
 }
 
@@ -379,6 +434,9 @@ invoke_handle_model_open (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_select (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_select ()" << std::endl;
   return impl->handle_object_select (obj);
 }
 
@@ -388,6 +446,9 @@ invoke_handle_object_select (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_deselect (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_deselect ()" << std::endl;
   return impl->handle_object_deselect (obj);
 }
 
@@ -397,6 +458,9 @@ invoke_handle_object_deselect (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_mouseover (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_mouseover ()" << std::endl;
   return impl->handle_object_mouseover (obj);
 }
 
@@ -406,6 +470,9 @@ invoke_handle_object_mouseover (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_model_close (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_model_close ()" << std::endl;
   return impl->handle_model_close (obj);
 }
 
@@ -415,6 +482,9 @@ invoke_handle_model_close (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_destroyed (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+  fout << "invoke_handle_object_destroyed ()" << std::endl;
   return impl->handle_object_destroyed (obj);
 }
 
@@ -424,6 +494,15 @@ invoke_handle_object_destroyed (Event_Handler_Interface * impl, Object_in obj)
 static inline int
 invoke_handle_object_created (Event_Handler_Interface * impl, Object_in obj)
 {
+  std::ofstream fout;
+  fout.open ("e:/temp/events.log", std::ios::app);
+
+  fout
+    << typeid (*impl).name () << "::"
+    << "invoke_handle_object_created ("
+    << obj->meta ()->name () << ":" << obj->path ("/")
+    << ")" << std::endl;
+
   return impl->handle_object_created (obj);
 }
 
@@ -640,6 +719,10 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     }
 
     return 0;
+  }
+  catch (const GAME::Mga::Failed_Result & ex)
+  {
+
   }
   catch (...)
   {
