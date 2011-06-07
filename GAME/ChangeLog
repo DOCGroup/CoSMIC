@@ -1,3 +1,9 @@
+Tue Jun  7 00:41:10 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/decorator/MgaDecorator.h:
+
+          Removed this file.
+
 Fri May 20 05:49:23 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Smart_Ptr.inl:
