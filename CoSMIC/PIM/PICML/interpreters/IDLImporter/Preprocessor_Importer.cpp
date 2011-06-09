@@ -552,7 +552,8 @@ public:
     this->model_stack_.push (file);
 
     this->file_content_ =
-      * (this->pragma_ |
+      * (this->comment_ |
+         this->pragma_ |
          this->module_ |
          this->ignorable_scope_ |
          this->garbage_);
@@ -566,6 +567,7 @@ public:
       qi::lit (';')[close_module (this->model_stack_)];
 
     this->module_content_ =
+      this->comment_ |
       this->module_ |
       this->ignorable_scope_ |
       this->pragma_ |
@@ -684,6 +686,15 @@ public:
     this->sys_filepath_ %=
       qi::lexeme[ascii::char_ ("<") >> *(ascii::print - "\"") >> ascii::char_ (">")];
 
+    this->comment_ =
+      this->cpp_comment_ | this->c_comment_;
+
+    this->c_comment_ %=
+      qi::lexeme[repo::confix ("/*", "*/")[*(ascii::char_ - "*/")]];
+
+    this->cpp_comment_ %=
+      qi::lexeme[qi::omit[qi::lit ("//")] >> *(qi::print - qi::eol) >> qi::omit[qi::eol]];
+
     if (debug)
       this->enable_debugging ();
   }
@@ -712,6 +723,8 @@ private:
     debug (this->pragma_ami4ccm_receptacle_);
     debug (this->pragma_ami4ccm_interface_);
     debug (this->pragma_ami4ccm_idl_);
+    debug (this->cpp_comment_);
+    debug (this->c_comment_);
   }
 
   GAME::XME::Model & file_;
@@ -750,6 +763,10 @@ private:
   qi::rule <IteratorT, std::string (), ascii::space_type> usr_filepath_;
   qi::rule <IteratorT, std::string (), ascii::space_type> sys_filepath_;
   qi::rule <IteratorT, std::string (), ascii::space_type> filename_;
+
+  qi::rule <IteratorT, void (), ascii::space_type> comment_;
+  qi::rule <IteratorT, void (), ascii::space_type> cpp_comment_;
+  qi::rule <IteratorT, void (), ascii::space_type> c_comment_;
 
   qi::rule <IteratorT,
             data::scope_t (),
