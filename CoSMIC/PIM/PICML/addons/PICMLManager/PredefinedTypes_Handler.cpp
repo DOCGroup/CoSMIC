@@ -41,7 +41,12 @@ PredefinedTypes_Handler::~PredefinedTypes_Handler (void)
 int PredefinedTypes_Handler::
 handle_object_created (GAME::Mga::Object_in obj)
 {
+  // There is no need to continue if the object is not modifiable. It may
+  // be worthwhile making this a flag on the dispatcher (i.e., dispatch
+  // if the object is modifiable.
   GAME::Mga::Folder predefined_types = GAME::Mga::Folder::_narrow (obj);
+  if (!predefined_types->is_mutable ())
+    return 0;
 
   static const char * metanames [] =
   {

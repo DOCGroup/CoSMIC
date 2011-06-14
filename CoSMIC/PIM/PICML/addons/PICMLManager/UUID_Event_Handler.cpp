@@ -45,7 +45,7 @@ UUID_Event_Handler::~UUID_Event_Handler (void)
 int UUID_Event_Handler::
 handle_object_created (GAME::Mga::Object_in obj)
 {
-  if (obj->is_lib_object () || obj->readonly_access ())
+  if (!obj->is_mutable ())
     return 0;
 
   // Locate the UUID attribute for the FCO.

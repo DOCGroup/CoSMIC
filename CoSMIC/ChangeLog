@@ -1,3 +1,14 @@
+Tue Jun 14 21:12:35 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
+
+          Bug fix where the event handler tried to create predefined types
+          in a non-mutable folder.
+
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Replace constant check with is_mutable ().
+
 Tue Jun 14 15:51:50 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
