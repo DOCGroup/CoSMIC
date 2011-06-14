@@ -1,3 +1,10 @@
+Tue Jun 14 15:51:50 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
+
+          Handler was not creating predefined types for String and
+          WideString.
+
 Thu Jun  9 21:22:32 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Preprocessor_Importer.cpp:

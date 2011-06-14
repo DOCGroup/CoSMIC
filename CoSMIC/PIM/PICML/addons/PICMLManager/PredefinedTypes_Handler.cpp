@@ -49,6 +49,8 @@ handle_object_created (GAME::Mga::Object_in obj)
     "Byte",
     "Char",
     "WideChar",
+    "String",
+    "WideString",
     "ShortInteger",
     "LongInteger",
     "LongLongInteger",
