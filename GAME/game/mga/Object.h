@@ -264,6 +264,11 @@ public:
   /// Force all objects to implement an accept method.
   virtual void accept (Visitor * v) = 0;
 
+  /// Test of the object is mutable. An object is mutable if it
+  /// is not readonly or it is not a library object. This means
+  /// the object can be changed.
+  bool is_mutable (void) const;
+
 protected:
   /// The underlying COM pointer.
   ATL::CComPtr <IMgaObject> object_;

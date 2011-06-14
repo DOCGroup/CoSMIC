@@ -1,3 +1,11 @@
+Tue Jun 14 21:20:31 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/mga/Object.h:
+        * Utils/GAME/game/mga/Object.inl:
+
+          Implemented the is_mutable () method for determine if an
+          object can be changed.
+
 Tue Jun  7 15:55:04 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Event_Handler.cpp:
