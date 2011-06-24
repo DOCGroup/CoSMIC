@@ -288,7 +288,9 @@ get_matching_ports (const GAME::Mga::Model_in connector,
     for (; iter != iter_end; ++ iter)
     {
       GAME::Mga::Model base_connector = GAME::Mga::Model::_narrow ((*iter)->refers_to ());
-      this->get_matching_ports (base_connector, object, type, ports);
+
+      if (!base_connector.is_nil ())
+        this->get_matching_ports (base_connector, object, type, ports);
     }
   }
 }

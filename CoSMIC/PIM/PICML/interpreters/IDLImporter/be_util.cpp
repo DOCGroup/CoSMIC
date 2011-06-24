@@ -62,6 +62,11 @@ be_util::usage (void)
       ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
       ACE_TEXT (" Default is c:\\Program Files\\GME\n")
     ));
+
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT (" --debug\t\tPrint debugging information")
+    ));
 }
 
 AST_Generator *

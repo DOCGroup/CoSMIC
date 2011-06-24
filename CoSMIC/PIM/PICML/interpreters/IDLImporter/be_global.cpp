@@ -41,8 +41,10 @@ const char *FILE_EXT = ".xme";
 IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 
 BE_GlobalData::BE_GlobalData (void)
-  : output_file_ ("PICML_default_xme_file"),
-    files_ (proj_)
+: output_file_ ("PICML_default_xme_file"),
+  files_ (proj_),
+  debugging_enabled_ (false),
+  trace_enabled_ (false)
 {
 
 }
@@ -117,97 +119,104 @@ ACE_CString BE_GlobalData::spawn_options (void)
 void BE_GlobalData::parse_args (long &i, char **av)
 {
   switch (av[i][1])
+  {
+  case 'x':
+    if (av[i][2] == '\0')
     {
-      case 'x':
-        if (av[i][2] == '\0')
-        {
-          this->output_file_ = av[i + 1];
-          ++i;
-        }
-        else
-          this->output_file_ = av[i] + 2;
-        break;
-
-      case 'v':
-        {
-          u_long mask = ACE_Log_Msg::instance ()->priority_mask ();
-          mask |= LM_DEBUG | LM_INFO;
-
-          ACE_Log_Msg::instance ()->priority_mask (mask, ACE_Log_Msg::PROCESS);
-        }
-        break;
-
-      case 'i':
-        if (av[i][2] == '\0')
-        {
-          this->input_file_ = av[i + 1];
-          ++i;
-        }
-        else
-          this->input_file_ = av[i] + 2;
-        break;
-
-      case 'o':
-        if (av[i][2] == '\0')
-        {
-          this->output_dir_ = av[i + 1];
-          ++i;
-        }
-        else
-          this->output_dir_ = av[i] + 2;
-        break;
-
-      case 'r':
-        if (av[i][2] == '\0')
-        {
-          idl_global->recursion_start (av [i + 1]);
-          i++;
-        }
-        else
-          idl_global->recursion_start (av[i] + 2);
-        break;
-
-      case 'm':
-        if (av[i][2] == '\0')
-        {
-          GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_ = av [i + 1];
-          i++;
-        }
-        else
-        {
-          GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_ = av[i] + 2;
-        }
-
-        // In case it isn't at the end of the command line option,
-        // otherwise idempotent.
-        GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (GAME::Xml::String ("/"));
-        break;
-
-      case 'l':
-        // Load the specified library.
-        if (av[i][2] == '\0')
-        {
-          this->libs_.push_back(av [i + 1]);
-          i++;
-        }
-        else
-        {
-          this->libs_.push_back (av[i] + 2);
-        }
-        break;
-
-      default:
-        ACE_ERROR ((
-            LM_ERROR,
-            ACE_TEXT ("IDL: I don't understand ")
-            ACE_TEXT ("the '%s' option\n"),
-            av[i]
-          ));
-
-        idl_global->set_compile_flags (idl_global->compile_flags ()
-                                       | IDL_CF_ONLY_USAGE);
-        break;
+      this->output_file_ = av[i + 1];
+      ++i;
     }
+    else
+      this->output_file_ = av[i] + 2;
+    break;
+
+  case '-':
+    if (0 == ACE_OS::strcmp (av[i], "--debug"))
+      be_global->is_debugging_enabled (true);
+
+    break;
+
+  case 'v':
+    {
+      std::cout << "processing v option..." << std::endl;
+      u_long mask = ACE_Log_Msg::instance ()->priority_mask ();
+      mask |= LM_DEBUG | LM_INFO;
+
+      ACE_Log_Msg::instance ()->priority_mask (mask, ACE_Log_Msg::PROCESS);
+    }
+    break;
+
+  case 'i':
+    if (av[i][2] == '\0')
+    {
+      this->input_file_ = av[i + 1];
+      ++i;
+    }
+    else
+      this->input_file_ = av[i] + 2;
+    break;
+
+  case 'o':
+    if (av[i][2] == '\0')
+    {
+      this->output_dir_ = av[i + 1];
+      ++i;
+    }
+    else
+      this->output_dir_ = av[i] + 2;
+    break;
+
+  case 'r':
+    if (av[i][2] == '\0')
+    {
+      idl_global->recursion_start (av [i + 1]);
+      i++;
+    }
+    else
+      idl_global->recursion_start (av[i] + 2);
+    break;
+
+  case 'm':
+    if (av[i][2] == '\0')
+    {
+      GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_ = av [i + 1];
+      i++;
+    }
+    else
+    {
+      GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_ = av[i] + 2;
+    }
+
+    // In case it isn't at the end of the command line option,
+    // otherwise idempotent.
+    GAME::XME::GLOBAL_CONFIG::instance ()->schema_path_.append (GAME::Xml::String ("/"));
+    break;
+
+  case 'l':
+    // Load the specified library.
+    if (av[i][2] == '\0')
+    {
+      this->libs_.push_back(av [i + 1]);
+      i++;
+    }
+    else
+    {
+      this->libs_.push_back (av[i] + 2);
+    }
+    break;
+
+  default:
+    ACE_ERROR ((
+        LM_ERROR,
+        ACE_TEXT ("IDL: I don't understand ")
+        ACE_TEXT ("the '%s' option\n"),
+        av[i]
+      ));
+
+    idl_global->set_compile_flags (idl_global->compile_flags ()
+                                   | IDL_CF_ONLY_USAGE);
+    break;
+  }
 }
 
 //
@@ -333,6 +342,30 @@ void BE_GlobalData::destroy (void)
 GAME::XME::Project & BE_GlobalData::project (void)
 {
   return this->proj_;
+}
+
+//
+// is_debugging_enabled
+//
+bool BE_GlobalData::is_debugging_enabled (void) const
+{
+  return this->debugging_enabled_;
+}
+
+//
+// is_debugging_enabled
+//
+void BE_GlobalData::is_debugging_enabled (bool flag)
+{
+  this->debugging_enabled_ = flag;
+}
+
+//
+// is_debugging_enabled
+//
+bool BE_GlobalData::is_tracing_enabled (void) const
+{
+  return this->trace_enabled_;
 }
 
 //

@@ -83,6 +83,11 @@ public:
 
   bool overwrite (void) const;
 
+  bool is_debugging_enabled (void) const;
+  void is_debugging_enabled (bool flag);
+
+  bool is_tracing_enabled (void) const;
+
 private:
   // Get the version of GME by looking into
   // $GME_ROOT\Interfaces\Interfaces\GMEVersion.h
@@ -109,6 +114,10 @@ private:
   PICML_File_Creator files_;
 
   std::vector <std::string> libs_;
+
+  bool debugging_enabled_;
+
+  bool trace_enabled_;
 };
 
 #endif /* IDL_TO_PICML_BE_GLOBAL_H */

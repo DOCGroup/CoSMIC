@@ -15,6 +15,7 @@
 #include <stack>
 #include <functional>
 
+#include "Utils/Utils.h"
 #include "boost/bind.hpp"
 
 namespace PICML
@@ -234,9 +235,7 @@ int AMI4CCM_Event_Handler::instantiate_connector (GAME::Mga::Object_in obj)
 
   // Insert the parameters into the template. First, we must define
   // the package type for the template package instance.
-  GAME::Mga::Model template_package =
-    GAME::Mga::Model::_narrow (connector_object->parent ());
-
+  GAME::Mga::Model template_package = GAME::Mga::Model::_narrow (connector_object->parent ());
 
   GAME::Mga::Reference package_type;
   if (GAME::create_if_not <Mga_t> (tpi, "PackageType", package_type,

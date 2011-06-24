@@ -1,3 +1,24 @@
+Fri Jun 24 18:09:43 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Improved the UUID event handler such that it keeps track of unique
+          UUIDs in the model. This way, UUIDs are guaranteed to be unique without
+          having to run the constraint checker. This, however, does not mean
+          we need to remove the constraint that ensures all UUIDs are unique.
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_init.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+
+          Added a --debug option, which can be used to print useful
+          debugging information.
+
 Tue Jun 14 21:12:35 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:

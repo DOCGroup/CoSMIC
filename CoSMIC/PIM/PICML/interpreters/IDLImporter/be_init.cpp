@@ -20,7 +20,8 @@ IDL_TO_PICML_BE_Export
 int BE_init (int &, char *[])
 {
   u_long default_mask =
-    LM_EMERGENCY | LM_ALERT | LM_CRITICAL | LM_ERROR | LM_WARNING | LM_NOTICE;
+    LM_EMERGENCY | LM_ALERT | LM_CRITICAL | LM_ERROR |
+    LM_WARNING | LM_NOTICE | LM_DEBUG;
 
   ACE_Log_Msg::instance ()->priority_mask (default_mask, ACE_Log_Msg::PROCESS);
 
