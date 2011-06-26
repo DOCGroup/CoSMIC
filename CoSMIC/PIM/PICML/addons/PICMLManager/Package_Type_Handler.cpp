@@ -31,6 +31,7 @@ namespace PICML
 {
 namespace MI
 {
+
 //
 // left_to_right
 //
@@ -627,8 +628,6 @@ substitute_template_parameter_reference (GAME::Mga::Reference_in ref,
     result->second->refers_to () : refers_to;
 
   // Set the reference to the concrete type.
-  refers_to = ref->refers_to ();
-
   if (refers_to != target)
     ref->refers_to (target);
 }

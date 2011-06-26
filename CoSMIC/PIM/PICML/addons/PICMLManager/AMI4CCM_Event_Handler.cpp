@@ -267,19 +267,19 @@ int AMI4CCM_Event_Handler::instantiate_connector (GAME::Mga::Object_in obj)
   GAME::Mga::set_position ("TemplateParameters", pt, tpv_interface);
 
   // Create the template parameter value for the reply handler.
-  GAME::Mga::Reference tpv_replyhandler;
+  GAME::Mga::Reference ami4ccm_param;
 
-  if (GAME::create_if_not <Mga_t> (tpi, "TemplateParameterValue", tpv_replyhandler,
+  if (GAME::create_if_not <Mga_t> (tpi, "TemplateParameterValue", ami4ccm_param,
       GAME::contains <Mga_t> (boost::bind (std::equal_to <GAME::Mga::FCO> (),
                               ami4ccm_replyhandler,
                               boost::bind (&GAME::Mga::Reference::impl_type::refers_to,
                                            boost::bind (&GAME::Mga::Reference::get, _1))))))
   {
-    tpv_replyhandler->refers_to (ami4ccm_replyhandler);
+    ami4ccm_param->refers_to (ami4ccm_interface);
   }
 
   pt.shift (100, 0);
-  GAME::Mga::set_position ("TemplateParameters", pt, tpv_replyhandler);
+  GAME::Mga::set_position ("TemplateParameters", pt, ami4ccm_param);
 
   return 0;
 }

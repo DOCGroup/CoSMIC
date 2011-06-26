@@ -1,7 +1,6 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "PICMLManager_i.c"
 #include "resource.h"
 
 #include "game/mga/dialogs/Module.h"

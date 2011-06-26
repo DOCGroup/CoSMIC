@@ -13,9 +13,6 @@
 #ifndef _PICML_MANAGER_ADDON_H_
 #define _PICML_MANAGER_ADDON_H_
 
-#include "PICMLManager.h"
-#include "PICMLManager_i.c"
-
 #include "game/mga/component/Addon_Impl_T.h"
 #include "game/mga/component/ComponentEx_T.h"
 
