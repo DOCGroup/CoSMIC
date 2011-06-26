@@ -1,3 +1,25 @@
+Sun Jun 26 04:30:58 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/manip/copy.cpp:
+
+          Bug fix where copying references were NIL under certain
+          circumstances.
+
+        * game/mga/component/Component.mpc:
+        * game/mga/component/ComponentEx_Impl_T.cpp:
+        * game/mga/component/Console_Service.h:
+        * game/mga/component/Console_Service.inl:
+        * game/mga/component/Console_Service.cpp:
+        * game/mga/component/Event_Handler.cpp:
+        * game/mga/component/stdafx.h:
+
+          Implemented a console service, which allows components to write
+          messages to the GME console.
+
+        * game/mga/component/BE_export.h:
+
+          Removed this file.
+
 Tue Jun 14 21:20:31 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/mga/Object.h:

@@ -20,8 +20,11 @@ project (GAME_Mga_Component) : game_mga_utils, game_lib {
   }
 
   Source_Files {
+    $(GME_ROOT)/Interfaces/Gme.idl
+
     Addon_Impl_Base.cpp
     ComponentEx_Impl_Base.cpp
+    Console_Service.cpp
     Event_Handler.cpp
     Event_Handler_Impl.cpp
     Interpreter_Impl_Base.cpp

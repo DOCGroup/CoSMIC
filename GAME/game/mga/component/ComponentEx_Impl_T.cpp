@@ -4,6 +4,8 @@
 #include "ComponentEx_Impl_T.inl"
 #endif
 
+#include "Console_Service.h"
+
 #include "game/mga/Project.h"
 #include "game/mga/FCO.h"
 #include "game/mga/Collection_T.h"
@@ -24,7 +26,25 @@ STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
 
   try
   {
-    return this->impl_.initialize (Project (proj));
+    Project project (proj);
+
+    try
+    {
+      // First, initialize the console service. This will allow this
+      // component to send messages to the user via the GME console.
+      GME_CONSOLE_SERVICE->initialize (project);
+    }
+    catch (...)
+    {
+
+    }
+
+    // Now, we can pass control to the implementation.
+    return this->impl_.initialize (project);
+  }
+  catch (const Failed_Result & ex)
+  {
+
   }
   catch (...)
   {

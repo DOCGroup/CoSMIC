@@ -7,6 +7,7 @@
 #include "Event_Handler.inl"
 #endif
 
+#include "Console_Service.h"
 #include "game/mga/Transaction.h"
 #include "game/mga/MetaFCO.h"
 

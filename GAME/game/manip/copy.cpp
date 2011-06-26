@@ -19,7 +19,6 @@
 
 #include <map>
 
-
 namespace GAME
 {
 namespace Mga
@@ -505,14 +504,19 @@ struct copy_reference_t
     if (target.is_nil ())
       target = refers_to;
 
-    // Set the newly created references target object if they are
-    // not the same.
+    // Set the newly created references target object if they are not
+    // the same object.
     refers_to = new_ref->refers_to ();
 
     if (this->config_.ignorable_fcos_.find (refers_to) != this->config_.ignorable_fcos_.end  ())
     {
       if (refers_to != target)
         new_ref->refers_to (refers_to);
+    }
+    else
+    {
+      // It should reference the original target.
+      new_ref->refers_to (target);
     }
 
     // Finally, copy over the attributes.
