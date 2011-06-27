@@ -236,7 +236,7 @@ get_matching_ports (const GAME::Mga::Model_in connector,
 
     for (; iter != iter_end; ++ iter)
     {
-      if ((*iter)->refers_to () == object)
+      if ((*iter)->refers_to ()->is_equal_to (object))
         ports.push_back (*iter);
     }
   }
@@ -319,7 +319,7 @@ get_matching_extended_ports (const GAME::Mga::Model_in connector,
 
     for (; iter != iter_end; ++ iter)
     {
-      if ((*iter)->refers_to () == porttype)
+      if ((*iter)->refers_to ()->is_equal_to (porttype))
         ports.push_back (*iter);
     }
   }
@@ -336,7 +336,9 @@ get_matching_extended_ports (const GAME::Mga::Model_in connector,
     for (; iter != iter_end; ++ iter)
     {
       GAME::Mga::Model base_connector = GAME::Mga::Model::_narrow ((*iter)->refers_to ());
-      this->get_matching_extended_ports (base_connector, porttype, metaname, ports);
+
+      if (!base_connector.is_nil ())
+        this->get_matching_extended_ports (base_connector, porttype, metaname, ports);
     }
   }
 }
@@ -358,8 +360,8 @@ get_matching_inner_ports (const GAME::Mga::Reference_in extended,
   if (fco.is_nil ())
     return;
 
-  GAME::Mga::Model porttype = GAME::Mga::Model::_narrow (fco);
   std::vector <Reference> receptacles;
+  GAME::Mga::Model porttype = GAME::Mga::Model::_narrow (fco);
 
   if (porttype->children (type, receptacles))
   {
@@ -368,7 +370,7 @@ get_matching_inner_ports (const GAME::Mga::Reference_in extended,
 
     for (; iter != iter_end; ++ iter)
     {
-      if ((*iter)->refers_to () == object)
+      if ((*iter)->refers_to ()->is_equal_to (object))
         ports.push_back (*iter);
     }
   }

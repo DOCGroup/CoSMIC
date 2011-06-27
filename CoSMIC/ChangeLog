@@ -1,3 +1,10 @@
+Mon Jun 27 01:17:37 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+
+          Bug fix where all equality test between a smart pointer object
+          and an raw implementation pointer failed.
+
 Sun Jun 26 04:46:53 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
