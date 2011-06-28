@@ -67,15 +67,24 @@ be_util::usage (void)
       LM_DEBUG,
       ACE_TEXT (" --debug\t\tPrint debugging information")
     ));
+
+  // Print the following timestamp since we want to what version
+  // and build our clients are using.
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT ("\n\nThis executable was created on %s at %s\n"),
+      __DATE__,
+      __TIME__));
 }
 
-AST_Generator *
-be_util::generator_init (void)
+//
+// generator_init
+//
+AST_Generator * be_util::generator_init (void)
 {
   AST_Generator *gen = 0;
-  ACE_NEW_RETURN (gen,
-                  AST_Generator,
-                  0);
+  ACE_NEW_RETURN (gen, AST_Generator, 0);
+
   return gen;
 }
 

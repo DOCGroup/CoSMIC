@@ -1,3 +1,10 @@
+Tue Jun 28 23:38:41 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
+
+          Added a tag at the bottom of the usage screen that states
+          when the executable was created.
+
 Tue Jun 28 22:49:01 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
