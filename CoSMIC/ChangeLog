@@ -1,3 +1,10 @@
+Tue Jun 28 22:49:01 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+
+          Added a debug message for when the preprocessor statements are
+          being imported.
+
 Mon Jun 27 01:17:37 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:

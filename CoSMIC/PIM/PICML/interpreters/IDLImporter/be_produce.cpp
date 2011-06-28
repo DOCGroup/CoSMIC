@@ -110,6 +110,12 @@ struct BE_import_directives
   {
     Preprocessor_Importer importer;
 
+    if (be_global->is_debugging_enabled ())
+      ACE_DEBUG ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - importing prepocessor directives ")
+                  ACE_TEXT (" for %s\n"),
+                  e.key ().c_str ()));
+
     if (!importer.parse (e.key ().c_str (), e.item ()->file_.get (), false))
       ACE_ERROR ((LM_ERROR,
                   ACE_TEXT ("%T (%t) - %M - failed to import preprocessor ")
