@@ -1,3 +1,16 @@
+Wed Jul  6 15:03:56 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Console_Service.cpp:
+
+          Bug fix where initializing the console service more than once
+          resulted in a runtime failure.
+
+        * game/xme/Object.h:
+        * game/xme/Object.cpp:
+
+          Implemented the path () method, which returns the object's
+          path in the project.
+
 Sun Jun 26 04:30:58 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/manip/copy.cpp:

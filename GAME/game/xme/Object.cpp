@@ -9,6 +9,7 @@
 #include "Object_Type_Map.hpp"
 #include "Reference.h"
 #include <sstream>
+#include <stack>
 
 namespace GAME
 {
@@ -187,6 +188,55 @@ bool Object::readonly (void) const
 
   return attr != 0;
 }
+
+//
+// path
+//
+GAME::Xml::String Object::path (const GAME::Xml::String & separator) const
+{
+  if (this->is_nil ())
+    return "<null>";
+
+  std::stack <Object> parents;
+
+  // Push all parents onto the stack until we reach the root folder.
+  Object parent = this->parent ();
+
+  while (!parent.is_nil ())
+  {
+    parents.push (parent);
+
+    try
+    {
+      parent = parent.parent ();
+    }
+    catch (const Invalid_Cast & )
+    {
+      parent.release ();
+    }
+  }
+
+  // Construct the path for this object by iterating over the elements
+  // in the stack of parent objects.
+  GAME::Xml::String curr_path;
+
+  while (!parents.empty ())
+  {
+    parent = parents.top ();
+    parents.pop ();
+
+    // Append the current parent to the path, and then append the
+    // separator for the next entry.
+    curr_path.append (parent.name ());
+    curr_path.append (separator);
+  }
+
+  // Append the name of this object, which is the last element in
+  // the path.
+  curr_path.append (this->name ());
+  return curr_path;
+}
+
 
 }
 }

@@ -159,6 +159,12 @@ public:
 
   const XMLCh * kind (void) const;
 
+  /**
+   * Get the path of the current element. The path of the fully
+   * qualified name of the element up to the root folder.
+   */
+  GAME::Xml::String path (const GAME::Xml::String & separator = L"/") const;
+
 protected:
   // Initializing constructor.
   Object (xercesc::DOMElement * parent,

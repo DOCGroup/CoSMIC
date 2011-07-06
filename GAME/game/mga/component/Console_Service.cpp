@@ -17,13 +17,16 @@ namespace Mga
 //
 void Console_Service::initialize (Project project)
 {
-  // Locate the GME application for the project.
-  ATL::CComPtr <IMgaClient> client;
-  VERIFY_HRESULT (project.impl ()->GetClientByName (L"GME.Application", &client));
+  if (0 != this->gmeapp_)
+    return;
 
   // We are going to store the project regardless of whether or not
   // we are able to locate the GME application.
   this->project_ = project;
+
+  // Locate the GME application for the project.
+  ATL::CComPtr <IMgaClient> client;
+  VERIFY_HRESULT (project.impl ()->GetClientByName (L"GME.Application", &client));
 
   if (0 == client)
     return;
