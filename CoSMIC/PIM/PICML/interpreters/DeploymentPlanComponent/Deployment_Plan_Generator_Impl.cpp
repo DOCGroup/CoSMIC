@@ -8,6 +8,7 @@
 
 #include "game/mga/component/Interpreter_T.h"
 #include "game/mga/utils/Project_Settings.h"
+#include "game/mga/Filter.h"
 
 #include "Utils/Utils.h"
 
@@ -72,6 +73,23 @@ invoke_ex (GAME::Mga::Project project,
   try
   {
     dngBackend.OpenExisting (project.impl ());
+
+    // First, make sure this project contains at least one deployment plan
+    // before executing the rest of this interpreter.
+    GAME::Mga::Filter filter (project);
+    filter.kind ("DeploymentPlan");
+
+    std::vector <GAME::Mga::FCO> plans;
+    if (0 == filter.apply (plans))
+    {
+      const char * message =
+        "The project has no deployment plans. Please add at least "
+        "one deployment plan to the project before invoking this "
+        "interpreter.";
+
+      ::AfxMessageBox (message, MB_ICONWARNING);
+      return 0;
+    }
 
     // Load the last configuration for this project.
     this->load_configuration (project, this->config_);

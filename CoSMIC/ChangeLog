@@ -1,3 +1,10 @@
+Fri Jul  8 23:35:59 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+
+          If there are no deployment plans in the model, then a
+          warning message is displayed.
+
 Tue Jun 28 23:38:41 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_util.cpp:
