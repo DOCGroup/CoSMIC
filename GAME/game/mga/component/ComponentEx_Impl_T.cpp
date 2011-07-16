@@ -42,7 +42,7 @@ STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
     // Now, we can pass control to the implementation.
     return this->impl_.initialize (project);
   }
-  catch (const Failed_Result & ex)
+  catch (const Failed_Result &)
   {
 
   }
