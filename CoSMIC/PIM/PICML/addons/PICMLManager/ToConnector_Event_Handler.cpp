@@ -125,7 +125,14 @@ create_connection (GAME::Mga::Object_in obj,
                             matching_ports);
 
   if (matching_ports.empty ())
-    return 0;
+  {
+    // We are not only going to discontinue to operation, but we are
+    // not going to allow the connection to happen. This will help us
+    // to (1) ensure no invalid models are created and (2) locate
+    // any potential bugs in this event handler.
+    ::AfxMessageBox ("No mathching ports were located!", MB_ICONEXCLAMATION);
+    return -1;
+  }
 
   GAME::Mga::Reference matching_port;
 
