@@ -33,15 +33,18 @@ class Nodemap_Generator :
 
   virtual void Visit_SimpleProperty (const PICML::SimpleProperty &);
 
-  private:
+private:
+  /// Output path for the generated file.
+  std::string output_path_;
 
-  std::string outputPath_;
+  /// Target output file.
+  std::ofstream out_;
 
+  /// Current node reference name.
   std::string curr_node_ref_name_;
 
-  std::string curr_prop_name_;
-
-  std::ofstream out;
+  /// Flag determine if a newline should be generated
+  bool generate_newline_;
 };
 
 #endif

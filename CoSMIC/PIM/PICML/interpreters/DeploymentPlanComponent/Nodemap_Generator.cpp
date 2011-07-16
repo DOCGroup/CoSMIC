@@ -11,8 +11,8 @@
 // Nodemap_Generator
 //
 Nodemap_Generator::
-Nodemap_Generator (const std::string & outputPath)
-: outputPath_ (outputPath)
+Nodemap_Generator (const std::string & path)
+: output_path_ (path)
 {
 
 }
@@ -33,24 +33,27 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
 {
   // Construct the filename.
   std::ostringstream filename;
-  filename << this->outputPath_ << "/" << plan.name () << ".nodemap";
+  filename << this->output_path_ << "/" << plan.name () << ".nodemap";
 
   // Open the document for writing.
-  this->out.open (filename.str ().c_str ());
+  this->out_.open (filename.str ().c_str ());
 
-  if (!this->out.is_open ())
-    return;
+  if (this->out_.is_open ())
+  {
+    // Reset the newline flag.
+    this->generate_newline_ = false;
 
-  // Visit all the nodes in the deployment plan.
-  std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
-  std::for_each (nodes.begin (),
-                 nodes.end (),
-                 boost::bind (&PICML::NodeReference::Accept,
-                              _1,
-                              boost::ref (*this)));
+    // Visit all the nodes in the deployment plan.
+    std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
+    std::for_each (nodes.begin (),
+                   nodes.end (),
+                   boost::bind (&PICML::NodeReference::Accept,
+                                _1,
+                                boost::ref (*this)));
 
-  // Close the output file.
-  this->out.close ();
+    // Close the output file.
+    this->out_.close ();
+  }
 }
 
 
@@ -95,5 +98,13 @@ Visit_SimpleProperty (const PICML::SimpleProperty & prop)
   if (name != "StringIOR")
     return;
 
-  this->out << this->curr_node_ref_name_ << "\t\t\t" << prop.Value () << std::endl;
+  if (this->generate_newline_)
+    this->out_ << std::endl;
+
+  this->out_ << this->curr_node_ref_name_ << "\t\t\t" << prop.Value ();
+
+  // Since we have generated one entry in the node map, we must
+  // make sure that the next entry appears on its own line.
+  if (!this->generate_newline_)
+    this->generate_newline_ = true;
 }
