@@ -46,6 +46,7 @@
 #include "utl_identifier.h"
 #include "utl_idlist.h"
 #include "utl_string.h"
+#include "utl_strlist.h"
 #include "utl_labellist.h"
 
 #include "fe_utils.h"
@@ -65,6 +66,7 @@
 #include "boost/bind.hpp"
 #include <functional>
 #include <sstream>
+#include <iostream>
 
 namespace constant
 {
@@ -123,7 +125,7 @@ struct arrange_horizontal
 
   }
 
-  void operator () (GAME::XME::FCO & fco)
+  void operator () (GAME::XME::FCO fco)
   {
     // Set the position of the element.
     GAME::XME::set_position (fco,
@@ -135,10 +137,10 @@ struct arrange_horizontal
     this->x_ += this->dx_;
   }
 
-  void operator () (ACE_Hash_Map_Manager <ACE_CString, GAME::XME::FCO, ACE_Null_Mutex>::ENTRY & e)
+  void operator () (const Template_Parameter_Manager::PARAMETER & param)
   {
     // Set the position of the element.
-    GAME::XME::set_position (e.item (),
+    GAME::XME::set_position (param.second,
                              this->aspect_,
                              this->x_,
                              this->y_);
@@ -637,54 +639,62 @@ int Project_Generator::visit_module (AST_Module *node)
   if (be_global->is_debugging_enabled ())
     ACE_DEBUG ((LM_DEBUG,
                 ACE_TEXT ("%T (%t) - %M - building module %s...\n"),
-                node->flat_name ()));
+                node->repoID ()));
 
   using GAME::XME::Auto_Model_T;
   using GAME::XME::FCO;
   using GAME::XME::Model;
   using GAME::Xme_t;
 
+  // If this template module is the product of a template module
+  // reference, then we need to restore the parameter set for that
+  // declaration. Otherwise, we run the risk of having incorrect
+  // parameters being referenced in this module.
+  AST_Template_Module_Ref * module_ref = node->from_ref ();
+
+  if (0 != module_ref)
+  {
+    if (be_global->is_debugging_enabled ())
+      ACE_ERROR ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - restoring parameter set for %s\n"),
+                  module_ref->repoID ()));
+
+    if (0 != this->param_mgr_.begin_parameter_set (module_ref))
+      ACE_ERROR ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - failed to restore parameter set for %s\n"),
+                  module_ref->repoID ()));
+  }
+
   Model package;
   Auto_Model_T <Model> * module = 0;
-  const bool reg_module = 0 == node->from_inst () ? true : false;
   const char * repo_id = node->repoID ();
 
-  if (reg_module)
+  if (0 != this->current_file_->modules_.find (repo_id, module))
   {
-    if (0 != this->current_file_->modules_.find (repo_id, module))
-    {
-      // Either locate an existing package, or create a new one.
-      static const GAME::Xml::String meta_Package ("Package");
-      const GAME::Xml::String name (node->local_name ()->get_string ());
+    // Either locate an existing package, or create a new one.
+    static const GAME::Xml::String meta_Package ("Package");
+    const GAME::Xml::String name (node->local_name ()->get_string ());
 
-      // Do we really need to perform this check since not finding
-      // a module for this package means it does not exist?!
-      if (this->parent_->create_if_not (meta_Package, package,
-          GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
-                                  name,
-                                  boost::bind (&Model::name, _1)))))
-      {
-        package.name (name);
-      }
+    // Do we really need to perform this check since not finding
+    // a module for this package means it does not exist?!
+    if (be_global->is_debugging_enabled ())
+      ACE_ERROR((LM_DEBUG,
+                 ACE_TEXT ("%T (%t) - %M - creating %s in %s\n"),
+                 node->repoID (),
+                 this->parent_->get ().path ("/").to_string ().c_str ()));
+
+    if (this->parent_->create_if_not (meta_Package, package,
+        GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
+                                name,
+                                boost::bind (&Model::name, _1)))))
+    {
+      package.name (name);
     }
   }
-  else
-  {
-    // We should have already created an element via the template package
-    // instance. So, let's locate and use it when contructing the package.
-    if (0 != this->symbols_.find (node->from_inst (), package))
-      ACE_ERROR_RETURN ((LM_ERROR,
-                         ACE_TEXT ("%T (%t) - %M - failed to locate from_inst (%s)\n"),
-                         node->from_inst ()->flat_name ()),
-                         -1);
-  }
 
-  // First, let's see if we have already creating this element and bound
+  // First, let's see if we have already created this element and bound
   // it to the template module hash map.
-  if (reg_module)
-    this->current_file_->modules_.find (repo_id, module);
-  else
-    this->current_file_->template_modules_.find (node->from_inst (), module);
+  this->current_file_->modules_.find (repo_id, module);
 
   if (0 == module && !package.is_nil ())
   {
@@ -706,28 +716,27 @@ int Project_Generator::visit_module (AST_Module *node)
                                           end_iter),
                     -1);
 
-    if (reg_module)
-    {
-      if (0 != this->current_file_->modules_.bind (repo_id, module))
-        ACE_ERROR_RETURN ((LM_ERROR,
-                           ACE_TEXT ("%T (%t) - %M - failed to bind %s\n"),
-                           repo_id),
-                           -1);
-    }
-    else
-    {
-      if (0 != this->current_file_->template_modules_.bind (node->from_inst (), module))
-        ACE_ERROR_RETURN ((LM_ERROR,
-                           ACE_TEXT ("%T (%t) - %M - failed to bind %s\n"),
-                           node->from_inst ()->flat_name ()),
-                           -1);
-    }
+    if (0 != this->current_file_->modules_.bind (repo_id, module))
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         ACE_TEXT ("%T (%t) - %M - failed to bind %s\n"),
+                         repo_id),
+                         -1);
   }
 
-  if (0 != module)
-    return this->visit_scope (node, module);
+  int retval = -1;
 
-  return -1;
+  if (0 != module)
+  {
+    // Visit the remaining elements in this scope.
+    retval = this->visit_scope (node, module);
+
+    // Make sure we re-cache the parameter set if this module is
+    // the product of a template module reference.
+    if (0 != module_ref)
+      this->param_mgr_.end_parameter_set (module_ref);
+  }
+
+  return retval;
 }
 
 //
@@ -737,8 +746,8 @@ int Project_Generator::visit_interface (AST_Interface *node)
 {
   if (be_global->is_debugging_enabled ())
     ACE_DEBUG ((LM_DEBUG,
-                ACE_TEXT ("%T (%t) - %M - building %s...\n"),
-                node->flat_name ()));
+                ACE_TEXT ("%T (%t) - %M - building interface %s...\n"),
+                node->repoID ()));
 
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
@@ -765,7 +774,7 @@ int Project_Generator::visit_interface (AST_Interface *node)
     object.attribute (constant::attr::InterfaceSemantics, true).value (constant::attr::local);
 
   // Store the element as a symbol.
-  this->symbols_.bind (node, object);
+  this->store_symbol (node, object);
 
   Auto_Model_T <Model> auto_model (object);
   int retval = this->visit_scope (node, &auto_model);
@@ -799,6 +808,12 @@ int Project_Generator::visit_interface (AST_Interface *node)
                                 referred_interface,
                                 boost::bind (&Reference::refers_to, _1)))))
     {
+      if (be_global->is_debugging_enabled ())
+        ACE_DEBUG ((LM_DEBUG,
+                    ACE_TEXT ("%T (%t) - %M - setting %s to reference %s\n"),
+                    inherits_ref.path ("/").to_string ().c_str (),
+                    referred_interface.path ("/").to_string ().c_str ()));
+
       inherits_ref.refers_to (referred_interface);
       inherits_ref.name (meta_Inherits);
     }
@@ -1030,6 +1045,12 @@ int Project_Generator::visit_component (AST_Component *node)
                                   referred_interface,
                                   boost::bind (&Reference::refers_to, _1)))))
       {
+        if (be_global->is_debugging_enabled ())
+          ACE_DEBUG ((LM_DEBUG,
+                      ACE_TEXT ("%T (%t) - %M - setting %s to reference %s\n"),
+                      supports.path ("/").to_string ().c_str (),
+                      referred_interface.path ("/").to_string ().c_str ()));
+
         supports.refers_to (referred_interface);
         supports.name (meta_Supports);
       }
@@ -1893,8 +1914,8 @@ int Project_Generator::visit_argument (AST_Argument *node)
 {
   if (be_global->is_debugging_enabled ())
     ACE_DEBUG ((LM_DEBUG,
-                ACE_TEXT ("%T (%t) - %M - building %s...\n"),
-                node->flat_name ()));
+                ACE_TEXT ("%T (%t) - %M - building argument %s...\n"),
+                node->repoID ()));
 
   using GAME::XME::Reference;
   using GAME::Xme_t;
@@ -2196,6 +2217,12 @@ int Project_Generator::visit_constant (AST_Constant *node)
   }
 
   // Set the constant's reference.
+  if (be_global->is_debugging_enabled ())
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("%T (%t) - %M - setting %s to reference %s\n"),
+                constant.path ("/").to_string ().c_str (),
+                fco.path ("/").to_string ().c_str ()));
+
   constant.refers_to (fco);
 
   // Last, we need to set the value of the constant.
@@ -2214,10 +2241,18 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
 {
   if (be_global->is_debugging_enabled ())
     ACE_DEBUG ((LM_DEBUG,
-                ACE_TEXT ("%T (%t) - %M - building %s...\n"),
-                node->flat_name ()));
+                ACE_TEXT ("%T (%t) - %M - building typedef %s...\n"),
+                node->repoID ()));
+
+  if (be_global->is_debugging_enabled () && node->field_type ())
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("%T (%t) - %M - field type is %s...\n"),
+                node->field_type ()->repoID ()));
 
   AST_Type * base_type = node->base_type ();
+  if (0 == base_type)
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - there is no base type!\n")));
 
   static const GAME::Xml::String meta_list[2] =
   {
@@ -2240,9 +2275,6 @@ int Project_Generator::visit_typedef (AST_Typedef *node)
     index = 1;
     base_type = AST_Sequence::narrow_from_decl (base_type)->base_type ();
     break;
-
-  default:
-    ;
   }
 
   // Create the alias if it already does not exist in this model.
@@ -2324,9 +2356,98 @@ visit_exception_list (UTL_ExceptList * list,
                                   fco,
                                   boost::bind (&Reference::refers_to, _1)))))
       {
+        if (be_global->is_debugging_enabled ())
+          ACE_DEBUG ((LM_DEBUG,
+                      ACE_TEXT ("%T (%t) - %M - setting %s to reference %s\n"),
+                      exception.path ("/").to_string ().c_str (),
+                      fco.path ("/").to_string ().c_str ()));
+
         exception.refers_to (fco);
       }
     }
+  }
+}
+
+//
+// store_symbol
+//
+int Project_Generator::store_symbol (AST_Decl * decl, const GAME::XME::FCO & fco)
+{
+  int retval = this->symbols_.bind (decl, fco);
+
+  switch (retval)
+  {
+  case -1:
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - failed to store %s as %s\n"),
+                decl->repoID (),
+                fco.path ("/").to_string ().c_str ()));
+    break;
+
+  case 0:
+    if (be_global->is_debugging_enabled ())
+      ACE_ERROR ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - successfully stored %s as %s\n"),
+                  decl->repoID (),
+                  fco.path ("/").to_string ().c_str ()));
+    break;
+
+  case 1:
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - %s already exists in symbol table\n"),
+                decl->repoID (),
+                fco.path ("/").to_string ().c_str ()));
+    break;
+  }
+
+  return retval;
+}
+
+
+//
+// handle_symbol_resolution
+//
+void Project_Generator::
+handle_symbol_resolution (AST_Decl * type,
+                          GAME::XME::Reference & ref,
+                          bool use_library)
+{
+  GAME::XME::FCO fco;
+  this->temp_ref_ = ref;
+
+  if (be_global->is_debugging_enabled ())
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("%T (%t) - %M - handle_symbol_resolution () locating %s\n"),
+                type->repoID ()));
+
+  if (this->lookup_symbol (type, fco, use_library))
+  {
+    if (be_global->is_debugging_enabled ())
+      ACE_DEBUG ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - handle_symbol_resolution () [%s] = %s\n"),
+                  type->repoID (),
+                  fco.path ("/").to_string ().c_str ()));
+
+    if (be_global->is_debugging_enabled ())
+      ACE_DEBUG ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - setting %s to reference %s [%s]\n"),
+                  ref.path ("/").to_string ().c_str (),
+                  fco.path ("/").to_string ().c_str (),
+                  type->repoID ()));
+
+    if (ref != fco)
+      ref.refers_to (fco);
+    else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("%T (%t) - %M - self-reference not allowed [%s | %s]\n"),
+                  ref.path ("/").to_string ().c_str (),
+                  fco.path ("/").to_string ().c_str ()));
+    }
+  }
+  else
+  {
+    this->unresolved_.bind (ref, type);
   }
 }
 
@@ -2372,7 +2493,13 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
     AST_Param_Holder * param = dynamic_cast <AST_Param_Holder *> (type);
     const FE_Utils::T_Param_Info * info = param->info ();
 
-    if (0 == this->params_.find (param->info (), fco))
+    if (be_global->is_debugging_enabled ())
+      ACE_ERROR ((LM_DEBUG,
+                  ACE_TEXT ("%T (%t) - %M - lookup parameter %s of type %s\n"),
+                  param->repoID (),
+                  info->name_.c_str ()));
+
+    if (this->param_mgr_.find (info, fco))
       return true;
   }
   else if (0 == this->symbols_.find (type, fco))
@@ -2391,23 +2518,6 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
   }
 
   return false;
-}
-
-//
-// handle_symbol_resolution
-//
-void Project_Generator::
-handle_symbol_resolution (AST_Decl * type,
-                          GAME::XME::Reference & ref,
-                          bool use_library)
-{
-  GAME::XME::FCO fco;
-  this->temp_ref_ = ref;
-
-  if (this->lookup_symbol (type, fco, use_library))
-    ref.refers_to (fco);
-  else
-    this->unresolved_.bind (ref, type);
 }
 
 //
@@ -2438,6 +2548,16 @@ lookup_symbol (AST_Decl * type,
     for (; idl_files_iter != idl_files_end; ++ idl_files_iter)
     {
       if (this->lookup_symbol (type, *idl_files_iter, fco))
+        return true;
+
+      // See if this library has any attached libraries. If so, we should
+      // continue searching through them as well.
+      std::vector <GAME::XME::Folder> libraries;
+      static const GAME::Xml::String meta_RootFolder ("RootFolder");
+
+      idl_files_iter->children (meta_RootFolder, libraries);
+
+      if (this->lookup_symbol (type, libraries, fco))
         return true;
     }
   }
@@ -2531,9 +2651,10 @@ lookup_symbol (UTL_ScopedNameActiveIterator & name_iter,
 //
 int Project_Generator::visit_native (AST_Native *node)
 {
-  ACE_DEBUG ((LM_DEBUG,
-              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
-              node->flat_name ()));
+  if (be_global->is_debugging_enabled ())
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("%T (%t) - %M - building %s...\n"),
+                node->flat_name ()));
 
   using GAME::XME::Atom;
   using GAME::Xme_t;
@@ -2732,8 +2853,8 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
 {
   if (be_global->is_debugging_enabled ())
     ACE_DEBUG ((LM_DEBUG,
-                ACE_TEXT ("%T (%t) - %M - building %s...\n"),
-                node->flat_name ()));
+                ACE_TEXT ("%T (%t) - %M - building template module %s...\n"),
+                node->repoID ()));
 
   using GAME::XME::Model;
   using GAME::XME::Auto_Model_T;
@@ -2766,9 +2887,8 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
                     Auto_Model_T <Model> (package),
                     -1);
 
-    this->current_file_->modules_.bind (repo_id, module);
-
     // Save this module to the symbol table.
+    this->current_file_->modules_.bind (repo_id, module);
     this->symbols_.bind (node, module->get ());
   }
 
@@ -2776,6 +2896,8 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
   FE_Utils::T_PARAMLIST_INFO * params = node->template_params ();
   FE_Utils::T_PARAMLIST_INFO::ITERATOR iter (*params);
   FE_Utils::T_Param_Info * info = 0;
+
+  this->param_mgr_.begin_parameter_set ();
 
   for (; !iter.done (); iter.advance ())
   {
@@ -2848,15 +2970,16 @@ int Project_Generator::visit_template_module (AST_Template_Module *node)
 
   // Order the parameters before adding anymore elements to the
   // model. This is done by arranging the parameters horizontally.
-  std::for_each (this->active_params_.begin (),
-                 this->active_params_.end (),
-                 arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
-
-  // We are finish with there parameters.
-  this->active_params_.unbind_all ();
+  if (this->param_mgr_.has_parameters ())
+    std::for_each (this->param_mgr_.active_parameter_set ()->begin (),
+                   this->param_mgr_.active_parameter_set ()->end (),
+                   arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
 
   // Visit the remaining contents in the module.
-  return this->visit_scope (node, module);
+  int retval = this->visit_scope (node, module);
+  this->param_mgr_.end_parameter_set ();
+
+  return retval;
 }
 
 //
@@ -2883,8 +3006,10 @@ create_name_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   }
 
   // Save the parameter.
-  this->params_.bind (info, named_parameter);
-  this->active_params_.bind (info->name_, named_parameter);
+  if (0 != this->param_mgr_.push_back (info, named_parameter))
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - failed to store named parameter %s\n"),
+                info->name_.c_str ()));
 }
 
 //
@@ -2915,8 +3040,10 @@ create_type_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   parameter.attribute (attr_Type, true).value (type);
 
   // Save the parameter.
-  this->params_.bind (info, parameter);
-  this->active_params_.bind (info->name_, parameter);
+  if (0 != this->param_mgr_.push_back (info, parameter))
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - failed to store type parameter %s\n"),
+                info->name_.c_str ()));
 }
 
 //
@@ -2942,13 +3069,15 @@ create_sequence_parameter (GAME::XME::Auto_Model_T <GAME::XME::Model> * module,
   }
 
   // Save the parameter.
-  this->params_.bind (info, parameter);
-  this->active_params_.bind (info->name_, parameter);
+  if (0 != this->param_mgr_.push_back (info, parameter))
+    ACE_ERROR ((LM_ERROR,
+                ACE_TEXT ("%T (%t) - %M - failed to store collection parameter %s\n"),
+                info->name_.c_str ()));
 
   // Locate the parameter that we are referencing.
   GAME::XME::FCO target;
 
-  if (0 == this->active_params_.find (info->seq_param_ref_, target))
+  if (this->param_mgr_.find (info->seq_param_ref_.c_str (), target))
     parameter.refers_to (target);
 }
 
@@ -2965,9 +3094,10 @@ int Project_Generator::visit_param_holder (AST_Param_Holder *node)
 //
 int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *node)
 {
-  ACE_DEBUG ((LM_DEBUG,
-              ACE_TEXT ("%T (%t) - %M - building %s...\n"),
-              node->flat_name ()));
+  if (be_global->is_debugging_enabled ())
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("%T (%t) - %M - building template module instance %s...\n"),
+                node->repoID ()));
 
   // Store the element as a symbol.
   using GAME::XME::Auto_Model_T;
@@ -3002,10 +3132,14 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
                     parameters.end (),
                     not_t <aspect_filter_t <FCO> > (aspect_filter));
 
-  Auto_Model_T <Model> auto_model (module_inst,
-                                   parameters.begin (),
-                                   end_iter);
+  Auto_Model_T <Model> * auto_model = 0;
+  ACE_NEW_RETURN (auto_model,
+                  Auto_Model_T <Model> (module_inst, parameters.begin (), end_iter),
+                  -1);
 
+  // Store the module in the current file. We need to make sure we
+  // keep it alive as long as we are processing this file.
+  this->current_file_->modules_.bind (node->repoID (), auto_model);
   this->symbols_.bind (node, module_inst);
 
   // Make sure there is a package type in this element. We also need
@@ -3013,7 +3147,7 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   Reference package_type;
   static const GAME::Xml::String meta_PackageType ("PackageType");
 
-  if (auto_model.create_if_not (meta_PackageType, package_type,
+  if (auto_model->create_if_not (meta_PackageType, package_type,
       GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
                               meta_PackageType,
                               boost::bind (&Reference::kind, _1)))))
@@ -3042,7 +3176,7 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
     Reference parameter_value;
     static const GAME::Xml::String meta_TemplateParameterValue ("TemplateParameterValue");
 
-    if (auto_model.create_if_not (meta_TemplateParameterValue, parameter_value,
+    if (auto_model->create_if_not (meta_TemplateParameterValue, parameter_value,
         GAME::contains <Xme_t> (boost::bind (std::equal_to <FCO> (),
                                 value,
                                 boost::bind (&Reference::refers_to, _1)))))
@@ -3053,8 +3187,8 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
   }
 
   // Arrange the template parameters.
-  std::for_each (auto_model.children ().begin (),
-                 auto_model.children ().end (),
+  std::for_each (auto_model->children ().begin (),
+                 auto_model->children ().end (),
                  arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
 
   return 0;
@@ -3065,6 +3199,116 @@ int Project_Generator::visit_template_module_inst (AST_Template_Module_Inst *nod
 //
 int Project_Generator::visit_template_module_ref (AST_Template_Module_Ref *node)
 {
+  if (be_global->is_debugging_enabled ())
+    ACE_DEBUG ((LM_DEBUG,
+                ACE_TEXT ("%T (%t) - %M - building template module reference %s...\n"),
+                node->repoID ()));
+
+  using GAME::XME::Auto_Model_T;
+  using GAME::XME::Atom;
+  using GAME::XME::Model;
+  using GAME::XME::Reference;
+  using GAME::Xme_t;
+
+  // Let's see if we can find the module in the global map.
+  const char * repo_id = node->repoID ();
+  Auto_Model_T <Model> * module = 0;
+  this->param_mgr_.begin_parameter_set ();
+
+  if (0 != this->current_file_->modules_.find (repo_id, module))
+  {
+    static const GAME::Xml::String meta_TemplatePackageAlias ("TemplatePackageAlias");
+
+    // Either locate an existing package, or create a new one.
+    const GAME::Xml::String name (node->local_name ()->get_string ());
+    Model package;
+
+    if (this->parent_->create_if_not (meta_TemplatePackageAlias, package,
+        GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
+                                name,
+                                boost::bind (&Model::name, _1)))))
+    {
+      package.name (name);
+    }
+
+    // We need to store this package in the global space since it
+    // is reentrant. We don't want elements deleted on accident. ;-)
+    ACE_NEW_RETURN (module,
+                    Auto_Model_T <Model> (package),
+                    -1);
+
+    // Save this module to the symbol table.
+    this->current_file_->modules_.bind (repo_id, module);
+    this->symbols_.bind (node, module->get ());
+  }
+
+  // Make sure there is a package type in this element. We also need
+  // to reference the correct template module/package.
+  Reference package_type;
+  static const GAME::Xml::String meta_PackageType ("PackageType");
+
+  if (module->create_if_not (meta_PackageType, package_type,
+      GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
+                              meta_PackageType,
+                              boost::bind (&Reference::kind, _1)))))
+  {
+    package_type.name (meta_PackageType);
+  }
+
+  this->handle_symbol_resolution (node->ref (), package_type);
+
+  // Now, let's add the template parameters to this package.
+  UTL_StrList * params = node->param_refs ();
+  UTL_StrlistActiveIterator iter (params);
+
+  for (; !iter.is_done (); iter.next ())
+  {
+    static const GAME::Xml::String meta_TemplateParameterReference ("TemplateParameterReference");
+
+    // Get the current string item.
+    UTL_String * str = iter.item ();
+    const FE_Utils::T_Param_Info * info;
+
+    if (this->param_mgr_.find (str->get_string (), info))
+    {
+      // Locate the FCO associate with this parameter.
+      GAME::XME::Reference param;
+      this->param_mgr_.find (str->get_string (), param);
+
+      // Create a new parameter element.
+      GAME::XME::Reference param_ref;
+      const GAME::Xml::String param_name (str->get_string ());
+
+      if (module->create_if_not (meta_TemplateParameterReference, param_ref,
+          GAME::contains <Xme_t> (boost::bind (std::equal_to < GAME::Xml::String > (),
+                                  param_name,
+                                  boost::bind (&Reference::name, _1)))))
+      {
+        param_ref.name (param_name);
+      }
+
+      // Update the parameter, then store it in the parameter manager.
+      param_ref.refers_to (param);
+
+      if (0 != this->param_mgr_.push_back (info, param_ref))
+        ACE_ERROR ((LM_ERROR,
+                    ACE_TEXT ("%T (%t) - %M - failed to store parameter %s\n"),
+                    info->name_.c_str ()));
+    }
+    else
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("%T (%t) - %M - failed to locate parameter info for %s\n"),
+                  str->get_string ()));
+  }
+
+  // Order the parameters before adding anymore elements to the
+  // model. This is done by arranging the parameters horizontally.
+  if (this->param_mgr_.has_parameters ())
+    std::for_each (this->param_mgr_.active_parameter_set ()->begin (),
+                   this->param_mgr_.active_parameter_set ()->end (),
+                   arrange_horizontal (constant::aspect::TemplateParameters, 60, 60, 100));
+
+  this->param_mgr_.end_parameter_set (node);
   return 0;
 }
 

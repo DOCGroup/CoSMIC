@@ -16,11 +16,15 @@
 #include "ast_visitor.h"
 #include "ast_expression.h"
 #include "ast_component.h"
+
 #include "game/xme/Folder.h"
 #include "game/xme/Auto_Model_T.h"
+
 #include "ace/Hash_Map_Manager.h"
 #include "ace/SString.h"
 #include "ace/Null_Mutex.h"
+
+#include "Template_Parameter_Manager.h"
 
 // Forward decl.
 class UTL_ExceptList;
@@ -67,7 +71,7 @@ struct ACE_Hash <AST_Decl *>
 {
   unsigned long operator () (AST_Decl * t) const
   {
-    return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (t));
+    return ACE::hash_pjw (t->repoID ());
   }
 };
 
@@ -201,6 +205,8 @@ private:
                               FE_Utils::T_Param_Info * info,
                               const GAME::Xml::String & type);
 
+  int store_symbol (AST_Decl *, const GAME::XME::FCO &);
+
   /// Collection of files captured in this project.
   const PICML_File_Creator & files_;
 
@@ -238,13 +244,7 @@ private:
                         ACE_Null_Mutex> unresolved_;
 
   /// Collection of template parameters.
-  ACE_Hash_Map_Manager <const FE_Utils::T_Param_Info  *,
-                        GAME::XME::FCO,
-                        ACE_Null_Mutex> params_;
-
-  ACE_Hash_Map_Manager <ACE_CString,
-                        GAME::XME::FCO,
-                        ACE_Null_Mutex> active_params_;
+  Template_Parameter_Manager param_mgr_;
 
   GAME::XME::Reference temp_ref_;
 };

@@ -1,3 +1,29 @@
+Mon Jul 18 07:37:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          Disabled the handler for import.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/Template_Parameter_Manager.h:
+        * PIM/PICML/interpreters/IDLImporter/Template_Parameter_Manager.cpp:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML_DSML.mpc:
+
+          Implemented support for template module alias. This fixed
+          a LOT of build errors in provided examples.
+
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp.old:
+
+          Removed this file.
+
 Sat Jul 16 13:09:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:

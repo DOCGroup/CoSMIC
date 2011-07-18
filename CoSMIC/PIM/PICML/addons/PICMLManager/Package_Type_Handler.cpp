@@ -167,6 +167,9 @@ Package_Type_Handler::Package_Type_Handler (void)
 //
 int Package_Type_Handler::handle_object_relation (GAME::Mga::Object_in obj)
 {
+  if (this->is_importing_)
+    return 0;
+
   GAME::Mga::Reference package_type = GAME::Mga::Reference::_narrow (obj);
   GAME::Mga::FCO fco = package_type->refers_to ();
   GAME::Mga::Model tpi = GAME::Mga::Model::_narrow (obj->parent ());
