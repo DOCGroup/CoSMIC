@@ -1,3 +1,11 @@
+Tue Jul 26 23:19:27 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          Bug fix where adding a template model instance to a model
+          when there was more than one template model caused GME to
+          crash.
+
 Tue Jul 26 23:12:30 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:

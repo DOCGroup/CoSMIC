@@ -95,6 +95,7 @@ handle_object_created (GAME::Mga::Object_in obj)
   // Determine how many elements are template packages. This is
   // necessary since it will determine if we must bail out, auto
   // select the element, or display a dialog.
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
   size_t count = std::distance (iter, iter_end);
   GAME::Mga::FCO template_package;
 
