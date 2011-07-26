@@ -45,7 +45,48 @@ int Template_Parameter_Manager::begin_parameter_set (void)
   if (0 != this->active_.get ())
     this->entries_.push (this->active_.release ());
 
-  this->active_.reset (new PARAMETER_SET ());
+  return this->begin_parameter_set_i ();
+}
+
+//
+// begin_parameter_set
+//
+int Template_Parameter_Manager::begin_parameter_set (AST_Decl * decl)
+{
+  // Store the current parameter set.
+  if (0 != this->active_.get ())
+    this->entries_.push (this->active_.release ());
+
+  // Use the parameter set for the declaration.
+  std::map <AST_Decl *, PARAMETER_SET * >::
+    iterator iter = this->cached_.find (decl);
+
+  if (iter != this->cached_.end ())
+  {
+    this->active_.reset (iter->second);
+  }
+  else
+  {
+    // Create a new parameter set for this declaration.
+    if (0 != this->begin_parameter_set_i ())
+      return -1;
+
+    // Save the newly created parameter set.
+    this->cached_[decl] = this->active_.get ();
+  }
+
+  return 0;
+}
+
+//
+// begin_parameter_set_i
+//
+int Template_Parameter_Manager::begin_parameter_set_i (void)
+{
+  PARAMETER_SET * param_set = 0;
+  ACE_NEW_RETURN (param_set, PARAMETER_SET (), -1);
+
+  this->active_.reset (param_set);
   return 0;
 }
 
@@ -89,26 +130,6 @@ int Template_Parameter_Manager::end_parameter_set (AST_Decl * decl)
       this->active_.reset (entry);
   }
 
-  return 0;
-}
-
-//
-// begin_parameter_set
-//
-int Template_Parameter_Manager::begin_parameter_set (AST_Decl * decl)
-{
-  // Store the current parameter set.
-  if (0 != this->active_.get ())
-    this->entries_.push (this->active_.release ());
-
-  // Use the parameter set for the declaration.
-  std::map <AST_Decl *, PARAMETER_SET * >::
-    iterator iter = this->cached_.find (decl);
-
-  if (iter == this->cached_.end ())
-    return -1;
-
-  this->active_.reset (iter->second);
   return 0;
 }
 

@@ -84,6 +84,8 @@ private:
                const char * name,
                GAME::XME::FCO & fco) const;
 
+  int begin_parameter_set_i (void);
+
   /// The active parameter set.
   std::auto_ptr <PARAMETER_SET> active_;
 

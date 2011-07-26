@@ -660,9 +660,10 @@ int Project_Generator::visit_module (AST_Module *node)
                   module_ref->repoID ()));
 
     if (0 != this->param_mgr_.begin_parameter_set (module_ref))
-      ACE_ERROR ((LM_DEBUG,
-                  ACE_TEXT ("%T (%t) - %M - failed to restore parameter set for %s\n"),
-                  module_ref->repoID ()));
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("%T (%t) - %M - failed to restore parameter set for %s [file=%s]\n"),
+                  module_ref->repoID (),
+                  module_ref->file_name ().c_str ()));
   }
 
   Model package;
