@@ -3,7 +3,7 @@ Component Synthesis using Model-Integrated Computing (CoSMIC) README
 Overview of CoSMIC
 ==================
 
-This is the release 0.8.3 of Component Synthesis using Model-Integrated
+This is the release 0.8.4 of Component Synthesis using Model-Integrated
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool-suite consists of
 a collection of Domain Specific Modeling Languages (DSML) and related tools
 for meta-data generation, quality of service (QoS) analysis and more.

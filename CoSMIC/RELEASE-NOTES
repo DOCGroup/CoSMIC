@@ -1,6 +1,6 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC)
 
-This is a release version 0.8.3 of Component Synthesis using Model-Integrated
+This is a release version 0.8.4 of Component Synthesis using Model-Integrated
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of
     o   Platform-Independent Component Modeling Language (PICML)
     o   Component QoS Modeling Language (CQML)
@@ -15,6 +15,47 @@ modeling of large number QoS knobs provided by DDS.
 
 This document lists the new features that are introduced in the latest
 version.
+
+Release CoSMIC-0.8.4
+===================================================================
+
+. Implemented support for template module alias.
+
+. Implemented guard that prevent connections between a connector
+  and a port if there is no valid connection possible.
+
+. If there are no deployment plans in the model, then a
+  warning message is displayed.
+
+. Added a tag at the bottom of idl_to_picml's usage screen that
+  states when the executable was created.
+
+. Updated AMI4CCM handler to latest version of AMI4CCM standard.
+
+. Added a --debug option to idl_to_picml, which can be used to
+  print useful debugging information.
+
+. Added a checkbox to the new component dialog that allows the user
+  to determine if the servant's location is based on the fully
+  qualified path of the compnent, or the component's filename.
+
+. Implemented a new event handler that will initialize the predefined
+  types folder with all the allowable predefined types.
+
+. Bug fix where adding a template model instance to a model
+  when there was more than one template model caused GME to
+  crash.
+
+. Bug fix where a complex property's data values were not populated
+  if an aggregate was referenced that contained a key.
+
+. Bug fix where generated node map had a blank line at the end
+  of the file. Apparently, the execution manager does not like
+  blank lines.
+
+. Bug fix in idl_to_picml where the import would fail if there were
+  extraneous comments in the code. This was resolved by adding rules
+  for parsing both C and C++ comments.
 
 Release CoSMIC-0.8.3
 ===================================================================

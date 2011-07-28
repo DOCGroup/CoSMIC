@@ -1,3 +1,16 @@
+Thu Jul 28 16:16:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * NEWS:
+        * RELEASE-NOTES:
+
+          Updated the NEWS and release notes.
+
+        * PROBLEM-REPORT-FORM:
+        * README:
+        * VERSION:
+
+          Updated the version numbers.
+
 Wed Jul 27 16:05:46 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML.mta:
@@ -1621,7 +1634,6 @@ Thu Feb 10 22:26:03 UTC 2011  Harold Owens II  <owensh at cs dot iupui dot edu>
 
           Fixed compilation error.
 
->>>>>>> .r2669
 Tue Feb  8 14:52:45 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/t3_runtime.mpb:
@@ -2648,28 +2660,6 @@ Thu Nov 11 03:52:18 UTC 2010  Alhad Mokashi  <amokashi at iupui dot edu>
         * Utils/GAME/tests/ExtensionClasses/Model/Model-UnitTest.xme:
         * Utils/GAME/tests/ExtensionClasses/Model/ModelProxy.xme:
         * Utils/GAME/tests/ExtensionClasses/Reference:
-        * Utils/GAME/tests/ExtensionClasses/Reference/Reference-UnitTest.xme:
-        * Utils/GAME/tests/ExtensionClasses/Set:
-        * Utils/GAME/tests/ExtensionClasses/Set/Set-UnitTest.xme:
-
-          Added test cases to validate the ExtensionClassesInterpreter.
-
-Wed Nov 10 03:17:05 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
-
-        * ChangeLog:
-        * ChangeLogs/ChangeLog-10g:
-        * contrib:
-
-          CoSMIC version 0.8.3 was released. Moved the ChangeLog
-          to ChangeLogs/ChangeLog-10g. Reverted contrib svn:externals
-          property back to the HEAD revision.
-
-Local Variables:
-mode: change-log
-add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
-indent-tabs-mode: nil
-End:
-nClasses/Reference:
         * Utils/GAME/tests/ExtensionClasses/Reference/Reference-UnitTest.xme:
         * Utils/GAME/tests/ExtensionClasses/Set:
         * Utils/GAME/tests/ExtensionClasses/Set/Set-UnitTest.xme:
