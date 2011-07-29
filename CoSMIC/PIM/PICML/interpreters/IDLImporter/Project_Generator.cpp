@@ -504,7 +504,14 @@ void Project_Generator::finalize (void)
                           unresolved_t;
 
   for (unresolved_t::ITERATOR iter (this->unresolved_); !iter.done (); ++ iter)
-    this->handle_symbol_resolution (iter->item (), iter->key (), true);
+  {
+    if (0 != this->handle_symbol_resolution (iter->item (), iter->key (), true))
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("%T (%t) - %M - failed to resolve %s referenced by %s; it ")
+                  ACE_TEXT ("will remain NIL\n"),
+                  iter->item ()->repoID (),
+                  iter->key ().path ("/").to_string ().c_str ()));
+  }
 }
 
 //
@@ -2408,13 +2415,14 @@ int Project_Generator::store_symbol (AST_Decl * decl, const GAME::XME::FCO & fco
 //
 // handle_symbol_resolution
 //
-void Project_Generator::
+int Project_Generator::
 handle_symbol_resolution (AST_Decl * type,
                           GAME::XME::Reference & ref,
                           bool use_library)
 {
   GAME::XME::FCO fco;
   this->temp_ref_ = ref;
+  int retval = 0;
 
   if (be_global->is_debugging_enabled ())
     ACE_DEBUG ((LM_DEBUG,
@@ -2444,12 +2452,17 @@ handle_symbol_resolution (AST_Decl * type,
                   ACE_TEXT ("%T (%t) - %M - self-reference not allowed [%s | %s]\n"),
                   ref.path ("/").to_string ().c_str (),
                   fco.path ("/").to_string ().c_str ()));
+
+      retval = -1;
     }
   }
   else
   {
     this->unresolved_.bind (ref, type);
+    retval = -1;
   }
+
+  return retval;
 }
 
 //
@@ -2509,10 +2522,8 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
   }
   else if (use_library)
   {
-    std::vector <GAME::XME::Folder> libraries;
-    static const GAME::Xml::String meta_RootFolder ("RootFolder");
-
-    this->proj_.root_folder ().children (meta_RootFolder, libraries);
+    std::vector <GAME::XME::Library> libraries;
+    this->proj_.attached_libraries (libraries);
 
     if (this->lookup_symbol (type, libraries, fco))
       return true;
@@ -2526,12 +2537,12 @@ lookup_symbol (AST_Decl * type, GAME::XME::FCO & fco, bool use_library)
 //
 bool Project_Generator::
 lookup_symbol (AST_Decl * type,
-               std::vector <GAME::XME::Folder> & lib,
+               std::vector <GAME::XME::Library> & libs,
                GAME::XME::FCO & fco)
 {
   // Check the provided libraries.
-  std::vector <GAME::XME::Folder>::iterator
-    iter = lib.begin (), iter_end = lib.end ();
+  std::vector <GAME::XME::Library>::iterator
+    iter = libs.begin (), iter_end = libs.end ();
 
   for (; iter != iter_end; ++ iter)
   {
@@ -2550,17 +2561,15 @@ lookup_symbol (AST_Decl * type,
     {
       if (this->lookup_symbol (type, *idl_files_iter, fco))
         return true;
-
-      // See if this library has any attached libraries. If so, we should
-      // continue searching through them as well.
-      std::vector <GAME::XME::Folder> libraries;
-      static const GAME::Xml::String meta_RootFolder ("RootFolder");
-
-      idl_files_iter->children (meta_RootFolder, libraries);
-
-      if (this->lookup_symbol (type, libraries, fco))
-        return true;
     }
+
+    // See if this library has any attached libraries. If so, we should
+    // continue searching through them as well.
+    std::vector <GAME::XME::Library> libraries;
+    iter->attached_libraries (libraries);
+
+    if (this->lookup_symbol (type, libraries, fco))
+      return true;
   }
 
   return false;

@@ -1,3 +1,11 @@
+Fri Jul 29 14:10:41 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
+        * PIM/PICML/interpreters/IDLImporter/Project_Generator.cpp:
+
+          Bug fix where the imported failed to correctly search libraries
+          attached to other libraries.
+
 Thu Jul 28 16:16:34 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * NEWS:

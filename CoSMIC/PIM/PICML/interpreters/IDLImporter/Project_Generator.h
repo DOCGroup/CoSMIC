@@ -17,7 +17,7 @@
 #include "ast_expression.h"
 #include "ast_component.h"
 
-#include "game/xme/Folder.h"
+#include "game/xme/Library.h"
 #include "game/xme/Auto_Model_T.h"
 
 #include "ace/Hash_Map_Manager.h"
@@ -168,16 +168,16 @@ private:
   /// Initialize the project.
   void initialize (void);
 
-  void handle_symbol_resolution (AST_Decl * type,
-                                 GAME::XME::Reference & ref,
-                                 bool use_library = false);
+  int handle_symbol_resolution (AST_Decl * type,
+                                GAME::XME::Reference & ref,
+                                bool use_library = false);
 
   bool lookup_symbol (AST_Decl * type,
                       GAME::XME::FCO & fco,
                       bool use_library = false);
 
   bool lookup_symbol (AST_Decl * type,
-                      std::vector <GAME::XME::Folder> & lib,
+                      std::vector <GAME::XME::Library> & libs,
                       GAME::XME::FCO & fco);
 
   bool lookup_symbol (AST_Decl * type,
