@@ -69,5 +69,25 @@ GAME::Xml::String Library::xme_to_libref (const GAME::Xml::String & xmefile)
   return libref;
 }
 
+//
+// attached_libraries
+//
+size_t Library::attached_libraries (std::vector <Library> & libs)
+{
+  static const GAME::Xml::String metaname ("RootFolder");
+  std::vector <Folder> temp;
+
+  if (this->children (metaname, temp))
+  {
+    std::vector <Folder>::iterator
+      iter = temp.begin (), iter_end = temp.end ();
+
+    for (; iter != iter_end; ++ iter)
+      libs.push_back (Library (iter->ptr (), true));
+  }
+
+  return libs.size ();
+}
+
 }
 }

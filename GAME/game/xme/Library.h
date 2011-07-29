@@ -66,6 +66,9 @@ public:
 
   static GAME::Xml::String xme_to_libref (const GAME::Xml::String & xme);
 
+  /// Get the collection of attached libraries.
+  size_t attached_libraries (std::vector <Library> & libs);
+
 protected:
   Library (const GAME::Xml::String & location, xercesc::DOMElement * parent);
 
