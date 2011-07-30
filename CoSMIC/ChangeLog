@@ -1,3 +1,9 @@
+Sat Jul 30 04:00:40 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.wxs:
+
+          Updated version number in installer.
+
 Fri Jul 29 14:10:41 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/Project_Generator.h:
