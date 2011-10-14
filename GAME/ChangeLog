@@ -1,3 +1,10 @@
+Fri Oct 14 18:53:33 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * GAME.mwc:
+
+          Update the workspace to exclude the CodeGenerationKit when using
+          the Wix project type.
+
 Fri Oct 14 18:28:12 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * GAME.mwc:
