@@ -1,3 +1,14 @@
+Fri Oct 14 18:28:12 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * GAME.mwc:
+
+          Updated to work with relocation of the codegeneratorkit base
+          project.
+
+        * MPC/config/codegenerationkit.mpb:
+
+          Removed this file.
+
 Fri Oct 14 18:00:15 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game.mpb:

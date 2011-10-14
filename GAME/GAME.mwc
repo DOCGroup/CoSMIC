@@ -4,7 +4,17 @@ workspace (GAME) {
   cmdline += -include $GAME_ROOT/MPC/config
 
   exclude (!prop:windows) {
+    cmdline += -include $GAME_ROOT/contrib/CCF/MPC/config \
+               -base ccf_root
+
     game
+
+    static {
+      cmdline += -static \
+
+      $(GAME_ROOT)/contrib/CCF/CCF/CodeGenerationKit
+
+    }
   }
   else {
     game/xml
