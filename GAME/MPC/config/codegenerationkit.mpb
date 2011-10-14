@@ -1,0 +1,9 @@
+// $Id$
+
+project {
+  after += CodeGenerationKit
+  libs  += CodeGenerationKits
+
+  includes += $(CCF_ROOT) $(GAME_ROOT)/contrib/utility
+  libpaths += $(CCF_ROOT)/CCF
+}
