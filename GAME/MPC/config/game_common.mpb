@@ -1,6 +1,6 @@
 // $Id$
 
-project : acenosubsets, acedefaults {
+project : versioned_namespace, acenosubsets, acedefaults {
   includes += $(GAME_ROOT)\
               $(GAME_ROOT)/game
 

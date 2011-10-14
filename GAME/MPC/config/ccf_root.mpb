@@ -1,0 +1,11 @@
+// $Id: ccf_root.mpb 3476 2011-09-20 13:48:51Z hillj $
+
+project {
+  specific {
+    CCF_ROOT = $(GAME_ROOT)/contrib/CCF
+  }
+
+  verbatim (gnuace, top) {
+    CCF_ROOT = $(GAME_ROOT)/contrib/CCF
+  }
+}

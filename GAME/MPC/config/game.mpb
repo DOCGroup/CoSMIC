@@ -1,6 +1,5 @@
 // $Id$
 
 project : game_common {
-  //after += GAME
-  //libs  += GAME
+
 }
