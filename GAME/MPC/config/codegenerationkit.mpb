@@ -1,6 +1,6 @@
 // $Id$
 
-project {
+project : ccf_root {
   after += CodeGenerationKit
   libs  += CodeGenerationKits
 
