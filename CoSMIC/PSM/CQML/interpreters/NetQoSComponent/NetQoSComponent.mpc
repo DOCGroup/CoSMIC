@@ -1,6 +1,6 @@
 // $Id$
 
-project (NetQoSComponent): cqmllib, gme_udm_component {
+project (NetQoSComponent): xerces, cqmllib, gme_udm_component {
   sharedname = NetQoSComponent
 
   after += NetQoS
