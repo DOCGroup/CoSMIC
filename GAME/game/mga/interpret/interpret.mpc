@@ -1,7 +1,7 @@
 // $Id$
 
-project (GAME_Automation) : boost_base, game_mga, game_bin {
-  exename = game-automation
+project (GAME_Mga_Interpret) : boost_base, game_mga, game_bin {
+  exename = gme_interpret
 
   specific (prop:microsoft) {
     subsystem = 1
@@ -11,9 +11,9 @@ project (GAME_Automation) : boost_base, game_mga, game_bin {
   pch_source = stdafx.cpp
 
   Source_Files {
-    automation.cpp
-    Automation_App.cpp
-    Automation_App_Options.cpp
+    interpret.cpp
+    Interpret_App.cpp
+    Interpret_App_Options.cpp
     Parameter_Parser.cpp
   }
 }

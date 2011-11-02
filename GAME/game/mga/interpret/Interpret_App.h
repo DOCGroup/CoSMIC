@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        Executor_App.h
+ * @file        Interpret_App.h
  *
  * $Id$
  *
@@ -10,11 +10,11 @@
  */
 //=============================================================================
 
-#ifndef _GAME_AUTOMATION_APP_H_
-#define _GAME_AUTOMATION_APP_H_
+#ifndef _GAME_MGA_INTERPRET_APP_H_
+#define _GAME_MGA_INTERPRET_APP_H_
 
 #include "game/mga/Project.h"
-#include "Automation_App_Options.h"
+#include "Interpret_App_Options.h"
 
 /**
  * @class GAME_Automation_App
@@ -70,7 +70,7 @@ private:
 };
 
 #if defined (__GAME_INLINE__)
-#include "Automation_App.inl"
+#include "Interpret_App.inl"
 #endif
 
-#endif  // !defined _GME_T2M_EXECUTOR_APP_H_
+#endif  // !defined _GAME_MGA_INTERPRET_APP_H_

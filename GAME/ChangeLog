@@ -1,3 +1,42 @@
+Wed Nov  2 04:26:24 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpret:
+        * game/mga/interpret/Interpret_App.h:
+        * game/mga/interpret/Interpret_App.inl:
+        * game/mga/interpret/Interpret_App.cpp:
+        * game/mga/interpret/Interpret_App_Options.h:
+        * game/mga/interpret/Interpret_App_Options.inl:
+        * game/mga/interpret/Interpret_App_Options.cpp:
+        * game/mga/interpret/interpret.cpp:
+        * game/mga/interpret/interpret.mpc:
+
+          Relocation of the application that run a GME interpreter
+          on a model without actually opening GME.
+
+        * game/automation:
+        * game/automation/Automation_App.h:
+        * game/automation/Automation_App.inl:
+        * game/automation/Automation_App.cpp:
+        * game/automation/Automation_App_Options.h:
+        * game/automation/Automation_App_Options.inl:
+        * game/automation/Automation_App_Options.cpp:
+        * game/automation/Parameter_Parser.h:
+        * game/automation/Parameter_Parser.cpp:
+        * game/automation/automation.cpp:
+        * game/automation/automation.mpc:
+        * game/automation/stdafx.h:
+        * game/automation/stdafx.cpp:
+        * game/mga/interpret/Automation_App.h:
+        * game/mga/interpret/Automation_App.inl:
+        * game/mga/interpret/Automation_App.cpp:
+        * game/mga/interpret/Automation_App_Options.h:
+        * game/mga/interpret/Automation_App_Options.inl:
+        * game/mga/interpret/Automation_App_Options.cpp:
+        * game/mga/interpret/automation.mpc:
+        * game/mga/interpret/automation.cpp:
+
+          Removed these files.
+
 Sat Oct 15 16:18:57 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/codegenerationkit.mpb:

@@ -1,10 +1,10 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Automation_App.h"
+#include "Interpret_App.h"
 
 #if !defined (__GAME_INLINE__)
-#include "Automation_App.inl"
+#include "Interpret_App.inl"
 #endif
 
 #include "Parameter_Parser.h"

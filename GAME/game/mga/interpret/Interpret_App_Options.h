@@ -46,7 +46,7 @@ struct GAME_Automation_App_Options
 };
 
 #if defined (__GAME_INLINE__)
-#include "Automation_App_Options.inl"
+#include "Interpret_App_Options.inl"
 #endif
 
 #endif
