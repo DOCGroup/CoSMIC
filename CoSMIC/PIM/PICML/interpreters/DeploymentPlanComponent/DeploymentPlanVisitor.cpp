@@ -281,10 +281,6 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   //call visitor that will generate the .cdd file
   Deployment_Domain_Visitor ddv (this->config_.output_);
   PICML::DeploymentPlan (plan).Accept (ddv);
-
-  //call visitor that will generate the .nodemap file
-  Nodemap_Generator ng (this->config_.output_);
-  PICML::DeploymentPlan (plan).Accept (ng);
 }
 
 //

@@ -1,3 +1,19 @@
+Wed Nov  2 19:10:42 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Removed generation of the nodemap file since DAnCE supports
+          the .cdd file.
+
+        * PIM/PICML/paradigms/PICML.mta:
+
+          Compiled version of PICML.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+
+          Removed these files.
+
 Sat Oct 15 16:20:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
