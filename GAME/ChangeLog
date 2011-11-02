@@ -1,3 +1,10 @@
+Wed Nov  2 19:53:49 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/gme_upgrade.mpb:
+
+          Base project for making the upgrade process part of the
+          build process.
+
 Wed Nov  2 19:51:22 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/upgrade:
