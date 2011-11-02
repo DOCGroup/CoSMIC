@@ -1,3 +1,9 @@
+Wed Nov  2 21:09:11 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/gme_upgrade.mpb:
+
+          Changed the name of the custom definition.
+
 Wed Nov  2 19:53:49 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/gme_upgrade.mpb:
