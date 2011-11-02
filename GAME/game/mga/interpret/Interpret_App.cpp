@@ -34,7 +34,7 @@ static const char * __HELP__ =
 "  --param=NAME=VALUE              set the value of a parameter\n"
 "\n"
 "  --disable-addons                disable GAME auto add-ons\n"
-"  ---interative                   enable interactive behavior\n"
+"  --interative                    enable interactive behavior\n"
 "\n"
 "Informative Options:\n"
 "  -h, --help                      print this help message\n"

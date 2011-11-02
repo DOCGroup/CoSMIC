@@ -34,7 +34,7 @@ def interrupt_signal_handler (signal, frame):
 def run_test_script (dir):
     cmd = ["perl", "--", "run_test.pl"]
 
-    print "*** INFO: executing test script in", dir
+    print ("*** INFO: executing test script in %s" % dir)
     global p
     p = subprocess.Popen (cmd, cwd=dir)
 

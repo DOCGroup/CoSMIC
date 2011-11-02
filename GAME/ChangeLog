@@ -1,3 +1,17 @@
+Wed Nov  2 19:11:18 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/ComponentEx_Impl_T.cpp:
+
+          Disabled auto attachment to the console.
+
+        * game/mga/interpret/Interpret_App.cpp:
+
+          Fixed the help generation.
+
+        * tests/run_test_all.py:
+
+          Update the print statements to Python3.
+
 Wed Nov  2 04:30:40 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * tests/run_test_all.py:

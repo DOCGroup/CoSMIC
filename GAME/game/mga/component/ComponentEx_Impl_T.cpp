@@ -30,9 +30,9 @@ STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
 
     try
     {
-      // First, initialize the console service. This will allow this
-      // component to send messages to the user via the GME console.
-      GME_CONSOLE_SERVICE->initialize (project);
+      //// First, initialize the console service. This will allow this
+      //// component to send messages to the user via the GME console.
+      //GME_CONSOLE_SERVICE->initialize (project);
     }
     catch (...)
     {
