@@ -1,3 +1,16 @@
+Wed Nov  2 19:51:22 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/upgrade:
+        * game/mga/upgrade/Model_Upgrade.h:
+        * game/mga/upgrade/Model_Upgrade.cpp:
+        * game/mga/upgrade/stdafx.h:
+        * game/mga/upgrade/stdafx.cpp:
+        * game/mga/upgrade/upgrade.cpp:
+        * game/mga/upgrade/upgrade.mpc:
+
+          Utility for upgrading a model to its latest version of
+          a paradigm.
+
 Wed Nov  2 19:44:38 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * tests/ExtensionClasses/RootFolder/run_test.pl:

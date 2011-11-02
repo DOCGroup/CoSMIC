@@ -1,0 +1,17 @@
+// $Id$
+
+project (GAME_Mga_Model_Upgrade) : game_mga, aceexe, game_bin {
+  exename = gme_upgrade
+
+  specific {
+    subsystem = 1
+  }
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    Model_Upgrade.cpp
+    upgrade.cpp
+  }
+}
