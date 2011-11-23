@@ -1,3 +1,13 @@
+Wed Nov 23 19:56:20 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/plugins/Template_Engine/parser/Property_Configuration.hpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Name.hpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.cpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Multiple_Configuration.config:
+
+          Bug fix where the template engine failed to parse configuration
+          files that defined more than one configuraiton.
+
 Wed Nov 23 18:54:59 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/plugins/Template_Engine/Template_Engine.h:

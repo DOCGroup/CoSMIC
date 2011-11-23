@@ -33,11 +33,17 @@ public:
    * @param[in]       map             Source property map
    */
   Property_Name (void)
-    :  Property_Name::base_type (name_)
+    : Property_Name::base_type (name_, std::string ("Property_Name")),
+      name_ (std::string ("name"))
   {
     namespace qi = boost::spirit::qi;
 
     this->name_ %= qi::lexeme[(qi::alpha >> *(qi::alnum | qi::char_ ('_') | qi::char_ ('.')))];
+  }
+
+  void enable_debugging (void)
+  {
+    debug (name_);
   }
 
 private:

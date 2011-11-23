@@ -79,7 +79,12 @@ struct Property_Configuration :
    * @param[in]         actor         Actor for handling events.
    */
   Property_Configuration (void)
-    : Property_Configuration::base_type (config_)
+    : Property_Configuration::base_type (config_, std::string ("Property_Configuration")),
+      config_ (std::string ("config")),
+      assignments_ (std::string ("assignment")),
+      assign_ (std::string ("assign")),
+      value_ (std::string ("value")),
+      ident_ (std::string ("ident"))
   {
     namespace qi = boost::spirit::qi;
     namespace phoenix = boost::phoenix;
@@ -95,7 +100,7 @@ struct Property_Configuration :
         phoenix::at_c <1> (_val) = phoenix::new_ <Property_Map> ()] >
      // - (qi::lit (':') >> this->base_list_ (phoenix::at_c <1> (_val), _r1)) >>
       qi::lit ('{') >>
-      this->assignments_ (phoenix::at_c <1> (_val));
+      this->assignments_ (phoenix::at_c <1> (_val)) >>
       qi::lit ('}');
 
       /*
@@ -122,7 +127,7 @@ struct Property_Configuration :
 
     this->value_   %= qi::lexeme[*(qi::char_ - qi::eol)];
 
-    this->ident_   %= qi::lexeme[(qi::alpha >> *(qi::alnum | qi::char_ ('_')))];
+    this->ident_   %= qi::lexeme[(qi::alpha > *(qi::alnum | qi::char_ ('_')))];
 
     using phoenix::construct;
     using phoenix::val;
@@ -138,6 +143,17 @@ struct Property_Configuration :
                 << phoenix::val("\"")
                 << std::endl
     );
+  }
+
+  void enable_debugging (void)
+  {
+    debug (config_);
+    debug (assignments_);
+    debug (assign_);
+    debug (value_);
+    debug (ident_);
+
+    this->name_.enable_debugging ();
   }
 
 private:
@@ -183,7 +199,8 @@ struct Property_Configurations :
 {
   /// Default constructor.
   Property_Configurations (void)
-    : Property_Configurations::base_type (listing_)
+    : Property_Configurations::base_type (listing_),
+      listing_ (std::string ("listing"))
   {
     namespace phoenix = boost::phoenix;
     namespace qi = boost::spirit::qi;
@@ -214,6 +231,12 @@ struct Property_Configurations :
                 << phoenix::val("\"")
                 << std::endl
     );
+  }
+
+  void enable_debugging (void)
+  {
+    debug (listing_);
+    this->config_.enable_debugging ();
   }
 
 private:
