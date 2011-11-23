@@ -65,18 +65,36 @@ void Windows_Registry_Key::close_i (void)
 //
 // get_value
 //
-int Windows_Registry_Key::get_value (const char * value,
-                                     char * buffer,
-                                     unsigned long bufsize)
+int Windows_Registry_Key::
+get_value (const char * name, char * buffer, unsigned long bufsize)
 {
   int retval = ::RegQueryValueEx (this->key_,
-                                  value,
+                                  name,
                                   0,
                                   0,
                                   (unsigned char *)buffer,
                                   &bufsize);
 
   return retval == ERROR_SUCCESS ? 0 : -1;
+}
+
+//
+// get_value
+//
+int Windows_Registry_Key::
+get_value (const char * name, long & value)
+{
+  DWORD type;
+  DWORD bufsize = sizeof (long);
+
+  int retval = ::RegQueryValueEx (this->key_,
+                                  name,
+                                  0,
+                                  &type,
+                                  (unsigned char *)&value,
+                                  &bufsize);
+
+  return (ERROR_SUCCESS != retval || type != REG_DWORD) ? -1 : 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

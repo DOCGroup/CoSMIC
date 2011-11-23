@@ -124,6 +124,7 @@ get_interpreters (GAME::Mga::Project proj, Interpreter_List & list)
     return;
 
   char description[255];
+  long type;
 
   // Iterate over all the components.
   Windows_Registry_Key component, associated, paradigm;
@@ -135,9 +136,13 @@ get_interpreters (GAME::Mga::Project proj, Interpreter_List & list)
     // Open the component and its associated paradigms.
     if (0 != component.open (components, key_iter.name ()))
       continue;
-    else if (0 != associated.open (component, "Associated"))
+    else if (0 != component.get_value ("Type", type))
       continue;
-    else if (0 != associated.get_value (paradigm_name.c_str ()))
+    else if (type != 1 && type != 12)
+      continue;
+    else if (type == 12 || (type == 1 && 0 != associated.open (component, "Associated")))
+      continue;
+    else if (type == 12 || (type == 1 && 0 != associated.get_value (paradigm_name.c_str ())))
       continue;
     else if (0 != component.get_value ("Description",
                                        description,

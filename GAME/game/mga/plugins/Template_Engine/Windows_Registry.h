@@ -37,20 +37,55 @@ public:
   /// Default constructor.
   Windows_Registry_Key (void);
 
+  /**
+   * Create a registry key, and open it.
+   *
+   * @param[in]         key           Top-level registry key
+   * @param[in]         subkey        Subkey in top-level key
+   */
   Windows_Registry_Key (HKEY key, const char * subkey);
 
   /// Destructor.
   ~Windows_Registry_Key (void);
 
+  /**
+   * Open the registry key.
+   *
+   * @param[in]         key           Top-level registry key
+   * @param[in]         subkey        Subkey in top-level key
+   */
   int open (HKEY key, const char * subkey);
 
+  /**
+   * Open a registry key.
+   *
+   * @param[in]         key           Already open registry key
+   * @param[in]         subkey        Subkey in open key
+   */
   int open (const Windows_Registry_Key & key, const char * subkey);
 
+  /// Test if the registry key is valid.
   bool is_valid (void) const;
 
+  /// Close the registry key.
   void close (void);
 
-  int get_value (const char * value, char * buffer = 0, unsigned long bufsize = 0);
+  /**
+   * Get a value in the registry key.
+   *
+   * @param[in]         name            Name of value to read
+   * @param[out]        buffer          Pointer to buffer that receives value
+   * @param[in]         bufsize         Size of buffer
+   */
+  int get_value (const char * name, char * buffer = 0, unsigned long bufsize = 0);
+
+  /**
+   * @overload
+   *
+   * @param[in]         name            Name of value to read
+   * @param[out]        value           Read value
+   */
+  int get_value (const char * name, long & value);
 
 private:
   /// Implementation of the close method.
@@ -68,6 +103,10 @@ private:
 
 /**
  * @class Windows_Registry_Key_Iterator
+ *
+ * Class that iterates over all the keys in a Windows registry. It
+ * is assumed that the register has been open to the desired folder
+ * and is ready for iteration.
  */
 class Windows_Registry_Key_Iterator
 {
@@ -108,6 +147,9 @@ private:
 
 /**
  * @class CUTS_Windows_Registry_Value_Iterator
+ *
+ * Class that iterates over all the values for a Windows registry
+ * key. It is assumed the Windows registry key is already open.
  */
 class CUTS_Windows_Registry_Value_Iterator
 {
