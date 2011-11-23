@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_Visitor_Test) : game_component, game_lib, boost_base {
+project (GAME_Visitor_Test) : game_mga_component, game_lib, boost_base {
   sharedname = GAME_Visitor_Test
 
   pch_header = stdafx.h

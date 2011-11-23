@@ -1,0 +1,4 @@
+config MainConfig
+{
+  AggregateName = StockQuote
+}

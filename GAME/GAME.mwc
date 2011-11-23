@@ -20,4 +20,10 @@ workspace (GAME) {
     game/xml
     game/xme
   }
+
+  tests {
+    cmdlind += -base requires_test
+
+    tests
+  }
 }

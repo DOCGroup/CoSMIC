@@ -1,0 +1,13 @@
+// $Id$
+
+project (GAME_Template_Engine_Parser_Test) : boost_base, game_common {
+  exename = GAME_Template_Engine_Parser_Test
+  install = .
+
+  after += GAME_Template_Engine
+  libs  += GAME_Template_Engine
+
+  Source_Files {
+    Parser_Test.cpp
+  }
+}

@@ -1,0 +1,29 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{F3748950-3B2A-4511-8349-45EBFAF4BD32}]
+@="GAME.Plugin.TemplateEngine"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{F3748950-3B2A-4511-8349-45EBFAF4BD32}\ProgID]
+@="GAME.Plugin.TemplateEngine"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{F3748950-3B2A-4511-8349-45EBFAF4BD32}\InProcServer32]
+@="GAME_Template_Engined.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.Plugin.TemplateEngine]
+@="GAME.Plugin.TemplateEngine"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.Plugin.TemplateEngine\CLSID]
+@="{F3748950-3B2A-4511-8349-45EBFAF4BD32}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.Plugin.TemplateEngine]
+"Tooltip"="GAME Template Engine"
+"Icon"=",IDI_COMPICON"
+"Paradigm"="*"
+"Type"=dword:0000000c
+"Description"="GAME Template Engine"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.Plugin.TemplateEngine\Associated]

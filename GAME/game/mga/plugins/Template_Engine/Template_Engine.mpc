@@ -1,0 +1,48 @@
+// $Id$
+
+project (GAME_Template_Engine) : boost_base, game_mga_component, game_lib {
+  sharedname    = GAME_Template_Engine
+  dynamicflags += GAME_TEMPLATE_ENGINE_BUILD_DLL
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    Configuration_File.cpp
+    Model_Interpreter.cpp
+    Property_Locator.cpp
+    Property_Replacer_Guard.cpp
+    Template_Engine.idl
+    Template_Engine_Impl.cpp
+    Template_Engine_Module.cpp
+    Template_Engine_Dialog.cpp
+    Windows_Registry.cpp
+
+    Parsers {
+      parser/*.cpp
+    }
+  }
+
+  Header_Files {
+    Property_Element_Map.h
+    Interpreter_List.h
+
+    Parsers {
+      parser/*.hpp
+    }
+  }
+
+  Resource_Files {
+    Template_Engine.rc
+  }
+
+  specific (wix) {
+    gme_install        = 1
+    gme_component_type = 12
+    gme_progid         = GAME.Plugin.TemplateEngine
+    gme_uuid           = F3748950-3B2A-4511-8349-45EBFAF4BD32
+    gme_has_icon       = 1
+    gme_description    = GAME Template Engine
+    gme_tooltip        = GAME Template Engine
+  }
+}

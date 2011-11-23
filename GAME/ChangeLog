@@ -1,3 +1,81 @@
+Wed Nov 23 16:09:35 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * GAME.mwc:
+        * MPC/config/requires_test.mpb:
+
+          Based project for adding the feature named "test".
+
+        * game/mga/plugins:
+        * game/mga/plugins/Template_Engine:
+        * game/mga/plugins/Template_Engine/Configuration_File.h:
+        * game/mga/plugins/Template_Engine/Configuration_File.cpp:
+        * game/mga/plugins/Template_Engine/GAME_Template_Engine.reg:
+        * game/mga/plugins/Template_Engine/GAME_Template_Engined.reg:
+        * game/mga/plugins/Template_Engine/Interpreter_List.h:
+        * game/mga/plugins/Template_Engine/Model_Interpreter.h:
+        * game/mga/plugins/Template_Engine/Model_Interpreter.inl:
+        * game/mga/plugins/Template_Engine/Model_Interpreter.cpp:
+        * game/mga/plugins/Template_Engine/Property_Locator.h:
+        * game/mga/plugins/Template_Engine/Property_Locator.inl:
+        * game/mga/plugins/Template_Engine/Property_Locator.cpp:
+        * game/mga/plugins/Template_Engine/Property_Replacer_Guard.h:
+        * game/mga/plugins/Template_Engine/Property_Replacer_Guard.cpp:
+        * game/mga/plugins/Template_Engine/Template_Engine.h:
+        * game/mga/plugins/Template_Engine/Template_Engine.aps:
+        * game/mga/plugins/Template_Engine/Template_Engine.ico:
+        * game/mga/plugins/Template_Engine/Template_Engine.idl:
+        * game/mga/plugins/Template_Engine/Template_Engine.mpc:
+        * game/mga/plugins/Template_Engine/Template_Engine.rc:
+        * game/mga/plugins/Template_Engine/Template_Engine_Dialog.h:
+        * game/mga/plugins/Template_Engine/Template_Engine_Dialog.inl:
+        * game/mga/plugins/Template_Engine/Template_Engine_Dialog.cpp:
+        * game/mga/plugins/Template_Engine/Template_Engine_Impl.h:
+        * game/mga/plugins/Template_Engine/Template_Engine_Impl.cpp:
+        * game/mga/plugins/Template_Engine/Template_Engine_Module.cpp:
+        * game/mga/plugins/Template_Engine/Template_Engine_export.h:
+        * game/mga/plugins/Template_Engine/Windows_Registry.h:
+        * game/mga/plugins/Template_Engine/Windows_Registry.inl:
+        * game/mga/plugins/Template_Engine/Windows_Registry.cpp:
+        * game/mga/plugins/Template_Engine/parser:
+        * game/mga/plugins/Template_Engine/parser/Property_Configuration.hpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Expander.hpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Listing.hpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Map.h:
+        * game/mga/plugins/Template_Engine/parser/Property_Map.inl:
+        * game/mga/plugins/Template_Engine/parser/Property_Map.cpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Name.hpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Tag.hpp:
+        * game/mga/plugins/Template_Engine/parser/Property_Value_Setter.hpp:
+        * game/mga/plugins/Template_Engine/resource.h:
+        * game/mga/plugins/Template_Engine/stdafx.h:
+        * game/mga/plugins/Template_Engine/stdafx.cpp:
+
+          Initial port of the Template Engine plugin from CUTS to
+          the GAME repo.
+
+        * tests/ExtensionClasses/RootFolder:
+
+          Updated its ignore list.
+
+        * tests/mga/Visitor/Visitor_Test.mpc:
+
+          Fixed errors in base project specification.
+
+        * tests/mga/plugins:
+        * tests/mga/plugins/Template_Engine:
+        * tests/mga/plugins/Template_Engine/Configuration_File:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.mpc:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.cpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Multiple_Configuration.config:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Single_Configuration.config:
+        * tests/mga/plugins/Template_Engine/Parser_Test:
+        * tests/mga/plugins/Template_Engine/Parser_Test/Parser_Test.mpc:
+        * tests/mga/plugins/Template_Engine/Parser_Test/Parser_Test.cpp:
+        * tests/mga/plugins/Template_Engine/Picml_Test:
+        * tests/mga/plugins/Template_Engine/Picml_Test/Picml_Test.tpf:
+
+          Different test for the Template Engine plugin.
+
 Wed Nov  2 21:09:11 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/gme_upgrade.mpb:

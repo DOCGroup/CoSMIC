@@ -1,0 +1,33 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Template_Engine.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _GAME_TEMPLATE_ENGINE_PLUGIN_IDL_
+#define _GAME_TEMPLATE_ENGINE_PLUGIN_IDL_
+
+#include <Gme.idl>
+
+[uuid(8A20C4B5-2848-4F33-80C8-7651CC55BAA8), version(1.0)]
+library TemplateEngine
+{
+  importlib("stdole32.tlb");
+
+  [uuid(F3748950-3B2A-4511-8349-45EBFAF4BD32)]
+  coclass TemplateEngine
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IMgaVersionInfo;
+  };
+};
+
+#endif
+
