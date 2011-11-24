@@ -1,0 +1,9 @@
+// $Id$
+
+project : boost_unit_test_framework, game_common {
+  includes += $(GAME_ROOT)/tests
+
+  Header_Files {
+    $(GAME_ROOT)/tests/Test_Configuration.hpp
+  }
+}

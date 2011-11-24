@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_Template_Engine_Configuration_File_Test) : boost_base, game_common {
+project (GAME_Template_Engine_Configuration_File_Test) : game_test {
   exename = GAME_Template_Engine_Configuration_File_Test
   install = .
 

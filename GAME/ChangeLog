@@ -1,3 +1,13 @@
+Thu Nov 24 21:32:21 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_test.mpb:
+        * tests/Test_Configuration.hpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.cpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.mpc:
+        * tests/mga/plugins/Template_Engine/Configuration_File/run_test.pl:
+
+          Updated test to use Boost.Test framework.
+
 Wed Nov 23 19:56:20 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/plugins/Template_Engine/parser/Property_Configuration.hpp:
