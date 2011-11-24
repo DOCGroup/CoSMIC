@@ -1,3 +1,18 @@
+Thu Nov 24 21:35:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * tests/mga/plugins/Template_Engine/Configuration_File_Test:
+
+          Rename of the directory below.
+
+        * tests/mga/plugins/Template_Engine/Configuration_File:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.mpc:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Configuration_File.cpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Multiple_Configuration.config:
+        * tests/mga/plugins/Template_Engine/Configuration_File/Single_Configuration.config:
+        * tests/mga/plugins/Template_Engine/Configuration_File/run_test.pl:
+
+          Removed these files.
+
 Thu Nov 24 21:32:21 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_test.mpb:
