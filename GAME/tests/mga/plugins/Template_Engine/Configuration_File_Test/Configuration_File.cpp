@@ -3,7 +3,9 @@
 #include "game/mga/plugins/Template_Engine/Configuration_File.h"
 
 #define BOOST_TEST_MODULE Template_Engine_Configuration_File
+
 #include "Test_Configuration.hpp"
+DECLARE_BOOST_TEST_CONFIG ("../../../../logs");
 
 //
 // single_configuration

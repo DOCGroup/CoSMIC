@@ -15,13 +15,17 @@
 
 #include "boost/test/unit_test.hpp"
 #include "boost/test/unit_test_log_formatter.hpp"
+#include <fstream>
+
+#define XSTR(X) STR(X)
+#define STR(X) #X
 
 /**
- * @def BOOST_TEST_CONFIG
+ * @def DEFINE_BOOST_TEST_CONFIG
  *
  * Macro for defining the Boost test configuration.
  */
-#define BOOST_TEST_CONFIG \
+#define DECLARE_BOOST_TEST_CONFIG(LOGDIR) \
   class Boost_Junit_Log_Format : public boost::unit_test::unit_test_log_formatter \
   { \
   public: \
@@ -86,15 +90,21 @@
     std::string closing_tag_; \
   }; \
   struct Boost_Test_Config_Fixture { \
-    Boost_Test_Config_Fixture (void) { \
+    Boost_Test_Config_Fixture (void) \
+    : log_ (LOGDIR "/" XSTR(BOOST_TEST_MODULE) ".log") { \
       using boost::unit_test::unit_test_log; \
+      unit_test_log.set_stream (this->log_); \
       unit_test_log.set_threshold_level (boost::unit_test::log_successful_tests); \
       unit_test_log.set_format (boost::unit_test::INV_OF); \
       unit_test_log.set_formatter (new Boost_Junit_Log_Format ()); \
     } \
+    ~Boost_Test_Config_Fixture (void) { \
+      using boost::unit_test::unit_test_log; \
+      unit_test_log.set_stream (std::cout); \
+    } \
+  private: \
+    std::ofstream log_; \
   }; \
   BOOST_GLOBAL_FIXTURE (Boost_Test_Config_Fixture)
-
-BOOST_TEST_CONFIG;
 
 #endif  // !defined _CUTS_BOOST_JUNIT_FORMATTER_H_

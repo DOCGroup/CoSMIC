@@ -1,3 +1,12 @@
+Fri Nov 25 02:30:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * tests/Test_Configuration.hpp:
+        * tests/logs:
+        * tests/mga/plugins/Template_Engine/Configuration_File_Test/Configuration_File.cpp:
+
+          Update the test configuration so that the unit test automatically
+          generates a log file based on BOOST_TEST_MODULE.
+
 Thu Nov 24 21:35:05 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * tests/mga/plugins/Template_Engine/Configuration_File_Test:
