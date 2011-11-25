@@ -95,7 +95,6 @@
       using boost::unit_test::unit_test_log; \
       unit_test_log.set_stream (this->log_); \
       unit_test_log.set_threshold_level (boost::unit_test::log_successful_tests); \
-      unit_test_log.set_format (boost::unit_test::INV_OF); \
       unit_test_log.set_formatter (new Boost_Junit_Log_Format ()); \
     } \
     ~Boost_Test_Config_Fixture (void) { \

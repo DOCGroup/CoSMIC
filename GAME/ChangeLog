@@ -1,3 +1,14 @@
+Fri Nov 25 17:46:48 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * tests/Test_Configuration.hpp:
+
+          Remove setting the log_format since it does not impact the
+          reporting format.
+
+        * tests/mga/plugins/Template_Engine/Configuration_File_Test/run_test.pl:
+
+          Simplified the test execution.
+
 Fri Nov 25 02:30:44 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * tests/Test_Configuration.hpp:
