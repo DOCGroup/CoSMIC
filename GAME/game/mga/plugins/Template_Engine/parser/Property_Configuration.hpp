@@ -13,14 +13,12 @@
 #ifndef _PROPERTY_LIST_PARSER_HPP_
 #define _PROPERTY_LIST_PARSER_HPP_
 
+#include <algorithm>
 #include <map>
 
 #include "boost/shared_ptr.hpp"
 #include "boost/fusion/include/std_pair.hpp"
-#include "boost/fusion/include/find_if.hpp"
 #include "boost/spirit/include/phoenix.hpp"
-#include <boost/spirit/include/phoenix_core.hpp>
-#include <boost/spirit/include/phoenix_operator.hpp>
 
 #include "Property_Map.h"
 #include "Property_Name.hpp"
@@ -48,30 +46,41 @@ struct Property_Configuration :
                                      boost::spirit::qi::ascii::space_type>
 {
   /**
-   * @struct lookup_
+   * @struct lookup_impl
    *
    * Phoenix function object that will lookup a configuration in the
    * configuration map. I would like to do this inline within the grammar,
    * but I was not able to figure it out. So, we have this function
    * object as a consolation prize! :-(
    */
-  struct lookup_
+  struct lookup_impl
   {
-    template <typename Arg1, typename Arg2>
+    //typedef boost::mpl::false_ no_nullary;
+
+    template <typename Arg1, typename Arg2, typename Arg3>
     struct result
     {
-      typedef Property_Map * type;
+      typedef bool type;
     };
 
-    template <typename Arg1, typename Arg2>
-    void operator () (Arg1 a1, Arg2 a2) const
+    template <typename Arg1, typename Arg2, typename Arg3>
+    typename result <Arg1, Arg2, Arg3>::type operator () (const Arg1 & map, const Arg2 & name, Arg3 & ret) const
     {
       namespace phoenix = boost::phoenix;
       using phoenix::arg_names::arg1;
 
-      return phoenix::at_c <1> (phoenix::find_if (a1, phoenix::at_c <0> (arg1) == a2));
+      typedef Property_Configuration_Map::const_iterator const_iterator;
+      const_iterator iter = std::find_if (map.begin (), map.end (), phoenix::at_c <0> (arg1) == name);
+
+      if (iter == map.end ())
+        return false;
+
+      ret = iter->second;
+      return true;
     }
   };
+
+  boost::phoenix::function <lookup_impl> lookup;
 
   /**
    * Initializing constructor.
@@ -98,27 +107,27 @@ struct Property_Configuration :
         // Set the configuration's name, then create a new property map.
         phoenix::at_c <0> (_val) = _1,
         phoenix::at_c <1> (_val) = phoenix::new_ <Property_Map> ()] >
-     // - (qi::lit (':') >> this->base_list_ (phoenix::at_c <1> (_val), _r1)) >>
+        - (qi::lit (':') >> this->base_list_ (phoenix::at_c <1> (_val), _r1)) >>
       qi::lit ('{') >>
       this->assignments_ (phoenix::at_c <1> (_val)) >>
       qi::lit ('}');
 
-      /*
     this->base_list_ =
       this->ident_[
         // First, lookup the base property map in the configuration.
         // map. Then, we can join it with the current property map.
-        //_a = phoenix::at_c <1> (phoenix::find_if (_r2, phoenix::at_c <0> (arg1) == _1)),
-        lookup_ () (_r2, _1, _a),
-        lookup_ () (_r2, _1),
-        phoenix::bind (&Property_Map::join, _r1, *_a, true)] >>
+        phoenix::if_ (lookup (_r2, _1, _a))
+        [
+          phoenix::bind (&Property_Map::join, _r1, *_a, true)
+        ]] >>
       *(qi::lit (',') >>
       this->ident_[
         // First, lookup the base property map in the configuration.
         // map. Then, we can join it with the current property map.
-        //_a = lookup_ () (_r2, _1),
-        lookup_ () (_r2, _1, _a),
-        phoenix::bind (&Property_Map::join, _r1, *_a, true)]);*/
+        phoenix::if_ (lookup (_r2, _1, _a))
+        [
+          phoenix::bind (&Property_Map::join, _r1, *_a, true)
+        ]]);
 
     this->assignments_ =
       *(this->assign_[phoenix::bind (&Property_Map::set, _r1, _1)]);

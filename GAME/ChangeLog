@@ -1,3 +1,11 @@
+Sun Nov 27 05:32:26 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/plugins/Template_Engine/parser/Property_Configuration.hpp:
+        * tests/mga/plugins/Template_Engine/Configuration_File_Test/Base_Configuration_Test.config:
+        * tests/mga/plugins/Template_Engine/Configuration_File_Test/Configuration_File.cpp:
+
+          Added support for configuration inheritence.
+
 Fri Nov 25 17:46:48 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * tests/Test_Configuration.hpp:
