@@ -1,3 +1,9 @@
+Tue Nov 29 17:55:33 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/MetaReference.cpp:
+		
+		Fixed bug in MetaReference file. 
+
 Tue Nov 29 17:37:14 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * tests/mga/Visitor/Visitor_Test_Impl.h:

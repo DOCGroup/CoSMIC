@@ -55,13 +55,13 @@ size_t Reference_Impl::targets (std::vector <FCO> & fcos)
   long count = 0;
   items->get_Count (&count);
 
-  for (long i = 0; i < count; ++ i)
+  for (long i = 1; i <= count; ++ i)
   {
     CComBSTR name;
     CComPtr <IMgaMetaPointerItem> item;
 
     // Get the next item in the collection.
-    VERIFY_HRESULT (items->get_Item (count, &item));
+    VERIFY_HRESULT (items->get_Item (i, &item));
     VERIFY_HRESULT (item->get_Desc (&name));
 
     // Locate the FCO with the specified name.
