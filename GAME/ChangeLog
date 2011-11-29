@@ -1,3 +1,11 @@
+Tue Nov 29 17:37:14 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * tests/mga/Visitor/Visitor_Test_Impl.h:
+        * tests/mga/Visitor/Visitor_Test_Impl.cpp:
+        * tests/mga/Visitor/Visitor_Test_Module.cpp:
+
+          Fixed compilation errors.
+
 Sun Nov 27 05:32:26 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/plugins/Template_Engine/parser/Property_Configuration.hpp:
