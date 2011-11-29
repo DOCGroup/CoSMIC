@@ -25,7 +25,7 @@
 static const char * __HELP__ =
 "GME's automation modeling engine (GAME) application\n"
 "\n"
-"USAGE: game-automation [OPTIONS] FILE\n"
+"USAGE: gme_interpret [OPTIONS] FILE\n"
 "\n"
 "General Options:\n"
 "  -s, --save                      save project after usage\n"

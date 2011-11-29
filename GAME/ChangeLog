@@ -1,12 +1,18 @@
+Tue Nov 29 19:42:43 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_extension_classes_autogen.mpb:
+
+          Changed the command value.
+
+        * game/mga/interpret/Interpret_App.cpp:
+
+          Updated the --help documentation.
+
 Tue Nov 29 19:20:29 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
+        * ChangeLog
+
           Fixed indentation in changelog file.
-
-Tue Nov 29 17:55:33 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
-
-        * game/mga/MetaReference.cpp:
-
-          Fixed bug in MetaReference file.
 
 Tue Nov 29 17:37:14 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
