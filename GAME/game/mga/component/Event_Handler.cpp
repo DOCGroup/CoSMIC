@@ -11,6 +11,8 @@
 #include "game/mga/Transaction.h"
 #include "game/mga/MetaFCO.h"
 
+
+
 #include "ace/ACE.h"
 #include "ace/Auto_Ptr.h"
 #include "ace/streams.h"
@@ -563,7 +565,8 @@ static const handler_entry_t objectevent_handles[OBJECT_EVENT_COUNT] = {
 //
 Event_Handler::Event_Handler (Event_Handler_Interface * impl)
 : impl_ (impl),
-  enable_ (true)
+  enable_ (true),
+  meta_handlers_ (OBJTYPE_FOLDER + 1)
 {
   if (0 != this->impl_)
     this->impl_->set_event_handler (this);
@@ -713,6 +716,12 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
         return E_MGA_MUST_ABORT;
     }
 
+    // Notify the type handlers of the event. We are not going to
+    // continue if there are any *errors* in the process.
+    int type = object->type ();
+    if (0 != this->dispatch_object_event (object, eventmask, this->meta_handlers_[type]))
+      return E_MGA_MUST_ABORT;
+ 
     if (0 != this->impl_ &&
         0 != this->dispatch_object_event (object, eventmask, this->impl_))
     {
@@ -753,6 +762,21 @@ register_global_handler (Event_Handler_Interface * eh)
 int Event_Handler::unregister_global_handler (Event_Handler_Interface * eh)
 {
   return this->remove_from_global_handlers (eh);
+}
+
+
+//
+// register_handler
+//
+int Event_Handler::
+register_handler (int metatype, Event_Handler_Interface * eh)
+{ 
+  if (metatype + 1 >= this->meta_handlers_.size ())
+    return -1;
+
+  this->meta_handlers_[metatype].insert (eh);
+  this->insert_into_global_handlers (eh);
+  return 0;
 }
 
 //

@@ -79,6 +79,17 @@ public:
   int register_global_handler (Event_Handler_Interface * eh);
 
   /**
+   * Register event handler for the specified meta_metatype. If an event
+   * occurs for the specfied meta_metatype and the event handler registers
+   * for the event type, then the event handler is invoked.
+   *
+   * @param[in]      metatype      Type to register for
+   * @param[in]      eh            Pointer to the event handler
+   */
+  int register_handler (int metatype,
+                        Event_Handler_Interface * eh);
+
+  /**
    * Register event handler for the specified type. If an event
    * occurs for the specfied type and the event handler registers
    * for the event type, then the event handler is invoked.
@@ -188,6 +199,9 @@ private:
                         handler_set *,
                         ACE_Null_Mutex>
                         type_handlers_;
+
+  /// Collection of event handlers registered by metatype.
+  std::vector <handler_set> meta_handlers_;
 
   /// Collection of event handlers registered by instance.
   ACE_Hash_Map_Manager <Object,
