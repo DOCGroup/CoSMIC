@@ -1,0 +1,30 @@
+project (GAME_Model_Intelligence): \
+  boost_base, game_mga_component, game_dialogs, game_mga_utils, cosmic_lib {
+
+  sharedname = GAME_Model_Intelligence
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    Model_Intelligence.idl
+    Model_Intelligence_Impl.cpp
+    Model_Intelligence_Module.cpp
+
+    Reference_Handler.cpp
+  }
+
+  Resource_Files {
+    Component.rc
+  }
+
+  specific (wix) {
+    gme_install        = 1
+    gme_component_type = 2
+    gme_progid         = MGA.AddOn.Model_Intelligence
+    gme_uuid           = 21d9dfcc-4568-48d8-874a-9683fb21409d
+    gme_paradigms      = Library_System
+    gme_description    = Model Intelligence AddOn
+    gme_tooltip        = Model Intelligence AddOn
+  }
+}
