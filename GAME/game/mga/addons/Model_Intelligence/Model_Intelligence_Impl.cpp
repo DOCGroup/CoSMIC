@@ -73,7 +73,6 @@ Library_Model_Intelligence::~Library_Model_Intelligence (void)
 //
 int Library_Model_Intelligence::initialize (GAME::Mga::Project project)
 {
-	::AfxMessageBox ("In the handler initializer: Model_Intelligence_Impl");
 
   this->event_handler_->register_handler (OBJTYPE_REFERENCE,
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Library_Reference_Handler>, 

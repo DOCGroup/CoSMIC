@@ -19,7 +19,7 @@
 Library_Reference_Handler::Library_Reference_Handler (void)
 : GAME::Mga::Event_Handler_Impl (eventmask)
 {
-	::AfxMessageBox ("In the constructor: Reference_Handler");
+	
 }
 
 //
@@ -35,7 +35,7 @@ Library_Reference_Handler::~Library_Reference_Handler (void)
 //
 int Library_Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
-	::AfxMessageBox ("In the begining of the handler: Reference_Handler");
+	
 	if (this->is_importing_)
 		return 0;
 
@@ -90,10 +90,6 @@ int Library_Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 		ref->refers_to (obj_);
 		ref->name (obj_->name ());
 	}
-		
 
-	::AfxMessageBox ("In the end of the handler: Reference_Handler");
-
-
-	return 0;
+  return 0;
 }
