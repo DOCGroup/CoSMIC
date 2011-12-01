@@ -1,5 +1,5 @@
 project (GAME_Model_Intelligence): \
-  boost_base, game_mga_component, game_dialogs, game_mga_utils, cosmic_lib {
+  boost_base, game_mga_component, game_dialogs, game_mga_utils, game_lib {
 
   sharedname = GAME_Model_Intelligence
 
