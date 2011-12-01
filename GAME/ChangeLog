@@ -1,9 +1,13 @@
+Wed Nov 30 23:48:51 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+          Removed comments from the Model_Intelligence project.
+
 Wed Nov 30 23:41:51 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/component/Event_Handler.h:
         * game/mga/component/Event_Handler.cpp:
-		
-		  Updated Event_Handler to handle meta-metatypes.        
+
+          Updated Event_Handler to handle meta-metatypes.
 
 Tue Nov 29 19:42:43 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
