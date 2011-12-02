@@ -1,27 +1,40 @@
-#ifndef _LIBRARY_REFERENCE_HANDLER_H
-#define _LIBRARY_REFERENCE_HANDLER_H
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file         Reference_Handler.h
+ *
+ * $Id$
+ *
+ * @author        Tanumoy Pati
+ */
+//=============================================================================
+
+
+#ifndef _GAME_MODEL_INTELLIGENCE_REFERENCE_HANDLER_H_
+#define _GAME_MODEL_INTELLIGENCE_REFERENCE_HANDLER_H_
 
 #include "game/mga/component/Event_Handler_Impl.h"
 
 /**
- * @class Library_Reference_Handler
+ * @class Reference_Handler
  *
  * Handler that is responsible for creating references
  * to objects.
  */
-class Library_Reference_Handler :
+class Reference_Handler :
   public GAME::Mga::Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;
 
   /// Default constructor.
-  Library_Reference_Handler (void);
+  Reference_Handler (void);
 
   /// Destructor.
-  virtual ~Library_Reference_Handler (void);
+  virtual ~Reference_Handler (void);
 
   virtual int handle_object_created (GAME::Mga::Object_in obj);
 };
 
-#endif  // !defined  _LIBRARY_REFERENCE_HANDLER_H
+#endif  // !defined  _GAME_MODEL_INTELLIGENCE_REFERENCE_HANDLER_H_

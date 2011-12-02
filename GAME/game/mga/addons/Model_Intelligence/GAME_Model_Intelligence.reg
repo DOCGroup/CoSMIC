@@ -5,26 +5,26 @@ REGEDIT4
 [HKEY_CURRENT_USER\Software\Classes\CLSID]
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{21d9dfcc-4568-48d8-874a-9683fb21409d}]
-@="MGA.AddOn.Model_Intelligence"
+@="GAME.AddOn.Model_Intelligence"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{21d9dfcc-4568-48d8-874a-9683fb21409d}\ProgID]
-@="MGA.AddOn.Model_Intelligence"
+@="GAME.AddOn.Model_Intelligence"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{21d9dfcc-4568-48d8-874a-9683fb21409d}\InProcServer32]
 @="GAME_Model_Intelligence.dll"
 
-[HKEY_CURRENT_USER\Software\Classes\MGA.AddOn.Model_Intelligence]
-@="MGA.AddOn.Model_Intelligence"
+[HKEY_CURRENT_USER\Software\Classes\GAME.AddOn.Model_Intelligence]
+@="GAME.AddOn.Model_Intelligence"
 
-[HKEY_CURRENT_USER\Software\Classes\MGA.AddOn.Model_Intelligence\CLSID]
+[HKEY_CURRENT_USER\Software\Classes\GAME.AddOn.Model_Intelligence\CLSID]
 @="{21d9dfcc-4568-48d8-874a-9683fb21409d}"
 
-[HKEY_CURRENT_USER\Software\GME\Components\MGA.AddOn.Model_Intelligence]
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.AddOn.Model_Intelligence]
 "Tooltip"="Provides modelling intelligence to users"
-"Paradigm"="Library_System"
+"Paradigm"="*"
 "Type"=dword:00000002
-"Description"="Model Intelligence"
+"Description"="GAME Model Intelligence"
 
-[HKEY_CURRENT_USER\Software\GME\Components\MGA.AddOn.Model_Intelligence\Associated]
-"Library_System"=""
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.AddOn.Model_Intelligence\Associated]
+
 

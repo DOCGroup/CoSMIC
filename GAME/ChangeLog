@@ -1,3 +1,18 @@
+Thu Dec  1 22:26:59 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/GAME_Model_Intelligence.reg:
+        * game/mga/addons/Model_Intelligence/GAME_Model_Intelligenced.reg:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.idl:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Module.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.h:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Resource.h:
+
+          Updated Model Intelligence addon.
+
 Thu Dec  1 18:50:59 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:

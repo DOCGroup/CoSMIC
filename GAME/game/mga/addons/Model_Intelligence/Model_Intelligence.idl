@@ -1,3 +1,14 @@
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ *  @file         Model_Intelligence.idl
+ *
+ * $Id$
+ *
+ * @author        Tanumoy Pati
+ */
+//=============================================================================
 
 #ifndef _MODEL_INTELLIGENCE_IDL_
 #define _MODEL_INTELLIGENCE_IDL_

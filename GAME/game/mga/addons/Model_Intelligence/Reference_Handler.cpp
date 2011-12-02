@@ -1,3 +1,5 @@
+// $Id$
+
 #include "StdAfx.h"
 
 #include "Reference_Handler.h"
@@ -14,18 +16,18 @@
 #include "boost/bind.hpp"
 
 //
-// Library_Reference_Handler
+// Reference_Handler
 //
-Library_Reference_Handler::Library_Reference_Handler (void)
+Reference_Handler::Reference_Handler (void)
 : GAME::Mga::Event_Handler_Impl (eventmask)
 {
 	
 }
 
 //
-// ~Library_Reference_Handler
+// ~Reference_Handler
 //
-Library_Reference_Handler::~Library_Reference_Handler (void)
+Reference_Handler::~Reference_Handler (void)
 {
 
 }
@@ -33,7 +35,7 @@ Library_Reference_Handler::~Library_Reference_Handler (void)
 //
 // handle_object_created
 //
-int Library_Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
+int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
 	
 	if (this->is_importing_)

@@ -6,7 +6,6 @@
 #define IDS_PROJNAME                    100
 #define IDC_LIST1                       201
 #define IDC_STRING_LIST                 202
-#define GMI_LIB                         2008
 
 // Next default values for new objects
 // 

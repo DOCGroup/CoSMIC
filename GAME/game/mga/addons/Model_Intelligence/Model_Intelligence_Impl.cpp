@@ -1,3 +1,5 @@
+// $Id$
+
 #include "StdAfx.h"
 #include "Model_Intelligence_Impl.h"
 #include "Reference_Handler.h"
@@ -23,14 +25,16 @@
 #include <algorithm>
 #include <sstream>
 
+namespace GAME
+{
 /// Type definition of the add-on implementation.
-typedef GAME::Mga::Addon_Impl_T <Model_Intelligence_ComponentEx_Impl,
-                                 Library_Model_Intelligence>
-                                 Library_Model_Intelligence_Impl;
+typedef Mga::Addon_Impl_T <Model_Intelligence_Impl,
+                           Model_Intelligence>
+                           Model_Intelligence_ComponentEx;
 
-DECLARE_GAME_COMPONENT_EX (Library_Model_Intelligence_Impl, Model_Intelligence_Addon);
+DECLARE_GAME_COMPONENT_EX (Model_Intelligence_ComponentEx, Model_Intelligence_Addon);
 
-#define DLL_NAME "Library_Model_Intelligence"
+#define DLL_NAME "GAME_Model_Intelligence"
 
 /**
  * Adapter for the ACE_DLL_Singleton_T object. This allows singletons
@@ -52,18 +56,18 @@ public:
 };
 
 //
-// Library_Model_Intelligence
+// Model_Intelligence
 //
-Library_Model_Intelligence::Library_Model_Intelligence (void)
-: GAME::Mga::Event_Handler_Impl (eventmask, false)
+Model_Intelligence::Model_Intelligence (void)
+: Mga::Event_Handler_Impl (eventmask, false)
 {
 
 }
 
 //
-// ~Library_Model_Intelligence
+// ~Model_Intelligence
 //
-Library_Model_Intelligence::~Library_Model_Intelligence (void)
+Model_Intelligence::~Model_Intelligence (void)
 {
   ACE_Framework_Repository::instance ()->remove_dll_components (DLL_NAME);
 }
@@ -71,13 +75,14 @@ Library_Model_Intelligence::~Library_Model_Intelligence (void)
 //
 // initialize
 //
-int Library_Model_Intelligence::initialize (GAME::Mga::Project project)
+int Model_Intelligence::initialize (Mga::Project project)
 {
 
   this->event_handler_->register_handler (OBJTYPE_REFERENCE,
-    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Library_Reference_Handler>, 
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Reference_Handler>, 
 	              ACE_Null_Mutex>::instance ());
 
   
   return 0;
+}
 }

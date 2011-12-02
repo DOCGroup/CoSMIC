@@ -1,3 +1,4 @@
+// $Id$
 
 #include "StdAfx.h"
 #include "resource.h"
@@ -16,7 +17,7 @@ class GAME_Model_Intelligence_Module :
 public :
   DECLARE_LIBID (LIBID_Model_Intelligence_AddonLib)
 
-  DECLARE_REGISTRY_APPID_RESOURCEID (GMI_LIB, "{21d9dfcc-4568-48d8-874a-9683fb21409d}")
+  DECLARE_REGISTRY_APPID_RESOURCEID (2008, "{21d9dfcc-4568-48d8-874a-9683fb21409d}")
 };
 
 static GAME_Model_Intelligence_Module _AtlModule;
