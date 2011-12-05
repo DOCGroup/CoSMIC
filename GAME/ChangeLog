@@ -1,3 +1,11 @@
+Mon Dec  5 20:14:32 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * ChangeLog:
+        
+        * bin/generate_gme_addon.py:
+
+          Added the Addon skeleton generator script and updated changelog.
+
 Thu Dec  1 22:26:59 UTC 2011  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/GAME_Model_Intelligence.reg:
