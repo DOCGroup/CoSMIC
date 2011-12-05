@@ -13,17 +13,10 @@ workspace (GAME) {
       cmdline += -static \
 
       $(GAME_ROOT)/contrib/CCF/CCF/CodeGenerationKit
-
     }
   }
   else {
     game/xml
     game/xme
-  }
-
-  tests {
-    cmdlind += -base requires_test
-
-    tests
   }
 }
