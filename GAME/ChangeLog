@@ -1,3 +1,10 @@
+Tue Dec  6 14:58:11 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/upgrade/Model_Upgrade.cpp:
+
+          Fixed return code from main function so that it if the
+          execution failed, it would register as a failed execution.
+
 Mon Dec  5 23:28:37 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * GAME.mwc:
