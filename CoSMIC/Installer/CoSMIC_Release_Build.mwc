@@ -2,10 +2,12 @@
 
 workspace (CoSMIC_Release_Build) {
   cmdline += -name_modifier *_Release_Build \
+             -value_template 'configurations=Release' \
+             -features register=0,zlib=0
 
   exclude (!prop:windows) {
     cmdline += -value_template 'gme_register=HKLM'
-    
+
     $(COSMIC_ROOT)/cosmic.mwc
   }
 }
