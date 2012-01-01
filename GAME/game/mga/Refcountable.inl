@@ -28,6 +28,7 @@ Refcountable::~Refcountable (void)
 //
 // refcount
 //
+GAME_INLINE
 long Refcountable::refcount (void) const
 {
   return this->refcount_;

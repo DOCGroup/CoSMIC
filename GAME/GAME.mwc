@@ -9,7 +9,7 @@ workspace (GAME) {
 
     game
 
-    exclude (!prop:windows, wix) {
+    exclude (!prop:microsoft, wix) {
       cmdline += -static \
 
       $(GAME_ROOT)/contrib/CCF/CCF/CodeGenerationKit

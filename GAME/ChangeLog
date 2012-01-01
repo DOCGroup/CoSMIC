@@ -1,3 +1,17 @@
+Sun Jan  1 03:47:09 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * GAME.mwc:
+
+          Bug fix where CCF was not excluded from the wix builds.
+
+        * game/mga/Refcountable.inl:
+
+          Added missing GAME_INLINE
+
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+
+          Removed the gme_paradigms specification.
+
 Tue Dec  6 14:58:11 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/upgrade/Model_Upgrade.cpp:
