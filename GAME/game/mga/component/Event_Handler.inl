@@ -2,14 +2,6 @@
 
 #include "Event_Handler_Interface.h"
 
-GAME_INLINE
-unsigned long
-ACE_Hash <GAME::Mga::Event_Handler_Interface *>::
-operator () (const GAME::Mga::Event_Handler_Interface * t) const
-{
-  return  static_cast <unsigned long> (reinterpret_cast<uintptr_t> (t));
-}
-
 namespace GAME
 {
 namespace Mga

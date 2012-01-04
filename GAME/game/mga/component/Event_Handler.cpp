@@ -721,7 +721,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     int type = object->type ();
     if (0 != this->dispatch_object_event (object, eventmask, this->meta_handlers_[type]))
       return E_MGA_MUST_ABORT;
- 
+
     if (0 != this->impl_ &&
         0 != this->dispatch_object_event (object, eventmask, this->impl_))
     {
@@ -730,7 +730,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
     return 0;
   }
-  catch (const GAME::Mga::Failed_Result & ex)
+  catch (const GAME::Mga::Failed_Result & )
   {
 
   }
@@ -769,8 +769,8 @@ int Event_Handler::unregister_global_handler (Event_Handler_Interface * eh)
 // register_handler
 //
 int Event_Handler::
-register_handler (int metatype, Event_Handler_Interface * eh)
-{ 
+register_handler (size_t metatype, Event_Handler_Interface * eh)
+{
   if (metatype + 1 >= this->meta_handlers_.size ())
     return -1;
 

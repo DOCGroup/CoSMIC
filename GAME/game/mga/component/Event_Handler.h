@@ -29,21 +29,8 @@ namespace GAME
 {
 namespace Mga
 {
-  class Event_Handler_Interface;
-}
-}
-
-template <>
-class ACE_Hash <GAME::Mga::Event_Handler_Interface *>
-{
-public:
-  unsigned long operator () (const GAME::Mga::Event_Handler_Interface * t) const;
-};
-
-namespace GAME
-{
-namespace Mga
-{
+// Forward decl.
+class Event_Handler_Interface;
 
 /**
  * @class Event_Handler
@@ -86,7 +73,7 @@ public:
    * @param[in]      metatype      Type to register for
    * @param[in]      eh            Pointer to the event handler
    */
-  int register_handler (int metatype,
+  int register_handler (size_t metatype,
                         Event_Handler_Interface * eh);
 
   /**
@@ -187,10 +174,12 @@ private:
 
   // Global collection of registered handlers.
   typedef
-    ACE_Hash_Map_Manager <Event_Handler_Interface *,
-                          size_t,
-                          ACE_Null_Mutex>
-                          global_handler_map_t;
+    ACE_Hash_Map_Manager_Ex <Event_Handler_Interface *,
+                             size_t,
+                             ACE_Hash <void *>,
+                             ACE_Equal_To <Event_Handler_Interface *>,
+                             ACE_Null_Mutex>
+                             global_handler_map_t;
 
   global_handler_map_t global_handlers_;
 
