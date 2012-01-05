@@ -599,7 +599,10 @@ Visit_LabelConnection (const PICML::LabelConnection & c)
 //
 void IDL_File_Generator::Visit_Component (const PICML::Component & c)
 {
-  this->idl_ << "component " << c.name ();
+  this->idl_
+    << "#ifndef OSPL_IDL_COMPILER // idlpp does not support component definitions" << nl
+    << nl
+    << "component " << c.name ();
 
   // Write the inherits specification for the component.
   PICML::ComponentInherits inherits = c.ComponentInherits_child ();
@@ -657,6 +660,7 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
 
   this->idl_ << uidt_nl
              << "};" << nl
+             << "#endif" << nl
              << nl;
 }
 
