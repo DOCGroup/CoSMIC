@@ -1,3 +1,12 @@
+Thu Jan  5 06:18:16 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor_t.cpp:
+
+          Removed these files.
+
 Thu Jan  5 05:28:18 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
