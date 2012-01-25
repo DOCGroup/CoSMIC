@@ -111,6 +111,8 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
       PICML::Package::Cast (o).Accept (visitor);
     else if (o.type () == PICML::Boxed::meta)
       PICML::Boxed::Cast (o).Accept (visitor);
+    else if (o.type () == PICML::Enum::meta)
+      PICML::Enum::Cast (o).Accept (visitor);
   }
 }
 

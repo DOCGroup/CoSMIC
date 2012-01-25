@@ -302,7 +302,7 @@ void IDL_File_Ordering_Processor::
 add_node (const Udm::Object & o)
 {
   OBJECT_ACCESSOR information = boost::get (Udm_Object (), *this->current_graph_);
-  
+
   if (o.GetParent ().type () == PICML::File::meta && this->map_.find (o) == this->map_.end ())
   {
     this->add_vertex (o, this->current_graph_);
@@ -323,11 +323,11 @@ add_node (const Udm::Object & o)
 // add_vertex
 //
 void IDL_File_Ordering_Processor::
-add_vertex (const Udm::Object & o, 
+add_vertex (const Udm::Object & o,
             GRAPH_PTR graph)
 {
   OBJECT_ACCESSOR information = boost::get (Udm_Object (), *graph);
-  
+
   VERTEX vertex = boost::add_vertex (*graph);
 
   boost::put (information, vertex, o);
@@ -340,23 +340,23 @@ add_vertex (const Udm::Object & o,
 //
 void IDL_File_Ordering_Processor::
 add_vertices (const Udm::Object & parent_ref1,
-              const Udm::Object & parent_ref2, 
+              const Udm::Object & parent_ref2,
               GRAPH_PTR graph)
 {
   OBJECT_ACCESSOR information = boost::get (Udm_Object (), *graph);
-  
+
   // add the parents to the forward declaration graph
   VERTEX reference = boost::add_vertex (*graph);
   VERTEX direct = boost::add_vertex (*graph);
-  
+
   boost::put (information, direct, parent_ref2);
   boost::put (information, reference, parent_ref1);
-  
+
   // add the dependency between the parents
-  EDGE e; 
-  bool added = false; 
+  EDGE e;
+  bool added = false;
   boost::tie(e,added) = boost::add_edge (reference, direct, *graph);
-  
+
   this->map_.insert (MAP::value_type (parent_ref1, parent_ref1.isSubtype ()));
   this->map_.insert (MAP::value_type (parent_ref2, parent_ref2.isSubtype ()));
 }
@@ -386,7 +386,7 @@ topological_sort (CONTAINER & container)
 const IDL_File_Ordering_Processor::GRAPH & IDL_File_Ordering_Processor::
 graph (void)
 {
-  return *this->current_graph_; 
+  return *this->current_graph_;
 }
 
 //
@@ -400,7 +400,7 @@ clear (bool clear_forward_declaration)
     this->forward_.clear ();
     this->forward_decl_.clear ();
   }
-  
+
   this->edge_.clear ();
   this->map_.clear ();
   this->list_.clear ();
@@ -413,20 +413,20 @@ IDL_File_Ordering_Processor::VERTEX IDL_File_Ordering_Processor::
 find_vertex (const Udm::Object & o, GRAPH_PTR graph, bool & found)
 {
   boost::graph_traits<IDL_File_Ordering_Processor::GRAPH>::vertex_iterator vi, vi_end;
-  
+
   Udm::Object v;
-  
+
   for (boost::tie (vi, vi_end) = boost::vertices (*graph); vi != vi_end; ++vi)
   {
-    v = boost::get (Udm_Object (), *graph, (*vi)); 
-    
+    v = boost::get (Udm_Object (), *graph, (*vi));
+
     if (v.uniqueId () == o.uniqueId ())
     {
       found = true;
       break;
     }
   }
-  
+
   return *vi;
 }
 
@@ -453,22 +453,23 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declara
   Udm::visit_all <PICML::SwitchedAggregate> (o, visitor);
   Udm::visit_all <PICML::ValueObject> (o, visitor);
   Udm::visit_all <PICML::Attribute> (o, visitor);
+  Udm::visit_all <PICML::Enum> (o, visitor);
 
   Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
 
   Udm::visit_all <PICML::OnewayOperation> (o, visitor);
   Udm::visit_all <PICML::TwowayOperation> (o, visitor);
-  
+
   Udm::visit_all <PICML::PortType> (o, visitor);
   Udm::visit_all <PICML::Event> (o, visitor);
   Udm::visit_all <PICML::Object> (o, visitor);
-  
+
   Udm::visit_all <PICML::ManagesComponent> (o, visitor);
   Udm::visit_all <PICML::Component> (o, visitor);
   Udm::visit_all <PICML::ComponentFactory> (o, visitor);
   Udm::visit_all <PICML::ConnectorObject> (o, visitor);
   Udm::visit_all <PICML::Boxed> (o, visitor);
-  
+
   Udm::visit_all <PICML::Package> (o, visitor);
 }
 
@@ -495,20 +496,20 @@ process_forward_declaration (void)
   for (LIST::iterator it = this->list_.begin (); it != this->list_.end (); ++it)
   {
     this->edge_.clear ();
-    
+
     do
     {
       has_cycle = false;
       cycle_detector.current_graph ((*it).second);
-      
+
       boost::depth_first_search (*(*it).second, boost::visitor (cycle_detector));
-      
+
       if (has_cycle)
         this->remove_back_edges ((*it).second);
-        
+
     } while (has_cycle);
   }
-  
+
   this->forward_declaration_i ();
 }
 
@@ -540,9 +541,9 @@ void IDL_File_Ordering_Processor::
 set_forward_declaration (VERTEX & v, GRAPH_PTR g)
 {
   Udm::Object o;
-  
+
   o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), *g, v);
-  
+
   if (o != Udm::null)
     this->forward_.insert (MAP::value_type (o, o.isSubtype ()));
 }
@@ -574,13 +575,13 @@ insert (const Udm::Object & o)
   {
     this->current_graph_ = GRAPH_PTR (new GRAPH);
     this->list_.push_back (LIST::value_type (o, this->current_graph_));
-    
+
     OBJECT_ACCESSOR information = boost::get (Udm_Object (), *this->current_graph_);
-    
+
     VERTEX parent = boost::add_vertex (*this->current_graph_);
-    
+
     boost::put (information, parent, o);
-    
+
   }
 }
 
@@ -591,7 +592,7 @@ bool IDL_File_Ordering_Processor::
 no_forward_declaration (const Udm::Object & o)
 {
   MAP::iterator it = this->forward_.find (o);
-  
+
   return (it == this->forward_.end ());
 }
 
@@ -635,7 +636,7 @@ parent_file (const Udm::Object & o)
 
   for (parent = o.GetParent (); parent.type () != PICML::File::meta; parent = parent.GetParent ())
   {}
-  
+
   return parent;
 }
 
@@ -652,7 +653,7 @@ parent_before_file (const Udm::Object & o)
     if (parent.GetParent ().type () == PICML::File::meta)
       break;
   }
-    
+
   return parent;
 }
 
@@ -666,19 +667,19 @@ add_edge (const Udm::Object & o)
   {
     ::PICML::ComponentFactory c = PICML::ManagesComponent::Cast (o).srcManagesComponent_end ();
     ::PICML::Manageable m = PICML::ManagesComponent::Cast (o).dstManagesComponent_end ();
-    
+
     this->add_node (c);
     this->add_node (m);
-    
+
     bool found_component = false;
     bool found_manageable = false;
-    
+
     VERTEX manageable = this->find_vertex (c, this->current_graph_, found_manageable);
     VERTEX component = this->find_vertex (m, this->current_graph_, found_component);
-    
-    EDGE e; 
+
+    EDGE e;
     bool added = false;
-        
+
     boost::tie(e,added) = boost::add_edge (component, manageable, *this->current_graph_);
   }
 }

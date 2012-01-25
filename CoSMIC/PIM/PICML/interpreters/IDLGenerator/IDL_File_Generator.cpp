@@ -600,7 +600,6 @@ Visit_LabelConnection (const PICML::LabelConnection & c)
 void IDL_File_Generator::Visit_Component (const PICML::Component & c)
 {
   this->idl_
-    << "#ifndef OSPL_IDL_COMPILER // idlpp does not support component definitions" << nl
     << nl
     << "component " << c.name ();
 
@@ -659,8 +658,7 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
                               _1));
 
   this->idl_ << uidt_nl
-             << "};" << nl
-             << "#endif" << nl
+             << "};"
              << nl;
 }
 
@@ -707,8 +705,7 @@ void IDL_File_Generator::
 Visit_ExtendedPort (const PICML::ExtendedPort & p)
 {
   this->idl_ << "port " << PICML::utils::fq_type (p.ref (), "::", true)
-             << " " << p.name () << ";" << nl
-             << nl;
+             << " " << p.name () << ";" << nl;
 }
 
 //
@@ -718,8 +715,7 @@ void IDL_File_Generator::
 Visit_MirrorPort (const PICML::MirrorPort & p)
 {
   this->idl_ << "mirrorport " << PICML::utils::fq_type (p.ref (), "::", true)
-             << " " << p.name () << ";" << nl
-             << nl;
+             << " " << p.name () << ";" << nl;
 }
 
 //
@@ -751,8 +747,7 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
 {
   this->idl_ << "provides ";
   this->Visit_Provideable (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl
-             << nl;
+  this->idl_ << " " << p.name () << ";" << nl;
 }
 
 //
@@ -778,8 +773,7 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
     this->idl_ << "multiple ";
 
   this->Visit_Provideable (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl
-             << nl;
+  this->idl_ << " " << p.name () << ";" << nl;
 }
 
 //
@@ -791,8 +785,7 @@ Visit_InEventPort (const PICML::InEventPort & p)
   this->idl_ << "consumes ";
 
   this->Visit_EventType (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl
-             << nl;
+  this->idl_ << " " << p.name () << ";" << nl;
 }
 
 //
@@ -806,8 +799,7 @@ void IDL_File_Generator::Visit_OutEventPort (const PICML::OutEventPort & p)
     this->idl_ << "publishes ";
 
   this->Visit_EventType (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl
-             << nl;
+  this->idl_ << " " << p.name () << ";" << nl;
 }
 
 /**

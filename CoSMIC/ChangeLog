@@ -1,3 +1,12 @@
+Wed Jan 25 16:11:36 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Bug fix where Enum values were not being generated to the
+          IDL file.
+
 Thu Jan  5 06:18:16 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
 
