@@ -93,6 +93,11 @@ int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
   parser.get_info (xmefile.c_str (), info);
 
   // Create a empty PICML project and import the XML file.
+  ACE_DEBUG ((LM_DEBUG,
+              ACE_TEXT ("%T (%t) - %M - importing %s to %s\n"),
+              xmefile.c_str (),
+              mgafile.c_str ()));
+
   this->project_ = GAME::Mga::Project::_create (mgafile.c_str (), info.paradigm_);
   parser.parse (xmefile.c_str (), this->project_);
 
