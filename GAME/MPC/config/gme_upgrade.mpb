@@ -6,6 +6,7 @@ project {
     command            = <%quote%>$(GAME_ROOT)/bin/gme_upgrade<%quote%>
     inputext           = .xme
     generic_outputext  = .mga
+    output_option      = -o
 
     keyword gme_upgradeflags = commandflags
   }
