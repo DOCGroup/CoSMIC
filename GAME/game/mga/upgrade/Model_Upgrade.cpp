@@ -12,6 +12,9 @@ static const char * __HELP__ =
 "\n"
 "Usage: gme_upgrade [OPTIONS] XMEFILE\n"
 "\n"
+"Options:\n"
+"  -o MGAFILE                   target mga file\n"
+"\n"
 "Output Options:\n"
 "  -h, --help                   print this help screen\n";
 
@@ -78,14 +81,22 @@ int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
 {
   // First, lets go ahead and construct the MGA filename.
   ACE_CString mgafile ("MGA=");
-  size_t pos = xmefile.find (".xme");
 
-  if (pos != ACE_CString::npos)
-    mgafile += xmefile.substr (0, pos);
+  if (this->outfile_.empty ())
+  {
+    size_t pos = xmefile.find (".xme");
+
+    if (pos != ACE_CString::npos)
+      mgafile += xmefile.substr (0, pos);
+    else
+      mgafile += xmefile;
+
+    mgafile += ".mga";
+  }
   else
-    mgafile += xmefile;
-
-  mgafile += ".mga";
+  {
+    mgafile += this->outfile_;
+  }
 
   // Get information about the XML file.
   GAME::Mga::XML_Parser parser;
@@ -121,7 +132,7 @@ int GME_Model_Upgrade::export_project_file (const ACE_CString & file)
 //
 int GME_Model_Upgrade::parse_args (int argc, char * argv [])
 {
-  static const char * optargs = "h";
+  static const char * optargs = "ho:";
 
   // Initialize the argument options for the application.
   ACE_Get_Opt get_opt (argc, argv, optargs);
@@ -136,6 +147,9 @@ int GME_Model_Upgrade::parse_args (int argc, char * argv [])
     case 0:
       if (ACE_OS::strcmp (get_opt.long_option (), "help") == 0)
         this->print_help ();
+      break;
+
+    case 'o':
       break;
 
     case 'h':

@@ -52,6 +52,9 @@ private:
 
   /// The GME project.
   GAME::Mga::Project project_;
+
+  /// Target output filename.
+  ACE_CString outfile_;
 };
 
 #endif  // !defined _GME_MODEL_UPGRADE_H_
