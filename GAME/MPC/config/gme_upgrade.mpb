@@ -1,6 +1,8 @@
 // $Id$
 
 project {
+  after += CUTS_PICML_Models_Upgrade
+
   Define_Custom (Upgrade) {
     automatic          = 1
     command            = <%quote%>$(GAME_ROOT)/bin/gme_upgrade<%quote%>
