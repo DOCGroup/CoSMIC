@@ -1,7 +1,7 @@
 // $Id$
 
 project {
-  after += CUTS_PICML_Models_Upgrade
+  after += GAME_Mga_Model_Upgrade
 
   Define_Custom (Upgrade) {
     automatic          = 1

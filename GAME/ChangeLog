@@ -1,3 +1,9 @@
+Sun Jan 29 19:10:47 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/gme_upgrade.mpb:
+
+          Fixed the 'after' attribute.
+
 Sat Jan 28 22:48:49 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/gme_upgrade.mpb:
