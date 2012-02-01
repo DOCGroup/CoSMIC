@@ -449,11 +449,12 @@ visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declara
   Udm::visit_all <PICML::Alias> (o, visitor);
   Udm::visit_all <PICML::Collection> (o, visitor);
   Udm::visit_all <PICML::Exception> (o, visitor);
+  Udm::visit_all <PICML::Enum> (o, visitor);
+
   Udm::visit_all <PICML::Aggregate> (o, visitor);
   Udm::visit_all <PICML::SwitchedAggregate> (o, visitor);
   Udm::visit_all <PICML::ValueObject> (o, visitor);
   Udm::visit_all <PICML::Attribute> (o, visitor);
-  Udm::visit_all <PICML::Enum> (o, visitor);
 
   Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
 
@@ -643,8 +644,7 @@ parent_file (const Udm::Object & o)
 //
 // parent_before_file
 //
-Udm::Object IDL_File_Ordering_Processor::
-parent_before_file (const Udm::Object & o)
+Udm::Object IDL_File_Ordering_Processor::parent_before_file (const Udm::Object & o)
 {
   Udm::Object parent;
 
