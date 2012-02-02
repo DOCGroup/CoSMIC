@@ -1,3 +1,20 @@
+Thu Feb  2 01:06:00 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Errors.h:
+        * game/mga/Errors.inl:
+        * game/mga/Errors.cpp:
+        * game/mga/Exception.h:
+        * game/mga/Exception.inl:
+        * game/mga/Exception.cpp:
+        * game/mga/Mga.mpc:
+
+          Added error message to the exception. The Failed_Result exception
+          now translates GME error codes to exception messages.
+
+        * game/mga/upgrade/Model_Upgrade.cpp:
+
+          The catch statement prints the exception message.
+
 Sun Jan 29 19:10:47 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/gme_upgrade.mpb:

@@ -5,11 +5,25 @@ namespace GAME
 namespace Mga
 {
 
+///////////////////////////////////////////////////////////////////////////////
+// class Exception
+
 //
 // Exception
 //
 GAME_INLINE
 Exception::Exception (void)
+: msg_ ("unknown exception")
+{
+
+}
+
+//
+// Exception
+//
+GAME_INLINE
+Exception::Exception (const char * msg)
+: msg_ (msg)
 {
 
 }
@@ -24,14 +38,16 @@ Exception::~Exception (void)
 }
 
 //
-// Failed_Result
+// message
 //
 GAME_INLINE
-Failed_Result::Failed_Result (HRESULT value)
-  : value_ (value)
+const std::string & Exception::message (void) const
 {
-
+  return this->msg_;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// class Failed_Result
 
 //
 // ~Failed_Result
@@ -56,6 +72,7 @@ const HRESULT & Failed_Result::value (void) const
 //
 GAME_INLINE
 Invalid_Cast::Invalid_Cast (void)
+: Exception ("invalid cast")
 {
 
 }

@@ -30,6 +30,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
     Connection.cpp
     Component.cpp
     ComponentEx.cpp
+    Errors.cpp
     Exception.cpp
     FCO.cpp
     Filter.cpp

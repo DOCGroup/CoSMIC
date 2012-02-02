@@ -65,10 +65,11 @@ int GME_Model_Upgrade::run_main (int argc, char * argv [])
 
     return 0;
   }
-  catch (const GAME::Mga::Exception & )
+  catch (const GAME::Mga::Exception & ex)
   {
     ACE_ERROR ((LM_ERROR,
-                ACE_TEXT ("%T - %M - caught unknown GME exception\n")));
+                ACE_TEXT ("%T - %M - %s\n"),
+                ex.message ().c_str ()));
   }
 
   return 1;

@@ -14,7 +14,9 @@
 #define _GAME_MGA_EXCEPTION_H_
 
 #include <string>
+
 #include "game/config.h"
+
 #include "Mga_export.h"
 
 namespace GAME
@@ -37,8 +39,22 @@ public:
    */
   Exception (void);
 
+  /**
+   * Construct an exception with a message.
+   *
+   * @param[in]     msg         Exception message
+   */
+  Exception (const char * msg);
+
   /// Destructor.
   virtual ~Exception (void);
+
+  /// Get the exception message.
+  const std::string & message (void) const;
+
+protected:
+  /// Exception specific message
+  std::string msg_;
 };
 
 /**
@@ -78,6 +94,9 @@ private:
 
 /**
  * @class Invalid_Cast
+ *
+ * Exception thrown when casting between different model element
+ * types fails.
  */
 class GAME_MGA_Export Invalid_Cast : public Exception
 {
@@ -93,17 +112,12 @@ public:
 }
 
 /// Macro for throwing an exception if the operation fails.
-#define VERIFY_HRESULT_THROW_EX(method, ex) \
+#define VERIFY_HRESULT(method) \
   { \
     HRESULT hr = method; \
     if (FAILED (hr)) \
-      throw ex; \
+      throw ::GAME::Mga::Failed_Result (hr); \
   }
-
-/// Macro for verifying that a operation succeeded. If the operation
-/// fails then Failed_Result exception is thrown.
-#define VERIFY_HRESULT(method) \
-  VERIFY_HRESULT_THROW_EX (method, GAME::Mga::Failed_Result (hr))
 
 #if defined (__GAME_INLINE__)
 #include "Exception.inl"
