@@ -1,0 +1,13 @@
+// $Id$
+
+project (GAME_Mga_Iterator_Test) : game_test, game_mga {
+  exename = Iterator_Test
+  install = .
+
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
+
+  Source_Files {
+    Iterator_Test.cpp
+  }
+}

@@ -8,10 +8,7 @@ namespace Mga
 {
 
 template <typename T>
-struct collection_traits
-{
-
-};
+struct collection_traits;
 
 template < >
 struct collection_traits <IMgaObjects *>

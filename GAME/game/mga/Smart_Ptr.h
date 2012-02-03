@@ -19,13 +19,14 @@ namespace Mga
 template <typename T>
 class Smart_Ptr_Base
 {
-protected:
+public:
   /// Type definition for the implementation type.
   typedef T impl_type;
 
   /// Type definition of the interface type.
   typedef typename T::interface_type interface_type;
 
+protected:
   /// Default constructor.
   Smart_Ptr_Base (void);
 

@@ -172,6 +172,19 @@ size_t Model_Impl::children (std::vector <T> & children) const
 // children
 //
 template <typename T>
+Iterator <T> Model_Impl::children (void) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+
+  return Iterator <T> (fcos.p);
+}
+
+
+//
+// children
+//
+template <typename T>
 size_t Model_Impl::
 children (const std::string & type, std::vector <T> & children) const
 {
@@ -180,6 +193,19 @@ children (const std::string & type, std::vector <T> & children) const
   VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
   return iter_to_collection (fcos.p, children);
+}
+
+//
+// children
+//
+template <typename T>
+Iterator <T> Model_Impl::children (const std::string & type) const
+{
+  CComPtr <IMgaFCOs> fcos;
+  CComBSTR bstr (type.length (), type.c_str ());
+  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
+
+  return Iterator <T> (fcos.p);
 }
 
 //

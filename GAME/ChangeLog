@@ -1,3 +1,26 @@
+Fri Feb  3 04:13:16 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Collection_T.cpp:
+        * game/mga/Folder.h:
+        * game/mga/Folder.cpp:
+        * game/mga/Folder_T.cpp:
+        * game/mga/Iterator_T.h:
+        * game/mga/Iterator_T.inl:
+        * game/mga/Iterator_T.cpp:
+        * game/mga/Mga.mpc:
+        * game/mga/Model.h:
+        * game/mga/Model_T.cpp:
+        * game/mga/Smart_Ptr.h:
+
+          Implemented input iterator.
+
+        * tests/mga/Iterator_Test.cpp:
+        * tests/mga/Iterator_Test.mpc:
+        * tests/mga/stdafx.h:
+        * tests/mga/stdafx.cpp:
+
+          Simple compilation test for Iterator object.
+
 Thu Feb  2 01:06:00 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Errors.h:

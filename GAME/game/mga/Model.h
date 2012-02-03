@@ -14,6 +14,7 @@
 #define _GAME_MGA_MODEL_H_
 
 #include "FCO.h"
+#include "Iterator_T.h"
 
 namespace GAME
 {
@@ -90,6 +91,15 @@ public:
   size_t children (std::vector <T> & items) const;
 
   /**
+   * Get an iterator to the children. The actual item type is defined
+   * using the template parameter for this method (i.e., children <T> ()).
+   *
+   * @return            Iterator to the children.
+   */
+  template <typename T>
+  Iterator <T> children (void) const;
+
+  /**
    * @overloaded
    *
    * This version of the children () method will not only select child
@@ -102,6 +112,12 @@ public:
    */
   template <typename T>
   size_t children (const std::string & type, std::vector <T> & children) const;
+
+  /**
+   * @overloaded
+   */
+  template <typename T>
+  Iterator <T> children (const std::string & type) const;
 
   /**
    * @overloaded

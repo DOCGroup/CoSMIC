@@ -13,6 +13,7 @@
 #ifndef _GAME_MGA_FOLDER_H_
 #define _GAME_MGA_FOLDER_H_
 
+#include "Iterator_T.h"
 #include "FCO.h"
 #include "MetaFolder.h"
 #include "RegistryNode.h"
@@ -81,6 +82,11 @@ public:
   size_t children (std::vector <Folder> & items) const;
 
   /**
+   * @overloaded
+   */
+  Iterator <Folder> children (void) const;
+
+  /**
    * Get all the first-level child folders of this folder.
    *
    * @return      Collection of folder objects.
@@ -95,6 +101,9 @@ public:
   template <typename T>
   size_t children (std::vector <T> & items) const;
 
+  template <typename T>
+  Iterator <T> children (void) const;
+
   /**
    * Get all the first-level child folders of this folder.
    *
@@ -102,6 +111,9 @@ public:
    */
   template <typename T>
   size_t children (const std::string & type, std::vector <T> & items) const;
+
+  template <typename T>
+  Iterator <T> children (const std::string & type) const;
 
   /**
    * Get a registry value.

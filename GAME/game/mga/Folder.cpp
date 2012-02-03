@@ -80,6 +80,17 @@ size_t Folder_Impl::children (std::vector <Folder> & children) const
 //
 // children
 //
+Iterator <Folder> Folder_Impl::children (void) const
+{
+  CComPtr <IMgaFolders> folders;
+  VERIFY_HRESULT (this->impl ()->get_ChildFolders (&folders));
+
+  return Iterator <Folder> (folders.p);
+}
+
+//
+// children
+//
 size_t Folder_Impl::
 children (const std::string & type, std::vector <Folder> & children) const
 {
@@ -97,7 +108,7 @@ children (const std::string & type, std::vector <Folder> & children) const
 //
 // parent
 //
-Folder Folder_Impl::parent(void) const
+Folder Folder_Impl::parent (void) const
 {
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->impl ()->get_ParentFolder (&folder));
@@ -157,8 +168,8 @@ RegistryNode Folder_Impl::registry_node (const std::string & path) const
 //
 // registry
 //
-size_t Folder_Impl::registry (std::vector <RegistryNode> & nodes,
-                         bool virtualinterface_types) const
+size_t Folder_Impl::
+registry (std::vector <RegistryNode> & nodes, bool virtualinterface_types) const
 {
   // Get all the subnodes.
   CComPtr <IMgaRegNodes> rawnodes;
