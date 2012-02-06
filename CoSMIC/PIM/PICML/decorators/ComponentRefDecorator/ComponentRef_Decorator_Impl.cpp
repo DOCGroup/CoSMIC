@@ -2,9 +2,12 @@
 
 #include "StdAfx.h"
 #include "resource.h"
+
 #include "ComponentRef_Decorator.h"
 #include "ComponentRef_Decorator_Impl.h"
-#include "../ComponentDecorator/Component_Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_T.h"
+
+//#include "../ComponentDecorator/Component_Decorator_Impl.h"
 
 #include "game/mga/graphics/Image_Resolver.h"
 #include "game/mga/utils/Registrar.h"
@@ -35,143 +38,108 @@ ComponentRef_Decorator_Impl::~ComponentRef_Decorator_Impl (void)
 
 }
 
+////
+//// initialize
+////
+//int ComponentRef_Decorator_Impl::
+//initialize (const GAME::Mga::Project & project,
+//            const GAME::Mga::Meta::Part_in part,
+//            const GAME::Mga::FCO_in fco,
+//            IMgaCommonDecoratorEvents * sink,
+//            ULONGLONG window)
+//{
+//  AFX_MANAGE_STATE (AfxGetStaticModuleState ());
 //
-// initialize
+//  using GAME::Mga::GLOBAL_REGISTRAR;
+//  using GAME::Mga::Registrar;
 //
-int ComponentRef_Decorator_Impl::
-initialize_ex (const GAME::Mga::Project & project,
-               const GAME::Mga::Meta::Part_in part,
-               const GAME::Mga::FCO_in fco,
-               IMgaCommonDecoratorEvents * eventSink,
-               ULONGLONG parentWnd)
-{
-  AFX_MANAGE_STATE (AfxGetStaticModuleState ());
-
-  using GAME::Mga::GLOBAL_REGISTRAR;
-  using GAME::Mga::Registrar;
-
-  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::Mga::graphics::Image_Resolver;
-
-  // Initialize the icon manager.
-  Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-
-  if (!resolver->is_init ())
-    resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
-
-  // Load the reference arrow into memory.
-  HINSTANCE hinst = ::AfxFindResourceHandle (MAKEINTRESOURCEA (IDB_REFARROW),
-                                             RT_BITMAP);
-
-  Gdiplus::Bitmap * bitmap =
-    Gdiplus::Bitmap::FromResource (hinst,
-                                   MAKEINTRESOURCEW (IDB_REFARROW));
-
-  std::string filename;
-  this->refarrow_.reset (bitmap);
-
-  if (0 == fco)
-  {
-    // We are in the part browser. So, let's just load the
-    // component bitmap ourselves.
-    if (!resolver->lookup_icon (icons::component, filename))
-      return E_DECORATOR_INIT_WITH_NULL;
-
-    CA2W tempstr (filename.c_str ());
-    this->component_.reset (Gdiplus::Bitmap::FromFile (tempstr));
-  }
-  else
-  {
-    GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (fco);
-    GAME::Mga::FCO refers_to = ref->refers_to ();
-
-    if (refers_to.is_nil ())
-    {
-      // The component reference is null. So, let's just load the
-      // component bitmap ourselves.
-      if (!resolver->lookup_icon (icons::component, filename))
-        return E_DECORATOR_INIT_WITH_NULL;
-
-      CA2W tempstr (filename.c_str ());
-      this->component_.reset (Gdiplus::Bitmap::FromFile (tempstr));
-    }
-    else
-    {
-      GAME::Mga::Model model = GAME::Mga::Model::_narrow (refers_to);
-      this->delegate_.reset (new Component_Decorator_Impl ());
-
-      // Let's delegate the work to the component decorator.
-      this->delegate_->initialize (project, 0, model);
-    }
-  }
-
-  return 0;
-}
-
+//  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+//  using GAME::Mga::graphics::Image_Resolver;
 //
-// destroy
+//  // Initialize the icon manager.
+//  Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
 //
-void ComponentRef_Decorator_Impl::destroy (void)
-{
-  if (0 != this->delegate_.get ())
-    this->delegate_->destroy ();
-}
-
+//  if (!resolver->is_init ())
+//    resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 //
-// set_location
+//  // Load the reference arrow into memory.
+//  HINSTANCE hinst = ::AfxFindResourceHandle (MAKEINTRESOURCEA (IDB_REFARROW),
+//                                             RT_BITMAP);
 //
-void ComponentRef_Decorator_Impl::
-set_location (const GAME::Mga::Rect & location)
-{
-  if (this->delegate_.get () != 0)
-    this->delegate_->set_location (location);
-
-  GAME::Mga::Decorator_Impl::set_location (location);
-}
-
+//  Gdiplus::Bitmap * bitmap =
+//    Gdiplus::Bitmap::FromResource (hinst,
+//                                   MAKEINTRESOURCEW (IDB_REFARROW));
 //
-// get_preferred_size
+//  std::string filename;
+//  this->refarrow_.reset (bitmap);
 //
-int ComponentRef_Decorator_Impl::
-get_preferred_size (long & sx, long & sy)
-{
-  if (this->delegate_.get () != 0)
-    return this->delegate_->get_preferred_size (sx, sy);
-
-  sx = this->component_->GetWidth ();
-  sy = this->component_->GetHeight ();
-  return 0;
-}
-
+//  if (0 == fco)
+//  {
+//    // We are in the part browser. So, let's just load the
+//    // component bitmap ourselves.
+//    if (!resolver->lookup_icon (icons::component, filename))
+//      return E_DECORATOR_INIT_WITH_NULL;
 //
-// draw
+//    CA2W tempstr (filename.c_str ());
+//    this->component_.reset (Gdiplus::Bitmap::FromFile (tempstr));
+//  }
+//  else
+//  {
+//    GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (fco);
+//    GAME::Mga::FCO refers_to = ref->refers_to ();
 //
-int ComponentRef_Decorator_Impl::draw (Gdiplus::Graphics * g)
-{
-  if (0 != this->delegate_.get ())
-  {
-    // We need to draw the component and its ports.
-    this->delegate_->draw_component (g);
-    this->delegate_->draw_ports (g);
-  }
-  else
-  {
-    // Draw an blank component.
-    g->DrawImage (this->component_.get (),
-                  this->location_.x_,
-                  this->location_.y_,
-                  this->location_.cx_ - this->location_.x_,
-                  this->location_.cy_ - this->location_.y_);
-  }
+//    if (refers_to.is_nil ())
+//    {
+//      // The component reference is null. So, let's just load the
+//      // component bitmap ourselves.
+//      if (!resolver->lookup_icon (icons::component, filename))
+//        return E_DECORATOR_INIT_WITH_NULL;
+//
+//      CA2W tempstr (filename.c_str ());
+//      this->component_.reset (Gdiplus::Bitmap::FromFile (tempstr));
+//    }
+//    else
+//    {
+//      GAME::Mga::Model model = GAME::Mga::Model::_narrow (refers_to);
+//      this->delegate_.reset (new Component_Decorator_Impl ());
+//
+//      // Let's delegate the work to the component decorator.
+//      this->delegate_->initialize (project, 0, model);
+//    }
+//  }
+//
+//  return 0;
+//}
 
-  const long py = (this->location_.y_ + this->location_.height ()) - this->refarrow_->GetHeight ();
-
-  // Draw the overlay image.
-  g->DrawImage (this->refarrow_.get (),
-                this->location_.x_,
-                py,
-                this->refarrow_->GetWidth (),
-                this->refarrow_->GetHeight ());
-
-  return 0;
-}
+////
+//// draw
+////
+//int ComponentRef_Decorator_Impl::draw (Gdiplus::Graphics * g)
+//{
+//  if (0 != this->delegate_.get ())
+//  {
+//    // We need to draw the component and its ports.
+//    this->delegate_->draw_component (g);
+//    this->delegate_->draw_ports (g);
+//  }
+//  else
+//  {
+//    // Draw an blank component.
+//    g->DrawImage (this->component_.get (),
+//                  this->location_.x_,
+//                  this->location_.y_,
+//                  this->location_.cx_ - this->location_.x_,
+//                  this->location_.cy_ - this->location_.y_);
+//  }
+//
+//  const long py = (this->location_.y_ + this->location_.height ()) - this->refarrow_->GetHeight ();
+//
+//  // Draw the overlay image.
+//  g->DrawImage (this->refarrow_.get (),
+//                this->location_.x_,
+//                py,
+//                this->refarrow_->GetWidth (),
+//                this->refarrow_->GetHeight ());
+//
+//  return 0;
+//}

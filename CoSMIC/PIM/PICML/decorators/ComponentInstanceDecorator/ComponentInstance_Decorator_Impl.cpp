@@ -3,13 +3,15 @@
 #include "StdAfx.h"
 #include "ComponentInstance_Decorator.h"
 #include "ComponentInstance_Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_T.h"
 
 #include "game/mga/MetaFCO.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/Model.h"
 #include "game/mga/Reference.h"
+#include "game/mga/Iterator_T.h"
+
 #include "game/mga/graphics/Image_Resolver.h"
-#include "game/mga/utils/Registrar.h"
 
 #include "boost/bind.hpp"
 
@@ -112,66 +114,40 @@ void ComponentInstance_Decorator_Impl::destroy (void)
 // initialize
 //
 int ComponentInstance_Decorator_Impl::
-initialize_ex (const GAME::Mga::Project & proj,
-               const GAME::Mga::Meta::Part_in part,
-               const GAME::Mga::FCO_in fco,
-               IMgaCommonDecoratorEvents * eventSink,
-               ULONGLONG parentWnd)
-{
-  return this->initialize (proj, part, fco);
-}
-
-//
-// initialize
-//
-int ComponentInstance_Decorator_Impl::
-initialize (const GAME::Mga::Project & project,
+initialize (const GAME::Mga::Project & proj,
             const GAME::Mga::Meta::Part_in part,
-            const GAME::Mga::FCO_in fco)
+            const GAME::Mga::FCO_in fco,
+            IMgaCommonDecoratorEvents * sink,
+            ULONGLONG window)
 {
-  using GAME::Mga::GLOBAL_REGISTRAR;
-  using GAME::Mga::Registrar;
+  if (0 != GAME::Mga::FCO_Decorator::initialize (proj, part, fco, sink, window))
+    return -1;
+
+  // We also need to determine the implementation to show. This is
+  // done by getting the name of the implementation.
+  using GAME::Mga::Model;
+  using GAME::Mga::FCO;
+  using GAME::Mga::Iterator;
+  using GAME::Mga::Reference;
+
+  Model model = Model::_narrow (fco);
+  Iterator <Reference> iter = model->children <Reference> ("ComponentInstanceType");
+
+  if (!iter.is_done ())
+  {
+    FCO refers_to = (*iter)->refers_to ();
+
+    if (!refers_to.is_nil ())
+      this->impl_label_ = refers_to->name ();
+  }
+
+  if (this->impl_label_.empty ())
+    this->impl_label_ = "<undefined>";
 
   using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::Mga::graphics::Image_Manager_T;
-  using GAME::Mga::graphics::Image_Resolver;
-
-  // Initialize the icon manager.
-  Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-
-  if (!resolver->is_init ())
-    resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
-
-  if (0 == fco)
-  {
-    // We are going to show the metaname.
-    this->label_ = part->role ()->kind ()->display_name ();
-  }
-  else
-  {
-    // We also show the name of the instance regardless of what the
-    // end-user wants use to show. :-)
-    this->label_ = fco->name ();
-
-    // We also need to determine the implementation to show. This is
-    // done by getting the name of the implementation.
-    GAME::Mga::Model model = GAME::Mga::Model::_narrow (fco);
-
-    std::vector <GAME::Mga::Reference> typeset;
-    if (model->children ("ComponentInstanceType", typeset))
-    {
-      GAME::Mga::FCO refers_to =  typeset.front ()->refers_to ();
-
-      if (!refers_to.is_nil ())
-        this->impl_label_ = refers_to->name ();
-    }
-
-    if (this->impl_label_.empty ())
-      this->impl_label_ = "<undefined>";
-  }
-
-  if (0 != fco)
-    this->initialize_ports ("ComponentInterface", fco, resolver);
+  this->initialize_ports ("ComponentInterface",
+                          fco,
+                          GLOBAL_IMAGE_RESOLVER::instance ());
 
   // Finally, sort the ports from top to bottom.
   std::sort (this->l_ports_.begin (),
@@ -182,7 +158,7 @@ initialize (const GAME::Mga::Project & project,
              this->r_ports_.end (),
              sort_top_to_bottom_t ());
 
-  return S_OK;
+  return 0;
 }
 
 //

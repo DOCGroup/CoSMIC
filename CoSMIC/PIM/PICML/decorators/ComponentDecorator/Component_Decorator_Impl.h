@@ -13,8 +13,7 @@
 #ifndef _COMPONENT_DECORATOR_IMPL_H_
 #define _COMPONENT_DECORATOR_IMPL_H_
 
-#include "game/mga/decorator/Decorator_T.h"
-#include "game/mga/decorator/Decorator_Impl.h"
+#include "game/mga/decorator/FCO_Decorator.h"
 
 #include "game/mga/MetaAspect.h"
 #include "game/mga/Part.h"
@@ -28,35 +27,31 @@
  * @class Component_Decorator_Impl
  */
 class COMPONENT_DECORATOR_Export Component_Decorator_Impl :
-  public GAME::Mga::Decorator_Impl
+  public GAME::Mga::FCO_Decorator
 {
 public:
   /// Default constructor
   Component_Decorator_Impl (void);
 
   /// Destructor.
-  ~Component_Decorator_Impl (void);
+  virtual ~Component_Decorator_Impl (void);
 
-  int initialize (const GAME::Mga::Project & proj,
-                  const GAME::Mga::Meta::Part_in part,
-                  const GAME::Mga::FCO_in fco);
-
-  int initialize_ex (const GAME::Mga::Project & proj,
-                     const GAME::Mga::Meta::Part_in part,
-                     const GAME::Mga::FCO_in fco,
-                     IMgaCommonDecoratorEvents * eventSink,
-                     ULONGLONG parentWnd);
+  virtual int initialize (const GAME::Mga::Project & proj,
+                          const GAME::Mga::Meta::Part_in part,
+                          const GAME::Mga::FCO_in fco,
+                          IMgaCommonDecoratorEvents * sink,
+                          ULONGLONG window);
 
   /// Destory the decorator.
-  void destroy (void);
+  virtual void destroy (void);
 
-  void set_location (const GAME::Mga::Rect & location);
+  virtual void set_location (const GAME::Mga::Rect & location);
 
-  int get_preferred_size (long & sx, long & sy);
+  virtual int get_preferred_size (long & sx, long & sy);
 
   /// Draw the component. This will draw the component's ports
   /// and the components label.
-  int draw (Gdiplus::Graphics * g);
+  virtual int draw (Gdiplus::Graphics * g);
 
   /// Draw the actual component.
   int draw_component (Gdiplus::Graphics * g);
@@ -76,9 +71,6 @@ protected:
                         GAME::Mga::graphics::Image_Resolver *);
 
   int initialize_graphics_path (void);
-
-  /// The label for the element.
-  std::string label_;
 
   /// Pointer to the loaded bitmap.
   Gdiplus::GraphicsPath graphics_path_;

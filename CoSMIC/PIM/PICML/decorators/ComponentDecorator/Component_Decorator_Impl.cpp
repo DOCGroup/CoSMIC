@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Component_Decorator.h"
 #include "Component_Decorator_Impl.h"
+#include "game/mga/decorator/Decorator_T.h"
 
 #include "game/mga/FCO.h"
 #include "game/mga/GME_fwd.h"
@@ -114,55 +115,21 @@ void Component_Decorator_Impl::destroy (void)
 // initialize
 //
 int Component_Decorator_Impl::
-initialize_ex (const GAME::Mga::Project & proj,
-               const GAME::Mga::Meta::Part_in part,
-               const GAME::Mga::FCO_in fco,
-               IMgaCommonDecoratorEvents * eventSink,
-               ULONGLONG parentWnd)
-{
-  return this->initialize (proj, part, fco);
-}
-
-//
-// initialize
-//
-int Component_Decorator_Impl::
-initialize (const GAME::Mga::Project & project,
+initialize (const GAME::Mga::Project & proj,
             const GAME::Mga::Meta::Part_in part,
-            const GAME::Mga::FCO_in fco)
+            const GAME::Mga::FCO_in fco,
+            IMgaCommonDecoratorEvents * sink,
+            ULONGLONG window)
 {
-  using GAME::Mga::GLOBAL_REGISTRAR;
-  using GAME::Mga::Registrar;
+  if (0 != GAME::Mga::FCO_Decorator::initialize (proj, part, fco, sink, window))
+    return -1;
 
   using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
-  using GAME::Mga::graphics::Image_Manager_T;
-  using GAME::Mga::graphics::Image_Resolver;
 
-  // Initialize the icon manager.
-  Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
+  this->initialize_ports ("InterfaceDefinition",
+                          fco,
+                          GLOBAL_IMAGE_RESOLVER::instance ());
 
-  if (!resolver->is_init ())
-    resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
-
-  if (0 == fco)
-  {
-    // We are going to show the metaname.
-    GAME::Mga::Meta::FCO metafco = part->role ()->kind ();
-    this->label_ = metafco->display_name ().c_str ();
-  }
-  else
-  {
-    // Determine if we need to show the label for the element.
-    std::string show_name = fco->registry_value ("isNameEnabled");
-
-    if (show_name.empty () || show_name == "true")
-      this->label_ = fco->name ();
-  }
-
-  if (0 != fco)
-    this->initialize_ports ("InterfaceDefinition", fco, resolver);
-
-  // Finally, sort the ports from top to bottom.
   std::sort (this->l_ports_.begin (),
              this->l_ports_.end (),
              sort_top_to_bottom_t ());
@@ -171,7 +138,7 @@ initialize (const GAME::Mga::Project & project,
              this->r_ports_.end (),
              sort_top_to_bottom_t ());
 
-  return S_OK;
+  return 0;
 }
 
 //
@@ -284,7 +251,7 @@ set_location (const GAME::Mga::Rect & loc)
                  set_port_location_t (pt));
 
   // Pass control to the base class and set the graphics path.
-  GAME::Mga::Decorator_Impl::set_location (loc);
+  GAME::Mga::FCO_Decorator::set_location (loc);
 
   // Initialize the graphics path for the component.
   this->initialize_graphics_path ();
