@@ -16,6 +16,7 @@
 #include "GME_fwd.h"
 #include "Object.h"
 #include "Part.h"
+#include "Iterator_T.h"
 
 namespace GAME
 {
@@ -231,6 +232,7 @@ public:
    * @return          Number of items in \a sets
    */
   size_t in_sets (std::vector <Set> & sets) const;
+  Iterator <Set> in_sets (void) const;
 
   /**
    * Get the collection of objects this object is derived

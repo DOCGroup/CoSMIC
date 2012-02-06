@@ -21,6 +21,8 @@ namespace GAME
 {
 namespace Mga
 {
+// Forward decl.
+class Decorator_Impl;
 
 /**
  * @class ComponentEx_T
@@ -87,6 +89,9 @@ public:
 private:
   /// The implementation of the decorator.
   T impl_;
+
+  /// Pointer to the implementation.
+  Decorator_Impl * impl_ptr_;
 
   /// Initializing state for the decorator.
   bool is_init_;

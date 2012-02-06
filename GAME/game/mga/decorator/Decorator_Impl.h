@@ -58,53 +58,59 @@ public:
   virtual ~Decorator_Impl (void);
 
   /**
-   * Initailize the decorator.
+   * Initialize the decorator. This method is called when the decorator
+   * is being initialized for the Part Browser window.
    */
-  int initialize (const Project & proj,
-                  const Meta::Part_in part,
-                  const FCO_in fco);
+  virtual int initialize (const Project & proj,
+                          const Meta::Part_in part,
+                          IMgaCommonDecoratorEvents * eventSink,
+                          ULONGLONG parentWnd);
 
-  int initialize_ex (const Project & proj,
-                     const Meta::Part_in part,
-                     const FCO_in fco,
-                     IMgaCommonDecoratorEvents * eventSink,
-                     ULONGLONG parentWnd);
+  /**
+   * Initialize the decorator. This method is called when the decorator
+   * is being initialized for the Model View window. We still need to
+   * include the parts object since it let's determine what aspect is
+   * currently showing in the model view.
+   */
+  virtual int initialize (const Project & proj,
+                          const Meta::Part_in part,
+                          const FCO_in fco,
+                          IMgaCommonDecoratorEvents * eventSink,
+                          ULONGLONG parentWnd);
 
   /// Destroy the decorator.
-  void destroy (void);
+  virtual void destroy (void);
 
   /// Get the decorator's features.
-  long features (void);
+  virtual long features (void);
 
-  int set_param (const std::string & name,
-                 const std::string & value);
+  virtual int set_param (const std::string & name, const std::string & value);
 
-  int get_param (const std::string & name,
-                 std::string & value);
+  virtual int get_param (const std::string & name, std::string & value);
 
-  void set_active (bool state);
+  virtual void set_active (bool state);
 
-  void set_selected (bool state);
+  virtual void set_selected (bool state);
 
-  void set_location (const GAME::Mga::Rect & location);
+  virtual void set_location (const GAME::Mga::Rect & location);
 
-  const GAME::Mga::Rect & get_location (void) const;
+  virtual const GAME::Mga::Rect & get_location (void) const;
 
-  int get_preferred_size (long & sx, long & sy);
+  virtual int get_preferred_size (long & sx, long & sy);
 
-  int get_label_location (long & sx, long & sy, long & ex, long & ey);
+  virtual int get_label_location (long & sx, long & sy, long & ex, long & ey);
 
-  int get_port_location (const FCO_in fco,
-                         long & sx,
-                         long & sy,
-                         long & ex,
-                         long & ey);
+  virtual int get_port_location (const FCO_in fco,
+                                 long & sx,
+                                 long & sy,
+                                 long & ex,
+                                 long & ey);
 
-  int get_ports (std::vector <FCO> & v);
+  virtual int get_ports (std::vector <FCO> & v);
 
-  int draw (Gdiplus::Graphics * g);
+  virtual int draw (Gdiplus::Graphics * g);
 
-  int save_state (void);
+  virtual int save_state (void);
 
   int mouse_moved (int nFlags,
                    const GAME::Mga::Point & pt,

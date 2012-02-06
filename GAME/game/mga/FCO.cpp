@@ -298,6 +298,17 @@ size_t FCO_Impl::in_sets (std::vector <Set> & sets) const
 }
 
 //
+// in_sets
+//
+Iterator <Set> FCO_Impl::in_sets (void) const
+{
+  CComPtr <IMgaFCOs> temp;
+  VERIFY_HRESULT (this->impl ()->get_MemberOfSets (&temp));
+
+  return Iterator <Set> (temp.p);
+}
+
+//
 // part
 //
 Part FCO_Impl::part (const Meta::Aspect_in aspect) const
@@ -368,7 +379,7 @@ size_t FCO_Impl::referenced_by (std::vector <FCO> & references) const
   CComPtr <IMgaFCOs> temp;
   VERIFY_HRESULT (this->impl ()->get_ReferencedBy (&temp));
 
-  return iter_to_collection (temp.p, references);;
+  return iter_to_collection (temp.p, references);
 }
 
 }

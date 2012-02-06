@@ -16,7 +16,8 @@ namespace Mga
 template <typename T, const CLSID * pclsid>
 GAME_INLINE
 Decorator_T <T, pclsid>::Decorator_T (void)
-: is_init_ (false),
+: impl_ptr_ (&impl_),
+  is_init_ (false),
   is_loc_set_ (false)
 {
 
@@ -30,95 +31,6 @@ GAME_INLINE
 Decorator_T <T, pclsid>::~Decorator_T (void)
 {
 
-}
-
-//
-// Initialize
-//
-template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::
-Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO * fcoptr)
-{
-  try
-  {
-    GAME::Mga::Project proj (project);
-    GAME::Mga::Meta::Part part (metaPart);
-    GAME::Mga::FCO fco (fcoptr);
-
-    // Reset the state variables.
-    this->is_loc_set_ = false;
-    this->is_init_ = false;
-
-    int retval = this->impl_.initialize (proj, part, fco);
-
-    if (0 == retval)
-      this->is_init_ = true;
-  }
-  catch (...)
-  {
-
-  }
-
-  return S_OK;
-}
-
-//
-// InitializeEx
-//
-template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::
-InitializeEx (IMgaProject* project,
-              IMgaMetaPart* pPart,
-              IMgaFCO* pFCO,
-              IMgaCommonDecoratorEvents* eventSink,
-              ULONGLONG parentWnd)
-{
-  try
-  {
-    GAME::Mga::Project proj (project);
-    GAME::Mga::Meta::Part part (pPart);
-    GAME::Mga::FCO fco (pFCO);
-
-    // Reset the state variables.
-    this->is_loc_set_ = false;
-    this->is_init_ = false;
-
-    int retval = this->impl_.initialize_ex (proj, part, fco, eventSink, parentWnd);
-
-    if (0 == retval)
-      this->is_init_ = true;
-  }
-  catch (...)
-  {
-
-  }
-
-  return S_OK;
-}
-
-//
-// Destroy
-//
-template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::Destroy (void)
-{
-  try
-  {
-    if (!this->is_init_)
-      return E_DECORATOR_UNINITIALIZED;
-
-    this->is_init_ = false;
-    this->is_loc_set_ = false;
-
-    this->impl_.destroy ();
-    return S_OK;
-  }
-  catch (...)
-  {
-
-  }
-
-  return S_FALSE;
 }
 
 //

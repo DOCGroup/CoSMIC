@@ -15,6 +15,94 @@ namespace Mga
 {
 
 //
+// Initialize
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::
+Initialize (IMgaProject *project, IMgaMetaPart *part, IMgaFCO * fco)
+{
+  try
+  {
+    return this->InitializeEx (project, part, fco, 0, 0);
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_OK;
+}
+
+//
+// InitializeEx
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::
+InitializeEx (IMgaProject* project,
+              IMgaMetaPart* pPart,
+              IMgaFCO* pFCO,
+              IMgaCommonDecoratorEvents* sink,
+              ULONGLONG window)
+{
+  try
+  {
+    // Reset the state variables.
+    this->is_loc_set_ = false;
+    this->is_init_ = false;
+
+    int retval;
+    GAME::Mga::Project proj (project);
+    GAME::Mga::Meta::Part part (pPart);
+
+    if (0 != pFCO)
+    {
+      // Initialize the decorator for the model view.
+      GAME::Mga::FCO fco (pFCO);
+      retval = this->impl_ptr_->initialize (proj, part, fco, sink, window);
+    }
+    else
+    {
+      // Initialize the decorator for the browser view.
+      retval = this->impl_ptr_->initialize (proj, part, sink, window);
+    }
+
+    if (0 == retval)
+      this->is_init_ = true;
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_OK;
+}
+
+//
+// Destroy
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::Destroy (void)
+{
+  try
+  {
+    if (!this->is_init_)
+      return E_DECORATOR_UNINITIALIZED;
+
+    this->is_init_ = false;
+    this->is_loc_set_ = false;
+
+    this->impl_.destroy ();
+    return S_OK;
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_FALSE;
+}
+
+//
 // SetParam
 //
 template <typename T, const CLSID * pclsid>

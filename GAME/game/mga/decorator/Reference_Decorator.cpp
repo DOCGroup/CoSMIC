@@ -7,6 +7,15 @@
 #include "Reference_Decorator.inl"
 #endif
 
+#include "game/mga/FCO.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/MetaPart.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Project.h"
+#include "game/mga/utils/Registrar.h"
+
+#include "game/mga/graphics/Image_Resolver.h"
+
 namespace GAME
 {
 namespace Mga
@@ -18,21 +27,56 @@ namespace Mga
 int Reference_Decorator::
 initialize (const Project & proj,
             const Meta::Part_in part,
-            const FCO_in fco)
+            const FCO_in fco,
+            IMgaCommonDecoratorEvents * sink,
+            ULONGLONG window)
 {
-  return 0;
-}
+  if (0 != FCO_Decorator::initialize (proj, part, fco, sink, window))
+    return -1;
 
-//
-// initialize
-//
-int Reference_Decorator::
-initialize_ex (const Project & proj,
-               const Meta::Part_in part,
-               const FCO_in fco,
-               IMgaCommonDecoratorEvents * eventSink,
-               ULONGLONG parentWnd)
-{
+  using GAME::Mga::graphics::GLOBAL_IMAGE_RESOLVER;
+  using GAME::Mga::graphics::Image_Resolver;
+  Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
+
+  std::string icon_filename;
+
+  GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (fco);
+  GAME::Mga::FCO target = ref->refers_to ();
+
+  if (!this->show_refers_to_)
+    icon_filename = fco->meta ()->registry_value ("icon");
+  else if (!target.is_nil ())
+    icon_filename = target->meta ()->registry_value ("icon");
+
+  if (!icon_filename.empty ())
+  {
+    std::string abs_filename;
+    if (!resolver->lookup_icon (icon_filename, abs_filename))
+      return -1;
+
+    CA2W temp (abs_filename.c_str ());
+    this->bitmap_.reset (Gdiplus::Bitmap::FromFile (temp));
+  }
+
+  // Check for a decorator. If one is specified, then we should go
+  // ahead a load it into memory as well.
+  std::string decorator;
+
+  if (!target.is_nil () && this->show_refers_to_)
+    decorator = target->meta ()->registry_value ("decorator");
+
+  if (!decorator.empty ())
+  {
+    // Load the decorator, and initialize it.
+    CA2W tempstr (decorator.c_str ());
+    VERIFY_HRESULT (this->delegate_.CoCreateInstance (tempstr));
+    VERIFY_HRESULT (this->delegate_->InitializeEx (proj.impl (),
+                                                   part->impl (),
+                                                   target->impl (),
+                                                   sink,
+                                                   window));
+  }
+
   return 0;
 }
 
@@ -41,13 +85,12 @@ initialize_ex (const Project & proj,
 //
 void Reference_Decorator::destroy (void)
 {
-  if (this->delegate_)
-  {
-    // Notify the delegate to destroy itself and release our
-    // reference to the object.
-    this->delegate_->Destroy ();
-    this->delegate_.Release ();
-  }
+  if (0 == this->delegate_)
+    return;
+
+  // Destroy the delegate and release its resources.
+  this->delegate_->Destroy ();
+  this->delegate_.Release ();
 }
 
 //
@@ -58,7 +101,8 @@ void Reference_Decorator::set_active (bool state)
   if (this->delegate_)
     this->delegate_->SetActive (state ? VARIANT_TRUE : VARIANT_FALSE);
 
-  return Decorator_Impl::set_active (state);
+  // Pass control to the base class.
+  FCO_Decorator::set_active (state);
 }
 
 //
@@ -69,271 +113,82 @@ void Reference_Decorator::set_selected (bool state)
   if (this->delegate_)
     this->delegate_->SetSelected (state ? VARIANT_TRUE : VARIANT_FALSE);
 
-  Decorator_Impl::set_active (state);
+  FCO_Decorator::set_active (state);
 }
 
 //
 // preferred_size
 //
-GAME_INLINE
 int Reference_Decorator::get_preferred_size (long & sx, long & sy)
 {
-  if (this->delegate_)
-    return this->delegate_->GetPreferredSize (&sx, &sy);
+  if (0 == this->delegate_)
+    return FCO_Decorator::get_preferred_size (sx, sy);
   else
-    return Decorator_Impl::get_preferred_size (sx, sy);
+    return this->delegate_->GetPreferredSize (&sx, &sy);
 }
 
 //
 // set_location
 //
-GAME_INLINE
 void Reference_Decorator::set_location (const GAME::Mga::Rect & location)
 {
   if (this->delegate_)
+  {
     VERIFY_HRESULT (this->delegate_->SetLocation (location.x_,
                                                   location.y_,
                                                   location.cx_,
                                                   location.cy_));
+  }
 
-  Decorator_Impl::set_location (location);
-}
-
-//
-// get_label_location
-//
-GAME_INLINE
-int Reference_Decorator::
-get_label_location (long & sx, long & sy, long & ex, long & ey)
-{
-  if (this->delegate_)
-    return this->delegate_->GetLabelLocation (&sx, &sy, &ex, &ey);
-  else
-    return Decorator_Impl::get_label_location (sx, sy, ex, ey);
+  FCO_Decorator::set_location (location);
 }
 
 //
 // draw
 //
-GAME_INLINE
 int Reference_Decorator::draw (Gdiplus::Graphics * g)
 {
-  if (this->delegate_)
-    VERIFY_HRESULT (this->delegate_->Draw (g->GetHDC ()));
+  if (0 == this->delegate_)
+    return FCO_Decorator::draw (g);
+
+  VERIFY_HRESULT (this->delegate_->Draw (g->GetHDC ()));
+  this->draw_label (g);
 
   return 0;
 }
 
 //
-// operation_canceled
+// get_ports
 //
-GAME_INLINE
-int Reference_Decorator::operation_canceled (void)
+int Reference_Decorator::get_ports (std::vector <FCO> & v)
 {
   if (this->delegate_)
-    return this->delegate_->OperationCanceled ();
-  else
-    return Decorator_Impl::operation_canceled ();
+  {
+    CComPtr <IMgaFCOs> ports;
+    VERIFY_HRESULT (this->delegate_->GetPorts (&ports));
+
+    iter_to_collection (ports.p, v);
+  }
+
+  return 0;
 }
 
 //
-// mouse_moved
+// get_port_location
 //
-GAME_INLINE
 int Reference_Decorator::
-mouse_moved (int nFlags,
-             const GAME::Mga::Point & pt,
-             CDC & xform)
+get_port_location (const FCO_in fco,
+                   long & sx,
+                   long & sy,
+                   long & ex,
+                   long & ey)
 {
-  return 1;
-}
+  if (this->delegate_)
+  {
+    VERIFY_HRESULT (this->delegate_->GetPortLocation (fco->impl (), &sx, &sy, &ex, &ey));
+  }
 
-//
-// mouse_left_button_down
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_left_button_down (int flags,
-                        const GAME::Mga::Point & pt,
-                        CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_left_button_up
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_left_button_up (int flags,
-                      const GAME::Mga::Point & pt,
-                      CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_left_button_double_click
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_left_button_double_click (int nFlags,
-                                const GAME::Mga::Point & pt,
-                                CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_right_button_down
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_right_button_down (CMenu & ctxmenu,
-                         int flags,
-                         const GAME::Mga::Point & pt,
-                         CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_right_button_up
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_right_button_up (int flags,
-                       const GAME::Mga::Point & pt,
-                       CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_right_button_double_click
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_right_button_double_click (int flags,
-                                 const GAME::Mga::Point & pt,
-                                 CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_middle_button_down
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_middle_button_down (int flags,
-                          const GAME::Mga::Point & pt,
-                          CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_middle_button_up
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_middle_button_up (int flags,
-                        const GAME::Mga::Point & pt,
-                        CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_middle_button_double_click
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_middle_button_double_click (int flags,
-                                  const GAME::Mga::Point & pt,
-                                  CDC & xform)
-{
-  return 1;
-}
-
-//
-// mouse_wheel_turned
-//
-GAME_INLINE
-int Reference_Decorator::
-mouse_wheel_turned (int flags,
-                    int distance,
-                    const GAME::Mga::Point & pt,
-                    CDC & xform)
-{
-  return 1;
-}
-
-//
-// drag_enter
-//
-GAME_INLINE
-int Reference_Decorator::
-drag_enter (unsigned long & effect,
-            COleDataObject & pCOleDataObject,
-            int keyState,
-            const GAME::Mga::Point & pt,
-            CDC & xform)
-{
-  return 1;
-}
-
-//
-// drag_over
-//
-GAME_INLINE
-int Reference_Decorator::
-drag_over (unsigned long & effect,
-           COleDataObject & pCOleDataObject,
-           int keyState,
-           const GAME::Mga::Point & pt,
-           CDC & xform)
-{
-  return 1;
-}
-
-//
-// drop
-//
-GAME_INLINE
-int Reference_Decorator::
-drop (COleDataObject & pCOleDataObject,
-      int effect,
-      const GAME::Mga::Point & pt,
-      CDC & xform)
-{
-  return 1;
-}
-
-//
-// drop_file
-//
-GAME_INLINE
-int Reference_Decorator::
-drop_file (ULONGLONG hDropInfo,
-           const GAME::Mga::Point & pt,
-           CDC & xform)
-{
-  return 1;
-}
-
-//
-// menu_item_selected
-//
-GAME_INLINE
-int Reference_Decorator::
-menu_item_selected (int item_id,
-                    int nFlags,
-                    const GAME::Mga::Point & pt,
-                    CDC & xform)
-{
-  return 1;
+  return 0;
 }
 
 }

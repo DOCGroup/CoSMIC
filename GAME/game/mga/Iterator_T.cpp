@@ -45,7 +45,11 @@ T Iterator <T>::item (void) const
   ATL::CComPtr <typename collection_traits <iterator_type *>::interface_type> temp;
   VERIFY_HRESULT (this->iter_->get_Item (this->index_, &temp));
 
-  return temp.p;
+  // Store the members in a collection.
+  ATL::CComPtr <typename T::interface_type> item;
+  VERIFY_HRESULT (temp.QueryInterface (&item));
+
+  return item.p;
 }
 
 //

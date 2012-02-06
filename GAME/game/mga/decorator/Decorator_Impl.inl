@@ -31,7 +31,8 @@ GAME_INLINE
 int Decorator_Impl::
 initialize (const Project & proj,
             const Meta::Part_in part,
-            const FCO_in fco)
+            IMgaCommonDecoratorEvents * eventSink,
+            ULONGLONG parentWnd)
 {
   return 0;
 }
@@ -41,11 +42,11 @@ initialize (const Project & proj,
 //
 GAME_INLINE
 int Decorator_Impl::
-initialize_ex (const Project & proj,
-               const Meta::Part_in part,
-               const FCO_in fco,
-               IMgaCommonDecoratorEvents * eventSink,
-               ULONGLONG parentWnd)
+initialize (const Project & proj,
+            const Meta::Part_in part,
+            const FCO_in fco,
+            IMgaCommonDecoratorEvents * eventSink,
+            ULONGLONG parentWnd)
 {
   return 0;
 }
