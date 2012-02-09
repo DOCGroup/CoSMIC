@@ -3,11 +3,15 @@
 #include "stdafx.h"
 #include "Mga.h"
 #include "MetaFCO.h"
+#include "MetaConnection.h"
+#include "MetaRole.h"
+
 
 #if !defined (__GAME_INLINE__)
 #include "MetaFCO.inl"
 #endif
 
+#include "Collection_T.h"
 #include "Exception.h"
 
 namespace GAME
@@ -45,6 +49,7 @@ Base FCO_Impl::defined_in (void) const
   return meta.p;
 }
 
+
 //
 // attribute
 //
@@ -66,6 +71,18 @@ attribute (const std::string & name, bool display_name) const
 
   return attr.p;
 }
+
+//
+// used_in_roles
+//
+size_t FCO_Impl::used_in_roles(std::vector <Role> & roles) const
+{
+  CComPtr <IMgaMetaRoles> temps;
+  VERIFY_HRESULT (this->impl ()->get_UsedInRoles (&temps));
+
+  return iter_to_collection (temps.p, roles);
+}
+
 
 }
 }

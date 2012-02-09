@@ -55,6 +55,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
     MetaAttribute.cpp
     MetaBase.cpp
     MetaConnection.cpp
+    MetaConstraint.cpp
     MetaEnumItem.cpp
     MetaFolder.cpp
     MetaFCO.cpp

@@ -71,9 +71,17 @@ public:
   /// Get the aspect for this part.
   Aspect in_aspect (void) const;
 
+  /**
+   * Get the count of parts.
+   *
+   * @return        Count of parts present.
+   */
+  long count (void) const;
+
 private:
   /// Pointer to the COM object.
   mutable ATL::CComPtr <IMgaMetaPart> part_;
+  CComPtr <IMgaMetaParts> parts_;
 };
 
 }

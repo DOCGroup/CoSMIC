@@ -3,11 +3,13 @@
 #include "stdafx.h"
 #include "Mga.h"
 #include "MetaBase.h"
+#include "MetaConstraint.h"
 
 #if !defined (__GAME_INLINE__)
 #include "MetaBase.inl"
 #endif
 
+#include "Collection_T.h"
 #include "MetaProject.h"
 #include "Exception.h"
 
@@ -88,6 +90,17 @@ objtype_enum Base_Impl::type (void) const
   VERIFY_HRESULT (this->metabase_->get_ObjType (&type));
 
   return type;
+}
+
+//
+// constraints
+//
+size_t Base_Impl::constraints (std::vector <Constraint> & cons) const
+{
+  CComPtr <IMgaConstraints> temps;
+  VERIFY_HRESULT (this->impl ()->get_Constraints (&temps));
+
+  return iter_to_collection (temps.p, cons);
 }
 
 //

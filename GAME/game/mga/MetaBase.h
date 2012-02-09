@@ -20,6 +20,7 @@
 #include "game/config.h"
 #include "Mga_export.h"
 
+
 namespace GAME
 {
 namespace Mga
@@ -99,6 +100,13 @@ public:
    * @param[in]       refid       The reference id.
    */
   void refid (long refid);
+
+  /**
+   * Get all the constraints.
+   *
+   * @param[out]       cons        The vector holds all the constraints
+   */
+  size_t constraints (std::vector <Constraint> & cons) const;
 
   /**
    * Get the object type of the meta information.

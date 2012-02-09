@@ -17,6 +17,7 @@
 
 #include "MetaFCO.h"
 #include "MetaAspect.h"
+#include "MetaRole.h"
 #include <vector>
 
 namespace GAME
@@ -57,6 +58,13 @@ public:
    * @return          The role for the specified \a name.
    */
   Role role (const std::string & name) const;
+
+   /**
+   * Get all the roles this Model is associated with.
+   *
+   * @param[out]      roles      All the metaroles this Model is associated with.
+   */
+  size_t roles (std::vector <Role> & roles) const;
 
   /**
    * Get the underlying COM interface pointer.

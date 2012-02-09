@@ -110,6 +110,11 @@ namespace Mga
     typedef Smart_Ptr <Atom_Impl> Atom;
     typedef Atom_Impl * Atom_in;
 
+    // Foward decl.
+    class Constraint_Impl;
+    typedef Smart_Ptr <Constraint_Impl> Constraint;
+    typedef Constraint_Impl * Constraint_in;
+
     // Forward decl.
     class Attribute_Impl;
     typedef Smart_Ptr <Attribute_Impl> Attribute;
@@ -162,6 +167,11 @@ namespace Mga
     class Connection_Impl;
     typedef Smart_Ptr <Connection_Impl> Connection;
     typedef Connection_Impl * Connection_in;
+
+    // Forward decl.
+    class ConnectionPoint_Impl;
+    typedef Smart_Ptr <ConnectionPoint_Impl> ConnectionPoint;
+    typedef ConnectionPoint_Impl * ConnectionPoint_in;
 
     // Forward decl.
     class Project;

@@ -3,11 +3,14 @@
 #include "stdafx.h"
 #include "Mga.h"
 #include "MetaAspect.h"
+#include "MetaAttribute.h"
+#include "MetaPart.h"
 
 #if !defined (__GAME_INLINE__)
 #include "MetaAspect.inl"
 #endif
 
+#include "Collection_T.h"
 #include "Exception.h"
 
 namespace GAME
@@ -31,6 +34,28 @@ IMgaMetaAspect * Aspect_Impl::impl (void) const
 
   VERIFY_HRESULT (this->metabase_.QueryInterface (&this->aspect_));
   return this->aspect_;
+}
+
+//
+// attributes
+//
+size_t Aspect_Impl::attributes (std::vector <Attribute> & attrs) const
+{
+  CComPtr <IMgaMetaAttributes> temps;
+  VERIFY_HRESULT (this->impl ()->get_Attributes (&temps));
+
+  return iter_to_collection (temps.p, attrs);
+}
+
+//
+// parts
+//
+size_t Aspect_Impl::parts (std::vector <Part> & parts) const
+{
+  CComPtr <IMgaMetaParts> temps;
+  VERIFY_HRESULT (this->impl ()->get_Parts (&temps));
+
+  return iter_to_collection (temps.p, parts);
 }
 
 }

@@ -1,15 +1,20 @@
 // $Id$
 
 #include "stdafx.h"
+
+#include <cstring>
+#include <iostream>
 #include "Mga.h"
 #include "MetaRole.h"
+#include "MetaPart.h"
+#include "MetaModel.h"
 
 #if !defined (__GAME_INLINE__)
 #include "MetaRole.inl"
 #endif
 
+#include "Collection_T.h"
 #include "Exception.h"
-#include "MetaModel.h"
 
 namespace GAME
 {
@@ -33,6 +38,31 @@ IMgaMetaRole * Role_Impl::impl (void) const
 
   VERIFY_HRESULT (this->metabase_.QueryInterface (&this->metarole_));
   return this->metarole_;
+}
+
+//
+// parts
+//
+size_t Role_Impl::parts (std::vector <Part> & parts) const
+{
+  CComPtr <IMgaMetaParts> temps;
+  VERIFY_HRESULT (this->impl ()->get_Parts (&temps));
+
+  return iter_to_collection (temps.p, parts);
+}
+
+//
+// partscount
+//
+long Role_Impl::partscount (void) const
+{
+  CComPtr <IMgaMetaParts> temps;
+  VERIFY_HRESULT (this->impl ()->get_Parts (&temps));
+
+  long count;
+  VERIFY_HRESULT (temps->get_Count (&count));
+
+  return count;
 }
 
 //

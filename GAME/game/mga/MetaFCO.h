@@ -16,6 +16,7 @@
 #define _GAME_MGA_META_FCO_H_
 
 #include "MetaAttribute.h"
+#include "MetaRole.h"
 
 namespace GAME
 {
@@ -54,6 +55,14 @@ public:
    * @return        Base meta object.
    */
   Base defined_in (void) const;
+
+  /**
+   * Get all the roles where this FCO_Impl is defined in.
+   *
+   * @param[out]       roles      All the metaroles this FCO has been used in.
+   */
+  size_t used_in_roles (std::vector <Role> & roles) const;
+
 
   /**
    * Get an attributes meta information by its name.

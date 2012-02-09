@@ -78,7 +78,18 @@ Role Part_Impl::role (void) const
 }
 
 //
-// role
+// count
+//
+long Part_Impl::count (void) const
+{
+  long count;
+  VERIFY_HRESULT (this->parts_->get_Count (&count));
+
+  return count;
+}
+
+//
+// in_aspect
 //
 Aspect Part_Impl::in_aspect (void) const
 {

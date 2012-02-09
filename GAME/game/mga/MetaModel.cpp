@@ -3,6 +3,9 @@
 #include "stdafx.h"
 #include "Mga.h"
 #include "MetaModel.h"
+#include "MetaRole.h"
+#include "MetaAspect.h"
+#include "MetaAttribute.h"
 
 #if !defined (__GAME_INLINE__)
 #include "MetaModel.inl"
@@ -10,8 +13,6 @@
 
 #include "Collection_T.h"
 #include "Exception.h"
-#include "MetaRole.h"
-#include "MetaAspect.h"
 
 namespace GAME
 {
@@ -48,6 +49,17 @@ Role Model_Impl::role (const std::string & name) const
   VERIFY_HRESULT (this->impl ()->get_RoleByName (bstr, &tempptr));
 
   return tempptr.p;
+}
+
+//
+// roles
+//
+size_t Model_Impl::roles (std::vector <Role> & roles) const
+{
+  CComPtr <IMgaMetaRoles> temps;
+  VERIFY_HRESULT (this->impl ()->get_Roles (&temps));
+
+  return iter_to_collection (temps.p, roles);
 }
 
 //

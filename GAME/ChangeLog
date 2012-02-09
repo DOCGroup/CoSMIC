@@ -1,3 +1,82 @@
+Thu Feb  9 02:07:49 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/Collection_T.cpp:
+        * game/mga/GME_fwd.h:
+        * game/mga/Impl_Factory.h:
+        * game/mga/Impl_Factory.cpp:
+        * game/mga/MetaAspect.h:
+        * game/mga/MetaAspect.cpp:
+        * game/mga/MetaBase.h:
+        * game/mga/MetaBase.cpp:
+        * game/mga/MetaConnection.h:
+        * game/mga/MetaConnection.inl:
+        * game/mga/MetaConnection.cpp:
+        * game/mga/MetaConstraint.h:
+        * game/mga/MetaConstraint.inl:
+        * game/mga/MetaConstraint.cpp:
+        * game/mga/MetaFCO.h:
+        * game/mga/MetaFCO.cpp:
+        * game/mga/MetaModel.h:
+        * game/mga/MetaModel.cpp:
+        * game/mga/MetaPart.h:
+        * game/mga/MetaPart.cpp:
+        * game/mga/MetaRole.h:
+        * game/mga/MetaRole.cpp:
+        * game/mga/Mga.mpc:
+		
+		  Added the MetaConstraint header, source and inlines files and
+		  extended other files by adding more functionality.
+
+        * game/mga/addons/Model_Intelligence/Add_Command.h:
+        * game/mga/addons/Model_Intelligence/Add_Command.cpp:
+        * game/mga/addons/Model_Intelligence/And_Expr.h:
+        * game/mga/addons/Model_Intelligence/And_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Association_Handler.h:
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Boolean_Expr.h:
+        * game/mga/addons/Model_Intelligence/Boolean_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Collection_Expr.h:
+        * game/mga/addons/Model_Intelligence/Collection_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.h:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.h:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.h:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.h:
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.cpp:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.h:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Expr_Command.h:
+        * game/mga/addons/Model_Intelligence/Expr_Command.cpp:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Context.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.h:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.h:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Size_Method_Expr.h:
+        * game/mga/addons/Model_Intelligence/Size_Method_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Value_Expr.cpp:
+		
+		  Modified the exisiting model intelligence files and added
+		  OCL expression parsing and expression evaluation files, so
+          as to provide support for automated containment in models.
+
 Mon Feb  6 18:45:07 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/FCO.h:

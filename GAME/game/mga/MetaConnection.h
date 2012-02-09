@@ -6,14 +6,20 @@
  *
  * $Id$
  *
- * @author    James H. Hill
+ * @author    Tanumoy Pati
  */
 //=============================================================================
 
 #ifndef _GAME_MGA_META_CONNECTION_H_
 #define _GAME_MGA_META_CONNECTION_H_
 
+#include "ace/Hash_Map_Manager_T.h"
+#include "ace/Null_Mutex.h"
+
 #include "MetaFCO.h"
+#include "stlace.h"
+#include "Refcountable.h"
+
 
 namespace GAME
 {
@@ -21,11 +27,66 @@ namespace Mga
 {
 namespace Meta
 {
+ 
+// Forward declaration
+class Connection_Impl;
 
 /**
- * @class Aspect_Impl
+ * @class ConnectionPoint_Impl
  *
- * Wrapper class for the IMgaMetaAspect interface.
+ * Wrapper class for the IMgaMetaConnJoint COM interface.
+ */
+
+class GAME_MGA_Export ConnectionPoint_Impl : public Refcountable
+{
+public:
+  /// Type definition of the interface pointer.
+  typedef IMgaMetaConnJoint interface_type;
+
+  /// Default constructor.
+  ConnectionPoint_Impl (void);
+
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       point       Pointer to the interface.
+   */
+  ConnectionPoint_Impl (IMgaMetaConnJoint * point);
+
+  /// Destructor.
+  virtual ~ConnectionPoint_Impl (void);
+
+  /**
+   * Get a pointer to the underlying interface.
+   *
+   * @return          Pointer to the interface.
+   */
+  IMgaMetaConnJoint * impl (void) const;
+
+   /**
+   * Attach the object to the specified interface.
+   *
+   * @param[in]       point       Pointer to the target object.
+   */
+  void attach (IMgaMetaConnJoint * point);
+
+  /**
+   * Get the parent of this connection point, which is Connection_Impl.
+   *
+   * @return          Parent of the Metaconnection.
+   */
+  Connection parent (void) const;
+
+private:
+  /// Pointer to the connection point.
+  mutable CComPtr <IMgaMetaConnJoint> point_;
+
+};
+//==============================================================================
+/**
+ * @class Connection_Impl
+ *
+ * Wrapper class for the IMgaMetaConnection interface.
  */
 class GAME_MGA_Export Connection_Impl : public FCO_Impl
 {
@@ -48,6 +109,14 @@ public:
 
   /// Helper method to the correct implementation.
   IMgaMetaConnection * impl (void) const;
+
+  /**
+   * Get the connection points for this connection.*
+   *
+   * @param[out]      points      Collection of connection points.
+   * @return          Number of connection points in \a points.
+   */
+  size_t connection_points (std::vector <ConnectionPoint> & points) const;
 
 private:
   /// Cached pointer to the implementation.

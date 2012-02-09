@@ -25,6 +25,7 @@
 #include "MetaAtom.h"
 #include "MetaAttribute.h"
 #include "MetaConnection.h"
+#include "MetaConstraint.h"
 #include "MetaFolder.h"
 #include "MetaModel.h"
 #include "MetaPart.h"
@@ -164,9 +165,25 @@ Attribute_Impl * Default_Impl_Factory::allocate (IMgaAttribute * ptr)
 //
 // allocate
 //
+Meta::Constraint_Impl * Default_Impl_Factory::allocate (IMgaConstraint * ptr)
+{
+  return 0 != ptr ? new Meta::Constraint_Impl (ptr) : 0;
+}
+
+//
+// allocate
+//
 ConnectionPoint_Impl * Default_Impl_Factory::allocate (IMgaConnPoint * ptr)
 {
   return 0 != ptr ? new ConnectionPoint_Impl (ptr) : 0;
+}
+
+//
+// allocate
+//
+Meta::ConnectionPoint_Impl * Default_Impl_Factory::allocate (IMgaMetaConnJoint * ptr)
+{
+  return 0 != ptr ? new Meta::ConnectionPoint_Impl (ptr) : 0;
 }
 
 }

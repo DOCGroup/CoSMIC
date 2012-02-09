@@ -28,6 +28,8 @@ class Object_Impl;
 namespace Meta
 {
 class Base_Impl;
+class Constraint_Impl;
+class ConnectionPoint_Impl;
 }
 
 /**
@@ -103,7 +105,11 @@ public:
 
   Attribute_Impl * allocate (IMgaAttribute * ptr);
 
+  Meta::Constraint_Impl * allocate (IMgaConstraint * ptr);
+
   ConnectionPoint_Impl * allocate (IMgaConnPoint * ptr);
+
+  Meta::ConnectionPoint_Impl * allocate (IMgaMetaConnJoint * ptr);  
 
   /**
    * Allocate the meta implementation pointer for a meta object.

@@ -65,9 +65,39 @@ struct collection_traits <IMgaMetaFCOs *>
 };
 
 template < >
+struct collection_traits <IMgaMetaParts *>
+{
+  typedef IMgaMetaPart interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaRoles *>
+{
+  typedef IMgaMetaRole interface_type;
+};
+
+template < >
 struct collection_traits <IMgaMetaAspects *>
 {
   typedef IMgaMetaAspect interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaAttributes *>
+{
+  typedef IMgaMetaAttribute interface_type;
+};
+
+template < >
+struct collection_traits <IMgaConstraints *>
+{
+  typedef IMgaConstraint interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaConnJoints *>
+{
+  typedef IMgaMetaConnJoint interface_type;
 };
 
 //

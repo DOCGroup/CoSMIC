@@ -69,6 +69,20 @@ public:
    */
   Model parent (void) const;
 
+  /**
+   * Get all the parts associated with the role.
+   *
+   * @param[out]      parts      All the parts this role is associated with.
+   */
+  size_t parts(std::vector <Part> & parts) const;
+
+  /**
+   * Get the count of parts.
+   *
+   * @return          Count of parts present.
+   */
+  long partscount (void) const;
+
 private:
   /// Pointer to the COM object.
   mutable ATL::CComPtr <IMgaMetaRole> metarole_;
