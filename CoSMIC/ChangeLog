@@ -1,3 +1,11 @@
+Fri Feb 10 17:03:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/paradigms/DQML.mta:
+        * PSM/DQML/paradigms/DQML.xme:
+        * PSM/DQML/paradigms/DQML.xmp:
+
+          Updated DQML metamodel to latest version of iCCM.
+
 Mon Feb  6 18:50:43 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
