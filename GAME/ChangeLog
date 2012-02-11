@@ -1,3 +1,10 @@
+Sat Feb 11 17:33:30 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Application.h:
+        * game/mga/Application.cpp:
+
+          Removed these files.
+
 Sat Feb 11 17:30:44 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
