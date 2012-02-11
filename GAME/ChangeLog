@@ -1,3 +1,64 @@
+Sat Feb 11 18:58:14 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Add_Command.h:
+        * game/mga/addons/Model_Intelligence/Add_Command.cpp:
+        * game/mga/addons/Model_Intelligence/And_Expr.h:
+        * game/mga/addons/Model_Intelligence/And_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Association_Handler.h:
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Boolean_Expr.h:
+        * game/mga/addons/Model_Intelligence/Boolean_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Collection_Expr.h:
+        * game/mga/addons/Model_Intelligence/Collection_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.h:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Component.rc:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.h:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.h:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.h:
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.cpp:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.h:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Expr_Command.h:
+        * game/mga/addons/Model_Intelligence/Expr_Command.cpp:
+        * game/mga/addons/Model_Intelligence/GAME_Model_Intelligence.reg:
+        * game/mga/addons/Model_Intelligence/GAME_Model_Intelligenced.reg:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.idl:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Context.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Module.cpp:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.h:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.h:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.h:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Resource.h:
+        * game/mga/addons/Model_Intelligence/Size_Method_Expr.h:
+        * game/mga/addons/Model_Intelligence/Size_Method_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/StdAfx.h:
+        * game/mga/addons/Model_Intelligence/StdAfx.cpp:
+        * game/mga/addons/Model_Intelligence/Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Value_Expr.cpp:
+
+          Added missing svn:keywords and svn:eol-style keywords.
+
 Sat Feb 11 18:53:44 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Association_Handler.h:
