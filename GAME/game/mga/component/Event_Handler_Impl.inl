@@ -24,6 +24,7 @@ GAME_INLINE
 Event_Handler_Impl::Event_Handler_Impl (unsigned long mask, bool destroy_on_close)
 : current_mask_ (mask),
   is_importing_ (false),
+  sink_ (0),
   destroy_on_close_ (destroy_on_close)
 {
 
@@ -42,9 +43,9 @@ Event_Handler_Impl::~Event_Handler_Impl (void)
 // set_event_handler
 //
 GAME_INLINE
-void Event_Handler_Impl::set_event_handler (Event_Sink * eh)
+void Event_Handler_Impl::set_event_sink (Event_Sink * sink)
 {
-  this->event_handler_ = eh;
+  this->sink_ = sink;
 }
 
 //
@@ -60,8 +61,7 @@ int Event_Handler_Impl::initialize (Project project)
 // handle_global_event
 //
 GAME_INLINE
-int Event_Handler_Impl::
-handle_global_event (long global_event)
+int Event_Handler_Impl::handle_global_event (long global_event)
 {
   return 0;
 }
@@ -70,8 +70,7 @@ handle_global_event (long global_event)
 // handle_object_event
 //
 GAME_INLINE
-int Event_Handler_Impl::
-handle_object_event (Object_in, unsigned long mask)
+int Event_Handler_Impl::handle_object_event (Object_in, unsigned long mask)
 {
   return 0;
 }

@@ -1,3 +1,25 @@
+Sat Feb 11 17:09:54 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/component/Component.mpc:
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler.inl:
+        * game/mga/component/Event_Handler.cpp:
+        * game/mga/component/Event_Handler_Impl.h:
+        * game/mga/component/Event_Handler_Impl.inl:
+        * game/mga/component/Event_Sink.h:
+        * game/mga/component/Event_Sink.inl:
+        * game/mga/component/Event_Sink.cpp:
+
+          Changed the class Event_Handler_Interface to Event_Handler.
+
+          Changed the member variable from event_handler_ to sink_ to
+          reflect the class name change from Event_Handler to Event_Sink.
+
+        * game/mga/component/Event_Handler_Interface.h:
+
+          Removed this file.
+
 Sat Feb 11 16:39:24 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Event_Sink_T.h:

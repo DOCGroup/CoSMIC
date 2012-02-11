@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        Event_Handler_Interface.h
+ * @file        Event_Handler.h
  *
  * $Id$
  *
@@ -24,18 +24,18 @@ namespace Mga
 class Event_Sink;
 
 /**
- * @class Event_Handler_Impl
+ * @class Event_Handler
  *
- * Base class implementation for the event sink.
+ * Abstract class implementation for the event handler.
  */
-class GAME_MGA_COMPONENT_Export Event_Handler_Interface
+class GAME_MGA_COMPONENT_Export Event_Handler
 {
 public:
-  virtual ~Event_Handler_Interface (void) = 0 { }
+  /// Destructor.
+  virtual ~Event_Handler (void) = 0;
 
-  /// Set the event handler for the implementation. This allows
-  /// the implementation to send message to the event handler.
-  virtual void set_event_handler (Event_Sink * eh) = 0;
+  /// Set the event sink for the implementation.
+  virtual void set_event_sink (Event_Sink * eh) = 0;
 
   /// Get the event make for the event handler.
   virtual long event_mask (void) const = 0;
@@ -136,5 +136,9 @@ public:
 
 }
 }
+
+#if defined (__GAME_INLINE__)
+#include "Event_Handler.inl"
+#endif
 
 #endif  // !defined _GAME_BE_EVENT_HANDLER_INTERFACE_H_

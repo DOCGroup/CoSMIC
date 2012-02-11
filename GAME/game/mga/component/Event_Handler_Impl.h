@@ -13,7 +13,7 @@
 #ifndef _GAME_BE_EVENT_HANDLER_IMPL_H_
 #define _GAME_BE_EVENT_HANDLER_IMPL_H_
 
-#include "Event_Handler_Interface.h"
+#include "Event_Handler.h"
 
 namespace GAME
 {
@@ -32,7 +32,7 @@ class Event_Sink;
  * Base class implementation for the event sink.
  */
 class GAME_MGA_COMPONENT_Export Event_Handler_Impl :
-  public Event_Handler_Interface
+  public Event_Handler
 {
 public:
   /// Default constructor.
@@ -50,7 +50,7 @@ public:
 
   /// Set the event handler for the implementation. This allows
   /// the implementation to send message to the event handler.
-  virtual void set_event_handler (Event_Sink * eh);
+  virtual void set_event_sink (Event_Sink * eh);
 
   /// Get the event make for the event handler.
   virtual long event_mask (void) const;
@@ -156,7 +156,7 @@ protected:
   bool is_importing_;
 
   /// Event handler assigned to this implementation.
-  Event_Sink * event_handler_;
+  Event_Sink * sink_;
 
   /// Destroy the event handler when it is closed.
   bool destroy_on_close_;

@@ -81,23 +81,23 @@ Model_Intelligence::~Model_Intelligence (void)
 int Model_Intelligence::initialize (Mga::Project project)
 {
 
-  this->event_handler_->register_handler (OBJTYPE_REFERENCE,
-    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Reference_Handler>, 
-	              ACE_Null_Mutex>::instance ());
+  this->sink_->register_handler (OBJTYPE_REFERENCE,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Reference_Handler>,
+                ACE_Null_Mutex>::instance ());
 
-   this->event_handler_->register_handler (OBJTYPE_MODEL,
-    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Containment_Handler>, 
-	              ACE_Null_Mutex>::instance ());
+   this->sink_->register_handler (OBJTYPE_MODEL,
+    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Containment_Handler>,
+                ACE_Null_Mutex>::instance ());
 
-   this->event_handler_->register_handler (OBJTYPE_ATOM,
+   this->sink_->register_handler (OBJTYPE_ATOM,
      ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Containment_Handler_Extended>,
                 ACE_Null_Mutex>::instance ());
 
-   this->event_handler_->register_handler (OBJTYPE_ATOM,
+   this->sink_->register_handler (OBJTYPE_ATOM,
      ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Association_Handler>,
                 ACE_Null_Mutex>::instance ());
 
-  
+
   return 0;
 }
 }

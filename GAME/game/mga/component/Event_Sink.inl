@@ -1,6 +1,6 @@
 // $Id$
 
-#include "Event_Handler_Interface.h"
+#include "Event_Handler.h"
 
 namespace GAME
 {

@@ -16,7 +16,6 @@ project (GAME_Mga_Component) : game_mga_utils, game_lib {
   Header_Files {
     Addon.h
     Component_Module.h
-    Event_Handler_Interface.h
   }
 
   Source_Files {
@@ -25,8 +24,9 @@ project (GAME_Mga_Component) : game_mga_utils, game_lib {
     Addon_Impl_Base.cpp
     ComponentEx_Impl_Base.cpp
     Console_Service.cpp
-    Event_Sink.cpp
+    Event_Handler.cpp
     Event_Handler_Impl.cpp
+    Event_Sink.cpp
     Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp
     Readonly_Event_Handler.cpp
