@@ -21,7 +21,7 @@ namespace GAME
 namespace Mga
 {
 // Forward decl.
-class Event_Handler;
+class Event_Sink;
 
 /**
  * @class Event_Handler_Impl
@@ -35,7 +35,7 @@ public:
 
   /// Set the event handler for the implementation. This allows
   /// the implementation to send message to the event handler.
-  virtual void set_event_handler (Event_Handler * eh) = 0;
+  virtual void set_event_handler (Event_Sink * eh) = 0;
 
   /// Get the event make for the event handler.
   virtual long event_mask (void) const = 0;

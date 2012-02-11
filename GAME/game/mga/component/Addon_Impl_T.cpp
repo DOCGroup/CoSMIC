@@ -4,7 +4,7 @@
 #include "Addon_Impl_T.inl"
 #endif
 
-#include "Event_Handler.h"
+#include "Event_Sink.h"
 #include "game/mga/Project.h"
 
 namespace GAME
@@ -47,8 +47,8 @@ STDMETHODIMP Addon_Impl_T <T, SINK>::Initialize (IMgaProject * proj)
   try
   {
     // Create a new event handler for this add-on.
-    this->sink_.Attach (new CComObject <Event_Handler> ());
-    this->sink_->attach (&this->impl_);
+    this->sink_.Attach (new CComObject <Event_Sink> ());
+    this->sink_->set_event_handler (&this->impl_);
 
     // Register the event handler with GME.
     VERIFY_HRESULT (proj->CreateAddOn (this->sink_, &this->addon_));

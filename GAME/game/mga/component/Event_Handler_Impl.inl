@@ -42,7 +42,7 @@ Event_Handler_Impl::~Event_Handler_Impl (void)
 // set_event_handler
 //
 GAME_INLINE
-void Event_Handler_Impl::set_event_handler (Event_Handler * eh)
+void Event_Handler_Impl::set_event_handler (Event_Sink * eh)
 {
   this->event_handler_ = eh;
 }

@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file        Event_Handler.h
+ * @file        Event_Sink.h
  *
  * $Id$
  *
@@ -10,8 +10,8 @@
  */
 //=============================================================================
 
-#ifndef _GAME_BE_EVENT_HANDLER_H_
-#define _GAME_BE_EVENT_HANDLER_H_
+#ifndef _GAME_MGA_EVENT_SINK_H_
+#define _GAME_MGA_EVENT_SINK_H_
 
 #include <atlbase.h>
 #include <atlcom.h>
@@ -33,21 +33,21 @@ namespace Mga
 class Event_Handler_Interface;
 
 /**
- * @class Event_Handler
+ * @class Event_Sink
  *
  * The actual implementation of the event handler. This class
  * acts as a bridge between GME and the event sinks.
  */
-class GAME_MGA_COMPONENT_Export Event_Handler :
+class GAME_MGA_COMPONENT_Export Event_Sink :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
   public IMgaEventSink
 {
 public:
   /// Default constructor.
-  Event_Handler (Event_Handler_Interface * impl = 0);
+  Event_Sink (void);
 
   /// Destructor.
-  virtual ~Event_Handler (void);
+  virtual ~Event_Sink (void);
 
   /**
    * Initialize the event handler.
@@ -64,7 +64,7 @@ public:
    *
    * @param[in]       impl          The target implementation
    */
-  void attach (Event_Handler_Interface * impl = 0);
+  void set_event_handler (Event_Handler_Interface * impl = 0);
 
   int register_global_handler (Event_Handler_Interface * eh);
 
@@ -138,7 +138,7 @@ public:
   STDMETHOD (GlobalEvent) (globalevent_enum event);
   STDMETHOD (ObjectEvent) (IMgaObject * obj, unsigned long eventmask, VARIANT v);
 
-  BEGIN_COM_MAP (Event_Handler)
+  BEGIN_COM_MAP (Event_Sink)
     COM_INTERFACE_ENTRY (IMgaEventSink)
     COM_INTERFACE_ENTRY (IUnknown)
   END_COM_MAP ()
@@ -206,7 +206,7 @@ private:
 }
 
 #if defined (__GAME_INLINE__)
-#include "Event_Handler.inl"
+#include "Event_Sink.inl"
 #endif
 
-#endif  // !defined _GME_EVENT_SINK_IMPL_H_
+#endif  // !defined _GAME_MGA_EVENT_SINK_H_

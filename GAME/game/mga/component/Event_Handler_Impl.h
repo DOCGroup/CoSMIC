@@ -24,7 +24,7 @@ namespace Mga
 class Project;
 
 // Forward decl.
-class Event_Handler;
+class Event_Sink;
 
 /**
  * @class Event_Handler_Impl
@@ -50,7 +50,7 @@ public:
 
   /// Set the event handler for the implementation. This allows
   /// the implementation to send message to the event handler.
-  virtual void set_event_handler (Event_Handler * eh);
+  virtual void set_event_handler (Event_Sink * eh);
 
   /// Get the event make for the event handler.
   virtual long event_mask (void) const;
@@ -156,7 +156,7 @@ protected:
   bool is_importing_;
 
   /// Event handler assigned to this implementation.
-  Event_Handler * event_handler_;
+  Event_Sink * event_handler_;
 
   /// Destroy the event handler when it is closed.
   bool destroy_on_close_;

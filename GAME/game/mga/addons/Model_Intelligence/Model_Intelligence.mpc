@@ -1,6 +1,6 @@
-project (GAME_Model_Intelligence): \
-  boost_base, game_mga_component, game_dialogs, game_mga_utils, game_lib {
+// $Id$
 
+project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs, game_mga_utils, game_lib {
   sharedname = GAME_Model_Intelligence
 
   pch_header = StdAfx.h
@@ -15,33 +15,33 @@ project (GAME_Model_Intelligence): \
     Reference_Handler.cpp
     Containment_Handler.cpp
     Containment_Handler_Extended.cpp
-    
+
     OCL_Expr_Parser.cpp
-    
+
     Boolean_Expr.cpp
     Local_Value_Assignment_Expr.cpp
     Equality_Expr.cpp
-    
+
     Expr_Command.cpp
     Add_Command.cpp
-    
+
     Conjunction_Expr.cpp
     And_Expr.cpp
-    
+
     Comparison_Expr.cpp
     Equal_Expr.cpp
     Greater_Equal_Expr.cpp
-    Lesser_Equal_Expr.cpp        
-    
+    Lesser_Equal_Expr.cpp
+
     Collection_Expr.cpp
-    Parts_Method_Expr.cpp    
-    
+    Parts_Method_Expr.cpp
+
     Value_Expr.cpp
     Constant_Value_Expr.cpp
     Local_Value_Expr.cpp
     Size_Method_Expr.cpp
   }
-  
+
   Header_Files {
     Model_Intelligence_Context.h
   }

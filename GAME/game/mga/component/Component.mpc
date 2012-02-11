@@ -25,7 +25,7 @@ project (GAME_Mga_Component) : game_mga_utils, game_lib {
     Addon_Impl_Base.cpp
     ComponentEx_Impl_Base.cpp
     Console_Service.cpp
-    Event_Handler.cpp
+    Event_Sink.cpp
     Event_Handler_Impl.cpp
     Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp

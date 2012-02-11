@@ -15,7 +15,7 @@
 
 #include "ComponentEx_Impl_T.h"
 #include "Addon_Impl_Base.h"
-#include "Event_Handler.h"
+#include "Event_Sink.h"
 
 #define GAME_DEFAULT_ADDON_IMPL(type, name, paradigm, progid) \
   class type : public GAME::Mga::Addon_Impl_Base { \
@@ -57,7 +57,7 @@ protected:
   SINK impl_;
 
   /// Raw interface to the event sink.
-  ::ATL::CComPtr <Event_Handler> sink_;
+  ::ATL::CComPtr <Event_Sink> sink_;
 
   /// Raw interface to the add-on.
   ::ATL::CComPtr <IMgaAddOn> addon_;

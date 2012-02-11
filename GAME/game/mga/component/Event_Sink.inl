@@ -8,10 +8,10 @@ namespace Mga
 {
 
 //
-// ~Event_Handler
+// ~Event_Sink
 //
 GAME_INLINE
-Event_Handler::~Event_Handler (void)
+Event_Sink::~Event_Sink (void)
 {
 
 }
@@ -20,7 +20,7 @@ Event_Handler::~Event_Handler (void)
 // enable
 //
 GAME_INLINE
-void Event_Handler::enable (bool state)
+void Event_Sink::enable (bool state)
 {
   this->enable_ = state;
 }

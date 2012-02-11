@@ -1,10 +1,10 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Event_Handler.h"
+#include "Event_Sink.h"
 
 #if !defined (__GAME_INLINE__)
-#include "Event_Handler.inl"
+#include "Event_Sink.inl"
 #endif
 
 #include "Console_Service.h"
@@ -559,41 +559,40 @@ static const handler_entry_t objectevent_handles[OBJECT_EVENT_COUNT] = {
 };
 
 //
-// Event_Handler
+// Event_Sink
 //
-Event_Handler::Event_Handler (Event_Handler_Interface * impl)
-: impl_ (impl),
+Event_Sink::Event_Sink (void)
+: impl_ (0),
   enable_ (true),
   meta_handlers_ (OBJTYPE_FOLDER + 1)
 {
-  if (0 != this->impl_)
-    this->impl_->set_event_handler (this);
+
 }
 
 //
-// attach
+// set_event_handler
 //
-void Event_Handler::attach (Event_Handler_Interface * impl)
+void Event_Sink::set_event_handler (Event_Handler_Interface * impl)
 {
-  if (this->impl_ == impl)
-    return;
+  if (this->impl_ != impl)
+  {
+    // Unset event handler for current implementation
+    if (0 != this->impl_)
+      this->impl_->set_event_handler (0);
 
-  // Unset event handler for current implementation
-  if (0 != this->impl_)
-    this->impl_->set_event_handler (0);
+    // Save the implementation.
+    this->impl_ = impl;
 
-  // Save the implementation.
-  this->impl_ = impl;
-
-  // Set event handler for current implementation
-  if (0 != this->impl_)
-    this->impl_->set_event_handler (this);
+    // Set event handler for current implementation
+    if (0 != this->impl_)
+      this->impl_->set_event_handler (this);
+  }
 }
 
 //
 // initialize
 //
-int Event_Handler::initialize (Project project)
+int Event_Sink::initialize (Project project)
 {
   // Save the project and start a new transaction.
   this->project_ = project;
@@ -608,7 +607,7 @@ int Event_Handler::initialize (Project project)
 //
 // GlobalEvent
 //
-STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
+STDMETHODIMP Event_Sink::GlobalEvent (globalevent_enum ev)
 {
   // There is no need to continue if we are not enabled.
   if (!this->enable_)
@@ -654,7 +653,7 @@ STDMETHODIMP Event_Handler::GlobalEvent (globalevent_enum ev)
 //
 // dispatch_global_event
 //
-int Event_Handler::
+int Event_Sink::
 dispatch_global_event (long global_event, Event_Handler_Interface * eh)
 {
   GLOBAL_EVENT_METHOD method = 0;
@@ -680,7 +679,7 @@ dispatch_global_event (long global_event, Event_Handler_Interface * eh)
 //
 // ObjectEvent
 //
-STDMETHODIMP Event_Handler::
+STDMETHODIMP Event_Sink::
 ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 {
   // There is no need to continue if we are not enabled.
@@ -743,7 +742,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 //
 // register_global_handler
 //
-int Event_Handler::
+int Event_Sink::
 register_global_handler (Event_Handler_Interface * eh)
 {
   int retval = this->insert_into_global_handlers (eh);
@@ -757,7 +756,7 @@ register_global_handler (Event_Handler_Interface * eh)
 //
 // unregister_global_handler
 //
-int Event_Handler::unregister_global_handler (Event_Handler_Interface * eh)
+int Event_Sink::unregister_global_handler (Event_Handler_Interface * eh)
 {
   return this->remove_from_global_handlers (eh);
 }
@@ -766,7 +765,7 @@ int Event_Handler::unregister_global_handler (Event_Handler_Interface * eh)
 //
 // register_handler
 //
-int Event_Handler::
+int Event_Sink::
 register_handler (size_t metatype, Event_Handler_Interface * eh)
 {
   if (metatype + 1 >= this->meta_handlers_.size ())
@@ -780,7 +779,7 @@ register_handler (size_t metatype, Event_Handler_Interface * eh)
 //
 // register_handler
 //
-int Event_Handler::
+int Event_Sink::
 register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 {
   Folder root = this->project_.root_folder ();
@@ -813,7 +812,7 @@ register_handler (const std::string & metaname, Event_Handler_Interface * eh)
 //
 // register_handler
 //
-int Event_Handler::
+int Event_Sink::
 register_handler (const Meta::Base_in meta, Event_Handler_Interface * eh)
 {
   if (0 != this->insert_into_global_handlers (eh))
@@ -847,7 +846,7 @@ register_handler (const Meta::Base_in meta, Event_Handler_Interface * eh)
 //
 // register_handler
 //
-int Event_Handler::
+int Event_Sink::
 register_handler (const Object_in obj, Event_Handler_Interface * eh)
 {
   if (0 != this->insert_into_global_handlers (eh))
@@ -881,7 +880,7 @@ register_handler (const Object_in obj, Event_Handler_Interface * eh)
 //
 // unregister_handler
 //
-int Event_Handler::
+int Event_Sink::
 unregister_handler (const Object_in obj, Event_Handler_Interface * eh)
 {
   handler_set * handlers = 0;
@@ -898,7 +897,7 @@ unregister_handler (const Object_in obj, Event_Handler_Interface * eh)
 //
 // unregister_all
 //
-int Event_Handler::unregister_all (const Object_in obj)
+int Event_Sink::unregister_all (const Object_in obj)
 {
   handler_set * handlers = 0;
 
@@ -918,7 +917,7 @@ int Event_Handler::unregister_all (const Object_in obj)
 //
 // close
 //
-void Event_Handler::close (void)
+void Event_Sink::close (void)
 {
   // Close all the event handlers.
   global_handler_map_t::ITERATOR iter (this->global_handlers_);
@@ -930,7 +929,7 @@ void Event_Handler::close (void)
 //
 // dispatch_object_event
 //
-int Event_Handler::
+int Event_Sink::
 dispatch_object_event (Object_in obj, unsigned long mask, const handler_set & handlers)
 {
   handler_set::CONST_ITERATOR iter (handlers);
@@ -938,7 +937,7 @@ dispatch_object_event (Object_in obj, unsigned long mask, const handler_set & ha
   for (; !iter.done (); ++ iter)
   {
     // Pass the event to each event hanlder.
-    if (0 != Event_Handler::dispatch_object_event (obj, mask, *iter))
+    if (0 != Event_Sink::dispatch_object_event (obj, mask, *iter))
       return -1;
   }
 
@@ -948,7 +947,7 @@ dispatch_object_event (Object_in obj, unsigned long mask, const handler_set & ha
 //
 // dispatch_object_event
 //
-int Event_Handler::
+int Event_Sink::
 dispatch_object_event (const Object_in obj,
                        unsigned long mask,
                        Event_Handler_Interface * eh)
@@ -987,7 +986,7 @@ dispatch_object_event (const Object_in obj,
 //
 // insert_into_global_handlers
 //
-int Event_Handler::
+int Event_Sink::
 insert_into_global_handlers (Event_Handler_Interface * eh)
 {
   // Get the current reference count.
@@ -1001,7 +1000,7 @@ insert_into_global_handlers (Event_Handler_Interface * eh)
 //
 // remove_from_global_handlers
 //
-int Event_Handler::
+int Event_Sink::
 remove_from_global_handlers (Event_Handler_Interface * eh)
 {
   // Get the current reference count.
