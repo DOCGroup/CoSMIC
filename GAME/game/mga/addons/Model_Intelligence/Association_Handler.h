@@ -18,11 +18,11 @@
 /**
  * @class Association_Handler
  *
- * Handler that is responsible for resolving 
+ * Handler that is responsible for resolving
  * association type of relationship
  */
 class Association_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;

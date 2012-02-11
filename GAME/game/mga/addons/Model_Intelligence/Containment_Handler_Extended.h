@@ -22,7 +22,7 @@
  * number of a particular FCO based on the constraint.
  */
 class Containment_Handler_Extended :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;

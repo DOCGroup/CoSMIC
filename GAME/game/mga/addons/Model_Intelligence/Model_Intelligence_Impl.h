@@ -31,7 +31,7 @@ GAME_DEFAULT_ADDON_IMPL (Model_Intelligence_Impl,
                          "GAME Model Intelligence",
                          "*",
                          "GAME.AddOn.Model_Intelligence");
-namespace GAME 
+namespace GAME
 
 {
 /**
@@ -39,7 +39,8 @@ namespace GAME
  *
  * Raw component interface for the add-on.
  */
-class Model_Intelligence : public Mga::Event_Handler_Impl
+class Model_Intelligence :
+  public Mga::Static_Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED |

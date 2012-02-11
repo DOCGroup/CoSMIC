@@ -25,7 +25,7 @@
 // Containment_Handler
 //
 Containment_Handler_Extended::Containment_Handler_Extended (void)
-: GAME::Mga::Event_Handler_Impl (eventmask, true)
+: GAME::Mga::Dynamic_Event_Handler_Impl (eventmask)
 {
 
 }

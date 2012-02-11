@@ -19,7 +19,7 @@
 // Reference_Handler
 //
 Reference_Handler::Reference_Handler (void)
-: GAME::Mga::Event_Handler_Impl (eventmask, true)
+: GAME::Mga::Dynamic_Event_Handler_Impl (eventmask)
 {
 
 }
