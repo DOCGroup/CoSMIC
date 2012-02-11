@@ -168,7 +168,8 @@ protected:
  * Event handler implementation that is dynamically allocated. This
  * implementation is destroyed when closed.
  */
-class Dynamic_Event_Handler_Impl : public Event_Handler_Impl
+class GAME_MGA_COMPONENT_Export Dynamic_Event_Handler_Impl :
+  public Event_Handler_Impl
 {
 public:
   /// Initializing constructor.
@@ -184,8 +185,10 @@ public:
  * Event handler implementation that is dynamically allocated. This
  * implementation is not destroyed when closed.
  */
-class Static_Event_Handler_Impl : public Event_Handler_Impl
+class GAME_MGA_COMPONENT_Export Static_Event_Handler_Impl :
+  public Event_Handler_Impl
 {
+public:
   /// Initializing constructor.
   Static_Event_Handler_Impl (unsigned long mask);
 
