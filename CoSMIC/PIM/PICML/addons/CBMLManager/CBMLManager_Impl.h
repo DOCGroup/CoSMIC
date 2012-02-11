@@ -36,7 +36,8 @@ GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
  *
  * Raw component interface for the add-on.
  */
-class CBML_Model_Intelligence : public GAME::Mga::Event_Handler_Impl
+class CBML_Model_Intelligence :
+  public GAME::Mga::Static_Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED |

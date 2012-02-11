@@ -1,3 +1,10 @@
+Sat Feb 11 18:03:35 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+
+          Updated code to reflect latest updates in GAME.
+
 Sat Feb 11 17:11:40 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
