@@ -1,3 +1,13 @@
+Sat Feb 11 00:19:30 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Addon_Impl_T.cpp:
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler.inl:
+        * game/mga/component/Event_Handler.cpp:
+
+          The event handler now closes all implementations when it
+          is closed.
+
 Thu Feb  9 02:07:49 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/Collection_T.cpp:
@@ -23,9 +33,9 @@ Thu Feb  9 02:07:49 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/MetaRole.h:
         * game/mga/MetaRole.cpp:
         * game/mga/Mga.mpc:
-		
-		  Added the MetaConstraint header, source and inlines files and
-		  extended other files by adding more functionality.
+
+          Added the MetaConstraint header, source and inlines files and
+          extended other files by adding more functionality.
 
         * game/mga/addons/Model_Intelligence/Add_Command.h:
         * game/mga/addons/Model_Intelligence/Add_Command.cpp:
@@ -72,9 +82,9 @@ Thu Feb  9 02:07:49 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/Size_Method_Expr.cpp:
         * game/mga/addons/Model_Intelligence/Value_Expr.h:
         * game/mga/addons/Model_Intelligence/Value_Expr.cpp:
-		
-		  Modified the exisiting model intelligence files and added
-		  OCL expression parsing and expression evaluation files, so
+
+          Modified the exisiting model intelligence files and added
+          OCL expression parsing and expression evaluation files, so
           as to provide support for automated containment in models.
 
 Mon Feb  6 18:45:07 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>

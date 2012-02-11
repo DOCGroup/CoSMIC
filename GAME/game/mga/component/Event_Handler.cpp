@@ -11,8 +11,6 @@
 #include "game/mga/Transaction.h"
 #include "game/mga/MetaFCO.h"
 
-
-
 #include "ace/ACE.h"
 #include "ace/Auto_Ptr.h"
 #include "ace/streams.h"
@@ -922,29 +920,18 @@ int Event_Handler::unregister_all (const Object_in obj)
 //
 void Event_Handler::close (void)
 {
-  //// Delete all event handlers sets for the types.
-  //typedef ACE_Hash_Map_Manager <Meta::Base,
-  //                              handler_set *,
-  //                              ACE_Null_Mutex> hash_map_t;
+  // Close all the event handlers.
+  global_handler_map_t::ITERATOR iter (this->global_handlers_);
 
-  //hash_map_t::ITERATOR iter (this->type_handlers_);
-
-  //// Delete all the handler sets.
-  //for (; !iter.done (); ++ iter)
-  //  iter->item ();
-
-  //// Clear all the container's contents.
-  //this->type_handlers_.unbind_all ();
-  //this->master_.reset ();
+  for (; !iter.done (); ++ iter)
+    iter->key ()->close ();
 }
 
 //
 // dispatch_object_event
 //
 int Event_Handler::
-dispatch_object_event (Object_in obj,
-                       unsigned long mask,
-                       const handler_set & handlers)
+dispatch_object_event (Object_in obj, unsigned long mask, const handler_set & handlers)
 {
   handler_set::CONST_ITERATOR iter (handlers);
 

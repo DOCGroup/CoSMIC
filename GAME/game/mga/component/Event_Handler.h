@@ -56,6 +56,9 @@ public:
    */
   int initialize (Project project);
 
+  /// Close the event sink.
+  void close (void);
+
   /**
    * Attach the event handler to an implementation.
    *
@@ -139,9 +142,6 @@ public:
     COM_INTERFACE_ENTRY (IMgaEventSink)
     COM_INTERFACE_ENTRY (IUnknown)
   END_COM_MAP ()
-
-  /// Close the event handler.
-  void close (void);
 
 private:
   static const unsigned long BITMASK_SIZE = 32;

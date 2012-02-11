@@ -18,12 +18,17 @@ namespace Mga
 template <typename T, typename SINK>
 Addon_Impl_T <T, SINK>::~Addon_Impl_T (void)
 {
+  //// Close the sink object, and then destroy the add-on.
+  //this->sink_->close ();
+
   if (this->addon_)
   {
-    HRESULT hr = this->addon_->Destroy ();
+    // Destroy the addon. Once this is done, we have to detach
+    // from both CComPtr since it destroys their objects as well.
+    this->addon_->Destroy ();
 
-    if (hr == S_OK)
-      this->sink_.Detach ();
+    this->addon_.Detach ();
+    this->sink_.Detach ();
   }
 }
 

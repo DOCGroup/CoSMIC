@@ -13,7 +13,7 @@ namespace Mga
 GAME_INLINE
 Event_Handler::~Event_Handler (void)
 {
-  this->close ();
+
 }
 
 //
