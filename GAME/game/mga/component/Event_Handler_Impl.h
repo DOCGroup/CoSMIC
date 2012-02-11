@@ -162,6 +162,37 @@ protected:
   bool destroy_on_close_;
 };
 
+/**
+ * @class Dynamic_Event_Handler_Impl
+ *
+ * Event handler implementation that is dynamically allocated. This
+ * implementation is destroyed when closed.
+ */
+class Dynamic_Event_Handler_Impl : public Event_Handler_Impl
+{
+public:
+  /// Initializing constructor.
+  Dynamic_Event_Handler_Impl (unsigned long mask);
+
+  /// Destructor.
+  virtual ~Dynamic_Event_Handler_Impl (void);
+};
+
+/**
+ * @class Static_Event_Handler_Impl
+ *
+ * Event handler implementation that is dynamically allocated. This
+ * implementation is not destroyed when closed.
+ */
+class Static_Event_Handler_Impl : public Event_Handler_Impl
+{
+  /// Initializing constructor.
+  Static_Event_Handler_Impl (unsigned long mask);
+
+  /// Destructor.
+  virtual ~Static_Event_Handler_Impl (void);
+};
+
 }
 }
 

@@ -5,6 +5,10 @@ namespace GAME
 namespace Mga
 {
 
+///////////////////////////////////////////////////////////////////////////////
+// Event_Handler_Impl
+///////////////////////////////////////////////////////////////////////////////
+
 //
 // Event_Handler_Impl
 //
@@ -453,6 +457,52 @@ GAME_INLINE
 int Event_Handler_Impl::handle_object_mouseover (Object_in)
 {
   return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Static_Event_Handler_Impl
+///////////////////////////////////////////////////////////////////////////////
+
+//
+// Static_Event_Handler_Impl
+//
+GAME_INLINE
+Static_Event_Handler_Impl::Static_Event_Handler_Impl (unsigned long mask)
+: Event_Handler_Impl (mask, false)
+{
+
+}
+
+//
+// ~Static_Event_Handler_Impl
+//
+GAME_INLINE
+Static_Event_Handler_Impl::~Static_Event_Handler_Impl (void)
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Dynamic_Event_Handler_Impl
+///////////////////////////////////////////////////////////////////////////////
+
+//
+// Dynamic_Event_Handler_Impl
+//
+GAME_INLINE
+Dynamic_Event_Handler_Impl::Dynamic_Event_Handler_Impl (unsigned long mask)
+: Event_Handler_Impl (mask, true)
+{
+
+}
+
+//
+// ~Dynamic_Event_Handler_Impl
+//
+GAME_INLINE
+Dynamic_Event_Handler_Impl::~Dynamic_Event_Handler_Impl (void)
+{
+
 }
 
 }

@@ -1,3 +1,11 @@
+Sat Feb 11 17:50:18 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Event_Handler_Impl.h:
+        * game/mga/component/Event_Handler_Impl.inl:
+
+          Implemented two new event handler implementation types named
+          Static_Event_Handler_Impl and Dynamic_Event_Handler_Impl.
+
 Sat Feb 11 17:33:30 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Application.h:
