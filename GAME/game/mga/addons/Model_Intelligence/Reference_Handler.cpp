@@ -37,12 +37,17 @@ Reference_Handler::~Reference_Handler (void)
 //
 int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
-
   if (this->is_importing_)
     return 0;
 
-  // Find the event sources
+  // There is no need to continue if the reference is not nil. This can
+  // happen if some other addon creates the reference and sets the object
+  // it refers to.
   GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (obj);
+  GAME::Mga::FCO refers_to = ref->refers_to ();
+
+  if (!refers_to.is_nil ())
+    return 0;
 
   // Vector for holding the metaobjects that ref referes to
   std::vector <GAME::Mga::Meta::FCO> types;
@@ -77,8 +82,12 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
     using GAME::Dialogs::Selection_List_Dialog_T;
     Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd ());
 
-    dlg.title ("Reference Resolver");
-    dlg.directions ("Select the target object for the respective reference");
+    const std::string directions =
+      "Please select the target object for the " +
+      ref->meta ()->display_name () + " reference object:";
+
+    dlg.title ("Auto Reference Resolver");
+    dlg.directions (directions.c_str ());
     dlg.insert (objs);
 
     if (IDOK != dlg.DoModal ())

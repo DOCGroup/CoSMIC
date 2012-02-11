@@ -1,3 +1,15 @@
+Sat Feb 11 18:46:32 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+
+          Updated the handler to not act if the reference already refers
+          to a FCO. This can happen under a number of situations, such as
+          using the GME shortcut to create a reference or another add-on
+          creating a reference.
+
+          Added more context to the dialog shown for selecting the references
+          target object.
+
 Sat Feb 11 18:00:52 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Event_Handler_Impl.h:
