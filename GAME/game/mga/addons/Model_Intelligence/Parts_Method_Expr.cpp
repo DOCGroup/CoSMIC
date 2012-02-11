@@ -19,7 +19,7 @@ Parts_Method_Expr::Parts_Method_Expr (std::string role)
 //
 // Destructor
 //
-Parts_Method_Expr::~Parts_Method_Expr ()
+Parts_Method_Expr::~Parts_Method_Expr (void)
 {
 }
 

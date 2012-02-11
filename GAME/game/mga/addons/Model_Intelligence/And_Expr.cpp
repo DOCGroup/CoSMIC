@@ -15,7 +15,7 @@ And_Expr::And_Expr (Equality_Expr *left, Equality_Expr *right)
 //
 // Destructor
 //
-And_Expr::~And_Expr ()
+And_Expr::~And_Expr (void)
 {
 }
 

@@ -5,14 +5,14 @@
 
 //
 // Default Constructor
-Expr_Command::Expr_Command()
+Expr_Command::Expr_Command (void)
 {
 }
 
 //
 // Destructor
 //
-Expr_Command::~Expr_Command()
+Expr_Command::~Expr_Command (void)
 {
 }
 

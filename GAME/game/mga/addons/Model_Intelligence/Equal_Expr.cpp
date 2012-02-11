@@ -38,7 +38,7 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
 
   // flag to decide the case
   size_t flag = 0;
-  bool ret_ = false;
+  bool ret = false;
 
   // Checking if the local variables are mutable/non-mutable
   if ((this->lhs_->ismutable () == true) && (this->rhs_->ismutable () == false))
@@ -87,11 +87,13 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
 
           //Pushing adding operation to the action list
           res.actions.push_back (cmd);
+          ret = true;
         }
         else
         {
           size_t count = this->rhs_->evaluate (res) - this->lhs_->evaluate (res);
           // Delete objects operation to be called
+          ret = true;
           
         }
         break;
@@ -109,17 +111,17 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
         GAME::Mga::Meta::Role right_metarole = res.target_metarole;
 
         if (left_count == right_count)
-          ret_ = true;
+          ret = true;
         else if (left_count < right_count)
         {
           size_t count = right_count - left_count;
           std::vector <std::string> options;
           options.push_back ("Add " + left_metatype->name ());
           options.push_back ("Delete" + right_metatype->name ());
-          std::string obj_;
+          std::string select;
 
           if (1 == options.size ())
-            obj_ = options.front ();
+            select = options.front ();
           else
           {
             AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -134,15 +136,15 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
             if (IDOK != dlg.DoModal ())
               return false;
 
-            obj_ = dlg.selection ();
+            select = dlg.selection ();
           }
 
-          if (!obj_.empty ())
+          if (!select.empty ())
           {
-            if (obj_ == ("Add " + left_metatype->name ()))
-              ret_ = list_add (obj, left_count, left_metatype, left_metarole);
+            if (select == ("Add " + left_metatype->name ()))
+              ret = list_add (obj, left_count, left_metatype, left_metarole);
             else
-              ret_ = list_delete (obj, right_count, right_metatype, right_metarole);
+              ret = list_delete (obj, right_count, right_metatype, right_metarole);
           }
         }
         else
@@ -151,10 +153,10 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
           std::vector <std::string> options;
           options.push_back ("Add " + left_metatype->name ());
           options.push_back ("Delete" + right_metatype->name ());
-          std::string obj_;
+          std::string select;
 
           if (1 == options.size ())
-            obj_ = options.front ();
+            select = options.front ();
           else
           {
             AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -169,15 +171,15 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
             if (IDOK != dlg.DoModal ())
               return false;
 
-            obj_ = dlg.selection ();
+            select = dlg.selection ();
           }
 
-          if (!obj_.empty ())
+          if (!select.empty ())
           {
-            if (obj_ == ("Add " + left_metatype->name ()))
-              ret_ = list_add (obj, right_count, right_metatype, right_metarole);
+            if (select == ("Add " + left_metatype->name ()))
+              ret = list_add (obj, right_count, right_metatype, right_metarole);
             else
-              ret_ = list_delete (obj, left_count, left_metatype, left_metarole);
+              ret = list_delete (obj, left_count, left_metatype, left_metarole);
           }
         }*/
         break;
@@ -188,7 +190,7 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
       }
   }
 
-  return ret_;
+  return ret;
 }
 
 
@@ -206,7 +208,7 @@ bool Equal_Expr::list_add (GAME::Mga::Model &obj,
         {
           GAME::Mga::Model new_model = GAME::Mga::Model_Impl::_create (obj, metarole);
           char c = '0' + count;
-          new_model->name (metarole->name() + c);
+          new_model->name (metarole->name () + c);
         }
     }
   else if (metatype->type () == OBJTYPE_ATOM)
@@ -215,7 +217,7 @@ bool Equal_Expr::list_add (GAME::Mga::Model &obj,
         {
           GAME::Mga::Atom new_atom = GAME::Mga::Atom_Impl::_create (obj, metarole);
           char c = '0' + count;
-          new_atom->name (metarole->name() + c);
+          new_atom->name (metarole->name () + c);
         }
     }
 

@@ -6,21 +6,21 @@
 //
 // Constructor
 //
-Conjunction_Expr::Conjunction_Expr(void)
+Conjunction_Expr::Conjunction_Expr (void)
 {
 }
 
 //
 // Destructor
 //
-Conjunction_Expr::~Conjunction_Expr(void)
+Conjunction_Expr::~Conjunction_Expr (void)
 {
 }
 
 //
 // dummy method
 //
-bool Conjunction_Expr::evaluate(Ocl_Context &res)
+bool Conjunction_Expr::evaluate (Ocl_Context &res)
 {
   return true;
 }

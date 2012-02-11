@@ -22,7 +22,7 @@ Lesser_Equal_Expr::Lesser_Equal_Expr (Value_Expr *left, Value_Expr *right)
 //
 // Destructor
 //
-Lesser_Equal_Expr::~Lesser_Equal_Expr ()
+Lesser_Equal_Expr::~Lesser_Equal_Expr (void)
 {
 }
 
@@ -33,7 +33,7 @@ bool Lesser_Equal_Expr::evaluate (Ocl_Context & res)
 {
   // flag to decide the case
   size_t flag = 0;
-  bool ret_ = false;
+  bool ret = false;
 
   // Checking if the local variables are mutable/non-mutable
   if ((this->lhs_->ismutable () == true) && (this->rhs_->ismutable () == false))
@@ -52,6 +52,7 @@ bool Lesser_Equal_Expr::evaluate (Ocl_Context & res)
            // Counting the number of objects to be deleted
            size_t count = this->rhs_->evaluate (res) - this->lhs_->evaluate (res);
            // Calling the delete command
+           ret = true;
          }
         break;
       }
@@ -62,6 +63,7 @@ bool Lesser_Equal_Expr::evaluate (Ocl_Context & res)
           // Counting the number of objects to be deleted
           size_t count = this->lhs_->evaluate (res) - this->rhs_->evaluate (res);
           // Calling the delete command
+          ret = true;
         }
         break;
       }
@@ -75,7 +77,7 @@ bool Lesser_Equal_Expr::evaluate (Ocl_Context & res)
       }
   }
 
-  return ret_;
+  return ret;
 }
 
 //
@@ -92,7 +94,7 @@ bool Lesser_Equal_Expr::list_add (GAME::Mga::Model &obj,
         {
           GAME::Mga::Model new_model = GAME::Mga::Model_Impl::_create (obj, metarole);
           char c = '0' + count;
-          new_model->name (metarole->name() + c);
+          new_model->name (metarole->name () + c);
         }
     }
   else if (metatype->type () == OBJTYPE_ATOM)
@@ -101,7 +103,7 @@ bool Lesser_Equal_Expr::list_add (GAME::Mga::Model &obj,
         {
           GAME::Mga::Atom new_atom = GAME::Mga::Atom_Impl::_create (obj, metarole);
           char c = '0' + count;
-          new_atom->name (metarole->name() + c);
+          new_atom->name (metarole->name () + c);
         }
     }
 

@@ -25,7 +25,7 @@ Greater_Equal_Expr::Greater_Equal_Expr (Value_Expr *left, Value_Expr *right)
 //
 // Destructor
 //
-Greater_Equal_Expr::~Greater_Equal_Expr ()
+Greater_Equal_Expr::~Greater_Equal_Expr (void)
 {
 }
 
@@ -36,7 +36,7 @@ bool Greater_Equal_Expr::evaluate (Ocl_Context & res)
 {
   // flag to decide the case
   size_t flag = 0;
-  bool ret_ = false;
+  bool ret = false;
 
   // Checking if the local variables are mutable/non-mutable
   if ((this->lhs_->ismutable () == true) && (this->rhs_->ismutable () == false))
@@ -62,6 +62,7 @@ bool Greater_Equal_Expr::evaluate (Ocl_Context & res)
 
            //Pushing adding operation to the action list
            res.actions.push_back (cmd);
+           ret = true;
          }
         break;
       }
@@ -79,6 +80,7 @@ bool Greater_Equal_Expr::evaluate (Ocl_Context & res)
 
           //Pushing adding operation to the action list
           res.actions.push_back (cmd);
+          ret = true;
         }
         break;
       }
@@ -92,7 +94,7 @@ bool Greater_Equal_Expr::evaluate (Ocl_Context & res)
       }
   }
 
-  return ret_;
+  return ret;
 }
 
 //
@@ -109,7 +111,7 @@ bool Greater_Equal_Expr::list_add (GAME::Mga::Model &obj,
         {
           GAME::Mga::Model new_model = GAME::Mga::Model_Impl::_create (obj, metarole);
           char c = '0' + count;
-          new_model->name (metarole->name() + c);
+          new_model->name (metarole->name () + c);
         }
     }
   else if (metatype->type () == OBJTYPE_ATOM)
@@ -118,7 +120,7 @@ bool Greater_Equal_Expr::list_add (GAME::Mga::Model &obj,
         {
           GAME::Mga::Atom new_atom = GAME::Mga::Atom_Impl::_create (obj, metarole);
           char c = '0' + count;
-          new_atom->name (metarole->name() + c);
+          new_atom->name (metarole->name () + c);
         }
     }
 

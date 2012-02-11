@@ -6,14 +6,14 @@
 //
 // Constructor
 //
-Comparison_Expr::Comparison_Expr(void)
+Comparison_Expr::Comparison_Expr (void)
 {
 }
 
 //
 // Destructor
 //
-Comparison_Expr::~Comparison_Expr(void)
+Comparison_Expr::~Comparison_Expr (void)
 {
 }
 

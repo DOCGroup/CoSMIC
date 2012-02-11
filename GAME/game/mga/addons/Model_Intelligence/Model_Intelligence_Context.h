@@ -24,7 +24,7 @@
  * @struct Ocl_Context
  *
  * Struct used for keeping a track of variables
- * and local objects.used by different expression resolvers
+ * and local objects.Used by different expression resolvers
  */
 struct Ocl_Context
 {

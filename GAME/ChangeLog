@@ -1,3 +1,31 @@
+Sat Feb 11 20:40:14 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/And_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Boolean_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Check_Handler.h:
+        * game/mga/addons/Model_Intelligence/Containment_Check_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Expr_Command.cpp:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Context.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+
+          Fixed the commenting styles, tabs and changed the name of 
+		  Containment_Handler_Extended to Containment_Check_Handler
+
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.h:
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.cpp:
+
+          Removed these files.
+
 Sat Feb 11 18:58:14 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Add_Command.h:

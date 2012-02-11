@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstring>
-#include "Containment_Handler_Extended.h"
+#include "Containment_Check_Handler.h"
 #include "game/mga/Model.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/Connection.h"
@@ -22,18 +22,18 @@
 
 
 //
-// Containment_Handler
+// Containment_Check_Handler
 //
-Containment_Handler_Extended::Containment_Handler_Extended (void)
+Containment_Check_Handler::Containment_Check_Handler (void)
 : GAME::Mga::Dynamic_Event_Handler_Impl (eventmask)
 {
 
 }
 
 //
-// ~Containment_Handler
+// ~Containment_Check_Handler
 //
-Containment_Handler_Extended::~Containment_Handler_Extended (void)
+Containment_Check_Handler::~Containment_Check_Handler (void)
 {
 
 }
@@ -41,7 +41,7 @@ Containment_Handler_Extended::~Containment_Handler_Extended (void)
 //
 // handle_object_created (This functionality is not available yet.)
 //
-int Containment_Handler_Extended::handle_object_created (GAME::Mga::Object_in obj)
+int Containment_Check_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;

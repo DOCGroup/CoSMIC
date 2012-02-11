@@ -4,7 +4,7 @@
 #include "Model_Intelligence_Impl.h"
 #include "Reference_Handler.h"
 #include "Containment_Handler.h"
-#include "Containment_Handler_Extended.h"
+#include "Containment_Check_Handler.h"
 #include "Association_Handler.h"
 #include "game/mga/component/ComponentEx_T.h"
 
@@ -56,7 +56,7 @@ int Model_Intelligence::initialize (Mga::Project project)
 {
   this->sink_->register_handler (OBJTYPE_REFERENCE, new Reference_Handler ());
   this->sink_->register_handler (OBJTYPE_MODEL, new Containment_Handler ());
-  this->sink_->register_handler (OBJTYPE_ATOM, new Containment_Handler_Extended ());
+  this->sink_->register_handler (OBJTYPE_ATOM, new Containment_Check_Handler ());
   this->sink_->register_handler (OBJTYPE_ATOM, new Association_Handler ());
 
   return 0;

@@ -49,30 +49,22 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
   if (!refers_to.is_nil ())
     return 0;
 
-  // Vector for holding the metaobjects that ref referes to
+  // Finding the metaobjects that ref referes to
   std::vector <GAME::Mga::Meta::FCO> types;
+  ref->meta ()->targets (types);
 
-  // Find out the metaobject to which ref referes
-  ref->meta()->targets(types);
+  // Sorting out all the FCOs of metaobject type using a filter
+  GAME::Mga::Filter filter (obj->project ());
 
-
-  // Create a filter for finding all the objects that are of metaobject type
-  GAME::Mga::Filter filter_ (obj->project());
-
-  // Vector for holding all the FCO's that ref referes to
   std::vector <GAME::Mga::FCO> objs;
+  GAME::Mga::FCO select;
 
-  GAME::Mga::FCO obj_;
-
-  filter_.kind (types);
-
-  // Apply the filter to store the data in vector objs
-  filter_.apply (objs);
-
+  filter.kind (types);
+  filter.apply (objs);
 
   if (1 == objs.size ())
   {
-    obj_ = objs.front ();
+    select = objs.front ();
   }
   else
   {
@@ -93,13 +85,13 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
     if (IDOK != dlg.DoModal ())
       return 0;
 
-    obj_ = dlg.selection ();
+    select = dlg.selection ();
   }
 
-  if (!obj_.is_nil ())
+  if (!select.is_nil ())
   {
-    ref->refers_to (obj_);
-    ref->name (obj_->name ());
+    ref->refers_to (select);
+    ref->name (select->name ());
   }
 
   return 0;
