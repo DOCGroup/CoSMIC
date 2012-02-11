@@ -25,9 +25,9 @@
 // Containment_Handler
 //
 Containment_Handler_Extended::Containment_Handler_Extended (void)
-: GAME::Mga::Event_Handler_Impl (eventmask)
+: GAME::Mga::Event_Handler_Impl (eventmask, true)
 {
-	
+
 }
 
 //
@@ -44,13 +44,13 @@ Containment_Handler_Extended::~Containment_Handler_Extended (void)
 int Containment_Handler_Extended::handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
-		return 0;
+    return 0;
 
   GAME::Mga::Atom atm = GAME::Mga::Atom::_narrow (obj);
 
   Ocl_Context res;
 
-  // Setting the model and current working object 
+  // Setting the model and current working object
   // in Model_Intelligence_Features
   res.model_object = atm->parent_model ();
   res.atom_object = atm;

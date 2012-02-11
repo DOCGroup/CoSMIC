@@ -30,9 +30,9 @@
 // Association_Handler
 //
 Association_Handler::Association_Handler (void)
-: GAME::Mga::Event_Handler_Impl (eventmask)
+: GAME::Mga::Event_Handler_Impl (eventmask, true)
 {
-	
+
 }
 
 //
@@ -49,10 +49,10 @@ Association_Handler::~Association_Handler (void)
 int Association_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
-		return 0;
+    return 0;
 
   GAME::Mga::Atom atm = GAME::Mga::Atom::_narrow (obj);
 
   return 0;
-  
+
 }

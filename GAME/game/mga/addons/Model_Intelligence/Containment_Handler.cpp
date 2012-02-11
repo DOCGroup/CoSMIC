@@ -26,9 +26,9 @@
 // Containment_Handler
 //
 Containment_Handler::Containment_Handler (void)
-: GAME::Mga::Event_Handler_Impl (eventmask)
+: GAME::Mga::Event_Handler_Impl (eventmask, true)
 {
-	
+
 }
 
 //
@@ -45,7 +45,7 @@ Containment_Handler::~Containment_Handler (void)
 int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
-		return 0;
+    return 0;
 
   GAME::Mga::Model mod = GAME::Mga::Model::_narrow (obj);
 
@@ -96,7 +96,7 @@ int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
   {
     (*action)->execute ();
   }
-  
+
   return 0;
-  
+
 }

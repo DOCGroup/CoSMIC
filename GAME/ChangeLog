@@ -1,3 +1,17 @@
+Sat Feb 11 17:30:44 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+
+          Simplified the code by setting the event handlers to destroy on
+          closing. This means that when the event sink is closed, it will
+          destroy all registered event handlers when they are closed. This
+          behavior does not occur if the event handlers are set to not be
+          destroyed when closed.
+
 Sat Feb 11 17:09:54 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:

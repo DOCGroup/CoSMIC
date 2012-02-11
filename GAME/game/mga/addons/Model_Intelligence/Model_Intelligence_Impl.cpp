@@ -20,11 +20,6 @@
 #include "game/mga/dialogs/Module.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 
-#include "ace/Singleton.h"
-#include "ace/Null_Mutex.h"
-
-#include "boost/bind.hpp"
-
 #include <algorithm>
 #include <sstream>
 
@@ -37,32 +32,11 @@ typedef Mga::Addon_Impl_T <Model_Intelligence_Impl,
 
 DECLARE_GAME_COMPONENT_EX (Model_Intelligence_ComponentEx, Model_Intelligence_Addon);
 
-#define DLL_NAME "GAME_Model_Intelligence"
-
-/**
- * Adapter for the ACE_DLL_Singleton_T object. This allows singletons
- * defined in this module to operate correctly with the ACE framework.
- */
-template <typename T>
-class Singleton_DLL_Adapter : public T
-{
-public:
-  const ACE_TCHAR * name (void) const
-  {
-    return DLL_NAME;
-  }
-
-  const ACE_TCHAR * dll_name (void) const
-  {
-    return DLL_NAME;
-  }
-};
-
 //
 // Model_Intelligence
 //
 Model_Intelligence::Model_Intelligence (void)
-: Mga::Event_Handler_Impl (eventmask, false)
+: Mga::Event_Handler_Impl (eventmask)
 {
 
 }
@@ -72,7 +46,7 @@ Model_Intelligence::Model_Intelligence (void)
 //
 Model_Intelligence::~Model_Intelligence (void)
 {
-  ACE_Framework_Repository::instance ()->remove_dll_components (DLL_NAME);
+
 }
 
 //
@@ -80,24 +54,12 @@ Model_Intelligence::~Model_Intelligence (void)
 //
 int Model_Intelligence::initialize (Mga::Project project)
 {
-
-  this->sink_->register_handler (OBJTYPE_REFERENCE,
-    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Reference_Handler>,
-                ACE_Null_Mutex>::instance ());
-
-   this->sink_->register_handler (OBJTYPE_MODEL,
-    ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Containment_Handler>,
-                ACE_Null_Mutex>::instance ());
-
-   this->sink_->register_handler (OBJTYPE_ATOM,
-     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Containment_Handler_Extended>,
-                ACE_Null_Mutex>::instance ());
-
-   this->sink_->register_handler (OBJTYPE_ATOM,
-     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <Association_Handler>,
-                ACE_Null_Mutex>::instance ());
-
+  this->sink_->register_handler (OBJTYPE_REFERENCE, new Reference_Handler ());
+  this->sink_->register_handler (OBJTYPE_MODEL, new Containment_Handler ());
+  this->sink_->register_handler (OBJTYPE_ATOM, new Containment_Handler_Extended ());
+  this->sink_->register_handler (OBJTYPE_ATOM, new Association_Handler ());
 
   return 0;
 }
+
 }
