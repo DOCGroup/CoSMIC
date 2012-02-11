@@ -29,7 +29,7 @@ namespace MI
  * for a given object.
  */
 class Default_Implementation_Event_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   typedef Default_Implementation_Generator::meta_info_t meta_info_t;

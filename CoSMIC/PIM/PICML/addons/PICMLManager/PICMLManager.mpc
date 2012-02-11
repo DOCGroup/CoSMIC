@@ -34,7 +34,6 @@ project (PICML_Model_Intelligence): game_dialogs, game_mga_component, game_manip
       AttributeValue_Event_Handler.cpp
       CollocationGroup_Event_Handler.cpp
       ComplexTypeReference_Event_Handler.cpp
-      Component_Event_Handler.cpp
       ComponentInstance_Event_Handler.cpp
       ComponentInstanceRef_Event_Handler.cpp
       ComponentInstanceType_Event_Handler.cpp

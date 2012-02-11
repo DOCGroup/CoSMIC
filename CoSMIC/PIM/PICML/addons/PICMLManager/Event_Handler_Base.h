@@ -27,7 +27,7 @@ namespace MI
  * Contains common objects and implementations
  */
 class Event_Handler_Base :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor.

@@ -1,3 +1,47 @@
+Sat Feb 11 20:37:26 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Updated code to reflect latest updates in GAME.
+
+          Subclassed the event handlers from Dynamic_Event_Handler_Impl.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Subclass event handler from Static_Event_Handler_Impl.
+
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+
+          Removed these files.
+
 Sat Feb 11 18:08:07 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager:

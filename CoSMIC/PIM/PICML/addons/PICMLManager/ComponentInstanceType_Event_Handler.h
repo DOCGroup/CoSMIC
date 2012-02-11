@@ -28,7 +28,7 @@ namespace MI
  * Handles ComponentInstanceType when a relation is created.
  */
 class ComponentInstanceType_Event_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor.

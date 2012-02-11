@@ -34,8 +34,9 @@ namespace attr
 //
 // UUID_Event_Handler
 //
-UUID_Event_Handler::UUID_Event_Handler ()
-: GAME::Mga::Event_Handler_Impl (mask)
+UUID_Event_Handler::UUID_Event_Handler (UUID_MANAGER & uuids)
+: GAME::Mga::Dynamic_Event_Handler_Impl (mask),
+  uuids_ (uuids)
 {
 
 }
@@ -162,9 +163,7 @@ int UUID_Event_Handler::handle_object_destroyed (GAME::Mga::Object_in obj)
   // Locate the UUID attribute for the FCO.
   GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
 
-  UUID_Hash_Map_Manager::ITERATOR iter (this->uuids_);
-
-  for (; !iter.done (); ++ iter)
+  for (UUID_MANAGER::ITERATOR iter (this->uuids_); !iter.done (); ++ iter)
   {
     if (iter->item ()->is_equal_to (fco))
     {

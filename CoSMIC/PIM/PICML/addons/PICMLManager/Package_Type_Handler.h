@@ -25,7 +25,7 @@ namespace MI
  * @class Package_Type_Handler
  */
 class Package_Type_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor.

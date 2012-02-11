@@ -25,7 +25,8 @@ namespace MI
  *
  * Event handler for the TemplateModuleInst
  */
-class Template_Module_Instance_Handler : public GAME::Mga::Event_Handler_Impl
+class Template_Module_Instance_Handler :
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor.

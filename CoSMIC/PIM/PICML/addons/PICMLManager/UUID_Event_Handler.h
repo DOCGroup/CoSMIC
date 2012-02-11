@@ -30,11 +30,16 @@ namespace MI
  * UUID handlers.
  */
 class UUID_Event_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
+  /// Collection of UUIDs for this project.
+  typedef ACE_Hash_Map_Manager <std::string,
+                                GAME::Mga::FCO,
+                                ACE_Null_Mutex> UUID_MANAGER;
+
   /// Default constructor.
-  UUID_Event_Handler ();
+  UUID_Event_Handler (UUID_MANAGER & uuids);
 
   /// Destructor.
   virtual ~UUID_Event_Handler (void);
@@ -54,12 +59,7 @@ public:
 private:
   bool is_duplicate_uuid (GAME::Mga::FCO_in fco, const std::string & uuid);
 
-  /// Collection of UUIDs for this project.
-  typedef ACE_Hash_Map_Manager <std::string,
-                                GAME::Mga::FCO,
-                                ACE_Null_Mutex> UUID_Hash_Map_Manager;
-
-  UUID_Hash_Map_Manager uuids_;
+  UUID_MANAGER & uuids_;
 
   GAME::Mga::Project project_;
 };

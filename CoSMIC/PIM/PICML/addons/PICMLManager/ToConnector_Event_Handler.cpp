@@ -64,7 +64,7 @@ static const unsigned long mask = OBJEVENT_CREATED;
 // ToConnector_Event_Handler
 //
 ToConnector_Event_Handler::ToConnector_Event_Handler (void)
-: Event_Handler_Impl (mask)
+: GAME::Mga::Dynamic_Event_Handler_Impl (mask)
 {
 
 }

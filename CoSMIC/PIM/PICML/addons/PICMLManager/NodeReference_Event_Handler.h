@@ -26,7 +26,7 @@ namespace MI
  * This class creates a NodeReference for the desired object.
  */
 class NodeReference_Event_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor.

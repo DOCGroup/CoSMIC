@@ -29,7 +29,8 @@ namespace MI
  * Event handler for managing the functionality of a ComponentInstance
  * in PICML.
  */
-class ComponentInstance_Event_Handler : public GAME::Mga::Event_Handler_Impl
+class ComponentInstance_Event_Handler :
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor.

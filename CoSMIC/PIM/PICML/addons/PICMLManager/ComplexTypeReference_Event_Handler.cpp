@@ -27,7 +27,7 @@ static const unsigned long mask = OBJEVENT_RELATION;
 // ComplexTypeReference_Event_Handler
 //
 ComplexTypeReference_Event_Handler::ComplexTypeReference_Event_Handler (void)
-: GAME::Mga::Event_Handler_Impl (mask)
+: GAME::Mga::Dynamic_Event_Handler_Impl (mask)
 {
 
 }

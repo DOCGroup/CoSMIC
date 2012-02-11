@@ -25,7 +25,7 @@ static const unsigned long mask = OBJEVENT_CREATED |
 // ComponentInstance_Event_Handler
 //
 ComponentInstance_Event_Handler::ComponentInstance_Event_Handler (void)
-: GAME::Mga::Event_Handler_Impl (mask)
+: GAME::Mga::Dynamic_Event_Handler_Impl (mask)
 {
 
 }

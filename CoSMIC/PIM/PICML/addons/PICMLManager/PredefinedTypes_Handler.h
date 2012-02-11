@@ -28,7 +28,8 @@ namespace MI
  * event handler will auto-generate the necessary artifact so that
  * moders can correctly leverage ami4ccm support in CoSMIC.
  */
-class PredefinedTypes_Handler : public GAME::Mga::Event_Handler_Impl
+class PredefinedTypes_Handler :
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   /// Default constructor

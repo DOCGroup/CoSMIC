@@ -44,7 +44,7 @@ struct is_ami4ccm_template_connector
 // AMI4CCM_Event_Handler
 //
 AMI4CCM_Event_Handler::AMI4CCM_Event_Handler (void)
-: GAME::Mga::Event_Handler_Impl (mask)
+: GAME::Mga::Dynamic_Event_Handler_Impl (mask)
 {
 
 }
