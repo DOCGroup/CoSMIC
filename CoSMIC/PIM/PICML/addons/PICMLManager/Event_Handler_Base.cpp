@@ -4,7 +4,6 @@
 #include "Event_Handler_Base.h"
 #include "PICMLManager_Impl.h"
 
-#include "game/mga/component/Event_Handler.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 #include "game/mga/modelgen.h"
 #include "game/mga/utils/Point.h"

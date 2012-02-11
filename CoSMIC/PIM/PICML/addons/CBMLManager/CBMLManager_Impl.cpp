@@ -85,55 +85,55 @@ CBML_Model_Intelligence::~CBML_Model_Intelligence (void)
 //
 int CBML_Model_Intelligence::initialize (GAME::Mga::Project project)
 {
-  this->event_handler_->register_handler ("Action",
+  this->sink_->register_handler ("Action",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("Action",
+  this->sink_->register_handler ("Action",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Action_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("ActionType",
+  this->sink_->register_handler ("ActionType",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Action_Type_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("RequestAction",
+  this->sink_->register_handler ("RequestAction",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("OutputAction",
+  this->sink_->register_handler ("OutputAction",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("OutputAction",
+  this->sink_->register_handler ("OutputAction",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Output_Action_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("MultiInputAction",
+  this->sink_->register_handler ("MultiInputAction",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("InputAction",
+  this->sink_->register_handler ("InputAction",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("State",
+  this->sink_->register_handler ("State",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("BranchState",
+  this->sink_->register_handler ("BranchState",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("DoWhileState",
+  this->sink_->register_handler ("DoWhileState",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("WhileState",
+  this->sink_->register_handler ("WhileState",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("ForState",
+  this->sink_->register_handler ("ForState",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <CBML_Connection_Generation_Handler>,
                    ACE_Null_Mutex>::instance ());
 

@@ -14,7 +14,7 @@
 #include "game/mga/Filter.h"
 #include "game/mga/Project.h"
 #include "game/mga/Reference.h"
-#include "game/mga/component/Event_Handler.h"
+#include "game/mga/component/Event_Sink.h"
 #include "game/mga/dialogs/Name_Dialog.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 #include "game/mga/utils/Point.h"

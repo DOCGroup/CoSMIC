@@ -20,7 +20,7 @@
 #include "game/mga/MetaModel.h"
 #include "game/mga/utils/Point.h"
 #include "game/manip/copy.h"
-#include "game/mga/component/Event_Handler.h"
+#include "game/mga/component/Event_Sink.h"
 #include "game/mga/component/Readonly_Event_Handler.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 
@@ -545,7 +545,7 @@ create_template_value_parameter (GAME::Mga::Model parent,
   std::auto_ptr <Template_Parameter_Value_Handler>
     eh (new Template_Parameter_Value_Handler ());
 
-  if (0 == this->event_handler_->register_handler (tpv, eh.get ()))
+  if (0 == this->sink_->register_handler (tpv, eh.get ()))
     eh.release ();
 
   // Set the position of the template parameter.

@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "PICMLManager_Impl.h"
 
-#include "game/mga/component/Event_Handler.h"
+#include "game/mga/component/Event_Sink.h"
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
@@ -77,7 +77,7 @@ PICMLManager_Impl::PICMLManager_Impl (void)
 //
 PICMLManager_Impl::~PICMLManager_Impl (void)
 {
-  ACE_Framework_Repository::instance ()->remove_dll_components (DLL_NAME);
+
 }
 
 //
@@ -90,31 +90,31 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
   // into memory.
 
   // Handlers for AttributeMember
-  this->event_handler_->register_handler ("AttributeMember",
+  this->sink_->register_handler ("AttributeMember",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::AttributeMember_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for AtributeValue
-  this->event_handler_->register_handler ("AttributeValue",
+  this->sink_->register_handler ("AttributeValue",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::AttributeValue_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for CollocationGroup
-  this->event_handler_->register_handler ("CollocationGroup",
+  this->sink_->register_handler ("CollocationGroup",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::CollocationGroup_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComplexTypeReference
-  this->event_handler_->register_handler ("ComplexTypeReference",
+  this->sink_->register_handler ("ComplexTypeReference",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::ComplexTypeReference_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for Component
-  this->event_handler_->register_handler ("Component",
+  this->sink_->register_handler ("Component",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("Component",
+  this->sink_->register_handler ("Component",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Default_Implementation_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
@@ -133,59 +133,59 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
                                                        component_meta);
 
   // Handlers for ComponentAssembly
-  this->event_handler_->register_handler ("ComponentAssembly",
+  this->sink_->register_handler ("ComponentAssembly",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentFactoryInstance
-  this->event_handler_->register_handler ("ComponentFactoryInstance",
+  this->sink_->register_handler ("ComponentFactoryInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentInstace
-  this->event_handler_->register_handler ("ComponentInstance",
+  this->sink_->register_handler ("ComponentInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("ComponentInstance",
+  this->sink_->register_handler ("ComponentInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::ComponentInstance_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentInstanceRef
-  this->event_handler_->register_handler ("ComponentInstanceRef",
+  this->sink_->register_handler ("ComponentInstanceRef",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::ComponentInstanceRef_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentInstanceType
-  this->event_handler_->register_handler ("ComponentInstanceType",
+  this->sink_->register_handler ("ComponentInstanceType",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::ComponentInstanceType_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ComponentPackage
-  this->event_handler_->register_handler ("ComponentPackage",
+  this->sink_->register_handler ("ComponentPackage",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ConnectorImplementation
-  this->event_handler_->register_handler ("ConnectorImplementation",
+  this->sink_->register_handler ("ConnectorImplementation",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ConnectorInstance
-  this->event_handler_->register_handler ("ConnectorInstance",
+  this->sink_->register_handler ("ConnectorInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("ConnectorInstance",
+  this->sink_->register_handler ("ConnectorInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::ConnectorInstance_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ConnectorObject
-  this->event_handler_->register_handler ("ConnectorObject",
+  this->sink_->register_handler ("ConnectorObject",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
-  this->event_handler_->register_handler ("ConnectorObject",
+  this->sink_->register_handler ("ConnectorObject",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Default_Implementation_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
@@ -204,72 +204,72 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
                                                          connector_meta);
 
   // Handlers for ConnectorToFacet
-  this->event_handler_->register_handler ("ConnectorToFacet",
+  this->sink_->register_handler ("ConnectorToFacet",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::FacetToConnector_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ConnectorToReceptacle
-  this->event_handler_->register_handler ("ConnectorToReceptacle",
+  this->sink_->register_handler ("ConnectorToReceptacle",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::ReceptacleToConnector_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for Consume
-  this->event_handler_->register_handler ("Consume",
+  this->sink_->register_handler ("Consume",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Consume_To_Connector_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for DeploymentPlan
-  this->event_handler_->register_handler ("DeploymentPlan",
+  this->sink_->register_handler ("DeploymentPlan",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for Domain
-  this->event_handler_->register_handler ("Domain",
+  this->sink_->register_handler ("Domain",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for ImplementationArtifact
-  this->event_handler_->register_handler ("ImplementationArtifact",
+  this->sink_->register_handler ("ImplementationArtifact",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for MonolithicImplementation
-  this->event_handler_->register_handler ("MonolithicImplementation",
+  this->sink_->register_handler ("MonolithicImplementation",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for NodeReference
-  this->event_handler_->register_handler ("NodeReference",
+  this->sink_->register_handler ("NodeReference",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::NodeReference_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for Object
-  this->event_handler_->register_handler ("Object",
+  this->sink_->register_handler ("Object",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::AMI4CCM_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for PackageType
-  this->event_handler_->register_handler ("PackageType",
+  this->sink_->register_handler ("PackageType",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Package_Type_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for PackageConfiguration
-  this->event_handler_->register_handler ("PackageConfiguration",
+  this->sink_->register_handler ("PackageConfiguration",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::UUID_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for Publish
-  this->event_handler_->register_handler ("Publish",
+  this->sink_->register_handler ("Publish",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Publish_To_Connector_Event_Handler>,
                    ACE_Null_Mutex>::instance ());
 
   // Handlers for TemplatePackageInstance
-  this->event_handler_->register_handler ("TemplatePackageInstance",
+  this->sink_->register_handler ("TemplatePackageInstance",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::Template_Module_Instance_Handler>,
                              ACE_Null_Mutex>::instance ());
 
   // Handlers for TemplatePackageInstance
-  this->event_handler_->register_handler ("PredefinedTypes",
+  this->sink_->register_handler ("PredefinedTypes",
     ACE_DLL_Singleton_T <Singleton_DLL_Adapter <PICML::MI::PredefinedTypes_Handler>,
                              ACE_Null_Mutex>::instance ());
 

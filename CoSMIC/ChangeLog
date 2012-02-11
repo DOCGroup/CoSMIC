@@ -1,3 +1,13 @@
+Sat Feb 11 17:11:40 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          Updated code to reflect latest updates in GAME.
+
 Fri Feb 10 17:03:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PSM/DQML/paradigms/DQML.mta:
