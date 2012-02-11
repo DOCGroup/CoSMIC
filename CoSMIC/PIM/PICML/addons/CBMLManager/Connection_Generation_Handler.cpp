@@ -36,7 +36,7 @@ namespace meta
 // CBML_Connection_Generation_Handler
 //
 CBML_Connection_Generation_Handler::CBML_Connection_Generation_Handler (void)
-: GAME::Mga::Event_Handler_Impl (eventmask)
+: GAME::Mga::Dynamic_Event_Handler_Impl (eventmask)
 {
   this->state_transition_map_.bind ("State", "Transition");
   this->state_transition_map_.bind ("ForState", "LoopTransition");

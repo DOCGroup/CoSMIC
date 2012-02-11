@@ -26,7 +26,7 @@
  * connect with the State element.
  */
 class CBML_Connection_Generation_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_SELECT |

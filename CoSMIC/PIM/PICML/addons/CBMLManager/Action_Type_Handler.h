@@ -24,7 +24,7 @@
  * connect with the State element.
  */
 class CBML_Action_Type_Handler :
-  public GAME::Mga::Event_Handler_Impl
+  public GAME::Mga::Dynamic_Event_Handler_Impl
 {
 public:
   static const unsigned long eventmask = OBJEVENT_RELATION;

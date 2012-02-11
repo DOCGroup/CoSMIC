@@ -1,3 +1,16 @@
+Sat Feb 11 18:06:19 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.cpp:
+
+          Subclassed all the event handlers from GAME::Mga::Dynamic_Event_Handler.
+
 Sat Feb 11 18:03:35 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:

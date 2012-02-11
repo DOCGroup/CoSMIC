@@ -25,7 +25,7 @@ namespace meta
 // CBML_Action_Type_Handler
 //
 CBML_Action_Type_Handler::CBML_Action_Type_Handler (void)
-: GAME::Mga::Event_Handler_Impl (eventmask)
+: GAME::Mga::Dynamic_Event_Handler_Impl (eventmask)
 {
 
 }
