@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{66F498B4-4B3B-4F7E-B7BA-075C14FB018E}" cdate="Fri Feb 10 10:07:08 2012" mdate="Fri Feb 10 10:07:08 2012" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+<project guid="{094FAEA9-881D-419F-A729-EB3138EF7B5E}" cdate="Fri Feb 10 10:07:08 2012" mdate="Fri Feb 10 10:07:08 2012" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
 	<name>DQML</name>
 	<comment></comment>
 	<author></author>
@@ -7905,10 +7905,10 @@ GROUP</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>-1</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -7941,10 +7941,10 @@ GROUP</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>0</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -8085,10 +8085,10 @@ GROUP</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>0</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -8369,10 +8369,10 @@ EXCLUSIVE
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>-1</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -8576,10 +8576,10 @@ BEST_EFFORT</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>100</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -9291,10 +9291,10 @@ BY_SOURCE_TIMESTAMP</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>0</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -10042,10 +10042,10 @@ KEEP_ALL</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>-1</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -10672,10 +10672,10 @@ KEEP_ALL</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>-1</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -10708,10 +10708,10 @@ KEEP_ALL</value>
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>double</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>-1</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
@@ -34077,7 +34077,7 @@ endif</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-0000001b" kind="ParadigmSheet" guid="{2698bb11-adfd-4858-936a-5750bbb9afc7}" relid="0x2" childrelidcntr="0x2c">
+			<model id="id-0065-0000001b" kind="ParadigmSheet" guid="{2698bb11-adfd-4858-936a-5750bbb9afc7}" relid="0x2" childrelidcntr="0x30">
 				<name>DataReaderQos</name>
 				<atom id="id-0066-000000fd" kind="Model" role="Model" guid="{51c703e7-e572-4e44-b6bc-e0f1da097107}" relid="0x1d">
 					<name>DataReaderQos</name>
@@ -34203,6 +34203,12 @@ endif</value>
 					<name>DurabilityQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>10,294</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34299,6 +34305,12 @@ endif</value>
 					<name>DeadlineQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>305,14</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34395,6 +34407,12 @@ endif</value>
 					<name>LivelinessQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>304,98</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34491,6 +34509,12 @@ endif</value>
 					<name>LatencyBudgetQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>302,308</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34587,6 +34611,12 @@ endif</value>
 					<name>ReliabilityQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>134,308</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34683,6 +34713,12 @@ endif</value>
 					<name>DestinationOrderQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>388,392</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34779,6 +34815,12 @@ endif</value>
 					<name>HistoryQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>9,378</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34875,6 +34917,12 @@ endif</value>
 					<name>ResourceLimitsQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>96,98</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -34971,6 +35019,12 @@ endif</value>
 					<name>UserDataQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>136,406</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -35067,6 +35121,12 @@ endif</value>
 					<name>OwnershipQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>13,14</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -35163,6 +35223,12 @@ endif</value>
 					<name>TimeBasedFilterQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>10,210</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -35259,6 +35325,12 @@ endif</value>
 					<name>ReaderDataLifecycleQosPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>205,210</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -35355,6 +35427,12 @@ endif</value>
 					<name>TopicQosReference</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>166,14</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -41819,6 +41897,15 @@ endif</value>
 							<value>yes</value>
 						</regnode>
 					</regnode>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="GAME" status="undefined">
+			<value></value>
+			<regnode name="ExtensionClasses" status="undefined">
+				<value></value>
+				<regnode name="OutputPath" isopaque="yes">
+					<value>E:\proj\vc9\CoSMIC\PSM\DQML\ext</value>
 				</regnode>
 			</regnode>
 		</regnode>
