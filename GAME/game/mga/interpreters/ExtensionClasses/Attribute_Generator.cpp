@@ -110,14 +110,14 @@ void Attribute_Generator::visit_Atom (Atom_in a)
     << function_header_t (name)
     << "void " << this->classname_ << "::" << name << " (" << setter_type << " val)"
     << "{"
-    << "static const std::string attr_" << name << " (\"" << name << "\");"
-    << "this->attribute (attr_" << name << ")->" << function_name << " (val);"
+    << "static const std::string attr_name (\"" << name << "\");"
+    << "this->attribute (attr_name)->" << function_name << " (val);"
     << "}"
     << function_header_t (name)
     << getter_type << " " << this->classname_ << "::" << name << " (void) const"
     << "{"
-    << "static const std::string attr_" << name << " (\"" << name << "\");"
-    << "return this->attribute (attr_" << name << ")->" << function_name << " ();"
+    << "static const std::string attr_name (\"" << name << "\");"
+    << "return this->attribute (attr_name)->" << function_name << " ();"
     << "}";
 }
 

@@ -1,3 +1,21 @@
+Mon Feb 13 16:25:52 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/FCO.h:
+        * game/mga/FCO.cpp:
+
+          Changed the refereced_by parameter from a collection of FCO
+          elements instead of a collection of Reference elements.
+
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+
+          Added support for handling Proxy elements.
+
 Mon Feb 13 02:39:01 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * bin/generate_gme_interpreter.py:

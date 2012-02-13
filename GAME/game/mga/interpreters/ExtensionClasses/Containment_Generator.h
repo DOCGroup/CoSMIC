@@ -52,13 +52,12 @@ public:
   // Visit the HasAttribute connection.
   virtual void visit_Connection (Connection_in c);
 
-  // Visit the Attribute atom.
-  virtual void visit_Atom (Atom_in a);
-
   // Visit the Reference element.
   virtual void visit_Reference (Reference_in ref);
 
 private:
+  void generate_containment (FCO_in, const std::string & card);
+
   /// The parent extension class object for the generation.
   FCO fco_;
 
@@ -70,8 +69,6 @@ private:
 
   /// The source file for the extension class.
   std::ofstream & source_;
-
-  std::string cardinality_;
 
   /// Collection of seen elements.
   std::set <std::string> seen_;

@@ -263,7 +263,7 @@ public:
    *
    * @return      size.
    */
-  size_t referenced_by (std::vector <FCO> & references) const;
+  size_t referenced_by (std::vector <Reference> & refs) const;
 
 private:
   /// The COM pointer for the FCO_Impl type.

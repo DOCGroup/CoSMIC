@@ -14,6 +14,7 @@
 #include "Model.h"
 #include "Folder.h"
 #include "Connection.h"
+#include "Reference.h"
 #include "Set.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
@@ -374,12 +375,12 @@ in_connections (const std::string & type, std::vector <Connection> & conns) cons
 //
 // referenced_by
 //
-size_t FCO_Impl::referenced_by (std::vector <FCO> & references) const
+size_t FCO_Impl::referenced_by (std::vector <Reference> & refs) const
 {
   CComPtr <IMgaFCOs> temp;
   VERIFY_HRESULT (this->impl ()->get_ReferencedBy (&temp));
 
-  return iter_to_collection (temp.p, references);
+  return iter_to_collection (temp.p, refs);
 }
 
 }

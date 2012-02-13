@@ -9,6 +9,7 @@
 
 #include "Attribute_Generator.h"
 #include "Base_Class_Locator.h"
+#include "Class_Definition.h"
 #include "Connection_Point_Generator.h"
 #include "Containment_Generator.h"
 #include "Factory_Method_Generator.h"
@@ -114,7 +115,7 @@ private:
 };
 
 /**
- * @class Include_Generator
+ * @class Connection_Point_Include_Generator
  *
  * Internal visitor that generates the include statments that appear
  * in the source file. The files that are included are those for object
@@ -145,6 +146,9 @@ public:
   /// Visit an Atom element.
   virtual void visit_Atom (Atom_in a)
   {
+    if (a->is_equal_to (this->self_))
+      return;
+
     const std::string metaname = a->meta ()->name ();
 
     if (metaname == "Connector")
@@ -175,10 +179,8 @@ public:
   //
   virtual void visit_Connection (Connection_in c)
   {
-    if (c->src () == this->self_)
-      c->dst ()->accept (this);
-    else
-      c->src ()->accept (this);
+    c->dst ()->accept (this);
+    c->src ()->accept (this);
   }
 
   //
@@ -193,6 +195,66 @@ private:
   /// The current object.
   FCO self_;
 
+  /// The target source file.
+  std::ofstream & source_;
+
+  /// Collection of seen objects.
+  std::set <Object> & seen_;
+};
+
+/**
+ * @class Parent_Include_Generator
+ */
+class Parent_Include_Generator : public Visitor
+{
+public:
+  /**
+   * Initializing constructor.
+   */
+  Parent_Include_Generator (std::ofstream & source, std::set <Object> & seen)
+    : source_ (source),
+      seen_ (seen)
+  {
+
+  }
+
+  /// Destructor.
+  virtual ~Parent_Include_Generator (void)
+  {
+
+  }
+
+  /// Visit an Atom element.
+  virtual void visit_Atom (Atom_in a)
+  {
+    if (this->seen_.find (a) != this->seen_.end ())
+      return;
+
+    // We can generate an include statement since we have not
+    // seen this object before. Make sure we save the object since
+    // we don't want to include the same header more than once.
+    const std::string path = a->path ("/", false);
+    this->source_ << include_t (path + ".h");
+    this->seen_.insert (a);
+  }
+
+  //
+  // visit_Connection
+  //
+  virtual void visit_Connection (Connection_in c)
+  {
+    c->dst ()->accept (this);
+  }
+
+  //
+  // visit_Reference
+  //
+  virtual void visit_Reference (Reference_in ref)
+  {
+    ref->refers_to ()->accept (this);
+  }
+
+private:
   /// The target source file.
   std::ofstream & source_;
 
@@ -264,10 +326,8 @@ public:
   /// Visit a Connection element.
   virtual void visit_Connection (Connection_in c)
   {
-    if (c->src ()->is_equal_to (this->self_))
-      c->dst ()->accept (this);
-    else
-      c->src ()->accept (this);
+    c->dst ()->accept (this);
+    c->src ()->accept (this);
   }
 
   //
@@ -391,11 +451,14 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                   &::toupper);
   export_name += "_Export";
 
+  // Build the class definition.
+  Class_Definition clsdef;
+  clsdef.build (fco);
+
   // Let's locate the base classes for this element. If we are able to
   // locate any base class, then we can assume that this extension class
   // is derived from a fundamental type.
-  std::set <Atom> base_classes;
-  Base_Class_Locator bc_locator (base_classes);
+  Base_Class_Locator bc_locator (clsdef.base_classes_);
   fco->accept (&bc_locator);
 
   // Generate the default data members for the type.
@@ -429,8 +492,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   // Include the correct header files for the base classes.
   this->header_ << include_t ("game/mga/" + metaname + ".h");
 
-  std::for_each (base_classes.begin (),
-                 base_classes.end (),
+  std::for_each (clsdef.base_classes_.begin (),
+                 clsdef.base_classes_.end (),
                  include_base_classes_t (this->header_));
 
   this->source_
@@ -457,58 +520,47 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
   if (!is_abstract)
     this->source_ << include_t (project_name + "/Visitor.h");
 
-  // First, we need to gather all connections from this FCO that could
-  // lead to another FCO that must be included in the header file.
-  std::vector <Connection> src_to_connector;
-  fco->in_connections ("SourceToConnector", src_to_connector);
-
-  std::vector <Connection> connector_to_dst;
-  fco->in_connections ("ConnectorToDestination", connector_to_dst);
-
-  std::vector <Connection> containment;
-  fco->in_connections ("Containment", containment);
-  fco->in_connections ("FolderContainment", containment);
-
-  std::vector <Connection> refers_to;
-  fco->in_connections ("ReferTo", refers_to);
-
   // Generate the include statements for this attached FCOs.
   Include_Generator includes (fco, this->source_);
-  std::for_each (src_to_connector.begin (),
-                 src_to_connector.end (),
+  std::for_each (clsdef.src_to_connector_.begin (),
+                 clsdef.src_to_connector_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &includes));
 
-  std::for_each (connector_to_dst.begin (),
-                 connector_to_dst.end (),
+  std::for_each (clsdef.connector_to_dst_.begin (),
+                 clsdef.connector_to_dst_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &includes));
 
-  std::for_each (containment.begin (),
-                 containment.end (),
+  std::for_each (clsdef.containment_.begin (),
+                 clsdef.containment_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &includes));
 
-  std::for_each (refers_to.begin (),
-                 refers_to.end (),
+  std::for_each (clsdef.refers_to_.begin (),
+                 clsdef.refers_to_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &includes));
-
-  std::vector <Connection> association_class;
-  fco->in_connections ("AssociationClass", association_class);
 
   Connection_Point_Include_Generator cp_includes (fco,
                                                   this->source_,
                                                   includes.seen_objects ());
-  std::for_each (association_class.begin (),
-                 association_class.end (),
+  std::for_each (clsdef.association_class_.begin (),
+                 clsdef.association_class_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &cp_includes));
+
+  Parent_Include_Generator pig (this->source_, includes.seen_objects ());
+  std::for_each (clsdef.containment_.begin (),
+                 clsdef.containment_.end (),
+                 boost::bind (&Connection::impl_type::accept,
+                              boost::bind (&Connection::get, _1),
+                              &pig));
 
   if (is_in_root_folder)
     this->header_ << include_t ("game/mga/RootFolder.h");
@@ -541,24 +593,13 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   this->header_
     << std::endl
-    << "class " << export_name << " " << this->classname_ << " :"
-    << std::endl;
+    << "class " << export_name << " " << this->classname_ << " :" << std::endl
+    << "  public virtual " << default_base_classname;
 
   // Write the base classes for this derived class.
-  if (!base_classes.empty ())
-  {
-    this->header_
-      << "  public virtual " << (*base_classes.begin ())->name () << "_Impl";
-
-    std::for_each (++ base_classes.begin (),
-                   base_classes.end (),
-                   generate_base_class_t (this->header_));
-
-    this->header_ << "," << std::endl;
-  }
-
-  this->header_
-    << "  public virtual " << default_base_classname;
+  std::for_each (clsdef.base_classes_.begin (),
+                 clsdef.base_classes_.end (),
+                 generate_base_class_t (this->header_));
 
   // Determine the tag type for this extension class.
   std::string tag_type = metaname;
@@ -673,8 +714,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                                           this->header_,
                                           this->source_);
 
-    std::for_each (containment.begin (),
-                   containment.end (),
+    std::for_each (clsdef.containment_.begin (),
+                   clsdef.containment_.end (),
                    boost::bind (&Connection::impl_type::accept,
                                 boost::bind (&Connection::get, _1),
                                 &factory_gen));
@@ -692,8 +733,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                                        this->header_,
                                        this->source_);
 
-    std::for_each (association_class.begin (),
-                   association_class.end (),
+    std::for_each (clsdef.association_class_.begin (),
+                   clsdef.association_class_.end (),
                    boost::bind (&Connection::impl_type::accept,
                                 boost::bind (&Connection::get, _1),
                                 &cp_gen));
@@ -723,14 +764,14 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
   // Let's the write in_connection methods for this extension class.
   InConnection_Generator in_connection_gen (this->classname_, this->header_, this->source_);
-  std::for_each (src_to_connector.begin (),
-                 src_to_connector.end (),
+  std::for_each (clsdef.src_to_connector_.begin (),
+                 clsdef.src_to_connector_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &in_connection_gen));
 
-  std::for_each (connector_to_dst.begin (),
-                 connector_to_dst.end (),
+  std::for_each (clsdef.connector_to_dst_.begin (),
+                 clsdef.connector_to_dst_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &in_connection_gen));
@@ -751,11 +792,12 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                                            this->header_,
                                            this->source_);
 
-    std::for_each (containment.begin (),
-                   containment.end (),
+    std::for_each (clsdef.containment_.begin (),
+                   clsdef.containment_.end (),
                    boost::bind (&Connection::impl_type::accept,
                                 boost::bind (&Connection::get, _1),
                                 &containment_gen));
+
     this->header_
       << "///@}"
       << std::endl;
@@ -787,8 +829,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                                this->header_,
                                this->source_);
 
-  std::for_each (containment.begin (),
-                 containment.end (),
+  std::for_each (clsdef.containment_.begin (),
+                 clsdef.containment_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &parent_gen));
@@ -810,8 +852,8 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                                            this->header_,
                                            this->source_);
 
-  std::for_each (refers_to.begin (),
-                 refers_to.end (),
+  std::for_each (clsdef.refers_to_.begin (),
+                 clsdef.refers_to_.end (),
                  boost::bind (&Connection::impl_type::accept,
                               boost::bind (&Connection::get, _1),
                               &refers_to_gen));

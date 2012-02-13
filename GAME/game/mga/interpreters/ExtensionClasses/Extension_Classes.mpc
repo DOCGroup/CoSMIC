@@ -9,6 +9,7 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpret
   Source_Files {
     Attribute_Generator.cpp
     Base_Class_Locator.cpp
+    Class_Definition.cpp
     Connection_Point_Generator.cpp
     Containment_Generator.cpp
     Factory_Method_Generator.cpp
