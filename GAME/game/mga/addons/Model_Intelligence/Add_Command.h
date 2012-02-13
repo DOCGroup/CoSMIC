@@ -16,6 +16,8 @@
 #include "Expr_Command.h"
 #include "game/mga/Model.h"
 #include "game/mga/Atom.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Set.h"
 #include "MetaRole.h"
 #include "MetaFCO.h"
 

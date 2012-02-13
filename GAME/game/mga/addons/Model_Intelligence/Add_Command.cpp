@@ -51,6 +51,26 @@ bool Add_Command::execute (void)
           new_atom->name (this->target_metarole_->name () + c);
         }
     }
+    else if (this->target_metatype_->type () == OBJTYPE_REFERENCE)
+    {
+       for (; this->count_ != 0; -- this->count_)
+        {
+          GAME::Mga::Reference new_reference = GAME::Mga::Reference_Impl::_create (this->parent_model_,
+                                                                                   this->target_metarole_);
+          char c = '0' + this->count_;
+          new_reference->name (this->target_metarole_->name () + c);
+        }
+    }
+    else if (this->target_metatype_->type () == OBJTYPE_SET)
+    {
+       for (; this->count_ != 0; -- this->count_)
+        {
+          GAME::Mga::Set new_set = GAME::Mga::Set_Impl::_create (this->parent_model_,
+                                                                 this->target_metarole_);
+          char c = '0' + this->count_;
+          new_set->name (this->target_metarole_->name () + c);
+        }
+    }
   return true;
   }
   catch (std::exception)

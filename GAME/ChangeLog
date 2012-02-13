@@ -1,3 +1,10 @@
+Mon Feb 13 20:44:24 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Add_Command.h:
+        * game/mga/addons/Model_Intelligence/Add_Command.cpp:
+        
+		  Extended Containment facility to now include References and Sets
+
 Mon Feb 13 16:25:52 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/FCO.h:
