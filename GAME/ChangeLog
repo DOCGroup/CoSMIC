@@ -1,3 +1,9 @@
+Mon Feb 13 02:39:01 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * bin/generate_gme_interpreter.py:
+
+          Added error handling if command-line arguments are missing.
+
 Sat Feb 11 20:40:14 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/And_Expr.cpp:
@@ -18,8 +24,8 @@ Sat Feb 11 20:40:14 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/Parts_Method_Expr.cpp:
         * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
 
-          Fixed the commenting styles, tabs and changed the name of 
-		  Containment_Handler_Extended to Containment_Check_Handler
+          Fixed the commenting styles, tabs and changed the name of
+          Containment_Handler_Extended to Containment_Check_Handler
 
         * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.h:
         * game/mga/addons/Model_Intelligence/Containment_Handler_Extended.cpp:

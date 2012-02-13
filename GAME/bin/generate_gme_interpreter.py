@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# $Id$
+
 import getopt
 import sys
 import string
@@ -6,8 +8,10 @@ import uuid
 import os
 import re
 
+#
+# generate_mwc_file
+#
 def generate_mwc_file (filename, pathname):
-
     filename_mwc = filename + ".mwc"
 
     #Creating string template for .mwc file
@@ -24,22 +28,19 @@ workspace (${filename}) {
 
     #Creating a file object in write mode.
     FILE_mwc = open (pathname + filename_mwc, "w")
-
     FILE_mwc.write (temp_mwc.substitute (replace_mwc))
-
     FILE_mwc.close ()
 
-
-#######################################################################################################
-
-def generate_mpc_file (filename, pathname, comp_guid, paradigm, flag):
-
+#
+# generate_mpc_file
+#
+def generate_mpc_file (filename, pathname, comp_guid, paradigm, has_icon):
     filename_mpc = filename + ".mpc"
 
     ico = ""
 
-    if flag == 1:
-        ico = "gme_has_icon    ="
+    if has_icon:
+        ico = "gme_has_icon    = 1"
 
     #Creating string template for .mpc file
     temp_mpc = string.Template ("""// $$Id$$
@@ -65,15 +66,14 @@ project (${project_name}) : game_mga_interpreter, game_lib {
     gme_progid      = GAME.Interpreter.$filename
     gme_uuid        = $uuid_value
     gme_paradigms   = $paradigm
-    gme_description = GAME $filename
-    gme_tooltip     = GAME $filename
+    gme_description = GAME $filename Interpreter
+    gme_tooltip     = GAME $filename Interpreter
     $icon
   }
 
 }""")
 
-    
-    replace_mpc = {'project_name' : 'GAME_' + filename + 'Component',
+    replace_mpc = {'project_name' : filename + '_Component',
                    'filename' : filename,
                    'cpp_filename' : filename + '_Component_Impl.cpp',
                    'module_filename' : filename + '_Component_Module.cpp',
@@ -84,14 +84,12 @@ project (${project_name}) : game_mga_interpreter, game_lib {
 
     #Creating a file object in write mode.
     FILE_mpc = open (pathname + filename_mpc, "w")
-
     FILE_mpc.write (temp_mpc.substitute (replace_mpc))
-
     FILE_mpc.close ()
 
-#############################################################################################
-
-
+#
+# generate_stdafx_hfile
+#
 def generate_stdafx_hfile (filename, pathname):
     filename_stdafx_h = "StdAfx.h"
 
@@ -116,13 +114,12 @@ def generate_stdafx_hfile (filename, pathname):
 
     #Creating a file object in write mode.
     FILE_stdafx_h = open (pathname + filename_stdafx_h, "w")
-
     FILE_stdafx_h.write (temp_stdafx_h.substitute (replace_stdafx_h))
-
     FILE_stdafx_h.close ()
 
-#############################################################################################
-
+#
+# generate_stdafx_cppfile
+#
 def generate_stdafx_cppfile (pathname):
     filename_stdafx_cpp = "StdAfx.cpp"
 
@@ -150,13 +147,12 @@ def generate_stdafx_cppfile (pathname):
 
     #Creating a file object in write mode.
     FILE_stdafx_cpp = open (pathname + filename_stdafx_cpp, "w")
-
     FILE_stdafx_cpp.write (temp_stdafx_cpp)
-
     FILE_stdafx_cpp.close ()
 
-############################################################################################
-
+#
+# generate_resource_hfile
+#
 def generate_resource_hfile (pathname):
     filename_resource = "Resource.h"
 
@@ -181,21 +177,19 @@ def generate_resource_hfile (pathname):
 
     #Creating a file object in write mode.
     FILE_resource = open (pathname + filename_resource, "w")
-
     FILE_resource.write (temp_resource)
-
     FILE_resource.close ()
 
-############################################################################################
-
-def generate_component_rcfile (pathname, flag):
+#
+# generate_component_rcfile
+#
+def generate_component_rcfile (pathname, has_icon):
     filename_componentrc = "Component.rc"
 
     ico = ""
-    if flag == 1:
+    if has_icon:
         ico = "IDI_COMPICON            ICON    DISCARDABLE     \"compicon.ico\""
         
-
     #Creating file contents for Component.rc file
     temp_componentrc = string.Template ("""
 //Microsoft Developer Studio generated resource script.
@@ -323,14 +317,12 @@ END
 
     #Creating a file object in write mode.
     FILE_componentrc = open (pathname + filename_componentrc, "w")
-
     FILE_componentrc.write (temp_componentrc.substitute (replace_componentrc))
-
     FILE_componentrc.close ()
 
-
-############################################################################################
-
+#
+# generate_idl_file
+#
 def generate_idl_file (filename, pathname, comp_guid, lib_guid):
     filename_idl = filename + "_Component.idl"
 
@@ -379,16 +371,12 @@ library ${filename}_Component
 
     #Creating a file object in write mode.
     FILE_idl = open (pathname + filename_idl, "w")
-
     FILE_idl.write (temp_idl.substitute (replace_idl))
-
     FILE_idl.close ()   
     
-    
-
-#############################################################################################
-
-    
+#
+# generate_impl_h_file
+#
 def generate_impl_h_file (filename, pathname):
     filename_impl_h = filename + "_Component_Impl.h"
 
@@ -427,9 +415,6 @@ public:
                  GAME::Mga::FCO_in focus,
                  std::vector <GAME::Mga::FCO> & selected,
                  long flags);
-
-private:
-  
 };
 
 #endif""")
@@ -439,13 +424,12 @@ private:
 
     #Creating a file object in write mode.
     FILE_impl_h = open (pathname + filename_impl_h, "w")
-
     FILE_impl_h.write (temp_impl_h.substitute (replace_impl_h))
-
     FILE_impl_h.close ()
 
-##############################################################################################
-
+#
+# generate_module_cpp_file
+#
 def generate_module_cpp_file (filename, pathname, lib_guid):
     filename_module_cpp = filename + "_Component_Module.cpp"
 
@@ -467,14 +451,12 @@ DECLARE_COMPONENT_MODULE ("$filename",
 
     #Creating a file object in write mode.
     FILE_module_cpp = open (pathname + filename_module_cpp, "w")
-
     FILE_module_cpp.write (temp_module_cpp.substitute (replace_module_cpp))
-
     FILE_module_cpp.close ()
     
-
-##############################################################################################
-
+#
+# generate_impl_cpp_file
+#
 def generate_impl_cpp_file (filename, pathname, paradigm):
     filename_impl_cpp = filename + "_Component_Impl.cpp"
 
@@ -538,26 +520,26 @@ invoke_ex (GAME::Mga::Project project,
 
     #Creating a file object in write mode.
     FILE_impl_cpp = open (pathname + filename_impl_cpp, "w")
-
     FILE_impl_cpp.write (temp_impl_cpp.substitute (replace_impl_cpp))
-
     FILE_impl_cpp.close ()
 
-#############################################################################################
-
+#
+# validity_check
+#
 def validity_check (guid):
     if re.match ('^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$', guid):
         return True
     
-    print "Invalid Guid !"
+    print ('*** error:', guid, 'is invalid')
     
-#############################################################################################
-
-def generate_reg_file (filename, pathname, comp_guid, paradigm, flag):
-    filename_reg = 'GAME_' + filename + 'Component.reg'
+#
+# generate_reg_file
+#
+def generate_reg_file (filename, pathname, comp_guid, paradigm, has_icon):
+    filename_reg = filename + '_Component.reg'
 
     ico = ""
-    if flag == 1:
+    if has_icon:
         ico = "\"Icon\"=\",IDI_COMPICON\""
 
     #Creating string template for *.reg file
@@ -574,7 +556,7 @@ def generate_reg_file (filename, pathname, comp_guid, paradigm, flag):
 @="GAME.Interpreter.${filename}"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{${comp_guid}}\InProcServer32]
-@="GAME_${filename}Component.dll"
+@="${filename}_Component.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.${filename}]
 @="GAME.Interpreter.${filename}"
@@ -601,18 +583,17 @@ $icon
 
     #Creating a file object in write mode.
     FILE_reg = open (pathname + filename_reg, "w")
-
     FILE_reg.write (temp_reg.substitute (replace_reg))
-
     FILE_reg.close ()
 
-#############################################################################################
-
-def generate_dreg_file (filename, pathname, comp_guid, paradigm, flag):
-    filename_dreg = 'GAME_' + filename + 'Componentd.reg'
+#
+# generate_dreg_file
+#
+def generate_dreg_file (filename, pathname, comp_guid, paradigm, has_icon):
+    filename_dreg = filename + '_Componentd.reg'
 
     ico = ""
-    if flag == 1:
+    if has_icon:
         ico = "\"Icon\"=\",IDI_COMPICON\""
 
     #Creating string template for *d.reg file
@@ -629,7 +610,7 @@ def generate_dreg_file (filename, pathname, comp_guid, paradigm, flag):
 @="GAME.Interpreter.${filename}"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{${comp_guid}}\InProcServer32]
-@="GAME_${filename}Componentd.dll"
+@="${filename}_Componentd.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.${filename}]
 @="GAME.Interpreter.${filename}"
@@ -656,23 +637,21 @@ $icon
 
     #Creating a file object in write mode.
     FILE_dreg = open (pathname + filename_dreg, "w")
-
     FILE_dreg.write (temp_dreg.substitute (replace_dreg))
-
     FILE_dreg.close ()
 
-
-#############################################################################################
-    
+#
+# main
+#    
 def main (*argv):
-
-
     #Initializing the variable values
     comp_guid = uuid.uuid4 ()
     lib_guid = uuid.uuid4 ()
-    pathname = os.getcwd () + "\\"
+    pathname = os.getcwd () + '/'
     filename = 'Default'
-    flag = 0
+    has_icon = False
+    paradigm = None
+    filename = None
     
     #setting options and corresponding argument values
     options, remainder = getopt.getopt (sys.argv[1:], 'o:',['name=',
@@ -689,7 +668,7 @@ def main (*argv):
         elif opt == '--paradigm' :
             paradigm = arg
         elif opt == '--has-icon' :
-            flag =1
+            has_icon = True
         elif opt == '--component-guid' :
             if (not validity_check (arg)):
                 return 1
@@ -698,13 +677,20 @@ def main (*argv):
             if (not validity_check (arg)):
                 return 1
             lib_guid = arg
-        
             
+    if filename is None:
+        print ('*** error: missing --name argument')
+        sys.exit (1)
+    
+    if paradigm is None:
+        print ('*** error: missing --paradigm argument')
+        sys.exit (1)
+                        
     #Calling respective function for creating .mwc file
     generate_mwc_file (filename, pathname)
 
     #Calling respective function for creating .mpc file
-    generate_mpc_file (filename, pathname, comp_guid, paradigm, flag)
+    generate_mpc_file (filename, pathname, comp_guid, paradigm, has_icon)
 
     #Calling respective function for creating .idl file
     generate_idl_file (filename, pathname, comp_guid, lib_guid)
@@ -719,16 +705,16 @@ def main (*argv):
     generate_resource_hfile (pathname)
 
     #Calling respective function for creating Component.rc file
-    generate_component_rcfile (pathname, flag)
+    generate_component_rcfile (pathname, has_icon)
 
     #Calling respective function for creating _Module.cpp file
     generate_module_cpp_file (filename, pathname, lib_guid)
 
     #Calling respective function for creating *d.reg file
-    generate_dreg_file (filename, pathname, comp_guid, paradigm, flag)
+    generate_dreg_file (filename, pathname, comp_guid, paradigm, has_icon)
 
     #Calling respective function for creating *.reg file
-    generate_reg_file (filename, pathname, comp_guid, paradigm, flag)
+    generate_reg_file (filename, pathname, comp_guid, paradigm, has_icon)
 
     #Calling respective function for creating _Impl.h file
     generate_impl_h_file (filename, pathname)
@@ -736,7 +722,9 @@ def main (*argv):
     #Calling respective function for creating _Impl.cpp file
     generate_impl_cpp_file (filename, pathname, paradigm)
 
- 
+#
+# __name__
+#
 if __name__ == "__main__":
     SystemExit (main ())
         
