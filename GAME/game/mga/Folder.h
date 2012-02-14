@@ -79,19 +79,27 @@ public:
    *
    * @return      Collection of folder objects.
    */
-  size_t children (std::vector <Folder> & items) const;
+  size_t folders (std::vector <Folder> & items) const;
 
   /**
    * @overloaded
    */
-  Iterator <Folder> children (void) const;
+  Iterator <Folder> folders (void) const;
 
   /**
    * Get all the first-level child folders of this folder.
    *
    * @return      Collection of folder objects.
    */
-  size_t children (const std::string & type, std::vector <Folder> & items) const;
+  size_t folders (const std::string & type, std::vector <Folder> & items) const;
+
+  /**
+   * Get all the first-level child folders of this folder.
+   *
+   * @return      Collection of folder objects.
+   */
+  template <typename T>
+  size_t folders (std::vector <T> & items) const;
 
   /**
    * Get all the first-level child folders of this folder.
@@ -101,17 +109,20 @@ public:
   template <typename T>
   size_t children (std::vector <T> & items) const;
 
-  template <typename T>
-  Iterator <T> children (void) const;
-
   /**
-   * Get all the first-level child folders of this folder.
+   * Get all the first-level child elements of this folder.
    *
    * @return      Collection of folder objects.
    */
   template <typename T>
   size_t children (const std::string & type, std::vector <T> & items) const;
 
+  /// Get child elements of type T.
+  template <typename T>
+  Iterator <T> children (void) const;
+
+  /// Get child elements of the specified type, and convert them to
+  /// elements of type T.
   template <typename T>
   Iterator <T> children (const std::string & type) const;
 

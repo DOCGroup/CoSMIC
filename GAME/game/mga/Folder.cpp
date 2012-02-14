@@ -69,7 +69,7 @@ private:
 //
 // children
 //
-size_t Folder_Impl::children (std::vector <Folder> & children) const
+size_t Folder_Impl::folders (std::vector <Folder> & children) const
 {
   CComPtr <IMgaFolders> folders;
   VERIFY_HRESULT (this->impl ()->get_ChildFolders (&folders));
@@ -80,7 +80,7 @@ size_t Folder_Impl::children (std::vector <Folder> & children) const
 //
 // children
 //
-Iterator <Folder> Folder_Impl::children (void) const
+Iterator <Folder> Folder_Impl::folders (void) const
 {
   CComPtr <IMgaFolders> folders;
   VERIFY_HRESULT (this->impl ()->get_ChildFolders (&folders));
@@ -92,7 +92,7 @@ Iterator <Folder> Folder_Impl::children (void) const
 // children
 //
 size_t Folder_Impl::
-children (const std::string & type, std::vector <Folder> & children) const
+folders (const std::string & type, std::vector <Folder> & children) const
 {
   std::vector <Folder> temp;
   if (0 == this->children (temp))

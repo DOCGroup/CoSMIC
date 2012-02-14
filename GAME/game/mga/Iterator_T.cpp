@@ -33,6 +33,8 @@ const Iterator <T> & Iterator <T>::operator = (const Iterator <T> & rhs)
   this->iter_ = rhs.iter_;
   this->count_ = rhs.count_;
   this->index_ = rhs.index_;
+  this->item_ = rhs.item_;
+
   return *this;
 }
 
@@ -40,8 +42,11 @@ const Iterator <T> & Iterator <T>::operator = (const Iterator <T> & rhs)
 // item
 //
 template <typename T>
-T Iterator <T>::item (void) const
+T & Iterator <T>::item (void) const
 {
+  if (!this->item_.is_nil ())
+    return this->item_;
+
   ATL::CComPtr <typename collection_traits <iterator_type *>::interface_type> temp;
   VERIFY_HRESULT (this->iter_->get_Item (this->index_, &temp));
 
@@ -49,19 +54,23 @@ T Iterator <T>::item (void) const
   ATL::CComPtr <typename T::interface_type> item;
   VERIFY_HRESULT (temp.QueryInterface (&item));
 
-  return item.p;
+  this->item_ = item.p;
+  return this->item_;
 }
 
 //
-// operator ++
+// advance
 //
 template <typename T>
-Iterator <T> & Iterator <T>::operator ++ (void)
+GAME_INLINE
+void Iterator <T>::advance (void)
 {
   ++ this->index_;
 
-  return *this;
+  if (!this->item_.is_nil ())
+    this->item_ = 0;
 }
+
 
 //
 // operator ++
@@ -69,35 +78,30 @@ Iterator <T> & Iterator <T>::operator ++ (void)
 template <typename T>
 Iterator <T> Iterator <T>::operator ++ (int)
 {
-  Iterator dup (*this);
+  Iterator iter (*this);
   ++ this->index_;
 
-  return dup;
+  if (!this->item_.is_nil ())
+    this->item_ = 0;
+
+  return iter;
 }
 
 //
-// operator ==
+// operator ++
 //
 template <typename T>
-bool Iterator <T>::operator == (const Iterator <T> & rhs) const
+GAME_INLINE
+Iterator <T> & Iterator <T>::operator ++ (void)
 {
-  if (this == &rhs)
-    return true;
+  ++ this->index_;
 
-  return this->iter_.p == rhs.iter_.p && this->index_ == rhs.index_;
+  if (!this->item_.is_nil ())
+    this->item_ = 0;
+
+  return *this;
 }
 
-//
-// operator !=
-//
-template <typename T>
-bool Iterator <T>::operator != (const Iterator <T> & rhs) const
-{
-  if (this != &rhs)
-    return true;
-
-  return this->iter_.p != rhs.iter_.p || this->index_ == rhs.index_;
-}
 
 }
 }

@@ -1,3 +1,31 @@
+Tue Feb 14 22:54:27 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Iterator_T.h:
+        * game/mga/Iterator_T.inl:
+        * game/mga/Iterator_T.cpp:
+
+          Bug fix where methods that return access or move to a new item were
+          throwing an exception because the underlying implementation was being
+          deleted unexpectedly.
+
+          Implemented Impl_Iterator () and its factory method make_impl_iter (),
+          which is an adapter class that return a smart pointers implementation
+          when it is dereferenced. This is useful for those functions that require
+          an implementation pointer when it is dereferenced (e.g., when using a
+          collection of smart pointers with a visitor object).
+
+        * game/mga/Folder.h:
+        * game/mga/Folder.cpp:
+        * game/mga/Folder_T.cpp:
+
+          Change the name of the children method that returns Folder model
+          elements to folders ().
+
+        * game/mga/Model_T.cpp:
+
+          Bug fix where the iterator version of children () was returning
+          more elements than expected.
+
 Tue Feb 14 16:27:19 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/xml/Document.h:

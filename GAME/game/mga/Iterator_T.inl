@@ -6,6 +6,9 @@ namespace GAME
 namespace Mga
 {
 
+///////////////////////////////////////////////////////////////////////////////
+// Iterator
+
 //
 // Iterator
 //
@@ -37,7 +40,8 @@ GAME_INLINE
 Iterator <T>::Iterator (const Iterator <T> & copy)
 : iter_ (copy.iter_),
   index_ (copy.index_),
-  count_ (copy.count_)
+  count_ (copy.count_),
+  item_ (copy.item_)
 {
 }
 
@@ -84,6 +88,7 @@ long Iterator <T>::index (void) const
 // make_end
 //
 template <typename T>
+GAME_INLINE
 Iterator <T> Iterator <T>::make_end (void) const
 {
   return Iterator (this->iter_.p, this->count_ + 1, this->count_);
@@ -100,21 +105,11 @@ void Iterator <T>::reset (void)
 }
 
 //
-// reset
-//
-template <typename T>
-GAME_INLINE
-void Iterator <T>::advance (void)
-{
-  ++ this->index_;
-}
-
-//
 // operator *
 //
 template <typename T>
 GAME_INLINE
-T Iterator <T>::operator * (void) const
+T & Iterator <T>::operator * (void) const
 {
   return this->item ();
 }
@@ -137,6 +132,93 @@ GAME_INLINE
 void Iterator <T>::items (std::vector <T> & out) const
 {
   iter_to_collection (this->iter_.p, out);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Impl_Iterator
+
+//
+// Impl_Iterator
+//
+template <typename BASE>
+GAME_INLINE
+Impl_Iterator <BASE>::Impl_Iterator (void)
+{
+
+}
+
+//
+// Impl_Iterator
+//
+template <typename BASE>
+GAME_INLINE
+Impl_Iterator <BASE>::Impl_Iterator (const BASE & copy)
+: BASE (copy)
+{
+
+}
+
+//
+// Impl_Iterator
+//
+template <typename BASE>
+GAME_INLINE
+Impl_Iterator <BASE>::Impl_Iterator (const Impl_Iterator & copy)
+: BASE (copy)
+{
+
+}
+
+//
+// ~Impl_Iterator
+//
+template <typename BASE>
+GAME_INLINE
+Impl_Iterator <BASE>::~Impl_Iterator (void)
+{
+
+}
+
+//
+// ~Impl_Iterator
+//
+template <typename BASE>
+GAME_INLINE
+typename Impl_Iterator <BASE>::impl_type *
+Impl_Iterator <BASE>::operator * (void)
+{
+  BASE & base = *this;
+  return *base;
+}
+
+//
+// make_impl_iter
+//
+template <typename BASE>
+GAME_INLINE
+Impl_Iterator <BASE> make_impl_iter (const BASE & iter)
+{
+  return Impl_Iterator <BASE> (iter);
+}
+
+//
+// operator ==
+//
+template <typename T>
+GAME_INLINE
+bool Iterator <T>::operator == (const Iterator <T> & rhs) const
+{
+  return this == &rhs || (this->iter_.p == rhs.iter_.p && this->index_ == rhs.index_);
+}
+
+//
+// operator !=
+//
+template <typename T>
+GAME_INLINE
+bool Iterator <T>::operator != (const Iterator <T> & rhs) const
+{
+  return !(*this == rhs);
 }
 
 }

@@ -174,8 +174,12 @@ size_t Model_Impl::children (std::vector <T> & children) const
 template <typename T>
 Iterator <T> Model_Impl::children (void) const
 {
+  typedef typename T::impl_type impl_type;
+  assert::element_not_containable_in_model <impl_type::type_tag>::result_type;
+
   CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+  CComBSTR bstr (impl_type::metaname.length (), impl_type::metaname.c_str ());
+  VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
   return Iterator <T> (fcos.p);
 }
