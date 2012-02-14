@@ -51,5 +51,26 @@ void Document::close (void)
   this->root_.reset (0);
 }
 
+//
+// LS_Document
+//
+LS_Document::LS_Document (void)
+: Document (0)
+{
+  using namespace xercesc;
+
+  // Get the LS DOM implementation.
+  static const XMLCh LS[3] = {chLatin_L, chLatin_S, chNull};
+  this->impl_ = DOMImplementationRegistry::getDOMImplementation (LS);
+}
+
+//
+// ~LS_Document
+//
+LS_Document::~LS_Document (void)
+{
+
+}
+
 }
 }

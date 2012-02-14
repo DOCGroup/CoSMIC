@@ -109,5 +109,25 @@ Fragment::operator xercesc::DOMElement * (void)
   return this->fragment_;
 }
 
+//
+// set_attribute
+//
+GAME_INLINE
+void Fragment::set_attribute (const String & name, const String & value)
+{
+  this->fragment_->setAttribute (name, value);
+}
+
+//
+// set_attribute
+//
+GAME_INLINE
+void Fragment::set_attribute (const String & name, bool value)
+{
+  static const String value_true ("true");
+  static const String value_false ("false");
+  this->fragment_->setAttribute (name, value ? value_true : value_false);
+}
+
 }
 }

@@ -1,9 +1,28 @@
+Tue Feb 14 16:27:19 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/xml/Document.h:
+        * game/xml/Document.inl:
+        * game/xml/Document.cpp:
+
+          Bug fix where impl () was not returning a pointer to the
+          implementation.
+
+          Added doc () method that return a pointer to the underlying
+          document.
+
+        * game/xml/Fragment.h:
+        * game/xml/Fragment.inl:
+        * game/xml/Fragment.cpp:
+
+          Added helper method for setting attribute values using C++
+          data types instead of having to convert the values to a string.
+
 Mon Feb 13 20:44:24 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Add_Command.h:
         * game/mga/addons/Model_Intelligence/Add_Command.cpp:
-        
-		  Extended Containment facility to now include References and Sets
+
+          Extended Containment facility to now include References and Sets
 
 Mon Feb 13 16:25:52 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 

@@ -42,7 +42,12 @@ public:
 
   /// Get the underlying implementation.
   xercesc::DOMDocument * operator -> (void) const;
-  xercesc::DOMDocument * impl (void) const;
+
+  /// Get the underlying implementation.
+  xercesc::DOMImplementation * impl (void) const;
+
+  /// Get the underlying document.
+  xercesc::DOMDocument * doc (void) const;
 
   /// Get the root element fore the document.
   Fragment & root (void);
@@ -57,6 +62,19 @@ protected:
 
   /// The fragment for the root part of the document.
   std::auto_ptr <Fragment> root_;
+};
+
+/**
+ * @class LS_Document
+ */
+class GAME_XML_Export LS_Document : public Document
+{
+public:
+  /// Default constructor.
+  LS_Document (void);
+
+  /// Destructor.
+  virtual ~LS_Document (void);
 };
 
 }

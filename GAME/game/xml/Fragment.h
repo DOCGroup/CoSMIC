@@ -90,6 +90,10 @@ public:
 
   void operator = (xercesc::DOMElement * e);
 
+  void set_attribute (const String & name, const String & value);
+  void set_attribute (const String & name, bool value);
+  void set_attribute (const String & name, double value);
+  void set_attribute (const String & name, long value);
 
 protected:
   /// Pointer to the current fragment.

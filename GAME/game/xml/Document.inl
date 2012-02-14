@@ -35,10 +35,19 @@ xercesc::DOMDocument * Document::operator -> (void) const
 }
 
 //
-// operator ->
+// impl
 //
 GAME_INLINE
-xercesc::DOMDocument * Document::impl (void) const
+xercesc::DOMImplementation * Document::impl (void) const
+{
+  return this->impl_;
+}
+
+//
+// doc
+//
+GAME_INLINE
+xercesc::DOMDocument * Document::doc (void) const
 {
   return this->doc_;
 }

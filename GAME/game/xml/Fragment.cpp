@@ -7,6 +7,7 @@
 #endif
 
 #include "xercesc/dom/DOMDocument.hpp"
+#include <sstream>
 
 namespace GAME
 {
@@ -94,6 +95,25 @@ create_simple_content (xercesc::DOMElement * parent,
     child->setTextContent (value);
 
   return child;
+}
+
+//
+// set_attribute
+//
+void Fragment::set_attribute (const String & name, long value)
+{
+  std::ostringstream ostr;
+  ostr << value;
+
+  this->fragment_->setAttribute (name, String (ostr.str ()));
+}
+
+void Fragment::set_attribute (const String & name, double value)
+{
+  std::ostringstream ostr;
+  ostr << value;
+
+  this->fragment_->setAttribute (name, String (ostr.str ()));
 }
 
 }
