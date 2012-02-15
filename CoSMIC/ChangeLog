@@ -1,3 +1,10 @@
+Wed Feb 15 00:38:37 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          Fixed install location for the binaries.
+
 Sat Feb 11 20:51:05 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PSM/DQML/paradigms/DQML.xme:

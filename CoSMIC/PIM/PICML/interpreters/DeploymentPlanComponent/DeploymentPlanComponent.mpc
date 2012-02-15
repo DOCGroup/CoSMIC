@@ -27,7 +27,7 @@ project (PICML_DeploymentPlan): boost_base, game_xml, picml_udm_utils {
   }
 }
 
-project (PICML_DeploymentPlanComponent): picml_udm_utils, game_mga_utils, game_mga_interpreter, cosmic_utils {
+project (PICML_DeploymentPlanComponent): picml_udm_utils, game_mga_utils, game_mga_interpreter, cosmic_utils, cosmic_lib {
   sharedname = PICML_DeploymentPlanComponent
 
   after += PICML_DeploymentPlan
