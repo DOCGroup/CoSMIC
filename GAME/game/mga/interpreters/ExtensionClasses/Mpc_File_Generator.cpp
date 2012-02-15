@@ -93,8 +93,6 @@ generate (const std::string & location,
     << "  pch_source = " << root_name << "/" << pch_basename << ".cpp" << std::endl
     << std::endl
     << "  dynamicflags += " << export_name << "_BUILD_DLL" << std::endl
-    << "  prebuild     += $(ACE_ROOT)/bin/generate_export_file.pl "
-    << export_name << " > " << root_name << "/" << name << "_export.h" << std::endl
     << std::endl
     << "  Source_Files {" << std::endl
     << "    " << proj.root_folder ()->name () << "/Impl_Factory.cpp" << std::endl

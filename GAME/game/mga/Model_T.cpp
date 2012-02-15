@@ -1,14 +1,16 @@
 // $Id$
 
 #include "Collection_T.h"
+#include "Assert.h"
 
 namespace GAME
 {
 namespace Mga
 {
 
-namespace assert
+namespace assertion
 {
+
 /**
  * @struct element_not_containable_in_model
  *
@@ -165,7 +167,7 @@ struct get_children_t <false>
 template <typename T>
 size_t Model_Impl::children (std::vector <T> & children) const
 {
-  return get_children_t <assert::is_extension_class <T>::result_type> () (this, children);
+  return get_children_t <assertion::is_extension_class <T>::result_type> () (this, children);
 }
 
 //
@@ -175,7 +177,7 @@ template <typename T>
 Iterator <T> Model_Impl::children (void) const
 {
   typedef typename T::impl_type impl_type;
-  assert::element_not_containable_in_model <impl_type::type_tag>::result_type;
+  assertion::element_not_containable_in_model <impl_type::type_tag>::result_type;
 
   CComPtr <IMgaFCOs> fcos;
   CComBSTR bstr (impl_type::metaname.length (), impl_type::metaname.c_str ());

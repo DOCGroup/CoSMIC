@@ -85,6 +85,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
 
   Header_Files {
     GME_fwd.h
+    Static_Assert.h
     types.h
     Tags.h
   }

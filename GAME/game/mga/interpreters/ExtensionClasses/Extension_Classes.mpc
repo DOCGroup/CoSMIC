@@ -15,6 +15,7 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpret
     Factory_Method_Generator.cpp
     Functors.cpp
     Fwd_Decl_Generator.cpp
+    Export_File_Generator.cpp
     Extension_Classes_Component.idl
     Extension_Classes_Component_Impl.cpp
     Extension_Classes_Component_Module.cpp
@@ -27,6 +28,7 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpret
     Mwc_File_Generator.cpp
     Parent_Generator.cpp
     RefersTo_Method_Generator.cpp
+    Top_Level_File_Generator.cpp
     Visitor_Generator.cpp
   }
 

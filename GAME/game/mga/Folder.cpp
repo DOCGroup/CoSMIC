@@ -95,7 +95,7 @@ size_t Folder_Impl::
 folders (const std::string & type, std::vector <Folder> & children) const
 {
   std::vector <Folder> temp;
-  if (0 == this->children (temp))
+  if (0 == this->folders (temp))
     return 0;
 
   std::for_each (temp.begin (),

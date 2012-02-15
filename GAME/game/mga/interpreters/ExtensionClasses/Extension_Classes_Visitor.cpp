@@ -900,20 +900,17 @@ void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
 //
 void Extension_Classes_Visitor::visit_Folder_i (Folder_in folder)
 {
-  // collect all the paradigm sheets and traverse them.
-  std::vector <FCO> paradigm_sheets;
-  folder->children (paradigm_sheets);
+  // Visit all the paradigm sheets.
+  std::vector <Model> sheets;
+  folder->children (sheets);
 
-  // visit all the paradigm sheets.
-  std::for_each (paradigm_sheets.begin (),
-                 paradigm_sheets.end (),
-                 boost::bind (&FCO::impl_type::accept,
-                              boost::bind (&FCO::get, _1),
-                              this));
+  std::for_each (GAME::Mga::make_impl_iter (sheets.begin ()),
+                 GAME::Mga::make_impl_iter (sheets.end ()),
+                 boost::bind (&Model::impl_type::accept, _1, this));
 
   // Visit all the SheetFolder elements in the model.
   std::vector <Folder> folders;
-  folder->children ("SheetFolder", folders);
+  folder->folders ("SheetFolder", folders);
 
   std::for_each (folders.begin (),
                  folders.end (),

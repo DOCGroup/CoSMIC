@@ -4,6 +4,7 @@
 #include "Extension_Classes_Component.h"
 #include "Extension_Classes_Component_Impl.h"
 
+#include "Export_File_Generator.h"
 #include "Extension_Classes_Visitor.h"
 #include "Fwd_Decl_Generator.h"
 #include "Impl_Factory_Generator.h"
@@ -12,6 +13,7 @@
 #include "Mwc_File_Generator.h"
 #include "Pch_File_Generator.h"
 #include "Visitor_Generator.h"
+#include "Top_Level_File_Generator.h"
 
 #include "game/mga/Atom.h"
 #include "game/mga/Model.h"
@@ -121,6 +123,12 @@ invoke_ex (GAME::Mga::Project project,
 
       GAME::Mga::Impl_Factory_Generator impl_factory_gen;
       impl_factory_gen.generate (this->output_, project, pch_basename, ext_classes);
+
+      GAME::Mga::Top_Level_File_Generator top_level_gen;
+      top_level_gen.generate (this->output_, project, ext_classes);
+
+      GAME::Mga::Export_File_Generator export_file_gen;
+      export_file_gen.generate (this->output_, project);
     }
     else
     {
