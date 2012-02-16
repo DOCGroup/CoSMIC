@@ -438,9 +438,10 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
     (metaname == "FCO" ||
     (metaname != "Folder" && fco->attribute ("IsAbstract")->bool_value ()));
 
-  bool is_connection = metaname == "Connection";
-  bool is_model = metaname == "Model";
-  bool is_in_root_folder = fco->attribute ("InRootFolder")->bool_value ();
+  const bool is_connection = metaname == "Connection";
+  const bool is_model = metaname == "Model";
+  const bool is_in_root_folder = fco->attribute ("InRootFolder")->bool_value ();
+  const bool is_folder = metaname == "Folder";
 
   this->classname_ = name + "_Impl";
 
@@ -776,7 +777,7 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
                               boost::bind (&Connection::get, _1),
                               &in_connection_gen));
 
-  if (is_model)
+  if (is_model || is_folder)
   {
     this->header_
       << std::endl
@@ -787,16 +788,32 @@ void Extension_Classes_Visitor::visit_FCO (FCO_in fco)
 
     // Let's write the containment methods. This code is only valid
     // when dealing with a Model element.
-    Containment_Generator containment_gen (fco,
-                                           this->classname_,
-                                           this->header_,
-                                           this->source_);
+    if (is_model)
+    {
+      Containment_Generator containment_gen (fco,
+                                             this->classname_,
+                                             this->header_,
+                                             this->source_);
 
-    std::for_each (clsdef.containment_.begin (),
-                   clsdef.containment_.end (),
-                   boost::bind (&Connection::impl_type::accept,
-                                boost::bind (&Connection::get, _1),
-                                &containment_gen));
+      std::for_each (clsdef.containment_.begin (),
+                     clsdef.containment_.end (),
+                     boost::bind (&Connection::impl_type::accept,
+                                  boost::bind (&Connection::get, _1),
+                                  &containment_gen));
+    }
+    else if (is_folder)
+    {
+      Containment_Generator containment_gen (fco,
+                                             this->classname_,
+                                             this->header_,
+                                             this->source_);
+
+      std::for_each (clsdef.folder_containment_.begin (),
+                     clsdef.folder_containment_.end (),
+                     boost::bind (&Connection::impl_type::accept,
+                                  boost::bind (&Connection::get, _1),
+                                  &containment_gen));
+    }
 
     this->header_
       << "///@}"

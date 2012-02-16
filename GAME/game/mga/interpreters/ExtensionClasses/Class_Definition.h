@@ -38,6 +38,7 @@ public:
   std::vector <GAME::Mga::Connection> connector_to_dst_;
 
   std::vector <GAME::Mga::Connection> containment_;
+  std::vector <GAME::Mga::Connection> folder_containment_;
 
   std::vector <GAME::Mga::Connection> refers_to_;
 
