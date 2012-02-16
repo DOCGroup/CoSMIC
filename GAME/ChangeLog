@@ -1,3 +1,27 @@
+Thu Feb 16 06:42:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Connection.cpp:
+
+          Bug fix where the owner () method was running a Connection_Impl
+          instead of using the Impl_Factory to create the implementation.
+
+        * game/mga/Iterator_T.inl:
+
+          Fixed a function header.
+
+        * game/mga/interpreters/ExtensionClasses/Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.cpp:
+
+        * game/xml/Fragment.h:
+        * game/xml/GAME_XML.mpc:
+        * game/xml/Swap_Fragment.h:
+        * game/xml/Swap_Fragment.cpp:
+
+          Added a class named Swap_Fragment that swaps an existing fragment
+          with the current one. This is useful when generating an Xml file
+          from within a Visitor object.
+
 Wed Feb 15 06:06:27 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Folder.cpp:

@@ -45,6 +45,10 @@ public:
   std::vector <GAME::Mga::Connection> association_class_;
 
   std::vector <GAME::Mga::Connection> has_attributes_;
+
+private:
+  /// The FCO class definition.
+  GAME::Mga::FCO this_;
 };
 
 #endif  // !defined _EXTENSION_CLASS_CLASS_DEFINITION_H_

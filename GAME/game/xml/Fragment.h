@@ -31,6 +31,7 @@ public:
   /// Default constructor
   Fragment (xercesc::DOMElement * e = 0);
 
+  /// Copy constructor.
   Fragment (const Fragment & f);
 
   /// Destructor.

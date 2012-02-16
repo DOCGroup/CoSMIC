@@ -30,7 +30,7 @@ Connection ConnectionPoint_Impl::owner (void) const
   CComPtr <IMgaConnection> conn;
   VERIFY_HRESULT (this->impl ()->get_Owner (&conn));
 
-  return new Connection_Impl (conn.p);
+  return conn.p;
 }
 
 //

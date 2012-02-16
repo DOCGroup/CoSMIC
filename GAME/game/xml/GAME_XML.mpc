@@ -14,5 +14,6 @@ project (GAME_XML) : xerces, acelib, game_lib {
     Fragment.cpp
     Memory_Manager.cpp
     String.cpp
+    Swap_Fragment.cpp
   }
 }

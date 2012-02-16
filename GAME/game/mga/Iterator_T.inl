@@ -180,7 +180,7 @@ Impl_Iterator <BASE>::~Impl_Iterator (void)
 }
 
 //
-// ~Impl_Iterator
+// operator *
 //
 template <typename BASE>
 GAME_INLINE

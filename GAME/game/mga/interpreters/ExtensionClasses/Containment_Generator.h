@@ -52,9 +52,6 @@ public:
   // Visit the HasAttribute connection.
   virtual void visit_Connection (Connection_in c);
 
-  // Visit the Reference element.
-  virtual void visit_Reference (Reference_in ref);
-
 private:
   void generate_containment (FCO_in, const std::string & card);
 

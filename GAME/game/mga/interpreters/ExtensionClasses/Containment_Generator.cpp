@@ -51,23 +51,10 @@ void Containment_Generator::visit_Connection (Connection_in c)
   FCO src = c->src ();
   const std::string card = c->attribute ("Cardinality")->string_value ();
 
+  while (src->type () == OBJTYPE_REFERENCE)
+    src = GAME::Mga::Reference::_narrow (src)->refers_to ();
+
   this->generate_containment (src, card);
-}
-
-//
-// visit_Reference
-//
-void Containment_Generator::visit_Reference (Reference_in ref)
-{
-  // Visit all the containment connections.
-  std::vector <Connection> containment;
-  ref->in_connections ("Containment", containment);
-
-  std::for_each (containment.begin (),
-                 containment.end (),
-                 boost::bind (&Connection::impl_type::accept,
-                              boost::bind (&Connection::get, _1),
-                              this));
 }
 
 //
