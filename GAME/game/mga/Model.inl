@@ -21,7 +21,6 @@ Model_Impl::Model_Impl (void)
 //
 GAME_INLINE
 Model_Impl::Model_Impl (IMgaModel * model)
-//: FCO_Impl (model)
 {
   this->object_ = model;
 }

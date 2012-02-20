@@ -147,17 +147,10 @@ invoke_ex (GAME::Mga::Project project,
     this->save_project_settings (project);
     t.commit ();
   }
-  catch (const GAME::Mga::Failed_Result & ex)
-  {
-    HRESULT hr = ex.value ();
-
-    if (this->is_interactive_)
-      ::AfxMessageBox ("Caught Failed_Result exception", MB_OK);
-  }
-  catch (const GAME::Mga::Exception & )
+  catch (const GAME::Mga::Exception & ex)
   {
     if (this->is_interactive_)
-      ::AfxMessageBox ("Caught GME exception", MB_OK);
+      ::AfxMessageBox (ex.message ().c_str (), MB_OK);
   }
 
   return 0;

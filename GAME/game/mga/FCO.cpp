@@ -383,5 +383,16 @@ size_t FCO_Impl::referenced_by (std::vector <Reference> & refs) const
   return iter_to_collection (temp.p, refs);
 }
 
+//
+// referenced_by
+//
+Iterator <Reference> FCO_Impl::referenced_by (void) const
+{
+  CComPtr <IMgaFCOs> temp;
+  VERIFY_HRESULT (this->impl ()->get_ReferencedBy (&temp));
+
+  return Iterator <Reference> (temp.p);
+}
+
 }
 }

@@ -7,27 +7,29 @@ project (GAME_ExtensionClassesComponent) : codegenerationkit, game_mga_interpret
   pch_source = StdAfx.cpp
 
   Source_Files {
-    Attribute_Generator.cpp
-    Base_Class_Locator.cpp
+    Atom_Class_Definition.cpp
     Class_Definition.cpp
-    Connection_Point_Generator.cpp
-    Containment_Generator.cpp
-    Factory_Method_Generator.cpp
+    Connection_Class_Definition.cpp
+    Connection_Endpoint_Visitor.cpp
+    FCO_Class_Definition.cpp
+    Folder_Class_Definition.cpp
     Functors.cpp
-    Fwd_Decl_Generator.cpp
     Export_File_Generator.cpp
     Extension_Classes_Component.idl
     Extension_Classes_Component_Impl.cpp
     Extension_Classes_Component_Module.cpp
     Extension_Classes_Visitor.cpp
+    Fwd_Decl_Generator.cpp
     Impl_Factory_Generator.cpp
-    InConnection_Generator.cpp
     Init_Generator.cpp
+    Model_Class_Definition.cpp
+    Object_Class_Definition.cpp
     Pch_File_Generator.cpp
+    Proxy_Visitor.cpp
     Mpc_File_Generator.cpp
     Mwc_File_Generator.cpp
-    Parent_Generator.cpp
-    RefersTo_Method_Generator.cpp
+    Reference_Class_Definition.cpp
+    Set_Class_Definition.cpp
     Top_Level_File_Generator.cpp
     Visitor_Generator.cpp
   }

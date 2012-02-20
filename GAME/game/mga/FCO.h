@@ -17,6 +17,7 @@
 #include "Object.h"
 #include "Part.h"
 #include "Iterator_T.h"
+#include "Attribute.h"
 
 namespace GAME
 {
@@ -264,6 +265,7 @@ public:
    * @return      size.
    */
   size_t referenced_by (std::vector <Reference> & refs) const;
+  Iterator <Reference> referenced_by (void) const;
 
 private:
   /// The COM pointer for the FCO_Impl type.

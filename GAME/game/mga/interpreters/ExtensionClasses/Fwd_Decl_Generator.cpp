@@ -2,6 +2,7 @@
 
 #include "StdAfx.h"
 #include "Fwd_Decl_Generator.h"
+#include "Functors.h"
 
 #include "game/mga/Object.h"
 #include "game/mga/Project.h"
@@ -100,6 +101,8 @@ generate (const std::string & location,
       << std::endl
       << "#ifndef _" << macro_name << "_FWD_H_" << std::endl
       << "#define _" << macro_name << "_FWD_H_" << std::endl
+      << std::endl
+      << include_t ("game/mga/Smart_Ptr.h")
       << std::endl
       << "namespace " << name
       << "{";

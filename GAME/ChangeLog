@@ -1,3 +1,79 @@
+Mon Feb 20 06:51:06 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Attribute.h:
+        * game/mga/Attribute.cpp:
+
+          Removed the FCO include file.
+
+        * game/mga/FCO.h:
+        * game/mga/FCO.cpp:
+
+          Added the Attribute.h header file to FCO.h.
+
+        * game/mga/Model.inl:
+
+          Removed dead code.
+
+        * game/mga/interpreters/ExtensionClasses/Atom_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Atom_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Atom_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Connection_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Connection_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Connection_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Connection_Endpoint_Visitor.h:
+        * game/mga/interpreters/ExtensionClasses/Connection_Endpoint_Visitor.inl:
+        * game/mga/interpreters/ExtensionClasses/Connection_Endpoint_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes.mpc:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Component_Impl.cpp:
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/FCO_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/FCO_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/FCO_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Folder_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Folder_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Folder_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Fwd_Decl_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Model_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Model_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Model_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Object_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Object_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Object_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Proxy_Visitor.h:
+        * game/mga/interpreters/ExtensionClasses/Proxy_Visitor.inl:
+        * game/mga/interpreters/ExtensionClasses/Proxy_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/Reference_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Reference_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Reference_Class_Definition.cpp:
+        * game/mga/interpreters/ExtensionClasses/Set_Class_Definition.h:
+        * game/mga/interpreters/ExtensionClasses/Set_Class_Definition.inl:
+        * game/mga/interpreters/ExtensionClasses/Set_Class_Definition.cpp:
+
+          Re-write of the code generation to use the class definition abstraction
+          built atop the template pattern.
+
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Attribute_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.h:
+        * game/mga/interpreters/ExtensionClasses/Base_Class_Locator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Connection_Point_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Connection_Point_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Containment_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/ExtensionClasses_Export.h:
+        * game/mga/interpreters/ExtensionClasses/Factory_Method_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Factory_Method_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/InConnection_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/Parent_Generator.cpp:
+        * game/mga/interpreters/ExtensionClasses/RefersTo_Method_Generator.h:
+        * game/mga/interpreters/ExtensionClasses/RefersTo_Method_Generator.cpp:
+
+          Removed these files.
+
 Thu Feb 16 06:57:23 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses/Class_Definition.h:

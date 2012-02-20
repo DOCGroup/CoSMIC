@@ -8,6 +8,7 @@
 #include "Attribute.inl"
 #endif
 
+#include "FCO.h"
 #include "MetaAttribute.h"
 #include "Exception.h"
 

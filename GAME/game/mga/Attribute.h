@@ -15,7 +15,8 @@
 #ifndef _GAME_MGA_ATTRIBUTE_H_
 #define _GAME_MGA_ATTRIBUTE_H_
 
-#include "FCO.h"
+#include "GME_fwd.h"
+#include "Refcountable.h"
 
 namespace GAME
 {

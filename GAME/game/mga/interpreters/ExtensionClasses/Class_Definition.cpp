@@ -3,34 +3,39 @@
 #include "StdAfx.h"
 #include "Class_Definition.h"
 
-#include "boost/bind.hpp"
+#include "Atom_Class_Definition.h"
+#include "Connection_Class_Definition.h"
+#include "Folder_Class_Definition.h"
+#include "Model_Class_Definition.h"
+#include "Reference_Class_Definition.h"
 
 //
-// build
+// _create
 //
-void Class_Definition::build (GAME::Mga::FCO_in fco)
+Class_Definition * Class_Definition::_create (GAME::Mga::FCO_in fco)
 {
-  const std::string name = fco->name ();
+  const std::string metaname = fco->meta ()->name ();
 
-  // First, we need to gather all connections from this FCO that could
-  // lead to another FCO that must be included in the header file.
-  fco->in_connections ("SourceToConnector", this->src_to_connector_);
-  fco->in_connections ("ConnectorToDestination", this->connector_to_dst_);
-  fco->in_connections ("Containment", this->containment_);
-  fco->in_connections ("FolderContainment", this->folder_containment_);
-  fco->in_connections ("ReferTo", this->refers_to_);
-  fco->in_connections ("HasAttribute", this->has_attributes_);
-  fco->in_connections ("AssociationClass", this->association_class_);
+  if (metaname == "Atom")
+    return new Atom_Class_Definition ();
+  else if (metaname == "Connection")
+    return new Connection_Class_Definition ();
+  else if (metaname == "FCO")
+    return new FCO_Class_Definition ();
+  else if (metaname == "Folder")
+    return new Folder_Class_Definition ();
+  else if (metaname == "Model")
+    return new Model_Class_Definition ();
+  else if (metaname == "Reference")
+    return new Reference_Class_Definition ();
+  else
+    return 0;
+}
 
-  // There could be proxy elements in the metamodel. We therefore
-  // need to gather all of them and continue building the class
-  // definition as if they are this FCO object.
-  std::vector <GAME::Mga::Reference> referenced_by;
-  fco->referenced_by (referenced_by);
+//
+// ~Class_Definition
+//
+Class_Definition::~Class_Definition (void)
+{
 
-  std::for_each (referenced_by.begin (),
-                 referenced_by.end (),
-                 boost::bind (&Class_Definition::build,
-                              this,
-                              boost::bind (&GAME::Mga::Reference::get, _1)));
 }
