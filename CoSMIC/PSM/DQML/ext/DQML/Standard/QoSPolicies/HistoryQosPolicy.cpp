@@ -1,0 +1,105 @@
+// $Id$
+
+#include "StdAfx.h"
+#include "HistoryQosPolicy.h"
+
+#if !defined (__GAME_INLINE__)
+#include "HistoryQosPolicy.inl"
+#endif
+
+#include "DQML/Visitor.h"
+#include "DQML/Standard/Main/DDSQoS.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
+
+namespace DQML
+{
+  //
+  // metaname
+  //
+  const std::string HistoryQosPolicy_Impl::metaname ("HistoryQosPolicy");
+
+  //
+  // _create (const TopicQos_in)
+  //
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
+  {
+    return ::GAME::Mga::create_object < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataWriterQos_in)
+  //
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  {
+    return ::GAME::Mga::create_object < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create_object < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DDSQoS_in)
+  //
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DDSQoS_in parent)
+  {
+    return ::GAME::Mga::create_object < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
+  }
+
+  //
+  // accept
+  //
+  void HistoryQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
+  {
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_HistoryQosPolicy (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
+  }
+
+  //
+  // dst_dr_history_Connection
+  //
+  size_t HistoryQosPolicy_Impl::dst_dr_history_Connection (std::vector <dr_history_Connection> & items) const
+  {
+    return this->in_connections <dr_history_Connection> (items);
+  }
+
+  //
+  // dst_topic_history_Connection
+  //
+  size_t HistoryQosPolicy_Impl::dst_topic_history_Connection (std::vector <topic_history_Connection> & items) const
+  {
+    return this->in_connections <topic_history_Connection> (items);
+  }
+
+  //
+  // dst_dw_history_Connection
+  //
+  size_t HistoryQosPolicy_Impl::dst_dw_history_Connection (std::vector <dw_history_Connection> & items) const
+  {
+    return this->in_connections <dw_history_Connection> (items);
+  }
+}
+

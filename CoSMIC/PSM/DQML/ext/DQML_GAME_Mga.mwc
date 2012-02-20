@@ -1,0 +1,7 @@
+// $Id$
+
+workspace (DQML_GAME_Mga) {
+  cmdline += -include $GAME_ROOT/MPC/config
+
+  DQML_GAME_Mga.mpc
+}
