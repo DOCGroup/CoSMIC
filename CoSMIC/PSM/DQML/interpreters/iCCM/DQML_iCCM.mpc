@@ -1,0 +1,30 @@
+// $Id$
+
+project (DQML_iCCM_Component) : game_xml, dqml_game_mga, game_mga_interpreter, cosmic_utils, cosmic_lib {
+  sharedname = DQML_iCCM_Component
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    DQML_iCCM_Component.idl
+    DQML_iCCM_Component_Impl.cpp
+    DQML_iCCM_Component_Module.cpp
+    Participant_File.cpp
+    Participant_Visitor.cpp
+    Topic_Locator.cpp
+  }
+
+  Resource_Files {
+    Component.rc
+  }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = GAME.Interpreter.DQML_iCCM
+    gme_uuid        = 8238d1f3-6d1c-4224-8046-9d06cf990926
+    gme_paradigms   = DQML
+    gme_description = DQML iCCM Interpreter
+    gme_tooltip     = DQML iCCM Interpreter
+  }
+}

@@ -1,3 +1,28 @@
+Mon Feb 20 16:36:34 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/interpreters/iCCM:
+        * PSM/DQML/interpreters/iCCM/Component.rc:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM.mpc:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component.h:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component.idl:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component.reg:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component_Impl.h:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component_Impl.cpp:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component_Module.cpp:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Componentd.reg:
+        * PSM/DQML/interpreters/iCCM/Participant_File.h:
+        * PSM/DQML/interpreters/iCCM/Participant_File.cpp:
+        * PSM/DQML/interpreters/iCCM/Participant_Visitor.h:
+        * PSM/DQML/interpreters/iCCM/Participant_Visitor.cpp:
+        * PSM/DQML/interpreters/iCCM/Resource.h:
+        * PSM/DQML/interpreters/iCCM/StdAfx.h:
+        * PSM/DQML/interpreters/iCCM/StdAfx.cpp:
+        * PSM/DQML/interpreters/iCCM/Topic_Locator.h:
+        * PSM/DQML/interpreters/iCCM/Topic_Locator.cpp:
+
+          First version of interpreter that generates DDS configuration files
+          for iCCM.
+
 Mon Feb 20 16:17:53 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PSM/DQML/ext:
