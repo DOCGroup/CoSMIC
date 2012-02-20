@@ -53,5 +53,6 @@ void Set_Class_Definition::get_includes (std::set <GAME::Mga::Atom> & includes)
 void Set_Class_Definition::
 generate_definition (const Generation_Context & ctx)
 {
-
+  // Pass control to the base class.
+  FCO_Class_Definition::generate_definition (ctx);
 }

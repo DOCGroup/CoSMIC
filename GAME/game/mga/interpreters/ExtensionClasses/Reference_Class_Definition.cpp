@@ -23,12 +23,9 @@
 //
 void Reference_Class_Definition::build (GAME::Mga::FCO_in fco)
 {
-  const std::string metaname = fco->meta ()->name ();
-
   // Pass control to the base class.
   FCO_Class_Definition::build (fco);
 
-  bool stop = metaname == "Reference";
   std::vector <GAME::Mga::Connection> refers_to;
   fco->in_connections ("ReferTo", refers_to);
 

@@ -7,16 +7,8 @@
 #include "Extension_Classes_Visitor.inl"
 #endif
 
-#include "Attribute_Generator.h"
-#include "Base_Class_Locator.h"
 #include "Class_Definition.h"
-#include "Connection_Point_Generator.h"
-#include "Containment_Generator.h"
-#include "Factory_Method_Generator.h"
 #include "Functors.h"
-#include "InConnection_Generator.h"
-#include "Parent_Generator.h"
-#include "RefersTo_Method_Generator.h"
 
 #include "game/mga/Attribute.h"
 #include "game/mga/Atom.h"

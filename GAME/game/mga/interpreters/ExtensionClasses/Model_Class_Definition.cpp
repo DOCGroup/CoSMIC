@@ -127,6 +127,9 @@ void Model_Class_Definition::build (GAME::Mga::FCO_in fco)
 void Model_Class_Definition::
 generate_definition (const Generation_Context & ctx)
 {
+  // Pass control to the base class.
+  FCO_Class_Definition::generate_definition (ctx);
+
   if (this->single_.empty () && this->multiple_.empty () && this->optional_.empty ())
     return;
 

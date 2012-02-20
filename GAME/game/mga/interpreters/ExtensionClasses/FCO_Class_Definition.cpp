@@ -72,10 +72,10 @@ public:
       GAME::Mga::FCO src = item->src ();
       const std::string src_metaname = src->meta ()->name ();
 
-      if (src_metaname != "Connector")
-        this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (src)));
-      else
+      if (src_metaname == "Connector")
         this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (item->dst ())));
+      else
+        this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (src)));
     }
   }
 
