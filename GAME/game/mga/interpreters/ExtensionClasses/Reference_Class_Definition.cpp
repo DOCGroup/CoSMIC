@@ -97,6 +97,6 @@ generate_refers_to_method (const Generation_Context & ctx, GAME::Mga::Atom_in it
     << function_header_t (get_method_name)
     << type_name << " " << this->classname_ << "::" << get_method_name << " (void) const"
     << "{"
-    << "return " << this->name_ << "::_narrow (this->refers_to ());"
+    << "return " << type_name << "::_narrow (this->refers_to ());"
     << "}";
 }
