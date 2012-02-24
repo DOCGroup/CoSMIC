@@ -47,7 +47,7 @@ void Property_Locator::visit_Folder (GAME::Mga::Folder_in folder)
   typedef std::vector <GAME::Mga::Folder> folder_set;
   folder_set folders;
 
-  folder->children (folders);
+  folder->folders (folders);
 
   std::for_each (folders.begin (),
                  folders.end (),
