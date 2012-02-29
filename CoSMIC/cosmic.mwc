@@ -9,8 +9,11 @@ workspace (cosmic) {
 
   exclude (!prop:windows) {
     PIM/SIML/interpreters/Interpreters.mwc
+
     PIM/POSAML/interpreters/interpreters.mwc
+
     PSM/CQML/interpreters/Interpreters.mwc
+
     PSM/DQML/interpreters
   }
 
@@ -25,9 +28,11 @@ workspace (cosmic) {
     PSM/CQML/examples
     PSM/CQML/paradigms
 
-    PSM/DQML/examples
-    PSM/DQML/paradigms
   }
+
+  PSM/DQML/examples
+  PSM/DQML/paradigms
+  PSM/DQML/ext
 
   // The follow directories and workspaces only apply to
   // building CoSMIC using Visual C++.

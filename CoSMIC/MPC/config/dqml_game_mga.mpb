@@ -1,0 +1,8 @@
+// $Id$
+
+project : game_mga {
+  libs  += DQML_GAME_Mga
+  after += DQML_GAME_Mga
+
+  includes += $(COSMIC_ROOT)/PSM/DQML/ext
+}
