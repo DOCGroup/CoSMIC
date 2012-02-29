@@ -47,6 +47,21 @@ struct element_is_not_folder <folder_tag_t>
   static const bool result_type = false;
 };
 
+/**
+ * @struct element_is_not_folder
+ */
+template <typename T>
+struct element_is_folder
+{
+  static const bool result_type = false;
+};
+
+template < >
+struct element_is_folder <folder_tag_t>
+{
+  static const bool result_type = true;
+};
+
 }
 
 //

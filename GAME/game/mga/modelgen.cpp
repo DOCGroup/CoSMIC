@@ -10,6 +10,30 @@ template <typename P, typename T, typename META>
 size_t get_children <Mga_t>
 ::operator () (P parent, const META & metaname, T & element)
 {
+  typedef typename T::value_type value_type;
+  typedef typename value_type::impl_type::type_tag type_tag;
+
+  get_children_impl <GAME::Mga::assertion::element_is_folder <type_tag>::result_type, P, T, META> impl;
+  return impl (parent, metaname, element);
+}
+
+//
+// get_children_impl
+//
+template <typename P, typename T, typename META>
+size_t get_children <Mga_t>::get_children_impl <true, P, T, META>::
+operator () (P parent, const META & metaname, T & element)
+{
+  return parent->folders (metaname, element);
+}
+
+//
+// get_children_impl
+//
+template <typename P, typename T, typename META>
+size_t get_children <Mga_t>::get_children_impl <false, P, T, META>::
+operator () (P parent, const META & metaname, T & element)
+{
   return parent->children (metaname, element);
 }
 

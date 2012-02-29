@@ -30,6 +30,22 @@ struct get_children <Mga_t>
 public:
   template <typename P, typename T, typename META>
   size_t operator () (P parent, const META & metaname, T & element);
+
+private:
+  template <bool is_folder, typename P, typename T, typename META>
+  struct get_children_impl;
+
+  template <typename P, typename T, typename META>
+  struct get_children_impl <true, P, T, META>
+  {
+    size_t operator () (P parent, const META & metaname, T & element);
+  };
+
+  template <typename P, typename T, typename META>
+  struct get_children_impl <false, P, T, META>
+  {
+    size_t operator () (P parent, const META & metaname, T & element);
+  };
 };
 
 /**
