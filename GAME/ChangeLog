@@ -1,3 +1,10 @@
+Thu Mar  1 14:19:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * GAME.mwc:
+        * GAME_ACE.mwc:
+
+          Moved the ACE workspace inclusion to a new workspace.
+
 Wed Feb 29 03:52:52 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Folder_T.cpp:

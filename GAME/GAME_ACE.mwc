@@ -19,4 +19,6 @@ workspace (GAME) {
     game/xml
     game/xme
   }
+
+  $(ACE_ROOT)/ace/ace.mpc
 }
