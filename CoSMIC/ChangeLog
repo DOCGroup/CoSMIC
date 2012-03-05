@@ -1,3 +1,11 @@
+Mon Mar  5 04:53:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.h:
+        * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.cpp:
+
+          Added missing source files.
+
 Wed Feb 29 16:15:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/dqml_game_mga.mpb:
