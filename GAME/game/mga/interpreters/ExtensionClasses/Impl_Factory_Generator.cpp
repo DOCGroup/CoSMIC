@@ -206,7 +206,7 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
     << std::endl
     << "namespace " << project_name
     << "{"
-    << "class " << export_name << "_Export Impl_Factory : public ::GAME::Mga::Impl_Factory"
+    << "class " << export_name << "_Export Impl_Factory : public ::GAME::Mga::Impl_Factory_Base"
     << "{"
     << "public:" << std::endl
     << "/// Default constructor." << std::endl

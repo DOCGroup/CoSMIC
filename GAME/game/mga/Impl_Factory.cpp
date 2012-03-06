@@ -40,6 +40,40 @@ namespace GAME
 namespace Mga
 {
 
+///////////////////////////////////////////////////////////////////////////////
+// Impl_Factory
+
+
+//
+// set_next
+//
+void Impl_Factory::set_next (Impl_Factory * n)
+{
+  n->next_ = this->next_;
+  this->next_ = n;
+}
+
+//
+// remove
+//
+void Impl_Factory::remove (Impl_Factory * n)
+{
+  if (this->next_ == n)
+  {
+    // Remove this link from the chain.
+    this->next_ = n->next_;
+    n->next_ = 0;
+  }
+  else if (0 != this->next_)
+  {
+    // Go to the next link in the chain.
+    this->next_->remove (n);
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Default_Impl_Factory
+
 //
 // allocate_meta_impl
 //
@@ -56,10 +90,10 @@ static Meta::Base_Impl * allocate_meta_impl (IMgaMetaBase * ptr)
 // Default_Impl_Factory
 //
 Default_Impl_Factory::Default_Impl_Factory (void)
-: impl_ (0)
+: factory_methods_ (7, 0),
+  meta_factory_methods_ (11, 0)
 {
   // Insert the creation methods.
-  this->factory_methods_.resize (7, 0);
   this->factory_methods_[OBJTYPE_MODEL] = &allocate_impl <Model_Impl>;
   this->factory_methods_[OBJTYPE_ATOM] = &allocate_impl <Atom_Impl>;
   this->factory_methods_[OBJTYPE_REFERENCE] = &allocate_impl <Reference_Impl>;
@@ -67,7 +101,6 @@ Default_Impl_Factory::Default_Impl_Factory (void)
   this->factory_methods_[OBJTYPE_SET] = &allocate_impl <Set_Impl>;
   this->factory_methods_[OBJTYPE_FOLDER] = &allocate_impl <Folder_Impl>;
 
-  this->meta_factory_methods_.resize (11, 0);
   this->meta_factory_methods_[OBJTYPE_MODEL] = &allocate_meta_impl <Meta::Model_Impl>;
   this->meta_factory_methods_[OBJTYPE_ATOM] = &allocate_meta_impl <Meta::Atom_Impl>;
   this->meta_factory_methods_[OBJTYPE_REFERENCE] = &allocate_meta_impl <Meta::Reference_Impl>;
@@ -87,17 +120,6 @@ Object_Impl * Default_Impl_Factory::allocate (IMgaObject * ptr)
 {
   if (0 == ptr)
     return 0;
-
-  if (0 != this->impl_)
-  {
-    // Try and create an implementation using the installed
-    // implementation factory. If we fail to create an implementation,
-    // then we must fallback to the fundamental implementatations.
-    Object_Impl * impl = this->impl_->allocate (ptr);
-
-    if (0 != impl)
-      return impl;
-  }
 
   // Locate the factory method for this type.
   objtype_enum type;
@@ -185,6 +207,109 @@ Meta::ConnectionPoint_Impl * Default_Impl_Factory::allocate (IMgaMetaConnJoint *
 {
   return 0 != ptr ? new Meta::ConnectionPoint_Impl (ptr) : 0;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Impl_Factory_Base
+
+//
+// allocate
+//
+Object_Impl * Impl_Factory_Base::allocate (IMgaObject * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate object implementation");
+}
+
+//
+// allocate
+//
+RegistryNode_Impl * Impl_Factory_Base::allocate (IMgaRegNode * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate registry implementation");
+}
+
+//
+// allocate
+//
+Component_Impl * Impl_Factory_Base::allocate (IMgaComponent * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate component implementation");
+}
+
+//
+// allocate
+//
+ComponentEx_Impl * Impl_Factory_Base::allocate (IMgaComponentEx * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate extended component implementation");
+}
+
+//
+// allocate
+//
+Attribute_Impl * Impl_Factory_Base::allocate (IMgaAttribute * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate attribute implementation");
+}
+
+//
+// allocate
+//
+ConnectionPoint_Impl * Impl_Factory_Base::allocate (IMgaConnPoint * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate connection point implementation");
+}
+
+//
+// allocate
+//
+Meta::Base_Impl * Impl_Factory_Base::allocate (IMgaMetaBase * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate meta object implementation");
+}
+
+//
+// allocate
+//
+Meta::Constraint_Impl * Impl_Factory_Base::allocate (IMgaConstraint * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate constraint implementation");
+}
+
+//
+// allocate
+//
+Meta::ConnectionPoint_Impl * Impl_Factory_Base::allocate (IMgaMetaConnJoint * ptr)
+{
+  if (0 != this->next_)
+    return this->next_->allocate (ptr);
+
+  throw Exception ("failed to allocate meta connection joint implementation");
+}
+
 
 }
 }
