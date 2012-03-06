@@ -1,3 +1,9 @@
+Tue Mar  6 14:41:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/ComponentEx_Impl_T.cpp:
+
+          Bug fix where Exception should have been Failed_Result.
+
 Tue Mar  6 14:34:04 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Console_Service.h:

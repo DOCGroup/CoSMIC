@@ -34,7 +34,7 @@ STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
       // component to send messages to the user via the GME console.
       GME_CONSOLE_SERVICE->initialize (project);
     }
-    catch (const Exception & ex)
+    catch (const Failed_Result & ex)
     {
       // Re-throw the exception if it was not the name not found
       // exception, which happens only with add-ons.
