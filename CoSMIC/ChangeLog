@@ -1,3 +1,11 @@
+Tue Mar  6 03:39:49 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/ext/DQML/Impl_Factory.h:
+        * PSM/DQML/ext/DQML/Init.cpp:
+
+          Updated to support latest extensions to framework to support
+          multiple implementation factories.
+
 Mon Mar  5 04:53:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.h:

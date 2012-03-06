@@ -23,7 +23,7 @@
 
 namespace DQML
 {
-  class DQML_Export Impl_Factory : public ::GAME::Mga::Impl_Factory
+  class DQML_Export Impl_Factory : public ::GAME::Mga::Impl_Factory_Base
   {
     public:
     /// Default constructor.
