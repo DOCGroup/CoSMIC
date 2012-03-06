@@ -12,14 +12,20 @@
 
 use strict;
 use warnings;
+use File::Basename;
 
+#
+# print_guid_header
+#
 sub print_guid_header {
-  my ($filename) = shift;
+  my ($filename) = basename (shift, ".xmp");
   my ($name)     = shift;
   my ($uuid)     = shift;
 
-  open (FILE, ">${filename}.h");
+  open (FILE, ">${filename}_GUID.h");
 
+  print FILE "// -*- C++ -*-\n";
+  print FILE "\n";
   print FILE "\#ifndef _${name}_PARADIGM_GUID_H_\n";
   print FILE "\#define _${name}_PARADIGM_GUID_H_\n";
   print FILE "\n";
@@ -29,7 +35,7 @@ sub print_guid_header {
 }
 
 # open the target file for reading.
-open FILE, $ARGV[1] or die $!;
+open FILE, $ARGV[0] or die $!;
 
 while (<FILE>) {
   if ($_ =~ /name=\"(\w+)\"\s+guid=\"{([a-fA-F0-9]{8}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{12})\}"/) {

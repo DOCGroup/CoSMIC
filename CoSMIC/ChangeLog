@@ -1,3 +1,13 @@
+Tue Mar  6 05:28:56 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+        * bin/scripts/gme_paradigm_guid_to_header.pl:
+
+          Update the script to generate header files with _GUID.h suffix. This
+          means is no longer necessary to specify the target header file name
+          as a configuration parameter.
+
 Tue Mar  6 03:39:49 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PSM/DQML/ext/DQML/Impl_Factory.h:
