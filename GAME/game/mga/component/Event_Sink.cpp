@@ -594,14 +594,20 @@ void Event_Sink::set_event_handler (Event_Handler * impl)
 //
 int Event_Sink::initialize (Project project)
 {
-  // Save the project and start a new transaction.
   this->project_ = project;
-  Transaction t (this->project_);
+  int retval = 0;
 
   if (0 != this->impl_)
-    return this->impl_->initialize (project);
+  {
+    // Start a new transaction and initialize the implementation.
+    Transaction t (this->project_);
+    retval = this->impl_->initialize (project);
 
-  return 0;
+    if (0 == retval)
+      t.commit ();
+  }
+
+  return retval;
 }
 
 //

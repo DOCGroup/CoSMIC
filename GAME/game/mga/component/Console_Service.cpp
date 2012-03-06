@@ -15,18 +15,14 @@ namespace Mga
 //
 // initialize
 //
-void Console_Service::initialize (Project project)
+void Console_Service::initialize (const Project & proj)
 {
-  if (0 != this->gmeapp_)
+  if (this->is_initialized ())
     return;
-
-  // We are going to store the project regardless of whether or not
-  // we are able to locate the GME application.
-  this->project_ = project;
 
   // Locate the GME application for the project.
   ATL::CComPtr <IMgaClient> client;
-  VERIFY_HRESULT (project.impl ()->GetClientByName (L"GME.Application", &client));
+  VERIFY_HRESULT (proj.impl ()->GetClientByName (L"GME.Application", &client));
 
   if (0 == client)
     return;
@@ -39,15 +35,13 @@ void Console_Service::initialize (Project project)
 //
 // log
 //
-void Console_Service::log (int type, const std::string & message)
+void Console_Service::log (msgtype_enum type, const std::string & message)
 {
-  // There is no need to continue if we do not have access to
-  // the application.
-  if (0 == this->gmeapp_)
-    return;
-
-  ATL::CComBSTR bstr (message.size (), message.c_str ());
-  VERIFY_HRESULT (this->gmeapp_->ConsoleMessage (bstr, (msgtype_enum)type));
+  if (this->is_initialized ())
+  {
+    ATL::CComBSTR bstr (message.size (), message.c_str ());
+    VERIFY_HRESULT (this->gmeapp_->ConsoleMessage (bstr, type));
+  }
 }
 
 //
@@ -55,7 +49,7 @@ void Console_Service::log (int type, const std::string & message)
 //
 void Console_Service::clear (void)
 {
-  if (0 != this->gmeapp_)
+  if (this->is_initialized ())
     VERIFY_HRESULT (this->gmeapp_->ConsoleClear ());
 }
 

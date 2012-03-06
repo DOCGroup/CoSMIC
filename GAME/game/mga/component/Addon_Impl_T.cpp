@@ -18,9 +18,6 @@ namespace Mga
 template <typename T, typename SINK>
 Addon_Impl_T <T, SINK>::~Addon_Impl_T (void)
 {
-  //// Close the sink object, and then destroy the add-on.
-  //this->sink_->close ();
-
   if (this->addon_)
   {
     // Destroy the addon. Once this is done, we have to detach

@@ -1,3 +1,27 @@
+Tue Mar  6 14:34:04 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Console_Service.h:
+        * game/mga/component/Console_Service.inl:
+        * game/mga/component/Console_Service.cpp:
+
+          Simplied the console interface by exposing methods for logging
+          messages based on their level of importance.
+
+        * game/mga/component/Addon_Impl_T.cpp:
+
+          Removed dead code.
+
+        * game/mga/component/ComponentEx_Impl_T.cpp:
+
+          Initialized the console service in the Initialize method. Unfortunately,
+          it is not possible to initialize the console service for an add-on in
+          this method.
+
+        * game/mga/component/Event_Sink.cpp:
+
+          Bug fix where initialize () method was unintentionally aborting
+          the transaction due to the behavior of the Transaction object.
+
 Tue Mar  6 03:37:21 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Impl_Factory.h:

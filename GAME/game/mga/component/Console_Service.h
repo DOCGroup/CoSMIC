@@ -44,25 +44,45 @@ public:
    *
    * @param[in]       proj          Target project
    */
-  void initialize (Project proj);
+  void initialize (const Project & proj);
 
   /// Test if the console has been initialized.
   bool is_initialized (void) const;
 
   /**
-   * Log a message to the console service.
+   * Log an error message to the console service.
    *
-   * @param[in]       type          The type of message
    * @param[in]       message       The message to log
    */
-  void log (int type, const std::string & message);
+  void error (const std::string & message);
+
+  /**
+   * Log an info message to the console service.
+   *
+   * @param[in]       message       The message to log
+   */
+  void info (const std::string & message);
+
+  /**
+   * Log a normal message to the console service.
+   *
+   * @param[in]       message       The message to log
+   */
+  void message (const std::string & message);
+
+  /**
+   * Log a warning message to the console service.
+   *
+   * @param[in]       message       The message to log
+   */
+  void warning (const std::string & message);
 
   /// Clear the current console.
   void clear (void);
 
 private:
-  /// Host project of the console service.
-  Project project_;
+  /// Log a message to the console.
+  void log (msgtype_enum type, const std::string & message);
 
   /// The GME application.
   ATL::CComPtr <IGMEOLEApp> gmeapp_;

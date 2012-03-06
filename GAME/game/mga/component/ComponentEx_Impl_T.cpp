@@ -30,21 +30,20 @@ STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
 
     try
     {
-      //// First, initialize the console service. This will allow this
-      //// component to send messages to the user via the GME console.
-      //GME_CONSOLE_SERVICE->initialize (project);
+      // First, initialize the console service. This will allow this
+      // component to send messages to the user via the GME console.
+      GME_CONSOLE_SERVICE->initialize (project);
     }
-    catch (...)
+    catch (const Exception & ex)
     {
-
+      // Re-throw the exception if it was not the name not found
+      // exception, which happens only with add-ons.
+      if (ex.value () != E_MGA_NAME_NOT_FOUND)
+        throw;
     }
 
     // Now, we can pass control to the implementation.
     return this->impl_.initialize (project);
-  }
-  catch (const Failed_Result &)
-  {
-
   }
   catch (...)
   {
