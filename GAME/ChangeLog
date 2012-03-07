@@ -1,3 +1,32 @@
+Wed Mar  7 04:12:09 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Component.mpc:
+        * game/mga/component/Console_Service.h:
+        * game/mga/component/Init.cpp:
+        * game/mga/component/Singleton_Adapter_T.h:
+        * game/mga/component/Singleton_Adapter_T.inl:
+        * game/mga/component/Singleton_Adapter_T.cpp:
+        * game/xml/Configuration.h:
+        * game/xml/GAME_XML.mpc:
+        * game/xml/Init.cpp:
+        * game/xml/Singleton_Adapter_T.h:
+        * game/xml/Singleton_Adapter_T.inl:
+        * game/xml/Singleton_Adapter_T.cpp:
+
+          Bug fix where the singleton objects where delete after the DLLs
+          had already been unloaded from the application. This was resolved
+          by using ACE_DLL_Singleton_T instead of ACE_Singleton, and using
+          a static initialization variable that destroys the singletons
+          when the library is unloaded.
+
+        * game/mga/interpret/Interpret_App.cpp:
+
+          The exception handler now prints a meaningful message.
+
+        * game/xme/Configuration.h:
+
+          Fixed the singleton export.
+
 Tue Mar  6 14:41:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/ComponentEx_Impl_T.cpp:

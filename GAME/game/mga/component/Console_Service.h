@@ -20,6 +20,7 @@
 
 #include "game/mga/Project.h"
 
+#include "Singleton_Adapter_T.h"
 #include "Component_export.h"
 
 namespace GAME
@@ -29,6 +30,8 @@ namespace Mga
 
 /**
  * @class Console_Service
+ *
+ * Wrapper class for using the Console in the GME application.
  */
 class GAME_MGA_COMPONENT_Export Console_Service
 {
@@ -88,16 +91,24 @@ private:
   ATL::CComPtr <IGMEOLEApp> gmeapp_;
 };
 
-}
-}
+/// Declare the singleton using ACE_DLL_Singleton_T since there is
+/// good chance this library is used by GME components that are loaded
+/// dynamically at runtime.
+typedef ACE_DLL_Singleton_T < Singleton_Adapter_T <Console_Service> ,
+                              ACE_Null_Mutex>
+                              CONSOLE_SERVICE_SINGLETON;
+
+GAME_MGA_COMPONENT_SINGLETON_DECLARE (ACE_DLL_Singleton_T,
+                                      Singleton_Adapter_T <Console_Service>,
+                                      ACE_Null_Mutex);
 
 // Helper macro for accessing the console service.
 #define GME_CONSOLE_SERVICE \
-  ACE_Singleton <GAME::Mga::Console_Service, ACE_Null_Mutex>::instance ()
+  ACE_DLL_Singleton_T < Singleton_Adapter_T <Console_Service>, ACE_Null_Mutex>::instance ()
 
-GAME_MGA_COMPONENT_SINGLETON_DECLARE (ACE_Singleton,
-                                      GAME::Mga::Console_Service,
-                                      ACE_Null_Mutex)
+}
+}
+
 
 
 #if defined (__GAME_INLINE__)

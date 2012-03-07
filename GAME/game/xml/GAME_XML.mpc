@@ -12,8 +12,13 @@ project (GAME_XML) : xerces, acelib, game_lib {
     Entity_Resolver.cpp
     Error_Handler.cpp
     Fragment.cpp
+    Init.cpp
     Memory_Manager.cpp
     String.cpp
     Swap_Fragment.cpp
+  }
+
+  Template_Files {
+    Singleton_Adapter_T.cpp
   }
 }

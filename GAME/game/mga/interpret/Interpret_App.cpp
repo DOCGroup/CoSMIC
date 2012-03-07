@@ -59,16 +59,11 @@ int GAME_Automation_App::run_main (int argc, char * argv [])
 
     return 0;
   }
-  catch (const GAME::Mga::Failed_Result & ex)
+  catch (const GAME::Mga::Exception & ex)
   {
     ACE_ERROR ((LM_ERROR,
-                ACE_TEXT ("%T (%t) - %M - caught GAME exception [0x%X]\n"),
-                ex.value ()));
-  }
-  catch (const GAME::Mga::Exception &)
-  {
-    ACE_ERROR ((LM_ERROR,
-                ACE_TEXT ("%T (%t) - %M - caught unknown GME exception\n")));
+                ACE_TEXT ("%T (%t) - %M - %s\n"),
+                ex.message ().c_str ()));
   }
 
   return 1;

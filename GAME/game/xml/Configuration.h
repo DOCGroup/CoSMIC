@@ -15,7 +15,10 @@
 
 #include "ace/Singleton.h"
 #include "ace/Thread_Mutex.h"
+
 #include "Memory_Manager.h"
+#include "Singleton_Adapter_T.h"
+
 #include "Xml_export.h"
 
 namespace GAME
@@ -50,7 +53,16 @@ private:
   static Memory_Manager global_allocator_;
 };
 
-typedef ACE_Singleton <Configuration, ACE_Null_Mutex> GLOBAL_CONFIGURATION;
+/// Declare the singleton using ACE_DLL_Singleton_T since there is
+/// good chance this library is used by GME components that are loaded
+/// dynamically at runtime.
+typedef ACE_DLL_Singleton_T < Singleton_Adapter_T <Configuration> ,
+                              ACE_Thread_Mutex>
+                              GLOBAL_CONFIGURATION;
+
+GAME_XML_SINGLETON_DECLARE (ACE_DLL_Singleton_T,
+                            Singleton_Adapter_T <Configuration>,
+                            ACE_Thread_Mutex);
 
 }
 }
