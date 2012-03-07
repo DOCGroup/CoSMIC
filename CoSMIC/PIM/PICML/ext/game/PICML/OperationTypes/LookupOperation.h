@@ -14,25 +14,30 @@
 #ifndef _PICML_OPERATIONTYPES_LOOKUPOPERATION_H_
 #define _PICML_OPERATIONTYPES_LOOKUPOPERATION_H_
 
-#include "game/mga/Model.h"
-#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class LookupOperation_Impl;
   typedef LookupOperation_Impl * LookupOperation_in;
-  typedef ::GAME::Mga::Smart_Ptr <LookupOperation_Impl> LookupOperation;
+  typedef ::GAME::Mga::Smart_Ptr < LookupOperation_Impl > LookupOperation;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class LookupOperation_Impl
+   *
+   * Implementation for the LookupOperation model element.
+   */
   class PICML_Export LookupOperation_Impl :
-    public virtual HasExceptions_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual HasExceptions_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    LookupOperation_Impl (void);
-
-    /// Initializing constructor
-    LookupOperation_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~LookupOperation_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static LookupOperation _create (const ComponentFactory_in parent);
+    static LookupOperation _create (const HasExceptions_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    LookupOperation_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    LookupOperation_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~LookupOperation_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "LookupOperation.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_LOOKUPOPERATION

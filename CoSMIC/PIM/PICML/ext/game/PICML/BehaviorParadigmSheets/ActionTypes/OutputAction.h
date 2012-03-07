@@ -14,25 +14,30 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_OUTPUTACTION_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_OUTPUTACTION_H_
 
-#include "game/mga/Model.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class OutputAction_Impl;
   typedef OutputAction_Impl * OutputAction_in;
-  typedef ::GAME::Mga::Smart_Ptr <OutputAction_Impl> OutputAction;
+  typedef ::GAME::Mga::Smart_Ptr < OutputAction_Impl > OutputAction;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class OutputAction_Impl
+   *
+   * Implementation for the OutputAction model element.
+   */
   class PICML_Export OutputAction_Impl :
-    public virtual ActionBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual ActionBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    OutputAction_Impl (void);
-
-    /// Initializing constructor
-    OutputAction_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~OutputAction_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static OutputAction _create (const BehaviorModel_in parent);
+    static OutputAction _create (const ActionBase_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    OutputAction_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    OutputAction_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~OutputAction_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "OutputAction.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_OUTPUTACTION

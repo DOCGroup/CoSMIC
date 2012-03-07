@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfigProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfigProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/Property.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/Common/Property.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfigProperty_Impl::metaname = "PackageConfigProperty";
+  const std::string PackageConfigProperty_Impl::metaname ("PackageConfigProperty");
 
   //
-  // PackageConfigProperty_Impl
+  // _create (const PackageContainer_in)
   //
-  PackageConfigProperty_Impl::PackageConfigProperty_Impl (void)
+  PackageConfigProperty PackageConfigProperty_Impl::_create (const PackageContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfigProperty_Impl
-  //
-  PackageConfigProperty_Impl::PackageConfigProperty_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfigProperty_Impl
-  //
-  PackageConfigProperty_Impl::~PackageConfigProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfigProperty > (parent, PackageConfigProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfigProperty_Impl::accept (Visitor * v)
+  void PackageConfigProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfigProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfigProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentPackage
   //
-  PackageConfigProperty PackageConfigProperty_Impl::_create (const PackageContainer_in parent)
+  ComponentPackage PackageConfigProperty_Impl::src_ComponentPackage (void) const
   {
-    return ::GAME::Mga::create_object <PackageConfigProperty> (parent, PackageConfigProperty_Impl::metaname);
+    return ComponentPackage::_narrow (this->src ());
   }
 
   //
-  // src_ComponentPackage
+  // Property
   //
-  ComponentPackage PackageConfigProperty_Impl::src_ComponentPackage (void)
+  Property PackageConfigProperty_Impl::dst_Property (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentPackage::_narrow (target);
-  }
-
-  //
-  // dst_Property
-  //
-  Property PackageConfigProperty_Impl::dst_Property (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Property::_narrow (target);
-  }
-
-  //
-  // parent_PackageContainer
-  //
-  PackageContainer PackageConfigProperty_Impl::parent_PackageContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageContainer> (this->object_.p);
+    return Property::_narrow (this->dst ());
   }
 }
 

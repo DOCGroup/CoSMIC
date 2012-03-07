@@ -14,25 +14,30 @@
 #ifndef _PICML_OPERATIONTYPES_INPARAMETER_H_
 #define _PICML_OPERATIONTYPES_INPARAMETER_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/OperationTypes/ParameterType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/OperationTypes/ParameterType.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InParameter_Impl;
   typedef InParameter_Impl * InParameter_in;
-  typedef ::GAME::Mga::Smart_Ptr <InParameter_Impl> InParameter;
+  typedef ::GAME::Mga::Smart_Ptr < InParameter_Impl > InParameter;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class InParameter_Impl
+   *
+   * Implementation for the InParameter model element.
+   */
   class PICML_Export InParameter_Impl :
-    public virtual ParameterType_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual ParameterType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,38 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    InParameter_Impl (void);
-
-    /// Initializing constructor
-    InParameter_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~InParameter_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static InParameter _create (const OperationBase_in parent);
+    static InParameter _create (const Operation_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    OperationBase parent_OperationBase (void) const;
-    ///@}
+    // Default constructor.
+    InParameter_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    InParameter_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~InParameter_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InParameter.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_INPARAMETER

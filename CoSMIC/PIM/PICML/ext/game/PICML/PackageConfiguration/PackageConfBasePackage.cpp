@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfBasePackage.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfBasePackage.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfBasePackage_Impl::metaname = "PackageConfBasePackage";
+  const std::string PackageConfBasePackage_Impl::metaname ("PackageConfBasePackage");
 
   //
-  // PackageConfBasePackage_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  PackageConfBasePackage_Impl::PackageConfBasePackage_Impl (void)
+  PackageConfBasePackage PackageConfBasePackage_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfBasePackage_Impl
-  //
-  PackageConfBasePackage_Impl::PackageConfBasePackage_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfBasePackage_Impl
-  //
-  PackageConfBasePackage_Impl::~PackageConfBasePackage_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfBasePackage > (parent, PackageConfBasePackage_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfBasePackage_Impl::accept (Visitor * v)
+  void PackageConfBasePackage_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfBasePackage (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfBasePackage (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // PackageConfiguration
   //
-  PackageConfBasePackage PackageConfBasePackage_Impl::_create (const PackageConfigurationContainer_in parent)
+  PackageConfiguration PackageConfBasePackage_Impl::src_PackageConfiguration (void) const
   {
-    return ::GAME::Mga::create_object <PackageConfBasePackage> (parent, PackageConfBasePackage_Impl::metaname);
+    return PackageConfiguration::_narrow (this->src ());
   }
 
   //
-  // src_PackageConfiguration
+  // ComponentPackage
   //
-  PackageConfiguration PackageConfBasePackage_Impl::src_PackageConfiguration (void)
+  ComponentPackage PackageConfBasePackage_Impl::dst_ComponentPackage (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return PackageConfiguration::_narrow (target);
-  }
-
-  //
-  // dst_ComponentPackage
-  //
-  ComponentPackage PackageConfBasePackage_Impl::dst_ComponentPackage (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ComponentPackage::_narrow (target);
-  }
-
-  //
-  // parent_PackageConfigurationContainer
-  //
-  PackageConfigurationContainer PackageConfBasePackage_Impl::parent_PackageConfigurationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageConfigurationContainer> (this->object_.p);
+    return ComponentPackage::_narrow (this->dst ());
   }
 }
 

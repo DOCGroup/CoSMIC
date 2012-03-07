@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EXTENDEDPORT_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EXTENDEDPORT_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExtendedPort_Impl;
   typedef ExtendedPort_Impl * ExtendedPort_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendedPort_Impl> ExtendedPort;
+  typedef ::GAME::Mga::Smart_Ptr < ExtendedPort_Impl > ExtendedPort;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ExtendedPort_Impl
+   *
+   * Implementation for the ExtendedPort model element.
+   */
   class PICML_Export ExtendedPort_Impl :
-    public virtual ExtendedPortBase_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual ExtendedPortBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ExtendedPort_Impl (void);
-
-    /// Initializing constructor
-    ExtendedPort_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ExtendedPort_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ExtendedPort _create (const ConnectorObject_in parent);
+    static ExtendedPort _create (const Component_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    ExtendedPort_Impl (void);
+
+    // Initializing constructor.
+    ExtendedPort_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ExtendedPort_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ExtendedPort_is_nil (void) const;
+    ExtendedPort get_ExtendedPort (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExtendedPort.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EXTENDEDPORT

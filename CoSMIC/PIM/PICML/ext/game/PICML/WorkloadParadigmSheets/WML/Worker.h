@@ -14,21 +14,26 @@
 #ifndef _PICML_WORKLOADPARADIGMSHEETS_WML_WORKER_H_
 #define _PICML_WORKLOADPARADIGMSHEETS_WML_WORKER_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Worker_Impl;
   typedef Worker_Impl * Worker_in;
-  typedef ::GAME::Mga::Smart_Ptr <Worker_Impl> Worker;
+  typedef ::GAME::Mga::Smart_Ptr < Worker_Impl > Worker;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Worker_Impl
+   *
+   * Implementation for the Worker model element.
+   */
   class PICML_Export Worker_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,24 +47,24 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Worker_Impl (void);
-
-    /// Initializing constructor
-    Worker_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Worker_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Worker _create (const WorkerPackageBase_in parent);
     ///@}
+
+    // Default constructor.
+    Worker_Impl (void);
+
+    // Initializing constructor.
+    Worker_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Worker_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -78,21 +83,14 @@ namespace PICML
      */
     ///@{
     size_t get_Operations (std::vector <Operation> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Operation> get_Operations (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    WorkerPackageBase parent_WorkerPackageBase (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Worker.inl"
 #endif
+
+#endif  // !defined _PICML_WORKLOADPARADIGMSHEETS_WML_WORKER

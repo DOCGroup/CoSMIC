@@ -1,88 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConnectorToReceptacle.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConnectorToReceptacle.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConnectorToReceptacle_Impl::metaname = "ConnectorToReceptacle";
+  const std::string ConnectorToReceptacle_Impl::metaname ("ConnectorToReceptacle");
 
   //
-  // ConnectorToReceptacle_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ConnectorToReceptacle_Impl::ConnectorToReceptacle_Impl (void)
+  ConnectorToReceptacle ConnectorToReceptacle_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ConnectorToReceptacle_Impl
-  //
-  ConnectorToReceptacle_Impl::ConnectorToReceptacle_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConnectorToReceptacle_Impl
-  //
-  ConnectorToReceptacle_Impl::~ConnectorToReceptacle_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ConnectorToReceptacle > (parent, ConnectorToReceptacle_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ConnectorToReceptacle_Impl::accept (Visitor * v)
+  void ConnectorToReceptacle_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ConnectorToReceptacle (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConnectorToReceptacle (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_RequiredRequestPortEnd
+  // RequiredRequestPortEnd
   //
-  RequiredRequestPortEnd ConnectorToReceptacle_Impl::src_RequiredRequestPortEnd (void)
+  RequiredRequestPortEnd ConnectorToReceptacle_Impl::src_RequiredRequestPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return RequiredRequestPortEnd::_narrow (target);
+    return RequiredRequestPortEnd::_narrow (this->src ());
   }
 
   //
-  // dst_ConnectorInstance
+  // ConnectorInstance
   //
-  ConnectorInstance ConnectorToReceptacle_Impl::dst_ConnectorInstance (void)
+  ConnectorInstance ConnectorToReceptacle_Impl::dst_ConnectorInstance (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ConnectorInstance::_narrow (target);
-  }
-
-  //
-  // InnerName
-  //
-  void ConnectorToReceptacle_Impl::InnerName (const std::string & val)
-  {
-    static const std::string attr_InnerName ("InnerName");
-    this->attribute (attr_InnerName)->string_value (val);
-  }
-
-  //
-  // InnerName
-  //
-  std::string ConnectorToReceptacle_Impl::InnerName (void) const
-  {
-    static const std::string attr_InnerName ("InnerName");
-    return this->attribute (attr_InnerName)->string_value ();
+    return ConnectorInstance::_narrow (this->dst ());
   }
 }
 

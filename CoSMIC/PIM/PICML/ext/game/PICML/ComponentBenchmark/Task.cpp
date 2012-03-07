@@ -1,75 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Task.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Task.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Task_Impl::metaname = "Task";
+  const std::string Task_Impl::metaname ("Task");
 
   //
-  // Task_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  Task_Impl::Task_Impl (void)
+  Task Task_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // Task_Impl
-  //
-  Task_Impl::Task_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Task_Impl
-  //
-  Task_Impl::~Task_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Task > (parent, Task_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Task_Impl::accept (Visitor * v)
+  void Task_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Task (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Task (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // dst_WorkLoadOperationConnection
   //
-  Task Task_Impl::_create (const BenchmarkAnalysis_in parent)
+  size_t Task_Impl::dst_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
   {
-    return ::GAME::Mga::create_object <Task> (parent, Task_Impl::metaname);
-  }
-
-  //
-  // in_WorkLoadOperationConnection_connections
-  //
-  size_t Task_Impl::in_WorkLoadOperationConnection_connections (std::vector <WorkLoadOperationConnection> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_BenchmarkAnalysis
-  //
-  BenchmarkAnalysis Task_Impl::parent_BenchmarkAnalysis (void) const
-  {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return this->in_connections <WorkLoadOperationConnection> (items);
   }
 }
 

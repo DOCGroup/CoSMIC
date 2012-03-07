@@ -14,25 +14,30 @@
 #ifndef _PICML_NAMEDTYPES_SWITCHEDAGGREGATE_H_
 #define _PICML_NAMEDTYPES_SWITCHEDAGGREGATE_H_
 
-#include "game/mga/Model.h"
-#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class SwitchedAggregate_Impl;
   typedef SwitchedAggregate_Impl * SwitchedAggregate_in;
-  typedef ::GAME::Mga::Smart_Ptr <SwitchedAggregate_Impl> SwitchedAggregate;
+  typedef ::GAME::Mga::Smart_Ptr < SwitchedAggregate_Impl > SwitchedAggregate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class SwitchedAggregate_Impl
+   *
+   * Implementation for the SwitchedAggregate model element.
+   */
   class PICML_Export SwitchedAggregate_Impl :
-    public virtual NoInheritable_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual NoInheritable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,47 +49,46 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    SwitchedAggregate_Impl (void);
-
-    /// Initializing constructor
-    SwitchedAggregate_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~SwitchedAggregate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static SwitchedAggregate _create (const HasOperations_in parent);
     ///@}
+
+    // Default constructor.
+    SwitchedAggregate_Impl (void);
+
+    // Initializing constructor.
+    SwitchedAggregate_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~SwitchedAggregate_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Members (std::vector <Member> & items) const;
-    size_t get_Labels (std::vector <Label> & items) const;
-
     Discriminator get_Discriminator (void) const;
+
+    size_t get_Labels (std::vector <Label> & items) const;
+    ::GAME::Mga::Iterator <Label> get_Labels (void) const;
+
     size_t get_LabelConnections (std::vector <LabelConnection> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <LabelConnection> get_LabelConnections (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    size_t get_Members (std::vector <Member> & items) const;
+    ::GAME::Mga::Iterator <Member> get_Members (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "SwitchedAggregate.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_SWITCHEDAGGREGATE

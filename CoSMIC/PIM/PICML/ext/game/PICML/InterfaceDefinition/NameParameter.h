@@ -14,25 +14,30 @@
 #ifndef _PICML_INTERFACEDEFINITION_NAMEPARAMETER_H_
 #define _PICML_INTERFACEDEFINITION_NAMEPARAMETER_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class NameParameter_Impl;
   typedef NameParameter_Impl * NameParameter_in;
-  typedef ::GAME::Mga::Smart_Ptr <NameParameter_Impl> NameParameter;
+  typedef ::GAME::Mga::Smart_Ptr < NameParameter_Impl > NameParameter;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class NameParameter_Impl
+   *
+   * Implementation for the NameParameter model element.
+   */
   class PICML_Export NameParameter_Impl :
-    public virtual TemplateParameter_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual TemplateParameter_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,29 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    NameParameter_Impl (void);
-
-    /// Initializing constructor
-    NameParameter_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~NameParameter_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static NameParameter _create (const Package_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    NameParameter_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    NameParameter_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~NameParameter_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "NameParameter.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_NAMEPARAMETER

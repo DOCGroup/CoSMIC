@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_RECEPTACLEDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_RECEPTACLEDELEGATE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ReceptacleDelegate_Impl;
   typedef ReceptacleDelegate_Impl * ReceptacleDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <ReceptacleDelegate_Impl> ReceptacleDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < ReceptacleDelegate_Impl > ReceptacleDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ReceptacleDelegate_Impl
+   *
+   * Implementation for the ReceptacleDelegate model element.
+   */
   class PICML_Export ReceptacleDelegate_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ReceptacleDelegate_Impl (void);
-
-    /// Initializing constructor
-    ReceptacleDelegate_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ReceptacleDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ReceptacleDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src RequiredRequestPortDelegate connection point.
-    RequiredRequestPortDelegate src_RequiredRequestPortDelegate (void);
+    // Default constructor.
+    ReceptacleDelegate_Impl (void);
 
-    /// Get the dst RequiredRequestPortEnd connection point.
-    RequiredRequestPortEnd dst_RequiredRequestPortEnd (void);
+    // Initializing constructor.
+    ReceptacleDelegate_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~ReceptacleDelegate_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    RequiredRequestPortDelegate src_RequiredRequestPortDelegate (void) const;
+    RequiredRequestPortEnd dst_RequiredRequestPortEnd (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ReceptacleDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_RECEPTACLEDELEGATE

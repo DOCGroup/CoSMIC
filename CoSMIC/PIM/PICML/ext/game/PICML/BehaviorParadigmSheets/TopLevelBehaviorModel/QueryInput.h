@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_QUERYINPUT_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_QUERYINPUT_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class QueryInput_Impl;
   typedef QueryInput_Impl * QueryInput_in;
-  typedef ::GAME::Mga::Smart_Ptr <QueryInput_Impl> QueryInput;
+  typedef ::GAME::Mga::Smart_Ptr < QueryInput_Impl > QueryInput;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class QueryInput_Impl
+   *
+   * Implementation for the QueryInput model element.
+   */
   class PICML_Export QueryInput_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    QueryInput_Impl (void);
-
-    /// Initializing constructor
-    QueryInput_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~QueryInput_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static QueryInput _create (const TopLevelBehavior_in parent);
     ///@}
 
-    /// Get the src QueryInputBase connection point.
-    QueryInputBase src_QueryInputBase (void);
+    // Default constructor.
+    QueryInput_Impl (void);
 
-    /// Get the dst QueryInputAction connection point.
-    QueryInputAction dst_QueryInputAction (void);
+    // Initializing constructor.
+    QueryInput_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    TopLevelBehavior parent_TopLevelBehavior (void) const;
-    ///@}
+    // Destructor.
+    virtual ~QueryInput_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    QueryInputBase src_QueryInputBase (void) const;
+    QueryInputAction dst_QueryInputAction (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "QueryInput.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_QUERYINPUT

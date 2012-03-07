@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Consume.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Consume.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Consume_Impl::metaname = "Consume";
+  const std::string Consume_Impl::metaname ("Consume");
 
   //
-  // Consume_Impl
+  // _create (const ComponentAssembly_in)
   //
-  Consume_Impl::Consume_Impl (void)
+  Consume Consume_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // Consume_Impl
-  //
-  Consume_Impl::Consume_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Consume_Impl
-  //
-  Consume_Impl::~Consume_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Consume > (parent, Consume_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Consume_Impl::accept (Visitor * v)
+  void Consume_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Consume (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Consume (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ConnectorInstance
+  // ConnectorInstance
   //
-  ConnectorInstance Consume_Impl::src_ConnectorInstance (void)
+  ConnectorInstance Consume_Impl::src_ConnectorInstance (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ConnectorInstance::_narrow (target);
+    return ConnectorInstance::_narrow (this->src ());
   }
 
   //
-  // dst_ExtendPortEnd
+  // ExtendPortEnd
   //
-  ExtendPortEnd Consume_Impl::dst_ExtendPortEnd (void)
+  ExtendPortEnd Consume_Impl::dst_ExtendPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ExtendPortEnd::_narrow (target);
+    return ExtendPortEnd::_narrow (this->dst ());
   }
 }
 

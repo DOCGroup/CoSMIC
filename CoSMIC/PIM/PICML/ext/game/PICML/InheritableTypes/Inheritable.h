@@ -14,18 +14,23 @@
 #ifndef _PICML_INHERITABLETYPES_INHERITABLE_H_
 #define _PICML_INHERITABLETYPES_INHERITABLE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Inheritable_Impl;
   typedef Inheritable_Impl * Inheritable_in;
-  typedef ::GAME::Mga::Smart_Ptr <Inheritable_Impl> Inheritable;
+  typedef ::GAME::Mga::Smart_Ptr < Inheritable_Impl > Inheritable;
 
+  /**
+   * @class Inheritable_Impl
+   *
+   * Implementation for the Inheritable model element.
+   */
   class PICML_Export Inheritable_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     Inheritable_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     Inheritable_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~Inheritable_Impl (void) = 0;
 
     /**
@@ -53,21 +58,17 @@ namespace PICML
      */
     ///@{
     size_t get_Inheritss (std::vector <Inherits> & items) const;
+    ::GAME::Mga::Iterator <Inherits> get_Inheritss (void) const;
+
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Inheritable.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_INHERITABLE

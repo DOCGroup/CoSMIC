@@ -1,49 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Event.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Event.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Event_Impl::metaname = "Event";
+  const std::string Event_Impl::metaname ("Event");
 
   //
-  // Event_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  Event_Impl::Event_Impl (void)
+  Event Event_Impl::_create (const BenchmarkAnalysis_in parent)
   {
+    return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
   }
 
   //
-  // Event_Impl
+  // _create (const ObjectByValue_in)
   //
-  Event_Impl::Event_Impl (IMgaModel * ptr)
+  Event Event_Impl::_create (const ObjectByValue_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Event_Impl
-  //
-  Event_Impl::~Event_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Event_Impl::accept (Visitor * v)
+  void Event_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Event (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Event (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 }
 

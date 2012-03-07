@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTBENCHMARK_AVERAGE_H_
 #define _PICML_COMPONENTBENCHMARK_AVERAGE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Average_Impl;
   typedef Average_Impl * Average_in;
-  typedef ::GAME::Mga::Smart_Ptr <Average_Impl> Average;
+  typedef ::GAME::Mga::Smart_Ptr < Average_Impl > Average;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Average_Impl
+   *
+   * Implementation for the Average model element.
+   */
   class PICML_Export Average_Impl :
-    public virtual DataAnalysisBase_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual DataAnalysisBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Average_Impl (void);
-
-    /// Initializing constructor
-    Average_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Average_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Average _create (const BenchmarkAnalysis_in parent);
+    static Average _create (const MetricsBase_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Average_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    Average_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Average_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Average.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_AVERAGE

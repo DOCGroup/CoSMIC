@@ -14,25 +14,30 @@
 #ifndef _PICML_NAMEDTYPES_BOXED_H_
 #define _PICML_NAMEDTYPES_BOXED_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/NamedTypes/NamedType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/NamedTypes/NamedType.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Boxed_Impl;
   typedef Boxed_Impl * Boxed_in;
-  typedef ::GAME::Mga::Smart_Ptr <Boxed_Impl> Boxed;
+  typedef ::GAME::Mga::Smart_Ptr < Boxed_Impl > Boxed;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Boxed_Impl
+   *
+   * Implementation for the Boxed model element.
+   */
   class PICML_Export Boxed_Impl :
-    public virtual NamedType_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual NamedType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Boxed_Impl (void);
-
-    /// Initializing constructor
-    Boxed_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Boxed_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Boxed _create (const Package_in parent);
+    static Boxed _create (const File_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Boxed_Impl (void);
+
+    // Initializing constructor.
+    Boxed_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Boxed_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    MemberType refers_to_MemberType (void) const;
+    bool MemberType_is_nil (void) const;
+    MemberType get_MemberType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Boxed.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_BOXED

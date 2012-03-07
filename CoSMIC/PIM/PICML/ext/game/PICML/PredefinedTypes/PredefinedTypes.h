@@ -14,22 +14,27 @@
 #ifndef _PICML_PREDEFINEDTYPES_PREDEFINEDTYPES_H_
 #define _PICML_PREDEFINEDTYPES_PREDEFINEDTYPES_H_
 
-#include "game/mga/Folder.h"
-#include "game/mga/RootFolder.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/RootFolder.h"
+#include "game/mga/Folder.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PredefinedTypes_Impl;
   typedef PredefinedTypes_Impl * PredefinedTypes_in;
-  typedef ::GAME::Mga::Smart_Ptr <PredefinedTypes_Impl> PredefinedTypes;
+  typedef ::GAME::Mga::Smart_Ptr < PredefinedTypes_Impl > PredefinedTypes;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class PredefinedTypes_Impl
+   *
+   * Implementation for the PredefinedTypes model element.
+   */
   class PICML_Export PredefinedTypes_Impl :
     public virtual ::GAME::Mga::Folder_Impl
   {
@@ -43,18 +48,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    PredefinedTypes_Impl (void);
-
-    /// Initializing constructor
-    PredefinedTypes_Impl (IMgaFolder * ptr);
-
-    /// Destructor
-    virtual ~PredefinedTypes_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -62,19 +55,24 @@ namespace PICML
     static PredefinedTypes _create (const ::GAME::Mga::RootFolder_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ::GAME::Mga::RootFolder parent_RootFolder (void) const;
-    ///@}
+    // Default constructor.
+    PredefinedTypes_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    PredefinedTypes_Impl (IMgaFolder * ptr);
+
+    // Destructor.
+    virtual ~PredefinedTypes_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    size_t get_PredefinedTypes (std::vector <PredefinedType> & items) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PredefinedTypes.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_PREDEFINEDTYPES

@@ -14,21 +14,26 @@
 #ifndef _PICML_CONNECTORPARADIGMSHEETS_CONNECTORINTERFACE_CONNECTORINHERITS_H_
 #define _PICML_CONNECTORPARADIGMSHEETS_CONNECTORINTERFACE_CONNECTORINHERITS_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ConnectorInherits_Impl;
   typedef ConnectorInherits_Impl * ConnectorInherits_in;
-  typedef ::GAME::Mga::Smart_Ptr <ConnectorInherits_Impl> ConnectorInherits;
+  typedef ::GAME::Mga::Smart_Ptr < ConnectorInherits_Impl > ConnectorInherits;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ConnectorInherits_Impl
+   *
+   * Implementation for the ConnectorInherits model element.
+   */
   class PICML_Export ConnectorInherits_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ConnectorInherits_Impl (void);
-
-    /// Initializing constructor
-    ConnectorInherits_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ConnectorInherits_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,20 +54,30 @@ namespace PICML
     static ConnectorInherits _create (const ConnectorObject_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ConnectorObject parent_ConnectorObject (void) const;
-    ///@}
+    // Default constructor.
+    ConnectorInherits_Impl (void);
+
+    // Initializing constructor.
+    ConnectorInherits_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ConnectorInherits_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    ConnectorObject refers_to_ConnectorObject (void) const;
+    bool ConnectorObject_is_nil (void) const;
+    ConnectorObject get_ConnectorObject (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ConnectorInherits.inl"
 #endif
+
+#endif  // !defined _PICML_CONNECTORPARADIGMSHEETS_CONNECTORINTERFACE_CONNECTORINHERITS

@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExternalDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExternalDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExternalDelegate_Impl::metaname = "ExternalDelegate";
+  const std::string ExternalDelegate_Impl::metaname ("ExternalDelegate");
 
   //
-  // ExternalDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ExternalDelegate_Impl::ExternalDelegate_Impl (void)
+  ExternalDelegate ExternalDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ExternalDelegate_Impl
-  //
-  ExternalDelegate_Impl::ExternalDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExternalDelegate_Impl
-  //
-  ExternalDelegate_Impl::~ExternalDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExternalDelegate > (parent, ExternalDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExternalDelegate_Impl::accept (Visitor * v)
+  void ExternalDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExternalDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExternalDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ExternalPort
+  // ExternalPort
   //
-  ExternalPort ExternalDelegate_Impl::src_ExternalPort (void)
+  ExternalPort ExternalDelegate_Impl::src_ExternalPort (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ExternalPort::_narrow (target);
+    return ExternalPort::_narrow (this->src ());
   }
 
   //
-  // dst_ExternalPortEnd
+  // ExternalPortEnd
   //
-  ExternalPortEnd ExternalDelegate_Impl::dst_ExternalPortEnd (void)
+  ExternalPortEnd ExternalDelegate_Impl::dst_ExternalPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ExternalPortEnd::_narrow (target);
+    return ExternalPortEnd::_narrow (this->dst ());
   }
 }
 

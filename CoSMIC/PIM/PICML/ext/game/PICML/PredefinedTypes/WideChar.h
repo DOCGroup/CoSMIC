@@ -14,25 +14,30 @@
 #ifndef _PICML_PREDEFINEDTYPES_WIDECHAR_H_
 #define _PICML_PREDEFINEDTYPES_WIDECHAR_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/CharType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/CharType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WideChar_Impl;
   typedef WideChar_Impl * WideChar_in;
-  typedef ::GAME::Mga::Smart_Ptr <WideChar_Impl> WideChar;
+  typedef ::GAME::Mga::Smart_Ptr < WideChar_Impl > WideChar;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WideChar_Impl
+   *
+   * Implementation for the WideChar model element.
+   */
   class PICML_Export WideChar_Impl :
-    public virtual CharType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual CharType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WideChar_Impl (void);
-
-    /// Initializing constructor
-    WideChar_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~WideChar_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    WideChar_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    WideChar_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~WideChar_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WideChar.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_WIDECHAR

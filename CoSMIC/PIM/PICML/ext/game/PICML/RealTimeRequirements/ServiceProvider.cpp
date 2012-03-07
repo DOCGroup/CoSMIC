@@ -1,91 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServiceProvider.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ServiceProvider.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/RealTimeRequirements/ServiceLevels.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/RealTimeRequirements/MultipleServiceRequests.h"
+#include "PICML/RealTimeRequirements/ServiceLevels.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ServiceProvider_Impl::metaname = "ServiceProvider";
+  const std::string ServiceProvider_Impl::metaname ("ServiceProvider");
 
   //
-  // ServiceProvider_Impl
+  // _create (const RTRequirements_in)
   //
-  ServiceProvider_Impl::ServiceProvider_Impl (void)
+  ServiceProvider ServiceProvider_Impl::_create (const RTRequirements_in parent)
   {
-  }
-
-  //
-  // ServiceProvider_Impl
-  //
-  ServiceProvider_Impl::ServiceProvider_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ServiceProvider_Impl
-  //
-  ServiceProvider_Impl::~ServiceProvider_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ServiceProvider > (parent, ServiceProvider_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ServiceProvider_Impl::accept (Visitor * v)
+  void ServiceProvider_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ServiceProvider (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ServiceProvider (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // _create
+  // has_MultipleServiceRequests
   //
-  ServiceProvider ServiceProvider_Impl::_create (const RTRequirements_in parent)
+  bool ServiceProvider_Impl::has_MultipleServiceRequests (void) const
   {
-    return ::GAME::Mga::create_object <ServiceProvider> (parent, ServiceProvider_Impl::metaname);
-  }
-
-  //
-  // fixed_prioirty_service_execution
-  //
-  void ServiceProvider_Impl::fixed_prioirty_service_execution (bool val)
-  {
-    static const std::string attr_fixed_prioirty_service_execution ("fixed_prioirty_service_execution");
-    this->attribute (attr_fixed_prioirty_service_execution)->bool_value (val);
-  }
-
-  //
-  // fixed_prioirty_service_execution
-  //
-  bool ServiceProvider_Impl::fixed_prioirty_service_execution (void) const
-  {
-    static const std::string attr_fixed_prioirty_service_execution ("fixed_prioirty_service_execution");
-    return this->attribute (attr_fixed_prioirty_service_execution)->bool_value ();
-  }
-
-  //
-  // get_ServiceLevels
-  //
-  ServiceLevels ServiceProvider_Impl::get_ServiceLevels (void) const
-  {
-    // Get the collection of children.
-    std::vector <ServiceLevels> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ServiceLevels ();
+    return this->children <MultipleServiceRequests> ().count () == 1;
   }
 
   //
@@ -93,19 +63,23 @@ namespace PICML
   //
   MultipleServiceRequests ServiceProvider_Impl::get_MultipleServiceRequests (void) const
   {
-    // Get the collection of children.
-    std::vector <MultipleServiceRequests> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : MultipleServiceRequests ();
+    return this->children <MultipleServiceRequests> ().item ();
   }
 
   //
-  // parent_RTRequirements
+  // has_ServiceLevels
   //
-  RTRequirements ServiceProvider_Impl::parent_RTRequirements (void) const
+  bool ServiceProvider_Impl::has_ServiceLevels (void) const
   {
-    return ::GAME::Mga::get_parent <RTRequirements> (this->object_.p);
+    return this->children <ServiceLevels> ().count () == 1;
+  }
+
+  //
+  // get_ServiceLevels
+  //
+  ServiceLevels ServiceProvider_Impl::get_ServiceLevels (void) const
+  {
+    return this->children <ServiceLevels> ().item ();
   }
 }
 

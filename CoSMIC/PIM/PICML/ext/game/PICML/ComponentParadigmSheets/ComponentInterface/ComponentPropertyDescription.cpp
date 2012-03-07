@@ -1,68 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentPropertyDescription.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentPropertyDescription.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/Common/DataType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentPropertyDescription_Impl::metaname = "ComponentPropertyDescription";
+  const std::string ComponentPropertyDescription_Impl::metaname ("ComponentPropertyDescription");
 
   //
-  // ComponentPropertyDescription_Impl
+  // _create (const ComponentContainer_in)
   //
-  ComponentPropertyDescription_Impl::ComponentPropertyDescription_Impl (void)
+  ComponentPropertyDescription ComponentPropertyDescription_Impl::_create (const ComponentContainer_in parent)
   {
-  }
-
-  //
-  // ComponentPropertyDescription_Impl
-  //
-  ComponentPropertyDescription_Impl::ComponentPropertyDescription_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentPropertyDescription_Impl
-  //
-  ComponentPropertyDescription_Impl::~ComponentPropertyDescription_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentPropertyDescription > (parent, ComponentPropertyDescription_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentPropertyDescription_Impl::accept (Visitor * v)
+  void ComponentPropertyDescription_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentPropertyDescription (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentPropertyDescription (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // _create
+  // dst_ComponentProperty
   //
-  ComponentPropertyDescription ComponentPropertyDescription_Impl::_create (const ComponentContainer_in parent)
+  size_t ComponentPropertyDescription_Impl::dst_ComponentProperty (std::vector <ComponentProperty> & items) const
   {
-    return ::GAME::Mga::create_object <ComponentPropertyDescription> (parent, ComponentPropertyDescription_Impl::metaname);
-  }
-
-  //
-  // in_ComponentProperty_connections
-  //
-  size_t ComponentPropertyDescription_Impl::in_ComponentProperty_connections (std::vector <ComponentProperty> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <ComponentProperty> (items);
   }
 
   //
@@ -70,19 +63,7 @@ namespace PICML
   //
   DataType ComponentPropertyDescription_Impl::get_DataType (void) const
   {
-    // Get the collection of children.
-    std::vector <DataType> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : DataType ();
-  }
-
-  //
-  // parent_ComponentContainer
-  //
-  ComponentContainer ComponentPropertyDescription_Impl::parent_ComponentContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ComponentContainer> (this->object_.p);
+    return this->children <DataType> ().item ();
   }
 }
 

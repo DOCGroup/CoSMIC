@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_MIRRORDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_MIRRORDELEGATE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MirrorDelegate_Impl;
   typedef MirrorDelegate_Impl * MirrorDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <MirrorDelegate_Impl> MirrorDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < MirrorDelegate_Impl > MirrorDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MirrorDelegate_Impl
+   *
+   * Implementation for the MirrorDelegate model element.
+   */
   class PICML_Export MirrorDelegate_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MirrorDelegate_Impl (void);
-
-    /// Initializing constructor
-    MirrorDelegate_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~MirrorDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static MirrorDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src MirrorPortInstanceBase connection point.
-    MirrorPortInstanceBase src_MirrorPortInstanceBase (void);
+    // Default constructor.
+    MirrorDelegate_Impl (void);
 
-    /// Get the dst MirrorPortDelegate connection point.
-    MirrorPortDelegate dst_MirrorPortDelegate (void);
+    // Initializing constructor.
+    MirrorDelegate_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~MirrorDelegate_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    MirrorPortInstanceBase src_MirrorPortInstanceBase (void) const;
+    MirrorPortDelegate dst_MirrorPortDelegate (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MirrorDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_MIRRORDELEGATE

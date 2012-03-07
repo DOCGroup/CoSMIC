@@ -14,21 +14,26 @@
 #ifndef _PICML_DOMAIN_BRIDGECONNECTION_H_
 #define _PICML_DOMAIN_BRIDGECONNECTION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BridgeConnection_Impl;
   typedef BridgeConnection_Impl * BridgeConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <BridgeConnection_Impl> BridgeConnection;
+  typedef ::GAME::Mga::Smart_Ptr < BridgeConnection_Impl > BridgeConnection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class BridgeConnection_Impl
+   *
+   * Implementation for the BridgeConnection model element.
+   */
   class PICML_Export BridgeConnection_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    BridgeConnection_Impl (void);
-
-    /// Initializing constructor
-    BridgeConnection_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~BridgeConnection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static BridgeConnection _create (const Domain_in parent);
     ///@}
 
-    /// Get the src Interconnect connection point.
-    Interconnect src_Interconnect (void);
+    // Default constructor.
+    BridgeConnection_Impl (void);
 
-    /// Get the dst Bridge connection point.
-    Bridge dst_Bridge (void);
+    // Initializing constructor.
+    BridgeConnection_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Domain parent_Domain (void) const;
-    ///@}
+    // Destructor.
+    virtual ~BridgeConnection_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Interconnect src_Interconnect (void) const;
+    Bridge dst_Bridge (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BridgeConnection.inl"
 #endif
+
+#endif  // !defined _PICML_DOMAIN_BRIDGECONNECTION

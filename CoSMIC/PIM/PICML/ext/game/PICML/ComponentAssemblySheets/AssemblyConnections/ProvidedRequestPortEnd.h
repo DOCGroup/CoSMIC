@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PROVIDEDREQUESTPORTEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PROVIDEDREQUESTPORTEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ProvidedRequestPortEnd_Impl;
   typedef ProvidedRequestPortEnd_Impl * ProvidedRequestPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <ProvidedRequestPortEnd_Impl> ProvidedRequestPortEnd;
+  typedef ::GAME::Mga::Smart_Ptr < ProvidedRequestPortEnd_Impl > ProvidedRequestPortEnd;
 
+  /**
+   * @class ProvidedRequestPortEnd_Impl
+   *
+   * Implementation for the ProvidedRequestPortEnd model element.
+   */
   class PICML_Export ProvidedRequestPortEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,30 +44,34 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ProvidedRequestPortEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ProvidedRequestPortEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ProvidedRequestPortEnd_Impl (void) = 0;
-    size_t in_FacetDelegate_connections (std::vector <FacetDelegate> & conns) const;
-    size_t in_Invoke_connections (std::vector <Invoke> & conns) const;
-    size_t in_ConnectorToFacet_connections (std::vector <ConnectorToFacet> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst Invoke connection.
+    size_t dst_Invoke (std::vector <Invoke> & items) const;
+
+    /// Get the dst FacetDelegate connection.
+    size_t dst_FacetDelegate (std::vector <FacetDelegate> & items) const;
+
+    /// Get the dst ConnectorToFacet connection.
+    size_t dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ProvidedRequestPortEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PROVIDEDREQUESTPORTEND

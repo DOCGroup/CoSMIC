@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EVENTSOURCEDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EVENTSOURCEDELEGATE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class EventSourceDelegate_Impl;
   typedef EventSourceDelegate_Impl * EventSourceDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <EventSourceDelegate_Impl> EventSourceDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < EventSourceDelegate_Impl > EventSourceDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class EventSourceDelegate_Impl
+   *
+   * Implementation for the EventSourceDelegate model element.
+   */
   class PICML_Export EventSourceDelegate_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    EventSourceDelegate_Impl (void);
-
-    /// Initializing constructor
-    EventSourceDelegate_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~EventSourceDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static EventSourceDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src OutEventPortEnd connection point.
-    OutEventPortEnd src_OutEventPortEnd (void);
+    // Default constructor.
+    EventSourceDelegate_Impl (void);
 
-    /// Get the dst OutEventPortDelegate connection point.
-    OutEventPortDelegate dst_OutEventPortDelegate (void);
+    // Initializing constructor.
+    EventSourceDelegate_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~EventSourceDelegate_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    OutEventPortEnd src_OutEventPortEnd (void) const;
+    OutEventPortDelegate dst_OutEventPortDelegate (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "EventSourceDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EVENTSOURCEDELEGATE

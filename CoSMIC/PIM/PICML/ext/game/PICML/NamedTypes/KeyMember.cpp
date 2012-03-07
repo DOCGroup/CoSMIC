@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "KeyMember.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "KeyMember.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Key.h"
 #include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/Key.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string KeyMember_Impl::metaname = "KeyMember";
+  const std::string KeyMember_Impl::metaname ("KeyMember");
 
   //
-  // KeyMember_Impl
+  // _create (const Aggregate_in)
   //
-  KeyMember_Impl::KeyMember_Impl (void)
+  KeyMember KeyMember_Impl::_create (const Aggregate_in parent)
   {
-  }
-
-  //
-  // KeyMember_Impl
-  //
-  KeyMember_Impl::KeyMember_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~KeyMember_Impl
-  //
-  KeyMember_Impl::~KeyMember_Impl (void)
-  {
+    return ::GAME::Mga::create_object < KeyMember > (parent, KeyMember_Impl::metaname);
   }
 
   //
   // accept
   //
-  void KeyMember_Impl::accept (Visitor * v)
+  void KeyMember_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_KeyMember (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_KeyMember (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Key
   //
-  KeyMember KeyMember_Impl::_create (const Aggregate_in parent)
+  Key KeyMember_Impl::src_Key (void) const
   {
-    return ::GAME::Mga::create_object <KeyMember> (parent, KeyMember_Impl::metaname);
+    return Key::_narrow (this->src ());
   }
 
   //
-  // src_Key
+  // Member
   //
-  Key KeyMember_Impl::src_Key (void)
+  Member KeyMember_Impl::dst_Member (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Key::_narrow (target);
-  }
-
-  //
-  // dst_Member
-  //
-  Member KeyMember_Impl::dst_Member (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Member::_narrow (target);
-  }
-
-  //
-  // parent_Aggregate
-  //
-  Aggregate KeyMember_Impl::parent_Aggregate (void) const
-  {
-    return ::GAME::Mga::get_parent <Aggregate> (this->object_.p);
+    return Member::_narrow (this->dst ());
   }
 }
 

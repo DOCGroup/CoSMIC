@@ -1,75 +1,85 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Supports.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Supports.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "PICML/InheritableTypes/Object.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
+#include "PICML/InheritableTypes/Supports.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Supports_Impl::metaname = "Supports";
+  const std::string Supports_Impl::metaname ("Supports");
 
   //
-  // Supports_Impl
+  // _create (const SupportsInterfaces_in)
   //
-  Supports_Impl::Supports_Impl (void)
+  Supports Supports_Impl::_create (const SupportsInterfaces_in parent)
   {
-  }
-
-  //
-  // Supports_Impl
-  //
-  Supports_Impl::Supports_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Supports_Impl
-  //
-  Supports_Impl::~Supports_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Supports > (parent, Supports_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Supports_Impl::accept (Visitor * v)
+  void Supports_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Supports (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Supports (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // Object_is_nil
   //
-  Supports Supports_Impl::_create (const SupportsInterfaces_in parent)
+  bool Supports_Impl::Object_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <Supports> (parent, Supports_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_SupportsInterfaces
+  // get_Object
   //
-  SupportsInterfaces Supports_Impl::parent_SupportsInterfaces (void) const
+  Object Supports_Impl::get_Object (void) const
   {
-    return ::GAME::Mga::get_parent <SupportsInterfaces> (this->object_.p);
+    return Object::_narrow (this->refers_to ());
   }
 
   //
-  // refers_to_Object
+  // Supports_is_nil
   //
-  Object Supports_Impl::refers_to_Object (void) const
+  bool Supports_Impl::Supports_is_nil (void) const
   {
-    return ::GAME::Mga::get_refers_to <Object> (this);
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_Supports
+  //
+  Supports Supports_Impl::get_Supports (void) const
+  {
+    return Supports::_narrow (this->refers_to ());
   }
 }
 

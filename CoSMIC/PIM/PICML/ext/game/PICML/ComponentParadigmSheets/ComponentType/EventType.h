@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EVENTTYPE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EVENTTYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class EventType_Impl;
   typedef EventType_Impl * EventType_in;
-  typedef ::GAME::Mga::Smart_Ptr <EventType_Impl> EventType;
+  typedef ::GAME::Mga::Smart_Ptr < EventType_Impl > EventType;
 
+  /**
+   * @class EventType_Impl
+   *
+   * Implementation for the EventType model element.
+   */
   class PICML_Export EventType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,27 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     EventType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     EventType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~EventType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "EventType.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EVENTTYPE

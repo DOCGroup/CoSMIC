@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBUILD_WORKSPACES_H_
 #define _PICML_COMPONENTBUILD_WORKSPACES_H_
 
-#include "game/mga/Set.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Set.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Workspaces_Impl;
   typedef Workspaces_Impl * Workspaces_in;
-  typedef ::GAME::Mga::Smart_Ptr <Workspaces_Impl> Workspaces;
+  typedef ::GAME::Mga::Smart_Ptr < Workspaces_Impl > Workspaces;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Workspaces_Impl
+   *
+   * Implementation for the Workspaces model element.
+   */
   class PICML_Export Workspaces_Impl :
     public virtual ::GAME::Mga::Set_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Workspaces_Impl (void);
-
-    /// Initializing constructor
-    Workspaces_Impl (IMgaSet * ptr);
-
-    /// Destructor
-    virtual ~Workspaces_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,22 @@ namespace PICML
     static Workspaces _create (const MPC_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    MPC parent_MPC (void) const;
-    ///@}
+    // Default constructor.
+    Workspaces_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    Workspaces_Impl (IMgaSet * ptr);
+
+    // Destructor.
+    virtual ~Workspaces_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Workspaces.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBUILD_WORKSPACES

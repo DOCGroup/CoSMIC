@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_TIMEPROBE_H_
 #define _PICML_COMPONENTBENCHMARK_TIMEPROBE_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TimeProbe_Impl;
   typedef TimeProbe_Impl * TimeProbe_in;
-  typedef ::GAME::Mga::Smart_Ptr <TimeProbe_Impl> TimeProbe;
+  typedef ::GAME::Mga::Smart_Ptr < TimeProbe_Impl > TimeProbe;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class TimeProbe_Impl
+   *
+   * Implementation for the TimeProbe model element.
+   */
   class PICML_Export TimeProbe_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,40 +47,41 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    TimeProbe_Impl (void);
-
-    /// Initializing constructor
-    TimeProbe_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~TimeProbe_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static TimeProbe _create (const BenchmarkAnalysis_in parent);
     ///@}
-    size_t in_TimerEventSinkConn_connections (std::vector <TimerEventSinkConn> & conns) const;
-    size_t in_TimerConnection_connections (std::vector <TimerConnection> & conns) const;
+
+    // Default constructor.
+    TimeProbe_Impl (void);
+
+    // Initializing constructor.
+    TimeProbe_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~TimeProbe_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst TimerConnection connection.
+    size_t dst_TimerConnection (std::vector <TimerConnection> & items) const;
+
+    /// Get the dst TimerEventSinkConn connection.
+    size_t dst_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TimeProbe.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_TIMEPROBE

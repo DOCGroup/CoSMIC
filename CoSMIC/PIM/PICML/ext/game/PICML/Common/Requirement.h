@@ -14,25 +14,30 @@
 #ifndef _PICML_COMMON_REQUIREMENT_H_
 #define _PICML_COMMON_REQUIREMENT_H_
 
-#include "game/mga/Model.h"
-#include "PICML/Common/RequirementBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/Common/RequirementBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Requirement_Impl;
   typedef Requirement_Impl * Requirement_in;
-  typedef ::GAME::Mga::Smart_Ptr <Requirement_Impl> Requirement;
+  typedef ::GAME::Mga::Smart_Ptr < Requirement_Impl > Requirement;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Requirement_Impl
+   *
+   * Implementation for the Requirement model element.
+   */
   class PICML_Export Requirement_Impl :
-    public virtual RequirementBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual RequirementBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,47 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Requirement_Impl (void);
-
-    /// Initializing constructor
-    Requirement_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Requirement_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Requirement _create (const ComponentAssembly_in parent);
+    static Requirement _create (const ArtifactContainer_in parent);
+    static Requirement _create (const PackageConfigurationContainer_in parent);
+    static Requirement _create (const RequirementBase_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Requirement_Impl (void);
+
+    // Initializing constructor.
+    Requirement_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Requirement_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst AssemblyselectRequirement connection.
+    size_t dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+
+    /// Get the dst ArtifactDeployRequirement connection.
+    size_t dst_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+
+    /// Get the dst PackageConfSelectRequirement connection.
+    size_t dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Requirement.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_REQUIREMENT

@@ -14,25 +14,30 @@
 #ifndef _PICML_PREDEFINEDTYPES_BOOLEAN_H_
 #define _PICML_PREDEFINEDTYPES_BOOLEAN_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/PredefinedType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/PredefinedType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Boolean_Impl;
   typedef Boolean_Impl * Boolean_in;
-  typedef ::GAME::Mga::Smart_Ptr <Boolean_Impl> Boolean;
+  typedef ::GAME::Mga::Smart_Ptr < Boolean_Impl > Boolean;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Boolean_Impl
+   *
+   * Implementation for the Boolean model element.
+   */
   class PICML_Export Boolean_Impl :
-    public virtual PredefinedType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual PredefinedType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,29 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Boolean_Impl (void);
-
-    /// Initializing constructor
-    Boolean_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Boolean_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Boolean _create (const PredefinedTypes_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Boolean_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    Boolean_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Boolean_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Boolean.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_BOOLEAN

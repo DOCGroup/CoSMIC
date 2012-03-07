@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExtendedDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExtendedDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExtendedDelegate_Impl::metaname = "ExtendedDelegate";
+  const std::string ExtendedDelegate_Impl::metaname ("ExtendedDelegate");
 
   //
-  // ExtendedDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ExtendedDelegate_Impl::ExtendedDelegate_Impl (void)
+  ExtendedDelegate ExtendedDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ExtendedDelegate_Impl
-  //
-  ExtendedDelegate_Impl::ExtendedDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExtendedDelegate_Impl
-  //
-  ExtendedDelegate_Impl::~ExtendedDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExtendedDelegate > (parent, ExtendedDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExtendedDelegate_Impl::accept (Visitor * v)
+  void ExtendedDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExtendedDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExtendedDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ExtendedPortInstanceBase
+  // ExtendedPortInstanceBase
   //
-  ExtendedPortInstanceBase ExtendedDelegate_Impl::src_ExtendedPortInstanceBase (void)
+  ExtendedPortInstanceBase ExtendedDelegate_Impl::src_ExtendedPortInstanceBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ExtendedPortInstanceBase::_narrow (target);
+    return ExtendedPortInstanceBase::_narrow (this->src ());
   }
 
   //
-  // dst_ExtendedPortDelegate
+  // ExtendedPortDelegate
   //
-  ExtendedPortDelegate ExtendedDelegate_Impl::dst_ExtendedPortDelegate (void)
+  ExtendedPortDelegate ExtendedDelegate_Impl::dst_ExtendedPortDelegate (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ExtendedPortDelegate::_narrow (target);
+    return ExtendedPortDelegate::_narrow (this->dst ());
   }
 }
 

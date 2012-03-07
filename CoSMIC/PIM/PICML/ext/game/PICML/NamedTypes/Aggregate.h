@@ -14,25 +14,30 @@
 #ifndef _PICML_NAMEDTYPES_AGGREGATE_H_
 #define _PICML_NAMEDTYPES_AGGREGATE_H_
 
-#include "game/mga/Model.h"
-#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Aggregate_Impl;
   typedef Aggregate_Impl * Aggregate_in;
-  typedef ::GAME::Mga::Smart_Ptr <Aggregate_Impl> Aggregate;
+  typedef ::GAME::Mga::Smart_Ptr < Aggregate_Impl > Aggregate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Aggregate_Impl
+   *
+   * Implementation for the Aggregate model element.
+   */
   class PICML_Export Aggregate_Impl :
-    public virtual NoInheritable_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual NoInheritable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,46 +49,45 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Aggregate_Impl (void);
-
-    /// Initializing constructor
-    Aggregate_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Aggregate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Aggregate _create (const ConnectorObject_in parent);
+    static Aggregate _create (const HasOperations_in parent);
     ///@}
+
+    // Default constructor.
+    Aggregate_Impl (void);
+
+    // Initializing constructor.
+    Aggregate_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Aggregate_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
-    size_t get_Members (std::vector <Member> & items) const;
 
+    bool has_Key (void) const;
     Key get_Key (void) const;
-    ///@}
+    size_t get_Members (std::vector <Member> & items) const;
+    ::GAME::Mga::Iterator <Member> get_Members (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
+    ::GAME::Mga::Iterator <KeyMember> get_KeyMembers (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Aggregate.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_AGGREGATE

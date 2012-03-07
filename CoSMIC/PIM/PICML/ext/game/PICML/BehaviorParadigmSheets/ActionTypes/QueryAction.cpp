@@ -1,49 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "QueryAction.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "QueryAction.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string QueryAction_Impl::metaname = "QueryAction";
+  const std::string QueryAction_Impl::metaname ("QueryAction");
 
   //
-  // QueryAction_Impl
+  // _create (const BehaviorModel_in)
   //
-  QueryAction_Impl::QueryAction_Impl (void)
+  QueryAction QueryAction_Impl::_create (const BehaviorModel_in parent)
   {
+    return ::GAME::Mga::create_object < QueryAction > (parent, QueryAction_Impl::metaname);
   }
 
   //
-  // QueryAction_Impl
+  // _create (const ActionBase_in)
   //
-  QueryAction_Impl::QueryAction_Impl (IMgaModel * ptr)
+  QueryAction QueryAction_Impl::_create (const ActionBase_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~QueryAction_Impl
-  //
-  QueryAction_Impl::~QueryAction_Impl (void)
-  {
+    return ::GAME::Mga::create_object < QueryAction > (parent, QueryAction_Impl::metaname);
   }
 
   //
   // accept
   //
-  void QueryAction_Impl::accept (Visitor * v)
+  void QueryAction_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_QueryAction (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_QueryAction (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 }
 

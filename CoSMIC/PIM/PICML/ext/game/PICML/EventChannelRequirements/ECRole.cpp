@@ -1,103 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ECRole.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ECRole.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ECRole_Impl::metaname = "ECRole";
+  const std::string ECRole_Impl::metaname ("ECRole");
 
   //
-  // ECRole_Impl
+  // _create (const ECRequirements_in)
   //
-  ECRole_Impl::ECRole_Impl (void)
+  ECRole ECRole_Impl::_create (const ECRequirements_in parent)
   {
-  }
-
-  //
-  // ECRole_Impl
-  //
-  ECRole_Impl::ECRole_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ECRole_Impl
-  //
-  ECRole_Impl::~ECRole_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ECRole > (parent, ECRole_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ECRole_Impl::accept (Visitor * v)
+  void ECRole_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ECRole (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ECRole (this);
+    }
 
-  //
-  // _create
-  //
-  ECRole ECRole_Impl::_create (const ECRequirements_in parent)
-  {
-    return ::GAME::Mga::create_object <ECRole> (parent, ECRole_Impl::metaname);
-  }
-
-  //
-  // rolekind
-  //
-  void ECRole_Impl::rolekind (const std::string & val)
-  {
-    static const std::string attr_rolekind ("rolekind");
-    this->attribute (attr_rolekind)->string_value (val);
-  }
-
-  //
-  // rolekind
-  //
-  std::string ECRole_Impl::rolekind (void) const
-  {
-    static const std::string attr_rolekind ("rolekind");
-    return this->attribute (attr_rolekind)->string_value ();
-  }
-
-  //
-  // ECFilterType
-  //
-  void ECRole_Impl::ECFilterType (const std::string & val)
-  {
-    static const std::string attr_ECFilterType ("ECFilterType");
-    this->attribute (attr_ECFilterType)->string_value (val);
-  }
-
-  //
-  // ECFilterType
-  //
-  std::string ECRole_Impl::ECFilterType (void) const
-  {
-    static const std::string attr_ECFilterType ("ECFilterType");
-    return this->attribute (attr_ECFilterType)->string_value ();
-  }
-
-  //
-  // parent_ECRequirements
-  //
-  ECRequirements ECRole_Impl::parent_ECRequirements (void) const
-  {
-    return ::GAME::Mga::get_parent <ECRequirements> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

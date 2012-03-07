@@ -1,84 +1,122 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ImplementationArtifactReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ImplementationArtifactReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ImplementationArtifactReference_Impl::metaname = "ImplementationArtifactReference";
+  const std::string ImplementationArtifactReference_Impl::metaname ("ImplementationArtifactReference");
 
   //
-  // ImplementationArtifactReference_Impl
+  // _create (const StubProject_in)
   //
-  ImplementationArtifactReference_Impl::ImplementationArtifactReference_Impl (void)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const StubProject_in parent)
   {
+    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
-  // ImplementationArtifactReference_Impl
+  // _create (const ServantProject_in)
   //
-  ImplementationArtifactReference_Impl::ImplementationArtifactReference_Impl (IMgaReference * ptr)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ServantProject_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
-  // ~ImplementationArtifactReference_Impl
+  // _create (const ExecutorProject_in)
   //
-  ImplementationArtifactReference_Impl::~ImplementationArtifactReference_Impl (void)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ExecutorProject_in parent)
   {
+    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+  }
+
+  //
+  // _create (const ArtifactContainer_in)
+  //
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+  }
+
+  //
+  // _create (const ImplementationContainer_in)
+  //
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ImplementationContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ImplementationArtifactReference_Impl::accept (Visitor * v)
+  void ImplementationArtifactReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ImplementationArtifactReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ImplementationArtifactReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // dst_ArtifactDependsOn
   //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
+  size_t ImplementationArtifactReference_Impl::dst_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
   {
-    return ::GAME::Mga::create_object <ImplementationArtifactReference> (parent, ImplementationArtifactReference_Impl::metaname);
+    return this->in_connections <ArtifactDependsOn> (items);
   }
 
   //
-  // in_ArtifactDependsOn_connections
+  // dst_MonolithprimaryArtifact
   //
-  size_t ImplementationArtifactReference_Impl::in_ArtifactDependsOn_connections (std::vector <ArtifactDependsOn> & conns) const
+  size_t ImplementationArtifactReference_Impl::dst_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <MonolithprimaryArtifact> (items);
   }
 
   //
-  // parent_ArtifactContainer
+  // ImplementationArtifact_is_nil
   //
-  ArtifactContainer ImplementationArtifactReference_Impl::parent_ArtifactContainer (void) const
+  bool ImplementationArtifactReference_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return ::GAME::Mga::get_parent <ArtifactContainer> (this->object_.p);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // refers_to_ImplementationArtifact
+  // get_ImplementationArtifact
   //
-  ImplementationArtifact ImplementationArtifactReference_Impl::refers_to_ImplementationArtifact (void) const
+  ImplementationArtifact ImplementationArtifactReference_Impl::get_ImplementationArtifact (void) const
   {
-    return ::GAME::Mga::get_refers_to <ImplementationArtifact> (this);
+    return ImplementationArtifact::_narrow (this->refers_to ());
   }
 }
 

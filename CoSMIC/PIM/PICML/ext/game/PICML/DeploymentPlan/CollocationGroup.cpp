@@ -1,84 +1,70 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "CollocationGroup.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "CollocationGroup.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
+#include "PICML/DeploymentPlan/CollocationGroupMember.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string CollocationGroup_Impl::metaname = "CollocationGroup";
+  const std::string CollocationGroup_Impl::metaname ("CollocationGroup");
 
   //
-  // CollocationGroup_Impl
+  // _create (const DeploymentPlan_in)
   //
-  CollocationGroup_Impl::CollocationGroup_Impl (void)
+  CollocationGroup CollocationGroup_Impl::_create (const DeploymentPlan_in parent)
   {
-  }
-
-  //
-  // CollocationGroup_Impl
-  //
-  CollocationGroup_Impl::CollocationGroup_Impl (IMgaSet * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~CollocationGroup_Impl
-  //
-  CollocationGroup_Impl::~CollocationGroup_Impl (void)
-  {
+    return ::GAME::Mga::create_object < CollocationGroup > (parent, CollocationGroup_Impl::metaname);
   }
 
   //
   // accept
   //
-  void CollocationGroup_Impl::accept (Visitor * v)
+  void CollocationGroup_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_CollocationGroup (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_CollocationGroup (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Set (this);
+    }
   }
 
   //
-  // _create
+  // src_InstanceMapping
   //
-  CollocationGroup CollocationGroup_Impl::_create (const DeploymentPlan_in parent)
+  size_t CollocationGroup_Impl::src_InstanceMapping (std::vector <InstanceMapping> & items) const
   {
-    return ::GAME::Mga::create_object <CollocationGroup> (parent, CollocationGroup_Impl::metaname);
+    return this->in_connections <InstanceMapping> (items);
   }
 
   //
-  // in_InstanceMapping_connections
+  // dst_CollocationGroupProperty
   //
-  size_t CollocationGroup_Impl::in_InstanceMapping_connections (std::vector <InstanceMapping> & conns) const
+  size_t CollocationGroup_Impl::dst_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const
   {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_CollocationGroupProperty_connections
-  //
-  size_t CollocationGroup_Impl::in_CollocationGroupProperty_connections (std::vector <CollocationGroupProperty> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_DeploymentPlan
-  //
-  DeploymentPlan CollocationGroup_Impl::parent_DeploymentPlan (void) const
-  {
-    return ::GAME::Mga::get_parent <DeploymentPlan> (this->object_.p);
+    return this->in_connections <CollocationGroupProperty> (items);
   }
 }
 

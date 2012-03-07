@@ -1,75 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageType.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageType_Impl::metaname = "PackageType";
+  const std::string PackageType_Impl::metaname ("PackageType");
 
   //
-  // PackageType_Impl
+  // _create (const TemplatePackageInstance_in)
   //
-  PackageType_Impl::PackageType_Impl (void)
+  PackageType PackageType_Impl::_create (const TemplatePackageInstance_in parent)
   {
+    return ::GAME::Mga::create_object < PackageType > (parent, PackageType_Impl::metaname);
   }
 
   //
-  // PackageType_Impl
+  // _create (const TemplatePackageAlias_in)
   //
-  PackageType_Impl::PackageType_Impl (IMgaReference * ptr)
+  PackageType PackageType_Impl::_create (const TemplatePackageAlias_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageType_Impl
-  //
-  PackageType_Impl::~PackageType_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageType > (parent, PackageType_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageType_Impl::accept (Visitor * v)
+  void PackageType_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageType (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageType (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // Package_is_nil
   //
-  PackageType PackageType_Impl::_create (const TemplatePackageInstance_in parent)
+  bool PackageType_Impl::Package_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <PackageType> (parent, PackageType_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_TemplatePackageInstance
+  // get_Package
   //
-  TemplatePackageInstance PackageType_Impl::parent_TemplatePackageInstance (void) const
+  Package PackageType_Impl::get_Package (void) const
   {
-    return ::GAME::Mga::get_parent <TemplatePackageInstance> (this->object_.p);
-  }
-
-  //
-  // refers_to_Package
-  //
-  Package PackageType_Impl::refers_to_Package (void) const
-  {
-    return ::GAME::Mga::get_refers_to <Package> (this);
+    return Package::_narrow (this->refers_to ());
   }
 }
 

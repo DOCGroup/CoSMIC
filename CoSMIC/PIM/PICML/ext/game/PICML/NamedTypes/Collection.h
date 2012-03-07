@@ -14,25 +14,30 @@
 #ifndef _PICML_NAMEDTYPES_COLLECTION_H_
 #define _PICML_NAMEDTYPES_COLLECTION_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Collection_Impl;
   typedef Collection_Impl * Collection_in;
-  typedef ::GAME::Mga::Smart_Ptr <Collection_Impl> Collection;
+  typedef ::GAME::Mga::Smart_Ptr < Collection_Impl > Collection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Collection_Impl
+   *
+   * Implementation for the Collection model element.
+   */
   class PICML_Export Collection_Impl :
-    public virtual NoInheritable_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual NoInheritable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,23 +49,25 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Collection_Impl (void);
-
-    /// Initializing constructor
-    Collection_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Collection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Collection _create (const ConnectorObject_in parent);
+    static Collection _create (const HasOperations_in parent);
     ///@}
+
+    // Default constructor.
+    Collection_Impl (void);
+
+    // Initializing constructor.
+    Collection_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Collection_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -75,18 +82,17 @@ namespace PICML
     ///@}
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    MemberType refers_to_MemberType (void) const;
+    bool MemberType_is_nil (void) const;
+    MemberType get_MemberType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Collection.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_COLLECTION

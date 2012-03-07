@@ -1,67 +1,85 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentFactoryInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentFactoryInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentFactoryInstance_Impl::metaname = "ComponentFactoryInstance";
+  const std::string ComponentFactoryInstance_Impl::metaname ("ComponentFactoryInstance");
 
   //
-  // ComponentFactoryInstance_Impl
+  // _create (const ComponentFactoryImplementationContainer_in)
   //
-  ComponentFactoryInstance_Impl::ComponentFactoryInstance_Impl (void)
+  ComponentFactoryInstance ComponentFactoryInstance_Impl::_create (const ComponentFactoryImplementationContainer_in parent)
   {
-  }
-
-  //
-  // ComponentFactoryInstance_Impl
-  //
-  ComponentFactoryInstance_Impl::ComponentFactoryInstance_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentFactoryInstance_Impl
-  //
-  ComponentFactoryInstance_Impl::~ComponentFactoryInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentFactoryInstance > (parent, ComponentFactoryInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentFactoryInstance_Impl::accept (Visitor * v)
+  void ComponentFactoryInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentFactoryInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentFactoryInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // ComponentFactory_is_nil
   //
-  ComponentFactoryInstance ComponentFactoryInstance_Impl::_create (const ComponentFactoryImplementationContainer_in parent)
+  bool ComponentFactoryInstance_Impl::ComponentFactory_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ComponentFactoryInstance> (parent, ComponentFactoryInstance_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_ComponentFactoryImplementationContainer
+  // get_ComponentFactory
   //
-  ComponentFactoryImplementationContainer ComponentFactoryInstance_Impl::parent_ComponentFactoryImplementationContainer (void) const
+  ComponentFactory ComponentFactoryInstance_Impl::get_ComponentFactory (void) const
   {
-    return ::GAME::Mga::get_parent <ComponentFactoryImplementationContainer> (this->object_.p);
+    return ComponentFactory::_narrow (this->refers_to ());
+  }
+
+  //
+  // ComponentFactoryInstance_is_nil
+  //
+  bool ComponentFactoryInstance_Impl::ComponentFactoryInstance_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_ComponentFactoryInstance
+  //
+  ComponentFactoryInstance ComponentFactoryInstance_Impl::get_ComponentFactoryInstance (void) const
+  {
+    return ComponentFactoryInstance::_narrow (this->refers_to ());
   }
 }
 

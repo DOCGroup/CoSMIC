@@ -1,58 +1,37 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InEventPortEnd.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InEventPortEnd.inl"
+#endif
 
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.h"
+#include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InEventPortEnd_Impl::metaname = "InEventPortEnd";
+  const std::string InEventPortEnd_Impl::metaname ("InEventPortEnd");
 
   //
-  // InEventPortEnd_Impl
+  // dst_SendsTo
   //
-  InEventPortEnd_Impl::InEventPortEnd_Impl (void)
+  size_t InEventPortEnd_Impl::dst_SendsTo (std::vector <SendsTo> & items) const
   {
+    return this->in_connections <SendsTo> (items);
   }
 
   //
-  // InEventPortEnd_Impl
+  // dst_EventSinkDelegate
   //
-  InEventPortEnd_Impl::InEventPortEnd_Impl (IMgaFCO * ptr)
+  size_t InEventPortEnd_Impl::dst_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InEventPortEnd_Impl
-  //
-  InEventPortEnd_Impl::~InEventPortEnd_Impl (void)
-  {
-  }
-
-  //
-  // in_EventSinkDelegate_connections
-  //
-  size_t InEventPortEnd_Impl::in_EventSinkDelegate_connections (std::vector <EventSinkDelegate> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_SendsTo_connections
-  //
-  size_t InEventPortEnd_Impl::in_SendsTo_connections (std::vector <SendsTo> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <EventSinkDelegate> (items);
   }
 }
 

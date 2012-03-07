@@ -14,21 +14,26 @@
 #ifndef _PICML_DOMAIN_DOMAIN_H_
 #define _PICML_DOMAIN_DOMAIN_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Domain_Impl;
   typedef Domain_Impl * Domain_in;
-  typedef ::GAME::Mga::Smart_Ptr <Domain_Impl> Domain;
+  typedef ::GAME::Mga::Smart_Ptr < Domain_Impl > Domain;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Domain_Impl
+   *
+   * Implementation for the Domain model element.
+   */
   class PICML_Export Domain_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Domain_Impl (void);
-
-    /// Initializing constructor
-    Domain_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Domain_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,33 +54,70 @@ namespace PICML
     static Domain _create (const Targets_in parent);
     ///@}
 
+    // Default constructor.
+    Domain_Impl (void);
+
+    // Initializing constructor.
+    Domain_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Domain_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of UUID
+    void UUID (const std::string & val);
+
+    /// Get the value of UUID
+    std::string UUID (void) const;
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
+    ///@}
+
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_BridgeConnections (std::vector <BridgeConnection> & items) const;
-    size_t get_InterconnectConnections (std::vector <InterconnectConnection> & items) const;
     size_t get_Sharess (std::vector <Shares> & items) const;
+    ::GAME::Mga::Iterator <Shares> get_Sharess (void) const;
+
+    size_t get_InterconnectConnections (std::vector <InterconnectConnection> & items) const;
+    ::GAME::Mga::Iterator <InterconnectConnection> get_InterconnectConnections (void) const;
+
+    size_t get_BridgeConnections (std::vector <BridgeConnection> & items) const;
+    ::GAME::Mga::Iterator <BridgeConnection> get_BridgeConnections (void) const;
+
     size_t get_Propertys (std::vector <Property> & items) const;
-    size_t get_SharedResources (std::vector <SharedResource> & items) const;
+    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+
     size_t get_Bridges (std::vector <Bridge> & items) const;
-    size_t get_Nodes (std::vector <Node> & items) const;
+    ::GAME::Mga::Iterator <Bridge> get_Bridges (void) const;
+
     size_t get_Interconnects (std::vector <Interconnect> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Interconnect> get_Interconnects (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Targets parent_Targets (void) const;
-    ///@}
+    size_t get_Nodes (std::vector <Node> & items) const;
+    ::GAME::Mga::Iterator <Node> get_Nodes (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    size_t get_SharedResources (std::vector <SharedResource> & items) const;
+    ::GAME::Mga::Iterator <SharedResource> get_SharedResources (void) const;
+
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Domain.inl"
 #endif
+
+#endif  // !defined _PICML_DOMAIN_DOMAIN

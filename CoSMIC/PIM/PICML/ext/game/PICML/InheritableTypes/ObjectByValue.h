@@ -14,24 +14,29 @@
 #ifndef _PICML_INHERITABLETYPES_OBJECTBYVALUE_H_
 #define _PICML_INHERITABLETYPES_OBJECTBYVALUE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
+
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
-
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ObjectByValue_Impl;
   typedef ObjectByValue_Impl * ObjectByValue_in;
-  typedef ::GAME::Mga::Smart_Ptr <ObjectByValue_Impl> ObjectByValue;
+  typedef ::GAME::Mga::Smart_Ptr < ObjectByValue_Impl > ObjectByValue;
 
+  /**
+   * @class ObjectByValue_Impl
+   *
+   * Implementation for the ObjectByValue model element.
+   */
   class PICML_Export ObjectByValue_Impl :
+    public virtual ::GAME::Mga::Model_Impl,
     public virtual HasOperations_Impl,
-    public virtual SupportsInterfaces_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual SupportsInterfaces_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -43,13 +48,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ObjectByValue_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ObjectByValue_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ObjectByValue_Impl (void) = 0;
 
     /**
@@ -68,24 +73,24 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_PrivateFlags (std::vector <PrivateFlag> & items) const;
     size_t get_Members (std::vector <Member> & items) const;
-    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
+    ::GAME::Mga::Iterator <Member> get_Members (void) const;
+
+    size_t get_PrivateFlags (std::vector <PrivateFlag> & items) const;
+    ::GAME::Mga::Iterator <PrivateFlag> get_PrivateFlags (void) const;
+
     size_t get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <MakeMemberPrivate> get_MakeMemberPrivates (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
+    ::GAME::Mga::Iterator <FactoryOperation> get_FactoryOperations (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ObjectByValue.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_OBJECTBYVALUE

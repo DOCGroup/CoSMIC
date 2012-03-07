@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MakeMemberPrivate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MakeMemberPrivate.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/NamedTypes/Member.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/PrivateFlag.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MakeMemberPrivate_Impl::metaname = "MakeMemberPrivate";
+  const std::string MakeMemberPrivate_Impl::metaname ("MakeMemberPrivate");
 
   //
-  // MakeMemberPrivate_Impl
+  // _create (const ObjectByValue_in)
   //
-  MakeMemberPrivate_Impl::MakeMemberPrivate_Impl (void)
+  MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent)
   {
-  }
-
-  //
-  // MakeMemberPrivate_Impl
-  //
-  MakeMemberPrivate_Impl::MakeMemberPrivate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MakeMemberPrivate_Impl
-  //
-  MakeMemberPrivate_Impl::~MakeMemberPrivate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < MakeMemberPrivate > (parent, MakeMemberPrivate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void MakeMemberPrivate_Impl::accept (Visitor * v)
+  void MakeMemberPrivate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_MakeMemberPrivate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_MakeMemberPrivate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Member
   //
-  MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent)
+  Member MakeMemberPrivate_Impl::src_Member (void) const
   {
-    return ::GAME::Mga::create_object <MakeMemberPrivate> (parent, MakeMemberPrivate_Impl::metaname);
+    return Member::_narrow (this->src ());
   }
 
   //
-  // src_Member
+  // PrivateFlag
   //
-  Member MakeMemberPrivate_Impl::src_Member (void)
+  PrivateFlag MakeMemberPrivate_Impl::dst_PrivateFlag (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Member::_narrow (target);
-  }
-
-  //
-  // dst_PrivateFlag
-  //
-  PrivateFlag MakeMemberPrivate_Impl::dst_PrivateFlag (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return PrivateFlag::_narrow (target);
-  }
-
-  //
-  // parent_ObjectByValue
-  //
-  ObjectByValue MakeMemberPrivate_Impl::parent_ObjectByValue (void) const
-  {
-    return ::GAME::Mga::get_parent <ObjectByValue> (this->object_.p);
+    return PrivateFlag::_narrow (this->dst ());
   }
 }
 

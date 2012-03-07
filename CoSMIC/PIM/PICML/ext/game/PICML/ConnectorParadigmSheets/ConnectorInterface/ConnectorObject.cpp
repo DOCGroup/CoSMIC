@@ -1,56 +1,56 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConnectorObject.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConnectorObject.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConnectorObject_Impl::metaname = "ConnectorObject";
-
-  //
-  // ConnectorObject_Impl
-  //
-  ConnectorObject_Impl::ConnectorObject_Impl (void)
-  {
-  }
-
-  //
-  // ConnectorObject_Impl
-  //
-  ConnectorObject_Impl::ConnectorObject_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConnectorObject_Impl
-  //
-  ConnectorObject_Impl::~ConnectorObject_Impl (void)
-  {
-  }
+  const std::string ConnectorObject_Impl::metaname ("ConnectorObject");
 
   //
   // accept
   //
-  void ConnectorObject_Impl::accept (Visitor * v)
+  void ConnectorObject_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ConnectorObject (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConnectorObject (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // has_ConnectorInherits
+  //
+  bool ConnectorObject_Impl::has_ConnectorInherits (void) const
+  {
+    return this->children <ConnectorInherits> ().count () == 1;
   }
 
   //
@@ -58,27 +58,23 @@ namespace PICML
   //
   ConnectorInherits ConnectorObject_Impl::get_ConnectorInherits (void) const
   {
-    // Get the collection of children.
-    std::vector <ConnectorInherits> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ConnectorInherits ();
+    return this->children <ConnectorInherits> ().item ();
   }
 
   //
-  // get_Collections
+  // get_ObjectPorts
   //
-  size_t ConnectorObject_Impl::get_Collections (std::vector <Collection> & items) const
+  size_t ConnectorObject_Impl::get_ObjectPorts (std::vector <ObjectPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Aggregates
+  // get_ObjectPorts
   //
-  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  ::GAME::Mga::Iterator <ObjectPort> ConnectorObject_Impl::get_ObjectPorts (void) const
   {
-    return this->children (items);
+    return this->children <ObjectPort> ();
   }
 
   //
@@ -90,6 +86,46 @@ namespace PICML
   }
 
   //
+  // get_ExtendedPortBases
+  //
+  ::GAME::Mga::Iterator <ExtendedPortBase> ConnectorObject_Impl::get_ExtendedPortBases (void) const
+  {
+    return this->children <ExtendedPortBase> ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Iterator <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
+  }
+
+  //
+  // get_Collections
+  //
+  size_t ConnectorObject_Impl::get_Collections (std::vector <Collection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Collections
+  //
+  ::GAME::Mga::Iterator <Collection> ConnectorObject_Impl::get_Collections (void) const
+  {
+    return this->children <Collection> ();
+  }
+
+  //
   // get_ReadonlyAttributes
   //
   size_t ConnectorObject_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
@@ -98,11 +134,11 @@ namespace PICML
   }
 
   //
-  // get_ObjectPorts
+  // get_ReadonlyAttributes
   //
-  size_t ConnectorObject_Impl::get_ObjectPorts (std::vector <ObjectPort> & items) const
+  ::GAME::Mga::Iterator <ReadonlyAttribute> ConnectorObject_Impl::get_ReadonlyAttributes (void) const
   {
-    return this->children (items);
+    return this->children <ReadonlyAttribute> ();
   }
 }
 

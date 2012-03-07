@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SupportsInterfaces.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SupportsInterfaces.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Supports.h"
 
 namespace PICML
@@ -14,29 +15,7 @@ namespace PICML
   //
   // metaname
   //
-  const std::string SupportsInterfaces_Impl::metaname = "SupportsInterfaces";
-
-  //
-  // SupportsInterfaces_Impl
-  //
-  SupportsInterfaces_Impl::SupportsInterfaces_Impl (void)
-  {
-  }
-
-  //
-  // SupportsInterfaces_Impl
-  //
-  SupportsInterfaces_Impl::SupportsInterfaces_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~SupportsInterfaces_Impl
-  //
-  SupportsInterfaces_Impl::~SupportsInterfaces_Impl (void)
-  {
-  }
+  const std::string SupportsInterfaces_Impl::metaname ("SupportsInterfaces");
 
   //
   // get_Supportss
@@ -44,6 +23,14 @@ namespace PICML
   size_t SupportsInterfaces_Impl::get_Supportss (std::vector <Supports> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_Supportss
+  //
+  ::GAME::Mga::Iterator <Supports> SupportsInterfaces_Impl::get_Supportss (void) const
+  {
+    return this->children <Supports> ();
   }
 }
 

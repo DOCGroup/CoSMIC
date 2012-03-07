@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConfigProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConfigProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ImplementationCommon/Implemenation.h"
 #include "PICML/Common/Property.h"
+#include "PICML/ImplementationCommon/Implemenation.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConfigProperty_Impl::metaname = "ConfigProperty";
+  const std::string ConfigProperty_Impl::metaname ("ConfigProperty");
 
   //
-  // ConfigProperty_Impl
+  // _create (const ImplementationContainer_in)
   //
-  ConfigProperty_Impl::ConfigProperty_Impl (void)
+  ConfigProperty ConfigProperty_Impl::_create (const ImplementationContainer_in parent)
   {
-  }
-
-  //
-  // ConfigProperty_Impl
-  //
-  ConfigProperty_Impl::ConfigProperty_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConfigProperty_Impl
-  //
-  ConfigProperty_Impl::~ConfigProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ConfigProperty > (parent, ConfigProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ConfigProperty_Impl::accept (Visitor * v)
+  void ConfigProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ConfigProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConfigProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Implemenation
   //
-  ConfigProperty ConfigProperty_Impl::_create (const ImplementationContainer_in parent)
+  Implemenation ConfigProperty_Impl::src_Implemenation (void) const
   {
-    return ::GAME::Mga::create_object <ConfigProperty> (parent, ConfigProperty_Impl::metaname);
+    return Implemenation::_narrow (this->src ());
   }
 
   //
-  // src_Implemenation
+  // Property
   //
-  Implemenation ConfigProperty_Impl::src_Implemenation (void)
+  Property ConfigProperty_Impl::dst_Property (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Implemenation::_narrow (target);
-  }
-
-  //
-  // dst_Property
-  //
-  Property ConfigProperty_Impl::dst_Property (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Property::_narrow (target);
-  }
-
-  //
-  // parent_ImplementationContainer
-  //
-  ImplementationContainer ConfigProperty_Impl::parent_ImplementationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ImplementationContainer> (this->object_.p);
+    return Property::_narrow (this->dst ());
   }
 }
 

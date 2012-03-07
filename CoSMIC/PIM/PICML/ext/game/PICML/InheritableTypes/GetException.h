@@ -14,21 +14,26 @@
 #ifndef _PICML_INHERITABLETYPES_GETEXCEPTION_H_
 #define _PICML_INHERITABLETYPES_GETEXCEPTION_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class GetException_Impl;
   typedef GetException_Impl * GetException_in;
-  typedef ::GAME::Mga::Smart_Ptr <GetException_Impl> GetException;
+  typedef ::GAME::Mga::Smart_Ptr < GetException_Impl > GetException;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class GetException_Impl
+   *
+   * Implementation for the GetException model element.
+   */
   class PICML_Export GetException_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    GetException_Impl (void);
-
-    /// Initializing constructor
-    GetException_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~GetException_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static GetException _create (const ReadonlyAttribute_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ReadonlyAttribute parent_ReadonlyAttribute (void) const;
-    ///@}
+    // Default constructor.
+    GetException_Impl (void);
+
+    // Initializing constructor.
+    GetException_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~GetException_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ExceptionType_is_nil (void) const;
+    ExceptionType get_ExceptionType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "GetException.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_GETEXCEPTION

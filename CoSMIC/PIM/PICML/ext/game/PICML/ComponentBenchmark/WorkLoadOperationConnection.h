@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_WORKLOADOPERATIONCONNECTION_H_
 #define _PICML_COMPONENTBENCHMARK_WORKLOADOPERATIONCONNECTION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkLoadOperationConnection_Impl;
   typedef WorkLoadOperationConnection_Impl * WorkLoadOperationConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkLoadOperationConnection_Impl> WorkLoadOperationConnection;
+  typedef ::GAME::Mga::Smart_Ptr < WorkLoadOperationConnection_Impl > WorkLoadOperationConnection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WorkLoadOperationConnection_Impl
+   *
+   * Implementation for the WorkLoadOperationConnection model element.
+   */
   class PICML_Export WorkLoadOperationConnection_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WorkLoadOperationConnection_Impl (void);
-
-    /// Initializing constructor
-    WorkLoadOperationConnection_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~WorkLoadOperationConnection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static WorkLoadOperationConnection _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /// Get the src OperationRef connection point.
-    OperationRef src_OperationRef (void);
+    // Default constructor.
+    WorkLoadOperationConnection_Impl (void);
 
-    /// Get the dst Task connection point.
-    Task dst_Task (void);
+    // Initializing constructor.
+    WorkLoadOperationConnection_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
+    // Destructor.
+    virtual ~WorkLoadOperationConnection_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    OperationRef src_OperationRef (void) const;
+    Task dst_Task (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkLoadOperationConnection.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_WORKLOADOPERATIONCONNECTION

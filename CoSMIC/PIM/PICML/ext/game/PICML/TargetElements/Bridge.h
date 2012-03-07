@@ -14,21 +14,26 @@
 #ifndef _PICML_TARGETELEMENTS_BRIDGE_H_
 #define _PICML_TARGETELEMENTS_BRIDGE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Bridge_Impl;
   typedef Bridge_Impl * Bridge_in;
-  typedef ::GAME::Mga::Smart_Ptr <Bridge_Impl> Bridge;
+  typedef ::GAME::Mga::Smart_Ptr < Bridge_Impl > Bridge;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Bridge_Impl
+   *
+   * Implementation for the Bridge model element.
+   */
   class PICML_Export Bridge_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,22 +47,44 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Bridge_Impl (void);
-
-    /// Initializing constructor
-    Bridge_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Bridge_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Bridge _create (const Domain_in parent);
+    ///@}
+
+    // Default constructor.
+    Bridge_Impl (void);
+
+    // Initializing constructor.
+    Bridge_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Bridge_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst BridgeConnection connection.
+    size_t dst_BridgeConnection (std::vector <BridgeConnection> & items) const;
     ///@}
 
     /**
@@ -65,20 +92,14 @@ namespace PICML
      */
     ///@{
     size_t get_Resources (std::vector <Resource> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Resource> get_Resources (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Bridge.inl"
 #endif
+
+#endif  // !defined _PICML_TARGETELEMENTS_BRIDGE

@@ -1,103 +1,114 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentPackage.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentPackage.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
 #include "PICML/ComponentPackage/Implementation.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentPackage_Impl::metaname = "ComponentPackage";
+  const std::string ComponentPackage_Impl::metaname ("ComponentPackage");
 
   //
-  // ComponentPackage_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ComponentPackage_Impl::ComponentPackage_Impl (void)
+  ComponentPackage ComponentPackage_Impl::_create (const ComponentAssembly_in parent)
   {
+    return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
 
   //
-  // ComponentPackage_Impl
+  // _create (const PackageContainer_in)
   //
-  ComponentPackage_Impl::ComponentPackage_Impl (IMgaAtom * ptr)
+  ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
 
   //
-  // ~ComponentPackage_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  ComponentPackage_Impl::~ComponentPackage_Impl (void)
+  ComponentPackage ComponentPackage_Impl::_create (const PackageConfigurationContainer_in parent)
   {
+    return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentPackage_Impl::accept (Visitor * v)
+  void ComponentPackage_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentPackage (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentPackage (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_PackageInterface
   //
-  ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
+  size_t ComponentPackage_Impl::src_PackageInterface (std::vector <PackageInterface> & items) const
   {
-    return ::GAME::Mga::create_object <ComponentPackage> (parent, ComponentPackage_Impl::metaname);
+    return this->in_connections <PackageInterface> (items);
   }
 
   //
-  // in_PackageConfigProperty_connections
+  // src_Implementation
   //
-  size_t ComponentPackage_Impl::in_PackageConfigProperty_connections (std::vector <PackageConfigProperty> & conns) const
+  size_t ComponentPackage_Impl::src_Implementation (std::vector <Implementation> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <Implementation> (items);
   }
 
   //
-  // in_PackageInterface_connections
+  // src_PackageConfigProperty
   //
-  size_t ComponentPackage_Impl::in_PackageInterface_connections (std::vector <PackageInterface> & conns) const
+  size_t ComponentPackage_Impl::src_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <PackageConfigProperty> (items);
   }
 
   //
-  // in_PackageInfoProperty_connections
+  // src_PackageInfoProperty
   //
-  size_t ComponentPackage_Impl::in_PackageInfoProperty_connections (std::vector <PackageInfoProperty> & conns) const
+  size_t ComponentPackage_Impl::src_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <PackageInfoProperty> (items);
   }
 
   //
-  // in_Implementation_connections
+  // dst_PackageConfBasePackage
   //
-  size_t ComponentPackage_Impl::in_Implementation_connections (std::vector <Implementation> & conns) const
+  size_t ComponentPackage_Impl::dst_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
   {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_PackageContainer
-  //
-  PackageContainer ComponentPackage_Impl::parent_PackageContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageContainer> (this->object_.p);
+    return this->in_connections <PackageConfBasePackage> (items);
   }
 }
 

@@ -14,21 +14,26 @@
 #ifndef _PICML_NAMEDTYPES_MEMBER_H_
 #define _PICML_NAMEDTYPES_MEMBER_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Member_Impl;
   typedef Member_Impl * Member_in;
-  typedef ::GAME::Mga::Smart_Ptr <Member_Impl> Member;
+  typedef ::GAME::Mga::Smart_Ptr < Member_Impl > Member;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Member_Impl
+   *
+   * Implementation for the Member model element.
+   */
   class PICML_Export Member_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,43 +47,61 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Member_Impl (void);
-
-    /// Initializing constructor
-    Member_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Member_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Member _create (const Exception_in parent);
     static Member _create (const Aggregate_in parent);
     static Member _create (const SwitchedAggregate_in parent);
-    ///@}
-    size_t in_LabelConnection_connections (std::vector <LabelConnection> & conns) const;
-    size_t in_KeyMember_connections (std::vector <KeyMember> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Aggregate parent_Aggregate (void) const;
-    SwitchedAggregate parent_SwitchedAggregate (void) const;
+    static Member _create (const ObjectByValue_in parent);
     ///@}
 
+    // Default constructor.
+    Member_Impl (void);
+
+    // Initializing constructor.
+    Member_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Member_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    MemberType refers_to_MemberType (void) const;
+
+    /// Get the src LabelConnection connection.
+    size_t src_LabelConnection (std::vector <LabelConnection> & items) const;
+
+    /// Get the src MakeMemberPrivate connection.
+    size_t src_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst KeyMember connection.
+    size_t dst_KeyMember (std::vector <KeyMember> & items) const;
+    ///@}
+
+    /**
+     * @name Refers To Methods
+     */
+    ///@{
+    bool MemberType_is_nil (void) const;
+    MemberType get_MemberType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Member.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_MEMBER

@@ -14,22 +14,27 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_COMPONENTIMPLEMENTATION_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_COMPONENTIMPLEMENTATION_H_
 
-#include "game/mga/FCO.h"
-#include "PICML/ImplementationCommon/Implemenation.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ImplementationCommon/Implemenation.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentImplementation_Impl;
   typedef ComponentImplementation_Impl * ComponentImplementation_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentImplementation_Impl> ComponentImplementation;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentImplementation_Impl > ComponentImplementation;
 
+  /**
+   * @class ComponentImplementation_Impl
+   *
+   * Implementation for the ComponentImplementation model element.
+   */
   class PICML_Export ComponentImplementation_Impl :
-    public virtual Implemenation_Impl,
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual Implemenation_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,31 +46,34 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ComponentImplementation_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ComponentImplementation_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ComponentImplementation_Impl (void) = 0;
-    size_t in_ImplementationDependsOn_connections (std::vector <ImplementationDependsOn> & conns) const;
-    size_t in_Implements_connections (std::vector <Implements> & conns) const;
-    size_t in_ImplementationCapability_connections (std::vector <ImplementationCapability> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ComponentImplementationContainer parent_ComponentImplementationContainer (void) const;
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src ImplementationCapability connection.
+    size_t src_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
+
+    /// Get the src ImplementationDependsOn connection.
+    size_t src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
+
+    /// Get the src Implements connection.
+    size_t src_Implements (std::vector <Implements> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentImplementation.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_COMPONENTIMPLEMENTATION

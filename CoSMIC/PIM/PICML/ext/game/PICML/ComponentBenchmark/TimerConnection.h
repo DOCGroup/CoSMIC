@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_TIMERCONNECTION_H_
 #define _PICML_COMPONENTBENCHMARK_TIMERCONNECTION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TimerConnection_Impl;
   typedef TimerConnection_Impl * TimerConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <TimerConnection_Impl> TimerConnection;
+  typedef ::GAME::Mga::Smart_Ptr < TimerConnection_Impl > TimerConnection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class TimerConnection_Impl
+   *
+   * Implementation for the TimerConnection model element.
+   */
   class PICML_Export TimerConnection_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    TimerConnection_Impl (void);
-
-    /// Initializing constructor
-    TimerConnection_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~TimerConnection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static TimerConnection _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /// Get the src OperationRef connection point.
-    OperationRef src_OperationRef (void);
+    // Default constructor.
+    TimerConnection_Impl (void);
 
-    /// Get the dst TimeProbe connection point.
-    TimeProbe dst_TimeProbe (void);
+    // Initializing constructor.
+    TimerConnection_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
+    // Destructor.
+    virtual ~TimerConnection_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    OperationRef src_OperationRef (void) const;
+    TimeProbe dst_TimeProbe (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TimerConnection.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_TIMERCONNECTION

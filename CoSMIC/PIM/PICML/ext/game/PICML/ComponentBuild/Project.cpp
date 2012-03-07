@@ -1,78 +1,55 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Project.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Project.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/MPC.h"
-#include "PICML/ComponentBuild/ComponentLib.h"
-#include "PICML/ComponentBuild/ExtResourceConn.h"
 #include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ComponentBuild/ExtResourceConn.h"
+#include "PICML/ComponentBuild/ComponentLib.h"
+#include "PICML/ComponentBuild/MPC.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Project_Impl::metaname = "Project";
+  const std::string Project_Impl::metaname ("Project");
 
   //
-  // Project_Impl
+  // _create (const MPC_in)
   //
-  Project_Impl::Project_Impl (void)
+  Project Project_Impl::_create (const MPC_in parent)
   {
-  }
-
-  //
-  // Project_Impl
-  //
-  Project_Impl::Project_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Project_Impl
-  //
-  Project_Impl::~Project_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Project > (parent, Project_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Project_Impl::accept (Visitor * v)
+  void Project_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Project (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Project (this);
+    }
 
-  //
-  // _create
-  //
-  Project Project_Impl::_create (const MPC_in parent)
-  {
-    return ::GAME::Mga::create_object <Project> (parent, Project_Impl::metaname);
-  }
-
-  //
-  // get_ComponentLibs
-  //
-  size_t Project_Impl::get_ComponentLibs (std::vector <ComponentLib> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ExtResourceConns
-  //
-  size_t Project_Impl::get_ExtResourceConns (std::vector <ExtResourceConn> & items) const
-  {
-    return this->children (items);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -84,6 +61,46 @@ namespace PICML
   }
 
   //
+  // get_ExternalResourcess
+  //
+  ::GAME::Mga::Iterator <ExternalResources> Project_Impl::get_ExternalResourcess (void) const
+  {
+    return this->children <ExternalResources> ();
+  }
+
+  //
+  // get_ExtResourceConns
+  //
+  size_t Project_Impl::get_ExtResourceConns (std::vector <ExtResourceConn> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExtResourceConns
+  //
+  ::GAME::Mga::Iterator <ExtResourceConn> Project_Impl::get_ExtResourceConns (void) const
+  {
+    return this->children <ExtResourceConn> ();
+  }
+
+  //
+  // get_ComponentLibs
+  //
+  size_t Project_Impl::get_ComponentLibs (std::vector <ComponentLib> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentLibs
+  //
+  ::GAME::Mga::Iterator <ComponentLib> Project_Impl::get_ComponentLibs (void) const
+  {
+    return this->children <ComponentLib> ();
+  }
+
+  //
   // get_ImplementationArtifacts
   //
   size_t Project_Impl::get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const
@@ -92,11 +109,11 @@ namespace PICML
   }
 
   //
-  // parent_MPC
+  // get_ImplementationArtifacts
   //
-  MPC Project_Impl::parent_MPC (void) const
+  ::GAME::Mga::Iterator <ImplementationArtifact> Project_Impl::get_ImplementationArtifacts (void) const
   {
-    return ::GAME::Mga::get_parent <MPC> (this->object_.p);
+    return this->children <ImplementationArtifact> ();
   }
 }
 

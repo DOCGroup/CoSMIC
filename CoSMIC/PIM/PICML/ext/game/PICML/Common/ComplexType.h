@@ -14,18 +14,23 @@
 #ifndef _PICML_COMMON_COMPLEXTYPE_H_
 #define _PICML_COMMON_COMPLEXTYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComplexType_Impl;
   typedef ComplexType_Impl * ComplexType_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComplexType_Impl> ComplexType;
+  typedef ::GAME::Mga::Smart_Ptr < ComplexType_Impl > ComplexType;
 
+  /**
+   * @class ComplexType_Impl
+   *
+   * Implementation for the ComplexType model element.
+   */
   class PICML_Export ComplexType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,27 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ComplexType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ComplexType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ComplexType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComplexType.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_COMPLEXTYPE

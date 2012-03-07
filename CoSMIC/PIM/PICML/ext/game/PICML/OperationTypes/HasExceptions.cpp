@@ -1,42 +1,23 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "HasExceptions.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "HasExceptions.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/OperationTypes/ExceptionRef.h"
+#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string HasExceptions_Impl::metaname = "HasExceptions";
-
-  //
-  // HasExceptions_Impl
-  //
-  HasExceptions_Impl::HasExceptions_Impl (void)
-  {
-  }
-
-  //
-  // HasExceptions_Impl
-  //
-  HasExceptions_Impl::HasExceptions_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~HasExceptions_Impl
-  //
-  HasExceptions_Impl::~HasExceptions_Impl (void)
-  {
-  }
+  const std::string HasExceptions_Impl::metaname ("HasExceptions");
 
   //
   // get_ExceptionRefs
@@ -44,6 +25,14 @@ namespace PICML
   size_t HasExceptions_Impl::get_ExceptionRefs (std::vector <ExceptionRef> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_ExceptionRefs
+  //
+  ::GAME::Mga::Iterator <ExceptionRef> HasExceptions_Impl::get_ExceptionRefs (void) const
+  {
+    return this->children <ExceptionRef> ();
   }
 }
 

@@ -14,25 +14,30 @@
 #ifndef _PICML_PATHDIAGRAM_CONNECTEDCOMPONENT_H_
 #define _PICML_PATHDIAGRAM_CONNECTEDCOMPONENT_H_
 
-#include "game/mga/Model.h"
-#include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PathDiagram/GraphVertex.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ConnectedComponent_Impl;
   typedef ConnectedComponent_Impl * ConnectedComponent_in;
-  typedef ::GAME::Mga::Smart_Ptr <ConnectedComponent_Impl> ConnectedComponent;
+  typedef ::GAME::Mga::Smart_Ptr < ConnectedComponent_Impl > ConnectedComponent;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ConnectedComponent_Impl
+   *
+   * Implementation for the ConnectedComponent model element.
+   */
   class PICML_Export ConnectedComponent_Impl :
-    public virtual GraphVertex_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual GraphVertex_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,44 +49,41 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ConnectedComponent_Impl (void);
-
-    /// Initializing constructor
-    ConnectedComponent_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~ConnectedComponent_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ConnectedComponent _create (const Path_in parent);
     ///@}
+
+    // Default constructor.
+    ConnectedComponent_Impl (void);
+
+    // Initializing constructor.
+    ConnectedComponent_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~ConnectedComponent_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Containment Methods
      */
     ///@{
     size_t get_Ports (std::vector <Port> & items) const;
+    ::GAME::Mga::Iterator <Port> get_Ports (void) const;
+
     size_t get_DstEdges (std::vector <DstEdge> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <DstEdge> get_DstEdges (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ConnectedComponent.inl"
 #endif
+
+#endif  // !defined _PICML_PATHDIAGRAM_CONNECTEDCOMPONENT

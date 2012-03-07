@@ -14,21 +14,26 @@
 #ifndef _PICML_INHERITABLETYPES_SUPPORTS_H_
 #define _PICML_INHERITABLETYPES_SUPPORTS_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Supports_Impl;
   typedef Supports_Impl * Supports_in;
-  typedef ::GAME::Mga::Smart_Ptr <Supports_Impl> Supports;
+  typedef ::GAME::Mga::Smart_Ptr < Supports_Impl > Supports;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Supports_Impl
+   *
+   * Implementation for the Supports model element.
+   */
   class PICML_Export Supports_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Supports_Impl (void);
-
-    /// Initializing constructor
-    Supports_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Supports_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,20 +54,38 @@ namespace PICML
     static Supports _create (const SupportsInterfaces_in parent);
     ///@}
 
+    // Default constructor.
+    Supports_Impl (void);
+
+    // Initializing constructor.
+    Supports_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Supports_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    SupportsInterfaces parent_SupportsInterfaces (void) const;
+    bool Object_is_nil (void) const;
+    Object get_Object (void) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    Object refers_to_Object (void) const;
+    bool Supports_is_nil (void) const;
+    Supports get_Supports (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Supports.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_SUPPORTS

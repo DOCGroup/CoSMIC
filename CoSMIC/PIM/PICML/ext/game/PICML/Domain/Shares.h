@@ -14,21 +14,26 @@
 #ifndef _PICML_DOMAIN_SHARES_H_
 #define _PICML_DOMAIN_SHARES_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Shares_Impl;
   typedef Shares_Impl * Shares_in;
-  typedef ::GAME::Mga::Smart_Ptr <Shares_Impl> Shares;
+  typedef ::GAME::Mga::Smart_Ptr < Shares_Impl > Shares;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Shares_Impl
+   *
+   * Implementation for the Shares model element.
+   */
   class PICML_Export Shares_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Shares_Impl (void);
-
-    /// Initializing constructor
-    Shares_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~Shares_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static Shares _create (const Domain_in parent);
     ///@}
 
-    /// Get the src Node connection point.
-    Node src_Node (void);
+    // Default constructor.
+    Shares_Impl (void);
 
-    /// Get the dst SharedResource connection point.
-    SharedResource dst_SharedResource (void);
+    // Initializing constructor.
+    Shares_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Domain parent_Domain (void) const;
-    ///@}
+    // Destructor.
+    virtual ~Shares_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Node src_Node (void) const;
+    SharedResource dst_SharedResource (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Shares.inl"
 #endif
+
+#endif  // !defined _PICML_DOMAIN_SHARES

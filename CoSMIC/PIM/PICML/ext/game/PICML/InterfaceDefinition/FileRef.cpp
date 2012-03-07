@@ -1,74 +1,85 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "FileRef.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "FileRef.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string FileRef_Impl::metaname = "FileRef";
+  const std::string FileRef_Impl::metaname ("FileRef");
 
   //
-  // FileRef_Impl
+  // _create (const StubProject_in)
   //
-  FileRef_Impl::FileRef_Impl (void)
+  FileRef FileRef_Impl::_create (const StubProject_in parent)
   {
+    return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
   }
 
   //
-  // FileRef_Impl
+  // _create (const ServantProject_in)
   //
-  FileRef_Impl::FileRef_Impl (IMgaReference * ptr)
+  FileRef FileRef_Impl::_create (const ServantProject_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
   }
 
   //
-  // ~FileRef_Impl
+  // _create (const File_in)
   //
-  FileRef_Impl::~FileRef_Impl (void)
+  FileRef FileRef_Impl::_create (const File_in parent)
   {
+    return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
   }
 
   //
   // accept
   //
-  void FileRef_Impl::accept (Visitor * v)
+  void FileRef_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_FileRef (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_FileRef (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // File_is_nil
   //
-  FileRef FileRef_Impl::_create (const File_in parent)
+  bool FileRef_Impl::File_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <FileRef> (parent, FileRef_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_File
+  // get_File
   //
-  File FileRef_Impl::parent_File (void) const
+  File FileRef_Impl::get_File (void) const
   {
-    return ::GAME::Mga::get_parent <File> (this->object_.p);
-  }
-
-  //
-  // refers_to_File
-  //
-  File FileRef_Impl::refers_to_File (void) const
-  {
-    return ::GAME::Mga::get_refers_to <File> (this);
+    return File::_narrow (this->refers_to ());
   }
 }
 

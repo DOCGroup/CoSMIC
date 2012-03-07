@@ -1,59 +1,62 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentFactory.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentFactory.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentFactory_Impl::metaname = "ComponentFactory";
-
-  //
-  // ComponentFactory_Impl
-  //
-  ComponentFactory_Impl::ComponentFactory_Impl (void)
-  {
-  }
-
-  //
-  // ComponentFactory_Impl
-  //
-  ComponentFactory_Impl::ComponentFactory_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentFactory_Impl
-  //
-  ComponentFactory_Impl::~ComponentFactory_Impl (void)
-  {
-  }
+  const std::string ComponentFactory_Impl::metaname ("ComponentFactory");
 
   //
   // accept
   //
-  void ComponentFactory_Impl::accept (Visitor * v)
+  void ComponentFactory_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentFactory (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentFactory (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // in_ManagesComponent_connections
+  // src_ManagesComponent
   //
-  size_t ComponentFactory_Impl::in_ManagesComponent_connections (std::vector <ManagesComponent> & conns) const
+  size_t ComponentFactory_Impl::src_ManagesComponent (std::vector <ManagesComponent> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <ManagesComponent> (items);
+  }
+
+  //
+  // has_LookupKey
+  //
+  bool ComponentFactory_Impl::has_LookupKey (void) const
+  {
+    return this->children <LookupKey> ().count () == 1;
   }
 
   //
@@ -61,11 +64,39 @@ namespace PICML
   //
   LookupKey ComponentFactory_Impl::get_LookupKey (void) const
   {
-    // Get the collection of children.
-    std::vector <LookupKey> items;
-    this->children (items);
+    return this->children <LookupKey> ().item ();
+  }
 
-    return !items.empty () ? items.front () : LookupKey ();
+  //
+  // get_FactoryOperations
+  //
+  size_t ComponentFactory_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  ::GAME::Mga::Iterator <FactoryOperation> ComponentFactory_Impl::get_FactoryOperations (void) const
+  {
+    return this->children <FactoryOperation> ();
+  }
+
+  //
+  // get_LookupOperations
+  //
+  size_t ComponentFactory_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_LookupOperations
+  //
+  ::GAME::Mga::Iterator <LookupOperation> ComponentFactory_Impl::get_LookupOperations (void) const
+  {
+    return this->children <LookupOperation> ();
   }
 }
 

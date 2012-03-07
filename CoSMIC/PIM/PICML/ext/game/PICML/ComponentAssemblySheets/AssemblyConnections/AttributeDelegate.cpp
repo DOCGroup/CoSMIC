@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "AttributeDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "AttributeDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string AttributeDelegate_Impl::metaname = "AttributeDelegate";
+  const std::string AttributeDelegate_Impl::metaname ("AttributeDelegate");
 
   //
-  // AttributeDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  AttributeDelegate_Impl::AttributeDelegate_Impl (void)
+  AttributeDelegate AttributeDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // AttributeDelegate_Impl
-  //
-  AttributeDelegate_Impl::AttributeDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~AttributeDelegate_Impl
-  //
-  AttributeDelegate_Impl::~AttributeDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < AttributeDelegate > (parent, AttributeDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void AttributeDelegate_Impl::accept (Visitor * v)
+  void AttributeDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_AttributeDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_AttributeDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_AttributeMapping
+  // AttributeMapping
   //
-  AttributeMapping AttributeDelegate_Impl::src_AttributeMapping (void)
+  AttributeMapping AttributeDelegate_Impl::src_AttributeMapping (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return AttributeMapping::_narrow (target);
+    return AttributeMapping::_narrow (this->src ());
   }
 
   //
-  // dst_AttributeInstance
+  // AttributeInstance
   //
-  AttributeInstance AttributeDelegate_Impl::dst_AttributeInstance (void)
+  AttributeInstance AttributeDelegate_Impl::dst_AttributeInstance (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return AttributeInstance::_narrow (target);
+    return AttributeInstance::_narrow (this->dst ());
   }
 }
 

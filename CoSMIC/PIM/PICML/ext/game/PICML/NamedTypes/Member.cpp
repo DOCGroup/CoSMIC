@@ -1,110 +1,122 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Member.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Member.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/LabelConnection.h"
-#include "PICML/NamedTypes/KeyMember.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/LabelConnection.h"
 #include "PICML/NamedTypes/MemberType.h"
+#include "PICML/NamedTypes/KeyMember.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Member_Impl::metaname = "Member";
+  const std::string Member_Impl::metaname ("Member");
 
   //
-  // Member_Impl
+  // _create (const Exception_in)
   //
-  Member_Impl::Member_Impl (void)
+  Member Member_Impl::_create (const Exception_in parent)
   {
+    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
   }
 
   //
-  // Member_Impl
+  // _create (const Aggregate_in)
   //
-  Member_Impl::Member_Impl (IMgaReference * ptr)
+  Member Member_Impl::_create (const Aggregate_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
   }
 
   //
-  // ~Member_Impl
+  // _create (const SwitchedAggregate_in)
   //
-  Member_Impl::~Member_Impl (void)
+  Member Member_Impl::_create (const SwitchedAggregate_in parent)
   {
+    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
+  }
+
+  //
+  // _create (const ObjectByValue_in)
+  //
+  Member Member_Impl::_create (const ObjectByValue_in parent)
+  {
+    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Member_Impl::accept (Visitor * v)
+  void Member_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Member (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Member (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // src_LabelConnection
   //
-  Member Member_Impl::_create (const Aggregate_in parent)
+  size_t Member_Impl::src_LabelConnection (std::vector <LabelConnection> & items) const
   {
-    return ::GAME::Mga::create_object <Member> (parent, Member_Impl::metaname);
+    return this->in_connections <LabelConnection> (items);
   }
 
   //
-  // _create
+  // src_MakeMemberPrivate
   //
-  Member Member_Impl::_create (const SwitchedAggregate_in parent)
+  size_t Member_Impl::src_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
   {
-    return ::GAME::Mga::create_object <Member> (parent, Member_Impl::metaname);
+    return this->in_connections <MakeMemberPrivate> (items);
   }
 
   //
-  // in_LabelConnection_connections
+  // dst_KeyMember
   //
-  size_t Member_Impl::in_LabelConnection_connections (std::vector <LabelConnection> & conns) const
+  size_t Member_Impl::dst_KeyMember (std::vector <KeyMember> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <KeyMember> (items);
   }
 
   //
-  // in_KeyMember_connections
+  // MemberType_is_nil
   //
-  size_t Member_Impl::in_KeyMember_connections (std::vector <KeyMember> & conns) const
+  bool Member_Impl::MemberType_is_nil (void) const
   {
-    return this->in_connections (conns);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_Aggregate
+  // get_MemberType
   //
-  Aggregate Member_Impl::parent_Aggregate (void) const
+  MemberType Member_Impl::get_MemberType (void) const
   {
-    return ::GAME::Mga::get_parent <Aggregate> (this->object_.p);
-  }
-
-  //
-  // parent_SwitchedAggregate
-  //
-  SwitchedAggregate Member_Impl::parent_SwitchedAggregate (void) const
-  {
-    return ::GAME::Mga::get_parent <SwitchedAggregate> (this->object_.p);
-  }
-
-  //
-  // refers_to_MemberType
-  //
-  MemberType Member_Impl::refers_to_MemberType (void) const
-  {
-    return ::GAME::Mga::get_refers_to <MemberType> (this);
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

@@ -1,69 +1,104 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentServantArtifact.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentServantArtifact.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentServantArtifact_Impl::metaname = "ComponentServantArtifact";
+  const std::string ComponentServantArtifact_Impl::metaname ("ComponentServantArtifact");
 
   //
-  // ComponentServantArtifact_Impl
+  // _create (const StubProject_in)
   //
-  ComponentServantArtifact_Impl::ComponentServantArtifact_Impl (void)
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const StubProject_in parent)
   {
+    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
-  // ComponentServantArtifact_Impl
+  // _create (const ServantProject_in)
   //
-  ComponentServantArtifact_Impl::ComponentServantArtifact_Impl (IMgaReference * ptr)
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ServantProject_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
-  // ~ComponentServantArtifact_Impl
+  // _create (const ExecutorProject_in)
   //
-  ComponentServantArtifact_Impl::~ComponentServantArtifact_Impl (void)
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ExecutorProject_in parent)
   {
+    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+  }
+
+  //
+  // _create (const ArtifactContainer_in)
+  //
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ArtifactContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+  }
+
+  //
+  // _create (const ImplementationContainer_in)
+  //
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ImplementationContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentServantArtifact_Impl::accept (Visitor * v)
+  void ComponentServantArtifact_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentServantArtifact (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentServantArtifact (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // EntryPoint
+  // ImplementationArtifact_is_nil
   //
-  void ComponentServantArtifact_Impl::EntryPoint (const std::string & val)
+  bool ComponentServantArtifact_Impl::ImplementationArtifact_is_nil (void) const
   {
-    static const std::string attr_EntryPoint ("EntryPoint");
-    this->attribute (attr_EntryPoint)->string_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // EntryPoint
+  // get_ImplementationArtifact
   //
-  std::string ComponentServantArtifact_Impl::EntryPoint (void) const
+  ImplementationArtifact ComponentServantArtifact_Impl::get_ImplementationArtifact (void) const
   {
-    static const std::string attr_EntryPoint ("EntryPoint");
-    return this->attribute (attr_EntryPoint)->string_value ();
+    return ImplementationArtifact::_narrow (this->refers_to ());
   }
 }
 

@@ -1,67 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ReturnType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ReturnType.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/NamedTypes/MemberType.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ReturnType_Impl::metaname = "ReturnType";
+  const std::string ReturnType_Impl::metaname ("ReturnType");
 
   //
-  // ReturnType_Impl
+  // _create (const Operation_in)
   //
-  ReturnType_Impl::ReturnType_Impl (void)
+  ReturnType ReturnType_Impl::_create (const Operation_in parent)
   {
+    return ::GAME::Mga::create_object < ReturnType > (parent, ReturnType_Impl::metaname);
   }
 
   //
-  // ReturnType_Impl
+  // _create (const TwowayOperation_in)
   //
-  ReturnType_Impl::ReturnType_Impl (IMgaReference * ptr)
+  ReturnType ReturnType_Impl::_create (const TwowayOperation_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ReturnType_Impl
-  //
-  ReturnType_Impl::~ReturnType_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ReturnType > (parent, ReturnType_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ReturnType_Impl::accept (Visitor * v)
+  void ReturnType_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ReturnType (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ReturnType (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // MemberType_is_nil
   //
-  ReturnType ReturnType_Impl::_create (const TwowayOperation_in parent)
+  bool ReturnType_Impl::MemberType_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ReturnType> (parent, ReturnType_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_TwowayOperation
+  // get_MemberType
   //
-  TwowayOperation ReturnType_Impl::parent_TwowayOperation (void) const
+  MemberType ReturnType_Impl::get_MemberType (void) const
   {
-    return ::GAME::Mga::get_parent <TwowayOperation> (this->object_.p);
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

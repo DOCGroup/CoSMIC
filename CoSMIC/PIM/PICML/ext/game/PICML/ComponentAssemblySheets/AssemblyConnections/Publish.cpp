@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Publish.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Publish.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Publish_Impl::metaname = "Publish";
+  const std::string Publish_Impl::metaname ("Publish");
 
   //
-  // Publish_Impl
+  // _create (const ComponentAssembly_in)
   //
-  Publish_Impl::Publish_Impl (void)
+  Publish Publish_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // Publish_Impl
-  //
-  Publish_Impl::Publish_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Publish_Impl
-  //
-  Publish_Impl::~Publish_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Publish > (parent, Publish_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Publish_Impl::accept (Visitor * v)
+  void Publish_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Publish (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Publish (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ExtendPortEnd
+  // ExtendPortEnd
   //
-  ExtendPortEnd Publish_Impl::src_ExtendPortEnd (void)
+  ExtendPortEnd Publish_Impl::src_ExtendPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ExtendPortEnd::_narrow (target);
+    return ExtendPortEnd::_narrow (this->src ());
   }
 
   //
-  // dst_ConnectorInstance
+  // ConnectorInstance
   //
-  ConnectorInstance Publish_Impl::dst_ConnectorInstance (void)
+  ConnectorInstance Publish_Impl::dst_ConnectorInstance (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ConnectorInstance::_narrow (target);
+    return ConnectorInstance::_narrow (this->dst ());
   }
 }
 

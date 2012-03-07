@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_MANAGESCOMPONENT_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_MANAGESCOMPONENT_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ManagesComponent_Impl;
   typedef ManagesComponent_Impl * ManagesComponent_in;
-  typedef ::GAME::Mga::Smart_Ptr <ManagesComponent_Impl> ManagesComponent;
+  typedef ::GAME::Mga::Smart_Ptr < ManagesComponent_Impl > ManagesComponent;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ManagesComponent_Impl
+   *
+   * Implementation for the ManagesComponent model element.
+   */
   class PICML_Export ManagesComponent_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,32 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ManagesComponent_Impl (void);
-
-    /// Initializing constructor
-    ManagesComponent_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ManagesComponent_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ManagesComponent _create (const Package_in parent);
+    static ManagesComponent _create (const File_in parent);
     ///@}
 
-    /// Get the src ComponentFactory connection point.
-    ComponentFactory src_ComponentFactory (void);
+    // Default constructor.
+    ManagesComponent_Impl (void);
 
-    /// Get the dst Manageable connection point.
-    Manageable dst_Manageable (void);
+    // Initializing constructor.
+    ManagesComponent_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~ManagesComponent_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ComponentFactory src_ComponentFactory (void) const;
+    Manageable dst_Manageable (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ManagesComponent.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_MANAGESCOMPONENT

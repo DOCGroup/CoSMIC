@@ -1,67 +1,46 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MonolithicImplementationBase.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MonolithicImplementationBase.inl"
+#endif
 
+#include "PICML/Visitor.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 #include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 #include "PICML/ImplementationCommon/MonolithExecParameter.h"
-#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MonolithicImplementationBase_Impl::metaname = "MonolithicImplementationBase";
+  const std::string MonolithicImplementationBase_Impl::metaname ("MonolithicImplementationBase");
 
   //
-  // MonolithicImplementationBase_Impl
+  // src_MonolithprimaryArtifact
   //
-  MonolithicImplementationBase_Impl::MonolithicImplementationBase_Impl (void)
+  size_t MonolithicImplementationBase_Impl::src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
   {
+    return this->in_connections <MonolithprimaryArtifact> (items);
   }
 
   //
-  // MonolithicImplementationBase_Impl
+  // src_MonolithDeployRequirement
   //
-  MonolithicImplementationBase_Impl::MonolithicImplementationBase_Impl (IMgaFCO * ptr)
+  size_t MonolithicImplementationBase_Impl::src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
   {
-    this->object_ = ptr;
+    return this->in_connections <MonolithDeployRequirement> (items);
   }
 
   //
-  // ~MonolithicImplementationBase_Impl
+  // src_MonolithExecParameter
   //
-  MonolithicImplementationBase_Impl::~MonolithicImplementationBase_Impl (void)
+  size_t MonolithicImplementationBase_Impl::src_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const
   {
-  }
-
-  //
-  // in_MonolithDeployRequirement_connections
-  //
-  size_t MonolithicImplementationBase_Impl::in_MonolithDeployRequirement_connections (std::vector <MonolithDeployRequirement> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_MonolithExecParameter_connections
-  //
-  size_t MonolithicImplementationBase_Impl::in_MonolithExecParameter_connections (std::vector <MonolithExecParameter> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_MonolithprimaryArtifact_connections
-  //
-  size_t MonolithicImplementationBase_Impl::in_MonolithprimaryArtifact_connections (std::vector <MonolithprimaryArtifact> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <MonolithExecParameter> (items);
   }
 }
 

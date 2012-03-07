@@ -1,58 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RequiredRequestPortDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "RequiredRequestPortDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string RequiredRequestPortDelegate_Impl::metaname = "RequiredRequestPortDelegate";
+  const std::string RequiredRequestPortDelegate_Impl::metaname ("RequiredRequestPortDelegate");
 
   //
-  // RequiredRequestPortDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  RequiredRequestPortDelegate_Impl::RequiredRequestPortDelegate_Impl (void)
+  RequiredRequestPortDelegate RequiredRequestPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // RequiredRequestPortDelegate_Impl
-  //
-  RequiredRequestPortDelegate_Impl::RequiredRequestPortDelegate_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~RequiredRequestPortDelegate_Impl
-  //
-  RequiredRequestPortDelegate_Impl::~RequiredRequestPortDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < RequiredRequestPortDelegate > (parent, RequiredRequestPortDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void RequiredRequestPortDelegate_Impl::accept (Visitor * v)
+  void RequiredRequestPortDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_RequiredRequestPortDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_RequiredRequestPortDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // in_ReceptacleDelegate_connections
+  // src_ReceptacleDelegate
   //
-  size_t RequiredRequestPortDelegate_Impl::in_ReceptacleDelegate_connections (std::vector <ReceptacleDelegate> & conns) const
+  size_t RequiredRequestPortDelegate_Impl::src_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <ReceptacleDelegate> (items);
   }
 }
 

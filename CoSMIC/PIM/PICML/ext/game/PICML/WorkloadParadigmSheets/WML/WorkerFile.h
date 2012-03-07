@@ -14,25 +14,30 @@
 #ifndef _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERFILE_H_
 #define _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERFILE_H_
 
-#include "game/mga/Model.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkerFile_Impl;
   typedef WorkerFile_Impl * WorkerFile_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerFile_Impl> WorkerFile;
+  typedef ::GAME::Mga::Smart_Ptr < WorkerFile_Impl > WorkerFile;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WorkerFile_Impl
+   *
+   * Implementation for the WorkerFile model element.
+   */
   class PICML_Export WorkerFile_Impl :
-    public virtual WorkerPackageBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual WorkerPackageBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,24 +49,25 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WorkerFile_Impl (void);
-
-    /// Initializing constructor
-    WorkerFile_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~WorkerFile_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static WorkerFile _create (const WorkerLibrary_in parent);
+    static WorkerFile _create (const WorkerPackageBase_in parent);
     ///@}
+
+    // Default constructor.
+    WorkerFile_Impl (void);
+
+    // Initializing constructor.
+    WorkerFile_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~WorkerFile_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -80,21 +86,14 @@ namespace PICML
      */
     ///@{
     size_t get_WorkerPackages (std::vector <WorkerPackage> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <WorkerPackage> get_WorkerPackages (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    WorkerLibrary parent_WorkerLibrary (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkerFile.inl"
 #endif
+
+#endif  // !defined _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERFILE

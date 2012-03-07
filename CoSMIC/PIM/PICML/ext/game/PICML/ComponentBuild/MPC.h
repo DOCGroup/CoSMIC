@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBUILD_MPC_H_
 #define _PICML_COMPONENTBUILD_MPC_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MPC_Impl;
   typedef MPC_Impl * MPC_in;
-  typedef ::GAME::Mga::Smart_Ptr <MPC_Impl> MPC;
+  typedef ::GAME::Mga::Smart_Ptr < MPC_Impl > MPC;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MPC_Impl
+   *
+   * Implementation for the MPC model element.
+   */
   class PICML_Export MPC_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MPC_Impl (void);
-
-    /// Initializing constructor
-    MPC_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~MPC_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,27 +54,34 @@ namespace PICML
     static MPC _create (const ComponentBuild_in parent);
     ///@}
 
+    // Default constructor.
+    MPC_Impl (void);
+
+    // Initializing constructor.
+    MPC_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~MPC_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Workspacess (std::vector <Workspaces> & items) const;
     size_t get_Projects (std::vector <Project> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Project> get_Projects (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentBuild parent_ComponentBuild (void) const;
-    ///@}
+    size_t get_Workspacess (std::vector <Workspaces> & items) const;
+    ::GAME::Mga::Iterator <Workspaces> get_Workspacess (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MPC.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBUILD_MPC

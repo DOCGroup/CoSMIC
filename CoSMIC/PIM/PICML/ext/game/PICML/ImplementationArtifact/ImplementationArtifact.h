@@ -14,21 +14,26 @@
 #ifndef _PICML_IMPLEMENTATIONARTIFACT_IMPLEMENTATIONARTIFACT_H_
 #define _PICML_IMPLEMENTATIONARTIFACT_IMPLEMENTATIONARTIFACT_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ImplementationArtifact_Impl;
   typedef ImplementationArtifact_Impl * ImplementationArtifact_in;
-  typedef ::GAME::Mga::Smart_Ptr <ImplementationArtifact_Impl> ImplementationArtifact;
+  typedef ::GAME::Mga::Smart_Ptr < ImplementationArtifact_Impl > ImplementationArtifact;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ImplementationArtifact_Impl
+   *
+   * Implementation for the ImplementationArtifact model element.
+   */
   class PICML_Export ImplementationArtifact_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,35 +47,48 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ImplementationArtifact_Impl (void);
-
-    /// Initializing constructor
-    ImplementationArtifact_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~ImplementationArtifact_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ImplementationArtifact _create (const Project_in parent);
     static ImplementationArtifact _create (const ArtifactContainer_in parent);
     ///@}
+
+    // Default constructor.
+    ImplementationArtifact_Impl (void);
+
+    // Initializing constructor.
+    ImplementationArtifact_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~ImplementationArtifact_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
      */
     ///@{
 
-    /// Set the value of architecture
-    void architecture (const std::string & val);
+    /// Set the value of UUID
+    void UUID (const std::string & val);
 
-    /// Get the value of architecture
-    std::string architecture (void) const;
+    /// Get the value of UUID
+    std::string UUID (void) const;
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
+
+    /// Set the value of location
+    void location (const std::string & val);
+
+    /// Get the value of location
+    std::string location (void) const;
 
     /// Set the value of artifactVersion
     void artifactVersion (const std::string & val);
@@ -78,37 +96,59 @@ namespace PICML
     /// Get the value of artifactVersion
     std::string artifactVersion (void) const;
 
+    /// Set the value of operatingSystem
+    void operatingSystem (const std::string & val);
+
+    /// Get the value of operatingSystem
+    std::string operatingSystem (void) const;
+
     /// Set the value of configuration
     void configuration (const std::string & val);
 
     /// Get the value of configuration
     std::string configuration (void) const;
 
-    /// Set the value of operatingSystem
-    void operatingSystem (const std::string & val);
+    /// Set the value of architecture
+    void architecture (const std::string & val);
 
-    /// Get the value of operatingSystem
-    std::string operatingSystem (void) const;
-    ///@}
-    size_t in_ArtifactDependency_connections (std::vector <ArtifactDependency> & conns) const;
-    size_t in_ArtifactInfoProperty_connections (std::vector <ArtifactInfoProperty> & conns) const;
-    size_t in_ArtifactExecParameter_connections (std::vector <ArtifactExecParameter> & conns) const;
-    size_t in_ArtifactDeployRequirement_connections (std::vector <ArtifactDeployRequirement> & conns) const;
-    size_t in_ArtifactDependsOn_connections (std::vector <ArtifactDependsOn> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ArtifactContainer parent_ArtifactContainer (void) const;
+    /// Get the value of architecture
+    std::string architecture (void) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src ArtifactDependsOn connection.
+    size_t src_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
+
+    /// Get the src ArtifactDeployRequirement connection.
+    size_t src_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+
+    /// Get the src ArtifactExecParameter connection.
+    size_t src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
+
+    /// Get the src ArtifactInfoProperty connection.
+    size_t src_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const;
+
+    /// Get the src ArtifactDependency connection.
+    size_t src_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst ArtifactDependency connection.
+    size_t dst_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ImplementationArtifact.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONARTIFACT_IMPLEMENTATIONARTIFACT

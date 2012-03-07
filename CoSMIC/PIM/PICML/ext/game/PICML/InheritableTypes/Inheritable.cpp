@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Inheritable.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Inheritable.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Inherits.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 
@@ -15,29 +16,7 @@ namespace PICML
   //
   // metaname
   //
-  const std::string Inheritable_Impl::metaname = "Inheritable";
-
-  //
-  // Inheritable_Impl
-  //
-  Inheritable_Impl::Inheritable_Impl (void)
-  {
-  }
-
-  //
-  // Inheritable_Impl
-  //
-  Inheritable_Impl::Inheritable_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Inheritable_Impl
-  //
-  Inheritable_Impl::~Inheritable_Impl (void)
-  {
-  }
+  const std::string Inheritable_Impl::metaname ("Inheritable");
 
   //
   // get_Inheritss
@@ -48,11 +27,27 @@ namespace PICML
   }
 
   //
+  // get_Inheritss
+  //
+  ::GAME::Mga::Iterator <Inherits> Inheritable_Impl::get_Inheritss (void) const
+  {
+    return this->children <Inherits> ();
+  }
+
+  //
   // get_ReadonlyAttributes
   //
   size_t Inheritable_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  ::GAME::Mga::Iterator <ReadonlyAttribute> Inheritable_Impl::get_ReadonlyAttributes (void) const
+  {
+    return this->children <ReadonlyAttribute> ();
   }
 }
 

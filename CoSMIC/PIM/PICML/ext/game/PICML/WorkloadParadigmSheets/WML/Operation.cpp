@@ -1,60 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Operation.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Operation.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/OperationTypes/ParameterType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Operation_Impl::metaname = "Operation";
+  const std::string Operation_Impl::metaname ("Operation");
 
   //
-  // Operation_Impl
+  // _create (const Worker_in)
   //
-  Operation_Impl::Operation_Impl (void)
+  Operation Operation_Impl::_create (const Worker_in parent)
   {
-  }
-
-  //
-  // Operation_Impl
-  //
-  Operation_Impl::Operation_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Operation_Impl
-  //
-  Operation_Impl::~Operation_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Operation > (parent, Operation_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Operation_Impl::accept (Visitor * v)
+  void Operation_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Operation (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Operation (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // _create
+  // has_ReturnType
   //
-  Operation Operation_Impl::_create (const Worker_in parent)
+  bool Operation_Impl::has_ReturnType (void) const
   {
-    return ::GAME::Mga::create_object <Operation> (parent, Operation_Impl::metaname);
+    return this->children <ReturnType> ().count () == 1;
   }
 
   //
@@ -62,11 +63,7 @@ namespace PICML
   //
   ReturnType Operation_Impl::get_ReturnType (void) const
   {
-    // Get the collection of children.
-    std::vector <ReturnType> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ReturnType ();
+    return this->children <ReturnType> ().item ();
   }
 
   //
@@ -78,11 +75,11 @@ namespace PICML
   }
 
   //
-  // parent_Worker
+  // get_ParameterTypes
   //
-  Worker Operation_Impl::parent_Worker (void) const
+  ::GAME::Mga::Iterator <ParameterType> Operation_Impl::get_ParameterTypes (void) const
   {
-    return ::GAME::Mga::get_parent <Worker> (this->object_.p);
+    return this->children <ParameterType> ();
   }
 }
 

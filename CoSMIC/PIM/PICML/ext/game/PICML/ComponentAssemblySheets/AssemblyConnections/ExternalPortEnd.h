@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTERNALPORTEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTERNALPORTEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExternalPortEnd_Impl;
   typedef ExternalPortEnd_Impl * ExternalPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExternalPortEnd_Impl> ExternalPortEnd;
+  typedef ::GAME::Mga::Smart_Ptr < ExternalPortEnd_Impl > ExternalPortEnd;
 
+  /**
+   * @class ExternalPortEnd_Impl
+   *
+   * Implementation for the ExternalPortEnd model element.
+   */
   class PICML_Export ExternalPortEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,28 +44,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ExternalPortEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ExternalPortEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ExternalPortEnd_Impl (void) = 0;
-    size_t in_ExternalDelegate_connections (std::vector <ExternalDelegate> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst ExternalDelegate connection.
+    size_t dst_ExternalDelegate (std::vector <ExternalDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExternalPortEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTERNALPORTEND

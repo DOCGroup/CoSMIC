@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExtendedPortInstanceBase.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExtendedPortInstanceBase.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.h"
 
 namespace PICML
@@ -14,36 +15,14 @@ namespace PICML
   //
   // metaname
   //
-  const std::string ExtendedPortInstanceBase_Impl::metaname = "ExtendedPortInstanceBase";
+  const std::string ExtendedPortInstanceBase_Impl::metaname ("ExtendedPortInstanceBase");
 
   //
-  // ExtendedPortInstanceBase_Impl
+  // src_ExtendedDelegate
   //
-  ExtendedPortInstanceBase_Impl::ExtendedPortInstanceBase_Impl (void)
+  size_t ExtendedPortInstanceBase_Impl::src_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const
   {
-  }
-
-  //
-  // ExtendedPortInstanceBase_Impl
-  //
-  ExtendedPortInstanceBase_Impl::ExtendedPortInstanceBase_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExtendedPortInstanceBase_Impl
-  //
-  ExtendedPortInstanceBase_Impl::~ExtendedPortInstanceBase_Impl (void)
-  {
-  }
-
-  //
-  // in_ExtendedDelegate_connections
-  //
-  size_t ExtendedPortInstanceBase_Impl::in_ExtendedDelegate_connections (std::vector <ExtendedDelegate> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <ExtendedDelegate> (items);
   }
 }
 

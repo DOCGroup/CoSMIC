@@ -14,25 +14,30 @@
 #ifndef _PICML_PREDEFINEDTYPES_FLOATNUMBER_H_
 #define _PICML_PREDEFINEDTYPES_FLOATNUMBER_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/FloatingPointType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/FloatingPointType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class FloatNumber_Impl;
   typedef FloatNumber_Impl * FloatNumber_in;
-  typedef ::GAME::Mga::Smart_Ptr <FloatNumber_Impl> FloatNumber;
+  typedef ::GAME::Mga::Smart_Ptr < FloatNumber_Impl > FloatNumber;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class FloatNumber_Impl
+   *
+   * Implementation for the FloatNumber model element.
+   */
   class PICML_Export FloatNumber_Impl :
-    public virtual FloatingPointType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual FloatingPointType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    FloatNumber_Impl (void);
-
-    /// Initializing constructor
-    FloatNumber_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~FloatNumber_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    FloatNumber_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    FloatNumber_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~FloatNumber_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "FloatNumber.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_FLOATNUMBER

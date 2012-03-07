@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_TERMINALS_TERMINAL_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_TERMINALS_TERMINAL_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Terminal_Impl;
   typedef Terminal_Impl * Terminal_in;
-  typedef ::GAME::Mga::Smart_Ptr <Terminal_Impl> Terminal;
+  typedef ::GAME::Mga::Smart_Ptr < Terminal_Impl > Terminal;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Terminal_Impl
+   *
+   * Implementation for the Terminal model element.
+   */
   class PICML_Export Terminal_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,38 +47,47 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Terminal_Impl (void);
-
-    /// Initializing constructor
-    Terminal_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Terminal_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    ///@}
-    size_t in_TerminalEffect_connections (std::vector <TerminalEffect> & conns) const;
-    size_t in_TerminalTransition_connections (std::vector <TerminalTransition> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
+    static Terminal _create (const BehaviorModel_in parent);
     ///@}
 
+    // Default constructor.
+    Terminal_Impl (void);
+
+    // Initializing constructor.
+    Terminal_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Terminal_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src TerminalEffect connection.
+    size_t src_TerminalEffect (std::vector <TerminalEffect> & items) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst TerminalTransition connection.
+    size_t dst_TerminalTransition (std::vector <TerminalTransition> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Terminal.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_TERMINALS_TERMINAL

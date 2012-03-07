@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBUILD_PROJECT_H_
 #define _PICML_COMPONENTBUILD_PROJECT_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Project_Impl;
   typedef Project_Impl * Project_in;
-  typedef ::GAME::Mga::Smart_Ptr <Project_Impl> Project;
+  typedef ::GAME::Mga::Smart_Ptr < Project_Impl > Project;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Project_Impl
+   *
+   * Implementation for the Project model element.
+   */
   class PICML_Export Project_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Project_Impl (void);
-
-    /// Initializing constructor
-    Project_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Project_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,29 +54,40 @@ namespace PICML
     static Project _create (const MPC_in parent);
     ///@}
 
+    // Default constructor.
+    Project_Impl (void);
+
+    // Initializing constructor.
+    Project_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Project_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComponentLibs (std::vector <ComponentLib> & items) const;
-    size_t get_ExtResourceConns (std::vector <ExtResourceConn> & items) const;
     size_t get_ExternalResourcess (std::vector <ExternalResources> & items) const;
+    ::GAME::Mga::Iterator <ExternalResources> get_ExternalResourcess (void) const;
+
+    size_t get_ExtResourceConns (std::vector <ExtResourceConn> & items) const;
+    ::GAME::Mga::Iterator <ExtResourceConn> get_ExtResourceConns (void) const;
+
+    size_t get_ComponentLibs (std::vector <ComponentLib> & items) const;
+    ::GAME::Mga::Iterator <ComponentLib> get_ComponentLibs (void) const;
+
     size_t get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <ImplementationArtifact> get_ImplementationArtifacts (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    MPC parent_MPC (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Project.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBUILD_PROJECT

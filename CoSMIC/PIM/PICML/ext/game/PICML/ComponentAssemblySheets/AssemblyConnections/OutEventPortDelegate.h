@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_OUTEVENTPORTDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_OUTEVENTPORTDELEGATE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class OutEventPortDelegate_Impl;
   typedef OutEventPortDelegate_Impl * OutEventPortDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <OutEventPortDelegate_Impl> OutEventPortDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < OutEventPortDelegate_Impl > OutEventPortDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class OutEventPortDelegate_Impl
+   *
+   * Implementation for the OutEventPortDelegate model element.
+   */
   class PICML_Export OutEventPortDelegate_Impl :
-    public virtual OutEventPortEnd_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual OutEventPortEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    OutEventPortDelegate_Impl (void);
-
-    /// Initializing constructor
-    OutEventPortDelegate_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~OutEventPortDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    ///@}
-    size_t in_EventSourceDelegate_connections (std::vector <EventSourceDelegate> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
+    static OutEventPortDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
+    // Default constructor.
+    OutEventPortDelegate_Impl (void);
+
+    // Initializing constructor.
+    OutEventPortDelegate_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~OutEventPortDelegate_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst EventSourceDelegate connection.
+    size_t dst_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "OutEventPortDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_OUTEVENTPORTDELEGATE

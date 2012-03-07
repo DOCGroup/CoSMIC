@@ -1,78 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "WorkerFile.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "WorkerFile.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerLibrary.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string WorkerFile_Impl::metaname = "WorkerFile";
+  const std::string WorkerFile_Impl::metaname ("WorkerFile");
 
   //
-  // WorkerFile_Impl
+  // _create (const WorkerLibrary_in)
   //
-  WorkerFile_Impl::WorkerFile_Impl (void)
+  WorkerFile WorkerFile_Impl::_create (const WorkerLibrary_in parent)
   {
+    return ::GAME::Mga::create_object < WorkerFile > (parent, WorkerFile_Impl::metaname);
   }
 
   //
-  // WorkerFile_Impl
+  // _create (const WorkerPackageBase_in)
   //
-  WorkerFile_Impl::WorkerFile_Impl (IMgaModel * ptr)
+  WorkerFile WorkerFile_Impl::_create (const WorkerPackageBase_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~WorkerFile_Impl
-  //
-  WorkerFile_Impl::~WorkerFile_Impl (void)
-  {
+    return ::GAME::Mga::create_object < WorkerFile > (parent, WorkerFile_Impl::metaname);
   }
 
   //
   // accept
   //
-  void WorkerFile_Impl::accept (Visitor * v)
+  void WorkerFile_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_WorkerFile (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_WorkerFile (this);
+    }
 
-  //
-  // _create
-  //
-  WorkerFile WorkerFile_Impl::_create (const WorkerLibrary_in parent)
-  {
-    return ::GAME::Mga::create_object <WorkerFile> (parent, WorkerFile_Impl::metaname);
-  }
-
-  //
-  // Location
-  //
-  void WorkerFile_Impl::Location (const std::string & val)
-  {
-    static const std::string attr_Location ("Location");
-    this->attribute (attr_Location)->string_value (val);
-  }
-
-  //
-  // Location
-  //
-  std::string WorkerFile_Impl::Location (void) const
-  {
-    static const std::string attr_Location ("Location");
-    return this->attribute (attr_Location)->string_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -84,11 +67,11 @@ namespace PICML
   }
 
   //
-  // parent_WorkerLibrary
+  // get_WorkerPackages
   //
-  WorkerLibrary WorkerFile_Impl::parent_WorkerLibrary (void) const
+  ::GAME::Mga::Iterator <WorkerPackage> WorkerFile_Impl::get_WorkerPackages (void) const
   {
-    return ::GAME::Mga::get_parent <WorkerLibrary> (this->object_.p);
+    return this->children <WorkerPackage> ();
   }
 }
 

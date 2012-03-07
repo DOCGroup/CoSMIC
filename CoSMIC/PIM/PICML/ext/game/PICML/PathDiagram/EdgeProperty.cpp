@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "EdgeProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "EdgeProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/Common/Property.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/Edge.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string EdgeProperty_Impl::metaname = "EdgeProperty";
+  const std::string EdgeProperty_Impl::metaname ("EdgeProperty");
 
   //
-  // EdgeProperty_Impl
+  // _create (const Path_in)
   //
-  EdgeProperty_Impl::EdgeProperty_Impl (void)
+  EdgeProperty EdgeProperty_Impl::_create (const Path_in parent)
   {
-  }
-
-  //
-  // EdgeProperty_Impl
-  //
-  EdgeProperty_Impl::EdgeProperty_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~EdgeProperty_Impl
-  //
-  EdgeProperty_Impl::~EdgeProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < EdgeProperty > (parent, EdgeProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void EdgeProperty_Impl::accept (Visitor * v)
+  void EdgeProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_EdgeProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_EdgeProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Property
   //
-  EdgeProperty EdgeProperty_Impl::_create (const Path_in parent)
+  Property EdgeProperty_Impl::src_Property (void) const
   {
-    return ::GAME::Mga::create_object <EdgeProperty> (parent, EdgeProperty_Impl::metaname);
+    return Property::_narrow (this->src ());
   }
 
   //
-  // src_Property
+  // Edge
   //
-  Property EdgeProperty_Impl::src_Property (void)
+  Edge EdgeProperty_Impl::dst_Edge (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Property::_narrow (target);
-  }
-
-  //
-  // dst_Edge
-  //
-  Edge EdgeProperty_Impl::dst_Edge (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Edge::_narrow (target);
-  }
-
-  //
-  // parent_Path
-  //
-  Path EdgeProperty_Impl::parent_Path (void) const
-  {
-    return ::GAME::Mga::get_parent <Path> (this->object_.p);
+    return Edge::_narrow (this->dst ());
   }
 }
 

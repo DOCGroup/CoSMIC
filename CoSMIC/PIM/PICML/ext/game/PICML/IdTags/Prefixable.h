@@ -14,18 +14,23 @@
 #ifndef _PICML_IDTAGS_PREFIXABLE_H_
 #define _PICML_IDTAGS_PREFIXABLE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Prefixable_Impl;
   typedef Prefixable_Impl * Prefixable_in;
-  typedef ::GAME::Mga::Smart_Ptr <Prefixable_Impl> Prefixable;
+  typedef ::GAME::Mga::Smart_Ptr < Prefixable_Impl > Prefixable;
 
+  /**
+   * @class Prefixable_Impl
+   *
+   * Implementation for the Prefixable model element.
+   */
   class PICML_Export Prefixable_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     Prefixable_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     Prefixable_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~Prefixable_Impl (void) = 0;
 
     /**
@@ -59,25 +64,11 @@ namespace PICML
     /// Get the value of PrefixTag
     std::string PrefixTag (void) const;
     ///@}
-
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Prefixable.inl"
 #endif
+
+#endif  // !defined _PICML_IDTAGS_PREFIXABLE

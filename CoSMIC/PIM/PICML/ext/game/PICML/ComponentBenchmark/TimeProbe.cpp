@@ -1,84 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TimeProbe.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TimeProbe.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TimeProbe_Impl::metaname = "TimeProbe";
+  const std::string TimeProbe_Impl::metaname ("TimeProbe");
 
   //
-  // TimeProbe_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  TimeProbe_Impl::TimeProbe_Impl (void)
+  TimeProbe TimeProbe_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // TimeProbe_Impl
-  //
-  TimeProbe_Impl::TimeProbe_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TimeProbe_Impl
-  //
-  TimeProbe_Impl::~TimeProbe_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TimeProbe > (parent, TimeProbe_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TimeProbe_Impl::accept (Visitor * v)
+  void TimeProbe_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TimeProbe (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TimeProbe (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // dst_TimerConnection
   //
-  TimeProbe TimeProbe_Impl::_create (const BenchmarkAnalysis_in parent)
+  size_t TimeProbe_Impl::dst_TimerConnection (std::vector <TimerConnection> & items) const
   {
-    return ::GAME::Mga::create_object <TimeProbe> (parent, TimeProbe_Impl::metaname);
+    return this->in_connections <TimerConnection> (items);
   }
 
   //
-  // in_TimerEventSinkConn_connections
+  // dst_TimerEventSinkConn
   //
-  size_t TimeProbe_Impl::in_TimerEventSinkConn_connections (std::vector <TimerEventSinkConn> & conns) const
+  size_t TimeProbe_Impl::dst_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
   {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_TimerConnection_connections
-  //
-  size_t TimeProbe_Impl::in_TimerConnection_connections (std::vector <TimerConnection> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_BenchmarkAnalysis
-  //
-  BenchmarkAnalysis TimeProbe_Impl::parent_BenchmarkAnalysis (void) const
-  {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return this->in_connections <TimerEventSinkConn> (items);
   }
 }
 

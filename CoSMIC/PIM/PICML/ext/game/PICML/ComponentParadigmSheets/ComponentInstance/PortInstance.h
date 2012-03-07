@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_PORTINSTANCE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_PORTINSTANCE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PortInstance_Impl;
   typedef PortInstance_Impl * PortInstance_in;
-  typedef ::GAME::Mga::Smart_Ptr <PortInstance_Impl> PortInstance;
+  typedef ::GAME::Mga::Smart_Ptr < PortInstance_Impl > PortInstance;
 
+  /**
+   * @class PortInstance_Impl
+   *
+   * Implementation for the PortInstance model element.
+   */
   class PICML_Export PortInstance_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,28 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     PortInstance_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     PortInstance_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~PortInstance_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentInstance parent_ComponentInstance (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PortInstance.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_PORTINSTANCE

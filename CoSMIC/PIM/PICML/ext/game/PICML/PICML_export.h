@@ -1,13 +1,9 @@
-
 // -*- C++ -*-
-// $Id$
-// Definition for Win32 Export directives.
-// This file is generated automatically by generate_export_file.pl PICML
-// ------------------------------
-#ifndef PICML_EXPORT_H
-#define PICML_EXPORT_H
 
-#include "ace/config-all.h"
+#ifndef _PICML_EXPORT_H_
+#define _PICML_EXPORT_H_
+
+#include "ace/config.h"
 
 #if defined (ACE_AS_STATIC_LIBS) && !defined (PICML_HAS_DLL)
 #  define PICML_HAS_DLL 0
@@ -52,7 +48,4 @@
 #  define PICML_TRACE(X) ACE_TRACE_IMPL(X)
 #  include "ace/Trace.h"
 #endif /* (PICML_NTRACE == 1) */
-
-#endif /* PICML_EXPORT_H */
-
-// End of auto generated file.
+#endif  // !defined _PICML_EXPORT_H_

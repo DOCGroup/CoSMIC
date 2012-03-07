@@ -1,68 +1,70 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Exception.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Exception.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/NamedTypes/Member.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Exception_Impl::metaname = "Exception";
+  const std::string Exception_Impl::metaname ("Exception");
 
   //
-  // Exception_Impl
+  // _create (const Package_in)
   //
-  Exception_Impl::Exception_Impl (void)
+  Exception Exception_Impl::_create (const Package_in parent)
   {
+    return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
   }
 
   //
-  // Exception_Impl
+  // _create (const File_in)
   //
-  Exception_Impl::Exception_Impl (IMgaModel * ptr)
+  Exception Exception_Impl::_create (const File_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
   }
 
   //
-  // ~Exception_Impl
+  // _create (const HasOperations_in)
   //
-  Exception_Impl::~Exception_Impl (void)
+  Exception Exception_Impl::_create (const HasOperations_in parent)
   {
+    return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Exception_Impl::accept (Visitor * v)
+  void Exception_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Exception (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Exception (this);
+    }
 
-  //
-  // _create
-  //
-  Exception Exception_Impl::_create (const File_in parent)
-  {
-    return ::GAME::Mga::create_object <Exception> (parent, Exception_Impl::metaname);
-  }
-
-  //
-  // _create
-  //
-  Exception Exception_Impl::_create (const Package_in parent)
-  {
-    return ::GAME::Mga::create_object <Exception> (parent, Exception_Impl::metaname);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -74,19 +76,11 @@ namespace PICML
   }
 
   //
-  // parent_File
+  // get_Members
   //
-  File Exception_Impl::parent_File (void) const
+  ::GAME::Mga::Iterator <Member> Exception_Impl::get_Members (void) const
   {
-    return ::GAME::Mga::get_parent <File> (this->object_.p);
-  }
-
-  //
-  // parent_Package
-  //
-  Package Exception_Impl::parent_Package (void) const
-  {
-    return ::GAME::Mga::get_parent <Package> (this->object_.p);
+    return this->children <Member> ();
   }
 }
 

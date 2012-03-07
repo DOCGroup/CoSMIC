@@ -1,67 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "AttributeMember.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "AttributeMember.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/NamedTypes/MemberType.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string AttributeMember_Impl::metaname = "AttributeMember";
+  const std::string AttributeMember_Impl::metaname ("AttributeMember");
 
   //
-  // AttributeMember_Impl
+  // _create (const ReadonlyAttribute_in)
   //
-  AttributeMember_Impl::AttributeMember_Impl (void)
+  AttributeMember AttributeMember_Impl::_create (const ReadonlyAttribute_in parent)
   {
-  }
-
-  //
-  // AttributeMember_Impl
-  //
-  AttributeMember_Impl::AttributeMember_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~AttributeMember_Impl
-  //
-  AttributeMember_Impl::~AttributeMember_Impl (void)
-  {
+    return ::GAME::Mga::create_object < AttributeMember > (parent, AttributeMember_Impl::metaname);
   }
 
   //
   // accept
   //
-  void AttributeMember_Impl::accept (Visitor * v)
+  void AttributeMember_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_AttributeMember (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_AttributeMember (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // MemberType_is_nil
   //
-  AttributeMember AttributeMember_Impl::_create (const ReadonlyAttribute_in parent)
+  bool AttributeMember_Impl::MemberType_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <AttributeMember> (parent, AttributeMember_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_ReadonlyAttribute
+  // get_MemberType
   //
-  ReadonlyAttribute AttributeMember_Impl::parent_ReadonlyAttribute (void) const
+  MemberType AttributeMember_Impl::get_MemberType (void) const
   {
-    return ::GAME::Mga::get_parent <ReadonlyAttribute> (this->object_.p);
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

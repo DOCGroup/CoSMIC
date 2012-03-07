@@ -1,61 +1,54 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Paths.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Paths.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
 #include "PICML/PathDiagram/Path.h"
-#include "PICML/PathDiagram/PathProperty.h"
 #include "PICML/PathDiagram/PathDiagrams.h"
+#include "PICML/PathDiagram/PathProperty.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Paths_Impl::metaname = "Paths";
+  const std::string Paths_Impl::metaname ("Paths");
 
   //
-  // Paths_Impl
+  // _create (const PathDiagrams_in)
   //
-  Paths_Impl::Paths_Impl (void)
+  Paths Paths_Impl::_create (const PathDiagrams_in parent)
   {
-  }
-
-  //
-  // Paths_Impl
-  //
-  Paths_Impl::Paths_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Paths_Impl
-  //
-  Paths_Impl::~Paths_Impl (void)
-  {
+    return ::GAME::Mga::create_root_object < Paths > (parent, Paths_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Paths_Impl::accept (Visitor * v)
+  void Paths_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Paths (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Paths (this);
+    }
 
-  //
-  // _create
-  //
-  Paths Paths_Impl::_create (const PathDiagrams_in parent)
-  {
-    return ::GAME::Mga::create_root_object <Paths> (parent, Paths_Impl::metaname);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -67,11 +60,27 @@ namespace PICML
   }
 
   //
+  // get_Propertys
+  //
+  ::GAME::Mga::Iterator <Property> Paths_Impl::get_Propertys (void) const
+  {
+    return this->children <Property> ();
+  }
+
+  //
   // get_Paths
   //
   size_t Paths_Impl::get_Paths (std::vector <Path> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_Paths
+  //
+  ::GAME::Mga::Iterator <Path> Paths_Impl::get_Paths (void) const
+  {
+    return this->children <Path> ();
   }
 
   //
@@ -83,11 +92,11 @@ namespace PICML
   }
 
   //
-  // parent_PathDiagrams
+  // get_PathPropertys
   //
-  PathDiagrams Paths_Impl::parent_PathDiagrams (void) const
+  ::GAME::Mga::Iterator <PathProperty> Paths_Impl::get_PathPropertys (void) const
   {
-    return ::GAME::Mga::get_parent <PathDiagrams> (this->object_.p);
+    return this->children <PathProperty> ();
   }
 }
 

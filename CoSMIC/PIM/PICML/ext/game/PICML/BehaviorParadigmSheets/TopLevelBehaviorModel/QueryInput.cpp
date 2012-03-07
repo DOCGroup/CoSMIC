@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "QueryInput.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "QueryInput.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string QueryInput_Impl::metaname = "QueryInput";
+  const std::string QueryInput_Impl::metaname ("QueryInput");
 
   //
-  // QueryInput_Impl
+  // _create (const TopLevelBehavior_in)
   //
-  QueryInput_Impl::QueryInput_Impl (void)
+  QueryInput QueryInput_Impl::_create (const TopLevelBehavior_in parent)
   {
-  }
-
-  //
-  // QueryInput_Impl
-  //
-  QueryInput_Impl::QueryInput_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~QueryInput_Impl
-  //
-  QueryInput_Impl::~QueryInput_Impl (void)
-  {
+    return ::GAME::Mga::create_object < QueryInput > (parent, QueryInput_Impl::metaname);
   }
 
   //
   // accept
   //
-  void QueryInput_Impl::accept (Visitor * v)
+  void QueryInput_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_QueryInput (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_QueryInput (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // QueryInputBase
   //
-  QueryInput QueryInput_Impl::_create (const TopLevelBehavior_in parent)
+  QueryInputBase QueryInput_Impl::src_QueryInputBase (void) const
   {
-    return ::GAME::Mga::create_object <QueryInput> (parent, QueryInput_Impl::metaname);
+    return QueryInputBase::_narrow (this->src ());
   }
 
   //
-  // src_QueryInputBase
+  // QueryInputAction
   //
-  QueryInputBase QueryInput_Impl::src_QueryInputBase (void)
+  QueryInputAction QueryInput_Impl::dst_QueryInputAction (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return QueryInputBase::_narrow (target);
-  }
-
-  //
-  // dst_QueryInputAction
-  //
-  QueryInputAction QueryInput_Impl::dst_QueryInputAction (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return QueryInputAction::_narrow (target);
-  }
-
-  //
-  // parent_TopLevelBehavior
-  //
-  TopLevelBehavior QueryInput_Impl::parent_TopLevelBehavior (void) const
-  {
-    return ::GAME::Mga::get_parent <TopLevelBehavior> (this->object_.p);
+    return QueryInputAction::_narrow (this->dst ());
   }
 }
 

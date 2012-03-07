@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "AssemblyConfigProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "AssemblyConfigProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/Common/Property.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string AssemblyConfigProperty_Impl::metaname = "AssemblyConfigProperty";
+  const std::string AssemblyConfigProperty_Impl::metaname ("AssemblyConfigProperty");
 
   //
-  // AssemblyConfigProperty_Impl
+  // _create (const ComponentAssembly_in)
   //
-  AssemblyConfigProperty_Impl::AssemblyConfigProperty_Impl (void)
+  AssemblyConfigProperty AssemblyConfigProperty_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // AssemblyConfigProperty_Impl
-  //
-  AssemblyConfigProperty_Impl::AssemblyConfigProperty_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~AssemblyConfigProperty_Impl
-  //
-  AssemblyConfigProperty_Impl::~AssemblyConfigProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < AssemblyConfigProperty > (parent, AssemblyConfigProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void AssemblyConfigProperty_Impl::accept (Visitor * v)
+  void AssemblyConfigProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_AssemblyConfigProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_AssemblyConfigProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_AssemblyConfigPropertyEnd
+  // AssemblyConfigPropertyEnd
   //
-  AssemblyConfigPropertyEnd AssemblyConfigProperty_Impl::src_AssemblyConfigPropertyEnd (void)
+  AssemblyConfigPropertyEnd AssemblyConfigProperty_Impl::src_AssemblyConfigPropertyEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return AssemblyConfigPropertyEnd::_narrow (target);
+    return AssemblyConfigPropertyEnd::_narrow (this->src ());
   }
 
   //
-  // dst_Property
+  // Property
   //
-  Property AssemblyConfigProperty_Impl::dst_Property (void)
+  Property AssemblyConfigProperty_Impl::dst_Property (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Property::_narrow (target);
+    return Property::_narrow (this->dst ());
   }
 }
 

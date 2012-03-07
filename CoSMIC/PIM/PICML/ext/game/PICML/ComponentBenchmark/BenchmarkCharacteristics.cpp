@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "BenchmarkCharacteristics.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "BenchmarkCharacteristics.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/BenchmarkType.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/ComponentBenchmark/BenchmarkType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string BenchmarkCharacteristics_Impl::metaname = "BenchmarkCharacteristics";
+  const std::string BenchmarkCharacteristics_Impl::metaname ("BenchmarkCharacteristics");
 
   //
-  // BenchmarkCharacteristics_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  BenchmarkCharacteristics_Impl::BenchmarkCharacteristics_Impl (void)
+  BenchmarkCharacteristics BenchmarkCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // BenchmarkCharacteristics_Impl
-  //
-  BenchmarkCharacteristics_Impl::BenchmarkCharacteristics_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~BenchmarkCharacteristics_Impl
-  //
-  BenchmarkCharacteristics_Impl::~BenchmarkCharacteristics_Impl (void)
-  {
+    return ::GAME::Mga::create_object < BenchmarkCharacteristics > (parent, BenchmarkCharacteristics_Impl::metaname);
   }
 
   //
   // accept
   //
-  void BenchmarkCharacteristics_Impl::accept (Visitor * v)
+  void BenchmarkCharacteristics_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_BenchmarkCharacteristics (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_BenchmarkCharacteristics (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // BenchmarkType
   //
-  BenchmarkCharacteristics BenchmarkCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent)
+  BenchmarkType BenchmarkCharacteristics_Impl::src_BenchmarkType (void) const
   {
-    return ::GAME::Mga::create_object <BenchmarkCharacteristics> (parent, BenchmarkCharacteristics_Impl::metaname);
+    return BenchmarkType::_narrow (this->src ());
   }
 
   //
-  // src_BenchmarkType
+  // MetricsBase
   //
-  BenchmarkType BenchmarkCharacteristics_Impl::src_BenchmarkType (void)
+  MetricsBase BenchmarkCharacteristics_Impl::dst_MetricsBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return BenchmarkType::_narrow (target);
-  }
-
-  //
-  // dst_MetricsBase
-  //
-  MetricsBase BenchmarkCharacteristics_Impl::dst_MetricsBase (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return MetricsBase::_narrow (target);
-  }
-
-  //
-  // parent_BenchmarkAnalysis
-  //
-  BenchmarkAnalysis BenchmarkCharacteristics_Impl::parent_BenchmarkAnalysis (void) const
-  {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return MetricsBase::_narrow (this->dst ());
   }
 }
 

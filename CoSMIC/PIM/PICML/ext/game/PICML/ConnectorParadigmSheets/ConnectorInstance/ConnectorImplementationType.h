@@ -14,21 +14,26 @@
 #ifndef _PICML_CONNECTORPARADIGMSHEETS_CONNECTORINSTANCE_CONNECTORIMPLEMENTATIONTYPE_H_
 #define _PICML_CONNECTORPARADIGMSHEETS_CONNECTORINSTANCE_CONNECTORIMPLEMENTATIONTYPE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ConnectorImplementationType_Impl;
   typedef ConnectorImplementationType_Impl * ConnectorImplementationType_in;
-  typedef ::GAME::Mga::Smart_Ptr <ConnectorImplementationType_Impl> ConnectorImplementationType;
+  typedef ::GAME::Mga::Smart_Ptr < ConnectorImplementationType_Impl > ConnectorImplementationType;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ConnectorImplementationType_Impl
+   *
+   * Implementation for the ConnectorImplementationType model element.
+   */
   class PICML_Export ConnectorImplementationType_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ConnectorImplementationType_Impl (void);
-
-    /// Initializing constructor
-    ConnectorImplementationType_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ConnectorImplementationType_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static ConnectorImplementationType _create (const ConnectorInstance_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ConnectorInstance parent_ConnectorInstance (void) const;
-    ///@}
+    // Default constructor.
+    ConnectorImplementationType_Impl (void);
+
+    // Initializing constructor.
+    ConnectorImplementationType_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ConnectorImplementationType_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ConnectorImplementation_is_nil (void) const;
+    ConnectorImplementation get_ConnectorImplementation (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ConnectorImplementationType.inl"
 #endif
+
+#endif  // !defined _PICML_CONNECTORPARADIGMSHEETS_CONNECTORINSTANCE_CONNECTORIMPLEMENTATIONTYPE

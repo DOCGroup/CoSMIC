@@ -1,58 +1,94 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ProvidedRequestPort.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ProvidedRequestPort.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ProvidedRequestPort_Impl::metaname = "ProvidedRequestPort";
+  const std::string ProvidedRequestPort_Impl::metaname ("ProvidedRequestPort");
 
   //
-  // ProvidedRequestPort_Impl
+  // _create (const ConnectorObject_in)
   //
-  ProvidedRequestPort_Impl::ProvidedRequestPort_Impl (void)
+  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < ProvidedRequestPort > (parent, ProvidedRequestPort_Impl::metaname);
   }
 
   //
-  // ProvidedRequestPort_Impl
+  // _create (const PortType_in)
   //
-  ProvidedRequestPort_Impl::ProvidedRequestPort_Impl (IMgaReference * ptr)
+  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const PortType_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ProvidedRequestPort_Impl
-  //
-  ProvidedRequestPort_Impl::~ProvidedRequestPort_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ProvidedRequestPort > (parent, ProvidedRequestPort_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ProvidedRequestPort_Impl::accept (Visitor * v)
+  void ProvidedRequestPort_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ProvidedRequestPort (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ProvidedRequestPort (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // refers_to_Provideable
+  // ProvidedRequestPort_is_nil
   //
-  Provideable ProvidedRequestPort_Impl::refers_to_Provideable (void) const
+  bool ProvidedRequestPort_Impl::ProvidedRequestPort_is_nil (void) const
   {
-    return ::GAME::Mga::get_refers_to <Provideable> (this);
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_ProvidedRequestPort
+  //
+  ProvidedRequestPort ProvidedRequestPort_Impl::get_ProvidedRequestPort (void) const
+  {
+    return ProvidedRequestPort::_narrow (this->refers_to ());
+  }
+
+  //
+  // Provideable_is_nil
+  //
+  bool ProvidedRequestPort_Impl::Provideable_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_Provideable
+  //
+  Provideable ProvidedRequestPort_Impl::get_Provideable (void) const
+  {
+    return Provideable::_narrow (this->refers_to ());
   }
 }
 

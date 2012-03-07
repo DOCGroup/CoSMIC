@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_COMPONENTOPERATION_H_
 #define _PICML_COMPONENTBENCHMARK_COMPONENTOPERATION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentOperation_Impl;
   typedef ComponentOperation_Impl * ComponentOperation_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentOperation_Impl> ComponentOperation;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentOperation_Impl > ComponentOperation;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentOperation_Impl
+   *
+   * Implementation for the ComponentOperation model element.
+   */
   class PICML_Export ComponentOperation_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentOperation_Impl (void);
-
-    /// Initializing constructor
-    ComponentOperation_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ComponentOperation_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ComponentOperation _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /// Get the src OperationRef connection point.
-    OperationRef src_OperationRef (void);
+    // Default constructor.
+    ComponentOperation_Impl (void);
 
-    /// Get the dst CompRef connection point.
-    CompRef dst_CompRef (void);
+    // Initializing constructor.
+    ComponentOperation_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ComponentOperation_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    OperationRef src_OperationRef (void) const;
+    CompRef dst_CompRef (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentOperation.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_COMPONENTOPERATION

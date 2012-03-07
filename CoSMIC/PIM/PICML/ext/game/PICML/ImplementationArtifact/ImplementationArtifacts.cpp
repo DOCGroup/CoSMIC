@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ImplementationArtifacts.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ImplementationArtifacts.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ImplementationArtifacts_Impl::metaname = "ImplementationArtifacts";
+  const std::string ImplementationArtifacts_Impl::metaname ("ImplementationArtifacts");
 
   //
-  // ImplementationArtifacts_Impl
-  //
-  ImplementationArtifacts_Impl::ImplementationArtifacts_Impl (void)
-  {
-  }
-
-  //
-  // ImplementationArtifacts_Impl
-  //
-  ImplementationArtifacts_Impl::ImplementationArtifacts_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ImplementationArtifacts_Impl
-  //
-  ImplementationArtifacts_Impl::~ImplementationArtifacts_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void ImplementationArtifacts_Impl::accept (Visitor * v)
-  {
-    v->visit_ImplementationArtifacts (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   ImplementationArtifacts ImplementationArtifacts_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <ImplementationArtifacts> (parent, ImplementationArtifacts_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder ImplementationArtifacts_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void ImplementationArtifacts_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ImplementationArtifacts (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_ArtifactContainers
+  //
+  size_t ImplementationArtifacts_Impl::get_ArtifactContainers (std::vector <ArtifactContainer> & items) const
+  {
+    return this->children (items);
   }
 }
 

@@ -1,49 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TriggerBenchmarks.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TriggerBenchmarks.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TriggerBenchmarks_Impl::metaname = "TriggerBenchmarks";
+  const std::string TriggerBenchmarks_Impl::metaname ("TriggerBenchmarks");
 
   //
-  // TriggerBenchmarks_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  TriggerBenchmarks_Impl::TriggerBenchmarks_Impl (void)
+  TriggerBenchmarks TriggerBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // TriggerBenchmarks_Impl
-  //
-  TriggerBenchmarks_Impl::TriggerBenchmarks_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TriggerBenchmarks_Impl
-  //
-  TriggerBenchmarks_Impl::~TriggerBenchmarks_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TriggerBenchmarks > (parent, TriggerBenchmarks_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TriggerBenchmarks_Impl::accept (Visitor * v)
+  void TriggerBenchmarks_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TriggerBenchmarks (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TriggerBenchmarks (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

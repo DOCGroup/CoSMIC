@@ -14,25 +14,30 @@
 #ifndef _PICML_IMPLEMENTATIONCOMMON_COMPONENTSERVANTARTIFACT_H_
 #define _PICML_IMPLEMENTATIONCOMMON_COMPONENTSERVANTARTIFACT_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentServantArtifact_Impl;
   typedef ComponentServantArtifact_Impl * ComponentServantArtifact_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentServantArtifact_Impl> ComponentServantArtifact;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentServantArtifact_Impl > ComponentServantArtifact;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentServantArtifact_Impl
+   *
+   * Implementation for the ComponentServantArtifact model element.
+   */
   class PICML_Export ComponentServantArtifact_Impl :
-    public virtual ImplementationArtifactReference_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual ImplementationArtifactReference_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,23 +49,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentServantArtifact_Impl (void);
-
-    /// Initializing constructor
-    ComponentServantArtifact_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ComponentServantArtifact_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ComponentServantArtifact _create (const StubProject_in parent);
+    static ComponentServantArtifact _create (const ServantProject_in parent);
+    static ComponentServantArtifact _create (const ExecutorProject_in parent);
+    static ComponentServantArtifact _create (const ArtifactContainer_in parent);
+    static ComponentServantArtifact _create (const ImplementationContainer_in parent);
     ///@}
+
+    // Default constructor.
+    ComponentServantArtifact_Impl (void);
+
+    // Initializing constructor.
+    ComponentServantArtifact_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ComponentServantArtifact_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -75,17 +85,17 @@ namespace PICML
     ///@}
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    bool ImplementationArtifact_is_nil (void) const;
+    ImplementationArtifact get_ImplementationArtifact (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentServantArtifact.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONCOMMON_COMPONENTSERVANTARTIFACT

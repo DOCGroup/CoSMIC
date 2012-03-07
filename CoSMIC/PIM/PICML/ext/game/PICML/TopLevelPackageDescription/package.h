@@ -14,21 +14,26 @@
 #ifndef _PICML_TOPLEVELPACKAGEDESCRIPTION_PACKAGE_H_
 #define _PICML_TOPLEVELPACKAGEDESCRIPTION_PACKAGE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class package_Impl;
   typedef package_Impl * package_in;
-  typedef ::GAME::Mga::Smart_Ptr <package_Impl> package;
+  typedef ::GAME::Mga::Smart_Ptr < package_Impl > package;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class package_Impl
+   *
+   * Implementation for the package model element.
+   */
   class PICML_Export package_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    package_Impl (void);
-
-    /// Initializing constructor
-    package_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~package_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static package _create (const TopLevelPackageContainer_in parent);
     ///@}
 
-    /// Get the src TopLevelPackage connection point.
-    TopLevelPackage src_TopLevelPackage (void);
+    // Default constructor.
+    package_Impl (void);
 
-    /// Get the dst PackageConfigurationReference connection point.
-    PackageConfigurationReference dst_PackageConfigurationReference (void);
+    // Initializing constructor.
+    package_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    TopLevelPackageContainer parent_TopLevelPackageContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~package_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    TopLevelPackage src_TopLevelPackage (void) const;
+    PackageConfigurationReference dst_PackageConfigurationReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "package.inl"
 #endif
+
+#endif  // !defined _PICML_TOPLEVELPACKAGEDESCRIPTION_PACKAGE

@@ -1,58 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MirrorPortDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MirrorPortDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MirrorPortDelegate_Impl::metaname = "MirrorPortDelegate";
+  const std::string MirrorPortDelegate_Impl::metaname ("MirrorPortDelegate");
 
   //
-  // MirrorPortDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  MirrorPortDelegate_Impl::MirrorPortDelegate_Impl (void)
+  MirrorPortDelegate MirrorPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // MirrorPortDelegate_Impl
-  //
-  MirrorPortDelegate_Impl::MirrorPortDelegate_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MirrorPortDelegate_Impl
-  //
-  MirrorPortDelegate_Impl::~MirrorPortDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < MirrorPortDelegate > (parent, MirrorPortDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void MirrorPortDelegate_Impl::accept (Visitor * v)
+  void MirrorPortDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_MirrorPortDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_MirrorPortDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // in_MirrorDelegate_connections
+  // dst_MirrorDelegate
   //
-  size_t MirrorPortDelegate_Impl::in_MirrorDelegate_connections (std::vector <MirrorDelegate> & conns) const
+  size_t MirrorPortDelegate_Impl::dst_MirrorDelegate (std::vector <MirrorDelegate> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <MirrorDelegate> (items);
   }
 }
 

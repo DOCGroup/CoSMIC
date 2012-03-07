@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Manageable.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Manageable.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 
 namespace PICML
@@ -14,36 +15,14 @@ namespace PICML
   //
   // metaname
   //
-  const std::string Manageable_Impl::metaname = "Manageable";
+  const std::string Manageable_Impl::metaname ("Manageable");
 
   //
-  // Manageable_Impl
+  // dst_ManagesComponent
   //
-  Manageable_Impl::Manageable_Impl (void)
+  size_t Manageable_Impl::dst_ManagesComponent (std::vector <ManagesComponent> & items) const
   {
-  }
-
-  //
-  // Manageable_Impl
-  //
-  Manageable_Impl::Manageable_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Manageable_Impl
-  //
-  Manageable_Impl::~Manageable_Impl (void)
-  {
-  }
-
-  //
-  // in_ManagesComponent_connections
-  //
-  size_t Manageable_Impl::in_ManagesComponent_connections (std::vector <ManagesComponent> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <ManagesComponent> (items);
   }
 }
 

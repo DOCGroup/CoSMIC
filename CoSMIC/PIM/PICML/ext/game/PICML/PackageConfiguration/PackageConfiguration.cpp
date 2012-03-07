@@ -1,112 +1,96 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfiguration.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfiguration.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
 #include "PICML/PackageConfiguration/PackageConfReference.h"
-#include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
 #include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
-#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
+#include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfiguration_Impl::metaname = "PackageConfiguration";
+  const std::string PackageConfiguration_Impl::metaname ("PackageConfiguration");
 
   //
-  // PackageConfiguration_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  PackageConfiguration_Impl::PackageConfiguration_Impl (void)
+  PackageConfiguration PackageConfiguration_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfiguration_Impl
-  //
-  PackageConfiguration_Impl::PackageConfiguration_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfiguration_Impl
-  //
-  PackageConfiguration_Impl::~PackageConfiguration_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfiguration > (parent, PackageConfiguration_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfiguration_Impl::accept (Visitor * v)
+  void PackageConfiguration_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfiguration (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfiguration (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_PackageConfBasePackage
   //
-  PackageConfiguration PackageConfiguration_Impl::_create (const PackageConfigurationContainer_in parent)
+  size_t PackageConfiguration_Impl::src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
   {
-    return ::GAME::Mga::create_object <PackageConfiguration> (parent, PackageConfiguration_Impl::metaname);
+    return this->in_connections <PackageConfBasePackage> (items);
   }
 
   //
-  // in_PackageConfReference_connections
+  // src_PackageConfReference
   //
-  size_t PackageConfiguration_Impl::in_PackageConfReference_connections (std::vector <PackageConfReference> & conns) const
+  size_t PackageConfiguration_Impl::src_PackageConfReference (std::vector <PackageConfReference> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <PackageConfReference> (items);
   }
 
   //
-  // in_PackageConfSpecializedConfig_connections
+  // src_PackageConfConfigProperty
   //
-  size_t PackageConfiguration_Impl::in_PackageConfSpecializedConfig_connections (std::vector <PackageConfSpecializedConfig> & conns) const
+  size_t PackageConfiguration_Impl::src_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <PackageConfConfigProperty> (items);
   }
 
   //
-  // in_PackageConfConfigProperty_connections
+  // src_PackageConfSelectRequirement
   //
-  size_t PackageConfiguration_Impl::in_PackageConfConfigProperty_connections (std::vector <PackageConfConfigProperty> & conns) const
+  size_t PackageConfiguration_Impl::src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <PackageConfSelectRequirement> (items);
   }
 
   //
-  // in_PackageConfSelectRequirement_connections
+  // src_PackageConfSpecializedConfig
   //
-  size_t PackageConfiguration_Impl::in_PackageConfSelectRequirement_connections (std::vector <PackageConfSelectRequirement> & conns) const
+  size_t PackageConfiguration_Impl::src_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_PackageConfBasePackage_connections
-  //
-  size_t PackageConfiguration_Impl::in_PackageConfBasePackage_connections (std::vector <PackageConfBasePackage> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_PackageConfigurationContainer
-  //
-  PackageConfigurationContainer PackageConfiguration_Impl::parent_PackageConfigurationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageConfigurationContainer> (this->object_.p);
+    return this->in_connections <PackageConfSpecializedConfig> (items);
   }
 }
 

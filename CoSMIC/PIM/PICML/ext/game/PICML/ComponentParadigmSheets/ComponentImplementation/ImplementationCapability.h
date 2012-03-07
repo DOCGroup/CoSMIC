@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_IMPLEMENTATIONCAPABILITY_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_IMPLEMENTATIONCAPABILITY_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ImplementationCapability_Impl;
   typedef ImplementationCapability_Impl * ImplementationCapability_in;
-  typedef ::GAME::Mga::Smart_Ptr <ImplementationCapability_Impl> ImplementationCapability;
+  typedef ::GAME::Mga::Smart_Ptr < ImplementationCapability_Impl > ImplementationCapability;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ImplementationCapability_Impl
+   *
+   * Implementation for the ImplementationCapability model element.
+   */
   class PICML_Export ImplementationCapability_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ImplementationCapability_Impl (void);
-
-    /// Initializing constructor
-    ImplementationCapability_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ImplementationCapability_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ImplementationCapability _create (const ComponentImplementationContainer_in parent);
     ///@}
 
-    /// Get the src ComponentImplementation connection point.
-    ComponentImplementation src_ComponentImplementation (void);
+    // Default constructor.
+    ImplementationCapability_Impl (void);
 
-    /// Get the dst Capability connection point.
-    Capability dst_Capability (void);
+    // Initializing constructor.
+    ImplementationCapability_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentImplementationContainer parent_ComponentImplementationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ImplementationCapability_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ComponentImplementation src_ComponentImplementation (void) const;
+    Capability dst_Capability (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ImplementationCapability.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_IMPLEMENTATIONCAPABILITY

@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Shares.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Shares.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/Domain/Domain.h"
 #include "PICML/TargetElements/Node.h"
 #include "PICML/TargetElements/SharedResource.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Shares_Impl::metaname = "Shares";
+  const std::string Shares_Impl::metaname ("Shares");
 
   //
-  // Shares_Impl
+  // _create (const Domain_in)
   //
-  Shares_Impl::Shares_Impl (void)
+  Shares Shares_Impl::_create (const Domain_in parent)
   {
-  }
-
-  //
-  // Shares_Impl
-  //
-  Shares_Impl::Shares_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Shares_Impl
-  //
-  Shares_Impl::~Shares_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Shares > (parent, Shares_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Shares_Impl::accept (Visitor * v)
+  void Shares_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Shares (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Shares (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Node
   //
-  Shares Shares_Impl::_create (const Domain_in parent)
+  Node Shares_Impl::src_Node (void) const
   {
-    return ::GAME::Mga::create_object <Shares> (parent, Shares_Impl::metaname);
+    return Node::_narrow (this->src ());
   }
 
   //
-  // src_Node
+  // SharedResource
   //
-  Node Shares_Impl::src_Node (void)
+  SharedResource Shares_Impl::dst_SharedResource (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Node::_narrow (target);
-  }
-
-  //
-  // dst_SharedResource
-  //
-  SharedResource Shares_Impl::dst_SharedResource (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return SharedResource::_narrow (target);
-  }
-
-  //
-  // parent_Domain
-  //
-  Domain Shares_Impl::parent_Domain (void) const
-  {
-    return ::GAME::Mga::get_parent <Domain> (this->object_.p);
+    return SharedResource::_narrow (this->dst ());
   }
 }
 

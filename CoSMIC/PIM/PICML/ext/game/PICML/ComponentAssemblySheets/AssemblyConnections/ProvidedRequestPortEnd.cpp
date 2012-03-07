@@ -1,14 +1,15 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ProvidedRequestPortEnd.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ProvidedRequestPortEnd.inl"
+#endif
 
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
+#include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
 
 namespace PICML
@@ -16,52 +17,30 @@ namespace PICML
   //
   // metaname
   //
-  const std::string ProvidedRequestPortEnd_Impl::metaname = "ProvidedRequestPortEnd";
+  const std::string ProvidedRequestPortEnd_Impl::metaname ("ProvidedRequestPortEnd");
 
   //
-  // ProvidedRequestPortEnd_Impl
+  // dst_Invoke
   //
-  ProvidedRequestPortEnd_Impl::ProvidedRequestPortEnd_Impl (void)
+  size_t ProvidedRequestPortEnd_Impl::dst_Invoke (std::vector <Invoke> & items) const
   {
+    return this->in_connections <Invoke> (items);
   }
 
   //
-  // ProvidedRequestPortEnd_Impl
+  // dst_FacetDelegate
   //
-  ProvidedRequestPortEnd_Impl::ProvidedRequestPortEnd_Impl (IMgaFCO * ptr)
+  size_t ProvidedRequestPortEnd_Impl::dst_FacetDelegate (std::vector <FacetDelegate> & items) const
   {
-    this->object_ = ptr;
+    return this->in_connections <FacetDelegate> (items);
   }
 
   //
-  // ~ProvidedRequestPortEnd_Impl
+  // dst_ConnectorToFacet
   //
-  ProvidedRequestPortEnd_Impl::~ProvidedRequestPortEnd_Impl (void)
+  size_t ProvidedRequestPortEnd_Impl::dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
   {
-  }
-
-  //
-  // in_FacetDelegate_connections
-  //
-  size_t ProvidedRequestPortEnd_Impl::in_FacetDelegate_connections (std::vector <FacetDelegate> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_Invoke_connections
-  //
-  size_t ProvidedRequestPortEnd_Impl::in_Invoke_connections (std::vector <Invoke> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ConnectorToFacet_connections
-  //
-  size_t ProvidedRequestPortEnd_Impl::in_ConnectorToFacet_connections (std::vector <ConnectorToFacet> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <ConnectorToFacet> (items);
   }
 }
 

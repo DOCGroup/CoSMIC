@@ -1,50 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ApplicationTask.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ApplicationTask.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ApplicationTask_Impl::metaname = "ApplicationTask";
+  const std::string ApplicationTask_Impl::metaname ("ApplicationTask");
 
   //
-  // ApplicationTask_Impl
+  // _create (const TopLevelBehavior_in)
   //
-  ApplicationTask_Impl::ApplicationTask_Impl (void)
+  ApplicationTask ApplicationTask_Impl::_create (const TopLevelBehavior_in parent)
   {
-  }
-
-  //
-  // ApplicationTask_Impl
-  //
-  ApplicationTask_Impl::ApplicationTask_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ApplicationTask_Impl
-  //
-  ApplicationTask_Impl::~ApplicationTask_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ApplicationTask > (parent, ApplicationTask_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ApplicationTask_Impl::accept (Visitor * v)
+  void ApplicationTask_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ApplicationTask (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ApplicationTask (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

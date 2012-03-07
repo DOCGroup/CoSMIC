@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPACKAGE_IMPLEMENTATION_H_
 #define _PICML_COMPONENTPACKAGE_IMPLEMENTATION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Implementation_Impl;
   typedef Implementation_Impl * Implementation_in;
-  typedef ::GAME::Mga::Smart_Ptr <Implementation_Impl> Implementation;
+  typedef ::GAME::Mga::Smart_Ptr < Implementation_Impl > Implementation;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Implementation_Impl
+   *
+   * Implementation for the Implementation model element.
+   */
   class PICML_Export Implementation_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Implementation_Impl (void);
-
-    /// Initializing constructor
-    Implementation_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~Implementation_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static Implementation _create (const PackageContainer_in parent);
     ///@}
 
-    /// Get the src ComponentPackage connection point.
-    ComponentPackage src_ComponentPackage (void);
+    // Default constructor.
+    Implementation_Impl (void);
 
-    /// Get the dst ComponentImplementationReference connection point.
-    ComponentImplementationReference dst_ComponentImplementationReference (void);
+    // Initializing constructor.
+    Implementation_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PackageContainer parent_PackageContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~Implementation_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ComponentPackage src_ComponentPackage (void) const;
+    ComponentImplementationReference dst_ComponentImplementationReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Implementation.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPACKAGE_IMPLEMENTATION

@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTBUILD_COMPONENTLIB_H_
 #define _PICML_COMPONENTBUILD_COMPONENTLIB_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentLib_Impl;
   typedef ComponentLib_Impl * ComponentLib_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentLib_Impl> ComponentLib;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentLib_Impl > ComponentLib;
 
+  /**
+   * @class ComponentLib_Impl
+   *
+   * Implementation for the ComponentLib model element.
+   */
   class PICML_Export ComponentLib_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ComponentLib_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ComponentLib_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ComponentLib_Impl (void) = 0;
 
     /**
@@ -53,11 +58,11 @@ namespace PICML
      */
     ///@{
 
-    /// Set the value of ORBServices
-    void ORBServices (const std::string & val);
+    /// Set the value of libraryexport
+    void libraryexport (const std::string & val);
 
-    /// Get the value of ORBServices
-    std::string ORBServices (void) const;
+    /// Get the value of libraryexport
+    std::string libraryexport (void) const;
 
     /// Set the value of sharedname
     void sharedname (const std::string & val);
@@ -65,27 +70,26 @@ namespace PICML
     /// Get the value of sharedname
     std::string sharedname (void) const;
 
-    /// Set the value of libraryexport
-    void libraryexport (const std::string & val);
+    /// Set the value of ORBServices
+    void ORBServices (const std::string & val);
 
-    /// Get the value of libraryexport
-    std::string libraryexport (void) const;
-    ///@}
-    size_t in_ExtResourceConn_connections (std::vector <ExtResourceConn> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Project parent_Project (void) const;
+    /// Get the value of ORBServices
+    std::string ORBServices (void) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src ExtResourceConn connection.
+    size_t src_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentLib.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBUILD_COMPONENTLIB

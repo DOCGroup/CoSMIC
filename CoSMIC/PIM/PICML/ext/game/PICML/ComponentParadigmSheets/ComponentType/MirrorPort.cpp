@@ -1,49 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MirrorPort.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MirrorPort.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MirrorPort_Impl::metaname = "MirrorPort";
+  const std::string MirrorPort_Impl::metaname ("MirrorPort");
 
   //
-  // MirrorPort_Impl
+  // _create (const ConnectorObject_in)
   //
-  MirrorPort_Impl::MirrorPort_Impl (void)
+  MirrorPort MirrorPort_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < MirrorPort > (parent, MirrorPort_Impl::metaname);
   }
 
   //
-  // MirrorPort_Impl
+  // _create (const Component_in)
   //
-  MirrorPort_Impl::MirrorPort_Impl (IMgaReference * ptr)
+  MirrorPort MirrorPort_Impl::_create (const Component_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MirrorPort_Impl
-  //
-  MirrorPort_Impl::~MirrorPort_Impl (void)
-  {
+    return ::GAME::Mga::create_object < MirrorPort > (parent, MirrorPort_Impl::metaname);
   }
 
   //
   // accept
   //
-  void MirrorPort_Impl::accept (Visitor * v)
+  void MirrorPort_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_MirrorPort (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_MirrorPort (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
+  }
+
+  //
+  // MirrorPort_is_nil
+  //
+  bool MirrorPort_Impl::MirrorPort_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_MirrorPort
+  //
+  MirrorPort MirrorPort_Impl::get_MirrorPort (void) const
+  {
+    return MirrorPort::_narrow (this->refers_to ());
   }
 }
 

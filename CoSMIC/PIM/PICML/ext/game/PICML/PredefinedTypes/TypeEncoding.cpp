@@ -1,49 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TypeEncoding.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TypeEncoding.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PredefinedTypes/PredefinedTypes.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TypeEncoding_Impl::metaname = "TypeEncoding";
+  const std::string TypeEncoding_Impl::metaname ("TypeEncoding");
 
   //
-  // TypeEncoding_Impl
+  // _create (const PredefinedTypes_in)
   //
-  TypeEncoding_Impl::TypeEncoding_Impl (void)
+  TypeEncoding TypeEncoding_Impl::_create (const PredefinedTypes_in parent)
   {
-  }
-
-  //
-  // TypeEncoding_Impl
-  //
-  TypeEncoding_Impl::TypeEncoding_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TypeEncoding_Impl
-  //
-  TypeEncoding_Impl::~TypeEncoding_Impl (void)
-  {
+    return ::GAME::Mga::create_root_object < TypeEncoding > (parent, TypeEncoding_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TypeEncoding_Impl::accept (Visitor * v)
+  void TypeEncoding_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TypeEncoding (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TypeEncoding (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

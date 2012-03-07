@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_TRANSITION_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_TRANSITION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Transition_Impl;
   typedef Transition_Impl * Transition_in;
-  typedef ::GAME::Mga::Smart_Ptr <Transition_Impl> Transition;
+  typedef ::GAME::Mga::Smart_Ptr < Transition_Impl > Transition;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Transition_Impl
+   *
+   * Implementation for the Transition model element.
+   */
   class PICML_Export Transition_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Transition_Impl (void);
-
-    /// Initializing constructor
-    Transition_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~Transition_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Transition _create (const BehaviorModel_in parent);
     ///@}
 
-    /// Get the src State connection point.
-    State src_State (void);
+    // Default constructor.
+    Transition_Impl (void);
 
-    /// Get the dst ActionBase connection point.
-    ActionBase dst_ActionBase (void);
+    // Initializing constructor.
+    Transition_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~Transition_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    State src_State (void) const;
+    ActionBase dst_ActionBase (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Transition.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_TRANSITION

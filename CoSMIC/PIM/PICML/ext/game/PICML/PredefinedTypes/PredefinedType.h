@@ -14,18 +14,23 @@
 #ifndef _PICML_PREDEFINEDTYPES_PREDEFINEDTYPE_H_
 #define _PICML_PREDEFINEDTYPES_PREDEFINEDTYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PredefinedType_Impl;
   typedef PredefinedType_Impl * PredefinedType_in;
-  typedef ::GAME::Mga::Smart_Ptr <PredefinedType_Impl> PredefinedType;
+  typedef ::GAME::Mga::Smart_Ptr < PredefinedType_Impl > PredefinedType;
 
+  /**
+   * @class PredefinedType_Impl
+   *
+   * Implementation for the PredefinedType model element.
+   */
   class PICML_Export PredefinedType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,28 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     PredefinedType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     PredefinedType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~PredefinedType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PredefinedTypes parent_PredefinedTypes (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PredefinedType.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_PREDEFINEDTYPE

@@ -1,74 +1,67 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Inherits.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Inherits.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Inheritable.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Inherits_Impl::metaname = "Inherits";
+  const std::string Inherits_Impl::metaname ("Inherits");
 
   //
-  // Inherits_Impl
+  // _create (const Inheritable_in)
   //
-  Inherits_Impl::Inherits_Impl (void)
+  Inherits Inherits_Impl::_create (const Inheritable_in parent)
   {
-  }
-
-  //
-  // Inherits_Impl
-  //
-  Inherits_Impl::Inherits_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Inherits_Impl
-  //
-  Inherits_Impl::~Inherits_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Inherits > (parent, Inherits_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Inherits_Impl::accept (Visitor * v)
+  void Inherits_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Inherits (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Inherits (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // Inheritable_is_nil
   //
-  Inherits Inherits_Impl::_create (const Inheritable_in parent)
+  bool Inherits_Impl::Inheritable_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <Inherits> (parent, Inherits_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_Inheritable
+  // get_Inheritable
   //
-  Inheritable Inherits_Impl::parent_Inheritable (void) const
+  Inheritable Inherits_Impl::get_Inheritable (void) const
   {
-    return ::GAME::Mga::get_parent <Inheritable> (this->object_.p);
-  }
-
-  //
-  // refers_to_Inheritable
-  //
-  Inheritable Inherits_Impl::refers_to_Inheritable (void) const
-  {
-    return ::GAME::Mga::get_refers_to <Inheritable> (this);
+    return Inheritable::_narrow (this->refers_to ());
   }
 }
 

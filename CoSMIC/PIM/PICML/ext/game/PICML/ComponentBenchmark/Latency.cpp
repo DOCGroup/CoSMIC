@@ -1,49 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Latency.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Latency.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Latency_Impl::metaname = "Latency";
+  const std::string Latency_Impl::metaname ("Latency");
 
   //
-  // Latency_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  Latency_Impl::Latency_Impl (void)
+  Latency Latency_Impl::_create (const BenchmarkAnalysis_in parent)
   {
+    return ::GAME::Mga::create_object < Latency > (parent, Latency_Impl::metaname);
   }
 
   //
-  // Latency_Impl
+  // _create (const MetricsBase_in)
   //
-  Latency_Impl::Latency_Impl (IMgaModel * ptr)
+  Latency Latency_Impl::_create (const MetricsBase_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Latency_Impl
-  //
-  Latency_Impl::~Latency_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Latency > (parent, Latency_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Latency_Impl::accept (Visitor * v)
+  void Latency_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Latency (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Latency (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 }
 

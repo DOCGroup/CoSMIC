@@ -14,21 +14,26 @@
 #ifndef _PICML_DEPLOYMENTPLAN_DEPLOYMENTPLAN_H_
 #define _PICML_DEPLOYMENTPLAN_DEPLOYMENTPLAN_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class DeploymentPlan_Impl;
   typedef DeploymentPlan_Impl * DeploymentPlan_in;
-  typedef ::GAME::Mga::Smart_Ptr <DeploymentPlan_Impl> DeploymentPlan;
+  typedef ::GAME::Mga::Smart_Ptr < DeploymentPlan_Impl > DeploymentPlan;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class DeploymentPlan_Impl
+   *
+   * Implementation for the DeploymentPlan model element.
+   */
   class PICML_Export DeploymentPlan_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    DeploymentPlan_Impl (void);
-
-    /// Initializing constructor
-    DeploymentPlan_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~DeploymentPlan_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,33 +54,70 @@ namespace PICML
     static DeploymentPlan _create (const DeploymentPlans_in parent);
     ///@}
 
+    // Default constructor.
+    DeploymentPlan_Impl (void);
+
+    // Initializing constructor.
+    DeploymentPlan_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~DeploymentPlan_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of UUID
+    void UUID (const std::string & val);
+
+    /// Get the value of UUID
+    std::string UUID (void) const;
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
+    ///@}
+
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_CollocationGroups (std::vector <CollocationGroup> & items) const;
-    size_t get_InstanceMappings (std::vector <InstanceMapping> & items) const;
-    size_t get_Deployss (std::vector <Deploys> & items) const;
-    size_t get_NodeReferences (std::vector <NodeReference> & items) const;
     size_t get_Propertys (std::vector <Property> & items) const;
-    size_t get_PropertyMappings (std::vector <PropertyMapping> & items) const;
-    size_t get_CollocationGroupPropertys (std::vector <CollocationGroupProperty> & items) const;
+    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+
+    size_t get_InstanceMappings (std::vector <InstanceMapping> & items) const;
+    ::GAME::Mga::Iterator <InstanceMapping> get_InstanceMappings (void) const;
+
+    size_t get_CollocationGroups (std::vector <CollocationGroup> & items) const;
+    ::GAME::Mga::Iterator <CollocationGroup> get_CollocationGroups (void) const;
+
+    size_t get_Deployss (std::vector <Deploys> & items) const;
+    ::GAME::Mga::Iterator <Deploys> get_Deployss (void) const;
+
     size_t get_CollocationGroupMembers (std::vector <CollocationGroupMember> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <CollocationGroupMember> get_CollocationGroupMembers (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    DeploymentPlans parent_DeploymentPlans (void) const;
-    ///@}
+    size_t get_PropertyMappings (std::vector <PropertyMapping> & items) const;
+    ::GAME::Mga::Iterator <PropertyMapping> get_PropertyMappings (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    size_t get_CollocationGroupPropertys (std::vector <CollocationGroupProperty> & items) const;
+    ::GAME::Mga::Iterator <CollocationGroupProperty> get_CollocationGroupPropertys (void) const;
+
+    size_t get_NodeReferences (std::vector <NodeReference> & items) const;
+    ::GAME::Mga::Iterator <NodeReference> get_NodeReferences (void) const;
+
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "DeploymentPlan.inl"
 #endif
+
+#endif  // !defined _PICML_DEPLOYMENTPLAN_DEPLOYMENTPLAN

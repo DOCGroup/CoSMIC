@@ -14,22 +14,27 @@
 #ifndef _PICML_NAMEDTYPES_NOINHERITABLE_H_
 #define _PICML_NAMEDTYPES_NOINHERITABLE_H_
 
-#include "game/mga/FCO.h"
-#include "PICML/NamedTypes/NamedType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/NamedTypes/NamedType.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class NoInheritable_Impl;
   typedef NoInheritable_Impl * NoInheritable_in;
-  typedef ::GAME::Mga::Smart_Ptr <NoInheritable_Impl> NoInheritable;
+  typedef ::GAME::Mga::Smart_Ptr < NoInheritable_Impl > NoInheritable;
 
+  /**
+   * @class NoInheritable_Impl
+   *
+   * Implementation for the NoInheritable model element.
+   */
   class PICML_Export NoInheritable_Impl :
-    public virtual NamedType_Impl,
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual NamedType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,27 +46,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     NoInheritable_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     NoInheritable_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~NoInheritable_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "NoInheritable.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_NOINHERITABLE

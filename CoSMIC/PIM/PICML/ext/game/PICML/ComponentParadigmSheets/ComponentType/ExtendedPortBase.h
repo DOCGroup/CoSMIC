@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EXTENDEDPORTBASE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EXTENDEDPORTBASE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExtendedPortBase_Impl;
   typedef ExtendedPortBase_Impl * ExtendedPortBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendedPortBase_Impl> ExtendedPortBase;
+  typedef ::GAME::Mga::Smart_Ptr < ExtendedPortBase_Impl > ExtendedPortBase;
 
+  /**
+   * @class ExtendedPortBase_Impl
+   *
+   * Implementation for the ExtendedPortBase model element.
+   */
   class PICML_Export ExtendedPortBase_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -39,29 +44,27 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ExtendedPortBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ExtendedPortBase_Impl (IMgaReference * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ExtendedPortBase_Impl (void) = 0;
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    Component parent_Component (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    PortType refers_to_PortType (void) const;
+    bool PortType_is_nil (void) const;
+    PortType get_PortType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExtendedPortBase.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EXTENDEDPORTBASE

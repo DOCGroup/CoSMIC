@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTBENCHMARK_LATENCY_H_
 #define _PICML_COMPONENTBENCHMARK_LATENCY_H_
 
-#include "game/mga/Model.h"
-#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Latency_Impl;
   typedef Latency_Impl * Latency_in;
-  typedef ::GAME::Mga::Smart_Ptr <Latency_Impl> Latency;
+  typedef ::GAME::Mga::Smart_Ptr < Latency_Impl > Latency;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Latency_Impl
+   *
+   * Implementation for the Latency model element.
+   */
   class PICML_Export Latency_Impl :
-    public virtual MetricsBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual MetricsBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Latency_Impl (void);
-
-    /// Initializing constructor
-    Latency_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Latency_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Latency _create (const BenchmarkAnalysis_in parent);
+    static Latency _create (const MetricsBase_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Latency_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    Latency_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~Latency_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Latency.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_LATENCY

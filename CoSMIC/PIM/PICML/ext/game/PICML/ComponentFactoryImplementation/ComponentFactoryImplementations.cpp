@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentFactoryImplementations.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentFactoryImplementations.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentFactoryImplementations_Impl::metaname = "ComponentFactoryImplementations";
+  const std::string ComponentFactoryImplementations_Impl::metaname ("ComponentFactoryImplementations");
 
   //
-  // ComponentFactoryImplementations_Impl
-  //
-  ComponentFactoryImplementations_Impl::ComponentFactoryImplementations_Impl (void)
-  {
-  }
-
-  //
-  // ComponentFactoryImplementations_Impl
-  //
-  ComponentFactoryImplementations_Impl::ComponentFactoryImplementations_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentFactoryImplementations_Impl
-  //
-  ComponentFactoryImplementations_Impl::~ComponentFactoryImplementations_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void ComponentFactoryImplementations_Impl::accept (Visitor * v)
-  {
-    v->visit_ComponentFactoryImplementations (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   ComponentFactoryImplementations ComponentFactoryImplementations_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <ComponentFactoryImplementations> (parent, ComponentFactoryImplementations_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder ComponentFactoryImplementations_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void ComponentFactoryImplementations_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentFactoryImplementations (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_ComponentFactoryImplementationContainers
+  //
+  size_t ComponentFactoryImplementations_Impl::get_ComponentFactoryImplementationContainers (std::vector <ComponentFactoryImplementationContainer> & items) const
+  {
+    return this->children (items);
   }
 }
 

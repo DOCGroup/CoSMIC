@@ -1,66 +1,52 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Workspaces.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Workspaces.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/MPC.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Workspaces_Impl::metaname = "Workspaces";
+  const std::string Workspaces_Impl::metaname ("Workspaces");
 
   //
-  // Workspaces_Impl
+  // _create (const MPC_in)
   //
-  Workspaces_Impl::Workspaces_Impl (void)
+  Workspaces Workspaces_Impl::_create (const MPC_in parent)
   {
-  }
-
-  //
-  // Workspaces_Impl
-  //
-  Workspaces_Impl::Workspaces_Impl (IMgaSet * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Workspaces_Impl
-  //
-  Workspaces_Impl::~Workspaces_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Workspaces > (parent, Workspaces_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Workspaces_Impl::accept (Visitor * v)
+  void Workspaces_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Workspaces (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Workspaces (this);
+    }
 
-  //
-  // _create
-  //
-  Workspaces Workspaces_Impl::_create (const MPC_in parent)
-  {
-    return ::GAME::Mga::create_object <Workspaces> (parent, Workspaces_Impl::metaname);
-  }
-
-  //
-  // parent_MPC
-  //
-  MPC Workspaces_Impl::parent_MPC (void) const
-  {
-    return ::GAME::Mga::get_parent <MPC> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Set (this);
+    }
   }
 }
 

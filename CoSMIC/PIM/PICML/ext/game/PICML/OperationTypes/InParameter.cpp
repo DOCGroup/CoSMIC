@@ -1,66 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InParameter.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InParameter.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/OperationTypes/OperationBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InParameter_Impl::metaname = "InParameter";
+  const std::string InParameter_Impl::metaname ("InParameter");
 
   //
-  // InParameter_Impl
+  // _create (const OperationBase_in)
   //
-  InParameter_Impl::InParameter_Impl (void)
+  InParameter InParameter_Impl::_create (const OperationBase_in parent)
   {
+    return ::GAME::Mga::create_object < InParameter > (parent, InParameter_Impl::metaname);
   }
 
   //
-  // InParameter_Impl
+  // _create (const Operation_in)
   //
-  InParameter_Impl::InParameter_Impl (IMgaReference * ptr)
+  InParameter InParameter_Impl::_create (const Operation_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InParameter_Impl
-  //
-  InParameter_Impl::~InParameter_Impl (void)
-  {
+    return ::GAME::Mga::create_object < InParameter > (parent, InParameter_Impl::metaname);
   }
 
   //
   // accept
   //
-  void InParameter_Impl::accept (Visitor * v)
+  void InParameter_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_InParameter (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InParameter (this);
+    }
 
-  //
-  // _create
-  //
-  InParameter InParameter_Impl::_create (const OperationBase_in parent)
-  {
-    return ::GAME::Mga::create_object <InParameter> (parent, InParameter_Impl::metaname);
-  }
-
-  //
-  // parent_OperationBase
-  //
-  OperationBase InParameter_Impl::parent_OperationBase (void) const
-  {
-    return ::GAME::Mga::get_parent <OperationBase> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 }
 

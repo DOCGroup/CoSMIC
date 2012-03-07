@@ -1,112 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TaskSet.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TaskSet.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/Task.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TaskSet_Impl::metaname = "TaskSet";
+  const std::string TaskSet_Impl::metaname ("TaskSet");
 
   //
-  // TaskSet_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  TaskSet_Impl::TaskSet_Impl (void)
+  TaskSet TaskSet_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // TaskSet_Impl
-  //
-  TaskSet_Impl::TaskSet_Impl (IMgaSet * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TaskSet_Impl
-  //
-  TaskSet_Impl::~TaskSet_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TaskSet > (parent, TaskSet_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TaskSet_Impl::accept (Visitor * v)
+  void TaskSet_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TaskSet (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TaskSet (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Set (this);
+    }
   }
 
   //
-  // _create
+  // dst_WorkloadCharacteristics
   //
-  TaskSet TaskSet_Impl::_create (const BenchmarkAnalysis_in parent)
+  size_t TaskSet_Impl::dst_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
   {
-    return ::GAME::Mga::create_object <TaskSet> (parent, TaskSet_Impl::metaname);
-  }
-
-  //
-  // rate
-  //
-  void TaskSet_Impl::rate (long val)
-  {
-    static const std::string attr_rate ("rate");
-    this->attribute (attr_rate)->int_value (val);
-  }
-
-  //
-  // rate
-  //
-  long TaskSet_Impl::rate (void) const
-  {
-    static const std::string attr_rate ("rate");
-    return this->attribute (attr_rate)->int_value ();
-  }
-
-  //
-  // priority
-  //
-  void TaskSet_Impl::priority (long val)
-  {
-    static const std::string attr_priority ("priority");
-    this->attribute (attr_priority)->int_value (val);
-  }
-
-  //
-  // priority
-  //
-  long TaskSet_Impl::priority (void) const
-  {
-    static const std::string attr_priority ("priority");
-    return this->attribute (attr_priority)->int_value ();
-  }
-
-  //
-  // in_WorkloadCharacteristics_connections
-  //
-  size_t TaskSet_Impl::in_WorkloadCharacteristics_connections (std::vector <WorkloadCharacteristics> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_BenchmarkAnalysis
-  //
-  BenchmarkAnalysis TaskSet_Impl::parent_BenchmarkAnalysis (void) const
-  {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return this->in_connections <WorkloadCharacteristics> (items);
   }
 }
 

@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_METRICCONNECTION_H_
 #define _PICML_COMPONENTBENCHMARK_METRICCONNECTION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MetricConnection_Impl;
   typedef MetricConnection_Impl * MetricConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <MetricConnection_Impl> MetricConnection;
+  typedef ::GAME::Mga::Smart_Ptr < MetricConnection_Impl > MetricConnection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MetricConnection_Impl
+   *
+   * Implementation for the MetricConnection model element.
+   */
   class PICML_Export MetricConnection_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MetricConnection_Impl (void);
-
-    /// Initializing constructor
-    MetricConnection_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~MetricConnection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static MetricConnection _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /// Get the src OperationRef connection point.
-    OperationRef src_OperationRef (void);
+    // Default constructor.
+    MetricConnection_Impl (void);
 
-    /// Get the dst MetricsBase connection point.
-    MetricsBase dst_MetricsBase (void);
+    // Initializing constructor.
+    MetricConnection_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
+    // Destructor.
+    virtual ~MetricConnection_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    OperationRef src_OperationRef (void) const;
+    MetricsBase dst_MetricsBase (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MetricConnection.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_METRICCONNECTION

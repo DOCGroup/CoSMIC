@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_BENCHMARKANALYSIS_H_
 #define _PICML_COMPONENTBENCHMARK_BENCHMARKANALYSIS_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BenchmarkAnalysis_Impl;
   typedef BenchmarkAnalysis_Impl * BenchmarkAnalysis_in;
-  typedef ::GAME::Mga::Smart_Ptr <BenchmarkAnalysis_Impl> BenchmarkAnalysis;
+  typedef ::GAME::Mga::Smart_Ptr < BenchmarkAnalysis_Impl > BenchmarkAnalysis;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class BenchmarkAnalysis_Impl
+   *
+   * Implementation for the BenchmarkAnalysis model element.
+   */
   class PICML_Export BenchmarkAnalysis_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    BenchmarkAnalysis_Impl (void);
-
-    /// Initializing constructor
-    BenchmarkAnalysis_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~BenchmarkAnalysis_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,43 +54,82 @@ namespace PICML
     static BenchmarkAnalysis _create (const ComponentAnalyses_in parent);
     ///@}
 
+    // Default constructor.
+    BenchmarkAnalysis_Impl (void);
+
+    // Initializing constructor.
+    BenchmarkAnalysis_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~BenchmarkAnalysis_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_BenchmarkCharacteristicss (std::vector <BenchmarkCharacteristics> & items) const;
-    size_t get_BenchmarkTypes (std::vector <BenchmarkType> & items) const;
-    size_t get_WorkLoadOperationConnections (std::vector <WorkLoadOperationConnection> & items) const;
-    size_t get_CompRefs (std::vector <CompRef> & items) const;
-    size_t get_ComponentOperations (std::vector <ComponentOperation> & items) const;
-    size_t get_WorkloadCharacteristicss (std::vector <WorkloadCharacteristics> & items) const;
-    size_t get_Tasks (std::vector <Task> & items) const;
-    size_t get_TaskSets (std::vector <TaskSet> & items) const;
-    size_t get_TimerEventSinkConns (std::vector <TimerEventSinkConn> & items) const;
-    size_t get_EventRefs (std::vector <EventRef> & items) const;
-    size_t get_OperationRefs (std::vector <OperationRef> & items) const;
-    size_t get_MetricsBases (std::vector <MetricsBase> & items) const;
     size_t get_Events (std::vector <Event> & items) const;
-    size_t get_TimeProbes (std::vector <TimeProbe> & items) const;
-    size_t get_DataAnalysisBases (std::vector <DataAnalysisBase> & items) const;
-    size_t get_MetricConnections (std::vector <MetricConnection> & items) const;
-    size_t get_TimerConnections (std::vector <TimerConnection> & items) const;
+    ::GAME::Mga::Iterator <Event> get_Events (void) const;
+
     size_t get_OperationBases (std::vector <OperationBase> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <OperationBase> get_OperationBases (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentAnalyses parent_ComponentAnalyses (void) const;
-    ///@}
+    size_t get_MetricConnections (std::vector <MetricConnection> & items) const;
+    ::GAME::Mga::Iterator <MetricConnection> get_MetricConnections (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    size_t get_DataAnalysisBases (std::vector <DataAnalysisBase> & items) const;
+    ::GAME::Mga::Iterator <DataAnalysisBase> get_DataAnalysisBases (void) const;
+
+    size_t get_TimeProbes (std::vector <TimeProbe> & items) const;
+    ::GAME::Mga::Iterator <TimeProbe> get_TimeProbes (void) const;
+
+    size_t get_TimerConnections (std::vector <TimerConnection> & items) const;
+    ::GAME::Mga::Iterator <TimerConnection> get_TimerConnections (void) const;
+
+    size_t get_MetricsBases (std::vector <MetricsBase> & items) const;
+    ::GAME::Mga::Iterator <MetricsBase> get_MetricsBases (void) const;
+
+    size_t get_OperationRefs (std::vector <OperationRef> & items) const;
+    ::GAME::Mga::Iterator <OperationRef> get_OperationRefs (void) const;
+
+    size_t get_EventRefs (std::vector <EventRef> & items) const;
+    ::GAME::Mga::Iterator <EventRef> get_EventRefs (void) const;
+
+    size_t get_TimerEventSinkConns (std::vector <TimerEventSinkConn> & items) const;
+    ::GAME::Mga::Iterator <TimerEventSinkConn> get_TimerEventSinkConns (void) const;
+
+    size_t get_TaskSets (std::vector <TaskSet> & items) const;
+    ::GAME::Mga::Iterator <TaskSet> get_TaskSets (void) const;
+
+    size_t get_Tasks (std::vector <Task> & items) const;
+    ::GAME::Mga::Iterator <Task> get_Tasks (void) const;
+
+    size_t get_WorkloadCharacteristicss (std::vector <WorkloadCharacteristics> & items) const;
+    ::GAME::Mga::Iterator <WorkloadCharacteristics> get_WorkloadCharacteristicss (void) const;
+
+    size_t get_ComponentOperations (std::vector <ComponentOperation> & items) const;
+    ::GAME::Mga::Iterator <ComponentOperation> get_ComponentOperations (void) const;
+
+    size_t get_CompRefs (std::vector <CompRef> & items) const;
+    ::GAME::Mga::Iterator <CompRef> get_CompRefs (void) const;
+
+    size_t get_WorkLoadOperationConnections (std::vector <WorkLoadOperationConnection> & items) const;
+    ::GAME::Mga::Iterator <WorkLoadOperationConnection> get_WorkLoadOperationConnections (void) const;
+
+    size_t get_BenchmarkTypes (std::vector <BenchmarkType> & items) const;
+    ::GAME::Mga::Iterator <BenchmarkType> get_BenchmarkTypes (void) const;
+
+    size_t get_BenchmarkCharacteristicss (std::vector <BenchmarkCharacteristics> & items) const;
+    ::GAME::Mga::Iterator <BenchmarkCharacteristics> get_BenchmarkCharacteristicss (void) const;
+
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BenchmarkAnalysis.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_BENCHMARKANALYSIS

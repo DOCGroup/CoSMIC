@@ -14,18 +14,23 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_QUERYINPUTBASE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_QUERYINPUTBASE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class QueryInputBase_Impl;
   typedef QueryInputBase_Impl * QueryInputBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <QueryInputBase_Impl> QueryInputBase;
+  typedef ::GAME::Mga::Smart_Ptr < QueryInputBase_Impl > QueryInputBase;
 
+  /**
+   * @class QueryInputBase_Impl
+   *
+   * Implementation for the QueryInputBase model element.
+   */
   class PICML_Export QueryInputBase_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,28 +44,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     QueryInputBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     QueryInputBase_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~QueryInputBase_Impl (void) = 0;
-    size_t in_QueryInput_connections (std::vector <QueryInput> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src QueryInput connection.
+    size_t src_QueryInput (std::vector <QueryInput> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "QueryInputBase.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_QUERYINPUTBASE

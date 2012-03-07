@@ -1,77 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DataValue.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "DataValue.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/SimpleType.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string DataValue_Impl::metaname = "DataValue";
+  const std::string DataValue_Impl::metaname ("DataValue");
 
   //
-  // DataValue_Impl
+  // _create (const DataValueContainer_in)
   //
-  DataValue_Impl::DataValue_Impl (void)
+  DataValue DataValue_Impl::_create (const DataValueContainer_in parent)
   {
+    return ::GAME::Mga::create_object < DataValue > (parent, DataValue_Impl::metaname);
   }
 
   //
-  // DataValue_Impl
+  // _create (const ComplexProperty_in)
   //
-  DataValue_Impl::DataValue_Impl (IMgaReference * ptr)
+  DataValue DataValue_Impl::_create (const ComplexProperty_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~DataValue_Impl
-  //
-  DataValue_Impl::~DataValue_Impl (void)
-  {
+    return ::GAME::Mga::create_object < DataValue > (parent, DataValue_Impl::metaname);
   }
 
   //
   // accept
   //
-  void DataValue_Impl::accept (Visitor * v)
+  void DataValue_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_DataValue (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_DataValue (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // Value
+  // SimpleType_is_nil
   //
-  void DataValue_Impl::Value (const std::string & val)
+  bool DataValue_Impl::SimpleType_is_nil (void) const
   {
-    static const std::string attr_Value ("Value");
-    this->attribute (attr_Value)->string_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // Value
+  // get_SimpleType
   //
-  std::string DataValue_Impl::Value (void) const
+  SimpleType DataValue_Impl::get_SimpleType (void) const
   {
-    static const std::string attr_Value ("Value");
-    return this->attribute (attr_Value)->string_value ();
-  }
-
-  //
-  // refers_to_SimpleType
-  //
-  SimpleType DataValue_Impl::refers_to_SimpleType (void) const
-  {
-    return ::GAME::Mga::get_refers_to <SimpleType> (this);
+    return SimpleType::_narrow (this->refers_to ());
   }
 }
 

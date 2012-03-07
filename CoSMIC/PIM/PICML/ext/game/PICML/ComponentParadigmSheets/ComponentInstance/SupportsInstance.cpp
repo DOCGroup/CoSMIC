@@ -1,67 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SupportsInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SupportsInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/InheritableTypes/Supports.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string SupportsInstance_Impl::metaname = "SupportsInstance";
+  const std::string SupportsInstance_Impl::metaname ("SupportsInstance");
 
   //
-  // SupportsInstance_Impl
+  // _create (const ComponentInstance_in)
   //
-  SupportsInstance_Impl::SupportsInstance_Impl (void)
+  SupportsInstance SupportsInstance_Impl::_create (const ComponentInstance_in parent)
   {
-  }
-
-  //
-  // SupportsInstance_Impl
-  //
-  SupportsInstance_Impl::SupportsInstance_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~SupportsInstance_Impl
-  //
-  SupportsInstance_Impl::~SupportsInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < SupportsInstance > (parent, SupportsInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void SupportsInstance_Impl::accept (Visitor * v)
+  void SupportsInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_SupportsInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_SupportsInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // Supports_is_nil
   //
-  SupportsInstance SupportsInstance_Impl::_create (const ComponentInstance_in parent)
+  bool SupportsInstance_Impl::Supports_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <SupportsInstance> (parent, SupportsInstance_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_ComponentInstance
+  // get_Supports
   //
-  ComponentInstance SupportsInstance_Impl::parent_ComponentInstance (void) const
+  Supports SupportsInstance_Impl::get_Supports (void) const
   {
-    return ::GAME::Mga::get_parent <ComponentInstance> (this->object_.p);
+    return Supports::_narrow (this->refers_to ());
   }
 }
 

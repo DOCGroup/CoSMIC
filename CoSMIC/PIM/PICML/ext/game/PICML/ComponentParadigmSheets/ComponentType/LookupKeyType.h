@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_LOOKUPKEYTYPE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_LOOKUPKEYTYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class LookupKeyType_Impl;
   typedef LookupKeyType_Impl * LookupKeyType_in;
-  typedef ::GAME::Mga::Smart_Ptr <LookupKeyType_Impl> LookupKeyType;
+  typedef ::GAME::Mga::Smart_Ptr < LookupKeyType_Impl > LookupKeyType;
 
+  /**
+   * @class LookupKeyType_Impl
+   *
+   * Implementation for the LookupKeyType model element.
+   */
   class PICML_Export LookupKeyType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,27 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     LookupKeyType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     LookupKeyType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~LookupKeyType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "LookupKeyType.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_LOOKUPKEYTYPE

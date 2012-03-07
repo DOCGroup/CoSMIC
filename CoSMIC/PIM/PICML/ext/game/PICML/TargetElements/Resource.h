@@ -14,21 +14,26 @@
 #ifndef _PICML_TARGETELEMENTS_RESOURCE_H_
 #define _PICML_TARGETELEMENTS_RESOURCE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Resource_Impl;
   typedef Resource_Impl * Resource_in;
-  typedef ::GAME::Mga::Smart_Ptr <Resource_Impl> Resource;
+  typedef ::GAME::Mga::Smart_Ptr < Resource_Impl > Resource;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Resource_Impl
+   *
+   * Implementation for the Resource model element.
+   */
   class PICML_Export Resource_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,48 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Resource_Impl (void);
-
-    /// Initializing constructor
-    Resource_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Resource_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Resource _create (const Bridge_in parent);
-    static Resource _create (const Node_in parent);
     static Resource _create (const Interconnect_in parent);
+    static Resource _create (const Node_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Resource_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Bridge parent_Bridge (void) const;
-    Node parent_Node (void) const;
-    Interconnect parent_Interconnect (void) const;
-    ///@}
+    // Initializing constructor.
+    Resource_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~Resource_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Resource.inl"
 #endif
+
+#endif  // !defined _PICML_TARGETELEMENTS_RESOURCE

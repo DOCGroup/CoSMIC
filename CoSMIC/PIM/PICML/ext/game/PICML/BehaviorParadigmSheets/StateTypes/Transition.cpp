@@ -1,70 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Transition.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Transition.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Transition_Impl::metaname = "Transition";
+  const std::string Transition_Impl::metaname ("Transition");
 
   //
-  // Transition_Impl
+  // _create (const BehaviorModel_in)
   //
-  Transition_Impl::Transition_Impl (void)
+  Transition Transition_Impl::_create (const BehaviorModel_in parent)
   {
-  }
-
-  //
-  // Transition_Impl
-  //
-  Transition_Impl::Transition_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Transition_Impl
-  //
-  Transition_Impl::~Transition_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Transition > (parent, Transition_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Transition_Impl::accept (Visitor * v)
+  void Transition_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Transition (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Transition (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_State
+  // State
   //
-  State Transition_Impl::src_State (void)
+  State Transition_Impl::src_State (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return State::_narrow (target);
+    return State::_narrow (this->src ());
   }
 
   //
-  // dst_ActionBase
+  // ActionBase
   //
-  ActionBase Transition_Impl::dst_ActionBase (void)
+  ActionBase Transition_Impl::dst_ActionBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ActionBase::_narrow (target);
+    return ActionBase::_narrow (this->dst ());
   }
 }
 

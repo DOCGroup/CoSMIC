@@ -1,68 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TypeParameter.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TypeParameter.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TypeParameter_Impl::metaname = "TypeParameter";
+  const std::string TypeParameter_Impl::metaname ("TypeParameter");
 
   //
-  // TypeParameter_Impl
+  // _create (const Package_in)
   //
-  TypeParameter_Impl::TypeParameter_Impl (void)
+  TypeParameter TypeParameter_Impl::_create (const Package_in parent)
   {
-  }
-
-  //
-  // TypeParameter_Impl
-  //
-  TypeParameter_Impl::TypeParameter_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TypeParameter_Impl
-  //
-  TypeParameter_Impl::~TypeParameter_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TypeParameter > (parent, TypeParameter_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TypeParameter_Impl::accept (Visitor * v)
+  void TypeParameter_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TypeParameter (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TypeParameter (this);
+    }
 
-  //
-  // Type
-  //
-  void TypeParameter_Impl::Type (const std::string & val)
-  {
-    static const std::string attr_Type ("Type");
-    this->attribute (attr_Type)->string_value (val);
-  }
-
-  //
-  // Type
-  //
-  std::string TypeParameter_Impl::Type (void) const
-  {
-    static const std::string attr_Type ("Type");
-    return this->attribute (attr_Type)->string_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

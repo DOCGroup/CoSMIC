@@ -1,40 +1,21 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "NamedType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "NamedType.inl"
+#endif
 
+#include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/File.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string NamedType_Impl::metaname = "NamedType";
-
-  //
-  // NamedType_Impl
-  //
-  NamedType_Impl::NamedType_Impl (void)
-  {
-  }
-
-  //
-  // NamedType_Impl
-  //
-  NamedType_Impl::NamedType_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~NamedType_Impl
-  //
-  NamedType_Impl::~NamedType_Impl (void)
-  {
-  }
+  const std::string NamedType_Impl::metaname ("NamedType");
 }
 

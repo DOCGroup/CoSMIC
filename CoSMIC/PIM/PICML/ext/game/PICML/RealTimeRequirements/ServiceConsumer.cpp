@@ -1,85 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServiceConsumer.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ServiceConsumer.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ServiceConsumer_Impl::metaname = "ServiceConsumer";
+  const std::string ServiceConsumer_Impl::metaname ("ServiceConsumer");
 
   //
-  // ServiceConsumer_Impl
+  // _create (const RTRequirements_in)
   //
-  ServiceConsumer_Impl::ServiceConsumer_Impl (void)
+  ServiceConsumer ServiceConsumer_Impl::_create (const RTRequirements_in parent)
   {
-  }
-
-  //
-  // ServiceConsumer_Impl
-  //
-  ServiceConsumer_Impl::ServiceConsumer_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ServiceConsumer_Impl
-  //
-  ServiceConsumer_Impl::~ServiceConsumer_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ServiceConsumer > (parent, ServiceConsumer_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ServiceConsumer_Impl::accept (Visitor * v)
+  void ServiceConsumer_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ServiceConsumer (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ServiceConsumer (this);
+    }
 
-  //
-  // _create
-  //
-  ServiceConsumer ServiceConsumer_Impl::_create (const RTRequirements_in parent)
-  {
-    return ::GAME::Mga::create_object <ServiceConsumer> (parent, ServiceConsumer_Impl::metaname);
-  }
-
-  //
-  // prioritize_service_invocations
-  //
-  void ServiceConsumer_Impl::prioritize_service_invocations (bool val)
-  {
-    static const std::string attr_prioritize_service_invocations ("prioritize_service_invocations");
-    this->attribute (attr_prioritize_service_invocations)->bool_value (val);
-  }
-
-  //
-  // prioritize_service_invocations
-  //
-  bool ServiceConsumer_Impl::prioritize_service_invocations (void) const
-  {
-    static const std::string attr_prioritize_service_invocations ("prioritize_service_invocations");
-    return this->attribute (attr_prioritize_service_invocations)->bool_value ();
-  }
-
-  //
-  // parent_RTRequirements
-  //
-  RTRequirements ServiceConsumer_Impl::parent_RTRequirements (void) const
-  {
-    return ::GAME::Mga::get_parent <RTRequirements> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PUBLISH_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PUBLISH_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Publish_Impl;
   typedef Publish_Impl * Publish_in;
-  typedef ::GAME::Mga::Smart_Ptr <Publish_Impl> Publish;
+  typedef ::GAME::Mga::Smart_Ptr < Publish_Impl > Publish;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Publish_Impl
+   *
+   * Implementation for the Publish model element.
+   */
   class PICML_Export Publish_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Publish_Impl (void);
-
-    /// Initializing constructor
-    Publish_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~Publish_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Publish _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src ExtendPortEnd connection point.
-    ExtendPortEnd src_ExtendPortEnd (void);
+    // Default constructor.
+    Publish_Impl (void);
 
-    /// Get the dst ConnectorInstance connection point.
-    ConnectorInstance dst_ConnectorInstance (void);
+    // Initializing constructor.
+    Publish_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~Publish_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ExtendPortEnd src_ExtendPortEnd (void) const;
+    ConnectorInstance dst_ConnectorInstance (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Publish.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PUBLISH

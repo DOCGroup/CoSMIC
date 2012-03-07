@@ -1,45 +1,41 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "HasOperations.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "HasOperations.inl"
+#endif
 
-#include "PICML/InterfaceDefinition/Constant.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
-#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/Constant.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string HasOperations_Impl::metaname = "HasOperations";
+  const std::string HasOperations_Impl::metaname ("HasOperations");
 
   //
-  // HasOperations_Impl
+  // get_Exceptions
   //
-  HasOperations_Impl::HasOperations_Impl (void)
+  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
   {
+    return this->children (items);
   }
 
   //
-  // HasOperations_Impl
+  // get_Exceptions
   //
-  HasOperations_Impl::HasOperations_Impl (IMgaModel * ptr)
+  ::GAME::Mga::Iterator <Exception> HasOperations_Impl::get_Exceptions (void) const
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~HasOperations_Impl
-  //
-  HasOperations_Impl::~HasOperations_Impl (void)
-  {
+    return this->children <Exception> ();
   }
 
   //
@@ -51,11 +47,11 @@ namespace PICML
   }
 
   //
-  // get_OnewayOperations
+  // get_Constants
   //
-  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
+  ::GAME::Mga::Iterator <Constant> HasOperations_Impl::get_Constants (void) const
   {
-    return this->children (items);
+    return this->children <Constant> ();
   }
 
   //
@@ -67,11 +63,11 @@ namespace PICML
   }
 
   //
-  // get_Exceptions
+  // get_NoInheritables
   //
-  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
+  ::GAME::Mga::Iterator <NoInheritable> HasOperations_Impl::get_NoInheritables (void) const
   {
-    return this->children (items);
+    return this->children <NoInheritable> ();
   }
 
   //
@@ -80,6 +76,30 @@ namespace PICML
   size_t HasOperations_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_TwowayOperations
+  //
+  ::GAME::Mga::Iterator <TwowayOperation> HasOperations_Impl::get_TwowayOperations (void) const
+  {
+    return this->children <TwowayOperation> ();
+  }
+
+  //
+  // get_OnewayOperations
+  //
+  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OnewayOperations
+  //
+  ::GAME::Mga::Iterator <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
+  {
+    return this->children <OnewayOperation> ();
   }
 }
 

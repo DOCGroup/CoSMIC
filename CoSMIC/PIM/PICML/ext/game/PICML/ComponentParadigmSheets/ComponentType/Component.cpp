@@ -1,54 +1,78 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Component.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Component.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Component_Impl::metaname = "Component";
-
-  //
-  // Component_Impl
-  //
-  Component_Impl::Component_Impl (void)
-  {
-  }
-
-  //
-  // Component_Impl
-  //
-  Component_Impl::Component_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Component_Impl
-  //
-  Component_Impl::~Component_Impl (void)
-  {
-  }
+  const std::string Component_Impl::metaname ("Component");
 
   //
   // accept
   //
-  void Component_Impl::accept (Visitor * v)
+  void Component_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Component (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Component (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // has_ComponentInherits
+  //
+  bool Component_Impl::has_ComponentInherits (void) const
+  {
+    return this->children <ComponentInherits> ().count () == 1;
+  }
+
+  //
+  // get_ComponentInherits
+  //
+  ComponentInherits Component_Impl::get_ComponentInherits (void) const
+  {
+    return this->children <ComponentInherits> ().item ();
+  }
+
+  //
+  // get_Ports
+  //
+  size_t Component_Impl::get_Ports (std::vector <Port> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Ports
+  //
+  ::GAME::Mga::Iterator <Port> Component_Impl::get_Ports (void) const
+  {
+    return this->children <Port> ();
   }
 
   //
@@ -60,15 +84,11 @@ namespace PICML
   }
 
   //
-  // get_ComponentInherits
+  // get_ExtendedPortBases
   //
-  ComponentInherits Component_Impl::get_ComponentInherits (void) const
+  ::GAME::Mga::Iterator <ExtendedPortBase> Component_Impl::get_ExtendedPortBases (void) const
   {
-    // Get the collection of children.
-    std::vector <ComponentInherits> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ComponentInherits ();
+    return this->children <ExtendedPortBase> ();
   }
 
   //
@@ -80,11 +100,11 @@ namespace PICML
   }
 
   //
-  // get_Ports
+  // get_ReadonlyAttributes
   //
-  size_t Component_Impl::get_Ports (std::vector <Port> & items) const
+  ::GAME::Mga::Iterator <ReadonlyAttribute> Component_Impl::get_ReadonlyAttributes (void) const
   {
-    return this->children (items);
+    return this->children <ReadonlyAttribute> ();
   }
 }
 

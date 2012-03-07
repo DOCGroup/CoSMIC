@@ -1,75 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PrivateFlag.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PrivateFlag.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PrivateFlag_Impl::metaname = "PrivateFlag";
+  const std::string PrivateFlag_Impl::metaname ("PrivateFlag");
 
   //
-  // PrivateFlag_Impl
+  // _create (const ObjectByValue_in)
   //
-  PrivateFlag_Impl::PrivateFlag_Impl (void)
+  PrivateFlag PrivateFlag_Impl::_create (const ObjectByValue_in parent)
   {
-  }
-
-  //
-  // PrivateFlag_Impl
-  //
-  PrivateFlag_Impl::PrivateFlag_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PrivateFlag_Impl
-  //
-  PrivateFlag_Impl::~PrivateFlag_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PrivateFlag > (parent, PrivateFlag_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PrivateFlag_Impl::accept (Visitor * v)
+  void PrivateFlag_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PrivateFlag (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PrivateFlag (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // dst_MakeMemberPrivate
   //
-  PrivateFlag PrivateFlag_Impl::_create (const ObjectByValue_in parent)
+  size_t PrivateFlag_Impl::dst_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
   {
-    return ::GAME::Mga::create_object <PrivateFlag> (parent, PrivateFlag_Impl::metaname);
-  }
-
-  //
-  // in_MakeMemberPrivate_connections
-  //
-  size_t PrivateFlag_Impl::in_MakeMemberPrivate_connections (std::vector <MakeMemberPrivate> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_ObjectByValue
-  //
-  ObjectByValue PrivateFlag_Impl::parent_ObjectByValue (void) const
-  {
-    return ::GAME::Mga::get_parent <ObjectByValue> (this->object_.p);
+    return this->in_connections <MakeMemberPrivate> (items);
   }
 }
 

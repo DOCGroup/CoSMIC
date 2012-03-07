@@ -1,95 +1,94 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RequiredRequestPort.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "RequiredRequestPort.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string RequiredRequestPort_Impl::metaname = "RequiredRequestPort";
+  const std::string RequiredRequestPort_Impl::metaname ("RequiredRequestPort");
 
   //
-  // RequiredRequestPort_Impl
+  // _create (const ConnectorObject_in)
   //
-  RequiredRequestPort_Impl::RequiredRequestPort_Impl (void)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
-  // RequiredRequestPort_Impl
+  // _create (const PortType_in)
   //
-  RequiredRequestPort_Impl::RequiredRequestPort_Impl (IMgaReference * ptr)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~RequiredRequestPort_Impl
-  //
-  RequiredRequestPort_Impl::~RequiredRequestPort_Impl (void)
-  {
+    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
   // accept
   //
-  void RequiredRequestPort_Impl::accept (Visitor * v)
+  void RequiredRequestPort_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_RequiredRequestPort (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_RequiredRequestPort (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // AsyncCommunication
+  // RequiredRequestPort_is_nil
   //
-  void RequiredRequestPort_Impl::AsyncCommunication (bool val)
+  bool RequiredRequestPort_Impl::RequiredRequestPort_is_nil (void) const
   {
-    static const std::string attr_AsyncCommunication ("AsyncCommunication");
-    this->attribute (attr_AsyncCommunication)->bool_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // AsyncCommunication
+  // get_RequiredRequestPort
   //
-  bool RequiredRequestPort_Impl::AsyncCommunication (void) const
+  RequiredRequestPort RequiredRequestPort_Impl::get_RequiredRequestPort (void) const
   {
-    static const std::string attr_AsyncCommunication ("AsyncCommunication");
-    return this->attribute (attr_AsyncCommunication)->bool_value ();
+    return RequiredRequestPort::_narrow (this->refers_to ());
   }
 
   //
-  // multiple_connections
+  // Provideable_is_nil
   //
-  void RequiredRequestPort_Impl::multiple_connections (bool val)
+  bool RequiredRequestPort_Impl::Provideable_is_nil (void) const
   {
-    static const std::string attr_multiple_connections ("multiple_connections");
-    this->attribute (attr_multiple_connections)->bool_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // multiple_connections
+  // get_Provideable
   //
-  bool RequiredRequestPort_Impl::multiple_connections (void) const
+  Provideable RequiredRequestPort_Impl::get_Provideable (void) const
   {
-    static const std::string attr_multiple_connections ("multiple_connections");
-    return this->attribute (attr_multiple_connections)->bool_value ();
-  }
-
-  //
-  // refers_to_Provideable
-  //
-  Provideable RequiredRequestPort_Impl::refers_to_Provideable (void) const
-  {
-    return ::GAME::Mga::get_refers_to <Provideable> (this);
+    return Provideable::_narrow (this->refers_to ());
   }
 }
 

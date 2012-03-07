@@ -14,18 +14,23 @@
 #ifndef _PICML_IDTAGS_TAGGABLE_H_
 #define _PICML_IDTAGS_TAGGABLE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Taggable_Impl;
   typedef Taggable_Impl * Taggable_in;
-  typedef ::GAME::Mga::Smart_Ptr <Taggable_Impl> Taggable;
+  typedef ::GAME::Mga::Smart_Ptr < Taggable_Impl > Taggable;
 
+  /**
+   * @class Taggable_Impl
+   *
+   * Implementation for the Taggable model element.
+   */
   class PICML_Export Taggable_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     Taggable_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     Taggable_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~Taggable_Impl (void) = 0;
 
     /**
@@ -65,19 +70,11 @@ namespace PICML
     /// Get the value of SpecifyIdTag
     std::string SpecifyIdTag (void) const;
     ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Taggable.inl"
 #endif
+
+#endif  // !defined _PICML_IDTAGS_TAGGABLE

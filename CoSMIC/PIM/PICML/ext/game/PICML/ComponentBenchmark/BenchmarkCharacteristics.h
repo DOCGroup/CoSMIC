@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_BENCHMARKCHARACTERISTICS_H_
 #define _PICML_COMPONENTBENCHMARK_BENCHMARKCHARACTERISTICS_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BenchmarkCharacteristics_Impl;
   typedef BenchmarkCharacteristics_Impl * BenchmarkCharacteristics_in;
-  typedef ::GAME::Mga::Smart_Ptr <BenchmarkCharacteristics_Impl> BenchmarkCharacteristics;
+  typedef ::GAME::Mga::Smart_Ptr < BenchmarkCharacteristics_Impl > BenchmarkCharacteristics;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class BenchmarkCharacteristics_Impl
+   *
+   * Implementation for the BenchmarkCharacteristics model element.
+   */
   class PICML_Export BenchmarkCharacteristics_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    BenchmarkCharacteristics_Impl (void);
-
-    /// Initializing constructor
-    BenchmarkCharacteristics_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~BenchmarkCharacteristics_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static BenchmarkCharacteristics _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /// Get the src BenchmarkType connection point.
-    BenchmarkType src_BenchmarkType (void);
+    // Default constructor.
+    BenchmarkCharacteristics_Impl (void);
 
-    /// Get the dst MetricsBase connection point.
-    MetricsBase dst_MetricsBase (void);
+    // Initializing constructor.
+    BenchmarkCharacteristics_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
+    // Destructor.
+    virtual ~BenchmarkCharacteristics_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    BenchmarkType src_BenchmarkType (void) const;
+    MetricsBase dst_MetricsBase (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BenchmarkCharacteristics.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_BENCHMARKCHARACTERISTICS

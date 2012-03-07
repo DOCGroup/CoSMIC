@@ -14,21 +14,26 @@
 #ifndef _PICML_TOPLEVELPACKAGEDESCRIPTION_TOPLEVELPACKAGECONTAINER_H_
 #define _PICML_TOPLEVELPACKAGEDESCRIPTION_TOPLEVELPACKAGECONTAINER_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TopLevelPackageContainer_Impl;
   typedef TopLevelPackageContainer_Impl * TopLevelPackageContainer_in;
-  typedef ::GAME::Mga::Smart_Ptr <TopLevelPackageContainer_Impl> TopLevelPackageContainer;
+  typedef ::GAME::Mga::Smart_Ptr < TopLevelPackageContainer_Impl > TopLevelPackageContainer;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class TopLevelPackageContainer_Impl
+   *
+   * Implementation for the TopLevelPackageContainer model element.
+   */
   class PICML_Export TopLevelPackageContainer_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    TopLevelPackageContainer_Impl (void);
-
-    /// Initializing constructor
-    TopLevelPackageContainer_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~TopLevelPackageContainer_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,31 +54,36 @@ namespace PICML
     static TopLevelPackageContainer _create (const TopLevelPackages_in parent);
     ///@}
 
+    // Default constructor.
+    TopLevelPackageContainer_Impl (void);
+
+    // Initializing constructor.
+    TopLevelPackageContainer_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~TopLevelPackageContainer_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Containment Methods
      */
     ///@{
+    PackageConfigurationReference get_PackageConfigurationReference (void) const;
 
-    package get_package (void) const;
 
+    bool has_TopLevelPackage (void) const;
     TopLevelPackage get_TopLevelPackage (void) const;
 
-    PackageConfigurationReference get_PackageConfigurationReference (void) const;
-    ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    TopLevelPackages parent_TopLevelPackages (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    bool has_package (void) const;
+    package get_package (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TopLevelPackageContainer.inl"
 #endif
+
+#endif  // !defined _PICML_TOPLEVELPACKAGEDESCRIPTION_TOPLEVELPACKAGECONTAINER

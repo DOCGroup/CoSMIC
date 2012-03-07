@@ -1,59 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentFactoryImplementationContainer.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentFactoryImplementationContainer.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentFactoryImplementationContainer_Impl::metaname = "ComponentFactoryImplementationContainer";
+  const std::string ComponentFactoryImplementationContainer_Impl::metaname ("ComponentFactoryImplementationContainer");
 
   //
-  // ComponentFactoryImplementationContainer_Impl
+  // _create (const ComponentFactoryImplementations_in)
   //
-  ComponentFactoryImplementationContainer_Impl::ComponentFactoryImplementationContainer_Impl (void)
+  ComponentFactoryImplementationContainer ComponentFactoryImplementationContainer_Impl::_create (const ComponentFactoryImplementations_in parent)
   {
+    return ::GAME::Mga::create_root_object < ComponentFactoryImplementationContainer > (parent, ComponentFactoryImplementationContainer_Impl::metaname);
   }
 
   //
-  // ComponentFactoryImplementationContainer_Impl
+  // _create (const ImplementationContainer_in)
   //
-  ComponentFactoryImplementationContainer_Impl::ComponentFactoryImplementationContainer_Impl (IMgaModel * ptr)
+  ComponentFactoryImplementationContainer ComponentFactoryImplementationContainer_Impl::_create (const ImplementationContainer_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentFactoryImplementationContainer_Impl
-  //
-  ComponentFactoryImplementationContainer_Impl::~ComponentFactoryImplementationContainer_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentFactoryImplementationContainer > (parent, ComponentFactoryImplementationContainer_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentFactoryImplementationContainer_Impl::accept (Visitor * v)
+  void ComponentFactoryImplementationContainer_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentFactoryImplementationContainer (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentFactoryImplementationContainer (this);
+    }
 
-  //
-  // _create
-  //
-  ComponentFactoryImplementationContainer ComponentFactoryImplementationContainer_Impl::_create (const ComponentFactoryImplementations_in parent)
-  {
-    return ::GAME::Mga::create_root_object <ComponentFactoryImplementationContainer> (parent, ComponentFactoryImplementationContainer_Impl::metaname);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -65,11 +67,11 @@ namespace PICML
   }
 
   //
-  // parent_ComponentFactoryImplementations
+  // get_ComponentFactoryInstances
   //
-  ComponentFactoryImplementations ComponentFactoryImplementationContainer_Impl::parent_ComponentFactoryImplementations (void) const
+  ::GAME::Mga::Iterator <ComponentFactoryInstance> ComponentFactoryImplementationContainer_Impl::get_ComponentFactoryInstances (void) const
   {
-    return ::GAME::Mga::get_parent <ComponentFactoryImplementations> (this->object_.p);
+    return this->children <ComponentFactoryInstance> ();
   }
 }
 

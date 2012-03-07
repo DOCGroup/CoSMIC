@@ -14,21 +14,26 @@
 #ifndef _PICML_INHERITABLETYPES_SETEXCEPTION_H_
 #define _PICML_INHERITABLETYPES_SETEXCEPTION_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class SetException_Impl;
   typedef SetException_Impl * SetException_in;
-  typedef ::GAME::Mga::Smart_Ptr <SetException_Impl> SetException;
+  typedef ::GAME::Mga::Smart_Ptr < SetException_Impl > SetException;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class SetException_Impl
+   *
+   * Implementation for the SetException model element.
+   */
   class PICML_Export SetException_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    SetException_Impl (void);
-
-    /// Initializing constructor
-    SetException_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~SetException_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static SetException _create (const Attribute_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Attribute parent_Attribute (void) const;
-    ///@}
+    // Default constructor.
+    SetException_Impl (void);
+
+    // Initializing constructor.
+    SetException_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~SetException_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ExceptionType_is_nil (void) const;
+    ExceptionType get_ExceptionType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "SetException.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_SETEXCEPTION

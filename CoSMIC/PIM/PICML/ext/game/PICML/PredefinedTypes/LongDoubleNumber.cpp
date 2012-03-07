@@ -1,49 +1,42 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LongDoubleNumber.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "LongDoubleNumber.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string LongDoubleNumber_Impl::metaname = "LongDoubleNumber";
-
-  //
-  // LongDoubleNumber_Impl
-  //
-  LongDoubleNumber_Impl::LongDoubleNumber_Impl (void)
-  {
-  }
-
-  //
-  // LongDoubleNumber_Impl
-  //
-  LongDoubleNumber_Impl::LongDoubleNumber_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~LongDoubleNumber_Impl
-  //
-  LongDoubleNumber_Impl::~LongDoubleNumber_Impl (void)
-  {
-  }
+  const std::string LongDoubleNumber_Impl::metaname ("LongDoubleNumber");
 
   //
   // accept
   //
-  void LongDoubleNumber_Impl::accept (Visitor * v)
+  void LongDoubleNumber_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_LongDoubleNumber (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_LongDoubleNumber (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

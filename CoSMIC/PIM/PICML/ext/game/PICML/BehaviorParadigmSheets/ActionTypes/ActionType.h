@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_ACTIONTYPE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_ACTIONTYPE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ActionType_Impl;
   typedef ActionType_Impl * ActionType_in;
-  typedef ::GAME::Mga::Smart_Ptr <ActionType_Impl> ActionType;
+  typedef ::GAME::Mga::Smart_Ptr < ActionType_Impl > ActionType;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ActionType_Impl
+   *
+   * Implementation for the ActionType model element.
+   */
   class PICML_Export ActionType_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ActionType_Impl (void);
-
-    /// Initializing constructor
-    ActionType_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ActionType_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static ActionType _create (const Action_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Action parent_Action (void) const;
-    ///@}
+    // Default constructor.
+    ActionType_Impl (void);
+
+    // Initializing constructor.
+    ActionType_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ActionType_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool Operation_is_nil (void) const;
+    Operation get_Operation (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ActionType.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_ACTIONTYPE

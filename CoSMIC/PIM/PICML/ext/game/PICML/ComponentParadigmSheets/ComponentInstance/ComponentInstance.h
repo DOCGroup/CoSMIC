@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_COMPONENTINSTANCE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_COMPONENTINSTANCE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentInstance_Impl;
   typedef ComponentInstance_Impl * ComponentInstance_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentInstance_Impl> ComponentInstance;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentInstance_Impl > ComponentInstance;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentInstance_Impl
+   *
+   * Implementation for the ComponentInstance model element.
+   */
   class PICML_Export ComponentInstance_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,46 +47,55 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentInstance_Impl (void);
-
-    /// Initializing constructor
-    ComponentInstance_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~ComponentInstance_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ComponentInstance _create (const ComponentAssembly_in parent);
+    ///@}
+
+    // Default constructor.
+    ComponentInstance_Impl (void);
+
+    // Initializing constructor.
+    ComponentInstance_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~ComponentInstance_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of UUID
+    void UUID (const std::string & val);
+
+    /// Get the value of UUID
+    std::string UUID (void) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_PortInstances (std::vector <PortInstance> & items) const;
-
     ComponentInstanceType get_ComponentInstanceType (void) const;
+
     size_t get_SupportsInstances (std::vector <SupportsInstance> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <SupportsInstance> get_SupportsInstances (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    size_t get_PortInstances (std::vector <PortInstance> & items) const;
+    ::GAME::Mga::Iterator <PortInstance> get_PortInstances (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentInstance.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_COMPONENTINSTANCE

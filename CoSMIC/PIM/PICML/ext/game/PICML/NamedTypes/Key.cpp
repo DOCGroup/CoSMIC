@@ -1,75 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Key.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Key.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/KeyMember.h"
 #include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/KeyMember.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Key_Impl::metaname = "Key";
+  const std::string Key_Impl::metaname ("Key");
 
   //
-  // Key_Impl
+  // _create (const Aggregate_in)
   //
-  Key_Impl::Key_Impl (void)
+  Key Key_Impl::_create (const Aggregate_in parent)
   {
-  }
-
-  //
-  // Key_Impl
-  //
-  Key_Impl::Key_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Key_Impl
-  //
-  Key_Impl::~Key_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Key > (parent, Key_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Key_Impl::accept (Visitor * v)
+  void Key_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Key (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Key (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_KeyMember
   //
-  Key Key_Impl::_create (const Aggregate_in parent)
+  size_t Key_Impl::src_KeyMember (std::vector <KeyMember> & items) const
   {
-    return ::GAME::Mga::create_object <Key> (parent, Key_Impl::metaname);
-  }
-
-  //
-  // in_KeyMember_connections
-  //
-  size_t Key_Impl::in_KeyMember_connections (std::vector <KeyMember> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_Aggregate
-  //
-  Aggregate Key_Impl::parent_Aggregate (void) const
-  {
-    return ::GAME::Mga::get_parent <Aggregate> (this->object_.p);
+    return this->in_connections <KeyMember> (items);
   }
 }
 

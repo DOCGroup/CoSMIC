@@ -14,21 +14,26 @@
 #ifndef _PICML_INTERFACEDEFINITION_TEMPLATEPARAMETERVALUE_H_
 #define _PICML_INTERFACEDEFINITION_TEMPLATEPARAMETERVALUE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TemplateParameterValue_Impl;
   typedef TemplateParameterValue_Impl * TemplateParameterValue_in;
-  typedef ::GAME::Mga::Smart_Ptr <TemplateParameterValue_Impl> TemplateParameterValue;
+  typedef ::GAME::Mga::Smart_Ptr < TemplateParameterValue_Impl > TemplateParameterValue;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class TemplateParameterValue_Impl
+   *
+   * Implementation for the TemplateParameterValue model element.
+   */
   class PICML_Export TemplateParameterValue_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    TemplateParameterValue_Impl (void);
-
-    /// Initializing constructor
-    TemplateParameterValue_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~TemplateParameterValue_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,20 +54,30 @@ namespace PICML
     static TemplateParameterValue _create (const TemplatePackageInstance_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    TemplatePackageInstance parent_TemplatePackageInstance (void) const;
-    ///@}
+    // Default constructor.
+    TemplateParameterValue_Impl (void);
+
+    // Initializing constructor.
+    TemplateParameterValue_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~TemplateParameterValue_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    TemplateParameterValueType refers_to_TemplateParameterValueType (void) const;
+    bool TemplateParameterValueType_is_nil (void) const;
+    TemplateParameterValueType get_TemplateParameterValueType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TemplateParameterValue.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_TEMPLATEPARAMETERVALUE

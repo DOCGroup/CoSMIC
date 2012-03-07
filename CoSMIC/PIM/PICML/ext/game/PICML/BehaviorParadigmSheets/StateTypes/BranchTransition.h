@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_BRANCHTRANSITION_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_BRANCHTRANSITION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BranchTransition_Impl;
   typedef BranchTransition_Impl * BranchTransition_in;
-  typedef ::GAME::Mga::Smart_Ptr <BranchTransition_Impl> BranchTransition;
+  typedef ::GAME::Mga::Smart_Ptr < BranchTransition_Impl > BranchTransition;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class BranchTransition_Impl
+   *
+   * Implementation for the BranchTransition model element.
+   */
   class PICML_Export BranchTransition_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,29 +47,24 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    BranchTransition_Impl (void);
-
-    /// Initializing constructor
-    BranchTransition_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~BranchTransition_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static BranchTransition _create (const BehaviorModel_in parent);
     ///@}
 
-    /// Get the src BranchState connection point.
-    BranchState src_BranchState (void);
+    // Default constructor.
+    BranchTransition_Impl (void);
 
-    /// Get the dst ActionBase connection point.
-    ActionBase dst_ActionBase (void);
+    // Initializing constructor.
+    BranchTransition_Impl (IMgaConnection * ptr);
+
+    // Destructor.
+    virtual ~BranchTransition_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -77,19 +77,13 @@ namespace PICML
     /// Get the value of Condition
     std::string Condition (void) const;
     ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    BranchState src_BranchState (void) const;
+    ActionBase dst_ActionBase (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BranchTransition.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_BRANCHTRANSITION

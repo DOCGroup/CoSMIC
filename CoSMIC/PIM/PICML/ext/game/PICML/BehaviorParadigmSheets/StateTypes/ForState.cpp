@@ -1,86 +1,42 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ForState.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ForState.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ForState_Impl::metaname = "ForState";
-
-  //
-  // ForState_Impl
-  //
-  ForState_Impl::ForState_Impl (void)
-  {
-  }
-
-  //
-  // ForState_Impl
-  //
-  ForState_Impl::ForState_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ForState_Impl
-  //
-  ForState_Impl::~ForState_Impl (void)
-  {
-  }
+  const std::string ForState_Impl::metaname ("ForState");
 
   //
   // accept
   //
-  void ForState_Impl::accept (Visitor * v)
+  void ForState_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ForState (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ForState (this);
+    }
 
-  //
-  // IncrementExpr
-  //
-  void ForState_Impl::IncrementExpr (const std::string & val)
-  {
-    static const std::string attr_IncrementExpr ("IncrementExpr");
-    this->attribute (attr_IncrementExpr)->string_value (val);
-  }
-
-  //
-  // IncrementExpr
-  //
-  std::string ForState_Impl::IncrementExpr (void) const
-  {
-    static const std::string attr_IncrementExpr ("IncrementExpr");
-    return this->attribute (attr_IncrementExpr)->string_value ();
-  }
-
-  //
-  // InitialCondition
-  //
-  void ForState_Impl::InitialCondition (const std::string & val)
-  {
-    static const std::string attr_InitialCondition ("InitialCondition");
-    this->attribute (attr_InitialCondition)->string_value (val);
-  }
-
-  //
-  // InitialCondition
-  //
-  std::string ForState_Impl::InitialCondition (void) const
-  {
-    static const std::string attr_InitialCondition ("InitialCondition");
-    return this->attribute (attr_InitialCondition)->string_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

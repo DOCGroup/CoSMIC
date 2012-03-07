@@ -14,21 +14,26 @@
 #ifndef _PICML_IMPLEMENTATIONARTIFACT_IMPLEMENTATIONARTIFACTREFERENCE_H_
 #define _PICML_IMPLEMENTATIONARTIFACT_IMPLEMENTATIONARTIFACTREFERENCE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ImplementationArtifactReference_Impl;
   typedef ImplementationArtifactReference_Impl * ImplementationArtifactReference_in;
-  typedef ::GAME::Mga::Smart_Ptr <ImplementationArtifactReference_Impl> ImplementationArtifactReference;
+  typedef ::GAME::Mga::Smart_Ptr < ImplementationArtifactReference_Impl > ImplementationArtifactReference;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ImplementationArtifactReference_Impl
+   *
+   * Implementation for the ImplementationArtifactReference model element.
+   */
   class PICML_Export ImplementationArtifactReference_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,40 +47,53 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ImplementationArtifactReference_Impl (void);
-
-    /// Initializing constructor
-    ImplementationArtifactReference_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ImplementationArtifactReference_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ImplementationArtifactReference _create (const StubProject_in parent);
+    static ImplementationArtifactReference _create (const ServantProject_in parent);
+    static ImplementationArtifactReference _create (const ExecutorProject_in parent);
     static ImplementationArtifactReference _create (const ArtifactContainer_in parent);
-    ///@}
-    size_t in_ArtifactDependsOn_connections (std::vector <ArtifactDependsOn> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ArtifactContainer parent_ArtifactContainer (void) const;
+    static ImplementationArtifactReference _create (const ImplementationContainer_in parent);
     ///@}
 
+    // Default constructor.
+    ImplementationArtifactReference_Impl (void);
+
+    // Initializing constructor.
+    ImplementationArtifactReference_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ImplementationArtifactReference_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    ImplementationArtifact refers_to_ImplementationArtifact (void) const;
+
+    /// Get the dst ArtifactDependsOn connection.
+    size_t dst_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
+
+    /// Get the dst MonolithprimaryArtifact connection.
+    size_t dst_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+    ///@}
+
+    /**
+     * @name Refers To Methods
+     */
+    ///@{
+    bool ImplementationArtifact_is_nil (void) const;
+    ImplementationArtifact get_ImplementationArtifact (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ImplementationArtifactReference.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONARTIFACT_IMPLEMENTATIONARTIFACTREFERENCE

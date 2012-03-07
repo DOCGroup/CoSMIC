@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_TASK_H_
 #define _PICML_COMPONENTBENCHMARK_TASK_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Task_Impl;
   typedef Task_Impl * Task_in;
-  typedef ::GAME::Mga::Smart_Ptr <Task_Impl> Task;
+  typedef ::GAME::Mga::Smart_Ptr < Task_Impl > Task;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Task_Impl
+   *
+   * Implementation for the Task model element.
+   */
   class PICML_Export Task_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,39 +47,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Task_Impl (void);
-
-    /// Initializing constructor
-    Task_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Task_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Task _create (const BenchmarkAnalysis_in parent);
     ///@}
-    size_t in_WorkLoadOperationConnection_connections (std::vector <WorkLoadOperationConnection> & conns) const;
+
+    // Default constructor.
+    Task_Impl (void);
+
+    // Initializing constructor.
+    Task_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Task_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst WorkLoadOperationConnection connection.
+    size_t dst_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Task.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_TASK

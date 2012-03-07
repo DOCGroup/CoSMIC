@@ -14,22 +14,27 @@
 #ifndef _PICML_IMPLEMENTATIONCOMMON_MONOLITHICIMPLEMENTATIONBASE_H_
 #define _PICML_IMPLEMENTATIONCOMMON_MONOLITHICIMPLEMENTATIONBASE_H_
 
-#include "game/mga/FCO.h"
-#include "PICML/ImplementationCommon/Implemenation.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ImplementationCommon/Implemenation.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MonolithicImplementationBase_Impl;
   typedef MonolithicImplementationBase_Impl * MonolithicImplementationBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <MonolithicImplementationBase_Impl> MonolithicImplementationBase;
+  typedef ::GAME::Mga::Smart_Ptr < MonolithicImplementationBase_Impl > MonolithicImplementationBase;
 
+  /**
+   * @class MonolithicImplementationBase_Impl
+   *
+   * Implementation for the MonolithicImplementationBase model element.
+   */
   class PICML_Export MonolithicImplementationBase_Impl :
-    public virtual Implemenation_Impl,
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual Implemenation_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,30 +46,34 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     MonolithicImplementationBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     MonolithicImplementationBase_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~MonolithicImplementationBase_Impl (void) = 0;
-    size_t in_MonolithDeployRequirement_connections (std::vector <MonolithDeployRequirement> & conns) const;
-    size_t in_MonolithExecParameter_connections (std::vector <MonolithExecParameter> & conns) const;
-    size_t in_MonolithprimaryArtifact_connections (std::vector <MonolithprimaryArtifact> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src MonolithprimaryArtifact connection.
+    size_t src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+
+    /// Get the src MonolithDeployRequirement connection.
+    size_t src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
+
+    /// Get the src MonolithExecParameter connection.
+    size_t src_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MonolithicImplementationBase.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONCOMMON_MONOLITHICIMPLEMENTATIONBASE

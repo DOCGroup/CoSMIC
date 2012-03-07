@@ -1,89 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "BranchTransition.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "BranchTransition.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string BranchTransition_Impl::metaname = "BranchTransition";
+  const std::string BranchTransition_Impl::metaname ("BranchTransition");
 
   //
-  // BranchTransition_Impl
+  // _create (const BehaviorModel_in)
   //
-  BranchTransition_Impl::BranchTransition_Impl (void)
+  BranchTransition BranchTransition_Impl::_create (const BehaviorModel_in parent)
   {
-  }
-
-  //
-  // BranchTransition_Impl
-  //
-  BranchTransition_Impl::BranchTransition_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~BranchTransition_Impl
-  //
-  BranchTransition_Impl::~BranchTransition_Impl (void)
-  {
+    return ::GAME::Mga::create_object < BranchTransition > (parent, BranchTransition_Impl::metaname);
   }
 
   //
   // accept
   //
-  void BranchTransition_Impl::accept (Visitor * v)
+  void BranchTransition_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_BranchTransition (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_BranchTransition (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_BranchState
+  // BranchState
   //
-  BranchState BranchTransition_Impl::src_BranchState (void)
+  BranchState BranchTransition_Impl::src_BranchState (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return BranchState::_narrow (target);
+    return BranchState::_narrow (this->src ());
   }
 
   //
-  // dst_ActionBase
+  // ActionBase
   //
-  ActionBase BranchTransition_Impl::dst_ActionBase (void)
+  ActionBase BranchTransition_Impl::dst_ActionBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ActionBase::_narrow (target);
-  }
-
-  //
-  // Condition
-  //
-  void BranchTransition_Impl::Condition (const std::string & val)
-  {
-    static const std::string attr_Condition ("Condition");
-    this->attribute (attr_Condition)->string_value (val);
-  }
-
-  //
-  // Condition
-  //
-  std::string BranchTransition_Impl::Condition (void) const
-  {
-    static const std::string attr_Condition ("Condition");
-    return this->attribute (attr_Condition)->string_value ();
+    return ActionBase::_narrow (this->dst ());
   }
 }
 

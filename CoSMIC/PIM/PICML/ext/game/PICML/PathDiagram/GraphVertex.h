@@ -14,18 +14,23 @@
 #ifndef _PICML_PATHDIAGRAM_GRAPHVERTEX_H_
 #define _PICML_PATHDIAGRAM_GRAPHVERTEX_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class GraphVertex_Impl;
   typedef GraphVertex_Impl * GraphVertex_in;
-  typedef ::GAME::Mga::Smart_Ptr <GraphVertex_Impl> GraphVertex;
+  typedef ::GAME::Mga::Smart_Ptr < GraphVertex_Impl > GraphVertex;
 
+  /**
+   * @class GraphVertex_Impl
+   *
+   * Implementation for the GraphVertex model element.
+   */
   class PICML_Export GraphVertex_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,30 +44,37 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     GraphVertex_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     GraphVertex_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~GraphVertex_Impl (void) = 0;
-    size_t in_DstEdge_connections (std::vector <DstEdge> & conns) const;
-    size_t in_SrcEdge_connections (std::vector <SrcEdge> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    Path parent_Path (void) const;
+
+    /// Get the src DstEdge connection.
+    size_t src_DstEdge (std::vector <DstEdge> & items) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst SrcEdge connection.
+    size_t dst_SrcEdge (std::vector <SrcEdge> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "GraphVertex.inl"
 #endif
+
+#endif  // !defined _PICML_PATHDIAGRAM_GRAPHVERTEX

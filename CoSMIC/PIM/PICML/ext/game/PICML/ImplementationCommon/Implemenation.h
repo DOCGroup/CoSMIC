@@ -14,18 +14,23 @@
 #ifndef _PICML_IMPLEMENTATIONCOMMON_IMPLEMENATION_H_
 #define _PICML_IMPLEMENTATIONCOMMON_IMPLEMENATION_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Implemenation_Impl;
   typedef Implemenation_Impl * Implemenation_in;
-  typedef ::GAME::Mga::Smart_Ptr <Implemenation_Impl> Implemenation;
+  typedef ::GAME::Mga::Smart_Ptr < Implemenation_Impl > Implemenation;
 
+  /**
+   * @class Implemenation_Impl
+   *
+   * Implementation for the Implemenation model element.
+   */
   class PICML_Export Implemenation_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,29 +44,49 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     Implemenation_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     Implemenation_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~Implemenation_Impl (void) = 0;
-    size_t in_InfoProperty_connections (std::vector <InfoProperty> & conns) const;
-    size_t in_ConfigProperty_connections (std::vector <ConfigProperty> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Attribute Methods
      */
     ///@{
+
+    /// Set the value of UUID
+    void UUID (const std::string & val);
+
+    /// Get the value of UUID
+    std::string UUID (void) const;
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src ConfigProperty connection.
+    size_t src_ConfigProperty (std::vector <ConfigProperty> & items) const;
+
+    /// Get the src InfoProperty connection.
+    size_t src_InfoProperty (std::vector <InfoProperty> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Implemenation.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONCOMMON_IMPLEMENATION

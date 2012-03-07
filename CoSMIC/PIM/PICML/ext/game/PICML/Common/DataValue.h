@@ -14,25 +14,30 @@
 #ifndef _PICML_COMMON_DATAVALUE_H_
 #define _PICML_COMMON_DATAVALUE_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/Common/DataValueBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/Common/DataValueBase.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class DataValue_Impl;
   typedef DataValue_Impl * DataValue_in;
-  typedef ::GAME::Mga::Smart_Ptr <DataValue_Impl> DataValue;
+  typedef ::GAME::Mga::Smart_Ptr < DataValue_Impl > DataValue;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class DataValue_Impl
+   *
+   * Implementation for the DataValue model element.
+   */
   class PICML_Export DataValue_Impl :
-    public virtual DataValueBase_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual DataValueBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,23 +49,25 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    DataValue_Impl (void);
-
-    /// Initializing constructor
-    DataValue_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~DataValue_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static DataValue _create (const DataValueContainer_in parent);
+    static DataValue _create (const ComplexProperty_in parent);
     ///@}
+
+    // Default constructor.
+    DataValue_Impl (void);
+
+    // Initializing constructor.
+    DataValue_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~DataValue_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -75,18 +82,17 @@ namespace PICML
     ///@}
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    SimpleType refers_to_SimpleType (void) const;
+    bool SimpleType_is_nil (void) const;
+    SimpleType get_SimpleType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "DataValue.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_DATAVALUE

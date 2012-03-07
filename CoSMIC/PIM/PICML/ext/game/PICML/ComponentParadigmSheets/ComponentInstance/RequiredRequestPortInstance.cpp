@@ -1,50 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RequiredRequestPortInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "RequiredRequestPortInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string RequiredRequestPortInstance_Impl::metaname = "RequiredRequestPortInstance";
+  const std::string RequiredRequestPortInstance_Impl::metaname ("RequiredRequestPortInstance");
 
   //
-  // RequiredRequestPortInstance_Impl
+  // _create (const ComponentInstance_in)
   //
-  RequiredRequestPortInstance_Impl::RequiredRequestPortInstance_Impl (void)
+  RequiredRequestPortInstance RequiredRequestPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-  }
-
-  //
-  // RequiredRequestPortInstance_Impl
-  //
-  RequiredRequestPortInstance_Impl::RequiredRequestPortInstance_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~RequiredRequestPortInstance_Impl
-  //
-  RequiredRequestPortInstance_Impl::~RequiredRequestPortInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < RequiredRequestPortInstance > (parent, RequiredRequestPortInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void RequiredRequestPortInstance_Impl::accept (Visitor * v)
+  void RequiredRequestPortInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_RequiredRequestPortInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_RequiredRequestPortInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
+  }
+
+  //
+  // RequiredRequestPort_is_nil
+  //
+  bool RequiredRequestPortInstance_Impl::RequiredRequestPort_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_RequiredRequestPort
+  //
+  RequiredRequestPort RequiredRequestPortInstance_Impl::get_RequiredRequestPort (void) const
+  {
+    return RequiredRequestPort::_narrow (this->refers_to ());
   }
 }
 

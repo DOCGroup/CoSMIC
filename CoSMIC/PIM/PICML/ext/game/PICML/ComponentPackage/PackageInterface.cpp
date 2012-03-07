@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageInterface.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageInterface.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageInterface_Impl::metaname = "PackageInterface";
+  const std::string PackageInterface_Impl::metaname ("PackageInterface");
 
   //
-  // PackageInterface_Impl
+  // _create (const PackageContainer_in)
   //
-  PackageInterface_Impl::PackageInterface_Impl (void)
+  PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent)
   {
-  }
-
-  //
-  // PackageInterface_Impl
-  //
-  PackageInterface_Impl::PackageInterface_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageInterface_Impl
-  //
-  PackageInterface_Impl::~PackageInterface_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageInterface > (parent, PackageInterface_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageInterface_Impl::accept (Visitor * v)
+  void PackageInterface_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageInterface (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageInterface (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentPackage
   //
-  PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent)
+  ComponentPackage PackageInterface_Impl::src_ComponentPackage (void) const
   {
-    return ::GAME::Mga::create_object <PackageInterface> (parent, PackageInterface_Impl::metaname);
+    return ComponentPackage::_narrow (this->src ());
   }
 
   //
-  // src_ComponentPackage
+  // ComponentRef
   //
-  ComponentPackage PackageInterface_Impl::src_ComponentPackage (void)
+  ComponentRef PackageInterface_Impl::dst_ComponentRef (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentPackage::_narrow (target);
-  }
-
-  //
-  // dst_ComponentRef
-  //
-  ComponentRef PackageInterface_Impl::dst_ComponentRef (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ComponentRef::_narrow (target);
-  }
-
-  //
-  // parent_PackageContainer
-  //
-  PackageContainer PackageInterface_Impl::parent_PackageContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageContainer> (this->object_.p);
+    return ComponentRef::_narrow (this->dst ());
   }
 }
 

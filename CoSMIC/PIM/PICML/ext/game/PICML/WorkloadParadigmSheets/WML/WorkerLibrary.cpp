@@ -1,78 +1,52 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "WorkerLibrary.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "WorkerLibrary.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerLibraries.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string WorkerLibrary_Impl::metaname = "WorkerLibrary";
+  const std::string WorkerLibrary_Impl::metaname ("WorkerLibrary");
 
   //
-  // WorkerLibrary_Impl
+  // _create (const WorkerLibraries_in)
   //
-  WorkerLibrary_Impl::WorkerLibrary_Impl (void)
+  WorkerLibrary WorkerLibrary_Impl::_create (const WorkerLibraries_in parent)
   {
-  }
-
-  //
-  // WorkerLibrary_Impl
-  //
-  WorkerLibrary_Impl::WorkerLibrary_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~WorkerLibrary_Impl
-  //
-  WorkerLibrary_Impl::~WorkerLibrary_Impl (void)
-  {
+    return ::GAME::Mga::create_root_object < WorkerLibrary > (parent, WorkerLibrary_Impl::metaname);
   }
 
   //
   // accept
   //
-  void WorkerLibrary_Impl::accept (Visitor * v)
+  void WorkerLibrary_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_WorkerLibrary (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_WorkerLibrary (this);
+    }
 
-  //
-  // _create
-  //
-  WorkerLibrary WorkerLibrary_Impl::_create (const WorkerLibraries_in parent)
-  {
-    return ::GAME::Mga::create_root_object <WorkerLibrary> (parent, WorkerLibrary_Impl::metaname);
-  }
-
-  //
-  // Location
-  //
-  void WorkerLibrary_Impl::Location (const std::string & val)
-  {
-    static const std::string attr_Location ("Location");
-    this->attribute (attr_Location)->string_value (val);
-  }
-
-  //
-  // Location
-  //
-  std::string WorkerLibrary_Impl::Location (void) const
-  {
-    static const std::string attr_Location ("Location");
-    return this->attribute (attr_Location)->string_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -84,11 +58,11 @@ namespace PICML
   }
 
   //
-  // parent_WorkerLibraries
+  // get_WorkerFiles
   //
-  WorkerLibraries WorkerLibrary_Impl::parent_WorkerLibraries (void) const
+  ::GAME::Mga::Iterator <WorkerFile> WorkerLibrary_Impl::get_WorkerFiles (void) const
   {
-    return ::GAME::Mga::get_parent <WorkerLibraries> (this->object_.p);
+    return this->children <WorkerFile> ();
   }
 }
 

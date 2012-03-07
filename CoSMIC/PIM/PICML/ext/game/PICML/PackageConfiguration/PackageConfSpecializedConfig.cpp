@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfSpecializedConfig.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfSpecializedConfig.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
-#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfSpecializedConfig_Impl::metaname = "PackageConfSpecializedConfig";
+  const std::string PackageConfSpecializedConfig_Impl::metaname ("PackageConfSpecializedConfig");
 
   //
-  // PackageConfSpecializedConfig_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  PackageConfSpecializedConfig_Impl::PackageConfSpecializedConfig_Impl (void)
+  PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfSpecializedConfig_Impl
-  //
-  PackageConfSpecializedConfig_Impl::PackageConfSpecializedConfig_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfSpecializedConfig_Impl
-  //
-  PackageConfSpecializedConfig_Impl::~PackageConfSpecializedConfig_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfSpecializedConfig > (parent, PackageConfSpecializedConfig_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfSpecializedConfig_Impl::accept (Visitor * v)
+  void PackageConfSpecializedConfig_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfSpecializedConfig (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfSpecializedConfig (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // PackageConfiguration
   //
-  PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent)
+  PackageConfiguration PackageConfSpecializedConfig_Impl::src_PackageConfiguration (void) const
   {
-    return ::GAME::Mga::create_object <PackageConfSpecializedConfig> (parent, PackageConfSpecializedConfig_Impl::metaname);
+    return PackageConfiguration::_narrow (this->src ());
   }
 
   //
-  // src_PackageConfiguration
+  // PackageConfigurationReference
   //
-  PackageConfiguration PackageConfSpecializedConfig_Impl::src_PackageConfiguration (void)
+  PackageConfigurationReference PackageConfSpecializedConfig_Impl::dst_PackageConfigurationReference (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return PackageConfiguration::_narrow (target);
-  }
-
-  //
-  // dst_PackageConfigurationReference
-  //
-  PackageConfigurationReference PackageConfSpecializedConfig_Impl::dst_PackageConfigurationReference (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return PackageConfigurationReference::_narrow (target);
-  }
-
-  //
-  // parent_PackageConfigurationContainer
-  //
-  PackageConfigurationContainer PackageConfSpecializedConfig_Impl::parent_PackageConfigurationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageConfigurationContainer> (this->object_.p);
+    return PackageConfigurationReference::_narrow (this->dst ());
   }
 }
 

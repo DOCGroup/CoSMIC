@@ -14,25 +14,30 @@
 #ifndef _PICML_PREDEFINEDTYPES_GENERICVALUE_H_
 #define _PICML_PREDEFINEDTYPES_GENERICVALUE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/PredefinedType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/PredefinedType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class GenericValue_Impl;
   typedef GenericValue_Impl * GenericValue_in;
-  typedef ::GAME::Mga::Smart_Ptr <GenericValue_Impl> GenericValue;
+  typedef ::GAME::Mga::Smart_Ptr < GenericValue_Impl > GenericValue;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class GenericValue_Impl
+   *
+   * Implementation for the GenericValue model element.
+   */
   class PICML_Export GenericValue_Impl :
-    public virtual PredefinedType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual PredefinedType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,29 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    GenericValue_Impl (void);
-
-    /// Initializing constructor
-    GenericValue_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~GenericValue_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static GenericValue _create (const PredefinedTypes_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    GenericValue_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    GenericValue_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~GenericValue_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "GenericValue.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_GENERICVALUE

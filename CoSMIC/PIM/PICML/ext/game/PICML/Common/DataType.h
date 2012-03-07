@@ -14,21 +14,26 @@
 #ifndef _PICML_COMMON_DATATYPE_H_
 #define _PICML_COMMON_DATATYPE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class DataType_Impl;
   typedef DataType_Impl * DataType_in;
-  typedef ::GAME::Mga::Smart_Ptr <DataType_Impl> DataType;
+  typedef ::GAME::Mga::Smart_Ptr < DataType_Impl > DataType;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class DataType_Impl
+   *
+   * Implementation for the DataType model element.
+   */
   class PICML_Export DataType_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,38 +47,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    DataType_Impl (void);
-
-    /// Initializing constructor
-    DataType_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~DataType_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static DataType _create (const ComponentPropertyDescription_in parent);
     static DataType _create (const SatisfierProperty_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    SatisfierProperty parent_SatisfierProperty (void) const;
-    ///@}
+    // Default constructor.
+    DataType_Impl (void);
+
+    // Initializing constructor.
+    DataType_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~DataType_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool MemberType_is_nil (void) const;
+    MemberType get_MemberType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "DataType.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_DATATYPE

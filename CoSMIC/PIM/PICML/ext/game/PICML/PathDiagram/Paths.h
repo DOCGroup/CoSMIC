@@ -14,21 +14,26 @@
 #ifndef _PICML_PATHDIAGRAM_PATHS_H_
 #define _PICML_PATHDIAGRAM_PATHS_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Paths_Impl;
   typedef Paths_Impl * Paths_in;
-  typedef ::GAME::Mga::Smart_Ptr <Paths_Impl> Paths;
+  typedef ::GAME::Mga::Smart_Ptr < Paths_Impl > Paths;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Paths_Impl
+   *
+   * Implementation for the Paths model element.
+   */
   class PICML_Export Paths_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Paths_Impl (void);
-
-    /// Initializing constructor
-    Paths_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Paths_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,28 +54,37 @@ namespace PICML
     static Paths _create (const PathDiagrams_in parent);
     ///@}
 
+    // Default constructor.
+    Paths_Impl (void);
+
+    // Initializing constructor.
+    Paths_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Paths_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Containment Methods
      */
     ///@{
     size_t get_Propertys (std::vector <Property> & items) const;
+    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+
     size_t get_Paths (std::vector <Path> & items) const;
+    ::GAME::Mga::Iterator <Path> get_Paths (void) const;
+
     size_t get_PathPropertys (std::vector <PathProperty> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <PathProperty> get_PathPropertys (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PathDiagrams parent_PathDiagrams (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Paths.inl"
 #endif
+
+#endif  // !defined _PICML_PATHDIAGRAM_PATHS

@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_SENDSTO_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_SENDSTO_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class SendsTo_Impl;
   typedef SendsTo_Impl * SendsTo_in;
-  typedef ::GAME::Mga::Smart_Ptr <SendsTo_Impl> SendsTo;
+  typedef ::GAME::Mga::Smart_Ptr < SendsTo_Impl > SendsTo;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class SendsTo_Impl
+   *
+   * Implementation for the SendsTo model element.
+   */
   class PICML_Export SendsTo_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    SendsTo_Impl (void);
-
-    /// Initializing constructor
-    SendsTo_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~SendsTo_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static SendsTo _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src OutEventPortEnd connection point.
-    OutEventPortEnd src_OutEventPortEnd (void);
+    // Default constructor.
+    SendsTo_Impl (void);
 
-    /// Get the dst InEventPortEnd connection point.
-    InEventPortEnd dst_InEventPortEnd (void);
+    // Initializing constructor.
+    SendsTo_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~SendsTo_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    OutEventPortEnd src_OutEventPortEnd (void) const;
+    InEventPortEnd dst_InEventPortEnd (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "SendsTo.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_SENDSTO

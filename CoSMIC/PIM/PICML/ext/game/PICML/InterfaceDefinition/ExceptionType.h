@@ -14,18 +14,23 @@
 #ifndef _PICML_INTERFACEDEFINITION_EXCEPTIONTYPE_H_
 #define _PICML_INTERFACEDEFINITION_EXCEPTIONTYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExceptionType_Impl;
   typedef ExceptionType_Impl * ExceptionType_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExceptionType_Impl> ExceptionType;
+  typedef ::GAME::Mga::Smart_Ptr < ExceptionType_Impl > ExceptionType;
 
+  /**
+   * @class ExceptionType_Impl
+   *
+   * Implementation for the ExceptionType model element.
+   */
   class PICML_Export ExceptionType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,27 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ExceptionType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ExceptionType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ExceptionType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExceptionType.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_EXCEPTIONTYPE

@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LabelConnection.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "LabelConnection.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/Label.h"
+#include "PICML/NamedTypes/Member.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string LabelConnection_Impl::metaname = "LabelConnection";
+  const std::string LabelConnection_Impl::metaname ("LabelConnection");
 
   //
-  // LabelConnection_Impl
+  // _create (const SwitchedAggregate_in)
   //
-  LabelConnection_Impl::LabelConnection_Impl (void)
+  LabelConnection LabelConnection_Impl::_create (const SwitchedAggregate_in parent)
   {
-  }
-
-  //
-  // LabelConnection_Impl
-  //
-  LabelConnection_Impl::LabelConnection_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~LabelConnection_Impl
-  //
-  LabelConnection_Impl::~LabelConnection_Impl (void)
-  {
+    return ::GAME::Mga::create_object < LabelConnection > (parent, LabelConnection_Impl::metaname);
   }
 
   //
   // accept
   //
-  void LabelConnection_Impl::accept (Visitor * v)
+  void LabelConnection_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_LabelConnection (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_LabelConnection (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Member
   //
-  LabelConnection LabelConnection_Impl::_create (const SwitchedAggregate_in parent)
+  Member LabelConnection_Impl::src_Member (void) const
   {
-    return ::GAME::Mga::create_object <LabelConnection> (parent, LabelConnection_Impl::metaname);
+    return Member::_narrow (this->src ());
   }
 
   //
-  // src_Member
+  // Label
   //
-  Member LabelConnection_Impl::src_Member (void)
+  Label LabelConnection_Impl::dst_Label (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Member::_narrow (target);
-  }
-
-  //
-  // dst_Label
-  //
-  Label LabelConnection_Impl::dst_Label (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Label::_narrow (target);
-  }
-
-  //
-  // parent_SwitchedAggregate
-  //
-  SwitchedAggregate LabelConnection_Impl::parent_SwitchedAggregate (void) const
-  {
-    return ::GAME::Mga::get_parent <SwitchedAggregate> (this->object_.p);
+    return Label::_narrow (this->dst ());
   }
 }
 

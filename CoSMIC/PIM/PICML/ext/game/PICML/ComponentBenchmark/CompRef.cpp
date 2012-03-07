@@ -1,76 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "CompRef.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "CompRef.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string CompRef_Impl::metaname = "CompRef";
+  const std::string CompRef_Impl::metaname ("CompRef");
 
   //
-  // CompRef_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  CompRef_Impl::CompRef_Impl (void)
+  CompRef CompRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // CompRef_Impl
-  //
-  CompRef_Impl::CompRef_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~CompRef_Impl
-  //
-  CompRef_Impl::~CompRef_Impl (void)
-  {
+    return ::GAME::Mga::create_object < CompRef > (parent, CompRef_Impl::metaname);
   }
 
   //
   // accept
   //
-  void CompRef_Impl::accept (Visitor * v)
+  void CompRef_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_CompRef (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_CompRef (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // dst_ComponentOperation
   //
-  CompRef CompRef_Impl::_create (const BenchmarkAnalysis_in parent)
+  size_t CompRef_Impl::dst_ComponentOperation (std::vector <ComponentOperation> & items) const
   {
-    return ::GAME::Mga::create_object <CompRef> (parent, CompRef_Impl::metaname);
+    return this->in_connections <ComponentOperation> (items);
   }
 
   //
-  // in_ComponentOperation_connections
+  // Component_is_nil
   //
-  size_t CompRef_Impl::in_ComponentOperation_connections (std::vector <ComponentOperation> & conns) const
+  bool CompRef_Impl::Component_is_nil (void) const
   {
-    return this->in_connections (conns);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_BenchmarkAnalysis
+  // get_Component
   //
-  BenchmarkAnalysis CompRef_Impl::parent_BenchmarkAnalysis (void) const
+  Component CompRef_Impl::get_Component (void) const
   {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return Component::_narrow (this->refers_to ());
   }
 }
 

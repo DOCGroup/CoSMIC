@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SendsTo.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SendsTo.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string SendsTo_Impl::metaname = "SendsTo";
+  const std::string SendsTo_Impl::metaname ("SendsTo");
 
   //
-  // SendsTo_Impl
+  // _create (const ComponentAssembly_in)
   //
-  SendsTo_Impl::SendsTo_Impl (void)
+  SendsTo SendsTo_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // SendsTo_Impl
-  //
-  SendsTo_Impl::SendsTo_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~SendsTo_Impl
-  //
-  SendsTo_Impl::~SendsTo_Impl (void)
-  {
+    return ::GAME::Mga::create_object < SendsTo > (parent, SendsTo_Impl::metaname);
   }
 
   //
   // accept
   //
-  void SendsTo_Impl::accept (Visitor * v)
+  void SendsTo_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_SendsTo (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_SendsTo (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_OutEventPortEnd
+  // OutEventPortEnd
   //
-  OutEventPortEnd SendsTo_Impl::src_OutEventPortEnd (void)
+  OutEventPortEnd SendsTo_Impl::src_OutEventPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return OutEventPortEnd::_narrow (target);
+    return OutEventPortEnd::_narrow (this->src ());
   }
 
   //
-  // dst_InEventPortEnd
+  // InEventPortEnd
   //
-  InEventPortEnd SendsTo_Impl::dst_InEventPortEnd (void)
+  InEventPortEnd SendsTo_Impl::dst_InEventPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return InEventPortEnd::_narrow (target);
+    return InEventPortEnd::_narrow (this->dst ());
   }
 }
 

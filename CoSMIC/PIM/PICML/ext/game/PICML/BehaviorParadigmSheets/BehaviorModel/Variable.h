@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_BEHAVIORMODEL_VARIABLE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_BEHAVIORMODEL_VARIABLE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Variable_Impl;
   typedef Variable_Impl * Variable_in;
-  typedef ::GAME::Mga::Smart_Ptr <Variable_Impl> Variable;
+  typedef ::GAME::Mga::Smart_Ptr < Variable_Impl > Variable;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Variable_Impl
+   *
+   * Implementation for the Variable model element.
+   */
   class PICML_Export Variable_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,24 +47,24 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Variable_Impl (void);
-
-    /// Initializing constructor
-    Variable_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Variable_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Variable _create (const BehaviorModel_in parent);
     ///@}
+
+    // Default constructor.
+    Variable_Impl (void);
+
+    // Initializing constructor.
+    Variable_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Variable_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -74,18 +79,17 @@ namespace PICML
     ///@}
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    BehaviorModel parent_BehaviorModel (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    bool PredefinedType_is_nil (void) const;
+    PredefinedType get_PredefinedType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Variable.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_BEHAVIORMODEL_VARIABLE

@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_OUTEVENTPORTEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_OUTEVENTPORTEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class OutEventPortEnd_Impl;
   typedef OutEventPortEnd_Impl * OutEventPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <OutEventPortEnd_Impl> OutEventPortEnd;
+  typedef ::GAME::Mga::Smart_Ptr < OutEventPortEnd_Impl > OutEventPortEnd;
 
+  /**
+   * @class OutEventPortEnd_Impl
+   *
+   * Implementation for the OutEventPortEnd model element.
+   */
   class PICML_Export OutEventPortEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,29 +44,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     OutEventPortEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     OutEventPortEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~OutEventPortEnd_Impl (void) = 0;
-    size_t in_SendsTo_connections (std::vector <SendsTo> & conns) const;
-    size_t in_EventSourceDelegate_connections (std::vector <EventSourceDelegate> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src SendsTo connection.
+    size_t src_SendsTo (std::vector <SendsTo> & items) const;
+
+    /// Get the src EventSourceDelegate connection.
+    size_t src_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "OutEventPortEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_OUTEVENTPORTEND

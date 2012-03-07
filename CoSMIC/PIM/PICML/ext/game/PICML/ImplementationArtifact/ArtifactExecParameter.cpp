@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ArtifactExecParameter.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ArtifactExecParameter.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/Property.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/Common/Property.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ArtifactExecParameter_Impl::metaname = "ArtifactExecParameter";
+  const std::string ArtifactExecParameter_Impl::metaname ("ArtifactExecParameter");
 
   //
-  // ArtifactExecParameter_Impl
+  // _create (const ArtifactContainer_in)
   //
-  ArtifactExecParameter_Impl::ArtifactExecParameter_Impl (void)
+  ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent)
   {
-  }
-
-  //
-  // ArtifactExecParameter_Impl
-  //
-  ArtifactExecParameter_Impl::ArtifactExecParameter_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ArtifactExecParameter_Impl
-  //
-  ArtifactExecParameter_Impl::~ArtifactExecParameter_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ArtifactExecParameter > (parent, ArtifactExecParameter_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ArtifactExecParameter_Impl::accept (Visitor * v)
+  void ArtifactExecParameter_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ArtifactExecParameter (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ArtifactExecParameter (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ImplementationArtifact
   //
-  ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent)
+  ImplementationArtifact ArtifactExecParameter_Impl::src_ImplementationArtifact (void) const
   {
-    return ::GAME::Mga::create_object <ArtifactExecParameter> (parent, ArtifactExecParameter_Impl::metaname);
+    return ImplementationArtifact::_narrow (this->src ());
   }
 
   //
-  // src_ImplementationArtifact
+  // Property
   //
-  ImplementationArtifact ArtifactExecParameter_Impl::src_ImplementationArtifact (void)
+  Property ArtifactExecParameter_Impl::dst_Property (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ImplementationArtifact::_narrow (target);
-  }
-
-  //
-  // dst_Property
-  //
-  Property ArtifactExecParameter_Impl::dst_Property (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Property::_narrow (target);
-  }
-
-  //
-  // parent_ArtifactContainer
-  //
-  ArtifactContainer ArtifactExecParameter_Impl::parent_ArtifactContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ArtifactContainer> (this->object_.p);
+    return Property::_narrow (this->dst ());
   }
 }
 

@@ -14,25 +14,30 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_STATE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_STATE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class State_Impl;
   typedef State_Impl * State_in;
-  typedef ::GAME::Mga::Smart_Ptr <State_Impl> State;
+  typedef ::GAME::Mga::Smart_Ptr < State_Impl > State;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class State_Impl
+   *
+   * Implementation for the State model element.
+   */
   class PICML_Export State_Impl :
-    public virtual StateBase_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual StateBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,41 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    State_Impl (void);
-
-    /// Initializing constructor
-    State_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~State_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    ///@}
-    size_t in_Transition_connections (std::vector <Transition> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
+    static State _create (const BehaviorModel_in parent);
     ///@}
 
+    // Default constructor.
+    State_Impl (void);
+
+    // Initializing constructor.
+    State_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~State_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src Transition connection.
+    size_t src_Transition (std::vector <Transition> & items) const;
+
+    /// Get the src TerminalTransition connection.
+    size_t src_TerminalTransition (std::vector <TerminalTransition> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "State.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_STATE

@@ -14,25 +14,30 @@
 #ifndef _PICML_OPERATIONTYPES_INOUTPARAMETER_H_
 #define _PICML_OPERATIONTYPES_INOUTPARAMETER_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/OperationTypes/ParameterType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/OperationTypes/ParameterType.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InoutParameter_Impl;
   typedef InoutParameter_Impl * InoutParameter_in;
-  typedef ::GAME::Mga::Smart_Ptr <InoutParameter_Impl> InoutParameter;
+  typedef ::GAME::Mga::Smart_Ptr < InoutParameter_Impl > InoutParameter;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class InoutParameter_Impl
+   *
+   * Implementation for the InoutParameter model element.
+   */
   class PICML_Export InoutParameter_Impl :
-    public virtual ParameterType_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual ParameterType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,38 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    InoutParameter_Impl (void);
-
-    /// Initializing constructor
-    InoutParameter_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~InoutParameter_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static InoutParameter _create (const TwowayOperation_in parent);
+    static InoutParameter _create (const Operation_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    TwowayOperation parent_TwowayOperation (void) const;
-    ///@}
+    // Default constructor.
+    InoutParameter_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    InoutParameter_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~InoutParameter_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InoutParameter.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_INOUTPARAMETER

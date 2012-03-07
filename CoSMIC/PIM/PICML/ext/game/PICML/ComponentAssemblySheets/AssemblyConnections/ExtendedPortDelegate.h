@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDEDPORTDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDEDPORTDELEGATE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExtendedPortDelegate_Impl;
   typedef ExtendedPortDelegate_Impl * ExtendedPortDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendedPortDelegate_Impl> ExtendedPortDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < ExtendedPortDelegate_Impl > ExtendedPortDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ExtendedPortDelegate_Impl
+   *
+   * Implementation for the ExtendedPortDelegate model element.
+   */
   class PICML_Export ExtendedPortDelegate_Impl :
-    public virtual ExtendedPortInstanceBase_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual ExtendedPortInstanceBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ExtendedPortDelegate_Impl (void);
-
-    /// Initializing constructor
-    ExtendedPortDelegate_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~ExtendedPortDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    ///@}
-    size_t in_ExtendedDelegate_connections (std::vector <ExtendedDelegate> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
+    static ExtendedPortDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
+    // Default constructor.
+    ExtendedPortDelegate_Impl (void);
+
+    // Initializing constructor.
+    ExtendedPortDelegate_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~ExtendedPortDelegate_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst ExtendedDelegate connection.
+    size_t dst_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExtendedPortDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDEDPORTDELEGATE

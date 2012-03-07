@@ -1,50 +1,52 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExecutorProject.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExecutorProject.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExecutorProject_Impl::metaname = "ExecutorProject";
+  const std::string ExecutorProject_Impl::metaname ("ExecutorProject");
 
   //
-  // ExecutorProject_Impl
+  // _create (const Project_in)
   //
-  ExecutorProject_Impl::ExecutorProject_Impl (void)
+  ExecutorProject ExecutorProject_Impl::_create (const Project_in parent)
   {
-  }
-
-  //
-  // ExecutorProject_Impl
-  //
-  ExecutorProject_Impl::ExecutorProject_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExecutorProject_Impl
-  //
-  ExecutorProject_Impl::~ExecutorProject_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExecutorProject > (parent, ExecutorProject_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExecutorProject_Impl::accept (Visitor * v)
+  void ExecutorProject_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExecutorProject (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExecutorProject (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -52,11 +54,7 @@ namespace PICML
   //
   ImplementationArtifactReference ExecutorProject_Impl::get_ImplementationArtifactReference (void) const
   {
-    // Get the collection of children.
-    std::vector <ImplementationArtifactReference> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ImplementationArtifactReference ();
+    return this->children <ImplementationArtifactReference> ().item ();
   }
 }
 

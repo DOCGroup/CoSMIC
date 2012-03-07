@@ -1,49 +1,23 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ObjectPort.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ObjectPort.inl"
+#endif
 
+#include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ObjectPort_Impl::metaname = "ObjectPort";
-
-  //
-  // ObjectPort_Impl
-  //
-  ObjectPort_Impl::ObjectPort_Impl (void)
-  {
-  }
-
-  //
-  // ObjectPort_Impl
-  //
-  ObjectPort_Impl::ObjectPort_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ObjectPort_Impl
-  //
-  ObjectPort_Impl::~ObjectPort_Impl (void)
-  {
-  }
-
-  //
-  // parent_PortType
-  //
-  PortType ObjectPort_Impl::parent_PortType (void) const
-  {
-    return ::GAME::Mga::get_parent <PortType> (this->object_.p);
-  }
+  const std::string ObjectPort_Impl::metaname ("ObjectPort");
 }
 

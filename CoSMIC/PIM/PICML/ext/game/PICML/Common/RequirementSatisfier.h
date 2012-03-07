@@ -14,18 +14,23 @@
 #ifndef _PICML_COMMON_REQUIREMENTSATISFIER_H_
 #define _PICML_COMMON_REQUIREMENTSATISFIER_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class RequirementSatisfier_Impl;
   typedef RequirementSatisfier_Impl * RequirementSatisfier_in;
-  typedef ::GAME::Mga::Smart_Ptr <RequirementSatisfier_Impl> RequirementSatisfier;
+  typedef ::GAME::Mga::Smart_Ptr < RequirementSatisfier_Impl > RequirementSatisfier;
 
+  /**
+   * @class RequirementSatisfier_Impl
+   *
+   * Implementation for the RequirementSatisfier model element.
+   */
   class PICML_Export RequirementSatisfier_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,34 +44,40 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     RequirementSatisfier_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     RequirementSatisfier_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~RequirementSatisfier_Impl (void) = 0;
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of resourceType
+    void resourceType (const std::string & val);
+
+    /// Get the value of resourceType
+    std::string resourceType (void) const;
+    ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
     size_t get_SatisfierPropertys (std::vector <SatisfierProperty> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <SatisfierProperty> get_SatisfierPropertys (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "RequirementSatisfier.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_REQUIREMENTSATISFIER

@@ -1,58 +1,29 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "BenchmarkType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "BenchmarkType.inl"
+#endif
 
-#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string BenchmarkType_Impl::metaname = "BenchmarkType";
+  const std::string BenchmarkType_Impl::metaname ("BenchmarkType");
 
   //
-  // BenchmarkType_Impl
+  // src_BenchmarkCharacteristics
   //
-  BenchmarkType_Impl::BenchmarkType_Impl (void)
+  size_t BenchmarkType_Impl::src_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const
   {
-  }
-
-  //
-  // BenchmarkType_Impl
-  //
-  BenchmarkType_Impl::BenchmarkType_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~BenchmarkType_Impl
-  //
-  BenchmarkType_Impl::~BenchmarkType_Impl (void)
-  {
-  }
-
-  //
-  // in_BenchmarkCharacteristics_connections
-  //
-  size_t BenchmarkType_Impl::in_BenchmarkCharacteristics_connections (std::vector <BenchmarkCharacteristics> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_BenchmarkAnalysis
-  //
-  BenchmarkAnalysis BenchmarkType_Impl::parent_BenchmarkAnalysis (void) const
-  {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return this->in_connections <BenchmarkCharacteristics> (items);
   }
 }
 

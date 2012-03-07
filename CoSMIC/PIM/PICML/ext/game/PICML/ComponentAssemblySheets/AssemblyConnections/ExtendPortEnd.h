@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDPORTEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDPORTEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExtendPortEnd_Impl;
   typedef ExtendPortEnd_Impl * ExtendPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendPortEnd_Impl> ExtendPortEnd;
+  typedef ::GAME::Mga::Smart_Ptr < ExtendPortEnd_Impl > ExtendPortEnd;
 
+  /**
+   * @class ExtendPortEnd_Impl
+   *
+   * Implementation for the ExtendPortEnd model element.
+   */
   class PICML_Export ExtendPortEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,29 +44,37 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ExtendPortEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ExtendPortEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ExtendPortEnd_Impl (void) = 0;
-    size_t in_Publish_connections (std::vector <Publish> & conns) const;
-    size_t in_Consume_connections (std::vector <Consume> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src Publish connection.
+    size_t src_Publish (std::vector <Publish> & items) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst Consume connection.
+    size_t dst_Consume (std::vector <Consume> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExtendPortEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDPORTEND

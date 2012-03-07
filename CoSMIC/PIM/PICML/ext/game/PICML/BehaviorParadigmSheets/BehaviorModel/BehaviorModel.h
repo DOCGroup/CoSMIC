@@ -14,18 +14,23 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_BEHAVIORMODEL_BEHAVIORMODEL_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_BEHAVIORMODEL_BEHAVIORMODEL_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BehaviorModel_Impl;
   typedef BehaviorModel_Impl * BehaviorModel_in;
-  typedef ::GAME::Mga::Smart_Ptr <BehaviorModel_Impl> BehaviorModel;
+  typedef ::GAME::Mga::Smart_Ptr < BehaviorModel_Impl > BehaviorModel;
 
+  /**
+   * @class BehaviorModel_Impl
+   *
+   * Implementation for the BehaviorModel model element.
+   */
   class PICML_Export BehaviorModel_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     BehaviorModel_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     BehaviorModel_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~BehaviorModel_Impl (void) = 0;
 
     /**
@@ -53,20 +58,53 @@ namespace PICML
      */
     ///@{
     size_t get_Variables (std::vector <Variable> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Variable> get_Variables (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    size_t get_BehaviorInputActions (std::vector <BehaviorInputAction> & items) const;
+    ::GAME::Mga::Iterator <BehaviorInputAction> get_BehaviorInputActions (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    size_t get_Finishs (std::vector <Finish> & items) const;
+    ::GAME::Mga::Iterator <Finish> get_Finishs (void) const;
+
+    size_t get_ActionBases (std::vector <ActionBase> & items) const;
+    ::GAME::Mga::Iterator <ActionBase> get_ActionBases (void) const;
+
+    size_t get_QueryInputActions (std::vector <QueryInputAction> & items) const;
+    ::GAME::Mga::Iterator <QueryInputAction> get_QueryInputActions (void) const;
+
+    size_t get_Transitions (std::vector <Transition> & items) const;
+    ::GAME::Mga::Iterator <Transition> get_Transitions (void) const;
+
+    size_t get_BranchTransitions (std::vector <BranchTransition> & items) const;
+    ::GAME::Mga::Iterator <BranchTransition> get_BranchTransitions (void) const;
+
+    size_t get_StateBases (std::vector <StateBase> & items) const;
+    ::GAME::Mga::Iterator <StateBase> get_StateBases (void) const;
+
+    size_t get_LoopTransitions (std::vector <LoopTransition> & items) const;
+    ::GAME::Mga::Iterator <LoopTransition> get_LoopTransitions (void) const;
+
+    size_t get_Terminals (std::vector <Terminal> & items) const;
+    ::GAME::Mga::Iterator <Terminal> get_Terminals (void) const;
+
+    size_t get_TerminalTransitions (std::vector <TerminalTransition> & items) const;
+    ::GAME::Mga::Iterator <TerminalTransition> get_TerminalTransitions (void) const;
+
+    size_t get_Effects (std::vector <Effect> & items) const;
+    ::GAME::Mga::Iterator <Effect> get_Effects (void) const;
+
+    size_t get_InputEffects (std::vector <InputEffect> & items) const;
+    ::GAME::Mga::Iterator <InputEffect> get_InputEffects (void) const;
+
+    size_t get_TerminalEffects (std::vector <TerminalEffect> & items) const;
+    ::GAME::Mga::Iterator <TerminalEffect> get_TerminalEffects (void) const;
+
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BehaviorModel.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_BEHAVIORMODEL_BEHAVIORMODEL

@@ -1,60 +1,39 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "BehaviorInputAction.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "BehaviorInputAction.inl"
+#endif
 
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/Common/Property.h"
+#include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/Common/Property.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string BehaviorInputAction_Impl::metaname = "BehaviorInputAction";
+  const std::string BehaviorInputAction_Impl::metaname ("BehaviorInputAction");
 
   //
-  // BehaviorInputAction_Impl
+  // src_InputEffect
   //
-  BehaviorInputAction_Impl::BehaviorInputAction_Impl (void)
+  size_t BehaviorInputAction_Impl::src_InputEffect (std::vector <InputEffect> & items) const
   {
+    return this->in_connections <InputEffect> (items);
   }
 
   //
-  // BehaviorInputAction_Impl
+  // dst_Finish
   //
-  BehaviorInputAction_Impl::BehaviorInputAction_Impl (IMgaModel * ptr)
+  size_t BehaviorInputAction_Impl::dst_Finish (std::vector <Finish> & items) const
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~BehaviorInputAction_Impl
-  //
-  BehaviorInputAction_Impl::~BehaviorInputAction_Impl (void)
-  {
-  }
-
-  //
-  // in_InputEffect_connections
-  //
-  size_t BehaviorInputAction_Impl::in_InputEffect_connections (std::vector <InputEffect> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_Finish_connections
-  //
-  size_t BehaviorInputAction_Impl::in_Finish_connections (std::vector <Finish> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <Finish> (items);
   }
 
   //
@@ -63,6 +42,14 @@ namespace PICML
   size_t BehaviorInputAction_Impl::get_Propertys (std::vector <Property> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_Propertys
+  //
+  ::GAME::Mga::Iterator <Property> BehaviorInputAction_Impl::get_Propertys (void) const
+  {
+    return this->children <Property> ();
   }
 }
 

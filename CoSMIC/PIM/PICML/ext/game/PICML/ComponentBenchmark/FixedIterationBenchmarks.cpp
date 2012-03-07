@@ -1,68 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "FixedIterationBenchmarks.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "FixedIterationBenchmarks.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string FixedIterationBenchmarks_Impl::metaname = "FixedIterationBenchmarks";
+  const std::string FixedIterationBenchmarks_Impl::metaname ("FixedIterationBenchmarks");
 
   //
-  // FixedIterationBenchmarks_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  FixedIterationBenchmarks_Impl::FixedIterationBenchmarks_Impl (void)
+  FixedIterationBenchmarks FixedIterationBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // FixedIterationBenchmarks_Impl
-  //
-  FixedIterationBenchmarks_Impl::FixedIterationBenchmarks_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~FixedIterationBenchmarks_Impl
-  //
-  FixedIterationBenchmarks_Impl::~FixedIterationBenchmarks_Impl (void)
-  {
+    return ::GAME::Mga::create_object < FixedIterationBenchmarks > (parent, FixedIterationBenchmarks_Impl::metaname);
   }
 
   //
   // accept
   //
-  void FixedIterationBenchmarks_Impl::accept (Visitor * v)
+  void FixedIterationBenchmarks_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_FixedIterationBenchmarks (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_FixedIterationBenchmarks (this);
+    }
 
-  //
-  // benchmarkIterations
-  //
-  void FixedIterationBenchmarks_Impl::benchmarkIterations (long val)
-  {
-    static const std::string attr_benchmarkIterations ("benchmarkIterations");
-    this->attribute (attr_benchmarkIterations)->int_value (val);
-  }
-
-  //
-  // benchmarkIterations
-  //
-  long FixedIterationBenchmarks_Impl::benchmarkIterations (void) const
-  {
-    static const std::string attr_benchmarkIterations ("benchmarkIterations");
-    return this->attribute (attr_benchmarkIterations)->int_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

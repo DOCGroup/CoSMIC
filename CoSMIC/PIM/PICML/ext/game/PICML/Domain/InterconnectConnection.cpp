@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InterconnectConnection.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InterconnectConnection.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/Domain/Domain.h"
-#include "PICML/TargetElements/Node.h"
 #include "PICML/TargetElements/Interconnect.h"
+#include "PICML/TargetElements/Node.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InterconnectConnection_Impl::metaname = "InterconnectConnection";
+  const std::string InterconnectConnection_Impl::metaname ("InterconnectConnection");
 
   //
-  // InterconnectConnection_Impl
+  // _create (const Domain_in)
   //
-  InterconnectConnection_Impl::InterconnectConnection_Impl (void)
+  InterconnectConnection InterconnectConnection_Impl::_create (const Domain_in parent)
   {
-  }
-
-  //
-  // InterconnectConnection_Impl
-  //
-  InterconnectConnection_Impl::InterconnectConnection_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InterconnectConnection_Impl
-  //
-  InterconnectConnection_Impl::~InterconnectConnection_Impl (void)
-  {
+    return ::GAME::Mga::create_object < InterconnectConnection > (parent, InterconnectConnection_Impl::metaname);
   }
 
   //
   // accept
   //
-  void InterconnectConnection_Impl::accept (Visitor * v)
+  void InterconnectConnection_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_InterconnectConnection (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InterconnectConnection (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Node
   //
-  InterconnectConnection InterconnectConnection_Impl::_create (const Domain_in parent)
+  Node InterconnectConnection_Impl::src_Node (void) const
   {
-    return ::GAME::Mga::create_object <InterconnectConnection> (parent, InterconnectConnection_Impl::metaname);
+    return Node::_narrow (this->src ());
   }
 
   //
-  // src_Node
+  // Interconnect
   //
-  Node InterconnectConnection_Impl::src_Node (void)
+  Interconnect InterconnectConnection_Impl::dst_Interconnect (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Node::_narrow (target);
-  }
-
-  //
-  // dst_Interconnect
-  //
-  Interconnect InterconnectConnection_Impl::dst_Interconnect (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Interconnect::_narrow (target);
-  }
-
-  //
-  // parent_Domain
-  //
-  Domain InterconnectConnection_Impl::parent_Domain (void) const
-  {
-    return ::GAME::Mga::get_parent <Domain> (this->object_.p);
+    return Interconnect::_narrow (this->dst ());
   }
 }
 

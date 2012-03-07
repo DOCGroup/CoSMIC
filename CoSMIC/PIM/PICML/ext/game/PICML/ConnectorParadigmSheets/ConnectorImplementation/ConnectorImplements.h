@@ -14,21 +14,26 @@
 #ifndef _PICML_CONNECTORPARADIGMSHEETS_CONNECTORIMPLEMENTATION_CONNECTORIMPLEMENTS_H_
 #define _PICML_CONNECTORPARADIGMSHEETS_CONNECTORIMPLEMENTATION_CONNECTORIMPLEMENTS_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ConnectorImplements_Impl;
   typedef ConnectorImplements_Impl * ConnectorImplements_in;
-  typedef ::GAME::Mga::Smart_Ptr <ConnectorImplements_Impl> ConnectorImplements;
+  typedef ::GAME::Mga::Smart_Ptr < ConnectorImplements_Impl > ConnectorImplements;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ConnectorImplements_Impl
+   *
+   * Implementation for the ConnectorImplements model element.
+   */
   class PICML_Export ConnectorImplements_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ConnectorImplements_Impl (void);
-
-    /// Initializing constructor
-    ConnectorImplements_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ConnectorImplements_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ConnectorImplements _create (const ConnectorImplementationContainer_in parent);
     ///@}
 
-    /// Get the src ConnectorImplementation connection point.
-    ConnectorImplementation src_ConnectorImplementation (void);
+    // Default constructor.
+    ConnectorImplements_Impl (void);
 
-    /// Get the dst ConnectorType connection point.
-    ConnectorType dst_ConnectorType (void);
+    // Initializing constructor.
+    ConnectorImplements_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ConnectorImplementationContainer parent_ConnectorImplementationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ConnectorImplements_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ConnectorImplementation src_ConnectorImplementation (void) const;
+    ConnectorType dst_ConnectorType (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ConnectorImplements.inl"
 #endif
+
+#endif  // !defined _PICML_CONNECTORPARADIGMSHEETS_CONNECTORIMPLEMENTATION_CONNECTORIMPLEMENTS

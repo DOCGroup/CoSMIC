@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_QUERYINPUTACTION_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_QUERYINPUTACTION_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class QueryInputAction_Impl;
   typedef QueryInputAction_Impl * QueryInputAction_in;
-  typedef ::GAME::Mga::Smart_Ptr <QueryInputAction_Impl> QueryInputAction;
+  typedef ::GAME::Mga::Smart_Ptr < QueryInputAction_Impl > QueryInputAction;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class QueryInputAction_Impl
+   *
+   * Implementation for the QueryInputAction model element.
+   */
   class PICML_Export QueryInputAction_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,22 +47,32 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    QueryInputAction_Impl (void);
-
-    /// Initializing constructor
-    QueryInputAction_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~QueryInputAction_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static QueryInputAction _create (const BehaviorModel_in parent);
+    ///@}
+
+    // Default constructor.
+    QueryInputAction_Impl (void);
+
+    // Initializing constructor.
+    QueryInputAction_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~QueryInputAction_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst QueryInput connection.
+    size_t dst_QueryInput (std::vector <QueryInput> & items) const;
     ///@}
 
     /**
@@ -65,20 +80,14 @@ namespace PICML
      */
     ///@{
     size_t get_Propertys (std::vector <Property> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "QueryInputAction.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_QUERYINPUTACTION

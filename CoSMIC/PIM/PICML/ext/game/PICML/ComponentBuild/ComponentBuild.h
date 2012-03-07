@@ -14,22 +14,27 @@
 #ifndef _PICML_COMPONENTBUILD_COMPONENTBUILD_H_
 #define _PICML_COMPONENTBUILD_COMPONENTBUILD_H_
 
-#include "game/mga/Folder.h"
-#include "game/mga/RootFolder.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/RootFolder.h"
+#include "game/mga/Folder.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentBuild_Impl;
   typedef ComponentBuild_Impl * ComponentBuild_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentBuild_Impl> ComponentBuild;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentBuild_Impl > ComponentBuild;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentBuild_Impl
+   *
+   * Implementation for the ComponentBuild model element.
+   */
   class PICML_Export ComponentBuild_Impl :
     public virtual ::GAME::Mga::Folder_Impl
   {
@@ -43,18 +48,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentBuild_Impl (void);
-
-    /// Initializing constructor
-    ComponentBuild_Impl (IMgaFolder * ptr);
-
-    /// Destructor
-    virtual ~ComponentBuild_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -62,19 +55,24 @@ namespace PICML
     static ComponentBuild _create (const ::GAME::Mga::RootFolder_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ::GAME::Mga::RootFolder parent_RootFolder (void) const;
-    ///@}
+    // Default constructor.
+    ComponentBuild_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    ComponentBuild_Impl (IMgaFolder * ptr);
+
+    // Destructor.
+    virtual ~ComponentBuild_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    size_t get_MPCs (std::vector <MPC> & items) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentBuild.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBUILD_COMPONENTBUILD

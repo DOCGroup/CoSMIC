@@ -1,52 +1,75 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TopLevelBehavior.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TopLevelBehavior.inl"
+#endif
 
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
+#include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TopLevelBehavior_Impl::metaname = "TopLevelBehavior";
+  const std::string TopLevelBehavior_Impl::metaname ("TopLevelBehavior");
 
   //
-  // TopLevelBehavior_Impl
+  // has_Environment
   //
-  TopLevelBehavior_Impl::TopLevelBehavior_Impl (void)
+  bool TopLevelBehavior_Impl::has_Environment (void) const
   {
+    return this->children <Environment> ().count () == 1;
   }
 
   //
-  // TopLevelBehavior_Impl
+  // get_Environment
   //
-  TopLevelBehavior_Impl::TopLevelBehavior_Impl (IMgaModel * ptr)
+  Environment TopLevelBehavior_Impl::get_Environment (void) const
   {
-    this->object_ = ptr;
+    return this->children <Environment> ().item ();
   }
 
   //
-  // ~TopLevelBehavior_Impl
+  // get_PeriodicEvents
   //
-  TopLevelBehavior_Impl::~TopLevelBehavior_Impl (void)
-  {
-  }
-
-  //
-  // get_QueryInputs
-  //
-  size_t TopLevelBehavior_Impl::get_QueryInputs (std::vector <QueryInput> & items) const
+  size_t TopLevelBehavior_Impl::get_PeriodicEvents (std::vector <PeriodicEvent> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_PeriodicEvents
+  //
+  ::GAME::Mga::Iterator <PeriodicEvent> TopLevelBehavior_Impl::get_PeriodicEvents (void) const
+  {
+    return this->children <PeriodicEvent> ();
+  }
+
+  //
+  // get_ApplicationTasks
+  //
+  size_t TopLevelBehavior_Impl::get_ApplicationTasks (std::vector <ApplicationTask> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ApplicationTasks
+  //
+  ::GAME::Mga::Iterator <ApplicationTask> TopLevelBehavior_Impl::get_ApplicationTasks (void) const
+  {
+    return this->children <ApplicationTask> ();
   }
 
   //
@@ -58,6 +81,14 @@ namespace PICML
   }
 
   //
+  // get_WorkerTypes
+  //
+  ::GAME::Mga::Iterator <WorkerType> TopLevelBehavior_Impl::get_WorkerTypes (void) const
+  {
+    return this->children <WorkerType> ();
+  }
+
+  //
   // get_Inputs
   //
   size_t TopLevelBehavior_Impl::get_Inputs (std::vector <Input> & items) const
@@ -66,11 +97,43 @@ namespace PICML
   }
 
   //
+  // get_Inputs
+  //
+  ::GAME::Mga::Iterator <Input> TopLevelBehavior_Impl::get_Inputs (void) const
+  {
+    return this->children <Input> ();
+  }
+
+  //
   // get_MultiInputs
   //
   size_t TopLevelBehavior_Impl::get_MultiInputs (std::vector <MultiInput> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_MultiInputs
+  //
+  ::GAME::Mga::Iterator <MultiInput> TopLevelBehavior_Impl::get_MultiInputs (void) const
+  {
+    return this->children <MultiInput> ();
+  }
+
+  //
+  // get_QueryInputs
+  //
+  size_t TopLevelBehavior_Impl::get_QueryInputs (std::vector <QueryInput> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_QueryInputs
+  //
+  ::GAME::Mga::Iterator <QueryInput> TopLevelBehavior_Impl::get_QueryInputs (void) const
+  {
+    return this->children <QueryInput> ();
   }
 }
 

@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PredefinedTypes.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PredefinedTypes.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PredefinedTypes_Impl::metaname = "PredefinedTypes";
+  const std::string PredefinedTypes_Impl::metaname ("PredefinedTypes");
 
   //
-  // PredefinedTypes_Impl
-  //
-  PredefinedTypes_Impl::PredefinedTypes_Impl (void)
-  {
-  }
-
-  //
-  // PredefinedTypes_Impl
-  //
-  PredefinedTypes_Impl::PredefinedTypes_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PredefinedTypes_Impl
-  //
-  PredefinedTypes_Impl::~PredefinedTypes_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void PredefinedTypes_Impl::accept (Visitor * v)
-  {
-    v->visit_PredefinedTypes (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   PredefinedTypes PredefinedTypes_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <PredefinedTypes> (parent, PredefinedTypes_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder PredefinedTypes_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void PredefinedTypes_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PredefinedTypes (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_PredefinedTypes
+  //
+  size_t PredefinedTypes_Impl::get_PredefinedTypes (std::vector <PredefinedType> & items) const
+  {
+    return this->children (items);
   }
 }
 

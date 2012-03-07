@@ -14,21 +14,26 @@
 #ifndef _PICML_TARGETELEMENTS_NODE_H_
 #define _PICML_TARGETELEMENTS_NODE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Node_Impl;
   typedef Node_Impl * Node_in;
-  typedef ::GAME::Mga::Smart_Ptr <Node_Impl> Node;
+  typedef ::GAME::Mga::Smart_Ptr < Node_Impl > Node;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Node_Impl
+   *
+   * Implementation for the Node model element.
+   */
   class PICML_Export Node_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,22 +47,59 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Node_Impl (void);
-
-    /// Initializing constructor
-    Node_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Node_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Node _create (const Domain_in parent);
+    ///@}
+
+    // Default constructor.
+    Node_Impl (void);
+
+    // Initializing constructor.
+    Node_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Node_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
+
+    /// Set the value of operatingSystem
+    void operatingSystem (const std::string & val);
+
+    /// Get the value of operatingSystem
+    std::string operatingSystem (void) const;
+
+    /// Set the value of architecture
+    void architecture (const std::string & val);
+
+    /// Get the value of architecture
+    std::string architecture (void) const;
+    ///@}
+
+    /**
+     * @name Source Connection Point Methods
+     */
+    ///@{
+
+    /// Get the src Shares connection.
+    size_t src_Shares (std::vector <Shares> & items) const;
+
+    /// Get the src InterconnectConnection connection.
+    size_t src_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
     ///@}
 
     /**
@@ -65,20 +107,14 @@ namespace PICML
      */
     ///@{
     size_t get_Resources (std::vector <Resource> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Resource> get_Resources (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Node.inl"
 #endif
+
+#endif  // !defined _PICML_TARGETELEMENTS_NODE

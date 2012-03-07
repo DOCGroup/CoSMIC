@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_INEVENTPORTINSTANCE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_INEVENTPORTINSTANCE_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InEventPortInstance_Impl;
   typedef InEventPortInstance_Impl * InEventPortInstance_in;
-  typedef ::GAME::Mga::Smart_Ptr <InEventPortInstance_Impl> InEventPortInstance;
+  typedef ::GAME::Mga::Smart_Ptr < InEventPortInstance_Impl > InEventPortInstance;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class InEventPortInstance_Impl
+   *
+   * Implementation for the InEventPortInstance model element.
+   */
   class PICML_Export InEventPortInstance_Impl :
-    public virtual PortInstance_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual PortInstance_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,37 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    InEventPortInstance_Impl (void);
-
-    /// Initializing constructor
-    InEventPortInstance_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~InEventPortInstance_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static InEventPortInstance _create (const ComponentInstance_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    InEventPortInstance_Impl (void);
+
+    // Initializing constructor.
+    InEventPortInstance_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~InEventPortInstance_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool InEventPort_is_nil (void) const;
+    InEventPort get_InEventPort (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InEventPortInstance.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_INEVENTPORTINSTANCE

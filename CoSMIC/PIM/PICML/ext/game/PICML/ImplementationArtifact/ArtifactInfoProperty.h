@@ -14,21 +14,26 @@
 #ifndef _PICML_IMPLEMENTATIONARTIFACT_ARTIFACTINFOPROPERTY_H_
 #define _PICML_IMPLEMENTATIONARTIFACT_ARTIFACTINFOPROPERTY_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ArtifactInfoProperty_Impl;
   typedef ArtifactInfoProperty_Impl * ArtifactInfoProperty_in;
-  typedef ::GAME::Mga::Smart_Ptr <ArtifactInfoProperty_Impl> ArtifactInfoProperty;
+  typedef ::GAME::Mga::Smart_Ptr < ArtifactInfoProperty_Impl > ArtifactInfoProperty;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ArtifactInfoProperty_Impl
+   *
+   * Implementation for the ArtifactInfoProperty model element.
+   */
   class PICML_Export ArtifactInfoProperty_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ArtifactInfoProperty_Impl (void);
-
-    /// Initializing constructor
-    ArtifactInfoProperty_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ArtifactInfoProperty_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ArtifactInfoProperty _create (const ArtifactContainer_in parent);
     ///@}
 
-    /// Get the src ImplementationArtifact connection point.
-    ImplementationArtifact src_ImplementationArtifact (void);
+    // Default constructor.
+    ArtifactInfoProperty_Impl (void);
 
-    /// Get the dst Property connection point.
-    Property dst_Property (void);
+    // Initializing constructor.
+    ArtifactInfoProperty_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ArtifactContainer parent_ArtifactContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ArtifactInfoProperty_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ImplementationArtifact src_ImplementationArtifact (void) const;
+    Property dst_Property (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ArtifactInfoProperty.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONARTIFACT_ARTIFACTINFOPROPERTY

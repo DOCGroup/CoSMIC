@@ -14,21 +14,26 @@
 #ifndef _PICML_DEPLOYMENTPLAN_PROPERTYMAPPING_H_
 #define _PICML_DEPLOYMENTPLAN_PROPERTYMAPPING_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PropertyMapping_Impl;
   typedef PropertyMapping_Impl * PropertyMapping_in;
-  typedef ::GAME::Mga::Smart_Ptr <PropertyMapping_Impl> PropertyMapping;
+  typedef ::GAME::Mga::Smart_Ptr < PropertyMapping_Impl > PropertyMapping;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class PropertyMapping_Impl
+   *
+   * Implementation for the PropertyMapping model element.
+   */
   class PICML_Export PropertyMapping_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    PropertyMapping_Impl (void);
-
-    /// Initializing constructor
-    PropertyMapping_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~PropertyMapping_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static PropertyMapping _create (const DeploymentPlan_in parent);
     ///@}
 
-    /// Get the src NodeReference connection point.
-    NodeReference src_NodeReference (void);
+    // Default constructor.
+    PropertyMapping_Impl (void);
 
-    /// Get the dst Property connection point.
-    Property dst_Property (void);
+    // Initializing constructor.
+    PropertyMapping_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    DeploymentPlan parent_DeploymentPlan (void) const;
-    ///@}
+    // Destructor.
+    virtual ~PropertyMapping_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    NodeReference src_NodeReference (void) const;
+    Property dst_Property (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PropertyMapping.inl"
 #endif
+
+#endif  // !defined _PICML_DEPLOYMENTPLAN_PROPERTYMAPPING

@@ -1,59 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentFactoryRef.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentFactoryRef.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/DeploymentPlan/Deploys.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentFactoryRef_Impl::metaname = "ComponentFactoryRef";
+  const std::string ComponentFactoryRef_Impl::metaname ("ComponentFactoryRef");
 
   //
-  // ComponentFactoryRef_Impl
+  // _create (const DeploymentPlan_in)
   //
-  ComponentFactoryRef_Impl::ComponentFactoryRef_Impl (void)
+  ComponentFactoryRef ComponentFactoryRef_Impl::_create (const DeploymentPlan_in parent)
   {
-  }
-
-  //
-  // ComponentFactoryRef_Impl
-  //
-  ComponentFactoryRef_Impl::ComponentFactoryRef_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentFactoryRef_Impl
-  //
-  ComponentFactoryRef_Impl::~ComponentFactoryRef_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentFactoryRef > (parent, ComponentFactoryRef_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentFactoryRef_Impl::accept (Visitor * v)
+  void ComponentFactoryRef_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentFactoryRef (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentFactoryRef (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // in_Deploys_connections
+  // src_Deploys
   //
-  size_t ComponentFactoryRef_Impl::in_Deploys_connections (std::vector <Deploys> & conns) const
+  size_t ComponentFactoryRef_Impl::src_Deploys (std::vector <Deploys> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <Deploys> (items);
+  }
+
+  //
+  // ComponentFactoryInstance_is_nil
+  //
+  bool ComponentFactoryRef_Impl::ComponentFactoryInstance_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_ComponentFactoryInstance
+  //
+  ComponentFactoryInstance ComponentFactoryRef_Impl::get_ComponentFactoryInstance (void) const
+  {
+    return ComponentFactoryInstance::_narrow (this->refers_to ());
   }
 }
 

@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Targets.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Targets.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/Domain/Domain.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Targets_Impl::metaname = "Targets";
+  const std::string Targets_Impl::metaname ("Targets");
 
   //
-  // Targets_Impl
-  //
-  Targets_Impl::Targets_Impl (void)
-  {
-  }
-
-  //
-  // Targets_Impl
-  //
-  Targets_Impl::Targets_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Targets_Impl
-  //
-  Targets_Impl::~Targets_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void Targets_Impl::accept (Visitor * v)
-  {
-    v->visit_Targets (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   Targets Targets_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <Targets> (parent, Targets_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder Targets_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void Targets_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Targets (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_Domains
+  //
+  size_t Targets_Impl::get_Domains (std::vector <Domain> & items) const
+  {
+    return this->children (items);
   }
 }
 

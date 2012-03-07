@@ -14,25 +14,30 @@
 #ifndef _PICML_PREDEFINEDTYPES_UNSIGNEDLONGLONGINTEGER_H_
 #define _PICML_PREDEFINEDTYPES_UNSIGNEDLONGLONGINTEGER_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class UnsignedLongLongInteger_Impl;
   typedef UnsignedLongLongInteger_Impl * UnsignedLongLongInteger_in;
-  typedef ::GAME::Mga::Smart_Ptr <UnsignedLongLongInteger_Impl> UnsignedLongLongInteger;
+  typedef ::GAME::Mga::Smart_Ptr < UnsignedLongLongInteger_Impl > UnsignedLongLongInteger;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class UnsignedLongLongInteger_Impl
+   *
+   * Implementation for the UnsignedLongLongInteger model element.
+   */
   class PICML_Export UnsignedLongLongInteger_Impl :
-    public virtual UnsignedIntegerType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual UnsignedIntegerType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    UnsignedLongLongInteger_Impl (void);
-
-    /// Initializing constructor
-    UnsignedLongLongInteger_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~UnsignedLongLongInteger_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    UnsignedLongLongInteger_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    UnsignedLongLongInteger_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~UnsignedLongLongInteger_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "UnsignedLongLongInteger.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_UNSIGNEDLONGLONGINTEGER

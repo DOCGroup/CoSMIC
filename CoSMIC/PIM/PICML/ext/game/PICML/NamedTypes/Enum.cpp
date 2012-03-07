@@ -1,50 +1,52 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Enum.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Enum.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/EnumValue.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Enum_Impl::metaname = "Enum";
+  const std::string Enum_Impl::metaname ("Enum");
 
   //
-  // Enum_Impl
+  // _create (const HasOperations_in)
   //
-  Enum_Impl::Enum_Impl (void)
+  Enum Enum_Impl::_create (const HasOperations_in parent)
   {
-  }
-
-  //
-  // Enum_Impl
-  //
-  Enum_Impl::Enum_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Enum_Impl
-  //
-  Enum_Impl::~Enum_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Enum_Impl::accept (Visitor * v)
+  void Enum_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Enum (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Enum (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -53,6 +55,14 @@ namespace PICML
   size_t Enum_Impl::get_EnumValues (std::vector <EnumValue> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_EnumValues
+  //
+  ::GAME::Mga::Iterator <EnumValue> Enum_Impl::get_EnumValues (void) const
+  {
+    return this->children <EnumValue> ();
   }
 }
 

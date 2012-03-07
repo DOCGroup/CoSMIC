@@ -1,63 +1,41 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ObjectByValue.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ObjectByValue.inl"
+#endif
 
-#include "PICML/InheritableTypes/PrivateFlag.h"
+#include "PICML/Visitor.h"
 #include "PICML/NamedTypes/Member.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ObjectByValue_Impl::metaname = "ObjectByValue";
+  const std::string ObjectByValue_Impl::metaname ("ObjectByValue");
 
   //
-  // ObjectByValue_Impl
+  // get_Members
   //
-  ObjectByValue_Impl::ObjectByValue_Impl (void)
+  size_t ObjectByValue_Impl::get_Members (std::vector <Member> & items) const
   {
+    return this->children (items);
   }
 
   //
-  // ObjectByValue_Impl
+  // get_Members
   //
-  ObjectByValue_Impl::ObjectByValue_Impl (IMgaModel * ptr)
+  ::GAME::Mga::Iterator <Member> ObjectByValue_Impl::get_Members (void) const
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ObjectByValue_Impl
-  //
-  ObjectByValue_Impl::~ObjectByValue_Impl (void)
-  {
-  }
-
-  //
-  // abstract
-  //
-  void ObjectByValue_Impl::abstract (bool val)
-  {
-    static const std::string attr_abstract ("abstract");
-    this->attribute (attr_abstract)->bool_value (val);
-  }
-
-  //
-  // abstract
-  //
-  bool ObjectByValue_Impl::abstract (void) const
-  {
-    static const std::string attr_abstract ("abstract");
-    return this->attribute (attr_abstract)->bool_value ();
+    return this->children <Member> ();
   }
 
   //
@@ -69,11 +47,27 @@ namespace PICML
   }
 
   //
-  // get_Members
+  // get_PrivateFlags
   //
-  size_t ObjectByValue_Impl::get_Members (std::vector <Member> & items) const
+  ::GAME::Mga::Iterator <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
+  {
+    return this->children <PrivateFlag> ();
+  }
+
+  //
+  // get_MakeMemberPrivates
+  //
+  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_MakeMemberPrivates
+  //
+  ::GAME::Mga::Iterator <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
+  {
+    return this->children <MakeMemberPrivate> ();
   }
 
   //
@@ -85,11 +79,11 @@ namespace PICML
   }
 
   //
-  // get_MakeMemberPrivates
+  // get_FactoryOperations
   //
-  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
+  ::GAME::Mga::Iterator <FactoryOperation> ObjectByValue_Impl::get_FactoryOperations (void) const
   {
-    return this->children (items);
+    return this->children <FactoryOperation> ();
   }
 }
 

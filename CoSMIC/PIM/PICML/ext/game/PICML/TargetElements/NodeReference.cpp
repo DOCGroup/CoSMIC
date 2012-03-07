@@ -1,58 +1,86 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "NodeReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "NodeReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
+#include "PICML/DeploymentPlan/PropertyMapping.h"
 #include "PICML/TargetElements/Node.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string NodeReference_Impl::metaname = "NodeReference";
+  const std::string NodeReference_Impl::metaname ("NodeReference");
 
   //
-  // NodeReference_Impl
+  // _create (const DeploymentPlan_in)
   //
-  NodeReference_Impl::NodeReference_Impl (void)
+  NodeReference NodeReference_Impl::_create (const DeploymentPlan_in parent)
   {
-  }
-
-  //
-  // NodeReference_Impl
-  //
-  NodeReference_Impl::NodeReference_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~NodeReference_Impl
-  //
-  NodeReference_Impl::~NodeReference_Impl (void)
-  {
+    return ::GAME::Mga::create_object < NodeReference > (parent, NodeReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void NodeReference_Impl::accept (Visitor * v)
+  void NodeReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_NodeReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_NodeReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // refers_to_Node
+  // src_PropertyMapping
   //
-  Node NodeReference_Impl::refers_to_Node (void) const
+  size_t NodeReference_Impl::src_PropertyMapping (std::vector <PropertyMapping> & items) const
   {
-    return ::GAME::Mga::get_refers_to <Node> (this);
+    return this->in_connections <PropertyMapping> (items);
+  }
+
+  //
+  // dst_InstanceMapping
+  //
+  size_t NodeReference_Impl::dst_InstanceMapping (std::vector <InstanceMapping> & items) const
+  {
+    return this->in_connections <InstanceMapping> (items);
+  }
+
+  //
+  // Node_is_nil
+  //
+  bool NodeReference_Impl::Node_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_Node
+  //
+  Node NodeReference_Impl::get_Node (void) const
+  {
+    return Node::_narrow (this->refers_to ());
   }
 }
 

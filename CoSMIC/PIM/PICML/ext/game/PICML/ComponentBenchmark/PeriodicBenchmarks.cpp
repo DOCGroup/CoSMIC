@@ -1,68 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PeriodicBenchmarks.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PeriodicBenchmarks.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PeriodicBenchmarks_Impl::metaname = "PeriodicBenchmarks";
+  const std::string PeriodicBenchmarks_Impl::metaname ("PeriodicBenchmarks");
 
   //
-  // PeriodicBenchmarks_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  PeriodicBenchmarks_Impl::PeriodicBenchmarks_Impl (void)
+  PeriodicBenchmarks PeriodicBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // PeriodicBenchmarks_Impl
-  //
-  PeriodicBenchmarks_Impl::PeriodicBenchmarks_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PeriodicBenchmarks_Impl
-  //
-  PeriodicBenchmarks_Impl::~PeriodicBenchmarks_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PeriodicBenchmarks > (parent, PeriodicBenchmarks_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PeriodicBenchmarks_Impl::accept (Visitor * v)
+  void PeriodicBenchmarks_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PeriodicBenchmarks (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PeriodicBenchmarks (this);
+    }
 
-  //
-  // timeperiod
-  //
-  void PeriodicBenchmarks_Impl::timeperiod (long val)
-  {
-    static const std::string attr_timeperiod ("timeperiod");
-    this->attribute (attr_timeperiod)->int_value (val);
-  }
-
-  //
-  // timeperiod
-  //
-  long PeriodicBenchmarks_Impl::timeperiod (void) const
-  {
-    static const std::string attr_timeperiod ("timeperiod");
-    return this->attribute (attr_timeperiod)->int_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TopLevelPackages.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TopLevelPackages.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TopLevelPackages_Impl::metaname = "TopLevelPackages";
+  const std::string TopLevelPackages_Impl::metaname ("TopLevelPackages");
 
   //
-  // TopLevelPackages_Impl
-  //
-  TopLevelPackages_Impl::TopLevelPackages_Impl (void)
-  {
-  }
-
-  //
-  // TopLevelPackages_Impl
-  //
-  TopLevelPackages_Impl::TopLevelPackages_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TopLevelPackages_Impl
-  //
-  TopLevelPackages_Impl::~TopLevelPackages_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void TopLevelPackages_Impl::accept (Visitor * v)
-  {
-    v->visit_TopLevelPackages (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   TopLevelPackages TopLevelPackages_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <TopLevelPackages> (parent, TopLevelPackages_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder TopLevelPackages_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void TopLevelPackages_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TopLevelPackages (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_TopLevelPackageContainers
+  //
+  size_t TopLevelPackages_Impl::get_TopLevelPackageContainers (std::vector <TopLevelPackageContainer> & items) const
+  {
+    return this->children (items);
   }
 }
 

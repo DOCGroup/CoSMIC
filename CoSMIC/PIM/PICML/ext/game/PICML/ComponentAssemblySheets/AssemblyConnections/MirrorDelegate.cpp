@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MirrorDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MirrorDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MirrorDelegate_Impl::metaname = "MirrorDelegate";
+  const std::string MirrorDelegate_Impl::metaname ("MirrorDelegate");
 
   //
-  // MirrorDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  MirrorDelegate_Impl::MirrorDelegate_Impl (void)
+  MirrorDelegate MirrorDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // MirrorDelegate_Impl
-  //
-  MirrorDelegate_Impl::MirrorDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MirrorDelegate_Impl
-  //
-  MirrorDelegate_Impl::~MirrorDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < MirrorDelegate > (parent, MirrorDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void MirrorDelegate_Impl::accept (Visitor * v)
+  void MirrorDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_MirrorDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_MirrorDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_MirrorPortInstanceBase
+  // MirrorPortInstanceBase
   //
-  MirrorPortInstanceBase MirrorDelegate_Impl::src_MirrorPortInstanceBase (void)
+  MirrorPortInstanceBase MirrorDelegate_Impl::src_MirrorPortInstanceBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return MirrorPortInstanceBase::_narrow (target);
+    return MirrorPortInstanceBase::_narrow (this->src ());
   }
 
   //
-  // dst_MirrorPortDelegate
+  // MirrorPortDelegate
   //
-  MirrorPortDelegate MirrorDelegate_Impl::dst_MirrorPortDelegate (void)
+  MirrorPortDelegate MirrorDelegate_Impl::dst_MirrorPortDelegate (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return MirrorPortDelegate::_narrow (target);
+    return MirrorPortDelegate::_narrow (this->dst ());
   }
 }
 

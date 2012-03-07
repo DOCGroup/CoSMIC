@@ -14,22 +14,27 @@
 #ifndef _PICML_COMPONENTPACKAGE_COMPONENTPACKAGES_H_
 #define _PICML_COMPONENTPACKAGE_COMPONENTPACKAGES_H_
 
-#include "game/mga/Folder.h"
-#include "game/mga/RootFolder.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/RootFolder.h"
+#include "game/mga/Folder.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentPackages_Impl;
   typedef ComponentPackages_Impl * ComponentPackages_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentPackages_Impl> ComponentPackages;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentPackages_Impl > ComponentPackages;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentPackages_Impl
+   *
+   * Implementation for the ComponentPackages model element.
+   */
   class PICML_Export ComponentPackages_Impl :
     public virtual ::GAME::Mga::Folder_Impl
   {
@@ -43,18 +48,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentPackages_Impl (void);
-
-    /// Initializing constructor
-    ComponentPackages_Impl (IMgaFolder * ptr);
-
-    /// Destructor
-    virtual ~ComponentPackages_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -62,19 +55,24 @@ namespace PICML
     static ComponentPackages _create (const ::GAME::Mga::RootFolder_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ::GAME::Mga::RootFolder parent_RootFolder (void) const;
-    ///@}
+    // Default constructor.
+    ComponentPackages_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    ComponentPackages_Impl (IMgaFolder * ptr);
+
+    // Destructor.
+    virtual ~ComponentPackages_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    size_t get_PackageContainers (std::vector <PackageContainer> & items) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentPackages.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPACKAGE_COMPONENTPACKAGES

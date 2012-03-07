@@ -1,49 +1,42 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UnsignedLongInteger.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "UnsignedLongInteger.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string UnsignedLongInteger_Impl::metaname = "UnsignedLongInteger";
-
-  //
-  // UnsignedLongInteger_Impl
-  //
-  UnsignedLongInteger_Impl::UnsignedLongInteger_Impl (void)
-  {
-  }
-
-  //
-  // UnsignedLongInteger_Impl
-  //
-  UnsignedLongInteger_Impl::UnsignedLongInteger_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~UnsignedLongInteger_Impl
-  //
-  UnsignedLongInteger_Impl::~UnsignedLongInteger_Impl (void)
-  {
-  }
+  const std::string UnsignedLongInteger_Impl::metaname ("UnsignedLongInteger");
 
   //
   // accept
   //
-  void UnsignedLongInteger_Impl::accept (Visitor * v)
+  void UnsignedLongInteger_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_UnsignedLongInteger (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_UnsignedLongInteger (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

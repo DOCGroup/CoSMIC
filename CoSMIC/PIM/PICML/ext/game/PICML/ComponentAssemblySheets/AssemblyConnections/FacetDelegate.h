@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_FACETDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_FACETDELEGATE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class FacetDelegate_Impl;
   typedef FacetDelegate_Impl * FacetDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <FacetDelegate_Impl> FacetDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < FacetDelegate_Impl > FacetDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class FacetDelegate_Impl
+   *
+   * Implementation for the FacetDelegate model element.
+   */
   class PICML_Export FacetDelegate_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    FacetDelegate_Impl (void);
-
-    /// Initializing constructor
-    FacetDelegate_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~FacetDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static FacetDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src ProvidedRequestPortDelegate connection point.
-    ProvidedRequestPortDelegate src_ProvidedRequestPortDelegate (void);
+    // Default constructor.
+    FacetDelegate_Impl (void);
 
-    /// Get the dst ProvidedRequestPortEnd connection point.
-    ProvidedRequestPortEnd dst_ProvidedRequestPortEnd (void);
+    // Initializing constructor.
+    FacetDelegate_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~FacetDelegate_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ProvidedRequestPortDelegate src_ProvidedRequestPortDelegate (void) const;
+    ProvidedRequestPortEnd dst_ProvidedRequestPortEnd (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "FacetDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_FACETDELEGATE

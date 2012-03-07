@@ -14,25 +14,30 @@
 #ifndef _PICML_PREDEFINEDTYPES_STRING_H_
 #define _PICML_PREDEFINEDTYPES_STRING_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/StringType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/StringType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class String_Impl;
   typedef String_Impl * String_in;
-  typedef ::GAME::Mga::Smart_Ptr <String_Impl> String;
+  typedef ::GAME::Mga::Smart_Ptr < String_Impl > String;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class String_Impl
+   *
+   * Implementation for the String model element.
+   */
   class PICML_Export String_Impl :
-    public virtual StringType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual StringType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    String_Impl (void);
-
-    /// Initializing constructor
-    String_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~String_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    String_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    String_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~String_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "String.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_STRING

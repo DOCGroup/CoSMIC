@@ -14,21 +14,26 @@
 #ifndef _PICML_INTERFACEDEFINITION_CONSTANT_H_
 #define _PICML_INTERFACEDEFINITION_CONSTANT_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Constant_Impl;
   typedef Constant_Impl * Constant_in;
-  typedef ::GAME::Mga::Smart_Ptr <Constant_Impl> Constant;
+  typedef ::GAME::Mga::Smart_Ptr < Constant_Impl > Constant;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Constant_Impl
+   *
+   * Implementation for the Constant model element.
+   */
   class PICML_Export Constant_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,25 +47,26 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Constant_Impl (void);
-
-    /// Initializing constructor
-    Constant_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Constant_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    static Constant _create (const File_in parent);
     static Constant _create (const Package_in parent);
+    static Constant _create (const File_in parent);
+    static Constant _create (const HasOperations_in parent);
     ///@}
+
+    // Default constructor.
+    Constant_Impl (void);
+
+    // Initializing constructor.
+    Constant_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Constant_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -75,20 +81,17 @@ namespace PICML
     ///@}
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    File parent_File (void) const;
-    Package parent_Package (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ConstantType refers_to_ConstantType (void) const;
+    bool ConstantType_is_nil (void) const;
+    ConstantType get_ConstantType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Constant.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_CONSTANT

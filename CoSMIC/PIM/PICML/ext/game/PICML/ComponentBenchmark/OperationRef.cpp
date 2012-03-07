@@ -1,103 +1,104 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "OperationRef.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "OperationRef.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/OperationTypes/OperationBase.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string OperationRef_Impl::metaname = "OperationRef";
+  const std::string OperationRef_Impl::metaname ("OperationRef");
 
   //
-  // OperationRef_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  OperationRef_Impl::OperationRef_Impl (void)
+  OperationRef OperationRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // OperationRef_Impl
-  //
-  OperationRef_Impl::OperationRef_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~OperationRef_Impl
-  //
-  OperationRef_Impl::~OperationRef_Impl (void)
-  {
+    return ::GAME::Mga::create_object < OperationRef > (parent, OperationRef_Impl::metaname);
   }
 
   //
   // accept
   //
-  void OperationRef_Impl::accept (Visitor * v)
+  void OperationRef_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_OperationRef (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_OperationRef (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // src_MetricConnection
   //
-  OperationRef OperationRef_Impl::_create (const BenchmarkAnalysis_in parent)
+  size_t OperationRef_Impl::src_MetricConnection (std::vector <MetricConnection> & items) const
   {
-    return ::GAME::Mga::create_object <OperationRef> (parent, OperationRef_Impl::metaname);
+    return this->in_connections <MetricConnection> (items);
   }
 
   //
-  // in_WorkLoadOperationConnection_connections
+  // src_TimerConnection
   //
-  size_t OperationRef_Impl::in_WorkLoadOperationConnection_connections (std::vector <WorkLoadOperationConnection> & conns) const
+  size_t OperationRef_Impl::src_TimerConnection (std::vector <TimerConnection> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <TimerConnection> (items);
   }
 
   //
-  // in_ComponentOperation_connections
+  // src_ComponentOperation
   //
-  size_t OperationRef_Impl::in_ComponentOperation_connections (std::vector <ComponentOperation> & conns) const
+  size_t OperationRef_Impl::src_ComponentOperation (std::vector <ComponentOperation> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <ComponentOperation> (items);
   }
 
   //
-  // in_MetricConnection_connections
+  // src_WorkLoadOperationConnection
   //
-  size_t OperationRef_Impl::in_MetricConnection_connections (std::vector <MetricConnection> & conns) const
+  size_t OperationRef_Impl::src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <WorkLoadOperationConnection> (items);
   }
 
   //
-  // in_TimerConnection_connections
+  // OperationBase_is_nil
   //
-  size_t OperationRef_Impl::in_TimerConnection_connections (std::vector <TimerConnection> & conns) const
+  bool OperationRef_Impl::OperationBase_is_nil (void) const
   {
-    return this->in_connections (conns);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_BenchmarkAnalysis
+  // get_OperationBase
   //
-  BenchmarkAnalysis OperationRef_Impl::parent_BenchmarkAnalysis (void) const
+  OperationBase OperationRef_Impl::get_OperationBase (void) const
   {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return OperationBase::_narrow (this->refers_to ());
   }
 }
 

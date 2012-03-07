@@ -1,51 +1,70 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TemplatePackageInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TemplatePackageInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/TemplateParameterValue.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/PackageType.h"
+#include "PICML/InterfaceDefinition/TemplateParameterValue.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TemplatePackageInstance_Impl::metaname = "TemplatePackageInstance";
+  const std::string TemplatePackageInstance_Impl::metaname ("TemplatePackageInstance");
 
   //
-  // TemplatePackageInstance_Impl
+  // _create (const Package_in)
   //
-  TemplatePackageInstance_Impl::TemplatePackageInstance_Impl (void)
+  TemplatePackageInstance TemplatePackageInstance_Impl::_create (const Package_in parent)
   {
+    return ::GAME::Mga::create_object < TemplatePackageInstance > (parent, TemplatePackageInstance_Impl::metaname);
   }
 
   //
-  // TemplatePackageInstance_Impl
+  // _create (const File_in)
   //
-  TemplatePackageInstance_Impl::TemplatePackageInstance_Impl (IMgaModel * ptr)
+  TemplatePackageInstance TemplatePackageInstance_Impl::_create (const File_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TemplatePackageInstance_Impl
-  //
-  TemplatePackageInstance_Impl::~TemplatePackageInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TemplatePackageInstance > (parent, TemplatePackageInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TemplatePackageInstance_Impl::accept (Visitor * v)
+  void TemplatePackageInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TemplatePackageInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TemplatePackageInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // get_PackageType
+  //
+  PackageType TemplatePackageInstance_Impl::get_PackageType (void) const
+  {
+    return this->children <PackageType> ().item ();
   }
 
   //
@@ -57,15 +76,11 @@ namespace PICML
   }
 
   //
-  // get_PackageType
+  // get_TemplateParameterValues
   //
-  PackageType TemplatePackageInstance_Impl::get_PackageType (void) const
+  ::GAME::Mga::Iterator <TemplateParameterValue> TemplatePackageInstance_Impl::get_TemplateParameterValues (void) const
   {
-    // Get the collection of children.
-    std::vector <PackageType> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : PackageType ();
+    return this->children <TemplateParameterValue> ();
   }
 }
 

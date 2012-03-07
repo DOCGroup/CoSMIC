@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MultiInputBase.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MultiInputBase.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
 
 namespace PICML
@@ -14,36 +15,14 @@ namespace PICML
   //
   // metaname
   //
-  const std::string MultiInputBase_Impl::metaname = "MultiInputBase";
+  const std::string MultiInputBase_Impl::metaname ("MultiInputBase");
 
   //
-  // MultiInputBase_Impl
+  // src_MultiInput
   //
-  MultiInputBase_Impl::MultiInputBase_Impl (void)
+  size_t MultiInputBase_Impl::src_MultiInput (std::vector <MultiInput> & items) const
   {
-  }
-
-  //
-  // MultiInputBase_Impl
-  //
-  MultiInputBase_Impl::MultiInputBase_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MultiInputBase_Impl
-  //
-  MultiInputBase_Impl::~MultiInputBase_Impl (void)
-  {
-  }
-
-  //
-  // in_MultiInput_connections
-  //
-  size_t MultiInputBase_Impl::in_MultiInput_connections (std::vector <MultiInput> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <MultiInput> (items);
   }
 }
 

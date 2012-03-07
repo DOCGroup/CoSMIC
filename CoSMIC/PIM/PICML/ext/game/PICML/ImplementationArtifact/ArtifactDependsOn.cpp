@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ArtifactDependsOn.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ArtifactDependsOn.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ArtifactDependsOn_Impl::metaname = "ArtifactDependsOn";
+  const std::string ArtifactDependsOn_Impl::metaname ("ArtifactDependsOn");
 
   //
-  // ArtifactDependsOn_Impl
+  // _create (const ArtifactContainer_in)
   //
-  ArtifactDependsOn_Impl::ArtifactDependsOn_Impl (void)
+  ArtifactDependsOn ArtifactDependsOn_Impl::_create (const ArtifactContainer_in parent)
   {
-  }
-
-  //
-  // ArtifactDependsOn_Impl
-  //
-  ArtifactDependsOn_Impl::ArtifactDependsOn_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ArtifactDependsOn_Impl
-  //
-  ArtifactDependsOn_Impl::~ArtifactDependsOn_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ArtifactDependsOn > (parent, ArtifactDependsOn_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ArtifactDependsOn_Impl::accept (Visitor * v)
+  void ArtifactDependsOn_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ArtifactDependsOn (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ArtifactDependsOn (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ImplementationArtifact
   //
-  ArtifactDependsOn ArtifactDependsOn_Impl::_create (const ArtifactContainer_in parent)
+  ImplementationArtifact ArtifactDependsOn_Impl::src_ImplementationArtifact (void) const
   {
-    return ::GAME::Mga::create_object <ArtifactDependsOn> (parent, ArtifactDependsOn_Impl::metaname);
+    return ImplementationArtifact::_narrow (this->src ());
   }
 
   //
-  // src_ImplementationArtifact
+  // ImplementationArtifactReference
   //
-  ImplementationArtifact ArtifactDependsOn_Impl::src_ImplementationArtifact (void)
+  ImplementationArtifactReference ArtifactDependsOn_Impl::dst_ImplementationArtifactReference (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ImplementationArtifact::_narrow (target);
-  }
-
-  //
-  // dst_ImplementationArtifactReference
-  //
-  ImplementationArtifactReference ArtifactDependsOn_Impl::dst_ImplementationArtifactReference (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ImplementationArtifactReference::_narrow (target);
-  }
-
-  //
-  // parent_ArtifactContainer
-  //
-  ArtifactContainer ArtifactDependsOn_Impl::parent_ArtifactContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ArtifactContainer> (this->object_.p);
+    return ImplementationArtifactReference::_narrow (this->dst ());
   }
 }
 

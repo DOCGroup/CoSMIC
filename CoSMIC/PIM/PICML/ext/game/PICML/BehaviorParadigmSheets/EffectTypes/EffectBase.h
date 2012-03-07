@@ -14,18 +14,23 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_EFFECTTYPES_EFFECTBASE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_EFFECTTYPES_EFFECTBASE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class EffectBase_Impl;
   typedef EffectBase_Impl * EffectBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <EffectBase_Impl> EffectBase;
+  typedef ::GAME::Mga::Smart_Ptr < EffectBase_Impl > EffectBase;
 
+  /**
+   * @class EffectBase_Impl
+   *
+   * Implementation for the EffectBase model element.
+   */
   class PICML_Export EffectBase_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     EffectBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     EffectBase_Impl (IMgaConnection * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~EffectBase_Impl (void) = 0;
 
     /**
@@ -59,19 +64,11 @@ namespace PICML
     /// Get the value of Postcondition
     std::string Postcondition (void) const;
     ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "EffectBase.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_EFFECTTYPES_EFFECTBASE

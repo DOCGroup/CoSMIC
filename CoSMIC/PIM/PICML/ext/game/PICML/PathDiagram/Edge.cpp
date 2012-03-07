@@ -1,93 +1,78 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Edge.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Edge.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/SrcEdge.h"
 #include "PICML/PathDiagram/EdgeProperty.h"
-#include "PICML/PathDiagram/DstEdge.h"
-#include "PICML/PathDiagram/Path.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Edge_Impl::metaname = "Edge";
+  const std::string Edge_Impl::metaname ("Edge");
 
   //
-  // Edge_Impl
+  // _create (const Path_in)
   //
-  Edge_Impl::Edge_Impl (void)
+  Edge Edge_Impl::_create (const Path_in parent)
   {
-  }
-
-  //
-  // Edge_Impl
-  //
-  Edge_Impl::Edge_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Edge_Impl
-  //
-  Edge_Impl::~Edge_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Edge > (parent, Edge_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Edge_Impl::accept (Visitor * v)
+  void Edge_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Edge (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Edge (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_SrcEdge
   //
-  Edge Edge_Impl::_create (const Path_in parent)
+  size_t Edge_Impl::src_SrcEdge (std::vector <SrcEdge> & items) const
   {
-    return ::GAME::Mga::create_object <Edge> (parent, Edge_Impl::metaname);
+    return this->in_connections <SrcEdge> (items);
   }
 
   //
-  // in_SrcEdge_connections
+  // dst_DstEdge
   //
-  size_t Edge_Impl::in_SrcEdge_connections (std::vector <SrcEdge> & conns) const
+  size_t Edge_Impl::dst_DstEdge (std::vector <DstEdge> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <DstEdge> (items);
   }
 
   //
-  // in_EdgeProperty_connections
+  // dst_EdgeProperty
   //
-  size_t Edge_Impl::in_EdgeProperty_connections (std::vector <EdgeProperty> & conns) const
+  size_t Edge_Impl::dst_EdgeProperty (std::vector <EdgeProperty> & items) const
   {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_DstEdge_connections
-  //
-  size_t Edge_Impl::in_DstEdge_connections (std::vector <DstEdge> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_Path
-  //
-  Path Edge_Impl::parent_Path (void) const
-  {
-    return ::GAME::Mga::get_parent <Path> (this->object_.p);
+    return this->in_connections <EdgeProperty> (items);
   }
 }
 

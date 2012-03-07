@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InterfaceDefinitions.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InterfaceDefinitions.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InterfaceDefinitions_Impl::metaname = "InterfaceDefinitions";
+  const std::string InterfaceDefinitions_Impl::metaname ("InterfaceDefinitions");
 
   //
-  // InterfaceDefinitions_Impl
-  //
-  InterfaceDefinitions_Impl::InterfaceDefinitions_Impl (void)
-  {
-  }
-
-  //
-  // InterfaceDefinitions_Impl
-  //
-  InterfaceDefinitions_Impl::InterfaceDefinitions_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InterfaceDefinitions_Impl
-  //
-  InterfaceDefinitions_Impl::~InterfaceDefinitions_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void InterfaceDefinitions_Impl::accept (Visitor * v)
-  {
-    v->visit_InterfaceDefinitions (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   InterfaceDefinitions InterfaceDefinitions_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <InterfaceDefinitions> (parent, InterfaceDefinitions_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder InterfaceDefinitions_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void InterfaceDefinitions_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InterfaceDefinitions (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_Files
+  //
+  size_t InterfaceDefinitions_Impl::get_Files (std::vector <File> & items) const
+  {
+    return this->children (items);
   }
 }
 

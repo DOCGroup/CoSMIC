@@ -1,52 +1,78 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentInstance_Impl::metaname = "ComponentInstance";
+  const std::string ComponentInstance_Impl::metaname ("ComponentInstance");
 
   //
-  // ComponentInstance_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ComponentInstance_Impl::ComponentInstance_Impl (void)
+  ComponentInstance ComponentInstance_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ComponentInstance_Impl
-  //
-  ComponentInstance_Impl::ComponentInstance_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentInstance_Impl
-  //
-  ComponentInstance_Impl::~ComponentInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentInstance > (parent, ComponentInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentInstance_Impl::accept (Visitor * v)
+  void ComponentInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // get_ComponentInstanceType
+  //
+  ComponentInstanceType ComponentInstance_Impl::get_ComponentInstanceType (void) const
+  {
+    return this->children <ComponentInstanceType> ().item ();
+  }
+
+  //
+  // get_SupportsInstances
+  //
+  size_t ComponentInstance_Impl::get_SupportsInstances (std::vector <SupportsInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SupportsInstances
+  //
+  ::GAME::Mga::Iterator <SupportsInstance> ComponentInstance_Impl::get_SupportsInstances (void) const
+  {
+    return this->children <SupportsInstance> ();
   }
 
   //
@@ -58,23 +84,11 @@ namespace PICML
   }
 
   //
-  // get_ComponentInstanceType
+  // get_PortInstances
   //
-  ComponentInstanceType ComponentInstance_Impl::get_ComponentInstanceType (void) const
+  ::GAME::Mga::Iterator <PortInstance> ComponentInstance_Impl::get_PortInstances (void) const
   {
-    // Get the collection of children.
-    std::vector <ComponentInstanceType> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ComponentInstanceType ();
-  }
-
-  //
-  // get_SupportsInstances
-  //
-  size_t ComponentInstance_Impl::get_SupportsInstances (std::vector <SupportsInstance> & items) const
-  {
-    return this->children (items);
+    return this->children <PortInstance> ();
   }
 }
 

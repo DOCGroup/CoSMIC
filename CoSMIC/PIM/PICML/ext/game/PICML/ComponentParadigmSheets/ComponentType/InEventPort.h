@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_INEVENTPORT_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_INEVENTPORT_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InEventPort_Impl;
   typedef InEventPort_Impl * InEventPort_in;
-  typedef ::GAME::Mga::Smart_Ptr <InEventPort_Impl> InEventPort;
+  typedef ::GAME::Mga::Smart_Ptr < InEventPort_Impl > InEventPort;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class InEventPort_Impl
+   *
+   * Implementation for the InEventPort model element.
+   */
   class PICML_Export InEventPort_Impl :
-    public virtual EventPort_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual EventPort_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,44 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    InEventPort_Impl (void);
-
-    /// Initializing constructor
-    InEventPort_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~InEventPort_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     ///@}
 
+    // Default constructor.
+    InEventPort_Impl (void);
+
+    // Initializing constructor.
+    InEventPort_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~InEventPort_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool InEventPort_is_nil (void) const;
+    InEventPort get_InEventPort (void) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    EventType refers_to_EventType (void) const;
+    bool EventType_is_nil (void) const;
+    EventType get_EventType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InEventPort.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_INEVENTPORT

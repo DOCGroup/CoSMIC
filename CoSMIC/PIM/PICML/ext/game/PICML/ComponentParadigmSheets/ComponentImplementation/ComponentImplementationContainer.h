@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_COMPONENTIMPLEMENTATIONCONTAINER_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_COMPONENTIMPLEMENTATIONCONTAINER_H_
 
-#include "game/mga/Model.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentImplementationContainer_Impl;
   typedef ComponentImplementationContainer_Impl * ComponentImplementationContainer_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentImplementationContainer_Impl> ComponentImplementationContainer;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentImplementationContainer_Impl > ComponentImplementationContainer;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentImplementationContainer_Impl
+   *
+   * Implementation for the ComponentImplementationContainer model element.
+   */
   class PICML_Export ComponentImplementationContainer_Impl :
-    public virtual ImplementationContainer_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual ImplementationContainer_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,56 +49,63 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentImplementationContainer_Impl (void);
-
-    /// Initializing constructor
-    ComponentImplementationContainer_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~ComponentImplementationContainer_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static ComponentImplementationContainer _create (const ComponentImplementations_in parent);
+    static ComponentImplementationContainer _create (const ImplementationContainer_in parent);
     ///@}
+
+    // Default constructor.
+    ComponentImplementationContainer_Impl (void);
+
+    // Initializing constructor.
+    ComponentImplementationContainer_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~ComponentImplementationContainer_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_CriticalPaths (std::vector <CriticalPath> & items) const;
-    size_t get_ComponentImplementations (std::vector <ComponentImplementation> & items) const;
 
-    PathReference get_PathReference (void) const;
-    size_t get_Capabilitys (std::vector <Capability> & items) const;
-    size_t get_ImplementationCapabilitys (std::vector <ImplementationCapability> & items) const;
-    size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
-
+    bool has_ComponentRef (void) const;
     ComponentRef get_ComponentRef (void) const;
 
+    bool has_Implements (void) const;
     Implements get_Implements (void) const;
+
+    bool has_PathReference (void) const;
+    PathReference get_PathReference (void) const;
+    size_t get_ImplementationCapabilitys (std::vector <ImplementationCapability> & items) const;
+    ::GAME::Mga::Iterator <ImplementationCapability> get_ImplementationCapabilitys (void) const;
+
     size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <ImplementationDependsOn> get_ImplementationDependsOns (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentImplementations parent_ComponentImplementations (void) const;
-    ///@}
+    size_t get_ComponentImplementations (std::vector <ComponentImplementation> & items) const;
+    ::GAME::Mga::Iterator <ComponentImplementation> get_ComponentImplementations (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    size_t get_CriticalPaths (std::vector <CriticalPath> & items) const;
+    ::GAME::Mga::Iterator <CriticalPath> get_CriticalPaths (void) const;
+
+    size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
+    ::GAME::Mga::Iterator <ImplementationDependency> get_ImplementationDependencys (void) const;
+
+    size_t get_Capabilitys (std::vector <Capability> & items) const;
+    ::GAME::Mga::Iterator <Capability> get_Capabilitys (void) const;
+
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentImplementationContainer.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_COMPONENTIMPLEMENTATIONCONTAINER

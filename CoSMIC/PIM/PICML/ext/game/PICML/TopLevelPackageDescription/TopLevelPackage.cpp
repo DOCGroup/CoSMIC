@@ -1,75 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TopLevelPackage.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TopLevelPackage.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "PICML/TopLevelPackageDescription/package.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TopLevelPackage_Impl::metaname = "TopLevelPackage";
+  const std::string TopLevelPackage_Impl::metaname ("TopLevelPackage");
 
   //
-  // TopLevelPackage_Impl
+  // _create (const TopLevelPackageContainer_in)
   //
-  TopLevelPackage_Impl::TopLevelPackage_Impl (void)
+  TopLevelPackage TopLevelPackage_Impl::_create (const TopLevelPackageContainer_in parent)
   {
-  }
-
-  //
-  // TopLevelPackage_Impl
-  //
-  TopLevelPackage_Impl::TopLevelPackage_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TopLevelPackage_Impl
-  //
-  TopLevelPackage_Impl::~TopLevelPackage_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TopLevelPackage > (parent, TopLevelPackage_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TopLevelPackage_Impl::accept (Visitor * v)
+  void TopLevelPackage_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TopLevelPackage (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TopLevelPackage (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_package
   //
-  TopLevelPackage TopLevelPackage_Impl::_create (const TopLevelPackageContainer_in parent)
+  size_t TopLevelPackage_Impl::src_package (std::vector <package> & items) const
   {
-    return ::GAME::Mga::create_object <TopLevelPackage> (parent, TopLevelPackage_Impl::metaname);
-  }
-
-  //
-  // in_package_connections
-  //
-  size_t TopLevelPackage_Impl::in_package_connections (std::vector <package> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_TopLevelPackageContainer
-  //
-  TopLevelPackageContainer TopLevelPackage_Impl::parent_TopLevelPackageContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <TopLevelPackageContainer> (this->object_.p);
+    return this->in_connections <package> (items);
   }
 }
 

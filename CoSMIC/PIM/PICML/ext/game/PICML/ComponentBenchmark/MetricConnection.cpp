@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MetricConnection.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MetricConnection.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/OperationRef.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/ComponentBenchmark/OperationRef.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MetricConnection_Impl::metaname = "MetricConnection";
+  const std::string MetricConnection_Impl::metaname ("MetricConnection");
 
   //
-  // MetricConnection_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  MetricConnection_Impl::MetricConnection_Impl (void)
+  MetricConnection MetricConnection_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // MetricConnection_Impl
-  //
-  MetricConnection_Impl::MetricConnection_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MetricConnection_Impl
-  //
-  MetricConnection_Impl::~MetricConnection_Impl (void)
-  {
+    return ::GAME::Mga::create_object < MetricConnection > (parent, MetricConnection_Impl::metaname);
   }
 
   //
   // accept
   //
-  void MetricConnection_Impl::accept (Visitor * v)
+  void MetricConnection_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_MetricConnection (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_MetricConnection (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // OperationRef
   //
-  MetricConnection MetricConnection_Impl::_create (const BenchmarkAnalysis_in parent)
+  OperationRef MetricConnection_Impl::src_OperationRef (void) const
   {
-    return ::GAME::Mga::create_object <MetricConnection> (parent, MetricConnection_Impl::metaname);
+    return OperationRef::_narrow (this->src ());
   }
 
   //
-  // src_OperationRef
+  // MetricsBase
   //
-  OperationRef MetricConnection_Impl::src_OperationRef (void)
+  MetricsBase MetricConnection_Impl::dst_MetricsBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return OperationRef::_narrow (target);
-  }
-
-  //
-  // dst_MetricsBase
-  //
-  MetricsBase MetricConnection_Impl::dst_MetricsBase (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return MetricsBase::_narrow (target);
-  }
-
-  //
-  // parent_BenchmarkAnalysis
-  //
-  BenchmarkAnalysis MetricConnection_Impl::parent_BenchmarkAnalysis (void) const
-  {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return MetricsBase::_narrow (this->dst ());
   }
 }
 

@@ -14,21 +14,26 @@
 #ifndef _PICML_REALTIMEREQUIREMENTS_SERVICEPROVIDER_H_
 #define _PICML_REALTIMEREQUIREMENTS_SERVICEPROVIDER_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ServiceProvider_Impl;
   typedef ServiceProvider_Impl * ServiceProvider_in;
-  typedef ::GAME::Mga::Smart_Ptr <ServiceProvider_Impl> ServiceProvider;
+  typedef ::GAME::Mga::Smart_Ptr < ServiceProvider_Impl > ServiceProvider;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ServiceProvider_Impl
+   *
+   * Implementation for the ServiceProvider model element.
+   */
   class PICML_Export ServiceProvider_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,24 +47,24 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ServiceProvider_Impl (void);
-
-    /// Initializing constructor
-    ServiceProvider_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~ServiceProvider_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static ServiceProvider _create (const RTRequirements_in parent);
     ///@}
+
+    // Default constructor.
+    ServiceProvider_Impl (void);
+
+    // Initializing constructor.
+    ServiceProvider_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~ServiceProvider_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -78,24 +83,17 @@ namespace PICML
      */
     ///@{
 
-    ServiceLevels get_ServiceLevels (void) const;
-
+    bool has_MultipleServiceRequests (void) const;
     MultipleServiceRequests get_MultipleServiceRequests (void) const;
-    ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    RTRequirements parent_RTRequirements (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    bool has_ServiceLevels (void) const;
+    ServiceLevels get_ServiceLevels (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ServiceProvider.inl"
 #endif
+
+#endif  // !defined _PICML_REALTIMEREQUIREMENTS_SERVICEPROVIDER

@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MonolithDeployRequirement.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MonolithDeployRequirement.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
-#include "PICML/Common/ImplementationRequirement.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string MonolithDeployRequirement_Impl::metaname = "MonolithDeployRequirement";
+  const std::string MonolithDeployRequirement_Impl::metaname ("MonolithDeployRequirement");
 
   //
-  // MonolithDeployRequirement_Impl
+  // _create (const ImplementationContainer_in)
   //
-  MonolithDeployRequirement_Impl::MonolithDeployRequirement_Impl (void)
+  MonolithDeployRequirement MonolithDeployRequirement_Impl::_create (const ImplementationContainer_in parent)
   {
-  }
-
-  //
-  // MonolithDeployRequirement_Impl
-  //
-  MonolithDeployRequirement_Impl::MonolithDeployRequirement_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MonolithDeployRequirement_Impl
-  //
-  MonolithDeployRequirement_Impl::~MonolithDeployRequirement_Impl (void)
-  {
+    return ::GAME::Mga::create_object < MonolithDeployRequirement > (parent, MonolithDeployRequirement_Impl::metaname);
   }
 
   //
   // accept
   //
-  void MonolithDeployRequirement_Impl::accept (Visitor * v)
+  void MonolithDeployRequirement_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_MonolithDeployRequirement (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_MonolithDeployRequirement (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // MonolithicImplementationBase
   //
-  MonolithDeployRequirement MonolithDeployRequirement_Impl::_create (const ImplementationContainer_in parent)
+  MonolithicImplementationBase MonolithDeployRequirement_Impl::src_MonolithicImplementationBase (void) const
   {
-    return ::GAME::Mga::create_object <MonolithDeployRequirement> (parent, MonolithDeployRequirement_Impl::metaname);
+    return MonolithicImplementationBase::_narrow (this->src ());
   }
 
   //
-  // src_MonolithicImplementationBase
+  // ImplementationRequirement
   //
-  MonolithicImplementationBase MonolithDeployRequirement_Impl::src_MonolithicImplementationBase (void)
+  ImplementationRequirement MonolithDeployRequirement_Impl::dst_ImplementationRequirement (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return MonolithicImplementationBase::_narrow (target);
-  }
-
-  //
-  // dst_ImplementationRequirement
-  //
-  ImplementationRequirement MonolithDeployRequirement_Impl::dst_ImplementationRequirement (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ImplementationRequirement::_narrow (target);
-  }
-
-  //
-  // parent_ImplementationContainer
-  //
-  ImplementationContainer MonolithDeployRequirement_Impl::parent_ImplementationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ImplementationContainer> (this->object_.p);
+    return ImplementationRequirement::_narrow (this->dst ());
   }
 }
 

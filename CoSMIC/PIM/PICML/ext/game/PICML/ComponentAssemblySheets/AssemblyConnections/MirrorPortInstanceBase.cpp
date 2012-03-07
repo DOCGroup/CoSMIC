@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MirrorPortInstanceBase.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "MirrorPortInstanceBase.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h"
 
 namespace PICML
@@ -14,36 +15,14 @@ namespace PICML
   //
   // metaname
   //
-  const std::string MirrorPortInstanceBase_Impl::metaname = "MirrorPortInstanceBase";
+  const std::string MirrorPortInstanceBase_Impl::metaname ("MirrorPortInstanceBase");
 
   //
-  // MirrorPortInstanceBase_Impl
+  // src_MirrorDelegate
   //
-  MirrorPortInstanceBase_Impl::MirrorPortInstanceBase_Impl (void)
+  size_t MirrorPortInstanceBase_Impl::src_MirrorDelegate (std::vector <MirrorDelegate> & items) const
   {
-  }
-
-  //
-  // MirrorPortInstanceBase_Impl
-  //
-  MirrorPortInstanceBase_Impl::MirrorPortInstanceBase_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~MirrorPortInstanceBase_Impl
-  //
-  MirrorPortInstanceBase_Impl::~MirrorPortInstanceBase_Impl (void)
-  {
-  }
-
-  //
-  // in_MirrorDelegate_connections
-  //
-  size_t MirrorPortInstanceBase_Impl::in_MirrorDelegate_connections (std::vector <MirrorDelegate> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <MirrorDelegate> (items);
   }
 }
 

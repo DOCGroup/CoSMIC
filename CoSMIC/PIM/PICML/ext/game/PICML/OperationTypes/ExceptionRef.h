@@ -14,21 +14,26 @@
 #ifndef _PICML_OPERATIONTYPES_EXCEPTIONREF_H_
 #define _PICML_OPERATIONTYPES_EXCEPTIONREF_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExceptionRef_Impl;
   typedef ExceptionRef_Impl * ExceptionRef_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExceptionRef_Impl> ExceptionRef;
+  typedef ::GAME::Mga::Smart_Ptr < ExceptionRef_Impl > ExceptionRef;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ExceptionRef_Impl
+   *
+   * Implementation for the ExceptionRef model element.
+   */
   class PICML_Export ExceptionRef_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ExceptionRef_Impl (void);
-
-    /// Initializing constructor
-    ExceptionRef_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ExceptionRef_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static ExceptionRef _create (const HasExceptions_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    HasExceptions parent_HasExceptions (void) const;
-    ///@}
+    // Default constructor.
+    ExceptionRef_Impl (void);
+
+    // Initializing constructor.
+    ExceptionRef_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ExceptionRef_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ExceptionType_is_nil (void) const;
+    ExceptionType get_ExceptionType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExceptionRef.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_EXCEPTIONREF

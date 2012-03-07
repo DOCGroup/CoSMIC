@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "AttributeMappingValue.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "AttributeMappingValue.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/Common/Property.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string AttributeMappingValue_Impl::metaname = "AttributeMappingValue";
+  const std::string AttributeMappingValue_Impl::metaname ("AttributeMappingValue");
 
   //
-  // AttributeMappingValue_Impl
+  // _create (const ComponentAssembly_in)
   //
-  AttributeMappingValue_Impl::AttributeMappingValue_Impl (void)
+  AttributeMappingValue AttributeMappingValue_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // AttributeMappingValue_Impl
-  //
-  AttributeMappingValue_Impl::AttributeMappingValue_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~AttributeMappingValue_Impl
-  //
-  AttributeMappingValue_Impl::~AttributeMappingValue_Impl (void)
-  {
+    return ::GAME::Mga::create_object < AttributeMappingValue > (parent, AttributeMappingValue_Impl::metaname);
   }
 
   //
   // accept
   //
-  void AttributeMappingValue_Impl::accept (Visitor * v)
+  void AttributeMappingValue_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_AttributeMappingValue (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_AttributeMappingValue (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_AttributeMapping
+  // AttributeMapping
   //
-  AttributeMapping AttributeMappingValue_Impl::src_AttributeMapping (void)
+  AttributeMapping AttributeMappingValue_Impl::src_AttributeMapping (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return AttributeMapping::_narrow (target);
+    return AttributeMapping::_narrow (this->src ());
   }
 
   //
-  // dst_Property
+  // Property
   //
-  Property AttributeMappingValue_Impl::dst_Property (void)
+  Property AttributeMappingValue_Impl::dst_Property (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Property::_narrow (target);
+    return Property::_narrow (this->dst ());
   }
 }
 

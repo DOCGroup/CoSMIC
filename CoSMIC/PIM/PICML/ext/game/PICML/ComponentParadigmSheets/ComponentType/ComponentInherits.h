@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_COMPONENTINHERITS_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_COMPONENTINHERITS_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentInherits_Impl;
   typedef ComponentInherits_Impl * ComponentInherits_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentInherits_Impl> ComponentInherits;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentInherits_Impl > ComponentInherits;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentInherits_Impl
+   *
+   * Implementation for the ComponentInherits model element.
+   */
   class PICML_Export ComponentInherits_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentInherits_Impl (void);
-
-    /// Initializing constructor
-    ComponentInherits_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ComponentInherits_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,20 +54,30 @@ namespace PICML
     static ComponentInherits _create (const Component_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Component parent_Component (void) const;
-    ///@}
+    // Default constructor.
+    ComponentInherits_Impl (void);
+
+    // Initializing constructor.
+    ComponentInherits_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ComponentInherits_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    Component refers_to_Component (void) const;
+    bool Component_is_nil (void) const;
+    Component get_Component (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentInherits.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_COMPONENTINHERITS

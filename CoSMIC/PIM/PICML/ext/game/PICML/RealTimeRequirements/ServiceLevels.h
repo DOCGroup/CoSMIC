@@ -14,21 +14,26 @@
 #ifndef _PICML_REALTIMEREQUIREMENTS_SERVICELEVELS_H_
 #define _PICML_REALTIMEREQUIREMENTS_SERVICELEVELS_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ServiceLevels_Impl;
   typedef ServiceLevels_Impl * ServiceLevels_in;
-  typedef ::GAME::Mga::Smart_Ptr <ServiceLevels_Impl> ServiceLevels;
+  typedef ::GAME::Mga::Smart_Ptr < ServiceLevels_Impl > ServiceLevels;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ServiceLevels_Impl
+   *
+   * Implementation for the ServiceLevels model element.
+   */
   class PICML_Export ServiceLevels_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,24 +47,24 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ServiceLevels_Impl (void);
-
-    /// Initializing constructor
-    ServiceLevels_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~ServiceLevels_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static ServiceLevels _create (const ServiceProvider_in parent);
     ///@}
+
+    // Default constructor.
+    ServiceLevels_Impl (void);
+
+    // Initializing constructor.
+    ServiceLevels_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~ServiceLevels_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -72,20 +77,11 @@ namespace PICML
     /// Get the value of varying_service_levels
     bool varying_service_levels (void) const;
     ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ServiceProvider parent_ServiceProvider (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ServiceLevels.inl"
 #endif
+
+#endif  // !defined _PICML_REALTIMEREQUIREMENTS_SERVICELEVELS

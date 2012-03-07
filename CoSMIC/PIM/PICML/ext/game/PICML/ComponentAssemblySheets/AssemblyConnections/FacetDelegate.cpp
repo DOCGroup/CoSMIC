@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "FacetDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "FacetDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string FacetDelegate_Impl::metaname = "FacetDelegate";
+  const std::string FacetDelegate_Impl::metaname ("FacetDelegate");
 
   //
-  // FacetDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  FacetDelegate_Impl::FacetDelegate_Impl (void)
+  FacetDelegate FacetDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // FacetDelegate_Impl
-  //
-  FacetDelegate_Impl::FacetDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~FacetDelegate_Impl
-  //
-  FacetDelegate_Impl::~FacetDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < FacetDelegate > (parent, FacetDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void FacetDelegate_Impl::accept (Visitor * v)
+  void FacetDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_FacetDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_FacetDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ProvidedRequestPortDelegate
+  // ProvidedRequestPortDelegate
   //
-  ProvidedRequestPortDelegate FacetDelegate_Impl::src_ProvidedRequestPortDelegate (void)
+  ProvidedRequestPortDelegate FacetDelegate_Impl::src_ProvidedRequestPortDelegate (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ProvidedRequestPortDelegate::_narrow (target);
+    return ProvidedRequestPortDelegate::_narrow (this->src ());
   }
 
   //
-  // dst_ProvidedRequestPortEnd
+  // ProvidedRequestPortEnd
   //
-  ProvidedRequestPortEnd FacetDelegate_Impl::dst_ProvidedRequestPortEnd (void)
+  ProvidedRequestPortEnd FacetDelegate_Impl::dst_ProvidedRequestPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ProvidedRequestPortEnd::_narrow (target);
+    return ProvidedRequestPortEnd::_narrow (this->dst ());
   }
 }
 

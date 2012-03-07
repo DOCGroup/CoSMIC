@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_EVENTREF_H_
 #define _PICML_COMPONENTBENCHMARK_EVENTREF_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class EventRef_Impl;
   typedef EventRef_Impl * EventRef_in;
-  typedef ::GAME::Mga::Smart_Ptr <EventRef_Impl> EventRef;
+  typedef ::GAME::Mga::Smart_Ptr < EventRef_Impl > EventRef;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class EventRef_Impl
+   *
+   * Implementation for the EventRef model element.
+   */
   class PICML_Export EventRef_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,39 +47,46 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    EventRef_Impl (void);
-
-    /// Initializing constructor
-    EventRef_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~EventRef_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static EventRef _create (const BenchmarkAnalysis_in parent);
     ///@}
-    size_t in_TimerEventSinkConn_connections (std::vector <TimerEventSinkConn> & conns) const;
+
+    // Default constructor.
+    EventRef_Impl (void);
+
+    // Initializing constructor.
+    EventRef_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~EventRef_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
+
+    /// Get the src TimerEventSinkConn connection.
+    size_t src_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool Event_is_nil (void) const;
+    Event get_Event (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "EventRef.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_EVENTREF

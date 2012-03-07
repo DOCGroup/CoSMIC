@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "EventSinkDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "EventSinkDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string EventSinkDelegate_Impl::metaname = "EventSinkDelegate";
+  const std::string EventSinkDelegate_Impl::metaname ("EventSinkDelegate");
 
   //
-  // EventSinkDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  EventSinkDelegate_Impl::EventSinkDelegate_Impl (void)
+  EventSinkDelegate EventSinkDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // EventSinkDelegate_Impl
-  //
-  EventSinkDelegate_Impl::EventSinkDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~EventSinkDelegate_Impl
-  //
-  EventSinkDelegate_Impl::~EventSinkDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < EventSinkDelegate > (parent, EventSinkDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void EventSinkDelegate_Impl::accept (Visitor * v)
+  void EventSinkDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_EventSinkDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_EventSinkDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_InEventPortDelegate
+  // InEventPortDelegate
   //
-  InEventPortDelegate EventSinkDelegate_Impl::src_InEventPortDelegate (void)
+  InEventPortDelegate EventSinkDelegate_Impl::src_InEventPortDelegate (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return InEventPortDelegate::_narrow (target);
+    return InEventPortDelegate::_narrow (this->src ());
   }
 
   //
-  // dst_InEventPortEnd
+  // InEventPortEnd
   //
-  InEventPortEnd EventSinkDelegate_Impl::dst_InEventPortEnd (void)
+  InEventPortEnd EventSinkDelegate_Impl::dst_InEventPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return InEventPortEnd::_narrow (target);
+    return InEventPortEnd::_narrow (this->dst ());
   }
 }
 

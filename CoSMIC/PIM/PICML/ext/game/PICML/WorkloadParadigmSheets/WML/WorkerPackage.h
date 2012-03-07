@@ -14,25 +14,30 @@
 #ifndef _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERPACKAGE_H_
 #define _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERPACKAGE_H_
 
-#include "game/mga/Model.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkerPackage_Impl;
   typedef WorkerPackage_Impl * WorkerPackage_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerPackage_Impl> WorkerPackage;
+  typedef ::GAME::Mga::Smart_Ptr < WorkerPackage_Impl > WorkerPackage;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WorkerPackage_Impl
+   *
+   * Implementation for the WorkerPackage model element.
+   */
   class PICML_Export WorkerPackage_Impl :
-    public virtual WorkerPackageBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual WorkerPackageBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,46 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WorkerPackage_Impl (void);
-
-    /// Initializing constructor
-    WorkerPackage_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~WorkerPackage_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static WorkerPackage _create (const WorkerFile_in parent);
-    static WorkerPackage _create (const WorkerPackage_in parent);
+    static WorkerPackage _create (const WorkerPackageBase_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    size_t get_WorkerPackages (std::vector <WorkerPackage> & items) const;
-    ///@}
+    // Default constructor.
+    WorkerPackage_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    WorkerFile parent_WorkerFile (void) const;
-    ///@}
+    // Initializing constructor.
+    WorkerPackage_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~WorkerPackage_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkerPackage.inl"
 #endif
+
+#endif  // !defined _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERPACKAGE

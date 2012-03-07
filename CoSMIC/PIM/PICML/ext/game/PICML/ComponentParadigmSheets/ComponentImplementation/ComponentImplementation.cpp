@@ -1,77 +1,47 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentImplementation.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentImplementation.inl"
+#endif
 
+#include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentImplementation_Impl::metaname = "ComponentImplementation";
+  const std::string ComponentImplementation_Impl::metaname ("ComponentImplementation");
 
   //
-  // ComponentImplementation_Impl
+  // src_ImplementationCapability
   //
-  ComponentImplementation_Impl::ComponentImplementation_Impl (void)
+  size_t ComponentImplementation_Impl::src_ImplementationCapability (std::vector <ImplementationCapability> & items) const
   {
+    return this->in_connections <ImplementationCapability> (items);
   }
 
   //
-  // ComponentImplementation_Impl
+  // src_ImplementationDependsOn
   //
-  ComponentImplementation_Impl::ComponentImplementation_Impl (IMgaFCO * ptr)
+  size_t ComponentImplementation_Impl::src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
   {
-    this->object_ = ptr;
+    return this->in_connections <ImplementationDependsOn> (items);
   }
 
   //
-  // ~ComponentImplementation_Impl
+  // src_Implements
   //
-  ComponentImplementation_Impl::~ComponentImplementation_Impl (void)
+  size_t ComponentImplementation_Impl::src_Implements (std::vector <Implements> & items) const
   {
-  }
-
-  //
-  // in_ImplementationDependsOn_connections
-  //
-  size_t ComponentImplementation_Impl::in_ImplementationDependsOn_connections (std::vector <ImplementationDependsOn> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_Implements_connections
-  //
-  size_t ComponentImplementation_Impl::in_Implements_connections (std::vector <Implements> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ImplementationCapability_connections
-  //
-  size_t ComponentImplementation_Impl::in_ImplementationCapability_connections (std::vector <ImplementationCapability> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_ComponentImplementationContainer
-  //
-  ComponentImplementationContainer ComponentImplementation_Impl::parent_ComponentImplementationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ComponentImplementationContainer> (this->object_.p);
+    return this->in_connections <Implements> (items);
   }
 }
 

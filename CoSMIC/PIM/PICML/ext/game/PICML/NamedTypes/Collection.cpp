@@ -1,77 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Collection.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Collection.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/MemberType.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Collection_Impl::metaname = "Collection";
+  const std::string Collection_Impl::metaname ("Collection");
 
   //
-  // Collection_Impl
+  // _create (const ConnectorObject_in)
   //
-  Collection_Impl::Collection_Impl (void)
+  Collection Collection_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < Collection > (parent, Collection_Impl::metaname);
   }
 
   //
-  // Collection_Impl
+  // _create (const HasOperations_in)
   //
-  Collection_Impl::Collection_Impl (IMgaReference * ptr)
+  Collection Collection_Impl::_create (const HasOperations_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Collection_Impl
-  //
-  Collection_Impl::~Collection_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Collection > (parent, Collection_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Collection_Impl::accept (Visitor * v)
+  void Collection_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Collection (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Collection (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // bound
+  // MemberType_is_nil
   //
-  void Collection_Impl::bound (const std::string & val)
+  bool Collection_Impl::MemberType_is_nil (void) const
   {
-    static const std::string attr_bound ("bound");
-    this->attribute (attr_bound)->string_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // bound
+  // get_MemberType
   //
-  std::string Collection_Impl::bound (void) const
+  MemberType Collection_Impl::get_MemberType (void) const
   {
-    static const std::string attr_bound ("bound");
-    return this->attribute (attr_bound)->string_value ();
-  }
-
-  //
-  // refers_to_MemberType
-  //
-  MemberType Collection_Impl::refers_to_MemberType (void) const
-  {
-    return ::GAME::Mga::get_refers_to <MemberType> (this);
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

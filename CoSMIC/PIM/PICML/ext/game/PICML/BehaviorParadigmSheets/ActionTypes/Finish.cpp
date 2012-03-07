@@ -1,70 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Finish.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Finish.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Finish_Impl::metaname = "Finish";
+  const std::string Finish_Impl::metaname ("Finish");
 
   //
-  // Finish_Impl
+  // _create (const BehaviorModel_in)
   //
-  Finish_Impl::Finish_Impl (void)
+  Finish Finish_Impl::_create (const BehaviorModel_in parent)
   {
-  }
-
-  //
-  // Finish_Impl
-  //
-  Finish_Impl::Finish_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Finish_Impl
-  //
-  Finish_Impl::~Finish_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Finish > (parent, Finish_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Finish_Impl::accept (Visitor * v)
+  void Finish_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Finish (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Finish (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_StateBase
+  // StateBase
   //
-  StateBase Finish_Impl::src_StateBase (void)
+  StateBase Finish_Impl::src_StateBase (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return StateBase::_narrow (target);
+    return StateBase::_narrow (this->src ());
   }
 
   //
-  // dst_BehaviorInputAction
+  // BehaviorInputAction
   //
-  BehaviorInputAction Finish_Impl::dst_BehaviorInputAction (void)
+  BehaviorInputAction Finish_Impl::dst_BehaviorInputAction (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return BehaviorInputAction::_narrow (target);
+    return BehaviorInputAction::_narrow (this->dst ());
   }
 }
 

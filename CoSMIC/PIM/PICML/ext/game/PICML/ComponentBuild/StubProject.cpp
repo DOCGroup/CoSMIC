@@ -1,51 +1,53 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "StubProject.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "StubProject.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "PICML/InterfaceDefinition/FileRef.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string StubProject_Impl::metaname = "StubProject";
+  const std::string StubProject_Impl::metaname ("StubProject");
 
   //
-  // StubProject_Impl
+  // _create (const Project_in)
   //
-  StubProject_Impl::StubProject_Impl (void)
+  StubProject StubProject_Impl::_create (const Project_in parent)
   {
-  }
-
-  //
-  // StubProject_Impl
-  //
-  StubProject_Impl::StubProject_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~StubProject_Impl
-  //
-  StubProject_Impl::~StubProject_Impl (void)
-  {
+    return ::GAME::Mga::create_object < StubProject > (parent, StubProject_Impl::metaname);
   }
 
   //
   // accept
   //
-  void StubProject_Impl::accept (Visitor * v)
+  void StubProject_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_StubProject (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_StubProject (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -53,11 +55,7 @@ namespace PICML
   //
   FileRef StubProject_Impl::get_FileRef (void) const
   {
-    // Get the collection of children.
-    std::vector <FileRef> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : FileRef ();
+    return this->children <FileRef> ().item ();
   }
 
   //
@@ -65,11 +63,7 @@ namespace PICML
   //
   ImplementationArtifactReference StubProject_Impl::get_ImplementationArtifactReference (void) const
   {
-    // Get the collection of children.
-    std::vector <ImplementationArtifactReference> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ImplementationArtifactReference ();
+    return this->children <ImplementationArtifactReference> ().item ();
   }
 }
 

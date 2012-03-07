@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTBENCHMARK_BENCHMARKTYPE_H_
 #define _PICML_COMPONENTBENCHMARK_BENCHMARKTYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BenchmarkType_Impl;
   typedef BenchmarkType_Impl * BenchmarkType_in;
-  typedef ::GAME::Mga::Smart_Ptr <BenchmarkType_Impl> BenchmarkType;
+  typedef ::GAME::Mga::Smart_Ptr < BenchmarkType_Impl > BenchmarkType;
 
+  /**
+   * @class BenchmarkType_Impl
+   *
+   * Implementation for the BenchmarkType model element.
+   */
   class PICML_Export BenchmarkType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,29 +44,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     BenchmarkType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     BenchmarkType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~BenchmarkType_Impl (void) = 0;
-    size_t in_BenchmarkCharacteristics_connections (std::vector <BenchmarkCharacteristics> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src BenchmarkCharacteristics connection.
+    size_t src_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BenchmarkType.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_BENCHMARKTYPE

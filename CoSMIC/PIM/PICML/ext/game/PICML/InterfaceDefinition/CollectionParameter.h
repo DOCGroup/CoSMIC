@@ -14,25 +14,30 @@
 #ifndef _PICML_INTERFACEDEFINITION_COLLECTIONPARAMETER_H_
 #define _PICML_INTERFACEDEFINITION_COLLECTIONPARAMETER_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class CollectionParameter_Impl;
   typedef CollectionParameter_Impl * CollectionParameter_in;
-  typedef ::GAME::Mga::Smart_Ptr <CollectionParameter_Impl> CollectionParameter;
+  typedef ::GAME::Mga::Smart_Ptr < CollectionParameter_Impl > CollectionParameter;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class CollectionParameter_Impl
+   *
+   * Implementation for the CollectionParameter model element.
+   */
   class PICML_Export CollectionParameter_Impl :
-    public virtual TemplateParameter_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual TemplateParameter_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,37 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    CollectionParameter_Impl (void);
-
-    /// Initializing constructor
-    CollectionParameter_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~CollectionParameter_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static CollectionParameter _create (const Package_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    CollectionParameter_Impl (void);
+
+    // Initializing constructor.
+    CollectionParameter_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~CollectionParameter_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    NameParameter refers_to_NameParameter (void) const;
+    bool NameParameter_is_nil (void) const;
+    NameParameter get_NameParameter (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "CollectionParameter.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_COLLECTIONPARAMETER

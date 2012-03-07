@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_COMPREF_H_
 #define _PICML_COMPONENTBENCHMARK_COMPREF_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class CompRef_Impl;
   typedef CompRef_Impl * CompRef_in;
-  typedef ::GAME::Mga::Smart_Ptr <CompRef_Impl> CompRef;
+  typedef ::GAME::Mga::Smart_Ptr < CompRef_Impl > CompRef;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class CompRef_Impl
+   *
+   * Implementation for the CompRef model element.
+   */
   class PICML_Export CompRef_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,39 +47,46 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    CompRef_Impl (void);
-
-    /// Initializing constructor
-    CompRef_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~CompRef_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static CompRef _create (const BenchmarkAnalysis_in parent);
     ///@}
-    size_t in_ComponentOperation_connections (std::vector <ComponentOperation> & conns) const;
+
+    // Default constructor.
+    CompRef_Impl (void);
+
+    // Initializing constructor.
+    CompRef_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~CompRef_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
+
+    /// Get the dst ComponentOperation connection.
+    size_t dst_ComponentOperation (std::vector <ComponentOperation> & items) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool Component_is_nil (void) const;
+    Component get_Component (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "CompRef.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_COMPREF

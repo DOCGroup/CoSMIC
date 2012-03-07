@@ -14,21 +14,26 @@
 #ifndef _PICML_REALTIMEREQUIREMENTS_MULTIPLESERVICEREQUESTS_H_
 #define _PICML_REALTIMEREQUIREMENTS_MULTIPLESERVICEREQUESTS_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MultipleServiceRequests_Impl;
   typedef MultipleServiceRequests_Impl * MultipleServiceRequests_in;
-  typedef ::GAME::Mga::Smart_Ptr <MultipleServiceRequests_Impl> MultipleServiceRequests;
+  typedef ::GAME::Mga::Smart_Ptr < MultipleServiceRequests_Impl > MultipleServiceRequests;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MultipleServiceRequests_Impl
+   *
+   * Implementation for the MultipleServiceRequests model element.
+   */
   class PICML_Export MultipleServiceRequests_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MultipleServiceRequests_Impl (void);
-
-    /// Initializing constructor
-    MultipleServiceRequests_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~MultipleServiceRequests_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,10 +54,28 @@ namespace PICML
     static MultipleServiceRequests _create (const ServiceProvider_in parent);
     ///@}
 
+    // Default constructor.
+    MultipleServiceRequests_Impl (void);
+
+    // Initializing constructor.
+    MultipleServiceRequests_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~MultipleServiceRequests_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Attribute Methods
      */
     ///@{
+
+    /// Set the value of maximum_simultaneous_service_level
+    void maximum_simultaneous_service_level (long val);
+
+    /// Get the value of maximum_simultaneous_service_level
+    long maximum_simultaneous_service_level (void) const;
 
     /// Set the value of minimum_simultaneous_service_level
     void minimum_simultaneous_service_level (long val);
@@ -83,27 +94,12 @@ namespace PICML
 
     /// Get the value of buffer_service_requests
     bool buffer_service_requests (void) const;
-
-    /// Set the value of maximum_simultaneous_service_level
-    void maximum_simultaneous_service_level (long val);
-
-    /// Get the value of maximum_simultaneous_service_level
-    long maximum_simultaneous_service_level (void) const;
-    ///@}
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ServiceProvider parent_ServiceProvider (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MultipleServiceRequests.inl"
 #endif
+
+#endif  // !defined _PICML_REALTIMEREQUIREMENTS_MULTIPLESERVICEREQUESTS

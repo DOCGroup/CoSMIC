@@ -14,21 +14,26 @@
 #ifndef _PICML_DEPLOYMENTPLAN_INSTANCEMAPPING_H_
 #define _PICML_DEPLOYMENTPLAN_INSTANCEMAPPING_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InstanceMapping_Impl;
   typedef InstanceMapping_Impl * InstanceMapping_in;
-  typedef ::GAME::Mga::Smart_Ptr <InstanceMapping_Impl> InstanceMapping;
+  typedef ::GAME::Mga::Smart_Ptr < InstanceMapping_Impl > InstanceMapping;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class InstanceMapping_Impl
+   *
+   * Implementation for the InstanceMapping model element.
+   */
   class PICML_Export InstanceMapping_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    InstanceMapping_Impl (void);
-
-    /// Initializing constructor
-    InstanceMapping_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~InstanceMapping_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static InstanceMapping _create (const DeploymentPlan_in parent);
     ///@}
 
-    /// Get the src CollocationGroup connection point.
-    CollocationGroup src_CollocationGroup (void);
+    // Default constructor.
+    InstanceMapping_Impl (void);
 
-    /// Get the dst NodeReference connection point.
-    NodeReference dst_NodeReference (void);
+    // Initializing constructor.
+    InstanceMapping_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    DeploymentPlan parent_DeploymentPlan (void) const;
-    ///@}
+    // Destructor.
+    virtual ~InstanceMapping_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    CollocationGroup src_CollocationGroup (void) const;
+    NodeReference dst_NodeReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InstanceMapping.inl"
 #endif
+
+#endif  // !defined _PICML_DEPLOYMENTPLAN_INSTANCEMAPPING

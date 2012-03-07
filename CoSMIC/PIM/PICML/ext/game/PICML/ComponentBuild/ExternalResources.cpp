@@ -1,76 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExternalResources.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExternalResources.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/ExtResourceConn.h"
 #include "PICML/ComponentBuild/Project.h"
+#include "PICML/ComponentBuild/ExtResourceConn.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExternalResources_Impl::metaname = "ExternalResources";
+  const std::string ExternalResources_Impl::metaname ("ExternalResources");
 
   //
-  // ExternalResources_Impl
+  // _create (const Project_in)
   //
-  ExternalResources_Impl::ExternalResources_Impl (void)
+  ExternalResources ExternalResources_Impl::_create (const Project_in parent)
   {
-  }
-
-  //
-  // ExternalResources_Impl
-  //
-  ExternalResources_Impl::ExternalResources_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExternalResources_Impl
-  //
-  ExternalResources_Impl::~ExternalResources_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExternalResources > (parent, ExternalResources_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExternalResources_Impl::accept (Visitor * v)
+  void ExternalResources_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExternalResources (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExternalResources (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // dst_ExtResourceConn
   //
-  ExternalResources ExternalResources_Impl::_create (const Project_in parent)
+  size_t ExternalResources_Impl::dst_ExtResourceConn (std::vector <ExtResourceConn> & items) const
   {
-    return ::GAME::Mga::create_object <ExternalResources> (parent, ExternalResources_Impl::metaname);
+    return this->in_connections <ExtResourceConn> (items);
   }
 
   //
-  // in_ExtResourceConn_connections
+  // ImplementationArtifact_is_nil
   //
-  size_t ExternalResources_Impl::in_ExtResourceConn_connections (std::vector <ExtResourceConn> & conns) const
+  bool ExternalResources_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return this->in_connections (conns);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_Project
+  // get_ImplementationArtifact
   //
-  Project ExternalResources_Impl::parent_Project (void) const
+  ImplementationArtifact ExternalResources_Impl::get_ImplementationArtifact (void) const
   {
-    return ::GAME::Mga::get_parent <Project> (this->object_.p);
+    return ImplementationArtifact::_narrow (this->refers_to ());
   }
 }
 

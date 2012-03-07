@@ -14,21 +14,26 @@
 #ifndef _PICML_IMPLEMENTATIONCOMMON_MONOLITHPRIMARYARTIFACT_H_
 #define _PICML_IMPLEMENTATIONCOMMON_MONOLITHPRIMARYARTIFACT_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MonolithprimaryArtifact_Impl;
   typedef MonolithprimaryArtifact_Impl * MonolithprimaryArtifact_in;
-  typedef ::GAME::Mga::Smart_Ptr <MonolithprimaryArtifact_Impl> MonolithprimaryArtifact;
+  typedef ::GAME::Mga::Smart_Ptr < MonolithprimaryArtifact_Impl > MonolithprimaryArtifact;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MonolithprimaryArtifact_Impl
+   *
+   * Implementation for the MonolithprimaryArtifact model element.
+   */
   class PICML_Export MonolithprimaryArtifact_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MonolithprimaryArtifact_Impl (void);
-
-    /// Initializing constructor
-    MonolithprimaryArtifact_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~MonolithprimaryArtifact_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static MonolithprimaryArtifact _create (const ImplementationContainer_in parent);
     ///@}
 
-    /// Get the src MonolithicImplementationBase connection point.
-    MonolithicImplementationBase src_MonolithicImplementationBase (void);
+    // Default constructor.
+    MonolithprimaryArtifact_Impl (void);
 
-    /// Get the dst ImplementationArtifactReference connection point.
-    ImplementationArtifactReference dst_ImplementationArtifactReference (void);
+    // Initializing constructor.
+    MonolithprimaryArtifact_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ImplementationContainer parent_ImplementationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~MonolithprimaryArtifact_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    MonolithicImplementationBase src_MonolithicImplementationBase (void) const;
+    ImplementationArtifactReference dst_ImplementationArtifactReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MonolithprimaryArtifact.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONCOMMON_MONOLITHPRIMARYARTIFACT

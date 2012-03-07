@@ -1,58 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Boxed.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Boxed.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/NamedTypes/MemberType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Boxed_Impl::metaname = "Boxed";
+  const std::string Boxed_Impl::metaname ("Boxed");
 
   //
-  // Boxed_Impl
+  // _create (const Package_in)
   //
-  Boxed_Impl::Boxed_Impl (void)
+  Boxed Boxed_Impl::_create (const Package_in parent)
   {
+    return ::GAME::Mga::create_object < Boxed > (parent, Boxed_Impl::metaname);
   }
 
   //
-  // Boxed_Impl
+  // _create (const File_in)
   //
-  Boxed_Impl::Boxed_Impl (IMgaReference * ptr)
+  Boxed Boxed_Impl::_create (const File_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Boxed_Impl
-  //
-  Boxed_Impl::~Boxed_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Boxed > (parent, Boxed_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Boxed_Impl::accept (Visitor * v)
+  void Boxed_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Boxed (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Boxed (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // refers_to_MemberType
+  // MemberType_is_nil
   //
-  MemberType Boxed_Impl::refers_to_MemberType (void) const
+  bool Boxed_Impl::MemberType_is_nil (void) const
   {
-    return ::GAME::Mga::get_refers_to <MemberType> (this);
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_MemberType
+  //
+  MemberType Boxed_Impl::get_MemberType (void) const
+  {
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

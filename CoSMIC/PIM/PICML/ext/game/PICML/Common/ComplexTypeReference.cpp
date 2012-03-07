@@ -1,92 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComplexTypeReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComplexTypeReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/ComplexType.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComplexTypeReference_Impl::metaname = "ComplexTypeReference";
+  const std::string ComplexTypeReference_Impl::metaname ("ComplexTypeReference");
 
   //
-  // ComplexTypeReference_Impl
+  // _create (const DataValueContainer_in)
   //
-  ComplexTypeReference_Impl::ComplexTypeReference_Impl (void)
+  ComplexTypeReference ComplexTypeReference_Impl::_create (const DataValueContainer_in parent)
   {
+    return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
-  // ComplexTypeReference_Impl
+  // _create (const ComplexProperty_in)
   //
-  ComplexTypeReference_Impl::ComplexTypeReference_Impl (IMgaReference * ptr)
+  ComplexTypeReference ComplexTypeReference_Impl::_create (const ComplexProperty_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComplexTypeReference_Impl
-  //
-  ComplexTypeReference_Impl::~ComplexTypeReference_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComplexTypeReference_Impl::accept (Visitor * v)
+  void ComplexTypeReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComplexTypeReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComplexTypeReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // ComplexType_is_nil
   //
-  ComplexTypeReference ComplexTypeReference_Impl::_create (const ComplexProperty_in parent)
+  bool ComplexTypeReference_Impl::ComplexType_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ComplexTypeReference> (parent, ComplexTypeReference_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // _create
+  // get_ComplexType
   //
-  ComplexTypeReference ComplexTypeReference_Impl::_create (const DataValueContainer_in parent)
+  ComplexType ComplexTypeReference_Impl::get_ComplexType (void) const
   {
-    return ::GAME::Mga::create_object <ComplexTypeReference> (parent, ComplexTypeReference_Impl::metaname);
-  }
-
-  //
-  // parent_ComplexProperty
-  //
-  ComplexProperty ComplexTypeReference_Impl::parent_ComplexProperty (void) const
-  {
-    return ::GAME::Mga::get_parent <ComplexProperty> (this->object_.p);
-  }
-
-  //
-  // parent_DataValueContainer
-  //
-  DataValueContainer ComplexTypeReference_Impl::parent_DataValueContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <DataValueContainer> (this->object_.p);
-  }
-
-  //
-  // refers_to_ComplexType
-  //
-  ComplexType ComplexTypeReference_Impl::refers_to_ComplexType (void) const
-  {
-    return ::GAME::Mga::get_refers_to <ComplexType> (this);
+    return ComplexType::_narrow (this->refers_to ());
   }
 }
 

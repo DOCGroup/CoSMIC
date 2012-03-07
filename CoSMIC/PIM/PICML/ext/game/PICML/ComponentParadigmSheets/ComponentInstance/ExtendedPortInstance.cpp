@@ -1,50 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExtendedPortInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExtendedPortInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExtendedPortInstance_Impl::metaname = "ExtendedPortInstance";
+  const std::string ExtendedPortInstance_Impl::metaname ("ExtendedPortInstance");
 
   //
-  // ExtendedPortInstance_Impl
+  // _create (const ComponentInstance_in)
   //
-  ExtendedPortInstance_Impl::ExtendedPortInstance_Impl (void)
+  ExtendedPortInstance ExtendedPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-  }
-
-  //
-  // ExtendedPortInstance_Impl
-  //
-  ExtendedPortInstance_Impl::ExtendedPortInstance_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExtendedPortInstance_Impl
-  //
-  ExtendedPortInstance_Impl::~ExtendedPortInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExtendedPortInstance > (parent, ExtendedPortInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExtendedPortInstance_Impl::accept (Visitor * v)
+  void ExtendedPortInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExtendedPortInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExtendedPortInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
+  }
+
+  //
+  // ExtendedPort_is_nil
+  //
+  bool ExtendedPortInstance_Impl::ExtendedPort_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_ExtendedPort
+  //
+  ExtendedPort ExtendedPortInstance_Impl::get_ExtendedPort (void) const
+  {
+    return ExtendedPort::_narrow (this->refers_to ());
   }
 }
 

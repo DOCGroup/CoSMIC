@@ -14,18 +14,23 @@
 #ifndef _PICML_OPERATIONTYPES_OPERATIONBASE_H_
 #define _PICML_OPERATIONTYPES_OPERATIONBASE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class OperationBase_Impl;
   typedef OperationBase_Impl * OperationBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <OperationBase_Impl> OperationBase;
+  typedef ::GAME::Mga::Smart_Ptr < OperationBase_Impl > OperationBase;
 
+  /**
+   * @class OperationBase_Impl
+   *
+   * Implementation for the OperationBase model element.
+   */
   class PICML_Export OperationBase_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     OperationBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     OperationBase_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~OperationBase_Impl (void) = 0;
 
     /**
@@ -53,20 +58,14 @@ namespace PICML
      */
     ///@{
     size_t get_InParameters (std::vector <InParameter> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <InParameter> get_InParameters (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "OperationBase.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_OPERATIONBASE

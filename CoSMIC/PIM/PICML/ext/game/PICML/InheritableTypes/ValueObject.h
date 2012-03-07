@@ -14,25 +14,30 @@
 #ifndef _PICML_INHERITABLETYPES_VALUEOBJECT_H_
 #define _PICML_INHERITABLETYPES_VALUEOBJECT_H_
 
-#include "game/mga/Model.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ValueObject_Impl;
   typedef ValueObject_Impl * ValueObject_in;
-  typedef ::GAME::Mga::Smart_Ptr <ValueObject_Impl> ValueObject;
+  typedef ::GAME::Mga::Smart_Ptr < ValueObject_Impl > ValueObject;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ValueObject_Impl
+   *
+   * Implementation for the ValueObject model element.
+   */
   class PICML_Export ValueObject_Impl :
-    public virtual ObjectByValue_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual ObjectByValue_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,29 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ValueObject_Impl (void);
-
-    /// Initializing constructor
-    ValueObject_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~ValueObject_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ValueObject _create (const ObjectByValue_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    ValueObject_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    ValueObject_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~ValueObject_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ValueObject.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_VALUEOBJECT

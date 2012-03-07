@@ -1,50 +1,61 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Bridge.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Bridge.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Domain/Domain.h"
+#include "PICML/Domain/BridgeConnection.h"
 #include "PICML/TargetElements/Resource.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Bridge_Impl::metaname = "Bridge";
+  const std::string Bridge_Impl::metaname ("Bridge");
 
   //
-  // Bridge_Impl
+  // _create (const Domain_in)
   //
-  Bridge_Impl::Bridge_Impl (void)
+  Bridge Bridge_Impl::_create (const Domain_in parent)
   {
-  }
-
-  //
-  // Bridge_Impl
-  //
-  Bridge_Impl::Bridge_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Bridge_Impl
-  //
-  Bridge_Impl::~Bridge_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Bridge > (parent, Bridge_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Bridge_Impl::accept (Visitor * v)
+  void Bridge_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Bridge (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Bridge (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // dst_BridgeConnection
+  //
+  size_t Bridge_Impl::dst_BridgeConnection (std::vector <BridgeConnection> & items) const
+  {
+    return this->in_connections <BridgeConnection> (items);
   }
 
   //
@@ -53,6 +64,14 @@ namespace PICML
   size_t Bridge_Impl::get_Resources (std::vector <Resource> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_Resources
+  //
+  ::GAME::Mga::Iterator <Resource> Bridge_Impl::get_Resources (void) const
+  {
+    return this->children <Resource> ();
   }
 }
 

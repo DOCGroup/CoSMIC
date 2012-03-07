@@ -1,95 +1,76 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "OutEventPort.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "OutEventPort.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string OutEventPort_Impl::metaname = "OutEventPort";
-
-  //
-  // OutEventPort_Impl
-  //
-  OutEventPort_Impl::OutEventPort_Impl (void)
-  {
-  }
-
-  //
-  // OutEventPort_Impl
-  //
-  OutEventPort_Impl::OutEventPort_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~OutEventPort_Impl
-  //
-  OutEventPort_Impl::~OutEventPort_Impl (void)
-  {
-  }
+  const std::string OutEventPort_Impl::metaname ("OutEventPort");
 
   //
   // accept
   //
-  void OutEventPort_Impl::accept (Visitor * v)
+  void OutEventPort_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_OutEventPort (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_OutEventPort (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // out_event_port_type
+  // OutEventPort_is_nil
   //
-  void OutEventPort_Impl::out_event_port_type (const std::string & val)
+  bool OutEventPort_Impl::OutEventPort_is_nil (void) const
   {
-    static const std::string attr_out_event_port_type ("out_event_port_type");
-    this->attribute (attr_out_event_port_type)->string_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // out_event_port_type
+  // get_OutEventPort
   //
-  std::string OutEventPort_Impl::out_event_port_type (void) const
+  OutEventPort OutEventPort_Impl::get_OutEventPort (void) const
   {
-    static const std::string attr_out_event_port_type ("out_event_port_type");
-    return this->attribute (attr_out_event_port_type)->string_value ();
+    return OutEventPort::_narrow (this->refers_to ());
   }
 
   //
-  // single_destination
+  // EventType_is_nil
   //
-  void OutEventPort_Impl::single_destination (bool val)
+  bool OutEventPort_Impl::EventType_is_nil (void) const
   {
-    static const std::string attr_single_destination ("single_destination");
-    this->attribute (attr_single_destination)->bool_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // single_destination
+  // get_EventType
   //
-  bool OutEventPort_Impl::single_destination (void) const
+  EventType OutEventPort_Impl::get_EventType (void) const
   {
-    static const std::string attr_single_destination ("single_destination");
-    return this->attribute (attr_single_destination)->bool_value ();
-  }
-
-  //
-  // refers_to_EventType
-  //
-  EventType OutEventPort_Impl::refers_to_EventType (void) const
-  {
-    return ::GAME::Mga::get_refers_to <EventType> (this);
+    return EventType::_narrow (this->refers_to ());
   }
 }
 

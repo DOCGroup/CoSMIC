@@ -1,67 +1,86 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfigurationReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfigurationReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfigurationReference_Impl::metaname = "PackageConfigurationReference";
+  const std::string PackageConfigurationReference_Impl::metaname ("PackageConfigurationReference");
 
   //
-  // PackageConfigurationReference_Impl
+  // _create (const TopLevelPackageContainer_in)
   //
-  PackageConfigurationReference_Impl::PackageConfigurationReference_Impl (void)
+  PackageConfigurationReference PackageConfigurationReference_Impl::_create (const TopLevelPackageContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfigurationReference_Impl
-  //
-  PackageConfigurationReference_Impl::PackageConfigurationReference_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfigurationReference_Impl
-  //
-  PackageConfigurationReference_Impl::~PackageConfigurationReference_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfigurationReference > (parent, PackageConfigurationReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfigurationReference_Impl::accept (Visitor * v)
+  void PackageConfigurationReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfigurationReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfigurationReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // in_PackageConfSpecializedConfig_connections
+  // dst_package
   //
-  size_t PackageConfigurationReference_Impl::in_PackageConfSpecializedConfig_connections (std::vector <PackageConfSpecializedConfig> & conns) const
+  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <package> (items);
   }
 
   //
-  // refers_to_PackageConfiguration
+  // dst_PackageConfSpecializedConfig
   //
-  PackageConfiguration PackageConfigurationReference_Impl::refers_to_PackageConfiguration (void) const
+  size_t PackageConfigurationReference_Impl::dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
-    return ::GAME::Mga::get_refers_to <PackageConfiguration> (this);
+    return this->in_connections <PackageConfSpecializedConfig> (items);
+  }
+
+  //
+  // PackageConfiguration_is_nil
+  //
+  bool PackageConfigurationReference_Impl::PackageConfiguration_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_PackageConfiguration
+  //
+  PackageConfiguration PackageConfigurationReference_Impl::get_PackageConfiguration (void) const
+  {
+    return PackageConfiguration::_narrow (this->refers_to ());
   }
 }
 

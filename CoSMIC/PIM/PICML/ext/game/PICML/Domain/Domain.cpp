@@ -1,82 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Domain.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Domain.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/BridgeConnection.h"
-#include "PICML/Domain/InterconnectConnection.h"
-#include "PICML/Domain/Shares.h"
-#include "PICML/Common/Property.h"
-#include "PICML/TargetElements/SharedResource.h"
-#include "PICML/TargetElements/Bridge.h"
-#include "PICML/TargetElements/Node.h"
-#include "PICML/TargetElements/Interconnect.h"
 #include "PICML/Domain/Targets.h"
+#include "PICML/Domain/Shares.h"
+#include "PICML/Domain/InterconnectConnection.h"
+#include "PICML/Domain/BridgeConnection.h"
+#include "PICML/Common/Property.h"
+#include "PICML/TargetElements/Bridge.h"
+#include "PICML/TargetElements/Interconnect.h"
+#include "PICML/TargetElements/Node.h"
+#include "PICML/TargetElements/SharedResource.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Domain_Impl::metaname = "Domain";
+  const std::string Domain_Impl::metaname ("Domain");
 
   //
-  // Domain_Impl
+  // _create (const Targets_in)
   //
-  Domain_Impl::Domain_Impl (void)
+  Domain Domain_Impl::_create (const Targets_in parent)
   {
-  }
-
-  //
-  // Domain_Impl
-  //
-  Domain_Impl::Domain_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Domain_Impl
-  //
-  Domain_Impl::~Domain_Impl (void)
-  {
+    return ::GAME::Mga::create_root_object < Domain > (parent, Domain_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Domain_Impl::accept (Visitor * v)
+  void Domain_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Domain (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Domain (this);
+    }
 
-  //
-  // _create
-  //
-  Domain Domain_Impl::_create (const Targets_in parent)
-  {
-    return ::GAME::Mga::create_root_object <Domain> (parent, Domain_Impl::metaname);
-  }
-
-  //
-  // get_BridgeConnections
-  //
-  size_t Domain_Impl::get_BridgeConnections (std::vector <BridgeConnection> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_InterconnectConnections
-  //
-  size_t Domain_Impl::get_InterconnectConnections (std::vector <InterconnectConnection> & items) const
-  {
-    return this->children (items);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -88,6 +65,46 @@ namespace PICML
   }
 
   //
+  // get_Sharess
+  //
+  ::GAME::Mga::Iterator <Shares> Domain_Impl::get_Sharess (void) const
+  {
+    return this->children <Shares> ();
+  }
+
+  //
+  // get_InterconnectConnections
+  //
+  size_t Domain_Impl::get_InterconnectConnections (std::vector <InterconnectConnection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InterconnectConnections
+  //
+  ::GAME::Mga::Iterator <InterconnectConnection> Domain_Impl::get_InterconnectConnections (void) const
+  {
+    return this->children <InterconnectConnection> ();
+  }
+
+  //
+  // get_BridgeConnections
+  //
+  size_t Domain_Impl::get_BridgeConnections (std::vector <BridgeConnection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_BridgeConnections
+  //
+  ::GAME::Mga::Iterator <BridgeConnection> Domain_Impl::get_BridgeConnections (void) const
+  {
+    return this->children <BridgeConnection> ();
+  }
+
+  //
   // get_Propertys
   //
   size_t Domain_Impl::get_Propertys (std::vector <Property> & items) const
@@ -96,11 +113,11 @@ namespace PICML
   }
 
   //
-  // get_SharedResources
+  // get_Propertys
   //
-  size_t Domain_Impl::get_SharedResources (std::vector <SharedResource> & items) const
+  ::GAME::Mga::Iterator <Property> Domain_Impl::get_Propertys (void) const
   {
-    return this->children (items);
+    return this->children <Property> ();
   }
 
   //
@@ -112,11 +129,11 @@ namespace PICML
   }
 
   //
-  // get_Nodes
+  // get_Bridges
   //
-  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
+  ::GAME::Mga::Iterator <Bridge> Domain_Impl::get_Bridges (void) const
   {
-    return this->children (items);
+    return this->children <Bridge> ();
   }
 
   //
@@ -128,11 +145,43 @@ namespace PICML
   }
 
   //
-  // parent_Targets
+  // get_Interconnects
   //
-  Targets Domain_Impl::parent_Targets (void) const
+  ::GAME::Mga::Iterator <Interconnect> Domain_Impl::get_Interconnects (void) const
   {
-    return ::GAME::Mga::get_parent <Targets> (this->object_.p);
+    return this->children <Interconnect> ();
+  }
+
+  //
+  // get_Nodes
+  //
+  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Nodes
+  //
+  ::GAME::Mga::Iterator <Node> Domain_Impl::get_Nodes (void) const
+  {
+    return this->children <Node> ();
+  }
+
+  //
+  // get_SharedResources
+  //
+  size_t Domain_Impl::get_SharedResources (std::vector <SharedResource> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SharedResources
+  //
+  ::GAME::Mga::Iterator <SharedResource> Domain_Impl::get_SharedResources (void) const
+  {
+    return this->children <SharedResource> ();
   }
 }
 

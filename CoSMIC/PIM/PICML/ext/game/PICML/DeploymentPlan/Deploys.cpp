@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Deploys.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Deploys.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Deploys_Impl::metaname = "Deploys";
+  const std::string Deploys_Impl::metaname ("Deploys");
 
   //
-  // Deploys_Impl
+  // _create (const DeploymentPlan_in)
   //
-  Deploys_Impl::Deploys_Impl (void)
+  Deploys Deploys_Impl::_create (const DeploymentPlan_in parent)
   {
-  }
-
-  //
-  // Deploys_Impl
-  //
-  Deploys_Impl::Deploys_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Deploys_Impl
-  //
-  Deploys_Impl::~Deploys_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Deploys > (parent, Deploys_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Deploys_Impl::accept (Visitor * v)
+  void Deploys_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Deploys (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Deploys (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentFactoryRef
   //
-  Deploys Deploys_Impl::_create (const DeploymentPlan_in parent)
+  ComponentFactoryRef Deploys_Impl::src_ComponentFactoryRef (void) const
   {
-    return ::GAME::Mga::create_object <Deploys> (parent, Deploys_Impl::metaname);
+    return ComponentFactoryRef::_narrow (this->src ());
   }
 
   //
-  // src_ComponentFactoryRef
+  // ComponentInstanceRef
   //
-  ComponentFactoryRef Deploys_Impl::src_ComponentFactoryRef (void)
+  ComponentInstanceRef Deploys_Impl::dst_ComponentInstanceRef (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentFactoryRef::_narrow (target);
-  }
-
-  //
-  // dst_ComponentInstanceRef
-  //
-  ComponentInstanceRef Deploys_Impl::dst_ComponentInstanceRef (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ComponentInstanceRef::_narrow (target);
-  }
-
-  //
-  // parent_DeploymentPlan
-  //
-  DeploymentPlan Deploys_Impl::parent_DeploymentPlan (void) const
-  {
-    return ::GAME::Mga::get_parent <DeploymentPlan> (this->object_.p);
+    return ComponentInstanceRef::_narrow (this->dst ());
   }
 }
 

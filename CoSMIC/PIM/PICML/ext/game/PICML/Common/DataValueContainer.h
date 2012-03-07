@@ -14,25 +14,30 @@
 #ifndef _PICML_COMMON_DATAVALUECONTAINER_H_
 #define _PICML_COMMON_DATAVALUECONTAINER_H_
 
-#include "game/mga/Model.h"
-#include "PICML/Common/DataValueBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/Common/DataValueBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class DataValueContainer_Impl;
   typedef DataValueContainer_Impl * DataValueContainer_in;
-  typedef ::GAME::Mga::Smart_Ptr <DataValueContainer_Impl> DataValueContainer;
+  typedef ::GAME::Mga::Smart_Ptr < DataValueContainer_Impl > DataValueContainer;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class DataValueContainer_Impl
+   *
+   * Implementation for the DataValueContainer model element.
+   */
   class PICML_Export DataValueContainer_Impl :
-    public virtual DataValueBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual DataValueBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,45 +49,40 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    DataValueContainer_Impl (void);
-
-    /// Initializing constructor
-    DataValueContainer_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~DataValueContainer_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static DataValueContainer _create (const ComplexProperty_in parent);
     ///@}
+
+    // Default constructor.
+    DataValueContainer_Impl (void);
+
+    // Initializing constructor.
+    DataValueContainer_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~DataValueContainer_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_DataValueBases (std::vector <DataValueBase> & items) const;
-
     ComplexTypeReference get_ComplexTypeReference (void) const;
-    ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    size_t get_DataValueBases (std::vector <DataValueBase> & items) const;
+    ::GAME::Mga::Iterator <DataValueBase> get_DataValueBases (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "DataValueContainer.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_DATAVALUECONTAINER

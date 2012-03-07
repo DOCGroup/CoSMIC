@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTBENCHMARK_METRICSBASE_H_
 #define _PICML_COMPONENTBENCHMARK_METRICSBASE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MetricsBase_Impl;
   typedef MetricsBase_Impl * MetricsBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <MetricsBase_Impl> MetricsBase;
+  typedef ::GAME::Mga::Smart_Ptr < MetricsBase_Impl > MetricsBase;
 
+  /**
+   * @class MetricsBase_Impl
+   *
+   * Implementation for the MetricsBase model element.
+   */
   class PICML_Export MetricsBase_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     MetricsBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     MetricsBase_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~MetricsBase_Impl (void) = 0;
 
     /**
@@ -53,23 +58,11 @@ namespace PICML
      */
     ///@{
 
-    /// Set the value of resolution
-    void resolution (const std::string & val);
+    /// Set the value of warmup
+    void warmup (long val);
 
-    /// Get the value of resolution
-    std::string resolution (void) const;
-
-    /// Set the value of rate
-    void rate (long val);
-
-    /// Get the value of rate
-    long rate (void) const;
-
-    /// Set the value of priority
-    void priority (long val);
-
-    /// Get the value of priority
-    long priority (void) const;
+    /// Get the value of warmup
+    long warmup (void) const;
 
     /// Set the value of iterations
     void iterations (long val);
@@ -77,42 +70,65 @@ namespace PICML
     /// Get the value of iterations
     long iterations (void) const;
 
-    /// Set the value of warmup
-    void warmup (long val);
-
-    /// Get the value of warmup
-    long warmup (void) const;
-
     /// Set the value of fileName
     void fileName (const std::string & val);
 
     /// Get the value of fileName
     std::string fileName (void) const;
+
+    /// Set the value of priority
+    void priority (long val);
+
+    /// Get the value of priority
+    long priority (void) const;
+
+    /// Set the value of rate
+    void rate (long val);
+
+    /// Get the value of rate
+    long rate (void) const;
+
+    /// Set the value of resolution
+    void resolution (const std::string & val);
+
+    /// Get the value of resolution
+    std::string resolution (void) const;
     ///@}
-    size_t in_WorkloadCharacteristics_connections (std::vector <WorkloadCharacteristics> & conns) const;
-    size_t in_BenchmarkCharacteristics_connections (std::vector <BenchmarkCharacteristics> & conns) const;
-    size_t in_MetricConnection_connections (std::vector <MetricConnection> & conns) const;
+
+    /**
+     * @name Source Connection Point Methods
+     */
+    ///@{
+
+    /// Get the src WorkloadCharacteristics connection.
+    size_t src_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst MetricConnection connection.
+    size_t dst_MetricConnection (std::vector <MetricConnection> & items) const;
+
+    /// Get the dst BenchmarkCharacteristics connection.
+    size_t dst_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+    ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
     size_t get_DataAnalysisBases (std::vector <DataAnalysisBase> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <DataAnalysisBase> get_DataAnalysisBases (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MetricsBase.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_METRICSBASE

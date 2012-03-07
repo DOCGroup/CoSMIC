@@ -14,21 +14,26 @@
 #ifndef _PICML_NAMEDTYPES_LABELCONNECTION_H_
 #define _PICML_NAMEDTYPES_LABELCONNECTION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class LabelConnection_Impl;
   typedef LabelConnection_Impl * LabelConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <LabelConnection_Impl> LabelConnection;
+  typedef ::GAME::Mga::Smart_Ptr < LabelConnection_Impl > LabelConnection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class LabelConnection_Impl
+   *
+   * Implementation for the LabelConnection model element.
+   */
   class PICML_Export LabelConnection_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    LabelConnection_Impl (void);
-
-    /// Initializing constructor
-    LabelConnection_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~LabelConnection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static LabelConnection _create (const SwitchedAggregate_in parent);
     ///@}
 
-    /// Get the src Member connection point.
-    Member src_Member (void);
+    // Default constructor.
+    LabelConnection_Impl (void);
 
-    /// Get the dst Label connection point.
-    Label dst_Label (void);
+    // Initializing constructor.
+    LabelConnection_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    SwitchedAggregate parent_SwitchedAggregate (void) const;
-    ///@}
+    // Destructor.
+    virtual ~LabelConnection_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Member src_Member (void) const;
+    Label dst_Label (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "LabelConnection.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_LABELCONNECTION

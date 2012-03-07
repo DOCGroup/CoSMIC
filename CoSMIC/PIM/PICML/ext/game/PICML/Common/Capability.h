@@ -14,25 +14,30 @@
 #ifndef _PICML_COMMON_CAPABILITY_H_
 #define _PICML_COMMON_CAPABILITY_H_
 
-#include "game/mga/Model.h"
-#include "PICML/Common/RequirementSatisfier.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/Common/RequirementSatisfier.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Capability_Impl;
   typedef Capability_Impl * Capability_in;
-  typedef ::GAME::Mga::Smart_Ptr <Capability_Impl> Capability;
+  typedef ::GAME::Mga::Smart_Ptr < Capability_Impl > Capability;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Capability_Impl
+   *
+   * Implementation for the Capability model element.
+   */
   class PICML_Export Capability_Impl :
-    public virtual RequirementSatisfier_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual RequirementSatisfier_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,39 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Capability_Impl (void);
-
-    /// Initializing constructor
-    Capability_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Capability_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Capability _create (const ComponentImplementationContainer_in parent);
+    static Capability _create (const RequirementSatisfier_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Capability_Impl (void);
+
+    // Initializing constructor.
+    Capability_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Capability_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst ImplementationCapability connection.
+    size_t dst_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Capability.inl"
 #endif
+
+#endif  // !defined _PICML_COMMON_CAPABILITY

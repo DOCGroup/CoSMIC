@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "CollocationGroupProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "CollocationGroupProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/Common/Property.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/DeploymentPlan/CollocationGroup.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string CollocationGroupProperty_Impl::metaname = "CollocationGroupProperty";
+  const std::string CollocationGroupProperty_Impl::metaname ("CollocationGroupProperty");
 
   //
-  // CollocationGroupProperty_Impl
+  // _create (const DeploymentPlan_in)
   //
-  CollocationGroupProperty_Impl::CollocationGroupProperty_Impl (void)
+  CollocationGroupProperty CollocationGroupProperty_Impl::_create (const DeploymentPlan_in parent)
   {
-  }
-
-  //
-  // CollocationGroupProperty_Impl
-  //
-  CollocationGroupProperty_Impl::CollocationGroupProperty_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~CollocationGroupProperty_Impl
-  //
-  CollocationGroupProperty_Impl::~CollocationGroupProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < CollocationGroupProperty > (parent, CollocationGroupProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void CollocationGroupProperty_Impl::accept (Visitor * v)
+  void CollocationGroupProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_CollocationGroupProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_CollocationGroupProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Property
   //
-  CollocationGroupProperty CollocationGroupProperty_Impl::_create (const DeploymentPlan_in parent)
+  Property CollocationGroupProperty_Impl::src_Property (void) const
   {
-    return ::GAME::Mga::create_object <CollocationGroupProperty> (parent, CollocationGroupProperty_Impl::metaname);
+    return Property::_narrow (this->src ());
   }
 
   //
-  // src_Property
+  // CollocationGroup
   //
-  Property CollocationGroupProperty_Impl::src_Property (void)
+  CollocationGroup CollocationGroupProperty_Impl::dst_CollocationGroup (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Property::_narrow (target);
-  }
-
-  //
-  // dst_CollocationGroup
-  //
-  CollocationGroup CollocationGroupProperty_Impl::dst_CollocationGroup (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return CollocationGroup::_narrow (target);
-  }
-
-  //
-  // parent_DeploymentPlan
-  //
-  DeploymentPlan CollocationGroupProperty_Impl::parent_DeploymentPlan (void) const
-  {
-    return ::GAME::Mga::get_parent <DeploymentPlan> (this->object_.p);
+    return CollocationGroup::_narrow (this->dst ());
   }
 }
 

@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_INEVENTPORTEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_INEVENTPORTEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InEventPortEnd_Impl;
   typedef InEventPortEnd_Impl * InEventPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <InEventPortEnd_Impl> InEventPortEnd;
+  typedef ::GAME::Mga::Smart_Ptr < InEventPortEnd_Impl > InEventPortEnd;
 
+  /**
+   * @class InEventPortEnd_Impl
+   *
+   * Implementation for the InEventPortEnd model element.
+   */
   class PICML_Export InEventPortEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,29 +44,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     InEventPortEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     InEventPortEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~InEventPortEnd_Impl (void) = 0;
-    size_t in_EventSinkDelegate_connections (std::vector <EventSinkDelegate> & conns) const;
-    size_t in_SendsTo_connections (std::vector <SendsTo> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst SendsTo connection.
+    size_t dst_SendsTo (std::vector <SendsTo> & items) const;
+
+    /// Get the dst EventSinkDelegate connection.
+    size_t dst_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InEventPortEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_INEVENTPORTEND

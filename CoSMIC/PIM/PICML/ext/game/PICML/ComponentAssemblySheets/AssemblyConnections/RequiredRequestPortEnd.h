@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_REQUIREDREQUESTPORTEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_REQUIREDREQUESTPORTEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class RequiredRequestPortEnd_Impl;
   typedef RequiredRequestPortEnd_Impl * RequiredRequestPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <RequiredRequestPortEnd_Impl> RequiredRequestPortEnd;
+  typedef ::GAME::Mga::Smart_Ptr < RequiredRequestPortEnd_Impl > RequiredRequestPortEnd;
 
+  /**
+   * @class RequiredRequestPortEnd_Impl
+   *
+   * Implementation for the RequiredRequestPortEnd model element.
+   */
   class PICML_Export RequiredRequestPortEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,30 +44,40 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     RequiredRequestPortEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     RequiredRequestPortEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~RequiredRequestPortEnd_Impl (void) = 0;
-    size_t in_ConnectorToReceptacle_connections (std::vector <ConnectorToReceptacle> & conns) const;
-    size_t in_Invoke_connections (std::vector <Invoke> & conns) const;
-    size_t in_ReceptacleDelegate_connections (std::vector <ReceptacleDelegate> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src Invoke connection.
+    size_t src_Invoke (std::vector <Invoke> & items) const;
+
+    /// Get the src ConnectorToReceptacle connection.
+    size_t src_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst ReceptacleDelegate connection.
+    size_t dst_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "RequiredRequestPortEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_REQUIREDREQUESTPORTEND

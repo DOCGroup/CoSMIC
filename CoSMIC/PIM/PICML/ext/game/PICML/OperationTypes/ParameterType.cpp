@@ -1,12 +1,14 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ParameterType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ParameterType.inl"
+#endif
 
+#include "PICML/Visitor.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/NamedTypes/MemberType.h"
 
 namespace PICML
@@ -14,28 +16,22 @@ namespace PICML
   //
   // metaname
   //
-  const std::string ParameterType_Impl::metaname = "ParameterType";
+  const std::string ParameterType_Impl::metaname ("ParameterType");
 
   //
-  // ParameterType_Impl
+  // MemberType_is_nil
   //
-  ParameterType_Impl::ParameterType_Impl (void)
+  bool ParameterType_Impl::MemberType_is_nil (void) const
   {
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // ParameterType_Impl
+  // get_MemberType
   //
-  ParameterType_Impl::ParameterType_Impl (IMgaReference * ptr)
+  MemberType ParameterType_Impl::get_MemberType (void) const
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ParameterType_Impl
-  //
-  ParameterType_Impl::~ParameterType_Impl (void)
-  {
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

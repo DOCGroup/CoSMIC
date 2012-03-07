@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTBENCHMARK_TRIGGERBENCHMARKS_H_
 #define _PICML_COMPONENTBENCHMARK_TRIGGERBENCHMARKS_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/ComponentBenchmark/BenchmarkType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentBenchmark/BenchmarkType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TriggerBenchmarks_Impl;
   typedef TriggerBenchmarks_Impl * TriggerBenchmarks_in;
-  typedef ::GAME::Mga::Smart_Ptr <TriggerBenchmarks_Impl> TriggerBenchmarks;
+  typedef ::GAME::Mga::Smart_Ptr < TriggerBenchmarks_Impl > TriggerBenchmarks;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class TriggerBenchmarks_Impl
+   *
+   * Implementation for the TriggerBenchmarks model element.
+   */
   class PICML_Export TriggerBenchmarks_Impl :
-    public virtual BenchmarkType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual BenchmarkType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,29 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    TriggerBenchmarks_Impl (void);
-
-    /// Initializing constructor
-    TriggerBenchmarks_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~TriggerBenchmarks_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static TriggerBenchmarks _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    TriggerBenchmarks_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    TriggerBenchmarks_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~TriggerBenchmarks_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TriggerBenchmarks.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_TRIGGERBENCHMARKS

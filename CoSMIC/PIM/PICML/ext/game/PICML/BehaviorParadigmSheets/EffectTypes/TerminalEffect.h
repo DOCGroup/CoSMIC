@@ -14,25 +14,30 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_EFFECTTYPES_TERMINALEFFECT_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_EFFECTTYPES_TERMINALEFFECT_H_
 
-#include "game/mga/Connection.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/EffectBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/EffectBase.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TerminalEffect_Impl;
   typedef TerminalEffect_Impl * TerminalEffect_in;
-  typedef ::GAME::Mga::Smart_Ptr <TerminalEffect_Impl> TerminalEffect;
+  typedef ::GAME::Mga::Smart_Ptr < TerminalEffect_Impl > TerminalEffect;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class TerminalEffect_Impl
+   *
+   * Implementation for the TerminalEffect model element.
+   */
   class PICML_Export TerminalEffect_Impl :
-    public virtual EffectBase_Impl,
-    public virtual ::GAME::Mga::Connection_Impl
+    public virtual ::GAME::Mga::Connection_Impl,
+    public virtual EffectBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    TerminalEffect_Impl (void);
-
-    /// Initializing constructor
-    TerminalEffect_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~TerminalEffect_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static TerminalEffect _create (const BehaviorModel_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    TerminalEffect_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    TerminalEffect_Impl (IMgaConnection * ptr);
+
+    // Destructor.
+    virtual ~TerminalEffect_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Terminal src_Terminal (void) const;
+    StateBase dst_StateBase (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TerminalEffect.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_EFFECTTYPES_TERMINALEFFECT

@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConnectorImplementations.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConnectorImplementations.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConnectorImplementations_Impl::metaname = "ConnectorImplementations";
+  const std::string ConnectorImplementations_Impl::metaname ("ConnectorImplementations");
 
   //
-  // ConnectorImplementations_Impl
-  //
-  ConnectorImplementations_Impl::ConnectorImplementations_Impl (void)
-  {
-  }
-
-  //
-  // ConnectorImplementations_Impl
-  //
-  ConnectorImplementations_Impl::ConnectorImplementations_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConnectorImplementations_Impl
-  //
-  ConnectorImplementations_Impl::~ConnectorImplementations_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void ConnectorImplementations_Impl::accept (Visitor * v)
-  {
-    v->visit_ConnectorImplementations (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   ConnectorImplementations ConnectorImplementations_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <ConnectorImplementations> (parent, ConnectorImplementations_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder ConnectorImplementations_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void ConnectorImplementations_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConnectorImplementations (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_ConnectorImplementationContainers
+  //
+  size_t ConnectorImplementations_Impl::get_ConnectorImplementationContainers (std::vector <ConnectorImplementationContainer> & items) const
+  {
+    return this->children (items);
   }
 }
 

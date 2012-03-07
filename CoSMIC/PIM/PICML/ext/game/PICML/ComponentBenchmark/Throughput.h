@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTBENCHMARK_THROUGHPUT_H_
 #define _PICML_COMPONENTBENCHMARK_THROUGHPUT_H_
 
-#include "game/mga/Model.h"
-#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Throughput_Impl;
   typedef Throughput_Impl * Throughput_in;
-  typedef ::GAME::Mga::Smart_Ptr <Throughput_Impl> Throughput;
+  typedef ::GAME::Mga::Smart_Ptr < Throughput_Impl > Throughput;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Throughput_Impl
+   *
+   * Implementation for the Throughput model element.
+   */
   class PICML_Export Throughput_Impl :
-    public virtual MetricsBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual MetricsBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,30 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Throughput_Impl (void);
-
-    /// Initializing constructor
-    Throughput_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Throughput_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Throughput _create (const BenchmarkAnalysis_in parent);
+    static Throughput _create (const MetricsBase_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    Throughput_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    Throughput_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~Throughput_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Throughput.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_THROUGHPUT

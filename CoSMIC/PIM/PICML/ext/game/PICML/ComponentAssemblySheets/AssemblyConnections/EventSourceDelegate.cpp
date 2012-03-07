@@ -1,69 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "EventSourceDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "EventSourceDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string EventSourceDelegate_Impl::metaname = "EventSourceDelegate";
+  const std::string EventSourceDelegate_Impl::metaname ("EventSourceDelegate");
 
   //
-  // EventSourceDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  EventSourceDelegate_Impl::EventSourceDelegate_Impl (void)
+  EventSourceDelegate EventSourceDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // EventSourceDelegate_Impl
-  //
-  EventSourceDelegate_Impl::EventSourceDelegate_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~EventSourceDelegate_Impl
-  //
-  EventSourceDelegate_Impl::~EventSourceDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < EventSourceDelegate > (parent, EventSourceDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void EventSourceDelegate_Impl::accept (Visitor * v)
+  void EventSourceDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_EventSourceDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_EventSourceDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_OutEventPortEnd
+  // OutEventPortEnd
   //
-  OutEventPortEnd EventSourceDelegate_Impl::src_OutEventPortEnd (void)
+  OutEventPortEnd EventSourceDelegate_Impl::src_OutEventPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return OutEventPortEnd::_narrow (target);
+    return OutEventPortEnd::_narrow (this->src ());
   }
 
   //
-  // dst_OutEventPortDelegate
+  // OutEventPortDelegate
   //
-  OutEventPortDelegate EventSourceDelegate_Impl::dst_OutEventPortDelegate (void)
+  OutEventPortDelegate EventSourceDelegate_Impl::dst_OutEventPortDelegate (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return OutEventPortDelegate::_narrow (target);
+    return OutEventPortDelegate::_narrow (this->dst ());
   }
 }
 

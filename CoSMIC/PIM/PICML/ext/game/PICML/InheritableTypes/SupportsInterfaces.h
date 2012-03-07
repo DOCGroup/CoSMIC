@@ -14,18 +14,23 @@
 #ifndef _PICML_INHERITABLETYPES_SUPPORTSINTERFACES_H_
 #define _PICML_INHERITABLETYPES_SUPPORTSINTERFACES_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class SupportsInterfaces_Impl;
   typedef SupportsInterfaces_Impl * SupportsInterfaces_in;
-  typedef ::GAME::Mga::Smart_Ptr <SupportsInterfaces_Impl> SupportsInterfaces;
+  typedef ::GAME::Mga::Smart_Ptr < SupportsInterfaces_Impl > SupportsInterfaces;
 
+  /**
+   * @class SupportsInterfaces_Impl
+   *
+   * Implementation for the SupportsInterfaces model element.
+   */
   class PICML_Export SupportsInterfaces_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     SupportsInterfaces_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     SupportsInterfaces_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~SupportsInterfaces_Impl (void) = 0;
 
     /**
@@ -53,20 +58,14 @@ namespace PICML
      */
     ///@{
     size_t get_Supportss (std::vector <Supports> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Supports> get_Supportss (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "SupportsInterfaces.inl"
 #endif
+
+#endif  // !defined _PICML_INHERITABLETYPES_SUPPORTSINTERFACES

@@ -14,21 +14,26 @@
 #ifndef _PICML_PACKAGECONFIGURATION_PACKAGECONFSELECTREQUIREMENT_H_
 #define _PICML_PACKAGECONFIGURATION_PACKAGECONFSELECTREQUIREMENT_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PackageConfSelectRequirement_Impl;
   typedef PackageConfSelectRequirement_Impl * PackageConfSelectRequirement_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageConfSelectRequirement_Impl> PackageConfSelectRequirement;
+  typedef ::GAME::Mga::Smart_Ptr < PackageConfSelectRequirement_Impl > PackageConfSelectRequirement;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class PackageConfSelectRequirement_Impl
+   *
+   * Implementation for the PackageConfSelectRequirement model element.
+   */
   class PICML_Export PackageConfSelectRequirement_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    PackageConfSelectRequirement_Impl (void);
-
-    /// Initializing constructor
-    PackageConfSelectRequirement_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~PackageConfSelectRequirement_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static PackageConfSelectRequirement _create (const PackageConfigurationContainer_in parent);
     ///@}
 
-    /// Get the src PackageConfiguration connection point.
-    PackageConfiguration src_PackageConfiguration (void);
+    // Default constructor.
+    PackageConfSelectRequirement_Impl (void);
 
-    /// Get the dst Requirement connection point.
-    Requirement dst_Requirement (void);
+    // Initializing constructor.
+    PackageConfSelectRequirement_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PackageConfigurationContainer parent_PackageConfigurationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~PackageConfSelectRequirement_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    PackageConfiguration src_PackageConfiguration (void) const;
+    Requirement dst_Requirement (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PackageConfSelectRequirement.inl"
 #endif
+
+#endif  // !defined _PICML_PACKAGECONFIGURATION_PACKAGECONFSELECTREQUIREMENT

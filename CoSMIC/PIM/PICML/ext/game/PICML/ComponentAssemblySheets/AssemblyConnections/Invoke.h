@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_INVOKE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_INVOKE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Invoke_Impl;
   typedef Invoke_Impl * Invoke_in;
-  typedef ::GAME::Mga::Smart_Ptr <Invoke_Impl> Invoke;
+  typedef ::GAME::Mga::Smart_Ptr < Invoke_Impl > Invoke;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Invoke_Impl
+   *
+   * Implementation for the Invoke model element.
+   */
   class PICML_Export Invoke_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Invoke_Impl (void);
-
-    /// Initializing constructor
-    Invoke_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~Invoke_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Invoke _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src RequiredRequestPortEnd connection point.
-    RequiredRequestPortEnd src_RequiredRequestPortEnd (void);
+    // Default constructor.
+    Invoke_Impl (void);
 
-    /// Get the dst ProvidedRequestPortEnd connection point.
-    ProvidedRequestPortEnd dst_ProvidedRequestPortEnd (void);
+    // Initializing constructor.
+    Invoke_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~Invoke_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    RequiredRequestPortEnd src_RequiredRequestPortEnd (void) const;
+    ProvidedRequestPortEnd dst_ProvidedRequestPortEnd (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Invoke.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_INVOKE

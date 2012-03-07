@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ATTRIBUTEDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ATTRIBUTEDELEGATE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class AttributeDelegate_Impl;
   typedef AttributeDelegate_Impl * AttributeDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <AttributeDelegate_Impl> AttributeDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < AttributeDelegate_Impl > AttributeDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class AttributeDelegate_Impl
+   *
+   * Implementation for the AttributeDelegate model element.
+   */
   class PICML_Export AttributeDelegate_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    AttributeDelegate_Impl (void);
-
-    /// Initializing constructor
-    AttributeDelegate_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~AttributeDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static AttributeDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src AttributeMapping connection point.
-    AttributeMapping src_AttributeMapping (void);
+    // Default constructor.
+    AttributeDelegate_Impl (void);
 
-    /// Get the dst AttributeInstance connection point.
-    AttributeInstance dst_AttributeInstance (void);
+    // Initializing constructor.
+    AttributeDelegate_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~AttributeDelegate_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    AttributeMapping src_AttributeMapping (void) const;
+    AttributeInstance dst_AttributeInstance (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "AttributeDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ATTRIBUTEDELEGATE

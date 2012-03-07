@@ -1,63 +1,53 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServantProject.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ServantProject.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "PICML/InterfaceDefinition/FileRef.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ServantProject_Impl::metaname = "ServantProject";
+  const std::string ServantProject_Impl::metaname ("ServantProject");
 
   //
-  // ServantProject_Impl
+  // _create (const Project_in)
   //
-  ServantProject_Impl::ServantProject_Impl (void)
+  ServantProject ServantProject_Impl::_create (const Project_in parent)
   {
-  }
-
-  //
-  // ServantProject_Impl
-  //
-  ServantProject_Impl::ServantProject_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ServantProject_Impl
-  //
-  ServantProject_Impl::~ServantProject_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ServantProject > (parent, ServantProject_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ServantProject_Impl::accept (Visitor * v)
+  void ServantProject_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ServantProject (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ServantProject (this);
+    }
 
-  //
-  // get_FileRef
-  //
-  FileRef ServantProject_Impl::get_FileRef (void) const
-  {
-    // Get the collection of children.
-    std::vector <FileRef> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : FileRef ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -65,11 +55,23 @@ namespace PICML
   //
   ImplementationArtifactReference ServantProject_Impl::get_ImplementationArtifactReference (void) const
   {
-    // Get the collection of children.
-    std::vector <ImplementationArtifactReference> items;
-    this->children (items);
+    return this->children <ImplementationArtifactReference> ().item ();
+  }
 
-    return !items.empty () ? items.front () : ImplementationArtifactReference ();
+  //
+  // has_FileRef
+  //
+  bool ServantProject_Impl::has_FileRef (void) const
+  {
+    return this->children <FileRef> ().count () == 1;
+  }
+
+  //
+  // get_FileRef
+  //
+  FileRef ServantProject_Impl::get_FileRef (void) const
+  {
+    return this->children <FileRef> ().item ();
   }
 }
 

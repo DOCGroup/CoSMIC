@@ -1,58 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExtendedPortDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExtendedPortDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExtendedPortDelegate_Impl::metaname = "ExtendedPortDelegate";
+  const std::string ExtendedPortDelegate_Impl::metaname ("ExtendedPortDelegate");
 
   //
-  // ExtendedPortDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ExtendedPortDelegate_Impl::ExtendedPortDelegate_Impl (void)
+  ExtendedPortDelegate ExtendedPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ExtendedPortDelegate_Impl
-  //
-  ExtendedPortDelegate_Impl::ExtendedPortDelegate_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExtendedPortDelegate_Impl
-  //
-  ExtendedPortDelegate_Impl::~ExtendedPortDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExtendedPortDelegate > (parent, ExtendedPortDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExtendedPortDelegate_Impl::accept (Visitor * v)
+  void ExtendedPortDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExtendedPortDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExtendedPortDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // in_ExtendedDelegate_connections
+  // dst_ExtendedDelegate
   //
-  size_t ExtendedPortDelegate_Impl::in_ExtendedDelegate_connections (std::vector <ExtendedDelegate> & conns) const
+  size_t ExtendedPortDelegate_Impl::dst_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <ExtendedDelegate> (items);
   }
 }
 

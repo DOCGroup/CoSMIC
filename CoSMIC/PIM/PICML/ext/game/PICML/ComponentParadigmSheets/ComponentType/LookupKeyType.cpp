@@ -1,41 +1,19 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LookupKeyType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "LookupKeyType.inl"
+#endif
 
-#include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
+#include "PICML/Visitor.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string LookupKeyType_Impl::metaname = "LookupKeyType";
-
-  //
-  // LookupKeyType_Impl
-  //
-  LookupKeyType_Impl::LookupKeyType_Impl (void)
-  {
-  }
-
-  //
-  // LookupKeyType_Impl
-  //
-  LookupKeyType_Impl::LookupKeyType_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~LookupKeyType_Impl
-  //
-  LookupKeyType_Impl::~LookupKeyType_Impl (void)
-  {
-  }
+  const std::string LookupKeyType_Impl::metaname ("LookupKeyType");
 }
 

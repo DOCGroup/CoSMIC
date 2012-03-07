@@ -14,22 +14,27 @@
 #ifndef _PICML_PREDEFINEDTYPES_SIGNEDINTEGERTYPE_H_
 #define _PICML_PREDEFINEDTYPES_SIGNEDINTEGERTYPE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/IntegerType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/IntegerType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class SignedIntegerType_Impl;
   typedef SignedIntegerType_Impl * SignedIntegerType_in;
-  typedef ::GAME::Mga::Smart_Ptr <SignedIntegerType_Impl> SignedIntegerType;
+  typedef ::GAME::Mga::Smart_Ptr < SignedIntegerType_Impl > SignedIntegerType;
 
+  /**
+   * @class SignedIntegerType_Impl
+   *
+   * Implementation for the SignedIntegerType model element.
+   */
   class PICML_Export SignedIntegerType_Impl :
-    public virtual IntegerType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual IntegerType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,27 +46,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     SignedIntegerType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     SignedIntegerType_Impl (IMgaAtom * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~SignedIntegerType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "SignedIntegerType.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_SIGNEDINTEGERTYPE

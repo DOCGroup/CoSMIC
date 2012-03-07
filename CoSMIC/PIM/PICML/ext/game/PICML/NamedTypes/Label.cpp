@@ -1,75 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Label.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Label.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/LabelConnection.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/LabelConnection.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Label_Impl::metaname = "Label";
+  const std::string Label_Impl::metaname ("Label");
 
   //
-  // Label_Impl
+  // _create (const SwitchedAggregate_in)
   //
-  Label_Impl::Label_Impl (void)
+  Label Label_Impl::_create (const SwitchedAggregate_in parent)
   {
-  }
-
-  //
-  // Label_Impl
-  //
-  Label_Impl::Label_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Label_Impl
-  //
-  Label_Impl::~Label_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Label > (parent, Label_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Label_Impl::accept (Visitor * v)
+  void Label_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Label (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Label (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // dst_LabelConnection
   //
-  Label Label_Impl::_create (const SwitchedAggregate_in parent)
+  size_t Label_Impl::dst_LabelConnection (std::vector <LabelConnection> & items) const
   {
-    return ::GAME::Mga::create_object <Label> (parent, Label_Impl::metaname);
-  }
-
-  //
-  // in_LabelConnection_connections
-  //
-  size_t Label_Impl::in_LabelConnection_connections (std::vector <LabelConnection> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_SwitchedAggregate
-  //
-  SwitchedAggregate Label_Impl::parent_SwitchedAggregate (void) const
-  {
-    return ::GAME::Mga::get_parent <SwitchedAggregate> (this->object_.p);
+    return this->in_connections <LabelConnection> (items);
   }
 }
 

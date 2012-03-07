@@ -1,49 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InputAction.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InputAction.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InputAction_Impl::metaname = "InputAction";
+  const std::string InputAction_Impl::metaname ("InputAction");
 
   //
-  // InputAction_Impl
+  // _create (const BehaviorModel_in)
   //
-  InputAction_Impl::InputAction_Impl (void)
+  InputAction InputAction_Impl::_create (const BehaviorModel_in parent)
   {
+    return ::GAME::Mga::create_object < InputAction > (parent, InputAction_Impl::metaname);
   }
 
   //
-  // InputAction_Impl
+  // _create (const BehaviorInputAction_in)
   //
-  InputAction_Impl::InputAction_Impl (IMgaModel * ptr)
+  InputAction InputAction_Impl::_create (const BehaviorInputAction_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InputAction_Impl
-  //
-  InputAction_Impl::~InputAction_Impl (void)
-  {
+    return ::GAME::Mga::create_object < InputAction > (parent, InputAction_Impl::metaname);
   }
 
   //
   // accept
   //
-  void InputAction_Impl::accept (Visitor * v)
+  void InputAction_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_InputAction (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InputAction (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // dst_Input
+  //
+  size_t InputAction_Impl::dst_Input (std::vector <Input> & items) const
+  {
+    return this->in_connections <Input> (items);
   }
 }
 

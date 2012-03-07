@@ -1,49 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LookupOperation.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "LookupOperation.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string LookupOperation_Impl::metaname = "LookupOperation";
+  const std::string LookupOperation_Impl::metaname ("LookupOperation");
 
   //
-  // LookupOperation_Impl
+  // _create (const ComponentFactory_in)
   //
-  LookupOperation_Impl::LookupOperation_Impl (void)
+  LookupOperation LookupOperation_Impl::_create (const ComponentFactory_in parent)
   {
+    return ::GAME::Mga::create_object < LookupOperation > (parent, LookupOperation_Impl::metaname);
   }
 
   //
-  // LookupOperation_Impl
+  // _create (const HasExceptions_in)
   //
-  LookupOperation_Impl::LookupOperation_Impl (IMgaModel * ptr)
+  LookupOperation LookupOperation_Impl::_create (const HasExceptions_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~LookupOperation_Impl
-  //
-  LookupOperation_Impl::~LookupOperation_Impl (void)
-  {
+    return ::GAME::Mga::create_object < LookupOperation > (parent, LookupOperation_Impl::metaname);
   }
 
   //
   // accept
   //
-  void LookupOperation_Impl::accept (Visitor * v)
+  void LookupOperation_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_LookupOperation (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_LookupOperation (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 }
 

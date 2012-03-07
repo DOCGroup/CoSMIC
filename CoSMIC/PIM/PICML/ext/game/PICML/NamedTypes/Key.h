@@ -14,21 +14,26 @@
 #ifndef _PICML_NAMEDTYPES_KEY_H_
 #define _PICML_NAMEDTYPES_KEY_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Key_Impl;
   typedef Key_Impl * Key_in;
-  typedef ::GAME::Mga::Smart_Ptr <Key_Impl> Key;
+  typedef ::GAME::Mga::Smart_Ptr < Key_Impl > Key;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Key_Impl
+   *
+   * Implementation for the Key model element.
+   */
   class PICML_Export Key_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,39 +47,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Key_Impl (void);
-
-    /// Initializing constructor
-    Key_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Key_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Key _create (const Aggregate_in parent);
     ///@}
-    size_t in_KeyMember_connections (std::vector <KeyMember> & conns) const;
+
+    // Default constructor.
+    Key_Impl (void);
+
+    // Initializing constructor.
+    Key_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Key_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    Aggregate parent_Aggregate (void) const;
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src KeyMember connection.
+    size_t src_KeyMember (std::vector <KeyMember> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Key.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_KEY

@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExtResourceConn.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExtResourceConn.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBuild/Project.h"
-#include "PICML/ComponentBuild/ComponentLib.h"
 #include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ComponentBuild/ComponentLib.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExtResourceConn_Impl::metaname = "ExtResourceConn";
+  const std::string ExtResourceConn_Impl::metaname ("ExtResourceConn");
 
   //
-  // ExtResourceConn_Impl
+  // _create (const Project_in)
   //
-  ExtResourceConn_Impl::ExtResourceConn_Impl (void)
+  ExtResourceConn ExtResourceConn_Impl::_create (const Project_in parent)
   {
-  }
-
-  //
-  // ExtResourceConn_Impl
-  //
-  ExtResourceConn_Impl::ExtResourceConn_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExtResourceConn_Impl
-  //
-  ExtResourceConn_Impl::~ExtResourceConn_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExtResourceConn > (parent, ExtResourceConn_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExtResourceConn_Impl::accept (Visitor * v)
+  void ExtResourceConn_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExtResourceConn (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExtResourceConn (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentLib
   //
-  ExtResourceConn ExtResourceConn_Impl::_create (const Project_in parent)
+  ComponentLib ExtResourceConn_Impl::src_ComponentLib (void) const
   {
-    return ::GAME::Mga::create_object <ExtResourceConn> (parent, ExtResourceConn_Impl::metaname);
+    return ComponentLib::_narrow (this->src ());
   }
 
   //
-  // src_ComponentLib
+  // ExternalResources
   //
-  ComponentLib ExtResourceConn_Impl::src_ComponentLib (void)
+  ExternalResources ExtResourceConn_Impl::dst_ExternalResources (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentLib::_narrow (target);
-  }
-
-  //
-  // dst_ExternalResources
-  //
-  ExternalResources ExtResourceConn_Impl::dst_ExternalResources (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ExternalResources::_narrow (target);
-  }
-
-  //
-  // parent_Project
-  //
-  Project ExtResourceConn_Impl::parent_Project (void) const
-  {
-    return ::GAME::Mga::get_parent <Project> (this->object_.p);
+    return ExternalResources::_narrow (this->dst ());
   }
 }
 

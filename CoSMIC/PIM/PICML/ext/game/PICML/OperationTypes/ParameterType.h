@@ -14,18 +14,23 @@
 #ifndef _PICML_OPERATIONTYPES_PARAMETERTYPE_H_
 #define _PICML_OPERATIONTYPES_PARAMETERTYPE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ParameterType_Impl;
   typedef ParameterType_Impl * ParameterType_in;
-  typedef ::GAME::Mga::Smart_Ptr <ParameterType_Impl> ParameterType;
+  typedef ::GAME::Mga::Smart_Ptr < ParameterType_Impl > ParameterType;
 
+  /**
+   * @class ParameterType_Impl
+   *
+   * Implementation for the ParameterType model element.
+   */
   class PICML_Export ParameterType_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -39,27 +44,27 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     ParameterType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     ParameterType_Impl (IMgaReference * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~ParameterType_Impl (void) = 0;
 
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    bool MemberType_is_nil (void) const;
+    MemberType get_MemberType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ParameterType.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_PARAMETERTYPE

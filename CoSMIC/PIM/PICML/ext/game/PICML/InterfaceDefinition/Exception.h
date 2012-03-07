@@ -14,25 +14,30 @@
 #ifndef _PICML_INTERFACEDEFINITION_EXCEPTION_H_
 #define _PICML_INTERFACEDEFINITION_EXCEPTION_H_
 
-#include "game/mga/Model.h"
-#include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Exception_Impl;
   typedef Exception_Impl * Exception_in;
-  typedef ::GAME::Mga::Smart_Ptr <Exception_Impl> Exception;
+  typedef ::GAME::Mga::Smart_Ptr < Exception_Impl > Exception;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Exception_Impl
+   *
+   * Implementation for the Exception model element.
+   */
   class PICML_Export Exception_Impl :
-    public virtual ExceptionType_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual ExceptionType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,47 +49,40 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Exception_Impl (void);
-
-    /// Initializing constructor
-    Exception_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Exception_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    static Exception _create (const File_in parent);
     static Exception _create (const Package_in parent);
+    static Exception _create (const File_in parent);
+    static Exception _create (const HasOperations_in parent);
     ///@}
+
+    // Default constructor.
+    Exception_Impl (void);
+
+    // Initializing constructor.
+    Exception_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Exception_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Containment Methods
      */
     ///@{
     size_t get_Members (std::vector <Member> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Member> get_Members (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    File parent_File (void) const;
-    Package parent_Package (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Exception.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_EXCEPTION

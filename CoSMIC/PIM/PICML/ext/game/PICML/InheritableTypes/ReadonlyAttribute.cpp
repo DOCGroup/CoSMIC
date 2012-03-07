@@ -1,60 +1,88 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ReadonlyAttribute.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ReadonlyAttribute.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/GetException.h"
 #include "PICML/InheritableTypes/AttributeMember.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ReadonlyAttribute_Impl::metaname = "ReadonlyAttribute";
+  const std::string ReadonlyAttribute_Impl::metaname ("ReadonlyAttribute");
 
   //
-  // ReadonlyAttribute_Impl
+  // _create (const ConnectorObject_in)
   //
-  ReadonlyAttribute_Impl::ReadonlyAttribute_Impl (void)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
 
   //
-  // ReadonlyAttribute_Impl
+  // _create (const Component_in)
   //
-  ReadonlyAttribute_Impl::ReadonlyAttribute_Impl (IMgaModel * ptr)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Component_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
 
   //
-  // ~ReadonlyAttribute_Impl
+  // _create (const PortType_in)
   //
-  ReadonlyAttribute_Impl::~ReadonlyAttribute_Impl (void)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const PortType_in parent)
   {
+    return ::GAME::Mga::create_object < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
+  }
+
+  //
+  // _create (const Inheritable_in)
+  //
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Inheritable_in parent)
+  {
+    return ::GAME::Mga::create_object < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ReadonlyAttribute_Impl::accept (Visitor * v)
+  void ReadonlyAttribute_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ReadonlyAttribute (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ReadonlyAttribute (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // _create
+  // get_AttributeMember
   //
-  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Inheritable_in parent)
+  AttributeMember ReadonlyAttribute_Impl::get_AttributeMember (void) const
   {
-    return ::GAME::Mga::create_object <ReadonlyAttribute> (parent, ReadonlyAttribute_Impl::metaname);
+    return this->children <AttributeMember> ().item ();
   }
 
   //
@@ -66,23 +94,11 @@ namespace PICML
   }
 
   //
-  // get_AttributeMember
+  // get_GetExceptions
   //
-  AttributeMember ReadonlyAttribute_Impl::get_AttributeMember (void) const
+  ::GAME::Mga::Iterator <GetException> ReadonlyAttribute_Impl::get_GetExceptions (void) const
   {
-    // Get the collection of children.
-    std::vector <AttributeMember> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : AttributeMember ();
-  }
-
-  //
-  // parent_Inheritable
-  //
-  Inheritable ReadonlyAttribute_Impl::parent_Inheritable (void) const
-  {
-    return ::GAME::Mga::get_parent <Inheritable> (this->object_.p);
+    return this->children <GetException> ();
   }
 }
 

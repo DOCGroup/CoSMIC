@@ -14,21 +14,26 @@
 #ifndef _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERLIBRARY_H_
 #define _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERLIBRARY_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkerLibrary_Impl;
   typedef WorkerLibrary_Impl * WorkerLibrary_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerLibrary_Impl> WorkerLibrary;
+  typedef ::GAME::Mga::Smart_Ptr < WorkerLibrary_Impl > WorkerLibrary;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WorkerLibrary_Impl
+   *
+   * Implementation for the WorkerLibrary model element.
+   */
   class PICML_Export WorkerLibrary_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,24 +47,24 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WorkerLibrary_Impl (void);
-
-    /// Initializing constructor
-    WorkerLibrary_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~WorkerLibrary_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static WorkerLibrary _create (const WorkerLibraries_in parent);
     ///@}
+
+    // Default constructor.
+    WorkerLibrary_Impl (void);
+
+    // Initializing constructor.
+    WorkerLibrary_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~WorkerLibrary_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -78,21 +83,14 @@ namespace PICML
      */
     ///@{
     size_t get_WorkerFiles (std::vector <WorkerFile> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <WorkerFile> get_WorkerFiles (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    WorkerLibraries parent_WorkerLibraries (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkerLibrary.inl"
 #endif
+
+#endif  // !defined _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERLIBRARY

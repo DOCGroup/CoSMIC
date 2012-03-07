@@ -1,98 +1,58 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Package.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Package.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/NativeValue.h"
-#include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/File.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/NamedTypes/NamedType.h"
-#include "PICML/InterfaceDefinition/Constant.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/InterfaceDefinition/PackageType.h"
+#include "PICML/InterfaceDefinition/Constant.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/NativeValue.h"
+#include "PICML/NamedTypes/NamedType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Package_Impl::metaname = "Package";
+  const std::string Package_Impl::metaname ("Package");
 
   //
-  // Package_Impl
+  // _create (const File_in)
   //
-  Package_Impl::Package_Impl (void)
+  Package Package_Impl::_create (const File_in parent)
   {
-  }
-
-  //
-  // Package_Impl
-  //
-  Package_Impl::Package_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Package_Impl
-  //
-  Package_Impl::~Package_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Package > (parent, Package_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Package_Impl::accept (Visitor * v)
+  void Package_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Package (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Package (this);
+    }
 
-  //
-  // _create
-  //
-  Package Package_Impl::_create (const File_in parent)
-  {
-    return ::GAME::Mga::create_object <Package> (parent, Package_Impl::metaname);
-  }
-
-  //
-  // _create
-  //
-  Package Package_Impl::_create (const Package_in parent)
-  {
-    return ::GAME::Mga::create_object <Package> (parent, Package_Impl::metaname);
-  }
-
-  //
-  // get_NativeValues
-  //
-  size_t Package_Impl::get_NativeValues (std::vector <NativeValue> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TemplateParameters
-  //
-  size_t Package_Impl::get_TemplateParameters (std::vector <TemplateParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ManagesComponents
-  //
-  size_t Package_Impl::get_ManagesComponents (std::vector <ManagesComponent> & items) const
-  {
-    return this->children (items);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -104,19 +64,27 @@ namespace PICML
   }
 
   //
-  // get_NamedTypes
+  // get_ComponentRefs
   //
-  size_t Package_Impl::get_NamedTypes (std::vector <NamedType> & items) const
+  ::GAME::Mga::Iterator <ComponentRef> Package_Impl::get_ComponentRefs (void) const
+  {
+    return this->children <ComponentRef> ();
+  }
+
+  //
+  // get_ManagesComponents
+  //
+  size_t Package_Impl::get_ManagesComponents (std::vector <ManagesComponent> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Constants
+  // get_ManagesComponents
   //
-  size_t Package_Impl::get_Constants (std::vector <Constant> & items) const
+  ::GAME::Mga::Iterator <ManagesComponent> Package_Impl::get_ManagesComponents (void) const
   {
-    return this->children (items);
+    return this->children <ManagesComponent> ();
   }
 
   //
@@ -128,19 +96,75 @@ namespace PICML
   }
 
   //
-  // get_Packages
+  // get_Exceptions
   //
-  size_t Package_Impl::get_Packages (std::vector <Package> & items) const
+  ::GAME::Mga::Iterator <Exception> Package_Impl::get_Exceptions (void) const
+  {
+    return this->children <Exception> ();
+  }
+
+  //
+  // get_Constants
+  //
+  size_t Package_Impl::get_Constants (std::vector <Constant> & items) const
   {
     return this->children (items);
   }
 
   //
-  // parent_File
+  // get_Constants
   //
-  File Package_Impl::parent_File (void) const
+  ::GAME::Mga::Iterator <Constant> Package_Impl::get_Constants (void) const
   {
-    return ::GAME::Mga::get_parent <File> (this->object_.p);
+    return this->children <Constant> ();
+  }
+
+  //
+  // get_TemplateParameters
+  //
+  size_t Package_Impl::get_TemplateParameters (std::vector <TemplateParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_TemplateParameters
+  //
+  ::GAME::Mga::Iterator <TemplateParameter> Package_Impl::get_TemplateParameters (void) const
+  {
+    return this->children <TemplateParameter> ();
+  }
+
+  //
+  // get_NativeValues
+  //
+  size_t Package_Impl::get_NativeValues (std::vector <NativeValue> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_NativeValues
+  //
+  ::GAME::Mga::Iterator <NativeValue> Package_Impl::get_NativeValues (void) const
+  {
+    return this->children <NativeValue> ();
+  }
+
+  //
+  // get_NamedTypes
+  //
+  size_t Package_Impl::get_NamedTypes (std::vector <NamedType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_NamedTypes
+  //
+  ::GAME::Mga::Iterator <NamedType> Package_Impl::get_NamedTypes (void) const
+  {
+    return this->children <NamedType> ();
   }
 }
 

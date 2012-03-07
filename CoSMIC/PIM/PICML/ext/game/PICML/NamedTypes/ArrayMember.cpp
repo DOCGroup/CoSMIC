@@ -1,68 +1,78 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ArrayMember.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ArrayMember.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ArrayMember_Impl::metaname = "ArrayMember";
+  const std::string ArrayMember_Impl::metaname ("ArrayMember");
 
   //
-  // ArrayMember_Impl
+  // _create (const Exception_in)
   //
-  ArrayMember_Impl::ArrayMember_Impl (void)
+  ArrayMember ArrayMember_Impl::_create (const Exception_in parent)
   {
+    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //
-  // ArrayMember_Impl
+  // _create (const Aggregate_in)
   //
-  ArrayMember_Impl::ArrayMember_Impl (IMgaReference * ptr)
+  ArrayMember ArrayMember_Impl::_create (const Aggregate_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //
-  // ~ArrayMember_Impl
+  // _create (const SwitchedAggregate_in)
   //
-  ArrayMember_Impl::~ArrayMember_Impl (void)
+  ArrayMember ArrayMember_Impl::_create (const SwitchedAggregate_in parent)
   {
+    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
+  }
+
+  //
+  // _create (const ObjectByValue_in)
+  //
+  ArrayMember ArrayMember_Impl::_create (const ObjectByValue_in parent)
+  {
+    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ArrayMember_Impl::accept (Visitor * v)
+  void ArrayMember_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ArrayMember (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ArrayMember (this);
+    }
 
-  //
-  // Size
-  //
-  void ArrayMember_Impl::Size (long val)
-  {
-    static const std::string attr_Size ("Size");
-    this->attribute (attr_Size)->int_value (val);
-  }
-
-  //
-  // Size
-  //
-  long ArrayMember_Impl::Size (void) const
-  {
-    static const std::string attr_Size ("Size");
-    return this->attribute (attr_Size)->int_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 }
 

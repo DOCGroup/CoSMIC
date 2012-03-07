@@ -14,21 +14,26 @@
 #ifndef _PICML_NAMEDTYPES_KEYMEMBER_H_
 #define _PICML_NAMEDTYPES_KEYMEMBER_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class KeyMember_Impl;
   typedef KeyMember_Impl * KeyMember_in;
-  typedef ::GAME::Mga::Smart_Ptr <KeyMember_Impl> KeyMember;
+  typedef ::GAME::Mga::Smart_Ptr < KeyMember_Impl > KeyMember;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class KeyMember_Impl
+   *
+   * Implementation for the KeyMember model element.
+   */
   class PICML_Export KeyMember_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    KeyMember_Impl (void);
-
-    /// Initializing constructor
-    KeyMember_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~KeyMember_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static KeyMember _create (const Aggregate_in parent);
     ///@}
 
-    /// Get the src Key connection point.
-    Key src_Key (void);
+    // Default constructor.
+    KeyMember_Impl (void);
 
-    /// Get the dst Member connection point.
-    Member dst_Member (void);
+    // Initializing constructor.
+    KeyMember_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Aggregate parent_Aggregate (void) const;
-    ///@}
+    // Destructor.
+    virtual ~KeyMember_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Key src_Key (void) const;
+    Member dst_Member (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "KeyMember.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_KEYMEMBER

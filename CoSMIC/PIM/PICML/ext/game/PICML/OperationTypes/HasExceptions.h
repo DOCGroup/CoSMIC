@@ -14,22 +14,27 @@
 #ifndef _PICML_OPERATIONTYPES_HASEXCEPTIONS_H_
 #define _PICML_OPERATIONTYPES_HASEXCEPTIONS_H_
 
-#include "game/mga/Model.h"
-#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/OperationTypes/OperationBase.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class HasExceptions_Impl;
   typedef HasExceptions_Impl * HasExceptions_in;
-  typedef ::GAME::Mga::Smart_Ptr <HasExceptions_Impl> HasExceptions;
+  typedef ::GAME::Mga::Smart_Ptr < HasExceptions_Impl > HasExceptions;
 
+  /**
+   * @class HasExceptions_Impl
+   *
+   * Implementation for the HasExceptions model element.
+   */
   class PICML_Export HasExceptions_Impl :
-    public virtual OperationBase_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual OperationBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,13 +46,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     HasExceptions_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     HasExceptions_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~HasExceptions_Impl (void) = 0;
 
     /**
@@ -55,20 +60,14 @@ namespace PICML
      */
     ///@{
     size_t get_ExceptionRefs (std::vector <ExceptionRef> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <ExceptionRef> get_ExceptionRefs (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "HasExceptions.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_HASEXCEPTIONS

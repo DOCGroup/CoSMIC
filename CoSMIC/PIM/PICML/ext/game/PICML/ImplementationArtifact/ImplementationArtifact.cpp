@@ -1,186 +1,113 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ImplementationArtifact.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ImplementationArtifact.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ArtifactDependency.h"
-#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
-#include "PICML/ImplementationArtifact/ArtifactDependency.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
+#include "PICML/ImplementationArtifact/ArtifactDependency.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ImplementationArtifact_Impl::metaname = "ImplementationArtifact";
+  const std::string ImplementationArtifact_Impl::metaname ("ImplementationArtifact");
 
   //
-  // ImplementationArtifact_Impl
+  // _create (const Project_in)
   //
-  ImplementationArtifact_Impl::ImplementationArtifact_Impl (void)
+  ImplementationArtifact ImplementationArtifact_Impl::_create (const Project_in parent)
   {
+    return ::GAME::Mga::create_object < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
 
   //
-  // ImplementationArtifact_Impl
+  // _create (const ArtifactContainer_in)
   //
-  ImplementationArtifact_Impl::ImplementationArtifact_Impl (IMgaAtom * ptr)
+  ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ImplementationArtifact_Impl
-  //
-  ImplementationArtifact_Impl::~ImplementationArtifact_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ImplementationArtifact_Impl::accept (Visitor * v)
+  void ImplementationArtifact_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ImplementationArtifact (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ImplementationArtifact (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_ArtifactDependsOn
   //
-  ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
+  size_t ImplementationArtifact_Impl::src_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
   {
-    return ::GAME::Mga::create_object <ImplementationArtifact> (parent, ImplementationArtifact_Impl::metaname);
+    return this->in_connections <ArtifactDependsOn> (items);
   }
 
   //
-  // architecture
+  // src_ArtifactDeployRequirement
   //
-  void ImplementationArtifact_Impl::architecture (const std::string & val)
+  size_t ImplementationArtifact_Impl::src_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
   {
-    static const std::string attr_architecture ("architecture");
-    this->attribute (attr_architecture)->string_value (val);
+    return this->in_connections <ArtifactDeployRequirement> (items);
   }
 
   //
-  // architecture
+  // src_ArtifactExecParameter
   //
-  std::string ImplementationArtifact_Impl::architecture (void) const
+  size_t ImplementationArtifact_Impl::src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
   {
-    static const std::string attr_architecture ("architecture");
-    return this->attribute (attr_architecture)->string_value ();
+    return this->in_connections <ArtifactExecParameter> (items);
   }
 
   //
-  // artifactVersion
+  // src_ArtifactInfoProperty
   //
-  void ImplementationArtifact_Impl::artifactVersion (const std::string & val)
+  size_t ImplementationArtifact_Impl::src_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
   {
-    static const std::string attr_artifactVersion ("artifactVersion");
-    this->attribute (attr_artifactVersion)->string_value (val);
+    return this->in_connections <ArtifactInfoProperty> (items);
   }
 
   //
-  // artifactVersion
+  // src_ArtifactDependency
   //
-  std::string ImplementationArtifact_Impl::artifactVersion (void) const
+  size_t ImplementationArtifact_Impl::src_ArtifactDependency (std::vector <ArtifactDependency> & items) const
   {
-    static const std::string attr_artifactVersion ("artifactVersion");
-    return this->attribute (attr_artifactVersion)->string_value ();
+    return this->in_connections <ArtifactDependency> (items);
   }
 
   //
-  // configuration
+  // dst_ArtifactDependency
   //
-  void ImplementationArtifact_Impl::configuration (const std::string & val)
+  size_t ImplementationArtifact_Impl::dst_ArtifactDependency (std::vector <ArtifactDependency> & items) const
   {
-    static const std::string attr_configuration ("configuration");
-    this->attribute (attr_configuration)->string_value (val);
-  }
-
-  //
-  // configuration
-  //
-  std::string ImplementationArtifact_Impl::configuration (void) const
-  {
-    static const std::string attr_configuration ("configuration");
-    return this->attribute (attr_configuration)->string_value ();
-  }
-
-  //
-  // operatingSystem
-  //
-  void ImplementationArtifact_Impl::operatingSystem (const std::string & val)
-  {
-    static const std::string attr_operatingSystem ("operatingSystem");
-    this->attribute (attr_operatingSystem)->string_value (val);
-  }
-
-  //
-  // operatingSystem
-  //
-  std::string ImplementationArtifact_Impl::operatingSystem (void) const
-  {
-    static const std::string attr_operatingSystem ("operatingSystem");
-    return this->attribute (attr_operatingSystem)->string_value ();
-  }
-
-  //
-  // in_ArtifactDependency_connections
-  //
-  size_t ImplementationArtifact_Impl::in_ArtifactDependency_connections (std::vector <ArtifactDependency> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ArtifactInfoProperty_connections
-  //
-  size_t ImplementationArtifact_Impl::in_ArtifactInfoProperty_connections (std::vector <ArtifactInfoProperty> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ArtifactExecParameter_connections
-  //
-  size_t ImplementationArtifact_Impl::in_ArtifactExecParameter_connections (std::vector <ArtifactExecParameter> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ArtifactDeployRequirement_connections
-  //
-  size_t ImplementationArtifact_Impl::in_ArtifactDeployRequirement_connections (std::vector <ArtifactDeployRequirement> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ArtifactDependsOn_connections
-  //
-  size_t ImplementationArtifact_Impl::in_ArtifactDependsOn_connections (std::vector <ArtifactDependsOn> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // parent_ArtifactContainer
-  //
-  ArtifactContainer ImplementationArtifact_Impl::parent_ArtifactContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ArtifactContainer> (this->object_.p);
+    return this->in_connections <ArtifactDependency> (items);
   }
 }
 

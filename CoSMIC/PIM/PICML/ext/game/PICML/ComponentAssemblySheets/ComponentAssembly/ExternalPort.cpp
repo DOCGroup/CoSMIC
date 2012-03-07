@@ -1,66 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExternalPort.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExternalPort.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExternalPort_Impl::metaname = "ExternalPort";
+  const std::string ExternalPort_Impl::metaname ("ExternalPort");
 
   //
-  // ExternalPort_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ExternalPort_Impl::ExternalPort_Impl (void)
+  ExternalPort ExternalPort_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ExternalPort_Impl
-  //
-  ExternalPort_Impl::ExternalPort_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExternalPort_Impl
-  //
-  ExternalPort_Impl::~ExternalPort_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExternalPort > (parent, ExternalPort_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExternalPort_Impl::accept (Visitor * v)
+  void ExternalPort_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExternalPort (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExternalPort (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // _create
+  // src_ExternalDelegate
   //
-  ExternalPort ExternalPort_Impl::_create (const ComponentAssembly_in parent)
+  size_t ExternalPort_Impl::src_ExternalDelegate (std::vector <ExternalDelegate> & items) const
   {
-    return ::GAME::Mga::create_object <ExternalPort> (parent, ExternalPort_Impl::metaname);
-  }
-
-  //
-  // parent_ComponentAssembly
-  //
-  ComponentAssembly ExternalPort_Impl::parent_ComponentAssembly (void) const
-  {
-    return ::GAME::Mga::get_parent <ComponentAssembly> (this->object_.p);
+    return this->in_connections <ExternalDelegate> (items);
   }
 }
 

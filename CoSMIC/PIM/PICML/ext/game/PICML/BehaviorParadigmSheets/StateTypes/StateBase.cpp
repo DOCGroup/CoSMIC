@@ -1,41 +1,56 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "StateBase.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "StateBase.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string StateBase_Impl::metaname = "StateBase";
+  const std::string StateBase_Impl::metaname ("StateBase");
 
   //
-  // StateBase_Impl
+  // src_Finish
   //
-  StateBase_Impl::StateBase_Impl (void)
+  size_t StateBase_Impl::src_Finish (std::vector <Finish> & items) const
   {
+    return this->in_connections <Finish> (items);
   }
 
   //
-  // StateBase_Impl
+  // dst_Effect
   //
-  StateBase_Impl::StateBase_Impl (IMgaAtom * ptr)
+  size_t StateBase_Impl::dst_Effect (std::vector <Effect> & items) const
   {
-    this->object_ = ptr;
+    return this->in_connections <Effect> (items);
   }
 
   //
-  // ~StateBase_Impl
+  // dst_InputEffect
   //
-  StateBase_Impl::~StateBase_Impl (void)
+  size_t StateBase_Impl::dst_InputEffect (std::vector <InputEffect> & items) const
   {
+    return this->in_connections <InputEffect> (items);
+  }
+
+  //
+  // dst_TerminalEffect
+  //
+  size_t StateBase_Impl::dst_TerminalEffect (std::vector <TerminalEffect> & items) const
+  {
+    return this->in_connections <TerminalEffect> (items);
   }
 }
 

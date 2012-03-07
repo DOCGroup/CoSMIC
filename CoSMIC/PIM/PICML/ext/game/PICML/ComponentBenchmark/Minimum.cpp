@@ -1,49 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Minimum.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Minimum.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Minimum_Impl::metaname = "Minimum";
+  const std::string Minimum_Impl::metaname ("Minimum");
 
   //
-  // Minimum_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  Minimum_Impl::Minimum_Impl (void)
+  Minimum Minimum_Impl::_create (const BenchmarkAnalysis_in parent)
   {
+    return ::GAME::Mga::create_object < Minimum > (parent, Minimum_Impl::metaname);
   }
 
   //
-  // Minimum_Impl
+  // _create (const MetricsBase_in)
   //
-  Minimum_Impl::Minimum_Impl (IMgaAtom * ptr)
+  Minimum Minimum_Impl::_create (const MetricsBase_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Minimum_Impl
-  //
-  Minimum_Impl::~Minimum_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Minimum > (parent, Minimum_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Minimum_Impl::accept (Visitor * v)
+  void Minimum_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Minimum (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Minimum (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

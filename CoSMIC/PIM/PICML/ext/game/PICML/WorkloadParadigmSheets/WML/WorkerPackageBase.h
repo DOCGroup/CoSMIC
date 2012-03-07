@@ -14,18 +14,23 @@
 #ifndef _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERPACKAGEBASE_H_
 #define _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERPACKAGEBASE_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkerPackageBase_Impl;
   typedef WorkerPackageBase_Impl * WorkerPackageBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerPackageBase_Impl> WorkerPackageBase;
+  typedef ::GAME::Mga::Smart_Ptr < WorkerPackageBase_Impl > WorkerPackageBase;
 
+  /**
+   * @class WorkerPackageBase_Impl
+   *
+   * Implementation for the WorkerPackageBase model element.
+   */
   class PICML_Export WorkerPackageBase_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,13 +44,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     WorkerPackageBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     WorkerPackageBase_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~WorkerPackageBase_Impl (void) = 0;
 
     /**
@@ -53,20 +58,14 @@ namespace PICML
      */
     ///@{
     size_t get_Workers (std::vector <Worker> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Worker> get_Workers (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkerPackageBase.inl"
 #endif
+
+#endif  // !defined _PICML_WORKLOADPARADIGMSHEETS_WML_WORKERPACKAGEBASE

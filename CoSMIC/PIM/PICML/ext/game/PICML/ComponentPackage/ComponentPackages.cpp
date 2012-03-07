@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentPackages.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentPackages.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentPackages_Impl::metaname = "ComponentPackages";
+  const std::string ComponentPackages_Impl::metaname ("ComponentPackages");
 
   //
-  // ComponentPackages_Impl
-  //
-  ComponentPackages_Impl::ComponentPackages_Impl (void)
-  {
-  }
-
-  //
-  // ComponentPackages_Impl
-  //
-  ComponentPackages_Impl::ComponentPackages_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentPackages_Impl
-  //
-  ComponentPackages_Impl::~ComponentPackages_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void ComponentPackages_Impl::accept (Visitor * v)
-  {
-    v->visit_ComponentPackages (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   ComponentPackages ComponentPackages_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <ComponentPackages> (parent, ComponentPackages_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder ComponentPackages_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void ComponentPackages_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentPackages (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_PackageContainers
+  //
+  size_t ComponentPackages_Impl::get_PackageContainers (std::vector <PackageContainer> & items) const
+  {
+    return this->children (items);
   }
 }
 

@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_MIRRORPORTINSTANCE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_MIRRORPORTINSTANCE_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MirrorPortInstance_Impl;
   typedef MirrorPortInstance_Impl * MirrorPortInstance_in;
-  typedef ::GAME::Mga::Smart_Ptr <MirrorPortInstance_Impl> MirrorPortInstance;
+  typedef ::GAME::Mga::Smart_Ptr < MirrorPortInstance_Impl > MirrorPortInstance;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MirrorPortInstance_Impl
+   *
+   * Implementation for the MirrorPortInstance model element.
+   */
   class PICML_Export MirrorPortInstance_Impl :
-    public virtual PortInstance_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual PortInstance_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,37 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MirrorPortInstance_Impl (void);
-
-    /// Initializing constructor
-    MirrorPortInstance_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~MirrorPortInstance_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static MirrorPortInstance _create (const ComponentInstance_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    MirrorPortInstance_Impl (void);
+
+    // Initializing constructor.
+    MirrorPortInstance_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~MirrorPortInstance_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool MirrorPort_is_nil (void) const;
+    MirrorPort get_MirrorPort (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MirrorPortInstance.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_MIRRORPORTINSTANCE

@@ -1,42 +1,19 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Provideable.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Provideable.inl"
+#endif
 
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/Visitor.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Provideable_Impl::metaname = "Provideable";
-
-  //
-  // Provideable_Impl
-  //
-  Provideable_Impl::Provideable_Impl (void)
-  {
-  }
-
-  //
-  // Provideable_Impl
-  //
-  Provideable_Impl::Provideable_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Provideable_Impl
-  //
-  Provideable_Impl::~Provideable_Impl (void)
-  {
-  }
+  const std::string Provideable_Impl::metaname ("Provideable");
 }
 

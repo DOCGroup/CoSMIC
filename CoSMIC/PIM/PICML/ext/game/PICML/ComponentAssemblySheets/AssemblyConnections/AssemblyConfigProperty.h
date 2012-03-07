@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ASSEMBLYCONFIGPROPERTY_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ASSEMBLYCONFIGPROPERTY_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class AssemblyConfigProperty_Impl;
   typedef AssemblyConfigProperty_Impl * AssemblyConfigProperty_in;
-  typedef ::GAME::Mga::Smart_Ptr <AssemblyConfigProperty_Impl> AssemblyConfigProperty;
+  typedef ::GAME::Mga::Smart_Ptr < AssemblyConfigProperty_Impl > AssemblyConfigProperty;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class AssemblyConfigProperty_Impl
+   *
+   * Implementation for the AssemblyConfigProperty model element.
+   */
   class PICML_Export AssemblyConfigProperty_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    AssemblyConfigProperty_Impl (void);
-
-    /// Initializing constructor
-    AssemblyConfigProperty_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~AssemblyConfigProperty_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static AssemblyConfigProperty _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src AssemblyConfigPropertyEnd connection point.
-    AssemblyConfigPropertyEnd src_AssemblyConfigPropertyEnd (void);
+    // Default constructor.
+    AssemblyConfigProperty_Impl (void);
 
-    /// Get the dst Property connection point.
-    Property dst_Property (void);
+    // Initializing constructor.
+    AssemblyConfigProperty_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~AssemblyConfigProperty_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    AssemblyConfigPropertyEnd src_AssemblyConfigPropertyEnd (void) const;
+    Property dst_Property (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "AssemblyConfigProperty.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ASSEMBLYCONFIGPROPERTY

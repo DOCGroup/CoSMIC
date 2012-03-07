@@ -14,21 +14,26 @@
 #ifndef _PICML_PACKAGECONFIGURATION_PACKAGECONFREFERENCE_H_
 #define _PICML_PACKAGECONFIGURATION_PACKAGECONFREFERENCE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PackageConfReference_Impl;
   typedef PackageConfReference_Impl * PackageConfReference_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageConfReference_Impl> PackageConfReference;
+  typedef ::GAME::Mga::Smart_Ptr < PackageConfReference_Impl > PackageConfReference;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class PackageConfReference_Impl
+   *
+   * Implementation for the PackageConfReference model element.
+   */
   class PICML_Export PackageConfReference_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    PackageConfReference_Impl (void);
-
-    /// Initializing constructor
-    PackageConfReference_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~PackageConfReference_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static PackageConfReference _create (const PackageConfigurationContainer_in parent);
     ///@}
 
-    /// Get the src PackageConfiguration connection point.
-    PackageConfiguration src_PackageConfiguration (void);
+    // Default constructor.
+    PackageConfReference_Impl (void);
 
-    /// Get the dst ComponentPackageReference connection point.
-    ComponentPackageReference dst_ComponentPackageReference (void);
+    // Initializing constructor.
+    PackageConfReference_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PackageConfigurationContainer parent_PackageConfigurationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~PackageConfReference_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    PackageConfiguration src_PackageConfiguration (void) const;
+    ComponentPackageReference dst_ComponentPackageReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PackageConfReference.inl"
 #endif
+
+#endif  // !defined _PICML_PACKAGECONFIGURATION_PACKAGECONFREFERENCE

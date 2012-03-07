@@ -1,49 +1,42 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "WideChar.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "WideChar.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string WideChar_Impl::metaname = "WideChar";
-
-  //
-  // WideChar_Impl
-  //
-  WideChar_Impl::WideChar_Impl (void)
-  {
-  }
-
-  //
-  // WideChar_Impl
-  //
-  WideChar_Impl::WideChar_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~WideChar_Impl
-  //
-  WideChar_Impl::~WideChar_Impl (void)
-  {
-  }
+  const std::string WideChar_Impl::metaname ("WideChar");
 
   //
   // accept
   //
-  void WideChar_Impl::accept (Visitor * v)
+  void WideChar_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_WideChar (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_WideChar (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

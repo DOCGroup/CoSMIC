@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDEDDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDEDDELEGATE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExtendedDelegate_Impl;
   typedef ExtendedDelegate_Impl * ExtendedDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendedDelegate_Impl> ExtendedDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < ExtendedDelegate_Impl > ExtendedDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ExtendedDelegate_Impl
+   *
+   * Implementation for the ExtendedDelegate model element.
+   */
   class PICML_Export ExtendedDelegate_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ExtendedDelegate_Impl (void);
-
-    /// Initializing constructor
-    ExtendedDelegate_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ExtendedDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ExtendedDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src ExtendedPortInstanceBase connection point.
-    ExtendedPortInstanceBase src_ExtendedPortInstanceBase (void);
+    // Default constructor.
+    ExtendedDelegate_Impl (void);
 
-    /// Get the dst ExtendedPortDelegate connection point.
-    ExtendedPortDelegate dst_ExtendedPortDelegate (void);
+    // Initializing constructor.
+    ExtendedDelegate_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~ExtendedDelegate_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ExtendedPortInstanceBase src_ExtendedPortInstanceBase (void) const;
+    ExtendedPortDelegate dst_ExtendedPortDelegate (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExtendedDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_EXTENDEDDELEGATE

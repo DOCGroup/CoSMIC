@@ -1,67 +1,46 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RequiredRequestPortEnd.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "RequiredRequestPortEnd.inl"
+#endif
 
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string RequiredRequestPortEnd_Impl::metaname = "RequiredRequestPortEnd";
+  const std::string RequiredRequestPortEnd_Impl::metaname ("RequiredRequestPortEnd");
 
   //
-  // RequiredRequestPortEnd_Impl
+  // src_Invoke
   //
-  RequiredRequestPortEnd_Impl::RequiredRequestPortEnd_Impl (void)
+  size_t RequiredRequestPortEnd_Impl::src_Invoke (std::vector <Invoke> & items) const
   {
+    return this->in_connections <Invoke> (items);
   }
 
   //
-  // RequiredRequestPortEnd_Impl
+  // src_ConnectorToReceptacle
   //
-  RequiredRequestPortEnd_Impl::RequiredRequestPortEnd_Impl (IMgaFCO * ptr)
+  size_t RequiredRequestPortEnd_Impl::src_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
   {
-    this->object_ = ptr;
+    return this->in_connections <ConnectorToReceptacle> (items);
   }
 
   //
-  // ~RequiredRequestPortEnd_Impl
+  // dst_ReceptacleDelegate
   //
-  RequiredRequestPortEnd_Impl::~RequiredRequestPortEnd_Impl (void)
+  size_t RequiredRequestPortEnd_Impl::dst_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const
   {
-  }
-
-  //
-  // in_ConnectorToReceptacle_connections
-  //
-  size_t RequiredRequestPortEnd_Impl::in_ConnectorToReceptacle_connections (std::vector <ConnectorToReceptacle> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_Invoke_connections
-  //
-  size_t RequiredRequestPortEnd_Impl::in_Invoke_connections (std::vector <Invoke> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ReceptacleDelegate_connections
-  //
-  size_t RequiredRequestPortEnd_Impl::in_ReceptacleDelegate_connections (std::vector <ReceptacleDelegate> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <ReceptacleDelegate> (items);
   }
 }
 

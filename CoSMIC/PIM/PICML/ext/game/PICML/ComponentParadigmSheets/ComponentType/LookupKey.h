@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_LOOKUPKEY_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_LOOKUPKEY_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class LookupKey_Impl;
   typedef LookupKey_Impl * LookupKey_in;
-  typedef ::GAME::Mga::Smart_Ptr <LookupKey_Impl> LookupKey;
+  typedef ::GAME::Mga::Smart_Ptr < LookupKey_Impl > LookupKey;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class LookupKey_Impl
+   *
+   * Implementation for the LookupKey model element.
+   */
   class PICML_Export LookupKey_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    LookupKey_Impl (void);
-
-    /// Initializing constructor
-    LookupKey_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~LookupKey_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,20 +54,30 @@ namespace PICML
     static LookupKey _create (const ComponentFactory_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentFactory parent_ComponentFactory (void) const;
-    ///@}
+    // Default constructor.
+    LookupKey_Impl (void);
+
+    // Initializing constructor.
+    LookupKey_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~LookupKey_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
-    LookupKeyType refers_to_LookupKeyType (void) const;
+    bool LookupKeyType_is_nil (void) const;
+    LookupKeyType get_LookupKeyType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "LookupKey.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_LOOKUPKEY

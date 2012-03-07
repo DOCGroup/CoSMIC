@@ -1,58 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PathReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PathReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
 #include "PICML/PathDiagram/Path.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PathReference_Impl::metaname = "PathReference";
+  const std::string PathReference_Impl::metaname ("PathReference");
 
   //
-  // PathReference_Impl
+  // _create (const ComponentImplementationContainer_in)
   //
-  PathReference_Impl::PathReference_Impl (void)
+  PathReference PathReference_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-  }
-
-  //
-  // PathReference_Impl
-  //
-  PathReference_Impl::PathReference_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PathReference_Impl
-  //
-  PathReference_Impl::~PathReference_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PathReference > (parent, PathReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PathReference_Impl::accept (Visitor * v)
+  void PathReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PathReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PathReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // refers_to_Path
+  // dst_CriticalPath
   //
-  Path PathReference_Impl::refers_to_Path (void) const
+  size_t PathReference_Impl::dst_CriticalPath (std::vector <CriticalPath> & items) const
   {
-    return ::GAME::Mga::get_refers_to <Path> (this);
+    return this->in_connections <CriticalPath> (items);
+  }
+
+  //
+  // Path_is_nil
+  //
+  bool PathReference_Impl::Path_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_Path
+  //
+  Path PathReference_Impl::get_Path (void) const
+  {
+    return Path::_narrow (this->refers_to ());
   }
 }
 

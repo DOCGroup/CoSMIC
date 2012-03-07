@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINTERFACE_COMPONENTPROPERTY_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINTERFACE_COMPONENTPROPERTY_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentProperty_Impl;
   typedef ComponentProperty_Impl * ComponentProperty_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentProperty_Impl> ComponentProperty;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentProperty_Impl > ComponentProperty;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentProperty_Impl
+   *
+   * Implementation for the ComponentProperty model element.
+   */
   class PICML_Export ComponentProperty_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentProperty_Impl (void);
-
-    /// Initializing constructor
-    ComponentProperty_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ComponentProperty_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ComponentProperty _create (const ComponentContainer_in parent);
     ///@}
 
-    /// Get the src ComponentRef connection point.
-    ComponentRef src_ComponentRef (void);
+    // Default constructor.
+    ComponentProperty_Impl (void);
 
-    /// Get the dst ComponentPropertyDescription connection point.
-    ComponentPropertyDescription dst_ComponentPropertyDescription (void);
+    // Initializing constructor.
+    ComponentProperty_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentContainer parent_ComponentContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ComponentProperty_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ComponentRef src_ComponentRef (void) const;
+    ComponentPropertyDescription dst_ComponentPropertyDescription (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentProperty.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINTERFACE_COMPONENTPROPERTY

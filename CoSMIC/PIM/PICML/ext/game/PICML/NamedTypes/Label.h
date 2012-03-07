@@ -14,21 +14,26 @@
 #ifndef _PICML_NAMEDTYPES_LABEL_H_
 #define _PICML_NAMEDTYPES_LABEL_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Label_Impl;
   typedef Label_Impl * Label_in;
-  typedef ::GAME::Mga::Smart_Ptr <Label_Impl> Label;
+  typedef ::GAME::Mga::Smart_Ptr < Label_Impl > Label;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Label_Impl
+   *
+   * Implementation for the Label model element.
+   */
   class PICML_Export Label_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,39 +47,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Label_Impl (void);
-
-    /// Initializing constructor
-    Label_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Label_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Label _create (const SwitchedAggregate_in parent);
     ///@}
-    size_t in_LabelConnection_connections (std::vector <LabelConnection> & conns) const;
+
+    // Default constructor.
+    Label_Impl (void);
+
+    // Initializing constructor.
+    Label_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Label_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
-    SwitchedAggregate parent_SwitchedAggregate (void) const;
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the dst LabelConnection connection.
+    size_t dst_LabelConnection (std::vector <LabelConnection> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Label.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_LABEL

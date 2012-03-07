@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ATTRIBUTEVALUE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ATTRIBUTEVALUE_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class AttributeValue_Impl;
   typedef AttributeValue_Impl * AttributeValue_in;
-  typedef ::GAME::Mga::Smart_Ptr <AttributeValue_Impl> AttributeValue;
+  typedef ::GAME::Mga::Smart_Ptr < AttributeValue_Impl > AttributeValue;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class AttributeValue_Impl
+   *
+   * Implementation for the AttributeValue model element.
+   */
   class PICML_Export AttributeValue_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,42 +47,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    AttributeValue_Impl (void);
-
-    /// Initializing constructor
-    AttributeValue_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~AttributeValue_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static AttributeValue _create (const ComponentAssembly_in parent);
     ///@}
 
-    /// Get the src AttributeInstance connection point.
-    AttributeInstance src_AttributeInstance (void);
+    // Default constructor.
+    AttributeValue_Impl (void);
 
-    /// Get the dst Property connection point.
-    Property dst_Property (void);
+    // Initializing constructor.
+    AttributeValue_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~AttributeValue_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    AttributeInstance src_AttributeInstance (void) const;
+    Property dst_Property (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "AttributeValue.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ATTRIBUTEVALUE

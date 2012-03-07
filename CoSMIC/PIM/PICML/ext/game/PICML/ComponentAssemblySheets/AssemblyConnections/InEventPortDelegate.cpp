@@ -1,58 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InEventPortDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InEventPortDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InEventPortDelegate_Impl::metaname = "InEventPortDelegate";
+  const std::string InEventPortDelegate_Impl::metaname ("InEventPortDelegate");
 
   //
-  // InEventPortDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  InEventPortDelegate_Impl::InEventPortDelegate_Impl (void)
+  InEventPortDelegate InEventPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // InEventPortDelegate_Impl
-  //
-  InEventPortDelegate_Impl::InEventPortDelegate_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InEventPortDelegate_Impl
-  //
-  InEventPortDelegate_Impl::~InEventPortDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < InEventPortDelegate > (parent, InEventPortDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void InEventPortDelegate_Impl::accept (Visitor * v)
+  void InEventPortDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_InEventPortDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InEventPortDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // in_EventSinkDelegate_connections
+  // src_EventSinkDelegate
   //
-  size_t InEventPortDelegate_Impl::in_EventSinkDelegate_connections (std::vector <EventSinkDelegate> & conns) const
+  size_t InEventPortDelegate_Impl::src_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <EventSinkDelegate> (items);
   }
 }
 

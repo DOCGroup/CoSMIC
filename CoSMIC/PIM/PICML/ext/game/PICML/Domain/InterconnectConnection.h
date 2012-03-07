@@ -14,21 +14,26 @@
 #ifndef _PICML_DOMAIN_INTERCONNECTCONNECTION_H_
 #define _PICML_DOMAIN_INTERCONNECTCONNECTION_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class InterconnectConnection_Impl;
   typedef InterconnectConnection_Impl * InterconnectConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <InterconnectConnection_Impl> InterconnectConnection;
+  typedef ::GAME::Mga::Smart_Ptr < InterconnectConnection_Impl > InterconnectConnection;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class InterconnectConnection_Impl
+   *
+   * Implementation for the InterconnectConnection model element.
+   */
   class PICML_Export InterconnectConnection_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    InterconnectConnection_Impl (void);
-
-    /// Initializing constructor
-    InterconnectConnection_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~InterconnectConnection_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static InterconnectConnection _create (const Domain_in parent);
     ///@}
 
-    /// Get the src Node connection point.
-    Node src_Node (void);
+    // Default constructor.
+    InterconnectConnection_Impl (void);
 
-    /// Get the dst Interconnect connection point.
-    Interconnect dst_Interconnect (void);
+    // Initializing constructor.
+    InterconnectConnection_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Domain parent_Domain (void) const;
-    ///@}
+    // Destructor.
+    virtual ~InterconnectConnection_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Node src_Node (void) const;
+    Interconnect dst_Interconnect (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "InterconnectConnection.inl"
 #endif
+
+#endif  // !defined _PICML_DOMAIN_INTERCONNECTCONNECTION

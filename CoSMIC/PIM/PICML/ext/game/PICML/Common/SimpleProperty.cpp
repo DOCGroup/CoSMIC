@@ -1,69 +1,185 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SimpleProperty.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SimpleProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/NamedTypes/MemberType.h"
+#include "PICML/Domain/Domain.h"
+#include "PICML/Common/RequirementBase.h"
+#include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/PathDiagram/Paths.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string SimpleProperty_Impl::metaname = "SimpleProperty";
+  const std::string SimpleProperty_Impl::metaname ("SimpleProperty");
 
   //
-  // SimpleProperty_Impl
+  // _create (const BehaviorInputAction_in)
   //
-  SimpleProperty_Impl::SimpleProperty_Impl (void)
+  SimpleProperty SimpleProperty_Impl::_create (const BehaviorInputAction_in parent)
   {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
   }
 
   //
-  // SimpleProperty_Impl
+  // _create (const ActionBase_in)
   //
-  SimpleProperty_Impl::SimpleProperty_Impl (IMgaReference * ptr)
+  SimpleProperty SimpleProperty_Impl::_create (const ActionBase_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
   }
 
   //
-  // ~SimpleProperty_Impl
+  // _create (const QueryInputAction_in)
   //
-  SimpleProperty_Impl::~SimpleProperty_Impl (void)
+  SimpleProperty SimpleProperty_Impl::_create (const QueryInputAction_in parent)
   {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentContainer_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const ComponentContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentAssembly_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const ComponentAssembly_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const Domain_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const Domain_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const RequirementBase_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const RequirementBase_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const PackageContainer_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const PackageContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ArtifactContainer_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const ArtifactContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const PackageConfigurationContainer_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const PackageConfigurationContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const DeploymentPlan_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const DeploymentPlan_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const Path_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const Path_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const Paths_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const Paths_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ImplementationContainer_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const ImplementationContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void SimpleProperty_Impl::accept (Visitor * v)
+  void SimpleProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_SimpleProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_SimpleProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // Value
+  // MemberType_is_nil
   //
-  void SimpleProperty_Impl::Value (const std::string & val)
+  bool SimpleProperty_Impl::MemberType_is_nil (void) const
   {
-    static const std::string attr_Value ("Value");
-    this->attribute (attr_Value)->string_value (val);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // Value
+  // get_MemberType
   //
-  std::string SimpleProperty_Impl::Value (void) const
+  MemberType SimpleProperty_Impl::get_MemberType (void) const
   {
-    static const std::string attr_Value ("Value");
-    return this->attribute (attr_Value)->string_value ();
+    return MemberType::_narrow (this->refers_to ());
   }
 }
 

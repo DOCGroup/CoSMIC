@@ -1,67 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ActionType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ActionType.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ActionType_Impl::metaname = "ActionType";
+  const std::string ActionType_Impl::metaname ("ActionType");
 
   //
-  // ActionType_Impl
+  // _create (const Action_in)
   //
-  ActionType_Impl::ActionType_Impl (void)
+  ActionType ActionType_Impl::_create (const Action_in parent)
   {
-  }
-
-  //
-  // ActionType_Impl
-  //
-  ActionType_Impl::ActionType_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ActionType_Impl
-  //
-  ActionType_Impl::~ActionType_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ActionType > (parent, ActionType_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ActionType_Impl::accept (Visitor * v)
+  void ActionType_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ActionType (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ActionType (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // Operation_is_nil
   //
-  ActionType ActionType_Impl::_create (const Action_in parent)
+  bool ActionType_Impl::Operation_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ActionType> (parent, ActionType_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_Action
+  // get_Operation
   //
-  Action ActionType_Impl::parent_Action (void) const
+  Operation ActionType_Impl::get_Operation (void) const
   {
-    return ::GAME::Mga::get_parent <Action> (this->object_.p);
+    return Operation::_narrow (this->refers_to ());
   }
 }
 

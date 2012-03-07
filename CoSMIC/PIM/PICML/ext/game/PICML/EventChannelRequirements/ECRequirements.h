@@ -14,25 +14,30 @@
 #ifndef _PICML_EVENTCHANNELREQUIREMENTS_ECREQUIREMENTS_H_
 #define _PICML_EVENTCHANNELREQUIREMENTS_ECREQUIREMENTS_H_
 
-#include "game/mga/Model.h"
-#include "PICML/Common/Requirement.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/Common/Requirement.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ECRequirements_Impl;
   typedef ECRequirements_Impl * ECRequirements_in;
-  typedef ::GAME::Mga::Smart_Ptr <ECRequirements_Impl> ECRequirements;
+  typedef ::GAME::Mga::Smart_Ptr < ECRequirements_Impl > ECRequirements;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ECRequirements_Impl
+   *
+   * Implementation for the ECRequirements model element.
+   */
   class PICML_Export ECRequirements_Impl :
-    public virtual Requirement_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual Requirement_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,23 +49,26 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ECRequirements_Impl (void);
-
-    /// Initializing constructor
-    ECRequirements_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~ECRequirements_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static ECRequirements _create (const ComponentAssembly_in parent);
+    static ECRequirements _create (const ArtifactContainer_in parent);
+    static ECRequirements _create (const PackageConfigurationContainer_in parent);
     ///@}
+
+    // Default constructor.
+    ECRequirements_Impl (void);
+
+    // Initializing constructor.
+    ECRequirements_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~ECRequirements_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
      * @name Attribute Methods
@@ -79,22 +87,17 @@ namespace PICML
      */
     ///@{
 
+    bool has_ECBehavior (void) const;
     ECBehavior get_ECBehavior (void) const;
     size_t get_ECRoles (std::vector <ECRole> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <ECRole> get_ECRoles (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ECRequirements.inl"
 #endif
+
+#endif  // !defined _PICML_EVENTCHANNELREQUIREMENTS_ECREQUIREMENTS

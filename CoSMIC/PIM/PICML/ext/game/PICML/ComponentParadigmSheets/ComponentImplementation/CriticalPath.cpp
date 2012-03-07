@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "CriticalPath.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "CriticalPath.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PathDiagram/PathReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string CriticalPath_Impl::metaname = "CriticalPath";
+  const std::string CriticalPath_Impl::metaname ("CriticalPath");
 
   //
-  // CriticalPath_Impl
+  // _create (const ComponentImplementationContainer_in)
   //
-  CriticalPath_Impl::CriticalPath_Impl (void)
+  CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-  }
-
-  //
-  // CriticalPath_Impl
-  //
-  CriticalPath_Impl::CriticalPath_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~CriticalPath_Impl
-  //
-  CriticalPath_Impl::~CriticalPath_Impl (void)
-  {
+    return ::GAME::Mga::create_object < CriticalPath > (parent, CriticalPath_Impl::metaname);
   }
 
   //
   // accept
   //
-  void CriticalPath_Impl::accept (Visitor * v)
+  void CriticalPath_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_CriticalPath (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_CriticalPath (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentAssembly
   //
-  CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent)
+  ComponentAssembly CriticalPath_Impl::src_ComponentAssembly (void) const
   {
-    return ::GAME::Mga::create_object <CriticalPath> (parent, CriticalPath_Impl::metaname);
+    return ComponentAssembly::_narrow (this->src ());
   }
 
   //
-  // src_ComponentAssembly
+  // PathReference
   //
-  ComponentAssembly CriticalPath_Impl::src_ComponentAssembly (void)
+  PathReference CriticalPath_Impl::dst_PathReference (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentAssembly::_narrow (target);
-  }
-
-  //
-  // dst_PathReference
-  //
-  PathReference CriticalPath_Impl::dst_PathReference (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return PathReference::_narrow (target);
-  }
-
-  //
-  // parent_ComponentImplementationContainer
-  //
-  ComponentImplementationContainer CriticalPath_Impl::parent_ComponentImplementationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ComponentImplementationContainer> (this->object_.p);
+    return PathReference::_narrow (this->dst ());
   }
 }
 

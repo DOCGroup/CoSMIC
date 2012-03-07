@@ -14,18 +14,23 @@
 #ifndef _PICML_INTERFACEDEFINITION_TEMPLATEPARAMETERVALUETYPE_H_
 #define _PICML_INTERFACEDEFINITION_TEMPLATEPARAMETERVALUETYPE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class TemplateParameterValueType_Impl;
   typedef TemplateParameterValueType_Impl * TemplateParameterValueType_in;
-  typedef ::GAME::Mga::Smart_Ptr <TemplateParameterValueType_Impl> TemplateParameterValueType;
+  typedef ::GAME::Mga::Smart_Ptr < TemplateParameterValueType_Impl > TemplateParameterValueType;
 
+  /**
+   * @class TemplateParameterValueType_Impl
+   *
+   * Implementation for the TemplateParameterValueType model element.
+   */
   class PICML_Export TemplateParameterValueType_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,27 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     TemplateParameterValueType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     TemplateParameterValueType_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~TemplateParameterValueType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "TemplateParameterValueType.inl"
 #endif
+
+#endif  // !defined _PICML_INTERFACEDEFINITION_TEMPLATEPARAMETERVALUETYPE

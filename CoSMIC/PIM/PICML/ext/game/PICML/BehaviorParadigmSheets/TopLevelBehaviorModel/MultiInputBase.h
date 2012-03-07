@@ -14,18 +14,23 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_MULTIINPUTBASE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_MULTIINPUTBASE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MultiInputBase_Impl;
   typedef MultiInputBase_Impl * MultiInputBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <MultiInputBase_Impl> MultiInputBase;
+  typedef ::GAME::Mga::Smart_Ptr < MultiInputBase_Impl > MultiInputBase;
 
+  /**
+   * @class MultiInputBase_Impl
+   *
+   * Implementation for the MultiInputBase model element.
+   */
   class PICML_Export MultiInputBase_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,28 +44,28 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     MultiInputBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     MultiInputBase_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~MultiInputBase_Impl (void) = 0;
-    size_t in_MultiInput_connections (std::vector <MultiInput> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src MultiInput connection.
+    size_t src_MultiInput (std::vector <MultiInput> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MultiInputBase.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_MULTIINPUTBASE

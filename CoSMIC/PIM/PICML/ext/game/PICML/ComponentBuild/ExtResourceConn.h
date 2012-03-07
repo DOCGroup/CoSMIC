@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBUILD_EXTRESOURCECONN_H_
 #define _PICML_COMPONENTBUILD_EXTRESOURCECONN_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ExtResourceConn_Impl;
   typedef ExtResourceConn_Impl * ExtResourceConn_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtResourceConn_Impl> ExtResourceConn;
+  typedef ::GAME::Mga::Smart_Ptr < ExtResourceConn_Impl > ExtResourceConn;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ExtResourceConn_Impl
+   *
+   * Implementation for the ExtResourceConn model element.
+   */
   class PICML_Export ExtResourceConn_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ExtResourceConn_Impl (void);
-
-    /// Initializing constructor
-    ExtResourceConn_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ExtResourceConn_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ExtResourceConn _create (const Project_in parent);
     ///@}
 
-    /// Get the src ComponentLib connection point.
-    ComponentLib src_ComponentLib (void);
+    // Default constructor.
+    ExtResourceConn_Impl (void);
 
-    /// Get the dst ExternalResources connection point.
-    ExternalResources dst_ExternalResources (void);
+    // Initializing constructor.
+    ExtResourceConn_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    Project parent_Project (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ExtResourceConn_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ComponentLib src_ComponentLib (void) const;
+    ExternalResources dst_ExternalResources (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ExtResourceConn.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBUILD_EXTRESOURCECONN

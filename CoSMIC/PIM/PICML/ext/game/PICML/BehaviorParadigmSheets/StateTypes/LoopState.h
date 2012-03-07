@@ -14,22 +14,27 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_LOOPSTATE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_LOOPSTATE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class LoopState_Impl;
   typedef LoopState_Impl * LoopState_in;
-  typedef ::GAME::Mga::Smart_Ptr <LoopState_Impl> LoopState;
+  typedef ::GAME::Mga::Smart_Ptr < LoopState_Impl > LoopState;
 
+  /**
+   * @class LoopState_Impl
+   *
+   * Implementation for the LoopState model element.
+   */
   class PICML_Export LoopState_Impl :
-    public virtual StateBase_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual StateBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,13 +46,13 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     LoopState_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     LoopState_Impl (IMgaAtom * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~LoopState_Impl (void) = 0;
 
     /**
@@ -61,20 +66,20 @@ namespace PICML
     /// Get the value of LoopingCondition
     std::string LoopingCondition (void) const;
     ///@}
-    size_t in_LoopTransition_connections (std::vector <LoopTransition> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src LoopTransition connection.
+    size_t src_LoopTransition (std::vector <LoopTransition> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "LoopState.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_STATETYPES_LOOPSTATE

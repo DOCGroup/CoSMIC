@@ -1,58 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ProvidedRequestPortDelegate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ProvidedRequestPortDelegate.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ProvidedRequestPortDelegate_Impl::metaname = "ProvidedRequestPortDelegate";
+  const std::string ProvidedRequestPortDelegate_Impl::metaname ("ProvidedRequestPortDelegate");
 
   //
-  // ProvidedRequestPortDelegate_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ProvidedRequestPortDelegate_Impl::ProvidedRequestPortDelegate_Impl (void)
+  ProvidedRequestPortDelegate ProvidedRequestPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ProvidedRequestPortDelegate_Impl
-  //
-  ProvidedRequestPortDelegate_Impl::ProvidedRequestPortDelegate_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ProvidedRequestPortDelegate_Impl
-  //
-  ProvidedRequestPortDelegate_Impl::~ProvidedRequestPortDelegate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ProvidedRequestPortDelegate > (parent, ProvidedRequestPortDelegate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ProvidedRequestPortDelegate_Impl::accept (Visitor * v)
+  void ProvidedRequestPortDelegate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ProvidedRequestPortDelegate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ProvidedRequestPortDelegate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 
   //
-  // in_FacetDelegate_connections
+  // src_FacetDelegate
   //
-  size_t ProvidedRequestPortDelegate_Impl::in_FacetDelegate_connections (std::vector <FacetDelegate> & conns) const
+  size_t ProvidedRequestPortDelegate_Impl::src_FacetDelegate (std::vector <FacetDelegate> & items) const
   {
-    return this->in_connections (conns);
+    return this->in_connections <FacetDelegate> (items);
   }
 }
 

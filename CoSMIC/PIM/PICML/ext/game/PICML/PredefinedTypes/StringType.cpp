@@ -1,40 +1,20 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "StringType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "StringType.inl"
+#endif
 
+#include "PICML/Visitor.h"
+#include "PICML/PredefinedTypes/PredefinedTypes.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string StringType_Impl::metaname = "StringType";
-
-  //
-  // StringType_Impl
-  //
-  StringType_Impl::StringType_Impl (void)
-  {
-  }
-
-  //
-  // StringType_Impl
-  //
-  StringType_Impl::StringType_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~StringType_Impl
-  //
-  StringType_Impl::~StringType_Impl (void)
-  {
-  }
+  const std::string StringType_Impl::metaname ("StringType");
 }
 

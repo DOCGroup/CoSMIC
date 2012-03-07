@@ -14,21 +14,26 @@
 #ifndef _PICML_TARGETELEMENTS_INTERCONNECT_H_
 #define _PICML_TARGETELEMENTS_INTERCONNECT_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Interconnect_Impl;
   typedef Interconnect_Impl * Interconnect_in;
-  typedef ::GAME::Mga::Smart_Ptr <Interconnect_Impl> Interconnect;
+  typedef ::GAME::Mga::Smart_Ptr < Interconnect_Impl > Interconnect;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Interconnect_Impl
+   *
+   * Implementation for the Interconnect model element.
+   */
   class PICML_Export Interconnect_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,22 +47,53 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Interconnect_Impl (void);
-
-    /// Initializing constructor
-    Interconnect_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~Interconnect_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static Interconnect _create (const Domain_in parent);
+    ///@}
+
+    // Default constructor.
+    Interconnect_Impl (void);
+
+    // Initializing constructor.
+    Interconnect_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~Interconnect_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of label
+    void label (const std::string & val);
+
+    /// Get the value of label
+    std::string label (void) const;
+    ///@}
+
+    /**
+     * @name Source Connection Point Methods
+     */
+    ///@{
+
+    /// Get the src BridgeConnection connection.
+    size_t src_BridgeConnection (std::vector <BridgeConnection> & items) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst InterconnectConnection connection.
+    size_t dst_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
     ///@}
 
     /**
@@ -65,20 +101,14 @@ namespace PICML
      */
     ///@{
     size_t get_Resources (std::vector <Resource> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Resource> get_Resources (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Interconnect.inl"
 #endif
+
+#endif  // !defined _PICML_TARGETELEMENTS_INTERCONNECT

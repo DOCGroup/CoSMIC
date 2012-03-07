@@ -1,74 +1,67 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentInherits.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentInherits.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentInherits_Impl::metaname = "ComponentInherits";
+  const std::string ComponentInherits_Impl::metaname ("ComponentInherits");
 
   //
-  // ComponentInherits_Impl
+  // _create (const Component_in)
   //
-  ComponentInherits_Impl::ComponentInherits_Impl (void)
+  ComponentInherits ComponentInherits_Impl::_create (const Component_in parent)
   {
-  }
-
-  //
-  // ComponentInherits_Impl
-  //
-  ComponentInherits_Impl::ComponentInherits_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentInherits_Impl
-  //
-  ComponentInherits_Impl::~ComponentInherits_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentInherits > (parent, ComponentInherits_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentInherits_Impl::accept (Visitor * v)
+  void ComponentInherits_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentInherits (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentInherits (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // Component_is_nil
   //
-  ComponentInherits ComponentInherits_Impl::_create (const Component_in parent)
+  bool ComponentInherits_Impl::Component_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ComponentInherits> (parent, ComponentInherits_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_Component
+  // get_Component
   //
-  Component ComponentInherits_Impl::parent_Component (void) const
+  Component ComponentInherits_Impl::get_Component (void) const
   {
-    return ::GAME::Mga::get_parent <Component> (this->object_.p);
-  }
-
-  //
-  // refers_to_Component
-  //
-  Component ComponentInherits_Impl::refers_to_Component (void) const
-  {
-    return ::GAME::Mga::get_refers_to <Component> (this);
+    return Component::_narrow (this->refers_to ());
   }
 }
 

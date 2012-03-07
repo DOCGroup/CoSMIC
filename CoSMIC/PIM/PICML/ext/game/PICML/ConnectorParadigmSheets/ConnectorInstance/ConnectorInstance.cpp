@@ -1,51 +1,89 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConnectorInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConnectorInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConnectorInstance_Impl::metaname = "ConnectorInstance";
+  const std::string ConnectorInstance_Impl::metaname ("ConnectorInstance");
 
   //
-  // ConnectorInstance_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ConnectorInstance_Impl::ConnectorInstance_Impl (void)
+  ConnectorInstance ConnectorInstance_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ConnectorInstance_Impl
-  //
-  ConnectorInstance_Impl::ConnectorInstance_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConnectorInstance_Impl
-  //
-  ConnectorInstance_Impl::~ConnectorInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ConnectorInstance > (parent, ConnectorInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ConnectorInstance_Impl::accept (Visitor * v)
+  void ConnectorInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ConnectorInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConnectorInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // src_Consume
+  //
+  size_t ConnectorInstance_Impl::src_Consume (std::vector <Consume> & items) const
+  {
+    return this->in_connections <Consume> (items);
+  }
+
+  //
+  // src_ConnectorToFacet
+  //
+  size_t ConnectorInstance_Impl::src_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
+  {
+    return this->in_connections <ConnectorToFacet> (items);
+  }
+
+  //
+  // dst_Publish
+  //
+  size_t ConnectorInstance_Impl::dst_Publish (std::vector <Publish> & items) const
+  {
+    return this->in_connections <Publish> (items);
+  }
+
+  //
+  // dst_ConnectorToReceptacle
+  //
+  size_t ConnectorInstance_Impl::dst_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
+  {
+    return this->in_connections <ConnectorToReceptacle> (items);
   }
 
   //
@@ -53,11 +91,7 @@ namespace PICML
   //
   ConnectorImplementationType ConnectorInstance_Impl::get_ConnectorImplementationType (void) const
   {
-    // Get the collection of children.
-    std::vector <ConnectorImplementationType> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ConnectorImplementationType ();
+    return this->children <ConnectorImplementationType> ().item ();
   }
 
   //
@@ -66,6 +100,14 @@ namespace PICML
   size_t ConnectorInstance_Impl::get_AttributeInstances (std::vector <AttributeInstance> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_AttributeInstances
+  //
+  ::GAME::Mga::Iterator <AttributeInstance> ConnectorInstance_Impl::get_AttributeInstances (void) const
+  {
+    return this->children <AttributeInstance> ();
   }
 }
 

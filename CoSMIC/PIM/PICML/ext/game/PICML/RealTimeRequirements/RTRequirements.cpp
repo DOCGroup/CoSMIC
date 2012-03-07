@@ -1,51 +1,79 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RTRequirements.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "RTRequirements.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/RealTimeRequirements/ServiceProvider.h"
 #include "PICML/RealTimeRequirements/ServiceConsumer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string RTRequirements_Impl::metaname = "RTRequirements";
+  const std::string RTRequirements_Impl::metaname ("RTRequirements");
 
   //
-  // RTRequirements_Impl
+  // _create (const ComponentAssembly_in)
   //
-  RTRequirements_Impl::RTRequirements_Impl (void)
+  RTRequirements RTRequirements_Impl::_create (const ComponentAssembly_in parent)
   {
+    return ::GAME::Mga::create_object < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }
 
   //
-  // RTRequirements_Impl
+  // _create (const ArtifactContainer_in)
   //
-  RTRequirements_Impl::RTRequirements_Impl (IMgaModel * ptr)
+  RTRequirements RTRequirements_Impl::_create (const ArtifactContainer_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }
 
   //
-  // ~RTRequirements_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  RTRequirements_Impl::~RTRequirements_Impl (void)
+  RTRequirements RTRequirements_Impl::_create (const PackageConfigurationContainer_in parent)
   {
+    return ::GAME::Mga::create_object < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }
 
   //
   // accept
   //
-  void RTRequirements_Impl::accept (Visitor * v)
+  void RTRequirements_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_RTRequirements (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_RTRequirements (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // has_ServiceProvider
+  //
+  bool RTRequirements_Impl::has_ServiceProvider (void) const
+  {
+    return this->children <ServiceProvider> ().count () == 1;
   }
 
   //
@@ -53,11 +81,15 @@ namespace PICML
   //
   ServiceProvider RTRequirements_Impl::get_ServiceProvider (void) const
   {
-    // Get the collection of children.
-    std::vector <ServiceProvider> items;
-    this->children (items);
+    return this->children <ServiceProvider> ().item ();
+  }
 
-    return !items.empty () ? items.front () : ServiceProvider ();
+  //
+  // has_ServiceConsumer
+  //
+  bool RTRequirements_Impl::has_ServiceConsumer (void) const
+  {
+    return this->children <ServiceConsumer> ().count () == 1;
   }
 
   //
@@ -65,11 +97,7 @@ namespace PICML
   //
   ServiceConsumer RTRequirements_Impl::get_ServiceConsumer (void) const
   {
-    // Get the collection of children.
-    std::vector <ServiceConsumer> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ServiceConsumer ();
+    return this->children <ServiceConsumer> ().item ();
   }
 }
 

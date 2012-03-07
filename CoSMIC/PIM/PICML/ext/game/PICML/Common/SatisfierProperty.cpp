@@ -1,59 +1,52 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SatisfierProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SatisfierProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/DataType.h"
 #include "PICML/Common/RequirementSatisfier.h"
+#include "PICML/Common/DataType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string SatisfierProperty_Impl::metaname = "SatisfierProperty";
+  const std::string SatisfierProperty_Impl::metaname ("SatisfierProperty");
 
   //
-  // SatisfierProperty_Impl
+  // _create (const RequirementSatisfier_in)
   //
-  SatisfierProperty_Impl::SatisfierProperty_Impl (void)
+  SatisfierProperty SatisfierProperty_Impl::_create (const RequirementSatisfier_in parent)
   {
-  }
-
-  //
-  // SatisfierProperty_Impl
-  //
-  SatisfierProperty_Impl::SatisfierProperty_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~SatisfierProperty_Impl
-  //
-  SatisfierProperty_Impl::~SatisfierProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < SatisfierProperty > (parent, SatisfierProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void SatisfierProperty_Impl::accept (Visitor * v)
+  void SatisfierProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_SatisfierProperty (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_SatisfierProperty (this);
+    }
 
-  //
-  // _create
-  //
-  SatisfierProperty SatisfierProperty_Impl::_create (const RequirementSatisfier_in parent)
-  {
-    return ::GAME::Mga::create_object <SatisfierProperty> (parent, SatisfierProperty_Impl::metaname);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -61,19 +54,7 @@ namespace PICML
   //
   DataType SatisfierProperty_Impl::get_DataType (void) const
   {
-    // Get the collection of children.
-    std::vector <DataType> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : DataType ();
-  }
-
-  //
-  // parent_RequirementSatisfier
-  //
-  RequirementSatisfier SatisfierProperty_Impl::parent_RequirementSatisfier (void) const
-  {
-    return ::GAME::Mga::get_parent <RequirementSatisfier> (this->object_.p);
+    return this->children <DataType> ().item ();
   }
 }
 

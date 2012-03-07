@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PROVIDEDREQUESTPORTDELEGATE_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PROVIDEDREQUESTPORTDELEGATE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ProvidedRequestPortDelegate_Impl;
   typedef ProvidedRequestPortDelegate_Impl * ProvidedRequestPortDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <ProvidedRequestPortDelegate_Impl> ProvidedRequestPortDelegate;
+  typedef ::GAME::Mga::Smart_Ptr < ProvidedRequestPortDelegate_Impl > ProvidedRequestPortDelegate;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ProvidedRequestPortDelegate_Impl
+   *
+   * Implementation for the ProvidedRequestPortDelegate model element.
+   */
   class PICML_Export ProvidedRequestPortDelegate_Impl :
-    public virtual ProvidedRequestPortEnd_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual ProvidedRequestPortEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,37 +49,38 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ProvidedRequestPortDelegate_Impl (void);
-
-    /// Initializing constructor
-    ProvidedRequestPortDelegate_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~ProvidedRequestPortDelegate_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
-    ///@}
-    size_t in_FacetDelegate_connections (std::vector <FacetDelegate> & conns) const;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
+    static ProvidedRequestPortDelegate _create (const ComponentAssembly_in parent);
     ///@}
 
+    // Default constructor.
+    ProvidedRequestPortDelegate_Impl (void);
+
+    // Initializing constructor.
+    ProvidedRequestPortDelegate_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~ProvidedRequestPortDelegate_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Reference Methods
+     * @name Source Connection Point Methods
      */
     ///@{
+
+    /// Get the src FacetDelegate connection.
+    size_t src_FacetDelegate (std::vector <FacetDelegate> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ProvidedRequestPortDelegate.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_PROVIDEDREQUESTPORTDELEGATE

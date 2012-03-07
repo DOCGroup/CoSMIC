@@ -1,88 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConnectorToFacet.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConnectorToFacet.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConnectorToFacet_Impl::metaname = "ConnectorToFacet";
+  const std::string ConnectorToFacet_Impl::metaname ("ConnectorToFacet");
 
   //
-  // ConnectorToFacet_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ConnectorToFacet_Impl::ConnectorToFacet_Impl (void)
+  ConnectorToFacet ConnectorToFacet_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ConnectorToFacet_Impl
-  //
-  ConnectorToFacet_Impl::ConnectorToFacet_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConnectorToFacet_Impl
-  //
-  ConnectorToFacet_Impl::~ConnectorToFacet_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ConnectorToFacet > (parent, ConnectorToFacet_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ConnectorToFacet_Impl::accept (Visitor * v)
+  void ConnectorToFacet_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ConnectorToFacet (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConnectorToFacet (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ConnectorInstance
+  // ConnectorInstance
   //
-  ConnectorInstance ConnectorToFacet_Impl::src_ConnectorInstance (void)
+  ConnectorInstance ConnectorToFacet_Impl::src_ConnectorInstance (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ConnectorInstance::_narrow (target);
+    return ConnectorInstance::_narrow (this->src ());
   }
 
   //
-  // dst_ProvidedRequestPortEnd
+  // ProvidedRequestPortEnd
   //
-  ProvidedRequestPortEnd ConnectorToFacet_Impl::dst_ProvidedRequestPortEnd (void)
+  ProvidedRequestPortEnd ConnectorToFacet_Impl::dst_ProvidedRequestPortEnd (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ProvidedRequestPortEnd::_narrow (target);
-  }
-
-  //
-  // InnerName
-  //
-  void ConnectorToFacet_Impl::InnerName (const std::string & val)
-  {
-    static const std::string attr_InnerName ("InnerName");
-    this->attribute (attr_InnerName)->string_value (val);
-  }
-
-  //
-  // InnerName
-  //
-  std::string ConnectorToFacet_Impl::InnerName (void) const
-  {
-    static const std::string attr_InnerName ("InnerName");
-    return this->attribute (attr_InnerName)->string_value ();
+    return ProvidedRequestPortEnd::_narrow (this->dst ());
   }
 }
 

@@ -14,18 +14,23 @@
 #ifndef _PICML_DEPLOYMENTPLAN_COLLOCATIONGROUPMEMBER_H_
 #define _PICML_DEPLOYMENTPLAN_COLLOCATIONGROUPMEMBER_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class CollocationGroupMember_Impl;
   typedef CollocationGroupMember_Impl * CollocationGroupMember_in;
-  typedef ::GAME::Mga::Smart_Ptr <CollocationGroupMember_Impl> CollocationGroupMember;
+  typedef ::GAME::Mga::Smart_Ptr < CollocationGroupMember_Impl > CollocationGroupMember;
 
+  /**
+   * @class CollocationGroupMember_Impl
+   *
+   * Implementation for the CollocationGroupMember model element.
+   */
   class PICML_Export CollocationGroupMember_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,28 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     CollocationGroupMember_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     CollocationGroupMember_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~CollocationGroupMember_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    DeploymentPlan parent_DeploymentPlan (void) const;
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "CollocationGroupMember.inl"
 #endif
+
+#endif  // !defined _PICML_DEPLOYMENTPLAN_COLLOCATIONGROUPMEMBER

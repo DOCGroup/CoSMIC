@@ -14,22 +14,27 @@
 #ifndef _PICML_PREDEFINEDTYPES_CHARTYPE_H_
 #define _PICML_PREDEFINEDTYPES_CHARTYPE_H_
 
-#include "game/mga/Atom.h"
-#include "PICML/PredefinedTypes/PredefinedType.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/PredefinedTypes/PredefinedType.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class CharType_Impl;
   typedef CharType_Impl * CharType_in;
-  typedef ::GAME::Mga::Smart_Ptr <CharType_Impl> CharType;
+  typedef ::GAME::Mga::Smart_Ptr < CharType_Impl > CharType;
 
+  /**
+   * @class CharType_Impl
+   *
+   * Implementation for the CharType model element.
+   */
   class PICML_Export CharType_Impl :
-    public virtual PredefinedType_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual PredefinedType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,27 +46,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     CharType_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     CharType_Impl (IMgaAtom * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~CharType_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "CharType.inl"
 #endif
+
+#endif  // !defined _PICML_PREDEFINEDTYPES_CHARTYPE

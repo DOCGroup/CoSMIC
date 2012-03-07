@@ -1,50 +1,88 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Attribute.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Attribute.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/InheritableTypes/Inheritable.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/SetException.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Attribute_Impl::metaname = "Attribute";
+  const std::string Attribute_Impl::metaname ("Attribute");
 
   //
-  // Attribute_Impl
+  // _create (const ConnectorObject_in)
   //
-  Attribute_Impl::Attribute_Impl (void)
+  Attribute Attribute_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < Attribute > (parent, Attribute_Impl::metaname);
   }
 
   //
-  // Attribute_Impl
+  // _create (const Component_in)
   //
-  Attribute_Impl::Attribute_Impl (IMgaModel * ptr)
+  Attribute Attribute_Impl::_create (const Component_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < Attribute > (parent, Attribute_Impl::metaname);
   }
 
   //
-  // ~Attribute_Impl
+  // _create (const PortType_in)
   //
-  Attribute_Impl::~Attribute_Impl (void)
+  Attribute Attribute_Impl::_create (const PortType_in parent)
   {
+    return ::GAME::Mga::create_object < Attribute > (parent, Attribute_Impl::metaname);
+  }
+
+  //
+  // _create (const Inheritable_in)
+  //
+  Attribute Attribute_Impl::_create (const Inheritable_in parent)
+  {
+    return ::GAME::Mga::create_object < Attribute > (parent, Attribute_Impl::metaname);
+  }
+
+  //
+  // _create (const ReadonlyAttribute_in)
+  //
+  Attribute Attribute_Impl::_create (const ReadonlyAttribute_in parent)
+  {
+    return ::GAME::Mga::create_object < Attribute > (parent, Attribute_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Attribute_Impl::accept (Visitor * v)
+  void Attribute_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Attribute (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Attribute (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -53,6 +91,14 @@ namespace PICML
   size_t Attribute_Impl::get_SetExceptions (std::vector <SetException> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_SetExceptions
+  //
+  ::GAME::Mga::Iterator <SetException> Attribute_Impl::get_SetExceptions (void) const
+  {
+    return this->children <SetException> ();
   }
 }
 

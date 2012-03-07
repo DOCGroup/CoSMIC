@@ -1,63 +1,59 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentAnalyses.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentAnalyses.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentAnalyses_Impl::metaname = "ComponentAnalyses";
+  const std::string ComponentAnalyses_Impl::metaname ("ComponentAnalyses");
 
   //
-  // ComponentAnalyses_Impl
-  //
-  ComponentAnalyses_Impl::ComponentAnalyses_Impl (void)
-  {
-  }
-
-  //
-  // ComponentAnalyses_Impl
-  //
-  ComponentAnalyses_Impl::ComponentAnalyses_Impl (IMgaFolder * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentAnalyses_Impl
-  //
-  ComponentAnalyses_Impl::~ComponentAnalyses_Impl (void)
-  {
-  }
-
-  //
-  // accept
-  //
-  void ComponentAnalyses_Impl::accept (Visitor * v)
-  {
-    v->visit_ComponentAnalyses (this);
-  }
-
-  //
-  // _create
+  // _create (const ::GAME::Mga::RootFolder_in)
   //
   ComponentAnalyses ComponentAnalyses_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
     return ::GAME::Mga::create_root_object <ComponentAnalyses> (parent, ComponentAnalyses_Impl::metaname);
   }
 
-  ::GAME::Mga::RootFolder ComponentAnalyses_Impl::parent_RootFolder (void) const
+  //
+  // accept
+  //
+  void ComponentAnalyses_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    return ::GAME::Mga::get_parent < ::GAME::Mga::RootFolder > (this->object_.p);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentAnalyses (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Folder (this);
+    }
+  }
+
+  //
+  // get_BenchmarkAnalysiss
+  //
+  size_t ComponentAnalyses_Impl::get_BenchmarkAnalysiss (std::vector <BenchmarkAnalysis> & items) const
+  {
+    return this->children (items);
   }
 }
 

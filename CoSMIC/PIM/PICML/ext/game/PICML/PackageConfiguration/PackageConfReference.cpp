@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfReference_Impl::metaname = "PackageConfReference";
+  const std::string PackageConfReference_Impl::metaname ("PackageConfReference");
 
   //
-  // PackageConfReference_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  PackageConfReference_Impl::PackageConfReference_Impl (void)
+  PackageConfReference PackageConfReference_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfReference_Impl
-  //
-  PackageConfReference_Impl::PackageConfReference_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfReference_Impl
-  //
-  PackageConfReference_Impl::~PackageConfReference_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfReference > (parent, PackageConfReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfReference_Impl::accept (Visitor * v)
+  void PackageConfReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // PackageConfiguration
   //
-  PackageConfReference PackageConfReference_Impl::_create (const PackageConfigurationContainer_in parent)
+  PackageConfiguration PackageConfReference_Impl::src_PackageConfiguration (void) const
   {
-    return ::GAME::Mga::create_object <PackageConfReference> (parent, PackageConfReference_Impl::metaname);
+    return PackageConfiguration::_narrow (this->src ());
   }
 
   //
-  // src_PackageConfiguration
+  // ComponentPackageReference
   //
-  PackageConfiguration PackageConfReference_Impl::src_PackageConfiguration (void)
+  ComponentPackageReference PackageConfReference_Impl::dst_ComponentPackageReference (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return PackageConfiguration::_narrow (target);
-  }
-
-  //
-  // dst_ComponentPackageReference
-  //
-  ComponentPackageReference PackageConfReference_Impl::dst_ComponentPackageReference (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ComponentPackageReference::_narrow (target);
-  }
-
-  //
-  // parent_PackageConfigurationContainer
-  //
-  PackageConfigurationContainer PackageConfReference_Impl::parent_PackageConfigurationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageConfigurationContainer> (this->object_.p);
+    return ComponentPackageReference::_narrow (this->dst ());
   }
 }
 

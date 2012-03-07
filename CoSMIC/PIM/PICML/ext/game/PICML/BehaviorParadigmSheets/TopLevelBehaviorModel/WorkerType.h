@@ -14,21 +14,26 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_WORKERTYPE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_WORKERTYPE_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkerType_Impl;
   typedef WorkerType_Impl * WorkerType_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerType_Impl> WorkerType;
+  typedef ::GAME::Mga::Smart_Ptr < WorkerType_Impl > WorkerType;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WorkerType_Impl
+   *
+   * Implementation for the WorkerType model element.
+   */
   class PICML_Export WorkerType_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WorkerType_Impl (void);
-
-    /// Initializing constructor
-    WorkerType_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~WorkerType_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static WorkerType _create (const TopLevelBehavior_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    TopLevelBehavior parent_TopLevelBehavior (void) const;
-    ///@}
+    // Default constructor.
+    WorkerType_Impl (void);
+
+    // Initializing constructor.
+    WorkerType_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~WorkerType_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool Worker_is_nil (void) const;
+    Worker get_Worker (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkerType.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_WORKERTYPE

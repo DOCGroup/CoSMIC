@@ -1,68 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RequestAction.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "RequestAction.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string RequestAction_Impl::metaname = "RequestAction";
+  const std::string RequestAction_Impl::metaname ("RequestAction");
 
   //
-  // RequestAction_Impl
+  // _create (const BehaviorModel_in)
   //
-  RequestAction_Impl::RequestAction_Impl (void)
+  RequestAction RequestAction_Impl::_create (const BehaviorModel_in parent)
   {
+    return ::GAME::Mga::create_object < RequestAction > (parent, RequestAction_Impl::metaname);
   }
 
   //
-  // RequestAction_Impl
+  // _create (const ActionBase_in)
   //
-  RequestAction_Impl::RequestAction_Impl (IMgaModel * ptr)
+  RequestAction RequestAction_Impl::_create (const ActionBase_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~RequestAction_Impl
-  //
-  RequestAction_Impl::~RequestAction_Impl (void)
-  {
+    return ::GAME::Mga::create_object < RequestAction > (parent, RequestAction_Impl::metaname);
   }
 
   //
   // accept
   //
-  void RequestAction_Impl::accept (Visitor * v)
+  void RequestAction_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_RequestAction (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_RequestAction (this);
+    }
 
-  //
-  // MethodName
-  //
-  void RequestAction_Impl::MethodName (const std::string & val)
-  {
-    static const std::string attr_MethodName ("MethodName");
-    this->attribute (attr_MethodName)->string_value (val);
-  }
-
-  //
-  // MethodName
-  //
-  std::string RequestAction_Impl::MethodName (void) const
-  {
-    static const std::string attr_MethodName ("MethodName");
-    return this->attribute (attr_MethodName)->string_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 }
 

@@ -1,52 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PortType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PortType.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PortType_Impl::metaname = "PortType";
-
-  //
-  // PortType_Impl
-  //
-  PortType_Impl::PortType_Impl (void)
-  {
-  }
-
-  //
-  // PortType_Impl
-  //
-  PortType_Impl::PortType_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PortType_Impl
-  //
-  PortType_Impl::~PortType_Impl (void)
-  {
-  }
+  const std::string PortType_Impl::metaname ("PortType");
 
   //
   // accept
   //
-  void PortType_Impl::accept (Visitor * v)
+  void PortType_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PortType (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PortType (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // get_ObjectPorts
+  //
+  size_t PortType_Impl::get_ObjectPorts (std::vector <ObjectPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ObjectPorts
+  //
+  ::GAME::Mga::Iterator <ObjectPort> PortType_Impl::get_ObjectPorts (void) const
+  {
+    return this->children <ObjectPort> ();
   }
 
   //
@@ -58,11 +66,11 @@ namespace PICML
   }
 
   //
-  // get_ObjectPorts
+  // get_ReadonlyAttributes
   //
-  size_t PortType_Impl::get_ObjectPorts (std::vector <ObjectPort> & items) const
+  ::GAME::Mga::Iterator <ReadonlyAttribute> PortType_Impl::get_ReadonlyAttributes (void) const
   {
-    return this->children (items);
+    return this->children <ReadonlyAttribute> ();
   }
 }
 

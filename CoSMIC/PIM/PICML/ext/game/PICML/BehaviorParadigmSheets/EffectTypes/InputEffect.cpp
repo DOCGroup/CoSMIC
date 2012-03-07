@@ -1,49 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InputEffect.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InputEffect.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InputEffect_Impl::metaname = "InputEffect";
+  const std::string InputEffect_Impl::metaname ("InputEffect");
 
   //
-  // InputEffect_Impl
+  // _create (const BehaviorModel_in)
   //
-  InputEffect_Impl::InputEffect_Impl (void)
+  InputEffect InputEffect_Impl::_create (const BehaviorModel_in parent)
   {
-  }
-
-  //
-  // InputEffect_Impl
-  //
-  InputEffect_Impl::InputEffect_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InputEffect_Impl
-  //
-  InputEffect_Impl::~InputEffect_Impl (void)
-  {
+    return ::GAME::Mga::create_object < InputEffect > (parent, InputEffect_Impl::metaname);
   }
 
   //
   // accept
   //
-  void InputEffect_Impl::accept (Visitor * v)
+  void InputEffect_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_InputEffect (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InputEffect (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
+  }
+
+  //
+  // BehaviorInputAction
+  //
+  BehaviorInputAction InputEffect_Impl::src_BehaviorInputAction (void) const
+  {
+    return BehaviorInputAction::_narrow (this->src ());
+  }
+
+  //
+  // StateBase
+  //
+  StateBase InputEffect_Impl::dst_StateBase (void) const
+  {
+    return StateBase::_narrow (this->dst ());
   }
 }
 

@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentInfoProperty.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentInfoProperty.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/Common/Property.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentInfoProperty_Impl::metaname = "ComponentInfoProperty";
+  const std::string ComponentInfoProperty_Impl::metaname ("ComponentInfoProperty");
 
   //
-  // ComponentInfoProperty_Impl
+  // _create (const ComponentContainer_in)
   //
-  ComponentInfoProperty_Impl::ComponentInfoProperty_Impl (void)
+  ComponentInfoProperty ComponentInfoProperty_Impl::_create (const ComponentContainer_in parent)
   {
-  }
-
-  //
-  // ComponentInfoProperty_Impl
-  //
-  ComponentInfoProperty_Impl::ComponentInfoProperty_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentInfoProperty_Impl
-  //
-  ComponentInfoProperty_Impl::~ComponentInfoProperty_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentInfoProperty > (parent, ComponentInfoProperty_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentInfoProperty_Impl::accept (Visitor * v)
+  void ComponentInfoProperty_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentInfoProperty (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentInfoProperty (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentRef
   //
-  ComponentInfoProperty ComponentInfoProperty_Impl::_create (const ComponentContainer_in parent)
+  ComponentRef ComponentInfoProperty_Impl::src_ComponentRef (void) const
   {
-    return ::GAME::Mga::create_object <ComponentInfoProperty> (parent, ComponentInfoProperty_Impl::metaname);
+    return ComponentRef::_narrow (this->src ());
   }
 
   //
-  // src_ComponentRef
+  // Property
   //
-  ComponentRef ComponentInfoProperty_Impl::src_ComponentRef (void)
+  Property ComponentInfoProperty_Impl::dst_Property (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentRef::_narrow (target);
-  }
-
-  //
-  // dst_Property
-  //
-  Property ComponentInfoProperty_Impl::dst_Property (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Property::_narrow (target);
-  }
-
-  //
-  // parent_ComponentContainer
-  //
-  ComponentContainer ComponentInfoProperty_Impl::parent_ComponentContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <ComponentContainer> (this->object_.p);
+    return Property::_narrow (this->dst ());
   }
 }
 

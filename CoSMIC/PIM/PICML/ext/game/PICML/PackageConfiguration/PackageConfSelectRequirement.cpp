@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PackageConfSelectRequirement.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "PackageConfSelectRequirement.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/Requirement.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
-#include "PICML/Common/Requirement.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string PackageConfSelectRequirement_Impl::metaname = "PackageConfSelectRequirement";
+  const std::string PackageConfSelectRequirement_Impl::metaname ("PackageConfSelectRequirement");
 
   //
-  // PackageConfSelectRequirement_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  PackageConfSelectRequirement_Impl::PackageConfSelectRequirement_Impl (void)
+  PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-  }
-
-  //
-  // PackageConfSelectRequirement_Impl
-  //
-  PackageConfSelectRequirement_Impl::PackageConfSelectRequirement_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~PackageConfSelectRequirement_Impl
-  //
-  PackageConfSelectRequirement_Impl::~PackageConfSelectRequirement_Impl (void)
-  {
+    return ::GAME::Mga::create_object < PackageConfSelectRequirement > (parent, PackageConfSelectRequirement_Impl::metaname);
   }
 
   //
   // accept
   //
-  void PackageConfSelectRequirement_Impl::accept (Visitor * v)
+  void PackageConfSelectRequirement_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_PackageConfSelectRequirement (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_PackageConfSelectRequirement (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // PackageConfiguration
   //
-  PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent)
+  PackageConfiguration PackageConfSelectRequirement_Impl::src_PackageConfiguration (void) const
   {
-    return ::GAME::Mga::create_object <PackageConfSelectRequirement> (parent, PackageConfSelectRequirement_Impl::metaname);
+    return PackageConfiguration::_narrow (this->src ());
   }
 
   //
-  // src_PackageConfiguration
+  // Requirement
   //
-  PackageConfiguration PackageConfSelectRequirement_Impl::src_PackageConfiguration (void)
+  Requirement PackageConfSelectRequirement_Impl::dst_Requirement (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return PackageConfiguration::_narrow (target);
-  }
-
-  //
-  // dst_Requirement
-  //
-  Requirement PackageConfSelectRequirement_Impl::dst_Requirement (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Requirement::_narrow (target);
-  }
-
-  //
-  // parent_PackageConfigurationContainer
-  //
-  PackageConfigurationContainer PackageConfSelectRequirement_Impl::parent_PackageConfigurationContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageConfigurationContainer> (this->object_.p);
+    return Requirement::_narrow (this->dst ());
   }
 }
 

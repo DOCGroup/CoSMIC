@@ -14,21 +14,26 @@
 #ifndef _PICML_PACKAGECONFIGURATION_PACKAGECONFIGURATIONCONTAINER_H_
 #define _PICML_PACKAGECONFIGURATION_PACKAGECONFIGURATIONCONTAINER_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PackageConfigurationContainer_Impl;
   typedef PackageConfigurationContainer_Impl * PackageConfigurationContainer_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageConfigurationContainer_Impl> PackageConfigurationContainer;
+  typedef ::GAME::Mga::Smart_Ptr < PackageConfigurationContainer_Impl > PackageConfigurationContainer;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class PackageConfigurationContainer_Impl
+   *
+   * Implementation for the PackageConfigurationContainer model element.
+   */
   class PICML_Export PackageConfigurationContainer_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    PackageConfigurationContainer_Impl (void);
-
-    /// Initializing constructor
-    PackageConfigurationContainer_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~PackageConfigurationContainer_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,40 +54,58 @@ namespace PICML
     static PackageConfigurationContainer _create (const PackageConfigurations_in parent);
     ///@}
 
+    // Default constructor.
+    PackageConfigurationContainer_Impl (void);
+
+    // Initializing constructor.
+    PackageConfigurationContainer_Impl (IMgaModel * ptr);
+
+    // Destructor.
+    virtual ~PackageConfigurationContainer_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_PackageConfigurations (std::vector <PackageConfiguration> & items) const;
 
-    PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
-    size_t get_PackageConfSelectRequirements (std::vector <PackageConfSelectRequirement> & items) const;
-    size_t get_PackageConfConfigPropertys (std::vector <PackageConfConfigProperty> & items) const;
-    size_t get_Propertys (std::vector <Property> & items) const;
-    size_t get_Requirements (std::vector <Requirement> & items) const;
-
-    ComponentPackageReference get_ComponentPackageReference (void) const;
-
+    bool has_ComponentPackage (void) const;
     ComponentPackage get_ComponentPackage (void) const;
 
+    bool has_ComponentPackageReference (void) const;
+    ComponentPackageReference get_ComponentPackageReference (void) const;
+
+    bool has_PackageConfBasePackage (void) const;
+    PackageConfBasePackage get_PackageConfBasePackage (void) const;
+
+    bool has_PackageConfReference (void) const;
     PackageConfReference get_PackageConfReference (void) const;
 
-    PackageConfBasePackage get_PackageConfBasePackage (void) const;
-    ///@}
+    bool has_PackageConfSpecializedConfig (void) const;
+    PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
+    size_t get_Requirements (std::vector <Requirement> & items) const;
+    ::GAME::Mga::Iterator <Requirement> get_Requirements (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PackageConfigurations parent_PackageConfigurations (void) const;
-    ///@}
+    size_t get_Propertys (std::vector <Property> & items) const;
+    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    size_t get_PackageConfConfigPropertys (std::vector <PackageConfConfigProperty> & items) const;
+    ::GAME::Mga::Iterator <PackageConfConfigProperty> get_PackageConfConfigPropertys (void) const;
+
+    size_t get_PackageConfSelectRequirements (std::vector <PackageConfSelectRequirement> & items) const;
+    ::GAME::Mga::Iterator <PackageConfSelectRequirement> get_PackageConfSelectRequirements (void) const;
+
+    size_t get_PackageConfigurations (std::vector <PackageConfiguration> & items) const;
+    ::GAME::Mga::Iterator <PackageConfiguration> get_PackageConfigurations (void) const;
+
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PackageConfigurationContainer.inl"
 #endif
+
+#endif  // !defined _PICML_PACKAGECONFIGURATION_PACKAGECONFIGURATIONCONTAINER

@@ -1,87 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Object.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Object.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/Supports.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Object_Impl::metaname = "Object";
+  const std::string Object_Impl::metaname ("Object");
 
   //
-  // Object_Impl
+  // _create (const HasOperations_in)
   //
-  Object_Impl::Object_Impl (void)
+  Object Object_Impl::_create (const HasOperations_in parent)
   {
-  }
-
-  //
-  // Object_Impl
-  //
-  Object_Impl::Object_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Object_Impl
-  //
-  Object_Impl::~Object_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Object > (parent, Object_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Object_Impl::accept (Visitor * v)
+  void Object_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Object (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Object (this);
+    }
 
-  //
-  // SupportsAsync
-  //
-  void Object_Impl::SupportsAsync (bool val)
-  {
-    static const std::string attr_SupportsAsync ("SupportsAsync");
-    this->attribute (attr_SupportsAsync)->bool_value (val);
-  }
-
-  //
-  // SupportsAsync
-  //
-  bool Object_Impl::SupportsAsync (void) const
-  {
-    static const std::string attr_SupportsAsync ("SupportsAsync");
-    return this->attribute (attr_SupportsAsync)->bool_value ();
-  }
-
-  //
-  // InterfaceSemantics
-  //
-  void Object_Impl::InterfaceSemantics (const std::string & val)
-  {
-    static const std::string attr_InterfaceSemantics ("InterfaceSemantics");
-    this->attribute (attr_InterfaceSemantics)->string_value (val);
-  }
-
-  //
-  // InterfaceSemantics
-  //
-  std::string Object_Impl::InterfaceSemantics (void) const
-  {
-    static const std::string attr_InterfaceSemantics ("InterfaceSemantics");
-    return this->attribute (attr_InterfaceSemantics)->string_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 }
 

@@ -1,12 +1,13 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SingleInputBase.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SingleInputBase.inl"
+#endif
 
+#include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
 
 namespace PICML
@@ -14,36 +15,14 @@ namespace PICML
   //
   // metaname
   //
-  const std::string SingleInputBase_Impl::metaname = "SingleInputBase";
+  const std::string SingleInputBase_Impl::metaname ("SingleInputBase");
 
   //
-  // SingleInputBase_Impl
+  // src_Input
   //
-  SingleInputBase_Impl::SingleInputBase_Impl (void)
+  size_t SingleInputBase_Impl::src_Input (std::vector <Input> & items) const
   {
-  }
-
-  //
-  // SingleInputBase_Impl
-  //
-  SingleInputBase_Impl::SingleInputBase_Impl (IMgaFCO * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~SingleInputBase_Impl
-  //
-  SingleInputBase_Impl::~SingleInputBase_Impl (void)
-  {
-  }
-
-  //
-  // in_Input_connections
-  //
-  size_t SingleInputBase_Impl::in_Input_connections (std::vector <Input> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <Input> (items);
   }
 }
 

@@ -1,58 +1,37 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Implemenation.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Implemenation.inl"
+#endif
 
-#include "PICML/ImplementationCommon/InfoProperty.h"
+#include "PICML/Visitor.h"
 #include "PICML/ImplementationCommon/ConfigProperty.h"
+#include "PICML/ImplementationCommon/InfoProperty.h"
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Implemenation_Impl::metaname = "Implemenation";
+  const std::string Implemenation_Impl::metaname ("Implemenation");
 
   //
-  // Implemenation_Impl
+  // src_ConfigProperty
   //
-  Implemenation_Impl::Implemenation_Impl (void)
+  size_t Implemenation_Impl::src_ConfigProperty (std::vector <ConfigProperty> & items) const
   {
+    return this->in_connections <ConfigProperty> (items);
   }
 
   //
-  // Implemenation_Impl
+  // src_InfoProperty
   //
-  Implemenation_Impl::Implemenation_Impl (IMgaFCO * ptr)
+  size_t Implemenation_Impl::src_InfoProperty (std::vector <InfoProperty> & items) const
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Implemenation_Impl
-  //
-  Implemenation_Impl::~Implemenation_Impl (void)
-  {
-  }
-
-  //
-  // in_InfoProperty_connections
-  //
-  size_t Implemenation_Impl::in_InfoProperty_connections (std::vector <InfoProperty> & conns) const
-  {
-    return this->in_connections (conns);
-  }
-
-  //
-  // in_ConfigProperty_connections
-  //
-  size_t Implemenation_Impl::in_ConfigProperty_connections (std::vector <ConfigProperty> & conns) const
-  {
-    return this->in_connections (conns);
+    return this->in_connections <InfoProperty> (items);
   }
 }
 

@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTFACTORYIMPLEMENTATION_COMPONENTFACTORYINSTANCE_H_
 #define _PICML_COMPONENTFACTORYIMPLEMENTATION_COMPONENTFACTORYINSTANCE_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ComponentFactoryInstance_Impl;
   typedef ComponentFactoryInstance_Impl * ComponentFactoryInstance_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentFactoryInstance_Impl> ComponentFactoryInstance;
+  typedef ::GAME::Mga::Smart_Ptr < ComponentFactoryInstance_Impl > ComponentFactoryInstance;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ComponentFactoryInstance_Impl
+   *
+   * Implementation for the ComponentFactoryInstance model element.
+   */
   class PICML_Export ComponentFactoryInstance_Impl :
-    public virtual MonolithicImplementationBase_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual MonolithicImplementationBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,18 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ComponentFactoryInstance_Impl (void);
-
-    /// Initializing constructor
-    ComponentFactoryInstance_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~ComponentFactoryInstance_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -63,19 +56,38 @@ namespace PICML
     static ComponentFactoryInstance _create (const ComponentFactoryImplementationContainer_in parent);
     ///@}
 
+    // Default constructor.
+    ComponentFactoryInstance_Impl (void);
+
+    // Initializing constructor.
+    ComponentFactoryInstance_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~ComponentFactoryInstance_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+
     /**
-     * @name Parent Methods
+     * @name Refers To Methods
      */
     ///@{
-    ComponentFactoryImplementationContainer parent_ComponentFactoryImplementationContainer (void) const;
+    bool ComponentFactory_is_nil (void) const;
+    ComponentFactory get_ComponentFactory (void) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ComponentFactoryInstance_is_nil (void) const;
+    ComponentFactoryInstance get_ComponentFactoryInstance (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ComponentFactoryInstance.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTFACTORYIMPLEMENTATION_COMPONENTFACTORYINSTANCE

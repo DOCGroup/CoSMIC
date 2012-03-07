@@ -14,18 +14,23 @@
 #ifndef _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ASSEMBLYCONFIGPROPERTYEND_H_
 #define _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ASSEMBLYCONFIGPROPERTYEND_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class AssemblyConfigPropertyEnd_Impl;
   typedef AssemblyConfigPropertyEnd_Impl * AssemblyConfigPropertyEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <AssemblyConfigPropertyEnd_Impl> AssemblyConfigPropertyEnd;
+  typedef ::GAME::Mga::Smart_Ptr < AssemblyConfigPropertyEnd_Impl > AssemblyConfigPropertyEnd;
 
+  /**
+   * @class AssemblyConfigPropertyEnd_Impl
+   *
+   * Implementation for the AssemblyConfigPropertyEnd model element.
+   */
   class PICML_Export AssemblyConfigPropertyEnd_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,29 +44,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     AssemblyConfigPropertyEnd_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     AssemblyConfigPropertyEnd_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~AssemblyConfigPropertyEnd_Impl (void) = 0;
-    size_t in_AssemblyselectRequirement_connections (std::vector <AssemblyselectRequirement> & conns) const;
-    size_t in_AssemblyConfigProperty_connections (std::vector <AssemblyConfigProperty> & conns) const;
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    ///@}
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
+    /// Get the src AssemblyselectRequirement connection.
+    size_t src_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+
+    /// Get the src AssemblyConfigProperty connection.
+    size_t src_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "AssemblyConfigPropertyEnd.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTASSEMBLYSHEETS_ASSEMBLYCONNECTIONS_ASSEMBLYCONFIGPROPERTYEND

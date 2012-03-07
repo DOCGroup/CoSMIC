@@ -14,21 +14,26 @@
 #ifndef _PICML_IMPLEMENTATIONCOMMON_CONFIGPROPERTY_H_
 #define _PICML_IMPLEMENTATIONCOMMON_CONFIGPROPERTY_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class ConfigProperty_Impl;
   typedef ConfigProperty_Impl * ConfigProperty_in;
-  typedef ::GAME::Mga::Smart_Ptr <ConfigProperty_Impl> ConfigProperty;
+  typedef ::GAME::Mga::Smart_Ptr < ConfigProperty_Impl > ConfigProperty;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class ConfigProperty_Impl
+   *
+   * Implementation for the ConfigProperty model element.
+   */
   class PICML_Export ConfigProperty_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    ConfigProperty_Impl (void);
-
-    /// Initializing constructor
-    ConfigProperty_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~ConfigProperty_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static ConfigProperty _create (const ImplementationContainer_in parent);
     ///@}
 
-    /// Get the src Implemenation connection point.
-    Implemenation src_Implemenation (void);
+    // Default constructor.
+    ConfigProperty_Impl (void);
 
-    /// Get the dst Property connection point.
-    Property dst_Property (void);
+    // Initializing constructor.
+    ConfigProperty_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ImplementationContainer parent_ImplementationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~ConfigProperty_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    Implemenation src_Implemenation (void) const;
+    Property dst_Property (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "ConfigProperty.inl"
 #endif
+
+#endif  // !defined _PICML_IMPLEMENTATIONCOMMON_CONFIGPROPERTY

@@ -14,21 +14,26 @@
 #ifndef _PICML_PATHDIAGRAM_EDGE_H_
 #define _PICML_PATHDIAGRAM_EDGE_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Edge_Impl;
   typedef Edge_Impl * Edge_in;
-  typedef ::GAME::Mga::Smart_Ptr <Edge_Impl> Edge;
+  typedef ::GAME::Mga::Smart_Ptr < Edge_Impl > Edge;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Edge_Impl
+   *
+   * Implementation for the Edge model element.
+   */
   class PICML_Export Edge_Impl :
     public virtual ::GAME::Mga::Atom_Impl
   {
@@ -42,41 +47,50 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Edge_Impl (void);
-
-    /// Initializing constructor
-    Edge_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~Edge_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
     static Edge _create (const Path_in parent);
     ///@}
-    size_t in_SrcEdge_connections (std::vector <SrcEdge> & conns) const;
-    size_t in_EdgeProperty_connections (std::vector <EdgeProperty> & conns) const;
-    size_t in_DstEdge_connections (std::vector <DstEdge> & conns) const;
+
+    // Default constructor.
+    Edge_Impl (void);
+
+    // Initializing constructor.
+    Edge_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~Edge_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Parent Methods
+     * @name Source Connection Point Methods
      */
     ///@{
-    Path parent_Path (void) const;
+
+    /// Get the src SrcEdge connection.
+    size_t src_SrcEdge (std::vector <SrcEdge> & items) const;
     ///@}
 
     /**
-     * @name Reference Methods
+     * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst DstEdge connection.
+    size_t dst_DstEdge (std::vector <DstEdge> & items) const;
+
+    /// Get the dst EdgeProperty connection.
+    size_t dst_EdgeProperty (std::vector <EdgeProperty> & items) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Edge.inl"
 #endif
+
+#endif  // !defined _PICML_PATHDIAGRAM_EDGE

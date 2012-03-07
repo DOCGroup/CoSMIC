@@ -1,66 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "EnumValue.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "EnumValue.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/Enum.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string EnumValue_Impl::metaname = "EnumValue";
+  const std::string EnumValue_Impl::metaname ("EnumValue");
 
   //
-  // EnumValue_Impl
+  // _create (const Enum_in)
   //
-  EnumValue_Impl::EnumValue_Impl (void)
+  EnumValue EnumValue_Impl::_create (const Enum_in parent)
   {
-  }
-
-  //
-  // EnumValue_Impl
-  //
-  EnumValue_Impl::EnumValue_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~EnumValue_Impl
-  //
-  EnumValue_Impl::~EnumValue_Impl (void)
-  {
+    return ::GAME::Mga::create_object < EnumValue > (parent, EnumValue_Impl::metaname);
   }
 
   //
   // accept
   //
-  void EnumValue_Impl::accept (Visitor * v)
+  void EnumValue_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_EnumValue (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_EnumValue (this);
+    }
 
-  //
-  // _create
-  //
-  EnumValue EnumValue_Impl::_create (const Enum_in parent)
-  {
-    return ::GAME::Mga::create_object <EnumValue> (parent, EnumValue_Impl::metaname);
-  }
-
-  //
-  // parent_Enum
-  //
-  Enum EnumValue_Impl::parent_Enum (void) const
-  {
-    return ::GAME::Mga::get_parent <Enum> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

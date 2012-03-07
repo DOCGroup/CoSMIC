@@ -1,50 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "InEventPortInstance.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "InEventPortInstance.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string InEventPortInstance_Impl::metaname = "InEventPortInstance";
+  const std::string InEventPortInstance_Impl::metaname ("InEventPortInstance");
 
   //
-  // InEventPortInstance_Impl
+  // _create (const ComponentInstance_in)
   //
-  InEventPortInstance_Impl::InEventPortInstance_Impl (void)
+  InEventPortInstance InEventPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-  }
-
-  //
-  // InEventPortInstance_Impl
-  //
-  InEventPortInstance_Impl::InEventPortInstance_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~InEventPortInstance_Impl
-  //
-  InEventPortInstance_Impl::~InEventPortInstance_Impl (void)
-  {
+    return ::GAME::Mga::create_object < InEventPortInstance > (parent, InEventPortInstance_Impl::metaname);
   }
 
   //
   // accept
   //
-  void InEventPortInstance_Impl::accept (Visitor * v)
+  void InEventPortInstance_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_InEventPortInstance (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_InEventPortInstance (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
+  }
+
+  //
+  // InEventPort_is_nil
+  //
+  bool InEventPortInstance_Impl::InEventPort_is_nil (void) const
+  {
+    return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // get_InEventPort
+  //
+  InEventPort InEventPortInstance_Impl::get_InEventPort (void) const
+  {
+    return InEventPort::_narrow (this->refers_to ());
   }
 }
 

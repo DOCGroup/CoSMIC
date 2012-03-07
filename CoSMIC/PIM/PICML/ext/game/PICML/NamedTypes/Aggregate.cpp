@@ -1,60 +1,79 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Aggregate.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Aggregate.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/KeyMember.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/KeyMember.h"
 #include "PICML/NamedTypes/Key.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Aggregate_Impl::metaname = "Aggregate";
+  const std::string Aggregate_Impl::metaname ("Aggregate");
 
   //
-  // Aggregate_Impl
+  // _create (const ConnectorObject_in)
   //
-  Aggregate_Impl::Aggregate_Impl (void)
+  Aggregate Aggregate_Impl::_create (const ConnectorObject_in parent)
   {
+    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
   }
 
   //
-  // Aggregate_Impl
+  // _create (const HasOperations_in)
   //
-  Aggregate_Impl::Aggregate_Impl (IMgaModel * ptr)
+  Aggregate Aggregate_Impl::_create (const HasOperations_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Aggregate_Impl
-  //
-  Aggregate_Impl::~Aggregate_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Aggregate_Impl::accept (Visitor * v)
+  void Aggregate_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Aggregate (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Aggregate (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // get_KeyMembers
+  // has_Key
   //
-  size_t Aggregate_Impl::get_KeyMembers (std::vector <KeyMember> & items) const
+  bool Aggregate_Impl::has_Key (void) const
   {
-    return this->children (items);
+    return this->children <Key> ().count () == 1;
+  }
+
+  //
+  // get_Key
+  //
+  Key Aggregate_Impl::get_Key (void) const
+  {
+    return this->children <Key> ().item ();
   }
 
   //
@@ -66,15 +85,27 @@ namespace PICML
   }
 
   //
-  // get_Key
+  // get_Members
   //
-  Key Aggregate_Impl::get_Key (void) const
+  ::GAME::Mga::Iterator <Member> Aggregate_Impl::get_Members (void) const
   {
-    // Get the collection of children.
-    std::vector <Key> items;
-    this->children (items);
+    return this->children <Member> ();
+  }
 
-    return !items.empty () ? items.front () : Key ();
+  //
+  // get_KeyMembers
+  //
+  size_t Aggregate_Impl::get_KeyMembers (std::vector <KeyMember> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_KeyMembers
+  //
+  ::GAME::Mga::Iterator <KeyMember> Aggregate_Impl::get_KeyMembers (void) const
+  {
+    return this->children <KeyMember> ();
   }
 }
 

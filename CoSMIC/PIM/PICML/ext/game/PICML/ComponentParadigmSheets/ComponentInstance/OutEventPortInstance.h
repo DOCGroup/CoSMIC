@@ -14,25 +14,30 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_OUTEVENTPORTINSTANCE_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_OUTEVENTPORTINSTANCE_H_
 
-#include "game/mga/Reference.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class OutEventPortInstance_Impl;
   typedef OutEventPortInstance_Impl * OutEventPortInstance_in;
-  typedef ::GAME::Mga::Smart_Ptr <OutEventPortInstance_Impl> OutEventPortInstance;
+  typedef ::GAME::Mga::Smart_Ptr < OutEventPortInstance_Impl > OutEventPortInstance;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class OutEventPortInstance_Impl
+   *
+   * Implementation for the OutEventPortInstance model element.
+   */
   class PICML_Export OutEventPortInstance_Impl :
-    public virtual PortInstance_Impl,
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual PortInstance_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,36 +49,37 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    OutEventPortInstance_Impl (void);
-
-    /// Initializing constructor
-    OutEventPortInstance_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~OutEventPortInstance_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static OutEventPortInstance _create (const ComponentInstance_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    OutEventPortInstance_Impl (void);
+
+    // Initializing constructor.
+    OutEventPortInstance_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~OutEventPortInstance_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool OutEventPort_is_nil (void) const;
+    OutEventPort get_OutEventPort (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "OutEventPortInstance.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTINSTANCE_OUTEVENTPORTINSTANCE

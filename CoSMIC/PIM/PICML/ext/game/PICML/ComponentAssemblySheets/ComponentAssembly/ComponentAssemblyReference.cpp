@@ -1,74 +1,67 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ComponentAssemblyReference.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ComponentAssemblyReference.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ComponentAssemblyReference_Impl::metaname = "ComponentAssemblyReference";
+  const std::string ComponentAssemblyReference_Impl::metaname ("ComponentAssemblyReference");
 
   //
-  // ComponentAssemblyReference_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ComponentAssemblyReference_Impl::ComponentAssemblyReference_Impl (void)
+  ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const ComponentAssembly_in parent)
   {
-  }
-
-  //
-  // ComponentAssemblyReference_Impl
-  //
-  ComponentAssemblyReference_Impl::ComponentAssemblyReference_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ComponentAssemblyReference_Impl
-  //
-  ComponentAssemblyReference_Impl::~ComponentAssemblyReference_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ComponentAssemblyReference_Impl::accept (Visitor * v)
+  void ComponentAssemblyReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ComponentAssemblyReference (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ComponentAssemblyReference (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // ComponentAssembly_is_nil
   //
-  ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const ComponentAssembly_in parent)
+  bool ComponentAssemblyReference_Impl::ComponentAssembly_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ComponentAssemblyReference> (parent, ComponentAssemblyReference_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_ComponentAssembly
+  // get_ComponentAssembly
   //
-  ComponentAssembly ComponentAssemblyReference_Impl::parent_ComponentAssembly (void) const
+  ComponentAssembly ComponentAssemblyReference_Impl::get_ComponentAssembly (void) const
   {
-    return ::GAME::Mga::get_parent <ComponentAssembly> (this->object_.p);
-  }
-
-  //
-  // refers_to_ComponentAssembly
-  //
-  ComponentAssembly ComponentAssemblyReference_Impl::refers_to_ComponentAssembly (void) const
-  {
-    return ::GAME::Mga::get_refers_to <ComponentAssembly> (this);
+    return ComponentAssembly::_narrow (this->refers_to ());
   }
 }
 

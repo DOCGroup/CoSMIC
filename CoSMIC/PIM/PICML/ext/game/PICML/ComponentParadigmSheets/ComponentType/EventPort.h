@@ -14,22 +14,27 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EVENTPORT_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EVENTPORT_H_
 
-#include "game/mga/FCO.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class EventPort_Impl;
   typedef EventPort_Impl * EventPort_in;
-  typedef ::GAME::Mga::Smart_Ptr <EventPort_Impl> EventPort;
+  typedef ::GAME::Mga::Smart_Ptr < EventPort_Impl > EventPort;
 
+  /**
+   * @class EventPort_Impl
+   *
+   * Implementation for the EventPort model element.
+   */
   class PICML_Export EventPort_Impl :
-    public virtual Port_Impl,
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual Port_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -41,27 +46,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     EventPort_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     EventPort_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~EventPort_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "EventPort.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTTYPE_EVENTPORT

@@ -1,67 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Discriminator.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Discriminator.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/InterfaceDefinition/ConstantType.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Discriminator_Impl::metaname = "Discriminator";
+  const std::string Discriminator_Impl::metaname ("Discriminator");
 
   //
-  // Discriminator_Impl
+  // _create (const SwitchedAggregate_in)
   //
-  Discriminator_Impl::Discriminator_Impl (void)
+  Discriminator Discriminator_Impl::_create (const SwitchedAggregate_in parent)
   {
-  }
-
-  //
-  // Discriminator_Impl
-  //
-  Discriminator_Impl::Discriminator_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Discriminator_Impl
-  //
-  Discriminator_Impl::~Discriminator_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Discriminator > (parent, Discriminator_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Discriminator_Impl::accept (Visitor * v)
+  void Discriminator_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Discriminator (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Discriminator (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // ConstantType_is_nil
   //
-  Discriminator Discriminator_Impl::_create (const SwitchedAggregate_in parent)
+  bool Discriminator_Impl::ConstantType_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <Discriminator> (parent, Discriminator_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_SwitchedAggregate
+  // get_ConstantType
   //
-  SwitchedAggregate Discriminator_Impl::parent_SwitchedAggregate (void) const
+  ConstantType Discriminator_Impl::get_ConstantType (void) const
   {
-    return ::GAME::Mga::get_parent <SwitchedAggregate> (this->object_.p);
+    return ConstantType::_narrow (this->refers_to ());
   }
 }
 

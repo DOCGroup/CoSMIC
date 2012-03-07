@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_CRITICALPATH_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_CRITICALPATH_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class CriticalPath_Impl;
   typedef CriticalPath_Impl * CriticalPath_in;
-  typedef ::GAME::Mga::Smart_Ptr <CriticalPath_Impl> CriticalPath;
+  typedef ::GAME::Mga::Smart_Ptr < CriticalPath_Impl > CriticalPath;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class CriticalPath_Impl
+   *
+   * Implementation for the CriticalPath model element.
+   */
   class PICML_Export CriticalPath_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    CriticalPath_Impl (void);
-
-    /// Initializing constructor
-    CriticalPath_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~CriticalPath_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static CriticalPath _create (const ComponentImplementationContainer_in parent);
     ///@}
 
-    /// Get the src ComponentAssembly connection point.
-    ComponentAssembly src_ComponentAssembly (void);
+    // Default constructor.
+    CriticalPath_Impl (void);
 
-    /// Get the dst PathReference connection point.
-    PathReference dst_PathReference (void);
+    // Initializing constructor.
+    CriticalPath_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ComponentImplementationContainer parent_ComponentImplementationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~CriticalPath_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    ComponentAssembly src_ComponentAssembly (void) const;
+    PathReference dst_PathReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "CriticalPath.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_CRITICALPATH

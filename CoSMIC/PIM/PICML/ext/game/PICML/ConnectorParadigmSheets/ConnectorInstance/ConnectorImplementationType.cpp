@@ -1,67 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ConnectorImplementationType.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ConnectorImplementationType.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ConnectorImplementationType_Impl::metaname = "ConnectorImplementationType";
+  const std::string ConnectorImplementationType_Impl::metaname ("ConnectorImplementationType");
 
   //
-  // ConnectorImplementationType_Impl
+  // _create (const ConnectorInstance_in)
   //
-  ConnectorImplementationType_Impl::ConnectorImplementationType_Impl (void)
+  ConnectorImplementationType ConnectorImplementationType_Impl::_create (const ConnectorInstance_in parent)
   {
-  }
-
-  //
-  // ConnectorImplementationType_Impl
-  //
-  ConnectorImplementationType_Impl::ConnectorImplementationType_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ConnectorImplementationType_Impl
-  //
-  ConnectorImplementationType_Impl::~ConnectorImplementationType_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ConnectorImplementationType > (parent, ConnectorImplementationType_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ConnectorImplementationType_Impl::accept (Visitor * v)
+  void ConnectorImplementationType_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ConnectorImplementationType (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ConnectorImplementationType (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // ConnectorImplementation_is_nil
   //
-  ConnectorImplementationType ConnectorImplementationType_Impl::_create (const ConnectorInstance_in parent)
+  bool ConnectorImplementationType_Impl::ConnectorImplementation_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ConnectorImplementationType> (parent, ConnectorImplementationType_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_ConnectorInstance
+  // get_ConnectorImplementation
   //
-  ConnectorInstance ConnectorImplementationType_Impl::parent_ConnectorInstance (void) const
+  ConnectorImplementation ConnectorImplementationType_Impl::get_ConnectorImplementation (void) const
   {
-    return ::GAME::Mga::get_parent <ConnectorInstance> (this->object_.p);
+    return ConnectorImplementation::_narrow (this->refers_to ());
   }
 }
 

@@ -14,27 +14,32 @@
 #ifndef _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_MONOLITHICIMPLEMENTATION_H_
 #define _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_MONOLITHICIMPLEMENTATION_H_
 
-#include "game/mga/Atom.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
+
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
 #include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
-
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Atom.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MonolithicImplementation_Impl;
   typedef MonolithicImplementation_Impl * MonolithicImplementation_in;
-  typedef ::GAME::Mga::Smart_Ptr <MonolithicImplementation_Impl> MonolithicImplementation;
+  typedef ::GAME::Mga::Smart_Ptr < MonolithicImplementation_Impl > MonolithicImplementation;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class MonolithicImplementation_Impl
+   *
+   * Implementation for the MonolithicImplementation model element.
+   */
   class PICML_Export MonolithicImplementation_Impl :
+    public virtual ::GAME::Mga::Atom_Impl,
     public virtual ComponentImplementation_Impl,
-    public virtual MonolithicImplementationBase_Impl,
-    public virtual ::GAME::Mga::Atom_Impl
+    public virtual MonolithicImplementationBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -46,36 +51,41 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    MonolithicImplementation_Impl (void);
-
-    /// Initializing constructor
-    MonolithicImplementation_Impl (IMgaAtom * ptr);
-
-    /// Destructor
-    virtual ~MonolithicImplementation_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static MonolithicImplementation _create (const ComponentImplementationContainer_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    MonolithicImplementation_Impl (void);
+
+    // Initializing constructor.
+    MonolithicImplementation_Impl (IMgaAtom * ptr);
+
+    // Destructor.
+    virtual ~MonolithicImplementation_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Attribute Methods
      */
     ///@{
+
+    /// Set the value of defaultVersion
+    void defaultVersion (const std::string & val);
+
+    /// Get the value of defaultVersion
+    std::string defaultVersion (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MonolithicImplementation.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTPARADIGMSHEETS_COMPONENTIMPLEMENTATION_MONOLITHICIMPLEMENTATION

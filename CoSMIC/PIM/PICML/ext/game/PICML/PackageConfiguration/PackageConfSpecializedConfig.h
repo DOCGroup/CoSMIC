@@ -14,21 +14,26 @@
 #ifndef _PICML_PACKAGECONFIGURATION_PACKAGECONFSPECIALIZEDCONFIG_H_
 #define _PICML_PACKAGECONFIGURATION_PACKAGECONFSPECIALIZEDCONFIG_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class PackageConfSpecializedConfig_Impl;
   typedef PackageConfSpecializedConfig_Impl * PackageConfSpecializedConfig_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageConfSpecializedConfig_Impl> PackageConfSpecializedConfig;
+  typedef ::GAME::Mga::Smart_Ptr < PackageConfSpecializedConfig_Impl > PackageConfSpecializedConfig;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class PackageConfSpecializedConfig_Impl
+   *
+   * Implementation for the PackageConfSpecializedConfig model element.
+   */
   class PICML_Export PackageConfSpecializedConfig_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    PackageConfSpecializedConfig_Impl (void);
-
-    /// Initializing constructor
-    PackageConfSpecializedConfig_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~PackageConfSpecializedConfig_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static PackageConfSpecializedConfig _create (const PackageConfigurationContainer_in parent);
     ///@}
 
-    /// Get the src PackageConfiguration connection point.
-    PackageConfiguration src_PackageConfiguration (void);
+    // Default constructor.
+    PackageConfSpecializedConfig_Impl (void);
 
-    /// Get the dst PackageConfigurationReference connection point.
-    PackageConfigurationReference dst_PackageConfigurationReference (void);
+    // Initializing constructor.
+    PackageConfSpecializedConfig_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    PackageConfigurationContainer parent_PackageConfigurationContainer (void) const;
-    ///@}
+    // Destructor.
+    virtual ~PackageConfSpecializedConfig_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    PackageConfiguration src_PackageConfiguration (void) const;
+    PackageConfigurationReference dst_PackageConfigurationReference (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "PackageConfSpecializedConfig.inl"
 #endif
+
+#endif  // !defined _PICML_PACKAGECONFIGURATION_PACKAGECONFSPECIALIZEDCONFIG

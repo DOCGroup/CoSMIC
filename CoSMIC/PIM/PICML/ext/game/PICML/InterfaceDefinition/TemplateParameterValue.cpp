@@ -1,75 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TemplateParameterValue.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "TemplateParameterValue.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/TemplateParameterValueType.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string TemplateParameterValue_Impl::metaname = "TemplateParameterValue";
+  const std::string TemplateParameterValue_Impl::metaname ("TemplateParameterValue");
 
   //
-  // TemplateParameterValue_Impl
+  // _create (const TemplatePackageInstance_in)
   //
-  TemplateParameterValue_Impl::TemplateParameterValue_Impl (void)
+  TemplateParameterValue TemplateParameterValue_Impl::_create (const TemplatePackageInstance_in parent)
   {
-  }
-
-  //
-  // TemplateParameterValue_Impl
-  //
-  TemplateParameterValue_Impl::TemplateParameterValue_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~TemplateParameterValue_Impl
-  //
-  TemplateParameterValue_Impl::~TemplateParameterValue_Impl (void)
-  {
+    return ::GAME::Mga::create_object < TemplateParameterValue > (parent, TemplateParameterValue_Impl::metaname);
   }
 
   //
   // accept
   //
-  void TemplateParameterValue_Impl::accept (Visitor * v)
+  void TemplateParameterValue_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_TemplateParameterValue (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_TemplateParameterValue (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // TemplateParameterValueType_is_nil
   //
-  TemplateParameterValue TemplateParameterValue_Impl::_create (const TemplatePackageInstance_in parent)
+  bool TemplateParameterValue_Impl::TemplateParameterValueType_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <TemplateParameterValue> (parent, TemplateParameterValue_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_TemplatePackageInstance
+  // get_TemplateParameterValueType
   //
-  TemplatePackageInstance TemplateParameterValue_Impl::parent_TemplatePackageInstance (void) const
+  TemplateParameterValueType TemplateParameterValue_Impl::get_TemplateParameterValueType (void) const
   {
-    return ::GAME::Mga::get_parent <TemplatePackageInstance> (this->object_.p);
-  }
-
-  //
-  // refers_to_TemplateParameterValueType
-  //
-  TemplateParameterValueType TemplateParameterValue_Impl::refers_to_TemplateParameterValueType (void) const
-  {
-    return ::GAME::Mga::get_refers_to <TemplateParameterValueType> (this);
+    return TemplateParameterValueType::_narrow (this->refers_to ());
   }
 }
 

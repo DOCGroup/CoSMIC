@@ -14,18 +14,23 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_MULTIOUTPUTBASE_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_MULTIOUTPUTBASE_H_
 
-#include "game/mga/FCO.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/FCO.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class MultiOutputBase_Impl;
   typedef MultiOutputBase_Impl * MultiOutputBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <MultiOutputBase_Impl> MultiOutputBase;
+  typedef ::GAME::Mga::Smart_Ptr < MultiOutputBase_Impl > MultiOutputBase;
 
+  /**
+   * @class MultiOutputBase_Impl
+   *
+   * Implementation for the MultiOutputBase model element.
+   */
   class PICML_Export MultiOutputBase_Impl :
     public virtual ::GAME::Mga::FCO_Impl
   {
@@ -39,27 +44,19 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     MultiOutputBase_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     MultiOutputBase_Impl (IMgaFCO * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~MultiOutputBase_Impl (void) = 0;
-
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "MultiOutputBase.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_TOPLEVELBEHAVIORMODEL_MULTIOUTPUTBASE

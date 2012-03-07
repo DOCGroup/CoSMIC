@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Implementation.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Implementation.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Implementation_Impl::metaname = "Implementation";
+  const std::string Implementation_Impl::metaname ("Implementation");
 
   //
-  // Implementation_Impl
+  // _create (const PackageContainer_in)
   //
-  Implementation_Impl::Implementation_Impl (void)
+  Implementation Implementation_Impl::_create (const PackageContainer_in parent)
   {
-  }
-
-  //
-  // Implementation_Impl
-  //
-  Implementation_Impl::Implementation_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Implementation_Impl
-  //
-  Implementation_Impl::~Implementation_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Implementation > (parent, Implementation_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Implementation_Impl::accept (Visitor * v)
+  void Implementation_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Implementation (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Implementation (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // ComponentPackage
   //
-  Implementation Implementation_Impl::_create (const PackageContainer_in parent)
+  ComponentPackage Implementation_Impl::src_ComponentPackage (void) const
   {
-    return ::GAME::Mga::create_object <Implementation> (parent, Implementation_Impl::metaname);
+    return ComponentPackage::_narrow (this->src ());
   }
 
   //
-  // src_ComponentPackage
+  // ComponentImplementationReference
   //
-  ComponentPackage Implementation_Impl::src_ComponentPackage (void)
+  ComponentImplementationReference Implementation_Impl::dst_ComponentImplementationReference (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentPackage::_narrow (target);
-  }
-
-  //
-  // dst_ComponentImplementationReference
-  //
-  ComponentImplementationReference Implementation_Impl::dst_ComponentImplementationReference (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return ComponentImplementationReference::_narrow (target);
-  }
-
-  //
-  // parent_PackageContainer
-  //
-  PackageContainer Implementation_Impl::parent_PackageContainer (void) const
-  {
-    return ::GAME::Mga::get_parent <PackageContainer> (this->object_.p);
+    return ComponentImplementationReference::_narrow (this->dst ());
   }
 }
 

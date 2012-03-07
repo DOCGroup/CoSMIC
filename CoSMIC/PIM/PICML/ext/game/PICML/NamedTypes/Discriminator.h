@@ -14,21 +14,26 @@
 #ifndef _PICML_NAMEDTYPES_DISCRIMINATOR_H_
 #define _PICML_NAMEDTYPES_DISCRIMINATOR_H_
 
-#include "game/mga/Reference.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Reference.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class Discriminator_Impl;
   typedef Discriminator_Impl * Discriminator_in;
-  typedef ::GAME::Mga::Smart_Ptr <Discriminator_Impl> Discriminator;
+  typedef ::GAME::Mga::Smart_Ptr < Discriminator_Impl > Discriminator;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class Discriminator_Impl
+   *
+   * Implementation for the Discriminator model element.
+   */
   class PICML_Export Discriminator_Impl :
     public virtual ::GAME::Mga::Reference_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    Discriminator_Impl (void);
-
-    /// Initializing constructor
-    Discriminator_Impl (IMgaReference * ptr);
-
-    /// Destructor
-    virtual ~Discriminator_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,19 +54,30 @@ namespace PICML
     static Discriminator _create (const SwitchedAggregate_in parent);
     ///@}
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    SwitchedAggregate parent_SwitchedAggregate (void) const;
-    ///@}
+    // Default constructor.
+    Discriminator_Impl (void);
+
+    // Initializing constructor.
+    Discriminator_Impl (IMgaReference * ptr);
+
+    // Destructor.
+    virtual ~Discriminator_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Reference Methods
+     * @name Refers To Methods
      */
     ///@{
+    bool ConstantType_is_nil (void) const;
+    ConstantType get_ConstantType (void) const;
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "Discriminator.inl"
 #endif
+
+#endif  // !defined _PICML_NAMEDTYPES_DISCRIMINATOR

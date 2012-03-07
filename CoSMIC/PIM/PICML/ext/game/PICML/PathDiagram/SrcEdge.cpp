@@ -1,86 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SrcEdge.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "SrcEdge.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/PathDiagram/Path.h"
-#include "PICML/PathDiagram/Edge.h"
 #include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/PathDiagram/Edge.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string SrcEdge_Impl::metaname = "SrcEdge";
+  const std::string SrcEdge_Impl::metaname ("SrcEdge");
 
   //
-  // SrcEdge_Impl
+  // _create (const Path_in)
   //
-  SrcEdge_Impl::SrcEdge_Impl (void)
+  SrcEdge SrcEdge_Impl::_create (const Path_in parent)
   {
-  }
-
-  //
-  // SrcEdge_Impl
-  //
-  SrcEdge_Impl::SrcEdge_Impl (IMgaConnection * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~SrcEdge_Impl
-  //
-  SrcEdge_Impl::~SrcEdge_Impl (void)
-  {
+    return ::GAME::Mga::create_object < SrcEdge > (parent, SrcEdge_Impl::metaname);
   }
 
   //
   // accept
   //
-  void SrcEdge_Impl::accept (Visitor * v)
+  void SrcEdge_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_SrcEdge (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_SrcEdge (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // _create
+  // Edge
   //
-  SrcEdge SrcEdge_Impl::_create (const Path_in parent)
+  Edge SrcEdge_Impl::src_Edge (void) const
   {
-    return ::GAME::Mga::create_object <SrcEdge> (parent, SrcEdge_Impl::metaname);
+    return Edge::_narrow (this->src ());
   }
 
   //
-  // src_Edge
+  // GraphVertex
   //
-  Edge SrcEdge_Impl::src_Edge (void)
+  GraphVertex SrcEdge_Impl::dst_GraphVertex (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return Edge::_narrow (target);
-  }
-
-  //
-  // dst_GraphVertex
-  //
-  GraphVertex SrcEdge_Impl::dst_GraphVertex (void)
-  {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return GraphVertex::_narrow (target);
-  }
-
-  //
-  // parent_Path
-  //
-  Path SrcEdge_Impl::parent_Path (void) const
-  {
-    return ::GAME::Mga::get_parent <Path> (this->object_.p);
+    return GraphVertex::_narrow (this->dst ());
   }
 }
 

@@ -1,76 +1,77 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "EventRef.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "EventRef.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/InheritableTypes/Event.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string EventRef_Impl::metaname = "EventRef";
+  const std::string EventRef_Impl::metaname ("EventRef");
 
   //
-  // EventRef_Impl
+  // _create (const BenchmarkAnalysis_in)
   //
-  EventRef_Impl::EventRef_Impl (void)
+  EventRef EventRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-  }
-
-  //
-  // EventRef_Impl
-  //
-  EventRef_Impl::EventRef_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~EventRef_Impl
-  //
-  EventRef_Impl::~EventRef_Impl (void)
-  {
+    return ::GAME::Mga::create_object < EventRef > (parent, EventRef_Impl::metaname);
   }
 
   //
   // accept
   //
-  void EventRef_Impl::accept (Visitor * v)
+  void EventRef_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_EventRef (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_EventRef (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // src_TimerEventSinkConn
   //
-  EventRef EventRef_Impl::_create (const BenchmarkAnalysis_in parent)
+  size_t EventRef_Impl::src_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
   {
-    return ::GAME::Mga::create_object <EventRef> (parent, EventRef_Impl::metaname);
+    return this->in_connections <TimerEventSinkConn> (items);
   }
 
   //
-  // in_TimerEventSinkConn_connections
+  // Event_is_nil
   //
-  size_t EventRef_Impl::in_TimerEventSinkConn_connections (std::vector <TimerEventSinkConn> & conns) const
+  bool EventRef_Impl::Event_is_nil (void) const
   {
-    return this->in_connections (conns);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_BenchmarkAnalysis
+  // get_Event
   //
-  BenchmarkAnalysis EventRef_Impl::parent_BenchmarkAnalysis (void) const
+  Event EventRef_Impl::get_Event (void) const
   {
-    return ::GAME::Mga::get_parent <BenchmarkAnalysis> (this->object_.p);
+    return Event::_narrow (this->refers_to ());
   }
 }
 

@@ -1,49 +1,69 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ImplementationRequirement.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ImplementationRequirement.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/RequirementBase.h"
+#include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ImplementationRequirement_Impl::metaname = "ImplementationRequirement";
+  const std::string ImplementationRequirement_Impl::metaname ("ImplementationRequirement");
 
   //
-  // ImplementationRequirement_Impl
+  // _create (const ImplementationContainer_in)
   //
-  ImplementationRequirement_Impl::ImplementationRequirement_Impl (void)
+  ImplementationRequirement ImplementationRequirement_Impl::_create (const ImplementationContainer_in parent)
   {
+    return ::GAME::Mga::create_object < ImplementationRequirement > (parent, ImplementationRequirement_Impl::metaname);
   }
 
   //
-  // ImplementationRequirement_Impl
+  // _create (const RequirementBase_in)
   //
-  ImplementationRequirement_Impl::ImplementationRequirement_Impl (IMgaModel * ptr)
+  ImplementationRequirement ImplementationRequirement_Impl::_create (const RequirementBase_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ImplementationRequirement_Impl
-  //
-  ImplementationRequirement_Impl::~ImplementationRequirement_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ImplementationRequirement > (parent, ImplementationRequirement_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ImplementationRequirement_Impl::accept (Visitor * v)
+  void ImplementationRequirement_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ImplementationRequirement (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ImplementationRequirement (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
+  }
+
+  //
+  // dst_MonolithDeployRequirement
+  //
+  size_t ImplementationRequirement_Impl::dst_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
+  {
+    return this->in_connections <MonolithDeployRequirement> (items);
   }
 }
 

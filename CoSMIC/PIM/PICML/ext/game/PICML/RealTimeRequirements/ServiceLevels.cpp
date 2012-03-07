@@ -1,85 +1,51 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServiceLevels.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ServiceLevels.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/RealTimeRequirements/ServiceProvider.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ServiceLevels_Impl::metaname = "ServiceLevels";
+  const std::string ServiceLevels_Impl::metaname ("ServiceLevels");
 
   //
-  // ServiceLevels_Impl
+  // _create (const ServiceProvider_in)
   //
-  ServiceLevels_Impl::ServiceLevels_Impl (void)
+  ServiceLevels ServiceLevels_Impl::_create (const ServiceProvider_in parent)
   {
-  }
-
-  //
-  // ServiceLevels_Impl
-  //
-  ServiceLevels_Impl::ServiceLevels_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ServiceLevels_Impl
-  //
-  ServiceLevels_Impl::~ServiceLevels_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ServiceLevels > (parent, ServiceLevels_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ServiceLevels_Impl::accept (Visitor * v)
+  void ServiceLevels_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ServiceLevels (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ServiceLevels (this);
+    }
 
-  //
-  // _create
-  //
-  ServiceLevels ServiceLevels_Impl::_create (const ServiceProvider_in parent)
-  {
-    return ::GAME::Mga::create_object <ServiceLevels> (parent, ServiceLevels_Impl::metaname);
-  }
-
-  //
-  // varying_service_levels
-  //
-  void ServiceLevels_Impl::varying_service_levels (bool val)
-  {
-    static const std::string attr_varying_service_levels ("varying_service_levels");
-    this->attribute (attr_varying_service_levels)->bool_value (val);
-  }
-
-  //
-  // varying_service_levels
-  //
-  bool ServiceLevels_Impl::varying_service_levels (void) const
-  {
-    static const std::string attr_varying_service_levels ("varying_service_levels");
-    return this->attribute (attr_varying_service_levels)->bool_value ();
-  }
-
-  //
-  // parent_ServiceProvider
-  //
-  ServiceProvider ServiceLevels_Impl::parent_ServiceProvider (void) const
-  {
-    return ::GAME::Mga::get_parent <ServiceProvider> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

@@ -14,25 +14,30 @@
 #ifndef _PICML_OPERATIONTYPES_FACTORYOPERATION_H_
 #define _PICML_OPERATIONTYPES_FACTORYOPERATION_H_
 
-#include "game/mga/Model.h"
-#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class FactoryOperation_Impl;
   typedef FactoryOperation_Impl * FactoryOperation_in;
-  typedef ::GAME::Mga::Smart_Ptr <FactoryOperation_Impl> FactoryOperation;
+  typedef ::GAME::Mga::Smart_Ptr < FactoryOperation_Impl > FactoryOperation;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class FactoryOperation_Impl
+   *
+   * Implementation for the FactoryOperation model element.
+   */
   class PICML_Export FactoryOperation_Impl :
-    public virtual HasExceptions_Impl,
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual HasExceptions_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -44,42 +49,31 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    FactoryOperation_Impl (void);
-
-    /// Initializing constructor
-    FactoryOperation_Impl (IMgaModel * ptr);
-
-    /// Destructor
-    virtual ~FactoryOperation_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
     ///@{
+    static FactoryOperation _create (const ComponentFactory_in parent);
+    static FactoryOperation _create (const ObjectByValue_in parent);
+    static FactoryOperation _create (const HasExceptions_in parent);
     ///@}
 
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-    ///@}
+    // Default constructor.
+    FactoryOperation_Impl (void);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
+    // Initializing constructor.
+    FactoryOperation_Impl (IMgaModel * ptr);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    // Destructor.
+    virtual ~FactoryOperation_Impl (void);
+
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "FactoryOperation.inl"
 #endif
+
+#endif  // !defined _PICML_OPERATIONTYPES_FACTORYOPERATION

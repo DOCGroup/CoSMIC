@@ -1,69 +1,78 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ManagesComponent.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ManagesComponent.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Manageable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ManagesComponent_Impl::metaname = "ManagesComponent";
+  const std::string ManagesComponent_Impl::metaname ("ManagesComponent");
 
   //
-  // ManagesComponent_Impl
+  // _create (const Package_in)
   //
-  ManagesComponent_Impl::ManagesComponent_Impl (void)
+  ManagesComponent ManagesComponent_Impl::_create (const Package_in parent)
   {
+    return ::GAME::Mga::create_object < ManagesComponent > (parent, ManagesComponent_Impl::metaname);
   }
 
   //
-  // ManagesComponent_Impl
+  // _create (const File_in)
   //
-  ManagesComponent_Impl::ManagesComponent_Impl (IMgaConnection * ptr)
+  ManagesComponent ManagesComponent_Impl::_create (const File_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ManagesComponent_Impl
-  //
-  ManagesComponent_Impl::~ManagesComponent_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ManagesComponent > (parent, ManagesComponent_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ManagesComponent_Impl::accept (Visitor * v)
+  void ManagesComponent_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ManagesComponent (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ManagesComponent (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Connection (this);
+    }
   }
 
   //
-  // src_ComponentFactory
+  // ComponentFactory
   //
-  ComponentFactory ManagesComponent_Impl::src_ComponentFactory (void)
+  ComponentFactory ManagesComponent_Impl::src_ComponentFactory (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("src")->target ();
-    return ComponentFactory::_narrow (target);
+    return ComponentFactory::_narrow (this->src ());
   }
 
   //
-  // dst_Manageable
+  // Manageable
   //
-  Manageable ManagesComponent_Impl::dst_Manageable (void)
+  Manageable ManagesComponent_Impl::dst_Manageable (void) const
   {
-    GAME::Mga::FCO target = this->connection_point ("dst")->target ();
-    return Manageable::_narrow (target);
+    return Manageable::_narrow (this->dst ());
   }
 }
 

@@ -1,49 +1,42 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "FloatNumber.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "FloatNumber.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string FloatNumber_Impl::metaname = "FloatNumber";
-
-  //
-  // FloatNumber_Impl
-  //
-  FloatNumber_Impl::FloatNumber_Impl (void)
-  {
-  }
-
-  //
-  // FloatNumber_Impl
-  //
-  FloatNumber_Impl::FloatNumber_Impl (IMgaAtom * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~FloatNumber_Impl
-  //
-  FloatNumber_Impl::~FloatNumber_Impl (void)
-  {
-  }
+  const std::string FloatNumber_Impl::metaname ("FloatNumber");
 
   //
   // accept
   //
-  void FloatNumber_Impl::accept (Visitor * v)
+  void FloatNumber_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_FloatNumber (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_FloatNumber (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Atom (this);
+    }
   }
 }
 

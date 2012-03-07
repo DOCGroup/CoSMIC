@@ -14,18 +14,23 @@
 #ifndef _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_BEHAVIORINPUTACTION_H_
 #define _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_BEHAVIORINPUTACTION_H_
 
-#include "game/mga/Model.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Model.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class BehaviorInputAction_Impl;
   typedef BehaviorInputAction_Impl * BehaviorInputAction_in;
-  typedef ::GAME::Mga::Smart_Ptr <BehaviorInputAction_Impl> BehaviorInputAction;
+  typedef ::GAME::Mga::Smart_Ptr < BehaviorInputAction_Impl > BehaviorInputAction;
 
+  /**
+   * @class BehaviorInputAction_Impl
+   *
+   * Implementation for the BehaviorInputAction model element.
+   */
   class PICML_Export BehaviorInputAction_Impl :
     public virtual ::GAME::Mga::Model_Impl
   {
@@ -39,36 +44,46 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
+    // Default constructor.
     BehaviorInputAction_Impl (void);
 
-    /// Initializing constructor
+    // Initializing constructor.
     BehaviorInputAction_Impl (IMgaModel * ptr);
 
-    /// Destructor
+    // Destructor.
     virtual ~BehaviorInputAction_Impl (void) = 0;
-    size_t in_InputEffect_connections (std::vector <InputEffect> & conns) const;
-    size_t in_Finish_connections (std::vector <Finish> & conns) const;
+
+    /**
+     * @name Source Connection Point Methods
+     */
+    ///@{
+
+    /// Get the src InputEffect connection.
+    size_t src_InputEffect (std::vector <InputEffect> & items) const;
+    ///@}
+
+    /**
+     * @name Destination Connection Point Methods
+     */
+    ///@{
+
+    /// Get the dst Finish connection.
+    size_t dst_Finish (std::vector <Finish> & items) const;
+    ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
     size_t get_Propertys (std::vector <Property> & items) const;
-    ///@}
+    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    ///@}
-
-    /**
-     * @name Reference Methods
-     */
-    ///@{
     ///@}
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "BehaviorInputAction.inl"
 #endif
+
+#endif  // !defined _PICML_BEHAVIORPARADIGMSHEETS_ACTIONTYPES_BEHAVIORINPUTACTION

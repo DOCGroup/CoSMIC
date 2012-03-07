@@ -14,21 +14,26 @@
 #ifndef _PICML_COMPONENTBENCHMARK_WORKLOADCHARACTERISTICS_H_
 #define _PICML_COMPONENTBENCHMARK_WORKLOADCHARACTERISTICS_H_
 
-#include "game/mga/Connection.h"
+#include "PICML/PICML_fwd.h"
+#include "PICML/PICML_export.h"
 
-#include "PICML_fwd.h"
-#include "PICML_export.h"
+#include "game/mga/Connection.h"
 
 namespace PICML
 {
   // Forward decl. and type definitions
   class WorkloadCharacteristics_Impl;
   typedef WorkloadCharacteristics_Impl * WorkloadCharacteristics_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkloadCharacteristics_Impl> WorkloadCharacteristics;
+  typedef ::GAME::Mga::Smart_Ptr < WorkloadCharacteristics_Impl > WorkloadCharacteristics;
 
   // Forward decl.
   class Visitor;
 
+  /**
+   * @class WorkloadCharacteristics_Impl
+   *
+   * Implementation for the WorkloadCharacteristics model element.
+   */
   class PICML_Export WorkloadCharacteristics_Impl :
     public virtual ::GAME::Mga::Connection_Impl
   {
@@ -42,18 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-    /// Default constructor
-    WorkloadCharacteristics_Impl (void);
-
-    /// Initializing constructor
-    WorkloadCharacteristics_Impl (IMgaConnection * ptr);
-
-    /// Destructor
-    virtual ~WorkloadCharacteristics_Impl (void);
-
-    /// Accept a visitor for this project.
-    virtual void accept (Visitor * v);
-
     /**
      * @name Factory Methods
      */
@@ -61,25 +54,24 @@ namespace PICML
     static WorkloadCharacteristics _create (const BenchmarkAnalysis_in parent);
     ///@}
 
-    /// Get the src MetricsBase connection point.
-    MetricsBase src_MetricsBase (void);
+    // Default constructor.
+    WorkloadCharacteristics_Impl (void);
 
-    /// Get the dst TaskSet connection point.
-    TaskSet dst_TaskSet (void);
+    // Initializing constructor.
+    WorkloadCharacteristics_Impl (IMgaConnection * ptr);
 
-    /**
-     * @name Parent Methods
-     */
-    ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void) const;
-    ///@}
+    // Destructor.
+    virtual ~WorkloadCharacteristics_Impl (void);
 
-    /**
-     * @name Reference Methods
-     */
-    ///@{
-    ///@}
+    /// Accept a visitor for this model element.
+    virtual void accept (::GAME::Mga::Visitor * v);
+    MetricsBase src_MetricsBase (void) const;
+    TaskSet dst_TaskSet (void) const;
   };
 }
 
+#if defined (__GAME_INLINE__)
+#include "WorkloadCharacteristics.inl"
 #endif
+
+#endif  // !defined _PICML_COMPONENTBENCHMARK_WORKLOADCHARACTERISTICS

@@ -1,67 +1,68 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ExceptionRef.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ExceptionRef.inl"
+#endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ExceptionRef_Impl::metaname = "ExceptionRef";
+  const std::string ExceptionRef_Impl::metaname ("ExceptionRef");
 
   //
-  // ExceptionRef_Impl
+  // _create (const HasExceptions_in)
   //
-  ExceptionRef_Impl::ExceptionRef_Impl (void)
+  ExceptionRef ExceptionRef_Impl::_create (const HasExceptions_in parent)
   {
-  }
-
-  //
-  // ExceptionRef_Impl
-  //
-  ExceptionRef_Impl::ExceptionRef_Impl (IMgaReference * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~ExceptionRef_Impl
-  //
-  ExceptionRef_Impl::~ExceptionRef_Impl (void)
-  {
+    return ::GAME::Mga::create_object < ExceptionRef > (parent, ExceptionRef_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ExceptionRef_Impl::accept (Visitor * v)
+  void ExceptionRef_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ExceptionRef (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ExceptionRef (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 
   //
-  // _create
+  // ExceptionType_is_nil
   //
-  ExceptionRef ExceptionRef_Impl::_create (const HasExceptions_in parent)
+  bool ExceptionRef_Impl::ExceptionType_is_nil (void) const
   {
-    return ::GAME::Mga::create_object <ExceptionRef> (parent, ExceptionRef_Impl::metaname);
+    return !this->refers_to ().is_nil ();
   }
 
   //
-  // parent_HasExceptions
+  // get_ExceptionType
   //
-  HasExceptions ExceptionRef_Impl::parent_HasExceptions (void) const
+  ExceptionType ExceptionRef_Impl::get_ExceptionType (void) const
   {
-    return ::GAME::Mga::get_parent <HasExceptions> (this->object_.p);
+    return ExceptionType::_narrow (this->refers_to ());
   }
 }
 

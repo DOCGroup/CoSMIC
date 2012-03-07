@@ -1,70 +1,79 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ECRequirements.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "ECRequirements.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/EventChannelRequirements/ECBehavior.h"
 #include "PICML/EventChannelRequirements/ECRole.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string ECRequirements_Impl::metaname = "ECRequirements";
+  const std::string ECRequirements_Impl::metaname ("ECRequirements");
 
   //
-  // ECRequirements_Impl
+  // _create (const ComponentAssembly_in)
   //
-  ECRequirements_Impl::ECRequirements_Impl (void)
+  ECRequirements ECRequirements_Impl::_create (const ComponentAssembly_in parent)
   {
+    return ::GAME::Mga::create_object < ECRequirements > (parent, ECRequirements_Impl::metaname);
   }
 
   //
-  // ECRequirements_Impl
+  // _create (const ArtifactContainer_in)
   //
-  ECRequirements_Impl::ECRequirements_Impl (IMgaModel * ptr)
+  ECRequirements ECRequirements_Impl::_create (const ArtifactContainer_in parent)
   {
-    this->object_ = ptr;
+    return ::GAME::Mga::create_object < ECRequirements > (parent, ECRequirements_Impl::metaname);
   }
 
   //
-  // ~ECRequirements_Impl
+  // _create (const PackageConfigurationContainer_in)
   //
-  ECRequirements_Impl::~ECRequirements_Impl (void)
+  ECRequirements ECRequirements_Impl::_create (const PackageConfigurationContainer_in parent)
   {
+    return ::GAME::Mga::create_object < ECRequirements > (parent, ECRequirements_Impl::metaname);
   }
 
   //
   // accept
   //
-  void ECRequirements_Impl::accept (Visitor * v)
+  void ECRequirements_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_ECRequirements (this);
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_ECRequirements (this);
+    }
+
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
-  // ConfigureRTQoS
+  // has_ECBehavior
   //
-  void ECRequirements_Impl::ConfigureRTQoS (bool val)
+  bool ECRequirements_Impl::has_ECBehavior (void) const
   {
-    static const std::string attr_ConfigureRTQoS ("ConfigureRTQoS");
-    this->attribute (attr_ConfigureRTQoS)->bool_value (val);
-  }
-
-  //
-  // ConfigureRTQoS
-  //
-  bool ECRequirements_Impl::ConfigureRTQoS (void) const
-  {
-    static const std::string attr_ConfigureRTQoS ("ConfigureRTQoS");
-    return this->attribute (attr_ConfigureRTQoS)->bool_value ();
+    return this->children <ECBehavior> ().count () == 1;
   }
 
   //
@@ -72,11 +81,7 @@ namespace PICML
   //
   ECBehavior ECRequirements_Impl::get_ECBehavior (void) const
   {
-    // Get the collection of children.
-    std::vector <ECBehavior> items;
-    this->children (items);
-
-    return !items.empty () ? items.front () : ECBehavior ();
+    return this->children <ECBehavior> ().item ();
   }
 
   //
@@ -85,6 +90,14 @@ namespace PICML
   size_t ECRequirements_Impl::get_ECRoles (std::vector <ECRole> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_ECRoles
+  //
+  ::GAME::Mga::Iterator <ECRole> ECRequirements_Impl::get_ECRoles (void) const
+  {
+    return this->children <ECRole> ();
   }
 }
 

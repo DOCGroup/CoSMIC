@@ -1,66 +1,60 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "OutParameter.h"
 
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "OutParameter.inl"
+#endif
 
 #include "PICML/Visitor.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string OutParameter_Impl::metaname = "OutParameter";
+  const std::string OutParameter_Impl::metaname ("OutParameter");
 
   //
-  // OutParameter_Impl
+  // _create (const TwowayOperation_in)
   //
-  OutParameter_Impl::OutParameter_Impl (void)
+  OutParameter OutParameter_Impl::_create (const TwowayOperation_in parent)
   {
+    return ::GAME::Mga::create_object < OutParameter > (parent, OutParameter_Impl::metaname);
   }
 
   //
-  // OutParameter_Impl
+  // _create (const Operation_in)
   //
-  OutParameter_Impl::OutParameter_Impl (IMgaReference * ptr)
+  OutParameter OutParameter_Impl::_create (const Operation_in parent)
   {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~OutParameter_Impl
-  //
-  OutParameter_Impl::~OutParameter_Impl (void)
-  {
+    return ::GAME::Mga::create_object < OutParameter > (parent, OutParameter_Impl::metaname);
   }
 
   //
   // accept
   //
-  void OutParameter_Impl::accept (Visitor * v)
+  void OutParameter_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_OutParameter (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_OutParameter (this);
+    }
 
-  //
-  // _create
-  //
-  OutParameter OutParameter_Impl::_create (const TwowayOperation_in parent)
-  {
-    return ::GAME::Mga::create_object <OutParameter> (parent, OutParameter_Impl::metaname);
-  }
-
-  //
-  // parent_TwowayOperation
-  //
-  TwowayOperation OutParameter_Impl::parent_TwowayOperation (void) const
-  {
-    return ::GAME::Mga::get_parent <TwowayOperation> (this->object_.p);
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Reference (this);
+    }
   }
 }
 

@@ -1,78 +1,52 @@
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Worker.h"
 
-#include "game/mga/Attribute.h"
-#include "game/mga/MetaModel.h"
-#include "game/mga/MetaFolder.h"
-#include "game/mga/Functional_T.h"
+#if !defined (__GAME_INLINE__)
+#include "Worker.inl"
+#endif
 
 #include "PICML/Visitor.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
 
 namespace PICML
 {
   //
   // metaname
   //
-  const std::string Worker_Impl::metaname = "Worker";
+  const std::string Worker_Impl::metaname ("Worker");
 
   //
-  // Worker_Impl
+  // _create (const WorkerPackageBase_in)
   //
-  Worker_Impl::Worker_Impl (void)
+  Worker Worker_Impl::_create (const WorkerPackageBase_in parent)
   {
-  }
-
-  //
-  // Worker_Impl
-  //
-  Worker_Impl::Worker_Impl (IMgaModel * ptr)
-  {
-    this->object_ = ptr;
-  }
-
-  //
-  // ~Worker_Impl
-  //
-  Worker_Impl::~Worker_Impl (void)
-  {
+    return ::GAME::Mga::create_object < Worker > (parent, Worker_Impl::metaname);
   }
 
   //
   // accept
   //
-  void Worker_Impl::accept (Visitor * v)
+  void Worker_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    v->visit_Worker (this);
-  }
+    try
+    {
+      // See if this is a visitor we know.
+      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+      this_visitor->visit_Worker (this);
+    }
 
-  //
-  // _create
-  //
-  Worker Worker_Impl::_create (const WorkerPackageBase_in parent)
-  {
-    return ::GAME::Mga::create_object <Worker> (parent, Worker_Impl::metaname);
-  }
-
-  //
-  // Abstract
-  //
-  void Worker_Impl::Abstract (bool val)
-  {
-    static const std::string attr_Abstract ("Abstract");
-    this->attribute (attr_Abstract)->bool_value (val);
-  }
-
-  //
-  // Abstract
-  //
-  bool Worker_Impl::Abstract (void) const
-  {
-    static const std::string attr_Abstract ("Abstract");
-    return this->attribute (attr_Abstract)->bool_value ();
+    catch (const std::bad_cast & )
+    {
+      // Fallback to the standard visit method.
+      v->visit_Model (this);
+    }
   }
 
   //
@@ -84,11 +58,11 @@ namespace PICML
   }
 
   //
-  // parent_WorkerPackageBase
+  // get_Operations
   //
-  WorkerPackageBase Worker_Impl::parent_WorkerPackageBase (void) const
+  ::GAME::Mga::Iterator <Operation> Worker_Impl::get_Operations (void) const
   {
-    return ::GAME::Mga::get_parent <WorkerPackageBase> (this->object_.p);
+    return this->children <Operation> ();
   }
 }
 
