@@ -8,6 +8,7 @@
 #include "Folder_Class_Definition.h"
 #include "Model_Class_Definition.h"
 #include "Reference_Class_Definition.h"
+#include "Set_Class_Definition.h"
 
 //
 // _create
@@ -28,6 +29,8 @@ Class_Definition * Class_Definition::_create (GAME::Mga::FCO_in fco)
     return new Model_Class_Definition ();
   else if (metaname == "Reference")
     return new Reference_Class_Definition ();
+  else if (metaname == "Set")
+    return new Set_Class_Definition ();
   else
     return 0;
 }

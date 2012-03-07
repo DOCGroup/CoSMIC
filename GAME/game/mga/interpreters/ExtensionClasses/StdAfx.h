@@ -12,6 +12,6 @@
 #include <atlbase.h>
 #include <atlcom.h>
 
-#include "game/mga/Mga.h"
+#include "Extension_Classes_Component.h"
 
 #endif

@@ -1,6 +1,7 @@
 // $Id$
 
 #include "Collection_T.h"
+#include "game/mga/MetaFCO.h"
 
 namespace GAME
 {

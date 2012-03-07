@@ -70,12 +70,24 @@ public:
     else if (metaname == "AssociationClass")
     {
       GAME::Mga::FCO src = item->src ();
+      while (src->type () == OBJTYPE_REFERENCE)
+        src = GAME::Mga::Reference::_narrow (src)->refers_to ();
+
       const std::string src_metaname = src->meta ()->name ();
 
       if (src_metaname == "Connector")
-        this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (item->dst ())));
+      {
+        GAME::Mga::FCO dst = item->dst ();
+
+        while (dst->type () == OBJTYPE_REFERENCE)
+          dst = GAME::Mga::Reference::_narrow (dst)->refers_to ();
+
+        this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (dst)));
+      }
       else
+      {
         this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (src)));
+      }
     }
   }
 

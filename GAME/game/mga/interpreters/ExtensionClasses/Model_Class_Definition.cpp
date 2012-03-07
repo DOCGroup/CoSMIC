@@ -219,7 +219,7 @@ generate_single_definition (const Generation_Context & ctx,
     << function_header_t (get_method_name)
     << name << " " << this->classname_ << "::" << get_method_name << " (void) const"
     << "{"
-    << "this->children <" << name << "> ().item ();"
+    << "return this->children <" << name << "> ().item ();"
     << "}";
 }
 

@@ -18,6 +18,7 @@
 #include "game/mga/MetaFCO.h"
 #include "game/mga/Reference.h"
 #include "game/mga/RootFolder.h"
+#include "game/mga/component/Console_Service.h"
 
 #include "boost/bind.hpp"
 
@@ -132,6 +133,9 @@ void Extension_Classes_Visitor::visit_Atom (Atom_in atom)
   if (0 != definition.get ())
   {
     // Build the definition.
+    const std::string msg = "processing " + atom->path ("/");
+    GME_CONSOLE_SERVICE->info (msg);
+
     definition->build (atom);
 
     // Start a new extension class.

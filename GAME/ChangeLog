@@ -1,3 +1,33 @@
+Wed Mar  7 22:09:48 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/FCO_T.cpp:
+
+          Added missing include file.
+
+        * game/mga/interpreters/ExtensionClasses/Connection_Class_Definition.cpp:
+
+          BUGFIX: The generator failed if src or dst were not defined
+          in the metamodel.
+
+        * game/mga/interpreters/ExtensionClasses/Class_Definition.cpp:
+
+          Added support for generating Set definitions.
+
+        * game/mga/interpreters/ExtensionClasses/Extension_Classes_Visitor.cpp:
+        * game/mga/interpreters/ExtensionClasses/StdAfx.h:
+
+          Added progress messages that print to the GME console.
+
+        * game/mga/interpreters/ExtensionClasses/FCO_Class_Definition.cpp:
+
+          BUGFIX: The generator failed if either source or destination elements
+          of a Connector where a proxy element.
+
+       * game/mga/interpreters/ExtensionClasses/Model_Class_Definition.cpp:
+
+          BUGFIX: The generator did not generate a return statement for the
+          single element containment method.
+
 Wed Mar  7 04:12:09 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Component.mpc:

@@ -73,29 +73,39 @@ generate_definition (const Generation_Context & ctx)
   // Pass control to the base class.
   FCO_Class_Definition::generate_definition (ctx);
 
-  // Generate our methods related to the connection points.
-  const std::string src_type_name = this->src_->name ();
-  const std::string dst_type_name = this->dst_->name ();
+  if (!this->src_.is_nil ())
+  {
+    // Generate our methods related to source connection points.
+    const std::string src_type_name = this->src_->name ();
+    const std::string src_method = "src_" + src_type_name;
 
-  const std::string src_method = "src_" + src_type_name;
-  const std::string dst_method = "dst_" + dst_type_name;
+    ctx.hfile_
+      << src_type_name << " " << src_method << " (void) const;";
 
-  ctx.hfile_
-    << std::endl
-    << src_type_name << " " << src_method << " (void) const;"
-    << dst_type_name << " " << dst_method << " (void) const;";
+    ctx.sfile_
+      << function_header_t (src_type_name)
+      << src_type_name << " " << this->classname_ << "::" << src_method << " (void) const"
+      << "{"
+      << "return " << src_type_name << "::_narrow (this->src ());"
+      << "}";
+  }
 
-  ctx.sfile_
-    << function_header_t (src_type_name)
-    << src_type_name << " " << this->classname_ << "::" << src_method << " (void) const"
-    << "{"
-    << "return " << src_type_name << "::_narrow (this->src ());"
-    << "}"
-    << function_header_t (dst_type_name)
-    << dst_type_name << " " << this->classname_ << "::" << dst_method << " (void) const"
-    << "{"
-    << "return " << dst_type_name << "::_narrow (this->dst ());"
-    << "}";
+  if (!this->dst_.is_nil ())
+  {
+    // Generate our methods related to destination connection points.
+    const std::string dst_type_name = this->dst_->name ();
+    const std::string dst_method = "dst_" + dst_type_name;
+
+    ctx.hfile_
+      << dst_type_name << " " << dst_method << " (void) const;";
+
+    ctx.sfile_
+      << function_header_t (dst_type_name)
+      << dst_type_name << " " << this->classname_ << "::" << dst_method << " (void) const"
+      << "{"
+      << "return " << dst_type_name << "::_narrow (this->dst ());"
+      << "}";
+  }
 }
 
 //
@@ -106,6 +116,9 @@ get_includes (std::set <GAME::Mga::Atom> & includes)
 {
   FCO_Class_Definition::get_includes (includes);
 
-  includes.insert (this->src_);
-  includes.insert (this->dst_);
+  if (!this->src_.is_nil ())
+    includes.insert (this->src_);
+
+  if (!this->dst_.is_nil ())
+    includes.insert (this->dst_);
 }
