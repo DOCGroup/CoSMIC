@@ -1,6 +1,6 @@
 /// $Id$
 
-workspace (GAME) {
+workspace {
   cmdline += -include $GAME_ROOT/MPC/config
 
   exclude (!prop:windows) {
