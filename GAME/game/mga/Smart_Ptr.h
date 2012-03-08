@@ -56,19 +56,15 @@ protected:
   ~Smart_Ptr_Base (void);
 
 public:
-  T * operator -> (void);
-  const T * operator -> (void) const;
+  T * get (void) const;
 
-  T * get (void);
-  const T * get (void) const;
-
-  T & operator * (void);
-  const T & operator * (void) const;
+  T * operator -> (void) const;
+  T & operator * (void) const;
 
   /// Compute the hash value of the smart pointer.
   unsigned long hash (void) const;
 
-  operator T * (void);
+  operator T * (void) const;
 
   bool is_nil (void) const;
 
@@ -154,6 +150,19 @@ private:
   void reset (T * impl);
 };
 
+}
+}
+
+namespace boost
+{
+/**
+ * Specialization of the get_pointer function in boost. This function
+ * returns the raw C++ pointer contained in the GAME smart pointer.
+ */
+template <class T>
+T * get_pointer (GAME::Mga::Smart_Ptr <T> const & p)
+{
+  return p.get ();
 }
 }
 

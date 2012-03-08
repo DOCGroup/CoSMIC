@@ -1,3 +1,16 @@
+Thu Mar  8 01:36:06 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Smart_Ptr.h:
+        * game/mga/Smart_Ptr.inl:
+
+          BUGFIX: The smart pointer was not able to operate with boost
+          bind in Release mode. This was fixed by implementing the boost
+          get_pointer () method for the Smart_Ptr.
+
+          The old (non-)const accessor methods in Smart_Ptr_Base, and replaced
+          them with a single method that has a const modifier on the end of the
+          method.
+
 Wed Mar  7 22:09:48 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/FCO_T.cpp:

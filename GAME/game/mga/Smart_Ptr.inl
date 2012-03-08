@@ -93,17 +93,7 @@ unsigned long Smart_Ptr_Base <T>::hash (void) const
 //
 template <typename T>
 GAME_INLINE
-T * Smart_Ptr_Base <T>::operator -> (void)
-{
-  return this->impl_;
-}
-
-//
-// operator ->
-//
-template <typename T>
-GAME_INLINE
-const T * Smart_Ptr_Base <T>::operator -> (void) const
+T * Smart_Ptr_Base <T>::operator -> (void) const
 {
   return this->impl_;
 }
@@ -113,17 +103,7 @@ const T * Smart_Ptr_Base <T>::operator -> (void) const
 //
 template <typename T>
 GAME_INLINE
-T & Smart_Ptr_Base <T>::operator * (void)
-{
-  return *this->impl_;
-}
-
-//
-// operator *
-//
-template <typename T>
-GAME_INLINE
-const T & Smart_Ptr_Base <T>::operator * (void) const
+T & Smart_Ptr_Base <T>::operator * (void) const
 {
   return *this->impl_;
 }
@@ -133,17 +113,7 @@ const T & Smart_Ptr_Base <T>::operator * (void) const
 //
 template <typename T>
 GAME_INLINE
-T * Smart_Ptr_Base <T>::get (void)
-{
-  return this->impl_;
-}
-
-//
-// get
-//
-template <typename T>
-GAME_INLINE
-const T * Smart_Ptr_Base <T>::get (void) const
+T * Smart_Ptr_Base <T>::get (void) const
 {
   return this->impl_;
 }
@@ -153,7 +123,7 @@ const T * Smart_Ptr_Base <T>::get (void) const
 //
 template <typename T>
 GAME_INLINE
-Smart_Ptr_Base <T>::operator T * (void)
+Smart_Ptr_Base <T>::operator T * (void) const
 {
   return this->impl_;
 }
