@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Bitmap_Resource.h
+ * @file      Image_Resource.h
  *
  * $Id$
  *
@@ -25,13 +25,13 @@ namespace graphics
 {
 
 /**
- * @class Bitmap_Resource
+ * @class Image_Resource
  *
  * Utility class for loading an GDI+ Bitmap from a non-bitmap resource
  * that is embedded a module. This code is derived from a class named
  * CGdiPlusBitmap.
  */
-class GAME_GRAPHICS_Export Bitmap_Resource
+class GAME_GRAPHICS_Export Image_Resource
 {
 public:
   /**

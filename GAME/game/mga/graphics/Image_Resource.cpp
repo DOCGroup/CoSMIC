@@ -90,26 +90,26 @@ private:
 //
 // load
 //
-Gdiplus::Image * Bitmap_Resource::load (UINT id, LPCTSTR type)
+Gdiplus::Image * Image_Resource::load (UINT id, LPCTSTR type)
 {
   HMODULE module = ::AfxGetInstanceHandle ();
-  return Bitmap_Resource::load (module, MAKEINTRESOURCE (id), type);
+  return Image_Resource::load (module, MAKEINTRESOURCE (id), type);
 }
 
 //
 // load
 //
-Gdiplus::Image * Bitmap_Resource::
+Gdiplus::Image * Image_Resource::
 load (LPCTSTR name, LPCTSTR type)
 {
   HMODULE module = ::AfxGetInstanceHandle ();
-  return Bitmap_Resource::load (module, name, type);
+  return Image_Resource::load (module, name, type);
 }
 
 //
 // load
 //
-Gdiplus::Image * Bitmap_Resource::
+Gdiplus::Image * Image_Resource::
 load (HMODULE instance, LPCTSTR name, LPCTSTR type)
 {
   // Locate the resource in the module.

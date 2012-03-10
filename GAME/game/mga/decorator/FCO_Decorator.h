@@ -75,7 +75,7 @@ protected:
   void draw_bitmap (Gdiplus::Graphics * g) const;
 
   /// Pointer to the element's bitmap.
-  std::auto_ptr <Gdiplus::Bitmap> bitmap_;
+  std::auto_ptr <Gdiplus::Image> bitmap_;
 
   /// The element's label.
   std::string label_;

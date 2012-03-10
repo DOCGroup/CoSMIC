@@ -37,6 +37,8 @@ InitializeEx (IMgaProject* project,
               IMgaCommonDecoratorEvents* sink,
               ULONGLONG window)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     // Reset the state variables.
