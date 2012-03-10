@@ -22,6 +22,8 @@
 #include <Gdiplus.h>
 
 #include "game/mga/MgaUtil.h"
+#include "game/mga/component/Gme.h"
+
 #include "MgaDecorator.h"
 
 #endif  // !defined _STDAFX_H_

@@ -1,8 +1,8 @@
 // $Id$
 
 project : mfc, gdiplus, game_register, game_mga, game_lib {
-  after += GAME_Mga_Decorator
-  libs  += GAME_Mga_Decorator
+  after += GAME_Mga_Decorator GAME_Mga_Component
+  libs  += GAME_Mga_Decorator GAME_Mga_Component
 
   macros += _WINDLL _USRDLL
 

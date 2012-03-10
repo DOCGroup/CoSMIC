@@ -33,6 +33,13 @@ class GAME_MGA_DECORATOR_Export Reference_Decorator :
 public:
   /// Default constructor.
   Reference_Decorator (void);
+
+  /**
+   * Initializing constructor
+   *
+   * @param[in]       use_default_bitmap        Use default bitmap
+   * @param[in]       show_refers_to            Show the reference element
+   */
   Reference_Decorator (bool use_defualt_bitmap, bool show_refers_to);
 
   /// Destructor.

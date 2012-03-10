@@ -1,3 +1,21 @@
+Sat Mar 10 15:30:24 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_mga_decorator.mpb:
+
+          Added game_mga_component libraries directly to the project, but do not
+          add it as a base project. This allows the decorator to have access to
+          the GME console for logging purposes, such as logging an error.
+
+        * game/mga/decorator/stdafx.h:
+        * game/mga/decorator/Decorator_T.inl:
+        * game/mga/decorator/Decorator_T.cpp:
+        * game/mga/decorator/Reference_Decorator.h:
+        * game/mga/decorator/Reference_Decorator.cpp:
+
+          Bug fix where the DrawEx failed when delegating the drawing operation
+          because it failed to release the device context after control returns
+          from the delegate.
+
 Thu Mar  8 15:01:37 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * GAME_ACE.mwc:

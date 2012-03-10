@@ -6,8 +6,10 @@
 
 #include "game/mga/Exception.h"
 #include "game/mga/Transaction.h"
+#include "game/mga/component/Console_Service.h"
 
 #include <gdiplus.h>
+#include <sstream>
 
 namespace GAME
 {
@@ -21,16 +23,7 @@ template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
 Initialize (IMgaProject *project, IMgaMetaPart *part, IMgaFCO * fco)
 {
-  try
-  {
-    return this->InitializeEx (project, part, fco, 0, 0);
-  }
-  catch (...)
-  {
-
-  }
-
-  return S_OK;
+  return this->InitializeEx (project, part, fco, 0, 0);
 }
 
 //
@@ -54,6 +47,10 @@ InitializeEx (IMgaProject* project,
     GAME::Mga::Project proj (project);
     GAME::Mga::Meta::Part part (pPart);
 
+    // Initialize the GME console service.
+    GME_CONSOLE_SERVICE->initialize (proj);
+
+
     if (0 != pFCO)
     {
       // Initialize the decorator for the model view.
@@ -69,9 +66,15 @@ InitializeEx (IMgaProject* project,
     if (0 == retval)
       this->is_init_ = true;
   }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
   catch (...)
   {
-
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
   }
 
   return S_OK;
@@ -94,9 +97,138 @@ STDMETHODIMP Decorator_T <T, pclsid>::Destroy (void)
     this->impl_.destroy ();
     return S_OK;
   }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
   catch (...)
   {
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
+  }
 
+  return S_FALSE;
+}
+
+//
+// Draw
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
+{
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
+  if (!this->is_loc_set_)
+    return E_DECORATOR_LOCISNOTSET;
+
+  try
+  {
+    // Allocate a graphics objects and then pass control to the extended
+    // version of the draw method.
+    std::auto_ptr <Gdiplus::Graphics> g (Gdiplus::Graphics::FromHDC (hdc));
+    return this->impl_.draw (g.get ());
+  }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
+  catch (...)
+  {
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
+  }
+
+  return S_FALSE;
+}
+
+//
+// DrawEx
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
+{
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
+  if (!this->is_loc_set_)
+    return E_DECORATOR_LOCISNOTSET;
+
+  try
+  {
+    Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (graphics);
+    return this->impl_.draw (g);
+  }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
+  catch (...)
+  {
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
+  }
+
+  return S_FALSE;
+}
+
+//
+// GetPreferredSize
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::GetPreferredSize (long* sx, long* sy)
+{
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
+  try
+  {
+    return 0 == this->impl_.get_preferred_size (*sx, *sy) ? S_OK : S_FALSE;
+  }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
+  catch (...)
+  {
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
+  }
+
+  return S_FALSE;
+}
+
+
+//
+// SetLocation
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::SetLocation (long sx, long sy, long ex, long ey)
+{
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
+  try
+  {
+    GAME::Mga::Rect location (sx, sy, ex, ey);
+    this->impl_.set_location (location);
+    this->is_loc_set_ = true;
+
+    return S_OK;
+  }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
+  catch (...)
+  {
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
   }
 
   return S_FALSE;
@@ -149,9 +281,15 @@ GetLocation (long *sx, long *sy, long *ex, long *ey)
 
     return S_OK;
   }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
   catch (...)
   {
-
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
   }
 
   return S_FALSE;
@@ -210,9 +348,15 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 
     return S_OK;
   }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
   catch (...)
   {
-
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
   }
 
   return E_DECORATOR_PORTNOTFOUND;
@@ -242,14 +386,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
 
     for (; iter != iter_end; ++ iter)
     {
-      try
-      {
-        VERIFY_HRESULT (temp->Append ((*iter)->impl ()));
-      }
-      catch (const GAME::Mga::Failed_Result & )
-      {
-
-      }
+      VERIFY_HRESULT (temp->Append ((*iter)->impl ()));
     }
 
     // Return the collection to the client.
@@ -261,9 +398,15 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
 
     return S_OK;
   }
+  catch (const GAME::Mga::Exception & ex)
+  {
+    GME_CONSOLE_SERVICE->error (ex.message ());
+  }
   catch (...)
   {
-
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
   }
 
   return S_FALSE;
@@ -297,6 +440,10 @@ MouseMoved (ULONG flags,
   }
   catch (...)
   {
+    std::ostringstream ostr;
+    ostr << "(" << __FILE__ << ":" << __LINE__ << "): caught unknown exception";
+    GME_CONSOLE_SERVICE->error (ostr.str ());
+
     context.Detach ();
   }
 

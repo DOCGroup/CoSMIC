@@ -14,6 +14,7 @@
 #include "game/mga/Project.h"
 #include "game/mga/utils/Registrar.h"
 
+#include "game/mga/component/Console_Service.h"
 #include "game/mga/graphics/Image_Resolver.h"
 
 namespace GAME
@@ -60,15 +61,15 @@ initialize (const Project & proj,
 
   // Check for a decorator. If one is specified, then we should go
   // ahead a load it into memory as well.
-  std::string decorator;
+  std::string target_decorator;
 
   if (!target.is_nil () && this->show_refers_to_)
-    decorator = target->meta ()->registry_value ("decorator");
+    target_decorator = target->meta ()->registry_value ("decorator");
 
-  if (!decorator.empty ())
+  if (!target_decorator.empty ())
   {
     // Load the decorator, and initialize it.
-    CA2W tempstr (decorator.c_str ());
+    CA2W tempstr (target_decorator.c_str ());
     VERIFY_HRESULT (this->delegate_.CoCreateInstance (tempstr));
     VERIFY_HRESULT (this->delegate_->InitializeEx (proj.impl (),
                                                    part->impl (),
@@ -133,12 +134,10 @@ int Reference_Decorator::get_preferred_size (long & sx, long & sy)
 void Reference_Decorator::set_location (const GAME::Mga::Rect & location)
 {
   if (this->delegate_)
-  {
     VERIFY_HRESULT (this->delegate_->SetLocation (location.x_,
                                                   location.y_,
                                                   location.cx_,
                                                   location.cy_));
-  }
 
   FCO_Decorator::set_location (location);
 }
@@ -151,10 +150,27 @@ int Reference_Decorator::draw (Gdiplus::Graphics * g)
   if (0 == this->delegate_)
     return FCO_Decorator::draw (g);
 
-  VERIFY_HRESULT (this->delegate_->Draw (g->GetHDC ()));
-  this->draw_label (g);
+  HDC hdc = g->GetHDC ();
 
-  return 0;
+  try
+  {
+    // Pass control to the delegate. We have to make sure we release
+    // the device context before continuing. Otherwise, all subsequent
+    // drawing operations fail.
+    VERIFY_HRESULT (this->delegate_->Draw (hdc));
+    g->ReleaseHDC (hdc);
+
+    // Draw out label.
+    //this->draw_label (g);
+
+    return 0;
+  }
+  catch (...)
+  {
+    // Make sure we release the device context.
+    g->ReleaseHDC (hdc);
+    throw;
+  }
 }
 
 //
@@ -184,9 +200,7 @@ get_port_location (const FCO_in fco,
                    long & ey)
 {
   if (this->delegate_)
-  {
     VERIFY_HRESULT (this->delegate_->GetPortLocation (fco->impl (), &sx, &sy, &ex, &ey));
-  }
 
   return 0;
 }
