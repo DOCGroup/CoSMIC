@@ -1,0 +1,30 @@
+// $Id$
+
+project (PICML_DeploymentStatusDecorator) : game_graphics, game_mga_decorator, cosmic_lib {
+  sharedname = PICML_DeploymentStatusDecorator
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    DeploymentStatusDecorator_Impl.cpp
+    DeploymentStatusDecorator_Module.cpp
+    DeploymentStatusDecorator.idl
+
+    DeploymentStatusDecorator.rc
+  }
+
+  Header_Files {
+
+  }
+
+  Resource_Files {
+    question.png
+  }
+
+  specific (wix) {
+    gme_decorator   = 1
+    gme_progid      = PICML.Decorator.DeploymentStatusDecorator
+    gme_uuid        = 70AFF0FE-A96A-4090-B003-17AA3DCB139F
+  }
+}

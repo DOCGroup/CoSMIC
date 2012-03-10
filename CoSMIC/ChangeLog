@@ -1,3 +1,30 @@
+Sat Mar 10 16:59:15 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/DeploymentStatusDecorator:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator.idl:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator.mpc:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator.rc:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator_Impl.h:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator_Impl.cpp:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator_Module.cpp:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/PICML_DeploymentStatusDecorator.reg:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/PICML_DeploymentStatusDecoratord.reg:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/StdAfx.h:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/StdAfx.cpp:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/question.png:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/resource.h:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          First version of the deployment status decorator that shows if a
+          component is deployed or not. If the component is deployed, then
+          it shows it host and collocation group. If the component is not
+          deployed, then it overlays a question mark.
+
+        * PIM/PICML/paradigms/icons/noderef.bmp:
+
+          Added image for NodeReference.
+
 Thu Mar  8 14:54:50 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.inl:

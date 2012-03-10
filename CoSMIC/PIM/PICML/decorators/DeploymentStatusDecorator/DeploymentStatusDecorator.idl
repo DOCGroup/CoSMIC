@@ -1,0 +1,41 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file     DeploymentStatusDecorator.idl
+ *
+ *  $Id$
+ *
+ *  @author   James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_DEPLOYMENTSTATUSDECORATOR_IDL_
+#define _PICML_DEPLOYMENTSTATUSDECORATOR_IDL_
+
+#include "MgaDecorator.idl"
+#include "gme.idl"
+
+[
+  uuid (3FCE1EC5-D255-4535-88DE-252C6654034B),
+  version (1.0),
+]
+library DeploymentStatusDecorator
+{
+  importlib ("stdole32.tlb");
+  importlib ("stdole2.tlb");
+
+  [
+    uuid (70AFF0FE-A96A-4090-B003-17AA3DCB139F),
+    version (1.0)
+  ]
+  coclass DeploymentStatusDecorator
+  {
+    [default] interface IMgaDecorator;
+    interface IMgaVersionInfo;
+  };
+
+};
+
+
+#endif
