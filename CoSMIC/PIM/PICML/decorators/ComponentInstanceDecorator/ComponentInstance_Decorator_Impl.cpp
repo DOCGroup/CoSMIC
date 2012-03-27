@@ -12,6 +12,7 @@
 #include "game/mga/Iterator_T.h"
 
 #include "game/mga/graphics/Image_Resolver.h"
+#include "game/mga/graphics/Stock_Objects.h"
 
 #include "boost/bind.hpp"
 
@@ -353,24 +354,19 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics * g)
   float height = (float)this->location_.height ();
   float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0f);
   float py = static_cast <float> (this->location_.y_) + (height + 15.0f);
+  const CComBSTR bstr (this->label_.length (), this->label_.c_str ());
 
-  static const Gdiplus::Font font (L"Arial", 10);
-  static const Gdiplus::Font inst_font (L"Arial", 8);
-  static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
-
-  Gdiplus::StringFormat format;
-  format.SetAlignment (Gdiplus::StringAlignmentCenter);
-  format.SetLineAlignment (Gdiplus::StringAlignmentCenter);
-
-  CComBSTR bstr (this->label_.length (), this->label_.c_str ());
+  using GAME::Mga::graphics::Stock_Objects;
+  using GAME::Mga::graphics::GLOBAL_STOCK_OBJECTS;
+  Stock_Objects * stock = GAME::Mga::graphics::GLOBAL_STOCK_OBJECTS::instance ();
 
   // Draw the label for the element.
   g->DrawString (bstr,
                  this->label_.length (),
-                 &font,
+                 stock->label_font (),
                  Gdiplus::PointF (px, py),
-                 &format,
-                 &brush);
+                 stock->label_string_format (),
+                 stock->label_brush ());
 
   if (this->impl_label_.empty ())
     return 0;
@@ -378,13 +374,13 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics * g)
   std::string inst_label ("[");
   inst_label += this->impl_label_ + "]";
 
-  CComBSTR inst_bstr (inst_label.length (), inst_label.c_str ());
+  const CComBSTR inst_bstr (inst_label.length (), inst_label.c_str ());
   g->DrawString (inst_bstr,
                  inst_label.length (),
-                 &inst_font,
+                 stock->label_font (),
                  Gdiplus::PointF (px, py + 15),
-                 &format,
-                 &brush);
+                 stock->label_string_format (),
+                 stock->label_brush ());
 
   return 0;
 }

@@ -76,6 +76,17 @@ handle_object_created (GAME::Mga::Object_in obj)
   if (0 != tpi->children ("PackageType", package_types))
     return 0;
 
+  if (obj->name () == obj->meta ()->name ())
+  {
+    // Set the name of the template package instance.
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+    using GAME::Dialogs::Name_Dialog;
+
+    Name_Dialog name_dialog (obj, ::AfxGetMainWnd ());
+    if (IDOK != name_dialog.DoModal ())
+      return 0;
+  }
+
   // Locate all the packages in the object's project. This is done
   // by creating a filter and applying it to this project.
   GAME::Mga::Filter filter (obj->project ());
@@ -95,7 +106,6 @@ handle_object_created (GAME::Mga::Object_in obj)
   // Determine how many elements are template packages. This is
   // necessary since it will determine if we must bail out, auto
   // select the element, or display a dialog.
-  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
   size_t count = std::distance (iter, iter_end);
   GAME::Mga::FCO template_package;
 
