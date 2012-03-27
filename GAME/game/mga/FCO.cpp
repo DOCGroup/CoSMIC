@@ -209,8 +209,7 @@ Model FCO_Impl::parent_model (void) const
   CComPtr <IMgaModel> model;
   VERIFY_HRESULT (this->impl ()->get_ParentModel (&model));
 
-  // TODO Use factory to generate concrete implementation type.
-  return new Model_Impl (model.p);
+  return model.p;
 }
 
 //
@@ -221,8 +220,7 @@ Folder FCO_Impl::parent_folder (void) const
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->impl ()->get_ParentFolder (&folder));
 
-  // TODO Use factory to generate concrete implementation type.
-  return new Folder_Impl (folder.p);
+  return folder.p;
 }
 
 //

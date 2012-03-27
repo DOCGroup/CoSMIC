@@ -1,3 +1,16 @@
+Tue Mar 27 03:33:28 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/FCO.cpp:
+
+          BUGFIX: The parent_model () and parent_folder () method did not
+          use the object implementation factory to create the contained
+          implementation.
+
+        * game/mga/component/Event_Sink.cpp:
+
+          The message from a caught exception is displayed on the console
+          service in ObjectEvent ().
+
 Tue Mar 27 01:02:24 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/decorator/Decorator.mpc:

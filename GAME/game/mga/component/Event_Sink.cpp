@@ -733,9 +733,14 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
     return 0;
   }
-  catch (const GAME::Mga::Failed_Result & )
+  catch (const GAME::Mga::Exception & ex)
   {
+    Console_Service * console = GME_CONSOLE_SERVICE;
 
+    if (!console->is_initialized ())
+      console->initialize (this->project_);
+
+    console->error (ex.message ());
   }
   catch (...)
   {
