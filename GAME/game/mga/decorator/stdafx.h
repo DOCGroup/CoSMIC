@@ -22,7 +22,7 @@
 #include <Gdiplus.h>
 
 #include "game/mga/MgaUtil.h"
-#include "game/mga/component/Gme.h"
+#include "Gme.h"
 
 #include "MgaDecorator.h"
 

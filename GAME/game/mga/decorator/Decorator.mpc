@@ -14,6 +14,7 @@ project (GAME_Mga_Decorator) : game_graphics, game_lib {
   }
 
   Source_Files {
+    $(GME_ROOT)/Interfaces/Gme.idl
     $(GME_ROOT)/Interfaces/MgaDecorator.idl
 
     Decorator_Impl.cpp

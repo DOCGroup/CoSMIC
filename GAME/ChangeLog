@@ -1,3 +1,10 @@
+Tue Mar 27 01:02:24 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/decorator/Decorator.mpc:
+        * game/mga/decorator/stdafx.h:
+
+          Fixed compilation errors.
+
 Sat Mar 10 17:01:29 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/decorator/Decorator_T.cpp:
