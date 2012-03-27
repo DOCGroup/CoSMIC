@@ -141,7 +141,7 @@ private:
   inline bool check_collection_alias (const GAME::Mga::FCO_in fco) const
   {
     GAME::Mga::Reference alias = GAME::Mga::Reference::_narrow (fco);
-    return this->is_invalid_collection_type_i (alias);
+    return this->is_invalid_collection_type_i (alias->refers_to ());
   }
 
   const GAME::Mga::FCO type_;
