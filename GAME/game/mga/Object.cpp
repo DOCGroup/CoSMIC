@@ -192,7 +192,7 @@ Meta::Base Object_Impl::meta (void) const
   CComPtr <IMgaMetaBase> meta;
   VERIFY_HRESULT (this->impl ()->get_MetaBase (&meta));
 
-  return Meta::Base (meta);
+  return meta.p;
 }
 
 //
