@@ -35,7 +35,7 @@ namespace attr
 // UUID_Event_Handler
 //
 UUID_Event_Handler::UUID_Event_Handler (UUID_MANAGER & uuids)
-: GAME::Mga::Dynamic_Event_Handler_Impl (mask),
+: GAME::Mga::Object_Event_Handler (mask),
   uuids_ (uuids)
 {
 

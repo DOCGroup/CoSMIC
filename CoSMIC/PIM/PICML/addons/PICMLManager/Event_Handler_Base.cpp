@@ -36,7 +36,7 @@ namespace MI
 // Event_Handler_Base
 //
 Event_Handler_Base::Event_Handler_Base (unsigned long mask)
-: Dynamic_Event_Handler_Impl (mask)
+: Object_Event_Handler (mask)
 {
 
 }

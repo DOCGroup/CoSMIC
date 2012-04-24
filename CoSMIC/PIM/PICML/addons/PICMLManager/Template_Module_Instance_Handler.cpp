@@ -53,7 +53,7 @@ static const unsigned long mask = OBJEVENT_CREATED | OBJEVENT_LOSTCHILD;
 // Template_Module_Instance_Handler
 //
 Template_Module_Instance_Handler::Template_Module_Instance_Handler (void)
-: GAME::Mga::Dynamic_Event_Handler_Impl (mask)
+: GAME::Mga::Object_Event_Handler (mask)
 {
 
 }

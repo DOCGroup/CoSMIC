@@ -13,7 +13,7 @@
 #ifndef _CBML_ACTION_TYPE_HANDLER_H_
 #define _CBML_ACTION_TYPE_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 #include "game/mga/Model.h"
 #include "game/mga/Reference.h"
 
@@ -24,7 +24,7 @@
  * connect with the State element.
  */
 class CBML_Action_Type_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   static const unsigned long eventmask = OBJEVENT_RELATION;

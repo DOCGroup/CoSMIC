@@ -13,7 +13,7 @@
 #ifndef _CBML_OUTPUT_ACTION_HANDLER_H_
 #define _CBML_OUTPUT_ACTION_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 
 /**
  * @class CBML_Output_Action_Handler
@@ -22,7 +22,7 @@
  * connect with the State element.
  */
 class CBML_Output_Action_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;

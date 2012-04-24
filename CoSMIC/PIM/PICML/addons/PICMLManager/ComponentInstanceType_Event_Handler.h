@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_COMPONENT_INSTANCE_TYPE_HANDLER_H_
 #define _PICML_MI_COMPONENT_INSTANCE_TYPE_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 #include "game/mga/Model.h"
 #include "boost/bind.hpp"
 
@@ -28,7 +28,7 @@ namespace MI
  * Handles ComponentInstanceType when a relation is created.
  */
 class ComponentInstanceType_Event_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   /// Default constructor.

@@ -34,7 +34,7 @@ static const unsigned long EVENTMASK =
 // PICMLManager_Impl
 //
 PICMLManager_Impl::PICMLManager_Impl (void)
-: GAME::Mga::Static_Event_Handler_Impl (0xFFFFFFFF)
+: GAME::Mga::Top_Level_Event_Handler (0xFFFFFFFF)
 {
 
 }

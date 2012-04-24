@@ -15,7 +15,7 @@
 
 #include <map>
 #include <set>
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 #include "Default_Implementation_Generator.h"
 
 namespace PICML
@@ -29,7 +29,7 @@ namespace MI
  * for a given object.
  */
 class Default_Implementation_Event_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   typedef Default_Implementation_Generator::meta_info_t meta_info_t;

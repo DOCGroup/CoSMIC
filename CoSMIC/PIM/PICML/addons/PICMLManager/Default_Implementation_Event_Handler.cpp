@@ -22,7 +22,7 @@ static const unsigned long mask = OBJEVENT_CREATED;
 // Default_Implementation_Event_Handler
 //
 Default_Implementation_Event_Handler::Default_Implementation_Event_Handler (void)
-: ::GAME::Mga::Dynamic_Event_Handler_Impl (mask)
+: ::GAME::Mga::Object_Event_Handler (mask)
 {
 
 }
@@ -55,7 +55,7 @@ handle_object_created (GAME::Mga::Object_in obj)
 //
 int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
 {
-  GAME::Mga::Event_Handler_Impl::handle_xml_import_begin ();
+  GAME::Mga::Object_Event_Handler::handle_xml_import_begin ();
 
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 

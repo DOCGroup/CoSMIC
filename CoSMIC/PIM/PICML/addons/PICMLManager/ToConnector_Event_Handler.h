@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_TO_CONNECTOR_EVENT_HANDLER_H_
 #define _PICML_MI_TO_CONNECTOR_EVENT_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -26,7 +26,7 @@ namespace MI
  * name of the connection, which represents the target port.
  */
 class ToConnector_Event_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   /// Default constructor.

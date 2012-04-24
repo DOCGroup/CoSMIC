@@ -11,7 +11,7 @@
 // CBML_Action_Handler
 //
 CBML_Action_Handler::CBML_Action_Handler (void)
-: GAME::Mga::Dynamic_Event_Handler_Impl (eventmask)
+: GAME::Mga::Object_Event_Handler (eventmask)
 {
 
 }

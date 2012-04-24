@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_UUID_EVENT_HANDLER_H_
 #define _PICML_MI_UUID_EVENT_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 #include "game/mga/Model.h"
 
 #include "ace/Hash_Map_Manager.h"
@@ -30,7 +30,7 @@ namespace MI
  * UUID handlers.
  */
 class UUID_Event_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   /// Collection of UUIDs for this project.

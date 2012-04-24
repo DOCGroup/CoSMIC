@@ -13,7 +13,7 @@
 #ifndef _PICML_MANAGER_IMPL_H_
 #define _PICML_MANAGER_IMPL_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Event_Handler.h"
 #include "UUID_Event_Handler.h"
 
 /**
@@ -22,7 +22,7 @@
  * Main event handler implementation for the PICML model intelligence.
  */
 class PICMLManager_Impl :
-  public GAME::Mga::Static_Event_Handler_Impl
+  public GAME::Mga::Top_Level_Event_Handler
 {
 public:
   /// Constructor.

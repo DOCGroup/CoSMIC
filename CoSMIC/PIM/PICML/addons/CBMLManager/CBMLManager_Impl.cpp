@@ -20,7 +20,7 @@ DECLARE_GAME_COMPONENT_EX (CBML_Model_Intelligence_Impl, CBMLManager_Addon);
 // CBML_Model_Intelligence
 //
 CBML_Model_Intelligence::CBML_Model_Intelligence (void)
-: GAME::Mga::Static_Event_Handler_Impl (eventmask)
+: GAME::Mga::Top_Level_Event_Handler (eventmask)
 {
 
 }

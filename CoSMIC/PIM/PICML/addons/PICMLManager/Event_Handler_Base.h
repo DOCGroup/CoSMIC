@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_EVENT_HANDLER_BASE_H_
 #define _PICML_MI_EVENT_HANDLER_BASE_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -27,7 +27,7 @@ namespace MI
  * Contains common objects and implementations
  */
 class Event_Handler_Base :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   /// Default constructor.

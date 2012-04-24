@@ -13,7 +13,7 @@
 #ifndef _PICML_MI_NODE_REFERENCE_EVENT_HANDLER_H_
 #define _PICML_MI_NODE_REFERENCE_EVENT_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 
 namespace PICML
 {
@@ -26,7 +26,7 @@ namespace MI
  * This class creates a NodeReference for the desired object.
  */
 class NodeReference_Event_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   /// Default constructor.

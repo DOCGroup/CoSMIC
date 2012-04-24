@@ -24,7 +24,7 @@
 #include "game/mga/FCO.h"
 #include "game/mga/component/Addon_Impl_T.h"
 #include "game/mga/component/ComponentEx_T.h"
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 
 GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
                          "CBML Model Intelligence",
@@ -37,7 +37,7 @@ GAME_DEFAULT_ADDON_IMPL (CBML_Manager_ComponentEx_Impl,
  * Raw component interface for the add-on.
  */
 class CBML_Model_Intelligence :
-  public GAME::Mga::Static_Event_Handler_Impl
+  public GAME::Mga::Top_Level_Event_Handler
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED |
