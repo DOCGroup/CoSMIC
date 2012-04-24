@@ -1,3 +1,47 @@
+Tue Apr 24 04:32:10 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/component/Component.mpc:
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler.inl:
+        * game/mga/component/Event_Handler.cpp:
+        * game/mga/component/Event_Sink.h:
+        * game/mga/component/Event_Sink.cpp:
+        * game/mga/component/Global_Event_Handler.h:
+        * game/mga/component/Global_Event_Handler.inl:
+        * game/mga/component/Global_Event_Handler.cpp:
+        * game/mga/component/Object_Event_Handler.h:
+        * game/mga/component/Object_Event_Handler.inl:
+        * game/mga/component/Object_Event_Handler.cpp:
+
+          Separated the methods related to handling object and global
+          events into the Object_Event_Handler and Global_Event_Handler,
+          respectively.
+
+          Implemented the Top_Level_Event_Handler, which is the base class
+          for the main event handler of an add-on.
+
+        * game/mga/component/Readonly_Event_Handler.h:
+        * game/mga/component/Readonly_Event_Handler.inl:
+        * game/mga/component/Readonly_Event_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Association_Handler.h:
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Check_Handler.h:
+        * game/mga/addons/Model_Intelligence/Containment_Check_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.h:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.h:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+
+          Re-implemented using new event handler classes.
+
+        * game/mga/component/Event_Handler_Impl.h:
+        * game/mga/component/Event_Handler_Impl.inl:
+        * game/mga/component/Event_Handler_Impl.cpp:
+
+          Removed these files.
+
 Mon Apr 23 23:49:19 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Object.cpp:

@@ -36,7 +36,7 @@ DECLARE_GAME_COMPONENT_EX (Model_Intelligence_ComponentEx, Model_Intelligence_Ad
 // Model_Intelligence
 //
 Model_Intelligence::Model_Intelligence (void)
-: Mga::Static_Event_Handler_Impl (eventmask)
+: Mga::Top_Level_Event_Handler (eventmask)
 {
 
 }

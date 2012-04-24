@@ -25,7 +25,7 @@
 #include "game/mga/FCO.h"
 #include "game/mga/component/Addon_Impl_T.h"
 #include "game/mga/component/ComponentEx_T.h"
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 
 GAME_DEFAULT_ADDON_IMPL (Model_Intelligence_Impl,
                          "GAME Model Intelligence",
@@ -40,7 +40,7 @@ namespace GAME
  * Raw component interface for the add-on.
  */
 class Model_Intelligence :
-  public Mga::Static_Event_Handler_Impl
+  public Mga::Top_Level_Event_Handler
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED |

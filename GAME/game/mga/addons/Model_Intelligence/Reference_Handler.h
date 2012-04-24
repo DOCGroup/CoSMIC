@@ -14,7 +14,7 @@
 #ifndef _GAME_MODEL_INTELLIGENCE_REFERENCE_HANDLER_H_
 #define _GAME_MODEL_INTELLIGENCE_REFERENCE_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 
 /**
  * @class Reference_Handler
@@ -23,7 +23,7 @@
  * to objects.
  */
 class Reference_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;

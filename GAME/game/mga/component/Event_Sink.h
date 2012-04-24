@@ -29,8 +29,15 @@ namespace GAME
 {
 namespace Mga
 {
+
 // Forward decl.
-class Event_Handler;
+class Top_Level_Event_Handler;
+
+// Forward decl.
+class Global_Event_Handler;
+
+// Forward decl.
+class Object_Event_Handler;
 
 /**
  * @class Event_Sink
@@ -64,9 +71,14 @@ public:
    *
    * @param[in]       impl          The target implementation
    */
-  void set_event_handler (Event_Handler * impl = 0);
+  void set_event_handler (Top_Level_Event_Handler * impl = 0);
 
-  int register_global_handler (Event_Handler * eh);
+  /**
+   * Register a global event handler.
+   *
+   * @param[in]       handler         Pointer to event handler
+   */
+  int register_handler (Global_Event_Handler * handler);
 
   /**
    * Register event handler for the specified meta_metatype. If an event
@@ -77,7 +89,7 @@ public:
    * @param[in]      eh            Pointer to the event handler
    */
   int register_handler (size_t metatype,
-                        Event_Handler * eh);
+                        Object_Event_Handler * eh);
 
   /**
    * Register event handler for the specified type. If an event
@@ -88,7 +100,7 @@ public:
    * @param[in]       eh            Pointer to the event handler
    */
   int register_handler (const std::string & metaname,
-                        Event_Handler * eh);
+                        Object_Event_Handler * eh);
 
   /**
    * @overload
@@ -97,7 +109,7 @@ public:
    * @param[in]       eh            Pointer to the event handler
    */
   int register_handler (const Meta::Base_in meta,
-                        Event_Handler * eh);
+                        Object_Event_Handler * eh);
 
   /**
    * @overload
@@ -105,7 +117,7 @@ public:
    * @param[in]       meta          The type's meta information
    * @param[in]       eh            Pointer to the event handler
    */
-  int register_handler (const Object_in obj, Event_Handler * eh);
+  int register_handler (const Object_in obj, Object_Event_Handler * eh);
 
   /**
    * @overload
@@ -113,7 +125,7 @@ public:
    * @param[in]       meta          The type's meta information
    * @param[in]       eh            Pointer to the event handler
    */
-  int unregister_handler (const Object_in obj, Event_Handler * eh);
+  int unregister_handler (const Object_in obj, Object_Event_Handler * eh);
 
   /**
    * @overload
@@ -121,7 +133,7 @@ public:
    * @param[in]       meta          The type's meta information
    * @param[in]       eh            Pointer to the event handler
    */
-  int unregister_global_handler (Event_Handler * eh);
+  int unregister_handler (Global_Event_Handler * eh);
 
   /// Unregister all handlers for an instance.
   int unregister_all (const Object_in obj);
@@ -147,10 +159,10 @@ private:
   static const unsigned long BITMASK_SIZE = 32;
 
   /// Type definition for a set of event handlers.
-  typedef ACE_Unbounded_Set <Event_Handler *> handler_set;
+  typedef ACE_Unbounded_Set <Object_Event_Handler *> handler_set;
 
   static int dispatch_global_event (long global_event,
-                                    Event_Handler * eh);
+                                    Global_Event_Handler * eh);
 
   static int dispatch_object_event (Object_in obj,
                                     unsigned long mask,
@@ -158,26 +170,26 @@ private:
 
   static int dispatch_object_event (Object_in obj,
                                     unsigned long mask,
-                                    Event_Handler * eh);
+                                    Object_Event_Handler * eh);
 
   /// Insert a new global event handler.
-  int insert_into_global_handlers (Event_Handler * eh);
+  int insert_into_global_handlers (Global_Event_Handler * eh);
 
   /// Remove an existing global event handler.
-  int remove_from_global_handlers (Event_Handler * eh);
+  int remove_from_global_handlers (Global_Event_Handler * eh);
 
   /// Pointer to the actual implementation.
-  Event_Handler * impl_;
+  Top_Level_Event_Handler * impl_;
 
   /// The enable state for the event handler.
   bool enable_;
 
   // Global collection of registered handlers.
   typedef
-    ACE_Hash_Map_Manager_Ex <Event_Handler *,
+    ACE_Hash_Map_Manager_Ex <Global_Event_Handler *,
                              size_t,
                              ACE_Hash <void *>,
-                             ACE_Equal_To <Event_Handler *>,
+                             ACE_Equal_To <Global_Event_Handler *>,
                              ACE_Null_Mutex>
                              global_handler_map_t;
 

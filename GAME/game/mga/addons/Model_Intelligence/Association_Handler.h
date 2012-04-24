@@ -13,7 +13,7 @@
 #ifndef _GAME_MODEL_INTELLIGENCE_ASSOCIATION_HANDLER_H_
 #define _GAME_MODEL_INTELLIGENCE_ASSOCIATION_HANDLER_H_
 
-#include "game/mga/component/Event_Handler_Impl.h"
+#include "game/mga/component/Object_Event_Handler.h"
 
 /**
  * @class Association_Handler
@@ -22,7 +22,7 @@
  * association type of relationship
  */
 class Association_Handler :
-  public GAME::Mga::Dynamic_Event_Handler_Impl
+  public GAME::Mga::Object_Event_Handler
 {
 public:
   static const unsigned long eventmask = OBJEVENT_CREATED;
