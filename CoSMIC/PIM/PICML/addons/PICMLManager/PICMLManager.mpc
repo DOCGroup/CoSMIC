@@ -44,6 +44,7 @@ project (PICML_Model_Intelligence): game_dialogs, game_mga_component, game_manip
       PredefinedTypes_Handler.cpp
       ToConnector_Event_Handler.cpp
       Template_Module_Instance_Handler.cpp
+      Single_Deployment_Event_Handler.cpp
     }
 
     Instance_Event_Handlers {

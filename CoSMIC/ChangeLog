@@ -1,3 +1,16 @@
+Wed Apr 25 04:56:38 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Single_Deployment_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Single_Deployment_Event_Handler.cpp:
+
+          Implemented a new event handler that is responsible for simplying
+          switching component instances between collocation groups. If the
+          component instance is already deployed to a collocation group and
+          is added to another one, then this event handler will remove it
+          from its previous collocation group.
+
 Tue Apr 24 05:00:40 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/Action_Handler.h:

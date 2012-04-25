@@ -22,6 +22,7 @@
 #include "Package_Type_Handler.h"
 #include "ToConnector_Event_Handler.h"
 #include "Template_Module_Instance_Handler.h"
+#include "Single_Deployment_Event_Handler.h"
 
 static const unsigned long EVENTMASK =
    OBJEVENT_CREATED | OBJEVENT_ATTR |
@@ -97,7 +98,10 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
   this->sink_->register_handler ("ComponentInstance", new PICML::MI::ComponentInstance_Event_Handler ());
 
   // Handlers for ComponentInstanceRef
-  this->sink_->register_handler ("ComponentInstanceRef", new PICML::MI::ComponentInstanceRef_Event_Handler ());
+  GAME::Mga::Object_Event_Handler * sdeh = new PICML::MI::Single_Deployment_Event_Handler ();
+  this->sink_->register_handler ("CollocationGroup", sdeh);
+  this->sink_->register_handler ("ComponentInstanceRef", sdeh);
+  this->sink_->register_handler ("ComponentAssemblyReference", sdeh);
 
   // Handlers for ComponentInstanceType
   this->sink_->register_handler ("ComponentInstanceType", new PICML::MI::ComponentInstanceType_Event_Handler ());
