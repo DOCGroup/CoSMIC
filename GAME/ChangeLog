@@ -1,3 +1,31 @@
+Wed Apr 25 21:52:28 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Exception.h:
+        * game/mga/Exception.inl:
+        * game/mga/Exception.cpp:
+
+          Updated the exceptions to capture the file and line number
+          where the exception occurred.
+
+        * game/mga/Object.inl:
+        * game/mga/Object.cpp:
+
+          BUGFIX: The is_equal_to () method was not using the IsEqual method
+          on the IMgaObject interface.
+
+        * game/mga/decorator/Decorator_T.h:
+        * game/mga/decorator/Decorator_T.cpp:
+
+          BUGFIX: The GetPortLocation () was throwing an exception because
+          it was trying invoke methods that required an active transaction.
+          This was resolved by improving how the ports are cached and later
+          accessed.
+
+        * game/mga/utils/Point.h:
+        * game/mga/utils/Point.inl:
+
+          Implemented a set () method on the Rect class.
+
 Wed Apr 25 04:55:27 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/component/Console_Service.h:

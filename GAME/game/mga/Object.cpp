@@ -196,6 +196,20 @@ Meta::Base Object_Impl::meta (void) const
 }
 
 //
+// is_equal_to
+//
+GAME_INLINE
+bool Object_Impl::is_equal_to (const Object_in obj) const
+{
+  if (this == obj)
+    return true;
+
+  VARIANT_BOOL result;
+  VERIFY_HRESULT (this->object_->get_IsEqual (obj->impl (), &result));
+  return result == VARIANT_TRUE ? true : false;
+}
+
+//
 // objectinterface_type
 //
 objtype_enum Object_Impl::type (void) const

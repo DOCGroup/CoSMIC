@@ -73,15 +73,6 @@ unsigned long Object_Impl::hash (void) const
 }
 
 //
-// is_equal_to
-//
-GAME_INLINE
-bool Object_Impl::is_equal_to (const Object_in obj) const
-{
-  return this == obj ? true : this->id () == obj->id ();
-}
-
-//
 // is_modifiable
 //
 GAME_INLINE

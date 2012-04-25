@@ -100,7 +100,7 @@ private:
   bool is_loc_set_;
 
   /// Collection of ports and their location.
-  typedef std::map <IMgaFCO *, GAME::Mga::Rect> port_map_t;
+  typedef std::map <GAME::Mga::FCO, GAME::Mga::Rect> port_map_t;
 
   port_map_t ports_;
 };

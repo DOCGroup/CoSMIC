@@ -13,7 +13,8 @@ namespace Mga
 //
 GAME_INLINE
 Exception::Exception (void)
-: msg_ ("unknown exception")
+: msg_ ("unknown exception"),
+  line_ (0)
 {
 
 }
@@ -22,8 +23,10 @@ Exception::Exception (void)
 // Exception
 //
 GAME_INLINE
-Exception::Exception (const char * msg)
-: msg_ (msg)
+Exception::Exception (const char * msg, const char * file, size_t line)
+: msg_ (msg),
+  file_ (file),
+  line_ (line)
 {
 
 }

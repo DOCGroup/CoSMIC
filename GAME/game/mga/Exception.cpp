@@ -17,8 +17,9 @@ namespace Mga
 //
 // Failed_Result
 //
-Failed_Result::Failed_Result (HRESULT value)
-: value_ (value)
+Failed_Result::Failed_Result (HRESULT value, const char * file, size_t line)
+: Exception ("", file, line),
+  value_ (value)
 {
   ERRORS::instance ()->lookup (value, this->msg_);
 }

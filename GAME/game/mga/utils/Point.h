@@ -140,7 +140,16 @@ public:
   /// Default constructor.
   Rect (void);
 
+  /**
+   * Copy constructor.
+   *
+   * @param[in]       r       Source rectangle.
+   */
   Rect (const Rect & r);
+
+  /**
+   * Initializing constructor.
+   */
   Rect (int x, int y, int cx, int cy);
 
   /// Destructor.
@@ -149,11 +158,19 @@ public:
   /// Assignment operator
   const Rect & operator = (const Rect & r);
 
+  /// Calculate the rectangle's width.
   long width (void) const;
 
+  /// Calculate the rectangle's height.
   long height (void) const;
 
+  /// Set the rectangle values.
+  void set (long x, long y, long cx, long cy);
+
+  /// X-coordinate of the rectangle.
   long x_;
+
+  /// Y-coordinate of the rectangle.
   long y_;
 
   long cx_;

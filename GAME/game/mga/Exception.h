@@ -44,7 +44,7 @@ public:
    *
    * @param[in]     msg         Exception message
    */
-  Exception (const char * msg);
+  Exception (const char * msg, const char * file = "", size_t line = 0);
 
   /// Destructor.
   virtual ~Exception (void);
@@ -55,6 +55,10 @@ public:
 protected:
   /// Exception specific message
   std::string msg_;
+
+  std::string file_;
+
+  size_t line_;
 };
 
 /**
@@ -75,7 +79,7 @@ public:
    *
    * @param[in]     value     Value of the erro code.
    */
-  Failed_Result (HRESULT value);
+  Failed_Result (HRESULT value, const char * file = "", size_t line = 0);
 
   /// Destructor.
   virtual ~Failed_Result (void);
@@ -116,7 +120,7 @@ public:
   { \
     HRESULT hr = method; \
     if (FAILED (hr)) \
-      throw ::GAME::Mga::Failed_Result (hr); \
+      throw ::GAME::Mga::Failed_Result (hr, __FILE__, __LINE__); \
   }
 
 #if defined (__GAME_INLINE__)

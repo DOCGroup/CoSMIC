@@ -297,12 +297,36 @@ GetLocation (long *sx, long *sy, long *ex, long *ey)
   return S_FALSE;
 }
 
+/**
+ * @struct is_equal_to
+ */
+struct is_equal_to
+{
+public:
+  is_equal_to (IMgaFCO * fco)
+    : fco_ (fco)
+  {
+
+  }
+
+  bool operator () (const std::map <GAME::Mga::FCO, GAME::Mga::Rect>::value_type & entry) const
+  {
+    VARIANT_BOOL result;
+    VERIFY_HRESULT (entry.first->impl ()->get_IsEqual (this->fco_, &result));
+    return result == VARIANT_TRUE ? true : false;
+  }
+
+private:
+  /// Pointer to FCO under test.
+  IMgaFCO * fco_;
+};
+
 //
 // GetPortLocation
 //
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
-GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
+GetPortLocation (IMgaFCO * fco, long *sx, long *sy, long *ex, long *ey)
 {
   if (!this->is_init_)
     return E_DECORATOR_UNINITIALIZED;
@@ -312,10 +336,18 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 
   try
   {
-    port_map_t::iterator iter = this->ports_.find (pFCO);
+    // Attempt to locate the port in our cache.
+    port_map_t::iterator iter =
+      std::find_if (this->ports_.begin (),
+                    this->ports_.end (),
+                    is_equal_to (fco));
 
-    if (iter != this->ports_.end ())
+    if (iter == this->ports_.end ())
+      return E_DECORATOR_PORTNOTFOUND;
+
+    if (!(iter->second.height () == 0 && iter->second.width () == 0))
     {
+      // Copy over the port's relative location.
       *sx = iter->second.x_;
       *sy = iter->second.y_;
       *ex = iter->second.cx_;
@@ -323,29 +355,24 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
     }
     else
     {
-      // Since there is no guarantee that this method is called within
-      // a transactions, we are going to wrap the object in an implementation.
-      GAME::Mga::FCO fco (pFCO);
-      int retval = this->impl_.get_port_location (fco,
-                                                  *sx,
-                                                  *sy,
-                                                  *ex,
-                                                  *ey);
+      // Since the current location of this port is undefined, we are
+      // going to ask the implementation get this port's location.
+      int retval = this->impl_.get_port_location (iter->first, *sx, *sy, *ex, *ey);
 
       if (0 != retval)
         return E_DECORATOR_PORTNOTFOUND;
 
-      // Get the object's current location.
+      // Get the object's current location and convert the port's
+      // absolute location to a relative location.
       const GAME::Mga::Rect & loc = this->impl_.get_location ();
 
-      // Convert the locations into relative locations.
       *sx -= loc.x_;
       *sy -= loc.y_;
       *ex -= loc.x_;
       *ey -= loc.y_;
 
-      // Save the port's location for later.
-      this->ports_[pFCO] = GAME::Mga::Rect (*sx, *sy, *ex, *ey);
+      // Save the port's relative location for later.
+      iter->second.set (*sx, *sy, *ex, *ey);
     }
 
     return S_OK;
@@ -383,20 +410,23 @@ STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
     if (0 != this->impl_.get_ports (ports))
       return S_FALSE;
 
+    // Clear the map that contains the port locations.
+    if (!this->ports_.empty ())
+      this->ports_.clear ();
+
     std::vector <FCO>::const_iterator
       iter = ports.begin (), iter_end = ports.end ();
 
     for (; iter != iter_end; ++ iter)
     {
+      // Append the FCO to the listing, then insert an empty rectangle
+      // into the port mapping.
       VERIFY_HRESULT (temp->Append ((*iter)->impl ()));
+      this->ports_.insert (std::make_pair (*iter, Rect ()));
     }
 
     // Return the collection to the client.
     *portFCOs = temp.Detach ();
-
-    // Clear the cached ports.
-    if (!this->ports_.empty ())
-      this->ports_.clear ();
 
     return S_OK;
   }

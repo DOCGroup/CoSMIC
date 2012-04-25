@@ -205,12 +205,24 @@ long Rect::height (void) const
 }
 
 //
-// height
+// width
 //
 GAME_INLINE
 long Rect::width (void) const
 {
   return this->cx_ - this->x_;
+}
+
+//
+// set
+//
+GAME_INLINE
+void Rect::set (long x, long y, long cx, long cy)
+{
+  this->x_ = x;
+  this->y_ = y;
+  this->cx_ = cx;
+  this->cy_ = cy;
 }
 
 //
