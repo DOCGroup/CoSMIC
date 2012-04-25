@@ -91,25 +91,23 @@ private:
   ATL::CComPtr <IGMEOLEApp> gmeapp_;
 };
 
+}
+}
+
 /// Declare the singleton using ACE_DLL_Singleton_T since there is
 /// good chance this library is used by GME components that are loaded
 /// dynamically at runtime.
-typedef ACE_DLL_Singleton_T < Singleton_Adapter_T <Console_Service> ,
+typedef ACE_DLL_Singleton_T < GAME::Mga::Singleton_Adapter_T <GAME::Mga::Console_Service> ,
                               ACE_Null_Mutex>
                               CONSOLE_SERVICE_SINGLETON;
 
 GAME_MGA_COMPONENT_SINGLETON_DECLARE (ACE_DLL_Singleton_T,
-                                      Singleton_Adapter_T <Console_Service>,
+                                      GAME::Mga::Singleton_Adapter_T <GAME::Mga::Console_Service>,
                                       ACE_Null_Mutex);
 
 // Helper macro for accessing the console service.
 #define GME_CONSOLE_SERVICE \
-  ACE_DLL_Singleton_T < Singleton_Adapter_T <Console_Service>, ACE_Null_Mutex>::instance ()
-
-}
-}
-
-
+  ACE_DLL_Singleton_T < GAME::Mga::Singleton_Adapter_T <GAME::Mga::Console_Service>, ACE_Null_Mutex>::instance ()
 
 #if defined (__GAME_INLINE__)
 #include "Console_Service.inl"
