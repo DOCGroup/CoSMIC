@@ -1,3 +1,17 @@
+Wed Apr 25 21:57:06 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Rename of the file and contained class below.
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+
+          Removed these files.
+
 Wed Apr 25 04:56:38 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

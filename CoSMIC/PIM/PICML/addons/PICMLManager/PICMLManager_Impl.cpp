@@ -11,7 +11,7 @@
 #include "AttributeValue_Event_Handler.h"
 #include "CollocationGroup_Event_Handler.h"
 #include "ComplexTypeReference_Event_Handler.h"
-#include "ComponentInstance_Event_Handler.h"
+#include "ComponentInstance_Creator_Event_Handler.h"
 #include "ComponentInstanceRef_Event_Handler.h"
 #include "ComponentInstanceType_Event_Handler.h"
 #include "ConnectorInstance_Event_Handler.h"
@@ -95,7 +95,7 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
 
   // Handlers for ComponentInstace
   this->sink_->register_handler ("ComponentInstance", new PICML::MI::UUID_Event_Handler (this->all_uuids_));
-  this->sink_->register_handler ("ComponentInstance", new PICML::MI::ComponentInstance_Event_Handler ());
+  this->sink_->register_handler ("ComponentInstance", new PICML::MI::ComponentInstance_Creator_Event_Handler ());
 
   // Handlers for ComponentInstanceRef
   GAME::Mga::Object_Event_Handler * sdeh = new PICML::MI::Single_Deployment_Event_Handler ();

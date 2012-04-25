@@ -24,23 +24,22 @@ namespace MI
 {
 
 /**
- * @class ComponentInstance_Event_Handler
+ * @class ComponentInstance_Creator_Event_Handler
  *
- * Event handler for managing the functionality of a ComponentInstance
- * in PICML.
+ * Event handler for managing the creation and deletion of a
+ * ComponentInstance in PICML.
  */
-class ComponentInstance_Event_Handler :
+class ComponentInstance_Creator_Event_Handler :
   public GAME::Mga::Object_Event_Handler
 {
 public:
   /// Default constructor.
-  ComponentInstance_Event_Handler (void);
+  ComponentInstance_Creator_Event_Handler (void);
 
   /// Destructor.
-  virtual ~ComponentInstance_Event_Handler (void);
+  virtual ~ComponentInstance_Creator_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Mga::Object_in obj);
-
   virtual int handle_lost_child (GAME::Mga::Object_in obj);
 };
 

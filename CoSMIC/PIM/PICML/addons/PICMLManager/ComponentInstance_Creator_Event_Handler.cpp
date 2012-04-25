@@ -2,7 +2,7 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "ComponentInstance_Event_Handler.h"
+#include "ComponentInstance_Creator_Event_Handler.h"
 
 #include "game/mga/Filter.h"
 #include "game/mga/Project.h"
@@ -22,18 +22,18 @@ static const unsigned long mask = OBJEVENT_CREATED |
                                   OBJEVENT_LOSTCHILD;
 
 //
-// ComponentInstance_Event_Handler
+// ComponentInstance_Creator_Event_Handler
 //
-ComponentInstance_Event_Handler::ComponentInstance_Event_Handler (void)
+ComponentInstance_Creator_Event_Handler::ComponentInstance_Creator_Event_Handler (void)
 : GAME::Mga::Object_Event_Handler (mask)
 {
 
 }
 
 //
-// ComponentInstance_Event_Handler
+// ComponentInstance_Creator_Event_Handler
 //
-ComponentInstance_Event_Handler::~ComponentInstance_Event_Handler (void)
+ComponentInstance_Creator_Event_Handler::~ComponentInstance_Creator_Event_Handler (void)
 {
 
 }
@@ -41,7 +41,7 @@ ComponentInstance_Event_Handler::~ComponentInstance_Event_Handler (void)
 //
 // handle_object_created
 //
-int ComponentInstance_Event_Handler::handle_object_created (GAME::Mga::Object_in obj)
+int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
@@ -118,7 +118,7 @@ int ComponentInstance_Event_Handler::handle_object_created (GAME::Mga::Object_in
 //
 // handle_lost_child
 //
-int ComponentInstance_Event_Handler::
+int ComponentInstance_Creator_Event_Handler::
 handle_lost_child (GAME::Mga::Object_in obj)
 {
   GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
@@ -129,14 +129,15 @@ handle_lost_child (GAME::Mga::Object_in obj)
   static const std::string meta_ComponentInstanceType ("ComponentInstanceType");
   GAME::Mga::Model model = GAME::Mga::Model::_narrow (obj);
 
-  std::vector <GAME::Mga::Reference> types;
+  GAME::Mga::Iterator <GAME::Mga::Reference> types =
+    model->children <GAME::Mga::Reference> (meta_ComponentInstanceType);
 
-  if (model->children (meta_ComponentInstanceType, types) == 0 ||
-      types.front ().is_nil ())
+  if (types.count () == 0 || types->is_nil ())
   {
     // Delete all the children in the inferface.
     std::vector <GAME::Mga::FCO> children;
-    GAME::Mga::Meta::Aspect aspect = model->meta ()->aspect ("ComponentInterface");
+    static const std::string aspect_ComponentInterface ("ComponentInterface");
+    GAME::Mga::Meta::Aspect aspect = model->meta ()->aspect (aspect_ComponentInterface);
 
     model->children (aspect, children);
     std::for_each (children.begin (),
