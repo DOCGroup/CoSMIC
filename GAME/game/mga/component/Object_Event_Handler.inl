@@ -36,6 +36,15 @@ int Object_Event_Handler::handle_object_created (Object_in obj)
 }
 
 //
+// handle_object_predestroyed
+//
+GAME_INLINE
+int Object_Event_Handler::handle_object_predestroyed (Object_in obj)
+{
+  return 0;
+}
+
+//
 // handle_object_destroyed
 //
 GAME_INLINE

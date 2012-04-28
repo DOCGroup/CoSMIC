@@ -258,10 +258,11 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
     << std::endl
     << "CW2A metaname (bstr);"
     << "FACTORY_METHOD factory_method = 0;"
-    << "if (0 != this->map_.find (metaname.m_psz, factory_method))"
-    << "  return 0;"
     << std::endl
-    << "return factory_method (ptr);"
+    << "if (0 == this->map_.find (metaname.m_psz, factory_method))" << std::endl
+    << "  return factory_method (ptr);"
+    << "else" << std::endl
+    << "  return Impl_Factory_Base::allocate (ptr);"
     << "}"
     << "}";
 }

@@ -50,9 +50,12 @@ public:
    */
   virtual int initialize (Project project);
 
+  /// Handle the close of the event handler.
+  virtual void handle_close (void);
+
   /// Close the event handler. This method is invoked when
   /// the event handler is unregistered.
-  virtual void close (void);
+  void close (void);
 
   /// Set the event sink for the implementation.
   void set_event_sink (Event_Sink * eh);
@@ -61,6 +64,9 @@ public:
   long event_mask (void) const;
 
 protected:
+  /// The current project for the event handler.
+  Project project_;
+
   /// The mask for the event handler.
   unsigned long mask_;
 

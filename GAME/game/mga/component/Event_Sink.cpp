@@ -414,6 +414,15 @@ invoke_handle_model_close (Object_Event_Handler * impl, Object_in obj)
 }
 
 //
+// invoke_handle_object_predestroyed
+//
+static inline int
+invoke_handle_object_predestroyed (Object_Event_Handler * impl, Object_in obj)
+{
+  return impl->handle_object_predestroyed (obj);
+}
+
+//
 // invoke_handle_object_destroyed
 //
 static inline int
@@ -448,38 +457,38 @@ struct handler_entry_t
 
 // Handle map for object events
 static const handler_entry_t objectevent_handles[OBJECT_EVENT_COUNT] = {
-  {0x1, &invoke_handle_object_attribute},        /* OBJEVENT_ATTR          */
-  {0x2, &invoke_handle_object_registry},         /* OBJEVENT_REGISTRY      */
-  {0x4, &invoke_handle_new_child},               /* OBJEVENT_NEWCHILD      */
-  {0x8, &invoke_handle_object_relation},         /* OBJEVENT_RELATION      */
-  {0x10, &invoke_handle_object_properties},      /* OBJEVENT_PROPERTIES    */
-  {0x20, &invoke_handle_instance_subtype},       /* OBJEVENT_SUBT_INST     */
-  {0, 0},                                        /* (unused)               */
-  {0, 0},                                        /* (unused)               */
-  {0x100, &invoke_handle_object_parent},         /* OBJEVENT_PARENT        */
-  {0x200, &invoke_handle_lost_child},            /* OBJEVENT_LOSTCHILD     */
-  {0x400, &invoke_handle_referenced},            /* OBJEVENT_REFERENCED    */
-  {0x800, &invoke_handle_object_connected},      /* OBJEVENT_CONNECTED     */
-  {0x1000, &invoke_handle_set_included},         /* OBJEVENT_SETINCLUDED   */
-  {0x2000, &invoke_handle_referenced_release},   /* OBJEVENT_REFRELEASED   */
-  {0x4000, &invoke_handle_object_disconnected},  /* OBJEVENT_DISCONNECTED  */
-  {0x8000, &invoke_handle_set_excluded},         /* OBJEVENT_SETEXCLUDED   */
-  {0x10000, &invoke_handle_marked_readonly},     /* OBJEVENT_MARKEDRO      */
-  {0x20000, &invoke_handle_marked_readwrite},    /* OBJEVENT_MARKEDRW      */
-  {0, 0},                                        /* (unused)               */
-  {0x80000, &invoke_handle_model_open},          /* OBJEVENT_OPENMODEL     */
-  {0x100000, &invoke_handle_object_select},      /* OBJEVENT_SELECT        */
-  {0x200000, &invoke_handle_object_deselect},    /* OBJEVENT_DESELECT      */
-  {0x400000, &invoke_handle_object_mouseover},   /* OBJEVENT_MOUSEOVER     */
-  {0x800000, &invoke_handle_model_close},        /* OBJEVENT_CLOSEMODEL    */
-  {0, 0},                                        /* (unused)               */
-  {0, 0},                                        /* (unused)               */
-  {0, 0},                                        /* (unused)               */
-  {0, 0},                                        /* (unused)               */
-  {0, 0},                                        /* (unused)               */
-  {0, 0},                                        /* (unused)               */
-  {0x40000000, &invoke_handle_object_destroyed}, /* OBJEVENT_DESTROYED     */
-  {0x80000000, &invoke_handle_object_created}    /* OBJEVENT_CREATED       */
+  {0x1, &invoke_handle_object_attribute},           /* OBJEVENT_ATTR          */
+  {0x2, &invoke_handle_object_registry},            /* OBJEVENT_REGISTRY      */
+  {0x4, &invoke_handle_new_child},                  /* OBJEVENT_NEWCHILD      */
+  {0x8, &invoke_handle_object_relation},            /* OBJEVENT_RELATION      */
+  {0x10, &invoke_handle_object_properties},         /* OBJEVENT_PROPERTIES    */
+  {0x20, &invoke_handle_instance_subtype},          /* OBJEVENT_SUBT_INST     */
+  {0, 0},                                           /* (unused)               */
+  {0, 0},                                           /* (unused)               */
+  {0x100, &invoke_handle_object_parent},            /* OBJEVENT_PARENT        */
+  {0x200, &invoke_handle_lost_child},               /* OBJEVENT_LOSTCHILD     */
+  {0x400, &invoke_handle_referenced},               /* OBJEVENT_REFERENCED    */
+  {0x800, &invoke_handle_object_connected},         /* OBJEVENT_CONNECTED     */
+  {0x1000, &invoke_handle_set_included},            /* OBJEVENT_SETINCLUDED   */
+  {0x2000, &invoke_handle_referenced_release},      /* OBJEVENT_REFRELEASED   */
+  {0x4000, &invoke_handle_object_disconnected},     /* OBJEVENT_DISCONNECTED  */
+  {0x8000, &invoke_handle_set_excluded},            /* OBJEVENT_SETEXCLUDED   */
+  {0x10000, &invoke_handle_marked_readonly},        /* OBJEVENT_MARKEDRO      */
+  {0x20000, &invoke_handle_marked_readwrite},       /* OBJEVENT_MARKEDRW      */
+  {0, 0},                                           /* (unused)               */
+  {0x80000, &invoke_handle_model_open},             /* OBJEVENT_OPENMODEL     */
+  {0x100000, &invoke_handle_object_select},         /* OBJEVENT_SELECT        */
+  {0x200000, &invoke_handle_object_deselect},       /* OBJEVENT_DESELECT      */
+  {0x400000, &invoke_handle_object_mouseover},      /* OBJEVENT_MOUSEOVER     */
+  {0x800000, &invoke_handle_model_close},           /* OBJEVENT_CLOSEMODEL    */
+  {0, 0},                                           /* (unused)               */
+  {0, 0},                                           /* (unused)               */
+  {0, 0},                                           /* (unused)               */
+  {0, 0},                                           /* (unused)               */
+  {0, 0},                                           /* (unused)               */
+  {0x20000000, &invoke_handle_object_predestroyed}, /* OBJEVENT_PRE_DESTROYED */
+  {0x40000000, &invoke_handle_object_destroyed},    /* OBJEVENT_DESTROYED     */
+  {0x80000000, &invoke_handle_object_created}       /* OBJEVENT_CREATED       */
 };
 
 //
@@ -611,33 +620,42 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     Object object (obj);
     handler_set * handlers = 0;
 
-    if (0 != this->inst_handlers_.current_size () &&
-        0 == this->inst_handlers_.find (object, handlers))
+    if (0 != this->inst_handlers_.current_size ())
     {
-      // Notify the type handlers of the event. We are not going to
-      // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object, eventmask, *handlers))
-        return E_MGA_MUST_ABORT;
+      if (0 == this->inst_handlers_.find (object, handlers))
+      {
+        // Notify the type handlers of the event. We are not going to
+        // continue if there are any *errors* in the process.
+        if (0 != this->dispatch_object_event (object, eventmask, *handlers))
+          return E_MGA_MUST_ABORT;
 
-      // If this is a destroy event, let's do some house keeping. ;-)
-      if (0 != (eventmask & OBJEVENT_DESTROYED))
-        this->unregister_all (object);
+        // If this is a destroy event, let's do some house keeping. ;-)
+        if (0 != (eventmask & OBJEVENT_DESTROYED))
+          this->unregister_all (object);
+      }
     }
 
-    if (0 != this->type_handlers_.current_size () &&
-        0 == this->type_handlers_.find (object->meta (), handlers))
+    if (0 != this->type_handlers_.current_size ())
     {
-      // Notify the type handlers of the event. We are not going to
-      // continue if there are any *errors* in the process.
-      if (0 != this->dispatch_object_event (object, eventmask, *handlers))
-        return E_MGA_MUST_ABORT;
+      if (0 == this->type_handlers_.find (object->meta (), handlers))
+      {
+        // Notify the type handlers of the event. We are not going to
+        // continue if there are any *errors* in the process.
+        if (0 != this->dispatch_object_event (object, eventmask, *handlers))
+          return E_MGA_MUST_ABORT;
+      }
     }
 
-    // Notify the type handlers of the event. We are not going to
+    // Notify the meta type handlers of the event. We are not going to
     // continue if there are any *errors* in the process.
     int type = object->type ();
-    if (0 != this->dispatch_object_event (object, eventmask, this->meta_handlers_[type]))
-      return E_MGA_MUST_ABORT;
+    handler_set & meta_handlers = this->meta_handlers_[type];
+
+    if (0 != meta_handlers.size ())
+    {
+      if (0 != this->dispatch_object_event (object, eventmask, meta_handlers))
+        return E_MGA_MUST_ABORT;
+    }
 
     return 0;
   }
@@ -686,11 +704,22 @@ int Event_Sink::unregister_handler (Global_Event_Handler * eh)
 int Event_Sink::
 register_handler (size_t metatype, Object_Event_Handler * eh)
 {
+  // Make sure the meta type is valid.
   if (metatype + 1 >= this->meta_handlers_.size ())
     return -1;
 
+  // Insert the event handler into the global handler set.
+  if (0 != this->insert_into_global_handlers (eh))
+    return -1;
+
+  // Initialize the event handler.
+  eh->set_event_sink (this);
+  if (0 != eh->initialize (this->project_))
+    return -1;
+
+  // Lastly, store the event handler.
   this->meta_handlers_[metatype].insert (eh);
-  this->insert_into_global_handlers (eh);
+
   return 0;
 }
 
@@ -753,7 +782,6 @@ register_handler (const Meta::Base_in meta, Object_Event_Handler * eh)
 
   // Initialize the event handler.
   eh->set_event_sink (this);
-
   if (0 != eh->initialize (this->project_))
     return -1;
 
@@ -787,7 +815,6 @@ register_handler (const Object_in obj, Object_Event_Handler * eh)
 
   // Initialize the event handler.
   eh->set_event_sink (this);
-
   if (0 != eh->initialize (this->project_))
     return -1;
 
@@ -841,7 +868,10 @@ void Event_Sink::close (void)
   global_handler_map_t::ITERATOR iter (this->global_handlers_);
 
   for (; !iter.done (); ++ iter)
+  {
+    iter->key ()->handle_close ();
     iter->key ()->close ();
+  }
 }
 
 //
@@ -859,7 +889,7 @@ dispatch_object_event (Object_in obj, unsigned long mask, const handler_set & ha
 
   for (; !iter.done (); ++ iter)
   {
-    // Pass the event to each event hanlder.
+    // Pass the event to each event handler.
     if (0 != Event_Sink::dispatch_object_event (obj, mask, *iter))
       return -1;
   }
@@ -882,16 +912,18 @@ dispatch_object_event (const Object_in obj,
   while (0 != (mask & 0xFFFFFFFF))
   {
     // Locate the first set bit in the current mask. We must increment
-    // the handler iterator for each bit we skip.
+    // the handler iterator for each bit we skip. We could use division
+    // and modulus to locate the next value, but those operations are
+    // to expensive.
     for (; !(0x00000001 & mask); mask >>= 1)
       ++ handler_iter;
 
     // Ok, we found the next set bit location. We need to check if the
     // event handler is registered for this event.
-    if (0 != (handler_iter->bitmask_ & eh_eventmask) != 0 &&
-        0 != (*handler_iter->method_) (eh, obj))
+    if (0 != (handler_iter->bitmask_ & eh_eventmask))
     {
-      return -1;
+      if (0 != (*handler_iter->method_) (eh, obj))
+        return -1;
     }
 
     // Move to the next location.

@@ -47,21 +47,33 @@ public:
    *
    * @param[in]     result        Number of elements in result.
    */
-  size_t apply (std::vector <FCO> & result) const;
+  template <typename T>
+  size_t apply (std::vector <T> & result) const;
+
+  template <typename T>
+  Iterator <T> apply (void) const;
 
   /**
    * @overloaded
    *
    * Performs a recursive search starting at the specified model.
    */
-  size_t apply (const Model_in & model, std::vector <FCO> & result);
+  template <typename T>
+  size_t apply (const Model_in & model, std::vector <T> & result) const;
+
+  template <typename T>
+  Iterator <T> apply (const Model_in & model) const;
 
   /**
    * @overloaded
    *
    * Performs a recursive search starting at the specified folder.
    */
-  size_t apply (const Folder_in & folder, std::vector <FCO> & result);
+  template <typename T>
+  size_t apply (const Folder_in & folder, std::vector <T> & result) const;
+
+  template <typename T>
+  Iterator <T> apply (const Folder_in & folder) const;
 
   /**
    * Set the kind attribute for the filter.
@@ -85,5 +97,7 @@ private:
 
 }
 }
+
+#include "Filter_T.cpp"
 
 #endif  // !defined _GME_FILTER_H_

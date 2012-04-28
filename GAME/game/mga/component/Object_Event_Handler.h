@@ -37,6 +37,7 @@ public:
   virtual ~Object_Event_Handler (void);
 
   virtual int handle_object_created (Object_in obj);
+  virtual int handle_object_predestroyed (Object_in obj);
   virtual int handle_object_destroyed (Object_in obj);
 
   virtual int handle_object_attribute (Object_in obj);

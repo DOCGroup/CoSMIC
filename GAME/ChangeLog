@@ -1,3 +1,40 @@
+Sat Apr 28 04:26:09 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/Filter.h:
+        * game/mga/Filter.cpp:
+        * game/mga/Filter_T.cpp:
+        * game/mga/Mga.mpc:
+
+          Parameterized the apply () method so it is now possible to use
+          extension classes with this method. Also, implemented iterator
+          versions of all the apply () methods.
+
+        * game/mga/component/Addon_Impl_T.cpp:
+
+          BUGFIX: OBJEVENT_DESTROYED was not properly set in the event mask
+          to ensure the framework was able to process the event even if the
+          add-on was not interested in the event.
+
+        * game/mga/component/Event_Handler.h:
+        * game/mga/component/Event_Handler.inl:
+        * game/mga/component/Event_Sink.cpp:
+        * game/mga/component/Object_Event_Handler.h:
+        * game/mga/component/Object_Event_Handler.inl:
+
+          Implemented an event handler method for OBJEVENT_PRE_DESTROYED.
+
+        * game/mga/interpreters/ExtensionClasses/Impl_Factory_Generator.cpp:
+
+          BUGFIX: The allocate () method did not pass control to the next
+          implementation factory if the object was not located in the current
+          one.
+
+        * game/mga/interpreters/ExtensionClasses/Object_Class_Definition.cpp:
+
+          BUGFIX: The generated accept () method was catching a bad_cast when
+          the exception would never occur. Instead, we now check if the cast
+          returned a NULL pointer.
+
 Wed Apr 25 21:52:28 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/Exception.h:

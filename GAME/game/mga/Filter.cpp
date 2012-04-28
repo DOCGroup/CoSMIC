@@ -125,38 +125,5 @@ void Filter::name (std::vector <std::string> & value)
   this->name (ostr.str ());
 }
 
-//
-// apply
-//
-size_t Filter::apply (std::vector <FCO> & result) const
-{
-  CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (this->project_.impl ()->AllFCOs (this->filter_, &fcos));
-
-  return iter_to_collection (fcos.p, result);
-}
-
-//
-// apply
-//
-size_t Filter::apply (const Model_in & model, std::vector <FCO> & result)
-{
-  CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (model->impl ()->GetDescendantFCOs (this->filter_, &fcos));
-
-  return iter_to_collection (fcos.p, result);
-}
-
-//
-// apply
-//
-size_t Filter::apply (const Folder_in & folder, std::vector <FCO> & result)
-{
-  CComPtr <IMgaFCOs> fcos;
-  VERIFY_HRESULT (folder->impl ()->GetDescendantFCOs (this->filter_, &fcos));
-
-  return iter_to_collection (fcos.p, result);
-}
-
 }
 }

@@ -537,17 +537,13 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
       << function_header_t ("accept")
       << "void " << this->classname_ << "::accept (::GAME::Mga::Visitor * v)"
       << "{"
-      << "try"
-      << "{"
       << "// See if this is a visitor we know." << std::endl
       << "Visitor * this_visitor = dynamic_cast <Visitor *> (v);"
-      << "this_visitor->visit_" << this->name_ << " (this);"
-      << "}"
-      << "catch (const std::bad_cast & )"
-      << "{"
-      << "// Fallback to the standard visit method." << std::endl
-      << "v->visit_" << this->metaname_ << " (this);"
-      << "}"
+      << std::endl
+      << "if (0 != this_visitor)" << std::endl
+      << "  this_visitor->visit_" << this->name_ << " (this);"
+      << "else" << std::endl
+      << "  v->visit_" << this->metaname_ << " (this);"
       << "}";
   }
 
