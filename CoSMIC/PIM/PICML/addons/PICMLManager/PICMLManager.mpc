@@ -1,7 +1,7 @@
 // $Id$
 
 project (PICML_Model_Intelligence): game_dialogs, game_mga_component, game_manip, \
-                                    picml_game_utils, boost_base, cosmic_utils, \
+                                    picml_game_utils, picml_game_mga, boost_base, cosmic_utils, \
                                     cosmic_lib {
   sharedname = PICML_Model_Intelligence
 
@@ -9,47 +9,36 @@ project (PICML_Model_Intelligence): game_dialogs, game_mga_component, game_manip
   pch_source = StdAfx.cpp
 
   Source_Files {
+    AMI4CCM_Event_Handler.cpp
+    AttributeMember_Event_Handler.cpp
+    AttributeValue_Event_Handler.cpp
+    Component_Observer_Event_Handler.cpp
     Configurator.idl
-
     Default_Implementation_Generator.cpp
+    Default_Implementation_Event_Handler.cpp
     Default_Artifact_Generator.cpp
     Dialogs.cpp
+    Event_Handler_Base.cpp
     Event_Handler_Config.cpp
     Implementation_Configuration.cpp
+    NodeReference_Event_Handler.cpp
     PICMLManager.idl
     PICMLManager_Impl.cpp
     PICMLManager_Module.cpp
     PICML_Manager_Addon.cpp
+    ComplexTypeReference_Event_Handler.cpp
+    ComponentInstance_Creator_Event_Handler.cpp
+    ComponentInstanceType_Event_Handler.cpp
+    ConnectorInstance_Event_Handler.cpp
+    Package_Type_Handler.cpp
+    PredefinedTypes_Handler.cpp
     Scope_Display_Strategy.cpp
+    Single_Deployment_Event_Handler.cpp
+    Template_Module_Instance_Handler.cpp
+    Template_Parameter_Value_Handler.cpp
+    ToConnector_Event_Handler.cpp
+    UUID_Event_Handler.cpp
     Validation.cpp
-
-    General_Event_Handlers {
-      AMI4CCM_Event_Handler.cpp
-      Default_Implementation_Event_Handler.cpp
-      UUID_Event_Handler.cpp
-    }
-
-    Type_Event_Handlers {
-      AttributeMember_Event_Handler.cpp
-      AttributeValue_Event_Handler.cpp
-      CollocationGroup_Event_Handler.cpp
-      ComplexTypeReference_Event_Handler.cpp
-      ComponentInstance_Creator_Event_Handler.cpp
-      ComponentInstanceRef_Event_Handler.cpp
-      ComponentInstanceType_Event_Handler.cpp
-      ConnectorInstance_Event_Handler.cpp
-      Event_Handler_Base.cpp
-      NodeReference_Event_Handler.cpp
-      Package_Type_Handler.cpp
-      PredefinedTypes_Handler.cpp
-      ToConnector_Event_Handler.cpp
-      Template_Module_Instance_Handler.cpp
-      Single_Deployment_Event_Handler.cpp
-    }
-
-    Instance_Event_Handlers {
-      Template_Parameter_Value_Handler.cpp
-    }
   }
 
   Header_Files {

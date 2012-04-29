@@ -23,6 +23,9 @@ namespace PICML
 namespace MI
 {
 
+// Forward decl.
+class Component_Observer_Event_Handler;
+
 /**
  * @class ComponentInstance_Creator_Event_Handler
  *
@@ -34,13 +37,17 @@ class ComponentInstance_Creator_Event_Handler :
 {
 public:
   /// Default constructor.
-  ComponentInstance_Creator_Event_Handler (void);
+  ComponentInstance_Creator_Event_Handler (Component_Observer_Event_Handler * observer);
 
   /// Destructor.
   virtual ~ComponentInstance_Creator_Event_Handler (void);
 
   virtual int handle_object_created (GAME::Mga::Object_in obj);
   virtual int handle_lost_child (GAME::Mga::Object_in obj);
+
+private:
+  /// Pointer to the component observer event handler.
+  Component_Observer_Event_Handler * observer_;
 };
 
 }

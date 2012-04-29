@@ -71,18 +71,13 @@ namespace PICML
   //
   void Attribute_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_Attribute (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_Attribute (this);
+    else
       v->visit_Model (this);
-    }
   }
 
   //

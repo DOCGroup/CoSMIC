@@ -34,7 +34,9 @@ Single_Deployment_Event_Handler::~Single_Deployment_Event_Handler (void)
 int Single_Deployment_Event_Handler::
 handle_set_included (GAME::Mga::Object_in obj)
 {
-  this->fco_ = GAME::Mga::FCO::_narrow (obj);
+  if (!this->is_importing_)
+    this->fco_ = GAME::Mga::FCO::_narrow (obj);
+
   return 0;
 }
 

@@ -9,10 +9,8 @@
 #include "AMI4CCM_Event_Handler.h"
 #include "AttributeMember_Event_Handler.h"
 #include "AttributeValue_Event_Handler.h"
-#include "CollocationGroup_Event_Handler.h"
 #include "ComplexTypeReference_Event_Handler.h"
 #include "ComponentInstance_Creator_Event_Handler.h"
-#include "ComponentInstanceRef_Event_Handler.h"
 #include "ComponentInstanceType_Event_Handler.h"
 #include "ConnectorInstance_Event_Handler.h"
 #include "Default_Implementation_Event_Handler.h"
@@ -23,13 +21,6 @@
 #include "ToConnector_Event_Handler.h"
 #include "Template_Module_Instance_Handler.h"
 #include "Single_Deployment_Event_Handler.h"
-
-static const unsigned long EVENTMASK =
-   OBJEVENT_CREATED | OBJEVENT_ATTR |
-   OBJEVENT_RELATION |  OBJEVENT_SELECT |
-   OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED |
-   OBJEVENT_DESTROYED | OBJEVENT_LOSTCHILD |
-   OBJEVENT_REGISTRY;
 
 //
 // PICMLManager_Impl
@@ -65,9 +56,6 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
   // Handlers for AtributeValue
   this->sink_->register_handler ("AttributeValue", new PICML::MI::AttributeValue_Event_Handler ());
 
-  // Handlers for CollocationGroup
-  this->sink_->register_handler ("CollocationGroup", new PICML::MI::CollocationGroup_Event_Handler ());
-
   // Handlers for ComplexTypeReference
   this->sink_->register_handler ("ComplexTypeReference", new PICML::MI::ComplexTypeReference_Event_Handler ());
 
@@ -87,6 +75,15 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
   default_impl->insert ("Component", component_meta);
   this->sink_->register_handler ("Component", default_impl);
 
+  this->sink_->register_handler (PICML::InEventPort_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::OutEventPort_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::RequiredRequestPort_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::ProvidedRequestPort_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::ExtendedPort_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::MirrorPort_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::Attribute_Impl::metaname, &this->component_obs_);
+  this->sink_->register_handler (PICML::ReadonlyAttribute_Impl::metaname, &this->component_obs_);
+
   // Handlers for ComponentAssembly
   this->sink_->register_handler ("ComponentAssembly", new PICML::MI::UUID_Event_Handler (this->all_uuids_));
 
@@ -95,7 +92,7 @@ int PICMLManager_Impl::initialize (GAME::Mga::Project project)
 
   // Handlers for ComponentInstace
   this->sink_->register_handler ("ComponentInstance", new PICML::MI::UUID_Event_Handler (this->all_uuids_));
-  this->sink_->register_handler ("ComponentInstance", new PICML::MI::ComponentInstance_Creator_Event_Handler ());
+  this->sink_->register_handler ("ComponentInstance", new PICML::MI::ComponentInstance_Creator_Event_Handler (&this->component_obs_));
 
   // Handlers for ComponentInstanceRef
   GAME::Mga::Object_Event_Handler * sdeh = new PICML::MI::Single_Deployment_Event_Handler ();

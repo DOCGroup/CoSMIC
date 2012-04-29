@@ -15,6 +15,7 @@
 
 #include "game/mga/component/Event_Handler.h"
 #include "UUID_Event_Handler.h"
+#include "Component_Observer_Event_Handler.h"
 
 /**
  * @class PICMLManager_Impl
@@ -36,6 +37,7 @@ public:
 private:
   /// Collection of all the UUIDs for this project.
   PICML::MI::UUID_Event_Handler::UUID_MANAGER all_uuids_;
+  PICML::MI::Component_Observer_Event_Handler component_obs_;
 };
 
 #endif // _PICML_MANAGER_IMPL_H_

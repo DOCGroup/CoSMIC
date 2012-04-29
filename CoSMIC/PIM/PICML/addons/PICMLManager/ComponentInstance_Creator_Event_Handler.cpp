@@ -3,14 +3,19 @@
 
 #include "StdAfx.h"
 #include "ComponentInstance_Creator_Event_Handler.h"
+#include "Component_Observer_Event_Handler.h"
 
 #include "game/mga/Filter.h"
 #include "game/mga/Project.h"
 #include "game/mga/Reference.h"
 #include "game/mga/MetaModel.h"
+#include "game/mga/component/Event_Sink.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 #include "game/mga/dialogs/Dialog_Display_Strategy.h"
 #include "game/mga/modelgen.h"
+
+#include "PICML/PICML.h"
+
 #include <functional>
 
 namespace PICML
@@ -24,8 +29,10 @@ static const unsigned long mask = OBJEVENT_CREATED |
 //
 // ComponentInstance_Creator_Event_Handler
 //
-ComponentInstance_Creator_Event_Handler::ComponentInstance_Creator_Event_Handler (void)
-: GAME::Mga::Object_Event_Handler (mask)
+ComponentInstance_Creator_Event_Handler::
+ComponentInstance_Creator_Event_Handler (Component_Observer_Event_Handler * observer)
+: GAME::Mga::Object_Event_Handler (mask),
+  observer_ (observer)
 {
 
 }
@@ -41,40 +48,41 @@ ComponentInstance_Creator_Event_Handler::~ComponentInstance_Creator_Event_Handle
 //
 // handle_object_created
 //
-int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::Object_in obj)
+int ComponentInstance_Creator_Event_Handler::
+handle_object_created (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
   // There is now need to continue if we are an instance. This is
   // because the implementatation is already selected.
-  GAME::Mga::Model component = GAME::Mga::Model::_narrow (obj);
-  if (component->is_instance ())
+  ComponentInstance inst = ComponentInstance::_narrow (obj);
+
+  if (inst->is_instance ())
     return 0;
 
-  // GAME::create_if_not <Mga_t> (component, "type", type_info, GAME::count (...));
-  std::vector <GAME::Mga::Reference> typeinfo_set;
-  GAME::Mga::Reference typeinfo;
+  ComponentInstanceType inst_type;
 
-  if (0 != component->children ("ComponentInstanceType", typeinfo_set))
+  try
   {
-    typeinfo = typeinfo_set.front ();
+    inst_type = inst->get_ComponentInstanceType ();
 
-    if (!typeinfo.is_nil () && !typeinfo->refers_to ().is_nil ())
+    if (!inst_type->refers_to ().is_nil ())
       return 0;
   }
-  else
+  catch (const GAME::Mga::Exception &)
   {
-    typeinfo = GAME::Mga::Reference_Impl::_create (component, "ComponentInstanceType");
+    inst_type = ComponentInstanceType_Impl::_create (inst);
   }
 
   // Locate all the monolithic implementations in the project.
   GAME::Mga::Filter filter (obj->project ());
-  filter.kind ("MonolithicImplementation");
+  filter.kind (MonolithicImplementation_Impl::metaname);
 
-  GAME::Mga::FCO fco;
-  std::vector <GAME::Mga::FCO> results;
+  std::vector <MonolithicImplementation> results;
   filter.apply (results);
+
+  MonolithicImplementation impl;
 
   switch (results.size ())
   {
@@ -82,7 +90,7 @@ int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::O
     return 0;
 
   case 1:
-    fco = results.front ();
+    impl = results.front ();
     break;
 
   default:
@@ -92,7 +100,7 @@ int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::O
 
       // Display the list to the user so they can select one.
       AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
-      Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd ());
+      Selection_List_Dialog_T <MonolithicImplementation> dlg (0, ::AfxGetMainWnd ());
 
       dlg.title ("Component Implementation Selector");
       dlg.insert (results);
@@ -100,7 +108,7 @@ int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::O
       if (dlg.DoModal () != IDOK)
         return 0;
 
-      fco = dlg.selection ();
+      impl = dlg.selection ();
     }
   }
 
@@ -109,8 +117,29 @@ int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::O
 
   // Finally, create the component instance's type. Make sure it
   // references the selected FCO, which is a monolithic implementation.
-  typeinfo->refers_to (fco);
-  typeinfo->name (fco->name ());
+  inst_type->refers_to (impl);
+  inst_type->name (impl->name ());
+
+  // Create a component instance handler that will manage the
+  // state of this model element. The instance handler will need
+  // the Component model that is being observed.
+  std::vector <PICML::Implements> implements;
+
+  if (1 == impl->src_Implements (implements))
+  {
+    PICML::ComponentRef c_ref = implements.front ()->dst_ComponentRef ();
+
+    if (!c_ref.is_nil ())
+    {
+      // Register an observer for this component that will make updates
+      // to this component instance each time there is a change to the
+      // component interface.
+      PICML::Component comp = c_ref->get_Component ();
+      this->observer_->insert (comp, inst);
+    }
+  }
+
+
 
   return 0;
 }
@@ -118,38 +147,8 @@ int ComponentInstance_Creator_Event_Handler::handle_object_created (GAME::Mga::O
 //
 // handle_lost_child
 //
-int ComponentInstance_Creator_Event_Handler::
-handle_lost_child (GAME::Mga::Object_in obj)
+int ComponentInstance_Creator_Event_Handler::handle_lost_child (GAME::Mga::Object_in obj)
 {
-  GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
-
-  if (this->is_importing_ || fco->is_instance ())
-    return 0;
-
-  static const std::string meta_ComponentInstanceType ("ComponentInstanceType");
-  GAME::Mga::Model model = GAME::Mga::Model::_narrow (obj);
-
-  GAME::Mga::Iterator <GAME::Mga::Reference> types =
-    model->children <GAME::Mga::Reference> (meta_ComponentInstanceType);
-
-  if (types.count () == 0 || types->is_nil ())
-  {
-    // Delete all the children in the inferface.
-    std::vector <GAME::Mga::FCO> children;
-    static const std::string aspect_ComponentInterface ("ComponentInterface");
-    GAME::Mga::Meta::Aspect aspect = model->meta ()->aspect (aspect_ComponentInterface);
-
-    model->children (aspect, children);
-    std::for_each (children.begin (),
-                   children.end (),
-                   boost::bind (&GAME::Mga::FCO::impl_type::destroy,
-                                boost::bind (&GAME::Mga::FCO::get, _1)));
-
-    return 0;
-  }
-  else
-    return -1;
-
   return 0;
 }
 

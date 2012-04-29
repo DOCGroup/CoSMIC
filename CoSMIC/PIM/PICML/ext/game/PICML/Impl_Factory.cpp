@@ -638,6 +638,9 @@ namespace PICML
   //
   ::GAME::Mga::Object_Impl * Impl_Factory::allocate (IMgaObject * ptr)
   {
+    if (0 == ptr)
+      return 0;
+
     CComPtr <IMgaMetaBase> metabase;
     VERIFY_HRESULT (ptr->get_MetaBase (&metabase));
 
@@ -646,9 +649,11 @@ namespace PICML
 
     CW2A metaname (bstr);
     FACTORY_METHOD factory_method = 0;
-    if (0 != this->map_.find (metaname.m_psz, factory_method))  return 0;
 
-    return factory_method (ptr);
+    if (0 == this->map_.find (metaname.m_psz, factory_method))
+      return factory_method (ptr);
+    else
+      return Impl_Factory_Base::allocate (ptr);
   }
 }
 

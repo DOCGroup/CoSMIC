@@ -36,18 +36,13 @@ namespace PICML
   //
   void MultiInput_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_MultiInput (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_MultiInput (this);
+    else
       v->visit_Connection (this);
-    }
   }
 
   //

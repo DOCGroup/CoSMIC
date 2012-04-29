@@ -14,8 +14,9 @@
 #define _PICML_MI_COMPONENT_INSTANCE_TYPE_HANDLER_H_
 
 #include "game/mga/component/Object_Event_Handler.h"
-#include "game/mga/Model.h"
-#include "boost/bind.hpp"
+#include "PICML/PICML.h"
+
+#include <set>
 
 namespace PICML
 {
@@ -37,10 +38,19 @@ public:
   /// Destructor.
   virtual ~ComponentInstanceType_Event_Handler (void);
 
-  virtual int handle_object_relation (GAME::Mga::Object_in obj);
+  virtual int handle_project_open (void);
+  virtual int handle_xml_import_end (void);
 
-  void generate_port_instances (GAME::Mga::Model inst,
-                                const GAME::Mga::Model & component);
+  virtual int handle_object_relation (GAME::Mga::Object_in obj);
+  virtual int handle_object_predestroyed (GAME::Mga::Object_in obj);
+
+private:
+  void load_defined_types (void);
+
+  void delete_all_ports (ComponentInstance_in inst);
+  void generate_port_instances (ComponentInstance_in inst, Component_in component);
+
+  std::set <ComponentInstanceType> defined_;
 };
 
 }
