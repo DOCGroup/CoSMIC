@@ -250,6 +250,9 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
     << function_header_t ("allocate")
     << "::GAME::Mga::Object_Impl * Impl_Factory::allocate (IMgaObject * ptr)"
     << "{"
+    << "if (0 == ptr)" << std::endl
+    << "  return 0;" << std::endl
+    << std::endl
     << "CComPtr <IMgaMetaBase> metabase;"
     << "VERIFY_HRESULT (ptr->get_MetaBase (&metabase));"
     << std::endl
