@@ -104,11 +104,11 @@ void Component_Decorator_Impl::destroy (void)
 
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
-                 delete_t <GAME::Mga::graphics::Port_Decorator> ());
+                 delete_t <GAME::Mga::Port_Decorator> ());
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
-                 delete_t <GAME::Mga::graphics::Port_Decorator> ());
+                 delete_t <GAME::Mga::Port_Decorator> ());
 }
 
 //
@@ -194,7 +194,7 @@ initialize_ports (const std::string & aspect_name,
     // Allocate a new port for the FCO.
     GAME::Mga::Point location (x, y);
 
-    using GAME::Mga::graphics::Port_Decorator;
+    using GAME::Mga::Port_Decorator;
     Port_Decorator * port = new Port_Decorator (*iter,
                                                 image,
                                                 (*iter)->name (),
@@ -363,7 +363,7 @@ int Component_Decorator_Impl::draw_label (Gdiplus::Graphics * g)
 //
 int Component_Decorator_Impl::draw_ports (Gdiplus::Graphics * g)
 {
-  using GAME::Mga::graphics::Port_Decorator;
+  using GAME::Mga::Port_Decorator;
 
   // Draw the ports for the model.
   std::for_each (this->l_ports_.begin (),

@@ -1,3 +1,13 @@
+Mon Apr 30 02:38:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+
+          Updated the Port_Decorator include statement to reflect its
+          new location in GAME.
+
 Sun Apr 29 19:45:18 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer:

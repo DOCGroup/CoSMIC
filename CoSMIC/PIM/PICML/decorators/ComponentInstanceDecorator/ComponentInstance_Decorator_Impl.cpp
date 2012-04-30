@@ -104,11 +104,11 @@ void ComponentInstance_Decorator_Impl::destroy (void)
 
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),
-                 delete_t <GAME::Mga::graphics::Port_Decorator> ());
+                 delete_t <GAME::Mga::Port_Decorator> ());
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
-                 delete_t <GAME::Mga::graphics::Port_Decorator> ());
+                 delete_t <GAME::Mga::Port_Decorator> ());
 }
 
 //
@@ -209,7 +209,7 @@ initialize_ports (const std::string & aspect_name,
     long x, y;
     part.get_location (x, y);
 
-    using GAME::Mga::graphics::Port_Decorator;
+    using GAME::Mga::Port_Decorator;
 
     GAME::Mga::Point location (x, y);
     Port_Decorator * port = new Port_Decorator (*iter,
@@ -390,7 +390,7 @@ int ComponentInstance_Decorator_Impl::draw_label (Gdiplus::Graphics * g)
 //
 int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics * g)
 {
-  using GAME::Mga::graphics::Port_Decorator;
+  using GAME::Mga::Port_Decorator;
 
   // Draw the ports for the model.
   std::for_each (this->l_ports_.begin (),
@@ -418,13 +418,13 @@ get_ports (std::vector < ::GAME::Mga::FCO> & v)
                  this->l_ports_.end (),
                  boost::bind (&std::vector < ::GAME::Mga::FCO>::push_back,
                               boost::ref (v),
-                              boost::bind (&GAME::Mga::graphics::Port_Decorator::fco, _1)));
+                              boost::bind (&GAME::Mga::Port_Decorator::fco, _1)));
 
   std::for_each (this->r_ports_.begin (),
                  this->r_ports_.end (),
                  boost::bind (&std::vector < ::GAME::Mga::FCO>::push_back,
                               boost::ref (v),
-                              boost::bind (&GAME::Mga::graphics::Port_Decorator::fco, _1)));
+                              boost::bind (&GAME::Mga::Port_Decorator::fco, _1)));
 
   return 0;
 }
@@ -443,7 +443,7 @@ struct is_matching_port
 
   }
 
-  bool operator () (GAME::Mga::graphics::Port_Decorator * d) const
+  bool operator () (GAME::Mga::Port_Decorator * d) const
   {
     return this->fco_->is_equal_to (d->fco ());
   }
@@ -463,7 +463,7 @@ get_port_location (const GAME::Mga::FCO_in fco,
                    long & ey)
 {
   // Search the left ports for the FCO.
-  std::vector <GAME::Mga::graphics::Port_Decorator *>::const_iterator result;
+  std::vector <GAME::Mga::Port_Decorator *>::const_iterator result;
 
   result = std::find_if (this->l_ports_.begin (),
                          this->l_ports_.end (),

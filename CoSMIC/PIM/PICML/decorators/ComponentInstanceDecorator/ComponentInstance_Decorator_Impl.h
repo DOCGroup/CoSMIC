@@ -17,9 +17,9 @@
 
 #include "game/mga/MetaAspect.h"
 #include "game/mga/Part.h"
+#include "game/mga/decorator/Port_Decorator.h"
 #include "game/mga/graphics/Image_Manager_T.h"
 #include "game/mga/graphics/Image_Resolver.h"
-#include "game/mga/graphics/Port_Decorator.h"
 
 #include "ComponentInstance_Decorator_export.h"
 
@@ -71,7 +71,7 @@ public:
   int draw_label (Gdiplus::Graphics * g);
 
   /// Type definition of the port type.
-  typedef std::vector <GAME::Mga::graphics::Port_Decorator *> port_set_t;
+  typedef std::vector <GAME::Mga::Port_Decorator *> port_set_t;
 
 protected:
   int initialize_ports (const std::string & aspect,
