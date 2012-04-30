@@ -9,6 +9,7 @@ namespace Dialogs
 // Selection_List_Dialog_T
 //
 template <typename T>
+GAME_INLINE
 Selection_List_Dialog_T <T>::
 Selection_List_Dialog_T (Dialog_Display_Strategy * strategy, CWnd * parent)
 : Selection_List_Dialog (strategy, parent)
@@ -19,6 +20,7 @@ Selection_List_Dialog_T (Dialog_Display_Strategy * strategy, CWnd * parent)
 // Selection_List_Dialog_T
 //
 template <typename T>
+GAME_INLINE
 Selection_List_Dialog_T <T>::~Selection_List_Dialog_T (void)
 {
 }
@@ -27,27 +29,30 @@ Selection_List_Dialog_T <T>::~Selection_List_Dialog_T (void)
 // insert
 //
 template <typename T>
+GAME_INLINE
 void Selection_List_Dialog_T <T>::insert (const std::vector <T> & items)
 {
-  this->insert (items.begin (), items.end ());
+  using GAME::Mga::make_impl_iter;
+  this->insert (make_impl_iter (items.begin ()), make_impl_iter (items.end ()));
 }
 
 //
 // insert
 //
 template <typename T>
-void Selection_List_Dialog_T <T>::
-insert (typename std::vector <T>::const_iterator begin,
-        typename std::vector <T>::const_iterator end)
+template <typename ITER>
+GAME_INLINE
+void Selection_List_Dialog_T <T>::insert (ITER begin, ITER end)
 {
   for (; begin != end; ++ begin)
-    Selection_List_Dialog::insert (Mga::Object_in (begin->get ()));
+    Selection_List_Dialog::insert (*begin);
 }
 
 //
 // selection
 //
 template <typename T>
+GAME_INLINE
 T Selection_List_Dialog_T <T>::selection (void)
 {
   return T::_narrow (this->selection_);

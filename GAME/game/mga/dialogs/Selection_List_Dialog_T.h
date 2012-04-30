@@ -44,8 +44,8 @@ public:
 
   void insert (const std::vector <T> & items);
 
-  void insert (typename std::vector <T>::const_iterator begin,
-               typename std::vector <T>::const_iterator end);
+  template <typename ITER>
+  void insert (ITER begin, ITER end);
 
   /// Get the current selection.
   T selection (void);
