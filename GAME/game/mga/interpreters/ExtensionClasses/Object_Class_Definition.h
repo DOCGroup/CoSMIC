@@ -94,6 +94,7 @@ private:
 
   // Helper function that generates the elements factory method.
   void generate_factory_method (const Generation_Context &, GAME::Mga::Atom_in);
+  void generate_parent_method (const Generation_Context &, GAME::Mga::Atom_in);
 };
 
 #if defined (__GAME_INLINE__)

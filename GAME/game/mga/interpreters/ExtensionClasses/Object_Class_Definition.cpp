@@ -547,6 +547,43 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
       << "}";
   }
 
+  // Write the parent accessor methods.
+  ctx.hfile_
+    << std::endl
+    << "/**" << std::endl
+    << " * @name Parent Methods" << std::endl
+    << " */" << std::endl
+    << "///@{" << std::endl;
+
+  if (this->in_root_folder_)
+  {
+    // This object is contained in the root folder. We need to
+    // define and implement the factory method bound to the root
+    // folder of the project.
+    ctx.hfile_
+      << "::GAME::Mga::RootFolder parent_RootFolder (void);";
+
+    // Implement the root folder factory method.
+    ctx.sfile_
+      << function_header_t ("parent_RootFolder (void)")
+      << "::GAME::Mga::RootFolder " << this->classname_ << "::parent_RootFolder (void)"
+      << "{"
+      << "return ::GAME::Mga::RootFolder::_narrow (this->parent ());"
+      << "}";
+  }
+
+  // Write the factory method for each parent element.
+  std::for_each (GAME::Mga::make_impl_iter (this->parents_.begin ()),
+                 GAME::Mga::make_impl_iter (this->parents_.end ()),
+                 boost::bind (&Object_Class_Definition::generate_parent_method,
+                              this,
+                              boost::ref (ctx),
+                              _1));
+
+  ctx.hfile_
+    << "///@}"
+    << std::endl;
+
   // We have reached the point where we need to let all the other
   // classes definitions generate their required methods. So, let's
   // pass control to them.
@@ -592,6 +629,26 @@ generate_factory_method (const Generation_Context & ctx, GAME::Mga::Atom_in item
     << "{"
     << "return ::GAME::Mga::" << method
     << " < " << this->name_ << " > (parent, " << this->name_ << "_Impl::metaname);"
+    << "}";
+}
+
+//
+// generate_parent_method
+//
+void Object_Class_Definition::
+generate_parent_method (const Generation_Context & ctx, GAME::Mga::Atom_in item)
+{
+  const std::string parent = item->name ();
+  const std::string parent_method = "parent_" + parent;
+
+  ctx.hfile_
+    << parent << " " << parent_method << " (void);";
+
+  ctx.sfile_
+    << function_header_t (parent_method)
+    << parent << " " << this->classname_ << "::" << parent_method << " (void)"
+    << "{"
+    << "return " << parent << "::_narrow (this->parent ());"
     << "}";
 }
 
