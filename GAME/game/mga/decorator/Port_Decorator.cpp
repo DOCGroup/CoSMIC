@@ -19,8 +19,7 @@ namespace GAME
 {
 namespace Mga
 {
-namespace graphics
-{
+
 //
 // draw
 //
@@ -90,6 +89,5 @@ get_location (long & sx, long & sy, long & ex, long & ey)
   ey = sy + GME_PORT_HEIGHT;
 }
 
-}
 }
 }

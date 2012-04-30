@@ -1,3 +1,19 @@
+Mon Apr 30 02:37:17 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/decorator/Decorator.mpc:
+        * game/mga/decorator/Port_Decorator.h:
+        * game/mga/decorator/Port_Decorator.inl:
+        * game/mga/decorator/Port_Decorator.cpp:
+        * game/mga/graphics/Graphics.mpc:
+
+          Moved the Port_Decorator class to the decorator library.
+
+        * game/mga/graphics/Port_Decorator.h:
+        * game/mga/graphics/Port_Decorator.inl:
+        * game/mga/graphics/Port_Decorator.cpp:
+
+          Removed these files.
+
 Sun Apr 29 19:34:05 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses/Impl_Factory_Generator.cpp:

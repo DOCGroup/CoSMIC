@@ -5,8 +5,7 @@ namespace GAME
 {
 namespace Mga
 {
-namespace graphics
-{
+
 //
 // Port_Decorator
 //
@@ -90,6 +89,5 @@ FCO Port_Decorator::fco (void) const
   return this->port_;
 }
 
-}
 }
 }

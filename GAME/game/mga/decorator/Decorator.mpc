@@ -19,6 +19,7 @@ project (GAME_Mga_Decorator) : game_graphics, game_lib {
 
     Decorator_Impl.cpp
     FCO_Decorator.cpp
+    Port_Decorator.cpp
     Reference_Decorator.cpp
   }
 

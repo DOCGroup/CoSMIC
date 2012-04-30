@@ -13,10 +13,10 @@
 #ifndef _GAME_GRAPHIC_PORT_DECORATOR_H_
 #define _GAME_GRAPHIC_PORT_DECORATOR_H_
 
-#include <string>
 #include "game/mga/FCO.h"
 #include "game/mga/utils/Point.h"
-#include "Graphics_export.h"
+
+#include "Decorator_export.h"
 
 namespace Gdiplus
 {
@@ -29,14 +29,13 @@ namespace GAME
 {
 namespace Mga
 {
-namespace graphics
-{
+
 /**
  * @class Port_Decorator
  *
  * Decorator class for drawing port elements of a model.
  */
-class GAME_GRAPHICS_Export Port_Decorator
+class GAME_MGA_DECORATOR_Export Port_Decorator
 {
 public:
   enum ALIGNMENT
@@ -92,7 +91,6 @@ private:
   ALIGNMENT alignment_;
 };
 
-}
 }
 }
 
