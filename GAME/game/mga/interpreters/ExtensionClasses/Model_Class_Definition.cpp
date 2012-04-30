@@ -219,7 +219,8 @@ generate_single_definition (const Generation_Context & ctx,
     << function_header_t (get_method_name)
     << name << " " << this->classname_ << "::" << get_method_name << " (void) const"
     << "{"
-    << "return this->children <" << name << "> ().item ();"
+    << "GAME::Mga::Iterator <" << name << "> iter = this->children <" << name << "> ();"
+    << "return !iter.is_done () ? *iter : 0;"
     << "}";
 }
 

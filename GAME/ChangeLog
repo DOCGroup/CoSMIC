@@ -1,3 +1,10 @@
+Mon Apr 30 04:44:13 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * game/mga/interpreters/ExtensionClasses/Model_Class_Definition.cpp:
+
+          BUGFIX: The single containment failed if the model did not
+          contain an element.
+
 Mon Apr 30 03:27:43 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/dialogs/Selection_List_Dialog_T.h:
