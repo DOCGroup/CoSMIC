@@ -11,40 +11,66 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Model_Intelligence_Impl.cpp
     Model_Intelligence_Module.cpp
 
-    Association_Handler.cpp
-    Reference_Handler.cpp
     Containment_Handler.cpp
-    Containment_Check_Handler.cpp
-
+    Reference_Handler.cpp
+    Association_Handler.cpp
+        
     OCL_Expr_Parser.cpp
 
     Boolean_Expr.cpp
     Local_Value_Assignment_Expr.cpp
     Equality_Expr.cpp
+    If_Then_Else_Expr.cpp
 
     Expr_Command.cpp
     Add_Command.cpp
-
-    Conjunction_Expr.cpp
-    And_Expr.cpp
 
     Comparison_Expr.cpp
     Equal_Expr.cpp
     Greater_Equal_Expr.cpp
     Lesser_Equal_Expr.cpp
-
-    Collection_Expr.cpp
-    Parts_Method_Expr.cpp
+    
+    Conjunction_Expr.cpp
+    And_Expr.cpp
 
     Value_Expr.cpp
+	Method_Call.cpp
     Constant_Value_Expr.cpp
     Local_Value_Expr.cpp
-    Size_Method_Expr.cpp
+    Attribute_Expr.cpp
+	
+	Self_Method_Call.cpp
+	Local_Value_Method_Call.cpp
+	
+	Method.cpp
+	Parts_Method.cpp
+	Size_Method.cpp
+	Refers_to_Method.cpp
+	AtomParts_Method.cpp
+	Name_Method.cpp
+	KindName_Method.cpp
+	Parent_Method.cpp
+	ChildFolders_Method.cpp
+	RoleName_Method.cpp
+	
+     	
+	Value.cpp
+	Int_Value.cpp
+	Long_Value.cpp
+	String_Value.cpp
+	Boolean_Value.cpp
+	Double_Value.cpp
+	Object_Value.cpp
   }
 
   Header_Files {
     Model_Intelligence_Context.h
   }
+  
+  Template_Files {
+    Collection_Value_T.cpp
+  }
+    
 
   Resource_Files {
     Component.rc

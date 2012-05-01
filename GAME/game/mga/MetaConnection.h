@@ -71,11 +71,41 @@ public:
   void attach (IMgaMetaConnJoint * point);
 
   /**
-   * Get the parent of this connection point, which is Connection_Impl.
+   * Get the parent of this connector, which is Connection_Impl.
    *
    * @return          Parent of the Metaconnection.
    */
   Connection parent (void) const;
+
+  /**
+   * Get the role name of the connector.
+   *
+   * @param[out]      fcos          All roles associated to connector.
+   * @return                        size of the vector.
+   */
+  size_t roles (std::vector <std::string> &rls);
+
+  /**
+   * Get the target object for the connector.
+   *
+   * @param[out]      fcos          Target FCO objects of the connector.
+   * @return                        size of the vector.
+   */
+  size_t targets (std::vector <FCO> & fcos);
+
+  /**
+   * Get the source of the connectors.
+   *
+   * @return                        The source target of the connector
+   */
+  FCO get_src (void);
+
+  /**
+   * Get the destination of this connector.
+   *
+   * @return                        The destination target of the connector
+   */
+  FCO get_dst (void);
 
 private:
   /// Pointer to the connection point.
@@ -116,7 +146,7 @@ public:
    * @param[out]      points      Collection of connection points.
    * @return          Number of connection points in \a points.
    */
-  size_t connection_points (std::vector <ConnectionPoint> & points) const;
+  size_t connectors (std::vector <ConnectionPoint> & points) const;
 
 private:
   /// Cached pointer to the implementation.

@@ -1,4 +1,4 @@
-// -*- C++ -*-
+  // -*- C++ -*-
 
 //=============================================================================
 /**
@@ -17,6 +17,7 @@
 #include <vector>
 #include "game/mga/Model.h"
 #include "Model_Intelligence_Context.h"
+#include "Value.h"
 
 /**
  * @class Value_Expr
@@ -33,10 +34,10 @@ public:
 	~Value_Expr (void);
 
   // Pure virtual method for evaluating respective expression
-  virtual unsigned int evaluate (Ocl_Context &res) = 0;
+  virtual Value * evaluate (Ocl_Context &res) = 0;
 
   // Pure virtual method to check if the variale is mutable
-  virtual bool ismutable (void) = 0;
+  virtual bool is_mutable (void) = 0;
 };
 
 

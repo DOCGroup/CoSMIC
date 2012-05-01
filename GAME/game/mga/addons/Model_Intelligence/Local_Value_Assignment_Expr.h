@@ -15,6 +15,7 @@
 
 #include "Boolean_Expr.h"
 #include "Value_Expr.h"
+#include "Value.h"
 
 /**
  * @class Local_Value_Assignment_Expr
@@ -28,7 +29,7 @@ class Local_Value_Assignment_Expr : public Boolean_Expr
 public:
 
   /// Default constructor.
-  Local_Value_Assignment_Expr (std::string var, Value_Expr *right);
+  Local_Value_Assignment_Expr (std::string &var, Value_Expr *right);
 
 	/// Destructor.
 	~Local_Value_Assignment_Expr (void);
@@ -43,9 +44,9 @@ public:
 
   /**
    * Value method for getting the value of the local variable
-   * @return        value of the local variable
+   * @return        value object of the local variable
    */
-  size_t value (void);
+  Value * value (void);
 
 private:
   // Variable for storing the local variable name
@@ -55,7 +56,7 @@ private:
   Value_Expr * rhs_;
 
   // Value of the local variable
-  size_t value_;
+  Value * value_;
 };
 
 

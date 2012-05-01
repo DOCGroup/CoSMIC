@@ -18,7 +18,12 @@
 #include "MetaRole.h"
 #include "game/mga/Model.h"
 #include "game/mga/Atom.h"
+#include "game/mga/Reference.h"
+#include "game/mga/Object.h"
+
 #include "Expr_Command.h"
+#include "Value.h"
+#include "Int_Value.h"
 
 /**
  * @struct Ocl_Context
@@ -28,22 +33,31 @@
  */
 struct Ocl_Context
 {
-  // Map for storing local variables and its value
-  std::map <std::string, size_t> locals;
+	// Flag denoting the type of constraint
+	bool model_constraint;
+
+  // Variables common to all constraints:
+
+  // The parent_model of the FCO's to be created 
+	GAME::Mga::Model model_object;
+
+	// The object that triggers the event
+	GAME::Mga::Object self;
 
   // Vector storing the list of actions to be performed
   std::vector <Expr_Command *> actions;
 
-  // Stores the target metarole used by expression resolvers
+  // Constraint specific variables:
+
+  // Stores the target metaroles used by expression resolvers
   // (example Parts_Method_Expr)
-  GAME::Mga::Meta::Role target_metarole;
+	std::vector <GAME::Mga::Meta::Role> target_metaroles;
 
-  // This is either the model which triggers the event handler
-  // or the parent_model of the FCO triggering the event handler
-  GAME::Mga::Model model_object;
+  // Map for storing local variables and its value
+  std::map <std::string, Value *> locals;
 
-  // This is the Atom object which triggers the event handler
-  GAME::Mga::Atom atom_object;
+	// Current FCO being worked on
+	GAME::Mga::FCO cur_fco;  
 };
 
 #endif

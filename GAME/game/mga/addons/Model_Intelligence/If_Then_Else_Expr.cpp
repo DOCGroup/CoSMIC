@@ -1,0 +1,52 @@
+// $Id$
+
+#include "StdAfx.h"
+#include "If_Then_Else_Expr.h"
+#include "boost/bind.hpp"
+#include "Object_Value.h"
+
+
+//
+// Constructor
+//
+If_Then_Else_Expr::If_Then_Else_Expr (Equality_Expr * cond, 
+																			std::vector <Boolean_Expr *> &first, 
+																			std::vector <Boolean_Expr *> &second)
+:cond_ (cond), 
+ first_ (first),
+ second_ (second)
+{
+}
+
+//
+// Destructor
+//
+If_Then_Else_Expr::~If_Then_Else_Expr (void)
+{
+}
+
+bool If_Then_Else_Expr::evaluate (Ocl_Context &res)
+{ 
+	bool flag = true;
+	if (this->cond_->evaluate (res))
+	{
+		// Iterating over the sub-expressions and evaluating them
+		std::vector <Boolean_Expr *>::iterator 
+			it = this->first_.begin (), it_end = this->first_.end ();
+
+		for (; it != it_end; ++it)
+			flag = (*it)->evaluate (res);
+	}
+	else
+	{
+		// Iterating over the sub-expressions and evaluating them
+		std::vector <Boolean_Expr *>::iterator 
+			it = this->second_.begin (), it_end = this->second_.end ();
+
+		for (; it != it_end; ++it)
+			flag = (*it)->evaluate (res);
+	}
+
+	return flag;		
+}
+

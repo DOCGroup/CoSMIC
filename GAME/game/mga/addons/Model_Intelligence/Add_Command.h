@@ -32,9 +32,8 @@ class Add_Command : public Expr_Command
 public:
   /// Constructor
   Add_Command (GAME::Mga::Model parent_model,
-               GAME::Mga::Meta::Role target_metarole,
-               GAME::Mga::Meta::FCO target_metatype,
-               size_t count);
+		           std::vector <GAME::Mga::Meta::Role> target_metaroles,
+               double count);
 
   ///Destructor
   ~Add_Command (void);
@@ -50,14 +49,14 @@ private:
   // Target parent model
   GAME::Mga::Model parent_model_;
 
-  // Target meta role
-  GAME::Mga::Meta::Role target_metarole_;
+  // Target meta roles
+	std::vector <GAME::Mga::Meta::Role> target_metaroles_;
 
   // Metatype of objects to be added
   GAME::Mga::Meta::FCO target_metatype_;
 
   // Number of objects to be added
-  size_t count_;
+  double count_;
 };
 
 #endif

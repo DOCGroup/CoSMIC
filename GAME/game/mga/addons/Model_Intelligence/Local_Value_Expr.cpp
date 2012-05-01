@@ -3,11 +3,12 @@
 #include "StdAfx.h"
 
 #include "Local_Value_Expr.h"
+#include "Int_Value.h"
 
 //
 // Constructor
 //
-Local_Value_Expr::Local_Value_Expr (std::string var)
+Local_Value_Expr::Local_Value_Expr (std::string &var)
 : localvar_ (var)
 {
 }
@@ -22,15 +23,15 @@ Local_Value_Expr::~Local_Value_Expr (void)
 //
 // evaluate
 //
-unsigned int Local_Value_Expr::evaluate (Ocl_Context &res)
+Value * Local_Value_Expr::evaluate (Ocl_Context &res)
 {   
-  return res.locals[this->localvar_];
+	return res.locals[this->localvar_];
 }
 
 //
-// ismutable
+// is_mutable
 //
-bool Local_Value_Expr::ismutable (void)
+bool Local_Value_Expr::is_mutable (void)
 {
   return true;
 }

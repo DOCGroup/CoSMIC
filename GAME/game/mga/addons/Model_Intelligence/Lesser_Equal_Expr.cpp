@@ -35,49 +35,60 @@ bool Lesser_Equal_Expr::evaluate (Ocl_Context & res)
   size_t flag = 0;
   bool ret = false;
 
-  // Checking if the local variables are mutable/non-mutable
-  if ((this->lhs_->ismutable () == true) && (this->rhs_->ismutable () == false))
-    flag = 1;
-  else if ((this->lhs_->ismutable () == false) && (this->rhs_->ismutable () == true))
-    flag = 2;
-  else if ((this->lhs_->ismutable () == true) && (this->rhs_->ismutable () == true))
-    flag = 3;
+	if (res.model_constraint)
+	{
 
-  switch (flag) {
+		// Checking if the local variables are mutable/non-mutable
+		if (this->lhs_->is_mutable () && !this->rhs_->is_mutable ())
+			flag = 1;
+		else if (!this->lhs_->is_mutable () && this->rhs_->is_mutable ())
+			flag = 2;
+		else if (this->lhs_->is_mutable () && this->rhs_->is_mutable ())
+			flag = 3;
 
-    case 1:
-      {
-        if (this->lhs_->evaluate (res) > this->rhs_->evaluate (res))
-         {
-           // Counting the number of objects to be deleted
-           size_t count = this->rhs_->evaluate (res) - this->lhs_->evaluate (res);
-           // Calling the delete command
-           ret = true;
-         }
-        break;
-      }
-    case 2:
-      {
-        if (this->lhs_->evaluate (res) < this->rhs_->evaluate (res))
-        {
-          // Counting the number of objects to be deleted
-          size_t count = this->lhs_->evaluate (res) - this->rhs_->evaluate (res);
-          // Calling the delete command
-          ret = true;
-        }
-        break;
-      }
-    case 3:
-      {
-        // user is given a choice in dialog 
-      }
-    default:
-      {
-        //throw an exception
-      }
-  }
+		switch (flag) {
 
-  return ret;
+			case 1:
+				{
+					if (this->lhs_->evaluate (res)->is_greater (this->rhs_->evaluate (res)))
+					 {
+						 // Counting the number of objects to be deleted
+						 double count;
+						 this->rhs_->evaluate (res)->get_diff (this->lhs_->evaluate (res), count);
+
+						 // Calling the delete command
+						 ret = true;
+					 }
+					break;
+				}
+			case 2:
+				{
+					if (this->lhs_->evaluate (res)->is_lesser (this->rhs_->evaluate (res)))
+					{
+						// Counting the number of objects to be deleted
+						double count;
+						this->lhs_->evaluate (res)->get_diff (this->rhs_->evaluate (res), count);
+
+						// Calling the delete command
+						ret = true;
+					}
+					break;
+				}
+			case 3:
+				{
+					// user is given a choice in dialog 
+				}
+			default:
+				{
+					//throw an exception
+					ret = true;
+				}
+		}
+	}
+	else
+		ret = this->lhs_->evaluate (res)->is_greater_equal (this->rhs_->evaluate (res));
+
+	return ret;
 }
 
 //

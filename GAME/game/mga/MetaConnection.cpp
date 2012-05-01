@@ -12,7 +12,9 @@
 
 #include "Exception.h"
 #include "MetaRole.h"
-
+#include "MetaProject.h"
+#include "MetaFolder.h"
+#include <string>
 
 namespace GAME
 {
@@ -33,6 +35,203 @@ Connection ConnectionPoint_Impl::parent (void) const
   VERIFY_HRESULT (this->impl ()->get_Parent (&conn));
 
   return new Connection_Impl (conn.p);
+}
+
+//
+// roles
+//
+size_t ConnectionPoint_Impl::roles (std::vector <std::string> &rls) 
+{
+  // Get all the reference pointer specifications.
+  CComPtr <IMgaMetaPointerSpecs> specs;
+  VERIFY_HRESULT (this->impl ()->get_PointerSpecs (&specs));
+
+  // Locate each specification in the project and store it.
+  long count = 0;
+  specs->get_Count (&count);
+
+  for (long i = 1; i <= count; ++ i)
+  {
+	  // Get a reference pointer specification.
+	  CComPtr <IMgaMetaPointerSpec> spec;
+	  VERIFY_HRESULT (specs->get_Item (i, &spec));
+
+	  // Get the name of the reference pointer
+	  CComBSTR name;
+	  VERIFY_HRESULT (spec->get_Name (&name));
+	  CW2A tempstr (name);
+
+	  rls.push_back (tempstr.m_psz);
+  }  
+  return rls.size ();
+}
+
+//
+// targets
+//
+size_t ConnectionPoint_Impl::targets (std::vector<FCO> &fcos)
+{
+  // Get all the reference pointer specifications.
+  CComPtr <IMgaMetaPointerSpecs> specs;
+  VERIFY_HRESULT (this->impl ()->get_PointerSpecs (&specs));
+
+  // Locate each specification in the project and store it.
+  long count = 0;
+  specs->get_Count (&count);
+
+  for (long i = 1; i <= count; ++ i)
+  {
+	  // Get a reference pointer specification.
+	  CComPtr <IMgaMetaPointerSpec> spec;
+	  VERIFY_HRESULT (specs->get_Item (i, &spec));
+
+	  // Get each of the items in the specification.
+	  CComPtr <IMgaMetaPointerItems> items;
+	  VERIFY_HRESULT (spec->get_Items (&items));
+
+	  // Get the root folder for this project.
+	  Folder root_folder = this->parent ()->project ().root_folder (); //Collecting it from the parent
+
+	  // Locate each item in the project and store it.
+	  long num = 0;
+	  items->get_Count (&num);
+
+	  for (long j = 1; j <= num; ++ j)
+	  {
+		  CComBSTR name;
+		  CComPtr <IMgaMetaPointerItem> item;
+
+		  // Get the next item in the collection.
+		  VERIFY_HRESULT (items->get_Item (j, &item));
+		  VERIFY_HRESULT (item->get_Desc (&name));
+
+		  // Locate the FCO with the specified name.
+		  CComPtr <IMgaMetaFCO> fco;
+		  VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name, VARIANT_TRUE, &fco));
+
+		  if (0 != fco.p)
+			  fcos.push_back (fco.p);
+	  }
+  }
+  return fcos.size ();
+}
+
+//
+// get_src
+//
+FCO ConnectionPoint_Impl::get_src (void)
+{
+  FCO source;
+
+  // Get all the reference pointer specifications.
+  CComPtr <IMgaMetaPointerSpecs> specs;
+  VERIFY_HRESULT (this->impl ()->get_PointerSpecs (&specs));
+
+  // Locate each specification in the project and store it.
+  long count = 0;
+  specs->get_Count (&count);
+
+  for (long i = 1; i <= count; ++ i)
+  {
+	  // Get a reference pointer specification.
+	  CComPtr <IMgaMetaPointerSpec> spec;
+	  VERIFY_HRESULT (specs->get_Item (i, &spec));
+
+	  // Get the name of the reference pointer
+	  CComBSTR spec_name;
+	  VERIFY_HRESULT (spec->get_Name (&spec_name));
+
+	  if (spec_name == "src")
+	  {
+		  // Get each of the items in the specification.
+		  CComPtr <IMgaMetaPointerItems> items;
+		  VERIFY_HRESULT (spec->get_Items (&items));
+
+		  // Get the root folder for this project.
+		  Folder root_folder = this->parent ()->project ().root_folder (); //Collecting it from the parent
+
+		  // Locate each item in the project and store it.
+		  long num = 0;
+		  items->get_Count (&num);
+
+		  for (long j = 1; j <= num; ++ j)
+		  {
+			  CComBSTR name;
+			  CComPtr <IMgaMetaPointerItem> item;
+
+			  // Get the next item in the collection.
+			  VERIFY_HRESULT (items->get_Item (j, &item));
+			  VERIFY_HRESULT (item->get_Desc (&name));
+
+			  // Locate the FCO with the specified name.
+			  CComPtr <IMgaMetaFCO> fco;
+			  VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name, VARIANT_TRUE, &fco));
+
+				source = fco.p;
+				
+		  }
+	  }
+  }
+  return source;
+}
+
+
+//
+// get_dst
+//
+FCO ConnectionPoint_Impl::get_dst (void)
+{
+  FCO destination;
+
+  // Get all the reference pointer specifications.
+  CComPtr <IMgaMetaPointerSpecs> specs;
+  VERIFY_HRESULT (this->impl ()->get_PointerSpecs (&specs));
+
+  // Locate each specification in the project and store it.
+  long count = 0;
+  specs->get_Count (&count);
+
+  for (long i = 1; i <= count; ++ i)
+  {
+	  // Get a reference pointer specification.
+	  CComPtr <IMgaMetaPointerSpec> spec;
+	  VERIFY_HRESULT (specs->get_Item (i, &spec));
+
+	  // Get the name of the reference pointer
+	  CComBSTR spec_name;
+	  VERIFY_HRESULT (spec->get_Name (&spec_name));
+
+	  if (spec_name == "dst")
+	  {
+		  // Get each of the items in the specification.
+		  CComPtr <IMgaMetaPointerItems> items;
+		  VERIFY_HRESULT (spec->get_Items (&items));
+
+		  // Get the root folder for this project.
+		  Folder root_folder = this->parent ()->project ().root_folder (); //Collecting it from the parent
+
+		  // Locate each item in the project and store it.
+		  long num = 0;
+		  items->get_Count (&num);
+
+		  for (long j = 1; j <= num; ++ j)
+		  {
+			  CComBSTR name;
+			  CComPtr <IMgaMetaPointerItem> item;
+
+			  // Get the next item in the collection.
+			  VERIFY_HRESULT (items->get_Item (j, &item));
+			  VERIFY_HRESULT (item->get_Desc (&name));
+
+			  // Locate the FCO with the specified name.
+			  CComPtr <IMgaMetaFCO> fco;
+			  VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name, VARIANT_TRUE, &fco));
+			  
+			  destination = fco.p;
+		  }
+	  }
+  }
+  return destination;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,7 +257,7 @@ IMgaMetaConnection * Connection_Impl::impl (void) const
 //
 // points
 //
-size_t Connection_Impl::connection_points (std::vector <ConnectionPoint> & points) const
+size_t Connection_Impl::connectors (std::vector <ConnectionPoint> & points) const
 {
   CComPtr <IMgaMetaConnJoints> temp;
   VERIFY_HRESULT (this->impl ()->get_Joints (&temp));

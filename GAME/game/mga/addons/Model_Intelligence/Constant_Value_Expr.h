@@ -25,7 +25,9 @@ class Constant_Value_Expr : public Value_Expr
 {
 public:
   /// Default constructor.
-  Constant_Value_Expr (unsigned int value);
+  Constant_Value_Expr (unsigned int &value);
+
+	Constant_Value_Expr (std::string &str);
 
 	/// Destructor.
 	~Constant_Value_Expr (void);
@@ -34,9 +36,9 @@ public:
    * evaluate method for evaluating the respective expression
    *
    * @param[in]     res           Object of model intelligence context
-   * @return        unsigned int  value of the constant
+   * @return        Object        Value Object of the constant
    */
-  unsigned int evaluate (Ocl_Context &res);
+  Value * evaluate (Ocl_Context &res);
 
   /**
    * Determines if the object is mutable or not.
@@ -44,10 +46,12 @@ public:
    * @return        bool          true if the object is mutable
    *                              false if the object is non-mutable
    */
-  bool ismutable (void);
+  bool is_mutable (void);
 
 private:
   unsigned int value_;
+	std::string str_;
+	int flag;
 };
 
 #endif

@@ -25,7 +25,7 @@ class Local_Value_Expr : public Value_Expr
 {
 public:
   /// Default constructor.
-  Local_Value_Expr (std::string var);
+  Local_Value_Expr (std::string &var);
 
 	/// Destructor.
 	~Local_Value_Expr (void);
@@ -34,9 +34,9 @@ public:
    * evaluate method for evaluating the respective expression
    *
    * @param[in]     res           Object of model intelligence context
-   * @return        unsigned int  value of the local variable
+   * @return        Object        Value object of the local variable
    */
-  unsigned int evaluate (Ocl_Context &res);
+  Value * evaluate (Ocl_Context &res);
 
   /**
    * Determines if the object is mutable or not.
@@ -44,7 +44,7 @@ public:
    * @return        bool          true if the object is mutable
    *                              false if the object is non-mutable
    */
-  bool ismutable (void);
+  bool is_mutable (void);
 
 private:
   std::string localvar_;

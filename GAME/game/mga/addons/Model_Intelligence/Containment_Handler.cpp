@@ -13,7 +13,7 @@
 #include "game/mga/MetaConstraint.h"
 #include "game/mga/FCO.h"
 #include "game/mga/MetaFCO.h"
-#include "MetaPart.h"
+#include "MetaPart.h" 
 
 #include "boost/bind.hpp"
 
@@ -49,54 +49,57 @@ int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
   GAME::Mga::Model mod = GAME::Mga::Model::_narrow (obj);
 
-  // Collecting all constraints on the entered model
+	// Setting the model spcific attributes in Model_Intelligence_Features
+	Ocl_Context res;
+	res.model_constraint = true;
+	res.self = obj;
+	res.model_object = mod;
+
+	// Collecting all constraints on the entered model
   std::vector <GAME::Mga::Meta::Constraint> cs;
 
   size_t csize = mod->meta ()->constraints (cs);
 
-  std::vector <GAME::Mga::Meta::Constraint>::iterator cts;
+	std::vector <std::string> all_cardinalities;
 
-  std::vector <std::string> all_cardinalities;
+	std::for_each (cs.begin (),
+		             cs.end (),
+								 boost::bind (&std::vector <std::string>::push_back,
+                              boost::ref (all_cardinalities),
+															boost::bind (&GAME::Mga::Meta::Constraint::impl_type::expression,
+															             boost::bind (&GAME::Mga::Meta::Constraint::get, _1))));
 
-  for (cts = cs.begin (); cts < cs.end (); cts++)
-    {
-      all_cardinalities.push_back ((*cts)->expression ());
-    }
-
-  Ocl_Context res;
-
-  // Setting the model in Model_Intelligence_Features
-  res.model_object = mod;
-
-  // Iterating over all the cardinalities one by one so as to
+	// Iterating over all the cardinalities one by one so as to
   // parse and evaluate them to generate a list of actions
-  std::vector <std::string>::iterator iter;
+  std::vector <std::string>::const_iterator
+    iter = all_cardinalities.begin (), iter_end = all_cardinalities.end ();
 
-  for (iter = all_cardinalities.begin (); iter < all_cardinalities.end (); iter++)
+	for (; iter != iter_end; ++ iter)
   {
+		//reseting the constraint specific variables
+		res.target_metaroles.clear ();
+		res.locals.clear ();
+
     std::vector <Boolean_Expr *> ocl;
     OCL_Expr_Parser parser;
 
-    //Parsing the cardinality string
+		//Parsing the cardinality string
     parser.parse_string ((*iter), ocl);
 
     // Iterating over the sub-expressions and evaluating them
-    std::vector <Boolean_Expr *>::iterator oclitt;
+		std::for_each (ocl.begin (),
+			             ocl.end (),
+									 boost::bind(&Boolean_Expr::evaluate, _1, boost::ref(res)));
 
-    for (oclitt = ocl.begin (); oclitt < ocl.end (); oclitt++)
-      {
-        (*oclitt)->evaluate (res);
-      }
   }
 
-  // Iterating over the list of actions and executing them
-  std::vector <Expr_Command*>::iterator action;
+	// Iterating over the list of actions and executing them
+	std::for_each (res.actions.begin (),
+                 res.actions.end (),
+								 boost::bind(&Expr_Command::execute, _1));
 
-  for (action = res.actions.begin (); action < res.actions.end (); action++)
-  {
-    (*action)->execute ();
-  }
 
+  
   return 0;
 
 }

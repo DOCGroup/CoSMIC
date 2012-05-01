@@ -1,3 +1,90 @@
+Tue May  1 19:47:32 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/MetaConnection.h:
+        * game/mga/MetaConnection.cpp:
+		
+		  Updated metaconnection properties.
+
+        * game/mga/addons/Model_Intelligence/Add_Command.h:
+        * game/mga/addons/Model_Intelligence/Add_Command.cpp:
+        * game/mga/addons/Model_Intelligence/Association_Handler.h:
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/AtomParts_Method.h:
+        * game/mga/addons/Model_Intelligence/AtomParts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.h:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Boolean_Value.h:
+        * game/mga/addons/Model_Intelligence/Boolean_Value.cpp:
+        * game/mga/addons/Model_Intelligence/ChildFolders_Method.h:
+        * game/mga/addons/Model_Intelligence/ChildFolders_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Collection_Value_T.h:
+        * game/mga/addons/Model_Intelligence/Collection_Value_T.cpp:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Double_Value.h:
+        * game/mga/addons/Model_Intelligence/Double_Value.cpp:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Expr_Command.h:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/If_Then_Else_Expr.h:
+        * game/mga/addons/Model_Intelligence/If_Then_Else_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Int_Value.h:
+        * game/mga/addons/Model_Intelligence/Int_Value.cpp:
+        * game/mga/addons/Model_Intelligence/KindName_Method.h:
+        * game/mga/addons/Model_Intelligence/KindName_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Method_Call.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Method_Call.cpp:
+        * game/mga/addons/Model_Intelligence/Long_Value.h:
+        * game/mga/addons/Model_Intelligence/Long_Value.cpp:
+        * game/mga/addons/Model_Intelligence/Method.h:
+        * game/mga/addons/Model_Intelligence/Method.cpp:
+        * game/mga/addons/Model_Intelligence/Method_Call.h:
+        * game/mga/addons/Model_Intelligence/Method_Call.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Context.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Name_Method.h:
+        * game/mga/addons/Model_Intelligence/Name_Method.cpp:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
+        * game/mga/addons/Model_Intelligence/Object_Value.h:
+        * game/mga/addons/Model_Intelligence/Object_Value.cpp:
+        * game/mga/addons/Model_Intelligence/Parent_Method.h:
+        * game/mga/addons/Model_Intelligence/Parent_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method.h:
+        * game/mga/addons/Model_Intelligence/Parts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Refers_to_Method.h:
+        * game/mga/addons/Model_Intelligence/Refers_to_Method.cpp:
+        * game/mga/addons/Model_Intelligence/RoleName_Method.h:
+        * game/mga/addons/Model_Intelligence/RoleName_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Self_Method_Call.h:
+        * game/mga/addons/Model_Intelligence/Self_Method_Call.cpp:
+        * game/mga/addons/Model_Intelligence/Size_Method.h:
+        * game/mga/addons/Model_Intelligence/Size_Method.cpp:
+        * game/mga/addons/Model_Intelligence/String_Value.h:
+        * game/mga/addons/Model_Intelligence/String_Value.cpp:
+        * game/mga/addons/Model_Intelligence/Value.h:
+        * game/mga/addons/Model_Intelligence/Value.cpp:
+        * game/mga/addons/Model_Intelligence/Value_Expr.h:
+		
+		  Added more methods specific to ocl constraints and updated the parser.
+		  Updated the object model. Added new Value hierarchy. Added Methodcall hierarchy.
+
+        * game/mga/addons/Model_Intelligence/Collection_Expr.h:
+        * game/mga/addons/Model_Intelligence/Collection_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.h:
+        * game/mga/addons/Model_Intelligence/Parts_Method_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Size_Method_Expr.h:
+        * game/mga/addons/Model_Intelligence/Size_Method_Expr.cpp:
+
+          Removed these files.
+
 Mon Apr 30 05:02:21 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * game/mga/interpreters/ExtensionClasses/Object_Class_Definition.h:

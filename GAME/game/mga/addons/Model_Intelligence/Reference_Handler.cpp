@@ -6,6 +6,7 @@
 #include "game/mga/Model.h"
 #include "game/mga/Reference.h"
 #include "game/mga/MetaReference.h"
+#include "game/mga/MetaConstraint.h"
 #include "game/mga/Atom.h"
 #include "game/mga/Filter.h"
 #include "game/mga/MetaBase.h"
@@ -14,6 +15,10 @@
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 
 #include "boost/bind.hpp"
+
+#include "Model_Intelligence_Context.h"
+#include "Boolean_Expr.h"
+#include "OCL_Expr_Parser.h"
 
 //
 // Reference_Handler
@@ -44,11 +49,7 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
   // happen if some other addon creates the reference and sets the object
   // it refers to.
   GAME::Mga::Reference ref = GAME::Mga::Reference::_narrow (obj);
-  GAME::Mga::FCO refers_to = ref->refers_to ();
-
-  if (!refers_to.is_nil ())
-    return 0;
-
+  
   // Finding the metaobjects that ref referes to
   std::vector <GAME::Mga::Meta::FCO> types;
   ref->meta ()->targets (types);
@@ -62,9 +63,75 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
   filter.kind (types);
   filter.apply (objs);
 
-  if (1 == objs.size ())
+	// Filtering the results based on constraints for the dialog box
+	std::vector <GAME::Mga::Meta::Constraint> cs;
+
+	size_t csize = ref->meta ()->constraints (cs);
+
+  std::vector <std::string> ref_constraints;
+
+	std::for_each (cs.begin (),
+		             cs.end (),
+								 boost::bind (&std::vector <std::string>::push_back,
+                              boost::ref (ref_constraints),
+															boost::bind (&GAME::Mga::Meta::Constraint::impl_type::expression,
+															             boost::bind (&GAME::Mga::Meta::Constraint::get, _1))));
+
+  
+	Ocl_Context res;
+
+	res.self = obj;
+	res.model_constraint = false;
+
+	std::vector <GAME::Mga::FCO>::iterator 
+		objs_iter = objs.begin (), objs_iter_end = objs.end ();
+
+	// Vector to hold the qualified FCO's
+	std::vector <GAME::Mga::FCO> qual_fcos;
+
+	for (; objs_iter != objs_iter_end; ++ objs_iter)
+	{
+		bool result = true;
+
+		res.cur_fco = (*objs_iter);
+
+		std::string objecternaam = (*objs_iter)->name ();
+
+		std::vector <std::string>::iterator 
+			iter = ref_constraints.begin (), iter_end = ref_constraints.end ();
+
+		for (; iter != iter_end; ++ iter)
+		{
+			//reseting the constraint specific variables
+			res.target_metaroles.clear ();
+			res.locals.clear ();
+
+			std::vector <Boolean_Expr *> ocl;
+			OCL_Expr_Parser parser;
+
+			//Parsing the ocl string
+    	parser.parse_string ((*iter), ocl);
+
+			// Iterating over the sub-expressions and evaluating them
+			std::vector <Boolean_Expr *>::iterator 
+				oclitt = ocl.begin (), oclitt_end = ocl.end ();
+
+			for (; oclitt != oclitt_end; ++ oclitt)
+			{
+				bool temp = (*oclitt)->evaluate (res);
+
+				if (!temp)
+					result = false;
+			}
+		}
+
+		if (result)
+			qual_fcos.push_back ((*objs_iter));
+	}
+
+  if (1 == qual_fcos.size ())
   {
-    select = objs.front ();
+    select = qual_fcos.front ();
   }
   else
   {
@@ -80,7 +147,7 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
     dlg.title ("Auto Reference Resolver");
     dlg.directions (directions.c_str ());
-    dlg.insert (objs);
+    dlg.insert (qual_fcos);
 
     if (IDOK != dlg.DoModal ())
       return 0;

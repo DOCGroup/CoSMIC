@@ -1,15 +1,26 @@
 // $Id$
 
 #include "StdAfx.h"
-
+#include "Int_Value.h"
+#include "String_Value.h"
 #include "Constant_Value_Expr.h"
 
 //
 // Constructor
 //
-Constant_Value_Expr::Constant_Value_Expr (unsigned int value)
+Constant_Value_Expr::Constant_Value_Expr (unsigned int &value)
 : value_ (value)
 {
+	this->flag = 1;
+}
+
+//
+// Constructor
+//
+Constant_Value_Expr::Constant_Value_Expr (std::string &str)
+: str_ (str)
+{
+	this->flag = 2;
 }
 
 //
@@ -22,15 +33,18 @@ Constant_Value_Expr::~Constant_Value_Expr (void)
 //
 // evaluate
 //
-unsigned int Constant_Value_Expr::evaluate (Ocl_Context &res)
+Value * Constant_Value_Expr::evaluate (Ocl_Context &res)
 {
-  return this->value_;
+	if (this->flag == 1)
+		return new Int_Value (this->value_);
+
+	return new String_Value (this->str_);
 }
 
 //
-// ismutable
+// is_mutable
 //
-bool Constant_Value_Expr::ismutable (void)
+bool Constant_Value_Expr::is_mutable (void)
 {
   return false;
 }
