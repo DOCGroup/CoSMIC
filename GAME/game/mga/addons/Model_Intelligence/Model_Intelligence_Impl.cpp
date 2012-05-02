@@ -5,7 +5,6 @@
 #include "Containment_Handler.h"
 #include "Association_Handler.h"
 #include "Reference_Handler.h"
-#include "Test_Handler.h"
 #include "game/mga/component/ComponentEx_T.h"
 
 #include "game/mga/Atom.h"

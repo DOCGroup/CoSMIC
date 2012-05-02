@@ -1,9 +1,15 @@
+Wed May  2 15:17:32 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+		
+		Fixed the error that showed up in cruisecontrol.
+
 Tue May  1 19:47:32 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/MetaConnection.h:
         * game/mga/MetaConnection.cpp:
 		
-		  Updated metaconnection properties.
+		Updated metaconnection properties.
 
         * game/mga/addons/Model_Intelligence/Add_Command.h:
         * game/mga/addons/Model_Intelligence/Add_Command.cpp:
@@ -73,8 +79,8 @@ Tue May  1 19:47:32 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/Value.cpp:
         * game/mga/addons/Model_Intelligence/Value_Expr.h:
 		
-		  Added more methods specific to ocl constraints and updated the parser.
-		  Updated the object model. Added new Value hierarchy. Added Methodcall hierarchy.
+		Added more methods specific to ocl constraints and updated the parser.
+		Updated the object model. Added new Value hierarchy. Added Methodcall hierarchy.
 
         * game/mga/addons/Model_Intelligence/Collection_Expr.h:
         * game/mga/addons/Model_Intelligence/Collection_Expr.cpp:
