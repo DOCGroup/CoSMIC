@@ -88,12 +88,29 @@ void Selection_List_Dialog::insert (const Mga::Object_in obj)
 }
 
 //
+// metainsert
+//
+void Selection_List_Dialog::meta_insert (const GAME::Mga::Meta::Base_in metabase)
+{
+  this->metaitems_.push_back (metabase);
+}
+
+//
 // insert
 //
 void Selection_List_Dialog::
 insert (const std::vector <Mga::Object> & items)
 {
   this->insert (items.begin (), items.end ());
+}
+
+//
+// meta_insert
+//
+void Selection_List_Dialog::
+meta_insert (const std::vector<GAME::Mga::Meta::Base> & metaitems)
+{
+  this->meta_insert (metaitems.begin (), metaitems.end ());
 }
 
 //
@@ -109,6 +126,21 @@ insert (std::vector <Mga::Object>::const_iterator begin,
                               boost::ref (this->items_),
                               _1));
 }
+
+//
+// meta_insert
+//
+void Selection_List_Dialog::
+meta_insert(std::vector<GAME::Mga::Meta::Base>::const_iterator begin,
+            std::vector<GAME::Mga::Meta::Base>::const_iterator end)
+{
+  std::for_each (begin,
+                 end,
+                 boost::bind (&std::vector <GAME::Mga::Meta::Base>::push_back,
+                              boost::ref (this->metaitems_),
+                              _1));
+}
+
 
 //
 // insert_item

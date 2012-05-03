@@ -37,6 +37,17 @@ void Selection_List_Dialog_T <T>::insert (const std::vector <T> & items)
 }
 
 //
+// meta_insert
+//
+template <typename T>
+GAME_INLINE
+void Selection_List_Dialog_T <T>::meta_insert (const std::vector<T> & metaitems)
+{
+  using GAME::Mga::make_impl_iter;
+  this->meta_insert (make_impl_iter (metaitems.begin ()), make_impl_iter (metaitems.end ()));
+}
+
+//
 // insert
 //
 template <typename T>
@@ -46,6 +57,18 @@ void Selection_List_Dialog_T <T>::insert (ITER begin, ITER end)
 {
   for (; begin != end; ++ begin)
     Selection_List_Dialog::insert (*begin);
+}
+
+//
+// meta_insert
+//
+template <typename T>
+template <typename ITER>
+GAME_INLINE
+void Selection_List_Dialog_T <T>::meta_insert (ITER begin, ITER end)
+{
+  for (; begin != end; ++ begin)
+    Selection_List_Dialog::meta_insert (*begin);
 }
 
 //

@@ -15,6 +15,7 @@
 
 #include <vector>
 #include "game/mga/Object.h"
+#include "game/mga/MetaBase.h"
 
 namespace GAME
 {
@@ -72,11 +73,25 @@ public:
   void insert (const Mga::Object_in object);
 
   /**
+   * Insert a new meta object into the dialog.
+   *
+   * @param[in]     metabase        The new object.
+   */
+  void meta_insert (const GAME::Mga::Meta::Base_in metabase);
+
+  /**
    * Insert a collection of objects into the dialog listing.
    *
    * @param[in]     items         Collection of objects
    */
   void insert (const std::vector <Mga::Object> & items);
+
+  /**
+   * Insert a collection of metaobjects into the dialog listing.
+   *
+   * @param[in]     metaitems         Collection of objects
+   */
+  void meta_insert (const std::vector <GAME::Mga::Meta::Base> & metaitems);
 
   /**
    * @overloaded
@@ -86,6 +101,15 @@ public:
    */
   void insert (std::vector <Mga::Object>::const_iterator begin,
                std::vector <Mga::Object>::const_iterator end);
+
+  /**
+   * @overloaded
+   *
+   * @param[in]     begin         Start of collection
+   * @param[in]     end           End of collection
+   */
+  void meta_insert (std::vector <GAME::Mga::Meta::Base>::const_iterator begin,
+                    std::vector <GAME::Mga::Meta::Base>::const_iterator end);
 
 protected:
   /**
@@ -121,6 +145,9 @@ private:
 
   /// Set of items for this dialog.
   std::vector <Mga::Object> items_;
+
+  /// Set of metaitems for this dialog.
+  std::vector <GAME::Mga::Meta::Base> metaitems_;
 };
 
 }
