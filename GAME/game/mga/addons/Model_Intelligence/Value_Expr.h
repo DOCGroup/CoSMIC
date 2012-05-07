@@ -36,8 +36,14 @@ public:
   // Pure virtual method for evaluating respective expression
   virtual Value * evaluate (Ocl_Context &res) = 0;
 
-  // Pure virtual method to check if the variale is mutable
+  // Pure virtual method for filtering the result list
+  virtual Value * filter_evaluate (Ocl_Context &res) = 0;
+
+  // Pure virtual method to check if the variable is mutable
   virtual bool is_mutable (void) = 0;
+
+  // Pure virtual method to check if the variable can be used for filtration
+  virtual bool is_filter (void) = 0;
 };
 
 

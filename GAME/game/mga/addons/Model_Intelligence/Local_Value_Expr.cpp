@@ -29,9 +29,25 @@ Value * Local_Value_Expr::evaluate (Ocl_Context &res)
 }
 
 //
+// filter_evaluate
+//
+Value * Local_Value_Expr::filter_evaluate (Ocl_Context &res)
+{   
+	return res.locals[this->localvar_];
+}
+
+//
 // is_mutable
 //
 bool Local_Value_Expr::is_mutable (void)
 {
   return true;
+}
+
+//
+// is_filter
+//
+bool Local_Value_Expr::is_filter (void)
+{
+  return false;
 }

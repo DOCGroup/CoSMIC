@@ -1,12 +1,71 @@
+Mon May  7 03:04:09 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/And_Expr.h:
+        * game/mga/addons/Model_Intelligence/And_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/AtomParts_Method.h:
+        * game/mga/addons/Model_Intelligence/AtomParts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.h:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Boolean_Expr.h:
+        * game/mga/addons/Model_Intelligence/ChildFolders_Method.h:
+        * game/mga/addons/Model_Intelligence/ChildFolders_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.h:
+        * game/mga/addons/Model_Intelligence/Comparison_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.h:
+        * game/mga/addons/Model_Intelligence/Conjunction_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Constant_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.h:
+        * game/mga/addons/Model_Intelligence/Equality_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Greater_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/If_Then_Else_Expr.h:
+        * game/mga/addons/Model_Intelligence/If_Then_Else_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/KindName_Method.h:
+        * game/mga/addons/Model_Intelligence/KindName_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.h:
+        * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Assignment_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Local_Value_Method_Call.h:
+        * game/mga/addons/Model_Intelligence/Local_Value_Method_Call.cpp:
+        * game/mga/addons/Model_Intelligence/Method.h:
+        * game/mga/addons/Model_Intelligence/Method_Call.h:
+        * game/mga/addons/Model_Intelligence/Method_Call.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Name_Method.h:
+        * game/mga/addons/Model_Intelligence/Name_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Parent_Method.h:
+        * game/mga/addons/Model_Intelligence/Parent_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method.h:
+        * game/mga/addons/Model_Intelligence/Parts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Refers_to_Method.h:
+        * game/mga/addons/Model_Intelligence/Refers_to_Method.cpp:
+        * game/mga/addons/Model_Intelligence/RoleName_Method.h:
+        * game/mga/addons/Model_Intelligence/RoleName_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Self_Method_Call.h:
+        * game/mga/addons/Model_Intelligence/Self_Method_Call.cpp:
+        * game/mga/addons/Model_Intelligence/Size_Method.h:
+        * game/mga/addons/Model_Intelligence/Size_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Value_Expr.h:
+        
+          Separated filter evaluation and evaluation process. Added
+          filter_evaluate and is_filter methods to the hierarchies.
+
 Thu May  3 01:52:06 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Add_Command.cpp:
-        
+
         * game/mga/dialogs/Selection_List_Dialog.h:
         * game/mga/dialogs/Selection_List_Dialog.cpp:
         * game/mga/dialogs/Selection_List_Dialog_T.h:
         * game/mga/dialogs/Selection_List_Dialog_T.cpp:
-        
+
           Updated the Dialog to handle metaobjects.
 
 Wed May  2 15:17:32 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>

@@ -34,6 +34,10 @@ public:
   // Pure virtual evaluate method used by derived classes 
   // for evaluating the respective sub-expresion
   virtual bool evaluate (Ocl_Context &res) = 0;
+
+  // Pure virtual filter_evaluate method used by derived classes
+  // for evaluating the respective sub-expression for filtration purpose
+  virtual bool filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current) = 0;
 };
 
 #endif

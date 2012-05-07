@@ -47,3 +47,11 @@ Value * RoleName_Method::evaluate (Ocl_Context &res, Value *caller)
 
 	return new String_Value (name);
 }
+
+//
+// is_filter
+//
+bool RoleName_Method::is_filter (void)
+{
+  return false;
+}

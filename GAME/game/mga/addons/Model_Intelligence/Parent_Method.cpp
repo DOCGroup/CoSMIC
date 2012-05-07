@@ -43,3 +43,11 @@ Value * Parent_Method::evaluate (Ocl_Context &res, Value *caller)
 
 	return new Object_Value (parent);
 }
+
+//
+// is_filter
+//
+bool Parent_Method::is_filter (void)
+{
+  return false;
+}

@@ -25,6 +25,9 @@ If_Then_Else_Expr::~If_Then_Else_Expr (void)
 {
 }
 
+//
+// evaluate
+//
 bool If_Then_Else_Expr::evaluate (Ocl_Context &res)
 { 
 	bool flag = true;
@@ -50,3 +53,31 @@ bool If_Then_Else_Expr::evaluate (Ocl_Context &res)
 	return flag;		
 }
 
+//
+// filter_evaluate
+//
+bool If_Then_Else_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
+{ 
+  res.cur_fco = current;
+	bool flag = true;
+  if (this->cond_->filter_evaluate (res, current))
+	{
+		// Iterating over the sub-expressions and evaluating them
+		std::vector <Boolean_Expr *>::iterator 
+			it = this->first_.begin (), it_end = this->first_.end ();
+
+		for (; it != it_end; ++it)
+			flag = (*it)->filter_evaluate (res, current);
+	}
+	else
+	{
+		// Iterating over the sub-expressions and evaluating them
+		std::vector <Boolean_Expr *>::iterator 
+			it = this->second_.begin (), it_end = this->second_.end ();
+
+		for (; it != it_end; ++it)
+			flag = (*it)->filter_evaluate (res, current);
+	}
+
+	return flag;		
+}

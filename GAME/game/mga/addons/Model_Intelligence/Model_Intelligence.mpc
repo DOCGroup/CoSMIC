@@ -14,7 +14,7 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Containment_Handler.cpp
     Reference_Handler.cpp
     Association_Handler.cpp
-        
+            
     OCL_Expr_Parser.cpp
 
     Boolean_Expr.cpp

@@ -24,3 +24,11 @@ bool Conjunction_Expr::evaluate (Ocl_Context &res)
 {
   return true;
 }
+
+//
+// dummy method
+//
+bool Conjunction_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
+{
+  return true;
+}

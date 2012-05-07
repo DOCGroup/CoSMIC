@@ -48,3 +48,11 @@ Value * ChildFolders_Method::evaluate (Ocl_Context &res, Value *caller)
 
 	return new Collection_Value_T<GAME::Mga::Folder> (child);
 }
+
+//
+// is_filter
+//
+bool ChildFolders_Method::is_filter (void)
+{
+  return false;
+}

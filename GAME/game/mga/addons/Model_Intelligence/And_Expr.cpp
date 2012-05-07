@@ -32,3 +32,18 @@ bool And_Expr::evaluate (Ocl_Context &res)
 
   return false;
 }
+
+//
+// filter_evaluate
+//
+bool And_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
+{
+  res.cur_fco = current;
+  bool left = this->lhs_->filter_evaluate (res, current);
+  bool right = this->rhs_->filter_evaluate (res, current);
+
+  if (left == right)
+    return true;
+
+  return false;
+}

@@ -34,6 +34,27 @@ bool Local_Value_Assignment_Expr::evaluate (Ocl_Context &res)
 }
 
 //
+// filter_evaluate
+//
+bool Local_Value_Assignment_Expr::filter_evaluate (Ocl_Context &res, 
+                                                   GAME::Mga::FCO &current)
+{
+  res.cur_fco = current;
+
+  if (this->rhs_->is_filter ())
+  {
+    this->value_ = this->rhs_->filter_evaluate (res);
+
+    // Storing it in the map
+    res.locals[this->varname_] = this->value_;
+
+    return true;
+  }
+
+  return false;
+}
+
+//
 // value
 //
 Value * Local_Value_Assignment_Expr::value (void)

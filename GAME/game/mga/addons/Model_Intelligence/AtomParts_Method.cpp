@@ -77,3 +77,11 @@ Value * AtomParts_Method::evaluate (Ocl_Context &res, Value *caller)
 		return new Collection_Value_T<GAME::Mga::FCO> (parts);
 	}
 }
+
+//
+// is_filter
+//
+bool AtomParts_Method::is_filter (void)
+{
+  return false;
+}

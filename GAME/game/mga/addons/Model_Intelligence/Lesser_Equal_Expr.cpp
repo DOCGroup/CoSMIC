@@ -92,6 +92,23 @@ bool Lesser_Equal_Expr::evaluate (Ocl_Context & res)
 }
 
 //
+// filter_evaluate
+//
+bool Lesser_Equal_Expr::filter_evaluate (Ocl_Context &res, 
+                                         GAME::Mga::FCO &current)
+{
+  res.cur_fco = current;
+  bool ret = false;
+
+  if (this->lhs_->is_filter () || this->rhs_->is_filter ())
+  {
+    ret = this->lhs_->filter_evaluate (res)->is_lesser_equal (this->rhs_->filter_evaluate (res));
+  }
+
+  return ret;
+}
+
+//
 // list_add
 //
 bool Lesser_Equal_Expr::list_add (GAME::Mga::Model &obj, 

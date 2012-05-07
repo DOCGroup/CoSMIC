@@ -39,12 +39,28 @@ public:
   Value * evaluate (Ocl_Context &res);
 
   /**
+   * filter_evaluate method for evaluating the respective expression
+   *
+   * @param[in]     res        Object of model intelligence context.
+   * @return        Object     Value object of the local variable
+   */
+  Value * filter_evaluate (Ocl_Context &res);
+
+  /**
    * Determines if the object is mutable or not.
    *
    * @return        bool          true if the object is mutable
    *                              false if the object is non-mutable
    */
   bool is_mutable (void);
+
+  /**
+   * Determines if the object is for filtration or not.
+   *
+   * @return        bool          true if the object is for filtration
+   *                              false if the object is not for filtration
+   */
+  bool is_filter (void);
 
 private:
 	std::string var_;

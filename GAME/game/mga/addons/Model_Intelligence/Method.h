@@ -35,6 +35,9 @@ public:
 
 	/// Virtual method evaluate which gets evoked for consecutive methods
 	virtual Value * evaluate (Ocl_Context &res, Value *caller) = 0;  
+
+  // Pure virtual method to check if the variable can be used for filtration
+  virtual bool is_filter (void) = 0;
 };
 
 #endif //_GAME_MODEL_INTELLIGENCE_METHOD_CALL_H_

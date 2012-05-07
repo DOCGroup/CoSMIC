@@ -42,9 +42,28 @@ Value * Constant_Value_Expr::evaluate (Ocl_Context &res)
 }
 
 //
+// filter_evaluate
+//
+Value * Constant_Value_Expr::filter_evaluate (Ocl_Context &res)
+{
+	if (this->flag == 1)
+		return new Int_Value (this->value_);
+
+	return new String_Value (this->str_);
+}
+
+//
 // is_mutable
 //
 bool Constant_Value_Expr::is_mutable (void)
 {
   return false;
+}
+
+//
+// is_filter
+//
+bool Constant_Value_Expr::is_filter (void)
+{
+  return true;
 }

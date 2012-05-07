@@ -93,8 +93,6 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 	{
 		bool result = true;
 
-		res.cur_fco = (*objs_iter);
-
 		std::string objecternaam = (*objs_iter)->name ();
 
 		std::vector <std::string>::iterator 
@@ -118,7 +116,7 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
 			for (; oclitt != oclitt_end; ++ oclitt)
 			{
-				bool temp = (*oclitt)->evaluate (res);
+        bool temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
 
 				if (!temp)
 					result = false;

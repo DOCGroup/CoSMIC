@@ -77,3 +77,11 @@ Value * Parts_Method::evaluate(Ocl_Context &res, Value *caller)
 		return new Collection_Value_T<GAME::Mga::FCO> (parts);
 	}
 }
+
+//
+// is_filter
+//
+bool Parts_Method::is_filter (void)
+{
+  return false;
+}

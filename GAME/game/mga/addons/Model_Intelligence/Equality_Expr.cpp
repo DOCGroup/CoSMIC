@@ -24,3 +24,11 @@ bool Equality_Expr::evaluate (Ocl_Context &res)
 {
   return true;
 }
+
+//
+// dummy method
+//
+bool Equality_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
+{
+  return true;
+}

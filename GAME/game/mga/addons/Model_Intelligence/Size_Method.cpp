@@ -39,3 +39,11 @@ Value * Size_Method::evaluate (Ocl_Context &res, Value *caller)
 
 	return new Int_Value (s);
 }
+
+//
+// is_filter
+//
+bool Size_Method::is_filter (void)
+{
+  return false;
+}

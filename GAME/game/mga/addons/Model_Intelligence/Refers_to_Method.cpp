@@ -37,3 +37,11 @@ Value * Refers_to_Method::evaluate (Ocl_Context &res, Value *caller)
 {
 	return new Int_Value (0);
 }
+
+//
+// is_filter
+//
+bool Refers_to_Method::is_filter (void)
+{
+  return true;
+}

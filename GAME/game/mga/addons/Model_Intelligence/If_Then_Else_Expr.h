@@ -45,6 +45,15 @@ public:
   bool evaluate (Ocl_Context &res);
 
   /**
+   * filter_evaluate method for evaluating the respective expression
+   *
+   * @param[in]     res        Object of model intelligence context.
+   * @param[in]     current    The current FCO being worked with.
+   * @return        bool       True/False
+   */
+  bool filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current);
+
+  /**
    * Value method for getting the value of the local variable
    * @return        value object of the local variable
    */

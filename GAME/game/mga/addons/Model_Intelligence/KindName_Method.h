@@ -47,6 +47,14 @@ public:
    * @return        Object        Collection Value object
    */
 	Value * evaluate (Ocl_Context &res, Value *caller);  
+
+  /**
+   * Determines if the object is for filtration or not.
+   *
+   * @return        bool          true if the object is for filtration
+   *                              false if the object is not for filtration
+   */
+  bool is_filter (void);
 };
 
 #endif //_GAME_MODEL_INTELLIGENCE_KINDNAME_METHOD_CALL_H_

@@ -46,7 +46,15 @@ public:
 	 * @param[in]     caller        Value from previous method
    * @return        Object        Collection Value object
    */
-	Value * evaluate (Ocl_Context &res, Value *caller);  
+	Value * evaluate (Ocl_Context &res, Value *caller);
+
+  /**
+   * Determines if the object is for filtration or not.
+   *
+   * @return        bool          true if the object is for filtration
+   *                              false if the object is not for filtration
+   */
+  bool is_filter (void);
 };
 
 #endif //_GAME_MODEL_INTELLIGENCE_SIZE_METHOD_CALL_H_
