@@ -108,7 +108,7 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 			OCL_Expr_Parser parser;
 
 			//Parsing the ocl string
-    	parser.parse_string ((*iter), ocl);
+    	parser.parse_string (*(iter), ocl);
 
 			// Iterating over the sub-expressions and evaluating them
 			std::vector <Boolean_Expr *>::iterator 

@@ -105,6 +105,13 @@ public:
 	 */
 	size_t size (void);
 
+  /**
+   * Gets the value of variable
+	 * 
+	 * @return        vector           The vector containing the values      
+   */
+	std::vector<T> value (void);
+
 private:
 	std::vector<T> parts_;
 

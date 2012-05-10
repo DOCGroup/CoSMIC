@@ -91,3 +91,12 @@ size_t Collection_Value_T<T>::size (void)
 {
 	return this->parts_.size ();
 }
+
+//
+// value
+//
+template <typename T>
+std::vector <T> Collection_Value_T<T>::value (void)
+{
+  return this->parts_;
+}

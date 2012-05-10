@@ -28,6 +28,7 @@
 #include "Constant_Value_Expr.h"
 #include "Local_Value_Assignment_Expr.h"
 #include "If_Then_Else_Expr.h"
+#include "IteratorCall_Expr.h"
 #include "Value_Expr.h"
 #include "Comparison_Expr.h"
 #include "Conjunction_Expr.h"
@@ -36,6 +37,9 @@
 #include "Method_Call.h"
 #include "Self_Method_Call.h"
 #include "Local_Value_Method_Call.h"
+
+#include "Iterator.h"
+#include "ForAll_Iterator.h"
 
 #include "Method.h"
 #include "Parts_Method.h"
@@ -97,7 +101,8 @@ struct OCL_Expression_Parser_Grammar :
     this->ocl_statements_ %= +(this->bool_expr_);
 
     // Boolean expressions
-    this->bool_expr_ %= this->lv_assgn_expr_ | this->eq_expr_ | this->if_then_else_expr_;
+    this->bool_expr_ %= this->lv_assgn_expr_ | this->eq_expr_ | this->if_then_else_expr_
+      | this->iteratorcall_expr_;
 
     this->lv_assgn_expr_ = qi::lit ("let") >>
 			this->ident_[qi::_a = qi::_1] >>
@@ -172,6 +177,22 @@ struct OCL_Expression_Parser_Grammar :
 		this->method_ %= this->parts_method_ | this->size_method_ | this->refers_to_method_ |
 			this->name_method_ | this->kindname_method_ | this->parent_method_ | this->childfolders_method_ |
 			this->rolename_method_;
+
+    this->iteratorcall_expr_ = this->value_expr_ [qi::_a = qi::_1][qi::_e = ""] >> 
+      qi::lit ("->") >> this->iterator_ [qi::_b = qi::_1] >> qi::lit("(") >>
+      -(this->declarator_list_[qi::_d = qi::_1] >>
+      qi::lit (":") >> this->ident_[qi::_e = qi::_1] >>
+      qi::lit ("|")) >> this->eq_expr_[qi::_c = qi::_1] >>
+      qi::lit(")")[qi::_val = phoenix::new_ <IteratorCall_Expr> (qi::_a, qi::_b, qi::_c)]
+      [phoenix::bind (&IteratorCall_Expr::set_declarators, qi::_val, qi::_d)]
+      [phoenix::bind (&IteratorCall_Expr::set_dec_type, qi::_val, qi::_e)];
+
+    this->iterator_ %= this->forall_iterator_;
+
+    this->forall_iterator_ = qi::lit ("forAll")[qi::_val = phoenix::new_ <ForAll_Iterator> ()];
+
+    this->declarator_list_ = (this->ident_[phoenix::push_back (qi::_val, qi::_1)] >>
+      *(qi::lit(",") >> this->ident_[phoenix::push_back (qi::_val, qi::_1)]));
 
     this->lv_expr_ = this->ident_[qi::_val = phoenix::new_ <Local_Value_Expr> (qi::_1)];
 
@@ -312,6 +333,27 @@ private:
 	qi::rule <IteratorT,
             std::vector <Method *> (),
             ascii::space_type> method_list_;
+
+  qi::rule <IteratorT,
+            IteratorCall_Expr * (),
+            ascii::space_type,
+            qi::locals <Value_Expr *, 
+                        Iterator *,
+						            Equality_Expr *,
+                        std::vector <std::string>,
+                        std::string> > iteratorcall_expr_;
+
+  qi::rule <IteratorT,
+            Iterator * (),
+            ascii::space_type> iterator_;
+
+  qi::rule <IteratorT,
+            std::vector <std::string> (),
+            ascii::space_type> declarator_list_;
+
+  qi::rule <IteratorT,
+            ForAll_Iterator * (),
+            ascii::space_type> forall_iterator_;
 
 	qi::rule <IteratorT,
             Parts_Method * (),

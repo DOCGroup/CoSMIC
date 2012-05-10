@@ -21,6 +21,7 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Local_Value_Assignment_Expr.cpp
     Equality_Expr.cpp
     If_Then_Else_Expr.cpp
+    IteratorCall_Expr.cpp
 
     Expr_Command.cpp
     Add_Command.cpp
@@ -41,6 +42,9 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
 	
 	Self_Method_Call.cpp
 	Local_Value_Method_Call.cpp
+	
+	Iterator.cpp
+	ForAll_Iterator.cpp
 	
 	Method.cpp
 	Parts_Method.cpp

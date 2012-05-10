@@ -1,3 +1,20 @@
+Thu May 10 03:00:29 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Collection_Value_T.h:
+        * game/mga/addons/Model_Intelligence/Collection_Value_T.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/ForAll_Iterator.h:
+        * game/mga/addons/Model_Intelligence/ForAll_Iterator.cpp:
+        * game/mga/addons/Model_Intelligence/Iterator.h:
+        * game/mga/addons/Model_Intelligence/Iterator.cpp:
+        * game/mga/addons/Model_Intelligence/IteratorCall_Expr.h:
+        * game/mga/addons/Model_Intelligence/IteratorCall_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        
+          Added Iterator hierarchy to the project and updated the OCl parser.
+
 Mon May  7 03:04:09 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/And_Expr.h:
@@ -53,7 +70,7 @@ Mon May  7 03:04:09 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/Size_Method.h:
         * game/mga/addons/Model_Intelligence/Size_Method.cpp:
         * game/mga/addons/Model_Intelligence/Value_Expr.h:
-        
+
           Separated filter evaluation and evaluation process. Added
           filter_evaluate and is_filter methods to the hierarchies.
 
