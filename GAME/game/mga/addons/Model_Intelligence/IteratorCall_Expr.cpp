@@ -31,7 +31,7 @@ IteratorCall_Expr::~IteratorCall_Expr (void)
 //
 bool IteratorCall_Expr::evaluate (Ocl_Context &res)
 { 
-  bool result;
+  bool result = false;
 
   // Collect the value for the invoking collection
   Collection_Value_T<GAME::Mga::FCO> * cv = 

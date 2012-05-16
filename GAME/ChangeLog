@@ -1,3 +1,21 @@
+Wed May 16 01:01:45 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Attribute_Add_Command.h:
+        * game/mga/addons/Model_Intelligence/Attribute_Add_Command.cpp:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.h:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Attributes_Handler.h:
+        * game/mga/addons/Model_Intelligence/Attributes_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/Equal_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/IteratorCall_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Context.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        
+          Added Attributes Handler and updated the Expression Command hierarchy.
+
 Thu May 10 03:00:29 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Collection_Value_T.h:
@@ -12,7 +30,7 @@ Thu May 10 03:00:29 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
         * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
         * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
-        
+
           Added Iterator hierarchy to the project and updated the OCl parser.
 
 Mon May  7 03:04:09 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>

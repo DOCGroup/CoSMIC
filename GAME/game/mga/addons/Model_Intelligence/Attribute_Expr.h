@@ -62,6 +62,20 @@ public:
    */
   bool is_filter (void);
 
+  /**
+   * Returns the name of the attribute.
+   *
+   * @return        string         Name of the attribute
+   */
+  std::string attribute_name (void);
+
+  /**
+   * Returns the name of the caller.
+   *
+   * @return        string         Name of the caller
+   */
+  std::string caller (void);
+
 private:
 	std::string var_;
 	std::string attribute_;

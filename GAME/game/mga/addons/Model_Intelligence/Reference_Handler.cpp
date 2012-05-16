@@ -82,6 +82,7 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
 	res.self = obj;
 	res.model_constraint = false;
+  res.model_attributes = false;
 
 	std::vector <GAME::Mga::FCO>::iterator 
 		objs_iter = objs.begin (), objs_iter_end = objs.end ();

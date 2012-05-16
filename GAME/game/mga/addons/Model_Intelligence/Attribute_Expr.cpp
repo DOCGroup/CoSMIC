@@ -35,12 +35,18 @@ Attribute_Expr::~Attribute_Expr (void)
 Value * Attribute_Expr::evaluate (Ocl_Context &res)
 {
 	res.model_constraint = false;
+  GAME::Mga::FCO fco;
 
-  // The object value associated with the local variable is taken from map
-  // and is used for attribute value calculation
-  Object_Value * iv = dynamic_cast <Object_Value *> (res.locals [this->var_]);
-
-  GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (iv->value ());
+  // Checking the invoking object for the attribute
+  if (this->var_ == "self")
+    fco = GAME::Mga::FCO::_narrow (res.self);
+  else
+  {
+    // The object value associated with the local variable is taken from map
+    // and is used for attribute value calculation
+    Object_Value * iv = dynamic_cast <Object_Value *> (res.locals [this->var_]);
+    fco = GAME::Mga::FCO::_narrow (iv->value ());
+  }
 
   GAME::Mga::Meta::FCO metafco = fco->meta ();
 
@@ -132,4 +138,20 @@ bool Attribute_Expr::is_mutable (void)
 bool Attribute_Expr::is_filter (void)
 {
   return true;
+}
+
+//
+// attribute_name
+//
+std::string Attribute_Expr::attribute_name (void)
+{
+  return this->attribute_;
+}
+
+//
+// caller
+//
+std::string Attribute_Expr::caller (void)
+{
+  return this->var_;
 }

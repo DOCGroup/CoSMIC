@@ -33,8 +33,11 @@
  */
 struct Ocl_Context
 {
-	// Flag denoting the type of constraint
+	// Flag denoting the type of constraint (for containment)
 	bool model_constraint;
+
+  // Flag denoting the type of constraint (for attributes)
+  bool model_attributes;
 
   // Variables common to all constraints:
 
