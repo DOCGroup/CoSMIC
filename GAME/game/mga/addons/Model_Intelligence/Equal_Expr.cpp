@@ -120,6 +120,9 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
 	}
   else if (res.model_attributes)
   {
+    // Assumption for now is that the attribute_expression is lhs and constant_value_expr
+    // is rhs
+
     // Caller
     std::string obj = "";
     // Attribute name
@@ -144,7 +147,6 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
         obj = right->caller ();
       }
 
-      double count;
       GAME::Mga::FCO fco;
 
       // Checking the invoking object for the attribute
@@ -158,13 +160,13 @@ bool Equal_Expr::evaluate (Ocl_Context & res)
         fco = GAME::Mga::FCO::_narrow (iv->value ());
       }
 
-      // This gets called if the attribute returns an integer/float/double
-      if (this->rhs_->evaluate (res)->get_diff (this->lhs_->evaluate (res), count))
+      if (!this->lhs_->evaluate (res)->is_equal (this->rhs_->evaluate (res)))
       {
-        Expr_Command *cmd = new Attribute_Add_Command (fco, name, count, 1);
+        Expr_Command *cmd = new Attribute_Add_Command (fco, name, this->rhs_->evaluate (res));
+
         //Pushing adding operation to the action list
         res.actions.push_back (cmd);
-      } 
+      }
       ret = true;
     }
     else

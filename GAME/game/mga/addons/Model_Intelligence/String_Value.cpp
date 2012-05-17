@@ -96,3 +96,11 @@ bool String_Value::get_sum (Value *v, double &count)
 	return false;
 }
 
+//
+// value
+//
+std::string String_Value::value (void)
+{
+  return this->val_;
+}
+

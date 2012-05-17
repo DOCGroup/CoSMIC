@@ -96,6 +96,13 @@ public:
    */
 	bool get_sum (Value *v, double &count);
 
+  /**
+   * Gets the value of variable
+	 * 
+	 * @return        string       The string value      
+   */
+  std::string value (void);
+
 private:
 	std::string val_;
 

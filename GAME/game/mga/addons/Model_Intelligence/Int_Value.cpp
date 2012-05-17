@@ -123,3 +123,11 @@ bool Int_Value::get_sum (Value *v, double &count)
 	return false;
 }
 
+//
+// value
+//
+int Int_Value::value (void)
+{
+  return this->val_;
+}
+

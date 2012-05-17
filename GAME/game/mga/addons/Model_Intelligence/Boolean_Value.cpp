@@ -95,3 +95,10 @@ bool Boolean_Value::get_sum (Value *v, double &count)
 	return false;
 }
 
+//
+// value
+//
+bool Boolean_Value::value (void)
+{
+  return this->val_;
+}

@@ -96,6 +96,13 @@ public:
    */
 	bool get_sum (Value *v, double &count);
 
+  /**
+   * Gets the value of variable
+	 * 
+	 * @return        double           The double value      
+   */
+	double value (void);
+
 private:
 	double val_;
 

@@ -19,6 +19,7 @@
 #include "game/mga/Reference.h"
 #include "game/mga/Set.h"
 #include "MetaFCO.h"
+#include "Value.h"
 
 /**
  * @class Attribute_Add_Command
@@ -32,8 +33,7 @@ public:
   /// Constructor
   Attribute_Add_Command (GAME::Mga::FCO fco,
                          std::string name,
-                         double count,
-                         int flag);
+                         Value * val);
 
   ///Destructor
   ~Attribute_Add_Command (void);
@@ -52,11 +52,8 @@ private:
   // Attribute name
   std::string atrname_;
 
-  // Value of attribute if it is Int, Long, Double
-  double count_;
-  
-  // Flag to determine what kind of action will be taken
-  int flag_;
+  // Value of the attribute
+  Value * val_;
 };
 
 #endif

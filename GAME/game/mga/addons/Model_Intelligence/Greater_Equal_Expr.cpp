@@ -12,6 +12,9 @@
 
 #include "Add_Command.h"
 #include "Expr_Command.h"
+#include "Attribute_Expr.h"
+#include "Attribute_Add_Command.h"
+#include "Object_Value.h"
 
 //
 // Constructor
@@ -97,6 +100,61 @@ bool Greater_Equal_Expr::evaluate (Ocl_Context & res)
 				}
 		}
 	}
+  else if (res.model_attributes)
+  {
+    // Assumption for now is that the attribute_expression is lhs and constant_value_expr
+    // is rhs
+
+    // Caller
+    std::string obj = "";
+    // Attribute name
+    std::string name = "";
+
+
+    // Performing the automated attribute value setting only if
+    // the constraint contains attribute i.e. either lhs or rhs has attribute
+    Attribute_Expr * left = dynamic_cast <Attribute_Expr *> (this->lhs_);
+    Attribute_Expr * right = dynamic_cast <Attribute_Expr *> (this->rhs_);
+
+    if (left != 0 || right != 0 )
+    {
+      if (left != 0)
+      {
+        name = left->attribute_name ();
+        obj = left->caller ();
+      }
+      else
+      {
+        name = right->attribute_name ();
+        obj = right->caller ();
+      }
+
+      GAME::Mga::FCO fco;
+
+      // Checking the invoking object for the attribute
+      if (obj == "self")
+        fco = GAME::Mga::FCO::_narrow (res.self);
+      else
+      {
+        // The object value associated with the local variable is taken from map
+        // and is used for attribute value calculation
+        Object_Value * iv = dynamic_cast <Object_Value *> (res.locals [obj]);
+        fco = GAME::Mga::FCO::_narrow (iv->value ());
+      }
+
+      if (!this->lhs_->evaluate (res)->is_greater_equal (this->rhs_->evaluate (res)))
+      {
+        Expr_Command *cmd = new Attribute_Add_Command (fco, name, this->rhs_->evaluate (res));
+
+        //Pushing adding operation to the action list
+        res.actions.push_back (cmd);
+      }
+      ret = true;
+    }
+    else
+      ret = this->lhs_->evaluate (res)->is_greater_equal (this->rhs_->evaluate (res));
+    
+  }
 	else
 		ret = this->lhs_->evaluate (res)->is_greater_equal (this->rhs_->evaluate (res));
 
