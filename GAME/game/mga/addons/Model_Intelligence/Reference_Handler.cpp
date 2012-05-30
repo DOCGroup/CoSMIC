@@ -94,8 +94,6 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 	{
 		bool result = true;
 
-		std::string objecternaam = (*objs_iter)->name ();
-
 		std::vector <std::string>::iterator 
 			iter = ref_constraints.begin (), iter_end = ref_constraints.end ();
 

@@ -53,12 +53,17 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
 	Size_Method.cpp
 	Refers_to_Method.cpp
 	AtomParts_Method.cpp
+	ModelParts_Method.cpp
+	ReferenceParts_Method.cpp
+	ConnectionParts_Method.cpp
 	Name_Method.cpp
 	KindName_Method.cpp
 	Parent_Method.cpp
 	ChildFolders_Method.cpp
 	RoleName_Method.cpp
-	
+	ConnectedFCOs_Method.cpp
+	ConnectionPoints_Method.cpp
+	ConnectionPoint_Method.cpp
      	
 	Value.cpp
 	Int_Value.cpp

@@ -35,7 +35,7 @@ public:
   /// Default constructor.
   IteratorCall_Expr (Value_Expr * obj,
                      Iterator * name,
-                     Equality_Expr * expr);
+                     Boolean_Expr * expr);
 
 	/// Destructor.
 	~IteratorCall_Expr (void);
@@ -85,7 +85,7 @@ private:
   Iterator * name_;
 
   // The expression to be evaluated
-  Equality_Expr * expr_;
+  Boolean_Expr * expr_;
 
   // Setting the declarators
   std::vector <std::string> next_;

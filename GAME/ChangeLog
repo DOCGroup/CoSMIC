@@ -1,3 +1,28 @@
+Wed May 30 17:54:52 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/AtomParts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Attribute_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/ConnectedFCOs_Method.h:
+        * game/mga/addons/Model_Intelligence/ConnectedFCOs_Method.cpp:
+        * game/mga/addons/Model_Intelligence/ConnectionParts_Method.h:
+        * game/mga/addons/Model_Intelligence/ConnectionParts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/ConnectionPoint_Method.h:
+        * game/mga/addons/Model_Intelligence/ConnectionPoint_Method.cpp:
+        * game/mga/addons/Model_Intelligence/ConnectionPoints_Method.h:
+        * game/mga/addons/Model_Intelligence/ConnectionPoints_Method.cpp:
+        * game/mga/addons/Model_Intelligence/IteratorCall_Expr.h:
+        * game/mga/addons/Model_Intelligence/IteratorCall_Expr.cpp:
+        * game/mga/addons/Model_Intelligence/ModelParts_Method.h:
+        * game/mga/addons/Model_Intelligence/ModelParts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
+        * game/mga/addons/Model_Intelligence/ReferenceParts_Method.h:
+        * game/mga/addons/Model_Intelligence/ReferenceParts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        
+          Added new methods to Model Intelligence and filtration for iterators.
+
 Thu May 17 21:53:55 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Attribute_Add_Command.h:
@@ -13,7 +38,7 @@ Thu May 17 21:53:55 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/Lesser_Equal_Expr.cpp:
         * game/mga/addons/Model_Intelligence/String_Value.h:
         * game/mga/addons/Model_Intelligence/String_Value.cpp:
-        
+
           Updated changes related to Attribute handler.
 
 Wed May 16 01:01:45 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>

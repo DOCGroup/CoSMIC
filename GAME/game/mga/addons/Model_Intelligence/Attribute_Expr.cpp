@@ -88,15 +88,26 @@ Value * Attribute_Expr::evaluate (Ocl_Context &res)
 Value * Attribute_Expr::filter_evaluate (Ocl_Context &res)
 {
 	res.model_constraint = false;
+  GAME::Mga::FCO fco;
+
+  // Checking the invoking object for the attribute
+  if (this->var_ == "self")
+    fco = GAME::Mga::FCO::_narrow (res.self);
+  else
+  {
+    // The object value associated with the local variable is taken from map
+    // and is used for attribute value calculation
+    fco = res.cur_fco;
+  }
 
   // The current fco is used for attribute value computation
-	GAME::Mga::Meta::FCO metafco = res.cur_fco->meta ();
+	GAME::Mga::Meta::FCO metafco = fco->meta ();
 
 	std::string name = metafco->name ();
 	GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->attribute_, false);
 	std::string atrname = meta_atr->name ();
 
-	GAME::Mga::Attribute work_atr = res.cur_fco->attribute (meta_atr);
+	GAME::Mga::Attribute work_atr = fco->attribute (meta_atr);
 
 	if (meta_atr->type () == ATTVAL_INTEGER)
 	{

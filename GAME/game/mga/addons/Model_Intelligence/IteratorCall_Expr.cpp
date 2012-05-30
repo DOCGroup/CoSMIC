@@ -5,6 +5,9 @@
 #include "boost/bind.hpp"
 #include "Object_Value.h"
 #include "Collection_Value_T.h"
+#include "game/mga/Filter.h"
+#include "game/mga/MetaFCO.h"
+#include "game/mga/FCO.h"
 
 
 //
@@ -12,7 +15,7 @@
 //
 IteratorCall_Expr::IteratorCall_Expr (Value_Expr * obj,
                                       Iterator * name,
-                                      Equality_Expr * expr)
+                                      Boolean_Expr * expr)
 :obj_(obj),
  name_(name),
  expr_(expr)
@@ -96,7 +99,26 @@ bool IteratorCall_Expr::evaluate (Ocl_Context &res)
 //
 bool IteratorCall_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
 { 
-  return false;
+  bool result = false;
+
+  std::string name = current->name ();
+
+  switch (this->next_.size ()) {
+    case 0:
+    {
+      result = this->expr_->filter_evaluate (res, current);
+      break;
+    }
+    case 1:
+    {
+      result = this->expr_->filter_evaluate (res, current);
+      break;
+    }
+    default:
+      result = false;
+  }
+          
+  return result;
 }
 
 //

@@ -94,9 +94,72 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 				  filter.kind (meta_dst->name ());
 					filter.apply (atm->parent_model (), objs);
 
-				  if (1 == objs.size ())
+          // Filtering the results based on constraints for the dialog box
+	        std::vector <GAME::Mga::Meta::Constraint> cs;
+
+	        size_t csize = atm->meta ()->constraints (cs);
+
+          std::vector <std::string> asn_constraints;
+
+	        std::for_each (cs.begin (),
+		                     cs.end (),
+								         boost::bind (&std::vector <std::string>::push_back,
+                                      boost::ref (asn_constraints),
+															        boost::bind (&GAME::Mga::Meta::Constraint::impl_type::expression,
+															                     boost::bind (&GAME::Mga::Meta::Constraint::get, _1))));
+
+          Ocl_Context res;
+
+	        res.self = obj;
+	        res.model_constraint = false;
+          res.model_attributes = false;
+
+	        std::vector <GAME::Mga::FCO>::iterator 
+		        objs_iter = objs.begin (), objs_iter_end = objs.end ();
+
+	        // Vector to hold the qualified FCO's
+	        std::vector <GAME::Mga::FCO> qual_fcos;
+
+          for (; objs_iter != objs_iter_end; ++ objs_iter)
+	        {
+		        bool result = true;
+
+		        std::vector <std::string>::iterator 
+			        iter = asn_constraints.begin (), iter_end = asn_constraints.end ();
+
+		        for (; iter != iter_end; ++ iter)
+		        {
+			        //reseting the constraint specific variables
+			        res.target_metaroles.clear ();
+			        res.locals.clear ();
+
+			        std::vector <Boolean_Expr *> ocl;
+			        OCL_Expr_Parser parser;
+
+			        //Parsing the ocl string
+    	        parser.parse_string (*(iter), ocl);
+
+			        // Iterating over the sub-expressions and evaluating them
+			        std::vector <Boolean_Expr *>::iterator 
+				        oclitt = ocl.begin (), oclitt_end = ocl.end ();
+
+			        for (; oclitt != oclitt_end; ++ oclitt)
+			        {
+                bool temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
+
+				        if (!temp)
+					        result = false;
+			        }
+		        }
+
+		        if (result)
+			        qual_fcos.push_back ((*objs_iter));
+	        }
+
+
+				  if (1 == qual_fcos.size ())
 				  {
-					  select = objs.front ();
+					  select = qual_fcos.front ();
 				  }
 				  else
 				  {
@@ -111,7 +174,7 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
 					  dlg.title ("Auto Connection Resolver");
 					  dlg.directions (directions.c_str ());
-					  dlg.insert (objs);
+					  dlg.insert (qual_fcos);
 
 					  if (IDOK != dlg.DoModal ())
 						  return 0;

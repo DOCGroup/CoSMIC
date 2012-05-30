@@ -2,7 +2,7 @@
 
 #include "StdAfx.h"
 
-#include "AtomParts_Method.h"
+#include "ModelParts_Method.h"
 #include "MetaModel.h"
 #include "MetaRole.h"
 #include "MetaFCO.h"
@@ -13,7 +13,7 @@
 //
 // Constructor
 //
-AtomParts_Method::AtomParts_Method (std::string &role)
+ModelParts_Method::ModelParts_Method (std::string &role)
 : role_ (role)
 {
 }
@@ -21,18 +21,18 @@ AtomParts_Method::AtomParts_Method (std::string &role)
 //
 // Destructor
 //
-AtomParts_Method::~AtomParts_Method (void)
+ModelParts_Method::~ModelParts_Method (void)
 {
 }
 
 //
 // evaluate
 //
-Value * AtomParts_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * ModelParts_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 {
 	GAME::Mga::Model mod = GAME::Mga::Model::_narrow (caller);
 
-  std::vector<GAME::Mga::Atom> parts;
+  std::vector<GAME::Mga::Model> parts;
 	GAME::Mga::Meta::Role target_metarole = mod->meta ()->role (this->role_);
 
 	// Setting the target metarole in the model intelligence context
@@ -40,17 +40,17 @@ Value * AtomParts_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
   
   GAME::Mga::Meta::FCO temp = target_metarole->kind ();
 
-  if (temp->type() == OBJTYPE_ATOM)
+  if (temp->type() == OBJTYPE_MODEL)
     mod->children (temp->name(), parts);
 
-  return new Collection_Value_T<GAME::Mga::Atom> (parts);
+  return new Collection_Value_T<GAME::Mga::Model> (parts);
 
 }
 
 //
 // evaluate
 //
-Value * AtomParts_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * ModelParts_Method::evaluate (Ocl_Context &res, Value *caller)
 {
 	Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
@@ -60,7 +60,7 @@ Value * AtomParts_Method::evaluate (Ocl_Context &res, Value *caller)
 
 		GAME::Mga::Model mod = GAME::Mga::Model::_narrow (obj);
 
-    std::vector<GAME::Mga::Atom> parts;
+    std::vector<GAME::Mga::Model> parts;
 		GAME::Mga::Meta::Role target_metarole = mod->meta ()->role (this->role_);
 
 		// Setting the target metarole in the model intelligence context
@@ -68,22 +68,22 @@ Value * AtomParts_Method::evaluate (Ocl_Context &res, Value *caller)
 	  
 		GAME::Mga::Meta::FCO temp = target_metarole->kind ();
 
-    if (temp->type() == OBJTYPE_ATOM)
+    if (temp->type() == OBJTYPE_MODEL)
       mod->children (temp->name(), parts);
 
-    return new Collection_Value_T<GAME::Mga::Atom> (parts);
+    return new Collection_Value_T<GAME::Mga::Model> (parts);
 	}
 	else
 	{
-    std::vector<GAME::Mga::Atom> parts;
-    return new Collection_Value_T<GAME::Mga::Atom> (parts);
+    std::vector<GAME::Mga::Model> parts;
+    return new Collection_Value_T<GAME::Mga::Model> (parts);
 	}
 }
 
 //
 // is_filter
 //
-bool AtomParts_Method::is_filter (void)
+bool ModelParts_Method::is_filter (void)
 {
   return false;
 }

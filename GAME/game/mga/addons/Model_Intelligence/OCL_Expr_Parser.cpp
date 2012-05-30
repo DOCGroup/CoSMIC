@@ -43,6 +43,10 @@
 
 #include "Method.h"
 #include "Parts_Method.h"
+#include "AtomParts_Method.h"
+#include "ModelParts_Method.h"
+#include "ReferenceParts_Method.h"
+#include "ConnectionParts_Method.h"
 #include "Size_Method.h"
 #include "Refers_to_Method.h"
 #include "Name_Method.h"
@@ -50,6 +54,9 @@
 #include "Parent_Method.h"
 #include "ChildFolders_Method.h"
 #include "RoleName_Method.h"
+#include "ConnectedFCOs_Method.h"
+#include "ConnectionPoints_Method.h"
+#include "ConnectionPoint_Method.h"
 
 #include "Attribute_Expr.h"
 
@@ -176,13 +183,15 @@ struct OCL_Expression_Parser_Grammar :
 
 		this->method_ %= this->parts_method_ | this->size_method_ | this->refers_to_method_ |
 			this->name_method_ | this->kindname_method_ | this->parent_method_ | this->childfolders_method_ |
-			this->rolename_method_;
+			this->rolename_method_ | this->connectedfcos_method_ | this->atomparts_method_ | this->modelparts_method_ |
+      this->referenceparts_method_ | this->connectionparts_method_ | this->connectionpoints_method_ |
+      this->connectionpoint_method_;
 
     this->iteratorcall_expr_ = this->value_expr_ [qi::_a = qi::_1][qi::_e = ""] >> 
       qi::lit ("->") >> this->iterator_ [qi::_b = qi::_1] >> qi::lit("(") >>
       -(this->declarator_list_[qi::_d = qi::_1] >>
       qi::lit (":") >> this->ident_[qi::_e = qi::_1] >>
-      qi::lit ("|")) >> this->eq_expr_[qi::_c = qi::_1] >>
+      qi::lit ("|")) >> this->bool_expr_[qi::_c = qi::_1] >>
       qi::lit(")")[qi::_val = phoenix::new_ <IteratorCall_Expr> (qi::_a, qi::_b, qi::_c)]
       [phoenix::bind (&IteratorCall_Expr::set_declarators, qi::_val, qi::_d)]
       [phoenix::bind (&IteratorCall_Expr::set_dec_type, qi::_val, qi::_e)];
@@ -203,12 +212,36 @@ struct OCL_Expression_Parser_Grammar :
 			qi::lit (".") >>
 			this->ident_[qi::_val = phoenix::new_<Attribute_Expr> (qi::_a, qi::_1)];
 
+    // GME Model specific methods
+
 		this->parts_method_ = qi::lit("parts") >>
 			qi::lit ("(") >>
-      this->quoted_string_ [qi::_val = phoenix::new_ <Parts_Method> (qi::_1)] >>
-      qi::lit (")");
+      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
+      qi::lit (")")[qi::_val = phoenix::new_ <Parts_Method> (qi::_a)];
+
+    this->atomparts_method_ = (qi::lit("atomParts") | qi::lit("atoms")) >>
+			qi::lit ("(") >>
+      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
+      qi::lit (")")[qi::_val = phoenix::new_ <AtomParts_Method> (qi::_a)];
+
+    this->modelparts_method_ = (qi::lit("modelParts") | qi::lit("models")) >>
+			qi::lit ("(") >>
+      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
+      qi::lit (")")[qi::_val = phoenix::new_ <ModelParts_Method> (qi::_a)];
+
+    this->referenceparts_method_ = qi::lit("referenceParts") >>
+			qi::lit ("(") >>
+      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
+      qi::lit (")")[qi::_val = phoenix::new_ <ReferenceParts_Method> (qi::_a)];
+
+    this->connectionparts_method_ = qi::lit("connectionParts") >>
+			qi::lit ("(") >>
+      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
+      qi::lit (")")[qi::_val = phoenix::new_ <ConnectionParts_Method> (qi::_a)];
 
 		this->size_method_ = qi::lit("size")[qi::_val = phoenix::new_ <Size_Method> ()];
+
+    // GME Reference specific methods
 
 		this->refers_to_method_ = qi::lit ("refersTo") >>
 			qi::lit ("(") >>
@@ -233,6 +266,22 @@ struct OCL_Expression_Parser_Grammar :
 
 		this->rolename_method_ = qi::lit ("roleName") >> -(qi::lit ("(") >> qi::lit (")"))
 			[qi::_val = phoenix::new_ <RoleName_Method> ()];
+
+    this->connectedfcos_method_ = qi::lit("connectedFCOs") >>
+      qi::lit ("(") >>
+      this->ident_ [qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_1)] >>
+      qi::lit (")");
+
+    // GME Connection specific methods
+    this->connectionpoints_method_ = qi::lit ("connectionPoints") >>
+      ( (qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <ConnectionPoints_Method> ()]) |
+      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<ConnectionPoints_Method> (qi::_1)] >>
+       qi::lit (")")) );
+
+    this->connectionpoint_method_ = qi::lit ("connectionPoint") >>
+      qi::lit ("(") >> 
+      this->quoted_string_[qi::_val = phoenix::new_<ConnectionPoint_Method> (qi::_1)] >>
+      qi::lit (")");
 
     this->ident_ %= 
 			qi::lexeme[(ascii::char_('_') | qi::alpha) >>
@@ -339,7 +388,7 @@ private:
             ascii::space_type,
             qi::locals <Value_Expr *, 
                         Iterator *,
-						            Equality_Expr *,
+						            Boolean_Expr *,
                         std::vector <std::string>,
                         std::string> > iteratorcall_expr_;
 
@@ -357,7 +406,40 @@ private:
 
 	qi::rule <IteratorT,
             Parts_Method * (),
-            ascii::space_type> parts_method_;
+            ascii::space_type,
+            qi::locals <std::string>> parts_method_;
+
+  qi::rule <IteratorT,
+            AtomParts_Method * (),
+            ascii::space_type,
+            qi::locals <std::string>> atomparts_method_;
+
+  qi::rule <IteratorT,
+            ModelParts_Method * (),
+            ascii::space_type,
+            qi::locals <std::string>> modelparts_method_;
+
+  qi::rule <IteratorT,
+            ReferenceParts_Method * (),
+            ascii::space_type,
+            qi::locals <std::string>> referenceparts_method_;
+
+  qi::rule <IteratorT,
+            ConnectionParts_Method * (),
+            ascii::space_type,
+            qi::locals <std::string>> connectionparts_method_;
+
+  qi::rule <IteratorT,
+            ConnectedFCOs_Method * (),
+            ascii::space_type> connectedfcos_method_;
+
+  qi::rule <IteratorT,
+            ConnectionPoints_Method * (),
+            ascii::space_type> connectionpoints_method_;
+
+  qi::rule <IteratorT,
+            ConnectionPoint_Method * (),
+            ascii::space_type> connectionpoint_method_;
 
 	qi::rule <IteratorT,
             Size_Method * (),
