@@ -26,6 +26,7 @@
 #include "game/mga/component/Addon_Impl_T.h"
 #include "game/mga/component/ComponentEx_T.h"
 #include "game/mga/component/Object_Event_Handler.h"
+#include "game/mga/component/Global_Event_Handler.h"
 
 GAME_DEFAULT_ADDON_IMPL (Model_Intelligence_Impl,
                          "GAME Model Intelligence",

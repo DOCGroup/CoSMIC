@@ -2,7 +2,7 @@
 
 #include "StdAfx.h"
 
-#include "ConnectedFCOs_Method.h"
+#include "AttachingConnections_Method.h"
 #include "Collection_Value_T.h"
 #include "Int_Value.h"
 #include "Object_Value.h"
@@ -12,15 +12,15 @@
 //
 // Default Constructor
 //
-ConnectedFCOs_Method::ConnectedFCOs_Method (void)
+AttachingConnections_Method::AttachingConnections_Method (void)
 {
   flag = 1;
 }
 
 //
-// Role/Kind Constructor
+// Kind/Role Constructor
 //
-ConnectedFCOs_Method::ConnectedFCOs_Method (std::string &temp)
+AttachingConnections_Method::AttachingConnections_Method (std::string &temp)
 : temp_(temp)
 {
   if (this->temp_ == "src" || this->temp_ == "dst")
@@ -38,7 +38,7 @@ ConnectedFCOs_Method::ConnectedFCOs_Method (std::string &temp)
 //
 // Role and Kind Constructor
 //
-ConnectedFCOs_Method::ConnectedFCOs_Method (std::string &role, std::string &kind)
+AttachingConnections_Method::AttachingConnections_Method (std::string &role, std::string &kind)
 : role_(role),
   kind_(kind)
 {
@@ -48,14 +48,14 @@ ConnectedFCOs_Method::ConnectedFCOs_Method (std::string &role, std::string &kind
 //
 // Destructor
 //
-ConnectedFCOs_Method::~ConnectedFCOs_Method (void)
+AttachingConnections_Method::~AttachingConnections_Method (void)
 {
 }
 
 //
 // evaluate
 //
-Value * ConnectedFCOs_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * AttachingConnections_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 {
   GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (caller);
   
@@ -69,47 +69,47 @@ Value * ConnectedFCOs_Method::evaluate (Ocl_Context &res, GAME::Mga::Object call
   else if (flag == 2 || flag == 4)
     fco->in_connections (this->kind_, conns);
 
-  std::vector<GAME::Mga::FCO> fcos;
+  std::vector<GAME::Mga::Connection> qual_conn;
 
   std::vector<GAME::Mga::Connection>::iterator 
     cit = conns.begin(), cit_end = conns.end();
 
-  // Get all the connected fcos on the other end of this fco
-  // based on the "role" values
+  // Get all the connections based on the information provided
+  // i.e. filtering based on role value (only those connections
+  // are collected for which the calling fco has role "this->role_")
   for (; cit != cit_end; ++cit)
   {
     if (flag == 1 || flag == 2)
     {
-      if ((*cit)->src()->name () == fco->name ())
-        fcos.push_back((*cit)->dst ());
-      else if ((*cit)->dst()->name () == fco->name ())
-        fcos.push_back((*cit)->src ());
+      qual_conn.push_back ((*cit));
     }
     else if (flag == 3 || flag == 4)
     {
       if (this->role_ == "src")
-        fcos.push_back((*cit)->src ());
+        qual_conn.push_back ((*cit)->connection_point ("dst")->target ());
       else if (this->role_ == "dst")
-        fcos.push_back((*cit)->dst ());
-    }
+        qual_conn.push_back ((*cit)->connection_point ("src")->target ());
+    }  
   }
 
-  return new Collection_Value_T<GAME::Mga::FCO> (fcos);
+  return new Collection_Value_T<GAME::Mga::Connection> (qual_conn);
   
 }
 
 //
 // evaluate
 //
-Value * ConnectedFCOs_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * AttachingConnections_Method::evaluate (Ocl_Context &res, Value *caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
 	if (iv != 0)
 	{
     GAME::Mga::Object obj = iv->value ();
-    GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
+    GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (caller);
 
+    // Get all the connections associated to this fco based on the 
+    // kind of the connection
     std::vector<GAME::Mga::Connection> conns;
 
     // Filtering out the connections based on "kind" value
@@ -117,29 +117,30 @@ Value * ConnectedFCOs_Method::evaluate (Ocl_Context &res, Value *caller)
       fco->in_connections (conns);
     else if (flag == 2 || flag == 4)
       fco->in_connections (this->kind_, conns);
-    
-    std::vector<GAME::Mga::FCO> fcos;
-    std::vector<GAME::Mga::Connection>::iterator 
+
+    std::vector<GAME::Mga::Connection> qual_conn;
+
+    std::vector<GAME::Mga::Connection>::iterator
       cit = conns.begin(), cit_end = conns.end();
 
+    // Get all the connection points based on the information provided
+    // i.e. filtering based on role value
     for (; cit != cit_end; ++cit)
     {
       if (flag == 1 || flag == 2)
       {
-        if ((*cit)->src()->name () == fco->name ())
-          fcos.push_back((*cit)->dst ());
-        else if ((*cit)->dst()->name () == fco->name ())
-          fcos.push_back((*cit)->src ());
+        qual_conn.push_back ((*cit));
       }
       else if (flag == 3 || flag == 4)
       {
         if (this->role_ == "src")
-          fcos.push_back((*cit)->src ());
+          qual_conn.push_back ((*cit)->connection_point ("dst")->target ());
         else if (this->role_ == "dst")
-          fcos.push_back((*cit)->dst ());
-      }
+          qual_conn.push_back ((*cit)->connection_point ("src")->target ());
+      }  
     }
-    return new Collection_Value_T<GAME::Mga::FCO> (fcos);
+
+    return new Collection_Value_T<GAME::Mga::Connection> (qual_conn);    
   }
   else
 	{
@@ -151,7 +152,7 @@ Value * ConnectedFCOs_Method::evaluate (Ocl_Context &res, Value *caller)
 //
 // is_filter
 //
-bool ConnectedFCOs_Method::is_filter (void)
+bool AttachingConnections_Method::is_filter (void)
 {
-  return true;
+  return false;
 }

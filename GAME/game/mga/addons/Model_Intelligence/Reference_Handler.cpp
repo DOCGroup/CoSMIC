@@ -136,7 +136,7 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
     // Create the dialog and pass in the data
     using GAME::Dialogs::Selection_List_Dialog_T;
-    Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd ());
+    Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd (), 0);
 
     const std::string directions =
       "Please select the target object for the " +

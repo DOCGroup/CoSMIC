@@ -6,6 +6,7 @@
 #include "Association_Handler.h"
 #include "Reference_Handler.h"
 #include "Attributes_Handler.h"
+#include "User_Guidance_Handler.h"
 #include "game/mga/component/ComponentEx_T.h"
 
 #include "game/mga/Atom.h"
@@ -58,7 +59,8 @@ int Model_Intelligence::initialize (Mga::Project project)
   this->sink_->register_handler (OBJTYPE_MODEL, new Containment_Handler ());
   this->sink_->register_handler (OBJTYPE_ATOM, new Association_Handler ());
   this->sink_->register_handler (OBJTYPE_ATOM, new Attributes_Handler ());
-	
+  this->sink_->register_handler (new User_Guidance_Handler ());
+  	
   return 0;
 }
 

@@ -92,15 +92,15 @@ bool Add_Command::execute (void)
 
         // Create the dialog and pass in the data
         using GAME::Dialogs::Selection_List_Dialog_T;
-        Selection_List_Dialog_T <GAME::Mga::Meta::FCO> dlg (0, ::AfxGetMainWnd ());
-        dlg.title ("Inherited MetaFCO tyoe object you want to add to the model");
+        Selection_List_Dialog_T <GAME::Mga::Meta::FCO> dlg (0, ::AfxGetMainWnd (), 1);
+        dlg.title ("Inherited MetaFCO type object you want to add to the model");
         dlg.directions ("Select the desired MetaFCO object");
         dlg.meta_insert (metafcos);
 
         if (IDOK != dlg.DoModal ())
           return false;
 
-        select = dlg.selection ();
+        select = dlg.meta_selection ();
 
 				if (!select.is_nil ())
 				{

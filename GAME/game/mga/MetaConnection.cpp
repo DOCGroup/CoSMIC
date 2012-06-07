@@ -177,12 +177,12 @@ FCO ConnectionPoint_Impl::get_src (void)
 
 
 //
-// get_dst
+// get_dsts
 //
-FCO ConnectionPoint_Impl::get_dst (void)
+std::vector <std::vector<FCO>> ConnectionPoint_Impl::get_dsts (void)
 {
-  FCO destination;
-
+  std::vector <std::vector<FCO>> destinations;
+  
   // Get all the reference pointer specifications.
   CComPtr <IMgaMetaPointerSpecs> specs;
   VERIFY_HRESULT (this->impl ()->get_PointerSpecs (&specs));
@@ -216,22 +216,43 @@ FCO ConnectionPoint_Impl::get_dst (void)
 
 		  for (long j = 1; j <= num; ++ j)
 		  {
+        // Holds the vector to be pushed into main vector
+        std::vector <FCO> temps;
+
 			  CComBSTR name;
 			  CComPtr <IMgaMetaPointerItem> item;
 
 			  // Get the next item in the collection.
 			  VERIFY_HRESULT (items->get_Item (j, &item));
-			  VERIFY_HRESULT (item->get_Desc (&name));
+        VERIFY_HRESULT (item->get_Desc (&name));
 
-			  // Locate the FCO with the specified name.
-			  CComPtr <IMgaMetaFCO> fco;
-			  VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name, VARIANT_TRUE, &fco));
+        // Spliting the name into two halves
+        std::wstring conv = name;
+        std::wstring::size_type pos = conv.find(L' ');
+        CComBSTR name1, name2;
+        name1 = conv.substr(0, pos).c_str();
+        name2 = conv.substr(pos+1).c_str();
+
+			  // Locate the first FCO with the specified name.
+			  CComPtr <IMgaMetaFCO> fco1;
+			  VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name1, VARIANT_TRUE, &fco1));
 			  
-			  destination = fco.p;
+        temps.push_back (fco1.p);
+
+        // Locate the second FCO if it exists
+        if (name2.Length () > 0 && name1 != name2)
+        {
+          CComPtr <IMgaMetaFCO> fco2;
+			    VERIFY_HRESULT (root_folder->impl ()->get_DefinedFCOByName (name2, VARIANT_TRUE, &fco2));
+  			  
+          temps.push_back (fco2.p);
+        }
+
+        destinations.push_back (temps);
 		  }
 	  }
   }
-  return destination;
+  return destinations;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

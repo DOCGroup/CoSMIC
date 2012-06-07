@@ -103,9 +103,9 @@ public:
   /**
    * Get the destination of this connector.
    *
-   * @return                        The destination target of the connector
+   * @return                        The destination targets of the connector
    */
-  FCO get_dst (void);
+  std::vector <std::vector<FCO>> get_dsts (void);
 
 private:
   /// Pointer to the connection point.

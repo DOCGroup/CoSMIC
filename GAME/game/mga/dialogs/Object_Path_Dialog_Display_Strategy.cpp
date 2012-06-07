@@ -24,5 +24,15 @@ get_display_name (const Mga::Object_in obj, std::string & display_name)
   return true;
 }
 
+//
+// get_meta_display_name
+//
+bool Object_Path_Dialog_Display_Strategy::
+get_meta_display_name (const Mga::Meta::Base_in obj, std::string & display_name)
+{
+  display_name = obj->display_name ();
+  return true;
+}
+
 }
 }

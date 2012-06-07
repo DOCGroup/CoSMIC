@@ -55,6 +55,9 @@
 #include "ChildFolders_Method.h"
 #include "RoleName_Method.h"
 #include "ConnectedFCOs_Method.h"
+#include "AttachingConnPoints_Method.h"
+#include "AttachingConnections_Method.h"
+#include "IsConnectedTo_Method.h"
 #include "ConnectionPoints_Method.h"
 #include "ConnectionPoint_Method.h"
 
@@ -185,7 +188,8 @@ struct OCL_Expression_Parser_Grammar :
 			this->name_method_ | this->kindname_method_ | this->parent_method_ | this->childfolders_method_ |
 			this->rolename_method_ | this->connectedfcos_method_ | this->atomparts_method_ | this->modelparts_method_ |
       this->referenceparts_method_ | this->connectionparts_method_ | this->connectionpoints_method_ |
-      this->connectionpoint_method_;
+      this->connectionpoint_method_ | this->attachingconnpoints_method_ | this->attachingconnections_method_ |
+      this->isconnectedto_method_ ;
 
     this->iteratorcall_expr_ = this->value_expr_ [qi::_a = qi::_1][qi::_e = ""] >> 
       qi::lit ("->") >> this->iterator_ [qi::_b = qi::_1] >> qi::lit("(") >>
@@ -268,9 +272,49 @@ struct OCL_Expression_Parser_Grammar :
 			[qi::_val = phoenix::new_ <RoleName_Method> ()];
 
     this->connectedfcos_method_ = qi::lit("connectedFCOs") >>
-      qi::lit ("(") >>
-      this->ident_ [qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_1)] >>
-      qi::lit (")");
+      ((qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <ConnectedFCOs_Method> ()]) |
+      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_1)] >>
+       qi::lit (")")) |
+      (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_1)] >>
+       qi::lit (")")) |
+       (qi::lit ("(") >> this->quoted_string_[qi::_a = qi::_1] >>
+       this->ident_[qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_a, qi::_1)] >>
+       qi::lit (")")) );
+
+    this->attachingconnpoints_method_ = qi::lit ("attachingConnPoints") >>
+      ((qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <AttachingConnPoints_Method> ()]) |
+      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<AttachingConnPoints_Method> (qi::_1)] >>
+       qi::lit (")")) |
+      (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<AttachingConnPoints_Method> (qi::_1)] >>
+       qi::lit (")")) |
+       (qi::lit ("(") >> this->quoted_string_[qi::_a = qi::_1] >>
+       this->ident_[qi::_val = phoenix::new_<AttachingConnPoints_Method> (qi::_a, qi::_1)] >>
+       qi::lit (")")) );
+
+    this->attachingconnections_method_ = qi::lit ("attachingConnections") >>
+      ((qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <AttachingConnections_Method> ()]) |
+      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<AttachingConnections_Method> (qi::_1)] >>
+       qi::lit (")")) |
+      (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<AttachingConnections_Method> (qi::_1)] >>
+       qi::lit (")")) |
+       (qi::lit ("(") >> this->quoted_string_[qi::_a = qi::_1] >>
+       this->ident_[qi::_val = phoenix::new_<AttachingConnections_Method> (qi::_a, qi::_1)] >>
+       qi::lit (")")) );
+
+    this->isconnectedto_method_ = qi::lit ("isConnectedTo") >>
+      ( (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_1)] >>
+          qi::lit (")")) | 
+        (qi::lit ("(") >> this->ident_[qi::_a = qi::_1] >>
+          this->quoted_string_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_1)] >>
+          qi::lit (")")) |
+        (qi::lit ("(") >> this->ident_[qi::_a = qi::_1] >>
+          this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_1)] >>
+          qi::lit (")")) |
+        (qi::lit ("(") >> this->ident_[qi::_a = qi::_1] >>
+          this->quoted_string_[qi::_b = qi::_1] >>
+          this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_b, qi::_1)] >>
+          qi::lit (")")) );
+
 
     // GME Connection specific methods
     this->connectionpoints_method_ = qi::lit ("connectionPoints") >>
@@ -430,8 +474,25 @@ private:
             qi::locals <std::string>> connectionparts_method_;
 
   qi::rule <IteratorT,
+            AttachingConnPoints_Method * (),
+            ascii::space_type,
+            qi::locals <std::string>> attachingconnpoints_method_;
+
+  qi::rule <IteratorT,
+            AttachingConnections_Method * (),
+            ascii::space_type,
+            qi::locals <std::string>> attachingconnections_method_;
+
+  qi::rule <IteratorT,
+            IsConnectedTo_Method * (),
+            ascii::space_type,
+            qi::locals <std::string,
+                        std::string>> isconnectedto_method_;
+
+  qi::rule <IteratorT,
             ConnectedFCOs_Method * (),
-            ascii::space_type> connectedfcos_method_;
+            ascii::space_type,
+            qi::locals <std::string>> connectedfcos_method_;
 
   qi::rule <IteratorT,
             ConnectionPoints_Method * (),

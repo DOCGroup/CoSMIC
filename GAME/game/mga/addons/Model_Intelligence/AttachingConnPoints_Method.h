@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file          ConnectedFCOs_Method.h
+ * @file          AttachingConnPoints_Method.h
  *
  * $Id$
  *
@@ -10,31 +10,31 @@
  */
 //=============================================================================
 
-#ifndef _GAME_MODEL_INTELLIGENCE_CONNECTEDFCOS_METHOD_H_
-#define _GAME_MODEL_INTELLIGENCE_CONNECTEDFCOS_METHOD_H_
+#ifndef _GAME_MODEL_INTELLIGENCE_ATTACHINGCONNPOINTS_METHOD_H_
+#define _GAME_MODEL_INTELLIGENCE_ATTACHINGCONNPOINTS_METHOD_H_
 
 #include "Method.h"
 
 /**
- * @class ConnectedFCOs_Method
+ * @class AttachingConnPoints_Method
  *
  * Class derived from Method. This class 
- * returns all the fcos that are connected to this fco
+ * returns all the "specific" connection points that are connected to this fco
  */
-class ConnectedFCOs_Method : public Method
+class AttachingConnPoints_Method : public Method
 {
 public:
   /// Default constructor.
-  ConnectedFCOs_Method (void);
+  AttachingConnPoints_Method (void);
 
-  /// Role/Kind constructor
-  ConnectedFCOs_Method (std::string &temp);
+  /// Kind/Role constructor
+  AttachingConnPoints_Method (std::string &temp);
 
   /// Role and Kind constructor
-  ConnectedFCOs_Method (std::string &role, std::string &kind);
+  AttachingConnPoints_Method (std::string &role, std::string &kind);
 
 	/// Destructor.
-	~ConnectedFCOs_Method (void);
+	~AttachingConnPoints_Method (void);
 
   /**
    * evaluate method for evaluating the ConnectedFCOs method
@@ -76,4 +76,4 @@ private:
   int flag;
 };
 
-#endif //_GAME_MODEL_INTELLIGENCE_CONNECTEDFCOS_METHOD_CALL_H_
+#endif //_GAME_MODEL_INTELLIGENCE_ATTACHINGCONNPOINTS_METHOD_CALL_H_

@@ -9,13 +9,15 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
   Source_Files {
     Model_Intelligence.idl
     Model_Intelligence_Impl.cpp
-    Model_Intelligence_Module.cpp
+    Model_Intelligence_Module.cpp    
 
     Containment_Handler.cpp
     Reference_Handler.cpp
     Association_Handler.cpp
     Attributes_Handler.cpp
-            
+    Test_Handler.cpp
+    User_Guidance_Handler.cpp
+                
     OCL_Expr_Parser.cpp
 
     Boolean_Expr.cpp
@@ -62,6 +64,9 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
 	ChildFolders_Method.cpp
 	RoleName_Method.cpp
 	ConnectedFCOs_Method.cpp
+	AttachingConnPoints_Method.cpp
+	AttachingConnections_Method.cpp
+	IsConnectedTo_Method.cpp
 	ConnectionPoints_Method.cpp
 	ConnectionPoint_Method.cpp
      	

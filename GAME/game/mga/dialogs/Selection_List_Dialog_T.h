@@ -37,7 +37,8 @@ public:
    * @param[in]         parent            The parent window.
    */
   Selection_List_Dialog_T (Dialog_Display_Strategy * strategy = 0,
-                           CWnd * parent = 0);
+                           CWnd * parent = 0,
+                           int type = 0);
 
   /// Destructor.
   virtual ~Selection_List_Dialog_T (void);
@@ -46,14 +47,22 @@ public:
 
   void meta_insert (const std::vector <T> & metaitems);
 
+  void string_insert (const std::vector <T> & strs);
+
   template <typename ITER>
   void insert (ITER begin, ITER end);
 
   template <typename ITER>
   void meta_insert (ITER begin, ITER end);
 
+  template <typename ITER>
+  void string_insert (ITER begin, ITER end);
+
   /// Get the current selection.
   T selection (void);
+
+  /// Get the current meta selection.
+  T meta_selection (void);
 };
 
 }

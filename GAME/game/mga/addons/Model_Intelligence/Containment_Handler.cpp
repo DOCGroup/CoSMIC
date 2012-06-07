@@ -49,7 +49,7 @@ int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
   GAME::Mga::Model mod = GAME::Mga::Model::_narrow (obj);
 
-	// Setting the model spcific attributes in Model_Intelligence_Features for containment
+  // Setting the model spcific attributes in Model_Intelligence_Features for containment
 	Ocl_Context res;
 	res.model_constraint = true;
   res.model_attributes = false;

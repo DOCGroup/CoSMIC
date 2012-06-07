@@ -80,20 +80,114 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
 		  for (; connector != connector_end; ++ connector)
 		  {
-				if ( ((*connector)->get_src ()->name () == atm->meta ()->name ()) || 
-					((*connector)->get_src ()->name () == (atm->parent_model()->name() + " " + atm->meta ()->name ())) )					
+
+				if ( (*connector)->get_src ()->name () == atm->meta ()->name () )					
 			  {
-				  GAME::Mga::Meta::FCO meta_dst = (*connector)->get_dst ();
+          // Vector to hold the qualified FCO's
+	        std::vector <GAME::Mga::FCO> qual_fcos;
 
-				  // Sorting out all the FCOs of metaobject type using a filter
-				  GAME::Mga::Filter filter (obj->project ());
-					
-				  std::vector <GAME::Mga::FCO> objs;
-                  GAME::Mga::FCO select;
+          // Holds all the FCOs
+          std::vector <GAME::Mga::FCO> objs;
 
-				  filter.kind (meta_dst->name ());
-					filter.apply (atm->parent_model (), objs);
+          // Selects the suitable FCO
+          GAME::Mga::FCO select;
 
+          std::vector <std::vector <GAME::Mga::Meta::FCO>> 
+            meta_dsts = (*connector)->get_dsts ();
+
+          // If there is just one destination vector
+          if (meta_dsts.size () == 1)
+          {
+            std::vector <GAME::Mga::Meta::FCO> metavector = meta_dsts[0];
+
+            // The subvector just has one element
+            if (metavector.size () == 1)
+            { 
+              //GAME::Mga::Meta::FCO metadst = metavector.begin ()->get ();
+              // Sorting out all the FCOs of metaobject type using a filter
+				      GAME::Mga::Filter filter (obj->project ());
+              filter.kind (meta_dsts[0][0]->name ());
+              filter.apply (atm->parent_model (), objs);
+            }
+            else
+            {
+              std::vector <GAME::Mga::Model> allmods;
+
+              GAME::Mga::Meta::Model metamodel = GAME::Mga::Meta::Model::_narrow (meta_dsts[0][0]);
+              GAME::Mga::Filter filter (obj->project ());
+              filter.kind (metamodel->name ());
+              filter.apply (atm->parent_model (), allmods);
+
+              std::vector <GAME::Mga::Model>::iterator
+                modit = allmods.begin (), modit_end = allmods.end ();
+
+              for (; modit != modit_end ; ++ modit)
+              {
+                std::vector <GAME::Mga::FCO> mod_specific_elements;
+                GAME::Mga::Filter filter (obj->project ());
+                filter.kind (meta_dsts[0][1]->name ());
+                filter.apply ((*modit), mod_specific_elements);
+                std::vector <GAME::Mga::FCO>::iterator
+                  it = mod_specific_elements.begin (), it_end = mod_specific_elements.end ();
+                for (; it != it_end; ++it)
+                  objs.push_back (*it);
+              }
+            } // end else ( when metavector is more than 1)
+          }
+          else
+          {
+            std::vector <std::vector <GAME::Mga::Meta::FCO>>::iterator
+              metameta = meta_dsts.begin (), metameta_end = meta_dsts.end ();
+
+            for (; metameta != metameta_end; ++ metameta)
+            {
+              if ((*metameta).size () == 1)  // If there is only one metavector
+              { 
+                std::vector <GAME::Mga::FCO> temps;
+              
+                // Sorting out all the FCOs of metaobject type using a filter
+                GAME::Mga::Filter filter (obj->project ());
+                filter.kind ((*metameta)[0]->name ());
+                filter.apply (atm->parent_model (), temps);
+
+                std::vector <GAME::Mga::FCO>::iterator
+                  it = temps.begin (), it_end = temps.end ();
+
+                for (; it != it_end; ++it)
+                  objs.push_back (*it);
+              }
+              else // extra section....not really necessary for now..might be useful in future
+              {
+                std::vector <GAME::Mga::Model> allmods;
+
+                // Collecting all models of type <Model> i.e. which contains the port
+                GAME::Mga::Meta::Model metamodel = GAME::Mga::Meta::Model::_narrow ((*metameta)[0]);
+                GAME::Mga::Filter filter (obj->project ());
+                filter.kind (metamodel->name ());
+                filter.apply (atm->parent_model (), allmods);
+
+                std::vector <GAME::Mga::Model>::iterator
+                    modit = allmods.begin (), modit_end = allmods.end ();
+
+                for (; modit != modit_end ; ++ modit)
+                {
+                  std::vector <GAME::Mga::FCO> mod_specific_elements;
+                  GAME::Mga::Filter filter (obj->project ());
+                  filter.kind ((*metameta)[1]->name ());
+                  filter.apply ((*modit), mod_specific_elements);
+
+                  std::vector <GAME::Mga::FCO>::iterator
+                    it = mod_specific_elements.begin (), it_end = mod_specific_elements.end ();
+
+                  /*for (; it != it_end; ++it)
+                    objs.push_back (*it);*/
+                }
+
+              } // end else when metavector is more than 1
+            }
+  				    
+          } // end else (when meta_dsts is more than 1)
+          
           // Filtering the results based on constraints for the dialog box
 	        std::vector <GAME::Mga::Meta::Constraint> cs;
 
@@ -101,63 +195,59 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
           std::vector <std::string> asn_constraints;
 
-	        std::for_each (cs.begin (),
-		                     cs.end (),
-								         boost::bind (&std::vector <std::string>::push_back,
+          std::for_each (cs.begin (),
+	                       cs.end (),
+							           boost::bind (&std::vector <std::string>::push_back,
                                       boost::ref (asn_constraints),
-															        boost::bind (&GAME::Mga::Meta::Constraint::impl_type::expression,
-															                     boost::bind (&GAME::Mga::Meta::Constraint::get, _1))));
+														          boost::bind (&GAME::Mga::Meta::Constraint::impl_type::expression,
+														                       boost::bind (&GAME::Mga::Meta::Constraint::get, _1))));
 
           Ocl_Context res;
 
-	        res.self = obj;
-	        res.model_constraint = false;
+          res.self = obj;
+          res.model_constraint = false;
           res.model_attributes = false;
 
-	        std::vector <GAME::Mga::FCO>::iterator 
-		        objs_iter = objs.begin (), objs_iter_end = objs.end ();
-
-	        // Vector to hold the qualified FCO's
-	        std::vector <GAME::Mga::FCO> qual_fcos;
+          std::vector <GAME::Mga::FCO>::iterator 
+	          objs_iter = objs.begin (), objs_iter_end = objs.end ();
 
           for (; objs_iter != objs_iter_end; ++ objs_iter)
-	        {
-		        bool result = true;
+          {
+	          bool result = true;
 
-		        std::vector <std::string>::iterator 
-			        iter = asn_constraints.begin (), iter_end = asn_constraints.end ();
+	          std::vector <std::string>::iterator 
+		          iter = asn_constraints.begin (), iter_end = asn_constraints.end ();
 
-		        for (; iter != iter_end; ++ iter)
-		        {
-			        //reseting the constraint specific variables
-			        res.target_metaroles.clear ();
-			        res.locals.clear ();
+	          for (; iter != iter_end; ++ iter)
+	          {
+		          //reseting the constraint specific variables
+		          res.target_metaroles.clear ();
+		          res.locals.clear ();
 
-			        std::vector <Boolean_Expr *> ocl;
-			        OCL_Expr_Parser parser;
+		          std::vector <Boolean_Expr *> ocl;
+		          OCL_Expr_Parser parser;
 
-			        //Parsing the ocl string
-    	        parser.parse_string (*(iter), ocl);
+		          //Parsing the ocl string
+  	          parser.parse_string (*(iter), ocl);
 
-			        // Iterating over the sub-expressions and evaluating them
-			        std::vector <Boolean_Expr *>::iterator 
-				        oclitt = ocl.begin (), oclitt_end = ocl.end ();
+		          // Iterating over the sub-expressions and evaluating them
+		          std::vector <Boolean_Expr *>::iterator 
+			          oclitt = ocl.begin (), oclitt_end = ocl.end ();
 
-			        for (; oclitt != oclitt_end; ++ oclitt)
-			        {
+		          for (; oclitt != oclitt_end; ++ oclitt)
+		          {
                 bool temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
 
-				        if (!temp)
-					        result = false;
-			        }
-		        }
+			          if (!temp)
+				          result = false;
+		          }
+	          }
 
-		        if (result)
-			        qual_fcos.push_back ((*objs_iter));
-	        }
-
-
-				  if (1 == qual_fcos.size ())
+	          if (result)
+		          qual_fcos.push_back ((*objs_iter));
+          }
+                    
+          if (1 == qual_fcos.size ())
 				  {
 					  select = qual_fcos.front ();
 				  }
@@ -167,7 +257,7 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
 					  // Create the dialog and pass in the data
 					  using GAME::Dialogs::Selection_List_Dialog_T;
-					  Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd ());
+					  Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd (), 0);
 
 					  const std::string directions = "Please select the target object for the connection " +
 						  atm->name () + " object:";
@@ -190,7 +280,7 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 						                                                                      atm,
 																																									select);
 				  }
-			  }
+			  } 
 		  }
 	  }
   }

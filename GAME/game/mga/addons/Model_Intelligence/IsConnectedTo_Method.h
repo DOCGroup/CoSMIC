@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file          ConnectedFCOs_Method.h
+ * @file          IsConnectedTo_Method.h
  *
  * $Id$
  *
@@ -10,31 +10,31 @@
  */
 //=============================================================================
 
-#ifndef _GAME_MODEL_INTELLIGENCE_CONNECTEDFCOS_METHOD_H_
-#define _GAME_MODEL_INTELLIGENCE_CONNECTEDFCOS_METHOD_H_
+#ifndef _GAME_MODEL_INTELLIGENCE_ISCONNECTEDTO_METHOD_H_
+#define _GAME_MODEL_INTELLIGENCE_ISCONNECTEDTO_METHOD_H_
 
 #include "Method.h"
 
 /**
- * @class ConnectedFCOs_Method
+ * @class IsConnectedTo_Method
  *
  * Class derived from Method. This class 
- * returns all the fcos that are connected to this fco
+ * is responsible for verifying if a fco is connected to another fco
  */
-class ConnectedFCOs_Method : public Method
+class IsConnectedTo_Method : public Method
 {
 public:
   /// Default constructor.
-  ConnectedFCOs_Method (void);
+  IsConnectedTo_Method (std::string &fco);
 
-  /// Role/Kind constructor
-  ConnectedFCOs_Method (std::string &temp);
+  /// FCO and Role/Kind constructor
+  IsConnectedTo_Method (std::string &fco, std::string &temp);
 
-  /// Role and Kind constructor
-  ConnectedFCOs_Method (std::string &role, std::string &kind);
+  /// FCO, Role and Kind constructor
+  IsConnectedTo_Method (std::string &fco, std::string &role, std::string &kind);
 
 	/// Destructor.
-	~ConnectedFCOs_Method (void);
+	~IsConnectedTo_Method (void);
 
   /**
    * evaluate method for evaluating the ConnectedFCOs method
@@ -72,8 +72,11 @@ private:
   // decided to distinguish between role and kind
   std::string temp_;
 
+  // The fco to which the calling fco is connected
+  std::string fco_;
+
   // flag value to track the case
   int flag;
 };
 
-#endif //_GAME_MODEL_INTELLIGENCE_CONNECTEDFCOS_METHOD_CALL_H_
+#endif //_GAME_MODEL_INTELLIGENCE_ISCONNECTED_METHOD_CALL_H_

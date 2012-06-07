@@ -1,3 +1,45 @@
+Thu Jun  7 21:31:27 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
+
+        * game/mga/MetaConnection.h:
+        * game/mga/MetaConnection.cpp:
+
+          Updated Metaconnection to return multiple destinations for port
+          association support.
+
+        * game/mga/addons/Model_Intelligence/Add_Command.cpp:
+        * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/AttachingConnPoints_Method.h:
+        * game/mga/addons/Model_Intelligence/AttachingConnPoints_Method.cpp:
+        * game/mga/addons/Model_Intelligence/AttachingConnections_Method.h:
+        * game/mga/addons/Model_Intelligence/AttachingConnections_Method.cpp:
+        * game/mga/addons/Model_Intelligence/ConnectedFCOs_Method.h:
+        * game/mga/addons/Model_Intelligence/ConnectedFCOs_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Containment_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/IsConnectedTo_Method.h:
+        * game/mga/addons/Model_Intelligence/IsConnectedTo_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence.mpc:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.h:
+        * game/mga/addons/Model_Intelligence/Model_Intelligence_Impl.cpp:
+        * game/mga/addons/Model_Intelligence/OCL_Expr_Parser.cpp:
+        * game/mga/addons/Model_Intelligence/Parts_Method.cpp:
+        * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
+        * game/mga/addons/Model_Intelligence/User_Guidance_Handler.h:
+        * game/mga/addons/Model_Intelligence/User_Guidance_Handler.cpp:
+
+          Updated Model Intelligence to include User_Guidance_Handler and extra methods.
+          Association fixed to include ports.
+
+        * game/mga/dialogs/Dialog_Display_Strategy.h:
+        * game/mga/dialogs/Object_Path_Dialog_Display_Strategy.h:
+        * game/mga/dialogs/Object_Path_Dialog_Display_Strategy.cpp:
+        * game/mga/dialogs/Selection_List_Dialog.h:
+        * game/mga/dialogs/Selection_List_Dialog.cpp:
+        * game/mga/dialogs/Selection_List_Dialog_T.h:
+        * game/mga/dialogs/Selection_List_Dialog_T.cpp:
+
+          Updated GAME Dialogs to handler metadata and strings.
+
+
 Wed May 30 17:54:52 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
 
         * game/mga/addons/Model_Intelligence/Association_Handler.cpp:
@@ -20,7 +62,7 @@ Wed May 30 17:54:52 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>
         * game/mga/addons/Model_Intelligence/ReferenceParts_Method.h:
         * game/mga/addons/Model_Intelligence/ReferenceParts_Method.cpp:
         * game/mga/addons/Model_Intelligence/Reference_Handler.cpp:
-        
+
           Added new methods to Model Intelligence and filtration for iterators.
 
 Thu May 17 21:53:55 UTC 2012  Tanumoy Pati  <tpati at cs dot iupui dot edu>

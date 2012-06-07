@@ -36,7 +36,20 @@ Value * Parts_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 	GAME::Mga::Meta::Role target_metarole = mod->meta ()->role (this->role_);
 
 	// Setting the target metarole in the model intelligence context
-	res.target_metaroles.push_back (target_metarole);
+  // only if it doesn't already exist in the list
+  std::vector <GAME::Mga::Meta::Role>::iterator
+    roleit = res.target_metaroles.begin (), roleit_end = res.target_metaroles.end ();
+
+  bool exists = false;
+
+  for (; roleit != roleit_end; ++ roleit)
+  {
+    if ((*roleit)->name () == target_metarole->name ())
+      exists = true;
+  }
+
+  if (!exists)
+    res.target_metaroles.push_back (target_metarole);
   
   GAME::Mga::Meta::FCO temp = target_metarole->kind ();
 

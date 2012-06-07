@@ -39,7 +39,8 @@ public:
    * @param[in]     parent      Parent of the dialog
    */
   Selection_List_Dialog (Dialog_Display_Strategy * strategy = 0,
-                         CWnd * parent = 0);
+                         CWnd * parent = 0,
+                         int type = 0);
 
   /// Destructor.
   virtual ~Selection_List_Dialog (void);
@@ -50,6 +51,20 @@ public:
    * @return        The selected string value.
    */
   Mga::Object selection (void);
+
+  /**
+   * Get the selected string from the dialog.
+   *
+   * @return        The selected string value.
+   */
+  Mga::Meta::Base meta_selection (void);
+
+  /**
+   * Get the selected string from the dialog.
+   *
+   * @return        The selected string value.
+   */
+  std::string string_selection (void);
 
   /**
    * Set the dialog's title.
@@ -73,6 +88,13 @@ public:
   void insert (const Mga::Object_in object);
 
   /**
+   * Insert a new object into the dialog.
+   *
+   * @param[in]     str        String.
+   */
+  void string_insert (const std::string str);
+
+  /**
    * Insert a new meta object into the dialog.
    *
    * @param[in]     metabase        The new object.
@@ -85,6 +107,13 @@ public:
    * @param[in]     items         Collection of objects
    */
   void insert (const std::vector <Mga::Object> & items);
+
+  /**
+   * Insert a collection of objects into the dialog listing.
+   *
+   * @param[in]     str         Collection of strings
+   */
+  void string_insert (const std::vector <std::string> & str);
 
   /**
    * Insert a collection of metaobjects into the dialog listing.
@@ -101,6 +130,15 @@ public:
    */
   void insert (std::vector <Mga::Object>::const_iterator begin,
                std::vector <Mga::Object>::const_iterator end);
+
+  /**
+   * @overloaded
+   *
+   * @param[in]     begin         Start of collection
+   * @param[in]     end           End of collection
+   */
+  void string_insert (std::vector <std::string>::const_iterator begin,
+                      std::vector <std::string>::const_iterator end);
 
   /**
    * @overloaded
@@ -125,8 +163,21 @@ protected:
   /// The selected item from the listbox.
   Mga::Object selection_;
 
+  /// The selected meta item from the listbox
+  Mga::Meta::Base metaselection_;
+
+  /// The selected string from the listbox
+  std::string strselection_;
+
 private:
   void insert_item (const Mga::Object_in &, const std::string &);
+
+  void meta_insert_item (const Mga::Meta::Base_in &, const std::string &);
+
+  void string_insert_item (const std::string &);
+
+  /// Type of data to be handled 0 for Object, 1 for MetaObject and 2 for string
+  int type_;
 
   /// Display strategy for the dialog.
   Dialog_Display_Strategy * strategy_;
@@ -148,6 +199,9 @@ private:
 
   /// Set of metaitems for this dialog.
   std::vector <GAME::Mga::Meta::Base> metaitems_;
+
+  /// Set of strings for this dialog
+  std::vector <std::string> strs_;
 };
 
 }

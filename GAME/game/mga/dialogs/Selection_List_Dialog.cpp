@@ -18,9 +18,10 @@ namespace Dialogs
 // Selection_List_Dialog
 //
 Selection_List_Dialog::
-Selection_List_Dialog (Dialog_Display_Strategy * strategy, CWnd * parent)
+Selection_List_Dialog (Dialog_Display_Strategy * strategy, CWnd * parent, int type)
 : CDialog (IDD_GAME_SELECTION_LIST_DLG, parent),
-  strategy_ (strategy)
+  strategy_ (strategy),
+  type_(type)
 {
 
 }
@@ -42,6 +43,22 @@ Mga::Object Selection_List_Dialog::selection (void)
 }
 
 //
+// meta_selection
+//
+Mga::Meta::Base Selection_List_Dialog::meta_selection (void)
+{
+  return this->metaselection_.get ();
+}
+
+//
+// string_selection
+//
+std::string Selection_List_Dialog::string_selection (void)
+{
+  return this->strselection_;
+}
+
+//
 // OnInitDialog
 //
 BOOL Selection_List_Dialog::OnInitDialog (void)
@@ -56,23 +73,60 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
   if (!this->directions_.empty ())
     this->directions_ctrl_.SetWindowTextA (this->directions_.c_str ());
 
-  // Initialize the controls of the listing
+  // Initialize the controls of the objects listing
   std::vector <Mga::Object>::iterator
     iter = this->items_.begin (), iter_end = this->items_.end ();
 
+  // Initialize the controls of the meta-objects listing
+  std::vector <Mga::Meta::Base>::iterator
+    metaiter = this->metaitems_.begin (), metaiter_end = this->metaitems_.end ();
+
+  // Initialize the controls of the strings listings
+  std::vector <std::string>::iterator
+    striter = this->strs_.begin (), striter_end = this->strs_.end ();
+
   if (0 == this->strategy_)
   {
-    for (; iter != iter_end; ++ iter)
-      this->insert_item (iter->get (), (*iter)->name ());
+    if (this->type_ == 0)
+    {
+      for (; iter != iter_end; ++ iter)
+        this->insert_item (iter->get (), (*iter)->name ());
+    }
+    else if (this->type_ == 1)
+    {
+      for (; metaiter != metaiter_end; ++ metaiter)
+        this->meta_insert_item (metaiter->get (), (*metaiter)->name ());
+    }
+    else if (this->type_ == 2)
+    {
+      for (; striter != striter_end; ++ striter)
+        this->string_insert_item ((*striter));
+    }
   }
   else
   {
     std::string display_name;
 
-    for (; iter != iter_end; ++ iter)
+    if (this->type_ == 0)
     {
-      if (this->strategy_->get_display_name (iter->get (), display_name))
-        this->insert_item (iter->get (), display_name);
+      for (; iter != iter_end; ++ iter)
+      {
+        if (this->strategy_->get_display_name (iter->get (), display_name))
+          this->insert_item (iter->get (), display_name);
+      }
+    }
+    else if (this->type_ == 1)
+    {
+      for (; metaiter != metaiter_end; ++ metaiter)
+      {
+        if (this->strategy_->get_meta_display_name (metaiter->get (), display_name))
+          this->meta_insert_item (metaiter->get (), display_name);
+      }
+    }
+    else if (this->type_ == 2)
+    {
+      for (; striter != striter_end; ++ striter)
+        this->string_insert_item ((*striter));
     }
   }
 
@@ -88,11 +142,19 @@ void Selection_List_Dialog::insert (const Mga::Object_in obj)
 }
 
 //
-// metainsert
+// meta_insert
 //
 void Selection_List_Dialog::meta_insert (const GAME::Mga::Meta::Base_in metabase)
 {
   this->metaitems_.push_back (metabase);
+}
+
+//
+// string_insert
+//
+void Selection_List_Dialog::string_insert (const std::string str)
+{
+  this->strs_.push_back (str);
 }
 
 //
@@ -111,6 +173,15 @@ void Selection_List_Dialog::
 meta_insert (const std::vector<GAME::Mga::Meta::Base> & metaitems)
 {
   this->meta_insert (metaitems.begin (), metaitems.end ());
+}
+
+//
+// string_insert
+//
+void Selection_List_Dialog::
+string_insert (const std::vector<std::string> & str)
+{
+  this->string_insert (str.begin (), str.end ());
 }
 
 //
@@ -141,6 +212,20 @@ meta_insert(std::vector<GAME::Mga::Meta::Base>::const_iterator begin,
                               _1));
 }
 
+//
+// string_insert
+//
+void Selection_List_Dialog::
+string_insert(std::vector<std::string>::const_iterator begin,
+              std::vector<std::string>::const_iterator end)
+{
+  std::for_each (begin,
+                 end,
+                 boost::bind (&std::vector <std::string>::push_back,
+                              boost::ref (this->strs_),
+                              _1));
+}
+
 
 //
 // insert_item
@@ -156,6 +241,32 @@ insert_item (const Mga::Object_in & item, const std::string & display_name)
   if (-1 != index)
     this->list_.SetItemData (index, (DWORD_PTR)item->impl ());
 }
+
+//
+// meta_insert_item
+//
+void Selection_List_Dialog::
+meta_insert_item (const Mga::Meta::Base_in & item, const std::string & display_name)
+{
+  int index = this->list_.InsertString (-1, display_name.c_str ());
+
+  // Set the items data to this object implementation. This is just
+  // in case the *display* order is not the same as the original
+  // vector of items.
+  if (-1 != index)
+    this->list_.SetItemData (index, (DWORD_PTR)item->impl ());
+}
+
+//
+// string_insert_item
+//
+void Selection_List_Dialog::string_insert_item (const std::string & str)
+{
+  int index = this->list_.InsertString (-1, str.c_str ());
+
+  // not handled for index is not -1
+}
+
 
 //
 // title
@@ -197,7 +308,18 @@ void Selection_List_Dialog::DoDataExchange (CDataExchange * pDX)
 
     // Make sure we increment the reference count before attaching
     // the element. We don't want to cause any exceptions.
-    this->selection_ = reinterpret_cast <IMgaObject *> (item_data);
+
+    if (this->type_ == 0)
+      this->selection_ = reinterpret_cast <IMgaObject *> (item_data);
+    else if (this->type_ == 1)
+      this->metaselection_ = reinterpret_cast <IMgaMetaBase *> (item_data);
+    else if (this->type_ == 2)
+    {
+      CString data;
+      this->list_.GetText (index, data);
+      std::string str((LPCTSTR)data) ;
+      this->strselection_ = str;
+    }
   }
 }
 
