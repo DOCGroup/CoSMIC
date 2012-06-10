@@ -58,6 +58,14 @@
 #include "AttachingConnPoints_Method.h"
 #include "AttachingConnections_Method.h"
 #include "IsConnectedTo_Method.h"
+#include "Subtypes_Method.h"
+#include "Instances_Method.h"
+#include "Type_Method.h"
+#include "Basetype_Method.h"
+#include "IsType_Method.h"
+#include "IsInstance_Method.h"
+#include "Folder_Method.h"
+#include "ReferencedBy_Method.h"
 #include "ConnectionPoints_Method.h"
 #include "ConnectionPoint_Method.h"
 
@@ -189,7 +197,9 @@ struct OCL_Expression_Parser_Grammar :
 			this->rolename_method_ | this->connectedfcos_method_ | this->atomparts_method_ | this->modelparts_method_ |
       this->referenceparts_method_ | this->connectionparts_method_ | this->connectionpoints_method_ |
       this->connectionpoint_method_ | this->attachingconnpoints_method_ | this->attachingconnections_method_ |
-      this->isconnectedto_method_ ;
+      this->isconnectedto_method_ | this->subtypes_method_ | this->instances_method_ | this->type_method_ |
+      this->basetype_method_ | this->isinstance_method_ | this->istype_method_ | this->folder_method_ |
+      this->referencedby_method_;
 
     this->iteratorcall_expr_ = this->value_expr_ [qi::_a = qi::_1][qi::_e = ""] >> 
       qi::lit ("->") >> this->iterator_ [qi::_b = qi::_1] >> qi::lit("(") >>
@@ -315,6 +325,39 @@ struct OCL_Expression_Parser_Grammar :
           this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_b, qi::_1)] >>
           qi::lit (")")) );
 
+    this->subtypes_method_ = qi::lit ("subTypes") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <Subtypes_Method> ()];
+
+    this->instances_method_ = qi::lit ("instances") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <Instances_Method> ()];
+
+    this->type_method_ = qi::lit ("type") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <Type_Method> ()];
+
+    this->basetype_method_ = qi::lit ("baseType") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <Basetype_Method> ()];
+
+    this->istype_method_ = qi::lit ("isType") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <IsType_Method> ()];
+
+    this->isinstance_method_ = qi::lit ("isInstance") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <IsInstance_Method> ()];
+
+    this->folder_method_ = qi::lit ("folder") >>
+			qi::lit ("(") >>
+			qi::lit (")")[qi::_val = phoenix::new_ <Folder_Method> ()];
+
+    /*this->referencedby_method_ = qi::lit ("referencedBy") >>
+			(qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <ReferencedBy_Method> ()] ) |
+      (qi::lit ("(") >> 
+         this->ident_ [qi::_val = phoenix::new_<ReferencedBy_Method> (qi::_1)] >>
+         qi::lit (")"));*/
 
     // GME Connection specific methods
     this->connectionpoints_method_ = qi::lit ("connectionPoints") >>
@@ -488,6 +531,38 @@ private:
             ascii::space_type,
             qi::locals <std::string,
                         std::string>> isconnectedto_method_;
+
+  qi::rule <IteratorT,
+            Subtypes_Method * (),
+            ascii::space_type> subtypes_method_;
+
+  qi::rule <IteratorT,
+            Instances_Method * (),
+            ascii::space_type> instances_method_;
+
+  qi::rule <IteratorT,
+            Type_Method * (),
+            ascii::space_type> type_method_;
+
+  qi::rule <IteratorT,
+            IsType_Method * (),
+            ascii::space_type> istype_method_;
+
+  qi::rule <IteratorT,
+            IsInstance_Method * (),
+            ascii::space_type> isinstance_method_;
+
+  qi::rule <IteratorT,
+            Basetype_Method * (),
+            ascii::space_type> basetype_method_;
+
+  qi::rule <IteratorT,
+            Folder_Method * (),
+            ascii::space_type> folder_method_;
+
+  qi::rule <IteratorT,
+            ReferencedBy_Method * (),
+            ascii::space_type> referencedby_method_;
 
   qi::rule <IteratorT,
             ConnectedFCOs_Method * (),

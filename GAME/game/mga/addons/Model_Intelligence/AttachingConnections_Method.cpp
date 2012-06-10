@@ -154,5 +154,5 @@ Value * AttachingConnections_Method::evaluate (Ocl_Context &res, Value *caller)
 //
 bool AttachingConnections_Method::is_filter (void)
 {
-  return false;
+  return true;
 }

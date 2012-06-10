@@ -159,10 +159,37 @@ bool Lesser_Equal_Expr::filter_evaluate (Ocl_Context &res,
 {
   res.cur_fco = current;
   bool ret = false;
-
+  
   if (this->lhs_->is_filter () || this->rhs_->is_filter ())
   {
-    ret = this->lhs_->filter_evaluate (res)->is_lesser_equal (this->rhs_->filter_evaluate (res));
+    if (this->lhs_->is_filter ())
+    {
+      double count;
+      // Increment the value by one as the object being added is also considered
+      Int_Value * lv = dynamic_cast <Int_Value *> (this->lhs_->filter_evaluate (res));
+      if (lv != 0)
+      {
+        lv->get_sum (new Int_Value (1), count);
+        Int_Value * left = new Int_Value (count);
+        ret = left->is_lesser_equal (this->rhs_->filter_evaluate (res));
+      }
+      else
+        ret = this->lhs_->filter_evaluate (res)->is_lesser_equal (this->rhs_->filter_evaluate (res));
+    }
+    else if (this->rhs_->is_filter ())
+    {
+      double count;
+      // Increment the value by one as the object being added is also considered
+      Int_Value * rv = dynamic_cast <Int_Value *> (this->rhs_->filter_evaluate (res));
+      if (rv != 0)
+      {
+        rv->get_sum (new Int_Value (1), count);
+        Int_Value * right = new Int_Value (count);
+        ret = right->is_lesser_equal (this->lhs_->filter_evaluate (res));
+      }
+      else
+        ret = this->lhs_->filter_evaluate (res)->is_lesser_equal (this->rhs_->filter_evaluate (res));
+    }      
   }
 
   return ret;

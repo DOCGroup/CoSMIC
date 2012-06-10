@@ -15,7 +15,6 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Reference_Handler.cpp
     Association_Handler.cpp
     Attributes_Handler.cpp
-    Test_Handler.cpp
     User_Guidance_Handler.cpp
                 
     OCL_Expr_Parser.cpp
@@ -39,44 +38,52 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     And_Expr.cpp
 
     Value_Expr.cpp
-	Method_Call.cpp
+	  Method_Call.cpp
     Constant_Value_Expr.cpp
     Local_Value_Expr.cpp
     Attribute_Expr.cpp
 	
-	Self_Method_Call.cpp
-	Local_Value_Method_Call.cpp
-	
-	Iterator.cpp
-	ForAll_Iterator.cpp
-	
-	Method.cpp
-	Parts_Method.cpp
-	Size_Method.cpp
-	Refers_to_Method.cpp
-	AtomParts_Method.cpp
-	ModelParts_Method.cpp
-	ReferenceParts_Method.cpp
-	ConnectionParts_Method.cpp
-	Name_Method.cpp
-	KindName_Method.cpp
-	Parent_Method.cpp
-	ChildFolders_Method.cpp
-	RoleName_Method.cpp
-	ConnectedFCOs_Method.cpp
-	AttachingConnPoints_Method.cpp
-	AttachingConnections_Method.cpp
-	IsConnectedTo_Method.cpp
-	ConnectionPoints_Method.cpp
-	ConnectionPoint_Method.cpp
-     	
-	Value.cpp
-	Int_Value.cpp
-	Long_Value.cpp
-	String_Value.cpp
-	Boolean_Value.cpp
-	Double_Value.cpp
-	Object_Value.cpp
+	  Self_Method_Call.cpp
+	  Local_Value_Method_Call.cpp
+  	
+	  Iterator.cpp
+	  ForAll_Iterator.cpp
+  	
+	  Method.cpp
+	  Parts_Method.cpp
+	  Size_Method.cpp
+	  Refers_to_Method.cpp
+	  AtomParts_Method.cpp
+	  ModelParts_Method.cpp
+	  ReferenceParts_Method.cpp
+	  ConnectionParts_Method.cpp
+	  Name_Method.cpp
+	  KindName_Method.cpp
+	  Parent_Method.cpp
+	  ChildFolders_Method.cpp
+	  RoleName_Method.cpp
+	  ConnectedFCOs_Method.cpp
+	  AttachingConnPoints_Method.cpp
+	  AttachingConnections_Method.cpp
+	  IsConnectedTo_Method.cpp
+    Subtypes_Method.cpp
+    Instances_Method.cpp
+    Type_Method.cpp
+    Basetype_Method.cpp
+    IsType_Method.cpp
+    IsInstance_Method.cpp
+    Folder_Method.cpp
+    ReferencedBy_Method.cpp
+	  ConnectionPoints_Method.cpp
+	  ConnectionPoint_Method.cpp
+       	
+	  Value.cpp
+	  Int_Value.cpp
+	  Long_Value.cpp
+	  String_Value.cpp
+	  Boolean_Value.cpp
+	  Double_Value.cpp
+	  Object_Value.cpp
   }
 
   Header_Files {

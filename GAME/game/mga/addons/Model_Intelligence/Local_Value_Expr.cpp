@@ -49,5 +49,5 @@ bool Local_Value_Expr::is_mutable (void)
 //
 bool Local_Value_Expr::is_filter (void)
 {
-  return false;
+  return true;
 }

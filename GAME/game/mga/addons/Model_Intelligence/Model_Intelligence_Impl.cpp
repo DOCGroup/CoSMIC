@@ -59,7 +59,8 @@ int Model_Intelligence::initialize (Mga::Project project)
   this->sink_->register_handler (OBJTYPE_MODEL, new Containment_Handler ());
   this->sink_->register_handler (OBJTYPE_ATOM, new Association_Handler ());
   this->sink_->register_handler (OBJTYPE_ATOM, new Attributes_Handler ());
-  this->sink_->register_handler (new User_Guidance_Handler ());
+  //this->sink_->register_handler (new User_Guidance_Handler ());
+
   	
   return 0;
 }

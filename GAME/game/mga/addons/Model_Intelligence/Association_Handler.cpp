@@ -71,6 +71,9 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 	  {
 		  GAME::Mga::Meta::Connection conn = GAME::Mga::Meta::Connection::_narrow ((*rlit)->kind ());
 
+      // Testing line
+      std::string c = conn->name ();
+
 		  // Collect all the connectors of this connection
 		  std::vector <GAME::Mga::Meta::ConnectionPoint> connectors;
 		  size_t connpoints = conn->connectors (connectors);
@@ -80,6 +83,9 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
 		  for (; connector != connector_end; ++ connector)
 		  {
+        // Testing line
+        std::string source = (*connector)->get_src ()->name ();
+        std::string me = atm->meta ()->name ();
 
 				if ( (*connector)->get_src ()->name () == atm->meta ()->name () )					
 			  {
@@ -220,6 +226,7 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
 	          for (; iter != iter_end; ++ iter)
 	          {
+              bool temp = false;
 		          //reseting the constraint specific variables
 		          res.target_metaroles.clear ();
 		          res.locals.clear ();
@@ -236,7 +243,8 @@ int Association_Handler::handle_object_select (GAME::Mga::Object_in obj)
 
 		          for (; oclitt != oclitt_end; ++ oclitt)
 		          {
-                bool temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
+                if (result)
+                  temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
 
 			          if (!temp)
 				          result = false;

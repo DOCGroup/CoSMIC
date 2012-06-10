@@ -5,6 +5,7 @@
 #include "Size_Method.h"
 #include "Int_Value.h"
 #include "Collection_Value_T.h"
+#include "game/mga/Connection.h"
 
 //
 // Constructor
@@ -33,9 +34,19 @@ Value * Size_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 //
 Value * Size_Method::evaluate (Ocl_Context &res, Value *caller)
 {
-	Collection_Value_T<GAME::Mga::FCO> * iv = dynamic_cast <Collection_Value_T<GAME::Mga::FCO> *> (caller);
+  size_t s;
+	Collection_Value_T<GAME::Mga::FCO> * iv = 
+    dynamic_cast <Collection_Value_T<GAME::Mga::FCO> *> (caller);
 
-	size_t s = iv->size ();
+  if (iv != 0)
+    s = iv->size ();
+  else
+  {
+    Collection_Value_T<GAME::Mga::Connection> * conn = 
+      dynamic_cast <Collection_Value_T<GAME::Mga::Connection> *> (caller);
+
+    s = conn->size ();
+  }
 
 	return new Int_Value (s);
 }
