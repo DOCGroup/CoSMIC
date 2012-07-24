@@ -45,10 +45,10 @@ public:
   virtual bool is_lesser_equal (Value * v) = 0;
 
 	// Pure virtual method to get the difference between two variables
-	virtual bool get_diff (Value *v, double &count) = 0;
+	virtual bool get_diff (Value * v, double & count) = 0;
 
 	// Pure virtual method to get the summation between two variables
-	virtual bool get_sum (Value *v, double &count) = 0;
+	virtual bool get_sum (Value * v, double & count) = 0;
 };
 
 

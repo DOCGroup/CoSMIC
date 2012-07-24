@@ -1,4 +1,4 @@
-// $Id$
+// $Id: OCL_Expr_Parser.cpp 2908 2012-06-10 18:21:53Z tpati $
 
 #include "StdAfx.h"
 
@@ -23,8 +23,11 @@
 #include "Equality_Expr.h"
 #include "Local_Value_Expr.h"
 #include "Equal_Expr.h"
+#include "Not_Equal_Expr.h"
 #include "Greater_Equal_Expr.h"
+#include "Greater_Expr.h"
 #include "Lesser_Equal_Expr.h"
+#include "Lesser_Expr.h"
 #include "Constant_Value_Expr.h"
 #include "Local_Value_Assignment_Expr.h"
 #include "If_Then_Else_Expr.h"
@@ -33,6 +36,7 @@
 #include "Comparison_Expr.h"
 #include "Conjunction_Expr.h"
 #include "And_Expr.h"
+#include "Or_Expr.h"
 
 #include "Method_Call.h"
 #include "Self_Method_Call.h"
@@ -40,36 +44,17 @@
 
 #include "Iterator.h"
 #include "ForAll_Iterator.h"
-
-#include "Method.h"
-#include "Parts_Method.h"
-#include "AtomParts_Method.h"
-#include "ModelParts_Method.h"
-#include "ReferenceParts_Method.h"
-#include "ConnectionParts_Method.h"
-#include "Size_Method.h"
-#include "Refers_to_Method.h"
-#include "Name_Method.h"
-#include "KindName_Method.h"
-#include "Parent_Method.h"
-#include "ChildFolders_Method.h"
-#include "RoleName_Method.h"
-#include "ConnectedFCOs_Method.h"
-#include "AttachingConnPoints_Method.h"
-#include "AttachingConnections_Method.h"
-#include "IsConnectedTo_Method.h"
-#include "Subtypes_Method.h"
-#include "Instances_Method.h"
-#include "Type_Method.h"
-#include "Basetype_Method.h"
-#include "IsType_Method.h"
-#include "IsInstance_Method.h"
-#include "Folder_Method.h"
-#include "ReferencedBy_Method.h"
-#include "ConnectionPoints_Method.h"
-#include "ConnectionPoint_Method.h"
+#include "Exists_Iterator.h"
+#include "IsUnique_Iterator.h"
+#include "One_Iterator.h"
 
 #include "Attribute_Expr.h"
+
+#include "Math_Operation_Expr.h"
+#include "Addition_Operation.h"
+#include "Value_SubExpr.h"
+
+#include "Method_Parser.cpp"
 
 namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii; 
@@ -92,8 +77,32 @@ void operate (std::deque <std::string>& op_, std::deque <Equality_Expr *>& eq_)
     eq_.pop_back ();
     eq_.push_back (new And_Expr (eq2, eq1));
   }
+  else if (op_.back () == "or")
+  {
+    op_.pop_back ();
+    Equality_Expr * eq1 = eq_.back ();
+    eq_.pop_back ();
+    Equality_Expr * eq2 = eq_.back ();
+    eq_.pop_back ();
+    eq_.push_back (new Or_Expr (eq2, eq1));
+  }
 }
 
+//
+// solve
+//
+void solve (std::deque <std::string>& math_, std::deque <Value_Expr *>& val_)
+{
+	if (math_.back () == "+")
+  {
+    math_.pop_back ();
+    Value_Expr * val1 = val_.back ();
+    val_.pop_back ();
+    Value_Expr * val2 = val_.back ();
+    val_.pop_back ();
+    val_.push_back (new Addition_Operation (val2, val1));
+  }
+}
 
 /**
  * @class OCL_Expression_Parser_Grammar
@@ -140,10 +149,23 @@ struct OCL_Expression_Parser_Grammar :
       ((this->comp_expr_[phoenix::push_back (qi::_b, qi::_1)] | 
         repo::confix ('(', ')')[this->eq_expr_[phoenix::push_back (qi::_b, qi::_1)]]) >>
       (*(this->conjunction_[phoenix::push_back (qi::_a, qi::_1)] >> 
-          this->eq_expr_[phoenix::push_back (qi::_b, qi::_1)])[phoenix::bind (&operate, qi::_a, qi::_b)]))[qi::_val = phoenix::back (qi::_b)];
+          this->eq_expr_[phoenix::push_back (qi::_b, qi::_1)])
+          [phoenix::bind (&operate, qi::_a, qi::_b)]))[qi::_val = phoenix::back (qi::_b)];
+
+    /*this->value_expr_ %=   this->method_call_ | this->cv_expr_
+			| this->attribute_expr_ | this->lv_expr_;*/
+
+    this->value_expr_ =  (this->value_subexpr_[phoenix::push_back (qi::_b, qi::_1)] >>
+			(*(this->math_op_[phoenix::push_back (qi::_a, qi::_1)] >>
+			this->value_subexpr_[phoenix::push_back (qi::_b, qi::_1)])[phoenix::bind (&solve, qi::_a, qi::_b)]))
+			[qi::_val = phoenix::back (qi::_b)];
+
+    this->value_subexpr_ %=   this->method_call_ | this->cv_expr_
+			| this->attribute_expr_ | this->lv_expr_;
 
     this->comp_expr_ %= 
-      this->equal_expr_ | this->greater_equal_expr_ | this->lesser_equal_expr_;
+      this->equal_expr_ | this->greater_equal_expr_ | this->lesser_equal_expr_ |
+      this->not_equal_expr_ | this->greater_expr_ | this->lesser_expr_;
      
     this->equal_expr_ = 
       ((qi::lit ("(")) >>
@@ -154,6 +176,15 @@ struct OCL_Expression_Parser_Grammar :
       qi::lit ("=") >> 
       this->value_expr_ [qi::_val = phoenix::new_<Equal_Expr> (qi::_a, qi::_1)]);
 
+    this->not_equal_expr_ = 
+      ((qi::lit ("(")) >>
+      this->value_expr_ [qi::_a = qi::_1] >>
+      qi::lit ("<>") >> 
+      this->value_expr_ [qi::_val = phoenix::new_<Not_Equal_Expr> (qi::_a, qi::_1)] >>
+      (qi::lit (")"))) | (this->value_expr_ [qi::_a = qi::_1] >>
+      qi::lit ("<>") >> 
+      this->value_expr_ [qi::_val = phoenix::new_<Not_Equal_Expr> (qi::_a, qi::_1)]);
+
 		this->greater_equal_expr_ = 
       ((qi::lit ("(")) >>
       this->value_expr_ [qi::_a = qi::_1] >>
@@ -162,6 +193,15 @@ struct OCL_Expression_Parser_Grammar :
       (qi::lit (")"))) | (this->value_expr_ [qi::_a = qi::_1] >>
       qi::lit (">=") >> 
       this->value_expr_ [qi::_val = phoenix::new_<Greater_Equal_Expr> (qi::_a, qi::_1)]);
+
+    this->greater_expr_ = 
+      ((qi::lit ("(")) >>
+      this->value_expr_ [qi::_a = qi::_1] >>
+      qi::lit (">") >> 
+      this->value_expr_ [qi::_val = phoenix::new_<Greater_Expr> (qi::_a, qi::_1)] >>
+      (qi::lit (")"))) | (this->value_expr_ [qi::_a = qi::_1] >>
+      qi::lit (">") >> 
+      this->value_expr_ [qi::_val = phoenix::new_<Greater_Expr> (qi::_a, qi::_1)]);
 
 		this->lesser_equal_expr_ = 
       ((qi::lit ("(")) >>
@@ -172,10 +212,18 @@ struct OCL_Expression_Parser_Grammar :
       qi::lit ("<=") >> 
       this->value_expr_ [qi::_val = phoenix::new_<Lesser_Equal_Expr> (qi::_a, qi::_1)]);
 
-    this->conjunction_ = ascii::string ("and");
+    this->lesser_expr_ = 
+      ((qi::lit ("(")) >>
+      this->value_expr_ [qi::_a = qi::_1] >>
+      qi::lit ("<") >> 
+      this->value_expr_ [qi::_val = phoenix::new_<Lesser_Expr> (qi::_a, qi::_1)] >>
+      (qi::lit (")"))) | (this->value_expr_ [qi::_a = qi::_1] >>
+      qi::lit ("<") >> 
+      this->value_expr_ [qi::_val = phoenix::new_<Lesser_Expr> (qi::_a, qi::_1)]);
 
-		this->value_expr_ %=   this->method_call_ | this->cv_expr_
-			| this->attribute_expr_ | this->lv_expr_;
+    this->conjunction_ = ascii::string ("and") | ascii::string ("or");
+
+    this->math_op_ = ascii::string ("+");
 
 		this->method_call_ = this->self_method_call_ | this->lv_method_call_;
 
@@ -192,27 +240,28 @@ struct OCL_Expression_Parser_Grammar :
 		this->method_list_ = *( (qi::lit ("->") | qi::lit (".")) >>
 			                       this->method_[phoenix::push_back (qi::_val, qi::_1)] );
 
-		this->method_ %= this->parts_method_ | this->size_method_ | this->refers_to_method_ |
-			this->name_method_ | this->kindname_method_ | this->parent_method_ | this->childfolders_method_ |
-			this->rolename_method_ | this->connectedfcos_method_ | this->atomparts_method_ | this->modelparts_method_ |
-      this->referenceparts_method_ | this->connectionparts_method_ | this->connectionpoints_method_ |
-      this->connectionpoint_method_ | this->attachingconnpoints_method_ | this->attachingconnections_method_ |
-      this->isconnectedto_method_ | this->subtypes_method_ | this->instances_method_ | this->type_method_ |
-      this->basetype_method_ | this->isinstance_method_ | this->istype_method_ | this->folder_method_ |
-      this->referencedby_method_;
-
     this->iteratorcall_expr_ = this->value_expr_ [qi::_a = qi::_1][qi::_e = ""] >> 
       qi::lit ("->") >> this->iterator_ [qi::_b = qi::_1] >> qi::lit("(") >>
       -(this->declarator_list_[qi::_d = qi::_1] >>
       qi::lit (":") >> this->ident_[qi::_e = qi::_1] >>
-      qi::lit ("|")) >> this->bool_expr_[qi::_c = qi::_1] >>
-      qi::lit(")")[qi::_val = phoenix::new_ <IteratorCall_Expr> (qi::_a, qi::_b, qi::_c)]
+      qi::lit ("|")) >> 
+      ((this->bool_expr_[qi::_c = qi::_1] >>
+         qi::lit(")")[qi::_val = phoenix::new_ <IteratorCall_Expr> (qi::_a, qi::_b, qi::_c)]) |
+       (this->value_expr_[qi::_f = qi::_1] >>
+         qi::lit(")")[qi::_val = phoenix::new_ <IteratorCall_Expr> (qi::_a, qi::_b, qi::_f)]))
       [phoenix::bind (&IteratorCall_Expr::set_declarators, qi::_val, qi::_d)]
       [phoenix::bind (&IteratorCall_Expr::set_dec_type, qi::_val, qi::_e)];
 
-    this->iterator_ %= this->forall_iterator_;
+    this->iterator_ %= this->forall_iterator_ | this->isunique_iterator_ | this->exists_iterator_ |
+      this->one_iterator_;
 
     this->forall_iterator_ = qi::lit ("forAll")[qi::_val = phoenix::new_ <ForAll_Iterator> ()];
+
+    this->isunique_iterator_ = qi::lit ("isUnique")[qi::_val = phoenix::new_ <IsUnique_Iterator> ()];
+
+    this->exists_iterator_ = qi::lit ("exists")[qi::_val = phoenix::new_ <Exists_Iterator> ()];
+
+    this->one_iterator_ = qi::lit ("one")[qi::_val = phoenix::new_ <One_Iterator> ()];
 
     this->declarator_list_ = (this->ident_[phoenix::push_back (qi::_val, qi::_1)] >>
       *(qi::lit(",") >> this->ident_[phoenix::push_back (qi::_val, qi::_1)]));
@@ -225,150 +274,6 @@ struct OCL_Expression_Parser_Grammar :
 		this->attribute_expr_ = this->ident_[qi::_a = qi::_1] >>
 			qi::lit (".") >>
 			this->ident_[qi::_val = phoenix::new_<Attribute_Expr> (qi::_a, qi::_1)];
-
-    // GME Model specific methods
-
-		this->parts_method_ = qi::lit("parts") >>
-			qi::lit ("(") >>
-      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
-      qi::lit (")")[qi::_val = phoenix::new_ <Parts_Method> (qi::_a)];
-
-    this->atomparts_method_ = (qi::lit("atomParts") | qi::lit("atoms")) >>
-			qi::lit ("(") >>
-      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
-      qi::lit (")")[qi::_val = phoenix::new_ <AtomParts_Method> (qi::_a)];
-
-    this->modelparts_method_ = (qi::lit("modelParts") | qi::lit("models")) >>
-			qi::lit ("(") >>
-      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
-      qi::lit (")")[qi::_val = phoenix::new_ <ModelParts_Method> (qi::_a)];
-
-    this->referenceparts_method_ = qi::lit("referenceParts") >>
-			qi::lit ("(") >>
-      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
-      qi::lit (")")[qi::_val = phoenix::new_ <ReferenceParts_Method> (qi::_a)];
-
-    this->connectionparts_method_ = qi::lit("connectionParts") >>
-			qi::lit ("(") >>
-      (this->quoted_string_ | this->ident_)[qi::_a = qi::_1] >>
-      qi::lit (")")[qi::_val = phoenix::new_ <ConnectionParts_Method> (qi::_a)];
-
-		this->size_method_ = qi::lit("size")[qi::_val = phoenix::new_ <Size_Method> ()];
-
-    // GME Reference specific methods
-
-		this->refers_to_method_ = qi::lit ("refersTo") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <Refers_to_Method> ()];
-
-		// GME Object specific methods
-
-		this->name_method_ = qi::lit ("name") >> -(qi::lit ("(") >> qi::lit (")"))
-			[qi::_val = phoenix::new_ <Name_Method> ()];
-
-		this->kindname_method_ = qi::lit ("kindName") >> -(qi::lit ("(") >> qi::lit (")"))
-			[qi::_val = phoenix::new_ <KindName_Method> ()];
-
-		this->parent_method_ = qi::lit ("parent") >> (qi::lit ("(") >> qi::lit (")"))
-			[qi::_val = phoenix::new_ <Parent_Method> ()];
-
-		// GME Folder specific methods
-		this->childfolders_method_ = qi::lit ("childFolders") >> (qi::lit ("(") >> qi::lit (")"))
-			[qi::_val = phoenix::new_ <ChildFolders_Method> ()];
-
-		// GME FCO specific methods
-
-		this->rolename_method_ = qi::lit ("roleName") >> -(qi::lit ("(") >> qi::lit (")"))
-			[qi::_val = phoenix::new_ <RoleName_Method> ()];
-
-    this->connectedfcos_method_ = qi::lit("connectedFCOs") >>
-      ((qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <ConnectedFCOs_Method> ()]) |
-      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_1)] >>
-       qi::lit (")")) |
-      (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_1)] >>
-       qi::lit (")")) |
-       (qi::lit ("(") >> this->quoted_string_[qi::_a = qi::_1] >>
-       this->ident_[qi::_val = phoenix::new_<ConnectedFCOs_Method> (qi::_a, qi::_1)] >>
-       qi::lit (")")) );
-
-    this->attachingconnpoints_method_ = qi::lit ("attachingConnPoints") >>
-      ((qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <AttachingConnPoints_Method> ()]) |
-      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<AttachingConnPoints_Method> (qi::_1)] >>
-       qi::lit (")")) |
-      (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<AttachingConnPoints_Method> (qi::_1)] >>
-       qi::lit (")")) |
-       (qi::lit ("(") >> this->quoted_string_[qi::_a = qi::_1] >>
-       this->ident_[qi::_val = phoenix::new_<AttachingConnPoints_Method> (qi::_a, qi::_1)] >>
-       qi::lit (")")) );
-
-    this->attachingconnections_method_ = qi::lit ("attachingConnections") >>
-      ((qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <AttachingConnections_Method> ()]) |
-      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<AttachingConnections_Method> (qi::_1)] >>
-       qi::lit (")")) |
-      (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<AttachingConnections_Method> (qi::_1)] >>
-       qi::lit (")")) |
-       (qi::lit ("(") >> this->quoted_string_[qi::_a = qi::_1] >>
-       this->ident_[qi::_val = phoenix::new_<AttachingConnections_Method> (qi::_a, qi::_1)] >>
-       qi::lit (")")) );
-
-    this->isconnectedto_method_ = qi::lit ("isConnectedTo") >>
-      ( (qi::lit ("(") >> this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_1)] >>
-          qi::lit (")")) | 
-        (qi::lit ("(") >> this->ident_[qi::_a = qi::_1] >>
-          this->quoted_string_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_1)] >>
-          qi::lit (")")) |
-        (qi::lit ("(") >> this->ident_[qi::_a = qi::_1] >>
-          this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_1)] >>
-          qi::lit (")")) |
-        (qi::lit ("(") >> this->ident_[qi::_a = qi::_1] >>
-          this->quoted_string_[qi::_b = qi::_1] >>
-          this->ident_[qi::_val = phoenix::new_<IsConnectedTo_Method> (qi::_a, qi::_b, qi::_1)] >>
-          qi::lit (")")) );
-
-    this->subtypes_method_ = qi::lit ("subTypes") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <Subtypes_Method> ()];
-
-    this->instances_method_ = qi::lit ("instances") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <Instances_Method> ()];
-
-    this->type_method_ = qi::lit ("type") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <Type_Method> ()];
-
-    this->basetype_method_ = qi::lit ("baseType") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <Basetype_Method> ()];
-
-    this->istype_method_ = qi::lit ("isType") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <IsType_Method> ()];
-
-    this->isinstance_method_ = qi::lit ("isInstance") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <IsInstance_Method> ()];
-
-    this->folder_method_ = qi::lit ("folder") >>
-			qi::lit ("(") >>
-			qi::lit (")")[qi::_val = phoenix::new_ <Folder_Method> ()];
-
-    /*this->referencedby_method_ = qi::lit ("referencedBy") >>
-			(qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <ReferencedBy_Method> ()] ) |
-      (qi::lit ("(") >> 
-         this->ident_ [qi::_val = phoenix::new_<ReferencedBy_Method> (qi::_1)] >>
-         qi::lit (")"));*/
-
-    // GME Connection specific methods
-    this->connectionpoints_method_ = qi::lit ("connectionPoints") >>
-      ( (qi::lit ("(") >> qi::lit (")")[qi::_val = phoenix::new_ <ConnectionPoints_Method> ()]) |
-      (qi::lit ("(") >> this->quoted_string_[qi::_val = phoenix::new_<ConnectionPoints_Method> (qi::_1)] >>
-       qi::lit (")")) );
-
-    this->connectionpoint_method_ = qi::lit ("connectionPoint") >>
-      qi::lit ("(") >> 
-      this->quoted_string_[qi::_val = phoenix::new_<ConnectionPoint_Method> (qi::_1)] >>
-      qi::lit (")");
 
     this->ident_ %= 
 			qi::lexeme[(ascii::char_('_') | qi::alpha) >>
@@ -416,15 +321,30 @@ private:
             ascii::space_type,
             qi::locals <Value_Expr *>> equal_expr_;
 
+   qi::rule <IteratorT,
+            Not_Equal_Expr * (),
+            ascii::space_type,
+            qi::locals <Value_Expr *>> not_equal_expr_;
+
 	qi::rule <IteratorT,
             Greater_Equal_Expr * (),
             ascii::space_type,
             qi::locals <Value_Expr *>> greater_equal_expr_;
 
+  qi::rule <IteratorT,
+            Greater_Expr * (),
+            ascii::space_type,
+            qi::locals <Value_Expr *>> greater_expr_;
+
 	qi::rule <IteratorT,
             Lesser_Equal_Expr * (),
             ascii::space_type,
             qi::locals <Value_Expr *>> lesser_equal_expr_;
+
+  qi::rule <IteratorT,
+            Lesser_Expr * (),
+            ascii::space_type,
+            qi::locals <Value_Expr *>> lesser_expr_;
 
   qi::rule <IteratorT,
             Comparison_Expr * (),
@@ -435,6 +355,14 @@ private:
             ascii::space_type,
 	          qi::locals <std::deque <std::string>, 
                         std::deque <Value_Expr *> >> value_expr_;
+
+  qi::rule <IteratorT,
+            std::string (),
+            ascii::space_type> math_op_;
+
+  qi::rule <IteratorT,
+            Value_SubExpr * (),
+            ascii::space_type> value_subexpr_;
 
   qi::rule <IteratorT,
             Local_Value_Expr * (),
@@ -463,10 +391,6 @@ private:
             qi::locals <std::string>> lv_method_call_;
 
 	qi::rule <IteratorT,
-            Method * (),
-            ascii::space_type> method_;
-
-	qi::rule <IteratorT,
             std::vector <Method *> (),
             ascii::space_type> method_list_;
 
@@ -477,7 +401,8 @@ private:
                         Iterator *,
 						            Boolean_Expr *,
                         std::vector <std::string>,
-                        std::string> > iteratorcall_expr_;
+                        std::string,
+                        Value_Expr *> > iteratorcall_expr_;
 
   qi::rule <IteratorT,
             Iterator * (),
@@ -491,123 +416,23 @@ private:
             ForAll_Iterator * (),
             ascii::space_type> forall_iterator_;
 
-	qi::rule <IteratorT,
-            Parts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> parts_method_;
+  qi::rule <IteratorT,
+            IsUnique_Iterator * (),
+            ascii::space_type> isunique_iterator_;
 
   qi::rule <IteratorT,
-            AtomParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> atomparts_method_;
+            Exists_Iterator * (),
+            ascii::space_type> exists_iterator_;
 
   qi::rule <IteratorT,
-            ModelParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> modelparts_method_;
-
-  qi::rule <IteratorT,
-            ReferenceParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> referenceparts_method_;
-
-  qi::rule <IteratorT,
-            ConnectionParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> connectionparts_method_;
-
-  qi::rule <IteratorT,
-            AttachingConnPoints_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> attachingconnpoints_method_;
-
-  qi::rule <IteratorT,
-            AttachingConnections_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> attachingconnections_method_;
-
-  qi::rule <IteratorT,
-            IsConnectedTo_Method * (),
-            ascii::space_type,
-            qi::locals <std::string,
-                        std::string>> isconnectedto_method_;
-
-  qi::rule <IteratorT,
-            Subtypes_Method * (),
-            ascii::space_type> subtypes_method_;
-
-  qi::rule <IteratorT,
-            Instances_Method * (),
-            ascii::space_type> instances_method_;
-
-  qi::rule <IteratorT,
-            Type_Method * (),
-            ascii::space_type> type_method_;
-
-  qi::rule <IteratorT,
-            IsType_Method * (),
-            ascii::space_type> istype_method_;
-
-  qi::rule <IteratorT,
-            IsInstance_Method * (),
-            ascii::space_type> isinstance_method_;
-
-  qi::rule <IteratorT,
-            Basetype_Method * (),
-            ascii::space_type> basetype_method_;
-
-  qi::rule <IteratorT,
-            Folder_Method * (),
-            ascii::space_type> folder_method_;
-
-  qi::rule <IteratorT,
-            ReferencedBy_Method * (),
-            ascii::space_type> referencedby_method_;
-
-  qi::rule <IteratorT,
-            ConnectedFCOs_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> connectedfcos_method_;
-
-  qi::rule <IteratorT,
-            ConnectionPoints_Method * (),
-            ascii::space_type> connectionpoints_method_;
-
-  qi::rule <IteratorT,
-            ConnectionPoint_Method * (),
-            ascii::space_type> connectionpoint_method_;
-
-	qi::rule <IteratorT,
-            Size_Method * (),
-            ascii::space_type> size_method_;
-
-	qi::rule <IteratorT,
-            Name_Method * (),
-            ascii::space_type> name_method_;
-
-	qi::rule <IteratorT,
-            KindName_Method * (),
-            ascii::space_type> kindname_method_;
-
-	qi::rule <IteratorT,
-            Parent_Method * (),
-            ascii::space_type> parent_method_;
-
-	qi::rule <IteratorT,
-            ChildFolders_Method * (),
-            ascii::space_type> childfolders_method_;
-
-	qi::rule <IteratorT,
-            RoleName_Method * (),
-            ascii::space_type> rolename_method_;
-
-	qi::rule <IteratorT,
-            Refers_to_Method * (),
-            ascii::space_type> refers_to_method_;
+            One_Iterator * (),
+            ascii::space_type> one_iterator_;
 
   qi::rule <IteratorT,
             std::string (),
             ascii::space_type> ident_;
+
+  Method_Parser_Grammar <IteratorT> method_;
 
   qi::rule <IteratorT,
             unsigned int (),

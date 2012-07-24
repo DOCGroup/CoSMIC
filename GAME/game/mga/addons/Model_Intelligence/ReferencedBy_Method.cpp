@@ -22,7 +22,7 @@ ReferencedBy_Method::ReferencedBy_Method (void)
 // Kind constructor
 //
 ReferencedBy_Method::ReferencedBy_Method (std::string & kind)
-: kind_(kind)
+: kind_ (kind)
 {
   flag = 1;
 }
@@ -37,7 +37,8 @@ ReferencedBy_Method::~ReferencedBy_Method (void)
 //
 // evaluate
 //
-Value * ReferencedBy_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * ReferencedBy_Method::evaluate (Ocl_Context & res, 
+                                       GAME::Mga::Object caller)
 {
   GAME::Mga::FCO obj = GAME::Mga::FCO::_narrow (caller);
 
@@ -60,17 +61,18 @@ Value * ReferencedBy_Method::evaluate (Ocl_Context &res, GAME::Mga::Object calle
         refs.push_back ((*it));
     }
 
-    return new Collection_Value_T<GAME::Mga::Reference> (refs);
+    return new Collection_Value_T <GAME::Mga::Reference> (refs);
   }
 
-  return new Collection_Value_T<GAME::Mga::Reference> (temps);
+  return new Collection_Value_T <GAME::Mga::Reference> (temps);
 	
 }
 
 //
 // evaluate
 //
-Value * ReferencedBy_Method::evaluate(Ocl_Context &res, Value *caller)
+Value * ReferencedBy_Method::evaluate (Ocl_Context & res, 
+                                       Value * caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
   std::vector <GAME::Mga::Reference> temps;
@@ -98,17 +100,41 @@ Value * ReferencedBy_Method::evaluate(Ocl_Context &res, Value *caller)
           refs.push_back ((*it));
       }
 
-      return new Collection_Value_T<GAME::Mga::Reference> (refs);
+      return new Collection_Value_T <GAME::Mga::Reference> (refs);
     }         
   }
   
-	return new Collection_Value_T<GAME::Mga::Reference> (temps);
+	return new Collection_Value_T <GAME::Mga::Reference> (temps);
 }
 
 //
 // is_filter
 //
 bool ReferencedBy_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool ReferencedBy_Method::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool ReferencedBy_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool ReferencedBy_Method::is_reference (void)
 {
   return false;
 }

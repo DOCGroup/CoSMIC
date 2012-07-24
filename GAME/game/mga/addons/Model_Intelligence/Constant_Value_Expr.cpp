@@ -1,4 +1,4 @@
-// $Id$
+// $Id: Constant_Value_Expr.cpp 2902 2012-05-07 03:08:44Z tpati $
 
 #include "StdAfx.h"
 #include "Int_Value.h"
@@ -8,7 +8,7 @@
 //
 // Constructor
 //
-Constant_Value_Expr::Constant_Value_Expr (unsigned int &value)
+Constant_Value_Expr::Constant_Value_Expr (unsigned int & value)
 : value_ (value)
 {
 	this->flag = 1;
@@ -17,7 +17,7 @@ Constant_Value_Expr::Constant_Value_Expr (unsigned int &value)
 //
 // Constructor
 //
-Constant_Value_Expr::Constant_Value_Expr (std::string &str)
+Constant_Value_Expr::Constant_Value_Expr (std::string & str)
 : str_ (str)
 {
 	this->flag = 2;
@@ -33,7 +33,7 @@ Constant_Value_Expr::~Constant_Value_Expr (void)
 //
 // evaluate
 //
-Value * Constant_Value_Expr::evaluate (Ocl_Context &res)
+Value * Constant_Value_Expr::evaluate (Ocl_Context & res)
 {
 	if (this->flag == 1)
 		return new Int_Value (this->value_);
@@ -44,7 +44,7 @@ Value * Constant_Value_Expr::evaluate (Ocl_Context &res)
 //
 // filter_evaluate
 //
-Value * Constant_Value_Expr::filter_evaluate (Ocl_Context &res)
+Value * Constant_Value_Expr::filter_evaluate (Ocl_Context & res)
 {
 	if (this->flag == 1)
 		return new Int_Value (this->value_);
@@ -64,6 +64,30 @@ bool Constant_Value_Expr::is_mutable (void)
 // is_filter
 //
 bool Constant_Value_Expr::is_filter (void)
+{
+  return true;
+}
+
+//
+// is_association
+//
+bool Constant_Value_Expr::is_association (void)
+{
+  return true;
+}
+
+//
+// is_containment
+//
+bool Constant_Value_Expr::is_containment (void)
+{
+  return true;
+}
+
+//
+// is_reference
+//
+bool Constant_Value_Expr::is_reference (void)
 {
   return true;
 }

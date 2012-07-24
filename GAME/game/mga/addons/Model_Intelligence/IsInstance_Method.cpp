@@ -25,7 +25,8 @@ IsInstance_Method::~IsInstance_Method (void)
 //
 // evaluate
 //
-Value * IsInstance_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * IsInstance_Method::evaluate (Ocl_Context & res, 
+                                     GAME::Mga::Object caller)
 {
   GAME::Mga::FCO obj = GAME::Mga::FCO::_narrow (caller);
 
@@ -38,7 +39,8 @@ Value * IsInstance_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 //
 // evaluate
 //
-Value * IsInstance_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * IsInstance_Method::evaluate (Ocl_Context & res, 
+                                     Value * caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
@@ -59,6 +61,30 @@ Value * IsInstance_Method::evaluate (Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool IsInstance_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool IsInstance_Method::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool IsInstance_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool IsInstance_Method::is_reference (void)
 {
   return false;
 }

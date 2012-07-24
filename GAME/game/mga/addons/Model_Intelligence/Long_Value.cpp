@@ -37,7 +37,7 @@ bool Long_Value::is_equal (Value *v)
 //
 // is_greater
 //
-bool Long_Value::is_greater (Value *v)
+bool Long_Value::is_greater (Value * v)
 {
 	Long_Value * iv = dynamic_cast <Long_Value *> (v);
 
@@ -52,7 +52,7 @@ bool Long_Value::is_greater (Value *v)
 //
 // is_greater_equal
 //
-bool Long_Value::is_greater_equal (Value *v)
+bool Long_Value::is_greater_equal (Value * v)
 {
 	Long_Value * iv = dynamic_cast <Long_Value *> (v);
 
@@ -67,7 +67,7 @@ bool Long_Value::is_greater_equal (Value *v)
 //
 // is_lesser
 //
-bool Long_Value::is_lesser (Value *v)
+bool Long_Value::is_lesser (Value * v)
 {
 	Long_Value * iv = dynamic_cast <Long_Value *> (v);
 
@@ -82,7 +82,7 @@ bool Long_Value::is_lesser (Value *v)
 //
 // is_lesser_equal
 //
-bool Long_Value::is_lesser_equal (Value *v)
+bool Long_Value::is_lesser_equal (Value * v)
 {
 	Long_Value * iv = dynamic_cast <Long_Value *> (v);
 
@@ -97,7 +97,7 @@ bool Long_Value::is_lesser_equal (Value *v)
 //
 // get_diff
 //
-bool Long_Value::get_diff (Value *v, double &count)
+bool Long_Value::get_diff (Value * v, double & count)
 {
 	Long_Value * iv = dynamic_cast <Long_Value *> (v);
 
@@ -112,7 +112,7 @@ bool Long_Value::get_diff (Value *v, double &count)
 //
 // get_sum
 //
-bool Long_Value::get_sum (Value *v, double &count)
+bool Long_Value::get_sum (Value * v, double & count)
 {
 	Long_Value * iv = dynamic_cast <Long_Value *> (v);
 

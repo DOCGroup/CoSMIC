@@ -4,6 +4,7 @@
 #include "IteratorCall_Expr.h"
 #include "boost/bind.hpp"
 #include "Object_Value.h"
+#include "Boolean_Value.h"
 #include "Collection_Value_T.h"
 #include "game/mga/Filter.h"
 #include "game/mga/MetaFCO.h"
@@ -16,10 +17,24 @@
 IteratorCall_Expr::IteratorCall_Expr (Value_Expr * obj,
                                       Iterator * name,
                                       Boolean_Expr * expr)
-:obj_(obj),
- name_(name),
- expr_(expr)
+:obj_ (obj),
+ name_ (name),
+ expr_ (expr)
 {
+  flag = 1;
+}
+
+//
+// Constructor
+//
+IteratorCall_Expr::IteratorCall_Expr (Value_Expr * obj,
+                                      Iterator * name,
+                                      Value_Expr * valexpr)
+:obj_ (obj),
+ name_ (name),
+ valexpr_ (valexpr)
+{
+  flag = 2;
 }
 
 //
@@ -32,72 +47,34 @@ IteratorCall_Expr::~IteratorCall_Expr (void)
 //
 // evaluate
 //
-bool IteratorCall_Expr::evaluate (Ocl_Context &res)
+bool IteratorCall_Expr::evaluate (Ocl_Context & res)
 { 
-  bool result = false;
+  Value * result;
 
   // Collect the value for the invoking collection
-  Collection_Value_T<GAME::Mga::FCO> * cv = 
+  Collection_Value_T <GAME::Mga::FCO> * cv = 
     dynamic_cast <Collection_Value_T<GAME::Mga::FCO> *> (this->obj_->evaluate (res));
 
   if (cv != 0)
   {
-    std::vector<GAME::Mga::FCO> collection = cv->value ();
+    std::vector <GAME::Mga::FCO> collection = cv->value ();
 
-    if (this->dec_type_.size() > 0)
-    {
-      // Setting the values of declarators if they are there (max for two)
-      // and storing them to the locals map to be used by expressions
-      std::vector<GAME::Mga::FCO>::iterator 
-        xit = collection.begin (), xit_end = collection.end ();
-
-      switch (this->next_.size ()) {
-        case 0:
-          {
-            result = this->expr_->evaluate (res);
-            break;
-          }
-        case 1:
-          {
-            // Evaluating the expression against every possible value of the
-            // declarator variable
-            for (; xit != xit_end; ++xit)
-            {
-              res.locals[this->next_[0]] = new Object_Value (*(xit));
-              result = this->expr_->evaluate (res);
-            }
-            break;
-          }
-        case 2:
-          {
-            // Evaluating the expression against every possible value of the
-            // declarators available
-            for (size_t i = 0; i < collection.size (); i++)
-            {
-              for (size_t j = i+1; j < collection.size (); j++)
-              {
-                // Setting value for first variable
-                res.locals[this->next_[0]] = new Object_Value (collection[i]);
-                // Setting value for second variable
-                res.locals[this->next_[1]] = new Object_Value (collection[j]);
-                
-                result = this->expr_->evaluate (res);
-              }
-            }
-            break;
-          }
-        default:
-          result = false;
-      }
-    }
+    if (flag == 1)
+      result = this->name_->evaluate (res, collection, this->next_, this->dec_type_, this->expr_);
+    else if (flag == 2)
+      result = this->name_->evaluate (res, collection, this->next_, this->dec_type_, this->valexpr_);
   }
-	return result;	
+
+  Boolean_Value * iv = dynamic_cast <Boolean_Value *> (result);
+
+  return iv->value ();
 }
 
 //
 // filter_evaluate
 //
-bool IteratorCall_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
+bool IteratorCall_Expr::filter_evaluate (Ocl_Context & res, 
+                                         GAME::Mga::FCO &current)
 { 
   bool result = false;
 
@@ -124,7 +101,7 @@ bool IteratorCall_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &curre
 //
 // set_declarators
 //
-void IteratorCall_Expr::set_declarators (std::vector<std::string> & next)
+void IteratorCall_Expr::set_declarators (std::vector <std::string> & next)
 {
   this->next_ = next;
 }
@@ -135,4 +112,37 @@ void IteratorCall_Expr::set_declarators (std::vector<std::string> & next)
 void IteratorCall_Expr::set_dec_type (std::string & type)
 {
   this->dec_type_ = type;
+}
+
+//
+// is_association
+//
+bool IteratorCall_Expr::is_association (void)
+{
+  if (this->expr_->is_association ())
+    return true;
+
+  return false;
+}
+
+//
+// is_containment
+//
+bool IteratorCall_Expr::is_containment (void)
+{
+  if (this->expr_->is_containment ())
+    return true;
+
+  return false;
+}
+
+//
+// is_reference
+//
+bool IteratorCall_Expr::is_reference (void)
+{
+  if (this->expr_->is_reference ())
+    return true;
+
+  return false;
 }

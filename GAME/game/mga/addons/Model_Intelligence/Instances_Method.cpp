@@ -28,7 +28,7 @@ Instances_Method::~Instances_Method (void)
 //
 // evaluate
 //
-Value * Instances_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * Instances_Method::evaluate (Ocl_Context & res, GAME::Mga::Object caller)
 {
   GAME::Mga::FCO obj = GAME::Mga::FCO::_narrow (caller);
 
@@ -38,7 +38,7 @@ Value * Instances_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
   filter.kind (obj->meta ()->name ());
   filter.apply (obj->parent_model (), temp);
 
-  // Exclusing the caller from the set
+  // Excluding the caller from the set
   std::vector <GAME::Mga::FCO>::iterator
     it = temp.begin (), it_end = temp.end ();
 
@@ -48,7 +48,7 @@ Value * Instances_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
       fcos.push_back ((*it));
   }
 
-  return new Collection_Value_T<GAME::Mga::FCO> (fcos);
+  return new Collection_Value_T <GAME::Mga::FCO> (fcos);
 	
 }
 
@@ -89,6 +89,30 @@ Value * Instances_Method::evaluate(Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool Instances_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool Instances_Method::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool Instances_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool Instances_Method::is_reference (void)
 {
   return false;
 }

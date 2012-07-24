@@ -29,7 +29,7 @@ GAME::Mga::Object Object_Value::value (void)
 //
 // is_equal
 //
-bool Object_Value::is_equal (Value *v)
+bool Object_Value::is_equal (Value * v)
 {
 	Object_Value * iv = dynamic_cast <Object_Value *> (v);
 
@@ -44,7 +44,7 @@ bool Object_Value::is_equal (Value *v)
 //
 // is_greater
 //
-bool Object_Value::is_greater (Value *v)
+bool Object_Value::is_greater (Value * v)
 {
 	return false;
 }
@@ -52,7 +52,7 @@ bool Object_Value::is_greater (Value *v)
 //
 // is_greater_equal
 //
-bool Object_Value::is_greater_equal (Value *v)
+bool Object_Value::is_greater_equal (Value * v)
 {
 	Object_Value * iv = dynamic_cast <Object_Value *> (v);
 
@@ -67,7 +67,7 @@ bool Object_Value::is_greater_equal (Value *v)
 //
 // is_lesser
 //
-bool Object_Value::is_lesser (Value *v)
+bool Object_Value::is_lesser (Value * v)
 {
 	return false;
 }
@@ -75,7 +75,7 @@ bool Object_Value::is_lesser (Value *v)
 //
 // is_lesser_equal
 //
-bool Object_Value::is_lesser_equal (Value *v)
+bool Object_Value::is_lesser_equal (Value * v)
 {
 	Object_Value * iv = dynamic_cast <Object_Value *> (v);
 
@@ -90,7 +90,7 @@ bool Object_Value::is_lesser_equal (Value *v)
 //
 // get_diff
 //
-bool Object_Value::get_diff (Value *v, double &count)
+bool Object_Value::get_diff (Value * v, double & count)
 {
 	return false;
 }
@@ -98,7 +98,7 @@ bool Object_Value::get_diff (Value *v, double &count)
 //
 // get_sum
 //
-bool Object_Value::get_sum (Value *v, double &count)
+bool Object_Value::get_sum (Value * v, double & count)
 {
 	return false;
 }

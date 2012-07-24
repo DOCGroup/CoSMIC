@@ -37,8 +37,6 @@ bool Attribute_Add_Command::execute (void)
 {
   GAME::Mga::Meta::FCO metafco = this->fco_->meta ();
 
-  std::string name = metafco->name ();
-
   GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->atrname_, false);
 
   GAME::Mga::Attribute work_atr = this->fco_->attribute (meta_atr);

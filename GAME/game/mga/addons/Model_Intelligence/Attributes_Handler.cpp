@@ -1,4 +1,4 @@
-// $Id: Reference_Handler.cpp 2903 2012-05-10 03:03:08Z tpati $
+// $Id: Attributes_Handler.cpp 2903 2012-05-10 03:03:08Z tpati $
 
 #include "StdAfx.h"
 
@@ -46,6 +46,8 @@ int Attributes_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
   bool flag = false;
   Ocl_Context res;
+
+  // Seting values in the model intelligence context
 	res.model_constraint = false;
   res.model_attributes = true;
 	res.self = obj;

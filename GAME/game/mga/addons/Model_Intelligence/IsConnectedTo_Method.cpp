@@ -12,8 +12,8 @@
 //
 // Default Constructor
 //
-IsConnectedTo_Method::IsConnectedTo_Method (std::string &fco)
-: fco_(fco)
+IsConnectedTo_Method::IsConnectedTo_Method (std::string & fco)
+: fco_ (fco)
 {
   flag = 1;
 }
@@ -21,9 +21,10 @@ IsConnectedTo_Method::IsConnectedTo_Method (std::string &fco)
 //
 // Kind/Role Constructor
 //
-IsConnectedTo_Method::IsConnectedTo_Method (std::string &fco, std::string &temp)
-: fco_(fco),
-  temp_(temp)
+IsConnectedTo_Method::IsConnectedTo_Method (std::string & fco, 
+                                            std::string & temp)
+: fco_ (fco),
+  temp_ (temp)
 {
   if (this->temp_ == "src" || this->temp_ == "dst")
   {
@@ -40,10 +41,12 @@ IsConnectedTo_Method::IsConnectedTo_Method (std::string &fco, std::string &temp)
 //
 // FCO, Role and Kind Constructor
 //
-IsConnectedTo_Method::IsConnectedTo_Method (std::string &fco, std::string &role, std::string &kind)
-: fco_(fco),
-  role_(role),
-  kind_(kind)
+IsConnectedTo_Method::IsConnectedTo_Method (std::string & fco, 
+                                            std::string & role, 
+                                            std::string & kind)
+: fco_ (fco),
+  role_ (role),
+  kind_ (kind)
 {
   flag = 4;
 }
@@ -59,13 +62,14 @@ IsConnectedTo_Method::~IsConnectedTo_Method (void)
 //
 // evaluate
 //
-Value * IsConnectedTo_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * IsConnectedTo_Method::evaluate (Ocl_Context & res, 
+                                        GAME::Mga::Object caller)
 {
   GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (caller);
   
   // Get all the connections associated to this fco based on the 
   // kind of the connection
-  std::vector<GAME::Mga::Connection> conns;
+  std::vector <GAME::Mga::Connection> conns;
 
   // Filtering out the connections based on "kind" value
   if (flag == 1 || flag == 3)
@@ -76,8 +80,8 @@ Value * IsConnectedTo_Method::evaluate (Ocl_Context &res, GAME::Mga::Object call
   // The boolean keeping a check if the fco is connected or not
   bool isconnected = false;
 
-  std::vector<GAME::Mga::Connection>::iterator 
-    cit = conns.begin(), cit_end = conns.end();
+  std::vector <GAME::Mga::Connection>::iterator 
+    cit = conns.begin (), cit_end = conns.end ();
 
   // Checking if the fco is connected or not
   for (; cit != cit_end; ++cit)
@@ -117,7 +121,8 @@ Value * IsConnectedTo_Method::evaluate (Ocl_Context &res, GAME::Mga::Object call
 //
 // evaluate
 //
-Value * IsConnectedTo_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * IsConnectedTo_Method::evaluate (Ocl_Context & res, 
+                                        Value * caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
@@ -131,7 +136,7 @@ Value * IsConnectedTo_Method::evaluate (Ocl_Context &res, Value *caller)
 
     // Get all the connections associated to this fco based on the 
     // kind of the connection
-    std::vector<GAME::Mga::Connection> conns;
+    std::vector <GAME::Mga::Connection> conns;
 
     // Filtering out the connections based on "kind" value
     if (flag == 1 || flag == 3)
@@ -183,6 +188,30 @@ Value * IsConnectedTo_Method::evaluate (Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool IsConnectedTo_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool IsConnectedTo_Method::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool IsConnectedTo_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool IsConnectedTo_Method::is_reference (void)
 {
   return false;
 }

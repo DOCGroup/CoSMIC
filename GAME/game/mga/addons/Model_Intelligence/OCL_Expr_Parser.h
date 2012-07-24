@@ -4,7 +4,7 @@
 /**
  * @file          OCL_Expr_Parser.h
  *
- * $Id$
+ * $Id: OCL_Expr_Parser.h 2839 2012-02-11 18:59:36Z hillj $
  *
  * @author        Tanumoy Pati
  */
@@ -37,5 +37,6 @@ public:
    */
   bool parse_string (std::string str,
                      std::vector <Boolean_Expr *> &ocl);
+
 };
 #endif

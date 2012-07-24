@@ -10,8 +10,8 @@
 // Constructor
 //
 If_Then_Else_Expr::If_Then_Else_Expr (Equality_Expr * cond, 
-																			std::vector <Boolean_Expr *> &first, 
-																			std::vector <Boolean_Expr *> &second)
+																			std::vector <Boolean_Expr *> & first, 
+																			std::vector <Boolean_Expr *> & second)
 :cond_ (cond), 
  first_ (first),
  second_ (second)
@@ -28,7 +28,7 @@ If_Then_Else_Expr::~If_Then_Else_Expr (void)
 //
 // evaluate
 //
-bool If_Then_Else_Expr::evaluate (Ocl_Context &res)
+bool If_Then_Else_Expr::evaluate (Ocl_Context & res)
 { 
 	bool flag = true;
 	if (this->cond_->evaluate (res))
@@ -56,7 +56,8 @@ bool If_Then_Else_Expr::evaluate (Ocl_Context &res)
 //
 // filter_evaluate
 //
-bool If_Then_Else_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current)
+bool If_Then_Else_Expr::filter_evaluate (Ocl_Context & res, 
+                                         GAME::Mga::FCO & current)
 { 
   res.cur_fco = current;
 	bool flag = true;
@@ -80,4 +81,28 @@ bool If_Then_Else_Expr::filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &curre
 	}
 
 	return flag;		
+}
+
+//
+// is_association
+//
+bool If_Then_Else_Expr::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool If_Then_Else_Expr::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool If_Then_Else_Expr::is_reference (void)
+{
+  return false;
 }

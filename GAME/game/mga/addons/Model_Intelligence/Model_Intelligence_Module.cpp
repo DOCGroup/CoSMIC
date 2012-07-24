@@ -1,4 +1,4 @@
-// $Id$
+// $Id: Model_Intelligence_Module.cpp 2839 2012-02-11 18:59:36Z hillj $
 
 #include "StdAfx.h"
 #include "resource.h"

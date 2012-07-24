@@ -1,4 +1,4 @@
-// $Id$
+// $Id: Reference_Handler.cpp 2907 2012-06-07 21:35:18Z tpati $
 
 #include "StdAfx.h"
 
@@ -99,6 +99,8 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
 		for (; iter != iter_end; ++ iter)
 		{
+      bool temp = false;
+
 			//reseting the constraint specific variables
 			res.target_metaroles.clear ();
 			res.locals.clear ();
@@ -106,8 +108,39 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 			std::vector <Boolean_Expr *> ocl;
 			OCL_Expr_Parser parser;
 
-			//Parsing the ocl string
-    	parser.parse_string (*(iter), ocl);
+      // Checking if the constraint exists in cache
+      std::map <std::string, std::vector <Boolean_Expr *>>::iterator
+        cacheit = this->cache.begin (), cacheit_end = this->cache.end ();
+
+      bool exists = false;
+
+      for (; cacheit != cacheit_end; ++cacheit)
+      {
+        if ((*iter) == cacheit->first)
+        {
+          ocl = cacheit->second;
+          exists = true;
+          break;
+        }
+      }
+
+      if (!exists)
+      {
+        // Parsing the constraint string
+        parser.parse_string ((*iter), ocl);
+        this->cache[(*iter)] = ocl;
+      }
+
+      std::vector <Boolean_Expr *>::iterator
+        cont = ocl.begin(), cont_end = ocl.end();
+
+      int counter = 0;
+
+      for (; cont != cont_end; ++cont)
+      {
+        if ((*cont)->is_reference ())
+          counter++;
+      }
 
 			// Iterating over the sub-expressions and evaluating them
 			std::vector <Boolean_Expr *>::iterator 
@@ -115,10 +148,13 @@ int Reference_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
 			for (; oclitt != oclitt_end; ++ oclitt)
 			{
-        bool temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
+        if (counter == ocl.size () && result)
+        {
+          temp = (*oclitt)->filter_evaluate (res, (*objs_iter));
 
-				if (!temp)
-					result = false;
+          if (!temp)
+            result = false;
+        }
 			}
 		}
 

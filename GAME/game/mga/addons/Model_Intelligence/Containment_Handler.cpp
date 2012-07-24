@@ -1,4 +1,4 @@
-// $Id$
+// $Id: Containment_Handler.cpp 2907 2012-06-07 21:35:18Z tpati $
 
 #include "StdAfx.h"
 #include <vector>
@@ -49,12 +49,13 @@ int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
 
   GAME::Mga::Model mod = GAME::Mga::Model::_narrow (obj);
 
-  // Setting the model spcific attributes in Model_Intelligence_Features for containment
+  // Setting the model specific attributes in Model_Intelligence_Features for containment
 	Ocl_Context res;
 	res.model_constraint = true;
   res.model_attributes = false;
 	res.self = obj;
 	res.model_object = mod;
+  res.checker = false;
 
 	// Collecting all constraints on the entered model
   std::vector <GAME::Mga::Meta::Constraint> cs;
@@ -70,6 +71,7 @@ int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
 															boost::bind (&GAME::Mga::Meta::Constraint::impl_type::expression,
 															             boost::bind (&GAME::Mga::Meta::Constraint::get, _1))));
 
+
 	// Iterating over all the cardinalities one by one so as to
   // parse and evaluate them to generate a list of actions
   std::vector <std::string>::const_iterator
@@ -84,13 +86,48 @@ int Containment_Handler::handle_object_created (GAME::Mga::Object_in obj)
     std::vector <Boolean_Expr *> ocl;
     OCL_Expr_Parser parser;
 
-		//Parsing the cardinality string
-    parser.parse_string ((*iter), ocl);
+    // Checking if the constraint exists in cache
+    std::map <std::string, std::vector <Boolean_Expr *>>::iterator
+      cacheit = this->cache.begin (), cacheit_end = this->cache.end ();
 
-    // Iterating over the sub-expressions and evaluating them
-		std::for_each (ocl.begin (),
-			             ocl.end (),
-									 boost::bind(&Boolean_Expr::evaluate, _1, boost::ref(res)));
+    bool exists = false;
+
+    for (; cacheit != cacheit_end; ++cacheit)
+    {
+      if ((*iter) == cacheit->first)
+      {
+        ocl = cacheit->second;
+        exists = true;
+        break;
+      }
+    }
+
+    if (!exists)
+    {
+      // Parsing the constraint string
+      parser.parse_string ((*iter), ocl);
+      this->cache[(*iter)] = ocl;
+    }
+   
+    std::vector <Boolean_Expr *>::iterator
+      cont = ocl.begin (), cont_end = ocl.end ();
+
+    int counter = 0;
+
+    // Checking if the constraint is containment constraint
+    for (; cont != cont_end; ++cont)
+    {
+      if ((*cont)->is_containment ())
+        counter++;
+    }
+
+    if (counter == ocl.size ())
+    {
+      // Iterating over the sub-expressions and evaluating them
+      std::for_each (ocl.begin (),
+                     ocl.end (),
+                     boost::bind(&Boolean_Expr::evaluate, _1, boost::ref(res)));
+    }
 
   }
 

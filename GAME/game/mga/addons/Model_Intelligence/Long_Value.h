@@ -84,7 +84,7 @@ public:
    * @return        bool          true if successful
    *                              false if not successful
    */
-	bool get_diff (Value *v, double &count);
+	bool get_diff (Value * v, double & count);
 
   /**
    * Gets the summation between two variables
@@ -94,7 +94,7 @@ public:
    * @return        bool          true if successful
    *                              false if not successful
    */
-	bool get_sum (Value *v, double &count);
+	bool get_sum (Value * v, double & count);
 
 private:
 	long val_;

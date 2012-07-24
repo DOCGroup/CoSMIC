@@ -4,7 +4,7 @@
 /**
  * @file          Local_Value_Assignment_Expr.h
  *
- * $Id$
+ * $Id: Local_Value_Assignment_Expr.h 2902 2012-05-07 03:08:44Z tpati $
  *
  * @author        Tanumoy Pati
  */
@@ -29,7 +29,7 @@ class Local_Value_Assignment_Expr : public Boolean_Expr
 public:
 
   /// Default constructor.
-  Local_Value_Assignment_Expr (std::string &var, Value_Expr *right);
+  Local_Value_Assignment_Expr (std::string & var, Value_Expr * right);
 
 	/// Destructor.
 	~Local_Value_Assignment_Expr (void);
@@ -40,7 +40,7 @@ public:
    * @param[in]     res        Object of model intelligence context.
    * @return        bool       True/False
    */
-  bool evaluate (Ocl_Context &res);
+  bool evaluate (Ocl_Context & res);
 
   /**
    * filter_evaluate method for evaluating the respective expression
@@ -49,13 +49,37 @@ public:
    * @param[in]     current    The current FCO being worked with.
    * @return        bool       True/False
    */
-  bool filter_evaluate (Ocl_Context &res, GAME::Mga::FCO &current);
+  bool filter_evaluate (Ocl_Context & res, GAME::Mga::FCO & current);
 
   /**
    * Value method for getting the value of the local variable
    * @return        value object of the local variable
    */
   Value * value (void);
+
+  /**
+   * is_association method for determining if this expression
+   * can be used for association constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_association (void);
+
+  /**
+   * is_containment method for determining if this expression
+   * can be used for containment constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_containment (void);
+
+  /**
+   * is_reference method for determining if this expression
+   * can be used for reference constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_reference (void);
 
 private:
   // Variable for storing the local variable name

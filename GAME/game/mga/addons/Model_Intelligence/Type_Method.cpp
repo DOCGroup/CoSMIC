@@ -26,7 +26,8 @@ Type_Method::~Type_Method (void)
 //
 // evaluate
 //
-Value * Type_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * Type_Method::evaluate (Ocl_Context & res, 
+                               GAME::Mga::Object caller)
 {
   GAME::Mga::FCO obj = GAME::Mga::FCO::_narrow (caller);
 
@@ -39,7 +40,8 @@ Value * Type_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 //
 // evaluate
 //
-Value * Type_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * Type_Method::evaluate (Ocl_Context & res, 
+                               Value * caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
@@ -60,6 +62,30 @@ Value * Type_Method::evaluate (Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool Type_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool Type_Method::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool Type_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool Type_Method::is_reference (void)
 {
   return false;
 }

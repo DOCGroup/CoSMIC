@@ -13,16 +13,16 @@
 #ifndef _GAME_MODEL_INTELLIGENCE_METHOD_CALL_H_
 #define _GAME_MODEL_INTELLIGENCE_METHOD_CALL_H_
 
-#include "Value_Expr.h"
+#include "Value_SubExpr.h"
 #include "Method.h"
 
 /**
  * @class Method_Call
  *
- * Class derived from Value_Expr. This class deals
+ * Class derived from Value_SubExpr. This class deals
  * with the methodcalls
  */
-class Method_Call : public Value_Expr
+class Method_Call : public Value_SubExpr
 {
 public:
   /// constructor.
@@ -36,7 +36,7 @@ public:
    *
 	 * @param[in]     m             Method pointer to be placed in next
    */
-	void set_next (std::vector <Method *> &next);
+	void set_next (std::vector <Method *> & next);
 
   /**
    * evaluate method for evaluating the respective expression
@@ -44,7 +44,7 @@ public:
    * @param[in]     res           Object of model intelligence context
    * @return        Object        Value object of the local variable
    */
-  Value * evaluate (Ocl_Context &res);
+  Value * evaluate (Ocl_Context & res);
 
   /**
    * filter_evaluate method for evaluating the respective expression
@@ -52,7 +52,7 @@ public:
    * @param[in]     res        Object of model intelligence context.
    * @return        Object     Value object of the local variable
    */
-  Value * filter_evaluate (Ocl_Context &res);
+  Value * filter_evaluate (Ocl_Context & res);
 
   /**
    * Determines if the object is mutable or not.
@@ -70,9 +70,37 @@ public:
    */
   bool is_filter (void);
 
+  /**
+   * is_association method for determining if this expression
+   * can be used for association constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_association (void);
+
+  /**
+   * is_containment method for determining if this expression
+   * can be used for containment constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_containment (void);
+
+  /**
+   * is_reference method for determining if this expression
+   * can be used for reference constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_reference (void);
 protected:
+  // The method caller
   GAME::Mga::Object caller_;
+
+  // The base method
 	Method * base_meth_;
+
+  // The next method in the chain
 	std::vector <Method *> next_;
 };
 

@@ -20,8 +20,8 @@ AttachingConnPoints_Method::AttachingConnPoints_Method (void)
 //
 // Kind/Role Constructor
 //
-AttachingConnPoints_Method::AttachingConnPoints_Method (std::string &temp)
-: temp_(temp)
+AttachingConnPoints_Method::AttachingConnPoints_Method (std::string & temp)
+: temp_ (temp)
 {
   if (this->temp_ == "src" || this->temp_ == "dst")
   {
@@ -38,9 +38,10 @@ AttachingConnPoints_Method::AttachingConnPoints_Method (std::string &temp)
 //
 // Role and Kind Constructor
 //
-AttachingConnPoints_Method::AttachingConnPoints_Method (std::string &role, std::string &kind)
-: role_(role),
-  kind_(kind)
+AttachingConnPoints_Method::AttachingConnPoints_Method (std::string & role, 
+                                                        std::string & kind)
+: role_ (role),
+  kind_ (kind)
 {
   flag = 4;
 }
@@ -55,13 +56,14 @@ AttachingConnPoints_Method::~AttachingConnPoints_Method (void)
 //
 // evaluate
 //
-Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * AttachingConnPoints_Method::evaluate (Ocl_Context & res, 
+                                              GAME::Mga::Object caller)
 {
   GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (caller);
   
   // Get all the connections associated to this fco based on the 
   // kind of the connection
-  std::vector<GAME::Mga::Connection> conns;
+  std::vector <GAME::Mga::Connection> conns;
 
   // Filtering out the connections based on "kind" value
   if (flag == 1 || flag == 3)
@@ -69,9 +71,9 @@ Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, GAME::Mga::Objec
   else if (flag == 2 || flag == 4)
     fco->in_connections (this->kind_, conns);
 
-  std::vector<GAME::Mga::ConnectionPoint> conpts;
+  std::vector <GAME::Mga::ConnectionPoint> conpts;
 
-  std::vector<GAME::Mga::Connection>::iterator 
+  std::vector <GAME::Mga::Connection>::iterator 
     cit = conns.begin(), cit_end = conns.end();
 
   // Get all the connection points based on the information provided
@@ -89,14 +91,15 @@ Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, GAME::Mga::Objec
     }  
   }
 
-  return new Collection_Value_T<GAME::Mga::ConnectionPoint> (conpts);
+  return new Collection_Value_T <GAME::Mga::ConnectionPoint> (conpts);
   
 }
 
 //
 // evaluate
 //
-Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * AttachingConnPoints_Method::evaluate (Ocl_Context & res, 
+                                              Value * caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
@@ -107,7 +110,7 @@ Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, Value *caller)
 
     // Get all the connections associated to this fco based on the 
     // kind of the connection
-    std::vector<GAME::Mga::Connection> conns;
+    std::vector <GAME::Mga::Connection> conns;
 
     // Filtering out the connections based on "kind" value
     if (flag == 1 || flag == 3)
@@ -115,9 +118,9 @@ Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, Value *caller)
     else if (flag == 2 || flag == 4)
       fco->in_connections (this->kind_, conns);
 
-    std::vector<GAME::Mga::ConnectionPoint> conpts;
+    std::vector <GAME::Mga::ConnectionPoint> conpts;
 
-    std::vector<GAME::Mga::Connection>::iterator
+    std::vector <GAME::Mga::Connection>::iterator
       cit = conns.begin(), cit_end = conns.end();
 
     // Get all the connection points based on the information provided
@@ -135,12 +138,12 @@ Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, Value *caller)
       }  
     }
 
-    return new Collection_Value_T<GAME::Mga::ConnectionPoint> (conpts);    
+    return new Collection_Value_T <GAME::Mga::ConnectionPoint> (conpts);    
   }
   else
 	{
-		std::vector<GAME::Mga::ConnectionPoint> conpts;
-		return new Collection_Value_T<GAME::Mga::ConnectionPoint> (conpts);
+		std::vector <GAME::Mga::ConnectionPoint> conpts;
+		return new Collection_Value_T <GAME::Mga::ConnectionPoint> (conpts);
 	}  
 }
 
@@ -148,6 +151,30 @@ Value * AttachingConnPoints_Method::evaluate (Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool AttachingConnPoints_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool AttachingConnPoints_Method::is_association (void)
+{
+  return true;
+}
+
+//
+// is_containment
+//
+bool AttachingConnPoints_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool AttachingConnPoints_Method::is_reference (void)
 {
   return false;
 }

@@ -24,7 +24,8 @@ Size_Method::~Size_Method (void)
 //
 // evaluate
 //
-Value * Size_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * Size_Method::evaluate (Ocl_Context & res, 
+                               GAME::Mga::Object caller)
 {
 	return new Int_Value (0);
 }
@@ -32,18 +33,19 @@ Value * Size_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
 //
 // evaluate
 //
-Value * Size_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * Size_Method::evaluate (Ocl_Context & res, 
+                               Value * caller)
 {
   size_t s;
-	Collection_Value_T<GAME::Mga::FCO> * iv = 
-    dynamic_cast <Collection_Value_T<GAME::Mga::FCO> *> (caller);
+	Collection_Value_T <GAME::Mga::FCO> * iv = 
+    dynamic_cast <Collection_Value_T <GAME::Mga::FCO> *> (caller);
 
   if (iv != 0)
     s = iv->size ();
   else
   {
-    Collection_Value_T<GAME::Mga::Connection> * conn = 
-      dynamic_cast <Collection_Value_T<GAME::Mga::Connection> *> (caller);
+    Collection_Value_T <GAME::Mga::Connection> * conn = 
+      dynamic_cast <Collection_Value_T <GAME::Mga::Connection> *> (caller);
 
     s = conn->size ();
   }
@@ -55,6 +57,30 @@ Value * Size_Method::evaluate (Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool Size_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool Size_Method::is_association (void)
+{
+  return true;
+}
+
+//
+// is_containment
+//
+bool Size_Method::is_containment (void)
+{
+  return true;
+}
+
+//
+// is_reference
+//
+bool Size_Method::is_reference (void)
 {
   return false;
 }

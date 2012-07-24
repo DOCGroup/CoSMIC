@@ -1,4 +1,4 @@
-// $Id$
+// $Id: Local_Value_Expr.cpp 2908 2012-06-10 18:21:53Z tpati $
 
 #include "StdAfx.h"
 
@@ -8,7 +8,7 @@
 //
 // Constructor
 //
-Local_Value_Expr::Local_Value_Expr (std::string &var)
+Local_Value_Expr::Local_Value_Expr (std::string & var)
 : localvar_ (var)
 {
 }
@@ -23,7 +23,7 @@ Local_Value_Expr::~Local_Value_Expr (void)
 //
 // evaluate
 //
-Value * Local_Value_Expr::evaluate (Ocl_Context &res)
+Value * Local_Value_Expr::evaluate (Ocl_Context & res)
 {   
 	return res.locals[this->localvar_];
 }
@@ -31,7 +31,7 @@ Value * Local_Value_Expr::evaluate (Ocl_Context &res)
 //
 // filter_evaluate
 //
-Value * Local_Value_Expr::filter_evaluate (Ocl_Context &res)
+Value * Local_Value_Expr::filter_evaluate (Ocl_Context & res)
 {   
 	return res.locals[this->localvar_];
 }
@@ -48,6 +48,30 @@ bool Local_Value_Expr::is_mutable (void)
 // is_filter
 //
 bool Local_Value_Expr::is_filter (void)
+{
+  return true;
+}
+
+//
+// is_association
+//
+bool Local_Value_Expr::is_association (void)
+{
+  return true;
+}
+
+//
+// is_containment
+//
+bool Local_Value_Expr::is_containment (void)
+{
+  return true;
+}
+
+//
+// is_containment
+//
+bool Local_Value_Expr::is_reference (void)
 {
   return true;
 }

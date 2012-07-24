@@ -9,8 +9,8 @@
 //
 // Default Constructor
 //
-ConnectionPoint_Method::ConnectionPoint_Method (std::string &role)
-: role_(role)
+ConnectionPoint_Method::ConnectionPoint_Method (std::string & role)
+: role_ (role)
 {
 }
 
@@ -24,7 +24,8 @@ ConnectionPoint_Method::~ConnectionPoint_Method (void)
 //
 // evaluate
 //
-Value * ConnectionPoint_Method::evaluate (Ocl_Context &res, GAME::Mga::Object caller)
+Value * ConnectionPoint_Method::evaluate (Ocl_Context & res, 
+                                          GAME::Mga::Object caller)
 {
   GAME::Mga::Connection conn = GAME::Mga::Connection::_narrow (caller);
 
@@ -38,9 +39,10 @@ Value * ConnectionPoint_Method::evaluate (Ocl_Context &res, GAME::Mga::Object ca
   GAME::Mga::ConnectionPoints::iterator 
       cit = conpts.begin (), cit_end = conpts.end ();
 
+  // Filtering out the valid connection point
   for (; cit != cit_end; ++cit)
   {
-    if (cit->item()->role () == this->role_)
+    if (cit->item ()->role () == this->role_)
       point = cit->item ();
   }
 
@@ -50,7 +52,8 @@ Value * ConnectionPoint_Method::evaluate (Ocl_Context &res, GAME::Mga::Object ca
 //
 // evaluate
 //
-Value * ConnectionPoint_Method::evaluate (Ocl_Context &res, Value *caller)
+Value * ConnectionPoint_Method::evaluate (Ocl_Context & res, 
+                                          Value * caller)
 {
   Object_Value * iv = dynamic_cast <Object_Value *> (caller);
 
@@ -70,9 +73,10 @@ Value * ConnectionPoint_Method::evaluate (Ocl_Context &res, Value *caller)
     GAME::Mga::ConnectionPoints::iterator 
         cit = conpts.begin (), cit_end = conpts.end ();
 
+    // Filtering out the valid connection point
     for (; cit != cit_end; ++cit)
     {
-      if (cit->item()->role () == this->role_)
+      if (cit->item ()->role () == this->role_)
         point = cit->item ();
     }    
 
@@ -89,6 +93,30 @@ Value * ConnectionPoint_Method::evaluate (Ocl_Context &res, Value *caller)
 // is_filter
 //
 bool ConnectionPoint_Method::is_filter (void)
+{
+  return false;
+}
+
+//
+// is_association
+//
+bool ConnectionPoint_Method::is_association (void)
+{
+  return false;
+}
+
+//
+// is_containment
+//
+bool ConnectionPoint_Method::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool ConnectionPoint_Method::is_reference (void)
 {
   return false;
 }

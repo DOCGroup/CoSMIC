@@ -4,7 +4,7 @@
 /**
  * @file         Model_Intelligence.h
  *
- * $Id$
+ * $Id: Model_Intelligence_Impl.h 2907 2012-06-07 21:35:18Z tpati $
  *
  * @author        Tanumoy Pati
  */
@@ -56,6 +56,8 @@ public:
   virtual ~Model_Intelligence (void);
 
   virtual int initialize (Mga::Project project);
+private:
+  int test;
 };
 
 }

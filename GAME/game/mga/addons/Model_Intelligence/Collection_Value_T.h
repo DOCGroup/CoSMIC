@@ -21,14 +21,15 @@
 /**
  * @class Collection_Value_T. Inherited from Value class
  *
- * This class deals with string type of values
+ * This template class deals with collection of any 
+ * type of values
  */
 template<typename T>
 class Collection_Value_T : public Value
 {
 public:
   /// Default constructor.
-	Collection_Value_T (std::vector<T> &parts);
+	Collection_Value_T (std::vector<T> & parts);
 
 	/// Destructor.
 	~Collection_Value_T (void);
@@ -86,7 +87,7 @@ public:
    * @return        bool          true if successful
    *                              false if not successful
    */
-	bool get_diff (Value *v, double &count);
+	bool get_diff (Value * v, double & count);
 
   /**
    * Gets the summation between two variables
@@ -96,7 +97,7 @@ public:
    * @return        bool          true if successful
    *                              false if not successful
    */
-	bool get_sum (Value *v, double &count);
+	bool get_sum (Value * v, double & count);
 
 	/**
    * Gets the summation between two variables

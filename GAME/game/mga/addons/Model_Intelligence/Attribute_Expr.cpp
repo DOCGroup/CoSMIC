@@ -16,9 +16,10 @@
 //
 // Constructor
 //
-Attribute_Expr::Attribute_Expr (std::string &var, std::string &attr)
-: var_(var),
-  attribute_(attr)
+Attribute_Expr::Attribute_Expr (std::string & var, 
+                                std::string & attr)
+: var_ (var),
+  attribute_ (attr)
 {
 }
 
@@ -32,7 +33,7 @@ Attribute_Expr::~Attribute_Expr (void)
 //
 // evaluate
 //
-Value * Attribute_Expr::evaluate (Ocl_Context &res)
+Value * Attribute_Expr::evaluate (Ocl_Context & res)
 {
 	res.model_constraint = false;
   GAME::Mga::FCO fco;
@@ -50,6 +51,7 @@ Value * Attribute_Expr::evaluate (Ocl_Context &res)
 
   GAME::Mga::Meta::FCO metafco = fco->meta ();
 
+  // Collecting the attribute and returning its value
 	std::string name = metafco->name ();
 	GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->attribute_, false);
 	std::string atrname = meta_atr->name ();
@@ -85,7 +87,7 @@ Value * Attribute_Expr::evaluate (Ocl_Context &res)
 //
 // filter_evaluate
 //
-Value * Attribute_Expr::filter_evaluate (Ocl_Context &res)
+Value * Attribute_Expr::filter_evaluate (Ocl_Context & res)
 {
 	res.model_constraint = false;
   GAME::Mga::FCO fco;
@@ -97,7 +99,15 @@ Value * Attribute_Expr::filter_evaluate (Ocl_Context &res)
   {
     // The object value associated with the local variable is taken from map
     // and is used for attribute value calculation
-    fco = res.cur_fco;
+    std::map <std::string, Value *>::iterator it;
+    it = res.locals.find(this->var_);
+    if (it == res.locals.end ())
+      fco = res.cur_fco;
+    else
+    {
+      Object_Value * iv = dynamic_cast <Object_Value *> (res.locals [this->var_]);
+      fco = GAME::Mga::FCO::_narrow (iv->value ());
+    }
   }
 
   // The current fco is used for attribute value computation
@@ -165,4 +175,28 @@ std::string Attribute_Expr::attribute_name (void)
 std::string Attribute_Expr::caller (void)
 {
   return this->var_;
+}
+
+//
+// is_association
+//
+bool Attribute_Expr::is_association (void)
+{
+  return true;
+}
+
+//
+// is_containment
+//
+bool Attribute_Expr::is_containment (void)
+{
+  return false;
+}
+
+//
+// is_reference
+//
+bool Attribute_Expr::is_reference (void)
+{
+  return true;
 }

@@ -26,7 +26,7 @@ class String_Value : public Value
 {
 public:
   /// Default constructor.
-	String_Value (std::string &val);
+	String_Value (std::string & val);
 
 	/// Destructor.
 	~String_Value (void);
@@ -84,7 +84,7 @@ public:
    * @return        bool          true if successful
    *                              false if not successful
    */
-	bool get_diff (Value *v, double &count);
+	bool get_diff (Value * v, double & count);
 
   /**
    * Gets the summation between two variables
@@ -94,7 +94,7 @@ public:
    * @return        bool          true if successful
    *                              false if not successful
    */
-	bool get_sum (Value *v, double &count);
+	bool get_sum (Value * v, double & count);
 
   /**
    * Gets the value of variable

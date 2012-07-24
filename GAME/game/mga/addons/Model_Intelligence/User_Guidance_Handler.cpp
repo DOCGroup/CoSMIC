@@ -27,7 +27,7 @@
 // Default Constructor
 //
 User_Guidance_Handler::User_Guidance_Handler (void)
-: GAME::Mga::Global_Event_Handler (eventmask)
+: GAME::Mga::Object_Event_Handler (eventmask)
 {
 }
 
@@ -39,14 +39,17 @@ User_Guidance_Handler::~User_Guidance_Handler (void)
 }
 
 //
-// handle_project_open
+// handle_notification_ready
 //
-int User_Guidance_Handler::handle_notification_ready (void)
+int User_Guidance_Handler::handle_object_select (GAME::Mga::Object_in obj)
 {
   if (this->is_importing_)
     return 0;
 
   GAME::Mga::RootFolder root_folder =  this->project_.root_folder ();
+
+  /*GAME::Mga::Atom atm = GAME::Mga::Atom::_narrow (obj);
+  GAME::Mga::RootFolder root_folder = atm->project ().root_folder ();*/
 
   // Contains all the models that can be added by the rootfolder
   std::vector <GAME::Mga::Meta::FCO> rootfcos;
@@ -106,7 +109,7 @@ int User_Guidance_Handler::handle_notification_ready (void)
 // rootmodel_add
 //
 int User_Guidance_Handler::rootmodel_add (GAME::Mga::RootFolder & root_folder,
-                                          std::vector<GAME::Mga::Meta::Model> & rootmodels)
+                                          std::vector <GAME::Mga::Meta::Model> & rootmodels)
 {
   GAME::Mga::Meta::Model metamod;
 
@@ -137,7 +140,7 @@ int User_Guidance_Handler::rootmodel_add (GAME::Mga::RootFolder & root_folder,
 // aspect_add
 //
 int User_Guidance_Handler::aspect_add (GAME::Mga::RootFolder & root_folder,
-                                       std::vector<GAME::Mga::Model> & models)
+                                       std::vector <GAME::Mga::Model> & models)
 {
   GAME::Mga::Model mod;
 
@@ -204,7 +207,9 @@ int User_Guidance_Handler::option_list (GAME::Mga::Model & mod)
   std::vector <std::string> initial;
   std::string str_select;
   initial.push_back ("Add an Atom or Model");
+  initial.push_back ("Delete an Atom or Model");
   initial.push_back ("Add a reference");
+  initial.push_back ("Delete a reference");
   initial.push_back ("Create a Connection");
 
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -230,6 +235,10 @@ int User_Guidance_Handler::option_list (GAME::Mga::Model & mod)
       reference_add (mod, ref);
     else if (str_select == "Create a Connection")
       connection_add (mod, conn);
+    else if (str_select == "Delete an Atom or Model")
+      element_delete (mod);
+    else if (str_select == "Delete a reference")
+      reference_delete (mod);
   } 
 
   return 0;
@@ -239,7 +248,7 @@ int User_Guidance_Handler::option_list (GAME::Mga::Model & mod)
 // element add
 //
 int User_Guidance_Handler::element_add (GAME::Mga::Model & parent_model,
-                                        std::vector<GAME::Mga::Meta::Role> & fcos)
+                                        std::vector <GAME::Mga::Meta::Role> & fcos)
 {
 
   GAME::Mga::Meta::Role select;
@@ -276,10 +285,96 @@ int User_Guidance_Handler::element_add (GAME::Mga::Model & parent_model,
 }
 
 //
+// element delete
+//
+int User_Guidance_Handler::element_delete (GAME::Mga::Model & parent_model)
+{
+  std::vector <GAME::Mga::FCO> elements;
+  GAME::Mga::FCO select;
+  parent_model->children (elements);
+
+  std::vector <GAME::Mga::FCO> qual_fcos;
+
+  std::vector <GAME::Mga::FCO>::iterator
+    it = elements.begin (), it_end = elements.end ();
+
+  for (; it != it_end; ++it)
+  {
+    if ((*it)->meta ()->type () == OBJTYPE_MODEL || (*it)->meta ()->type () == OBJTYPE_ATOM)
+      qual_fcos.push_back ((*it));
+  }
+
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  // Create the dialog and pass in the data
+  using GAME::Dialogs::Selection_List_Dialog_T;
+  Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd (), 0);
+  dlg.title ("Please select the Model/Atom for deletion");
+  dlg.directions ("Target evaluator");
+  dlg.insert (qual_fcos);
+
+  if (IDOK != dlg.DoModal ())
+      return 0;
+
+  select = dlg.selection ();
+
+  if (!select.is_nil ())
+  {
+    select->destroy ();
+  }
+
+
+  return 0;
+}
+
+//
+// reference delete
+//
+int User_Guidance_Handler::reference_delete (GAME::Mga::Model & parent_model)
+{
+  std::vector <GAME::Mga::FCO> elements;
+  GAME::Mga::FCO select;
+  parent_model->children (elements);
+
+  std::vector <GAME::Mga::FCO> qual_fcos;
+
+  std::vector <GAME::Mga::FCO>::iterator
+    it = elements.begin (), it_end = elements.end ();
+
+  for (; it != it_end; ++it)
+  {
+    if ((*it)->meta ()->type () == OBJTYPE_REFERENCE)
+      qual_fcos.push_back ((*it));
+  }
+
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  // Create the dialog and pass in the data
+  using GAME::Dialogs::Selection_List_Dialog_T;
+  Selection_List_Dialog_T <GAME::Mga::FCO> dlg (0, ::AfxGetMainWnd (), 0);
+  dlg.title ("Please select the Model/Atom for deletion");
+  dlg.directions ("Target evaluator");
+  dlg.insert (qual_fcos);
+
+  if (IDOK != dlg.DoModal ())
+      return 0;
+
+  select = dlg.selection ();
+
+  if (!select.is_nil ())
+  {
+    select->destroy ();
+  }
+
+
+  return 0;
+}
+
+//
 // reference add
 //
 int User_Guidance_Handler::reference_add (GAME::Mga::Model & parent_model,
-                                          std::vector<GAME::Mga::Meta::Role> & ref)
+                                          std::vector <GAME::Mga::Meta::Role> & ref)
 {
   GAME::Mga::Meta::Role select;
 
@@ -313,7 +408,7 @@ int User_Guidance_Handler::reference_add (GAME::Mga::Model & parent_model,
 // connection add
 //
 int User_Guidance_Handler::connection_add (GAME::Mga::Model & parent_model,
-                                            std::vector<GAME::Mga::Meta::Role> & conn)
+                                           std::vector <GAME::Mga::Meta::Role> & conn)
 {
   GAME::Mga::Meta::Role select;
 
@@ -343,8 +438,8 @@ int User_Guidance_Handler::connection_add (GAME::Mga::Model & parent_model,
 //
 // select source
 //
-int User_Guidance_Handler::select_source (GAME::Mga::Model &parent_model,
-                                           GAME::Mga::Meta::Role & conn)
+int User_Guidance_Handler::select_source (GAME::Mga::Model & parent_model,
+                                          GAME::Mga::Meta::Role & conn)
 {
   // narrowing the connection
   GAME::Mga::Meta::Connection metacon = GAME::Mga::Meta::Connection::_narrow (conn->kind ());

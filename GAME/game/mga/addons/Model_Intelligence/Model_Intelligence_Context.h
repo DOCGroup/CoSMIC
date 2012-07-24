@@ -4,7 +4,7 @@
 /**
  * @file          Model_Intelligence_Context.h
  *
- * $Id$
+ * $Id: Model_Intelligence_Context.h 2904 2012-05-16 01:03:53Z tpati $
  *
  * @author        Tanumoy Pati
  */
@@ -60,7 +60,10 @@ struct Ocl_Context
   std::map <std::string, Value *> locals;
 
 	// Current FCO being worked on
-	GAME::Mga::FCO cur_fco;  
+	GAME::Mga::FCO cur_fco;
+
+  // Containment Constraint checker
+  bool checker;
 };
 
 #endif

@@ -6,7 +6,7 @@
 // Default Constructor
 //
 template <typename T>
-Collection_Value_T<T>::Collection_Value_T (std::vector<T> &parts)
+Collection_Value_T<T>::Collection_Value_T (std::vector<T> & parts)
 : parts_ (parts)
 {
 }
@@ -23,7 +23,7 @@ Collection_Value_T<T>::~Collection_Value_T (void)
 // is_equal
 //
 template <typename T>
-bool Collection_Value_T<T>::is_equal (Value *v)
+bool Collection_Value_T<T>::is_equal (Value * v)
 {
 	// This function is not yet here
 	return false;
@@ -60,7 +60,7 @@ bool Collection_Value_T<T>::is_lesser (Value *v)
 // is_lesser_equal
 //
 template <typename T>
-bool Collection_Value_T<T>::is_lesser_equal (Value *v)
+bool Collection_Value_T<T>::is_lesser_equal (Value * v)
 {
 	return false;
 }
@@ -69,7 +69,7 @@ bool Collection_Value_T<T>::is_lesser_equal (Value *v)
 // get_diff
 //
 template <typename T>
-bool Collection_Value_T<T>::get_diff (Value *v, double &count)
+bool Collection_Value_T<T>::get_diff (Value * v, double & count)
 {
 	return false;
 }
@@ -78,7 +78,7 @@ bool Collection_Value_T<T>::get_diff (Value *v, double &count)
 // get_sum
 //
 template <typename T>
-bool Collection_Value_T<T>::get_sum (Value *v, double &count)
+bool Collection_Value_T<T>::get_sum (Value * v, double & count)
 {
 	return false;
 }

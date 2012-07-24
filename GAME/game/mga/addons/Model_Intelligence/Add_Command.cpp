@@ -1,4 +1,4 @@
-// $Id$
+// $Id: Add_Command.cpp 2907 2012-06-07 21:35:18Z tpati $
 
 #include "StdAfx.h"
 #include "Add_Command.h"
@@ -30,10 +30,13 @@ bool Add_Command::execute (void)
 {
   try
   {
-		std::vector <GAME::Mga::Meta::Role>::iterator roleit;
+		std::vector <GAME::Mga::Meta::Role>::iterator
+      roleit = target_metaroles_.begin (), roleit_end = target_metaroles_.end ();
+
+    // Adding elements according to their roles
 		if (target_metaroles_.size () == 1)
 		{
-			for (roleit = target_metaroles_.begin (); roleit < target_metaroles_.end (); roleit++)
+			for (;roleit != roleit_end; roleit++)
 			{
 				if ((*roleit)->kind ()->type () == OBJTYPE_MODEL)
 				{
@@ -81,10 +84,8 @@ bool Add_Command::execute (void)
 		{
 			std::vector <GAME::Mga::Meta::FCO> metafcos;
 			GAME::Mga::Meta::FCO select;
-			for (roleit = target_metaroles_.begin (); roleit < target_metaroles_.end (); roleit++)
-			{
-				metafcos.push_back ((*roleit)->kind ());
-			}
+			for (;roleit != roleit_end; roleit++)
+        metafcos.push_back ((*roleit)->kind ());
 
 			for (; this->count_ != 0; -- this->count_)
 			{

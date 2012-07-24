@@ -26,8 +26,8 @@ class Local_Value_Method_Call : public Method_Call
 {
 public:
 	// Constructor
-	Local_Value_Method_Call (std::string &var, 
-		                       Method *meth);
+	Local_Value_Method_Call (std::string & var, 
+		                       Method * meth);
 
 	// Destructor
 	~Local_Value_Method_Call (void);
@@ -38,7 +38,7 @@ public:
    * @param[in]     res           Object of model intelligence context
    * @return        Object        Value object of the local variable
    */
-  Value * evaluate (Ocl_Context &res);
+  Value * evaluate (Ocl_Context & res);
 
   /**
    * filter_evaluate method for evaluating the respective expression
@@ -46,7 +46,7 @@ public:
    * @param[in]     res        Object of model intelligence context.
    * @return        Object     Value object of the local variable
    */
-  Value * filter_evaluate (Ocl_Context &res);
+  Value * filter_evaluate (Ocl_Context & res);
 
   /**
    * Determines if the object is for filtration or not.
@@ -56,8 +56,34 @@ public:
    */
   bool is_filter (void);
 
+  /**
+   * is_association method for determining if this expression
+   * can be used for association constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_association (void);
+
+  /**
+   * is_containment method for determining if this expression
+   * can be used for containment constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_containment (void);
+
+  /**
+   * is_reference method for determining if this expression
+   * can be used for reference constraints
+   *
+   * @return       bool       True/False
+   */
+  bool is_reference (void);
 private:
+  // The base method
 	Method * meth_;
+
+  // The variable invoking the method
 	std::string var_;
 };
 

@@ -57,6 +57,11 @@ public:
    */
   bool is_filter (void);
 
+  bool is_association (void);
+
+  bool is_containment (void);
+
+  bool is_reference (void);
 
 private:
   std::string role_;
