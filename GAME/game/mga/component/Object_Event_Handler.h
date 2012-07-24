@@ -14,6 +14,7 @@
 #define _GAME_MGA_OBJECT_EVENT_HANDLER_H_
 
 #include "Global_Event_Handler.h"
+#include "game/mga/addons/Model_Intelligence/Boolean_Expr.h"
 
 namespace GAME
 {
@@ -71,6 +72,11 @@ public:
   virtual int handle_object_deselect (Object_in obj);
 
   virtual int handle_object_mouseover (Object_in obj);
+
+protected:
+  // Caching the constraints for model intelligence
+  std::map <std::string,
+            std::vector <Boolean_Expr *>> cache;
 };
 
 } // namespace GAME
