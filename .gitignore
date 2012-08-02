@@ -1,1 +1,12 @@
 *.vcproj
+Debug/
+Release/
+*_i.c
+*_p.c
+*.exe
+*.ilk
+*.pdb
+*.ncb
+*.sln
+dlldata.c
+lib/
