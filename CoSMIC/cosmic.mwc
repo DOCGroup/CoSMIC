@@ -37,6 +37,8 @@ workspace (cosmic) {
   // The follow directories and workspaces only apply to
   // building CoSMIC using Visual C++.
   Utils/Utils.mpc
-  Utils/GAME/GAME.mwc
   Utils/T3/t3/runtime
+
+  // Make sure we build GAME.
+  $(GAME_ROOT)/GAME.mwc
 }
