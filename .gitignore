@@ -10,3 +10,9 @@ Release/
 *.sln
 dlldata.c
 lib/
+*.dll
+*.tlb
+*.lib
+*.user
+*.exp
+*.suo
