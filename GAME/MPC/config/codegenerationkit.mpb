@@ -5,5 +5,5 @@ project : ccf_root {
   libs  += CodeGenerationKits
 
   includes += $(CCF_ROOT) $(GAME_ROOT)/contrib/CCF/utility
-  libpaths += $(CCF_ROOT)/CCF/CCF
+  libpaths += $(CCF_ROOT)/CCF
 }
