@@ -1,6 +1,6 @@
 // $Id$
 
-project (GatewayGenerator): gme_bon2_component, codegenerationkit, boost_base, cosmic_utils {
+project (GatewayGenerator): gme_bon2_component, game_codegenerationkit, boost_base, cosmic_utils {
   sharedname = GatewayGenerator
 
   includes += $(COSMIC_ROOT)/PIM/SIML/interpreters \
