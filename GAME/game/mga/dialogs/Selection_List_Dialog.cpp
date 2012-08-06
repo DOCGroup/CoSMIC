@@ -115,19 +115,6 @@ BOOL Selection_List_Dialog::OnInitDialog (void)
           this->insert_item (iter->get (), display_name);
       }
     }
-    else if (this->type_ == 1)
-    {
-      for (; metaiter != metaiter_end; ++ metaiter)
-      {
-        if (this->strategy_->get_meta_display_name (metaiter->get (), display_name))
-          this->meta_insert_item (metaiter->get (), display_name);
-      }
-    }
-    else if (this->type_ == 2)
-    {
-      for (; striter != striter_end; ++ striter)
-        this->string_insert_item ((*striter));
-    }
   }
 
   return FALSE;

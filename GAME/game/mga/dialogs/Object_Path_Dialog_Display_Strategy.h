@@ -53,8 +53,6 @@ public:
   virtual bool
     get_display_name (const Mga::Object_in obj, std::string & display_name);
 
-  virtual bool get_meta_display_name (const Mga::Meta::Base_in obj, std::string & display_name);
-
 private:
   /// Separator value to use in path construction.
   std::string separator_;
