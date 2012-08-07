@@ -1,0 +1,90 @@
+Component Synthesis using Model-Integrated Computing (CoSMIC) - Building Instructions
+
+Table of Contents
+======================================
+I.   Minimum Requirements
+II.  Environment Setup
+III. Downloading the Source Code
+IV.  Building the Source Code
+V.   Registering the PICML Paradigm
+
+I. Minimum Requirements
+======================================
+The following are the minimum environments needed for building
+CoSMIC:
+
+1.  Visual Studio 2008 (Visual C++)
+2.  Generic Modeling Environment (GME) (10.8.18)
+
+The following are the minimum frameworks needed for building the
+main projects in CoSMIC:
+
+1.  Boost 1.49 (http://www.boost.org)
+2.  Xerces-C 3.1.1 (http://xerces.apache.org/xerces-c)
+3.  The Adaptive Communication Environment (ACE) (http://www.dre.vanderbilt.edu/ACE)
+4.  The Makefile Workspace Project Creator (MPC) (http://www.ociweb.com/products/MPC)
+
+The following are the optional frameworks needed for building
+parts of CoSMIC:
+
+1.  Zlib (http://gnuwin32.sourceforge.net/packages/zlib.htm)
+
+II. Environment Setup
+======================================
+The following table list the environment variables that must
+be defined to correctly build CoSMIC. It is advised that you
+place the environment definitions in the table below in a
+Batch (.bat) file that can be invoked on-demand. This will
+ensure that you do not pollute your system's current environment,
+and potentially corrupt your system.
+
+  Variable Name    | Description
+ ------------------|----------------------
+    ACE_ROOT       | location of ACE
+    MPC_ROOT       | location of MPC
+    XERCESCROOT    | location of Xerces-C
+    BOOST_ROOT     | location of
+    BOOST_VERSION  | version of Boost
+                   |
+    COSMIC_ROOT    | [COSMIC_DIR]/CoSMIC
+    COSMIC_ROOT    | [COSMIC_DIR]/GAME
+
+Lastly, you need to update the PATH variable as follows:
+
+  set PATH=%PATH%;%COSMIC_ROOT%\lib;%COSMIC_ROOT%\bin;%GAME_ROOT%\bin;%GAME_ROOT%\lib
+
+
+III. Downloading the Source Code
+======================================
+CoSMIC is stored in a Git respository. You can download the CoSMIC
+source code using the following command:
+
+  %> git.exe clone git://git.dre.vanderbilt.edu/cosmic/cosmic.git [COSMIC_DIR]
+  %> git.exe submodule update --init
+
+Notice that [COSMIC_DIR] will be the same directory that you
+used when defining the environment variables above.
+
+IV. Building the Source Code
+======================================
+The CoSMIC source code must be built from the command-line interface
+for the version of Visual Studio you have installed on your machine.
+Within the command-line interface, execute the following commands to
+build CoSMIC:
+
+  %> %ACE_ROOT%\bin\mwc.pl -type [build type] cosmic.mwc
+  %> devenv /useenv cosmic.sln
+
+As CoSMIC builds, it will automatically register the interpreters
+with the version of GME that is installed on your machine.
+
+V. Registering the PICML Paradigm
+======================================
+Because CoSMIC is built from source, you must manually register the
+PICML paradigm. This has to be done from within GME, as follows:
+
+  Tools | Register paradigms... | Add from file...
+
+Then locate the PICML paradigm as the following location:
+
+  %COSMIC_ROOT%\PIM\PICML\paradigms\PICML.xmp
