@@ -4,15 +4,15 @@ workspace (GAME) {
   cmdline += -include $GAME_ROOT/MPC/config
 
   exclude (!prop:windows) {
-    cmdline += -include $GAME_ROOT/contrib/CCF/MPC/config \
+    cmdline += -include $GAME_ROOT/contrib/CCF/CCF/MPC/config \
                -base ccf_root
 
     game
 
     exclude (!prop:microsoft, wix) {
-      cmdline += -static \
+      cmdline += -static
 
-      $(GAME_ROOT)/contrib/CCF/CCF/CodeGenerationKit
+      $(GAME_ROOT)/contrib/CCF/CCF/CCF/CodeGenerationKit
     }
   }
   else {

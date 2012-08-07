@@ -2,10 +2,10 @@
 
 project {
   specific {
-    CCF_ROOT = $(GAME_ROOT)/contrib/CCF
+    CCF_ROOT = $(GAME_ROOT)/contrib/CCF/CCF
   }
 
   verbatim (gnuace, top) {
-    CCF_ROOT = $(GAME_ROOT)/contrib/CCF
+    CCF_ROOT = $(GAME_ROOT)/contrib/CCF/CCF
   }
 }
