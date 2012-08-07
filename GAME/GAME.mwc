@@ -5,7 +5,7 @@ workspace (GAME) {
 
   exclude (!prop:windows) {
     cmdline += -include $GAME_ROOT/contrib/CCF/CCF/MPC/config \
-               -base ccf_root
+               -base game_ccf_root
 
     game
 
