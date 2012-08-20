@@ -7,11 +7,11 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
-  specific {
-    compile_flags += /bigobj
-  }
-
   Source_Files {
+    Rules {
+      rules/*.cpp
+    }
+
     Model_Intelligence.idl
     Model_Intelligence_Impl.cpp
     Model_Intelligence_Module.cpp    
@@ -24,7 +24,6 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Containment_Check_Handler.cpp
                    
     OCL_Expr_Parser.cpp
-	  Method_Parser.cpp
    
     Boolean_Expr.cpp
     Local_Value_Assignment_Expr.cpp
@@ -111,6 +110,10 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
   }
 
   Header_Files {
+    Rules {
+      rules/*.hpp
+    }
+
     Model_Intelligence_Context.h
   }
   
