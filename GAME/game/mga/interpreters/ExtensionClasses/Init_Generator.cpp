@@ -57,6 +57,7 @@ generate (const std::string & location,
     << std::endl
     << include_t (pch_basename + ".h")
     << include_t ("Impl_Factory.h")
+    << include_t ("game/mga/Init_T.h")
     << std::endl;
 
   this->generate_source_file (proj);
@@ -85,22 +86,8 @@ void Init_Generator::generate_source_file (const Project & proj)
   this->cxx_file_
     << "namespace " << project_name
     << "{"
-    << "class Init"
-    << "{"
-    << "public:" << std::endl
-    << "/// Default constructor." << std::endl
-    << "Init (void)"
-    << "{"
-    << "::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->set_next (GLOBAL_IMPL_FACTORY::instance ());"
-    << "}"
-    << "/// Destructor." << std::endl
-    << "~Init (void)"
-    << "{"
-    << "::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->remove (GLOBAL_IMPL_FACTORY::instance ());"
-    << "}"
-    << "};"
     << "/// Extension class initialization." << std::endl
-    << "static Init init;"
+    << "static ::GAME::Mga::Init_T < ::" << project_name << "::Impl_Factory > init;"
     << "}";
 }
 

@@ -222,10 +222,6 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
     << "/// Map of factory methods for this paradigm." << std::endl
     << "ACE_Hash_Map_Manager <ACE_CString, FACTORY_METHOD, ACE_Null_Mutex> map_;"
     << "};"
-    << "/// Type definition of the global implementation factory. This version" << std::endl
-    << "/// of the global implementation factory is not thread safe." << std::endl
-    << "typedef ACE_Singleton <Impl_Factory, ACE_Null_Mutex> GLOBAL_IMPL_FACTORY;"
-    << export_name << "_SINGLETON_DECLARE (ACE_Singleton, Impl_Factory, ACE_Null_Mutex);"
     << "}"
     << "#endif" << std::endl;
 
