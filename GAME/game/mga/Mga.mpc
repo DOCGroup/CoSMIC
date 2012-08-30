@@ -78,6 +78,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
     FCO_T.cpp
     Filter_T.cpp
     Functional_T.cpp
+    Init_T.cpp
     Model_T.cpp
     modelgen.cpp
     Smart_Ptr.cpp
