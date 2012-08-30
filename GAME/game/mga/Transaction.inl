@@ -47,5 +47,24 @@ Transaction::~Transaction (void)
     this->abort ();
 }
 
+//
+// Readonly_Transaction
+//
+GAME_INLINE
+Readonly_Transaction::Readonly_Transaction (const Project & proj)
+: Transaction (proj, TRANSACTION_READ_ONLY)
+{
+  this->is_active_ = false;
+}
+
+//
+// ~Readonly_Transaction
+//
+GAME_INLINE
+Readonly_Transaction::~Readonly_Transaction (void)
+{
+
+}
+
 }
 }

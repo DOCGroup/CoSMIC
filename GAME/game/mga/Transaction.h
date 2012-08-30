@@ -55,6 +55,10 @@ public:
   /// Abort the transaction.
   void abort (void);
 
+protected:
+  /// The active state of the transaction
+  bool is_active_;
+
 private:
   // Initialize the transaction.
   void init (transactiontype_enum type);
@@ -65,15 +69,22 @@ private:
   /// Territory for the transaction.
   Territory terr_;
 
-  /// The active state of the transaction
-  bool is_active_;
-
   /// The type of transaction.
   transactiontype_enum transaction_type_;
 
   // Prevent the following operations.
   Transaction (const Transaction &);
   const Transaction & operator = (const Transaction &);
+};
+
+/**
+ * @class Readonly_Transaction
+ */
+class GAME_MGA_Export Readonly_Transaction : public Transaction
+{
+public:
+  Readonly_Transaction (const Project & proj);
+  virtual ~Readonly_Transaction (void);
 };
 
 }
