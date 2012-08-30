@@ -40,10 +40,10 @@ namespace PICML
     ACE_Hash_Map_Manager <ACE_CString, FACTORY_METHOD, ACE_Null_Mutex> map_;
   };
 
-  /// Type definition of the global implementation factory. This version
-  /// of the global implementation factory is not thread safe.
-  typedef ACE_Singleton <Impl_Factory, ACE_Null_Mutex> GLOBAL_IMPL_FACTORY;
-  PICML_SINGLETON_DECLARE (ACE_Singleton, Impl_Factory, ACE_Null_Mutex);
+  ///// Type definition of the global implementation factory. This version
+  ///// of the global implementation factory is not thread safe.
+  //typedef ACE_Unmanaged_Singleton <Impl_Factory, ACE_Null_Mutex> GLOBAL_IMPL_FACTORY;
+  //PICML_SINGLETON_DECLARE (ACE_Unmanaged_Singleton, Impl_Factory, ACE_Null_Mutex);
 }
 
 #endif
