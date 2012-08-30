@@ -45,8 +45,6 @@ public:
                  long flags);
 
 private:
-  void get_interpreters (GAME::Mga::Project proj, Interpreter_List & list);
-
   int handle_interpret (GAME::Mga::Project project,
                         GAME::Mga::FCO_in fco,
                         std::vector <GAME::Mga::FCO> & selected,

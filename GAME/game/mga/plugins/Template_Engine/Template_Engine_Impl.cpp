@@ -54,7 +54,7 @@ invoke_ex (GAME::Mga::Project project,
   {
     // Get a list of the interpreters for this project.
     Interpreter_List interpreters;
-    this->get_interpreters (project, interpreters);
+    GAME::Mga::Windows_Registry::get_registered_interpreters (project, interpreters);
 
     // Let the user select the configuration and interpreter.
     Template_Engine_Dialog dialog (::AfxGetMainWnd ());
@@ -78,7 +78,11 @@ invoke_ex (GAME::Mga::Project project,
       {
         // Locate the selected interpreter.
         std::string prog_id;
-        interpreters.find (dialog.selected_interpreter ().GetString (), prog_id);
+        Interpreter_List::const_iterator iter =
+          interpreters.find (dialog.selected_interpreter ().GetString ());
+
+        if (iter == interpreters.end ())
+          break;
 
         // Handle the intepretation of the model.
         this->handle_interpret (project,
@@ -86,7 +90,7 @@ invoke_ex (GAME::Mga::Project project,
                                 selected,
                                 flags,
                                 dialog.configuration_filename ().GetString (),
-                                prog_id.c_str (),
+                                iter->second.c_str (),
                                 dialog.parameters ().GetString ());
         break;
       }
@@ -107,53 +111,6 @@ invoke_ex (GAME::Mga::Project project,
   }
 
   return -1;
-}
-
-//
-// get_interpreters
-//
-void GAME_Template_Engine::
-get_interpreters (GAME::Mga::Project proj, Interpreter_List & list)
-{
-  // Open the GAME component section in the registry.
-  GAME::Mga::Transaction t (proj, TRANSACTION_READ_ONLY);
-  GAME::Mga::Windows_Registry_Key components;
-
-  if (0 != components.open (HKEY_CURRENT_USER, "Software\\GME\\Components"))
-    return;
-
-  char description[255];
-  long type;
-
-  // Iterate over all the components.
-  GAME::Mga::Windows_Registry_Key component, associated, paradigm;
-  GAME::Mga::Windows_Registry_Key_Iterator key_iter (components);
-  const std::string paradigm_name = proj.paradigm_name ();
-
-  for ( ; !key_iter.done (); key_iter.advance ())
-  {
-    // Open the component and its associated paradigms.
-    if (0 != component.open (components, key_iter.name ()))
-      continue;
-    else if (0 != component.get_value ("Type", type))
-      continue;
-    else if (type != 1 && type != 12)
-      continue;
-    else if (type == 12 || (type == 1 && 0 != associated.open (component, "Associated")))
-      continue;
-    else if (type == 12 || (type == 1 && 0 != associated.get_value (paradigm_name.c_str ())))
-      continue;
-    else if (0 != component.get_value ("Description",
-                                       description,
-                                       sizeof (description)))
-    {
-      continue;
-    }
-    else
-    {
-      list.bind (description, key_iter.name ());
-    }
-  }
 }
 
 //

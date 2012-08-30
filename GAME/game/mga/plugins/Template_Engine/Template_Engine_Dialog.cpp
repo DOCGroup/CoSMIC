@@ -23,11 +23,13 @@ BOOL Template_Engine_Dialog::OnInitDialog (void)
 
   if (0 != this->list_)
   {
-    // Initialize the contents of the interpreter list.
-    Interpreter_List::CONST_ITERATOR iter (*this->list_);
+    typedef std::map <std::string, std::string> map_type;
+    map_type::const_iterator
+      iter = this->list_->begin (),
+      iter_end = this->list_->end ();
 
-    for ( ; !iter.done (); ++ iter)
-      this->interpreter_list_.InsertString (0, iter->key ().c_str ());
+    for ( ; iter != iter_end; ++ iter)
+      this->interpreter_list_.InsertString (0, iter->first.c_str ());
   }
 
   return FALSE;
