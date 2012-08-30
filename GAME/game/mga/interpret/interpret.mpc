@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_Mga_Interpret) : boost_base, game_mga, game_bin {
+project (GAME_Mga_Interpret) : game_mga_utils, game_bin {
   exename = gme_interpret
 
   specific (prop:microsoft) {

@@ -42,6 +42,9 @@ private:
   /// Process the specified file.
   int process_file (const std::string & file);
 
+  /// List interpreters associated with the specified file.
+  int list_interpreters (const std::string & file);
+
   /// Run the specified interpreter.
   int run (const std::string & progid);
 

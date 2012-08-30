@@ -11,6 +11,13 @@
 
 #include "game/mga/XML.h"
 #include "game/mga/ComponentEx.h"
+#include "game/mga/Transaction.h"
+#include "game/mga/utils/Windows_Registry.h"
+
+#include "boost/config/warning_disable.hpp"
+#include "boost/spirit/include/qi.hpp"
+#include "boost/spirit/include/karma.hpp"
+#include "boost/fusion/adapted/std_pair.hpp"
 
 #include "ace/ACE.h"
 #include "ace/Get_Opt.h"
@@ -36,6 +43,8 @@ static const char * __HELP__ =
 "  --disable-addons                disable GAME auto add-ons\n"
 "  --interative                    enable interactive behavior\n"
 "\n"
+"  -l, --list                      list model interpreters\n"
+"\n"
 "Informative Options:\n"
 "  -h, --help                      print this help message\n"
 "  -v, --verbose                   print verbose output\n"
@@ -53,9 +62,18 @@ int GAME_Automation_App::run_main (int argc, char * argv [])
 
   try
   {
-    std::for_each (this->opts_.project_.begin (),
-                   this->opts_.project_.end (),
-                   boost::bind (&GAME_Automation_App::process_file, this, _1));
+    if (this->opts_.list_)
+    {
+      std::for_each (this->opts_.project_.begin (),
+                     this->opts_.project_.end (),
+                     boost::bind (&GAME_Automation_App::list_interpreters, this, _1));
+    }
+    else
+    {
+      std::for_each (this->opts_.project_.begin (),
+                     this->opts_.project_.end (),
+                     boost::bind (&GAME_Automation_App::process_file, this, _1));
+    }
 
     return 0;
   }
@@ -94,11 +112,42 @@ int GAME_Automation_App::process_file (const std::string & file)
 }
 
 //
+// list_interpreters
+//
+int GAME_Automation_App::list_interpreters (const std::string & file)
+{
+  // Open the project for writing.
+  if (this->open_gme_project (file) != 0)
+    ACE_ERROR_RETURN ((LM_ERROR,
+                       ACE_TEXT ("%T (%t) - %M - failed to open GAME project [file=%s]\n"),
+                       file.c_str ()),
+                       -1);
+
+  // Get the interpreters registered for this project.
+  GAME::Mga::Readonly_Transaction t (this->project_);
+  std::map <std::string, std::string> listing;
+  GAME::Mga::Windows_Registry::get_registered_interpreters (this->project_, listing);
+
+  // Print the list of registered interpreters.
+  using namespace boost::spirit;
+  std::cerr
+    << std::endl
+    << this->project_.name () << " Model Interpreters" << std::endl
+    << "------------------------------------------" << std::endl
+    << karma::format (*("  . " << karma::string << " (" << karma::string << ")" << karma::eol), listing);
+
+  // Make sure we close the project.
+  this->project_.close ();
+
+  return 0;
+}
+
+//
 // parse_args
 //
 int GAME_Automation_App::parse_args (int argc, char * argv [])
 {
-  const char * optargs = "hp:x:s";
+  const char * optargs = "hp:x:sl";
 
   ACE_Get_Opt get_opt (argc, argv, optargs);
 
@@ -109,6 +158,8 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
 
   get_opt.long_option ("disable-addons");
   get_opt.long_option ("interactive");
+
+  get_opt.long_option ("list", 'l');
 
   get_opt.long_option ("help", 'h');
 
@@ -140,11 +191,19 @@ int GAME_Automation_App::parse_args (int argc, char * argv [])
       {
         this->opts_.autosave_ = true;
       }
+      else if (ACE_OS::strcmp ("list", get_opt.long_option ()) == 0)
+      {
+        this->opts_.list_ = true;
+      }
       else if (ACE_OS::strcmp ("help", get_opt.long_option ()) == 0)
       {
         this->print_help ();
       }
 
+      break;
+
+    case 'l':
+      this->opts_.list_ = true;
       break;
 
     case 'h':

@@ -43,6 +43,9 @@ struct GAME_Automation_App_Options
   bool interactive_;
 
   bool autosave_;
+
+  /// List interpreters associated with models.
+  bool list_;
 };
 
 #if defined (__GAME_INLINE__)
