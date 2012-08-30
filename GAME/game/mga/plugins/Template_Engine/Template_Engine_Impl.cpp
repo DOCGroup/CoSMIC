@@ -11,11 +11,11 @@
 #include "Property_Replacer_Guard.h"
 #include "Model_Interpreter.h"
 #include "Template_Engine_Dialog.h"
-#include "Windows_Registry.h"
 
 #include "game/mga/component/Plugin_T.h"
 #include "game/mga/Project.h"
 #include "game/mga/Transaction.h"
+#include "game/mga/utils/Windows_Registry.h"
 
 #include <sstream>
 #include <fstream>
@@ -115,10 +115,9 @@ invoke_ex (GAME::Mga::Project project,
 void GAME_Template_Engine::
 get_interpreters (GAME::Mga::Project proj, Interpreter_List & list)
 {
-  GAME::Mga::Transaction t (proj, TRANSACTION_READ_ONLY);
-
   // Open the GAME component section in the registry.
-  Windows_Registry_Key components;
+  GAME::Mga::Transaction t (proj, TRANSACTION_READ_ONLY);
+  GAME::Mga::Windows_Registry_Key components;
 
   if (0 != components.open (HKEY_CURRENT_USER, "Software\\GME\\Components"))
     return;
@@ -127,8 +126,8 @@ get_interpreters (GAME::Mga::Project proj, Interpreter_List & list)
   long type;
 
   // Iterate over all the components.
-  Windows_Registry_Key component, associated, paradigm;
-  Windows_Registry_Key_Iterator key_iter (components);
+  GAME::Mga::Windows_Registry_Key component, associated, paradigm;
+  GAME::Mga::Windows_Registry_Key_Iterator key_iter (components);
   const std::string paradigm_name = proj.paradigm_name ();
 
   for ( ; !key_iter.done (); key_iter.advance ())

@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_Template_Engine) : boost_base, game_mga_component, game_lib {
+project (GAME_Template_Engine) : boost_base, game_mga_utils, game_mga_component, game_lib {
   sharedname    = GAME_Template_Engine
   dynamicflags += GAME_TEMPLATE_ENGINE_BUILD_DLL
 
@@ -16,7 +16,6 @@ project (GAME_Template_Engine) : boost_base, game_mga_component, game_lib {
     Template_Engine_Impl.cpp
     Template_Engine_Module.cpp
     Template_Engine_Dialog.cpp
-    Windows_Registry.cpp
 
     Parsers {
       parser/*.cpp

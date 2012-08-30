@@ -22,6 +22,7 @@ project (GAME_Mga_Utils) : boost_base, acelib, game_mga, game_lib {
     Point.cpp
     Registrar.cpp
     Parser.cpp
+    Windows_Registry.cpp
   }
 
   Template_Files {
