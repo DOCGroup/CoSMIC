@@ -18,8 +18,7 @@ def generate_mwc_file (filename, pathname):
     temp_mwc = string.Template ("""
 
 workspace (${filename}) {
-  cmdline += -include $$COSMIC_ROOT/MPC/config \\
-             -include $$GAME_ROOT/MPC/config \\
+  cmdline += -include $$GAME_ROOT/MPC/config
              
   ${filename}.mpc
 }""")
@@ -63,7 +62,7 @@ project (${project_name}) : game_mga_interpreter, game_lib {
   
   specific (wix) {
     gme_install     = 1
-    gme_progid      = GAME.Interpreter.$filename
+    gme_progid      = $paradigm.Interpreter.$filename
     gme_uuid        = $uuid_value
     gme_paradigms   = $paradigm
     gme_description = GAME $filename Interpreter
