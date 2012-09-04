@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_GAME_Mga) : game_extension_classes {
+project (PICML_GAME_Mga) : picml_game_mga, game_extension_classes {
   sharedname = PICML_GAME_Mga
 
   includes += . PICML
