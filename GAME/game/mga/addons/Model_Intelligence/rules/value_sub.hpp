@@ -48,7 +48,7 @@ private:
 
   local_value <IteratorT> lv_expr_;
 
-  attribute <IteratorT> attribute_expr_;
+  ::attribute <IteratorT> attribute_expr_;
 
 };
 #endif
