@@ -91,7 +91,8 @@ public:
    *
    * @return      Collection of folder objects.
    */
-  size_t folders (const std::string & type, std::vector <Folder> & items) const;
+  template <typename T>
+  size_t folders (const std::string & type, std::vector <T> & items) const;
 
   /**
    * Get all the first-level child folders of this folder.
