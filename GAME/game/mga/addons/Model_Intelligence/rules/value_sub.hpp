@@ -41,11 +41,11 @@ private:
             Value_SubExpr * (),
             ascii::space_type> value_subexpr_;
 
-  methodcall <IteratorT> method_call_;
+  ::methodcall <IteratorT> method_call_;
 
-  constant_value <IteratorT> cv_expr_;
+  ::constant_value <IteratorT> cv_expr_;
 
-  local_value <IteratorT> lv_expr_;
+  ::local_value <IteratorT> lv_expr_;
 
   ::attribute <IteratorT> attribute_expr_;
 };
