@@ -107,6 +107,26 @@ bool create_if_not (P parent,
 //
 // create_if_not
 //
+template <typename ARCH, typename P, typename T, typename PRED>
+bool create_if_not (P parent,
+                    T & element,
+                    PRED predicate)
+{
+  // Determine if the parent has an element that matches the specified
+  // predicate. If it does not contain such an element then we need to
+  // create one for the caller.
+  if (predicate (parent, T::impl_type::metaname, element))
+    return false;
+
+  create_element <ARCH, T> factory_method;
+  element = factory_method (parent, T::impl_type::metaname);
+
+  return true;
+}
+
+//
+// create_if_not
+//
 template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
                     const META & metaname,

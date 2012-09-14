@@ -30,10 +30,10 @@ contains_t <ARCH, PRED>::contains_t (PRED predicate)
 // contains_t::operator ()
 //
 template <typename ARCH, typename PRED>
-template <typename T>
+template <typename COLLECTION>
 inline
 bool contains_t <ARCH, PRED>::
-operator () (const T & collection, typename T::value_type & element)
+operator () (const COLLECTION & collection, typename COLLECTION::value_type & element)
 {
   return this->find_i (collection.begin (), collection.end (), element);
 }

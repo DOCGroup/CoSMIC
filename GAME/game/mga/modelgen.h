@@ -58,6 +58,42 @@ struct create_element <Mga_t, T>
   template <typename P, typename META>
   T operator () (P parent, const META & metaname);
 };
+
+template < >
+struct create_element <Mga_t, GAME::Mga::Folder>
+{
+  template <typename P, typename META>
+  GAME::Mga::Folder operator () (P parent, const META & metaname);
+};
+
+template < >
+struct create_element <Mga_t, GAME::Mga::Atom>
+{
+  template <typename P, typename META>
+  GAME::Mga::Atom operator () (P parent, const META & metaname);
+};
+
+template < >
+struct create_element <Mga_t, GAME::Mga::Set>
+{
+  template <typename P, typename META>
+  GAME::Mga::Set operator () (P parent, const META & metaname);
+};
+
+template < >
+struct create_element <Mga_t, GAME::Mga::Model>
+{
+  template <typename P, typename META>
+  GAME::Mga::Model operator () (P parent, const META & metaname);
+};
+
+template < >
+struct create_element <Mga_t, GAME::Mga::Reference>
+{
+  template <typename P, typename META>
+  GAME::Mga::Reference operator () (P parent, const META & metaname);
+};
+
 }
 
 #include "modelgen.cpp"

@@ -69,8 +69,8 @@ public:
   /**
    * @overloaded
    */
-  template <typename T>
-  bool operator () (const T & parent, typename T::value_type & element);
+  template <typename COLLECTION>
+  bool operator () (const COLLECTION & collection, typename COLLECTION::value_type & element);
 
 private:
   /**
@@ -111,7 +111,10 @@ bool find (P parent, const META & metaname, T & element, PRED predicate);
  * @param[in]       predicate    Predicate to search for.
  */
 template <typename ARCH, typename P, typename T, typename META, typename PRED>
-bool create_if (P parent, const META & metaname, T & element, PRED predicate);
+bool create_if (P parent,
+                const META & metaname,
+                T & element,
+                PRED predicate);
 
 /**
  * Create an element if a child that satifies the specified predicate can
@@ -132,6 +135,11 @@ bool create_if (P parent,
 template <typename ARCH, typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
                     const META & metaname,
+                    T & element,
+                    PRED predicate);
+
+template <typename ARCH, typename P, typename T, typename PRED>
+bool create_if_not (P parent,
                     T & element,
                     PRED predicate);
 
