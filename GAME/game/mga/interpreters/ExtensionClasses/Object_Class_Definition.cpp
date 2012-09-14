@@ -464,10 +464,22 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
         << function_header_t ("_create (const ::GAME::Mga::RootFolder_in)")
         << this->name_ << " " << this->classname_
         << "::_create (const ::GAME::Mga::RootFolder_in parent)"
-        << "{"
-        << "return ::GAME::Mga::create_root_object <"
-        << this->name_ << "> (parent, " << this->classname_ << "::metaname);"
-        << "}";
+        << "{";
+
+      if (this->metaname_ == "Folder")
+      {
+        ctx.sfile_
+          << "return ::GAME::Mga::create_root_folder <"
+          << this->name_ << "> (parent, " << this->classname_ << "::metaname);"
+          << "}";
+      }
+      else
+      {
+        ctx.sfile_
+          << "return ::GAME::Mga::create_root_object <"
+          << this->name_ << "> (parent, " << this->classname_ << "::metaname);"
+          << "}";
+      }
     }
 
     // Write the factory method for each parent element.
