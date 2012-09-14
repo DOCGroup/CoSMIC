@@ -173,10 +173,10 @@ load_configuration (GAME::Mga::Project proj, Configuration & config)
   GAME::Mga::Project_Settings settings (proj, "DeploymentPlanGenerator");
 
   if (config.output_.empty ())
-    settings.get_string_value ("OutputPath", config.output_);
+    settings.get_value ("OutputPath", config.output_);
 
-  settings.get_boolean_value ("HasLocalityManager", config.has_locality_manager_);
-  settings.get_boolean_value ("DisableOptimize", config.disable_optimize_);
+  settings.get_value ("HasLocalityManager", config.has_locality_manager_);
+  settings.get_value ("DisableOptimize", config.disable_optimize_);
 }
 
 //
@@ -187,7 +187,7 @@ save_configuration (GAME::Mga::Project proj, const Configuration & config)
 {
   GAME::Mga::Project_Settings settings (proj, "DeploymentPlanGenerator");
 
-  settings.set_string_value ("OutputPath", config.output_);
-  settings.set_boolean_value ("HasLocalityManager", config.has_locality_manager_);
-  settings.set_boolean_value ("DisableOptimize", config.disable_optimize_);
+  settings.set_value ("OutputPath", config.output_);
+  settings.set_value ("HasLocalityManager", config.has_locality_manager_);
+  settings.set_value ("DisableOptimize", config.disable_optimize_);
 }
