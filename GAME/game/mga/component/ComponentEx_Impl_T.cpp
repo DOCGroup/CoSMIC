@@ -45,6 +45,10 @@ STDMETHODIMP ComponentEx_Impl_T <T>::Initialize (IMgaProject * proj)
     // Now, we can pass control to the implementation.
     return this->impl_.initialize (project);
   }
+  catch (const Exception & ex)
+  {
+    ::AfxMessageBox (ex.message ().c_str ());
+  }
   catch (...)
   {
 
@@ -105,6 +109,10 @@ InvokeEx (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * fcos, long flags)
     t_readonly.commit ();
 
     return this->impl_.invoke_ex (project, curr, selected, flags);
+  }
+  catch (Exception & ex)
+  {
+    ::AfxMessageBox (ex.message ().c_str ());
   }
   catch (...)
   {

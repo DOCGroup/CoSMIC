@@ -63,7 +63,8 @@ Readonly_Transaction::Readonly_Transaction (const Project & proj)
 GAME_INLINE
 Readonly_Transaction::~Readonly_Transaction (void)
 {
-
+  // Force committing of the transaction.
+  this->commit ();
 }
 
 }

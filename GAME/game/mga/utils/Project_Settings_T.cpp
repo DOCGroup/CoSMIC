@@ -14,7 +14,7 @@ template <typename T>
 bool Project_Settings::get_value (const std::string & name, T & value)
 {
   std::string str_value;
-  if (!this->get_string_value (path, str_value))
+  if (!this->get_value (name, str_value))
     return false;
 
   std::istringstream istr (str_value);
@@ -31,7 +31,7 @@ bool Project_Settings::set_value (const std::string & name, T value)
   std::ostringstream ostr;
   ostr << value;
 
-  return this->set_value (name, value.str ());
+  return this->set_value (name, ostr.str ());
 }
 
 }
