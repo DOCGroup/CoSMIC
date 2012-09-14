@@ -16,3 +16,4 @@ lib/
 *.user
 *.exp
 *.suo
+/GAME\game\mga\utils/MgaUtil.h
