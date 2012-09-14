@@ -51,16 +51,20 @@ public:
 
   std::string global_default_output_directory (void) const;
 
-  void default_output_directory (const std::string & uid,
-                                 const std::string & dir);
-
+  void default_output_directory (const std::string & uid, const std::string & dir);
   std::string default_output_directory (const std::string & uid) const;
 
-  bool set_boolean_value (const std::string & path, bool value);
-  bool get_boolean_value (const std::string & path, bool & value);
+  bool set_value (const std::string & path, bool value);
+  bool set_value (const std::string & path, const std::string & value);
 
-  bool set_string_value (const std::string & path, const std::string & value);
-  bool get_string_value (const std::string & path, std::string & value);
+  template <typename T>
+  bool set_value (const std::string & path, T value);
+
+  bool get_value (const std::string & path, bool & value);
+  bool get_value (const std::string & path, std::string & value);
+
+  template <typename T>
+  bool get_value (const std::string & patn, T & value);
 
 private:
   /// Target GME project.
@@ -75,5 +79,7 @@ private:
 #if defined (__GAME_INLINE__)
 #include "Project_Settings.inl"
 #endif
+
+#include "Project_Settings_T.cpp"
 
 #endif  // !defined _GAME_MGA_UTILS_PROJECT_SETTINGS_

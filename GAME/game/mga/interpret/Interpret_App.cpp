@@ -348,6 +348,7 @@ int GAME_Automation_App::run (const std::string & progid)
 
   // Load the specified interpreter.
   GAME::Mga::ComponentEx interpreter = GAME::Mga::ComponentEx_Impl::_load (progid);
+  interpreter->initialize (this->project_);
 
   // Set the interactive state.
   interpreter->interactive (this->opts_.interactive_);
@@ -366,7 +367,6 @@ int GAME_Automation_App::run (const std::string & progid)
   std::vector <GAME::Mga::FCO> selected;
 
   // Initialize the interpreter and then invoke it.
-  interpreter->initialize (this->project_);
   interpreter->invoke (this->project_,
                        focus.get (),
                        selected,

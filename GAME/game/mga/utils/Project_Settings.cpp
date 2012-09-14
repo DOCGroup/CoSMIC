@@ -62,23 +62,23 @@ default_output_directory (const std::string & uid, const std::string & dir)
 // set_boolean_value
 //
 bool Project_Settings::
-set_boolean_value (const std::string & path, bool value)
+set_value (const std::string & path, bool value)
 {
-  const std::string bvalue = value ? "1" : "0";
-  return this->set_string_value (path, bvalue);
+  const std::string str_value = value ? "true" : "false";
+  return this->set_value (path, str_value);
 }
 
 //
 // get_boolean_value
 //
 bool Project_Settings::
-get_boolean_value (const std::string & path, bool & value)
+get_value (const std::string & path, bool & value)
 {
-  std::string bvalue;
-  if (!this->get_string_value (path, bvalue))
+  std::string str_value;
+  if (!this->get_value (path, str_value))
     return false;
 
-  value = bvalue == "1" ? true : false;
+  value = (str_value == "true" || str_value == "1") ? true : false;
   return true;
 }
 
@@ -86,7 +86,7 @@ get_boolean_value (const std::string & path, bool & value)
 // set_string_value
 //
 bool Project_Settings::
-set_string_value (const std::string & path, const std::string & value)
+set_value (const std::string & path, const std::string & value)
 {
   // Get the root folder for the project.
   Folder root = this->project_.root_folder ();
@@ -102,7 +102,7 @@ set_string_value (const std::string & path, const std::string & value)
 // get_string_value
 //
 bool Project_Settings::
-get_string_value (const std::string & path, std::string & value)
+get_value (const std::string & path, std::string & value)
 {
   // Get the root folder for the project.
   Folder root = this->project_.root_folder ();

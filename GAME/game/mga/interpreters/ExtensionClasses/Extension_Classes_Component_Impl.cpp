@@ -177,7 +177,7 @@ load_project_settings (GAME::Mga::Project proj)
   GAME::Mga::Project_Settings settings (proj, "GAME/ExtensionClasses");
 
   if (this->output_.empty ())
-    settings.get_string_value ("OutputPath", this->output_);
+    settings.get_value ("OutputPath", this->output_);
 }
 
 //
@@ -187,5 +187,5 @@ void Extension_Classes_Component_Impl::
 save_project_settings (GAME::Mga::Project proj)
 {
   GAME::Mga::Project_Settings settings (proj, "GAME/ExtensionClasses");
-  settings.set_string_value ("OutputPath", this->output_);
+  settings.set_value ("OutputPath", this->output_);
 }
