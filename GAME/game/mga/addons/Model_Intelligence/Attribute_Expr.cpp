@@ -16,7 +16,7 @@
 //
 // Constructor
 //
-Attribute_Expr::Attribute_Expr (std::string & var, 
+Attribute_Expr::Attribute_Expr (std::string & var,
                                 std::string & attr)
 : var_ (var),
   attribute_ (attr)
@@ -35,7 +35,7 @@ Attribute_Expr::~Attribute_Expr (void)
 //
 Value * Attribute_Expr::evaluate (Ocl_Context & res)
 {
-	res.model_constraint = false;
+  res.model_constraint = false;
   GAME::Mga::FCO fco;
 
   // Checking the invoking object for the attribute
@@ -52,36 +52,34 @@ Value * Attribute_Expr::evaluate (Ocl_Context & res)
   GAME::Mga::Meta::FCO metafco = fco->meta ();
 
   // Collecting the attribute and returning its value
-	std::string name = metafco->name ();
-	GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->attribute_, false);
-	std::string atrname = meta_atr->name ();
+  std::string name = metafco->name ();
+  GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->attribute_, false);
+  std::string atrname = meta_atr->name ();
 
-	GAME::Mga::Attribute work_atr = fco->attribute (meta_atr);
+  GAME::Mga::Attribute work_atr = fco->attribute (meta_atr);
 
-	if (meta_atr->type () == ATTVAL_INTEGER)
-	{
-		long val = work_atr->int_value ();
-		return new Int_Value (val);
-	}
-	else if (meta_atr->type () == ATTVAL_STRING)
-	{
-		std::string val = work_atr->string_value ();
-		return new String_Value (val);
-	}
-	else if (meta_atr->type () == ATTVAL_BOOLEAN)
-	{
-		bool val = work_atr->bool_value ();
-		return new Boolean_Value (val);
-	}
-	else if (meta_atr->type () == ATTVAL_DOUBLE)
-	{
-		double val = work_atr->double_value ();
-		return new Double_Value (val);
-	}
-	else
-	{
-		std::cerr <<"Invalid return type of Attribute";
-	}
+  if (meta_atr->type () == ATTVAL_INTEGER)
+  {
+    long val = work_atr->int_value ();
+    return new Int_Value (val);
+  }
+  else if (meta_atr->type () == ATTVAL_STRING)
+  {
+    std::string val = work_atr->string_value ();
+    return new String_Value (val);
+  }
+  else if (meta_atr->type () == ATTVAL_BOOLEAN)
+  {
+    bool val = work_atr->bool_value ();
+    return new Boolean_Value (val);
+  }
+  else if (meta_atr->type () == ATTVAL_DOUBLE)
+  {
+    double val = work_atr->double_value ();
+    return new Double_Value (val);
+  }
+  else
+    throw GAME::Mga::Exception ("invalid return type of attribute");
 }
 
 //
@@ -89,7 +87,7 @@ Value * Attribute_Expr::evaluate (Ocl_Context & res)
 //
 Value * Attribute_Expr::filter_evaluate (Ocl_Context & res)
 {
-	res.model_constraint = false;
+  res.model_constraint = false;
   GAME::Mga::FCO fco;
 
   // Checking the invoking object for the attribute
@@ -111,38 +109,38 @@ Value * Attribute_Expr::filter_evaluate (Ocl_Context & res)
   }
 
   // The current fco is used for attribute value computation
-	GAME::Mga::Meta::FCO metafco = fco->meta ();
+  GAME::Mga::Meta::FCO metafco = fco->meta ();
 
-	std::string name = metafco->name ();
-	GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->attribute_, false);
-	std::string atrname = meta_atr->name ();
+  std::string name = metafco->name ();
+  GAME::Mga::Meta::Attribute meta_atr = metafco->attribute (this->attribute_, false);
+  std::string atrname = meta_atr->name ();
 
-	GAME::Mga::Attribute work_atr = fco->attribute (meta_atr);
+  GAME::Mga::Attribute work_atr = fco->attribute (meta_atr);
 
-	if (meta_atr->type () == ATTVAL_INTEGER)
-	{
-		long val = work_atr->int_value ();
-		return new Int_Value (val);
-	}
-	else if (meta_atr->type () == ATTVAL_STRING)
-	{
-		std::string val = work_atr->string_value ();
-		return new String_Value (val);
-	}
-	else if (meta_atr->type () == ATTVAL_BOOLEAN)
-	{
-		bool val = work_atr->bool_value ();
-		return new Boolean_Value (val);
-	}
-	else if (meta_atr->type () == ATTVAL_DOUBLE)
-	{
-		double val = work_atr->double_value ();
-		return new Double_Value (val);
-	}
-	else
-	{
-		std::cerr <<"Invalid return type of Attribute";
-	}
+  if (meta_atr->type () == ATTVAL_INTEGER)
+  {
+    long val = work_atr->int_value ();
+    return new Int_Value (val);
+  }
+  else if (meta_atr->type () == ATTVAL_STRING)
+  {
+    std::string val = work_atr->string_value ();
+    return new String_Value (val);
+  }
+  else if (meta_atr->type () == ATTVAL_BOOLEAN)
+  {
+    bool val = work_atr->bool_value ();
+    return new Boolean_Value (val);
+  }
+  else if (meta_atr->type () == ATTVAL_DOUBLE)
+  {
+    double val = work_atr->double_value ();
+    return new Double_Value (val);
+  }
+  else
+  {
+    std::cerr <<"Invalid return type of Attribute";
+  }
 }
 
 //
@@ -150,7 +148,7 @@ Value * Attribute_Expr::filter_evaluate (Ocl_Context & res)
 //
 bool Attribute_Expr::is_mutable (void)
 {
-	return true;
+  return true;
 }
 
 //

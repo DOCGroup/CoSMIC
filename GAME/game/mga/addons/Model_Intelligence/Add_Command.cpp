@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Add_Command.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
+#include <sstream>
 
 //
 // Constructor
@@ -28,119 +29,120 @@ Add_Command::~Add_Command (void)
 //
 bool Add_Command::execute (void)
 {
-  try
+  std::vector <GAME::Mga::Meta::Role>::iterator
+    roleit = target_metaroles_.begin (), roleit_end = target_metaroles_.end ();
+
+  // Adding elements according to their roles
+  if (target_metaroles_.size () == 1)
   {
-		std::vector <GAME::Mga::Meta::Role>::iterator
-      roleit = target_metaroles_.begin (), roleit_end = target_metaroles_.end ();
+    for (;roleit != roleit_end; roleit++)
+    {
+      if ((*roleit)->kind ()->type () == OBJTYPE_MODEL)
+      {
+        for (; this->count_ != 0; -- this->count_)
+        {
+          GAME::Mga::Model new_model =
+            GAME::Mga::Model_Impl::_create (this->parent_model_, (*roleit));
 
-    // Adding elements according to their roles
-		if (target_metaroles_.size () == 1)
-		{
-			for (;roleit != roleit_end; roleit++)
-			{
-				if ((*roleit)->kind ()->type () == OBJTYPE_MODEL)
-				{
-					for (; this->count_ != 0; -- this->count_)
-					{
-						GAME::Mga::Model new_model = GAME::Mga::Model_Impl::_create (this->parent_model_, 
-																																				 (*roleit));
-						char c = '0' + this->count_;
-						new_model->name ((*roleit)->name () + c);
-					}
-				}
-				else if ((*roleit)->kind ()->type () == OBJTYPE_ATOM)
-				{
-					for (; this->count_ != 0; -- this->count_)
-					{
-						GAME::Mga::Atom new_atom = GAME::Mga::Atom_Impl::_create (this->parent_model_, 
-																																			(*roleit));
-						char c = '0' + this->count_;
-						new_atom->name ((*roleit)->name () + c);
-					}
-				}
-				else if ((*roleit)->kind ()->type () == OBJTYPE_REFERENCE)
-				{
-					for (; this->count_ != 0; -- this->count_)
-					{
-						GAME::Mga::Reference new_reference = GAME::Mga::Reference_Impl::_create (this->parent_model_,
-																																										 (*roleit));
-						char c = '0' + this->count_;
-						new_reference->name ((*roleit)->name () + c);
-					}
-				}
-				else if ((*roleit)->kind ()->type () == OBJTYPE_SET)
-				{
-					for (; this->count_ != 0; -- this->count_)
-					{
-						GAME::Mga::Set new_set = GAME::Mga::Set_Impl::_create (this->parent_model_,
-																																	 (*roleit));
-						char c = '0' + this->count_;
-						new_set->name ((*roleit)->name () + c);
-					}
-				}
-			}
-		}
-		else
-		{
-			std::vector <GAME::Mga::Meta::FCO> metafcos;
-			GAME::Mga::Meta::FCO select;
-			for (;roleit != roleit_end; roleit++)
-        metafcos.push_back ((*roleit)->kind ());
+          std::ostringstream ostr;
+          ostr << (*roleit)->name () << this->count_;
+          new_model->name (ostr.str ());
+        }
+      }
+      else if ((*roleit)->kind ()->type () == OBJTYPE_ATOM)
+      {
+        for (; this->count_ != 0; -- this->count_)
+        {
+          GAME::Mga::Atom new_atom =
+            GAME::Mga::Atom_Impl::_create (this->parent_model_, (*roleit));
 
-			for (; this->count_ != 0; -- this->count_)
-			{
-				AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+          std::ostringstream ostr;
+          ostr << (*roleit)->name () << this->count_;
+          new_atom->name (ostr.str ());
+        }
+      }
+      else if ((*roleit)->kind ()->type () == OBJTYPE_REFERENCE)
+      {
+        for (; this->count_ != 0; -- this->count_)
+        {
+          GAME::Mga::Reference new_reference =
+            GAME::Mga::Reference_Impl::_create (this->parent_model_, (*roleit));
 
-        // Create the dialog and pass in the data
-        using GAME::Dialogs::Selection_List_Dialog_T;
-        Selection_List_Dialog_T <GAME::Mga::Meta::FCO> dlg (0, ::AfxGetMainWnd (), 1);
-        dlg.title ("Inherited MetaFCO type object you want to add to the model");
-        dlg.directions ("Select the desired MetaFCO object");
-        dlg.meta_insert (metafcos);
+          std::ostringstream ostr;
+          ostr << (*roleit)->name () << this->count_;
+          new_reference->name (ostr.str ());
+        }
+      }
+      else if ((*roleit)->kind ()->type () == OBJTYPE_SET)
+      {
+        for (; this->count_ != 0; -- this->count_)
+        {
+          GAME::Mga::Set new_set =
+            GAME::Mga::Set_Impl::_create (this->parent_model_, (*roleit));
 
-        if (IDOK != dlg.DoModal ())
-          return false;
+          std::ostringstream ostr;
+          ostr << (*roleit)->name () << this->count_;
+          new_set->name (ostr.str ());
+        }
+      }
+    }
+  }
+  else
+  {
+    std::vector <GAME::Mga::Meta::FCO> metafcos;
+    GAME::Mga::Meta::FCO select;
+    for (;roleit != roleit_end; roleit++)
+      metafcos.push_back ((*roleit)->kind ());
 
-        select = dlg.meta_selection ();
+    for (; this->count_ != 0; -- this->count_)
+    {
+      AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-				if (!select.is_nil ())
-				{
-					if (select->type () == OBJTYPE_MODEL)
-					{
-						GAME::Mga::Model new_model = GAME::Mga::Model_Impl::_create (this->parent_model_, 
-																																		     select->name ());
-						char c = '0' + this->count_;
-						new_model->name (select->name () + c);
-					}
-					else if (select->type () == OBJTYPE_ATOM)
-					{
-						GAME::Mga::Atom new_atom = GAME::Mga::Atom_Impl::_create (this->parent_model_,
-																																	    select->name ());
-						char c = '0' + this->count_;
-						new_atom->name (select->name () + c);
-					}
-					else if (select->type () == OBJTYPE_REFERENCE)
-					{
-						GAME::Mga::Reference new_reference = GAME::Mga::Reference_Impl::_create (this->parent_model_,
-							                                                                       select->name ());
-						char c = '0' + this->count_;
-						new_reference->name (select->name () + c);
-					}
-					else if (select->type () == OBJTYPE_SET)
-					{
-						GAME::Mga::Set new_set = GAME::Mga::Set_Impl::_create (this->parent_model_,
-																															     select->name ());
-						char c = '0' + this->count_;
-						new_set->name (select->name () + c);
-					}
-				}
-			}
-		}
+      // Create the dialog and pass in the data
+      using GAME::Dialogs::Selection_List_Dialog_T;
+      Selection_List_Dialog_T <GAME::Mga::Meta::FCO> dlg (0, ::AfxGetMainWnd (), 1);
+      dlg.title ("Inherited MetaFCO type object you want to add to the model");
+      dlg.directions ("Select the desired MetaFCO object");
+      dlg.meta_insert (metafcos);
+
+      if (IDOK != dlg.DoModal ())
+        return false;
+
+      select = dlg.meta_selection ();
+
+      if (select.is_nil ())
+        continue;
+
+      GAME::Mga::FCO fco;
+
+      switch (select->type ())
+      {
+      case OBJTYPE_MODEL:
+        fco = GAME::Mga::Model_Impl::_create (this->parent_model_, select->name ());
+        break;
+
+      case OBJTYPE_ATOM:
+        fco = GAME::Mga::Atom_Impl::_create (this->parent_model_, select->name ());
+        break;
+
+      case OBJTYPE_REFERENCE:
+        fco = GAME::Mga::Reference_Impl::_create (this->parent_model_, select->name ());
+        break;
+
+      case OBJTYPE_SET:
+        fco = GAME::Mga::Set_Impl::_create (this->parent_model_, select->name ());
+        break;
+
+      default:
+        throw GAME::Mga::Exception ("selected type is not supported");
+      }
+
+      // Set the name of the new FCO.
+      std::ostringstream ostr;
+      ostr << (*roleit)->name () << this->count_;
+      fco->name (ostr.str ());
+    }
+  }
 
   return true;
-  }
-  catch (std::exception)
-	{
-		return false;
-	}
 }
