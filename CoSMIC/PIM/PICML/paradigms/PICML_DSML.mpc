@@ -13,6 +13,10 @@ project (PICML_paradigm_icons) {
       icons/*.gif
     }
   }
+
+  Source_Files {
+
+  }
 }
 
 project (PICML_paradigm) {
@@ -32,6 +36,10 @@ project (PICML_paradigm) {
       PICML.xme
       PICML.xmp
     }
+  }
+
+  Source_Files {
+
   }
 }
 
