@@ -20,8 +20,7 @@
  *
  * Class definition for a FCO element.
  */
-class FCO_Class_Definition :
-  public Object_Class_Definition
+class FCO_Class_Definition : public Object_Class_Definition
 {
 public:
   /// Default constructor.
@@ -36,27 +35,21 @@ public:
   // Generate the class definition.
   virtual void generate_definition (const Generation_Context & ctx);
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
-
 private:
   void generate_attribute (const Generation_Context & ctx,
                            GAME::Mga::Atom_in item);
 
   void generate_connection_point (const Generation_Context & ctx,
-                                  std::pair < std::string, GAME::Mga::Atom > & item);
+                                  std::pair < std::string, FCO_Class_Definition * > & item);
 
   /// Attribute connections for this object.
   std::set <GAME::Mga::Atom> attributes_;
 
   /// Source connection points for the element.
-  std::set < std::pair <std::string, GAME::Mga::Atom> > src_connpoints_;
+  std::set < std::pair <std::string, FCO_Class_Definition *> > src_connpoints_;
 
   /// Destination connection points for the element.
-  std::set < std::pair <std::string, GAME::Mga::Atom> > dst_connpoints_;
+  std::set < std::pair <std::string, FCO_Class_Definition *> > dst_connpoints_;
 };
 
 #if defined (__GAME_INLINE__)

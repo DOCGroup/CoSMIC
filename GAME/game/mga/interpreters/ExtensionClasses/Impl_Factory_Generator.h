@@ -20,6 +20,9 @@
 
 #include "game/mga/GME_fwd.h"
 
+// Forward decl.
+class Object_Manager;
+
 namespace GAME
 {
 namespace Mga
@@ -50,11 +53,11 @@ public:
   bool generate (const std::string & location,
                  const Project & proj,
                  const std::string & pch_basename,
-                 const std::set <Object> & items);
+                 const Object_Manager * obj_mgr);
 
 private:
   // Helper method for generating the source files.
-  void generate_source_files (const Project &, const std::set <Object> &);
+  void generate_source_files (const Project &, const Object_Manager * obj_mgr);
 
   /// The header file for the visitor.
   std::ofstream hxx_file_;

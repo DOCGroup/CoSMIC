@@ -36,33 +36,34 @@ public:
   // Generate the definition for this model element.
   virtual void generate_definition (const Generation_Context &);
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
+  void insert_single_definition (Object_Class_Definition * def);
+  void insert_multiple_definition (Object_Class_Definition * def);
+  void insert_optional_definition (Object_Class_Definition * def);
 
 private:
   // Generate method for an optional containment element.
-  void generate_optional_definition (const Generation_Context & ,
-                                     GAME::Mga::Atom_in);
+  void generate_optional_definition (
+    const Generation_Context & ,
+    Object_Class_Definition *);
 
   // Generate method for an single containment element.
-  void generate_single_definition (const Generation_Context & ctx,
-                                   GAME::Mga::Atom_in item);
+  void generate_single_definition (
+    const Generation_Context &,
+    Object_Class_Definition *);
 
   // Generate method for an multiple containment element.
-  void generate_multiple_definition (const Generation_Context & ctx,
-                                     GAME::Mga::Atom_in item);
+  void generate_multiple_definition (
+    const Generation_Context &,
+    Object_Class_Definition *);
 
   /// Collection of multiple child elements.
-  std::set <GAME::Mga::Atom> multiple_;
+  std::set <Object_Class_Definition *> multiple_;
 
   /// Collection of single child elements.
-  std::set <GAME::Mga::Atom> single_;
+  std::set <Object_Class_Definition *> single_;
 
   /// Collection of optional child elements
-  std::set <GAME::Mga::Atom> optional_;
+  std::set <Object_Class_Definition *> optional_;
 };
 
 #if defined (__GAME_INLINE__)

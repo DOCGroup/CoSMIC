@@ -36,17 +36,16 @@ public:
   // Generate the class definition.
   virtual void generate_definition (const Generation_Context & ctx);
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
+  /// Insert a new class definition in the refers to collection.
+  void insert_refers_to (Object_Class_Definition * def);
 
 private:
-  void generate_refers_to_method (const Generation_Context &, GAME::Mga::Atom_in);
+  void generate_refers_to_method (
+    const Generation_Context &,
+    Object_Class_Definition *);
 
   /// Collection of element this type references.
-  std::set <GAME::Mga::Atom> refers_to_;
+  std::set <Object_Class_Definition *> refers_to_;
 };
 
 #if defined (__GAME_INLINE__)

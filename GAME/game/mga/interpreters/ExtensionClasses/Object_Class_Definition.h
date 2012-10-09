@@ -16,15 +16,24 @@
 #include "Class_Definition.h"
 #include <set>
 
+class Base_Class_Locator;
+
+// Forward decl.
+class Object_Class_Definition;
+
+/// Type definition for unique object class definitions.
+typedef std::set <Object_Class_Definition *> Unique_Object_Class_Definitions;
+
 /**
  * @class Object_Class_Definition
  *
  * Class definition for all object types in GME.
  */
-class Object_Class_Definition :
-  public Class_Definition
+class Object_Class_Definition : public Class_Definition
 {
 public:
+  friend class Base_Class_Locator;
+
   /// Default constructor.
   Object_Class_Definition (void);
 
@@ -55,18 +64,52 @@ public:
    */
   virtual void generate_definition (const Generation_Context & ctx) = 0;
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
+  /// Test if the object is abstract.
+  bool is_abstract (void) const;
 
+  /// Test if the object is in the root folder.
+  bool in_root_folder (void) const;
+
+  /// Compute the path of the object.
+  std::string compute_path (std::string separator, bool trailing) const;
+
+  /// Get the name of the object class definition.
+  const std::string & name (void) const;
+
+  /// Get the name of the generated class.
+  const std::string & classname (void) const;
+
+  /// Get the metaname of the object (i.e., Atom, Model, Folder, etc.)
+  const std::string & metaname (void) const;
+
+  /// Get the class definitions Mga object
+  GAME::Mga::FCO_in get_object (void) const;
+
+  /// Get the list of base classes.
+  const std::set <Object_Class_Definition *> & base_classes (void) const;
+
+  /// Get the list of the derived classes.
+  const std::set <Object_Class_Definition *> & derived_classes (void) const;
+
+  /// Get the list of parent classes.
+  const std::set <Object_Class_Definition *> & parents (void) const;
+
+  /// Add a new parent object to this class definition.
+  void insert_parent (Object_Class_Definition * parent);
+  void insert_dependency (Object_Class_Definition * object);
+
+protected:
   /// Base class connection for this object.
-  std::set <GAME::Mga::Atom> base_classes_;
+  Unique_Object_Class_Definitions base_classes_;
+
+  /// Derived class for this object.
+  Unique_Object_Class_Definitions derived_classes_;
 
   /// Parent elements for this model element.
-  std::set <GAME::Mga::Atom> parents_;
-  std::set <GAME::Mga::Atom> base_parents_;
+  Unique_Object_Class_Definitions parents_;
+
+  /// Collection of source include files.
+  Unique_Object_Class_Definitions source_includes_;
 
   /// The object is in the root folder.
   bool in_root_folder_;
@@ -90,11 +133,8 @@ protected:
   GAME::Mga::FCO obj_;
 
 private:
-  void get_parents (GAME::Mga::FCO_in, std::set <GAME::Mga::Atom> & parents);
-
-  // Helper function that generates the elements factory method.
-  void generate_factory_method (const Generation_Context &, GAME::Mga::Atom_in);
-  void generate_parent_method (const Generation_Context &, GAME::Mga::Atom_in);
+  /// Helper method that generates the elements factory method.
+  void generate_parent_method (const Generation_Context &, Object_Class_Definition *);
 };
 
 #if defined (__GAME_INLINE__)

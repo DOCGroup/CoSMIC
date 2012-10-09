@@ -18,6 +18,8 @@
 #include <string>
 #include "game/mga/GME_fwd.h"
 
+class Object_Manager;
+
 namespace GAME
 {
 namespace Mga
@@ -48,7 +50,7 @@ public:
   bool generate (const std::string & location,
                  const Project & proj,
                  const std::string & pch_basename,
-                 const std::set <Object> & items);
+                 const Object_Manager * obj_mgr);
 };
 
 }

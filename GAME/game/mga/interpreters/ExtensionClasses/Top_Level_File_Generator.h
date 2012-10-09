@@ -17,6 +17,9 @@
 #include <string>
 #include "game/mga/Project.h"
 
+// Forward decl.
+class Object_Manager;
+
 namespace GAME
 {
 namespace Mga
@@ -46,7 +49,7 @@ public:
    */
   void generate (const std::string & location,
                  const Project & proj,
-                 const std::set <Object> & items);
+                 const Object_Manager * obj_mgr);
 
 };
 

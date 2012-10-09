@@ -7,6 +7,8 @@
 #include "Connection_Endpoint_Visitor.inl"
 #endif  // !defined __GAME_INLINE__
 
+#include "Object_Manager.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 // Source_Connection_Endpoint_Visitor
 
@@ -25,7 +27,7 @@ visit_Connection (GAME::Mga::Connection_in item)
 void Source_Connection_Endpoint_Visitor::
 visit_Atom (GAME::Mga::Atom_in item)
 {
-  this->items_.insert (item);
+  this->items_.insert (OBJECT_MANAGER->get (item));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,5 +48,5 @@ visit_Connection (GAME::Mga::Connection_in item)
 void Destination_Connection_Endpoint_Visitor::
 visit_Atom (GAME::Mga::Atom_in item)
 {
-  this->items_.insert (item);
+  this->items_.insert (OBJECT_MANAGER->get (item));
 }

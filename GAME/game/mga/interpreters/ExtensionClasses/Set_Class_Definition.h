@@ -35,15 +35,11 @@ public:
   // Generate the class definition.
   virtual void generate_definition (const Generation_Context & ctx);
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
+  void insert_member (Object_Class_Definition * member);
 
 private:
   /// Member of the set definition.
-  std::set <GAME::Mga::Atom> members_;
+  std::set <Object_Class_Definition *> members_;
 };
 
 #if defined (__GAME_INLINE__)

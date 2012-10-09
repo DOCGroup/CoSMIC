@@ -7,8 +7,11 @@
 #include "FCO_Class_Definition.inl"
 #endif  // !defined __GAME_INLINE__
 
+#include <assert.h>
+
 #include "Connection_Endpoint_Visitor.h"
 #include "Functors.h"
+#include "Object_Manager.h"
 #include "Proxy_Visitor.h"
 
 #include "game/mga/Atom.h"
@@ -20,6 +23,38 @@
 #include "boost/bind.hpp"
 #include <algorithm>
 
+
+/**
+ * @class Attribute_Visitor
+ *
+ * Utility class that gathers the unique source endpoints of a
+ * connection.
+ */
+class Attribute_Visitor : public Proxy_Visitor
+{
+public:
+  Attribute_Visitor (GAME::Mga::FCO_in dst, std::set <GAME::Mga::Atom> & items)
+    : dst_ (dst),
+      items_ (items)
+  {
+
+  }
+
+  virtual void visit_Connection (GAME::Mga::Connection_in item)
+  {
+    item->src ()->accept (this);
+  }
+
+  virtual void visit_Atom (GAME::Mga::Atom_in item)
+  {
+    this->items_.insert (item);
+  }
+
+private:
+  GAME::Mga::FCO dst_;
+  std::set <GAME::Mga::Atom> & items_;
+};
+
 /**
  * @class Connection_Point_Visitor
  */
@@ -29,8 +64,10 @@ public:
   //
   // SourceToConnector_Visitor
   //
-  Connection_Point_Visitor (std::set < std::pair <std::string, GAME::Mga::Atom> > & points)
-    : points_ (points)
+  Connection_Point_Visitor (std::set < std::pair <std::string, FCO_Class_Definition *> > & points,
+                            Unique_Object_Class_Definitions & includes)
+    : points_ (points),
+      includes_ (includes)
   {
 
   }
@@ -82,17 +119,36 @@ public:
         while (dst->type () == OBJTYPE_REFERENCE)
           dst = GAME::Mga::Reference::_narrow (dst)->refers_to ();
 
-        this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (dst)));
+        Object_Class_Definition * definition =
+          OBJECT_MANAGER->get (GAME::Mga::Atom::_narrow (dst));
+
+        FCO_Class_Definition  * fco_definition =
+          dynamic_cast <FCO_Class_Definition *> (definition);
+
+        assert (0 != fco_definition);
+        this->points_.insert (std::make_pair (this->role_name_, fco_definition));
+
+        this->includes_.insert (fco_definition);
       }
       else
       {
-        this->points_.insert (std::make_pair (this->role_name_, GAME::Mga::Atom::_narrow (src)));
+        Object_Class_Definition * definition =
+          OBJECT_MANAGER->get (GAME::Mga::Atom::_narrow (src));
+
+        FCO_Class_Definition  * fco_definition =
+          dynamic_cast <FCO_Class_Definition *> (definition);
+
+        assert (0 != fco_definition);
+        this->points_.insert (std::make_pair (this->role_name_, fco_definition));
+
+        this->includes_.insert (fco_definition);
       }
     }
   }
 
 private:
-  std::set < std::pair <std::string, GAME::Mga::Atom> > & points_;
+  std::set < std::pair <std::string, FCO_Class_Definition *> > & points_;
+  Unique_Object_Class_Definitions & includes_;
 
   std::string role_name_;
 };
@@ -109,7 +165,7 @@ void FCO_Class_Definition::build (GAME::Mga::FCO_in fco)
   std::vector <GAME::Mga::Connection> has_attributes;
   fco->in_connections ("HasAttribute", has_attributes);
 
-  Source_Connection_Endpoint_Visitor has_attrs (this->obj_, this->attributes_);
+  Attribute_Visitor has_attrs (this->obj_, this->attributes_);
   std::for_each (GAME::Mga::make_impl_iter (has_attributes.begin ()),
                  GAME::Mga::make_impl_iter (has_attributes.end ()),
                  boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &has_attrs));
@@ -118,7 +174,7 @@ void FCO_Class_Definition::build (GAME::Mga::FCO_in fco)
   std::vector <GAME::Mga::Connection> src_to_connector;
   fco->in_connections ("SourceToConnector", src_to_connector);
 
-  Connection_Point_Visitor cpv_src (this->src_connpoints_);
+  Connection_Point_Visitor cpv_src (this->src_connpoints_, this->source_includes_);
   std::for_each (GAME::Mga::make_impl_iter (src_to_connector.begin ()),
                  GAME::Mga::make_impl_iter (src_to_connector.end ()),
                  boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &cpv_src));
@@ -126,7 +182,7 @@ void FCO_Class_Definition::build (GAME::Mga::FCO_in fco)
   std::vector <GAME::Mga::Connection> dst_to_connector;
   fco->in_connections ("ConnectorToDestination", dst_to_connector);
 
-  Connection_Point_Visitor cpv_dst (this->dst_connpoints_);
+  Connection_Point_Visitor cpv_dst (this->dst_connpoints_, this->source_includes_);
   std::for_each (GAME::Mga::make_impl_iter (dst_to_connector.begin ()),
                  GAME::Mga::make_impl_iter (dst_to_connector.end ()),
                  boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &cpv_dst));
@@ -294,13 +350,12 @@ generate_attribute (const Generation_Context & ctx, GAME::Mga::Atom_in item)
 //
 void FCO_Class_Definition::
 generate_connection_point (const Generation_Context & ctx,
-                           std::pair < std::string, GAME::Mga::Atom > & item)
+                           std::pair < std::string, FCO_Class_Definition * > & item)
 {
   const std::string role_name = item.first;
   const std::string type_name = item.second->name ();
   const std::string func_name = item.first + "_" + type_name;
 
-  // size_t in_connections (std::vector <T> & conns) const;
   // Write the connection point method.
   ctx.hfile_
     << std::endl
@@ -314,29 +369,4 @@ generate_connection_point (const Generation_Context & ctx,
     << "{"
     << "return this->in_connections <" << type_name << "> (items);"
     << "}";
-}
-
-//
-// get_includes
-//
-void FCO_Class_Definition::get_includes (std::set <GAME::Mga::Atom> & includes)
-{
-  // Pass control to the base clas.
-  Object_Class_Definition::get_includes (includes);
-
-  // Get the includes for this definition.
-  typedef std::set <GAME::Mga::Atom> atom_set;
-  typedef std::pair <std::string, GAME::Mga::Atom> entry_type;
-
-  std::for_each (this->src_connpoints_.begin (),
-                 this->src_connpoints_.end (),
-                 boost::bind (&atom_set::insert,
-                              boost::ref (includes),
-                              boost::bind (&entry_type::second, _1)));
-
-  std::for_each (this->dst_connpoints_.begin (),
-                 this->dst_connpoints_.end (),
-                 boost::bind (&atom_set::insert,
-                              boost::ref (includes),
-                              boost::bind (&entry_type::second, _1)));
 }

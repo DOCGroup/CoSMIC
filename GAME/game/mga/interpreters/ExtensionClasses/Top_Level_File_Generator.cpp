@@ -3,6 +3,8 @@
 #include "StdAfx.h"
 #include "Top_Level_File_Generator.h"
 #include "Functors.h"
+#include "Object_Class_Definition.h"
+#include "Object_Manager.h"
 
 #include "game/mga/Utils.h"
 
@@ -27,9 +29,9 @@ struct include_header_file
 
   }
 
-  void operator () (const Object & obj) const
+  void operator () (const Object_Manager::map_type::ENTRY & entry) const
   {
-    this->hfile_ << include_t (obj->path ("/", false) + ".h");
+    this->hfile_ << include_t (entry.item ()->compute_path ("/", false) + ".h");
   }
 
 private:
@@ -59,7 +61,7 @@ Top_Level_File_Generator::~Top_Level_File_Generator (void)
 void Top_Level_File_Generator::
 generate (const std::string & location,
           const Project & proj,
-          const std::set <Object> & items)
+          const Object_Manager * obj_mgr)
 {
   // Open the .mpc file for writing.
   Folder root = proj.root_folder ();
@@ -86,8 +88,8 @@ generate (const std::string & location,
       << std::endl;
 
     // Write the extension class source files.
-    std::for_each (items.begin (),
-                   items.end (),
+    std::for_each (obj_mgr->objects ().begin (),
+                   obj_mgr->objects ().end (),
                    include_header_file (hfile));
 
     hfile

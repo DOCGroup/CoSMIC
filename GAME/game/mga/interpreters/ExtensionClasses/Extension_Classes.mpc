@@ -23,7 +23,9 @@ project (GAME_ExtensionClassesComponent) : boost_base, game_codegenerationkit, g
     Impl_Factory_Generator.cpp
     Init_Generator.cpp
     Model_Class_Definition.cpp
+    Object_Builder.cpp
     Object_Class_Definition.cpp
+    Object_Manager.cpp
     Pch_File_Generator.cpp
     Proxy_Visitor.cpp
     Mpc_File_Generator.cpp

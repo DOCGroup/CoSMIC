@@ -18,6 +18,9 @@
 #include <string>
 #include "game/mga/GME_fwd.h"
 
+// Forward decl.
+class Object_Manager;
+
 namespace GAME
 {
 namespace Mga
@@ -47,7 +50,7 @@ public:
    */
   bool generate (const std::string & location,
                  const Project & proj,
-                 const std::set <Object> & items);
+                 const Object_Manager * obj_mgr);
 };
 
 }

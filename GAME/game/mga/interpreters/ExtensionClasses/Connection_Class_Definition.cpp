@@ -9,6 +9,8 @@
 
 #include "Functors.h"
 #include "Proxy_Visitor.h"
+#include "Object_Manager.h"
+#include "FCO_Class_Definition.h"
 
 #include "game/mga/Connection.h"
 #include "game/mga/Reference.h"
@@ -49,7 +51,8 @@ void Connection_Class_Definition::build (GAME::Mga::FCO_in fco)
     while (src->type () == OBJTYPE_REFERENCE)
       src = GAME::Mga::Reference::_narrow (src)->refers_to ();
 
-    this->src_ = ::GAME::Mga::Atom::_narrow (src);
+    Object_Class_Definition * definition = OBJECT_MANAGER->get (GAME::Mga::Atom::_narrow (src));
+    this->src_ = dynamic_cast <FCO_Class_Definition *> (definition);
 
     // Get the destination model element for the connection.
     std::vector <GAME::Mga::Connection> connector_to_dst;
@@ -60,8 +63,15 @@ void Connection_Class_Definition::build (GAME::Mga::FCO_in fco)
     while (dst->type () == OBJTYPE_REFERENCE)
       dst = GAME::Mga::Reference::_narrow (dst)->refers_to ();
 
-    this->dst_ = GAME::Mga::Atom::_narrow (dst);
+    definition = OBJECT_MANAGER->get (GAME::Mga::Atom::_narrow (dst));
+    this->dst_ = dynamic_cast <FCO_Class_Definition *> (definition);
   }
+
+  if (this->src_ != 0)
+    this->source_includes_.insert (this->src_);
+
+  if (this->dst_ != 0)
+    this->source_includes_.insert (this->dst_);
 }
 
 //
@@ -73,7 +83,7 @@ generate_definition (const Generation_Context & ctx)
   // Pass control to the base class.
   FCO_Class_Definition::generate_definition (ctx);
 
-  if (!this->src_.is_nil ())
+  if (0 != this->src_)
   {
     // Generate our methods related to source connection points.
     const std::string src_type_name = this->src_->name ();
@@ -90,7 +100,7 @@ generate_definition (const Generation_Context & ctx)
       << "}";
   }
 
-  if (!this->dst_.is_nil ())
+  if (0 != this->dst_)
   {
     // Generate our methods related to destination connection points.
     const std::string dst_type_name = this->dst_->name ();
@@ -106,19 +116,4 @@ generate_definition (const Generation_Context & ctx)
       << "return " << dst_type_name << "::_narrow (this->dst ());"
       << "}";
   }
-}
-
-//
-// get_includes
-//
-void Connection_Class_Definition::
-get_includes (std::set <GAME::Mga::Atom> & includes)
-{
-  FCO_Class_Definition::get_includes (includes);
-
-  if (!this->src_.is_nil ())
-    includes.insert (this->src_);
-
-  if (!this->dst_.is_nil ())
-    includes.insert (this->dst_);
 }

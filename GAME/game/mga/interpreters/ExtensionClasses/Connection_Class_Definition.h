@@ -16,6 +16,9 @@
 #include "FCO_Class_Definition.h"
 #include "game/mga/Atom.h"
 
+// Forward decl.
+class FCO_Class_Definition;
+
 /**
  * @class Connection_Class_Definition
  *
@@ -37,18 +40,12 @@ public:
   // Generate the definition for this model element.
   virtual void generate_definition (const Generation_Context & ctx);
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
-
 private:
   /// Source model element for the connection.
-  GAME::Mga::Atom src_;
+  FCO_Class_Definition * src_;
 
   /// Destination model element for the connection.
-  GAME::Mga::Atom dst_;
+  FCO_Class_Definition * dst_;
 };
 
 #if defined (__GAME_INLINE__)

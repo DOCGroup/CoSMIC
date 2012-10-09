@@ -14,7 +14,7 @@ template <typename T, typename P>
 T create_root_folder (P parent, const std::string & meta)
 {
   // Select the MetaFCO for the type.
-  Meta::Folder role = parent->meta ()->folder (metaname);
+  Meta::Folder role = parent->meta ()->folder (meta);
   return create_root_folder <T> (parent, role);
 }
 
@@ -33,10 +33,7 @@ T create_root_folder (P parent, const Meta::Folder_in meta)
   CComPtr <interface_type> mga_type;
   VERIFY_HRESULT (child.QueryInterface (&mga_type));
 
-  // Since we are creating a concrete type, we can directly allocate
-  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
-  typedef typename T::impl_type impl_type;
-  return new impl_type (mga_type.p);
+  return mga_type.p;
 }
 
 //
@@ -65,10 +62,7 @@ T create_root_object (P parent, const Meta::FCO_in metafco)
   CComPtr <interface_type> mga_type;
   VERIFY_HRESULT (child.QueryInterface (&mga_type));
 
-  // Since we are creating a concrete type, we can directly allocate
-  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
-  typedef typename T::impl_type impl_type;
-  return new impl_type (mga_type.p);
+  return mga_type.p;
 }
 
 //
@@ -94,10 +88,7 @@ T create_object (P parent, const Meta::Role_in role)
   CComPtr <interface_type> mga_type;
   VERIFY_HRESULT (child.QueryInterface (&mga_type));
 
-  // Since we are creating a concrete type, we can directly allocate
-  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
-  typedef typename T::impl_type impl_type;
-  return new impl_type (mga_type.p);
+  return mga_type.p;
 }
 
 //
@@ -119,10 +110,7 @@ T create_folder (P parent, const Meta::Folder_in meta)
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (parent->impl ()->CreateFolder (meta->impl (), &folder));
 
-  // Since we are creating a concrete type, we can directly allocate
-  // the implementation type, instead of using the GLOBAL_IMPL_FACTORY.
-  typedef typename T::impl_type impl_type;
-  return new impl_type (folder.p);
+  return folder.p;
 }
 
 //

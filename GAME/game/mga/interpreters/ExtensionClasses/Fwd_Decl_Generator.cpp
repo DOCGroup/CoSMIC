@@ -3,6 +3,8 @@
 #include "StdAfx.h"
 #include "Fwd_Decl_Generator.h"
 #include "Functors.h"
+#include "Object_Manager.h"
+#include "Object_Class_Definition.h"
 
 #include "game/mga/Object.h"
 #include "game/mga/Project.h"
@@ -30,9 +32,9 @@ struct generate_forward_decl
 
   }
 
-  void operator () (const Object & obj) const
+  void operator () (const Object_Manager::map_type::ENTRY & entry) const
   {
-    const std::string name = obj->name ();
+    const std::string name = entry.key ();
     const std::string impl = name + "_Impl";
 
     this->hfile_
@@ -70,7 +72,7 @@ Fwd_Decl_Generator::~Fwd_Decl_Generator (void)
 bool Fwd_Decl_Generator::
 generate (const std::string & location,
           const Project & proj,
-          const std::set <Object> & items)
+          const Object_Manager * obj_mgr)
 {
   // Open the .mpc file for writing.
   const std::string name = proj.name ();
@@ -107,8 +109,8 @@ generate (const std::string & location,
       << "namespace " << name
       << "{";
 
-    std::for_each (items.begin (),
-                   items.end (),
+    std::for_each (obj_mgr->objects ().begin (),
+                   obj_mgr->objects ().end (),
                    generate_forward_decl (hfile));
 
     hfile

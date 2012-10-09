@@ -96,7 +96,7 @@ Folder Folder_Impl::parent (void) const
   CComPtr <IMgaFolder> folder;
   VERIFY_HRESULT (this->impl ()->get_ParentFolder (&folder));
 
-  return new Folder_Impl (folder);
+  return folder.p;
 }
 
 //

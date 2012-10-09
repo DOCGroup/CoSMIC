@@ -36,19 +36,17 @@ public:
   // Generate the folder definition.
   virtual void generate_definition (const Generation_Context & ctx);
 
-protected:
-  /// Get the include objects for this class definition. The include
-  /// statement for these model elements will appear in the source
-  /// file.
-  virtual void get_includes (std::set <GAME::Mga::Atom> & includes);
+  /// Add a child to the list of children.
+  void insert_child (Object_Class_Definition * child);
 
 private:
   // Generate folder containment definition.
-  void generate_folder_containment (const Generation_Context & ctx,
-                                    GAME::Mga::Atom_in);
+  void generate_folder_containment (
+    const Generation_Context & ctx,
+    Object_Class_Definition *);
 
   /// Collection of contained elements.
-  std::set <GAME::Mga::Atom> children_;
+  std::set <Object_Class_Definition *> children_;
 };
 
 #if defined (__GAME_INLINE__)

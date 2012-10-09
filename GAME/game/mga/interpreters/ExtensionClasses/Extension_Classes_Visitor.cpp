@@ -7,20 +7,10 @@
 #include "Extension_Classes_Visitor.inl"
 #endif
 
-#include "Class_Definition.h"
 #include "Functors.h"
-
-#include "game/mga/Attribute.h"
-#include "game/mga/Atom.h"
-#include "game/mga/Model.h"
-#include "game/mga/MetaAttribute.h"
-#include "game/mga/MetaAtom.h"
-#include "game/mga/MetaFCO.h"
-#include "game/mga/Reference.h"
-#include "game/mga/RootFolder.h"
-#include "game/mga/component/Console_Service.h"
-
-#include "boost/bind.hpp"
+#include "Object_Manager.h"
+#include "Object_Class_Definition.h"
+#include "Utils.h"
 
 #include "CCF/CodeGenerationKit/IndentationCxx.hpp"
 #include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
@@ -38,18 +28,28 @@ namespace Mga
 Extension_Classes_Visitor::
 Extension_Classes_Visitor (const std::string & outdir,
                            const Folder_in root,
-                           const std::string & pch_basename,
-                           std::set <Object> & generated)
+                           const std::string & pch_basename)
 : outdir_ (outdir),
   define_prefix_ (root->name ()),
-  pch_basename_ (pch_basename),
-  generated_ (generated)
+  pch_basename_ (pch_basename)
 {
-  GAME::Utils::normalize (this->define_prefix_);
+  ::GAME::Utils::normalize (this->define_prefix_);
   std::transform (this->define_prefix_.begin (),
                   this->define_prefix_.end (),
                   this->define_prefix_.begin (),
                   &::toupper);
+
+  std::string export_name = root->name ();
+  ::GAME::Utils::normalize (export_name);
+
+  this->export_filename_ = export_name + "_export.h";
+
+  std::transform (export_name.begin (),
+                  export_name.end (),
+                  export_name.begin (),
+                  &::toupper);
+
+  this->export_macro_ = export_name + "_Export";
 }
 
 //
@@ -61,131 +61,67 @@ Extension_Classes_Visitor::~Extension_Classes_Visitor (void)
 }
 
 //
-// visit_Folder
+// generate
 //
-void Extension_Classes_Visitor::visit_RootFolder (RootFolder_in folder)
+void Extension_Classes_Visitor::
+generate (Object_Class_Definition * definition)
 {
-  const std::string path = this->outdir_ + "/" + folder->name ();
-  ::GAME::Utils::create_path (path);
+  // Make sure the class definition's output path exists.
+  const std::string basename = this->outdir_ + definition->get_object ()->path ("/");
+  this->mkdir (basename);
 
-  this->visit_Folder_i (folder);
-}
+  // Start a new extension class.
+  const std::string hxx_filename = basename + ".h";
+  const std::string cpp_filename = basename + ".cpp";
+  const std::string inl_filename = basename + ".inl";
 
-//
-// visit_Folder
-//
-void Extension_Classes_Visitor::visit_Folder (Folder_in folder)
-{
-  // Create the directory for this model, and its elements.
-  const std::string path = this->outdir_ + folder->path ("/");
-  ::GAME::Utils::create_path (path);
+  std::ofstream hfile (hxx_filename.c_str ());
+  std::ofstream ifile (inl_filename.c_str ());
+  std::ofstream sfile (cpp_filename.c_str ());
 
-  this->visit_Folder_i (folder);
-}
+  if (!(hfile.is_open () && ifile.is_open () && sfile.is_open ()))
+    return;
 
-//
-// visit_Folder_i
-//
-void Extension_Classes_Visitor::visit_Folder_i (Folder_in folder)
-{
-  // Visit all the paradigm sheets.
-  std::vector <Model> sheets;
-  folder->children (sheets);
-
-  std::for_each (make_impl_iter (sheets.begin ()),
-                 make_impl_iter (sheets.end ()),
-                 boost::bind (&Model::impl_type::accept, _1, this));
-
-  // Visit all the SheetFolder elements in the model.
-  std::vector <Folder> folders;
-  folder->folders ("SheetFolder", folders);
-
-  std::for_each (make_impl_iter (folders.begin ()),
-                 make_impl_iter (folders.end ()),
-                 boost::bind (&Folder::impl_type::accept, _1, this));
-}
-
-//
-// visit_Model
-//
-void Extension_Classes_Visitor::visit_Model (Model_in model)
-{
-  // Create the directory for this model, and its elements.
-  const std::string path = this->outdir_ + model->path ("/");
-  GAME::Utils::create_path (path);
-
-  // Visit all the children in this model (or paradigm sheet).
-  std::vector <FCO> children;
-  model->children (children);
-
-  std::for_each (make_impl_iter (children.begin ()),
-                 make_impl_iter (children.end ()),
-                 boost::bind (&FCO::impl_type::accept, _1, this));
-}
-
-//
-// visit_Atom
-//
-void Extension_Classes_Visitor::visit_Atom (Atom_in atom)
-{
-  std::auto_ptr <Class_Definition> definition (Class_Definition::_create (atom));
-
-  if (0 != definition.get ())
+  do
   {
-    // Build the definition.
-    const std::string msg = "processing " + atom->path ("/");
-    GME_CONSOLE_SERVICE->info (msg);
+    // Set the indentation implanter for this extension class.
+    Indentation::Implanter <Indentation::Cxx, char> header_indent (hfile);
+    Indentation::Implanter <Indentation::Cxx, char> source_indent (sfile);
+    Indentation::Implanter <Indentation::Cxx, char> inline_indent (ifile);
 
-    definition->build (atom);
+    // Initialize the generation context.
+    Generation_Context context (hfile, ifile, sfile);
 
-    // Start a new extension class.
-    const std::string basename = this->outdir_ + atom->path ("/");
-    const std::string hxx_filename = basename + ".h";
-    const std::string cpp_filename = basename + ".cpp";
-    const std::string inl_filename = basename + ".inl";
+    context.export_filename_ = this->export_filename_;
+    context.export_macro_ = this->export_macro_;
 
-    std::ofstream hfile (hxx_filename.c_str ());
-    std::ofstream ifile (inl_filename.c_str ());
-    std::ofstream sfile (cpp_filename.c_str ());
-
-    if (!(hfile.is_open () && ifile.is_open () && sfile.is_open ()))
-      return;
-
-    do
-    {
-      // Set the indentation implanter for this extension class.
-      Indentation::Implanter <Indentation::Cxx, char> header_indent (hfile);
-      Indentation::Implanter <Indentation::Cxx, char> source_indent (sfile);
-      Indentation::Implanter <Indentation::Cxx, char> inline_indent (ifile);
-
-      // Initialize the generation context.
-      Generation_Context context (hfile, ifile, sfile);
-
-      std::string export_name =
-        ::GAME::Utils::normalize (atom->project ().root_folder ()->name ());
-
-      context.export_filename_ = export_name + "_export.h";
-
-      std::transform (export_name.begin (),
-                      export_name.end (),
-                      export_name.begin (),
-                      &::toupper);
-
-      context.export_macro_ = export_name + "_Export";
-
-      // Generate the class definition.
-      definition->generate (context);
-    }
-    while (false);
-
-    // Insert the model element into the generated list.
-    this->generated_.insert (atom);
-
-    // Close the file handles.
-    hfile.close ();
-    sfile.close ();
-    ifile.close ();
+    // Generate the class definition.
+    definition->generate (context);
   }
+  while (false);
+
+  // Close the file handles.
+  hfile.close ();
+  sfile.close ();
+  ifile.close ();
+}
+
+//
+// mkdir
+//
+void Extension_Classes_Visitor::mkdir (const std::string & basename)
+{
+  // Get the path from the basename.
+  std::string path = basename.substr (0, basename.find_last_of ("/") + 1);
+
+  // Normalize the path.
+  std::replace (path.begin (),
+                path.end (),
+                '\\',
+                '/');
+
+  // Create the path.
+  Utils::create_path (path, '/');
 }
 
 }

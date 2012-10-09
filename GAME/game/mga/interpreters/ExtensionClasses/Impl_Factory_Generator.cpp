@@ -8,6 +8,8 @@
 #include "game/mga/Utils.h"
 #include "game/mga/FCO.h"
 #include "game/mga/Attribute.h"
+#include "Object_Class_Definition.h"
+#include "Object_Manager.h"
 
 #include "CCF/CodeGenerationKit/IndentationCxx.hpp"
 #include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
@@ -33,19 +35,12 @@ struct bind_generator_t
 
   }
 
-  void operator () (const Object & obj) const
+  void operator () (const Object_Manager::map_type::ENTRY & entry) const
   {
-    if (obj->meta ()->name () != "Folder")
-    {
-      // Make sure this object is not abstract. We are not allow to
-      // visit any object that is abstract. Only concrete elements can
-      // in a project can be visited by a visitor.
-      FCO fco = FCO::_narrow (obj);
-      if (fco->attribute ("IsAbstract")->bool_value ())
-        return;
-    }
+    if (entry.item ()->is_abstract ())
+      return;
 
-    const std::string name = obj->name ();
+    const std::string name = entry.key ();
     const std::string impl_name = name + "_Impl";
 
     this->cfile_
@@ -72,19 +67,12 @@ struct include_generator_t
 
   }
 
-  void operator () (const Object & obj) const
+  void operator () (const Object_Manager::map_type::ENTRY & entry) const
   {
-    if (obj->meta ()->name () != "Folder")
-    {
-      // Make sure this object is not abstract. We are not allow to
-      // visit any object that is abstract. Only concrete elements can
-      // in a project can be visited by a visitor.
-      FCO fco = FCO::_narrow (obj);
-      if (fco->attribute ("IsAbstract")->bool_value ())
-        return;
-    }
+    const Object_Class_Definition * definition = entry.item ();
 
-    this->cfile_ << include_t (obj->path ("/", false) + ".h");
+    if (!definition->is_abstract ())
+      this->cfile_ << include_t (definition->compute_path ("/", false) + ".h");
   }
 
 private:
@@ -115,7 +103,7 @@ bool Impl_Factory_Generator::
 generate (const std::string & location,
           const Project & proj,
           const std::string & pch_basename,
-          const std::set <Object> & items)
+          const Object_Manager * obj_mgr)
 {
   // Open the .mpc file for writing.
   const std::string project_name = proj.name ();
@@ -172,11 +160,11 @@ generate (const std::string & location,
     << include_t ("game/mga/Exception.h")
     << std::endl;
 
-  std::for_each (items.begin (),
-                 items.end (),
+  std::for_each (obj_mgr->objects ().begin (),
+                 obj_mgr->objects ().end (),
                  include_generator_t (this->cxx_file_));
 
-  this->generate_source_files (proj, items);
+  this->generate_source_files (proj, obj_mgr);
 
   // Close the file handles.
   this->hxx_file_.close ();
@@ -188,7 +176,7 @@ generate (const std::string & location,
 // generate_source_files
 //
 void Impl_Factory_Generator::
-generate_source_files (const Project & proj, const std::set <Object> & items)
+generate_source_files (const Project & proj, const Object_Manager * obj_mgr)
 {
   Indentation::Implanter <Indentation::Cxx, char> header_indent (this->hxx_file_);
   Indentation::Implanter <Indentation::Cxx, char> source_indent (this->cxx_file_);
@@ -233,11 +221,14 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
     << "Impl_Factory::Impl_Factory (void)"
     << "{";
 
-  std::for_each (items.begin (),
-                 items.end (),
+  std::for_each (obj_mgr->objects ().begin (),
+                 obj_mgr->objects ().end (),
                  bind_generator_t (this->cxx_file_));
 
+  // Generate the bind method for the RootFolder, then end the
+  // the constructor's implementation.
   this->cxx_file_
+    << "this->map_.bind (\"RootFolder\", &::GAME::Mga::allocate_impl <GAME::Mga::RootFolder_Impl>);"
     << "}"
     << function_header_t ("~Impl_Factory")
     << "Impl_Factory::~Impl_Factory (void)"

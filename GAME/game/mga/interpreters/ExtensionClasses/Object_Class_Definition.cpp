@@ -8,6 +8,7 @@
 #endif  // !defined __GAME_INLINE__
 
 #include "Functors.h"
+#include "Object_Manager.h"
 #include "Proxy_Visitor.h"
 
 #include "game/mga/Atom.h"
@@ -30,39 +31,45 @@
 /**
  * @class Base_Class_Locator
  */
-class Base_Class_Locator : public Proxy_Visitor
+class Base_Class_Locator : public ::GAME::Mga::Visitor
 {
 public:
-  Base_Class_Locator (std::set <GAME::Mga::Atom> & base)
-    : base_ (base)
+  //
+  // Base_Class_Locator
+  //
+  Base_Class_Locator (Object_Class_Definition * self)
+    : self_ (self)
   {
 
   }
 
-  virtual void visit_Atom (GAME::Mga::Atom_in a)
+  //
+  // visit_Atom
+  //
+  virtual void visit_Atom (GAME::Mga::Atom_in item)
   {
-    const std::string metaname = a->meta ()->name ();
+    const std::string metaname = item->name ();
+    this->process_FCO (metaname, item);
 
-    if (metaname == "Inheritance")
-    {
-      // Locate all the DerivedInheritance connections for this element.
-      std::vector <GAME::Mga::Connection> derived_conns;
-      a->in_connections ("BaseInheritance", derived_conns);
+    // Gather all the Proxy elements that reference this element.
+    // We need to visit them as well since they may have other
+    // base class definitions.
+    using GAME::Mga::Iterator;
+    using GAME::Mga::Reference;
 
-      std::for_each (GAME::Mga::make_impl_iter (derived_conns.begin ()),
-                     GAME::Mga::make_impl_iter (derived_conns.end ()),
-                     boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, this));
-    }
-    else
-    {
-      // Locate all the BaseInheritance connections for this element.
-      std::vector <GAME::Mga::Connection> base_conns;
-      a->in_connections ("DerivedInheritance", base_conns);
+    Iterator <Reference> iter = item->referenced_by ();
+    std::for_each (GAME::Mga::make_impl_iter (iter),
+                   GAME::Mga::make_impl_iter (iter.make_end ()),
+                   boost::bind (&Reference::impl_type::accept, _1, this));
+  }
 
-      std::for_each (GAME::Mga::make_impl_iter (base_conns.begin ()),
-                     GAME::Mga::make_impl_iter (base_conns.end ()),
-                     boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, this));
-    }
+  //
+  // visit_Reference
+  //
+  void Base_Class_Locator::visit_Reference (GAME::Mga::Reference_in ref)
+  {
+    const std::string metaname = ref->refers_to ()->name ();
+    this->process_FCO (metaname, ref);
   }
 
   //
@@ -78,11 +85,17 @@ public:
     while (src->type () == OBJTYPE_REFERENCE)
       src = GAME::Mga::Reference::_narrow (src)->refers_to ();
 
-    // We need to save the destination point if it is the actual
-    // derived class.
     if (metaname == "BaseInheritance")
     {
-      this->base_.insert (GAME::Mga::Atom::_narrow (src));
+      // We have found the base type, so let's insert it into ourself object
+      // as a base class.
+      GAME::Mga::Atom src_atom = GAME::Mga::Atom::_narrow (src);
+      Object_Class_Definition * base_class = OBJECT_MANAGER->get (src_atom);
+      this->self_->base_classes_.insert (base_class);
+
+      // Also, make sure we state the <self_> object is a derived class
+      // of the base class.
+      base_class->derived_classes_.insert (this->self_);
     }
     else if (metaname == "DerivedInheritance")
     {
@@ -92,48 +105,31 @@ public:
   }
 
 private:
-  std::set <GAME::Mga::Atom> & base_;
-};
-
-///////////////////////////////////////////////////////////////////////////////
-// Parent_Visitor
-
-/**
- * @class Parent_Visitor
- */
-class Parent_Visitor : public Proxy_Visitor
-{
-public:
-  //
-  // Parent_Visitor
-  //
-  Parent_Visitor (GAME::Mga::FCO_in child, std::set <GAME::Mga::Atom> & parents)
-    : child_ (child),
-      parents_ (parents)
+  void process_FCO (const std::string & metaname, GAME::Mga::FCO_in fco)
   {
+    if (metaname == "Inheritance")
+    {
+      // Locate all the DerivedInheritance connections for this element.
+      std::vector <GAME::Mga::Connection> base_conns;
+      fco->in_connections ("BaseInheritance", base_conns);
 
+      std::for_each (GAME::Mga::make_impl_iter (base_conns.begin ()),
+                     GAME::Mga::make_impl_iter (base_conns.end ()),
+                     boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, this));
+    }
+    else
+    {
+      // Locate all the BaseInheritance connections for this element.
+      std::vector <GAME::Mga::Connection> derived_conns;
+      fco->in_connections ("DerivedInheritance", derived_conns);
+
+      std::for_each (GAME::Mga::make_impl_iter (derived_conns.begin ()),
+                     GAME::Mga::make_impl_iter (derived_conns.end ()),
+                     boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, this));
+    }
   }
 
-  //
-  // visit_Atom
-  //
-  void visit_Atom (GAME::Mga::Atom_in item)
-  {
-    if (!this->child_->is_equal_to (item))
-      this->parents_.insert (item);
-  }
-
-  //
-  // visit_Connection
-  //
-  void visit_Connection (GAME::Mga::Connection_in item)
-  {
-    item->dst ()->accept (this);
-  }
-
-private:
-  GAME::Mga::FCO_in child_;
-  std::set <GAME::Mga::Atom> & parents_;
+  Object_Class_Definition * self_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -150,11 +146,11 @@ struct gen_base_class
 
   }
 
-  void operator () (GAME::Mga::Atom_in item)
+  void operator () (Object_Class_Definition * item)
   {
     this->hfile_
       << "," << std::endl
-      << "  public virtual " << item->name () << "_Impl";
+      << "  public virtual " << item->classname ();
   }
 
 private:
@@ -162,26 +158,158 @@ private:
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// gen_include
+// include_gen
 
 /**
- * @struct gen_base_class
+ * @struct include_gen
  */
-struct gen_include
+struct include_gen
 {
-  gen_include (std::ostream & hfile)
-    : hfile_ (hfile)
+  include_gen (std::ostream & out,
+               Unique_Object_Class_Definitions & seen,
+               bool include_derived_types = false)
+    : out_ (out),
+      seen_ (seen),
+      include_derived_types_ (include_derived_types)
   {
 
   }
 
-  void operator () (GAME::Mga::Atom_in item)
+  void operator () (Object_Class_Definition * item)
   {
-    this->hfile_ << include_t (item->path ("/", false) + ".h");
+    if (this->seen_.find (item) != this->seen_.end ())
+      return;
+
+    this->seen_.insert (item);
+
+    const std::string path = item->compute_path ("/", false);
+    this->out_ << include_t (path + ".h");
+
+    if (this->include_derived_types_)
+      std::for_each (item->derived_classes ().begin (),
+                     item->derived_classes ().end (),
+                     *this);
   }
 
 private:
+  std::ostream & out_;
+  bool include_derived_types_;
+  Unique_Object_Class_Definitions & seen_;
+};
+
+/**
+ * @struct include_gen
+ */
+struct parent_include_gen
+{
+  parent_include_gen (std::ostream & out, Unique_Object_Class_Definitions & seen)
+    : out_ (out),
+      seen_ (seen)
+  {
+
+  }
+
+  void operator () (Object_Class_Definition * item)
+  {
+    std::for_each (item->parents ().begin (),
+                   item->parents ().end (),
+                   boost::bind (&parent_include_gen::generate_include, this, _1));
+
+    std::for_each (item->base_classes ().begin (),
+                   item->base_classes ().end (),
+                   *this);
+  }
+
+private:
+  void generate_include (Object_Class_Definition * item)
+  {
+    // Only generate the include statement for the item once.
+    if (this->seen_.find (item) != this->seen_.end ())
+      return;
+
+    this->seen_.insert (item);
+
+    // Generate the include statement for the item.
+    const std::string path = item->compute_path ("/", false);
+    this->out_ << include_t (path + ".h");
+  }
+
+  std::ostream & out_;
+  Unique_Object_Class_Definitions & seen_;
+};
+
+/**
+ * @struct Factory_Method_Generator
+ */
+struct Factory_Method_Generator
+{
+public:
+  Factory_Method_Generator (std::ostream & hfile, std::ostream & sfile)
+    : hfile_ (hfile),
+      sfile_ (sfile),
+      self_ (0)
+  {
+
+  }
+
+  void operator () (Object_Class_Definition * item)
+  {
+    if (this->self_ == 0)
+      this->self_ = item;
+
+    // Generate the factory for each one of this object's parents.
+    std::for_each (item->parents ().begin (),
+                   item->parents ().end (),
+                   boost::bind (&Factory_Method_Generator::generate, this, _1));
+
+    // Generate the factory methods for each of the base classes.
+    std::for_each (item->base_classes ().begin (),
+                   item->base_classes ().end (),
+                   Factory_Method_Generator (this->self_, this->hfile_, this->sfile_));
+  }
+
+private:
+  Factory_Method_Generator (Object_Class_Definition * self, std::ostream & hfile, std::ostream & sfile)
+    : hfile_ (hfile),
+      sfile_ (sfile),
+      self_ (self)
+  {
+
+  }
+
+  //
+  // generate
+  //
+  void generate (Object_Class_Definition * item)
+  {
+    // Make sure we are not generating duplicate factory methods.
+    if (this->seen_.find (item) != this->seen_.end ())
+      return;
+
+    // Insert the item into the seen list.
+    this->seen_.insert (item);
+
+    const std::string parent_type = item->metaname ();
+    const std::string parent = item->name ();
+    const std::string method = parent_type == "Model" ? "create_object" : "create_root_object";
+
+    this->hfile_
+      << "static " << this->self_->name () << " _create (const " << parent << "_in parent);";
+
+    this->sfile_
+      << function_header_t ("_create (const " + parent + "_in)")
+      << this->self_->name () << " " << this->self_->classname () << "::_create (const " << parent << "_in parent)"
+      << "{"
+      << "return ::GAME::Mga::" << method
+      << " < " << this->self_->name () << " > (parent, " << this->self_->name () << "_Impl::metaname);"
+      << "}";
+  }
+
   std::ostream & hfile_;
+  std::ostream & sfile_;
+
+  std::set <Object_Class_Definition *> seen_;
+  Object_Class_Definition * self_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -199,8 +327,6 @@ void Object_Class_Definition::build (GAME::Mga::FCO_in fco)
 
     // Store information about the model element.
     this->name_ = fco->name ();
-    bool stop = this->name_ == "dw_writerdatalifecycle_Connection";
-
     this->metaname_ = fco->meta ()->name ();
     this->classname_ = this->name_ + "_Impl";
     this->default_base_classname_ = "::GAME::Mga::" + this->metaname_ + "_Impl";
@@ -211,20 +337,9 @@ void Object_Class_Definition::build (GAME::Mga::FCO_in fco)
       (this->metaname_ != "Folder" && fco->attribute ("IsAbstract")->bool_value ()));
   }
 
-  // Locate all the base classes for this FCO.
-  Base_Class_Locator base_class_locator (this->base_classes_);
+  // Get the base classes for this object.
+  Base_Class_Locator base_class_locator (this);
   fco->accept (&base_class_locator);
-
-  // Gather all this model elements parents.
-  this->get_parents (fco, this->parents_);
-
-  // Get the parents of the base classes.
-  std::for_each (GAME::Mga::make_impl_iter (this->base_classes_.begin ()),
-                 GAME::Mga::make_impl_iter (this->base_classes_.end ()),
-                 boost::bind (&Object_Class_Definition::get_parents,
-                              this,
-                              _1,
-                              boost::ref (this->base_parents_)));
 
   if (fco->type () != OBJTYPE_REFERENCE)
   {
@@ -238,48 +353,6 @@ void Object_Class_Definition::build (GAME::Mga::FCO_in fco)
     std::for_each (GAME::Mga::make_impl_iter (iter),
                    GAME::Mga::make_impl_iter (iter.make_end ()),
                    boost::bind (&Class_Definition::build, this, _1));
-  }
-}
-
-//
-// get_parents
-//
-void Object_Class_Definition::
-get_parents (GAME::Mga::FCO_in item, std::set <GAME::Mga::Atom> & parents)
-{
-  Parent_Visitor parent_visitor (this->obj_, parents);
-
-  // Gather all this model elements parents.
-  std::vector <GAME::Mga::Connection> containment;
-  item->in_connections ("Containment", containment);
-
-  std::for_each (GAME::Mga::make_impl_iter (containment.begin ()),
-                 GAME::Mga::make_impl_iter (containment.end ()),
-                 boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &parent_visitor));
-
-  // Gather all this model elements folder parents.
-  std::vector <GAME::Mga::Connection> folder_containment;
-  item->in_connections ("FolderContainment", folder_containment);
-
-  std::for_each (GAME::Mga::make_impl_iter (folder_containment.begin ()),
-                 GAME::Mga::make_impl_iter (folder_containment.end ()),
-                 boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &parent_visitor));
-
-  if (item->type () != OBJTYPE_REFERENCE)
-  {
-    // There could be proxy elements in the metamodel. We therefore
-    // need to gather all of them and continue building the class
-    // definition as if they are this FCO object.
-    using GAME::Mga::Iterator;
-    using GAME::Mga::Reference;
-
-    Iterator <Reference> iter = item->referenced_by ();
-    std::for_each (GAME::Mga::make_impl_iter (iter),
-                   GAME::Mga::make_impl_iter (iter.make_end ()),
-                   boost::bind (&Object_Class_Definition::get_parents,
-                                this,
-                                _1,
-                                boost::ref (parents)));
   }
 }
 
@@ -340,17 +413,21 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
     << std::endl
     << include_t (root_name + "/Visitor.h");
 
-  // Write the include files for each of the used objects.
-  std::set <Atom> include_files;
-  this->get_includes (include_files);
+  // Write the include files for each of the used objects. The header file
+  // has the includes of all the base classes. The source file has the
+  // includes of all the other files that have been identified.
+  Unique_Object_Class_Definitions seen_includes;
+  std::for_each (this->base_classes_.begin (),
+                 this->base_classes_.end (),
+                 include_gen (ctx.hfile_, seen_includes));
 
-  std::for_each (GAME::Mga::make_impl_iter (include_files.begin ()),
-                 GAME::Mga::make_impl_iter (include_files.end ()),
-                 gen_include (ctx.sfile_));
+  seen_includes.clear ();
+  std::for_each (this->source_includes_.begin (),
+                 this->source_includes_.end (),
+                 include_gen (ctx.sfile_, seen_includes, true));
 
-  std::for_each (GAME::Mga::make_impl_iter (this->base_classes_.begin ()),
-                 GAME::Mga::make_impl_iter (this->base_classes_.end ()),
-                 gen_include (ctx.hfile_));
+  // Generate the includes for this object's parents.
+  parent_include_gen (ctx.sfile_, seen_includes)(this);
 
   if (this->in_root_folder_)
     ctx.hfile_ << include_t ("game/mga/RootFolder.h");
@@ -412,8 +489,8 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
 
   // Write the base classes for this derived class.
   typedef std::string (Atom_Impl::*GET_NAME_METHOD) (void) const;
-  std::for_each (GAME::Mga::make_impl_iter (this->base_classes_.begin ()),
-                 GAME::Mga::make_impl_iter (this->base_classes_.end ()),
+  std::for_each (this->base_classes_.begin (),
+                 this->base_classes_.end (),
                  gen_base_class (ctx.hfile_));
 
   // Determine the tag type for this extension class.
@@ -483,20 +560,8 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
     }
 
     // Write the factory method for each parent element.
-    std::for_each (GAME::Mga::make_impl_iter (this->parents_.begin ()),
-                   GAME::Mga::make_impl_iter (this->parents_.end ()),
-                   boost::bind (&Object_Class_Definition::generate_factory_method,
-                                this,
-                                boost::ref (ctx),
-                                _1));
-
-    // Write the factory method for each base class's parent element.
-    std::for_each (GAME::Mga::make_impl_iter (this->base_parents_.begin ()),
-                   GAME::Mga::make_impl_iter (this->base_parents_.end ()),
-                   boost::bind (&Object_Class_Definition::generate_factory_method,
-                                this,
-                                boost::ref (ctx),
-                                _1));
+    Factory_Method_Generator factory_gen (ctx.hfile_, ctx.sfile_);
+    factory_gen (this);
 
     ctx.hfile_
       << "///@}"
@@ -584,9 +649,9 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
       << "}";
   }
 
-  // Write the factory method for each parent element.
-  std::for_each (GAME::Mga::make_impl_iter (this->parents_.begin ()),
-                 GAME::Mga::make_impl_iter (this->parents_.end ()),
+  // Write the parent getter method for each parent object type.
+  std::for_each (this->parents_.begin (),
+                 this->parents_.end (),
                  boost::bind (&Object_Class_Definition::generate_parent_method,
                               this,
                               boost::ref (ctx),
@@ -623,34 +688,12 @@ void Object_Class_Definition::generate (const Generation_Context & ctx)
 }
 
 //
-// generate_factory_method
-//
-void Object_Class_Definition::
-generate_factory_method (const Generation_Context & ctx, GAME::Mga::Atom_in item)
-{
-  const std::string parent_type = item->meta ()->name ();
-  const std::string parent = item->name ();
-  const std::string method = parent_type == "Model" ? "create_object" : "create_root_object";
-
-  ctx.hfile_
-    << "static " << this->name_ << " _create (const " << parent << "_in parent);";
-
-  ctx.sfile_
-    << function_header_t ("_create (const " + parent + "_in)")
-    << this->name_ << " " << this->classname_ << "::_create (const " << parent << "_in parent)"
-    << "{"
-    << "return ::GAME::Mga::" << method
-    << " < " << this->name_ << " > (parent, " << this->name_ << "_Impl::metaname);"
-    << "}";
-}
-
-//
 // generate_parent_method
 //
 void Object_Class_Definition::
-generate_parent_method (const Generation_Context & ctx, GAME::Mga::Atom_in item)
+generate_parent_method (const Generation_Context & ctx, Object_Class_Definition * definition)
 {
-  const std::string parent = item->name ();
+  const std::string parent = definition->name ();
   const std::string parent_method = "parent_" + parent;
 
   ctx.hfile_
@@ -662,21 +705,4 @@ generate_parent_method (const Generation_Context & ctx, GAME::Mga::Atom_in item)
     << "{"
     << "return " << parent << "::_narrow (this->parent ());"
     << "}";
-}
-
-//
-// get_includes
-//
-void Object_Class_Definition::
-get_includes (std::set <GAME::Mga::Atom> & includes)
-{
-  typedef std::set <GAME::Mga::Atom> atom_set;
-
-  std::for_each (this->parents_.begin (),
-                 this->parents_.end (),
-                 boost::bind (&atom_set::insert, boost::ref (includes), _1));
-
-  std::for_each (this->base_parents_.begin (),
-                 this->base_parents_.end (),
-                 boost::bind (&atom_set::insert, boost::ref (includes), _1));
 }

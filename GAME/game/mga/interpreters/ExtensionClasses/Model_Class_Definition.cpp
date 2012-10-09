@@ -9,6 +9,7 @@
 
 #include "Functors.h"
 #include "Proxy_Visitor.h"
+#include "Object_Manager.h"
 
 #include "game/mga/Atom.h"
 #include "game/mga/Connection.h"
@@ -29,14 +30,8 @@ public:
   //
   // Containment_Visitor
   //
-  Containment_Visitor (GAME::Mga::FCO_in parent,
-                       std::set <GAME::Mga::Atom> & optional,
-                       std::set <GAME::Mga::Atom> & single,
-                       std::set <GAME::Mga::Atom> & multiple)
-    : parent_ (parent),
-      optional_ (optional),
-      single_ (single),
-      multiple_ (multiple)
+  Containment_Visitor (Model_Class_Definition * parent)
+    : model_ (parent)
   {
 
   }
@@ -46,7 +41,7 @@ public:
   //
   void visit_Atom (GAME::Mga::Atom_in item)
   {
-    if (this->parent_->is_equal_to (item))
+    if (this->is_false_self_containment (item))
       return;
 
     // Extract the concrete values for the cardinality.
@@ -65,21 +60,18 @@ public:
       max_cardinality = min_cardinality;
     }
 
-    const std::string path = item->path ("/");
-    const std::string metaname = item->meta ()->name ();
-
-    const std::string parent_path = this->parent_->path ("/");
-    const std::string parent_metaname = this->parent_->meta ()->name ();
-
     // Determine what containment collection the item belongs to. This
     // will detemrine what methods containment methods we need to generate
     // for the model element.
+    Object_Class_Definition * definition = OBJECT_MANAGER->get (item);
+    bool stop = this->model_->name () == "ComponentAssembly" && definition->name () == "Requirement";
+
     if (min_cardinality == 0 && max_cardinality == 1)
-      this->optional_.insert (item);
+      this->model_->insert_optional_definition (definition);
     else if (min_cardinality == 1 && max_cardinality == 1)
-      this->single_.insert (item);
+      this->model_->insert_optional_definition (definition);
     else
-      this->multiple_.insert (item);
+      this->model_->insert_multiple_definition (definition);
   }
 
   //
@@ -88,19 +80,22 @@ public:
   void visit_Connection (GAME::Mga::Connection_in item)
   {
     this->cardinality_ = item->attribute ("Cardinality")->string_value ();
+
+    // Visit the source object.
+    this->dst_ = item->dst ();
     item->src ()->accept (this);
   }
 
 private:
-  GAME::Mga::FCO_in parent_;
+  bool is_false_self_containment (GAME::Mga::Atom_in src)
+  {
+    GAME::Mga::FCO model = this->model_->get_object ();
+    return src->is_equal_to (model) && !this->dst_->is_equal_to (model);
+  }
 
-  std::set <GAME::Mga::Atom> & optional_;
-
-  std::set <GAME::Mga::Atom> & single_;
-
-  std::set <GAME::Mga::Atom> & multiple_;
-
+  Model_Class_Definition * model_;
   std::string cardinality_;
+  GAME::Mga::FCO dst_;
 };
 
 //
@@ -115,7 +110,7 @@ void Model_Class_Definition::build (GAME::Mga::FCO_in fco)
   std::vector <GAME::Mga::Connection> containment;
   fco->in_connections ("Containment", containment);
 
-  Containment_Visitor cv (this->obj_, this->optional_, this->single_, this->multiple_);
+  Containment_Visitor cv (this);
   std::for_each (GAME::Mga::make_impl_iter (containment.begin ()),
                  GAME::Mga::make_impl_iter (containment.end ()),
                  boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &cv));
@@ -140,22 +135,22 @@ generate_definition (const Generation_Context & ctx)
     << " */" << std::endl
     << "///@{" << std::endl;
 
-  std::for_each (GAME::Mga::make_impl_iter (this->single_.begin ()),
-                 GAME::Mga::make_impl_iter (this->single_.end ()),
+  std::for_each (this->single_.begin (),
+                 this->single_.end (),
                  boost::bind (&Model_Class_Definition::generate_single_definition,
                               this,
                               boost::ref (ctx),
                               _1));
 
-  std::for_each (GAME::Mga::make_impl_iter (this->optional_.begin ()),
-                 GAME::Mga::make_impl_iter (this->optional_.end ()),
+  std::for_each (this->optional_.begin (),
+                 this->optional_.end (),
                  boost::bind (&Model_Class_Definition::generate_optional_definition,
                               this,
                               boost::ref (ctx),
                               _1));
 
-  std::for_each (GAME::Mga::make_impl_iter (this->multiple_.begin ()),
-                 GAME::Mga::make_impl_iter (this->multiple_.end ()),
+  std::for_each (this->multiple_.begin (),
+                 this->multiple_.end (),
                  boost::bind (&Model_Class_Definition::generate_multiple_definition,
                               this,
                               boost::ref (ctx),
@@ -171,111 +166,164 @@ generate_definition (const Generation_Context & ctx)
 // generate_optional_definition
 //
 void Model_Class_Definition::
-generate_optional_definition (const Generation_Context & ctx,
-                              GAME::Mga::Atom_in item)
+generate_optional_definition (const Generation_Context & ctx, Object_Class_Definition * item)
 {
-  // Write the method for testing if the model has this element. Since
-  // it is an optional element, then there is chance this does not appear
-  // in the model. This is OK per the metamodel definition.
-  const std::string name = item->name ();
-  const std::string has_method_name = "has_" + name;
-  const std::string get_method_name = "get_" + name;
+  if (!item->is_abstract ())
+  {
+    // Write the method for testing if the model has this element. Since
+    // it is an optional element, then there is chance this does not appear
+    // in the model. This is OK per the metamodel definition.
+    const std::string name = item->name ();
+    const std::string has_method_name = "has_" + name;
+    const std::string get_method_name = "get_" + name;
 
-  ctx.hfile_
-    << std::endl
-    << "bool " << has_method_name << " (void) const;"
-    << name << " " << get_method_name << " (void) const;";
+    ctx.hfile_
+      << std::endl
+      << "bool " << has_method_name << " (void) const;"
+      << name << " " << get_method_name << " (void) const;";
 
-  ctx.sfile_
-    << function_header_t (has_method_name)
-    << "bool " << this->classname_ << "::" << has_method_name << " (void) const"
-    << "{"
-    << "return this->children <" << name << "> ().count () == 1;"
-    << "}"
-    << function_header_t (get_method_name)
-    << name << " " << this->classname_ << "::" << get_method_name << " (void) const"
-    << "{"
-    << "return this->children <" << name << "> ().item ();"
-    << "}";
+    ctx.sfile_
+      << function_header_t (has_method_name)
+      << "bool " << this->classname_ << "::" << has_method_name << " (void) const"
+      << "{"
+      << "return this->children <" << name << "> ().count () == 1;"
+      << "}"
+      << function_header_t (get_method_name)
+      << name << " " << this->classname_ << "::" << get_method_name << " (void) const"
+      << "{"
+      << "return this->children <" << name << "> ().item ();"
+      << "}";
+  }
+
+  if (!item->derived_classes ().empty ())
+  {
+    // Make sure we generate getter methods for each of the derived classes.
+    std::for_each (item->derived_classes ().begin (),
+                   item->derived_classes ().end (),
+                   boost::bind (&Model_Class_Definition::generate_optional_definition,
+                                this,
+                                boost::ref (ctx),
+                                _1));
+  }
 }
 
 //
 // generate_single_definition
 //
 void Model_Class_Definition::
-generate_single_definition (const Generation_Context & ctx,
-                            GAME::Mga::Atom_in item)
+generate_single_definition (const Generation_Context & ctx, Object_Class_Definition * item)
 {
-  const std::string name = item->name ();
-  const std::string get_method_name = "get_" + name;
+  if (!item->is_abstract ())
+  {
+    const std::string name = item->name ();
+    const std::string get_method_name = "get_" + name;
 
-  // Declare the function.
-  ctx.hfile_
-    << name << " " << get_method_name << " (void) const;"
-    << std::endl;
+    // Declare the function.
+    ctx.hfile_
+      << name << " " << get_method_name << " (void) const;"
+      << std::endl;
 
-  // Implement the function.
-  ctx.sfile_
-    << function_header_t (get_method_name)
-    << name << " " << this->classname_ << "::" << get_method_name << " (void) const"
-    << "{"
-    << "GAME::Mga::Iterator <" << name << "> iter = this->children <" << name << "> ();"
-    << "return !iter.is_done () ? *iter : 0;"
-    << "}";
+    // Implement the function.
+    ctx.sfile_
+      << function_header_t (get_method_name)
+      << name << " " << this->classname_ << "::" << get_method_name << " (void) const"
+      << "{"
+      << "GAME::Mga::Iterator <" << name << "> iter = this->children <" << name << "> ();"
+      << "return !iter.is_done () ? *iter : 0;"
+      << "}";
+  }
+
+  if (!item->derived_classes ().empty ())
+  {
+    // Make sure we generate getter methods for each of the derived classes.
+    std::for_each (item->derived_classes ().begin (),
+                   item->derived_classes ().end (),
+                   boost::bind (&Model_Class_Definition::generate_single_definition,
+                                this,
+                                boost::ref (ctx),
+                                _1));
+  }
 }
 
 //
 // generate_multiple_definition
 //
 void Model_Class_Definition::
-generate_multiple_definition (const Generation_Context & ctx,
-                              GAME::Mga::Atom_in item)
+generate_multiple_definition (const Generation_Context & ctx, Object_Class_Definition * item)
 {
-  const std::string name = item->name ();
-  const std::string get_method_name = "get_" + name + "s";
+  if (!item->is_abstract ())
+  {
+    const std::string name = item->name ();
+    const std::string get_method_name = "get_" + name + "s";
 
-  // Declare the function.
-  ctx.hfile_
-    << "size_t " << get_method_name << " (std::vector <" << name << "> & items) const;"
-    << "::GAME::Mga::Iterator <" << name << "> " << get_method_name << " (void) const;"
-    << std::endl;
+    // Declare the function.
+    ctx.hfile_
+      << "size_t " << get_method_name << " (std::vector <" << name << "> & items) const;"
+      << "::GAME::Mga::Iterator <" << name << "> " << get_method_name << " (void) const;"
+      << std::endl;
 
-  // Implement the function.
-  ctx.sfile_
-    << function_header_t (get_method_name)
-    << "size_t " << this->classname_ << "::"
-    << get_method_name << " (std::vector <" << name << "> & items) const"
-    << "{"
-    << "return this->children (items);"
-    << "}"
-    << function_header_t (get_method_name)
-    << "::GAME::Mga::Iterator <" << name << "> " << this->classname_ << "::"
-    << get_method_name << " (void) const"
-    << "{"
-    << "return this->children <" << name << "> ();"
-    << "}";
+    // Implement the function.
+    ctx.sfile_
+      << function_header_t (get_method_name)
+      << "size_t " << this->classname_ << "::"
+      << get_method_name << " (std::vector <" << name << "> & items) const"
+      << "{"
+      << "return this->children (items);"
+      << "}"
+      << function_header_t (get_method_name)
+      << "::GAME::Mga::Iterator <" << name << "> " << this->classname_ << "::"
+      << get_method_name << " (void) const"
+      << "{"
+      << "return this->children <" << name << "> ();"
+      << "}";
+  }
+
+  if (!item->derived_classes ().empty ())
+  {
+    // Make sure we generate getter methods for each of the derived classes.
+    std::for_each (item->derived_classes ().begin (),
+                   item->derived_classes ().end (),
+                   boost::bind (&Model_Class_Definition::generate_multiple_definition,
+                                this,
+                                boost::ref (ctx),
+                                _1));
+  }
 }
 
-//
-// get_includes
-//
-void Model_Class_Definition::get_includes (std::set <GAME::Mga::Atom> & includes)
+/**
+ * @struct insert_include
+ *
+ * Functor object that is responsible for intelligently adding the items
+ * to the include list.
+ */
+struct insert_include
 {
-  // Pass control to the base clas.
-  FCO_Class_Definition::get_includes (includes);
+public:
+  insert_include (std::set <Object_Class_Definition *> & includes)
+    : includes_ (includes)
+  {
 
-  // Get the includes for this definition.
-  typedef std::set <GAME::Mga::Atom> atom_set;
+  }
 
-  std::for_each (this->optional_.begin (),
-                 this->optional_.end (),
-                 boost::bind (&atom_set::insert, boost::ref (includes), _1));
+  void operator () (std::set <Object_Class_Definition *>::value_type item)
+  {
+    if (item->derived_classes ().empty ())
+    {
+      // Since this object does not have any derived classes, we need to
+      // go ahead and include this object in the include list.
+      this->includes_.insert (item);
+    }
+    else
+    {
+      // Since the object does have derived classes, we need to include all
+      // the objects derived types. We do not need to include the object itself
+      // since the subclasses will include this object.
+      std::for_each (item->derived_classes ().begin (),
+                     item->derived_classes ().end (),
+                     insert_include (this->includes_));
+    }
+  }
 
-  std::for_each (this->single_.begin (),
-                 this->single_.end (),
-                 boost::bind (&atom_set::insert, boost::ref (includes), _1));
-
-  std::for_each (this->multiple_.begin (),
-                 this->multiple_.end (),
-                 boost::bind (&atom_set::insert, boost::ref (includes), _1));
-}
+private:
+  std::set <Object_Class_Definition *> & includes_;
+};

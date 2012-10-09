@@ -3,6 +3,8 @@
 #include "StdAfx.h"
 #include "Visitor_Generator.h"
 #include "Functors.h"
+#include "Object_Class_Definition.h"
+#include "Object_Manager.h"
 
 #include "game/mga/Project.h"
 #include "game/mga/Utils.h"
@@ -34,20 +36,15 @@ struct visitor_method_generator_t
 
   }
 
-  void operator () (const Object & obj) const
+  void operator () (const Object_Manager::map_type::ENTRY & entry) const
   {
-    if (obj->meta ()->name () != "Folder")
-    {
-      // Make sure this object is not abstract. We are not allow to
-      // visit any object that is abstract. Only concrete elements can
-      // in a project can be visited by a visitor.
-      FCO fco = FCO::_narrow (obj);
+    // Make sure this object is not abstract. We are not allow to
+    // visit any object that is abstract. Only concrete elements can
+    // in a project can be visited by a visitor.
+    if (entry.item ()->is_abstract ())
+      return;
 
-      if (fco->attribute ("IsAbstract")->bool_value ())
-        return;
-    }
-
-    const std::string type = obj->name ();
+    const std::string type = entry.key ();
     const std::string in_type = type + "_in";
     const std::string method_name = "visit_" + type;
 
@@ -92,7 +89,7 @@ bool Visitor_Generator::
 generate (const std::string & location,
           const Project & proj,
           const std::string & pch_basename,
-          const std::set <Object> & items)
+          const Object_Manager * obj_mgr)
 {
   // Open the .mpc file for writing.
   const std::string project_name = proj.name ();
@@ -143,7 +140,7 @@ generate (const std::string & location,
     << include_t (pch_basename + ".h")
     << include_t ("Visitor.h");
 
-  this->generate_source_files (proj, items);
+  this->generate_source_files (proj, obj_mgr);
 
   // Close the file handles.
   this->hxx_file_.close ();
@@ -155,7 +152,7 @@ generate (const std::string & location,
 // generate_source_files
 //
 void Visitor_Generator::
-generate_source_files (const Project & proj, const std::set <Object> & items)
+generate_source_files (const Project & proj, const Object_Manager * obj_mgr)
 {
   Indentation::Implanter <Indentation::Cxx, char> header_indent (this->hxx_file_);
   Indentation::Implanter <Indentation::Cxx, char> source_indent (this->cxx_file_);
@@ -201,8 +198,8 @@ generate_source_files (const Project & proj, const std::set <Object> & items)
     << "{"
     << "}";
 
-  std::for_each (items.begin (),
-                 items.end (),
+  std::for_each (obj_mgr->objects ().begin (),
+                 obj_mgr->objects ().end (),
                  visitor_method_generator_t (this->hxx_file_, this->cxx_file_));
 
   // End the project namespace.

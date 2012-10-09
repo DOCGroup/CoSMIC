@@ -8,8 +8,8 @@
 #endif  // !defined __GAME_INLINE__
 
 #include "Functors.h"
+#include "Object_Manager.h"
 #include "Proxy_Visitor.h"
-#include "Connection_Endpoint_Visitor.h"
 
 #include "game/mga/Atom.h"
 #include "game/mga/Connection.h"
@@ -20,6 +20,59 @@
 #include "boost/bind.hpp"
 #include <algorithm>
 
+/**
+ * @class Containment_Visitor
+ */
+class Folder_Containment_Visitor : public Proxy_Visitor
+{
+public:
+  //
+  // Containment_Visitor
+  //
+  Folder_Containment_Visitor (Folder_Class_Definition * parent)
+    : parent_ (parent)
+  {
+
+  }
+
+  //
+  // visit_Atom
+  //
+  void visit_Atom (GAME::Mga::Atom_in src)
+  {
+    if (this->is_false_self_containment (src))
+      return;
+
+    // Determine what containment collection the item belongs to. This
+    // will detemrine what methods containment methods we need to generate
+    // for the model element.
+    Object_Class_Definition * definition = OBJECT_MANAGER->get (src);
+
+    this->parent_->insert_child (definition);
+    definition->insert_parent (this->parent_);
+  }
+
+  //
+  // visit_Connection
+  //
+  void visit_Connection (GAME::Mga::Connection_in item)
+  {
+    this->dst_ = item->dst ();
+    item->src ()->accept (this);
+  }
+
+private:
+  bool is_false_self_containment (GAME::Mga::Atom_in src)
+  {
+    return
+      src->is_equal_to (this->parent_->get_object ()) &&
+      !this->dst_->is_equal_to (this->parent_->get_object ());
+  }
+
+  Folder_Class_Definition * parent_;
+  std::string cardinality_;
+  GAME::Mga::FCO dst_;
+};
 //
 // build
 //
@@ -32,10 +85,10 @@ void Folder_Class_Definition::build (GAME::Mga::FCO_in fco)
   std::vector <GAME::Mga::Connection> containment;
   fco->in_connections ("FolderContainment", containment);
 
-  Source_Connection_Endpoint_Visitor fcv (this->obj_, this->children_);
+  Folder_Containment_Visitor cv (this);
   std::for_each (GAME::Mga::make_impl_iter (containment.begin ()),
                  GAME::Mga::make_impl_iter (containment.end ()),
-                 boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &fcv));
+                 boost::bind (&GAME::Mga::Connection::impl_type::accept, _1, &cv));
 }
 
 //
@@ -44,8 +97,8 @@ void Folder_Class_Definition::build (GAME::Mga::FCO_in fco)
 void Folder_Class_Definition::
 generate_definition (const Generation_Context & ctx)
 {
-  std::for_each (GAME::Mga::make_impl_iter (this->children_.begin ()),
-                 GAME::Mga::make_impl_iter (this->children_.end ()),
+  std::for_each (this->children_.begin (),
+                 this->children_.end (),
                  boost::bind (&Folder_Class_Definition::generate_folder_containment,
                               this,
                               boost::ref (ctx),
@@ -56,11 +109,11 @@ generate_definition (const Generation_Context & ctx)
 // generate_folder_containment
 //
 void Folder_Class_Definition::
-generate_folder_containment (const Generation_Context & ctx, GAME::Mga::Atom_in item)
+generate_folder_containment (const Generation_Context & ctx, Object_Class_Definition * item)
 {
   const std::string name = item->name ();
   const std::string method_name = "get_" + name + "s";
-  const std::string accessor = item->meta ()->name () == "Folder" ? "folders" : "children";
+  const std::string accessor = item->metaname () == "Folder" ? "folders" : "children";
 
   // Declare the function.
   ctx.hfile_
@@ -75,21 +128,4 @@ generate_folder_containment (const Generation_Context & ctx, GAME::Mga::Atom_in 
     << "{"
     << "return this->" << accessor << " (items);"
     << "}";
-}
-
-
-//
-// get_includes
-//
-void Folder_Class_Definition::get_includes (std::set <GAME::Mga::Atom> & includes)
-{
-  // Pass control to the base clas.
-  Object_Class_Definition::get_includes (includes);
-
-  // Get the includes for this definition.
-  typedef std::set <GAME::Mga::Atom> atom_set;
-
-  std::for_each (this->children_.begin (),
-                 this->children_.end (),
-                 boost::bind (&atom_set::insert, boost::ref (includes), _1));
 }

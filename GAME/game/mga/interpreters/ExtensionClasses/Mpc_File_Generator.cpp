@@ -2,6 +2,8 @@
 
 #include "StdAfx.h"
 #include "Mpc_File_Generator.h"
+#include "Object_Manager.h"
+#include "Object_Class_Definition.h"
 
 #include "game/mga/Object.h"
 #include "game/mga/Project.h"
@@ -27,9 +29,11 @@ struct include_source_file
 
   }
 
-  void operator () (const Object & obj) const
+  void operator () (const Object_Manager::map_type::ENTRY & entry) const
   {
-    this->mpc_file_ << "    " << obj->path ("/", false) << ".cpp" << std::endl;
+    this->mpc_file_
+      << "    "
+      << entry.item ()->compute_path ("/", false) << ".cpp" << std::endl;
   }
 
 private:
@@ -60,7 +64,7 @@ bool Mpc_File_Generator::
 generate (const std::string & location,
           const Project & proj,
           const std::string & pch_basename,
-          const std::set <Object> & items)
+          const Object_Manager * obj_mgr)
 {
   // Open the .mpc file for writing.
   const std::string name = proj.name ();
@@ -100,8 +104,8 @@ generate (const std::string & location,
     << "    " << proj.root_folder ()->name () << "/Visitor.cpp" << std::endl;
 
   // Write the extension class source files.
-  std::for_each (items.begin (),
-                 items.end (),
+  std::for_each (obj_mgr->objects ().begin (),
+                 obj_mgr->objects ().end (),
                  include_source_file (mpc_file));
 
   mpc_file

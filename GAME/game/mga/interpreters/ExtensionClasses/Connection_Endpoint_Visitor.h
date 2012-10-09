@@ -19,6 +19,9 @@
 #include "game/mga/Atom.h"
 #include "game/mga/Connection.h"
 
+// Forward decl.
+class Object_Class_Definition;
+
 /**
  * @class Source_Connection_Endpoint_Visitor
  *
@@ -29,8 +32,9 @@ class Source_Connection_Endpoint_Visitor : public Proxy_Visitor
 {
 public:
   /// Default constructor.
-  Source_Connection_Endpoint_Visitor (GAME::Mga::FCO_in dst,
-                                      std::set <GAME::Mga::Atom> & items);
+  Source_Connection_Endpoint_Visitor (
+    GAME::Mga::FCO_in dst,
+    std::set <Object_Class_Definition *> & items);
 
   /// Destructor.
   virtual ~Source_Connection_Endpoint_Visitor (void);
@@ -40,7 +44,7 @@ public:
 
 private:
   GAME::Mga::FCO dst_;
-  std::set <GAME::Mga::Atom> & items_;
+  std::set <Object_Class_Definition *> & items_;
 };
 
 /**
@@ -53,7 +57,9 @@ class Destination_Connection_Endpoint_Visitor : public Proxy_Visitor
 {
 public:
   /// Default constructor.
-  Destination_Connection_Endpoint_Visitor (GAME::Mga::FCO_in src, std::set <GAME::Mga::Atom> & items);
+  Destination_Connection_Endpoint_Visitor (
+    GAME::Mga::FCO_in src,
+    std::set <Object_Class_Definition *> & items);
 
   /// Destructor.
   virtual ~Destination_Connection_Endpoint_Visitor (void);
@@ -63,7 +69,7 @@ public:
 
 private:
   GAME::Mga::FCO src_;
-  std::set <GAME::Mga::Atom> & items_;
+  std::set <Object_Class_Definition *> & items_;
 };
 
 #if defined (__GAME_INLINE__)
