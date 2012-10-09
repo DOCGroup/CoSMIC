@@ -67,17 +67,25 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TopLevelPackages parent_TopLevelPackages (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
+
+    bool has_PackageConfigurationReference (void) const;
     PackageConfigurationReference get_PackageConfigurationReference (void) const;
-
-
-    bool has_TopLevelPackage (void) const;
-    TopLevelPackage get_TopLevelPackage (void) const;
 
     bool has_package (void) const;
     package get_package (void) const;
+
+    bool has_TopLevelPackage (void) const;
+    TopLevelPackage get_TopLevelPackage (void) const;
     ///@}
   };
 }

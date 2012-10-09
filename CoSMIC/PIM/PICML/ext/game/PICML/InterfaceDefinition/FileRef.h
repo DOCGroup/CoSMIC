@@ -51,9 +51,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static FileRef _create (const StubProject_in parent);
     static FileRef _create (const ServantProject_in parent);
     static FileRef _create (const File_in parent);
+    static FileRef _create (const StubProject_in parent);
     ///@}
 
     // Default constructor.
@@ -69,11 +69,21 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ServantProject parent_ServantProject (void);
+    File parent_File (void);
+    StubProject parent_StubProject (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool File_is_nil (void) const;
     File get_File (void) const;
+    void set_File (File_in item);
     ///@}
   };
 }

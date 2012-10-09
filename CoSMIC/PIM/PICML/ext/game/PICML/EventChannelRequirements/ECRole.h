@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ECRequirements parent_ECRequirements (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

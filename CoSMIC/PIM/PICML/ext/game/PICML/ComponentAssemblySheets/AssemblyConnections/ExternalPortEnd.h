@@ -54,6 +54,12 @@ namespace PICML
     virtual ~ExternalPortEnd_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{

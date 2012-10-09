@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/Common/RequirementSatisfier.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the SharedResource model element.
    */
   class PICML_Export SharedResource_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual RequirementSatisfier_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -65,6 +67,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Domain parent_Domain (void);
+    ///@}
 
     /**
      * @name Destination Connection Point Methods

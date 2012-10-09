@@ -8,9 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
-#include "PICML/InheritableTypes/Supports.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,6 +51,14 @@ namespace PICML
   }
 
   //
+  // parent_SupportsInterfaces
+  //
+  SupportsInterfaces Supports_Impl::parent_SupportsInterfaces (void)
+  {
+    return SupportsInterfaces::_narrow (this->parent ());
+  }
+
+  //
   // Object_is_nil
   //
   bool Supports_Impl::Object_is_nil (void) const
@@ -54,27 +67,19 @@ namespace PICML
   }
 
   //
+  // set_Object
+  //
+  void Supports_Impl::set_Object (Object_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_Object
   //
   Object Supports_Impl::get_Object (void) const
   {
     return Object::_narrow (this->refers_to ());
-  }
-
-  //
-  // Supports_is_nil
-  //
-  bool Supports_Impl::Supports_is_nil (void) const
-  {
-    return !this->refers_to ().is_nil ();
-  }
-
-  //
-  // get_Supports
-  //
-  Supports Supports_Impl::get_Supports (void) const
-  {
-    return Supports::_narrow (this->refers_to ());
   }
 }
 

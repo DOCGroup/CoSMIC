@@ -53,6 +53,14 @@ namespace PICML
   }
 
   //
+  // set_OutEventPort
+  //
+  void OutEventPortInstance_Impl::set_OutEventPort (OutEventPort_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_OutEventPort
   //
   OutEventPort OutEventPortInstance_Impl::get_OutEventPort (void) const

@@ -18,6 +18,7 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/Common/ComplexType.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -37,7 +38,8 @@ namespace PICML
    */
   class PICML_Export Collection_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual NoInheritable_Impl
+    public virtual NoInheritable_Impl,
+    public virtual ComplexType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -55,6 +57,8 @@ namespace PICML
     ///@{
     static Collection _create (const ConnectorObject_in parent);
     static Collection _create (const HasOperations_in parent);
+    static Collection _create (const File_in parent);
+    static Collection _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +72,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ConnectorObject parent_ConnectorObject (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -87,6 +98,7 @@ namespace PICML
     ///@{
     bool MemberType_is_nil (void) const;
     MemberType get_MemberType (void) const;
+    void set_MemberType (MemberType_in item);
     ///@}
   };
 }

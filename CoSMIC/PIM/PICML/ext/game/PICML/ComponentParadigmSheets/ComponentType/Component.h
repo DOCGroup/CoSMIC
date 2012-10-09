@@ -18,6 +18,9 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/ComponentParadigmSheets/ComponentType/Manageable.h"
+#include "PICML/NamedTypes/NamedType.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -37,7 +40,10 @@ namespace PICML
    */
   class PICML_Export Component_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual Manageable_Impl
+    public virtual Manageable_Impl,
+    public virtual NamedType_Impl,
+    public virtual SupportsInterfaces_Impl,
+    public virtual TopLevelBehavior_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -53,6 +59,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static Component _create (const File_in parent);
+    static Component _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -66,6 +74,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -92,14 +106,29 @@ namespace PICML
 
     bool has_ComponentInherits (void) const;
     ComponentInherits get_ComponentInherits (void) const;
-    size_t get_Ports (std::vector <Port> & items) const;
-    ::GAME::Mga::Iterator <Port> get_Ports (void) const;
-
-    size_t get_ExtendedPortBases (std::vector <ExtendedPortBase> & items) const;
-    ::GAME::Mga::Iterator <ExtendedPortBase> get_ExtendedPortBases (void) const;
-
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
     ::GAME::Mga::Iterator <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
+
+    size_t get_Attributes (std::vector <Attribute> & items) const;
+    ::GAME::Mga::Iterator <Attribute> get_Attributes (void) const;
+
+    size_t get_MirrorPorts (std::vector <MirrorPort> & items) const;
+    ::GAME::Mga::Iterator <MirrorPort> get_MirrorPorts (void) const;
+
+    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
+    ::GAME::Mga::Iterator <ExtendedPort> get_ExtendedPorts (void) const;
+
+    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
+    ::GAME::Mga::Iterator <RequiredRequestPort> get_RequiredRequestPorts (void) const;
+
+    size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
+    ::GAME::Mga::Iterator <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
+
+    size_t get_InEventPorts (std::vector <InEventPort> & items) const;
+    ::GAME::Mga::Iterator <InEventPort> get_InEventPorts (void) const;
+
+    size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
+    ::GAME::Mga::Iterator <OutEventPort> get_OutEventPorts (void) const;
 
     ///@}
   };

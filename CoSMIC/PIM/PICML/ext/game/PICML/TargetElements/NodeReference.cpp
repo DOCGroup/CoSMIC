@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/PropertyMapping.h"
 #include "PICML/TargetElements/Node.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -47,6 +47,14 @@ namespace PICML
   }
 
   //
+  // parent_DeploymentPlan
+  //
+  DeploymentPlan NodeReference_Impl::parent_DeploymentPlan (void)
+  {
+    return DeploymentPlan::_narrow (this->parent ());
+  }
+
+  //
   // src_PropertyMapping
   //
   size_t NodeReference_Impl::src_PropertyMapping (std::vector <PropertyMapping> & items) const
@@ -68,6 +76,14 @@ namespace PICML
   bool NodeReference_Impl::Node_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Node
+  //
+  void NodeReference_Impl::set_Node (Node_in item)
+  {
+    this->refers_to (item);
   }
 
   //

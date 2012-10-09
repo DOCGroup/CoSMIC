@@ -67,32 +67,42 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentPackages parent_ComponentPackages (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
+
+    bool has_ComponentPackage (void) const;
+    ComponentPackage get_ComponentPackage (void) const;
 
     bool has_ComponentRef (void) const;
     ComponentRef get_ComponentRef (void) const;
 
     bool has_PackageInterface (void) const;
     PackageInterface get_PackageInterface (void) const;
-
-    bool has_ComponentPackage (void) const;
-    ComponentPackage get_ComponentPackage (void) const;
-    size_t get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const;
-    ::GAME::Mga::Iterator <ComponentImplementationReference> get_ComponentImplementationReferences (void) const;
-
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
-
-    size_t get_Implementations (std::vector <Implementation> & items) const;
-    ::GAME::Mga::Iterator <Implementation> get_Implementations (void) const;
-
     size_t get_PackageConfigPropertys (std::vector <PackageConfigProperty> & items) const;
     ::GAME::Mga::Iterator <PackageConfigProperty> get_PackageConfigPropertys (void) const;
 
     size_t get_PackageInfoPropertys (std::vector <PackageInfoProperty> & items) const;
     ::GAME::Mga::Iterator <PackageInfoProperty> get_PackageInfoPropertys (void) const;
+
+    size_t get_Implementations (std::vector <Implementation> & items) const;
+    ::GAME::Mga::Iterator <Implementation> get_Implementations (void) const;
+
+    size_t get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const;
+    ::GAME::Mga::Iterator <ComponentImplementationReference> get_ComponentImplementationReferences (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
 
     ///@}
   };

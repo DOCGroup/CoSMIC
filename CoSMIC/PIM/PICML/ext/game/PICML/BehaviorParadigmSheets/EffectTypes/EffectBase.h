@@ -54,6 +54,12 @@ namespace PICML
     virtual ~EffectBase_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

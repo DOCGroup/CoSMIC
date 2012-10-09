@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/SrcEdge.h"
 #include "PICML/PathDiagram/EdgeProperty.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -44,6 +44,14 @@ namespace PICML
       this_visitor->visit_Edge (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_Path
+  //
+  Path Edge_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
   }
 
   //

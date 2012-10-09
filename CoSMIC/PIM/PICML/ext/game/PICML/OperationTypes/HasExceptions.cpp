@@ -9,7 +9,6 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/OperationTypes/ExceptionRef.h"
-#include "PICML/OperationTypes/OperationBase.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML

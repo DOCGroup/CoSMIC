@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static DstEdge _create (const ConnectedComponent_in parent);
     static DstEdge _create (const Path_in parent);
+    static DstEdge _create (const ConnectedComponent_in parent);
     ///@}
 
     // Default constructor.
@@ -66,6 +66,14 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Path parent_Path (void);
+    ConnectedComponent parent_ConnectedComponent (void);
+    ///@}
     GraphVertex src_GraphVertex (void) const;
     Edge dst_Edge (void) const;
   };

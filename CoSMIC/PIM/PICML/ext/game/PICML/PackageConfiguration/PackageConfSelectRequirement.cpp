@@ -8,9 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Requirement.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
+#include "PICML/Common/Requirement.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_PackageConfSelectRequirement (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_PackageConfigurationContainer
+  //
+  PackageConfigurationContainer PackageConfSelectRequirement_Impl::parent_PackageConfigurationContainer (void)
+  {
+    return PackageConfigurationContainer::_narrow (this->parent ());
   }
 
   //

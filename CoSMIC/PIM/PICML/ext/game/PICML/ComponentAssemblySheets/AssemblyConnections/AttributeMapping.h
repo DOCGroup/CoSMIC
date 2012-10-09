@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
@@ -74,11 +81,11 @@ namespace PICML
     /// Get the src AttributeDelegate connection.
     size_t src_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
 
-    /// Get the src AttributeMappingValue connection.
-    size_t src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
-
     /// Get the src AttributeMappingDelegate connection.
     size_t src_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
+
+    /// Get the src AttributeMappingValue connection.
+    size_t src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
     ///@}
 
     /**
@@ -96,6 +103,7 @@ namespace PICML
     ///@{
     bool AttributeInstance_is_nil (void) const;
     AttributeInstance get_AttributeInstance (void) const;
+    void set_AttributeInstance (AttributeInstance_in item);
     ///@}
   };
 }

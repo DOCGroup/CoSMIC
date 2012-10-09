@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBuild/Workspaces.h"
 #include "PICML/ComponentBuild/ComponentBuild.h"
 #include "PICML/ComponentBuild/Project.h"
-#include "PICML/ComponentBuild/Workspaces.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,19 +46,11 @@ namespace PICML
   }
 
   //
-  // get_Projects
+  // parent_ComponentBuild
   //
-  size_t MPC_Impl::get_Projects (std::vector <Project> & items) const
+  ComponentBuild MPC_Impl::parent_ComponentBuild (void)
   {
-    return this->children (items);
-  }
-
-  //
-  // get_Projects
-  //
-  ::GAME::Mga::Iterator <Project> MPC_Impl::get_Projects (void) const
-  {
-    return this->children <Project> ();
+    return ComponentBuild::_narrow (this->parent ());
   }
 
   //
@@ -75,6 +67,22 @@ namespace PICML
   ::GAME::Mga::Iterator <Workspaces> MPC_Impl::get_Workspacess (void) const
   {
     return this->children <Workspaces> ();
+  }
+
+  //
+  // get_Projects
+  //
+  size_t MPC_Impl::get_Projects (std::vector <Project> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Projects
+  //
+  ::GAME::Mga::Iterator <Project> MPC_Impl::get_Projects (void) const
+  {
+    return this->children <Project> ();
   }
 }
 

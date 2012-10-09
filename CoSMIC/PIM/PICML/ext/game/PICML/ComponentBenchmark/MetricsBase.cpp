@@ -8,11 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/DataAnalysisBase.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/Jitter.h"
+#include "PICML/ComponentBenchmark/Maximum.h"
+#include "PICML/ComponentBenchmark/Minimum.h"
+#include "PICML/ComponentBenchmark/Average.h"
 
 namespace PICML
 {
@@ -22,19 +26,19 @@ namespace PICML
   const std::string MetricsBase_Impl::metaname ("MetricsBase");
 
   //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis MetricsBase_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
+  }
+
+  //
   // src_WorkloadCharacteristics
   //
   size_t MetricsBase_Impl::src_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
   {
     return this->in_connections <WorkloadCharacteristics> (items);
-  }
-
-  //
-  // dst_MetricConnection
-  //
-  size_t MetricsBase_Impl::dst_MetricConnection (std::vector <MetricConnection> & items) const
-  {
-    return this->in_connections <MetricConnection> (items);
   }
 
   //
@@ -46,19 +50,75 @@ namespace PICML
   }
 
   //
-  // get_DataAnalysisBases
+  // dst_MetricConnection
   //
-  size_t MetricsBase_Impl::get_DataAnalysisBases (std::vector <DataAnalysisBase> & items) const
+  size_t MetricsBase_Impl::dst_MetricConnection (std::vector <MetricConnection> & items) const
+  {
+    return this->in_connections <MetricConnection> (items);
+  }
+
+  //
+  // get_Jitters
+  //
+  size_t MetricsBase_Impl::get_Jitters (std::vector <Jitter> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_DataAnalysisBases
+  // get_Jitters
   //
-  ::GAME::Mga::Iterator <DataAnalysisBase> MetricsBase_Impl::get_DataAnalysisBases (void) const
+  ::GAME::Mga::Iterator <Jitter> MetricsBase_Impl::get_Jitters (void) const
   {
-    return this->children <DataAnalysisBase> ();
+    return this->children <Jitter> ();
+  }
+
+  //
+  // get_Maximums
+  //
+  size_t MetricsBase_Impl::get_Maximums (std::vector <Maximum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Maximums
+  //
+  ::GAME::Mga::Iterator <Maximum> MetricsBase_Impl::get_Maximums (void) const
+  {
+    return this->children <Maximum> ();
+  }
+
+  //
+  // get_Minimums
+  //
+  size_t MetricsBase_Impl::get_Minimums (std::vector <Minimum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Minimums
+  //
+  ::GAME::Mga::Iterator <Minimum> MetricsBase_Impl::get_Minimums (void) const
+  {
+    return this->children <Minimum> ();
+  }
+
+  //
+  // get_Averages
+  //
+  size_t MetricsBase_Impl::get_Averages (std::vector <Average> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Averages
+  //
+  ::GAME::Mga::Iterator <Average> MetricsBase_Impl::get_Averages (void) const
+  {
+    return this->children <Average> ();
   }
 }
 

@@ -8,8 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/Inherits.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/InheritableTypes/Inherits.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 
 namespace PICML
 {
@@ -17,22 +20,6 @@ namespace PICML
   // metaname
   //
   const std::string Inheritable_Impl::metaname ("Inheritable");
-
-  //
-  // get_Inheritss
-  //
-  size_t Inheritable_Impl::get_Inheritss (std::vector <Inherits> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Inheritss
-  //
-  ::GAME::Mga::Iterator <Inherits> Inheritable_Impl::get_Inheritss (void) const
-  {
-    return this->children <Inherits> ();
-  }
 
   //
   // get_ReadonlyAttributes
@@ -48,6 +35,38 @@ namespace PICML
   ::GAME::Mga::Iterator <ReadonlyAttribute> Inheritable_Impl::get_ReadonlyAttributes (void) const
   {
     return this->children <ReadonlyAttribute> ();
+  }
+
+  //
+  // get_Attributes
+  //
+  size_t Inheritable_Impl::get_Attributes (std::vector <Attribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Attributes
+  //
+  ::GAME::Mga::Iterator <Attribute> Inheritable_Impl::get_Attributes (void) const
+  {
+    return this->children <Attribute> ();
+  }
+
+  //
+  // get_Inheritss
+  //
+  size_t Inheritable_Impl::get_Inheritss (std::vector <Inherits> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Inheritss
+  //
+  ::GAME::Mga::Iterator <Inherits> Inheritable_Impl::get_Inheritss (void) const
+  {
+    return this->children <Inherits> ();
   }
 }
 

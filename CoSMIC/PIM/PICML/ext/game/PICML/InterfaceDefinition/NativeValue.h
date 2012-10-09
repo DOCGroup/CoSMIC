@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static NativeValue _create (const Package_in parent);
     static NativeValue _create (const File_in parent);
+    static NativeValue _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -66,6 +66,14 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    File parent_File (void);
+    Package parent_Package (void);
+    ///@}
   };
 }
 

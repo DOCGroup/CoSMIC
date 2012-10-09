@@ -9,7 +9,6 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/MetricsBase.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,14 +25,6 @@ namespace PICML
   // _create (const BenchmarkAnalysis_in)
   //
   Latency Latency_Impl::_create (const BenchmarkAnalysis_in parent)
-  {
-    return ::GAME::Mga::create_object < Latency > (parent, Latency_Impl::metaname);
-  }
-
-  //
-  // _create (const MetricsBase_in)
-  //
-  Latency Latency_Impl::_create (const MetricsBase_in parent)
   {
     return ::GAME::Mga::create_object < Latency > (parent, Latency_Impl::metaname);
   }

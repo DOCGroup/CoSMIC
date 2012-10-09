@@ -70,6 +70,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ConnectorInstance parent_ConnectorInstance (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
@@ -91,16 +98,9 @@ namespace PICML
      * @name Refers To Methods
      */
     ///@{
-    bool AttributeInstance_is_nil (void) const;
-    AttributeInstance get_AttributeInstance (void) const;
-    ///@}
-
-    /**
-     * @name Refers To Methods
-     */
-    ///@{
     bool ReadonlyAttribute_is_nil (void) const;
     ReadonlyAttribute get_ReadonlyAttribute (void) const;
+    void set_ReadonlyAttribute (ReadonlyAttribute_in item);
     ///@}
   };
 }

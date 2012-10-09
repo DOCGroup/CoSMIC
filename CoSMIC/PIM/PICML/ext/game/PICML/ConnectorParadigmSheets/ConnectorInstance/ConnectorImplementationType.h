@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ConnectorInstance parent_ConnectorInstance (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool ConnectorImplementation_is_nil (void) const;
     ConnectorImplementation get_ConnectorImplementation (void) const;
+    void set_ConnectorImplementation (ConnectorImplementation_in item);
     ///@}
   };
 }

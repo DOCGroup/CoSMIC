@@ -54,6 +54,13 @@ namespace PICML
     virtual ~ActionBase_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    BehaviorModel parent_BehaviorModel (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -79,22 +86,25 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst Transition connection.
-    size_t dst_Transition (std::vector <Transition> & items) const;
+    /// Get the dst LoopTransition connection.
+    size_t dst_LoopTransition (std::vector <LoopTransition> & items) const;
 
     /// Get the dst BranchTransition connection.
     size_t dst_BranchTransition (std::vector <BranchTransition> & items) const;
 
-    /// Get the dst LoopTransition connection.
-    size_t dst_LoopTransition (std::vector <LoopTransition> & items) const;
+    /// Get the dst Transition connection.
+    size_t dst_Transition (std::vector <Transition> & items) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
 
     ///@}
   };

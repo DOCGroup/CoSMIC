@@ -9,8 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
+#include "PICML/ImplementationCommon/ComponentServantArtifact.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_ArtifactDependsOn (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ArtifactContainer
+  //
+  ArtifactContainer ArtifactDependsOn_Impl::parent_ArtifactContainer (void)
+  {
+    return ArtifactContainer::_narrow (this->parent ());
   }
 
   //

@@ -10,6 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/EnumValue.h"
 #include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,6 +28,22 @@ namespace PICML
   // _create (const HasOperations_in)
   //
   Enum Enum_Impl::_create (const HasOperations_in parent)
+  {
+    return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
+  }
+
+  //
+  // _create (const File_in)
+  //
+  Enum Enum_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  Enum Enum_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < Enum > (parent, Enum_Impl::metaname);
   }

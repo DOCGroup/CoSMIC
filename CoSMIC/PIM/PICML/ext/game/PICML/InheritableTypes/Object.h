@@ -18,6 +18,8 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
+#include "PICML/IdTags/Prefixable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -37,7 +39,9 @@ namespace PICML
    */
   class PICML_Export Object_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual HasOperations_Impl
+    public virtual HasOperations_Impl,
+    public virtual Provideable_Impl,
+    public virtual Prefixable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -53,7 +57,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Object _create (const HasOperations_in parent);
+    static Object _create (const File_in parent);
+    static Object _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -67,6 +72,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods

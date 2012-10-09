@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static WorkerPackage _create (const WorkerPackage_in parent);
     static WorkerPackage _create (const WorkerFile_in parent);
-    static WorkerPackage _create (const WorkerPackageBase_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +68,23 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    WorkerPackage parent_WorkerPackage (void);
+    WorkerFile parent_WorkerFile (void);
+    ///@}
+
+    /**
+     * @name Containment Methods
+     */
+    ///@{
+    size_t get_WorkerPackages (std::vector <WorkerPackage> & items) const;
+    ::GAME::Mga::Iterator <WorkerPackage> get_WorkerPackages (void) const;
+
+    ///@}
   };
 }
 

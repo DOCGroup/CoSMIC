@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
-#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,6 +46,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentImplementationContainer
+  //
+  ComponentImplementationContainer PathReference_Impl::parent_ComponentImplementationContainer (void)
+  {
+    return ComponentImplementationContainer::_narrow (this->parent ());
+  }
+
+  //
   // dst_CriticalPath
   //
   size_t PathReference_Impl::dst_CriticalPath (std::vector <CriticalPath> & items) const
@@ -59,6 +67,14 @@ namespace PICML
   bool PathReference_Impl::Path_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Path
+  //
+  void PathReference_Impl::set_Path (Path_in item)
+  {
+    this->refers_to (item);
   }
 
   //

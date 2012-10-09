@@ -9,6 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -41,6 +42,14 @@ namespace PICML
       this_visitor->visit_PeriodicEvent (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_TopLevelBehavior
+  //
+  TopLevelBehavior PeriodicEvent_Impl::parent_TopLevelBehavior (void)
+  {
+    return TopLevelBehavior::_narrow (this->parent ());
   }
 }
 

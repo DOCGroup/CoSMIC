@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/OperationRef.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/Task.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_WorkLoadOperationConnection (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis WorkLoadOperationConnection_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
   }
 
   //

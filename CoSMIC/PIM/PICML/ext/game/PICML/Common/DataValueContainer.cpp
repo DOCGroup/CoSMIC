@@ -10,6 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/Common/ComplexTypeReference.h"
 #include "PICML/Common/DataValueBase.h"
+#include "PICML/Common/DataValueContainer.h"
+#include "PICML/Common/DataValue.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -32,6 +34,14 @@ namespace PICML
   }
 
   //
+  // _create (const DataValueContainer_in)
+  //
+  DataValueContainer DataValueContainer_Impl::_create (const DataValueContainer_in parent)
+  {
+    return ::GAME::Mga::create_object < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
+  }
+
+  //
   // accept
   //
   void DataValueContainer_Impl::accept (::GAME::Mga::Visitor * v)
@@ -46,6 +56,14 @@ namespace PICML
   }
 
   //
+  // has_ComplexTypeReference
+  //
+  bool DataValueContainer_Impl::has_ComplexTypeReference (void) const
+  {
+    return this->children <ComplexTypeReference> ().count () == 1;
+  }
+
+  //
   // get_ComplexTypeReference
   //
   ComplexTypeReference DataValueContainer_Impl::get_ComplexTypeReference (void) const
@@ -54,19 +72,35 @@ namespace PICML
   }
 
   //
-  // get_DataValueBases
+  // get_DataValueContainers
   //
-  size_t DataValueContainer_Impl::get_DataValueBases (std::vector <DataValueBase> & items) const
+  size_t DataValueContainer_Impl::get_DataValueContainers (std::vector <DataValueContainer> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_DataValueBases
+  // get_DataValueContainers
   //
-  ::GAME::Mga::Iterator <DataValueBase> DataValueContainer_Impl::get_DataValueBases (void) const
+  ::GAME::Mga::Iterator <DataValueContainer> DataValueContainer_Impl::get_DataValueContainers (void) const
   {
-    return this->children <DataValueBase> ();
+    return this->children <DataValueContainer> ();
+  }
+
+  //
+  // get_DataValues
+  //
+  size_t DataValueContainer_Impl::get_DataValues (std::vector <DataValue> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_DataValues
+  //
+  ::GAME::Mga::Iterator <DataValue> DataValueContainer_Impl::get_DataValues (void) const
+  {
+    return this->children <DataValue> ();
   }
 }
 

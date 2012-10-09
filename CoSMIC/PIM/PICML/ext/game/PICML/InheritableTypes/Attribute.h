@@ -53,11 +53,10 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Attribute _create (const ConnectorObject_in parent);
+    static Attribute _create (const Inheritable_in parent);
     static Attribute _create (const Component_in parent);
     static Attribute _create (const PortType_in parent);
-    static Attribute _create (const Inheritable_in parent);
-    static Attribute _create (const ReadonlyAttribute_in parent);
+    static Attribute _create (const ConnectorObject_in parent);
     ///@}
 
     // Default constructor.
@@ -71,6 +70,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Containment Methods

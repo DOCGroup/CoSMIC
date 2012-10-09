@@ -8,16 +8,22 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Requirement.h"
 #include "PICML/Common/Property.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
+#include "PICML/ImplementationCommon/ComponentServantArtifact.h"
+#include "PICML/Common/Requirement.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "PICML/EventChannelRequirements/ECRequirements.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactDependency.h"
+#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -53,35 +59,43 @@ namespace PICML
   }
 
   //
-  // get_Requirements
+  // parent_ImplementationArtifacts
   //
-  size_t ArtifactContainer_Impl::get_Requirements (std::vector <Requirement> & items) const
+  ImplementationArtifacts ArtifactContainer_Impl::parent_ImplementationArtifacts (void)
+  {
+    return ImplementationArtifacts::_narrow (this->parent ());
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t ArtifactContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Requirements
+  // get_ComplexPropertys
   //
-  ::GAME::Mga::Iterator <Requirement> ArtifactContainer_Impl::get_Requirements (void) const
+  ::GAME::Mga::Iterator <ComplexProperty> ArtifactContainer_Impl::get_ComplexPropertys (void) const
   {
-    return this->children <Requirement> ();
+    return this->children <ComplexProperty> ();
   }
 
   //
-  // get_Propertys
+  // get_SimplePropertys
   //
-  size_t ArtifactContainer_Impl::get_Propertys (std::vector <Property> & items) const
+  size_t ArtifactContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Propertys
+  // get_SimplePropertys
   //
-  ::GAME::Mga::Iterator <Property> ArtifactContainer_Impl::get_Propertys (void) const
+  ::GAME::Mga::Iterator <SimpleProperty> ArtifactContainer_Impl::get_SimplePropertys (void) const
   {
-    return this->children <Property> ();
+    return this->children <SimpleProperty> ();
   }
 
   //
@@ -101,19 +115,83 @@ namespace PICML
   }
 
   //
-  // get_ArtifactDependsOns
+  // get_ComponentImplementationArtifacts
   //
-  size_t ArtifactContainer_Impl::get_ArtifactDependsOns (std::vector <ArtifactDependsOn> & items) const
+  size_t ArtifactContainer_Impl::get_ComponentImplementationArtifacts (std::vector <ComponentImplementationArtifact> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ArtifactDependsOns
+  // get_ComponentImplementationArtifacts
   //
-  ::GAME::Mga::Iterator <ArtifactDependsOn> ArtifactContainer_Impl::get_ArtifactDependsOns (void) const
+  ::GAME::Mga::Iterator <ComponentImplementationArtifact> ArtifactContainer_Impl::get_ComponentImplementationArtifacts (void) const
   {
-    return this->children <ArtifactDependsOn> ();
+    return this->children <ComponentImplementationArtifact> ();
+  }
+
+  //
+  // get_ComponentServantArtifacts
+  //
+  size_t ArtifactContainer_Impl::get_ComponentServantArtifacts (std::vector <ComponentServantArtifact> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentServantArtifacts
+  //
+  ::GAME::Mga::Iterator <ComponentServantArtifact> ArtifactContainer_Impl::get_ComponentServantArtifacts (void) const
+  {
+    return this->children <ComponentServantArtifact> ();
+  }
+
+  //
+  // get_Requirements
+  //
+  size_t ArtifactContainer_Impl::get_Requirements (std::vector <Requirement> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Requirements
+  //
+  ::GAME::Mga::Iterator <Requirement> ArtifactContainer_Impl::get_Requirements (void) const
+  {
+    return this->children <Requirement> ();
+  }
+
+  //
+  // get_RTRequirementss
+  //
+  size_t ArtifactContainer_Impl::get_RTRequirementss (std::vector <RTRequirements> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RTRequirementss
+  //
+  ::GAME::Mga::Iterator <RTRequirements> ArtifactContainer_Impl::get_RTRequirementss (void) const
+  {
+    return this->children <RTRequirements> ();
+  }
+
+  //
+  // get_ECRequirementss
+  //
+  size_t ArtifactContainer_Impl::get_ECRequirementss (std::vector <ECRequirements> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ECRequirementss
+  //
+  ::GAME::Mga::Iterator <ECRequirements> ArtifactContainer_Impl::get_ECRequirementss (void) const
+  {
+    return this->children <ECRequirements> ();
   }
 
   //
@@ -130,38 +208,6 @@ namespace PICML
   ::GAME::Mga::Iterator <ArtifactDeployRequirement> ArtifactContainer_Impl::get_ArtifactDeployRequirements (void) const
   {
     return this->children <ArtifactDeployRequirement> ();
-  }
-
-  //
-  // get_ArtifactExecParameters
-  //
-  size_t ArtifactContainer_Impl::get_ArtifactExecParameters (std::vector <ArtifactExecParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ArtifactExecParameters
-  //
-  ::GAME::Mga::Iterator <ArtifactExecParameter> ArtifactContainer_Impl::get_ArtifactExecParameters (void) const
-  {
-    return this->children <ArtifactExecParameter> ();
-  }
-
-  //
-  // get_ArtifactInfoPropertys
-  //
-  size_t ArtifactContainer_Impl::get_ArtifactInfoPropertys (std::vector <ArtifactInfoProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ArtifactInfoPropertys
-  //
-  ::GAME::Mga::Iterator <ArtifactInfoProperty> ArtifactContainer_Impl::get_ArtifactInfoPropertys (void) const
-  {
-    return this->children <ArtifactInfoProperty> ();
   }
 
   //
@@ -194,6 +240,54 @@ namespace PICML
   ::GAME::Mga::Iterator <ArtifactDependency> ArtifactContainer_Impl::get_ArtifactDependencys (void) const
   {
     return this->children <ArtifactDependency> ();
+  }
+
+  //
+  // get_ArtifactInfoPropertys
+  //
+  size_t ArtifactContainer_Impl::get_ArtifactInfoPropertys (std::vector <ArtifactInfoProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ArtifactInfoPropertys
+  //
+  ::GAME::Mga::Iterator <ArtifactInfoProperty> ArtifactContainer_Impl::get_ArtifactInfoPropertys (void) const
+  {
+    return this->children <ArtifactInfoProperty> ();
+  }
+
+  //
+  // get_ArtifactExecParameters
+  //
+  size_t ArtifactContainer_Impl::get_ArtifactExecParameters (std::vector <ArtifactExecParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ArtifactExecParameters
+  //
+  ::GAME::Mga::Iterator <ArtifactExecParameter> ArtifactContainer_Impl::get_ArtifactExecParameters (void) const
+  {
+    return this->children <ArtifactExecParameter> ();
+  }
+
+  //
+  // get_ArtifactDependsOns
+  //
+  size_t ArtifactContainer_Impl::get_ArtifactDependsOns (std::vector <ArtifactDependsOn> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ArtifactDependsOns
+  //
+  ::GAME::Mga::Iterator <ArtifactDependsOn> ArtifactContainer_Impl::get_ArtifactDependsOns (void) const
+  {
+    return this->children <ArtifactDependsOn> ();
   }
 }
 

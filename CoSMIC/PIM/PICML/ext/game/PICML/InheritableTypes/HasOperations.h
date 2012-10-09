@@ -56,23 +56,44 @@ namespace PICML
     virtual ~HasOperations_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
     size_t get_Exceptions (std::vector <Exception> & items) const;
     ::GAME::Mga::Iterator <Exception> get_Exceptions (void) const;
 
+    size_t get_PortTypes (std::vector <PortType> & items) const;
+    ::GAME::Mga::Iterator <PortType> get_PortTypes (void) const;
+
+    size_t get_Aggregates (std::vector <Aggregate> & items) const;
+    ::GAME::Mga::Iterator <Aggregate> get_Aggregates (void) const;
+
+    size_t get_Collections (std::vector <Collection> & items) const;
+    ::GAME::Mga::Iterator <Collection> get_Collections (void) const;
+
+    size_t get_Enums (std::vector <Enum> & items) const;
+    ::GAME::Mga::Iterator <Enum> get_Enums (void) const;
+
+    size_t get_Aliass (std::vector <Alias> & items) const;
+    ::GAME::Mga::Iterator <Alias> get_Aliass (void) const;
+
+    size_t get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const;
+    ::GAME::Mga::Iterator <SwitchedAggregate> get_SwitchedAggregates (void) const;
+
     size_t get_Constants (std::vector <Constant> & items) const;
     ::GAME::Mga::Iterator <Constant> get_Constants (void) const;
 
-    size_t get_NoInheritables (std::vector <NoInheritable> & items) const;
-    ::GAME::Mga::Iterator <NoInheritable> get_NoInheritables (void) const;
+    size_t get_OnewayOperations (std::vector <OnewayOperation> & items) const;
+    ::GAME::Mga::Iterator <OnewayOperation> get_OnewayOperations (void) const;
 
     size_t get_TwowayOperations (std::vector <TwowayOperation> & items) const;
     ::GAME::Mga::Iterator <TwowayOperation> get_TwowayOperations (void) const;
-
-    size_t get_OnewayOperations (std::vector <OnewayOperation> & items) const;
-    ::GAME::Mga::Iterator <OnewayOperation> get_OnewayOperations (void) const;
 
     ///@}
   };

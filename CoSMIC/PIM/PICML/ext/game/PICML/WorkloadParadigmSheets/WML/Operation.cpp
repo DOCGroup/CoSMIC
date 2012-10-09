@@ -8,9 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
-#include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/OperationTypes/ParameterType.h"
+#include "PICML/OperationTypes/InParameter.h"
+#include "PICML/OperationTypes/OutParameter.h"
+#include "PICML/OperationTypes/InoutParameter.h"
+#include "PICML/OperationTypes/ReturnType.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,6 +50,14 @@ namespace PICML
   }
 
   //
+  // parent_Worker
+  //
+  Worker Operation_Impl::parent_Worker (void)
+  {
+    return Worker::_narrow (this->parent ());
+  }
+
+  //
   // has_ReturnType
   //
   bool Operation_Impl::has_ReturnType (void) const
@@ -62,19 +74,51 @@ namespace PICML
   }
 
   //
-  // get_ParameterTypes
+  // get_InParameters
   //
-  size_t Operation_Impl::get_ParameterTypes (std::vector <ParameterType> & items) const
+  size_t Operation_Impl::get_InParameters (std::vector <InParameter> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ParameterTypes
+  // get_InParameters
   //
-  ::GAME::Mga::Iterator <ParameterType> Operation_Impl::get_ParameterTypes (void) const
+  ::GAME::Mga::Iterator <InParameter> Operation_Impl::get_InParameters (void) const
   {
-    return this->children <ParameterType> ();
+    return this->children <InParameter> ();
+  }
+
+  //
+  // get_OutParameters
+  //
+  size_t Operation_Impl::get_OutParameters (std::vector <OutParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutParameters
+  //
+  ::GAME::Mga::Iterator <OutParameter> Operation_Impl::get_OutParameters (void) const
+  {
+    return this->children <OutParameter> ();
+  }
+
+  //
+  // get_InoutParameters
+  //
+  size_t Operation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InoutParameters
+  //
+  ::GAME::Mga::Iterator <InoutParameter> Operation_Impl::get_InoutParameters (void) const
+  {
+    return this->children <InoutParameter> ();
   }
 }
 

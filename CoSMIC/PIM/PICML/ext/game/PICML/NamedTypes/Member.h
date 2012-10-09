@@ -53,8 +53,8 @@ namespace PICML
     ///@{
     static Member _create (const Exception_in parent);
     static Member _create (const Aggregate_in parent);
-    static Member _create (const SwitchedAggregate_in parent);
     static Member _create (const ObjectByValue_in parent);
+    static Member _create (const SwitchedAggregate_in parent);
     ///@}
 
     // Default constructor.
@@ -70,15 +70,25 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Exception parent_Exception (void);
+    Aggregate parent_Aggregate (void);
+    ObjectByValue parent_ObjectByValue (void);
+    SwitchedAggregate parent_SwitchedAggregate (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
 
-    /// Get the src LabelConnection connection.
-    size_t src_LabelConnection (std::vector <LabelConnection> & items) const;
-
     /// Get the src MakeMemberPrivate connection.
     size_t src_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+
+    /// Get the src LabelConnection connection.
+    size_t src_LabelConnection (std::vector <LabelConnection> & items) const;
     ///@}
 
     /**
@@ -96,6 +106,7 @@ namespace PICML
     ///@{
     bool MemberType_is_nil (void) const;
     MemberType get_MemberType (void) const;
+    void set_MemberType (MemberType_in item);
     ///@}
   };
 }

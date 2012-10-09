@@ -8,12 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
-#include "PICML/PackageConfiguration/PackageConfReference.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfReference.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -49,19 +50,11 @@ namespace PICML
   }
 
   //
-  // src_PackageConfBasePackage
+  // parent_PackageConfigurationContainer
   //
-  size_t PackageConfiguration_Impl::src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
+  PackageConfigurationContainer PackageConfiguration_Impl::parent_PackageConfigurationContainer (void)
   {
-    return this->in_connections <PackageConfBasePackage> (items);
-  }
-
-  //
-  // src_PackageConfReference
-  //
-  size_t PackageConfiguration_Impl::src_PackageConfReference (std::vector <PackageConfReference> & items) const
-  {
-    return this->in_connections <PackageConfReference> (items);
+    return PackageConfigurationContainer::_narrow (this->parent ());
   }
 
   //
@@ -73,11 +66,19 @@ namespace PICML
   }
 
   //
-  // src_PackageConfSelectRequirement
+  // src_PackageConfReference
   //
-  size_t PackageConfiguration_Impl::src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  size_t PackageConfiguration_Impl::src_PackageConfReference (std::vector <PackageConfReference> & items) const
   {
-    return this->in_connections <PackageConfSelectRequirement> (items);
+    return this->in_connections <PackageConfReference> (items);
+  }
+
+  //
+  // src_PackageConfBasePackage
+  //
+  size_t PackageConfiguration_Impl::src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
+  {
+    return this->in_connections <PackageConfBasePackage> (items);
   }
 
   //
@@ -86,6 +87,14 @@ namespace PICML
   size_t PackageConfiguration_Impl::src_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
     return this->in_connections <PackageConfSpecializedConfig> (items);
+  }
+
+  //
+  // src_PackageConfSelectRequirement
+  //
+  size_t PackageConfiguration_Impl::src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> (items);
   }
 }
 

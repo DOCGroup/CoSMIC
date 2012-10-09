@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    BehaviorModel parent_BehaviorModel (void);
+    ///@}
     LoopState src_LoopState (void) const;
     ActionBase dst_ActionBase (void) const;
   };

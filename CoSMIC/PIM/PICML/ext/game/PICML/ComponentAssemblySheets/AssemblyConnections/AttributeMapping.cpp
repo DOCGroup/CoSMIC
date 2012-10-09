@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -48,6 +48,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly AttributeMapping_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
   // src_AttributeDelegate
   //
   size_t AttributeMapping_Impl::src_AttributeDelegate (std::vector <AttributeDelegate> & items) const
@@ -56,19 +64,19 @@ namespace PICML
   }
 
   //
-  // src_AttributeMappingValue
-  //
-  size_t AttributeMapping_Impl::src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
-  {
-    return this->in_connections <AttributeMappingValue> (items);
-  }
-
-  //
   // src_AttributeMappingDelegate
   //
   size_t AttributeMapping_Impl::src_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
   {
     return this->in_connections <AttributeMappingDelegate> (items);
+  }
+
+  //
+  // src_AttributeMappingValue
+  //
+  size_t AttributeMapping_Impl::src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
+  {
+    return this->in_connections <AttributeMappingValue> (items);
   }
 
   //
@@ -85,6 +93,14 @@ namespace PICML
   bool AttributeMapping_Impl::AttributeInstance_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_AttributeInstance
+  //
+  void AttributeMapping_Impl::set_AttributeInstance (AttributeInstance_in item)
+  {
+    this->refers_to (item);
   }
 
   //

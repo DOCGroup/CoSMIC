@@ -9,6 +9,28 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/ConstantType.h"
+#include "PICML/PredefinedTypes/CharType.h"
+#include "PICML/PredefinedTypes/Char.h"
+#include "PICML/PredefinedTypes/WideChar.h"
+#include "PICML/PredefinedTypes/StringType.h"
+#include "PICML/PredefinedTypes/WideString.h"
+#include "PICML/PredefinedTypes/String.h"
+#include "PICML/PredefinedTypes/IntegerType.h"
+#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
+#include "PICML/PredefinedTypes/UnsignedShortInteger.h"
+#include "PICML/PredefinedTypes/UnsignedLongInteger.h"
+#include "PICML/PredefinedTypes/UnsignedLongLongInteger.h"
+#include "PICML/PredefinedTypes/SignedIntegerType.h"
+#include "PICML/PredefinedTypes/LongLongInteger.h"
+#include "PICML/PredefinedTypes/LongInteger.h"
+#include "PICML/PredefinedTypes/ShortInteger.h"
+#include "PICML/PredefinedTypes/FloatingPointType.h"
+#include "PICML/PredefinedTypes/LongDoubleNumber.h"
+#include "PICML/PredefinedTypes/DoubleNumber.h"
+#include "PICML/PredefinedTypes/FloatNumber.h"
+#include "PICML/PredefinedTypes/Boolean.h"
+#include "PICML/PredefinedTypes/Byte.h"
+#include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -45,11 +67,27 @@ namespace PICML
   }
 
   //
+  // parent_SwitchedAggregate
+  //
+  SwitchedAggregate Discriminator_Impl::parent_SwitchedAggregate (void)
+  {
+    return SwitchedAggregate::_narrow (this->parent ());
+  }
+
+  //
   // ConstantType_is_nil
   //
   bool Discriminator_Impl::ConstantType_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ConstantType
+  //
+  void Discriminator_Impl::set_ConstantType (ConstantType_in item)
+  {
+    this->refers_to (item);
   }
 
   //

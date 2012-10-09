@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
-#include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 #include "PICML/ImplementationCommon/MonolithExecParameter.h"
+#include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 
 namespace PICML
 {
@@ -28,19 +28,19 @@ namespace PICML
   }
 
   //
-  // src_MonolithDeployRequirement
-  //
-  size_t MonolithicImplementationBase_Impl::src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
-  {
-    return this->in_connections <MonolithDeployRequirement> (items);
-  }
-
-  //
   // src_MonolithExecParameter
   //
   size_t MonolithicImplementationBase_Impl::src_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const
   {
     return this->in_connections <MonolithExecParameter> (items);
+  }
+
+  //
+  // src_MonolithDeployRequirement
+  //
+  size_t MonolithicImplementationBase_Impl::src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
+  {
+    return this->in_connections <MonolithDeployRequirement> (items);
   }
 }
 

@@ -42,5 +42,13 @@ namespace PICML
     else
       v->visit_Atom (this);
   }
+
+  //
+  // parent_ECRequirements
+  //
+  ECRequirements ECRole_Impl::parent_ECRequirements (void)
+  {
+    return ECRequirements::_narrow (this->parent ());
+  }
 }
 

@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/InterfaceDefinition/ConstantType.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
 #include "game/mga/Atom.h"
 
@@ -34,6 +35,7 @@ namespace PICML
    */
   class PICML_Export IntegerType_Impl :
     public virtual ::GAME::Mga::Atom_Impl,
+    public virtual ConstantType_Impl,
     public virtual PredefinedType_Impl
   {
     public:
@@ -54,6 +56,12 @@ namespace PICML
 
     // Destructor.
     virtual ~IntegerType_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

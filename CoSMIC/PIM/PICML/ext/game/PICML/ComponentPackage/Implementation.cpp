@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_Implementation (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_PackageContainer
+  //
+  PackageContainer Implementation_Impl::parent_PackageContainer (void)
+  {
+    return PackageContainer::_narrow (this->parent ());
   }
 
   //

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
-#include "PICML/ComponentBuild/ExtResourceConn.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ComponentBuild/ExtResourceConn.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,6 +46,14 @@ namespace PICML
   }
 
   //
+  // parent_Project
+  //
+  Project ExternalResources_Impl::parent_Project (void)
+  {
+    return Project::_narrow (this->parent ());
+  }
+
+  //
   // dst_ExtResourceConn
   //
   size_t ExternalResources_Impl::dst_ExtResourceConn (std::vector <ExtResourceConn> & items) const
@@ -59,6 +67,14 @@ namespace PICML
   bool ExternalResources_Impl::ImplementationArtifact_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ImplementationArtifact
+  //
+  void ExternalResources_Impl::set_ImplementationArtifact (ImplementationArtifact_in item)
+  {
+    this->refers_to (item);
   }
 
   //

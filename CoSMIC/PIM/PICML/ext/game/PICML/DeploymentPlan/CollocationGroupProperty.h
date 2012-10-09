@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DeploymentPlan parent_DeploymentPlan (void);
+    ///@}
     Property src_Property (void) const;
     CollocationGroup dst_CollocationGroup (void) const;
   };

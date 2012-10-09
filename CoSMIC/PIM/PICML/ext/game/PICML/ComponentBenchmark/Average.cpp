@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,17 +23,17 @@ namespace PICML
   const std::string Average_Impl::metaname ("Average");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // _create (const MetricsBase_in)
   //
-  Average Average_Impl::_create (const BenchmarkAnalysis_in parent)
+  Average Average_Impl::_create (const MetricsBase_in parent)
   {
     return ::GAME::Mga::create_object < Average > (parent, Average_Impl::metaname);
   }
 
   //
-  // _create (const MetricsBase_in)
+  // _create (const BenchmarkAnalysis_in)
   //
-  Average Average_Impl::_create (const MetricsBase_in parent)
+  Average Average_Impl::_create (const BenchmarkAnalysis_in parent)
   {
     return ::GAME::Mga::create_object < Average > (parent, Average_Impl::metaname);
   }

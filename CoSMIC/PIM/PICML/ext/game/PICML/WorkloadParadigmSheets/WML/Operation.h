@@ -67,14 +67,27 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Worker parent_Worker (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
     bool has_ReturnType (void) const;
     ReturnType get_ReturnType (void) const;
-    size_t get_ParameterTypes (std::vector <ParameterType> & items) const;
-    ::GAME::Mga::Iterator <ParameterType> get_ParameterTypes (void) const;
+    size_t get_InParameters (std::vector <InParameter> & items) const;
+    ::GAME::Mga::Iterator <InParameter> get_InParameters (void) const;
+
+    size_t get_OutParameters (std::vector <OutParameter> & items) const;
+    ::GAME::Mga::Iterator <OutParameter> get_OutParameters (void) const;
+
+    size_t get_InoutParameters (std::vector <InoutParameter> & items) const;
+    ::GAME::Mga::Iterator <InoutParameter> get_InoutParameters (void) const;
 
     ///@}
   };

@@ -8,6 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 
 namespace PICML
 {

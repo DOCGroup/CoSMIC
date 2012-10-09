@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static PackageType _create (const TemplatePackageInstance_in parent);
     static PackageType _create (const TemplatePackageAlias_in parent);
+    static PackageType _create (const TemplatePackageInstance_in parent);
     ///@}
 
     // Default constructor.
@@ -68,11 +68,20 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TemplatePackageAlias parent_TemplatePackageAlias (void);
+    TemplatePackageInstance parent_TemplatePackageInstance (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool Package_is_nil (void) const;
     Package get_Package (void) const;
+    void set_Package (Package_in item);
     ///@}
   };
 }

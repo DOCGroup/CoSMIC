@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/InterfaceDefinition/TemplateParameterValueType.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +33,8 @@ namespace PICML
    * Implementation for the MemberType model element.
    */
   class PICML_Export MemberType_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual TemplateParameterValueType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +54,12 @@ namespace PICML
 
     // Destructor.
     virtual ~MemberType_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

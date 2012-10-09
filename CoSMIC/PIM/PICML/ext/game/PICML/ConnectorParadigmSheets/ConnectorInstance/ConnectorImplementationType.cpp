@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +45,27 @@ namespace PICML
   }
 
   //
+  // parent_ConnectorInstance
+  //
+  ConnectorInstance ConnectorImplementationType_Impl::parent_ConnectorInstance (void)
+  {
+    return ConnectorInstance::_narrow (this->parent ());
+  }
+
+  //
   // ConnectorImplementation_is_nil
   //
   bool ConnectorImplementationType_Impl::ConnectorImplementation_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ConnectorImplementation
+  //
+  void ConnectorImplementationType_Impl::set_ConnectorImplementation (ConnectorImplementation_in item)
+  {
+    this->refers_to (item);
   }
 
   //

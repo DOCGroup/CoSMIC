@@ -9,14 +9,19 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
-#include "PICML/DeploymentPlan/DeploymentPlans.h"
-#include "PICML/DeploymentPlan/CollocationGroup.h"
-#include "PICML/DeploymentPlan/Deploys.h"
-#include "PICML/DeploymentPlan/CollocationGroupMember.h"
-#include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/DeploymentPlan/CollocationGroup.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/TargetElements/NodeReference.h"
+#include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/DeploymentPlan/CollocationGroupMember.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
+#include "PICML/DeploymentPlan/ComponentInstanceRef.h"
+#include "PICML/DeploymentPlan/ComponentFactoryRef.h"
+#include "PICML/DeploymentPlan/DeploymentPlans.h"
+#include "PICML/DeploymentPlan/Deploys.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -52,99 +57,43 @@ namespace PICML
   }
 
   //
-  // get_Propertys
+  // parent_DeploymentPlans
   //
-  size_t DeploymentPlan_Impl::get_Propertys (std::vector <Property> & items) const
+  DeploymentPlans DeploymentPlan_Impl::parent_DeploymentPlans (void)
+  {
+    return DeploymentPlans::_narrow (this->parent ());
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t DeploymentPlan_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Propertys
+  // get_ComplexPropertys
   //
-  ::GAME::Mga::Iterator <Property> DeploymentPlan_Impl::get_Propertys (void) const
+  ::GAME::Mga::Iterator <ComplexProperty> DeploymentPlan_Impl::get_ComplexPropertys (void) const
   {
-    return this->children <Property> ();
+    return this->children <ComplexProperty> ();
   }
 
   //
-  // get_InstanceMappings
+  // get_SimplePropertys
   //
-  size_t DeploymentPlan_Impl::get_InstanceMappings (std::vector <InstanceMapping> & items) const
+  size_t DeploymentPlan_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_InstanceMappings
+  // get_SimplePropertys
   //
-  ::GAME::Mga::Iterator <InstanceMapping> DeploymentPlan_Impl::get_InstanceMappings (void) const
+  ::GAME::Mga::Iterator <SimpleProperty> DeploymentPlan_Impl::get_SimplePropertys (void) const
   {
-    return this->children <InstanceMapping> ();
-  }
-
-  //
-  // get_CollocationGroups
-  //
-  size_t DeploymentPlan_Impl::get_CollocationGroups (std::vector <CollocationGroup> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_CollocationGroups
-  //
-  ::GAME::Mga::Iterator <CollocationGroup> DeploymentPlan_Impl::get_CollocationGroups (void) const
-  {
-    return this->children <CollocationGroup> ();
-  }
-
-  //
-  // get_Deployss
-  //
-  size_t DeploymentPlan_Impl::get_Deployss (std::vector <Deploys> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Deployss
-  //
-  ::GAME::Mga::Iterator <Deploys> DeploymentPlan_Impl::get_Deployss (void) const
-  {
-    return this->children <Deploys> ();
-  }
-
-  //
-  // get_CollocationGroupMembers
-  //
-  size_t DeploymentPlan_Impl::get_CollocationGroupMembers (std::vector <CollocationGroupMember> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_CollocationGroupMembers
-  //
-  ::GAME::Mga::Iterator <CollocationGroupMember> DeploymentPlan_Impl::get_CollocationGroupMembers (void) const
-  {
-    return this->children <CollocationGroupMember> ();
-  }
-
-  //
-  // get_PropertyMappings
-  //
-  size_t DeploymentPlan_Impl::get_PropertyMappings (std::vector <PropertyMapping> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PropertyMappings
-  //
-  ::GAME::Mga::Iterator <PropertyMapping> DeploymentPlan_Impl::get_PropertyMappings (void) const
-  {
-    return this->children <PropertyMapping> ();
+    return this->children <SimpleProperty> ();
   }
 
   //
@@ -164,6 +113,38 @@ namespace PICML
   }
 
   //
+  // get_CollocationGroups
+  //
+  size_t DeploymentPlan_Impl::get_CollocationGroups (std::vector <CollocationGroup> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_CollocationGroups
+  //
+  ::GAME::Mga::Iterator <CollocationGroup> DeploymentPlan_Impl::get_CollocationGroups (void) const
+  {
+    return this->children <CollocationGroup> ();
+  }
+
+  //
+  // get_InstanceMappings
+  //
+  size_t DeploymentPlan_Impl::get_InstanceMappings (std::vector <InstanceMapping> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InstanceMappings
+  //
+  ::GAME::Mga::Iterator <InstanceMapping> DeploymentPlan_Impl::get_InstanceMappings (void) const
+  {
+    return this->children <InstanceMapping> ();
+  }
+
+  //
   // get_NodeReferences
   //
   size_t DeploymentPlan_Impl::get_NodeReferences (std::vector <NodeReference> & items) const
@@ -177,6 +158,86 @@ namespace PICML
   ::GAME::Mga::Iterator <NodeReference> DeploymentPlan_Impl::get_NodeReferences (void) const
   {
     return this->children <NodeReference> ();
+  }
+
+  //
+  // get_PropertyMappings
+  //
+  size_t DeploymentPlan_Impl::get_PropertyMappings (std::vector <PropertyMapping> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PropertyMappings
+  //
+  ::GAME::Mga::Iterator <PropertyMapping> DeploymentPlan_Impl::get_PropertyMappings (void) const
+  {
+    return this->children <PropertyMapping> ();
+  }
+
+  //
+  // get_ComponentAssemblyReferences
+  //
+  size_t DeploymentPlan_Impl::get_ComponentAssemblyReferences (std::vector <ComponentAssemblyReference> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentAssemblyReferences
+  //
+  ::GAME::Mga::Iterator <ComponentAssemblyReference> DeploymentPlan_Impl::get_ComponentAssemblyReferences (void) const
+  {
+    return this->children <ComponentAssemblyReference> ();
+  }
+
+  //
+  // get_ComponentInstanceRefs
+  //
+  size_t DeploymentPlan_Impl::get_ComponentInstanceRefs (std::vector <ComponentInstanceRef> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentInstanceRefs
+  //
+  ::GAME::Mga::Iterator <ComponentInstanceRef> DeploymentPlan_Impl::get_ComponentInstanceRefs (void) const
+  {
+    return this->children <ComponentInstanceRef> ();
+  }
+
+  //
+  // get_ComponentFactoryRefs
+  //
+  size_t DeploymentPlan_Impl::get_ComponentFactoryRefs (std::vector <ComponentFactoryRef> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentFactoryRefs
+  //
+  ::GAME::Mga::Iterator <ComponentFactoryRef> DeploymentPlan_Impl::get_ComponentFactoryRefs (void) const
+  {
+    return this->children <ComponentFactoryRef> ();
+  }
+
+  //
+  // get_Deployss
+  //
+  size_t DeploymentPlan_Impl::get_Deployss (std::vector <Deploys> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Deployss
+  //
+  ::GAME::Mga::Iterator <Deploys> DeploymentPlan_Impl::get_Deployss (void) const
+  {
+    return this->children <Deploys> ();
   }
 }
 

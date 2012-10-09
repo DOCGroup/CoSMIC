@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Taggable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the ReadonlyAttribute model element.
    */
   class PICML_Export ReadonlyAttribute_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual Taggable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -51,10 +53,10 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ReadonlyAttribute _create (const ConnectorObject_in parent);
+    static ReadonlyAttribute _create (const Inheritable_in parent);
     static ReadonlyAttribute _create (const Component_in parent);
     static ReadonlyAttribute _create (const PortType_in parent);
-    static ReadonlyAttribute _create (const Inheritable_in parent);
+    static ReadonlyAttribute _create (const ConnectorObject_in parent);
     ///@}
 
     // Default constructor.
@@ -70,11 +72,22 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Inheritable parent_Inheritable (void);
+    Component parent_Component (void);
+    PortType parent_PortType (void);
+    ConnectorObject parent_ConnectorObject (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    AttributeMember get_AttributeMember (void) const;
 
+    bool has_AttributeMember (void) const;
+    AttributeMember get_AttributeMember (void) const;
     size_t get_GetExceptions (std::vector <GetException> & items) const;
     ::GAME::Mga::Iterator <GetException> get_GetExceptions (void) const;
 

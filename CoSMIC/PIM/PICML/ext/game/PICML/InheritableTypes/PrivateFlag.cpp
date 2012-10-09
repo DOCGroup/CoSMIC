@@ -8,8 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +44,14 @@ namespace PICML
       this_visitor->visit_PrivateFlag (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_ObjectByValue
+  //
+  ObjectByValue PrivateFlag_Impl::parent_ObjectByValue (void)
+  {
+    return ObjectByValue::_narrow (this->parent ());
   }
 
   //

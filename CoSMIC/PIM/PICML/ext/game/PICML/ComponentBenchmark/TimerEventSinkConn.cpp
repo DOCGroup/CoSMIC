@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/TimeProbe.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/EventRef.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/TimeProbe.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_TimerEventSinkConn (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis TimerEventSinkConn_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
   }
 
   //

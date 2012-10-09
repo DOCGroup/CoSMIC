@@ -8,9 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "PICML/BehaviorParadigmSheets/Terminals/Terminal.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_TerminalTransition (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_BehaviorModel
+  //
+  BehaviorModel TerminalTransition_Impl::parent_BehaviorModel (void)
+  {
+    return BehaviorModel::_narrow (this->parent ());
   }
 
   //

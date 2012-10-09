@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ArtifactContainer parent_ArtifactContainer (void);
+    ///@}
     ImplementationArtifact src_ImplementationArtifact (void) const;
     ImplementationArtifact dst_ImplementationArtifact (void) const;
   };

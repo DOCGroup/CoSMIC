@@ -71,15 +71,21 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
-    bool has_ServiceProvider (void) const;
-    ServiceProvider get_ServiceProvider (void) const;
-
     bool has_ServiceConsumer (void) const;
     ServiceConsumer get_ServiceConsumer (void) const;
+
+    bool has_ServiceProvider (void) const;
+    ServiceProvider get_ServiceProvider (void) const;
     ///@}
   };
 }

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/DataType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
-#include "PICML/Common/DataType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,11 +46,27 @@ namespace PICML
   }
 
   //
+  // parent_ComponentContainer
+  //
+  ComponentContainer ComponentPropertyDescription_Impl::parent_ComponentContainer (void)
+  {
+    return ComponentContainer::_narrow (this->parent ());
+  }
+
+  //
   // dst_ComponentProperty
   //
   size_t ComponentPropertyDescription_Impl::dst_ComponentProperty (std::vector <ComponentProperty> & items) const
   {
     return this->in_connections <ComponentProperty> (items);
+  }
+
+  //
+  // has_DataType
+  //
+  bool ComponentPropertyDescription_Impl::has_DataType (void) const
+  {
+    return this->children <DataType> ().count () == 1;
   }
 
   //

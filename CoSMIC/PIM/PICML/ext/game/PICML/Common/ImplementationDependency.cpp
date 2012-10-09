@@ -45,6 +45,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentImplementationContainer
+  //
+  ComponentImplementationContainer ImplementationDependency_Impl::parent_ComponentImplementationContainer (void)
+  {
+    return ComponentImplementationContainer::_narrow (this->parent ());
+  }
+
+  //
   // dst_ImplementationDependsOn
   //
   size_t ImplementationDependency_Impl::dst_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const

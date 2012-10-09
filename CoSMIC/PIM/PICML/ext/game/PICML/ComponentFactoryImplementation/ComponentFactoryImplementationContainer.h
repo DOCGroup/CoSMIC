@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static ComponentFactoryImplementationContainer _create (const ComponentFactoryImplementations_in parent);
-    static ComponentFactoryImplementationContainer _create (const ImplementationContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +67,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentFactoryImplementations parent_ComponentFactoryImplementations (void);
+    ///@}
 
     /**
      * @name Containment Methods

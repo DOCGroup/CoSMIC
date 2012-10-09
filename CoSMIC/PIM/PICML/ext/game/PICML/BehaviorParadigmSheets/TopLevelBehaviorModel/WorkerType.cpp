@@ -8,8 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +46,27 @@ namespace PICML
   }
 
   //
+  // parent_TopLevelBehavior
+  //
+  TopLevelBehavior WorkerType_Impl::parent_TopLevelBehavior (void)
+  {
+    return TopLevelBehavior::_narrow (this->parent ());
+  }
+
+  //
   // Worker_is_nil
   //
   bool WorkerType_Impl::Worker_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Worker
+  //
+  void WorkerType_Impl::set_Worker (Worker_in item)
+  {
+    this->refers_to (item);
   }
 
   //

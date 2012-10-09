@@ -17,6 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/NamedTypes/MemberType.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +35,10 @@ namespace PICML
    * Implementation for the TemplateParameter model element.
    */
   class PICML_Export TemplateParameter_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual MemberType_Impl,
+    public virtual Provideable_Impl,
+    public virtual EventType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +58,13 @@ namespace PICML
 
     // Destructor.
     virtual ~TemplateParameter_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Package parent_Package (void);
+    ///@}
   };
 }
 

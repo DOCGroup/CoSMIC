@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
-#include "PICML/TopLevelPackageDescription/package.h"
-#include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
+#include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
+#include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -47,11 +47,11 @@ namespace PICML
   }
 
   //
-  // dst_package
+  // parent_TopLevelPackageContainer
   //
-  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
+  TopLevelPackageContainer PackageConfigurationReference_Impl::parent_TopLevelPackageContainer (void)
   {
-    return this->in_connections <package> (items);
+    return TopLevelPackageContainer::_narrow (this->parent ());
   }
 
   //
@@ -63,11 +63,27 @@ namespace PICML
   }
 
   //
+  // dst_package
+  //
+  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
+  {
+    return this->in_connections <package> (items);
+  }
+
+  //
   // PackageConfiguration_is_nil
   //
   bool PackageConfigurationReference_Impl::PackageConfiguration_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_PackageConfiguration
+  //
+  void PackageConfigurationReference_Impl::set_PackageConfiguration (PackageConfiguration_in item)
+  {
+    this->refers_to (item);
   }
 
   //

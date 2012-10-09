@@ -16,5 +16,13 @@ namespace PICML
   // metaname
   //
   const std::string CollocationGroupMember_Impl::metaname ("CollocationGroupMember");
+
+  //
+  // parent_DeploymentPlan
+  //
+  DeploymentPlan CollocationGroupMember_Impl::parent_DeploymentPlan (void)
+  {
+    return DeploymentPlan::_narrow (this->parent ());
+  }
 }
 

@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -50,6 +50,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ConnectorInstance_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
   // src_Consume
   //
   size_t ConnectorInstance_Impl::src_Consume (std::vector <Consume> & items) const
@@ -79,6 +87,14 @@ namespace PICML
   size_t ConnectorInstance_Impl::dst_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
   {
     return this->in_connections <ConnectorToReceptacle> (items);
+  }
+
+  //
+  // has_ConnectorImplementationType
+  //
+  bool ConnectorInstance_Impl::has_ConnectorImplementationType (void) const
+  {
+    return this->children <ConnectorImplementationType> ().count () == 1;
   }
 
   //

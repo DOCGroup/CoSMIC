@@ -8,12 +8,20 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,6 +33,22 @@ namespace PICML
   // metaname
   //
   const std::string ConnectorObject_Impl::metaname ("ConnectorObject");
+
+  //
+  // _create (const File_in)
+  //
+  ConnectorObject ConnectorObject_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < ConnectorObject > (parent, ConnectorObject_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  ConnectorObject ConnectorObject_Impl::_create (const Package_in parent)
+  {
+    return ::GAME::Mga::create_object < ConnectorObject > (parent, ConnectorObject_Impl::metaname);
+  }
 
   //
   // accept
@@ -57,35 +81,99 @@ namespace PICML
   }
 
   //
-  // get_ObjectPorts
+  // get_ReadonlyAttributes
   //
-  size_t ConnectorObject_Impl::get_ObjectPorts (std::vector <ObjectPort> & items) const
+  size_t ConnectorObject_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ObjectPorts
+  // get_ReadonlyAttributes
   //
-  ::GAME::Mga::Iterator <ObjectPort> ConnectorObject_Impl::get_ObjectPorts (void) const
+  ::GAME::Mga::Iterator <ReadonlyAttribute> ConnectorObject_Impl::get_ReadonlyAttributes (void) const
   {
-    return this->children <ObjectPort> ();
+    return this->children <ReadonlyAttribute> ();
   }
 
   //
-  // get_ExtendedPortBases
+  // get_Attributes
   //
-  size_t ConnectorObject_Impl::get_ExtendedPortBases (std::vector <ExtendedPortBase> & items) const
+  size_t ConnectorObject_Impl::get_Attributes (std::vector <Attribute> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ExtendedPortBases
+  // get_Attributes
   //
-  ::GAME::Mga::Iterator <ExtendedPortBase> ConnectorObject_Impl::get_ExtendedPortBases (void) const
+  ::GAME::Mga::Iterator <Attribute> ConnectorObject_Impl::get_Attributes (void) const
   {
-    return this->children <ExtendedPortBase> ();
+    return this->children <Attribute> ();
+  }
+
+  //
+  // get_MirrorPorts
+  //
+  size_t ConnectorObject_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MirrorPorts
+  //
+  ::GAME::Mga::Iterator <MirrorPort> ConnectorObject_Impl::get_MirrorPorts (void) const
+  {
+    return this->children <MirrorPort> ();
+  }
+
+  //
+  // get_ExtendedPorts
+  //
+  size_t ConnectorObject_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExtendedPorts
+  //
+  ::GAME::Mga::Iterator <ExtendedPort> ConnectorObject_Impl::get_ExtendedPorts (void) const
+  {
+    return this->children <ExtendedPort> ();
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  ::GAME::Mga::Iterator <RequiredRequestPort> ConnectorObject_Impl::get_RequiredRequestPorts (void) const
+  {
+    return this->children <RequiredRequestPort> ();
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  size_t ConnectorObject_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  ::GAME::Mga::Iterator <ProvidedRequestPort> ConnectorObject_Impl::get_ProvidedRequestPorts (void) const
+  {
+    return this->children <ProvidedRequestPort> ();
   }
 
   //
@@ -118,22 +206,6 @@ namespace PICML
   ::GAME::Mga::Iterator <Collection> ConnectorObject_Impl::get_Collections (void) const
   {
     return this->children <Collection> ();
-  }
-
-  //
-  // get_ReadonlyAttributes
-  //
-  size_t ConnectorObject_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ReadonlyAttributes
-  //
-  ::GAME::Mga::Iterator <ReadonlyAttribute> ConnectorObject_Impl::get_ReadonlyAttributes (void) const
-  {
-    return this->children <ReadonlyAttribute> ();
   }
 }
 

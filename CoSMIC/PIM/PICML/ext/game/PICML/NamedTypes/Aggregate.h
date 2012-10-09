@@ -18,6 +18,7 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/Common/ComplexType.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -37,7 +38,8 @@ namespace PICML
    */
   class PICML_Export Aggregate_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual NoInheritable_Impl
+    public virtual NoInheritable_Impl,
+    public virtual ComplexType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -55,6 +57,8 @@ namespace PICML
     ///@{
     static Aggregate _create (const ConnectorObject_in parent);
     static Aggregate _create (const HasOperations_in parent);
+    static Aggregate _create (const File_in parent);
+    static Aggregate _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -70,17 +74,27 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ConnectorObject parent_ConnectorObject (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
     bool has_Key (void) const;
     Key get_Key (void) const;
+    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
+    ::GAME::Mga::Iterator <KeyMember> get_KeyMembers (void) const;
+
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Iterator <Member> get_Members (void) const;
 
-    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
-    ::GAME::Mga::Iterator <KeyMember> get_KeyMembers (void) const;
+    size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
+    ::GAME::Mga::Iterator <ArrayMember> get_ArrayMembers (void) const;
 
     ///@}
   };

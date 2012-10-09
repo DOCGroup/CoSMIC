@@ -54,6 +54,8 @@ namespace PICML
      */
     ///@{
     static SwitchedAggregate _create (const HasOperations_in parent);
+    static SwitchedAggregate _create (const File_in parent);
+    static SwitchedAggregate _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -69,19 +71,29 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
+
+    bool has_Discriminator (void) const;
     Discriminator get_Discriminator (void) const;
+    size_t get_LabelConnections (std::vector <LabelConnection> & items) const;
+    ::GAME::Mga::Iterator <LabelConnection> get_LabelConnections (void) const;
 
     size_t get_Labels (std::vector <Label> & items) const;
     ::GAME::Mga::Iterator <Label> get_Labels (void) const;
 
-    size_t get_LabelConnections (std::vector <LabelConnection> & items) const;
-    ::GAME::Mga::Iterator <LabelConnection> get_LabelConnections (void) const;
-
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Iterator <Member> get_Members (void) const;
+
+    size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
+    ::GAME::Mga::Iterator <ArrayMember> get_ArrayMembers (void) const;
 
     ///@}
   };

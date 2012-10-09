@@ -56,26 +56,32 @@ namespace PICML
     virtual ~TopLevelBehavior_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
     bool has_Environment (void) const;
     Environment get_Environment (void) const;
-    size_t get_PeriodicEvents (std::vector <PeriodicEvent> & items) const;
-    ::GAME::Mga::Iterator <PeriodicEvent> get_PeriodicEvents (void) const;
+    size_t get_WorkerTypes (std::vector <WorkerType> & items) const;
+    ::GAME::Mga::Iterator <WorkerType> get_WorkerTypes (void) const;
+
+    size_t get_MultiInputs (std::vector <MultiInput> & items) const;
+    ::GAME::Mga::Iterator <MultiInput> get_MultiInputs (void) const;
 
     size_t get_ApplicationTasks (std::vector <ApplicationTask> & items) const;
     ::GAME::Mga::Iterator <ApplicationTask> get_ApplicationTasks (void) const;
 
-    size_t get_WorkerTypes (std::vector <WorkerType> & items) const;
-    ::GAME::Mga::Iterator <WorkerType> get_WorkerTypes (void) const;
-
     size_t get_Inputs (std::vector <Input> & items) const;
     ::GAME::Mga::Iterator <Input> get_Inputs (void) const;
 
-    size_t get_MultiInputs (std::vector <MultiInput> & items) const;
-    ::GAME::Mga::Iterator <MultiInput> get_MultiInputs (void) const;
+    size_t get_PeriodicEvents (std::vector <PeriodicEvent> & items) const;
+    ::GAME::Mga::Iterator <PeriodicEvent> get_PeriodicEvents (void) const;
 
     size_t get_QueryInputs (std::vector <QueryInput> & items) const;
     ::GAME::Mga::Iterator <QueryInput> get_QueryInputs (void) const;

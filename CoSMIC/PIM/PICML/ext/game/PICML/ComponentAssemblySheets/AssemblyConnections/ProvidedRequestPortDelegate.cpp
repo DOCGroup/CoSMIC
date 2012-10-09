@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +42,14 @@ namespace PICML
       this_visitor->visit_ProvidedRequestPortDelegate (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ProvidedRequestPortDelegate_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

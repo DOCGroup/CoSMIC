@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the SupportsInstance model element.
    */
   class PICML_Export SupportsInstance_Impl :
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual ProvidedRequestPortEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -67,11 +69,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentInstance parent_ComponentInstance (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool Supports_is_nil (void) const;
     Supports get_Supports (void) const;
+    void set_Supports (Supports_in item);
     ///@}
   };
 }

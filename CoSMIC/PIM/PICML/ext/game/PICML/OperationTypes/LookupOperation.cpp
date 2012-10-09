@@ -9,7 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -31,9 +31,9 @@ namespace PICML
   }
 
   //
-  // _create (const HasExceptions_in)
+  // _create (const BenchmarkAnalysis_in)
   //
-  LookupOperation LookupOperation_Impl::_create (const HasExceptions_in parent)
+  LookupOperation LookupOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
     return ::GAME::Mga::create_object < LookupOperation > (parent, LookupOperation_Impl::metaname);
   }
@@ -50,6 +50,14 @@ namespace PICML
       this_visitor->visit_LookupOperation (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_ComponentFactory
+  //
+  ComponentFactory LookupOperation_Impl::parent_ComponentFactory (void)
+  {
+    return ComponentFactory::_narrow (this->parent ());
   }
 }
 

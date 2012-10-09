@@ -54,6 +54,13 @@ namespace PICML
     virtual ~GraphVertex_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Path parent_Path (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{

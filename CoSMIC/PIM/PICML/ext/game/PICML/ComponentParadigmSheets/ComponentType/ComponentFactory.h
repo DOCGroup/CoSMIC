@@ -17,6 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +37,9 @@ namespace PICML
    * Implementation for the ComponentFactory model element.
    */
   class PICML_Export ComponentFactory_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual HasOperations_Impl,
+    public virtual SupportsInterfaces_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -51,6 +55,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static ComponentFactory _create (const File_in parent);
+    static ComponentFactory _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -64,6 +70,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Source Connection Point Methods
@@ -81,11 +93,11 @@ namespace PICML
 
     bool has_LookupKey (void) const;
     LookupKey get_LookupKey (void) const;
-    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
-    ::GAME::Mga::Iterator <FactoryOperation> get_FactoryOperations (void) const;
-
     size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
     ::GAME::Mga::Iterator <LookupOperation> get_LookupOperations (void) const;
+
+    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
+    ::GAME::Mga::Iterator <FactoryOperation> get_FactoryOperations (void) const;
 
     ///@}
   };

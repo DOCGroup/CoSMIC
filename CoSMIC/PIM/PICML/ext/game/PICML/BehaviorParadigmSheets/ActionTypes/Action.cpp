@@ -8,9 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,14 +26,6 @@ namespace PICML
   // _create (const BehaviorModel_in)
   //
   Action Action_Impl::_create (const BehaviorModel_in parent)
-  {
-    return ::GAME::Mga::create_object < Action > (parent, Action_Impl::metaname);
-  }
-
-  //
-  // _create (const ActionBase_in)
-  //
-  Action Action_Impl::_create (const ActionBase_in parent)
   {
     return ::GAME::Mga::create_object < Action > (parent, Action_Impl::metaname);
   }

@@ -8,7 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InheritableTypes/Supports.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,9 +24,17 @@ namespace PICML
   const std::string Object_Impl::metaname ("Object");
 
   //
-  // _create (const HasOperations_in)
+  // _create (const File_in)
   //
-  Object Object_Impl::_create (const HasOperations_in parent)
+  Object Object_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < Object > (parent, Object_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  Object Object_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < Object > (parent, Object_Impl::metaname);
   }

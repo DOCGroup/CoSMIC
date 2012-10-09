@@ -53,6 +53,14 @@ namespace PICML
   }
 
   //
+  // set_ExtendedPort
+  //
+  void ExtendedPortInstance_Impl::set_ExtendedPort (ExtendedPort_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_ExtendedPort
   //
   ExtendedPort ExtendedPortInstance_Impl::get_ExtendedPort (void) const

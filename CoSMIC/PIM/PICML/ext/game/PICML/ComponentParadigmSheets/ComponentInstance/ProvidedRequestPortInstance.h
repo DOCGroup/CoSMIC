@@ -18,6 +18,7 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -37,7 +38,8 @@ namespace PICML
    */
   class PICML_Export ProvidedRequestPortInstance_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual PortInstance_Impl
+    public virtual PortInstance_Impl,
+    public virtual ProvidedRequestPortEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -69,11 +71,18 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool ProvidedRequestPort_is_nil (void) const;
     ProvidedRequestPort get_ProvidedRequestPort (void) const;
+    void set_ProvidedRequestPort (ProvidedRequestPort_in item);
     ///@}
   };
 }

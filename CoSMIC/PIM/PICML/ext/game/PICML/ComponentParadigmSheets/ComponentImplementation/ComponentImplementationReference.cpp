@@ -8,8 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
 #include "PICML/ComponentPackage/Implementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -46,6 +48,14 @@ namespace PICML
   }
 
   //
+  // parent_PackageContainer
+  //
+  PackageContainer ComponentImplementationReference_Impl::parent_PackageContainer (void)
+  {
+    return PackageContainer::_narrow (this->parent ());
+  }
+
+  //
   // dst_Implementation
   //
   size_t ComponentImplementationReference_Impl::dst_Implementation (std::vector <Implementation> & items) const
@@ -59,6 +69,14 @@ namespace PICML
   bool ComponentImplementationReference_Impl::ComponentImplementation_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ComponentImplementation
+  //
+  void ComponentImplementationReference_Impl::set_ComponentImplementation (ComponentImplementation_in item)
+  {
+    this->refers_to (item);
   }
 
   //

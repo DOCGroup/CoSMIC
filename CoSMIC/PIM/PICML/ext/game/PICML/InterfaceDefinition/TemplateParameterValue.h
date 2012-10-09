@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TemplatePackageInstance parent_TemplatePackageInstance (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool TemplateParameterValueType_is_nil (void) const;
     TemplateParameterValueType get_TemplateParameterValueType (void) const;
+    void set_TemplateParameterValueType (TemplateParameterValueType_in item);
     ///@}
   };
 }

@@ -9,9 +9,12 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
+#include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,6 +26,22 @@ namespace PICML
   // metaname
   //
   const std::string ComponentFactory_Impl::metaname ("ComponentFactory");
+
+  //
+  // _create (const File_in)
+  //
+  ComponentFactory ComponentFactory_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < ComponentFactory > (parent, ComponentFactory_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  ComponentFactory ComponentFactory_Impl::_create (const Package_in parent)
+  {
+    return ::GAME::Mga::create_object < ComponentFactory > (parent, ComponentFactory_Impl::metaname);
+  }
 
   //
   // accept
@@ -63,22 +82,6 @@ namespace PICML
   }
 
   //
-  // get_FactoryOperations
-  //
-  size_t ComponentFactory_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_FactoryOperations
-  //
-  ::GAME::Mga::Iterator <FactoryOperation> ComponentFactory_Impl::get_FactoryOperations (void) const
-  {
-    return this->children <FactoryOperation> ();
-  }
-
-  //
   // get_LookupOperations
   //
   size_t ComponentFactory_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
@@ -92,6 +95,22 @@ namespace PICML
   ::GAME::Mga::Iterator <LookupOperation> ComponentFactory_Impl::get_LookupOperations (void) const
   {
     return this->children <LookupOperation> ();
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  size_t ComponentFactory_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  ::GAME::Mga::Iterator <FactoryOperation> ComponentFactory_Impl::get_FactoryOperations (void) const
+  {
+    return this->children <FactoryOperation> ();
   }
 }
 

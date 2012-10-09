@@ -54,6 +54,7 @@ namespace PICML
      */
     ///@{
     static DataValueContainer _create (const ComplexProperty_in parent);
+    static DataValueContainer _create (const DataValueContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -69,13 +70,23 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    ComplexTypeReference get_ComplexTypeReference (void) const;
 
-    size_t get_DataValueBases (std::vector <DataValueBase> & items) const;
-    ::GAME::Mga::Iterator <DataValueBase> get_DataValueBases (void) const;
+    bool has_ComplexTypeReference (void) const;
+    ComplexTypeReference get_ComplexTypeReference (void) const;
+    size_t get_DataValueContainers (std::vector <DataValueContainer> & items) const;
+    ::GAME::Mga::Iterator <DataValueContainer> get_DataValueContainers (void) const;
+
+    size_t get_DataValues (std::vector <DataValue> & items) const;
+    ::GAME::Mga::Iterator <DataValue> get_DataValues (void) const;
 
     ///@}
   };

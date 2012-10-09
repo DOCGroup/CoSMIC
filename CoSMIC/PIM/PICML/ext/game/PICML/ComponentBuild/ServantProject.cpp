@@ -8,9 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
-#include "PICML/InterfaceDefinition/FileRef.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
+#include "PICML/ImplementationCommon/ComponentServantArtifact.h"
+#include "PICML/InterfaceDefinition/FileRef.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,11 +48,51 @@ namespace PICML
   }
 
   //
+  // has_ImplementationArtifactReference
+  //
+  bool ServantProject_Impl::has_ImplementationArtifactReference (void) const
+  {
+    return this->children <ImplementationArtifactReference> ().count () == 1;
+  }
+
+  //
   // get_ImplementationArtifactReference
   //
   ImplementationArtifactReference ServantProject_Impl::get_ImplementationArtifactReference (void) const
   {
     return this->children <ImplementationArtifactReference> ().item ();
+  }
+
+  //
+  // has_ComponentImplementationArtifact
+  //
+  bool ServantProject_Impl::has_ComponentImplementationArtifact (void) const
+  {
+    return this->children <ComponentImplementationArtifact> ().count () == 1;
+  }
+
+  //
+  // get_ComponentImplementationArtifact
+  //
+  ComponentImplementationArtifact ServantProject_Impl::get_ComponentImplementationArtifact (void) const
+  {
+    return this->children <ComponentImplementationArtifact> ().item ();
+  }
+
+  //
+  // has_ComponentServantArtifact
+  //
+  bool ServantProject_Impl::has_ComponentServantArtifact (void) const
+  {
+    return this->children <ComponentServantArtifact> ().count () == 1;
+  }
+
+  //
+  // get_ComponentServantArtifact
+  //
+  ComponentServantArtifact ServantProject_Impl::get_ComponentServantArtifact (void) const
+  {
+    return this->children <ComponentServantArtifact> ().item ();
   }
 
   //

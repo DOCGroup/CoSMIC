@@ -9,8 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/Common/ImplementationDependency.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_ImplementationDependsOn (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ComponentImplementationContainer
+  //
+  ComponentImplementationContainer ImplementationDependsOn_Impl::parent_ComponentImplementationContainer (void)
+  {
+    return ComponentImplementationContainer::_narrow (this->parent ());
   }
 
   //

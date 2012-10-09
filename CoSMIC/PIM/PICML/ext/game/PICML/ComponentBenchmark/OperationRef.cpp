@@ -9,11 +9,16 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/OperationTypes/OperationBase.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
-#include "PICML/ComponentBenchmark/TimerConnection.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/ComponentBenchmark/TimerConnection.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -49,11 +54,19 @@ namespace PICML
   }
 
   //
-  // src_MetricConnection
+  // parent_BenchmarkAnalysis
   //
-  size_t OperationRef_Impl::src_MetricConnection (std::vector <MetricConnection> & items) const
+  BenchmarkAnalysis OperationRef_Impl::parent_BenchmarkAnalysis (void)
   {
-    return this->in_connections <MetricConnection> (items);
+    return BenchmarkAnalysis::_narrow (this->parent ());
+  }
+
+  //
+  // src_WorkLoadOperationConnection
+  //
+  size_t OperationRef_Impl::src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> (items);
   }
 
   //
@@ -73,11 +86,11 @@ namespace PICML
   }
 
   //
-  // src_WorkLoadOperationConnection
+  // src_MetricConnection
   //
-  size_t OperationRef_Impl::src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
+  size_t OperationRef_Impl::src_MetricConnection (std::vector <MetricConnection> & items) const
   {
-    return this->in_connections <WorkLoadOperationConnection> (items);
+    return this->in_connections <MetricConnection> (items);
   }
 
   //
@@ -86,6 +99,14 @@ namespace PICML
   bool OperationRef_Impl::OperationBase_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_OperationBase
+  //
+  void OperationRef_Impl::set_OperationBase (OperationBase_in item)
+  {
+    this->refers_to (item);
   }
 
   //

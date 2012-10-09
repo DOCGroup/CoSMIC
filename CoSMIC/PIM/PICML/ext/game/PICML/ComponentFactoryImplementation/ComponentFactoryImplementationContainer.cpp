@@ -8,9 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,14 +31,6 @@ namespace PICML
   }
 
   //
-  // _create (const ImplementationContainer_in)
-  //
-  ComponentFactoryImplementationContainer ComponentFactoryImplementationContainer_Impl::_create (const ImplementationContainer_in parent)
-  {
-    return ::GAME::Mga::create_object < ComponentFactoryImplementationContainer > (parent, ComponentFactoryImplementationContainer_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void ComponentFactoryImplementationContainer_Impl::accept (::GAME::Mga::Visitor * v)
@@ -51,6 +42,14 @@ namespace PICML
       this_visitor->visit_ComponentFactoryImplementationContainer (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_ComponentFactoryImplementations
+  //
+  ComponentFactoryImplementations ComponentFactoryImplementationContainer_Impl::parent_ComponentFactoryImplementations (void)
+  {
+    return ComponentFactoryImplementations::_narrow (this->parent ());
   }
 
   //

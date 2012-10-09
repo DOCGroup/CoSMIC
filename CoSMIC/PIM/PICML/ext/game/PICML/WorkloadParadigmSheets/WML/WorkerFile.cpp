@@ -8,9 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerLibrary.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerLibrary.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,14 +31,6 @@ namespace PICML
   }
 
   //
-  // _create (const WorkerPackageBase_in)
-  //
-  WorkerFile WorkerFile_Impl::_create (const WorkerPackageBase_in parent)
-  {
-    return ::GAME::Mga::create_object < WorkerFile > (parent, WorkerFile_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void WorkerFile_Impl::accept (::GAME::Mga::Visitor * v)
@@ -51,6 +42,14 @@ namespace PICML
       this_visitor->visit_WorkerFile (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_WorkerLibrary
+  //
+  WorkerLibrary WorkerFile_Impl::parent_WorkerLibrary (void)
+  {
+    return WorkerLibrary::_narrow (this->parent ());
   }
 
   //

@@ -9,6 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/RequirementSatisfier.h"
+#include "PICML/TargetElements/Resource.h"
+#include "PICML/TargetElements/SharedResource.h"
+#include "PICML/Common/Capability.h"
 #include "PICML/Common/DataType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -42,6 +45,22 @@ namespace PICML
       this_visitor->visit_SatisfierProperty (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_RequirementSatisfier
+  //
+  RequirementSatisfier SatisfierProperty_Impl::parent_RequirementSatisfier (void)
+  {
+    return RequirementSatisfier::_narrow (this->parent ());
+  }
+
+  //
+  // has_DataType
+  //
+  bool SatisfierProperty_Impl::has_DataType (void) const
+  {
+    return this->children <DataType> ().count () == 1;
   }
 
   //

@@ -52,6 +52,13 @@ namespace PICML
 
     // Destructor.
     virtual ~CollocationGroupMember_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DeploymentPlan parent_DeploymentPlan (void);
+    ///@}
   };
 }
 

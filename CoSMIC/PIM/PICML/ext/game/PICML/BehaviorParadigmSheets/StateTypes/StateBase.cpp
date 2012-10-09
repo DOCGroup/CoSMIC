@@ -8,11 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 
 namespace PICML
 {
@@ -20,6 +22,14 @@ namespace PICML
   // metaname
   //
   const std::string StateBase_Impl::metaname ("StateBase");
+
+  //
+  // parent_BehaviorModel
+  //
+  BehaviorModel StateBase_Impl::parent_BehaviorModel (void)
+  {
+    return BehaviorModel::_narrow (this->parent ());
+  }
 
   //
   // src_Finish
@@ -30,11 +40,11 @@ namespace PICML
   }
 
   //
-  // dst_Effect
+  // dst_TerminalEffect
   //
-  size_t StateBase_Impl::dst_Effect (std::vector <Effect> & items) const
+  size_t StateBase_Impl::dst_TerminalEffect (std::vector <TerminalEffect> & items) const
   {
-    return this->in_connections <Effect> (items);
+    return this->in_connections <TerminalEffect> (items);
   }
 
   //
@@ -46,11 +56,11 @@ namespace PICML
   }
 
   //
-  // dst_TerminalEffect
+  // dst_Effect
   //
-  size_t StateBase_Impl::dst_TerminalEffect (std::vector <TerminalEffect> & items) const
+  size_t StateBase_Impl::dst_Effect (std::vector <Effect> & items) const
   {
-    return this->in_connections <TerminalEffect> (items);
+    return this->in_connections <Effect> (items);
   }
 }
 

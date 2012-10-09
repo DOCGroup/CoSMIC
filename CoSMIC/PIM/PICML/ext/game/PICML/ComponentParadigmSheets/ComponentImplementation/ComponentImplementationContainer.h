@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static ComponentImplementationContainer _create (const ComponentImplementations_in parent);
-    static ComponentImplementationContainer _create (const ImplementationContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -70,35 +69,45 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentImplementations parent_ComponentImplementations (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
-    bool has_ComponentRef (void) const;
-    ComponentRef get_ComponentRef (void) const;
-
     bool has_Implements (void) const;
     Implements get_Implements (void) const;
 
+    bool has_ComponentRef (void) const;
+    ComponentRef get_ComponentRef (void) const;
+
     bool has_PathReference (void) const;
     PathReference get_PathReference (void) const;
-    size_t get_ImplementationCapabilitys (std::vector <ImplementationCapability> & items) const;
-    ::GAME::Mga::Iterator <ImplementationCapability> get_ImplementationCapabilitys (void) const;
-
     size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
     ::GAME::Mga::Iterator <ImplementationDependsOn> get_ImplementationDependsOns (void) const;
 
-    size_t get_ComponentImplementations (std::vector <ComponentImplementation> & items) const;
-    ::GAME::Mga::Iterator <ComponentImplementation> get_ComponentImplementations (void) const;
+    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
+    ::GAME::Mga::Iterator <ComponentAssembly> get_ComponentAssemblys (void) const;
 
-    size_t get_CriticalPaths (std::vector <CriticalPath> & items) const;
-    ::GAME::Mga::Iterator <CriticalPath> get_CriticalPaths (void) const;
+    size_t get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const;
+    ::GAME::Mga::Iterator <MonolithicImplementation> get_MonolithicImplementations (void) const;
 
     size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
     ::GAME::Mga::Iterator <ImplementationDependency> get_ImplementationDependencys (void) const;
 
     size_t get_Capabilitys (std::vector <Capability> & items) const;
     ::GAME::Mga::Iterator <Capability> get_Capabilitys (void) const;
+
+    size_t get_ImplementationCapabilitys (std::vector <ImplementationCapability> & items) const;
+    ::GAME::Mga::Iterator <ImplementationCapability> get_ImplementationCapabilitys (void) const;
+
+    size_t get_CriticalPaths (std::vector <CriticalPath> & items) const;
+    ::GAME::Mga::Iterator <CriticalPath> get_CriticalPaths (void) const;
 
     ///@}
   };

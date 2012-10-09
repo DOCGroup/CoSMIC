@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/ComplexTypeReference.h"
 
 namespace PICML
 {

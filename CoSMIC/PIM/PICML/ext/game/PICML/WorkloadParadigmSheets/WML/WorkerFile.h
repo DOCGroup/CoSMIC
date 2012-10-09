@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static WorkerFile _create (const WorkerLibrary_in parent);
-    static WorkerFile _create (const WorkerPackageBase_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +67,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    WorkerLibrary parent_WorkerLibrary (void);
+    ///@}
 
     /**
      * @name Attribute Methods

@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static Capability _create (const ComponentImplementationContainer_in parent);
-    static Capability _create (const RequirementSatisfier_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +67,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentImplementationContainer parent_ComponentImplementationContainer (void);
+    ///@}
 
     /**
      * @name Destination Connection Point Methods

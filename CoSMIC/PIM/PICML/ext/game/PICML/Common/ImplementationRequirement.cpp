@@ -8,9 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/RequirementBase.h"
 #include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,14 +34,6 @@ namespace PICML
   }
 
   //
-  // _create (const RequirementBase_in)
-  //
-  ImplementationRequirement ImplementationRequirement_Impl::_create (const RequirementBase_in parent)
-  {
-    return ::GAME::Mga::create_object < ImplementationRequirement > (parent, ImplementationRequirement_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void ImplementationRequirement_Impl::accept (::GAME::Mga::Visitor * v)
@@ -51,6 +45,14 @@ namespace PICML
       this_visitor->visit_ImplementationRequirement (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_ImplementationContainer
+  //
+  ImplementationContainer ImplementationRequirement_Impl::parent_ImplementationContainer (void)
+  {
+    return ImplementationContainer::_narrow (this->parent ());
   }
 
   //

@@ -8,7 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,9 +23,17 @@ namespace PICML
   const std::string ValueObject_Impl::metaname ("ValueObject");
 
   //
-  // _create (const ObjectByValue_in)
+  // _create (const File_in)
   //
-  ValueObject ValueObject_Impl::_create (const ObjectByValue_in parent)
+  ValueObject ValueObject_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < ValueObject > (parent, ValueObject_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  ValueObject ValueObject_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < ValueObject > (parent, ValueObject_Impl::metaname);
   }

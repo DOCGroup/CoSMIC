@@ -52,6 +52,12 @@ namespace PICML
 
     // Destructor.
     virtual ~MultiOutputBase_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

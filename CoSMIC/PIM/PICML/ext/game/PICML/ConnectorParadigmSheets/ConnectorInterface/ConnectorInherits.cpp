@@ -44,11 +44,27 @@ namespace PICML
   }
 
   //
+  // parent_ConnectorObject
+  //
+  ConnectorObject ConnectorInherits_Impl::parent_ConnectorObject (void)
+  {
+    return ConnectorObject::_narrow (this->parent ());
+  }
+
+  //
   // ConnectorObject_is_nil
   //
   bool ConnectorInherits_Impl::ConnectorObject_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ConnectorObject
+  //
+  void ConnectorInherits_Impl::set_ConnectorObject (ConnectorObject_in item)
+  {
+    this->refers_to (item);
   }
 
   //

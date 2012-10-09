@@ -10,6 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_Implements (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ComponentImplementationContainer
+  //
+  ComponentImplementationContainer Implements_Impl::parent_ComponentImplementationContainer (void)
+  {
+    return ComponentImplementationContainer::_narrow (this->parent ());
   }
 
   //

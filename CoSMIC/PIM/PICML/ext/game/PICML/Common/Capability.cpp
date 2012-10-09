@@ -10,7 +10,6 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/Common/RequirementSatisfier.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,14 +31,6 @@ namespace PICML
   }
 
   //
-  // _create (const RequirementSatisfier_in)
-  //
-  Capability Capability_Impl::_create (const RequirementSatisfier_in parent)
-  {
-    return ::GAME::Mga::create_object < Capability > (parent, Capability_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void Capability_Impl::accept (::GAME::Mga::Visitor * v)
@@ -51,6 +42,14 @@ namespace PICML
       this_visitor->visit_Capability (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_ComponentImplementationContainer
+  //
+  ComponentImplementationContainer Capability_Impl::parent_ComponentImplementationContainer (void)
+  {
+    return ComponentImplementationContainer::_narrow (this->parent ());
   }
 
   //

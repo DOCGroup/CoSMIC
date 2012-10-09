@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PredefinedTypes/PredefinedTypes.h"
 
 namespace PICML
 {

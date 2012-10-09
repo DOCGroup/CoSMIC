@@ -42,5 +42,13 @@ namespace PICML
     else
       v->visit_Atom (this);
   }
+
+  //
+  // parent_RTRequirements
+  //
+  RTRequirements ServiceConsumer_Impl::parent_RTRequirements (void)
+  {
+    return RTRequirements::_narrow (this->parent ());
+  }
 }
 

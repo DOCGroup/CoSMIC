@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Inheritable parent_Inheritable (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool Inheritable_is_nil (void) const;
     Inheritable get_Inheritable (void) const;
+    void set_Inheritable (Inheritable_in item);
     ///@}
   };
 }

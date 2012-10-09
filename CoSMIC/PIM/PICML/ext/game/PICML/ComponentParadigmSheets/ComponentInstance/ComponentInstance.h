@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the ComponentInstance model element.
    */
   class PICML_Export ComponentInstance_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual AssemblyConfigPropertyEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -67,6 +69,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -82,13 +91,32 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    ComponentInstanceType get_ComponentInstanceType (void) const;
 
+    bool has_ComponentInstanceType (void) const;
+    ComponentInstanceType get_ComponentInstanceType (void) const;
     size_t get_SupportsInstances (std::vector <SupportsInstance> & items) const;
     ::GAME::Mga::Iterator <SupportsInstance> get_SupportsInstances (void) const;
 
-    size_t get_PortInstances (std::vector <PortInstance> & items) const;
-    ::GAME::Mga::Iterator <PortInstance> get_PortInstances (void) const;
+    size_t get_AttributeInstances (std::vector <AttributeInstance> & items) const;
+    ::GAME::Mga::Iterator <AttributeInstance> get_AttributeInstances (void) const;
+
+    size_t get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const;
+    ::GAME::Mga::Iterator <RequiredRequestPortInstance> get_RequiredRequestPortInstances (void) const;
+
+    size_t get_InEventPortInstances (std::vector <InEventPortInstance> & items) const;
+    ::GAME::Mga::Iterator <InEventPortInstance> get_InEventPortInstances (void) const;
+
+    size_t get_ProvidedRequestPortInstances (std::vector <ProvidedRequestPortInstance> & items) const;
+    ::GAME::Mga::Iterator <ProvidedRequestPortInstance> get_ProvidedRequestPortInstances (void) const;
+
+    size_t get_OutEventPortInstances (std::vector <OutEventPortInstance> & items) const;
+    ::GAME::Mga::Iterator <OutEventPortInstance> get_OutEventPortInstances (void) const;
+
+    size_t get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const;
+    ::GAME::Mga::Iterator <MirrorPortInstance> get_MirrorPortInstances (void) const;
+
+    size_t get_ExtendedPortInstances (std::vector <ExtendedPortInstance> & items) const;
+    ::GAME::Mga::Iterator <ExtendedPortInstance> get_ExtendedPortInstances (void) const;
 
     ///@}
   };

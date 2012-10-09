@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ExtendedPort _create (const ConnectorObject_in parent);
     static ExtendedPort _create (const Component_in parent);
+    static ExtendedPort _create (const ConnectorObject_in parent);
     ///@}
 
     // Default constructor.
@@ -70,11 +70,9 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Refers To Methods
+     * @name Parent Methods
      */
     ///@{
-    bool ExtendedPort_is_nil (void) const;
-    ExtendedPort get_ExtendedPort (void) const;
     ///@}
   };
 }

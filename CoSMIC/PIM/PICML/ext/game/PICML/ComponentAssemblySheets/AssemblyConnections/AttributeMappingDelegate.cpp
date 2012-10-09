@@ -45,6 +45,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly AttributeMappingDelegate_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
   // AttributeMapping
   //
   AttributeMapping AttributeMappingDelegate_Impl::src_AttributeMapping (void) const

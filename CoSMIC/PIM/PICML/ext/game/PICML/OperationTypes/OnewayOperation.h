@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static OnewayOperation _create (const HasOperations_in parent);
-    static OnewayOperation _create (const OperationBase_in parent);
     static OnewayOperation _create (const BenchmarkAnalysis_in parent);
     ///@}
 
@@ -69,6 +68,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    HasOperations parent_HasOperations (void);
+    ///@}
   };
 }
 

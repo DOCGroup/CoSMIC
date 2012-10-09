@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/MPC.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +42,14 @@ namespace PICML
       this_visitor->visit_Workspaces (this);
     else
       v->visit_Set (this);
+  }
+
+  //
+  // parent_MPC
+  //
+  MPC Workspaces_Impl::parent_MPC (void)
+  {
+    return MPC::_narrow (this->parent ());
   }
 }
 

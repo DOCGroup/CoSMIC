@@ -8,11 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/KeyMember.h"
 #include "PICML/NamedTypes/Key.h"
+#include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +45,22 @@ namespace PICML
   }
 
   //
+  // _create (const File_in)
+  //
+  Aggregate Aggregate_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  Aggregate Aggregate_Impl::_create (const Package_in parent)
+  {
+    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
+  }
+
+  //
   // accept
   //
   void Aggregate_Impl::accept (::GAME::Mga::Visitor * v)
@@ -53,6 +72,14 @@ namespace PICML
       this_visitor->visit_Aggregate (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_ConnectorObject
+  //
+  ConnectorObject Aggregate_Impl::parent_ConnectorObject (void)
+  {
+    return ConnectorObject::_narrow (this->parent ());
   }
 
   //
@@ -72,6 +99,22 @@ namespace PICML
   }
 
   //
+  // get_KeyMembers
+  //
+  size_t Aggregate_Impl::get_KeyMembers (std::vector <KeyMember> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_KeyMembers
+  //
+  ::GAME::Mga::Iterator <KeyMember> Aggregate_Impl::get_KeyMembers (void) const
+  {
+    return this->children <KeyMember> ();
+  }
+
+  //
   // get_Members
   //
   size_t Aggregate_Impl::get_Members (std::vector <Member> & items) const
@@ -88,19 +131,19 @@ namespace PICML
   }
 
   //
-  // get_KeyMembers
+  // get_ArrayMembers
   //
-  size_t Aggregate_Impl::get_KeyMembers (std::vector <KeyMember> & items) const
+  size_t Aggregate_Impl::get_ArrayMembers (std::vector <ArrayMember> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_KeyMembers
+  // get_ArrayMembers
   //
-  ::GAME::Mga::Iterator <KeyMember> Aggregate_Impl::get_KeyMembers (void) const
+  ::GAME::Mga::Iterator <ArrayMember> Aggregate_Impl::get_ArrayMembers (void) const
   {
-    return this->children <KeyMember> ();
+    return this->children <ArrayMember> ();
   }
 }
 

@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    RequirementSatisfier parent_RequirementSatisfier (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -94,8 +101,9 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    DataType get_DataType (void) const;
 
+    bool has_DataType (void) const;
+    DataType get_DataType (void) const;
     ///@}
   };
 }

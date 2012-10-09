@@ -67,6 +67,13 @@ namespace PICML
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
 
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ::GAME::Mga::RootFolder parent_RootFolder (void);
+    ///@}
+
     size_t get_DeploymentPlans (std::vector <DeploymentPlan> & items) const;
   };
 }

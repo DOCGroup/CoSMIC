@@ -9,6 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,6 +31,14 @@ namespace PICML
   }
 
   //
+  // _create (const DeploymentPlan_in)
+  //
+  ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const DeploymentPlan_in parent)
+  {
+    return ::GAME::Mga::create_object < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
+  }
+
+  //
   // accept
   //
   void ComponentAssemblyReference_Impl::accept (::GAME::Mga::Visitor * v)
@@ -44,11 +53,27 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ComponentAssemblyReference_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
   // ComponentAssembly_is_nil
   //
   bool ComponentAssemblyReference_Impl::ComponentAssembly_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ComponentAssembly
+  //
+  void ComponentAssemblyReference_Impl::set_ComponentAssembly (ComponentAssembly_in item)
+  {
+    this->refers_to (item);
   }
 
   //

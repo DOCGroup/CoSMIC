@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static DataType _create (const ComponentPropertyDescription_in parent);
     static DataType _create (const SatisfierProperty_in parent);
+    static DataType _create (const ComponentPropertyDescription_in parent);
     ///@}
 
     // Default constructor.
@@ -68,11 +68,20 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    SatisfierProperty parent_SatisfierProperty (void);
+    ComponentPropertyDescription parent_ComponentPropertyDescription (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool MemberType_is_nil (void) const;
     MemberType get_MemberType (void) const;
+    void set_MemberType (MemberType_in item);
     ///@}
   };
 }

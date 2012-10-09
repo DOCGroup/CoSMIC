@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
-#include "PICML/DeploymentPlan/Deploys.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/DeploymentPlan/Deploys.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -59,6 +59,14 @@ namespace PICML
   bool ComponentFactoryRef_Impl::ComponentFactoryInstance_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ComponentFactoryInstance
+  //
+  void ComponentFactoryRef_Impl::set_ComponentFactoryInstance (ComponentFactoryInstance_in item)
+  {
+    this->refers_to (item);
   }
 
   //

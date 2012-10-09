@@ -55,7 +55,7 @@ namespace PICML
     ///@{
     static FactoryOperation _create (const ComponentFactory_in parent);
     static FactoryOperation _create (const ObjectByValue_in parent);
-    static FactoryOperation _create (const HasExceptions_in parent);
+    static FactoryOperation _create (const BenchmarkAnalysis_in parent);
     ///@}
 
     // Default constructor.
@@ -69,6 +69,14 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentFactory parent_ComponentFactory (void);
+    ObjectByValue parent_ObjectByValue (void);
+    ///@}
   };
 }
 

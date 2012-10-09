@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    RTRequirements parent_RTRequirements (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -83,11 +90,11 @@ namespace PICML
      */
     ///@{
 
-    bool has_MultipleServiceRequests (void) const;
-    MultipleServiceRequests get_MultipleServiceRequests (void) const;
-
     bool has_ServiceLevels (void) const;
     ServiceLevels get_ServiceLevels (void) const;
+
+    bool has_MultipleServiceRequests (void) const;
+    MultipleServiceRequests get_MultipleServiceRequests (void) const;
     ///@}
   };
 }

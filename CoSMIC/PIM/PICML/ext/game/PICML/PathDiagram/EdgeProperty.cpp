@@ -9,8 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/PathDiagram/Path.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/PathDiagram/Edge.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_EdgeProperty (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_Path
+  //
+  Path EdgeProperty_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
   }
 
   //

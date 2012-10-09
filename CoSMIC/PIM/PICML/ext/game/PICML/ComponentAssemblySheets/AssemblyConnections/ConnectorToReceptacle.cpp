@@ -9,8 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_ConnectorToReceptacle (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ConnectorToReceptacle_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

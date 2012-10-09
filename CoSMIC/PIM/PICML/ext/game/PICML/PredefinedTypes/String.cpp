@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PredefinedTypes/PredefinedTypes.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -19,6 +20,14 @@ namespace PICML
   // metaname
   //
   const std::string String_Impl::metaname ("String");
+
+  //
+  // _create (const PredefinedTypes_in)
+  //
+  String String_Impl::_create (const PredefinedTypes_in parent)
+  {
+    return ::GAME::Mga::create_root_object < String > (parent, String_Impl::metaname);
+  }
 
   //
   // accept

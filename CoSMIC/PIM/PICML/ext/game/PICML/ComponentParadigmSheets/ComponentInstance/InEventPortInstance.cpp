@@ -53,6 +53,14 @@ namespace PICML
   }
 
   //
+  // set_InEventPort
+  //
+  void InEventPortInstance_Impl::set_InEventPort (InEventPort_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_InEventPort
   //
   InEventPort InEventPortInstance_Impl::get_InEventPort (void) const

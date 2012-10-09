@@ -54,6 +54,13 @@ namespace PICML
     virtual ~MetricsBase_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -109,19 +116,28 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst MetricConnection connection.
-    size_t dst_MetricConnection (std::vector <MetricConnection> & items) const;
-
     /// Get the dst BenchmarkCharacteristics connection.
     size_t dst_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+
+    /// Get the dst MetricConnection connection.
+    size_t dst_MetricConnection (std::vector <MetricConnection> & items) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_DataAnalysisBases (std::vector <DataAnalysisBase> & items) const;
-    ::GAME::Mga::Iterator <DataAnalysisBase> get_DataAnalysisBases (void) const;
+    size_t get_Jitters (std::vector <Jitter> & items) const;
+    ::GAME::Mga::Iterator <Jitter> get_Jitters (void) const;
+
+    size_t get_Maximums (std::vector <Maximum> & items) const;
+    ::GAME::Mga::Iterator <Maximum> get_Maximums (void) const;
+
+    size_t get_Minimums (std::vector <Minimum> & items) const;
+    ::GAME::Mga::Iterator <Minimum> get_Minimums (void) const;
+
+    size_t get_Averages (std::vector <Average> & items) const;
+    ::GAME::Mga::Iterator <Average> get_Averages (void) const;
 
     ///@}
   };

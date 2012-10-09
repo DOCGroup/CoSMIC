@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/RealTimeRequirements/ServiceConsumer.h"
+#include "PICML/RealTimeRequirements/ServiceProvider.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/RealTimeRequirements/ServiceProvider.h"
-#include "PICML/RealTimeRequirements/ServiceConsumer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -64,22 +64,6 @@ namespace PICML
   }
 
   //
-  // has_ServiceProvider
-  //
-  bool RTRequirements_Impl::has_ServiceProvider (void) const
-  {
-    return this->children <ServiceProvider> ().count () == 1;
-  }
-
-  //
-  // get_ServiceProvider
-  //
-  ServiceProvider RTRequirements_Impl::get_ServiceProvider (void) const
-  {
-    return this->children <ServiceProvider> ().item ();
-  }
-
-  //
   // has_ServiceConsumer
   //
   bool RTRequirements_Impl::has_ServiceConsumer (void) const
@@ -93,6 +77,22 @@ namespace PICML
   ServiceConsumer RTRequirements_Impl::get_ServiceConsumer (void) const
   {
     return this->children <ServiceConsumer> ().item ();
+  }
+
+  //
+  // has_ServiceProvider
+  //
+  bool RTRequirements_Impl::has_ServiceProvider (void) const
+  {
+    return this->children <ServiceProvider> ().count () == 1;
+  }
+
+  //
+  // get_ServiceProvider
+  //
+  ServiceProvider RTRequirements_Impl::get_ServiceProvider (void) const
+  {
+    return this->children <ServiceProvider> ().item ();
   }
 }
 

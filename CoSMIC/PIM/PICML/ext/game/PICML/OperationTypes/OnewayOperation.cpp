@@ -9,7 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -27,14 +31,6 @@ namespace PICML
   // _create (const HasOperations_in)
   //
   OnewayOperation OnewayOperation_Impl::_create (const HasOperations_in parent)
-  {
-    return ::GAME::Mga::create_object < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
-  }
-
-  //
-  // _create (const OperationBase_in)
-  //
-  OnewayOperation OnewayOperation_Impl::_create (const OperationBase_in parent)
   {
     return ::GAME::Mga::create_object < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
   }
@@ -59,6 +55,14 @@ namespace PICML
       this_visitor->visit_OnewayOperation (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_HasOperations
+  //
+  HasOperations OnewayOperation_Impl::parent_HasOperations (void)
+  {
+    return HasOperations::_narrow (this->parent ());
   }
 }
 

@@ -17,6 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "game/mga/Reference.h"
 
@@ -37,6 +39,8 @@ namespace PICML
    */
   class PICML_Export InEventPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
+    public virtual SingleInputBase_Impl,
+    public virtual QueryInputBase_Impl,
     public virtual EventPort_Impl
   {
     public:
@@ -53,6 +57,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static InEventPort _create (const Component_in parent);
+    static InEventPort _create (const ConnectedComponent_in parent);
+    static InEventPort _create (const Path_in parent);
     ///@}
 
     // Default constructor.
@@ -68,11 +75,9 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Refers To Methods
+     * @name Parent Methods
      */
     ///@{
-    bool InEventPort_is_nil (void) const;
-    InEventPort get_InEventPort (void) const;
     ///@}
 
     /**
@@ -81,6 +86,7 @@ namespace PICML
     ///@{
     bool EventType_is_nil (void) const;
     EventType get_EventType (void) const;
+    void set_EventType (EventType_in item);
     ///@}
   };
 }

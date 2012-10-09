@@ -17,6 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Taggable.h"
+#include "PICML/InterfaceDefinition/TemplateParameterValueType.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
 #include "game/mga/Model.h"
 
@@ -37,6 +39,8 @@ namespace PICML
    */
   class PICML_Export Exception_Impl :
     public virtual ::GAME::Mga::Model_Impl,
+    public virtual Taggable_Impl,
+    public virtual TemplateParameterValueType_Impl,
     public virtual ExceptionType_Impl
   {
     public:
@@ -53,9 +57,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Exception _create (const Package_in parent);
-    static Exception _create (const File_in parent);
     static Exception _create (const HasOperations_in parent);
+    static Exception _create (const File_in parent);
+    static Exception _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -71,11 +75,23 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    HasOperations parent_HasOperations (void);
+    File parent_File (void);
+    Package parent_Package (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Iterator <Member> get_Members (void) const;
+
+    size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
+    ::GAME::Mga::Iterator <ArrayMember> get_ArrayMembers (void) const;
 
     ///@}
   };

@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "game/mga/Model.h"
 
@@ -37,6 +38,7 @@ namespace PICML
    */
   class PICML_Export ValueObject_Impl :
     public virtual ::GAME::Mga::Model_Impl,
+    public virtual LookupKeyType_Impl,
     public virtual ObjectByValue_Impl
   {
     public:
@@ -53,7 +55,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ValueObject _create (const ObjectByValue_in parent);
+    static ValueObject _create (const File_in parent);
+    static ValueObject _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -67,6 +70,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

@@ -46,6 +46,14 @@ namespace PICML
   }
 
   //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis CompRef_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
+  }
+
+  //
   // dst_ComponentOperation
   //
   size_t CompRef_Impl::dst_ComponentOperation (std::vector <ComponentOperation> & items) const
@@ -59,6 +67,14 @@ namespace PICML
   bool CompRef_Impl::Component_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Component
+  //
+  void CompRef_Impl::set_Component (Component_in item)
+  {
+    this->refers_to (item);
   }
 
   //

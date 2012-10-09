@@ -55,8 +55,8 @@ namespace PICML
     ///@{
     static ArrayMember _create (const Exception_in parent);
     static ArrayMember _create (const Aggregate_in parent);
-    static ArrayMember _create (const SwitchedAggregate_in parent);
     static ArrayMember _create (const ObjectByValue_in parent);
+    static ArrayMember _create (const SwitchedAggregate_in parent);
     ///@}
 
     // Default constructor.
@@ -70,6 +70,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods

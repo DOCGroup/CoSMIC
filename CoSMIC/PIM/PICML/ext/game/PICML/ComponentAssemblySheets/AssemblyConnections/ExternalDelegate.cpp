@@ -9,8 +9,28 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +63,14 @@ namespace PICML
       this_visitor->visit_ExternalDelegate (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ExternalDelegate_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

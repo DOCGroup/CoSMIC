@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentInstance parent_ComponentInstance (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool MonolithicImplementation_is_nil (void) const;
     MonolithicImplementation get_MonolithicImplementation (void) const;
+    void set_MonolithicImplementation (MonolithicImplementation_in item);
     ///@}
   };
 }

@@ -56,6 +56,12 @@ namespace PICML
     virtual ~LoopState_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

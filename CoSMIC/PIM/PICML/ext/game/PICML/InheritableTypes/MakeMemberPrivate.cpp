@@ -9,8 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/Member.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/InheritableTypes/PrivateFlag.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +46,14 @@ namespace PICML
       this_visitor->visit_MakeMemberPrivate (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ObjectByValue
+  //
+  ObjectByValue MakeMemberPrivate_Impl::parent_ObjectByValue (void)
+  {
+    return ObjectByValue::_narrow (this->parent ());
   }
 
   //

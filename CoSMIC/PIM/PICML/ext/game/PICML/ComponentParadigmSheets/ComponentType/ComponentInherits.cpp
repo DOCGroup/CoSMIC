@@ -44,11 +44,27 @@ namespace PICML
   }
 
   //
+  // parent_Component
+  //
+  Component ComponentInherits_Impl::parent_Component (void)
+  {
+    return Component::_narrow (this->parent ());
+  }
+
+  //
   // Component_is_nil
   //
   bool ComponentInherits_Impl::Component_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Component
+  //
+  void ComponentInherits_Impl::set_Component (Component_in item)
+  {
+    this->refers_to (item);
   }
 
   //

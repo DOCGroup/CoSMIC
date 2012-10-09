@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "game/mga/Reference.h"
 
@@ -37,6 +38,7 @@ namespace PICML
    */
   class PICML_Export OutEventPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
+    public virtual SingleOutputBase_Impl,
     public virtual EventPort_Impl
   {
     public:
@@ -53,6 +55,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static OutEventPort _create (const Component_in parent);
+    static OutEventPort _create (const ConnectedComponent_in parent);
+    static OutEventPort _create (const Path_in parent);
     ///@}
 
     // Default constructor.
@@ -66,6 +71,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -89,16 +100,9 @@ namespace PICML
      * @name Refers To Methods
      */
     ///@{
-    bool OutEventPort_is_nil (void) const;
-    OutEventPort get_OutEventPort (void) const;
-    ///@}
-
-    /**
-     * @name Refers To Methods
-     */
-    ///@{
     bool EventType_is_nil (void) const;
     EventType get_EventType (void) const;
+    void set_EventType (EventType_in item);
     ///@}
   };
 }

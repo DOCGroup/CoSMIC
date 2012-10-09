@@ -8,9 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/ComplexType.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/DataValueContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,17 +26,17 @@ namespace PICML
   const std::string ComplexTypeReference_Impl::metaname ("ComplexTypeReference");
 
   //
-  // _create (const DataValueContainer_in)
+  // _create (const ComplexProperty_in)
   //
-  ComplexTypeReference ComplexTypeReference_Impl::_create (const DataValueContainer_in parent)
+  ComplexTypeReference ComplexTypeReference_Impl::_create (const ComplexProperty_in parent)
   {
     return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
-  // _create (const ComplexProperty_in)
+  // _create (const DataValueContainer_in)
   //
-  ComplexTypeReference ComplexTypeReference_Impl::_create (const ComplexProperty_in parent)
+  ComplexTypeReference ComplexTypeReference_Impl::_create (const DataValueContainer_in parent)
   {
     return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
@@ -54,11 +56,35 @@ namespace PICML
   }
 
   //
+  // parent_ComplexProperty
+  //
+  ComplexProperty ComplexTypeReference_Impl::parent_ComplexProperty (void)
+  {
+    return ComplexProperty::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataValueContainer
+  //
+  DataValueContainer ComplexTypeReference_Impl::parent_DataValueContainer (void)
+  {
+    return DataValueContainer::_narrow (this->parent ());
+  }
+
+  //
   // ComplexType_is_nil
   //
   bool ComplexTypeReference_Impl::ComplexType_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ComplexType
+  //
+  void ComplexTypeReference_Impl::set_ComplexType (ComplexType_in item)
+  {
+    this->refers_to (item);
   }
 
   //

@@ -9,10 +9,15 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/InoutParameter.h"
-#include "PICML/OperationTypes/OutParameter.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/OperationTypes/ReturnType.h"
+#include "PICML/OperationTypes/OutParameter.h"
+#include "PICML/OperationTypes/InoutParameter.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -34,9 +39,9 @@ namespace PICML
   }
 
   //
-  // _create (const HasExceptions_in)
+  // _create (const BenchmarkAnalysis_in)
   //
-  TwowayOperation TwowayOperation_Impl::_create (const HasExceptions_in parent)
+  TwowayOperation TwowayOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
     return ::GAME::Mga::create_object < TwowayOperation > (parent, TwowayOperation_Impl::metaname);
   }
@@ -56,6 +61,14 @@ namespace PICML
   }
 
   //
+  // parent_HasOperations
+  //
+  HasOperations TwowayOperation_Impl::parent_HasOperations (void)
+  {
+    return HasOperations::_narrow (this->parent ());
+  }
+
+  //
   // has_ReturnType
   //
   bool TwowayOperation_Impl::has_ReturnType (void) const
@@ -72,22 +85,6 @@ namespace PICML
   }
 
   //
-  // get_InoutParameters
-  //
-  size_t TwowayOperation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_InoutParameters
-  //
-  ::GAME::Mga::Iterator <InoutParameter> TwowayOperation_Impl::get_InoutParameters (void) const
-  {
-    return this->children <InoutParameter> ();
-  }
-
-  //
   // get_OutParameters
   //
   size_t TwowayOperation_Impl::get_OutParameters (std::vector <OutParameter> & items) const
@@ -101,6 +98,22 @@ namespace PICML
   ::GAME::Mga::Iterator <OutParameter> TwowayOperation_Impl::get_OutParameters (void) const
   {
     return this->children <OutParameter> ();
+  }
+
+  //
+  // get_InoutParameters
+  //
+  size_t TwowayOperation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InoutParameters
+  //
+  ::GAME::Mga::Iterator <InoutParameter> TwowayOperation_Impl::get_InoutParameters (void) const
+  {
+    return this->children <InoutParameter> ();
   }
 }
 

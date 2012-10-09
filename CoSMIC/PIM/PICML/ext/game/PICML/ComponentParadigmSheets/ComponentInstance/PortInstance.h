@@ -52,6 +52,13 @@ namespace PICML
 
     // Destructor.
     virtual ~PortInstance_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentInstance parent_ComponentInstance (void);
+    ///@}
   };
 }
 

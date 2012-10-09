@@ -53,6 +53,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static FloatNumber _create (const PredefinedTypes_in parent);
     ///@}
 
     // Default constructor.
@@ -66,6 +67,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

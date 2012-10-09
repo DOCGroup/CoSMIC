@@ -8,15 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/Targets.h"
-#include "PICML/Domain/Shares.h"
-#include "PICML/Domain/InterconnectConnection.h"
-#include "PICML/Domain/BridgeConnection.h"
 #include "PICML/Common/Property.h"
-#include "PICML/TargetElements/Bridge.h"
-#include "PICML/TargetElements/Interconnect.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/TargetElements/Node.h"
+#include "PICML/Domain/InterconnectConnection.h"
+#include "PICML/TargetElements/Interconnect.h"
+#include "PICML/Domain/BridgeConnection.h"
+#include "PICML/TargetElements/Bridge.h"
+#include "PICML/Domain/Shares.h"
 #include "PICML/TargetElements/SharedResource.h"
+#include "PICML/Domain/Targets.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -52,19 +54,59 @@ namespace PICML
   }
 
   //
-  // get_Sharess
+  // parent_Targets
   //
-  size_t Domain_Impl::get_Sharess (std::vector <Shares> & items) const
+  Targets Domain_Impl::parent_Targets (void)
+  {
+    return Targets::_narrow (this->parent ());
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t Domain_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Sharess
+  // get_ComplexPropertys
   //
-  ::GAME::Mga::Iterator <Shares> Domain_Impl::get_Sharess (void) const
+  ::GAME::Mga::Iterator <ComplexProperty> Domain_Impl::get_ComplexPropertys (void) const
   {
-    return this->children <Shares> ();
+    return this->children <ComplexProperty> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t Domain_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Iterator <SimpleProperty> Domain_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_Nodes
+  //
+  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Nodes
+  //
+  ::GAME::Mga::Iterator <Node> Domain_Impl::get_Nodes (void) const
+  {
+    return this->children <Node> ();
   }
 
   //
@@ -84,6 +126,22 @@ namespace PICML
   }
 
   //
+  // get_Interconnects
+  //
+  size_t Domain_Impl::get_Interconnects (std::vector <Interconnect> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Interconnects
+  //
+  ::GAME::Mga::Iterator <Interconnect> Domain_Impl::get_Interconnects (void) const
+  {
+    return this->children <Interconnect> ();
+  }
+
+  //
   // get_BridgeConnections
   //
   size_t Domain_Impl::get_BridgeConnections (std::vector <BridgeConnection> & items) const
@@ -97,22 +155,6 @@ namespace PICML
   ::GAME::Mga::Iterator <BridgeConnection> Domain_Impl::get_BridgeConnections (void) const
   {
     return this->children <BridgeConnection> ();
-  }
-
-  //
-  // get_Propertys
-  //
-  size_t Domain_Impl::get_Propertys (std::vector <Property> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Propertys
-  //
-  ::GAME::Mga::Iterator <Property> Domain_Impl::get_Propertys (void) const
-  {
-    return this->children <Property> ();
   }
 
   //
@@ -132,35 +174,19 @@ namespace PICML
   }
 
   //
-  // get_Interconnects
+  // get_Sharess
   //
-  size_t Domain_Impl::get_Interconnects (std::vector <Interconnect> & items) const
+  size_t Domain_Impl::get_Sharess (std::vector <Shares> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Interconnects
+  // get_Sharess
   //
-  ::GAME::Mga::Iterator <Interconnect> Domain_Impl::get_Interconnects (void) const
+  ::GAME::Mga::Iterator <Shares> Domain_Impl::get_Sharess (void) const
   {
-    return this->children <Interconnect> ();
-  }
-
-  //
-  // get_Nodes
-  //
-  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Nodes
-  //
-  ::GAME::Mga::Iterator <Node> Domain_Impl::get_Nodes (void) const
-  {
-    return this->children <Node> ();
+    return this->children <Shares> ();
   }
 
   //

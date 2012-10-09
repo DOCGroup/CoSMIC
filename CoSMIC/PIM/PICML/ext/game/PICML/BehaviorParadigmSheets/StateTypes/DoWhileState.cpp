@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -19,6 +20,14 @@ namespace PICML
   // metaname
   //
   const std::string DoWhileState_Impl::metaname ("DoWhileState");
+
+  //
+  // _create (const BehaviorModel_in)
+  //
+  DoWhileState DoWhileState_Impl::_create (const BehaviorModel_in parent)
+  {
+    return ::GAME::Mga::create_object < DoWhileState > (parent, DoWhileState_Impl::metaname);
+  }
 
   //
   // accept

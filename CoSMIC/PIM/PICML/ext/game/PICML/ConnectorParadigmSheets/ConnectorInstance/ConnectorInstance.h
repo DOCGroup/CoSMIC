@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the ConnectorInstance model element.
    */
   class PICML_Export ConnectorInstance_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual AssemblyConfigPropertyEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -65,6 +67,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -106,8 +115,9 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    ConnectorImplementationType get_ConnectorImplementationType (void) const;
 
+    bool has_ConnectorImplementationType (void) const;
+    ConnectorImplementationType get_ConnectorImplementationType (void) const;
     size_t get_AttributeInstances (std::vector <AttributeInstance> & items) const;
     ::GAME::Mga::Iterator <AttributeInstance> get_AttributeInstances (void) const;
 

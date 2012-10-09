@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ConnectorImplementationContainer parent_ConnectorImplementationContainer (void);
+    ///@}
     ConnectorImplementation src_ConnectorImplementation (void) const;
     ConnectorType dst_ConnectorType (void) const;
   };

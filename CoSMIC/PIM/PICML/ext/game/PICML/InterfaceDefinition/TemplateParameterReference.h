@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/NamedTypes/MemberType.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the TemplateParameterReference model element.
    */
   class PICML_Export TemplateParameterReference_Impl :
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual MemberType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -67,11 +69,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TemplatePackageAlias parent_TemplatePackageAlias (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool TemplateParameter_is_nil (void) const;
     TemplateParameter get_TemplateParameter (void) const;
+    void set_TemplateParameter (TemplateParameter_in item);
     ///@}
   };
 }

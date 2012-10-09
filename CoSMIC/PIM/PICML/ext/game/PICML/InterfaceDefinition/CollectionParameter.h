@@ -69,11 +69,18 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool NameParameter_is_nil (void) const;
     NameParameter get_NameParameter (void) const;
+    void set_NameParameter (NameParameter_in item);
     ///@}
   };
 }

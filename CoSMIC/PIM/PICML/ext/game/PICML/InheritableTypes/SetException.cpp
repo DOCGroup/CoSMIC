@@ -9,6 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InheritableTypes/Attribute.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -45,11 +47,27 @@ namespace PICML
   }
 
   //
+  // parent_Attribute
+  //
+  Attribute SetException_Impl::parent_Attribute (void)
+  {
+    return Attribute::_narrow (this->parent ());
+  }
+
+  //
   // ExceptionType_is_nil
   //
   bool SetException_Impl::ExceptionType_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ExceptionType
+  //
+  void SetException_Impl::set_ExceptionType (ExceptionType_in item)
+  {
+    this->refers_to (item);
   }
 
   //

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/ExtResourceConn.h"
+#include "PICML/ComponentBuild/Project.h"
 
 namespace PICML
 {
@@ -17,6 +17,14 @@ namespace PICML
   // metaname
   //
   const std::string ComponentLib_Impl::metaname ("ComponentLib");
+
+  //
+  // parent_Project
+  //
+  Project ComponentLib_Impl::parent_Project (void)
+  {
+    return Project::_narrow (this->parent ());
+  }
 
   //
   // src_ExtResourceConn

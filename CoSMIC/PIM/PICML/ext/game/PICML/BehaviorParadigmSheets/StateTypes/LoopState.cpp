@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 
 namespace PICML
 {

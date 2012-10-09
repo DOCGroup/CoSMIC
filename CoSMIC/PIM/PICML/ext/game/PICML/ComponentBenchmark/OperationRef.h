@@ -67,12 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
 
-    /// Get the src MetricConnection connection.
-    size_t src_MetricConnection (std::vector <MetricConnection> & items) const;
+    /// Get the src WorkLoadOperationConnection connection.
+    size_t src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
 
     /// Get the src TimerConnection connection.
     size_t src_TimerConnection (std::vector <TimerConnection> & items) const;
@@ -80,8 +87,8 @@ namespace PICML
     /// Get the src ComponentOperation connection.
     size_t src_ComponentOperation (std::vector <ComponentOperation> & items) const;
 
-    /// Get the src WorkLoadOperationConnection connection.
-    size_t src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
+    /// Get the src MetricConnection connection.
+    size_t src_MetricConnection (std::vector <MetricConnection> & items) const;
     ///@}
 
     /**
@@ -90,6 +97,7 @@ namespace PICML
     ///@{
     bool OperationBase_is_nil (void) const;
     OperationBase get_OperationBase (void) const;
+    void set_OperationBase (OperationBase_in item);
     ///@}
   };
 }

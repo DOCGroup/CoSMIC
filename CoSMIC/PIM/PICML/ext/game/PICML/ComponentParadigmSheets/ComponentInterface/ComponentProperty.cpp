@@ -46,6 +46,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentContainer
+  //
+  ComponentContainer ComponentProperty_Impl::parent_ComponentContainer (void)
+  {
+    return ComponentContainer::_narrow (this->parent ());
+  }
+
+  //
   // ComponentRef
   //
   ComponentRef ComponentProperty_Impl::src_ComponentRef (void) const

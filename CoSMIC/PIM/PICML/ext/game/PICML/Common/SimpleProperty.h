@@ -56,17 +56,17 @@ namespace PICML
     static SimpleProperty _create (const BehaviorInputAction_in parent);
     static SimpleProperty _create (const ActionBase_in parent);
     static SimpleProperty _create (const QueryInputAction_in parent);
-    static SimpleProperty _create (const ComponentContainer_in parent);
-    static SimpleProperty _create (const ComponentAssembly_in parent);
-    static SimpleProperty _create (const Domain_in parent);
     static SimpleProperty _create (const RequirementBase_in parent);
-    static SimpleProperty _create (const PackageContainer_in parent);
-    static SimpleProperty _create (const ArtifactContainer_in parent);
-    static SimpleProperty _create (const PackageConfigurationContainer_in parent);
-    static SimpleProperty _create (const DeploymentPlan_in parent);
     static SimpleProperty _create (const Path_in parent);
-    static SimpleProperty _create (const Paths_in parent);
     static SimpleProperty _create (const ImplementationContainer_in parent);
+    static SimpleProperty _create (const ComponentAssembly_in parent);
+    static SimpleProperty _create (const ComponentContainer_in parent);
+    static SimpleProperty _create (const Domain_in parent);
+    static SimpleProperty _create (const Paths_in parent);
+    static SimpleProperty _create (const ArtifactContainer_in parent);
+    static SimpleProperty _create (const DeploymentPlan_in parent);
+    static SimpleProperty _create (const PackageConfigurationContainer_in parent);
+    static SimpleProperty _create (const PackageContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -80,6 +80,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -99,6 +105,7 @@ namespace PICML
     ///@{
     bool MemberType_is_nil (void) const;
     MemberType get_MemberType (void) const;
+    void set_MemberType (MemberType_in item);
     ///@}
   };
 }

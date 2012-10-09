@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static TemplatePackageAlias _create (const Package_in parent);
     static TemplatePackageAlias _create (const File_in parent);
+    static TemplatePackageAlias _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -70,11 +70,18 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    PackageType get_PackageType (void) const;
 
+    bool has_PackageType (void) const;
+    PackageType get_PackageType (void) const;
     size_t get_TemplateParameterReferences (std::vector <TemplateParameterReference> & items) const;
     ::GAME::Mga::Iterator <TemplateParameterReference> get_TemplateParameterReferences (void) const;
 

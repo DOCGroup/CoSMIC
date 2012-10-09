@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +45,27 @@ namespace PICML
   }
 
   //
+  // parent_ComponentInstance
+  //
+  ComponentInstance ComponentInstanceType_Impl::parent_ComponentInstance (void)
+  {
+    return ComponentInstance::_narrow (this->parent ());
+  }
+
+  //
   // MonolithicImplementation_is_nil
   //
   bool ComponentInstanceType_Impl::MonolithicImplementation_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_MonolithicImplementation
+  //
+  void ComponentInstanceType_Impl::set_MonolithicImplementation (MonolithicImplementation_in item)
+  {
+    this->refers_to (item);
   }
 
   //

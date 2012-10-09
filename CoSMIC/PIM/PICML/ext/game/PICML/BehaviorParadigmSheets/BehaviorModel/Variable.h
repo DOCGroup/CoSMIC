@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    BehaviorModel parent_BehaviorModel (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -84,6 +91,7 @@ namespace PICML
     ///@{
     bool PredefinedType_is_nil (void) const;
     PredefinedType get_PredefinedType (void) const;
+    void set_PredefinedType (PredefinedType_in item);
     ///@}
   };
 }

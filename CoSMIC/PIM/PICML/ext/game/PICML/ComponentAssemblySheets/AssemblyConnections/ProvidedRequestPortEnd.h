@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +33,8 @@ namespace PICML
    * Implementation for the ProvidedRequestPortEnd model element.
    */
   class PICML_Export ProvidedRequestPortEnd_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual ExternalPortEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -54,18 +56,24 @@ namespace PICML
     virtual ~ProvidedRequestPortEnd_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst ConnectorToFacet connection.
+    size_t dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
 
     /// Get the dst Invoke connection.
     size_t dst_Invoke (std::vector <Invoke> & items) const;
 
     /// Get the dst FacetDelegate connection.
     size_t dst_FacetDelegate (std::vector <FacetDelegate> & items) const;
-
-    /// Get the dst ConnectorToFacet connection.
-    size_t dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
     ///@}
   };
 }

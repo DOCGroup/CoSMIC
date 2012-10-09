@@ -8,9 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,14 +26,6 @@ namespace PICML
   // _create (const BehaviorModel_in)
   //
   MultiInputAction MultiInputAction_Impl::_create (const BehaviorModel_in parent)
-  {
-    return ::GAME::Mga::create_object < MultiInputAction > (parent, MultiInputAction_Impl::metaname);
-  }
-
-  //
-  // _create (const BehaviorInputAction_in)
-  //
-  MultiInputAction MultiInputAction_Impl::_create (const BehaviorInputAction_in parent)
   {
     return ::GAME::Mga::create_object < MultiInputAction > (parent, MultiInputAction_Impl::metaname);
   }

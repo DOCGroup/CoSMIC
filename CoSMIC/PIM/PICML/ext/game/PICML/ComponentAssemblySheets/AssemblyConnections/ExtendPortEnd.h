@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +33,8 @@ namespace PICML
    * Implementation for the ExtendPortEnd model element.
    */
   class PICML_Export ExtendPortEnd_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual ExternalPortEnd_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +54,12 @@ namespace PICML
 
     // Destructor.
     virtual ~ExtendPortEnd_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Source Connection Point Methods

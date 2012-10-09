@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TopLevelBehavior parent_TopLevelBehavior (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool Worker_is_nil (void) const;
     Worker get_Worker (void) const;
+    void set_Worker (Worker_in item);
     ///@}
   };
 }

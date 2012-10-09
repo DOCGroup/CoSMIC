@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    DeploymentPlans parent_DeploymentPlans (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -88,29 +95,38 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
 
-    size_t get_InstanceMappings (std::vector <InstanceMapping> & items) const;
-    ::GAME::Mga::Iterator <InstanceMapping> get_InstanceMappings (void) const;
-
-    size_t get_CollocationGroups (std::vector <CollocationGroup> & items) const;
-    ::GAME::Mga::Iterator <CollocationGroup> get_CollocationGroups (void) const;
-
-    size_t get_Deployss (std::vector <Deploys> & items) const;
-    ::GAME::Mga::Iterator <Deploys> get_Deployss (void) const;
-
-    size_t get_CollocationGroupMembers (std::vector <CollocationGroupMember> & items) const;
-    ::GAME::Mga::Iterator <CollocationGroupMember> get_CollocationGroupMembers (void) const;
-
-    size_t get_PropertyMappings (std::vector <PropertyMapping> & items) const;
-    ::GAME::Mga::Iterator <PropertyMapping> get_PropertyMappings (void) const;
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
 
     size_t get_CollocationGroupPropertys (std::vector <CollocationGroupProperty> & items) const;
     ::GAME::Mga::Iterator <CollocationGroupProperty> get_CollocationGroupPropertys (void) const;
 
+    size_t get_CollocationGroups (std::vector <CollocationGroup> & items) const;
+    ::GAME::Mga::Iterator <CollocationGroup> get_CollocationGroups (void) const;
+
+    size_t get_InstanceMappings (std::vector <InstanceMapping> & items) const;
+    ::GAME::Mga::Iterator <InstanceMapping> get_InstanceMappings (void) const;
+
     size_t get_NodeReferences (std::vector <NodeReference> & items) const;
     ::GAME::Mga::Iterator <NodeReference> get_NodeReferences (void) const;
+
+    size_t get_PropertyMappings (std::vector <PropertyMapping> & items) const;
+    ::GAME::Mga::Iterator <PropertyMapping> get_PropertyMappings (void) const;
+
+    size_t get_ComponentAssemblyReferences (std::vector <ComponentAssemblyReference> & items) const;
+    ::GAME::Mga::Iterator <ComponentAssemblyReference> get_ComponentAssemblyReferences (void) const;
+
+    size_t get_ComponentInstanceRefs (std::vector <ComponentInstanceRef> & items) const;
+    ::GAME::Mga::Iterator <ComponentInstanceRef> get_ComponentInstanceRefs (void) const;
+
+    size_t get_ComponentFactoryRefs (std::vector <ComponentFactoryRef> & items) const;
+    ::GAME::Mga::Iterator <ComponentFactoryRef> get_ComponentFactoryRefs (void) const;
+
+    size_t get_Deployss (std::vector <Deploys> & items) const;
+    ::GAME::Mga::Iterator <Deploys> get_Deployss (void) const;
 
     ///@}
   };

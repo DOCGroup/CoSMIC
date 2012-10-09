@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{

@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Aggregate parent_Aggregate (void);
+    ///@}
     Key src_Key (void) const;
     Member dst_Member (void) const;
   };

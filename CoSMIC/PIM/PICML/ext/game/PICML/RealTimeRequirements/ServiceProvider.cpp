@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/RealTimeRequirements/RTRequirements.h"
-#include "PICML/RealTimeRequirements/MultipleServiceRequests.h"
 #include "PICML/RealTimeRequirements/ServiceLevels.h"
+#include "PICML/RealTimeRequirements/MultipleServiceRequests.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,19 +46,11 @@ namespace PICML
   }
 
   //
-  // has_MultipleServiceRequests
+  // parent_RTRequirements
   //
-  bool ServiceProvider_Impl::has_MultipleServiceRequests (void) const
+  RTRequirements ServiceProvider_Impl::parent_RTRequirements (void)
   {
-    return this->children <MultipleServiceRequests> ().count () == 1;
-  }
-
-  //
-  // get_MultipleServiceRequests
-  //
-  MultipleServiceRequests ServiceProvider_Impl::get_MultipleServiceRequests (void) const
-  {
-    return this->children <MultipleServiceRequests> ().item ();
+    return RTRequirements::_narrow (this->parent ());
   }
 
   //
@@ -75,6 +67,22 @@ namespace PICML
   ServiceLevels ServiceProvider_Impl::get_ServiceLevels (void) const
   {
     return this->children <ServiceLevels> ().item ();
+  }
+
+  //
+  // has_MultipleServiceRequests
+  //
+  bool ServiceProvider_Impl::has_MultipleServiceRequests (void) const
+  {
+    return this->children <MultipleServiceRequests> ().count () == 1;
+  }
+
+  //
+  // get_MultipleServiceRequests
+  //
+  MultipleServiceRequests ServiceProvider_Impl::get_MultipleServiceRequests (void) const
+  {
+    return this->children <MultipleServiceRequests> ().item ();
   }
 }
 

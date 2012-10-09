@@ -9,6 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/Paths.h"
 #include "game/mga/Functional_T.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_PathProperty (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_Paths
+  //
+  Paths PathProperty_Impl::parent_Paths (void)
+  {
+    return Paths::_narrow (this->parent ());
   }
 
   //

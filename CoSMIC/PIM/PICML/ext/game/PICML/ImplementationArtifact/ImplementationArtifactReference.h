@@ -51,11 +51,11 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ImplementationArtifactReference _create (const StubProject_in parent);
-    static ImplementationArtifactReference _create (const ServantProject_in parent);
-    static ImplementationArtifactReference _create (const ExecutorProject_in parent);
-    static ImplementationArtifactReference _create (const ArtifactContainer_in parent);
     static ImplementationArtifactReference _create (const ImplementationContainer_in parent);
+    static ImplementationArtifactReference _create (const ExecutorProject_in parent);
+    static ImplementationArtifactReference _create (const ServantProject_in parent);
+    static ImplementationArtifactReference _create (const StubProject_in parent);
+    static ImplementationArtifactReference _create (const ArtifactContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -69,6 +69,17 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ImplementationContainer parent_ImplementationContainer (void);
+    ExecutorProject parent_ExecutorProject (void);
+    ServantProject parent_ServantProject (void);
+    StubProject parent_StubProject (void);
+    ArtifactContainer parent_ArtifactContainer (void);
+    ///@}
 
     /**
      * @name Destination Connection Point Methods
@@ -88,6 +99,7 @@ namespace PICML
     ///@{
     bool ImplementationArtifact_is_nil (void) const;
     ImplementationArtifact get_ImplementationArtifact (void) const;
+    void set_ImplementationArtifact (ImplementationArtifact_in item);
     ///@}
   };
 }

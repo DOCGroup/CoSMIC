@@ -69,15 +69,21 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
 
-    /// Get the src Transition connection.
-    size_t src_Transition (std::vector <Transition> & items) const;
-
     /// Get the src TerminalTransition connection.
     size_t src_TerminalTransition (std::vector <TerminalTransition> & items) const;
+
+    /// Get the src Transition connection.
+    size_t src_Transition (std::vector <Transition> & items) const;
     ///@}
   };
 }

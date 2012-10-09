@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "game/mga/Model.h"
 
@@ -37,6 +38,7 @@ namespace PICML
    */
   class PICML_Export Event_Impl :
     public virtual ::GAME::Mga::Model_Impl,
+    public virtual EventType_Impl,
     public virtual ObjectByValue_Impl
   {
     public:
@@ -54,7 +56,8 @@ namespace PICML
      */
     ///@{
     static Event _create (const BenchmarkAnalysis_in parent);
-    static Event _create (const ObjectByValue_in parent);
+    static Event _create (const File_in parent);
+    static Event _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +71,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
+    ///@}
   };
 }
 

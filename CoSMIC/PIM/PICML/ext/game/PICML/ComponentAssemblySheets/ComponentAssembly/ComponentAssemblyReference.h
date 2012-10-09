@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/DeploymentPlan/CollocationGroupMember.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the ComponentAssemblyReference model element.
    */
   class PICML_Export ComponentAssemblyReference_Impl :
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual CollocationGroupMember_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +54,7 @@ namespace PICML
      */
     ///@{
     static ComponentAssemblyReference _create (const ComponentAssembly_in parent);
+    static ComponentAssemblyReference _create (const DeploymentPlan_in parent);
     ///@}
 
     // Default constructor.
@@ -67,11 +70,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool ComponentAssembly_is_nil (void) const;
     ComponentAssembly get_ComponentAssembly (void) const;
+    void set_ComponentAssembly (ComponentAssembly_in item);
     ///@}
   };
 }

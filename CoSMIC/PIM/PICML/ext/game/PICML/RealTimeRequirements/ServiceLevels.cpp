@@ -42,5 +42,13 @@ namespace PICML
     else
       v->visit_Atom (this);
   }
+
+  //
+  // parent_ServiceProvider
+  //
+  ServiceProvider ServiceLevels_Impl::parent_ServiceProvider (void)
+  {
+    return ServiceProvider::_narrow (this->parent ());
+  }
 }
 

@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/NamedTypes/NoInheritable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the PortType model element.
    */
   class PICML_Export PortType_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual NoInheritable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -51,6 +53,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static PortType _create (const HasOperations_in parent);
+    static PortType _create (const File_in parent);
+    static PortType _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -66,14 +71,26 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ObjectPorts (std::vector <ObjectPort> & items) const;
-    ::GAME::Mga::Iterator <ObjectPort> get_ObjectPorts (void) const;
-
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
     ::GAME::Mga::Iterator <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
+
+    size_t get_Attributes (std::vector <Attribute> & items) const;
+    ::GAME::Mga::Iterator <Attribute> get_Attributes (void) const;
+
+    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
+    ::GAME::Mga::Iterator <RequiredRequestPort> get_RequiredRequestPorts (void) const;
+
+    size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
+    ::GAME::Mga::Iterator <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
 
     ///@}
   };

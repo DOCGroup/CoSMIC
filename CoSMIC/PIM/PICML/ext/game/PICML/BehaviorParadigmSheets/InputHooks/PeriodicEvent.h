@@ -69,6 +69,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TopLevelBehavior parent_TopLevelBehavior (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

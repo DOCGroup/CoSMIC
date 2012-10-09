@@ -8,9 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "PICML/Common/Property.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,6 +50,14 @@ namespace PICML
   }
 
   //
+  // parent_BehaviorModel
+  //
+  BehaviorModel QueryInputAction_Impl::parent_BehaviorModel (void)
+  {
+    return BehaviorModel::_narrow (this->parent ());
+  }
+
+  //
   // dst_QueryInput
   //
   size_t QueryInputAction_Impl::dst_QueryInput (std::vector <QueryInput> & items) const
@@ -54,19 +66,35 @@ namespace PICML
   }
 
   //
-  // get_Propertys
+  // get_ComplexPropertys
   //
-  size_t QueryInputAction_Impl::get_Propertys (std::vector <Property> & items) const
+  size_t QueryInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Propertys
+  // get_ComplexPropertys
   //
-  ::GAME::Mga::Iterator <Property> QueryInputAction_Impl::get_Propertys (void) const
+  ::GAME::Mga::Iterator <ComplexProperty> QueryInputAction_Impl::get_ComplexPropertys (void) const
   {
-    return this->children <Property> ();
+    return this->children <ComplexProperty> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t QueryInputAction_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Iterator <SimpleProperty> QueryInputAction_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
   }
 }
 

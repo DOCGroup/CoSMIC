@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Taggable.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the Constant model element.
    */
   class PICML_Export Constant_Impl :
-    public virtual ::GAME::Mga::Reference_Impl
+    public virtual ::GAME::Mga::Reference_Impl,
+    public virtual Taggable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -51,9 +53,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Constant _create (const Package_in parent);
-    static Constant _create (const File_in parent);
     static Constant _create (const HasOperations_in parent);
+    static Constant _create (const File_in parent);
+    static Constant _create (const Package_in parent);
     ///@}
 
     // Default constructor.
@@ -67,6 +69,15 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    HasOperations parent_HasOperations (void);
+    File parent_File (void);
+    Package parent_Package (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -86,6 +97,7 @@ namespace PICML
     ///@{
     bool ConstantType_is_nil (void) const;
     ConstantType get_ConstantType (void) const;
+    void set_ConstantType (ConstantType_in item);
     ///@}
   };
 }

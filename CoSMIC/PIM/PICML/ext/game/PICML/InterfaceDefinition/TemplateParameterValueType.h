@@ -52,6 +52,12 @@ namespace PICML
 
     // Destructor.
     virtual ~TemplateParameterValueType_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

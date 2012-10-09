@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentContainer parent_ComponentContainer (void);
+    ///@}
     ComponentRef src_ComponentRef (void) const;
     ComponentPropertyDescription dst_ComponentPropertyDescription (void) const;
   };

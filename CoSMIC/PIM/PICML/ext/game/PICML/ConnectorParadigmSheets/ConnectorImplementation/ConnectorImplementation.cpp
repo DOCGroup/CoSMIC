@@ -9,6 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -42,6 +43,14 @@ namespace PICML
       this_visitor->visit_ConnectorImplementation (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_ConnectorImplementationContainer
+  //
+  ConnectorImplementationContainer ConnectorImplementation_Impl::parent_ConnectorImplementationContainer (void)
+  {
+    return ConnectorImplementationContainer::_narrow (this->parent ());
   }
 
   //

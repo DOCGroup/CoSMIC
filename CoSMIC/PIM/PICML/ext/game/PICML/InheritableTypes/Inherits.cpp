@@ -9,6 +9,12 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Inheritable.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -44,11 +50,27 @@ namespace PICML
   }
 
   //
+  // parent_Inheritable
+  //
+  Inheritable Inherits_Impl::parent_Inheritable (void)
+  {
+    return Inheritable::_narrow (this->parent ());
+  }
+
+  //
   // Inheritable_is_nil
   //
   bool Inherits_Impl::Inheritable_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Inheritable
+  //
+  void Inherits_Impl::set_Inheritable (Inheritable_in item)
+  {
+    this->refers_to (item);
   }
 
   //

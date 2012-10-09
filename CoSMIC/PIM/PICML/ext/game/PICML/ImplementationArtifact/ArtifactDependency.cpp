@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +42,14 @@ namespace PICML
       this_visitor->visit_ArtifactDependency (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ArtifactContainer
+  //
+  ArtifactContainer ArtifactDependency_Impl::parent_ArtifactContainer (void)
+  {
+    return ArtifactContainer::_narrow (this->parent ());
   }
 
   //

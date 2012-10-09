@@ -26,7 +26,7 @@ namespace PICML
   //
   ImplementationArtifacts ImplementationArtifacts_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
-    return ::GAME::Mga::create_root_object <ImplementationArtifacts> (parent, ImplementationArtifacts_Impl::metaname);
+    return ::GAME::Mga::create_root_folder <ImplementationArtifacts> (parent, ImplementationArtifacts_Impl::metaname);
   }
 
   //
@@ -41,6 +41,14 @@ namespace PICML
       this_visitor->visit_ImplementationArtifacts (this);
     else
       v->visit_Folder (this);
+  }
+
+  //
+  // parent_RootFolder (void)
+  //
+  ::GAME::Mga::RootFolder ImplementationArtifacts_Impl::parent_RootFolder (void)
+  {
+    return ::GAME::Mga::RootFolder::_narrow (this->parent ());
   }
 
   //

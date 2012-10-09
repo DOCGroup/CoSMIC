@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/Package.h"
-#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/PackageType.h"
 #include "PICML/InterfaceDefinition/TemplateParameterValue.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,17 +25,17 @@ namespace PICML
   const std::string TemplatePackageInstance_Impl::metaname ("TemplatePackageInstance");
 
   //
-  // _create (const Package_in)
+  // _create (const File_in)
   //
-  TemplatePackageInstance TemplatePackageInstance_Impl::_create (const Package_in parent)
+  TemplatePackageInstance TemplatePackageInstance_Impl::_create (const File_in parent)
   {
     return ::GAME::Mga::create_object < TemplatePackageInstance > (parent, TemplatePackageInstance_Impl::metaname);
   }
 
   //
-  // _create (const File_in)
+  // _create (const Package_in)
   //
-  TemplatePackageInstance TemplatePackageInstance_Impl::_create (const File_in parent)
+  TemplatePackageInstance TemplatePackageInstance_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < TemplatePackageInstance > (parent, TemplatePackageInstance_Impl::metaname);
   }
@@ -52,6 +52,14 @@ namespace PICML
       this_visitor->visit_TemplatePackageInstance (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // has_PackageType
+  //
+  bool TemplatePackageInstance_Impl::has_PackageType (void) const
+  {
+    return this->children <PackageType> ().count () == 1;
   }
 
   //

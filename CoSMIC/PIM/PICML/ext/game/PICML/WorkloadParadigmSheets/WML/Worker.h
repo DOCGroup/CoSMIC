@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    WorkerPackageBase parent_WorkerPackageBase (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

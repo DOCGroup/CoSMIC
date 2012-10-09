@@ -67,14 +67,21 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentBuild parent_ComponentBuild (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Projects (std::vector <Project> & items) const;
-    ::GAME::Mga::Iterator <Project> get_Projects (void) const;
-
     size_t get_Workspacess (std::vector <Workspaces> & items) const;
     ::GAME::Mga::Iterator <Workspaces> get_Workspacess (void) const;
+
+    size_t get_Projects (std::vector <Project> & items) const;
+    ::GAME::Mga::Iterator <Project> get_Projects (void) const;
 
     ///@}
   };

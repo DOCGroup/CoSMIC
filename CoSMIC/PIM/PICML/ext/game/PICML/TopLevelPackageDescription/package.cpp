@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_package (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_TopLevelPackageContainer
+  //
+  TopLevelPackageContainer package_Impl::parent_TopLevelPackageContainer (void)
+  {
+    return TopLevelPackageContainer::_narrow (this->parent ());
   }
 
   //

@@ -45,6 +45,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ExternalPort_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
   // src_ExternalDelegate
   //
   size_t ExternalPort_Impl::src_ExternalDelegate (std::vector <ExternalDelegate> & items) const

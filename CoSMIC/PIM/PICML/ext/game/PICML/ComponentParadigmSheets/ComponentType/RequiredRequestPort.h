@@ -18,6 +18,7 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiOutputBase.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -37,7 +38,8 @@ namespace PICML
    */
   class PICML_Export RequiredRequestPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual ObjectPort_Impl
+    public virtual ObjectPort_Impl,
+    public virtual MultiOutputBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -53,8 +55,11 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static RequiredRequestPort _create (const ConnectorObject_in parent);
     static RequiredRequestPort _create (const PortType_in parent);
+    static RequiredRequestPort _create (const ConnectorObject_in parent);
+    static RequiredRequestPort _create (const Component_in parent);
+    static RequiredRequestPort _create (const ConnectedComponent_in parent);
+    static RequiredRequestPort _create (const Path_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +73,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -91,16 +102,9 @@ namespace PICML
      * @name Refers To Methods
      */
     ///@{
-    bool RequiredRequestPort_is_nil (void) const;
-    RequiredRequestPort get_RequiredRequestPort (void) const;
-    ///@}
-
-    /**
-     * @name Refers To Methods
-     */
-    ///@{
     bool Provideable_is_nil (void) const;
     Provideable get_Provideable (void) const;
+    void set_Provideable (Provideable_in item);
     ///@}
   };
 }

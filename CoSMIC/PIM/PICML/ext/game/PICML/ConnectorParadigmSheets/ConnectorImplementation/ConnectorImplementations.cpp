@@ -26,7 +26,7 @@ namespace PICML
   //
   ConnectorImplementations ConnectorImplementations_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
-    return ::GAME::Mga::create_root_object <ConnectorImplementations> (parent, ConnectorImplementations_Impl::metaname);
+    return ::GAME::Mga::create_root_folder <ConnectorImplementations> (parent, ConnectorImplementations_Impl::metaname);
   }
 
   //
@@ -41,6 +41,14 @@ namespace PICML
       this_visitor->visit_ConnectorImplementations (this);
     else
       v->visit_Folder (this);
+  }
+
+  //
+  // parent_RootFolder (void)
+  //
+  ::GAME::Mga::RootFolder ConnectorImplementations_Impl::parent_RootFolder (void)
+  {
+    return ::GAME::Mga::RootFolder::_narrow (this->parent ());
   }
 
   //

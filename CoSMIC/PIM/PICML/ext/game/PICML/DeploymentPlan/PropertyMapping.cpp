@@ -9,8 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/TargetElements/NodeReference.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_PropertyMapping (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_DeploymentPlan
+  //
+  DeploymentPlan PropertyMapping_Impl::parent_DeploymentPlan (void)
+  {
+    return DeploymentPlan::_narrow (this->parent ());
   }
 
   //

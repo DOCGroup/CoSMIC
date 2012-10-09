@@ -9,8 +9,14 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
-#include "PICML/PathDiagram/Path.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/PathDiagram/DstEdge.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,19 +52,67 @@ namespace PICML
   }
 
   //
-  // get_Ports
+  // get_RequiredRequestPorts
   //
-  size_t ConnectedComponent_Impl::get_Ports (std::vector <Port> & items) const
+  size_t ConnectedComponent_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Ports
+  // get_RequiredRequestPorts
   //
-  ::GAME::Mga::Iterator <Port> ConnectedComponent_Impl::get_Ports (void) const
+  ::GAME::Mga::Iterator <RequiredRequestPort> ConnectedComponent_Impl::get_RequiredRequestPorts (void) const
   {
-    return this->children <Port> ();
+    return this->children <RequiredRequestPort> ();
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  size_t ConnectedComponent_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  ::GAME::Mga::Iterator <ProvidedRequestPort> ConnectedComponent_Impl::get_ProvidedRequestPorts (void) const
+  {
+    return this->children <ProvidedRequestPort> ();
+  }
+
+  //
+  // get_InEventPorts
+  //
+  size_t ConnectedComponent_Impl::get_InEventPorts (std::vector <InEventPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InEventPorts
+  //
+  ::GAME::Mga::Iterator <InEventPort> ConnectedComponent_Impl::get_InEventPorts (void) const
+  {
+    return this->children <InEventPort> ();
+  }
+
+  //
+  // get_OutEventPorts
+  //
+  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutEventPorts
+  //
+  ::GAME::Mga::Iterator <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
+  {
+    return this->children <OutEventPort> ();
   }
 
   //

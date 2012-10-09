@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/NamedTypes/NamedType.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -32,7 +33,8 @@ namespace PICML
    * Implementation for the Inheritable model element.
    */
   class PICML_Export Inheritable_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual NamedType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -54,14 +56,23 @@ namespace PICML
     virtual ~Inheritable_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Inheritss (std::vector <Inherits> & items) const;
-    ::GAME::Mga::Iterator <Inherits> get_Inheritss (void) const;
-
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
     ::GAME::Mga::Iterator <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
+
+    size_t get_Attributes (std::vector <Attribute> & items) const;
+    ::GAME::Mga::Iterator <Attribute> get_Attributes (void) const;
+
+    size_t get_Inheritss (std::vector <Inherits> & items) const;
+    ::GAME::Mga::Iterator <Inherits> get_Inheritss (void) const;
 
     ///@}
   };

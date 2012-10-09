@@ -17,6 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Taggable.h"
+#include "PICML/NamedTypes/MemberType.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +34,9 @@ namespace PICML
    * Implementation for the NamedType model element.
    */
   class PICML_Export NamedType_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual Taggable_Impl,
+    public virtual MemberType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +56,14 @@ namespace PICML
 
     // Destructor.
     virtual ~NamedType_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    File parent_File (void);
+    Package parent_Package (void);
+    ///@}
   };
 }
 

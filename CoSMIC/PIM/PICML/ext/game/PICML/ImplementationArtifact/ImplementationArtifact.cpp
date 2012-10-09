@@ -8,13 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
+#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
+#include "PICML/ImplementationCommon/ComponentServantArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
 #include "PICML/ImplementationArtifact/ArtifactDependency.h"
+#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,17 +32,17 @@ namespace PICML
   const std::string ImplementationArtifact_Impl::metaname ("ImplementationArtifact");
 
   //
-  // _create (const Project_in)
+  // _create (const ArtifactContainer_in)
   //
-  ImplementationArtifact ImplementationArtifact_Impl::_create (const Project_in parent)
+  ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
   {
     return ::GAME::Mga::create_object < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const Project_in)
   //
-  ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
+  ImplementationArtifact ImplementationArtifact_Impl::_create (const Project_in parent)
   {
     return ::GAME::Mga::create_object < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
@@ -58,11 +62,19 @@ namespace PICML
   }
 
   //
-  // src_ArtifactDependsOn
+  // parent_ArtifactContainer
   //
-  size_t ImplementationArtifact_Impl::src_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
+  ArtifactContainer ImplementationArtifact_Impl::parent_ArtifactContainer (void)
   {
-    return this->in_connections <ArtifactDependsOn> (items);
+    return ArtifactContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Project
+  //
+  Project ImplementationArtifact_Impl::parent_Project (void)
+  {
+    return Project::_narrow (this->parent ());
   }
 
   //
@@ -74,11 +86,11 @@ namespace PICML
   }
 
   //
-  // src_ArtifactExecParameter
+  // src_ArtifactDependency
   //
-  size_t ImplementationArtifact_Impl::src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
+  size_t ImplementationArtifact_Impl::src_ArtifactDependency (std::vector <ArtifactDependency> & items) const
   {
-    return this->in_connections <ArtifactExecParameter> (items);
+    return this->in_connections <ArtifactDependency> (items);
   }
 
   //
@@ -90,11 +102,19 @@ namespace PICML
   }
 
   //
-  // src_ArtifactDependency
+  // src_ArtifactExecParameter
   //
-  size_t ImplementationArtifact_Impl::src_ArtifactDependency (std::vector <ArtifactDependency> & items) const
+  size_t ImplementationArtifact_Impl::src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
   {
-    return this->in_connections <ArtifactDependency> (items);
+    return this->in_connections <ArtifactExecParameter> (items);
+  }
+
+  //
+  // src_ArtifactDependsOn
+  //
+  size_t ImplementationArtifact_Impl::src_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const
+  {
+    return this->in_connections <ArtifactDependsOn> (items);
   }
 
   //

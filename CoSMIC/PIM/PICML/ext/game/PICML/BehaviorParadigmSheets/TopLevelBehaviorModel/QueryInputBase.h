@@ -54,6 +54,12 @@ namespace PICML
     virtual ~QueryInputBase_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
 #include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -46,19 +46,19 @@ namespace PICML
   }
 
   //
-  // src_Transition
-  //
-  size_t State_Impl::src_Transition (std::vector <Transition> & items) const
-  {
-    return this->in_connections <Transition> (items);
-  }
-
-  //
   // src_TerminalTransition
   //
   size_t State_Impl::src_TerminalTransition (std::vector <TerminalTransition> & items) const
   {
     return this->in_connections <TerminalTransition> (items);
+  }
+
+  //
+  // src_Transition
+  //
+  size_t State_Impl::src_Transition (std::vector <Transition> & items) const
+  {
+    return this->in_connections <Transition> (items);
   }
 }
 

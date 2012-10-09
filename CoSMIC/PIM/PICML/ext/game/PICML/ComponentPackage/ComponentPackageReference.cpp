@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/PackageConfiguration/PackageConfReference.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -55,6 +55,22 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ComponentPackageReference_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PackageConfigurationContainer
+  //
+  PackageConfigurationContainer ComponentPackageReference_Impl::parent_PackageConfigurationContainer (void)
+  {
+    return PackageConfigurationContainer::_narrow (this->parent ());
+  }
+
+  //
   // dst_PackageConfReference
   //
   size_t ComponentPackageReference_Impl::dst_PackageConfReference (std::vector <PackageConfReference> & items) const
@@ -68,6 +84,14 @@ namespace PICML
   bool ComponentPackageReference_Impl::ComponentPackage_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ComponentPackage
+  //
+  void ComponentPackageReference_Impl::set_ComponentPackage (ComponentPackage_in item)
+  {
+    this->refers_to (item);
   }
 
   //

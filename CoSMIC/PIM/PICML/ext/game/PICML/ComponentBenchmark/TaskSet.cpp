@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/Task.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_TaskSet (this);
     else
       v->visit_Set (this);
+  }
+
+  //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis TaskSet_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
   }
 
   //

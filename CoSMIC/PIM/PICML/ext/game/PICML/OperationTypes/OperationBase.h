@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Taggable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -32,7 +33,8 @@ namespace PICML
    * Implementation for the OperationBase model element.
    */
   class PICML_Export OperationBase_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual Taggable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +54,13 @@ namespace PICML
 
     // Destructor.
     virtual ~OperationBase_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
+    ///@}
 
     /**
      * @name Containment Methods

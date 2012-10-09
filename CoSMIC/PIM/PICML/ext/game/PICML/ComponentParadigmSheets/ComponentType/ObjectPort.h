@@ -54,6 +54,14 @@ namespace PICML
 
     // Destructor.
     virtual ~ObjectPort_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    PortType parent_PortType (void);
+    ConnectorObject parent_ConnectorObject (void);
+    ///@}
   };
 }
 

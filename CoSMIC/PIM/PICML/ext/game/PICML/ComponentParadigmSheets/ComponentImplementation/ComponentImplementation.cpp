@@ -8,9 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 
 namespace PICML
@@ -21,11 +22,11 @@ namespace PICML
   const std::string ComponentImplementation_Impl::metaname ("ComponentImplementation");
 
   //
-  // src_ImplementationCapability
+  // parent_ComponentImplementationContainer
   //
-  size_t ComponentImplementation_Impl::src_ImplementationCapability (std::vector <ImplementationCapability> & items) const
+  ComponentImplementationContainer ComponentImplementation_Impl::parent_ComponentImplementationContainer (void)
   {
-    return this->in_connections <ImplementationCapability> (items);
+    return ComponentImplementationContainer::_narrow (this->parent ());
   }
 
   //
@@ -42,6 +43,14 @@ namespace PICML
   size_t ComponentImplementation_Impl::src_Implements (std::vector <Implements> & items) const
   {
     return this->in_connections <Implements> (items);
+  }
+
+  //
+  // src_ImplementationCapability
+  //
+  size_t ComponentImplementation_Impl::src_ImplementationCapability (std::vector <ImplementationCapability> & items) const
+  {
+    return this->in_connections <ImplementationCapability> (items);
   }
 }
 

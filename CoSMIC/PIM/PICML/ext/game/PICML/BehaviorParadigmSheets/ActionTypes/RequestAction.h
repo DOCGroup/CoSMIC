@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static RequestAction _create (const BehaviorModel_in parent);
-    static RequestAction _create (const ActionBase_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +67,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods

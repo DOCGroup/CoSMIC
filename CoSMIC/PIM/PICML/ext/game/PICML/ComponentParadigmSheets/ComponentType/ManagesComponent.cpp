@@ -9,9 +9,13 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Manageable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,17 +29,17 @@ namespace PICML
   const std::string ManagesComponent_Impl::metaname ("ManagesComponent");
 
   //
-  // _create (const Package_in)
+  // _create (const File_in)
   //
-  ManagesComponent ManagesComponent_Impl::_create (const Package_in parent)
+  ManagesComponent ManagesComponent_Impl::_create (const File_in parent)
   {
     return ::GAME::Mga::create_object < ManagesComponent > (parent, ManagesComponent_Impl::metaname);
   }
 
   //
-  // _create (const File_in)
+  // _create (const Package_in)
   //
-  ManagesComponent ManagesComponent_Impl::_create (const File_in parent)
+  ManagesComponent ManagesComponent_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < ManagesComponent > (parent, ManagesComponent_Impl::metaname);
   }
@@ -52,6 +56,22 @@ namespace PICML
       this_visitor->visit_ManagesComponent (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_File
+  //
+  File ManagesComponent_Impl::parent_File (void)
+  {
+    return File::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Package
+  //
+  Package ManagesComponent_Impl::parent_Package (void)
+  {
+    return Package::_narrow (this->parent ());
   }
 
   //

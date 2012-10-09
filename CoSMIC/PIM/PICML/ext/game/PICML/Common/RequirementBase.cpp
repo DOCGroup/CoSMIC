@@ -9,6 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 
 namespace PICML
 {
@@ -18,19 +20,35 @@ namespace PICML
   const std::string RequirementBase_Impl::metaname ("RequirementBase");
 
   //
-  // get_Propertys
+  // get_ComplexPropertys
   //
-  size_t RequirementBase_Impl::get_Propertys (std::vector <Property> & items) const
+  size_t RequirementBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Propertys
+  // get_ComplexPropertys
   //
-  ::GAME::Mga::Iterator <Property> RequirementBase_Impl::get_Propertys (void) const
+  ::GAME::Mga::Iterator <ComplexProperty> RequirementBase_Impl::get_ComplexPropertys (void) const
   {
-    return this->children <Property> ();
+    return this->children <ComplexProperty> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t RequirementBase_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Iterator <SimpleProperty> RequirementBase_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
   }
 }
 

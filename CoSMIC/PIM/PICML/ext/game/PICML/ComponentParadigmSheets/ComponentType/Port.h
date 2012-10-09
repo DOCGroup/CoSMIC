@@ -17,6 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Taggable.h"
+#include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/CommonPortAttrs.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +35,10 @@ namespace PICML
    * Implementation for the Port model element.
    */
   class PICML_Export Port_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual Taggable_Impl,
+    public virtual GraphVertex_Impl,
+    public virtual CommonPortAttrs_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +58,14 @@ namespace PICML
 
     // Destructor.
     virtual ~Port_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Component parent_Component (void);
+    ConnectedComponent parent_ConnectedComponent (void);
+    ///@}
   };
 }
 

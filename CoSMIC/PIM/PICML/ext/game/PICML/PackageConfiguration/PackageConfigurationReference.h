@@ -67,15 +67,22 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TopLevelPackageContainer parent_TopLevelPackageContainer (void);
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{
 
-    /// Get the dst package connection.
-    size_t dst_package (std::vector <package> & items) const;
-
     /// Get the dst PackageConfSpecializedConfig connection.
     size_t dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
+
+    /// Get the dst package connection.
+    size_t dst_package (std::vector <package> & items) const;
     ///@}
 
     /**
@@ -84,6 +91,7 @@ namespace PICML
     ///@{
     bool PackageConfiguration_is_nil (void) const;
     PackageConfiguration get_PackageConfiguration (void) const;
+    void set_PackageConfiguration (PackageConfiguration_in item);
     ///@}
   };
 }

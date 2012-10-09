@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ReturnType _create (const Operation_in parent);
     static ReturnType _create (const TwowayOperation_in parent);
+    static ReturnType _create (const Operation_in parent);
     ///@}
 
     // Default constructor.
@@ -68,11 +68,20 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    TwowayOperation parent_TwowayOperation (void);
+    Operation parent_Operation (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool MemberType_is_nil (void) const;
     MemberType get_MemberType (void) const;
+    void set_MemberType (MemberType_in item);
     ///@}
   };
 }

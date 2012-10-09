@@ -8,14 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
 
 namespace PICML
 {
@@ -41,19 +40,35 @@ namespace PICML
   }
 
   //
-  // get_PeriodicEvents
+  // get_WorkerTypes
   //
-  size_t TopLevelBehavior_Impl::get_PeriodicEvents (std::vector <PeriodicEvent> & items) const
+  size_t TopLevelBehavior_Impl::get_WorkerTypes (std::vector <WorkerType> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_PeriodicEvents
+  // get_WorkerTypes
   //
-  ::GAME::Mga::Iterator <PeriodicEvent> TopLevelBehavior_Impl::get_PeriodicEvents (void) const
+  ::GAME::Mga::Iterator <WorkerType> TopLevelBehavior_Impl::get_WorkerTypes (void) const
   {
-    return this->children <PeriodicEvent> ();
+    return this->children <WorkerType> ();
+  }
+
+  //
+  // get_MultiInputs
+  //
+  size_t TopLevelBehavior_Impl::get_MultiInputs (std::vector <MultiInput> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MultiInputs
+  //
+  ::GAME::Mga::Iterator <MultiInput> TopLevelBehavior_Impl::get_MultiInputs (void) const
+  {
+    return this->children <MultiInput> ();
   }
 
   //
@@ -73,22 +88,6 @@ namespace PICML
   }
 
   //
-  // get_WorkerTypes
-  //
-  size_t TopLevelBehavior_Impl::get_WorkerTypes (std::vector <WorkerType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_WorkerTypes
-  //
-  ::GAME::Mga::Iterator <WorkerType> TopLevelBehavior_Impl::get_WorkerTypes (void) const
-  {
-    return this->children <WorkerType> ();
-  }
-
-  //
   // get_Inputs
   //
   size_t TopLevelBehavior_Impl::get_Inputs (std::vector <Input> & items) const
@@ -105,19 +104,19 @@ namespace PICML
   }
 
   //
-  // get_MultiInputs
+  // get_PeriodicEvents
   //
-  size_t TopLevelBehavior_Impl::get_MultiInputs (std::vector <MultiInput> & items) const
+  size_t TopLevelBehavior_Impl::get_PeriodicEvents (std::vector <PeriodicEvent> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MultiInputs
+  // get_PeriodicEvents
   //
-  ::GAME::Mga::Iterator <MultiInput> TopLevelBehavior_Impl::get_MultiInputs (void) const
+  ::GAME::Mga::Iterator <PeriodicEvent> TopLevelBehavior_Impl::get_PeriodicEvents (void) const
   {
-    return this->children <MultiInput> ();
+    return this->children <PeriodicEvent> ();
   }
 
   //

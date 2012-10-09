@@ -9,11 +9,18 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/InheritableTypes/Inheritable.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/NamedTypes/Enum.h"
+#include "PICML/NamedTypes/Alias.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 
 namespace PICML
 {
@@ -39,6 +46,102 @@ namespace PICML
   }
 
   //
+  // get_PortTypes
+  //
+  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PortTypes
+  //
+  ::GAME::Mga::Iterator <PortType> HasOperations_Impl::get_PortTypes (void) const
+  {
+    return this->children <PortType> ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t HasOperations_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Iterator <Aggregate> HasOperations_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
+  }
+
+  //
+  // get_Collections
+  //
+  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Collections
+  //
+  ::GAME::Mga::Iterator <Collection> HasOperations_Impl::get_Collections (void) const
+  {
+    return this->children <Collection> ();
+  }
+
+  //
+  // get_Enums
+  //
+  size_t HasOperations_Impl::get_Enums (std::vector <Enum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Enums
+  //
+  ::GAME::Mga::Iterator <Enum> HasOperations_Impl::get_Enums (void) const
+  {
+    return this->children <Enum> ();
+  }
+
+  //
+  // get_Aliass
+  //
+  size_t HasOperations_Impl::get_Aliass (std::vector <Alias> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aliass
+  //
+  ::GAME::Mga::Iterator <Alias> HasOperations_Impl::get_Aliass (void) const
+  {
+    return this->children <Alias> ();
+  }
+
+  //
+  // get_SwitchedAggregates
+  //
+  size_t HasOperations_Impl::get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SwitchedAggregates
+  //
+  ::GAME::Mga::Iterator <SwitchedAggregate> HasOperations_Impl::get_SwitchedAggregates (void) const
+  {
+    return this->children <SwitchedAggregate> ();
+  }
+
+  //
   // get_Constants
   //
   size_t HasOperations_Impl::get_Constants (std::vector <Constant> & items) const
@@ -55,19 +158,19 @@ namespace PICML
   }
 
   //
-  // get_NoInheritables
+  // get_OnewayOperations
   //
-  size_t HasOperations_Impl::get_NoInheritables (std::vector <NoInheritable> & items) const
+  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_NoInheritables
+  // get_OnewayOperations
   //
-  ::GAME::Mga::Iterator <NoInheritable> HasOperations_Impl::get_NoInheritables (void) const
+  ::GAME::Mga::Iterator <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
   {
-    return this->children <NoInheritable> ();
+    return this->children <OnewayOperation> ();
   }
 
   //
@@ -84,22 +187,6 @@ namespace PICML
   ::GAME::Mga::Iterator <TwowayOperation> HasOperations_Impl::get_TwowayOperations (void) const
   {
     return this->children <TwowayOperation> ();
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  ::GAME::Mga::Iterator <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
-  {
-    return this->children <OnewayOperation> ();
   }
 }
 

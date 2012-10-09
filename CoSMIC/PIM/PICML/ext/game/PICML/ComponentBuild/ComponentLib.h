@@ -54,6 +54,13 @@ namespace PICML
     virtual ~ComponentLib_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Project parent_Project (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

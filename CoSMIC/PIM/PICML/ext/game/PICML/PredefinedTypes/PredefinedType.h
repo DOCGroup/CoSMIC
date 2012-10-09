@@ -17,6 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/NamedTypes/MemberType.h"
+#include "PICML/Common/SimpleType.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -32,7 +34,9 @@ namespace PICML
    * Implementation for the PredefinedType model element.
    */
   class PICML_Export PredefinedType_Impl :
-    public virtual ::GAME::Mga::FCO_Impl
+    public virtual ::GAME::Mga::FCO_Impl,
+    public virtual MemberType_Impl,
+    public virtual SimpleType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -52,6 +56,13 @@ namespace PICML
 
     // Destructor.
     virtual ~PredefinedType_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    PredefinedTypes parent_PredefinedTypes (void);
+    ///@}
   };
 }
 

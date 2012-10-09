@@ -53,12 +53,12 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComponentRef _create (const ComponentContainer_in parent);
-    static ComponentRef _create (const ComponentImplementationContainer_in parent);
-    static ComponentRef _create (const Package_in parent);
-    static ComponentRef _create (const File_in parent);
-    static ComponentRef _create (const PackageContainer_in parent);
     static ComponentRef _create (const Path_in parent);
+    static ComponentRef _create (const ComponentImplementationContainer_in parent);
+    static ComponentRef _create (const ComponentContainer_in parent);
+    static ComponentRef _create (const File_in parent);
+    static ComponentRef _create (const Package_in parent);
+    static ComponentRef _create (const PackageContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -74,18 +74,30 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Path parent_Path (void);
+    ComponentImplementationContainer parent_ComponentImplementationContainer (void);
+    ComponentContainer parent_ComponentContainer (void);
+    File parent_File (void);
+    Package parent_Package (void);
+    PackageContainer parent_PackageContainer (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
 
-    /// Get the src ComponentProperty connection.
-    size_t src_ComponentProperty (std::vector <ComponentProperty> & items) const;
+    /// Get the src ComponentInfoProperty connection.
+    size_t src_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
 
     /// Get the src ComponentConfigProperty connection.
     size_t src_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
 
-    /// Get the src ComponentInfoProperty connection.
-    size_t src_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
+    /// Get the src ComponentProperty connection.
+    size_t src_ComponentProperty (std::vector <ComponentProperty> & items) const;
     ///@}
 
     /**
@@ -106,6 +118,7 @@ namespace PICML
     ///@{
     bool Component_is_nil (void) const;
     Component get_Component (void) const;
+    void set_Component (Component_in item);
     ///@}
   };
 }

@@ -8,10 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/Domain.h"
-#include "PICML/Domain/Shares.h"
+#include "PICML/TargetElements/NodeReference.h"
 #include "PICML/Domain/InterconnectConnection.h"
 #include "PICML/TargetElements/Resource.h"
+#include "PICML/Domain/Shares.h"
+#include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -47,11 +48,11 @@ namespace PICML
   }
 
   //
-  // src_Shares
+  // parent_Domain
   //
-  size_t Node_Impl::src_Shares (std::vector <Shares> & items) const
+  Domain Node_Impl::parent_Domain (void)
   {
-    return this->in_connections <Shares> (items);
+    return Domain::_narrow (this->parent ());
   }
 
   //
@@ -60,6 +61,14 @@ namespace PICML
   size_t Node_Impl::src_InterconnectConnection (std::vector <InterconnectConnection> & items) const
   {
     return this->in_connections <InterconnectConnection> (items);
+  }
+
+  //
+  // src_Shares
+  //
+  size_t Node_Impl::src_Shares (std::vector <Shares> & items) const
+  {
+    return this->in_connections <Shares> (items);
   }
 
   //

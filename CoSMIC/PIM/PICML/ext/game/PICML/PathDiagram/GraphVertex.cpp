@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/SrcEdge.h"
+#include "PICML/PathDiagram/Path.h"
 
 namespace PICML
 {
@@ -18,6 +18,14 @@ namespace PICML
   // metaname
   //
   const std::string GraphVertex_Impl::metaname ("GraphVertex");
+
+  //
+  // parent_Path
+  //
+  Path GraphVertex_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
+  }
 
   //
   // src_DstEdge

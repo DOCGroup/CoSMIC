@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/IdTags/Prefixable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the File model element.
    */
   class PICML_Export File_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual Prefixable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -67,6 +69,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    InterfaceDefinitions parent_InterfaceDefinitions (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -82,29 +91,71 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComponentRefs (std::vector <ComponentRef> & items) const;
-    ::GAME::Mga::Iterator <ComponentRef> get_ComponentRefs (void) const;
-
     size_t get_ManagesComponents (std::vector <ManagesComponent> & items) const;
     ::GAME::Mga::Iterator <ManagesComponent> get_ManagesComponents (void) const;
 
-    size_t get_Packages (std::vector <Package> & items) const;
-    ::GAME::Mga::Iterator <Package> get_Packages (void) const;
+    size_t get_ComponentRefs (std::vector <ComponentRef> & items) const;
+    ::GAME::Mga::Iterator <ComponentRef> get_ComponentRefs (void) const;
+
+    size_t get_ComponentFactorys (std::vector <ComponentFactory> & items) const;
+    ::GAME::Mga::Iterator <ComponentFactory> get_ComponentFactorys (void) const;
+
+    size_t get_Objects (std::vector <Object> & items) const;
+    ::GAME::Mga::Iterator <Object> get_Objects (void) const;
+
+    size_t get_ValueObjects (std::vector <ValueObject> & items) const;
+    ::GAME::Mga::Iterator <ValueObject> get_ValueObjects (void) const;
+
+    size_t get_Events (std::vector <Event> & items) const;
+    ::GAME::Mga::Iterator <Event> get_Events (void) const;
+
+    size_t get_PortTypes (std::vector <PortType> & items) const;
+    ::GAME::Mga::Iterator <PortType> get_PortTypes (void) const;
+
+    size_t get_Aggregates (std::vector <Aggregate> & items) const;
+    ::GAME::Mga::Iterator <Aggregate> get_Aggregates (void) const;
+
+    size_t get_Collections (std::vector <Collection> & items) const;
+    ::GAME::Mga::Iterator <Collection> get_Collections (void) const;
+
+    size_t get_Enums (std::vector <Enum> & items) const;
+    ::GAME::Mga::Iterator <Enum> get_Enums (void) const;
+
+    size_t get_Aliass (std::vector <Alias> & items) const;
+    ::GAME::Mga::Iterator <Alias> get_Aliass (void) const;
+
+    size_t get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const;
+    ::GAME::Mga::Iterator <SwitchedAggregate> get_SwitchedAggregates (void) const;
+
+    size_t get_Components (std::vector <Component> & items) const;
+    ::GAME::Mga::Iterator <Component> get_Components (void) const;
+
+    size_t get_ConnectorObjects (std::vector <ConnectorObject> & items) const;
+    ::GAME::Mga::Iterator <ConnectorObject> get_ConnectorObjects (void) const;
+
+    size_t get_Boxeds (std::vector <Boxed> & items) const;
+    ::GAME::Mga::Iterator <Boxed> get_Boxeds (void) const;
 
     size_t get_Exceptions (std::vector <Exception> & items) const;
     ::GAME::Mga::Iterator <Exception> get_Exceptions (void) const;
 
-    size_t get_FileRefs (std::vector <FileRef> & items) const;
-    ::GAME::Mga::Iterator <FileRef> get_FileRefs (void) const;
-
     size_t get_Constants (std::vector <Constant> & items) const;
     ::GAME::Mga::Iterator <Constant> get_Constants (void) const;
+
+    size_t get_FileRefs (std::vector <FileRef> & items) const;
+    ::GAME::Mga::Iterator <FileRef> get_FileRefs (void) const;
 
     size_t get_NativeValues (std::vector <NativeValue> & items) const;
     ::GAME::Mga::Iterator <NativeValue> get_NativeValues (void) const;
 
-    size_t get_NamedTypes (std::vector <NamedType> & items) const;
-    ::GAME::Mga::Iterator <NamedType> get_NamedTypes (void) const;
+    size_t get_Packages (std::vector <Package> & items) const;
+    ::GAME::Mga::Iterator <Package> get_Packages (void) const;
+
+    size_t get_TemplatePackageAliass (std::vector <TemplatePackageAlias> & items) const;
+    ::GAME::Mga::Iterator <TemplatePackageAlias> get_TemplatePackageAliass (void) const;
+
+    size_t get_TemplatePackageInstances (std::vector <TemplatePackageInstance> & items) const;
+    ::GAME::Mga::Iterator <TemplatePackageInstance> get_TemplatePackageInstances (void) const;
 
     ///@}
   };

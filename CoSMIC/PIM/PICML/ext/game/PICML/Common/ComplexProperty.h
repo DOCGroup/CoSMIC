@@ -56,17 +56,17 @@ namespace PICML
     static ComplexProperty _create (const BehaviorInputAction_in parent);
     static ComplexProperty _create (const ActionBase_in parent);
     static ComplexProperty _create (const QueryInputAction_in parent);
-    static ComplexProperty _create (const ComponentContainer_in parent);
-    static ComplexProperty _create (const ComponentAssembly_in parent);
-    static ComplexProperty _create (const Domain_in parent);
     static ComplexProperty _create (const RequirementBase_in parent);
-    static ComplexProperty _create (const PackageContainer_in parent);
-    static ComplexProperty _create (const ArtifactContainer_in parent);
-    static ComplexProperty _create (const PackageConfigurationContainer_in parent);
-    static ComplexProperty _create (const DeploymentPlan_in parent);
     static ComplexProperty _create (const Path_in parent);
-    static ComplexProperty _create (const Paths_in parent);
     static ComplexProperty _create (const ImplementationContainer_in parent);
+    static ComplexProperty _create (const ComponentAssembly_in parent);
+    static ComplexProperty _create (const ComponentContainer_in parent);
+    static ComplexProperty _create (const Domain_in parent);
+    static ComplexProperty _create (const Paths_in parent);
+    static ComplexProperty _create (const ArtifactContainer_in parent);
+    static ComplexProperty _create (const DeploymentPlan_in parent);
+    static ComplexProperty _create (const PackageConfigurationContainer_in parent);
+    static ComplexProperty _create (const PackageContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -82,14 +82,23 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
     bool has_ComplexTypeReference (void) const;
     ComplexTypeReference get_ComplexTypeReference (void) const;
-    size_t get_DataValueBases (std::vector <DataValueBase> & items) const;
-    ::GAME::Mga::Iterator <DataValueBase> get_DataValueBases (void) const;
+    size_t get_DataValueContainers (std::vector <DataValueContainer> & items) const;
+    ::GAME::Mga::Iterator <DataValueContainer> get_DataValueContainers (void) const;
+
+    size_t get_DataValues (std::vector <DataValue> & items) const;
+    ::GAME::Mga::Iterator <DataValue> get_DataValues (void) const;
 
     ///@}
   };

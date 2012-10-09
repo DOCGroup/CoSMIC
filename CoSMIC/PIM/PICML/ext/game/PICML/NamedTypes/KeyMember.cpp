@@ -8,9 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/Key.h"
+#include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/NamedTypes/Aggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +44,14 @@ namespace PICML
       this_visitor->visit_KeyMember (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_Aggregate
+  //
+  Aggregate KeyMember_Impl::parent_Aggregate (void)
+  {
+    return Aggregate::_narrow (this->parent ());
   }
 
   //

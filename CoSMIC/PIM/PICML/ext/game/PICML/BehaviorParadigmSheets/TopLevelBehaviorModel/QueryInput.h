@@ -65,6 +65,13 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    TopLevelBehavior parent_TopLevelBehavior (void);
+    ///@}
     QueryInputBase src_QueryInputBase (void) const;
     QueryInputAction dst_QueryInputAction (void) const;
   };

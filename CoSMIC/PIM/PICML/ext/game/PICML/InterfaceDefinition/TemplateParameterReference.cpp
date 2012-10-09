@@ -9,6 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -45,11 +48,27 @@ namespace PICML
   }
 
   //
+  // parent_TemplatePackageAlias
+  //
+  TemplatePackageAlias TemplateParameterReference_Impl::parent_TemplatePackageAlias (void)
+  {
+    return TemplatePackageAlias::_narrow (this->parent ());
+  }
+
+  //
   // TemplateParameter_is_nil
   //
   bool TemplateParameterReference_Impl::TemplateParameter_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_TemplateParameter
+  //
+  void TemplateParameterReference_Impl::set_TemplateParameter (TemplateParameter_in item)
+  {
+    this->refers_to (item);
   }
 
   //

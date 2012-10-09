@@ -46,6 +46,14 @@ namespace PICML
   }
 
   //
+  // parent_ConnectorImplementationContainer
+  //
+  ConnectorImplementationContainer ConnectorType_Impl::parent_ConnectorImplementationContainer (void)
+  {
+    return ConnectorImplementationContainer::_narrow (this->parent ());
+  }
+
+  //
   // dst_ConnectorImplements
   //
   size_t ConnectorType_Impl::dst_ConnectorImplements (std::vector <ConnectorImplements> & items) const
@@ -59,6 +67,14 @@ namespace PICML
   bool ConnectorType_Impl::ConnectorObject_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ConnectorObject
+  //
+  void ConnectorType_Impl::set_ConnectorObject (ConnectorObject_in item)
+  {
+    this->refers_to (item);
   }
 
   //

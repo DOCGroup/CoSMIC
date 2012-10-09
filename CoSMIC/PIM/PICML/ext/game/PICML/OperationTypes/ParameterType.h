@@ -54,11 +54,19 @@ namespace PICML
     virtual ~ParameterType_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Operation parent_Operation (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool MemberType_is_nil (void) const;
     MemberType get_MemberType (void) const;
+    void set_MemberType (MemberType_in item);
     ///@}
   };
 }

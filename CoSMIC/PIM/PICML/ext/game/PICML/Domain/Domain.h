@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Targets parent_Targets (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -88,26 +95,29 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_Sharess (std::vector <Shares> & items) const;
-    ::GAME::Mga::Iterator <Shares> get_Sharess (void) const;
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_Nodes (std::vector <Node> & items) const;
+    ::GAME::Mga::Iterator <Node> get_Nodes (void) const;
 
     size_t get_InterconnectConnections (std::vector <InterconnectConnection> & items) const;
     ::GAME::Mga::Iterator <InterconnectConnection> get_InterconnectConnections (void) const;
 
+    size_t get_Interconnects (std::vector <Interconnect> & items) const;
+    ::GAME::Mga::Iterator <Interconnect> get_Interconnects (void) const;
+
     size_t get_BridgeConnections (std::vector <BridgeConnection> & items) const;
     ::GAME::Mga::Iterator <BridgeConnection> get_BridgeConnections (void) const;
-
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
 
     size_t get_Bridges (std::vector <Bridge> & items) const;
     ::GAME::Mga::Iterator <Bridge> get_Bridges (void) const;
 
-    size_t get_Interconnects (std::vector <Interconnect> & items) const;
-    ::GAME::Mga::Iterator <Interconnect> get_Interconnects (void) const;
-
-    size_t get_Nodes (std::vector <Node> & items) const;
-    ::GAME::Mga::Iterator <Node> get_Nodes (void) const;
+    size_t get_Sharess (std::vector <Shares> & items) const;
+    ::GAME::Mga::Iterator <Shares> get_Sharess (void) const;
 
     size_t get_SharedResources (std::vector <SharedResource> & items) const;
     ::GAME::Mga::Iterator <SharedResource> get_SharedResources (void) const;

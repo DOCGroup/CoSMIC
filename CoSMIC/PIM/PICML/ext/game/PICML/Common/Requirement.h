@@ -56,7 +56,6 @@ namespace PICML
     static Requirement _create (const ComponentAssembly_in parent);
     static Requirement _create (const ArtifactContainer_in parent);
     static Requirement _create (const PackageConfigurationContainer_in parent);
-    static Requirement _create (const RequirementBase_in parent);
     ///@}
 
     // Default constructor.
@@ -72,18 +71,27 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
+    ArtifactContainer parent_ArtifactContainer (void);
+    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst PackageConfSelectRequirement connection.
+    size_t dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
 
     /// Get the dst AssemblyselectRequirement connection.
     size_t dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
 
     /// Get the dst ArtifactDeployRequirement connection.
     size_t dst_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
-
-    /// Get the dst PackageConfSelectRequirement connection.
-    size_t dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
     ///@}
   };
 }

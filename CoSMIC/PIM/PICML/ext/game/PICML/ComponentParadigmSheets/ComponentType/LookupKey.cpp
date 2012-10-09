@@ -10,6 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +47,27 @@ namespace PICML
   }
 
   //
+  // parent_ComponentFactory
+  //
+  ComponentFactory LookupKey_Impl::parent_ComponentFactory (void)
+  {
+    return ComponentFactory::_narrow (this->parent ());
+  }
+
+  //
   // LookupKeyType_is_nil
   //
   bool LookupKey_Impl::LookupKeyType_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_LookupKeyType
+  //
+  void LookupKey_Impl::set_LookupKeyType (LookupKeyType_in item)
+  {
+    this->refers_to (item);
   }
 
   //

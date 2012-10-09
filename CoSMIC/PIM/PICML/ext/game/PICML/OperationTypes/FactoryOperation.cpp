@@ -10,7 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -40,9 +42,9 @@ namespace PICML
   }
 
   //
-  // _create (const HasExceptions_in)
+  // _create (const BenchmarkAnalysis_in)
   //
-  FactoryOperation FactoryOperation_Impl::_create (const HasExceptions_in parent)
+  FactoryOperation FactoryOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
     return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
   }
@@ -59,6 +61,22 @@ namespace PICML
       this_visitor->visit_FactoryOperation (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_ComponentFactory
+  //
+  ComponentFactory FactoryOperation_Impl::parent_ComponentFactory (void)
+  {
+    return ComponentFactory::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ObjectByValue
+  //
+  ObjectByValue FactoryOperation_Impl::parent_ObjectByValue (void)
+  {
+    return ObjectByValue::_narrow (this->parent ());
   }
 }
 

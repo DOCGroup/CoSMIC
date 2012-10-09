@@ -46,6 +46,14 @@ namespace PICML
   }
 
   //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis EventRef_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
+  }
+
+  //
   // src_TimerEventSinkConn
   //
   size_t EventRef_Impl::src_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
@@ -59,6 +67,14 @@ namespace PICML
   bool EventRef_Impl::Event_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Event
+  //
+  void EventRef_Impl::set_Event (Event_in item)
+  {
+    this->refers_to (item);
   }
 
   //

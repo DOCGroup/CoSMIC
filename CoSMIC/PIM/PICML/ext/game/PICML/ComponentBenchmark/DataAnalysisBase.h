@@ -52,6 +52,14 @@ namespace PICML
 
     // Destructor.
     virtual ~DataAnalysisBase_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    MetricsBase parent_MetricsBase (void);
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
+    ///@}
   };
 }
 

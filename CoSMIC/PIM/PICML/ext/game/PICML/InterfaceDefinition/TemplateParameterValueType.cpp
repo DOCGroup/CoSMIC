@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/TemplateParameterValue.h"
 
 namespace PICML
 {

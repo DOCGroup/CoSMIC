@@ -53,6 +53,14 @@ namespace PICML
   }
 
   //
+  // set_ProvidedRequestPort
+  //
+  void ProvidedRequestPortInstance_Impl::set_ProvidedRequestPort (ProvidedRequestPort_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_ProvidedRequestPort
   //
   ProvidedRequestPort ProvidedRequestPortInstance_Impl::get_ProvidedRequestPort (void) const

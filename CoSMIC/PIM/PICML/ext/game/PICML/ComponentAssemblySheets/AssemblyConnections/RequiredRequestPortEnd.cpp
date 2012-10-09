@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
 
 namespace PICML
 {

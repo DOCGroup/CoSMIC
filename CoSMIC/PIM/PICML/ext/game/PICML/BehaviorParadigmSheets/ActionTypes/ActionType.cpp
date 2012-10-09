@@ -45,11 +45,27 @@ namespace PICML
   }
 
   //
+  // parent_Action
+  //
+  Action ActionType_Impl::parent_Action (void)
+  {
+    return Action::_narrow (this->parent ());
+  }
+
+  //
   // Operation_is_nil
   //
   bool ActionType_Impl::Operation_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Operation
+  //
+  void ActionType_Impl::set_Operation (Operation_in item)
+  {
+    this->refers_to (item);
   }
 
   //

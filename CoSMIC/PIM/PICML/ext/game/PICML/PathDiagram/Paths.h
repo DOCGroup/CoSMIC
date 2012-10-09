@@ -67,11 +67,21 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    PathDiagrams parent_PathDiagrams (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
 
     size_t get_Paths (std::vector <Path> & items) const;
     ::GAME::Mga::Iterator <Path> get_Paths (void) const;

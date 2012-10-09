@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/LabelConnection.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +42,14 @@ namespace PICML
       this_visitor->visit_Label (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_SwitchedAggregate
+  //
+  SwitchedAggregate Label_Impl::parent_SwitchedAggregate (void)
+  {
+    return SwitchedAggregate::_narrow (this->parent ());
   }
 
   //

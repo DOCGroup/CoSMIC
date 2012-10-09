@@ -9,10 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -34,14 +33,6 @@ namespace PICML
   }
 
   //
-  // _create (const ImplementationContainer_in)
-  //
-  ConnectorImplementationContainer ConnectorImplementationContainer_Impl::_create (const ImplementationContainer_in parent)
-  {
-    return ::GAME::Mga::create_object < ConnectorImplementationContainer > (parent, ConnectorImplementationContainer_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void ConnectorImplementationContainer_Impl::accept (::GAME::Mga::Visitor * v)
@@ -56,19 +47,27 @@ namespace PICML
   }
 
   //
-  // get_ConnectorImplementations
+  // parent_ConnectorImplementations
   //
-  size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const
+  ConnectorImplementations ConnectorImplementationContainer_Impl::parent_ConnectorImplementations (void)
+  {
+    return ConnectorImplementations::_narrow (this->parent ());
+  }
+
+  //
+  // get_ConnectorTypes
+  //
+  size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ConnectorImplementations
+  // get_ConnectorTypes
   //
-  ::GAME::Mga::Iterator <ConnectorImplementation> ConnectorImplementationContainer_Impl::get_ConnectorImplementations (void) const
+  ::GAME::Mga::Iterator <ConnectorType> ConnectorImplementationContainer_Impl::get_ConnectorTypes (void) const
   {
-    return this->children <ConnectorImplementation> ();
+    return this->children <ConnectorType> ();
   }
 
   //
@@ -88,19 +87,19 @@ namespace PICML
   }
 
   //
-  // get_ConnectorTypes
+  // get_ConnectorImplementations
   //
-  size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
+  size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ConnectorTypes
+  // get_ConnectorImplementations
   //
-  ::GAME::Mga::Iterator <ConnectorType> ConnectorImplementationContainer_Impl::get_ConnectorTypes (void) const
+  ::GAME::Mga::Iterator <ConnectorImplementation> ConnectorImplementationContainer_Impl::get_ConnectorImplementations (void) const
   {
-    return this->children <ConnectorType> ();
+    return this->children <ConnectorImplementation> ();
   }
 }
 

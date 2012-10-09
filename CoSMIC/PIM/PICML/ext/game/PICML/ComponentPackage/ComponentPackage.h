@@ -52,8 +52,8 @@ namespace PICML
      */
     ///@{
     static ComponentPackage _create (const ComponentAssembly_in parent);
-    static ComponentPackage _create (const PackageContainer_in parent);
     static ComponentPackage _create (const PackageConfigurationContainer_in parent);
+    static ComponentPackage _create (const PackageContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -67,6 +67,15 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
+    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
+    PackageContainer parent_PackageContainer (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -91,17 +100,17 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src PackageInterface connection.
-    size_t src_PackageInterface (std::vector <PackageInterface> & items) const;
-
-    /// Get the src Implementation connection.
-    size_t src_Implementation (std::vector <Implementation> & items) const;
-
     /// Get the src PackageConfigProperty connection.
     size_t src_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const;
 
     /// Get the src PackageInfoProperty connection.
     size_t src_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const;
+
+    /// Get the src Implementation connection.
+    size_t src_Implementation (std::vector <Implementation> & items) const;
+
+    /// Get the src PackageInterface connection.
+    size_t src_PackageInterface (std::vector <PackageInterface> & items) const;
     ///@}
 
     /**

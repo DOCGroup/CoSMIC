@@ -8,8 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,17 +25,17 @@ namespace PICML
   const std::string NativeValue_Impl::metaname ("NativeValue");
 
   //
-  // _create (const Package_in)
+  // _create (const File_in)
   //
-  NativeValue NativeValue_Impl::_create (const Package_in parent)
+  NativeValue NativeValue_Impl::_create (const File_in parent)
   {
     return ::GAME::Mga::create_object < NativeValue > (parent, NativeValue_Impl::metaname);
   }
 
   //
-  // _create (const File_in)
+  // _create (const Package_in)
   //
-  NativeValue NativeValue_Impl::_create (const File_in parent)
+  NativeValue NativeValue_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < NativeValue > (parent, NativeValue_Impl::metaname);
   }
@@ -50,6 +52,22 @@ namespace PICML
       this_visitor->visit_NativeValue (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_File
+  //
+  File NativeValue_Impl::parent_File (void)
+  {
+    return File::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Package
+  //
+  Package NativeValue_Impl::parent_Package (void)
+  {
+    return Package::_narrow (this->parent ());
   }
 }
 

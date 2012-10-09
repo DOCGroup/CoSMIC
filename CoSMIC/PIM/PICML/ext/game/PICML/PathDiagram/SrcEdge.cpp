@@ -8,9 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
+#include "PICML/PathDiagram/DisplayNode.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Edge.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +52,14 @@ namespace PICML
       this_visitor->visit_SrcEdge (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_Path
+  //
+  Path SrcEdge_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
   }
 
   //

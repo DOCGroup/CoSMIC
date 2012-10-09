@@ -8,10 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/ConnectedComponent.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
+#include "PICML/PathDiagram/DisplayNode.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Edge.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,17 +33,17 @@ namespace PICML
   const std::string DstEdge_Impl::metaname ("DstEdge");
 
   //
-  // _create (const ConnectedComponent_in)
+  // _create (const Path_in)
   //
-  DstEdge DstEdge_Impl::_create (const ConnectedComponent_in parent)
+  DstEdge DstEdge_Impl::_create (const Path_in parent)
   {
     return ::GAME::Mga::create_object < DstEdge > (parent, DstEdge_Impl::metaname);
   }
 
   //
-  // _create (const Path_in)
+  // _create (const ConnectedComponent_in)
   //
-  DstEdge DstEdge_Impl::_create (const Path_in parent)
+  DstEdge DstEdge_Impl::_create (const ConnectedComponent_in parent)
   {
     return ::GAME::Mga::create_object < DstEdge > (parent, DstEdge_Impl::metaname);
   }
@@ -52,6 +60,22 @@ namespace PICML
       this_visitor->visit_DstEdge (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_Path
+  //
+  Path DstEdge_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ConnectedComponent
+  //
+  ConnectedComponent DstEdge_Impl::parent_ConnectedComponent (void)
+  {
+    return ConnectedComponent::_narrow (this->parent ());
   }
 
   //

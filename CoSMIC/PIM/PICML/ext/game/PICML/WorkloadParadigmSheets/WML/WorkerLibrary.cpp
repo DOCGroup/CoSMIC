@@ -45,6 +45,14 @@ namespace PICML
   }
 
   //
+  // parent_WorkerLibraries
+  //
+  WorkerLibraries WorkerLibrary_Impl::parent_WorkerLibraries (void)
+  {
+    return WorkerLibraries::_narrow (this->parent ());
+  }
+
+  //
   // get_WorkerFiles
   //
   size_t WorkerLibrary_Impl::get_WorkerFiles (std::vector <WorkerFile> & items) const

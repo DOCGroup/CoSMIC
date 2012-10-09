@@ -8,10 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/Package.h"
-#include "PICML/InterfaceDefinition/File.h"
-#include "PICML/NamedTypes/Member.h"
 #include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,9 +33,9 @@ namespace PICML
   const std::string Exception_Impl::metaname ("Exception");
 
   //
-  // _create (const Package_in)
+  // _create (const HasOperations_in)
   //
-  Exception Exception_Impl::_create (const Package_in parent)
+  Exception Exception_Impl::_create (const HasOperations_in parent)
   {
     return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
   }
@@ -41,9 +49,9 @@ namespace PICML
   }
 
   //
-  // _create (const HasOperations_in)
+  // _create (const Package_in)
   //
-  Exception Exception_Impl::_create (const HasOperations_in parent)
+  Exception Exception_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
   }
@@ -63,6 +71,30 @@ namespace PICML
   }
 
   //
+  // parent_HasOperations
+  //
+  HasOperations Exception_Impl::parent_HasOperations (void)
+  {
+    return HasOperations::_narrow (this->parent ());
+  }
+
+  //
+  // parent_File
+  //
+  File Exception_Impl::parent_File (void)
+  {
+    return File::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Package
+  //
+  Package Exception_Impl::parent_Package (void)
+  {
+    return Package::_narrow (this->parent ());
+  }
+
+  //
   // get_Members
   //
   size_t Exception_Impl::get_Members (std::vector <Member> & items) const
@@ -76,6 +108,22 @@ namespace PICML
   ::GAME::Mga::Iterator <Member> Exception_Impl::get_Members (void) const
   {
     return this->children <Member> ();
+  }
+
+  //
+  // get_ArrayMembers
+  //
+  size_t Exception_Impl::get_ArrayMembers (std::vector <ArrayMember> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ArrayMembers
+  //
+  ::GAME::Mga::Iterator <ArrayMember> Exception_Impl::get_ArrayMembers (void) const
+  {
+    return this->children <ArrayMember> ();
   }
 }
 

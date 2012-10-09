@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    SwitchedAggregate parent_SwitchedAggregate (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool ConstantType_is_nil (void) const;
     ConstantType get_ConstantType (void) const;
+    void set_ConstantType (ConstantType_in item);
     ///@}
   };
 }

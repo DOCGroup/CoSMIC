@@ -18,6 +18,7 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -37,7 +38,8 @@ namespace PICML
    */
   class PICML_Export MirrorPortInstance_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual PortInstance_Impl
+    public virtual PortInstance_Impl,
+    public virtual MirrorPortInstanceBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -69,11 +71,18 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool MirrorPort_is_nil (void) const;
     MirrorPort get_MirrorPort (void) const;
+    void set_MirrorPort (MirrorPort_in item);
     ///@}
   };
 }

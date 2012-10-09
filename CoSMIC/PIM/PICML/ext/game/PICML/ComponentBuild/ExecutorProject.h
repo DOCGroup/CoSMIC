@@ -69,11 +69,24 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
+
+    bool has_ImplementationArtifactReference (void) const;
     ImplementationArtifactReference get_ImplementationArtifactReference (void) const;
 
+    bool has_ComponentImplementationArtifact (void) const;
+    ComponentImplementationArtifact get_ComponentImplementationArtifact (void) const;
+
+    bool has_ComponentServantArtifact (void) const;
+    ComponentServantArtifact get_ComponentServantArtifact (void) const;
     ///@}
   };
 }

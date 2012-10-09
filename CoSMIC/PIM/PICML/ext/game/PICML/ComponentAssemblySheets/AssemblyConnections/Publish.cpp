@@ -8,8 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -43,6 +49,14 @@ namespace PICML
       this_visitor->visit_Publish (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly Publish_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

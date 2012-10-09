@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static MirrorPort _create (const ConnectorObject_in parent);
     static MirrorPort _create (const Component_in parent);
+    static MirrorPort _create (const ConnectorObject_in parent);
     ///@}
 
     // Default constructor.
@@ -70,11 +70,9 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
-     * @name Refers To Methods
+     * @name Parent Methods
      */
     ///@{
-    bool MirrorPort_is_nil (void) const;
-    MirrorPort get_MirrorPort (void) const;
     ///@}
   };
 }

@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static DataValue _create (const DataValueContainer_in parent);
     static DataValue _create (const ComplexProperty_in parent);
+    static DataValue _create (const DataValueContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +68,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -87,6 +93,7 @@ namespace PICML
     ///@{
     bool SimpleType_is_nil (void) const;
     SimpleType get_SimpleType (void) const;
+    void set_SimpleType (SimpleType_in item);
     ///@}
   };
 }

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/InheritableTypes/Supports.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +45,27 @@ namespace PICML
   }
 
   //
+  // parent_ComponentInstance
+  //
+  ComponentInstance SupportsInstance_Impl::parent_ComponentInstance (void)
+  {
+    return ComponentInstance::_narrow (this->parent ());
+  }
+
+  //
   // Supports_is_nil
   //
   bool SupportsInstance_Impl::Supports_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_Supports
+  //
+  void SupportsInstance_Impl::set_Supports (Supports_in item)
+  {
+    this->refers_to (item);
   }
 
   //

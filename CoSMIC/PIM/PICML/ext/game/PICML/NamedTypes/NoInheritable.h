@@ -54,6 +54,13 @@ namespace PICML
 
     // Destructor.
     virtual ~NoInheritable_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    HasOperations parent_HasOperations (void);
+    ///@}
   };
 }
 

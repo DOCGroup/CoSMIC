@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Maximum _create (const BenchmarkAnalysis_in parent);
     static Maximum _create (const MetricsBase_in parent);
+    static Maximum _create (const BenchmarkAnalysis_in parent);
     ///@}
 
     // Default constructor.
@@ -68,6 +68,12 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

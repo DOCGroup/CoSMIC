@@ -54,6 +54,12 @@ namespace PICML
 
     // Destructor.
     virtual ~SignedIntegerType_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
   };
 }
 

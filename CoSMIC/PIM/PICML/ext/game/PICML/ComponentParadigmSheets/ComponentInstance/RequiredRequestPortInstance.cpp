@@ -53,6 +53,14 @@ namespace PICML
   }
 
   //
+  // set_RequiredRequestPort
+  //
+  void RequiredRequestPortInstance_Impl::set_RequiredRequestPort (RequiredRequestPort_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_RequiredRequestPort
   //
   RequiredRequestPort RequiredRequestPortInstance_Impl::get_RequiredRequestPort (void) const

@@ -9,6 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/OperationTypes/InParameter.h"
+#include "PICML/ComponentBenchmark/OperationRef.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
@@ -17,6 +18,14 @@ namespace PICML
   // metaname
   //
   const std::string OperationBase_Impl::metaname ("OperationBase");
+
+  //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis OperationBase_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
+  }
 
   //
   // get_InParameters

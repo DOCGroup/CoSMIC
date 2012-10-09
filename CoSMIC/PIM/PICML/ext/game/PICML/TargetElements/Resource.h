@@ -17,6 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/Common/RequirementSatisfier.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -35,7 +36,8 @@ namespace PICML
    * Implementation for the Resource model element.
    */
   class PICML_Export Resource_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Model_Impl,
+    public virtual RequirementSatisfier_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -51,9 +53,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Resource _create (const Bridge_in parent);
-    static Resource _create (const Interconnect_in parent);
     static Resource _create (const Node_in parent);
+    static Resource _create (const Interconnect_in parent);
+    static Resource _create (const Bridge_in parent);
     ///@}
 
     // Default constructor.
@@ -67,6 +69,15 @@ namespace PICML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Node parent_Node (void);
+    Interconnect parent_Interconnect (void);
+    Bridge parent_Bridge (void);
+    ///@}
   };
 }
 

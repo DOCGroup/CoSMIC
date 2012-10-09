@@ -67,26 +67,36 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentTypes parent_ComponentTypes (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
     bool has_ComponentRef (void) const;
     ComponentRef get_ComponentRef (void) const;
-    size_t get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const;
-    ::GAME::Mga::Iterator <ComponentPropertyDescription> get_ComponentPropertyDescriptions (void) const;
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
 
-    size_t get_ComponentPropertys (std::vector <ComponentProperty> & items) const;
-    ::GAME::Mga::Iterator <ComponentProperty> get_ComponentPropertys (void) const;
-
-    size_t get_ComponentConfigPropertys (std::vector <ComponentConfigProperty> & items) const;
-    ::GAME::Mga::Iterator <ComponentConfigProperty> get_ComponentConfigPropertys (void) const;
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
 
     size_t get_ComponentInfoPropertys (std::vector <ComponentInfoProperty> & items) const;
     ::GAME::Mga::Iterator <ComponentInfoProperty> get_ComponentInfoPropertys (void) const;
 
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
+    size_t get_ComponentConfigPropertys (std::vector <ComponentConfigProperty> & items) const;
+    ::GAME::Mga::Iterator <ComponentConfigProperty> get_ComponentConfigPropertys (void) const;
+
+    size_t get_ComponentPropertys (std::vector <ComponentProperty> & items) const;
+    ::GAME::Mga::Iterator <ComponentProperty> get_ComponentPropertys (void) const;
+
+    size_t get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const;
+    ::GAME::Mga::Iterator <ComponentPropertyDescription> get_ComponentPropertyDescriptions (void) const;
 
     ///@}
   };

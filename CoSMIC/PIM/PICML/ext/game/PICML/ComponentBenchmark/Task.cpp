@@ -45,6 +45,14 @@ namespace PICML
   }
 
   //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis Task_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
+  }
+
+  //
   // dst_WorkLoadOperationConnection
   //
   size_t Task_Impl::dst_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const

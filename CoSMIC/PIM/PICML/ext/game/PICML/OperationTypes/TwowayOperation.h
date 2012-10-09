@@ -54,7 +54,7 @@ namespace PICML
      */
     ///@{
     static TwowayOperation _create (const HasOperations_in parent);
-    static TwowayOperation _create (const HasExceptions_in parent);
+    static TwowayOperation _create (const BenchmarkAnalysis_in parent);
     ///@}
 
     // Default constructor.
@@ -70,17 +70,24 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    HasOperations parent_HasOperations (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
 
     bool has_ReturnType (void) const;
     ReturnType get_ReturnType (void) const;
-    size_t get_InoutParameters (std::vector <InoutParameter> & items) const;
-    ::GAME::Mga::Iterator <InoutParameter> get_InoutParameters (void) const;
-
     size_t get_OutParameters (std::vector <OutParameter> & items) const;
     ::GAME::Mga::Iterator <OutParameter> get_OutParameters (void) const;
+
+    size_t get_InoutParameters (std::vector <InoutParameter> & items) const;
+    ::GAME::Mga::Iterator <InoutParameter> get_InoutParameters (void) const;
 
     ///@}
   };

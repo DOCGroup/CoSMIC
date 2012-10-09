@@ -8,9 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +45,14 @@ namespace PICML
       this_visitor->visit_QueryInput (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_TopLevelBehavior
+  //
+  TopLevelBehavior QueryInput_Impl::parent_TopLevelBehavior (void)
+  {
+    return TopLevelBehavior::_narrow (this->parent ());
   }
 
   //

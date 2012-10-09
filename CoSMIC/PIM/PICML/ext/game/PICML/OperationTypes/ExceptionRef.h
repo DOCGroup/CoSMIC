@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    HasExceptions parent_HasExceptions (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool ExceptionType_is_nil (void) const;
     ExceptionType get_ExceptionType (void) const;
+    void set_ExceptionType (ExceptionType_in item);
     ///@}
   };
 }

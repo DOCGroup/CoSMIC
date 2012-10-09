@@ -52,6 +52,14 @@ namespace PICML
 
     // Destructor.
     virtual ~DataValueBase_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComplexProperty parent_ComplexProperty (void);
+    DataValueContainer parent_DataValueContainer (void);
+    ///@}
   };
 }
 

@@ -8,8 +8,16 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +29,30 @@ namespace PICML
   // metaname
   //
   const std::string InEventPort_Impl::metaname ("InEventPort");
+
+  //
+  // _create (const Component_in)
+  //
+  InEventPort InEventPort_Impl::_create (const Component_in parent)
+  {
+    return ::GAME::Mga::create_object < InEventPort > (parent, InEventPort_Impl::metaname);
+  }
+
+  //
+  // _create (const ConnectedComponent_in)
+  //
+  InEventPort InEventPort_Impl::_create (const ConnectedComponent_in parent)
+  {
+    return ::GAME::Mga::create_object < InEventPort > (parent, InEventPort_Impl::metaname);
+  }
+
+  //
+  // _create (const Path_in)
+  //
+  InEventPort InEventPort_Impl::_create (const Path_in parent)
+  {
+    return ::GAME::Mga::create_object < InEventPort > (parent, InEventPort_Impl::metaname);
+  }
 
   //
   // accept
@@ -37,27 +69,19 @@ namespace PICML
   }
 
   //
-  // InEventPort_is_nil
-  //
-  bool InEventPort_Impl::InEventPort_is_nil (void) const
-  {
-    return !this->refers_to ().is_nil ();
-  }
-
-  //
-  // get_InEventPort
-  //
-  InEventPort InEventPort_Impl::get_InEventPort (void) const
-  {
-    return InEventPort::_narrow (this->refers_to ());
-  }
-
-  //
   // EventType_is_nil
   //
   bool InEventPort_Impl::EventType_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_EventType
+  //
+  void InEventPort_Impl::set_EventType (EventType_in item)
+  {
+    this->refers_to (item);
   }
 
   //

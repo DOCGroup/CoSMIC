@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    PackageContainer parent_PackageContainer (void);
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{
@@ -81,6 +88,7 @@ namespace PICML
     ///@{
     bool ComponentImplementation_is_nil (void) const;
     ComponentImplementation get_ComponentImplementation (void) const;
+    void set_ComponentImplementation (ComponentImplementation_in item);
     ///@}
   };
 }

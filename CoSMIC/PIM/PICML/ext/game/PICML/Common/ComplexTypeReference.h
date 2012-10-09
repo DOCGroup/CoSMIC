@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComplexTypeReference _create (const DataValueContainer_in parent);
     static ComplexTypeReference _create (const ComplexProperty_in parent);
+    static ComplexTypeReference _create (const DataValueContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -68,11 +68,20 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComplexProperty parent_ComplexProperty (void);
+    DataValueContainer parent_DataValueContainer (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool ComplexType_is_nil (void) const;
     ComplexType get_ComplexType (void) const;
+    void set_ComplexType (ComplexType_in item);
     ///@}
   };
 }

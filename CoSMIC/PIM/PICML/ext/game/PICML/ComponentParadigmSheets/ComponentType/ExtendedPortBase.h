@@ -54,11 +54,20 @@ namespace PICML
     virtual ~ExtendedPortBase_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Component parent_Component (void);
+    ConnectorObject parent_ConnectorObject (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool PortType_is_nil (void) const;
     PortType get_PortType (void) const;
+    void set_PortType (PortType_in item);
     ///@}
   };
 }

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_PackageConfSpecializedConfig (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_PackageConfigurationContainer
+  //
+  PackageConfigurationContainer PackageConfSpecializedConfig_Impl::parent_PackageConfigurationContainer (void)
+  {
+    return PackageConfigurationContainer::_narrow (this->parent ());
   }
 
   //

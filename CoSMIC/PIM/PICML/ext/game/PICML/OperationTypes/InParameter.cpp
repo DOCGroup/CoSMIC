@@ -8,8 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -50,6 +55,14 @@ namespace PICML
       this_visitor->visit_InParameter (this);
     else
       v->visit_Reference (this);
+  }
+
+  //
+  // parent_OperationBase
+  //
+  OperationBase InParameter_Impl::parent_OperationBase (void)
+  {
+    return OperationBase::_narrow (this->parent ());
   }
 }
 

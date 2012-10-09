@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/Domain.h"
 #include "PICML/TargetElements/Node.h"
 #include "PICML/TargetElements/SharedResource.h"
+#include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_Shares (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_Domain
+  //
+  Domain Shares_Impl::parent_Domain (void)
+  {
+    return Domain::_narrow (this->parent ());
   }
 
   //

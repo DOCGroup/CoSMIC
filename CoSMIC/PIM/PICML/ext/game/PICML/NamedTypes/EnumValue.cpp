@@ -42,5 +42,13 @@ namespace PICML
     else
       v->visit_Atom (this);
   }
+
+  //
+  // parent_Enum
+  //
+  Enum EnumValue_Impl::parent_Enum (void)
+  {
+    return Enum::_narrow (this->parent ());
+  }
 }
 

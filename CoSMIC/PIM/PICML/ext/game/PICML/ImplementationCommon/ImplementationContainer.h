@@ -54,32 +54,47 @@ namespace PICML
     virtual ~ImplementationContainer_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ImplementationRequirements (std::vector <ImplementationRequirement> & items) const;
-    ::GAME::Mga::Iterator <ImplementationRequirement> get_ImplementationRequirements (void) const;
-
-    size_t get_Propertys (std::vector <Property> & items) const;
-    ::GAME::Mga::Iterator <Property> get_Propertys (void) const;
-
-    size_t get_ImplementationArtifactReferences (std::vector <ImplementationArtifactReference> & items) const;
-    ::GAME::Mga::Iterator <ImplementationArtifactReference> get_ImplementationArtifactReferences (void) const;
-
     size_t get_ConfigPropertys (std::vector <ConfigProperty> & items) const;
     ::GAME::Mga::Iterator <ConfigProperty> get_ConfigPropertys (void) const;
 
     size_t get_InfoPropertys (std::vector <InfoProperty> & items) const;
     ::GAME::Mga::Iterator <InfoProperty> get_InfoPropertys (void) const;
 
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ImplementationArtifactReferences (std::vector <ImplementationArtifactReference> & items) const;
+    ::GAME::Mga::Iterator <ImplementationArtifactReference> get_ImplementationArtifactReferences (void) const;
+
+    size_t get_ComponentImplementationArtifacts (std::vector <ComponentImplementationArtifact> & items) const;
+    ::GAME::Mga::Iterator <ComponentImplementationArtifact> get_ComponentImplementationArtifacts (void) const;
+
+    size_t get_ComponentServantArtifacts (std::vector <ComponentServantArtifact> & items) const;
+    ::GAME::Mga::Iterator <ComponentServantArtifact> get_ComponentServantArtifacts (void) const;
+
+    size_t get_ImplementationRequirements (std::vector <ImplementationRequirement> & items) const;
+    ::GAME::Mga::Iterator <ImplementationRequirement> get_ImplementationRequirements (void) const;
+
     size_t get_MonolithprimaryArtifacts (std::vector <MonolithprimaryArtifact> & items) const;
     ::GAME::Mga::Iterator <MonolithprimaryArtifact> get_MonolithprimaryArtifacts (void) const;
 
-    size_t get_MonolithDeployRequirements (std::vector <MonolithDeployRequirement> & items) const;
-    ::GAME::Mga::Iterator <MonolithDeployRequirement> get_MonolithDeployRequirements (void) const;
-
     size_t get_MonolithExecParameters (std::vector <MonolithExecParameter> & items) const;
     ::GAME::Mga::Iterator <MonolithExecParameter> get_MonolithExecParameters (void) const;
+
+    size_t get_MonolithDeployRequirements (std::vector <MonolithDeployRequirement> & items) const;
+    ::GAME::Mga::Iterator <MonolithDeployRequirement> get_MonolithDeployRequirements (void) const;
 
     ///@}
   };

@@ -54,7 +54,6 @@ namespace PICML
      */
     ///@{
     static ConnectorImplementationContainer _create (const ConnectorImplementations_in parent);
-    static ConnectorImplementationContainer _create (const ImplementationContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -70,17 +69,24 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ConnectorImplementations parent_ConnectorImplementations (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const;
-    ::GAME::Mga::Iterator <ConnectorImplementation> get_ConnectorImplementations (void) const;
+    size_t get_ConnectorTypes (std::vector <ConnectorType> & items) const;
+    ::GAME::Mga::Iterator <ConnectorType> get_ConnectorTypes (void) const;
 
     size_t get_ConnectorImplementss (std::vector <ConnectorImplements> & items) const;
     ::GAME::Mga::Iterator <ConnectorImplements> get_ConnectorImplementss (void) const;
 
-    size_t get_ConnectorTypes (std::vector <ConnectorType> & items) const;
-    ::GAME::Mga::Iterator <ConnectorType> get_ConnectorTypes (void) const;
+    size_t get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const;
+    ::GAME::Mga::Iterator <ConnectorImplementation> get_ConnectorImplementations (void) const;
 
     ///@}
   };

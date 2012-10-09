@@ -8,8 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/ExceptionType.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,11 +48,27 @@ namespace PICML
   }
 
   //
+  // parent_ReadonlyAttribute
+  //
+  ReadonlyAttribute GetException_Impl::parent_ReadonlyAttribute (void)
+  {
+    return ReadonlyAttribute::_narrow (this->parent ());
+  }
+
+  //
   // ExceptionType_is_nil
   //
   bool GetException_Impl::ExceptionType_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ExceptionType
+  //
+  void GetException_Impl::set_ExceptionType (ExceptionType_in item)
+  {
+    this->refers_to (item);
   }
 
   //

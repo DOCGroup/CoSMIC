@@ -53,6 +53,14 @@ namespace PICML
   }
 
   //
+  // set_MirrorPort
+  //
+  void MirrorPortInstance_Impl::set_MirrorPort (MirrorPort_in item)
+  {
+    this->refers_to (item);
+  }
+
+  //
   // get_MirrorPort
   //
   MirrorPort MirrorPortInstance_Impl::get_MirrorPort (void) const

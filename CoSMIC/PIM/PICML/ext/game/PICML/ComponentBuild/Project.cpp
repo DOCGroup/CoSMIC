@@ -8,11 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ComponentBuild/ExternalResources.h"
 #include "PICML/ComponentBuild/ExtResourceConn.h"
-#include "PICML/ComponentBuild/ComponentLib.h"
 #include "PICML/ComponentBuild/MPC.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ComponentBuild/ComponentLib.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/StubProject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -48,6 +51,30 @@ namespace PICML
   }
 
   //
+  // parent_MPC
+  //
+  MPC Project_Impl::parent_MPC (void)
+  {
+    return MPC::_narrow (this->parent ());
+  }
+
+  //
+  // get_ImplementationArtifacts
+  //
+  size_t Project_Impl::get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ImplementationArtifacts
+  //
+  ::GAME::Mga::Iterator <ImplementationArtifact> Project_Impl::get_ImplementationArtifacts (void) const
+  {
+    return this->children <ImplementationArtifact> ();
+  }
+
+  //
   // get_ExternalResourcess
   //
   size_t Project_Impl::get_ExternalResourcess (std::vector <ExternalResources> & items) const
@@ -80,35 +107,51 @@ namespace PICML
   }
 
   //
-  // get_ComponentLibs
+  // get_ExecutorProjects
   //
-  size_t Project_Impl::get_ComponentLibs (std::vector <ComponentLib> & items) const
+  size_t Project_Impl::get_ExecutorProjects (std::vector <ExecutorProject> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ComponentLibs
+  // get_ExecutorProjects
   //
-  ::GAME::Mga::Iterator <ComponentLib> Project_Impl::get_ComponentLibs (void) const
+  ::GAME::Mga::Iterator <ExecutorProject> Project_Impl::get_ExecutorProjects (void) const
   {
-    return this->children <ComponentLib> ();
+    return this->children <ExecutorProject> ();
   }
 
   //
-  // get_ImplementationArtifacts
+  // get_ServantProjects
   //
-  size_t Project_Impl::get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const
+  size_t Project_Impl::get_ServantProjects (std::vector <ServantProject> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ImplementationArtifacts
+  // get_ServantProjects
   //
-  ::GAME::Mga::Iterator <ImplementationArtifact> Project_Impl::get_ImplementationArtifacts (void) const
+  ::GAME::Mga::Iterator <ServantProject> Project_Impl::get_ServantProjects (void) const
   {
-    return this->children <ImplementationArtifact> ();
+    return this->children <ServantProject> ();
+  }
+
+  //
+  // get_StubProjects
+  //
+  size_t Project_Impl::get_StubProjects (std::vector <StubProject> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_StubProjects
+  //
+  ::GAME::Mga::Iterator <StubProject> Project_Impl::get_StubProjects (void) const
+  {
+    return this->children <StubProject> ();
   }
 }
 

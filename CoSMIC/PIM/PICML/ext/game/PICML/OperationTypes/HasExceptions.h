@@ -56,6 +56,12 @@ namespace PICML
     virtual ~HasExceptions_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{

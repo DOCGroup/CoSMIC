@@ -67,6 +67,13 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    DeploymentPlan parent_DeploymentPlan (void);
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
@@ -90,6 +97,7 @@ namespace PICML
     ///@{
     bool Node_is_nil (void) const;
     Node get_Node (void) const;
+    void set_Node (Node_in item);
     ///@}
   };
 }

@@ -8,12 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -57,6 +58,14 @@ namespace PICML
   }
 
   //
+  // parent_ConnectorInstance
+  //
+  ConnectorInstance AttributeInstance_Impl::parent_ConnectorInstance (void)
+  {
+    return ConnectorInstance::_narrow (this->parent ());
+  }
+
+  //
   // src_AttributeValue
   //
   size_t AttributeInstance_Impl::src_AttributeValue (std::vector <AttributeValue> & items) const
@@ -73,27 +82,19 @@ namespace PICML
   }
 
   //
-  // AttributeInstance_is_nil
-  //
-  bool AttributeInstance_Impl::AttributeInstance_is_nil (void) const
-  {
-    return !this->refers_to ().is_nil ();
-  }
-
-  //
-  // get_AttributeInstance
-  //
-  AttributeInstance AttributeInstance_Impl::get_AttributeInstance (void) const
-  {
-    return AttributeInstance::_narrow (this->refers_to ());
-  }
-
-  //
   // ReadonlyAttribute_is_nil
   //
   bool AttributeInstance_Impl::ReadonlyAttribute_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_ReadonlyAttribute
+  //
+  void AttributeInstance_Impl::set_ReadonlyAttribute (ReadonlyAttribute_in item)
+  {
+    this->refers_to (item);
   }
 
   //

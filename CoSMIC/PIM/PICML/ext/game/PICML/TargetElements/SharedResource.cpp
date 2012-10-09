@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/Domain.h"
 #include "PICML/Domain/Shares.h"
+#include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +42,14 @@ namespace PICML
       this_visitor->visit_SharedResource (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_Domain
+  //
+  Domain SharedResource_Impl::parent_Domain (void)
+  {
+    return Domain::_narrow (this->parent ());
   }
 
   //

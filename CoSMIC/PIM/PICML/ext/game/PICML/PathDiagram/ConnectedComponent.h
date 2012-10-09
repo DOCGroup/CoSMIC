@@ -69,11 +69,26 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_Ports (std::vector <Port> & items) const;
-    ::GAME::Mga::Iterator <Port> get_Ports (void) const;
+    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
+    ::GAME::Mga::Iterator <RequiredRequestPort> get_RequiredRequestPorts (void) const;
+
+    size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
+    ::GAME::Mga::Iterator <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
+
+    size_t get_InEventPorts (std::vector <InEventPort> & items) const;
+    ::GAME::Mga::Iterator <InEventPort> get_InEventPorts (void) const;
+
+    size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
+    ::GAME::Mga::Iterator <OutEventPort> get_OutEventPorts (void) const;
 
     size_t get_DstEdges (std::vector <DstEdge> & items) const;
     ::GAME::Mga::Iterator <DstEdge> get_DstEdges (void) const;

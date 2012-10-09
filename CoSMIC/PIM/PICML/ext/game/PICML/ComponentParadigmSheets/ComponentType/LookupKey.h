@@ -67,11 +67,19 @@ namespace PICML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ComponentFactory parent_ComponentFactory (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool LookupKeyType_is_nil (void) const;
     LookupKeyType get_LookupKeyType (void) const;
+    void set_LookupKeyType (LookupKeyType_in item);
     ///@}
   };
 }

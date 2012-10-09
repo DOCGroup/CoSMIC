@@ -8,8 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/ComponentBenchmark/EventRef.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -31,9 +33,17 @@ namespace PICML
   }
 
   //
-  // _create (const ObjectByValue_in)
+  // _create (const File_in)
   //
-  Event Event_Impl::_create (const ObjectByValue_in parent)
+  Event Event_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
+  }
+
+  //
+  // _create (const Package_in)
+  //
+  Event Event_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create_object < Event > (parent, Event_Impl::metaname);
   }
@@ -50,6 +60,14 @@ namespace PICML
       this_visitor->visit_Event (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis Event_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
   }
 }
 

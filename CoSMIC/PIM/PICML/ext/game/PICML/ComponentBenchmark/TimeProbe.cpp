@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -43,6 +43,14 @@ namespace PICML
       this_visitor->visit_TimeProbe (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_BenchmarkAnalysis
+  //
+  BenchmarkAnalysis TimeProbe_Impl::parent_BenchmarkAnalysis (void)
+  {
+    return BenchmarkAnalysis::_narrow (this->parent ());
   }
 
   //

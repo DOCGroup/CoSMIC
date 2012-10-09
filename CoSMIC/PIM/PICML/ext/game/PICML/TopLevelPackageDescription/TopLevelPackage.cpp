@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +42,14 @@ namespace PICML
       this_visitor->visit_TopLevelPackage (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_TopLevelPackageContainer
+  //
+  TopLevelPackageContainer TopLevelPackage_Impl::parent_TopLevelPackageContainer (void)
+  {
+    return TopLevelPackageContainer::_narrow (this->parent ());
   }
 
   //

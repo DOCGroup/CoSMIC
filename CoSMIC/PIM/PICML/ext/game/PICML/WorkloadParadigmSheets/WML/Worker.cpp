@@ -8,8 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,6 +45,14 @@ namespace PICML
       this_visitor->visit_Worker (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // parent_WorkerPackageBase
+  //
+  WorkerPackageBase Worker_Impl::parent_WorkerPackageBase (void)
+  {
+    return WorkerPackageBase::_narrow (this->parent ());
   }
 
   //

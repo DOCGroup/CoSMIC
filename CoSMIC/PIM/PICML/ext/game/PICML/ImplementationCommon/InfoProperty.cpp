@@ -9,8 +9,19 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/ImplementationCommon/Implemenation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -43,6 +54,14 @@ namespace PICML
       this_visitor->visit_InfoProperty (this);
     else
       v->visit_Connection (this);
+  }
+
+  //
+  // parent_ImplementationContainer
+  //
+  ImplementationContainer InfoProperty_Impl::parent_ImplementationContainer (void)
+  {
+    return ImplementationContainer::_narrow (this->parent ());
   }
 
   //
