@@ -213,6 +213,8 @@ Visit_Event (const PICML::Event & e)
 void IDL_File_Ordering_Processor::
 Visit_Component (const PICML::Component & c)
 {
+  std::string n = c.name ();
+
   this->add_node (c);
   this->add_edge<PICML::ComponentInherits, PICML::Component> (c);
   this->add_edge<PICML::Supports, PICML::Component> (c);
@@ -633,10 +635,12 @@ parent_in_same_file (const Udm::Object & o, const Udm::Object & p)
 Udm::Object IDL_File_Ordering_Processor::
 parent_file (const Udm::Object & o)
 {
+  if (o.type () == PICML::File::meta)
+    return 0;
+
   Udm::Object parent;
 
-  for (parent = o.GetParent (); parent.type () != PICML::File::meta; parent = parent.GetParent ())
-  {}
+  for (parent = o.GetParent (); parent.type () != PICML::File::meta; parent = parent.GetParent ());
 
   return parent;
 }
