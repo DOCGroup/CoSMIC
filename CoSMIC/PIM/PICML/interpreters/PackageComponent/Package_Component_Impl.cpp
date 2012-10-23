@@ -145,9 +145,9 @@ load_configuration (GAME::Mga::Project proj, PackageOptions & options)
 {
   GAME::Mga::Project_Settings settings (proj, "PICML/Packaging");
 
-  settings.get_string_value ("Descriptor", options.descriptor_directory_);
-  settings.get_string_value ("Implementation", options.implementation_directory_);
-  settings.get_string_value ("Package", options.package_directory_);
+  settings.get_value ("Descriptor", options.descriptor_directory_);
+  settings.get_value ("Implementation", options.implementation_directory_);
+  settings.get_value ("Package", options.package_directory_);
 }
 
 //
@@ -161,11 +161,11 @@ save_configuration (GAME::Mga::Project proj, const PackageOptions & options)
   // Only store the options that were used during this execution
   // of the interpreter.
   if (options.generate_descriptors_)
-    settings.set_string_value ("Descriptor", options.descriptor_directory_);
+    settings.set_value ("Descriptor", options.descriptor_directory_);
 
   if (options.generate_packages_)
   {
-    settings.set_string_value ("Implementation", options.implementation_directory_);
-    settings.set_string_value ("Package", options.package_directory_);
+    settings.set_value ("Implementation", options.implementation_directory_);
+    settings.set_value ("Package", options.package_directory_);
   }
 }
