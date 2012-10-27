@@ -19,7 +19,7 @@
 #include <string>
 
 namespace qi = boost::spirit::qi;
-namespace ascii = boost::spirit::ascii; 
+namespace ascii = boost::spirit::ascii;
 
 /**
  * @class Lesser_Equal_Parser_Grammar
@@ -31,7 +31,7 @@ class lesser_equal : public qi::grammar <IteratorT,
                                          Lesser_Equal_Expr * (),
                                          ascii::space_type,
                                          qi::locals <Value_Expr *>>
-{  
+{
 public:
   lesser_equal ();
 

@@ -52,14 +52,18 @@
 #include "../UsedByConnPoints_Method.h"
 #include "../IsFCO_Method.h"
 
-#include "quoted_string.hpp"
 #include "ident.hpp"
+#include "connection_method.hpp"
+#include "folder_method.hpp"
+#include "model_method.hpp"
+#include "object_method.hpp"
+#include "reference_method.hpp"
 
 namespace qi = boost::spirit::qi;
-namespace ascii = boost::spirit::ascii; 
+namespace ascii = boost::spirit::ascii;
 
 /**
- * @class Method_Parser_Grammar
+ * @class method
  *
  * Underlying grammer for the ocl expression parser.
  */
@@ -76,62 +80,15 @@ private:
             Method * (),
             ascii::space_type> method_;
 
-  qi::rule <IteratorT,
-            Parts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> parts_method_;
+  ::model_method <IteratorT> model_methods_;
 
-  qi::rule <IteratorT,
-            AtomParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> atomparts_method_;
+  ::reference_method <IteratorT> reference_methods_;
 
-  qi::rule <IteratorT,
-            ModelParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> modelparts_method_;
+  ::object_method <IteratorT> object_methods_;
 
-  qi::rule <IteratorT,
-            ReferenceParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> referenceparts_method_;
+  ::connection_method <IteratorT> connection_methods_;
 
-  qi::rule <IteratorT,
-            ConnectionParts_Method * (),
-            ascii::space_type,
-            qi::locals <std::string>> connectionparts_method_;
-
-  qi::rule <IteratorT,
-            Size_Method * (),
-            ascii::space_type> size_method_;
-
-  qi::rule <IteratorT,
-            Refers_to_Method * (),
-            ascii::space_type> refers_to_method_;
-
-  qi::rule <IteratorT,
-            UsedByConnPoints_Method * (),
-            ascii::space_type> usedbyconnpoints_method_;
-
-  qi::rule <IteratorT,
-            Name_Method * (),
-            ascii::space_type> name_method_;
-
-	qi::rule <IteratorT,
-            KindName_Method * (),
-            ascii::space_type> kindname_method_;
-
-	qi::rule <IteratorT,
-            Parent_Method * (),
-            ascii::space_type> parent_method_;
-
-  qi::rule <IteratorT,
-            Models_Method * (),
-            ascii::space_type> models_method_;
-
-  qi::rule <IteratorT,
-            Atoms_Method * (),
-            ascii::space_type> atoms_method_;
+  ::folder_method <IteratorT> folder_methods_;
 
   qi::rule <IteratorT,
             AttachingConnPoints_Method * (),
@@ -187,32 +144,8 @@ private:
             qi::locals <std::string>> connectedfcos_method_;
 
   qi::rule <IteratorT,
-            ConnectionPoints_Method * (),
-            ascii::space_type> connectionpoints_method_;
-
-  qi::rule <IteratorT,
-            ConnectionPoint_Method * (),
-            ascii::space_type> connectionpoint_method_;
-
-	qi::rule <IteratorT,
-            ChildFolders_Method * (),
-            ascii::space_type> childfolders_method_;
-
-	qi::rule <IteratorT,
             RoleName_Method * (),
             ascii::space_type> rolename_method_;
-
-  qi::rule <IteratorT,
-            Target_Method * (),
-            ascii::space_type> target_method_;
-
-  qi::rule <IteratorT,
-            Owner_Method * (),
-            ascii::space_type> owner_method_;
-
-  qi::rule <IteratorT,
-            IsFCO_Method * (),
-            ascii::space_type> isfco_method_;
 
   ident <IteratorT> id_;
 

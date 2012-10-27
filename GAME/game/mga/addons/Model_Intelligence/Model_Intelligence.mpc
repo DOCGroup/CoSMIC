@@ -14,7 +14,7 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
 
     Model_Intelligence.idl
     Model_Intelligence_Impl.cpp
-    Model_Intelligence_Module.cpp    
+    Model_Intelligence_Module.cpp
 
     Containment_Handler.cpp
     Reference_Handler.cpp
@@ -22,9 +22,9 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Attributes_Handler.cpp
     User_Guidance_Handler.cpp
     Containment_Check_Handler.cpp
-                   
+
     OCL_Expr_Parser.cpp
-   
+
     Boolean_Expr.cpp
     Local_Value_Assignment_Expr.cpp
     Equality_Expr.cpp
@@ -42,7 +42,7 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Not_Equal_Expr.cpp
     Greater_Expr.cpp
     Lesser_Expr.cpp
-    
+
     Conjunction_Expr.cpp
     And_Expr.cpp
     Or_Expr.cpp
@@ -50,42 +50,42 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     Value_Expr.cpp
     Value_SubExpr.cpp
     Math_Operation_Expr.cpp
-	  Method_Call.cpp
+    Method_Call.cpp
     Constant_Value_Expr.cpp
     Local_Value_Expr.cpp
     Attribute_Expr.cpp
 
     Addition_Operation.cpp
-	
-	  Self_Method_Call.cpp
-	  Local_Value_Method_Call.cpp
-  	
-	  Iterator.cpp
-	  ForAll_Iterator.cpp
+
+    Self_Method_Call.cpp
+    Local_Value_Method_Call.cpp
+
+    Iterator.cpp
+    ForAll_Iterator.cpp
     IsUnique_Iterator.cpp
     Exists_Iterator.cpp
     One_Iterator.cpp
-  	
-	  Method.cpp
-	  Parts_Method.cpp
-	  Size_Method.cpp
-	  Refers_to_Method.cpp
-	  AtomParts_Method.cpp
-	  ModelParts_Method.cpp
-	  ReferenceParts_Method.cpp
-	  ConnectionParts_Method.cpp
-	  Name_Method.cpp
-	  KindName_Method.cpp
-	  Parent_Method.cpp
+
+    Method.cpp
+    Parts_Method.cpp
+    Size_Method.cpp
+    Refers_to_Method.cpp
+    AtomParts_Method.cpp
+    ModelParts_Method.cpp
+    ReferenceParts_Method.cpp
+    ConnectionParts_Method.cpp
+    Name_Method.cpp
+    KindName_Method.cpp
+    Parent_Method.cpp
     IsFCO_Method.cpp
-	  ChildFolders_Method.cpp
+    ChildFolders_Method.cpp
     Models_Method.cpp
     Atoms_Method.cpp
-	  RoleName_Method.cpp
-	  ConnectedFCOs_Method.cpp
-	  AttachingConnPoints_Method.cpp
-	  AttachingConnections_Method.cpp
-	  IsConnectedTo_Method.cpp
+    RoleName_Method.cpp
+    ConnectedFCOs_Method.cpp
+    AttachingConnPoints_Method.cpp
+    AttachingConnections_Method.cpp
+    IsConnectedTo_Method.cpp
     Subtypes_Method.cpp
     Instances_Method.cpp
     Type_Method.cpp
@@ -94,19 +94,19 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
     IsInstance_Method.cpp
     Folder_Method.cpp
     ReferencedBy_Method.cpp
-	  ConnectionPoints_Method.cpp
-	  ConnectionPoint_Method.cpp
+    ConnectionPoints_Method.cpp
+    ConnectionPoint_Method.cpp
     Target_Method.cpp
     Owner_Method.cpp
     UsedByConnPoints_Method.cpp
-       	
-	  Value.cpp
-	  Int_Value.cpp
-	  Long_Value.cpp
-	  String_Value.cpp
-	  Boolean_Value.cpp
-	  Double_Value.cpp
-	  Object_Value.cpp
+
+    Value.cpp
+    Int_Value.cpp
+    Long_Value.cpp
+    String_Value.cpp
+    Boolean_Value.cpp
+    Double_Value.cpp
+    Object_Value.cpp
   }
 
   Header_Files {
@@ -116,11 +116,11 @@ project (GAME_Model_Intelligence): boost_base, game_mga_component, game_dialogs,
 
     Model_Intelligence_Context.h
   }
-  
+
   Template_Files {
     Collection_Value_T.cpp
   }
-    
+
 
   Resource_Files {
     Component.rc

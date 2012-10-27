@@ -12,9 +12,9 @@ ident <IteratorT>::ident (void)
    namespace ascii = boost::spirit::ascii;
    namespace repo = boost::spirit::repository;
 
-   this->ident_ %= 
-			qi::lexeme[(ascii::char_('_') | qi::alpha) >>
-			*(ascii::char_('_') | qi::alnum)]; 
+   this->ident_ %=
+      qi::lexeme[(ascii::char_('_') | qi::alpha) >>
+      *(ascii::char_('_') | qi::alnum)];
 }
 
 #endif

@@ -12,15 +12,15 @@ lesser <IteratorT>::lesser (void)
    namespace ascii = boost::spirit::ascii;
    namespace repo = boost::spirit::repository;
 
-   this->lesser_expr_ = 
+   this->lesser_expr_ =
       ((qi::lit ("(")) >>
       this->value_expr_ [qi::_a = qi::_1] >>
-      qi::lit ("<") >> 
+      qi::lit ("<") >>
       this->value_expr_ [qi::_val = phoenix::new_<Lesser_Expr> (qi::_a, qi::_1)] >>
       (qi::lit (")"))) | (this->value_expr_ [qi::_a = qi::_1] >>
-      qi::lit ("<") >> 
+      qi::lit ("<") >>
       this->value_expr_ [qi::_val = phoenix::new_<Lesser_Expr> (qi::_a, qi::_1)]);
- 
+
 }
 
 #endif

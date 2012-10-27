@@ -12,7 +12,7 @@ math_op <IteratorT>::math_op (void)
    namespace ascii = boost::spirit::ascii;
    namespace repo = boost::spirit::repository;
 
-   this->math_op_ = ascii::string ("+"); 
+   this->math_op_ = ascii::string ("+");
 }
 
 #endif
