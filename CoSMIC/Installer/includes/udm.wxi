@@ -4,7 +4,7 @@
     <DirectoryRef Id="INSTALLDIR">
       <Directory Id="UDM.output" Name="bin">
         <Component Id="UDM" Guid="C16D9595-4F34-491A-A759-D76638E45940">
-          <File Id="$(env.UDM_VERSION).DLL" Name="UdmDll_3_2.dll"
+          <File Id="UdmDll_$(env.UDM_VERSION).DLL" Name="UdmDll_3_2.dll"
                 Source="$(env.UDM_PATH)\bin\UdmDll_3_2.dll"
                 DiskId="1" />
 

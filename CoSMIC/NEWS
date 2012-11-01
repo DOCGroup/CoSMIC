@@ -1,3 +1,9 @@
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.8.4 and CoSMIC-0.8.5
+============================================================
+
+. Fixed bug where the IDL generator would fail if an event, or referenced data
+  type was at the same level as the object reference it.
+
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.8.2 and CoSMIC-0.8.3
 ============================================================
 

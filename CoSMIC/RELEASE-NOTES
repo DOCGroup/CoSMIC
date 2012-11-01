@@ -1,6 +1,6 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC)
 
-This is a release version 0.8.4 of Component Synthesis using Model-Integrated
+This is a release version 0.8.5 of Component Synthesis using Model-Integrated
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of
     o   Platform-Independent Component Modeling Language (PICML)
     o   Component QoS Modeling Language (CQML)
@@ -15,6 +15,12 @@ modeling of large number QoS knobs provided by DDS.
 
 This document lists the new features that are introduced in the latest
 version.
+
+Release CoSMIC-0.8.5
+===================================================================
+
+. Fixed bug where the IDL generator would fail if an event, or referenced data
+  type was at the same level as the object reference it.
 
 Release CoSMIC-0.8.4
 ===================================================================
