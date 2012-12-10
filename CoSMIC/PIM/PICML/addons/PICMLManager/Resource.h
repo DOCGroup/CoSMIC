@@ -5,10 +5,12 @@
 #define IDS_PROJNAME                    100
 #define IDD_NEWCOMPONENTNAME            101
 #define IDD_NEWCOMPONENT                101
+#define IDD_IMPORT                      201
 #define IDC_EXEC_ARTIFACT_SUFFIX        202
 #define IDC_SVNT_ARTIFACT_SUFFIX        203
 #define IDC_CHECK1                      204
 #define IDC_USE_COMPONENT_FILENAME      204
+#define IDC_EXEC_ARTIFACT_SUFFIX2       205
 #define IDC_NAME                        1001
 #define IDR_LIB                         2005
 
@@ -16,9 +18,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        201
+#define _APS_NEXT_RESOURCE_VALUE        202
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         205
+#define _APS_NEXT_CONTROL_VALUE         206
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

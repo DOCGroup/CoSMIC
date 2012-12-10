@@ -53,7 +53,7 @@ END
 //
 
 IDD_NEWCOMPONENT DIALOGEX 0, 0, 262, 98
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "New Component Configuration"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
@@ -67,6 +67,22 @@ BEGIN
     EDITTEXT        IDC_SVNT_ARTIFACT_SUFFIX,107,42,144,14,ES_AUTOHSCROLL
     CONTROL         "Generate servant artifact location based on component filename",IDC_USE_COMPONENT_FILENAME,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,63,220,10
+END
+
+IDD_IMPORT DIALOGEX 0, 0, 256, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Implementation Generator"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Yes",IDOK,146,79,50,14
+    PUSHBUTTON      "No",IDCANCEL,199,79,50,14
+    EDITTEXT        IDC_EXEC_ARTIFACT_SUFFIX,105,20,144,14,ES_AUTOHSCROLL
+    LTEXT           "&Implementation artifact suffix:",IDC_STATIC,7,23,98,8
+    LTEXT           "&Servant artifact suffix:",IDC_STATIC,7,41,74,8
+    EDITTEXT        IDC_SVNT_ARTIFACT_SUFFIX,105,38,144,14,ES_AUTOHSCROLL
+    CONTROL         "Generate servant artifact location based on component filename",IDC_USE_COMPONENT_FILENAME,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,59,220,10
+    LTEXT           "Generate default implementation for imported models?",IDC_STATIC,7,6,174,8
 END
 
 
@@ -84,6 +100,14 @@ BEGIN
         RIGHTMARGIN, 251
         TOPMARGIN, 7
         BOTTOMMARGIN, 91
+    END
+
+    IDD_IMPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 93
     END
 END
 #endif    // APSTUDIO_INVOKED

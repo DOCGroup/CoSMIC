@@ -57,8 +57,7 @@ Default_Implementation_Generator::~Default_Implementation_Generator (void)
 // generate
 //
 bool Default_Implementation_Generator::
-generate (const Implementation_Configuration & config,
-          const ::GAME::Mga::Model_in type)
+generate (const Implementation_Configuration & config, const ::GAME::Mga::Model_in type)
 {
   using ::GAME::Mga_t;
 

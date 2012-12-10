@@ -3,8 +3,8 @@
 #include "StdAfx.h"
 #include "Dialogs.h"
 #include "Default_Implementation_Event_Handler.h"
-#include "Implementation_Configuration.h"
 #include "Validation.h"
+#include "Import_Dialog.h"
 
 #include "game/mga/Model.h"
 
@@ -51,17 +51,19 @@ handle_object_created (GAME::Mga::Object_in obj)
 }
 
 //
-// handle_notification_ready
+// handle_xml_import_begin
 //
 int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
 {
   GAME::Mga::Object_Event_Handler::handle_xml_import_begin ();
 
+  // TODO We should update GAME such that different handlers use this
+  // method to update an import configuration. This configuration is
+  // then displayed to the user where they can update it accordingly.
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-  const char * question = "Generate default implementation for imported models?";
-  int answer = ::AfxMessageBox (question, MB_YESNO);
-  this->generate_on_import_ = answer == IDYES;
+  Import_Dialog dialog (this->config_, ::AfxGetMainWnd ());
+  this->generate_on_import_ = dialog.DoModal () == IDOK ? true : false;
 
   return 0;
 }
@@ -82,26 +84,27 @@ generate_default_implementation (const GAME::Mga::Object_in obj)
   if (iter == this->meta_info_.end ())
     return 0;
 
-  Implementation_Configuration config;
   const std::string name (obj->name ());
+  const std::string metaname (obj->meta ()->name ());
+  const std::string new_name ("New" + metaname);
 
-  if (name == obj->meta ()->name ())
+  if (name == metaname || name == new_name)
   {
     AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
     // Get the configuration information for the new element.
-    Default_Implementation_Dialog dialog (config, ::AfxGetMainWnd ());
+    Default_Implementation_Dialog dialog (this->config_, ::AfxGetMainWnd ());
 
     if (dialog.DoModal () == IDCANCEL)
       return 0;
 
     // Set the name of the object.
-    model->name (config.type_name_);
+    model->name (this->config_.type_name_);
   }
 
   // Generate the default implementation.
   Default_Implementation_Generator dig (obj->project (), iter->second);
-  return dig.generate (config, model) ? 0 : -1;
+  return dig.generate (this->config_, model) ? 0 : -1;
 }
 
 //

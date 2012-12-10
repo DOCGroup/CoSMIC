@@ -55,8 +55,7 @@ Default_Artifact_Generator::~Default_Artifact_Generator (void)
 // generate
 //
 bool Default_Artifact_Generator::
-generate (const Implementation_Configuration & config,
-          const ::GAME::Mga::Model_in type)
+generate (const Implementation_Configuration & config, const ::GAME::Mga::Model_in type)
 {
   using ::GAME::Mga_t;
 

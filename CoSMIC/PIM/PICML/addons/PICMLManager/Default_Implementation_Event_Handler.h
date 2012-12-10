@@ -17,6 +17,7 @@
 #include <set>
 #include "game/mga/component/Object_Event_Handler.h"
 #include "Default_Implementation_Generator.h"
+#include "Implementation_Configuration.h"
 
 namespace PICML
 {
@@ -49,6 +50,8 @@ public:
   bool insert (std::string meta, const meta_info_t & info);
 
 private:
+  Implementation_Configuration config_;
+
   typedef
     std::map <std::string,
               Default_Implementation_Generator::meta_info_t>

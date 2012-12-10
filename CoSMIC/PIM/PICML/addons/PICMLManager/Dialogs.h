@@ -20,7 +20,7 @@ namespace PICML
 namespace MI
 {
 
-/// Forward decl.
+// Forward decl.
 class Implementation_Configuration;
 
 /**
