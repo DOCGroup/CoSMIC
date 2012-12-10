@@ -1,0 +1,2345 @@
+Thu Nov  1 10:32:47 UTC 2012  Dennis Feiock  <dfeiock at iupui dot edu>
+
+        * ../GAME/contrib:
+
+          CCF 60589b2bb6739dbfea9e198582b879f65d252e44 git://git.dre.vanderbilt.edu/xsc/ccf.git
+
+        * Installer/CoSMIC_Installer.wxs
+        
+          Bumped version number
+          
+        * Installer/include/udm.wxi
+        
+          Fixed compilation error with WiX 3.6
+
+Mon Apr 30 03:32:25 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.cpp:
+
+          Updated filter to use iterator version of the apply () method.
+
+Mon Apr 30 02:38:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+
+          Updated the Port_Decorator include statement to reflect its
+          new location in GAME.
+
+Sun Apr 29 19:45:18 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer:
+
+          Updated svn:ignore property.
+
+        * MPC/config/picml_game_mga.mpb:
+
+          Update the 'includes' keyword.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Component_Observer_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Observer_Event_Handler.inl:
+        * PIM/PICML/addons/PICMLManager/Component_Observer_Event_Handler.cpp:
+
+          BUGFIX: Failed to reflect change in ComponentInstance model element
+          when a port is added/deleted to/from a component's interface.
+
+        * PIM/PICML/addons/PICMLManager/Single_Deployment_Event_Handler.cpp:
+
+          Added a check to handle_object_create () to guard against
+          importing a model.
+
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Action.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionType.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Finish.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/InputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/Variable.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/Effect.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/Environment.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/ForState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/State.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/Transition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/WhileState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/Terminal.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.cpp:
+        * PIM/PICML/ext/game/PICML/Common/Capability.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ComplexProperty.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ComplexTypeReference.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataType.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataValue.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataValueContainer.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationDependency.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/Common/Requirement.cpp:
+        * PIM/PICML/ext/game/PICML/Common/SatisfierProperty.cpp:
+        * PIM/PICML/ext/game/PICML/Common/SimpleProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Consume.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSourceDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Publish.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Average.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkAnalysis.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkCharacteristics.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/CompRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentAnalyses.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentOperation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/EventRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/FixedIterationBenchmarks.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Jitter.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Latency.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Maximum.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricConnection.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Minimum.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/OperationRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/PeriodicBenchmarks.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Task.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TaskSet.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Throughput.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimeProbe.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerConnection.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerEventSinkConn.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TriggerBenchmarks.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkLoadOperationConnection.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkloadCharacteristics.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentBuild.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExecutorProject.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExtResourceConn.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExternalResources.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Project.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ServantProject.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/StubProject.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Workspaces.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackage.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackageReference.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackages.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/Implementation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInterface.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/Implements.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Component.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/InEventPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKey.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/MirrorPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/OutEventPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/PortType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroup.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupProperty.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentFactoryRef.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentInstanceRef.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlan.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlans.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/Deploys.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/InstanceMapping.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/PropertyMapping.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/BridgeConnection.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/Domain.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/InterconnectConnection.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/Shares.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/Targets.cpp:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECBehavior.cpp:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRequirements.cpp:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRole.cpp:
+        * PIM/PICML/ext/game/PICML/Impl_Factory.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependency.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependsOn.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDeployRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactExecParameter.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactInfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifactReference.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifacts.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentImplementationArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentServantArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/InfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithDeployRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithExecParameter.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithprimaryArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Attribute.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/AttributeMember.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Event.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/GetException.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inherits.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/MakeMemberPrivate.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Object.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/PrivateFlag.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ReadonlyAttribute.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SetException.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Supports.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ValueObject.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/CollectionParameter.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Constant.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Exception.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/File.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/FileRef.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/InterfaceDefinitions.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NameParameter.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NativeValue.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Package.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/PackageType.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageAlias.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageInstance.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterReference.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValue.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TypeParameter.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Aggregate.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Alias.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/ArrayMember.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Boxed.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Collection.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Discriminator.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Enum.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/EnumValue.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Key.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/KeyMember.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Label.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/LabelConnection.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Member.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/SwitchedAggregate.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ExceptionRef.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/FactoryOperation.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InParameter.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InoutParameter.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/LookupOperation.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OnewayOperation.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OutParameter.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ReturnType.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/TwowayOperation.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfBasePackage.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfReference.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSelectRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSpecializedConfig.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfiguration.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationReference.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurations.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/ConnectedComponent.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DisplayNode.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DstEdge.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Edge.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/EdgeProperty.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Path.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathDiagrams.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathProperty.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathReference.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Paths.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/SrcEdge.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Boolean.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Byte.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Char.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/DoubleNumber.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatNumber.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericObject.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValue.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValueObject.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongDoubleNumber.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongLongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedTypes.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/ShortInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/String.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeEncoding.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeKind.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongLongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedShortInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideChar.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideString.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/MultipleServiceRequests.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/RTRequirements.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceConsumer.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceLevels.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceProvider.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Bridge.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Interconnect.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Node.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/NodeReference.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Resource.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/SharedResource.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackage.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackageContainer.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackages.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/package.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Operation.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Worker.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerFile.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibraries.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibrary.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackage.cpp:
+
+          Regenerated extension classes.
+
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/CollocationGroup_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceRef_Event_Handler.cpp:
+
+          Removed these files.
+
+Wed Apr 25 21:57:06 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Creator_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Rename of the file and contained class below.
+
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+
+          Removed these files.
+
+Wed Apr 25 04:56:38 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Single_Deployment_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Single_Deployment_Event_Handler.cpp:
+
+          Implemented a new event handler that is responsible for simplying
+          switching component instances between collocation groups. If the
+          component instance is already deployed to a collocation group and
+          is added to another one, then this event handler will remove it
+          from its previous collocation group.
+
+Tue Apr 24 05:00:40 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Updated to latest version of GAME event handler architecture.
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Re-generated the PICML paradigm.
+
+Tue Mar 27 14:28:49 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          BUGFIX: The handler was not asking for the template module
+          package name if it was a newly inserted element. This resulted
+          in the auto-generated template package producing duplicate
+          elements in the model.
+
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+
+          Updated decorator to use stock objects.
+
+Tue Mar 27 04:16:22 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+
+          BUGFIX: Code did not resolve references correctly.
+
+        * PIM/PICML/addons/PICMLManager/Validation.cpp:
+
+          BUGFIX: Execution failed it parent was NIL.
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+
+          Update the GUID.
+
+Sat Mar 10 16:59:15 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/DeploymentStatusDecorator:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator.idl:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator.mpc:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator.rc:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator_Impl.h:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator_Impl.cpp:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/DeploymentStatusDecorator_Module.cpp:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/PICML_DeploymentStatusDecorator.reg:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/PICML_DeploymentStatusDecoratord.reg:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/StdAfx.h:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/StdAfx.cpp:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/question.png:
+        * PIM/PICML/decorators/DeploymentStatusDecorator/resource.h:
+        * PIM/PICML/paradigms/PICML.mta:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          First version of the deployment status decorator that shows if a
+          component is deployed or not. If the component is deployed, then
+          it shows it host and collocation group. If the component is not
+          deployed, then it overlays a question mark.
+
+        * PIM/PICML/paradigms/icons/noderef.bmp:
+
+          Added image for NodeReference.
+
+Thu Mar  8 14:54:50 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.inl:
+
+          Added missing build file.
+
+Wed Mar  7 22:16:12 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Action.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Action.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Action.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionType.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/ActionType.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Finish.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Finish.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/Finish.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/InputAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/InputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/Variable.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/BehaviorModel/Variable.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/Effect.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/Effect.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/Effect.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/EffectBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/EffectBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/EffectBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/Environment.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/Environment.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/Environment.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchState.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchState.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/ForState.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/ForState.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/ForState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopState.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopState.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/State.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/State.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/State.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/StateBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/StateBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/StateBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/Transition.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/Transition.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/Transition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/WhileState.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/WhileState.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/StateTypes/WhileState.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/Terminal.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/Terminal.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/Terminal.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiOutputBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiOutputBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiOutputBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.cpp:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.inl:
+        * PIM/PICML/ext/game/PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.cpp:
+        * PIM/PICML/ext/game/PICML/Common/Capability.h:
+        * PIM/PICML/ext/game/PICML/Common/Capability.inl:
+        * PIM/PICML/ext/game/PICML/Common/Capability.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ComplexProperty.h:
+        * PIM/PICML/ext/game/PICML/Common/ComplexProperty.inl:
+        * PIM/PICML/ext/game/PICML/Common/ComplexProperty.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ComplexType.h:
+        * PIM/PICML/ext/game/PICML/Common/ComplexType.inl:
+        * PIM/PICML/ext/game/PICML/Common/ComplexType.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ComplexTypeReference.h:
+        * PIM/PICML/ext/game/PICML/Common/ComplexTypeReference.inl:
+        * PIM/PICML/ext/game/PICML/Common/ComplexTypeReference.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataType.h:
+        * PIM/PICML/ext/game/PICML/Common/DataType.inl:
+        * PIM/PICML/ext/game/PICML/Common/DataType.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataValue.h:
+        * PIM/PICML/ext/game/PICML/Common/DataValue.inl:
+        * PIM/PICML/ext/game/PICML/Common/DataValue.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataValueBase.h:
+        * PIM/PICML/ext/game/PICML/Common/DataValueBase.inl:
+        * PIM/PICML/ext/game/PICML/Common/DataValueBase.cpp:
+        * PIM/PICML/ext/game/PICML/Common/DataValueContainer.h:
+        * PIM/PICML/ext/game/PICML/Common/DataValueContainer.inl:
+        * PIM/PICML/ext/game/PICML/Common/DataValueContainer.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationDependency.h:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationDependency.inl:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationDependency.cpp:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationRequirement.h:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationRequirement.inl:
+        * PIM/PICML/ext/game/PICML/Common/ImplementationRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/Common/Property.h:
+        * PIM/PICML/ext/game/PICML/Common/Property.inl:
+        * PIM/PICML/ext/game/PICML/Common/Property.cpp:
+        * PIM/PICML/ext/game/PICML/Common/Requirement.h:
+        * PIM/PICML/ext/game/PICML/Common/Requirement.inl:
+        * PIM/PICML/ext/game/PICML/Common/Requirement.cpp:
+        * PIM/PICML/ext/game/PICML/Common/RequirementBase.h:
+        * PIM/PICML/ext/game/PICML/Common/RequirementBase.inl:
+        * PIM/PICML/ext/game/PICML/Common/RequirementBase.cpp:
+        * PIM/PICML/ext/game/PICML/Common/RequirementSatisfier.h:
+        * PIM/PICML/ext/game/PICML/Common/RequirementSatisfier.inl:
+        * PIM/PICML/ext/game/PICML/Common/RequirementSatisfier.cpp:
+        * PIM/PICML/ext/game/PICML/Common/SatisfierProperty.h:
+        * PIM/PICML/ext/game/PICML/Common/SatisfierProperty.inl:
+        * PIM/PICML/ext/game/PICML/Common/SatisfierProperty.cpp:
+        * PIM/PICML/ext/game/PICML/Common/SimpleProperty.h:
+        * PIM/PICML/ext/game/PICML/Common/SimpleProperty.inl:
+        * PIM/PICML/ext/game/PICML/Common/SimpleProperty.cpp:
+        * PIM/PICML/ext/game/PICML/Common/SimpleType.h:
+        * PIM/PICML/ext/game/PICML/Common/SimpleType.inl:
+        * PIM/PICML/ext/game/PICML/Common/SimpleType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Consume.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Consume.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSourceDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSourceDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/EventSourceDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ExternalPortEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Publish.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/Publish.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Average.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Average.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Average.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkAnalysis.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkAnalysis.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkAnalysis.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkCharacteristics.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkCharacteristics.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkCharacteristics.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkType.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkType.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/BenchmarkType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/CompRef.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/CompRef.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/CompRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentAnalyses.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentAnalyses.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentAnalyses.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentOperation.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentOperation.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/ComponentOperation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/DataAnalysisBase.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/DataAnalysisBase.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/DataAnalysisBase.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/EventRef.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/EventRef.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/EventRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/FixedIterationBenchmarks.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/FixedIterationBenchmarks.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/FixedIterationBenchmarks.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Jitter.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Jitter.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Jitter.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Latency.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Latency.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Latency.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Maximum.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Maximum.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Maximum.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricConnection.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricConnection.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricConnection.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricsBase.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricsBase.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/MetricsBase.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Minimum.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Minimum.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Minimum.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/OperationRef.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/OperationRef.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/OperationRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/PeriodicBenchmarks.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/PeriodicBenchmarks.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/PeriodicBenchmarks.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Task.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Task.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Task.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TaskSet.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TaskSet.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TaskSet.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Throughput.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Throughput.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/Throughput.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimeProbe.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimeProbe.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimeProbe.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerConnection.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerConnection.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerConnection.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerEventSinkConn.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerEventSinkConn.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TimerEventSinkConn.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TriggerBenchmarks.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TriggerBenchmarks.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/TriggerBenchmarks.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkLoadOperationConnection.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkLoadOperationConnection.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkLoadOperationConnection.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkloadCharacteristics.h:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkloadCharacteristics.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBenchmark/WorkloadCharacteristics.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentBuild.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentBuild.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentBuild.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentLib.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentLib.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ComponentLib.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExecutorProject.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExecutorProject.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExecutorProject.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExtResourceConn.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExtResourceConn.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExtResourceConn.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExternalResources.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExternalResources.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ExternalResources.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/MPC.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Project.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Project.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Project.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ServantProject.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ServantProject.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/ServantProject.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/StubProject.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/StubProject.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/StubProject.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Workspaces.h:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Workspaces.inl:
+        * PIM/PICML/ext/game/PICML/ComponentBuild/Workspaces.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.inl:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.inl:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentFactoryImplementation/ComponentFactoryInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackage.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackage.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackage.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackageReference.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackageReference.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackageReference.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackages.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackages.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/ComponentPackages.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/Implementation.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/Implementation.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/Implementation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageConfigProperty.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageConfigProperty.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageContainer.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageContainer.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInfoProperty.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInfoProperty.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInterface.h:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInterface.inl:
+        * PIM/PICML/ext/game/PICML/ComponentPackage/PackageInterface.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/Implements.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/Implements.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/CommonPortAttrs.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/CommonPortAttrs.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/CommonPortAttrs.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Component.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Component.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Component.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentRef.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ComponentRef.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/EventPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/EventPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/EventPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/EventType.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/EventType.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/EventType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/InEventPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/InEventPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/InEventPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKey.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKey.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKey.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Manageable.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Manageable.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Manageable.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/MirrorPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/MirrorPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ObjectPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ObjectPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/OutEventPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/OutEventPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Port.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Port.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Port.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/PortType.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/PortType.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/PortType.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Provideable.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Provideable.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/Provideable.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.cpp:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.inl:
+        * PIM/PICML/ext/game/PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.cpp:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.inl:
+        * PIM/PICML/ext/game/PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroup.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroup.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroup.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupMember.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupMember.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupMember.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupProperty.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupProperty.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/CollocationGroupProperty.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentFactoryRef.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentFactoryRef.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentFactoryRef.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentInstanceRef.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentInstanceRef.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/ComponentInstanceRef.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlan.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlan.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlan.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlans.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlans.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/DeploymentPlans.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/Deploys.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/Deploys.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/Deploys.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/InstanceMapping.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/InstanceMapping.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/InstanceMapping.cpp:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/PropertyMapping.h:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/PropertyMapping.inl:
+        * PIM/PICML/ext/game/PICML/DeploymentPlan/PropertyMapping.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/BridgeConnection.h:
+        * PIM/PICML/ext/game/PICML/Domain/BridgeConnection.inl:
+        * PIM/PICML/ext/game/PICML/Domain/BridgeConnection.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/Domain.h:
+        * PIM/PICML/ext/game/PICML/Domain/Domain.inl:
+        * PIM/PICML/ext/game/PICML/Domain/Domain.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/InterconnectConnection.h:
+        * PIM/PICML/ext/game/PICML/Domain/InterconnectConnection.inl:
+        * PIM/PICML/ext/game/PICML/Domain/InterconnectConnection.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/Shares.h:
+        * PIM/PICML/ext/game/PICML/Domain/Shares.inl:
+        * PIM/PICML/ext/game/PICML/Domain/Shares.cpp:
+        * PIM/PICML/ext/game/PICML/Domain/Targets.h:
+        * PIM/PICML/ext/game/PICML/Domain/Targets.inl:
+        * PIM/PICML/ext/game/PICML/Domain/Targets.cpp:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECBehavior.h:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECBehavior.inl:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECBehavior.cpp:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRequirements.h:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRequirements.inl:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRequirements.cpp:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRole.h:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRole.inl:
+        * PIM/PICML/ext/game/PICML/EventChannelRequirements/ECRole.cpp:
+        * PIM/PICML/ext/game/PICML/IdTags/Prefixable.h:
+        * PIM/PICML/ext/game/PICML/IdTags/Prefixable.inl:
+        * PIM/PICML/ext/game/PICML/IdTags/Prefixable.cpp:
+        * PIM/PICML/ext/game/PICML/IdTags/Taggable.h:
+        * PIM/PICML/ext/game/PICML/IdTags/Taggable.inl:
+        * PIM/PICML/ext/game/PICML/IdTags/Taggable.cpp:
+        * PIM/PICML/ext/game/PICML/Impl_Factory.h:
+        * PIM/PICML/ext/game/PICML/Impl_Factory.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactContainer.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactContainer.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependency.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependency.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependency.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependsOn.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependsOn.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDependsOn.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDeployRequirement.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDeployRequirement.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactDeployRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactExecParameter.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactExecParameter.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactExecParameter.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactInfoProperty.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactInfoProperty.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ArtifactInfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifact.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifact.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifactReference.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifactReference.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifactReference.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifacts.h:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifacts.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationArtifact/ImplementationArtifacts.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentImplementationArtifact.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentImplementationArtifact.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentImplementationArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentServantArtifact.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentServantArtifact.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ComponentServantArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ConfigProperty.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ConfigProperty.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/Implemenation.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/Implemenation.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/Implemenation.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ImplementationContainer.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ImplementationContainer.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/ImplementationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/InfoProperty.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/InfoProperty.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/InfoProperty.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithDeployRequirement.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithDeployRequirement.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithDeployRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithExecParameter.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithExecParameter.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithExecParameter.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithicImplementationBase.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithicImplementationBase.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithicImplementationBase.cpp:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithprimaryArtifact.h:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithprimaryArtifact.inl:
+        * PIM/PICML/ext/game/PICML/ImplementationCommon/MonolithprimaryArtifact.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Attribute.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Attribute.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Attribute.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/AttributeMember.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/AttributeMember.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/AttributeMember.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Event.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Event.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Event.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/GetException.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/GetException.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/GetException.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/HasOperations.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/HasOperations.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/HasOperations.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inheritable.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inheritable.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inheritable.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inherits.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inherits.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Inherits.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/MakeMemberPrivate.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/MakeMemberPrivate.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/MakeMemberPrivate.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Object.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Object.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Object.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ObjectByValue.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ObjectByValue.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ObjectByValue.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/PrivateFlag.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/PrivateFlag.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/PrivateFlag.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ReadonlyAttribute.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ReadonlyAttribute.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ReadonlyAttribute.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SetException.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SetException.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SetException.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Supports.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Supports.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/Supports.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SupportsInterfaces.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SupportsInterfaces.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/SupportsInterfaces.cpp:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ValueObject.h:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ValueObject.inl:
+        * PIM/PICML/ext/game/PICML/InheritableTypes/ValueObject.cpp:
+        * PIM/PICML/ext/game/PICML/Init.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/CollectionParameter.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/CollectionParameter.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/CollectionParameter.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Constant.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Constant.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Constant.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/ConstantType.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/ConstantType.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/ConstantType.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Exception.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Exception.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Exception.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/ExceptionType.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/ExceptionType.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/ExceptionType.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/File.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/File.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/File.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/FileRef.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/FileRef.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/FileRef.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/InterfaceDefinitions.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/InterfaceDefinitions.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/InterfaceDefinitions.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NameParameter.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NameParameter.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NameParameter.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NativeValue.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NativeValue.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/NativeValue.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Package.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Package.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/Package.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/PackageType.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/PackageType.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/PackageType.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageAlias.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageAlias.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageAlias.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageInstance.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageInstance.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplatePackageInstance.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameter.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameter.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameter.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterReference.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterReference.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterReference.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValue.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValue.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValue.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValueType.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValueType.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TemplateParameterValueType.cpp:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TypeParameter.h:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TypeParameter.inl:
+        * PIM/PICML/ext/game/PICML/InterfaceDefinition/TypeParameter.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Aggregate.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Aggregate.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Aggregate.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Alias.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Alias.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Alias.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/ArrayMember.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/ArrayMember.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/ArrayMember.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Boxed.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Boxed.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Boxed.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Collection.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Collection.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Collection.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Discriminator.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Discriminator.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Discriminator.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Enum.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Enum.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Enum.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/EnumValue.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/EnumValue.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/EnumValue.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Key.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Key.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Key.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/KeyMember.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/KeyMember.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/KeyMember.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Label.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Label.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Label.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/LabelConnection.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/LabelConnection.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/LabelConnection.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Member.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Member.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/Member.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/MemberType.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/MemberType.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/MemberType.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/NamedType.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/NamedType.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/NamedType.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/NoInheritable.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/NoInheritable.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/NoInheritable.cpp:
+        * PIM/PICML/ext/game/PICML/NamedTypes/SwitchedAggregate.h:
+        * PIM/PICML/ext/game/PICML/NamedTypes/SwitchedAggregate.inl:
+        * PIM/PICML/ext/game/PICML/NamedTypes/SwitchedAggregate.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ExceptionRef.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ExceptionRef.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ExceptionRef.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/FactoryOperation.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/FactoryOperation.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/FactoryOperation.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/HasExceptions.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/HasExceptions.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/HasExceptions.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InParameter.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InParameter.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InParameter.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InoutParameter.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InoutParameter.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/InoutParameter.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/LookupOperation.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/LookupOperation.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/LookupOperation.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OnewayOperation.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OnewayOperation.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OnewayOperation.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OperationBase.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OperationBase.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OperationBase.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OutParameter.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OutParameter.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/OutParameter.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ParameterType.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ParameterType.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ParameterType.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ReturnType.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ReturnType.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/ReturnType.cpp:
+        * PIM/PICML/ext/game/PICML/OperationTypes/TwowayOperation.h:
+        * PIM/PICML/ext/game/PICML/OperationTypes/TwowayOperation.inl:
+        * PIM/PICML/ext/game/PICML/OperationTypes/TwowayOperation.cpp:
+        * PIM/PICML/ext/game/PICML/PICML.h:
+        * PIM/PICML/ext/game/PICML/PICML_export.h:
+        * PIM/PICML/ext/game/PICML/PICML_fwd.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfBasePackage.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfBasePackage.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfBasePackage.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfConfigProperty.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfConfigProperty.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfConfigProperty.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfReference.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfReference.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfReference.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSelectRequirement.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSelectRequirement.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSelectRequirement.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSpecializedConfig.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSpecializedConfig.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfSpecializedConfig.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfiguration.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfiguration.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfiguration.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationContainer.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationContainer.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationContainer.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationReference.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationReference.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurationReference.cpp:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurations.h:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurations.inl:
+        * PIM/PICML/ext/game/PICML/PackageConfiguration/PackageConfigurations.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/ConnectedComponent.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/ConnectedComponent.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/ConnectedComponent.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DisplayNode.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DisplayNode.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DisplayNode.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DstEdge.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DstEdge.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/DstEdge.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Edge.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Edge.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Edge.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/EdgeProperty.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/EdgeProperty.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/EdgeProperty.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/GraphVertex.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/GraphVertex.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/GraphVertex.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Path.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Path.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Path.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathDiagrams.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathDiagrams.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathDiagrams.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathProperty.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathProperty.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathProperty.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathReference.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathReference.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/PathReference.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Paths.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Paths.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/Paths.cpp:
+        * PIM/PICML/ext/game/PICML/PathDiagram/SrcEdge.h:
+        * PIM/PICML/ext/game/PICML/PathDiagram/SrcEdge.inl:
+        * PIM/PICML/ext/game/PICML/PathDiagram/SrcEdge.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Boolean.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Boolean.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Boolean.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Byte.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Byte.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Byte.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Char.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Char.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/Char.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/CharType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/CharType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/CharType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/DoubleNumber.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/DoubleNumber.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/DoubleNumber.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatNumber.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatNumber.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatNumber.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatingPointType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatingPointType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/FloatingPointType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericObject.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericObject.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericObject.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValue.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValue.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValue.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValueObject.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValueObject.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/GenericValueObject.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/IntegerType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/IntegerType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/IntegerType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongDoubleNumber.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongDoubleNumber.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongDoubleNumber.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongInteger.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongInteger.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongLongInteger.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongLongInteger.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/LongLongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedTypes.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedTypes.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/PredefinedTypes.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/ShortInteger.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/ShortInteger.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/ShortInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/SignedIntegerType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/SignedIntegerType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/SignedIntegerType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/String.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/String.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/String.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/StringType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/StringType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/StringType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeEncoding.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeEncoding.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeEncoding.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeKind.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeKind.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/TypeKind.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedIntegerType.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedIntegerType.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedIntegerType.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongInteger.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongInteger.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongLongInteger.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongLongInteger.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedLongLongInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedShortInteger.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedShortInteger.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/UnsignedShortInteger.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideChar.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideChar.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideChar.cpp:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideString.h:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideString.inl:
+        * PIM/PICML/ext/game/PICML/PredefinedTypes/WideString.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/MultipleServiceRequests.h:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/MultipleServiceRequests.inl:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/MultipleServiceRequests.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/RTRequirements.h:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/RTRequirements.inl:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/RTRequirements.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceConsumer.h:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceConsumer.inl:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceConsumer.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceLevels.h:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceLevels.inl:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceLevels.cpp:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceProvider.h:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceProvider.inl:
+        * PIM/PICML/ext/game/PICML/RealTimeRequirements/ServiceProvider.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Bridge.h:
+        * PIM/PICML/ext/game/PICML/TargetElements/Bridge.inl:
+        * PIM/PICML/ext/game/PICML/TargetElements/Bridge.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Interconnect.h:
+        * PIM/PICML/ext/game/PICML/TargetElements/Interconnect.inl:
+        * PIM/PICML/ext/game/PICML/TargetElements/Interconnect.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Node.h:
+        * PIM/PICML/ext/game/PICML/TargetElements/Node.inl:
+        * PIM/PICML/ext/game/PICML/TargetElements/Node.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/NodeReference.h:
+        * PIM/PICML/ext/game/PICML/TargetElements/NodeReference.inl:
+        * PIM/PICML/ext/game/PICML/TargetElements/NodeReference.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/Resource.h:
+        * PIM/PICML/ext/game/PICML/TargetElements/Resource.inl:
+        * PIM/PICML/ext/game/PICML/TargetElements/Resource.cpp:
+        * PIM/PICML/ext/game/PICML/TargetElements/SharedResource.h:
+        * PIM/PICML/ext/game/PICML/TargetElements/SharedResource.inl:
+        * PIM/PICML/ext/game/PICML/TargetElements/SharedResource.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackage.h:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackage.inl:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackage.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackageContainer.h:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackageContainer.inl:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackageContainer.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackages.h:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackages.inl:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/TopLevelPackages.cpp:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/package.h:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/package.inl:
+        * PIM/PICML/ext/game/PICML/TopLevelPackageDescription/package.cpp:
+        * PIM/PICML/ext/game/PICML/Visitor.h:
+        * PIM/PICML/ext/game/PICML/Visitor.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Operation.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Operation.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Operation.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Worker.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Worker.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/Worker.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerFile.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerFile.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerFile.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibraries.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibraries.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibraries.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibrary.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibrary.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerLibrary.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackage.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackage.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackage.cpp:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.inl:
+        * PIM/PICML/ext/game/PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.cpp:
+        * PIM/PICML/ext/game/PICML_GAME_Mga.mpc:
+
+          Re-generated the extension classes.
+
+Wed Mar  7 00:39:43 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Deployment_Plan_Generator_Impl.cpp:
+
+          Bug fix where the the interpreter would overwrite the
+          output path using the previous output path that was set
+          by the set_parameter () method.
+
+Tue Mar  6 05:28:56 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PICML/PICML_GUID.h:
+        * PIM/PICML/interpreters/PICML/PICML_GUID.mpc:
+        * bin/scripts/gme_paradigm_guid_to_header.pl:
+
+          Update the script to generate header files with _GUID.h suffix. This
+          means is no longer necessary to specify the target header file name
+          as a configuration parameter.
+
+Tue Mar  6 03:39:49 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/ext/DQML/Impl_Factory.h:
+        * PSM/DQML/ext/DQML/Init.cpp:
+
+          Updated to support latest extensions to framework to support
+          multiple implementation factories.
+
+Mon Mar  5 04:53:08 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.h:
+        * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/DDSQoS.cpp:
+
+          Added missing source files.
+
+Wed Feb 29 16:15:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/dqml_game_mga.mpb:
+
+          Missing base project.
+
+        * cosmic.mwc:
+
+          Added latest DQML projects to the build.
+
+Mon Feb 20 16:36:34 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/interpreters/iCCM:
+        * PSM/DQML/interpreters/iCCM/Component.rc:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM.mpc:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component.h:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component.idl:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component.reg:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component_Impl.h:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component_Impl.cpp:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Component_Module.cpp:
+        * PSM/DQML/interpreters/iCCM/DQML_iCCM_Componentd.reg:
+        * PSM/DQML/interpreters/iCCM/Participant_File.h:
+        * PSM/DQML/interpreters/iCCM/Participant_File.cpp:
+        * PSM/DQML/interpreters/iCCM/Participant_Visitor.h:
+        * PSM/DQML/interpreters/iCCM/Participant_Visitor.cpp:
+        * PSM/DQML/interpreters/iCCM/Resource.h:
+        * PSM/DQML/interpreters/iCCM/StdAfx.h:
+        * PSM/DQML/interpreters/iCCM/StdAfx.cpp:
+        * PSM/DQML/interpreters/iCCM/Topic_Locator.h:
+        * PSM/DQML/interpreters/iCCM/Topic_Locator.cpp:
+
+          First version of interpreter that generates DDS configuration files
+          for iCCM.
+
+Mon Feb 20 16:17:53 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/ext:
+        * PSM/DQML/ext/DQML:
+        * PSM/DQML/ext/DQML/DQML.h:
+        * PSM/DQML/ext/DQML/DQML_export.h:
+        * PSM/DQML/ext/DQML/DQML_fwd.h:
+        * PSM/DQML/ext/DQML/Impl_Factory.h:
+        * PSM/DQML/ext/DQML/Impl_Factory.cpp:
+        * PSM/DQML/ext/DQML/Init.cpp:
+        * PSM/DQML/ext/DQML/Standard:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DataReader.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DataReader.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DataReader.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DataWriter.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DataWriter.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DataWriter.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainEntity.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainEntity.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainEntity.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainParticipant.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainParticipant.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainParticipant.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainParticipantFactory.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainParticipantFactory.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/DomainParticipantFactory.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Publisher.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Publisher.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Publisher.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Subscriber.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Subscriber.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Subscriber.cpp:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Topic.h:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Topic.inl:
+        * PSM/DQML/ext/DQML/Standard/DDSEntities/Topic.cpp:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/dr_history_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/dr_history_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/dr_history_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/dw_history_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/dw_history_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/dw_history_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/topic_history_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/topic_history_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/HistoryQosPolicy/topic_history_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_pub_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_pub_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_pub_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_sub_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_sub_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_sub_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_topic_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_topic_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dp_topic_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dpf_dp_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dpf_dp_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dpf_dp_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dr_sub_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dr_sub_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dr_sub_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dr_topic_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dr_topic_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dr_topic_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dw_pub_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dw_pub_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dw_pub_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/Main/dw_topic_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/Main/dw_topic_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/Main/dw_topic_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/OwnershipStrengthQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy/pub_part_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy/pub_part_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy/pub_part_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy/sub_part_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy/sub_part_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/PartitionQosPolicy/sub_part_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DeadlineQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DeadlineQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DeadlineQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DurabilityQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DurabilityQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DurabilityQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DurabilityServiceQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DurabilityServiceQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/DurabilityServiceQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/GroupDataQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/GroupDataQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/GroupDataQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/HistoryQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/HistoryQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/HistoryQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LifespanQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LifespanQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LifespanQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LivelinessQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LivelinessQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/LivelinessQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/OwnershipQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/OwnershipQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/OwnershipQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/OwnershipStrengthQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/OwnershipStrengthQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/OwnershipStrengthQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/PartitionQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/PartitionQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/PartitionQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/PresentationQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/PresentationQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/PresentationQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/QoSPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/QoSPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/QoSPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ReaderDataLifecycleQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ReaderDataLifecycleQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ReaderDataLifecycleQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ReliabilityQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ReliabilityQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TimeBasedFilterQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TimeBasedFilterQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TimeBasedFilterQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TopicDataQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TopicDataQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TopicDataQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/UserDataQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/UserDataQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/UserDataQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.h:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.inl:
+        * PSM/DQML/ext/DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.cpp:
+        * PSM/DQML/ext/DQML/Standard/ReaderDataLifecycleQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/TimeBasedFilterQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/TopicDataQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.cpp:
+        * PSM/DQML/ext/DQML/Standard/WriterDataLifecycleQosPolicy:
+        * PSM/DQML/ext/DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.h:
+        * PSM/DQML/ext/DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.inl:
+        * PSM/DQML/ext/DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.cpp:
+        * PSM/DQML/ext/DQML/Visitor.h:
+        * PSM/DQML/ext/DQML/Visitor.cpp:
+        * PSM/DQML/ext/DQML/iCCM:
+        * PSM/DQML/ext/DQML/iCCM/DataReaderQos:
+        * PSM/DQML/ext/DQML/iCCM/DataReaderQos/DataReaderQos.h:
+        * PSM/DQML/ext/DQML/iCCM/DataReaderQos/DataReaderQos.inl:
+        * PSM/DQML/ext/DQML/iCCM/DataReaderQos/DataReaderQos.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DataWriterQos:
+        * PSM/DQML/ext/DQML/iCCM/DataWriterQos/DataWriterQos.h:
+        * PSM/DQML/ext/DQML/iCCM/DataWriterQos/DataWriterQos.inl:
+        * PSM/DQML/ext/DQML/iCCM/DataWriterQos/DataWriterQos.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DomainParticipantQos:
+        * PSM/DQML/ext/DQML/iCCM/DomainParticipantQos/Participant.h:
+        * PSM/DQML/ext/DQML/iCCM/DomainParticipantQos/Participant.inl:
+        * PSM/DQML/ext/DQML/iCCM/DomainParticipantQos/Participant.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/Domain.h:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/Domain.inl:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/Domain.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/DomainQosFolder.h:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/DomainQosFolder.inl:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/DomainQosFolder.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/PublisherConnection.h:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/PublisherConnection.inl:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/PublisherConnection.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/PublishesConnection.h:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/PublishesConnection.inl:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/PublishesConnection.cpp:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/SubscriberConnection.h:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/SubscriberConnection.inl:
+        * PSM/DQML/ext/DQML/iCCM/DomainQos/SubscriberConnection.cpp:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos/PublisherQos.h:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos/PublisherQos.inl:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos/PublisherQos.cpp:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos/SubscriberQos.inl:
+        * PSM/DQML/ext/DQML/iCCM/PublisherSubscriberQos/SubscriberQos.cpp:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQos.h:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQos.inl:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQos.cpp:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQosFolder.h:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQosFolder.inl:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQosFolder.cpp:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQosReference.h:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQosReference.inl:
+        * PSM/DQML/ext/DQML/iCCM/TopicQos/TopicQosReference.cpp:
+        * PSM/DQML/ext/DQML/iCCM/iCCM:
+        * PSM/DQML/ext/DQML/iCCM/iCCM/iCCM.h:
+        * PSM/DQML/ext/DQML/iCCM/iCCM/iCCM.inl:
+        * PSM/DQML/ext/DQML/iCCM/iCCM/iCCM.cpp:
+        * PSM/DQML/ext/DQML/stdafx.h:
+        * PSM/DQML/ext/DQML/stdafx.cpp:
+        * PSM/DQML/ext/DQML_GAME_Mga.mpc:
+        * PSM/DQML/ext/DQML_GAME_Mga.mwc:
+
+          GAME extension classes for CoSMIC.
+
+Wed Feb 15 00:38:37 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          Fixed install location for the binaries.
+
+Sat Feb 11 20:51:05 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/paradigms/DQML.xme:
+
+          Export of latest metamodel.
+
+Sat Feb 11 20:49:51 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/paradigms/DQML.mta:
+        * PSM/DQML/paradigms/DQML.xmp:
+
+          Updated all timing attribute data type to Double.
+
+Sat Feb 11 20:37:26 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/AMI4CCM_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComplexTypeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstanceType_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ComponentInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ConnectorInstance_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Default_Implementation_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.h:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/NodeReference_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.h:
+        * PIM/PICML/addons/PICMLManager/PredefinedTypes_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/ToConnector_Event_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/UUID_Event_Handler.cpp:
+
+          Updated code to reflect latest updates in GAME.
+
+          Subclassed the event handlers from Dynamic_Event_Handler_Impl.
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+
+          Subclass event handler from Static_Event_Handler_Impl.
+
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.h:
+        * PIM/PICML/addons/PICMLManager/Component_Event_Handler.cpp:
+
+          Removed these files.
+
+Sat Feb 11 18:08:07 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager:
+        * PIM/PICML/addons/PICMLManager:
+
+          Updated ignore list.
+
+Sat Feb 11 18:06:19 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Action_Type_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Connection_Generation_Handler.cpp:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.h:
+        * PIM/PICML/addons/CBMLManager/Output_Action_Handler.cpp:
+
+          Subclassed all the event handlers from GAME::Mga::Dynamic_Event_Handler.
+
+Sat Feb 11 18:03:35 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.h:
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+
+          Updated code to reflect latest updates in GAME.
+
+Sat Feb 11 17:11:40 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Event_Handler_Base.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager_Impl.cpp:
+        * PIM/PICML/addons/PICMLManager/Package_Type_Handler.cpp:
+        * PIM/PICML/addons/PICMLManager/Template_Module_Instance_Handler.cpp:
+
+          Updated code to reflect latest updates in GAME.
+
+Fri Feb 10 17:03:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/DQML/paradigms/DQML.mta:
+        * PSM/DQML/paradigms/DQML.xme:
+        * PSM/DQML/paradigms/DQML.xmp:
+
+          Updated DQML metamodel to latest version of iCCM.
+
+Mon Feb  6 18:50:43 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentInstanceDecorator/ComponentInstance_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator_Impl.h:
+        * PIM/PICML/decorators/ConnectorInstanceDecorator/ConnectorInstance_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.h:
+        * PIM/PICML/decorators/NoShowRefersTo/NoShowRefersTo_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.h:
+        * PIM/PICML/decorators/PackageDecorator/Package_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        * PIM/PICML/decorators/ShowReference/StdAfx.h:
+
+          Updated to latest GAME decorator architecture.
+
+Wed Feb  1 18:09:45 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.inl:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Bug fix where enum values were not printed before aggregate
+          model elements.
+
+Tue Jan 31 16:21:03 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_Generator_File.cpp:
+
+          Bug fix where the IDL generator did not generate include
+          statments for FileRef elements.
+
+Wed Jan 25 16:11:36 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Dependency_Processor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Ordering_Processor.cpp:
+
+          Bug fix where Enum values were not being generated to the
+          IDL file.
+
+Thu Jan  5 06:18:16 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor_t.cpp:
+
+          Removed these files.
+
+Thu Jan  5 05:28:18 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDL_File_Generator.cpp:
+
+          Added OSPL_IDL_COMPILER preprocessor guards around component
+          definitions since idlpp gives an error if an idl file contain
+          component definitions.
+
+Sun Jan  1 03:46:49 UTC 2012  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer.mwc:
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Release_Build.mwc:
+
+          Removed the zlib.wxi include.
+
+        * Installer/includes/xerces.wxi:
+
+          Updated the Id attribute.
+
+        * Installer/README:
+
+          Updated to reflect changes to workspace.
+
+Fri Nov  4 13:22:09 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * cosmic.mwc:
+
+          The Utils/ModelUpgrade has been moved to GAME.
+
+Wed Nov  2 19:54:49 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/gme_upgrade.mpb:
+        * Utils/ModelUpgrade:
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+        * Utils/ModelUpgrade/stdafx.h:
+        * Utils/ModelUpgrade/stdafx.cpp:
+        * Utils/ModelUpgrade/upgrade.cpp:
+        * Utils/ModelUpgrade/upgrader.mpc:
+
+          Moved project to the GAME repo.
+
+Wed Nov  2 19:42:03 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+
+          Removed the nodemap generator source files from the
+          actual project.
+
+Wed Nov  2 19:10:42 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Removed generation of the nodemap file since DAnCE supports
+          the .cdd file.
+
+        * PIM/PICML/paradigms/PICML.mta:
+
+          Compiled version of PICML.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Nodemap_Generator.cpp:
+
+          Removed these files.
+
+Sat Oct 15 16:20:55 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+
+          Fixed linking errors.
+
+        * cosmic.mwc:
+
+          Removed the contribution directories.
+
+        * MPC/config/codegenerationkit.mpb:
+        * contrib:
+
+          Removed these files.
+
+Sat Jul 30 12:22:47 UTC 2011  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * ChangeLog:
+        * ChangeLogs/ChangeLog-11a:
+        * contrib:
+
+          CoSMIC version 0.8.4 was released. Moved the ChangeLog
+          to ChangeLogs/ChangeLog-11. Reverted contrib svn:externals
+          property back to the HEAD revision.
+
+   Local Variables:
+   mode: change-log
+   add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+   indent-tabs-mode: nil
+   End:
