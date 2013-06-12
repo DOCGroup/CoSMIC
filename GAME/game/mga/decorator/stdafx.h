@@ -24,6 +24,4 @@
 #include "game/mga/MgaUtil.h"
 #include "Gme.h"
 
-#include "MgaDecorator.h"
-
 #endif  // !defined _STDAFX_H_

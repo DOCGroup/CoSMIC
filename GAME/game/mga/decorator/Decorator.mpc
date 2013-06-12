@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_Mga_Decorator) : game_graphics, game_lib {
+project (GAME_Mga_Decorator) : feature_specific, game_graphics, game_lib {
   sharedname    = GAME_Mga_Decorator
   dynamicflags += GAME_MGA_DECORATOR_BUILD_DLL
 
@@ -15,7 +15,6 @@ project (GAME_Mga_Decorator) : game_graphics, game_lib {
 
   Source_Files {
     $(GME_ROOT)/Interfaces/Gme.idl
-    $(GME_ROOT)/Interfaces/MgaDecorator.idl
 
     Decorator_Impl.cpp
     FCO_Decorator.cpp

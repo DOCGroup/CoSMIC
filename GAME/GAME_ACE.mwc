@@ -1,24 +1,5 @@
 /// $Id$
 
-workspace {
-  cmdline += -include $GAME_ROOT/MPC/config
-
-  exclude (!prop:windows) {
-    cmdline += -include $GAME_ROOT/contrib/CCF/MPC/config \
-               -base ccf_root
-
-    game
-
-    exclude (!prop:microsoft, wix) {
-      cmdline += -static \
-
-      $(GAME_ROOT)/contrib/CCF/CCF/CodeGenerationKit
-    }
-  }
-  else {
-    game/xml
-    game/xme
-  }
-
+workspace (GAME_ACE) : GAME {
   $(ACE_ROOT)/ace/ace.mpc
 }

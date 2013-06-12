@@ -157,7 +157,7 @@ int Reference_Decorator::draw (Gdiplus::Graphics * g)
     // Pass control to the delegate. We have to make sure we release
     // the device context before continuing. Otherwise, all subsequent
     // drawing operations fail.
-    VERIFY_HRESULT (this->delegate_->Draw (hdc));
+    VERIFY_HRESULT (this->delegate_->Draw ((ULONG)hdc));
     g->ReleaseHDC (hdc);
 
     // Draw out label.

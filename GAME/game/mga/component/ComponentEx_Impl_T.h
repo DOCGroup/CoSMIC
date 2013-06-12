@@ -31,7 +31,7 @@ template <typename T>
 class ComponentEx_Impl_T :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
   public IMgaComponentEx,
-  public IMgaVersionInfo
+  public IGMEVersionInfo
 {
 public:
   /// Type definition of the component type.
@@ -64,7 +64,7 @@ public:
   STDMETHOD (get_ComponentParameter) (BSTR name, VARIANT *pVal);
 
   // IMgaVersionInfo interface
-  STDMETHOD (get_version) (MgaInterfaceVersion_enum *pVal);
+  STDMETHOD (get_version) (GMEInterfaceVersion_enum *pVal);
 
 protected:
   /// The component's implementation.
@@ -76,7 +76,7 @@ private:
   BEGIN_COM_MAP (self_t)
     COM_INTERFACE_ENTRY (IMgaComponent)
     COM_INTERFACE_ENTRY (IMgaComponentEx)
-    COM_INTERFACE_ENTRY (IMgaVersionInfo)
+    COM_INTERFACE_ENTRY (IGMEVersionInfo)
   END_COM_MAP ()
 };
 

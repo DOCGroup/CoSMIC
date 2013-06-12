@@ -333,12 +333,12 @@ get_ComponentParameter (BSTR name, VARIANT *pVal)
 //
 template <typename T>
 STDMETHODIMP ComponentEx_Impl_T <T>::
-get_version (MgaInterfaceVersion_enum *pVal)
+get_version (GMEInterfaceVersion_enum *pVal)
 {
   if (pVal == 0)
     return E_POINTER;
 
-  *pVal = MgaInterfaceVersion_Current;
+  *pVal = GMEInterfaceVersion_Current;
   return S_OK;
 }
 
