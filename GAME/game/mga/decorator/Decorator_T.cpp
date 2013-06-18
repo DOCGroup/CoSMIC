@@ -117,7 +117,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::Destroy (void)
 // Draw
 //
 template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
+STDMETHODIMP Decorator_T <T, pclsid>::Draw (ULONG hdc)
 {
   if (!this->is_init_)
     return E_DECORATOR_UNINITIALIZED;
@@ -129,7 +129,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
   {
     // Allocate a graphics objects and then pass control to the extended
     // version of the draw method.
-    std::auto_ptr <Gdiplus::Graphics> g (Gdiplus::Graphics::FromHDC (hdc));
+    std::auto_ptr <Gdiplus::Graphics> g (Gdiplus::Graphics::FromHDC ((HDC)hdc));
     return this->impl_.draw (g.get ());
   }
   catch (const GAME::Mga::Exception & ex)
@@ -150,7 +150,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
 // DrawEx
 //
 template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
+STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (ULONG hdc, ULONGLONG graphics)
 {
   if (!this->is_init_)
     return E_DECORATOR_UNINITIALIZED;

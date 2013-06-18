@@ -11,11 +11,11 @@
 
 #define STRICT
 #ifndef _WIN32_WINNT
-	#if _MSC_VER > 1400
-		#define _WIN32_WINNT 0x0500
-	#else
-		#define _WIN32_WINNT 0x0400
-	#endif 
+  #if _MSC_VER > 1400
+    #define _WIN32_WINNT 0x0500
+  #else
+    #define _WIN32_WINNT 0x0400
+  #endif
 #endif
 #define _ATL_APARTMENT_THREADED
 
@@ -29,6 +29,8 @@ extern CComModule _Module;
 #include <atlcom.h>
 
 #pragma warning( disable : 4666)
+
+#include "ComponentLib.h"
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

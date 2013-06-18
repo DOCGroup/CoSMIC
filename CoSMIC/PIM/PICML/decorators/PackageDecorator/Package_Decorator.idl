@@ -13,27 +13,27 @@
 #ifndef _NOSHOWREFERSTO_DECORATOR_IDL_
 #define _NOSHOWREFERSTO_DECORATOR_IDL_
 
-#include "MgaDecorator.idl"
-#include "gme.idl"
+#include <Gme.idl>
+#include <Core.idl>
 
 [
-	uuid (FB55B64B-0C82-43ff-B627-3B00F63BAB14),
-	version (1.0),
+  uuid (FB55B64B-0C82-43ff-B627-3B00F63BAB14),
+  version (1.0),
 ]
 library Package_DecoratorLib
 {
-	importlib ("stdole32.tlb");
-	importlib ("stdole2.tlb");
+  importlib ("stdole32.tlb");
+  importlib ("stdole2.tlb");
 
-	[
-		uuid (7DB2D69A-A98D-4191-9A5F-072D659CBF1A),
+  [
+    uuid (7DB2D69A-A98D-4191-9A5F-072D659CBF1A),
     version (1.0)
-	]
-	coclass Package_Decorator
-	{
-		[default] interface IMgaDecorator;
-		interface IMgaVersionInfo;
-	};
+  ]
+  coclass Package_Decorator
+  {
+    [default] interface IMgaDecorator;
+    interface IGMEVersionInfo;
+  };
 
 };
 

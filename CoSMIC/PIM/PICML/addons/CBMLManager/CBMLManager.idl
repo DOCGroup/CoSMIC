@@ -14,6 +14,7 @@
 #define _CBML_MANAGER_IDL_
 
 #include <Gme.idl>
+#include <Core.idl>
 
 [
   uuid(9289091B-ECBE-4934-B631-E3F69F3940C0),
@@ -28,7 +29,7 @@ library CBMLManager_AddonLib
   {
     [default] interface IMgaComponentEx;
     interface IMgaComponent;
-    interface IMgaVersionInfo;
+    interface IGMEVersionInfo;
   };
 };
 

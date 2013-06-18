@@ -1,7 +1,10 @@
 // $Id$
 
 project : mfc {
-  includes += . $(GME_ROOT) $(GME_ROOT)/SDK/BON
+  includes += . \
+              $(GME_ROOT) \
+              $(GME_ROOT)/SDK/BON \
+              $(GME_ROOT)/Interfaces
 
   specific (vc9) {
     includes += $(GME_ROOT)/SDK/BON/Common

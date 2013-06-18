@@ -3,26 +3,26 @@
 #ifndef _DECORATORLIB_IDL_
 #define _DECORATORLIB_IDL_
 
-#include "MgaDecorator.idl"
-#include "gme.idl"
+#include <Gme.idl>
+#include <Core.idl>
 
 [
-	uuid (F32BA453-EA0A-4B33-972D-6BCE205891F8),
-	version (1.0),
+  uuid (F32BA453-EA0A-4B33-972D-6BCE205891F8),
+  version (1.0),
 ]
 library ShowReferenceDecoratorLibrary
 {
-	importlib ("stdole32.tlb");
-	importlib ("stdole2.tlb");
+  importlib ("stdole32.tlb");
+  importlib ("stdole2.tlb");
 
-	[
-		uuid (E3EA54FF-CE85-4F3B-92C4-6652FF130FE4),
-	]
-	coclass ShowReferenceDecorator
-	{
-		[default] interface IMgaDecorator;
-		interface IMgaVersionInfo;
-	};
+  [
+    uuid (E3EA54FF-CE85-4F3B-92C4-6652FF130FE4),
+  ]
+  coclass ShowReferenceDecorator
+  {
+    [default] interface IMgaDecorator;
+    interface IGMEVersionInfo;
+  };
 
 };
 

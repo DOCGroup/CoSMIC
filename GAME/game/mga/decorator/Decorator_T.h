@@ -61,12 +61,12 @@ public:
   STDMETHOD (GetLabelLocation) (LONG* sx, LONG* sy, LONG* ex, LONG* ey );
   STDMETHOD (GetPortLocation) (IMgaFCO* fco, LONG* sx, LONG* sy, LONG* ex, LONG* ey );
   STDMETHOD (GetPorts) (IMgaFCOs** portFCOs);
-  STDMETHOD (Draw) (HDC hdc);
+  STDMETHOD (Draw) (ULONG hdc);
   STDMETHOD (SaveState) (void);
 
   //  IMgaElementDecorator
   STDMETHOD (InitializeEx) (IMgaProject* pProject, IMgaMetaPart* pPart, IMgaFCO* pFCO, IMgaCommonDecoratorEvents* eventSink, ULONGLONG parentWnd);
-  STDMETHOD (DrawEx) (HDC hdc, ULONGLONG gdipGraphics );
+  STDMETHOD (DrawEx) (ULONG hdc, ULONGLONG gdipGraphics );
   STDMETHOD (SetSelected) (VARIANT_BOOL bIsSelected );
   STDMETHOD (MouseMoved) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
   STDMETHOD (MouseLeftButtonDown) (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );

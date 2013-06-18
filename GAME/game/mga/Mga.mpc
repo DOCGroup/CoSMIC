@@ -20,6 +20,7 @@ project (GAME_Mga) : acelib, game_lib, boost_base {
 
   Source_Files {
     $(GME_ROOT)/Interfaces/Gme.idl
+    $(GME_ROOT)/Interfaces/Core.idl
     $(GME_ROOT)/Interfaces/Meta.idl
     $(GME_ROOT)/Interfaces/Mga.idl
     $(GME_ROOT)/Interfaces/MgaUtil.idl

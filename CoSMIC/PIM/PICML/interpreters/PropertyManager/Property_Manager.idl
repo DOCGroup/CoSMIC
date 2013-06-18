@@ -4,6 +4,7 @@
 #define _PICML_PROPERTY_MANAGER_IDL_
 
 #include <Gme.idl>
+#include <Core.idl>
 
 [
   uuid (C307223C-6FDE-42A2-BD19-CBA5C949E8BE),
@@ -18,7 +19,7 @@ library Property_Manager
   {
     [default] interface IMgaComponentEx;
     interface IMgaComponent;
-    interface IMgaVersionInfo;
+    interface IGMEVersionInfo;
   };
 };
 

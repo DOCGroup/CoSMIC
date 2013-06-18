@@ -14,22 +14,23 @@
 #define _DQML_ICCM_COMPONENT_IDL_
 
 #include <Gme.idl>
+#include <Core.idl>
 
 [
-	uuid (ddf199a3-f8ca-49ca-86a6-43afaf921779),
-	version (1.0),
+  uuid (ddf199a3-f8ca-49ca-86a6-43afaf921779),
+  version (1.0),
 ]
 library DQML_iCCM_Component
 {
-	importlib ("stdole32.tlb");
+  importlib ("stdole32.tlb");
 
-	[uuid (8238d1f3-6d1c-4224-8046-9d06cf990926)]
-	coclass DQML_iCCM_Component
-	{
-		[default] interface IMgaComponentEx;
-		interface IMgaComponent;
-		interface IMgaVersionInfo;
-	};
+  [uuid (8238d1f3-6d1c-4224-8046-9d06cf990926)]
+  coclass DQML_iCCM_Component
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IGMEVersionInfo;
+  };
 };
 
 #endif  // !defined _DQML_ICCM_COMPONENT_IDL_

@@ -13,8 +13,8 @@
 #ifndef _PICML_CONNECTOR_INSTANCE_DECORATOR_IDL_
 #define _PICML_CONNECTOR_INSTANCE_DECORATOR_IDL_
 
-#include "MgaDecorator.idl"
-#include "gme.idl"
+#include <Gme.idl>
+#include <Core.idl>
 
 [
   uuid (D91F2183-7728-4806-9593-283B0DD7605D),
@@ -32,7 +32,7 @@ library ConnectorInstance_DecoratorLib
   coclass ConnectorInstance_Decorator
   {
     [default] interface IMgaDecorator;
-    interface IMgaVersionInfo;
+    interface IGMEVersionInfo;
   };
 
 };

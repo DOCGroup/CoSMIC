@@ -14,22 +14,23 @@
 #define _IDL_GENERATOR_COMPONENT_IDL_
 
 #include <Gme.idl>
+#include <Core.idl>
 
 [
-	uuid (413CEAC4-508F-4C18-A224-88CE87731C3C),
-	version (1.0),
+  uuid (413CEAC4-508F-4C18-A224-88CE87731C3C),
+  version (1.0),
 ]
 library IDL_Generator_Component
 {
-	importlib ("stdole32.tlb");
+  importlib ("stdole32.tlb");
 
-	[uuid (E9D28F15-DE39-4BD6-9DDE-05D31A597E39)]
-	coclass IDL_Generator_Component
-	{
-		[default] interface IMgaComponentEx;
-		interface IMgaComponent;
-		interface IMgaVersionInfo;
-	};
+  [uuid (E9D28F15-DE39-4BD6-9DDE-05D31A597E39)]
+  coclass IDL_Generator_Component
+  {
+    [default] interface IMgaComponentEx;
+    interface IMgaComponent;
+    interface IGMEVersionInfo;
+  };
 };
 
 #endif  // !defined _IDL_GENERATOR_COMPONENT_IDL_

@@ -22,3 +22,4 @@ xerces2       = 0
 xerces3       = 1
 register      = 1
 mcpp          = 0
+gme10         = 0
