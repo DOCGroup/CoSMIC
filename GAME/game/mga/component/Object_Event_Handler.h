@@ -73,6 +73,9 @@ public:
 
   virtual int handle_object_mouseover (Object_in obj);
 
+  virtual int handle_object_copied (Object_in obj);
+  virtual int handle_object_prestatus (Object_in obj);
+
 protected:
   // Caching the constraints for model intelligence
   std::map <std::string,

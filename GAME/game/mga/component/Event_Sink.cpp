@@ -230,14 +230,14 @@ invoke_handle_library_attach_end (Global_Event_Handler * impl)
 // __appevent_map__
 //
 static const GLOBAL_EVENT_METHOD __appevent_map__[] = {
-  &invoke_handle_xml_import_begin,
-  &invoke_handle_xml_import_end,
-  &invoke_handle_xml_import_fcos_begin,
-  &invoke_handle_xml_import_fcos_end,
-  &invoke_handle_xml_import_special_begin,
-  &invoke_handle_xml_import_special_end,
-  &invoke_handle_library_attach_begin,
-  &invoke_handle_library_attach_end
+  &invoke_handle_xml_import_begin,                    /* APPEVENT_XML_IMPORT_BEGIN */
+  &invoke_handle_xml_import_end,                      /* APPEVENT_XML_IMPORT_END */
+  &invoke_handle_xml_import_fcos_begin,               /* APPEVENT_XML_IMPORT_FCOS_BEGIN */
+  &invoke_handle_xml_import_fcos_end,                 /* APPEVENT_XML_IMPORT_FCOS_END */
+  &invoke_handle_xml_import_special_begin,            /* APPEVENT_XML_IMPORT_SPECIAL_BEGIN */
+  &invoke_handle_xml_import_special_end,              /* APPEVENT_XML_IMPORT_SPECIAL_END */
+  &invoke_handle_library_attach_begin,                /* APPEVENT_LIB_ATTACH_BEGIN */
+  &invoke_handle_library_attach_end                   /* APPEVENT_LIB_ATTACH_END */
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -442,6 +442,15 @@ invoke_handle_object_predestroyed (Object_Event_Handler * impl, Object_in obj)
 }
 
 //
+// invoke_handle_object_copied
+//
+static inline int
+invoke_handle_object_copied (Object_Event_Handler * impl, Object_in obj)
+{
+  return impl->handle_object_copied (obj);
+}
+
+//
 // invoke_handle_object_destroyed
 //
 static inline int
@@ -457,6 +466,15 @@ static inline int
 invoke_handle_object_created (Object_Event_Handler * impl, Object_in obj)
 {
   return impl->handle_object_created (obj);
+}
+
+//
+// invoke_handle_object_prestatus
+//
+static inline int
+invoke_handle_object_prestatus (Object_Event_Handler * impl, Object_in obj)
+{
+  return impl->handle_object_prestatus (obj);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -503,8 +521,8 @@ static const handler_entry_t objectevent_handles[OBJECT_EVENT_COUNT] = {
   {0, 0},                                           /* (unused)               */
   {0, 0},                                           /* (unused)               */
   {0, 0},                                           /* (unused)               */
-  {0, 0},                                           /* (unused)               */
-  {0, 0},                                           /* (unused)               */
+  {0x8000000, &invoke_handle_object_copied},        /* OBJEVENT_COPIED        */
+  {0x10000000, &invoke_handle_object_prestatus},    /* OBJEVENT_PRE_STATUS    */
   {0x20000000, &invoke_handle_object_predestroyed}, /* OBJEVENT_PRE_DESTROYED */
   {0x40000000, &invoke_handle_object_destroyed},    /* OBJEVENT_DESTROYED     */
   {0x80000000, &invoke_handle_object_created}       /* OBJEVENT_CREATED       */

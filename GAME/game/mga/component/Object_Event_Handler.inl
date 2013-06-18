@@ -225,6 +225,24 @@ int Object_Event_Handler::handle_object_select (Object_in obj)
 }
 
 //
+// handle_object_prestatus
+//
+GAME_INLINE
+int Object_Event_Handler::handle_object_prestatus (Object_in obj)
+{
+  return 0;
+}
+
+//
+// handle_object_copied
+//
+GAME_INLINE
+int Object_Event_Handler::handle_object_copied (Object_in obj)
+{
+  return 0;
+}
+
+//
 // handle_object_deselect
 //
 GAME_INLINE
