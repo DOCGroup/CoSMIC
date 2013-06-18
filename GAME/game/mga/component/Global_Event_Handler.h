@@ -37,6 +37,8 @@ public:
   virtual ~Global_Event_Handler (void);
 
   virtual int handle_project_open (void);
+  virtual int handle_project_open_finished (void);
+  virtual int handle_save_project (void);
   virtual int handle_project_close (void);
 
   virtual int handle_territory_create (void);

@@ -46,6 +46,24 @@ int Global_Event_Handler::handle_project_close (void)
 }
 
 //
+// handle_project_save
+//
+GAME_INLINE
+int Global_Event_Handler::handle_save_project (void)
+{
+  return 0;
+}
+
+//
+// handle_project_open_finished
+//
+GAME_INLINE
+int Global_Event_Handler::handle_project_open_finished (void)
+{
+  return 0;
+}
+
+//
 // handle_territory_create
 //
 GAME_INLINE

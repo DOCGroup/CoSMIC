@@ -55,6 +55,14 @@ invoke_handle_territory_create (Global_Event_Handler * impl)
   return impl->handle_territory_create ();
 }
 
+//
+// invoke_handle_save_project
+//
+static inline int
+invoke_handle_save_project (Global_Event_Handler * impl)
+{
+  return impl->handle_save_project ();
+}
 
 //
 // invoke_handle_territory_destroy
@@ -120,19 +128,30 @@ invoke_handle_notification_ready (Global_Event_Handler * impl)
 }
 
 //
+// invoke_handle_project_open_finished
+//
+static inline int
+invoke_handle_project_open_finished (Global_Event_Handler * impl)
+{
+  return impl->handle_project_open_finished ();
+}
+
+//
 // __globalevent_map__
 //
 static const GLOBAL_EVENT_METHOD __globalevent_map__[] = {
-  &invoke_handle_project_open,
-  &invoke_handle_project_close,
-  &invoke_handle_territory_create,
-  &invoke_handle_territory_destroy,
-  &invoke_handle_transaction_commit,
-  &invoke_handle_transaction_abort,
-  &invoke_handle_undo,
-  &invoke_handle_redo,
-  &invoke_handle_project_properties,
-  &invoke_handle_notification_ready
+  &invoke_handle_project_open,            /* GLOBALEVENT_OPEN_PROJECT           */
+  &invoke_handle_project_close,           /* GLOBALEVENT_CLOSE_PROJECT          */
+  &invoke_handle_save_project,            /* GLOBALEVENT_SAVE_PROJECT           */
+  &invoke_handle_territory_create,        /* GLOBALEVENT_NEW_TERRITORY          */
+  &invoke_handle_territory_destroy,       /* GLOBALEVENT_DESTROY_TERRITORY      */
+  &invoke_handle_transaction_commit,      /* GLOBALEVENT_COMMIT_TRANSACTION     */
+  &invoke_handle_transaction_abort,       /* GLOBALEVENT_ABORT_TRANSACTION      */
+  &invoke_handle_undo,                    /* GLOBALEVENT_UNDO                   */
+  &invoke_handle_redo,                    /* GLOBALEVENT_REDO                   */
+  &invoke_handle_project_properties,      /* GLOBALEVENT_PROJECT_PROPERTIES     */
+  &invoke_handle_notification_ready,      /* GLOBALEVENT_NOTIFICATION_READY     */
+  &invoke_handle_project_open_finished,   /* GLOBALEVENT_OPEN_PROJECT_FINISHED  */
 };
 
 //
