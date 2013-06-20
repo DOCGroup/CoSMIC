@@ -160,6 +160,7 @@ initialize_ports (const std::string & aspect_name,
 
   // Select all the FCO elements in the specified aspect.
   std::vector <GAME::Mga::FCO> ports;
+
   if (model->children (aspect, ports) == 0)
     return 0;
 

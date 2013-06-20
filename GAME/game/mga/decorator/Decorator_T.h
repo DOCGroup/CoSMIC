@@ -31,7 +31,8 @@ template <typename T, const CLSID * pclsid = &CLSID_NULL>
 class ATL_NO_VTABLE Decorator_T :
   public ATL::CComObjectRootEx <ATL::CComSingleThreadModel>,
   public ATL::CComCoClass < Decorator_T <T>, pclsid >,
-  public IMgaElementDecorator
+  public IMgaDecorator,
+  public IGMEVersionInfo
 {
 public:
   /// Default constructor.
@@ -44,7 +45,8 @@ public:
   DECLARE_NO_REGISTRY ()
 
   BEGIN_COM_MAP (Decorator_T <T>)
-    COM_INTERFACE_ENTRY (IMgaElementDecorator)
+    COM_INTERFACE_ENTRY (IMgaDecorator)
+    COM_INTERFACE_ENTRY (IGMEVersionInfo)
   END_COM_MAP()
 
   // IMgaDecorator
@@ -85,6 +87,9 @@ public:
   STDMETHOD (DropFile) (ULONGLONG hDropInfo, LONG pointx, LONG pointy, ULONGLONG transformHDC );
   STDMETHOD (MenuItemSelected) (ULONG menuItemId, ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC );
   STDMETHOD (OperationCanceled) (void);
+
+  // IMgaVersionInfo interface
+  STDMETHOD (get_version) (GMEInterfaceVersion_enum *pVal);
 
 private:
   /// The implementation of the decorator.

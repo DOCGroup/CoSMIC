@@ -231,8 +231,16 @@ children (const Meta::Aspect_in apsect, std::vector <T> & children) const
   // Determine what FCO_Impl is part of the specified aspect.
   for (; iter != iter_end; ++ iter)
   {
-    if (!(*iter)->part (apsect).is_nil ())
-      children.push_back (*iter);
+    try
+    {
+      if (!(*iter)->part (apsect).is_nil ())
+        children.push_back (*iter);
+    }
+    catch (const GAME::Mga::Failed_Result & ex)
+    {
+      if (ex.value () != 0x80731007)
+        throw;
+    }
   }
 
   return children.size ();

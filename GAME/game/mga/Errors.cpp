@@ -97,7 +97,7 @@ void Errors::init (void)
 void Errors::lookup (size_t error_code, std::string & msg) const
 {
   if (0 != this->errors_.find (error_code, msg))
-    msg = "unknown error code";
+    msg = std::string ("unknown error code");
 }
 
 }

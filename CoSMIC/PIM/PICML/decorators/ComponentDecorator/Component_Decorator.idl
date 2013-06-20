@@ -31,7 +31,7 @@ library Component_DecoratorLib
   ]
   coclass Component_Decorator
   {
-    [default] interface IMgaDecorator;
+    [default] interface IMgaElementDecorator;
     interface IGMEVersionInfo;
   };
 

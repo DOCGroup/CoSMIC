@@ -905,5 +905,19 @@ MenuItemSelected (ULONG menuItemId,
   return retval;
 }
 
+//
+// get_version
+//
+template <typename T, const CLSID * pclsid>
+STDMETHODIMP Decorator_T <T, pclsid>::
+get_version (GMEInterfaceVersion_enum *pVal)
+{
+  if (pVal == 0)
+    return E_POINTER;
+
+  *pVal = GMEInterfaceVersion_Current;
+  return S_OK;
+}
+
 }
 }
