@@ -17,6 +17,7 @@ project (PICML_CBMLManager): \
     Action_Type_Handler.cpp
     Connection_Generation_Handler.cpp
     Output_Action_Handler.cpp
+    MultiInput_Handler.cpp
   }
 
   Resource_Files {

@@ -6,6 +6,7 @@
 #include "Output_Action_Handler.h"
 #include "Action_Handler.h"
 #include "Action_Type_Handler.h"
+#include "MultiInput_Handler.h"
 
 #include "game/mga/component/ComponentEx_T.h"
 
@@ -41,6 +42,7 @@ int CBML_Model_Intelligence::initialize (GAME::Mga::Project project)
   this->sink_->register_handler ("Action", new CBML_Connection_Generation_Handler ());
   this->sink_->register_handler ("Action", new CBML_Action_Handler ());
   this->sink_->register_handler ("ActionType", new (CBML_Action_Type_Handler));
+  this->sink_->register_handler ("CallAction", new CBML_Connection_Generation_Handler ());
   this->sink_->register_handler ("RequestAction", new CBML_Connection_Generation_Handler ());
   this->sink_->register_handler ("OutputAction", new CBML_Connection_Generation_Handler ());
   this->sink_->register_handler ("OutputAction", new CBML_Output_Action_Handler ());
@@ -51,6 +53,7 @@ int CBML_Model_Intelligence::initialize (GAME::Mga::Project project)
   this->sink_->register_handler ("DoWhileState", new CBML_Connection_Generation_Handler ());
   this->sink_->register_handler ("WhileState", new CBML_Connection_Generation_Handler ());
   this->sink_->register_handler ("ForState", new CBML_Connection_Generation_Handler ());
+  this->sink_->register_handler ("MultiInput", new CBML_MultiInput_Handler ());
 
   return 0;
 }

@@ -27,6 +27,7 @@ namespace meta
   static const std::string RequestAction ("RequestAction");
   static const std::string OutputAction ("OutputAction");
   static const std::string QueryAction ("QueryAction");
+  static const std::string CallAction ("CallAction");
 
   static const std::string InputAction ("InputAction");
   static const std::string MultiInputAction ("MultiInputAction");
@@ -73,7 +74,8 @@ handle_object_created (GAME::Mga::Object_in obj)
   if (metaname == meta::Action ||
       metaname == meta::RequestAction ||
       metaname == meta::OutputAction ||
-      metaname == meta::QueryAction)
+      metaname == meta::QueryAction ||
+      metaname == meta::CallAction)
   {
     this->create_state_and_connect (fco, "Effect");
   }
