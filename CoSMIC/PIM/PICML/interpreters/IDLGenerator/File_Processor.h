@@ -52,6 +52,7 @@ public:
 
 private:
   void generate_include_file (const PICML::File & file);
+  bool file_has_object_with_reference (const PICML::File & file);
 
   IDL_File_Dependency_Processor & depends_graph_;
 

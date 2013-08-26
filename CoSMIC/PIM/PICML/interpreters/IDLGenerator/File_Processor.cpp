@@ -54,9 +54,8 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
                  boost::bind (&IDL_File_Processor::generate_include_file,
                               this,
                               _1));
-
   // Write the pragma statement for the local executor mapping.
-  if (fwd_decls.has_component ())
+  if (fwd_decls.has_component () || this->file_has_object_with_reference (file))
     this->idl_ << nl
                << "#pragma ciao lem \"" << basename << "E.idl\"" << nl;
 
@@ -76,6 +75,29 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
   this->depends_graph_.visit_file (file, *this, true);
 
   this->idl_ << nl;
+}
+
+//
+// file_has_object_with_reference
+//
+bool IDL_File_Processor::
+file_has_object_with_reference (const PICML::File & file)
+{
+  std::set <PICML::ProvidedRequestPort> pvdports;
+  std::set <PICML::RequiredRequestPort> reqports;
+  std::vector <PICML::Object> objects = file.Object_kind_children ();
+  std::vector <PICML::Object>::iterator iter = objects.begin (),
+                                        end = objects.end ();
+
+  for (; iter != end; ++iter)
+  {
+    pvdports = (*iter).referedbyProvidedRequestPort ();
+    reqports = (*iter).referedbyRequiredRequestPort ();
+    if (pvdports.size () != 0 || reqports.size () != 0)
+      return true;
+  }
+
+  return false;
 }
 
 //
