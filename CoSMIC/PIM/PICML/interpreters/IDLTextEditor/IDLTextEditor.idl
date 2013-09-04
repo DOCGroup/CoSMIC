@@ -14,6 +14,7 @@
 #define _PICML_IDL_TEXT_EDITOR_IDL_
 
 #include <Gme.idl>
+#include <Core.idl>
 
 [
   uuid (1526C789-16C2-43DF-B554-B5081D46C655),
@@ -28,7 +29,7 @@ library IDLTextEditor
   {
     [default] interface IMgaComponentEx;
     interface IMgaComponent;
-    interface IMgaVersionInfo;
+    interface IGMEVersionInfo;
   };
 };
 
