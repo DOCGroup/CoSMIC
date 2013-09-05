@@ -14,7 +14,6 @@
 #include "game/mga/Project.h"
 #include "game/mga/utils/Registrar.h"
 
-#include "game/mga/component/Console_Service.h"
 #include "game/mga/graphics/Image_Resolver.h"
 
 namespace GAME
@@ -71,11 +70,9 @@ initialize (const Project & proj,
     // Load the decorator, and initialize it.
     CA2W tempstr (target_decorator.c_str ());
     VERIFY_HRESULT (this->delegate_.CoCreateInstance (tempstr));
-    VERIFY_HRESULT (this->delegate_->InitializeEx (proj.impl (),
-                                                   part->impl (),
-                                                   target->impl (),
-                                                   sink,
-                                                   window));
+    VERIFY_HRESULT (this->delegate_->Initialize (proj.impl (),
+                                                 part->impl (),
+                                                 target->impl ()));
   }
 
   return 0;
@@ -103,17 +100,6 @@ void Reference_Decorator::set_active (bool state)
     this->delegate_->SetActive (state ? VARIANT_TRUE : VARIANT_FALSE);
 
   // Pass control to the base class.
-  FCO_Decorator::set_active (state);
-}
-
-//
-// set_active
-//
-void Reference_Decorator::set_selected (bool state)
-{
-  if (this->delegate_)
-    this->delegate_->SetSelected (state ? VARIANT_TRUE : VARIANT_FALSE);
-
   FCO_Decorator::set_active (state);
 }
 

@@ -57,9 +57,6 @@ public:
   /// Update the decorator's active state.
   virtual void set_active (bool state);
 
-  /// Update the decorator's selected state.
-  virtual void set_selected (bool state);
-
   /// Set the location of the decorator's element.
   virtual void set_location (const GAME::Mga::Rect & location);
 
@@ -81,7 +78,7 @@ public:
 
 protected:
   /// The delegate decorator for this referenced object.
-  CComPtr <IMgaElementDecorator> delegate_;
+  CComPtr <IMgaDecorator> delegate_;
 
 private:
   bool show_refers_to_;
