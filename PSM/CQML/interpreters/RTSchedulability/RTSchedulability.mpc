@@ -1,0 +1,26 @@
+// $Id$
+
+project(RTSchedulability): game_xml, cqmllib {
+
+   after += DeploymentPlanFramework
+   sharedname = RTSchedulability
+   macros += RTSCHEDULABILITY_BUILD_DLL DEPLOYMENTPLANFRAMEWORK_HAS_DLL
+   libs += DeploymentPlanFramework
+
+   Source_Files {
+     RTSchedulabilityVisitor.cpp
+     RTSchedulabilityAdder.cpp
+     RTSchedulabilityDumper.cpp
+     RTSchedulabilityInjector.cpp
+     common.cpp
+   }
+
+   Header_Files {
+     RTSchedulabilityVisitor.h
+     RTSchedulabilityAdder.h
+     RTSchedulabilityDumper.h
+     RTSchedulabilityInjector.h
+     RTSchedulability_Export.h
+     common.h
+   }
+}

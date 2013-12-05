@@ -1,2 +1,0 @@
-<%@ WebService Class="Hello.HelloSender" %>
-

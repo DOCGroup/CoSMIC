@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?> 
+ 
+  <Fragment Id="OMNeTInterpreterFrag">
+     <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='OMNeTInterpreterLibrary'
+                 Guid='402E0A77-446F-42FC-94F6-5480BB6A62E3'>
+        <File Id='OMNeTInterpreterDLL'
+              Name='OMNeTInterpreter.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\OMNeTInterpreter.dll' />
+        <RegistryKey Root="HKLM" Key="Software\Classes"
+                     Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID"
+                     Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{402E0A77-446F-42FC-94F6-5480BB6A62E3}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.OMNeTInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{402E0A77-446F-42FC-94F6-5480BB6A62E3}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.OMNeTInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{402E0A77-446F-42FC-94F6-5480BB6A62E3}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="[CoSMICBinDir]OMNeTInterpreter.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.OMNeTInterpreter"
+                     Action="createAndRemoveOnUninstall" >
+          <RegistryValue Value="MGA.Interpreter.OMNeTInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.OMNeTInterpreter\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{402E0A77-446F-42FC-94F6-5480BB6A62E3}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.OMNeTInterpreter"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="OMNeT Interpreter" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="POSAML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="OMNeT Interpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.OMNeTInterpreter\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="POSAML" Value="" Type="string" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

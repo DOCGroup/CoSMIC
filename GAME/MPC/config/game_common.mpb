@@ -1,8 +1,0 @@
-// $Id$
-
-project : versioned_namespace, acenosubsets, acedefaults {
-  includes += $(GAME_ROOT)\
-              $(GAME_ROOT)/game
-
-  libpaths += $(GAME_ROOT)/lib
-}

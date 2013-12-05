@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>T3_Runtime</title>
+  <style type="text/css">
+    p {font: 9pt verdana, lucida; width:800px; color: slategray;}
+    h1 {font: 36pt verdana, lucida; width: 800px; color: darkcyan;}
+    h2 {font: 16pt "trebuchet ms", helvetica; color: white; padding: 3px; background-color: teal;}
+    a {text-decoration: none; }
+    td {font: 12pt verdana, lucida; color: white; padding: 3px; background-color: cadetblue;}
+    td.sub {font: 12pt verdana, lucida; color: white; padding: 3px; background-color: darkcyan;}
+    td.subsub {font: 12pt verdana, lucida; color: white; padding: 3px; padding-left: 12px; background-color: darkcyan;}
+    thead tr td {font: 16pt "trebuchet ms", helvetica; color: white; padding: 3px; background-color: teal;}
+    th {font: 14pt bold verdana, lucida; background-color: teal; color: white; padding: 3px;}
+
+    div {
+      font: bold 12pt verdana, lucida;
+      color: white;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      border: 2px outset darkgray;
+      margin: 3px;
+      width: 3in;
+      padding: 2px;
+      padding-left: 6px;
+    }
+    .tree0 { background-color: #006464; }
+    .tree1 { background-color: #007d7d; margin-left: 0.5in; }
+    .tree2 { background-color: #009696; margin-left: 1in; }
+    .tree3 { background-color: #00afaf; margin-left: 1.5in; }
+    .tree4 { background-color: #00c8c8; margin-left: 2in; }
+    .tree5 { background-color: #00e1e1; margin-left: 2.5in; }
+  </style>
+  <script type="text/javascript">
+  <!--
+  function popup(mylink, windowname) {
+    if (!window.focus) {
+      return true;
+    }
+    else {
+      var href;
+      if (typeof(mylink) == 'string') {
+        href=mylink;
+      }
+      else {
+        href=mylink.href;
+      }
+      window.open(href, windowname, 'width=535,height=465,scrollbars=yes,menubar=yes,resizable=yes');
+      return false;
+    }
+  }
+  //-->
+  </script>
+</head>
+<body>
+<h1>T3_Runtime</h1>
+
+<h2>MPC Inheritance Hierarchy</h2><a href="file://E:/proj/vc9/CoSMIC/CoSMIC/Utils/T3/t3/runtime/t3_runtime.mpc" onClick="return popup(this, 'Project File')" target=_blank><div class="tree0">T3_Runtime</div></a>
+<a href="file://E:\proj\vc9\CoSMIC\CoSMIC/MPC/config/cosmic_lib.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree1">cosmic_lib</div></a>
+<a href="file://E:\proj\vc9\CoSMIC\CoSMIC/MPC/config/cosmic_common.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree2">cosmic_common</div></a>
+<a href="file://E:\proj\vc9\CoSMIC\CoSMIC/MPC/config/vc8warnings.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree3">vc8warnings</div></a>
+<a href="file://E:\proj\vc9\\MPC/config/boost_base.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree3">boost_base</div></a>
+<a href="file://E:\proj\vc9\CoSMIC\GAME/MPC/config/game_mga.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree1">game_mga</div></a>
+<a href="file://E:\proj\vc9\CoSMIC\GAME/MPC/config/game.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree2">game</div></a>
+<a href="file://E:\proj\vc9\CoSMIC\GAME/MPC/config/game_common.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree3">game_common</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/acedefaults.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree4">acedefaults</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/ace_idl_dependencies.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">ace_idl_dependencies</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/ace_unicode.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">ace_unicode</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/ipv6.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">ipv6</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/svc_conf_files.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">svc_conf_files</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/test_files.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">test_files</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/vc_warnings.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">vc_warnings</div></a>
+<a href="file://E:\proj\vc9\\MPC/config/build_files.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree5">build_files</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/acenosubsets.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree4">acenosubsets</div></a>
+<a href="file://E:/proj/vc9/Middleware/ACE/bin/MakeProjectCreator/config/versioned_namespace.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree4">versioned_namespace</div></a>
+<a href="file://E:\proj\vc9\\MPC/config/mfc.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree2">mfc</div></a>
+<a href="file://E:\proj\vc9\\MPC/config/winapp.mpb" onClick="return popup(this, 'Project File')" target=_blank><div class="tree3">winapp</div></a>
+<br>
+<table style="table-layout:fixed" width="800" summary="MPC Project Information">
+<col width="200">
+<col width="600">
+<thead>
+<tr><td colspan="2">MPC Project Settings</td></tr>
+<tr><th>Name</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td>after</td><td>ACE GAME_Mga</td></tr>
+<tr><td>avoids</td><td></td></tr>
+<tr><td>custom_only</td><td></td></tr>
+<tr><td>dllout</td><td>$(COSMIC_ROOT)/bin</td></tr>
+<tr><td>dynamicflags</td><td>T3_RUNTIME_BUILD_DLL</td></tr>
+<tr><td>exename</td><td></td></tr>
+<tr><td>includes</td><td>$(ACE_ROOT) "$(GAME_ROOT)" "$(GAME_ROOT)/game" "$(GAME_ROOT)/game/mga" "$(BOOST_ROOT)/include/$(BOOST_VERSION)" "$(BOOST_ROOT)/." "$(COSMIC_ROOT)"</td></tr>
+<tr><td>exeout</td><td></td></tr>
+<tr><td>libout</td><td>$(COSMIC_ROOT)/lib</td></tr>
+<tr><td>libpaths</td><td>. "$(ACE_ROOT)/lib" "$(GAME_ROOT)/lib" "$(BOOST_ROOT)/lib" "$(COSMIC_ROOT)/lib" "$(COSMIC_ROOT)/bin"</td></tr>
+<tr><td>libs</td><td>GAME_Mga ACE</td></tr>
+<tr><td>lit_libs</td><td></td></tr>
+<tr><td>macros</td><td>_AFXDLL _WIN32_WINNT=0x0400</td></tr>
+<tr><td>pch_header</td><td>stdafx.h</td></tr>
+<tr><td>pch_source</td><td>stdafx.cpp</td></tr>
+<tr><td>prebuild</td><td></td></tr>
+<tr><td>postbuild</td><td></td></tr>
+<tr><td>postclean</td><td></td></tr>
+<tr><td>pure_libs</td><td></td></tr>
+<tr><td>recurse</td><td></td></tr>
+<tr><td>requires</td><td>mfc boost</td></tr>
+<tr><td>sharedname</td><td>t3_runtime</td></tr>
+<tr><td>staticflags</td><td>ACE_AS_STATIC_LIBS</td></tr>
+<tr><td>staticname</td><td>t3_runtime</td></tr>
+<tr><td>tagname *</td><td></td></tr>
+<tr><td>tagchecks *</td><td></td></tr>
+<tr><td>version</td><td></td></tr>
+</tbody>
+<thead>
+<tr><td colspan="2">MPC Project Files</td></tr>
+<tr><th>Name</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Source Files</td><td>Auto_Model.cpp Auto_Model_Impl.cpp Event_Listener.cpp reference.cpp Runtime_Engine.cpp Symbol.cpp</td></tr>
+<tr><td>Header Files</td><td>actors.hpp algorithm.h Auto_Model.h Auto_Model_Impl.h Event_Listener.h grammar.hpp parsers.hpp reference.hpp Runtime_Engine.h Symbol.h</td></tr>
+<tr><td>Inline Files</td><td>Auto_Model.inl Auto_Model_Impl.inl Event_Listener.inl reference.inl Runtime_Engine.inl Symbol.inl</td></tr>
+<tr><td>Template Files</td><td>algorithm_t.cpp</td></tr>
+<tr><td>Resource Files</td><td></td></tr>
+<tr><td>Documentation Files</td><td></td></tr>
+<tr><td>Build Files</td><td>t3_runtime.mpc</td></tr>
+<tr><td>Test Files</td><td></td></tr>
+<tr><td>Svc Conf Files</td><td></td></tr>
+</tbody>
+</table>
+
+<p>
+*   This keyword is specific to the gnuace project type.
+</p>
+
+</body>
+</html>

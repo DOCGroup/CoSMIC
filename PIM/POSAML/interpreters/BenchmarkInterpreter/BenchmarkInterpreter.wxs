@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="BenchmarkInterpreterFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='BenchmarkInterpreterLibrary' Guid='3F471E3D-D697-4A44-8097-0C0050E50D0E'>
+        <File Id='BenchmarkInterpreterDLL'
+              Name='BenchmarkInterpreter.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\BenchmarkInterpreter.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{3F471E3D-D697-4A44-8097-0C0050E50D0E}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.BenchmarkInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{3F471E3D-D697-4A44-8097-0C0050E50D0E}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.BenchmarkInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{3F471E3D-D697-4A44-8097-0C0050E50D0E}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="[CoSMICBinDir]BenchmarkInterpreter.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.BenchmarkInterpreter"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.BenchmarkInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.BenchmarkInterpreter\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{3F471E3D-D697-4A44-8097-0C0050E50D0E}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.BenchmarkInterpreter"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Generate Benchmark Files" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="POSAML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="Benchmark Interpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.BenchmarkInterpreter\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="POSAML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

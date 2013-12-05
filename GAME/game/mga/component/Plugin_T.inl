@@ -1,7 +1,0 @@
-// -*- C++ -*-
-// $Id$
-
-namespace GAME
-{
-
-}

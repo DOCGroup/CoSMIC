@@ -1,7 +1,0 @@
-// $Id$
-
-feature (gme10) {
-  Source_Files {
-    $(GME_ROOT)/Interfaces/MgaDecorator.idl
-  }
-}

@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="DDSQoS" guid="{A9340BB7-8A42-4F85-A922-8FB5993A8B42}" cdate="Mon Oct 09 18:20:04 2006" mdate="Mon Oct 09 18:20:04 2006" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "DDSQoS" >
+		<constraint type="function" name="Compare_Durability_QoS">
+			<![CDATA[method;gme::Model;reader: DataReader, writers: ocl::Set;ocl::Boolean;
+			-- DONT DO IT THIS WAY!!! let dr_durqos_set = reader.connectedFCOs(DurabilityQosPolicy) in
+let dr_durqos_set = reader.connectedFCOs(dr_durqos_Connection) in
+
+-- If a DR has a DurabilityQosPolicy association then use that.
+-- Otherwise, the requested default value (i.e., VOLATILE) is compatible with any offered value so return true
+-- We just need one DataWriter durability policy to be compatible so use the exists function.
+if (dr_durqos_set->size() = 1) then
+   writers->exists( c: DataWriter |  Compare_Durability_QoS_DR_DW(dr_durqos_set->theOnly().oclAsType(DurabilityQosPolicy), c))
+else
+   true
+endif]]>
+		</constraint>
+		<constraint type="function" name="Compare_Durability_QoS_DR_DW">
+			<![CDATA[method;gme::Model;dr_qos_policy: DurabilityQosPolicy, writer: DataWriter;ocl::Boolean;
+			let dw_qos_kind = writer.connectedFCOs(dw_durqos_Connection).theOnly().oclAsType(DurabilityQosPolicy).DurabilityQosKind in
+let dr_qos_kind = dr_qos_policy.DurabilityQosKind in
+
+-- If there is a DurabilityQosPolicy associated with the DataWriter then compare it
+-- with the DurabilityQosPolicy of the DataReader passed in.
+-- The DDS specification defines compatibility such that the requested value must be <=
+-- offered value. Order is defined as
+-- VOLATILE < TRANSIENT_LOCAL < TRANSIENT < PERSISTENT.
+if (writer.connectedFCOs(dw_durqos_Connection).size() = 1) then
+   (((dw_qos_kind = #VOLATILE or dw_qos_kind = #TRANSIENT_LOCAL
+               or dw_qos_kind = #TRANSIENT or dw_qos_kind = #PERSISTENT)
+               and dr_qos_kind = #VOLATILE) or
+             ((dw_qos_kind = #TRANSIENT_LOCAL
+               or dw_qos_kind = #TRANSIENT or dw_qos_kind = #PERSISTENT)
+               and dr_qos_kind = #TRANSIENT_LOCAL) or
+             ((dw_qos_kind = #TRANSIENT or dw_qos_kind = #PERSISTENT)
+               and dr_qos_kind = #TRANSIENT) or
+             ((dw_qos_kind = #PERSISTENT)
+               and dr_qos_kind = #PERSISTENT))
+else
+   -- No explicit durability QoS specified for the DW. Use the default value which is VOLATILE.
+   -- The requested value (i.e., from the DataReader) must be VOLATILE for compatibility
+   dr_qos_kind = #VOLATILE
+endif]]>
+		</constraint>
+		<attrdef name="DurabilityQosKind" metaref = "1047" valuetype = "enum" defvalue = "VOLATILE">
+			<enumitem dispname = "VOLATILE" value = "VOLATILE"></enumitem>
+			<enumitem dispname = "TRANSIENT_LOCAL" value = "TRANSIENT_LOCAL"></enumitem>
+			<enumitem dispname = "TRANSIENT" value = "TRANSIENT"></enumitem>
+			<enumitem dispname = "PERSISTENT" value = "PERSISTENT"></enumitem>
+		</attrdef>
+		<attrdef name="Name" metaref = "1046" valuetype = "string" defvalue = "">
+		</attrdef>
+		<atom name = "DurabilityQosPolicy" metaref = "1051"  attributes = "Name DurabilityQosKind">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "HistoryQosPolicy" metaref = "1052"  attributes = "Name">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "LifespanQosPolicy" metaref = "1053"  attributes = "Name">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "OwnershipQosPolicy" metaref = "1054"  attributes = "Name">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "OwnershipStrengthQosPolicy" metaref = "1055"  attributes = "Name">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<connection name = "dr_durqos_Connection" metaref = "1081" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "DataReader"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DurabilityQosPolicy"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "dr_topic_Connection" metaref = "1093" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "DataReader"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Topic"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "dw_durqos_Connection" metaref = "1083" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "DataWriter"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DurabilityQosPolicy"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "dw_topic_Connection" metaref = "1094" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "DataWriter"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Topic"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "topic_durqos_Connection" metaref = "1095" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Topic"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DurabilityQosPolicy"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<model name = "DDSQoS" metaref = "1002" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "DataReader" metaref = "1004" kind = "DataReader"></role>
+			<role name = "DataWriter" metaref = "1005" kind = "DataWriter"></role>
+			<role name = "DurabilityQosPolicy" metaref = "1056" kind = "DurabilityQosPolicy"></role>
+			<role name = "HistoryQosPolicy" metaref = "1057" kind = "HistoryQosPolicy"></role>
+			<role name = "LifespanQosPolicy" metaref = "1058" kind = "LifespanQosPolicy"></role>
+			<role name = "OwnershipQosPolicy" metaref = "1059" kind = "OwnershipQosPolicy"></role>
+			<role name = "OwnershipStrengthQosPolicy" metaref = "1060" kind = "OwnershipStrengthQosPolicy"></role>
+			<role name = "Publisher" metaref = "1011" kind = "Publisher"></role>
+			<role name = "Subscriber" metaref = "1012" kind = "Subscriber"></role>
+			<role name = "Topic" metaref = "1013" kind = "Topic"></role>
+			<role name = "dr_durqos_Connection" metaref = "1082" kind = "dr_durqos_Connection"></role>
+			<role name = "dr_topic_Connection" metaref = "1096" kind = "dr_topic_Connection"></role>
+			<role name = "dw_durqos_Connection" metaref = "1085" kind = "dw_durqos_Connection"></role>
+			<role name = "dw_topic_Connection" metaref = "1097" kind = "dw_topic_Connection"></role>
+			<role name = "topic_durqos_Connection" metaref = "1098" kind = "topic_durqos_Connection"></role>
+			<aspect name = "Configuration" metaref = "1014" >
+				<part metaref = "1016" role = "DataReader" primary = "yes" linked = "no"></part>
+				<part metaref = "1017" role = "DataWriter" primary = "yes" linked = "no"></part>
+				<part metaref = "1061" role = "DurabilityQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1062" role = "HistoryQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1063" role = "LifespanQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1064" role = "OwnershipQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1065" role = "OwnershipStrengthQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1023" role = "Publisher" primary = "yes" linked = "no"></part>
+				<part metaref = "1024" role = "Subscriber" primary = "yes" linked = "no"></part>
+				<part metaref = "1025" role = "Topic" primary = "yes" linked = "no"></part>
+				<part metaref = "1091" role = "dr_durqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1099" role = "dr_topic_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1092" role = "dw_durqos_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1100" role = "dw_topic_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1101" role = "topic_durqos_Connection" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DataReader" metaref = "1026" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="Validdr_durqos_ConnectiondstCardinality2" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", dr_durqos_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to DataReader as "dst" over dr_durqos_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="Validdr_topic_ConnectiondstCardinality4" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", dr_topic_Connection ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to DataReader as "dst" over dr_topic_Connection, has to match 1.</dispname>
+			</constraint>
+			<aspect name = "Aspect" metaref = "1102" >
+			</aspect>
+		</model>
+		<model name = "DataWriter" metaref = "1028" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="Validdw_durqos_ConnectiondstCardinality6" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", dw_durqos_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to DataWriter as "dst" over dw_durqos_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="Validdw_topic_ConnectiondstCardinality8" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", dw_topic_Connection ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to DataWriter as "dst" over dw_topic_Connection, has to match 1.</dispname>
+			</constraint>
+			<aspect name = "Aspect" metaref = "1103" >
+			</aspect>
+		</model>
+		<model name = "Publisher" metaref = "1040" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<aspect name = "Aspect" metaref = "1104" >
+			</aspect>
+		</model>
+		<model name = "Subscriber" metaref = "1042" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<aspect name = "Aspect" metaref = "1105" >
+			</aspect>
+		</model>
+		<model name = "Topic" metaref = "1044" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="Compatible_QoS_Durability" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.connectedFCOs(dr_topic_Connection)->forAll( c: DataReader |  
+Compare_Durability_QoS(c, self.connectedFCOs(dw_topic_Connection)))]]>
+				<dispname>For data to flow, the requested Durability QoS must be compatible with the offered Durability QoS</dispname>
+			</constraint>
+			<constraint name="Validdr_topic_ConnectionsrcCardinality3" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", dr_topic_Connection ) -> size in
+                     (srcCount >= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Topic as "src" over dr_topic_Connection, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="Validdw_topic_ConnectionsrcCardinality7" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", dw_topic_Connection ) -> size in
+                     (srcCount >= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Topic as "src" over dw_topic_Connection, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="Validtopic_durqos_ConnectiondstCardinality10" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", topic_durqos_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Topic as "dst" over topic_durqos_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<aspect name = "Aspect" metaref = "1106" >
+			</aspect>
+		</model>
+	</folder>
+</paradigm>

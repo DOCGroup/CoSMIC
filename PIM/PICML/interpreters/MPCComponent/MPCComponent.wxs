@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="MPCComponentFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='MPCComponentLibrary' Guid='FECCFB52-4281-4C58-8673-11D9593EF453'>
+        <File Id='MPCDLL'
+              Name='MPC.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\MPC.dll' />
+        <File Id='MPCComponentDLL'
+              Name='MPCComponent.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\MPCComponent.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FECCFB52-4281-4C58-8673-11D9593EF453}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.MPC" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FECCFB52-4281-4C58-8673-11D9593EF453}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.MPC" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FECCFB52-4281-4C58-8673-11D9593EF453}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="[CoSMICBinDir]MPCComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.MPC"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.MPC" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.MPC\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{FECCFB52-4281-4C58-8673-11D9593EF453}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="SOFTWARE\GME\Components\MGA.Interpreter.MPC"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="MPC Generator" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="MPC" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="SOFTWARE\GME\Components\MGA.Interpreter.MPC\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

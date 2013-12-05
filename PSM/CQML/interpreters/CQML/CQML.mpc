@@ -1,0 +1,23 @@
+// $Id$
+
+project (CQML) : udm, xerces, cosmic_utils, cosmic_lib {
+
+  UDM_Files {
+      gendir = .
+      $(COSMIC_ROOT)/PSM/CQML/paradigms/CQML.xml
+      commandflags      = -l CQML_Export -v
+   }
+
+   sharedname = CQML
+   macros += CQML_HAS_DLL CQML_EXPORT  UDM_DYNAMIC_LINKING
+
+   Source_Files {
+     CQML.cpp
+   }
+
+   Header_Files {
+     CQML.h
+     CQML_Export.h
+     Acceptor.h
+   }
+}

@@ -1,5 +1,0 @@
-/// $Id$
-
-workspace (GAME_ACE) : GAME {
-  $(ACE_ROOT)/ace/ace.mpc
-}

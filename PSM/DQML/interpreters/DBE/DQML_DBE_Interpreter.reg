@@ -1,0 +1,30 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86F02B3A-37AB-4926-9EC5-3B8EDA7694BB}]
+@="MGA.Interpreter.DQML.DBE"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86F02B3A-37AB-4926-9EC5-3B8EDA7694BB}\ProgID]
+@="MGA.Interpreter.DQML.DBE"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86F02B3A-37AB-4926-9EC5-3B8EDA7694BB}\InProcServer32]
+@="DQML_DBE_Interpreter.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.DQML.DBE]
+@="MGA.Interpreter.DQML.DBE"
+
+[HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.DQML\CLSID]
+@="{86F02B3A-37AB-4926-9EC5-3B8EDA7694BB}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.DQML]
+"Tooltip"="DQML DBE"
+"Icon"=",IDI_COMPICON"
+"Paradigm"="DQML"
+"Type"=dword:00000001
+"Description"="DQML DBE"
+
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.DQML\Associated]
+"DQML"=""

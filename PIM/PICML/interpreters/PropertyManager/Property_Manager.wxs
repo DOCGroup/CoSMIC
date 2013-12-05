@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PropertyManagerFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='PropertyManagerLibrary' Guid='A6C5F848-5439-4549-831F-62ABAD36FCD3'>
+        <File Id='PropertyManagerDLL'
+              Name='PropertyManager.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\PropertyManager.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{A6C5F848-5439-4549-831F-62ABAD36FCD3}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.AddOn.PropertyManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{A6C5F848-5439-4549-831F-62ABAD36FCD3}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.AddOn.PropertyManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{A6C5F848-5439-4549-831F-62ABAD36FCD3}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="[CoSMICBinDir]PropertyManager.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.PropertyManager"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.AddOn.PropertyManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.PropertyManager\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{A6C5F848-5439-4549-831F-62ABAD36FCD3}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.PropertyManager"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Component Instance Property Manager" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="Property Manager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.PropertyManager\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

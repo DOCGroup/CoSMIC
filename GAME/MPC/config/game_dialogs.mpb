@@ -1,6 +1,0 @@
-// $Id$
-
-project : game {
-  after += GAME_Dialogs
-  libs  += GAME_Dialogs
-}

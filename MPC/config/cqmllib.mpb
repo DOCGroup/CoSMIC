@@ -1,0 +1,12 @@
+// $Id4
+
+project : udm, cosmic_utils, cosmic_lib {
+   after += CQML
+   libs  += CQML
+
+   includes += $(COSMIC_ROOT)/PSM/CQML/interpreters
+
+   macros       += UDM_DYNAMIC_LINKING
+   dynamicflags += CQML_HAS_DLL
+}
+

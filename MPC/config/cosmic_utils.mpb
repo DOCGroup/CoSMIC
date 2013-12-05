@@ -1,0 +1,7 @@
+// $Id$
+
+project : cosmic_common {
+   after    += CoSMIC_Utils
+   includes += $(COSMIC_ROOT)/Utils
+   libs     += Utils
+}

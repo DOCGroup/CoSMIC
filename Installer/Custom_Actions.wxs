@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment Id="CustomActionsFragment">
+    <!-- var.GME_VERSION is passed via the command-line -->
+    <CustomAction Id='SetGMEVersion'
+                  Return='check'
+                  Property='GMEVersion'
+                  Value='$(var.GME_VERSION)' />
+
+    <CustomAction Id='GMEVersion'
+                  BinaryKey='CustomActions'
+                  DllEntry='CheckGMEVersion'
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='check' />
+
+    <CustomAction Id="SetUninstallCmd"
+                  Property="UNINSTALLCMD"
+                  Value="MSIEXEC.EXE" />
+
+    <Binary Id='CustomActions'
+            SourceFile='Custom_Actions.dll' />
+  </Fragment>
+</Wix>

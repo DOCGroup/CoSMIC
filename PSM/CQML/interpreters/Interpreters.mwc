@@ -1,0 +1,25 @@
+workspace {
+  cmdline += -feature_file $COSMIC_ROOT/default.features \
+             -include $COSMIC_ROOT/MPC/config
+
+  CQML
+  CIAOEvents
+  CIAOEventsComponent
+  NetQoS
+  NetQoSComponent
+  BIRSpecification
+  BIRSpecificationComponent
+  SecurityQoS
+  SecurityQoSComponent
+  DeploymentPlanFramework
+  FaultTolerance
+  FaultToleranceComponent
+  // EventBus
+  // EventBusComponent
+  PAM
+  PAMComponent
+  RTConfiguration
+  RTConfigurationComponent
+  RTSchedulability
+  RTSchedulabilityComponent
+}

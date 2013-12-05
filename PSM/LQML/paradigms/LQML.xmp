@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="LQML" guid="{C240BBBD-C2A6-443B-A95C-87A69061A097}" cdate="Wed Aug 15 10:06:24 2007" mdate="Wed Aug 15 10:06:24 2007" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  subfolders = "LStoreNetwork" rootobjects = "LogisticalStorageNetwork" >
+		<attrdef name="DepotPingFrequency" metaref = "1001" valuetype = "string" defvalue = "0.0.0.0">
+		</attrdef>
+		<attrdef name="IFSpeed" metaref = "1002" valuetype = "double" defvalue = "0.0">
+			<dispname>&quot;Speed (kbps)&quot;</dispname>
+		</attrdef>
+		<attrdef name="IFType" metaref = "1003" valuetype = "enum" defvalue = "Ethernet">
+			<enumitem dispname = "Ethernet" value = "Ethernet"></enumitem>
+			<enumitem dispname = "HDLC" value = "HDLC"></enumitem>
+			<enumitem dispname = "PPP" value = "PPP"></enumitem>
+		</attrdef>
+		<attrdef name="IPAddress" metaref = "1004" valuetype = "string" defvalue = "0.0.0.0">
+		</attrdef>
+		<attrdef name="Location" metaref = "1059" valuetype = "string" defvalue = "0.0.0.0">
+		</attrdef>
+		<attrdef name="Metric" metaref = "1219" valuetype = "double" defvalue = "0.0">
+		</attrdef>
+		<attrdef name="NetMask" metaref = "1005" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="NetworkAddress" metaref = "1006" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="NumResources" metaref = "1050" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Queueing" metaref = "1167" valuetype = "enum" defvalue = "FIFO">
+			<enumitem dispname = "FIFO" value = "FIFO"></enumitem>
+			<enumitem dispname = "LIFO" value = "LIFO"></enumitem>
+			<enumitem dispname = "cFIFO" value = "cFIFO"></enumitem>
+			<enumitem dispname = "cLIFO" value = "cLIFO"></enumitem>
+		</attrdef>
+		<attrdef name="Realm" metaref = "1060" valuetype = "string" defvalue = "0.0.0.0">
+		</attrdef>
+		<attrdef name="Replica" metaref = "1220" valuetype = "integer" defvalue = "0">
+		</attrdef>
+		<attrdef name="ReplicationStrategy" metaref = "1221" valuetype = "enum" defvalue = "Active">
+			<enumitem dispname = "Active" value = "Active"></enumitem>
+			<enumitem dispname = "Passive" value = "Passive"></enumitem>
+			<enumitem dispname = "Semiactive" value = "Semiactive"></enumitem>
+		</attrdef>
+		<attrdef name="WeaverErasureCode" metaref = "1061" valuetype = "enum" defvalue = "Reed-Solomon">
+			<enumitem dispname = "Reed-Solomon" value = "Reed-Solomon"></enumitem>
+		</attrdef>
+		<atom name = "IBPDepot" metaref = "1007"  attributes = "Location Realm IPAddress IFSpeed IFType NumResources">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="depot.bmp"></regnode>
+		</atom>
+		<atom name = "LServer" metaref = "1008"  attributes = "Location Realm IPAddress DepotPingFrequency WeaverErasureCode">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="metadatalserver.bmp"></regnode>
+				<regnode name = "porticon" value ="metadatalserver_port.bmp"></regnode>
+		</atom>
+		<connection name = "AbileneInternet2" metaref = "1164" attributes = "NetworkAddress NetMask" >
+			<dispname>TeraGrid</dispname>
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="apex"></regnode>
+				<regnode name = "srcStyle" value ="apex"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="TeraGrid"/>
+				<regnode name= "dstLabel1" value="TeraGrid"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ClusterQoS" metaref = "1168" >
+				<regnode name = "sName" value ="srcClusterQoS"></regnode>
+				<regnode name = "dName" value ="dstClusterQoS"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "DepotQoS" metaref = "1169" >
+				<regnode name = "sName" value ="srcDepotQoS"></regnode>
+				<regnode name = "dName" value ="dstDepotQoS"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "LStoreQoS" metaref = "1170" >
+				<regnode name = "sName" value ="srcLStoreQoS"></regnode>
+				<regnode name = "dName" value ="dstLStoreQoS"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Loopback" metaref = "1074" attributes = "NetworkAddress NetMask" >
+			<dispname>TeraGrid</dispname>
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="apex"></regnode>
+				<regnode name = "srcStyle" value ="apex"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="TeraGrid"/>
+				<regnode name= "dstLabel1" value="TeraGrid"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MonitorableGroupAssociation" metaref = "1189" >
+				<regnode name = "sName" value ="srcMonitorable2RepG"></regnode>
+				<regnode name = "dName" value ="dstMonitorable2RepG"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RepicaGroupConfiguration"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "RootRiskAssociation" metaref = "1190" >
+				<regnode name = "sName" value ="srcRootRiskAssociation"></regnode>
+				<regnode name = "dName" value ="dstRootRiskAssociation"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="diamond"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RootRiskGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "HostReference"></pointeritem>
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "SRGRiskAssociation" metaref = "1191" >
+				<regnode name = "sName" value ="srcSRGRiskAssociation"></regnode>
+				<regnode name = "dName" value ="dstSRGRiskAssociation"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="diamond"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "HostReference"></pointeritem>
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ServerQoS" metaref = "1171" >
+				<regnode name = "sName" value ="srcServerQoS"></regnode>
+				<regnode name = "dName" value ="dstServerQoS"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "T1" metaref = "1040" attributes = "NetworkAddress NetMask" >
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="arrow"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+				<regnode name= "srcLabel1" value="T1"/>
+				<regnode name= "dstLabel1" value="T1"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "TeraGrid" metaref = "1041" attributes = "NetworkAddress NetMask" >
+			<dispname>TeraGrid</dispname>
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="apex"></regnode>
+				<regnode name = "srcStyle" value ="apex"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="TeraGrid"/>
+				<regnode name= "dstLabel1" value="TeraGrid"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Ultralight" metaref = "1042" attributes = "NetworkAddress NetMask" >
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="arrow"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="Ultralight"/>
+				<regnode name= "dstLabel1" value="Ultralight"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<reference name = "HostReference" metaref = "1192" attributes = "Metric">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyHostReference"></regnode>
+			<constraint name="ValidRootRiskAssociationsrcCardinality11" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSRGRiskAssociationsrcCardinality13" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<pointerspec name = "ref">
+				<pointeritem desc = "IBPDepot"></pointeritem>
+				<pointeritem desc = "LServer"></pointeritem>
+				<pointeritem desc = "LServerCluster"></pointeritem>
+				<pointeritem desc = "LStoreSystem"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "LogisticalNetworkRef" metaref = "1013">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyLogisticalNetworkRef"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "LogisticalStorageNetwork"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "QoSCharRef" metaref = "1172">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyQoSCharRef"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "FailOverUnit"></pointeritem>
+				<pointeritem desc = "QoSCharRef"></pointeritem>
+			</pointerspec>
+		</reference>
+		<model name = "DomainRiskGrouping" metaref = "1193" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
+			<constraint name="ValidDomainRiskGroupingPartCardinality17" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DomainRiskGrouping, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "HostReference" metaref = "1194" kind = "HostReference"></role>
+			<role name = "RootRiskAssociation" metaref = "1195" kind = "RootRiskAssociation"></role>
+			<role name = "RootRiskGroup" metaref = "1196" kind = "RootRiskGroup"></role>
+			<role name = "SRGRiskAssociation" metaref = "1197" kind = "SRGRiskAssociation"></role>
+			<role name = "SharedRiskGroup" metaref = "1198" kind = "SharedRiskGroup"></role>
+			<aspect name = "FTReplicationAspect" metaref = "1222" >
+				<dispname>FaultTolerance</dispname>
+				<part metaref = "1223" role = "HostReference" primary = "yes" linked = "no"></part>
+				<part metaref = "1224" role = "RootRiskAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1225" role = "RootRiskGroup" primary = "yes" linked = "no"></part>
+				<part metaref = "1226" role = "SRGRiskAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1227" role = "SharedRiskGroup" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "FailOverUnit" metaref = "1205" attributes = "Replica" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="FOU.bmp"></regnode>
+			<role name = "MonitorableGroupAssociation" metaref = "1206" kind = "MonitorableGroupAssociation"></role>
+			<role name = "RepicaGroupConfiguration" metaref = "1207" kind = "RepicaGroupConfiguration"></role>
+			<aspect name = "FTReplicationAspect" metaref = "1228" attributes = "Replica" >
+				<dispname>FaultTolerance</dispname>
+				<part metaref = "1229" role = "MonitorableGroupAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1230" role = "RepicaGroupConfiguration" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "LServerCluster" metaref = "1068" attributes = "Location Realm IPAddress" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="lservercluster.bmp"></regnode>
+				<regnode name = "porticon" value ="metadatalserver_port.bmp"></regnode>
+			<role name = "LServer" metaref = "1069" kind = "LServer"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1211" attributes = "Location Realm IPAddress" >
+				<dispname>LogisticalNetworking</dispname>
+				<part metaref = "1071" role = "LServer" primary = "yes" linked = "yes"></part>
+			</aspect>
+		</model>
+		<model name = "LStoreSystem" metaref = "1075" attributes = "Location Realm IPAddress" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="lstoresystem.bmp"></regnode>
+			<role name = "AbileneInternet2" metaref = "1165" kind = "AbileneInternet2"></role>
+			<role name = "FailOverUnit" metaref = "1231" kind = "FailOverUnit"></role>
+			<role name = "IBPDepot" metaref = "1076" kind = "IBPDepot"></role>
+			<role name = "LServer" metaref = "1077" kind = "LServer"></role>
+			<role name = "LServerCluster" metaref = "1078" kind = "LServerCluster"></role>
+			<role name = "LStoreSystem" metaref = "1079" kind = "LStoreSystem"></role>
+			<role name = "Loopback" metaref = "1156" kind = "Loopback"></role>
+			<role name = "QoSCharRef" metaref = "1179" kind = "QoSCharRef"></role>
+			<role name = "T1" metaref = "1157" kind = "T1"></role>
+			<role name = "TeraGrid" metaref = "1158" kind = "TeraGrid"></role>
+			<role name = "Ultralight" metaref = "1159" kind = "Ultralight"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1212" attributes = "Location Realm IPAddress" >
+				<dispname>LogisticalNetworking</dispname>
+				<part metaref = "1166" role = "AbileneInternet2" primary = "yes" linked = "no"></part>
+				<part metaref = "1090" role = "IBPDepot" primary = "yes" linked = "no"></part>
+				<part metaref = "1091" role = "LServer" primary = "yes" linked = "no"></part>
+				<part metaref = "1092" role = "LServerCluster" primary = "yes" linked = "no"></part>
+				<part metaref = "1093" role = "LStoreSystem" primary = "yes" linked = "no"></part>
+				<part metaref = "1160" role = "Loopback" primary = "yes" linked = "no"></part>
+				<part metaref = "1161" role = "T1" primary = "yes" linked = "no"></part>
+				<part metaref = "1162" role = "TeraGrid" primary = "yes" linked = "no"></part>
+				<part metaref = "1163" role = "Ultralight" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "LogisticalStorageNetwork" metaref = "1136" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="lstorenetwork.bmp"></regnode>
+			<role name = "FailOverUnit" metaref = "1232" kind = "FailOverUnit"></role>
+			<role name = "IBPDepot" metaref = "1137" kind = "IBPDepot"></role>
+			<role name = "LServer" metaref = "1138" kind = "LServer"></role>
+			<role name = "LServerCluster" metaref = "1139" kind = "LServerCluster"></role>
+			<role name = "LStoreSystem" metaref = "1140" kind = "LStoreSystem"></role>
+			<role name = "LogisticalStorageNetwork" metaref = "1141" kind = "LogisticalStorageNetwork"></role>
+			<role name = "QoSCharRef" metaref = "1187" kind = "QoSCharRef"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1213" >
+				<dispname>LogisticalNetworking</dispname>
+				<part metaref = "1147" role = "IBPDepot" primary = "yes" linked = "no"></part>
+				<part metaref = "1148" role = "LServer" primary = "yes" linked = "no"></part>
+				<part metaref = "1149" role = "LServerCluster" primary = "yes" linked = "no"></part>
+				<part metaref = "1150" role = "LStoreSystem" primary = "yes" linked = "no"></part>
+				<part metaref = "1151" role = "LogisticalStorageNetwork" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "RepicaGroupConfiguration" metaref = "1214" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="RPG.bmp"></regnode>
+			<constraint name="ValidMonitorableGroupAssociationsrcCardinality9" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MonitorableGroupAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to RepicaGroupConfiguration as &quot;src&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<aspect name = "FTReplicationAspect" metaref = "1233" >
+				<dispname>FaultTolerance</dispname>
+			</aspect>
+		</model>
+		<model name = "RootRiskGroup" metaref = "1216" attributes = "Metric" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="RootRiskGroup.bmp"></regnode>
+			<aspect name = "FTReplicationAspect" metaref = "1234" attributes = "Metric" >
+				<dispname>FaultTolerance</dispname>
+			</aspect>
+		</model>
+		<model name = "SharedRiskGroup" metaref = "1218" attributes = "Metric" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="SharedRiskGroup.bmp"></regnode>
+			<constraint name="ValidRootRiskAssociationsrcCardinality11" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSRGRiskAssociationsrcCardinality13" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "LServerCluster" metaref = "1237" kind = "LServerCluster"></role>
+			<aspect name = "FTReplicationAspect" metaref = "1236" attributes = "Metric" >
+				<dispname>FaultTolerance</dispname>
+			</aspect>
+		</model>
+		<folder name = "LStoreNetwork" metaref = "1049"  rootobjects = "LogisticalStorageNetwork" >
+		</folder>
+	</folder>
+</paradigm>

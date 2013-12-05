@@ -1,7 +1,0 @@
-// $Id$
-
-workspace (ReferenceTest) {
-  cmdline += -include $GAME_ROOT/MPC/config
-
-  ReferenceTest.mpc
-}

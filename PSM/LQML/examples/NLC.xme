@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{514B1F7E-F2A1-4D98-AA49-B613586EC89F}" cdate="Fri Aug 17 15:58:35 2007" mdate="Fri Aug 17 15:58:35 2007" version="" metaguid="{C240BBBD-C2A6-443B-A95C-87A69061A097}" metaversion="" metaname="LQML">
+	<name>NLC</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{95B4ACA1-6001-44d9-AAD6-97D3220F7E83}">
+		<name>NLC</name>
+		<model id="id-0065-00000001" kind="LogisticalStorageNetwork" guid="{47593026-80B4-474a-9227-B4FDE2AB9743}" relid="0x1" childrelidcntr="0x4">
+			<name>NLC_LSN</name>
+			<model id="id-0065-00000002" kind="LogisticalStorageNetwork" role="LogisticalStorageNetwork" guid="{AF29560F-1030-464b-9713-B1819A756295}" relid="0x1" childrelidcntr="0x3">
+				<name>NLC</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetworkingAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>254,135</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<model id="id-0065-00000003" kind="LStoreSystem" role="LStoreSystem" guid="{0E8A40C0-1158-412c-8D1D-E3BABD0E27B0}" relid="0x1" childrelidcntr="0xb">
+					<name>USA</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="LogisticalNetworkingAspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>149,100</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="IPAddress" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<attribute kind="Location" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<attribute kind="Realm" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<model id="id-0065-00000004" kind="LServerCluster" role="LServerCluster" guid="{18D432F1-F7F5-4b82-8459-309F95095CFD}" relid="0x1" childrelidcntr="0x3">
+						<name>Vanderbilt_LServerCluster</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="LogisticalNetworkingAspect" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>387,219</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="IPAddress" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Location" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Realm" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<atom id="id-0066-00000001" kind="LServer" role="LServer" guid="{65ED3AC3-0260-4f34-BC5C-B2FB3CCD0BD5}" relid="0x1">
+							<name>ISIS_LServer</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="LogisticalNetworkingAspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>212,44</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="DepotPingFrequency" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="IPAddress" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="Location" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="Realm" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="WeaverErasureCode" status="meta">
+								<value>Reed-Solomon</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000002" kind="LServer" role="LServer" guid="{D4F44D60-C50C-48e5-AA21-C3785A496535}" relid="0x2">
+							<name>LServer</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="LogisticalNetworkingAspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>198,282</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="DepotPingFrequency" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="IPAddress" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="Location" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="Realm" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="WeaverErasureCode" status="meta">
+								<value>Reed-Solomon</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000003" kind="LServer" role="LServer" guid="{3617963E-DAC0-4bab-95D1-C2CFF9F959EB}" relid="0x3">
+							<name>LServer</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="LogisticalNetworkingAspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>478,254</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="DepotPingFrequency" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="IPAddress" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="Location" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="Realm" status="meta">
+								<value>0.0.0.0</value>
+							</attribute>
+							<attribute kind="WeaverErasureCode" status="meta">
+								<value>Reed-Solomon</value>
+							</attribute>
+						</atom>
+					</model>
+					<atom id="id-0066-00000004" kind="IBPDepot" role="IBPDepot" guid="{684DE7F4-6323-4e06-847F-8E56E02DA420}" relid="0x2">
+						<name>Caltech_IBPDepot</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="LogisticalNetworkingAspect" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>856,135</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="IFSpeed" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="IFType" status="meta">
+							<value>Ethernet</value>
+						</attribute>
+						<attribute kind="IPAddress" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Location" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="NumResources" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Realm" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-00000005" kind="IBPDepot" role="IBPDepot" guid="{582EBE5B-F159-4ffd-A48F-7B88C9A6817C}" relid="0x3">
+						<name>UTK_IBPDepot</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="LogisticalNetworkingAspect" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>849,338</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="IFSpeed" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="IFType" status="meta">
+							<value>Ethernet</value>
+						</attribute>
+						<attribute kind="IPAddress" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Location" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="NumResources" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Realm" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-00000006" kind="IBPDepot" role="IBPDepot" guid="{9272D637-6286-435e-9F57-23D01079F6A0}" relid="0x4">
+						<name>ORNL_IBPDepot</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="LogisticalNetworkingAspect" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1005,277</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="IFSpeed" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="IFType" status="meta">
+							<value>Ethernet</value>
+						</attribute>
+						<attribute kind="IPAddress" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Location" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="NumResources" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Realm" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-00000007" kind="IBPDepot" role="IBPDepot" guid="{DBEA7D18-5594-4c49-BA9E-15620F6A07EE}" relid="0x5">
+						<name>Vanderbilt_IBPDepot</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="LogisticalNetworkingAspect" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>753,452</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="IFSpeed" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="IFType" status="meta">
+							<value>Ethernet</value>
+						</attribute>
+						<attribute kind="IPAddress" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Location" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="NumResources" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Realm" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-00000008" kind="LServer" role="LServer" guid="{D3D47933-5E2D-456a-81AD-42B96F5E8B60}" relid="0x6">
+						<name>LServer</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="LogisticalNetworkingAspect" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>660,37</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DepotPingFrequency" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="IPAddress" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Location" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="Realm" status="meta">
+							<value>0.0.0.0</value>
+						</attribute>
+						<attribute kind="WeaverErasureCode" status="meta">
+							<value>Reed-Solomon</value>
+						</attribute>
+					</atom>
+					<connection id="id-0068-00000001" kind="Ultralight" role="Ultralight" guid="{9FC16665-BA7A-4f8f-AA26-F1A5E229D1B6}" relid="0x7">
+						<name>Ultralight</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<attribute kind="NetMask" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="NetworkAddress" status="meta">
+							<value></value>
+						</attribute>
+						<connpoint role="dst" target="id-0066-00000004"/>
+						<connpoint role="src" target="id-0066-00000008"/>
+					</connection>
+					<connection id="id-0068-00000002" kind="TeraGrid" role="TeraGrid" guid="{E904D748-58DD-4bed-BB8F-1E15A7CF8896}" relid="0x8">
+						<name>TeraGrid</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>E</value>
+						</regnode>
+						<attribute kind="NetMask" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="NetworkAddress" status="meta">
+							<value></value>
+						</attribute>
+						<connpoint role="src" target="id-0066-00000005"/>
+						<connpoint role="dst" target="id-0066-00000006"/>
+					</connection>
+					<connection id="id-0068-00000003" kind="T1" role="T1" guid="{61C95723-79B6-4d02-A3A1-4A1C1BD05AF9}" relid="0x9">
+						<name>T1</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>Ns</value>
+						</regnode>
+						<attribute kind="NetMask" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="NetworkAddress" status="meta">
+							<value></value>
+						</attribute>
+						<connpoint role="dst" target="id-0066-00000005"/>
+						<connpoint role="src" target="id-0066-00000007"/>
+					</connection>
+					<connection id="id-0068-00000004" kind="T1" role="T1" guid="{6D6515B8-149D-44a3-BD34-FEF6C30C9F74}" relid="0xa">
+						<name>T1</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>Ns</value>
+						</regnode>
+						<attribute kind="NetMask" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="NetworkAddress" status="meta">
+							<value></value>
+						</attribute>
+						<connpoint role="dst" target="id-0066-00000004"/>
+						<connpoint role="src" target="id-0066-00000007"/>
+					</connection>
+					<connection id="id-0068-00000005" kind="TeraGrid" role="TeraGrid" guid="{49025D22-B289-42af-977B-B94EAF5DF434}" relid="0xb">
+						<name>TeraGrid</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>Es</value>
+						</regnode>
+						<attribute kind="NetMask" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="NetworkAddress" status="meta">
+							<value></value>
+						</attribute>
+						<connpoint role="dst" target="id-0066-00000006"/>
+						<connpoint role="src" target="id-0066-00000007"/>
+					</connection>
+				</model>
+				<model id="id-0065-00000005" kind="LStoreSystem" role="LStoreSystem" guid="{B58AA683-3F0B-4491-B06C-BEB7DA96DAD9}" relid="0x2" childrelidcntr="0x0">
+					<name>Brazil</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="LogisticalNetworkingAspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>548,163</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="IPAddress" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<attribute kind="Location" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<attribute kind="Realm" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+				</model>
+				<model id="id-0065-00000006" kind="LStoreSystem" role="LStoreSystem" guid="{6BD295C8-7853-404b-95C2-6A2114E42ADF}" relid="0x3" childrelidcntr="0x0">
+					<name>Czech</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="LogisticalNetworkingAspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>749,288</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="IPAddress" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<attribute kind="Location" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+					<attribute kind="Realm" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
+				</model>
+			</model>
+		</model>
+	</folder>
+</project>

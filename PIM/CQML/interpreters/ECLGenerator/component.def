@@ -1,0 +1,14 @@
+; Interpreter.def : Declares the module parameters.
+
+; Don't add the LIBRARY directive. It gives a warning
+; if the LIBRARY directive and the linker output
+; file name does not match.
+
+; LIBRARY      "ECLGenerator.DLL"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer	PRIVATE
+

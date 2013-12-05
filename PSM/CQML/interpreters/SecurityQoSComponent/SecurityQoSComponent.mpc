@@ -1,0 +1,20 @@
+// $Id$
+
+project (SecurityQoSComponent): cqmllib, gme_udm_component {
+  sharedname = SecurityQoSComponent
+
+  after += SecurityQoS
+  libs  += SecurityQoS
+
+  Source_Files {
+    Component.rc
+  }
+
+  Header_Files {
+
+  }
+
+  Resource_Files {
+    CompIcon.ico
+  }
+}

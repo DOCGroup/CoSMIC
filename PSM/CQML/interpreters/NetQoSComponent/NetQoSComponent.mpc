@@ -1,0 +1,20 @@
+// $Id$
+
+project (NetQoSComponent): xerces, cqmllib, gme_udm_component {
+  sharedname = NetQoSComponent
+
+  after += NetQoS
+  libs  += NetQoS
+
+  Source_Files {
+    Component.rc
+  }
+
+  Header_Files {
+
+  }
+
+  Resource_Files {
+    CompIcon.ico
+  }
+}

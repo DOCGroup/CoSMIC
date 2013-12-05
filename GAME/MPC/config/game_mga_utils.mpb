@@ -1,6 +1,0 @@
-// $Id$
-
-project : boost_base, game_mga {
-  after += GAME_Mga_Utils
-  libs  += GAME_Mga_Utils
-}

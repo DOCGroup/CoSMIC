@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="AspectInterpreterFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='AspectInterpreterLibrary' Guid='D6EE34AA-1B7E-4273-A13A-A1C3CB7B818A'>
+  
+        <File Id='AspectInterpreterDLL'
+              Name='AspectInterpreter.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\AspectInterpreter.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{D6EE34AA-1B7E-4273-A13A-A1C3CB7B818A}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.AspectInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{D6EE34AA-1B7E-4273-A13A-A1C3CB7B818A}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.AspectInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{D6EE34AA-1B7E-4273-A13A-A1C3CB7B818A}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="[CoSMICBinDir]AspectInterpreter.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.AspectInterpreter"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.AspectInterpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.AspectInterpreter\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{D6EE34AA-1B7E-4273-A13A-A1C3CB7B818A}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.AspectInterpreter"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Generate AOP Aspect files" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="POSAML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="Aspect Interpreter" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.AspectInterpreter\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="POSAML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

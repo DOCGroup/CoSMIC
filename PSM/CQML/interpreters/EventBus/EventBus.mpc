@@ -1,0 +1,19 @@
+project(EventBus): boost_base, acelib, cqmllib  {
+
+   sharedname = EventBus
+   macros += EVENTBUS_BUILD_DLL
+
+
+   Source_Files {
+	EventBusVisitor.cpp
+	EventBusVisitorImpl.cpp
+   }
+
+   Header_Files {
+	BaseMessage.h
+	EventBusMember.h
+	EventBusVisitor.h
+	EventBusVisitorImpl.h
+	EventBus_Export.h
+   }
+}

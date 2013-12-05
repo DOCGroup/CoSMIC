@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PICMLUdmUtilsFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='PICMLUdmUtils' Guid='426F8EE6-6F80-4AD7-A267-BC6735465123'>
+        <File Id='PICML_UDM_Utils.dll'
+              Name='PICML_UDM_Utils.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\PICML_UDM_Utils.dll' />
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>
