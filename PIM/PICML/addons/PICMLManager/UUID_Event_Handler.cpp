@@ -11,7 +11,7 @@
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 #include "game/mga/dialogs/Dialog_Display_Strategy.h"
 
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 
 #include "Utils/Utils.h"
 

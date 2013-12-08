@@ -5,7 +5,7 @@
 #include "ComponentInstance_Creator_Event_Handler.h"
 #include "Component_Observer_Event_Handler.h"
 
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 #include "game/mga/Project.h"
 #include "game/mga/Reference.h"
 #include "game/mga/MetaModel.h"

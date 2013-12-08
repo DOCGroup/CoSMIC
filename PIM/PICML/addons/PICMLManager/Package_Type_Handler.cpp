@@ -12,7 +12,7 @@
 #include "Validation.h"
 
 #include "game/mga/Attribute.h"
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 #include "game/mga/Model.h"
 #include "game/mga/Project.h"
 #include "game/mga/Reference.h"

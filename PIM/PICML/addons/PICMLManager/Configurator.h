@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Tue Jun 18 07:37:40 2013
+/* at Thu Dec 05 10:39:33 2013
  */
 /* Compiler settings for .\Configurator.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

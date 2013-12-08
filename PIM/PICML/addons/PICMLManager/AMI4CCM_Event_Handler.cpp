@@ -6,7 +6,7 @@
 #include "game/mga/Attribute.h"
 #include "game/mga/Model.h"
 #include "game/mga/Folder.h"
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 #include "game/mga/Reference.h"
 #include "game/mga/modelgen.h"
 #include "game/mga/utils/Point.h"

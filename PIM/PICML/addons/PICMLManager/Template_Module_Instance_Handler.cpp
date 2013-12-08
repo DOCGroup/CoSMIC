@@ -11,7 +11,7 @@
 
 #include "game/mga/MetaAspect.h"
 #include "game/mga/MetaModel.h"
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 #include "game/mga/Project.h"
 #include "game/mga/Reference.h"
 #include "game/mga/component/Event_Sink.h"

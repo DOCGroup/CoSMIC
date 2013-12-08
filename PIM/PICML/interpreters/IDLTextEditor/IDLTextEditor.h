@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Wed Sep 04 12:17:59 2013
+/* at Thu Dec 05 11:29:56 2013
  */
 /* Compiler settings for .\IDLTextEditor.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

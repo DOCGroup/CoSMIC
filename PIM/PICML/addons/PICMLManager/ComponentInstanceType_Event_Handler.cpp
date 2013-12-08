@@ -6,7 +6,7 @@
 
 #include "game/mga/modelgen.h"
 #include "game/mga/MetaModel.h"
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 
 #include <functional>
 #include "boost/bind.hpp"

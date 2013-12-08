@@ -1,0 +1,5 @@
+// $Id$
+
+workspace (CoSMIC_GAME) : cosmic {
+  $(GAME_ROOT)/GAME.mwc
+}

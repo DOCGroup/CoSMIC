@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Wed Sep 04 08:48:47 2013
+/* at Thu Dec 05 10:31:47 2013
  */
 /* Compiler settings for .\ComponentInstance_Decorator.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

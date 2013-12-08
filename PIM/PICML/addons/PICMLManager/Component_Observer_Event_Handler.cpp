@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "Component_Observer_Event_Handler.h"
 
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 
 #include "boost/bind.hpp"
 #include <algorithm>

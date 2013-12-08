@@ -4,7 +4,7 @@
 #include "StdAfx.h"
 #include "ConnectorInstance_Event_Handler.h"
 
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 #include "game/mga/Project.h"
 #include "game/mga/Reference.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"

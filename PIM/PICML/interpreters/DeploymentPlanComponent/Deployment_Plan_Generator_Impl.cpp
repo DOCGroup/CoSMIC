@@ -8,7 +8,7 @@
 
 #include "game/mga/component/Interpreter_T.h"
 #include "game/mga/utils/Project_Settings.h"
-#include "game/mga/Filter.h"
+#include "game/mga/Object_Filter.h"
 
 #include "Utils/Utils.h"
 
