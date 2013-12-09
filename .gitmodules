@@ -1,3 +1,3 @@
-[submodule "GAME/contrib/CCF"]
-	path = GAME/contrib/CCF
-	url = git://git.dre.vanderbilt.edu/xsc/ccf.git
+[submodule "GAME"]
+	path = GAME
+	url = git@git.dre.vanderbilt.edu:cosmic/game.git
