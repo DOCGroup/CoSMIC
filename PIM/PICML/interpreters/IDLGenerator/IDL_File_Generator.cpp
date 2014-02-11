@@ -1104,9 +1104,9 @@ void IDL_File_Generator::Visit_OutParameter (const PICML::OutParameter & p)
 }
 
 //
-// Visit_InOutParameter
+// Visit_InoutParameter
 //
-void IDL_File_Generator::Visit_InOutParameter (const PICML::InoutParameter & p)
+void IDL_File_Generator::Visit_InoutParameter (const PICML::InoutParameter & p)
 {
   this->idl_ << "inout ";
   this->Visit_ParameterType (p);

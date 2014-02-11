@@ -193,7 +193,7 @@ public:
   virtual void Visit_TwowayOperation (const PICML::TwowayOperation & op);
   virtual void Visit_InParameter (const PICML::InParameter & p);
   virtual void Visit_OutParameter (const PICML::OutParameter & p);
-  virtual void Visit_InOutParameter (const PICML::InoutParameter & p);
+  virtual void Visit_InoutParameter (const PICML::InoutParameter & p);
 
   virtual void Visit_Event (const PICML::Event & e);
   virtual void Visit_ValueObject (const PICML::ValueObject & e);
