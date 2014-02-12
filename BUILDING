@@ -23,8 +23,9 @@ main projects in CoSMIC:
 
 1.  Boost 1.49, or later (http://www.boost.org)
 2.  Xerces-C 3.1.1 (http://xerces.apache.org/xerces-c)
-3.  The Adaptive Communication Environment (ACE) (http://www.dre.vanderbilt.edu/ACE)
-4.  The Makefile Workspace Project Creator (MPC) (http://www.ociweb.com/products/MPC)
+3.  Universal Data Model (UDM) 3.2.11 (http://repo.isis.vanderbilt.edu/UDM)
+4.  The Adaptive Communication Environment (ACE) (http://www.dre.vanderbilt.edu/ACE)
+5.  The Makefile Workspace Project Creator (MPC) (http://www.ociweb.com/products/MPC)
 
 The following are the optional frameworks needed for building
 parts of CoSMIC:
