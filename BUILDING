@@ -65,10 +65,10 @@ GAME
 ----------
 
 GAME is stored in a Git respository. You can download GAME
-from one of the the following locations, depending of what 
+from one of the the following locations, depending on what 
 you can access:
 
-    git@github.iu.edu:SEDS/GAME.git
+    git@github.iu.edu:SEDS/GAME.git (primary)
     git://git.dre.vanderbilt.edu/cosmic/game.git
 
 You can download GAME sources using the following command:
