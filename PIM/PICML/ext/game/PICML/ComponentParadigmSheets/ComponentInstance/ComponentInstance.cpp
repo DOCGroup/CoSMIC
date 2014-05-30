@@ -75,7 +75,7 @@ namespace PICML
   //
   ComponentInstanceType ComponentInstance_Impl::get_ComponentInstanceType (void) const
   {
-    return this->children <ComponentInstanceType> ().item ();
+    return this->children <ComponentInstanceType> ().first ();
   }
 
   //

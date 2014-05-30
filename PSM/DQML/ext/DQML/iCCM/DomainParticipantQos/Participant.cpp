@@ -69,7 +69,7 @@ namespace DQML
   //
   UserDataQosPolicy Participant_Impl::get_UserDataQosPolicy (void) const
   {
-    return this->children <UserDataQosPolicy> ().item ();
+    return this->children <UserDataQosPolicy> ().first();
   }
 
   //
@@ -85,7 +85,7 @@ namespace DQML
   //
   EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().item ();
+	  return this->children <EntityFactoryQosPolicy> ().first();
   }
 
   //

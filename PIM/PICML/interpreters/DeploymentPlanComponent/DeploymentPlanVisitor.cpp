@@ -455,7 +455,7 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   this->param_parent_ = this->curr_instance_;
 
   // Finish writing the component instance information.
-  Udm::visit_all <PICML::AttributeInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::AttributeInstance> (inst, *this);
 
   std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
   std::for_each (configs.begin (),
@@ -740,7 +740,7 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
   this->param_parent_ = this->curr_instance_;
 
   // Finish writing the component instance information.
-  Udm::visit_all <PICML::AttributeInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::AttributeInstance> (inst, *this);
 
   std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
   std::for_each (configs.begin (),

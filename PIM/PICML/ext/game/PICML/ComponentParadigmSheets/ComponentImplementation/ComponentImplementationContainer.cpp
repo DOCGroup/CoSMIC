@@ -75,7 +75,7 @@ namespace PICML
   //
   Implements ComponentImplementationContainer_Impl::get_Implements (void) const
   {
-    return this->children <Implements> ().item ();
+    return this->children <Implements> ().first ();
   }
 
   //
@@ -91,7 +91,7 @@ namespace PICML
   //
   ComponentRef ComponentImplementationContainer_Impl::get_ComponentRef (void) const
   {
-    return this->children <ComponentRef> ().item ();
+    return this->children <ComponentRef> ().first ();
   }
 
   //
@@ -107,7 +107,7 @@ namespace PICML
   //
   PathReference ComponentImplementationContainer_Impl::get_PathReference (void) const
   {
-    return this->children <PathReference> ().item ();
+    return this->children <PathReference> ().first ();
   }
 
   //

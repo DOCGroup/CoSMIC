@@ -10,7 +10,7 @@ project : register, gme_common {
   }
 
   Source_Files {
-    conditional (vc9) {
+    conditional (vc9, vc10, vc11, vc12) {
       $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
       $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
@@ -32,7 +32,7 @@ project : register, gme_common {
     ComponentConfig.h
     Resource.h
 
-    conditional (vc9) {
+    conditional (vc9, vc10, vc11, vc12) {
       ComponentLib_h.h
     }
   }

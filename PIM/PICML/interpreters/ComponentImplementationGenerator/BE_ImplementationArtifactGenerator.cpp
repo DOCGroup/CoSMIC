@@ -40,8 +40,8 @@ Visit_Component (const PICML::Component & component)
   PICML::ArtifactContainer container;
   std::string container_name = name + "Artifacts";
 
-  if (Udm::create_if_not (this->artifact_folder_, container,
-      Udm::contains (boost::bind (std::equal_to <std::string> (),
+  if (CoSMIC::Udm::create_if_not (this->artifact_folder_, container,
+      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
                      name,
                      boost::bind (&PICML::ArtifactContainer::name, _1)))))
   {

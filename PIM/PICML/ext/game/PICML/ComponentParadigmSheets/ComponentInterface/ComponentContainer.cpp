@@ -72,7 +72,7 @@ namespace PICML
   //
   ComponentRef ComponentContainer_Impl::get_ComponentRef (void) const
   {
-    return this->children <ComponentRef> ().item ();
+    return this->children <ComponentRef> ().first ();
   }
 
   //

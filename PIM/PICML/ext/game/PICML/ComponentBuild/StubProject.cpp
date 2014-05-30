@@ -60,7 +60,7 @@ namespace PICML
   //
   ImplementationArtifactReference StubProject_Impl::get_ImplementationArtifactReference (void) const
   {
-    return this->children <ImplementationArtifactReference> ().item ();
+    return this->children <ImplementationArtifactReference> ().first ();
   }
 
   //
@@ -76,7 +76,7 @@ namespace PICML
   //
   ComponentImplementationArtifact StubProject_Impl::get_ComponentImplementationArtifact (void) const
   {
-    return this->children <ComponentImplementationArtifact> ().item ();
+    return this->children <ComponentImplementationArtifact> ().first ();
   }
 
   //
@@ -92,7 +92,7 @@ namespace PICML
   //
   ComponentServantArtifact StubProject_Impl::get_ComponentServantArtifact (void) const
   {
-    return this->children <ComponentServantArtifact> ().item ();
+    return this->children <ComponentServantArtifact> ().first ();
   }
 
   //
@@ -108,7 +108,7 @@ namespace PICML
   //
   FileRef StubProject_Impl::get_FileRef (void) const
   {
-    return this->children <FileRef> ().item ();
+    return this->children <FileRef> ().first ();
   }
 }
 

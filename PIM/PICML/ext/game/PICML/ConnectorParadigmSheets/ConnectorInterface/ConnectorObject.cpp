@@ -77,7 +77,7 @@ namespace PICML
   //
   ConnectorInherits ConnectorObject_Impl::get_ConnectorInherits (void) const
   {
-    return this->children <ConnectorInherits> ().item ();
+    return this->children <ConnectorInherits> ().first ();
   }
 
   //

@@ -40,8 +40,8 @@ Visit_Component (const PICML::Component & component)
   // Create a new container for the component implementation.
   PICML::ComponentImplementationContainer container;
 
-  if (Udm::create_if_not (this->impl_folder_, container,
-      Udm::contains (boost::bind (std::equal_to <std::string> (),
+  if (CoSMIC::Udm::create_if_not (this->impl_folder_, container,
+      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
                      impl_name,
                      boost::bind (&PICML::ComponentImplementationContainer::name, _1)))))
   {
@@ -49,8 +49,8 @@ Visit_Component (const PICML::Component & component)
   }
 
   // Create the monolithic implementation for the component.
-  if (Udm::create_if_not (container, this->impl_,
-      Udm::contains (boost::bind (std::equal_to <std::string> (),
+  if (CoSMIC::Udm::create_if_not (container, this->impl_,
+      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
                      impl_name,
                      boost::bind (&PICML::MonolithicImplementation::name, _1)))))
   {

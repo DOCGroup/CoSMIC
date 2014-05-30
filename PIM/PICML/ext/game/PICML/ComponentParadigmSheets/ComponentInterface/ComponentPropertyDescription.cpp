@@ -74,7 +74,7 @@ namespace PICML
   //
   DataType ComponentPropertyDescription_Impl::get_DataType (void) const
   {
-    return this->children <DataType> ().item ();
+	  return this->children <DataType> ().first ();
   }
 }
 

@@ -6,12 +6,12 @@ project (PICML_BGMLComponent): mfc, picmllib, register {
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
-  specific (vc6,vc7,vc71,vc8,vc9) {
+  specific (vc6, vc7, vc71, vc8, vc9, vc10, vc11, vc12) {
      link_options += /DEF:Component.def
   }
 
   Source_Files {
-	conditional (vc9) {
+	conditional (vc9, vc10, vc11, vc12) {
 	    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
 	    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
 	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
@@ -34,7 +34,7 @@ project (PICML_BGMLComponent): mfc, picmllib, register {
   }
 
   Header_Files {
-	conditional (vc9) {
+	conditional (vc9, vc10, vc11, vc12) {
 	    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
 	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
 	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h

@@ -16,10 +16,10 @@ Visit_ComponentInstance (const PICML::ComponentInstance & c)
 {
   using namespace PICML;
 
-  Udm::visit_all <PICML::RequiredRequestPortInstance> (c, *this);
-  Udm::visit_all <PICML::ProvidedRequestPortInstance> (c, *this);
-  Udm::visit_all <PICML::InEventPortInstance> (c, *this);
-  Udm::visit_all <PICML::OutEventPortInstance> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPortInstance> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPortInstance> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::InEventPortInstance> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::OutEventPortInstance> (c, *this);
 }
 
 //

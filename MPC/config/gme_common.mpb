@@ -6,7 +6,7 @@ project : mfc {
               $(GME_ROOT)/SDK/BON \
               $(GME_ROOT)/Interfaces
 
-  specific (vc9) {
+  specific (vc9, vc10, vc11, vc12) {
     includes += $(GME_ROOT)/SDK/BON/Common
   }
 

@@ -11,7 +11,7 @@ project : gme_common {
   }
 
   Source_Files {
-    conditional (vc9) {
+    conditional (vc9, vc10, vc11, vc12) {
       $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
 
       $(GME_ROOT)/SDK/BON/Common/BON.cpp
@@ -42,7 +42,7 @@ project : gme_common {
   }
 
   Header_Files {
-    conditional (vc9) {
+    conditional (vc9, vc10, vc11, vc12) {
       $(GME_ROOT)/SDK/BON/Common/BON.h
       $(GME_ROOT)/SDK/BON/Common/BONImpl.h
       $(GME_ROOT)/SDK/BON/Common/ComHelp.h

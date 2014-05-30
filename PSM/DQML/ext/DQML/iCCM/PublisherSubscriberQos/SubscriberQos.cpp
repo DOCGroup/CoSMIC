@@ -74,7 +74,7 @@ namespace DQML
   //
   PresentationQosPolicy SubscriberQos_Impl::get_PresentationQosPolicy (void) const
   {
-    return this->children <PresentationQosPolicy> ().item ();
+    return this->children <PresentationQosPolicy> ().first ();
   }
 
   //
@@ -90,7 +90,7 @@ namespace DQML
   //
   GroupDataQosPolicy SubscriberQos_Impl::get_GroupDataQosPolicy (void) const
   {
-    return this->children <GroupDataQosPolicy> ().item ();
+    return this->children <GroupDataQosPolicy> ().first ();
   }
 
   //
@@ -106,7 +106,7 @@ namespace DQML
   //
   PartitionQosPolicy SubscriberQos_Impl::get_PartitionQosPolicy (void) const
   {
-    return this->children <PartitionQosPolicy> ().item ();
+    return this->children <PartitionQosPolicy> ().first ();
   }
 
   //
@@ -122,7 +122,7 @@ namespace DQML
   //
   EntityFactoryQosPolicy SubscriberQos_Impl::get_EntityFactoryQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().item ();
+    return this->children <EntityFactoryQosPolicy> ().first ();
   }
 }
 

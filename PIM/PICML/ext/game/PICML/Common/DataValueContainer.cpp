@@ -68,7 +68,7 @@ namespace PICML
   //
   ComplexTypeReference DataValueContainer_Impl::get_ComplexTypeReference (void) const
   {
-    return this->children <ComplexTypeReference> ().item ();
+    return this->children <ComplexTypeReference> ().first ();
   }
 
   //

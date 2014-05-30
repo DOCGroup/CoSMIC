@@ -55,12 +55,8 @@ public:
   void Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & inst)
   {
     std::set <PICML::FacetDelegate> delegates = inst.dstFacetDelegate ();
-
-    std::for_each (delegates.begin (),
-                   delegates.end (),
-                   boost::bind (&PICML::FacetDelegate::Accept,
-                                _1,
-                                boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
   }
 
   //
@@ -127,12 +123,12 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   this->find_plan_locality (inst);
 
   // Visit the extended ports.
-  Udm::visit_all <PICML::ExtendedPortInstance> (inst, *this);
-  Udm::visit_all <PICML::MirrorPortInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::ExtendedPortInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::MirrorPortInstance> (inst, *this);
 
   // Visit the standard ports.
-  Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
-  Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPortInstance> (inst, *this);
 
   // Clear the map of connector uuids.
   if (!this->connector_uuid_.empty ())
@@ -336,19 +332,13 @@ void Connector_Visitor::
 Visit_RequiredRequestPortEnd (const PICML::RequiredRequestPortEnd & end)
 {
   std::set <PICML::ConnectorToReceptacle> conns = end.dstConnectorToReceptacle ();
-  std::for_each (conns.begin (),
-                 conns.end (),
-                 boost::bind (&PICML::ConnectorToReceptacle::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &conn :conns)
+	  conn.Accept(*this);
 
   // We need to visit the receptacle delegates.
   std::set <PICML::ReceptacleDelegate> delegates = end.srcReceptacleDelegate ();
-  std::for_each (delegates.begin (),
-                 delegates.end (),
-                 boost::bind (&PICML::ReceptacleDelegate::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
 }
 
 //
@@ -358,19 +348,12 @@ void Connector_Visitor::
 Visit_ProvidedRequestPortEnd (const PICML::ProvidedRequestPortEnd & end)
 {
   std::set <PICML::ConnectorToFacet> conns = end.srcConnectorToFacet ();
-  std::for_each (conns.begin (),
-                 conns.end (),
-                 boost::bind (&PICML::ConnectorToFacet::Accept,
-                              _1,
-                              boost::ref (*this)));
-
+  for(auto &conn :conns)
+	  conn.Accept(*this);
   // We need to visit the facet delegates.
   std::set <PICML::FacetDelegate> delegates = end.srcFacetDelegate ();
-  std::for_each (delegates.begin (),
-                 delegates.end (),
-                 boost::bind (&PICML::FacetDelegate::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
 }
 
 //
@@ -402,11 +385,8 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
     ProvidedRequestPortInstance_Collector facet_gatherer (facets);
 
     std::set <PICML::ConnectorToFacet> conns = inst.dstConnectorToFacet ();
-    std::for_each (conns.begin (),
-                   conns.end (),
-                   boost::bind (&PICML::ConnectorToFacet::Accept,
-                                _1,
-                                boost::ref (facet_gatherer)));
+	for(auto &conn :conns)
+		conn.Accept(*this);
 
     std::set <PICML::ProvidedRequestPortInstance>::iterator
       iter = facets.begin (), iter_end = facets.end ();
@@ -686,8 +666,8 @@ void Connector_Visitor::Visit_Consume (const PICML::Consume & consume)
 //
 void Connector_Visitor::Visit_PortType (const PICML::PortType & pt)
 {
-  Udm::visit_all <PICML::RequiredRequestPort> (pt, *this);
-  Udm::visit_all <PICML::ProvidedRequestPort> (pt, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (pt, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (pt, *this);
 }
 
 //

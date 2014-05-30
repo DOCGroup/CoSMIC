@@ -80,7 +80,7 @@ namespace PICML
   //
   ComponentInherits Component_Impl::get_ComponentInherits (void) const
   {
-    return this->children <ComponentInherits> ().item ();
+    return this->children <ComponentInherits> ().first ();
   }
 
   //

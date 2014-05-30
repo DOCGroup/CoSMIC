@@ -76,7 +76,7 @@ namespace PICML
   //
   ECBehavior ECRequirements_Impl::get_ECBehavior (void) const
   {
-    return this->children <ECBehavior> ().item ();
+    return this->children <ECBehavior> ().first ();
   }
 
   //

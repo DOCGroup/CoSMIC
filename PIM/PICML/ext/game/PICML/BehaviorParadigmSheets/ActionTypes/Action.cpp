@@ -57,7 +57,9 @@ namespace PICML
   //
   ActionType Action_Impl::get_ActionType (void) const
   {
-    return this->children <ActionType> ().item ();
+	  Model_Impl m;
+	  m.children<ActionType> ().first ();
+    return this->children <ActionType> ().first ();
   }
 }
 

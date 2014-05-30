@@ -78,7 +78,7 @@ namespace PICML
   //
   LookupKey ComponentFactory_Impl::get_LookupKey (void) const
   {
-    return this->children <LookupKey> ().item ();
+    return this->children <LookupKey> ().first ();
   }
 
   //

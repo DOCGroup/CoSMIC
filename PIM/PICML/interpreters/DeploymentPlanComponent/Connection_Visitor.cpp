@@ -41,10 +41,10 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   std::string s = inst.name ();
 
   // Visit the event sources.
-  Udm::visit_all <PICML::OutEventPortInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::OutEventPortInstance> (inst, *this);
 
   // Visit all the receptacles.
-  Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPortInstance> (inst, *this);
 }
 
 //
@@ -71,21 +71,14 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
   this->name_ = source.getPath (".", false, true, "name", true);
 
   std::set <PICML::SendsTo> sends = source.dstSendsTo ();
-  std::for_each (sends.begin (),
-                 sends.end (),
-                 boost::bind (&PICML::SendsTo::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &send :sends)
+	  send.Accept(*this);
 
   // Lastly, visit the delegation connections.
   std::set <PICML::EventSourceDelegate>
     delegates = source.dstEventSourceDelegate ();
-
-  std::for_each (delegates.begin (),
-                 delegates.end (),
-                 boost::bind (&PICML::EventSourceDelegate::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
 
   // We can release this endpoint now.
   this->endpoint_->release ();
@@ -118,22 +111,14 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
 
   // Visit all the connections.
   std::set <PICML::Invoke> invokes = receptacle.dstinvoke ();
-
-  std::for_each (invokes.begin (),
-                 invokes.end (),
-                 boost::bind (&PICML::Invoke::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &invoke :invokes)
+	  invoke.Accept(*this);
 
   // Lastly, visit the delegation connections.
   std::set <PICML::ReceptacleDelegate>
     delegates = receptacle.srcReceptacleDelegate ();
-
-  std::for_each (delegates.begin (),
-                 delegates.end (),
-                 boost::bind (&PICML::ReceptacleDelegate::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
 
   // We can release this endpoint now.
   this->endpoint_->release ();
@@ -265,12 +250,8 @@ void Connection_Visitor::
 Visit_RequiredRequestPortDelegate (const PICML::RequiredRequestPortDelegate & facet)
 {
   std::set <PICML::Invoke> invokes = facet.dstinvoke ();
-
-  std::for_each (invokes.begin (),
-                 invokes.end (),
-                 boost::bind (&PICML::Invoke::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &invoke :invokes)
+	  invoke.Accept(*this);
 }
 
 //
@@ -297,11 +278,8 @@ void Connection_Visitor::
 Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & facet)
 {
   std::set <PICML::FacetDelegate> delegates = facet.dstFacetDelegate ();
-  std::for_each (delegates.begin (),
-                 delegates.end (),
-                 boost::bind (&PICML::FacetDelegate::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
 }
 
 //
@@ -325,13 +303,10 @@ Visit_EventSourceDelegate (const PICML::EventSourceDelegate & del)
 void Connection_Visitor::
 Visit_OutEventPortDelegate (const PICML::OutEventPortDelegate & facet)
 {
-  std::set <PICML::SendsTo> st = facet.dstSendsTo();
+  std::set <PICML::SendsTo> sends = facet.dstSendsTo();
+  for(auto &send :sends)
+	  send.Accept(*this);
 
-  std::for_each (st.begin (),
-                 st.end (),
-                 boost::bind (&PICML::SendsTo::Accept,
-                              _1,
-                              boost::ref (*this)));
 }
 
 //
@@ -356,12 +331,9 @@ void Connection_Visitor::
 Visit_InEventPortDelegate (const PICML::InEventPortDelegate & facet)
 {
   std::set <PICML::EventSinkDelegate> delegates = facet.dstEventSinkDelegate ();
-
-  std::for_each (delegates.begin (),
-                 delegates.end (),
-                 boost::bind (&PICML::EventSinkDelegate::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto &delegate :delegates)
+	  delegate.Accept(*this);
+ 
 }
 
 //

@@ -68,7 +68,7 @@ namespace PICML
   //
   DataType SatisfierProperty_Impl::get_DataType (void) const
   {
-    return this->children <DataType> ().item ();
+    return this->children <DataType> ().first ();
   }
 }
 

@@ -74,7 +74,7 @@ namespace PICML
   //
   ComponentPackage PackageContainer_Impl::get_ComponentPackage (void) const
   {
-    return this->children <ComponentPackage> ().item ();
+    return this->children <ComponentPackage> ().first ();
   }
 
   //
@@ -90,7 +90,7 @@ namespace PICML
   //
   ComponentRef PackageContainer_Impl::get_ComponentRef (void) const
   {
-    return this->children <ComponentRef> ().item ();
+    return this->children <ComponentRef> ().first ();
   }
 
   //
@@ -106,7 +106,7 @@ namespace PICML
   //
   PackageInterface PackageContainer_Impl::get_PackageInterface (void) const
   {
-    return this->children <PackageInterface> ().item ();
+    return this->children <PackageInterface> ().first ();
   }
 
   //

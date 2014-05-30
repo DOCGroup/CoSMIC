@@ -124,7 +124,7 @@ namespace PICML
   //
   AttributeMember ReadonlyAttribute_Impl::get_AttributeMember (void) const
   {
-    return this->children <AttributeMember> ().item ();
+    return this->children <AttributeMember> ().first ();
   }
 
   //

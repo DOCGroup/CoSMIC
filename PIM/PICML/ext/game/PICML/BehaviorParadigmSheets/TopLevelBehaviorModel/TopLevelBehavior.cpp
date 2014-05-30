@@ -36,7 +36,7 @@ namespace PICML
   //
   Environment TopLevelBehavior_Impl::get_Environment (void) const
   {
-    return this->children <Environment> ().item ();
+    return this->children <Environment> ().first ();
   }
 
   //

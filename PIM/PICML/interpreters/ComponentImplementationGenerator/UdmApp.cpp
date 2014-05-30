@@ -108,8 +108,8 @@ UdmMain (Udm::DataNetwork * p_backend,
   // Make sure the target implementation folder exists.
   PICML::ComponentImplementations impl_folder;
 
-  if (Udm::create_if_not (root_folder, impl_folder,
-      Udm::contains (boost::bind (std::equal_to <std::string> (),
+  if (CoSMIC::Udm::create_if_not (root_folder, impl_folder,
+      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
                      DEFAULT_COMPONENT_IMPLENTATIONS_NAME,
                      boost::bind (&PICML::ComponentImplementations::name, _1)))))
   {
@@ -119,8 +119,8 @@ UdmMain (Udm::DataNetwork * p_backend,
   // Make sure the target implementation artifact's folder exists.
   PICML::ImplementationArtifacts artifact_folder;
 
-  if (Udm::create_if_not (root_folder, artifact_folder,
-      Udm::contains (boost::bind (std::equal_to <std::string> (),
+  if (CoSMIC::Udm::create_if_not (root_folder, artifact_folder,
+      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
                      DEFAULT_IMPLENTATION_ARTIFACTS_NAME,
                      boost::bind (&PICML::ImplementationArtifacts::name, _1)))))
   {

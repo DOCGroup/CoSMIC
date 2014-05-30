@@ -102,7 +102,7 @@ namespace PICML
   //
   ConnectorImplementationType ConnectorInstance_Impl::get_ConnectorImplementationType (void) const
   {
-    return this->children <ConnectorImplementationType> ().item ();
+    return this->children <ConnectorImplementationType> ().first ();
   }
 
   //

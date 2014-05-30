@@ -3,18 +3,18 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 7.00.0500 */
-/* at Wed Feb 12 17:11:27 2014
+ /* File created by MIDL compiler version 8.00.0595 */
+/* at Thu May 29 20:38:57 2014
  */
-/* Compiler settings for .\IDL_Generator_Component.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run)
+/* Compiler settings for IDL_Generator_Component.idl:
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0595 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
          __declspec(uuid()), __declspec(selectany), __declspec(novtable)
          DECLSPEC_UUID(), MIDL_INTERFACE()
 */
-//@@MIDL_FILE_HEADING(  )
+/* @@MIDL_FILE_HEADING(  ) */
 
 #pragma warning( disable: 4049 )  /* more than 64k source lines */
 
@@ -48,156 +48,182 @@
 #ifndef __IMgaDataSource_FWD_DEFINED__
 #define __IMgaDataSource_FWD_DEFINED__
 typedef interface IMgaDataSource IMgaDataSource;
+
 #endif 	/* __IMgaDataSource_FWD_DEFINED__ */
 
 
 #ifndef __IGMEOLEApp_FWD_DEFINED__
 #define __IGMEOLEApp_FWD_DEFINED__
 typedef interface IGMEOLEApp IGMEOLEApp;
+
 #endif 	/* __IGMEOLEApp_FWD_DEFINED__ */
 
 
 #ifndef __IGMEOLEIt_FWD_DEFINED__
 #define __IGMEOLEIt_FWD_DEFINED__
 typedef interface IGMEOLEIt IGMEOLEIt;
+
 #endif 	/* __IGMEOLEIt_FWD_DEFINED__ */
 
 
 #ifndef __IGMEOLEModel_FWD_DEFINED__
 #define __IGMEOLEModel_FWD_DEFINED__
 typedef interface IGMEOLEModel IGMEOLEModel;
+
 #endif 	/* __IGMEOLEModel_FWD_DEFINED__ */
 
 
 #ifndef __IGMEOLEAspect_FWD_DEFINED__
 #define __IGMEOLEAspect_FWD_DEFINED__
 typedef interface IGMEOLEAspect IGMEOLEAspect;
+
 #endif 	/* __IGMEOLEAspect_FWD_DEFINED__ */
 
 
 #ifndef __IGMEOLEPanel_FWD_DEFINED__
 #define __IGMEOLEPanel_FWD_DEFINED__
 typedef interface IGMEOLEPanel IGMEOLEPanel;
+
 #endif 	/* __IGMEOLEPanel_FWD_DEFINED__ */
 
 
 #ifndef __IGMEOLEColl_FWD_DEFINED__
 #define __IGMEOLEColl_FWD_DEFINED__
 typedef interface IGMEOLEColl IGMEOLEColl;
+
 #endif 	/* __IGMEOLEColl_FWD_DEFINED__ */
 
 
 #ifndef __IMgaDecorator_FWD_DEFINED__
 #define __IMgaDecorator_FWD_DEFINED__
 typedef interface IMgaDecorator IMgaDecorator;
+
 #endif 	/* __IMgaDecorator_FWD_DEFINED__ */
 
 
 #ifndef __IMgaCommonDecoratorEvents_FWD_DEFINED__
 #define __IMgaCommonDecoratorEvents_FWD_DEFINED__
 typedef interface IMgaCommonDecoratorEvents IMgaCommonDecoratorEvents;
+
 #endif 	/* __IMgaCommonDecoratorEvents_FWD_DEFINED__ */
 
 
 #ifndef __IMgaDecoratorCommon_FWD_DEFINED__
 #define __IMgaDecoratorCommon_FWD_DEFINED__
 typedef interface IMgaDecoratorCommon IMgaDecoratorCommon;
+
 #endif 	/* __IMgaDecoratorCommon_FWD_DEFINED__ */
 
 
 #ifndef __IMgaElementDecoratorEvents_FWD_DEFINED__
 #define __IMgaElementDecoratorEvents_FWD_DEFINED__
 typedef interface IMgaElementDecoratorEvents IMgaElementDecoratorEvents;
+
 #endif 	/* __IMgaElementDecoratorEvents_FWD_DEFINED__ */
 
 
 #ifndef __IMgaElementDecorator_FWD_DEFINED__
 #define __IMgaElementDecorator_FWD_DEFINED__
 typedef interface IMgaElementDecorator IMgaElementDecorator;
+
 #endif 	/* __IMgaElementDecorator_FWD_DEFINED__ */
 
 
 #ifndef __ICoreMetaProject_FWD_DEFINED__
 #define __ICoreMetaProject_FWD_DEFINED__
 typedef interface ICoreMetaProject ICoreMetaProject;
+
 #endif 	/* __ICoreMetaProject_FWD_DEFINED__ */
 
 
 #ifndef __ICoreMetaObject_FWD_DEFINED__
 #define __ICoreMetaObject_FWD_DEFINED__
 typedef interface ICoreMetaObject ICoreMetaObject;
+
 #endif 	/* __ICoreMetaObject_FWD_DEFINED__ */
 
 
 #ifndef __ICoreMetaAttribute_FWD_DEFINED__
 #define __ICoreMetaAttribute_FWD_DEFINED__
 typedef interface ICoreMetaAttribute ICoreMetaAttribute;
+
 #endif 	/* __ICoreMetaAttribute_FWD_DEFINED__ */
 
 
 #ifndef __ICoreStorage_FWD_DEFINED__
 #define __ICoreStorage_FWD_DEFINED__
 typedef interface ICoreStorage ICoreStorage;
+
 #endif 	/* __ICoreStorage_FWD_DEFINED__ */
 
 
 #ifndef __ICoreProject_FWD_DEFINED__
 #define __ICoreProject_FWD_DEFINED__
 typedef interface ICoreProject ICoreProject;
+
 #endif 	/* __ICoreProject_FWD_DEFINED__ */
 
 
 #ifndef __ICoreObject_FWD_DEFINED__
 #define __ICoreObject_FWD_DEFINED__
 typedef interface ICoreObject ICoreObject;
+
 #endif 	/* __ICoreObject_FWD_DEFINED__ */
 
 
 #ifndef __ICoreAttribute_FWD_DEFINED__
 #define __ICoreAttribute_FWD_DEFINED__
 typedef interface ICoreAttribute ICoreAttribute;
+
 #endif 	/* __ICoreAttribute_FWD_DEFINED__ */
 
 
 #ifndef __ICoreTerritory_FWD_DEFINED__
 #define __ICoreTerritory_FWD_DEFINED__
 typedef interface ICoreTerritory ICoreTerritory;
+
 #endif 	/* __ICoreTerritory_FWD_DEFINED__ */
 
 
 #ifndef __ICoreMetaObjects_FWD_DEFINED__
 #define __ICoreMetaObjects_FWD_DEFINED__
 typedef interface ICoreMetaObjects ICoreMetaObjects;
+
 #endif 	/* __ICoreMetaObjects_FWD_DEFINED__ */
 
 
 #ifndef __ICoreMetaAttributes_FWD_DEFINED__
 #define __ICoreMetaAttributes_FWD_DEFINED__
 typedef interface ICoreMetaAttributes ICoreMetaAttributes;
+
 #endif 	/* __ICoreMetaAttributes_FWD_DEFINED__ */
 
 
 #ifndef __ICoreObjects_FWD_DEFINED__
 #define __ICoreObjects_FWD_DEFINED__
 typedef interface ICoreObjects ICoreObjects;
+
 #endif 	/* __ICoreObjects_FWD_DEFINED__ */
 
 
 #ifndef __ICoreAttributes_FWD_DEFINED__
 #define __ICoreAttributes_FWD_DEFINED__
 typedef interface ICoreAttributes ICoreAttributes;
+
 #endif 	/* __ICoreAttributes_FWD_DEFINED__ */
 
 
 #ifndef __IGMEVersionInfo_FWD_DEFINED__
 #define __IGMEVersionInfo_FWD_DEFINED__
 typedef interface IGMEVersionInfo IGMEVersionInfo;
+
 #endif 	/* __IGMEVersionInfo_FWD_DEFINED__ */
 
 
 #ifndef __ICoreDictionaryAttributeValue_FWD_DEFINED__
 #define __ICoreDictionaryAttributeValue_FWD_DEFINED__
 typedef interface ICoreDictionaryAttributeValue ICoreDictionaryAttributeValue;
+
 #endif 	/* __ICoreDictionaryAttributeValue_FWD_DEFINED__ */
 
 
@@ -251,43 +277,48 @@ extern "C++"
 
 typedef 
 enum msgtype_enum
-    {	MSG_NORMAL	= 0,
-	MSG_INFO	= 1,
-	MSG_WARNING	= 2,
-	MSG_ERROR	= 3
+    {
+        MSG_NORMAL	= 0,
+        MSG_INFO	= 1,
+        MSG_WARNING	= 2,
+        MSG_ERROR	= 3
     } 	msgtype_enum;
 
 typedef 
 enum editmode_enum
-    {	MODE_EDIT	= 0,
-	MODE_CONNECT	= 1,
-	MODE_DISCONNECT	= 2,
-	MODE_SET	= 3,
-	MODE_ZOOM	= 4,
-	MODE_VISUALIZE	= 5
+    {
+        MODE_EDIT	= 0,
+        MODE_CONNECT	= 1,
+        MODE_DISCONNECT	= 2,
+        MODE_SET	= 3,
+        MODE_ZOOM	= 4,
+        MODE_VISUALIZE	= 5
     } 	editmode_enum;
 
 typedef 
 enum bar_enum
-    {	BAR_HORIZ	= 0,
-	BAR_VERTI	= 1
+    {
+        BAR_HORIZ	= 0,
+        BAR_VERTI	= 1
     } 	bar_enum;
 
 typedef 
 enum scroll_enum
-    {	SCROL_UP	= 0,
-	SCROL_DOWN	= 1,
-	SCROL_PGUP	= 2,
-	SCROL_PGDN	= 3,
-	SCROL_HOME	= 4,
-	SCROL_END	= 5
+    {
+        SCROL_UP	= 0,
+        SCROL_DOWN	= 1,
+        SCROL_PGUP	= 2,
+        SCROL_PGDN	= 3,
+        SCROL_HOME	= 4,
+        SCROL_END	= 5
     } 	scroll_enum;
 
 typedef 
 enum attribpanel_page
-    {	PAGE_ATTRIB	= 0,
-	PAGE_PREF	= 1,
-	PAGE_PROP	= 2
+    {
+        PAGE_ATTRIB	= 0,
+        PAGE_PREF	= 1,
+        PAGE_PROP	= 2
     } 	attribpanel_page;
 
 
@@ -324,6 +355,7 @@ EXTERN_C const IID IID_IMgaDataSource;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMgaDataSourceVtbl
@@ -333,8 +365,8 @@ EXTERN_C const IID IID_IMgaDataSource;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMgaDataSource * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMgaDataSource * This);
@@ -362,14 +394,22 @@ EXTERN_C const IID IID_IMgaDataSource;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IMgaDataSource * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Data )( 
             IMgaDataSource * This,
@@ -608,6 +648,7 @@ EXTERN_C const IID IID_IGMEOLEApp;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEOLEAppVtbl
@@ -617,8 +658,8 @@ EXTERN_C const IID IID_IGMEOLEApp;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEOLEApp * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEOLEApp * This);
@@ -646,14 +687,22 @@ EXTERN_C const IID IID_IGMEOLEApp;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGMEOLEApp * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_Visible )( 
             IGMEOLEApp * This,
@@ -1325,6 +1374,7 @@ EXTERN_C const IID IID_IGMEOLEIt;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEOLEItVtbl
@@ -1334,8 +1384,8 @@ EXTERN_C const IID IID_IGMEOLEIt;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEOLEIt * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEOLEIt * This);
@@ -1363,14 +1413,22 @@ EXTERN_C const IID IID_IGMEOLEIt;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGMEOLEIt * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Valid )( 
             IGMEOLEIt * This,
@@ -2060,6 +2118,7 @@ EXTERN_C const IID IID_IGMEOLEModel;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEOLEModelVtbl
@@ -2069,8 +2128,8 @@ EXTERN_C const IID IID_IGMEOLEModel;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEOLEModel * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEOLEModel * This);
@@ -2098,14 +2157,22 @@ EXTERN_C const IID IID_IGMEOLEModel;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGMEOLEModel * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_Active )( 
             IGMEOLEModel * This,
@@ -2333,6 +2400,7 @@ EXTERN_C const IID IID_IGMEOLEAspect;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEOLEAspectVtbl
@@ -2342,8 +2410,8 @@ EXTERN_C const IID IID_IGMEOLEAspect;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEOLEAspect * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEOLEAspect * This);
@@ -2371,14 +2439,22 @@ EXTERN_C const IID IID_IGMEOLEAspect;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGMEOLEAspect * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_MgaAspect )( 
             IGMEOLEAspect * This,
@@ -2484,6 +2560,7 @@ EXTERN_C const IID IID_IGMEOLEPanel;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEOLEPanelVtbl
@@ -2493,8 +2570,8 @@ EXTERN_C const IID IID_IGMEOLEPanel;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEOLEPanel * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEOLEPanel * This);
@@ -2522,14 +2599,22 @@ EXTERN_C const IID IID_IGMEOLEPanel;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGMEOLEPanel * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Name )( 
             IGMEOLEPanel * This,
@@ -2649,6 +2734,7 @@ EXTERN_C const IID IID_IGMEOLEColl;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEOLECollVtbl
@@ -2658,8 +2744,8 @@ EXTERN_C const IID IID_IGMEOLEColl;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEOLEColl * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEOLEColl * This);
@@ -2687,14 +2773,22 @@ EXTERN_C const IID IID_IGMEOLEColl;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGMEOLEColl * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Count )( 
             IGMEOLEColl * This,
@@ -2806,15 +2900,16 @@ EXTERN_C const IID IID_IGMEOLEColl;
 
 typedef 
 enum decorator_error
-    {	E_DECORATOR_UNKNOWN_PARAMETER	= 0x80737001,
-	E_DECORATOR_INIT_WITH_NULL	= 0x80737002,
-	E_DECORATOR_UNINITIALIZED	= 0x80737003,
-	E_DECORATOR_LOCISNOTSET	= 0x80737004,
-	E_DECORATOR_PORTNOTFOUND	= 0x80737005,
-	E_DECORATOR_USING_DEPRECATED_FUNCTION	= 0x80737006,
-	E_DECORATOR_NOT_IMPLEMENTED	= 0x80737007,
-	S_DECORATOR_EVENT_HANDLED	= 0x737001,
-	S_DECORATOR_EVENT_NOT_HANDLED	= 0x737002
+    {
+        E_DECORATOR_UNKNOWN_PARAMETER	= 0x80737001,
+        E_DECORATOR_INIT_WITH_NULL	= 0x80737002,
+        E_DECORATOR_UNINITIALIZED	= 0x80737003,
+        E_DECORATOR_LOCISNOTSET	= 0x80737004,
+        E_DECORATOR_PORTNOTFOUND	= 0x80737005,
+        E_DECORATOR_USING_DEPRECATED_FUNCTION	= 0x80737006,
+        E_DECORATOR_NOT_IMPLEMENTED	= 0x80737007,
+        S_DECORATOR_EVENT_HANDLED	= 0x737001,
+        S_DECORATOR_EVENT_NOT_HANDLED	= 0x737002
     } 	decorator_error;
 
 typedef unsigned long feature_code;
@@ -2837,11 +2932,12 @@ typedef unsigned long feature_code;
 
 typedef 
 enum refresh_mode_enum
-    {	RM_NOREFRESH	= 0,
-	RM_REDRAW_SELF	= 1,
-	RM_REGENERATE_SELF	= 2,
-	RM_REGENERATE_PARENT_ALSO	= 3,
-	RM_REGENERATE_ALL_VIEWS	= 4
+    {
+        RM_NOREFRESH	= 0,
+        RM_REDRAW_SELF	= 1,
+        RM_REGENERATE_SELF	= 2,
+        RM_REGENERATE_PARENT_ALSO	= 3,
+        RM_REGENERATE_ALL_VIEWS	= 4
     } 	refresh_mode_enum;
 
 
@@ -2927,6 +3023,7 @@ EXTERN_C const IID IID_IMgaDecorator;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMgaDecoratorVtbl
@@ -2936,8 +3033,8 @@ EXTERN_C const IID IID_IMgaDecorator;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMgaDecorator * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMgaDecorator * This);
@@ -3200,6 +3297,7 @@ EXTERN_C const IID IID_IMgaCommonDecoratorEvents;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMgaCommonDecoratorEventsVtbl
@@ -3209,8 +3307,8 @@ EXTERN_C const IID IID_IMgaCommonDecoratorEvents;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMgaCommonDecoratorEvents * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMgaCommonDecoratorEvents * This);
@@ -3540,6 +3638,7 @@ EXTERN_C const IID IID_IMgaDecoratorCommon;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMgaDecoratorCommonVtbl
@@ -3549,8 +3648,8 @@ EXTERN_C const IID IID_IMgaDecoratorCommon;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMgaDecoratorCommon * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMgaDecoratorCommon * This);
@@ -3983,6 +4082,7 @@ EXTERN_C const IID IID_IMgaElementDecoratorEvents;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMgaElementDecoratorEventsVtbl
@@ -3992,8 +4092,8 @@ EXTERN_C const IID IID_IMgaElementDecoratorEvents;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMgaElementDecoratorEvents * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMgaElementDecoratorEvents * This);
@@ -4288,6 +4388,7 @@ EXTERN_C const IID IID_IMgaElementDecorator;
     public:
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMgaElementDecoratorVtbl
@@ -4297,8 +4398,8 @@ EXTERN_C const IID IID_IMgaElementDecorator;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMgaElementDecorator * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMgaElementDecorator * This);
@@ -4711,36 +4812,39 @@ typedef VARIANT guid_type;
 
 typedef 
 enum locking_enum
-    {	LOCKING_NONE	= 0,
-	LOCKING_READ	= 1,
-	LOCKING_WRITE	= 2,
-	LOCKING_EXCLUSIVE	= 3
+    {
+        LOCKING_NONE	= 0,
+        LOCKING_READ	= 1,
+        LOCKING_WRITE	= 2,
+        LOCKING_EXCLUSIVE	= 3
     } 	locking_enum;
 
 typedef 
 enum valtype_enum
-    {	VALTYPE_NONE	= 0,
-	VALTYPE_COLLECTION	= 1,
-	VALTYPE_POINTER	= 2,
-	VALTYPE_LOCK	= 3,
-	VALTYPE_LONG	= 4,
-	VALTYPE_STRING	= 5,
-	VALTYPE_BINARY	= 6,
-	VALTYPE_REAL	= 7,
-	VALTYPE_DICT	= 8,
-	VALTYPE_MAX	= 8
+    {
+        VALTYPE_NONE	= 0,
+        VALTYPE_COLLECTION	= 1,
+        VALTYPE_POINTER	= 2,
+        VALTYPE_LOCK	= 3,
+        VALTYPE_LONG	= 4,
+        VALTYPE_STRING	= 5,
+        VALTYPE_BINARY	= 6,
+        VALTYPE_REAL	= 7,
+        VALTYPE_DICT	= 8,
+        VALTYPE_MAX	= 8
     } 	valtype_enum;
 
 typedef 
 enum transtype_enum
-    {	TRANSTYPE_NONE	= 0,
-	TRANSTYPE_FIRST	= 1,
-	TRANSTYPE_NESTED	= 2,
-	TRANSTYPE_ANY	= 3,
-	TRANSTYPE_READ	= 4,
-	TRANSTYPE_READFIRST	= 5,
-	TRANSTYPE_READNESTED	= 6,
-	TRANSTYPE_READANY	= 7
+    {
+        TRANSTYPE_NONE	= 0,
+        TRANSTYPE_FIRST	= 1,
+        TRANSTYPE_NESTED	= 2,
+        TRANSTYPE_ANY	= 3,
+        TRANSTYPE_READ	= 4,
+        TRANSTYPE_READFIRST	= 5,
+        TRANSTYPE_READNESTED	= 6,
+        TRANSTYPE_READANY	= 7
     } 	transtype_enum;
 
 
@@ -4800,6 +4904,7 @@ EXTERN_C const IID IID_ICoreMetaProject;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreMetaProjectVtbl
@@ -4809,8 +4914,8 @@ EXTERN_C const IID IID_ICoreMetaProject;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreMetaProject * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreMetaProject * This);
@@ -4838,14 +4943,22 @@ EXTERN_C const IID IID_ICoreMetaProject;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreMetaProject * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_GUID )( 
             ICoreMetaProject * This,
@@ -5022,6 +5135,7 @@ EXTERN_C const IID IID_ICoreMetaObject;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreMetaObjectVtbl
@@ -5031,8 +5145,8 @@ EXTERN_C const IID IID_ICoreMetaObject;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreMetaObject * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreMetaObject * This);
@@ -5060,14 +5174,22 @@ EXTERN_C const IID IID_ICoreMetaObject;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreMetaObject * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Project )( 
             ICoreMetaObject * This,
@@ -5230,6 +5352,7 @@ EXTERN_C const IID IID_ICoreMetaAttribute;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreMetaAttributeVtbl
@@ -5239,8 +5362,8 @@ EXTERN_C const IID IID_ICoreMetaAttribute;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreMetaAttribute * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreMetaAttribute * This);
@@ -5268,14 +5391,22 @@ EXTERN_C const IID IID_ICoreMetaAttribute;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreMetaAttribute * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Object )( 
             ICoreMetaAttribute * This,
@@ -5463,6 +5594,7 @@ EXTERN_C const IID IID_ICoreStorage;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreStorageVtbl
@@ -5472,8 +5604,8 @@ EXTERN_C const IID IID_ICoreStorage;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreStorage * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreStorage * This);
@@ -5501,14 +5633,22 @@ EXTERN_C const IID IID_ICoreStorage;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreStorage * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_MetaProject )( 
             ICoreStorage * This,
@@ -5841,6 +5981,7 @@ EXTERN_C const IID IID_ICoreProject;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreProjectVtbl
@@ -5850,8 +5991,8 @@ EXTERN_C const IID IID_ICoreProject;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreProject * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreProject * This);
@@ -5879,14 +6020,22 @@ EXTERN_C const IID IID_ICoreProject;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreProject * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE *put_Storage )( 
             ICoreProject * This,
@@ -6224,6 +6373,7 @@ EXTERN_C const IID IID_ICoreObject;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreObjectVtbl
@@ -6233,8 +6383,8 @@ EXTERN_C const IID IID_ICoreObject;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreObject * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreObject * This);
@@ -6262,14 +6412,22 @@ EXTERN_C const IID IID_ICoreObject;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreObject * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Project )( 
             ICoreObject * This,
@@ -6507,6 +6665,7 @@ EXTERN_C const IID IID_ICoreAttribute;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreAttributeVtbl
@@ -6516,8 +6675,8 @@ EXTERN_C const IID IID_ICoreAttribute;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreAttribute * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreAttribute * This);
@@ -6545,14 +6704,22 @@ EXTERN_C const IID IID_ICoreAttribute;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreAttribute * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Object )( 
             ICoreAttribute * This,
@@ -6668,6 +6835,7 @@ EXTERN_C const IID IID_ICoreTerritory;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreTerritoryVtbl
@@ -6677,8 +6845,8 @@ EXTERN_C const IID IID_ICoreTerritory;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreTerritory * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreTerritory * This);
@@ -6706,14 +6874,22 @@ EXTERN_C const IID IID_ICoreTerritory;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreTerritory * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Project )( 
             ICoreTerritory * This,
@@ -6828,6 +7004,7 @@ EXTERN_C const IID IID_ICoreMetaObjects;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreMetaObjectsVtbl
@@ -6837,8 +7014,8 @@ EXTERN_C const IID IID_ICoreMetaObjects;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreMetaObjects * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreMetaObjects * This);
@@ -6866,14 +7043,22 @@ EXTERN_C const IID IID_ICoreMetaObjects;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreMetaObjects * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Count )( 
             ICoreMetaObjects * This,
@@ -7046,6 +7231,7 @@ EXTERN_C const IID IID_ICoreMetaAttributes;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreMetaAttributesVtbl
@@ -7055,8 +7241,8 @@ EXTERN_C const IID IID_ICoreMetaAttributes;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreMetaAttributes * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreMetaAttributes * This);
@@ -7084,14 +7270,22 @@ EXTERN_C const IID IID_ICoreMetaAttributes;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreMetaAttributes * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Count )( 
             ICoreMetaAttributes * This,
@@ -7264,6 +7458,7 @@ EXTERN_C const IID IID_ICoreObjects;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreObjectsVtbl
@@ -7273,8 +7468,8 @@ EXTERN_C const IID IID_ICoreObjects;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreObjects * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreObjects * This);
@@ -7302,14 +7497,22 @@ EXTERN_C const IID IID_ICoreObjects;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreObjects * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Count )( 
             ICoreObjects * This,
@@ -7482,6 +7685,7 @@ EXTERN_C const IID IID_ICoreAttributes;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreAttributesVtbl
@@ -7491,8 +7695,8 @@ EXTERN_C const IID IID_ICoreAttributes;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreAttributes * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreAttributes * This);
@@ -7520,14 +7724,22 @@ EXTERN_C const IID IID_ICoreAttributes;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreAttributes * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Count )( 
             ICoreAttributes * This,
@@ -7651,9 +7863,10 @@ template<> struct ::TypeName_MgaElem2Coll<ICoreAttribute>
 #endif
 typedef 
 enum GMEInterfaceVersion_enum
-    {	GMEInterfaceVersion_None	= 0,
-	GMEInterfaceVersion_Legacy	= 4,
-	GMEInterfaceVersion_Current	= 0x200e6
+    {
+        GMEInterfaceVersion_None	= 0,
+        GMEInterfaceVersion_Legacy	= 4,
+        GMEInterfaceVersion_Current	= 0x200e6
     } 	GMEInterfaceVersion_enum;
 
 #define GMEInterfaceVersion GMEInterfaceVersion_enum
@@ -7682,6 +7895,7 @@ EXTERN_C const IID IID_IGMEVersionInfo;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IGMEVersionInfoVtbl
@@ -7691,8 +7905,8 @@ EXTERN_C const IID IID_IGMEVersionInfo;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGMEVersionInfo * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGMEVersionInfo * This);
@@ -7778,6 +7992,7 @@ EXTERN_C const IID IID_ICoreDictionaryAttributeValue;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ICoreDictionaryAttributeValueVtbl
@@ -7787,8 +8002,8 @@ EXTERN_C const IID IID_ICoreDictionaryAttributeValue;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ICoreDictionaryAttributeValue * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ICoreDictionaryAttributeValue * This);
@@ -7816,14 +8031,22 @@ EXTERN_C const IID IID_ICoreDictionaryAttributeValue;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ICoreDictionaryAttributeValue * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Value )( 
             ICoreDictionaryAttributeValue * This,
