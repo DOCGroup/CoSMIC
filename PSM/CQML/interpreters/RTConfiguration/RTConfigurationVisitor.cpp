@@ -217,10 +217,8 @@ namespace CQML
       ++iter)
     {
       std::set<EnvironmentConf> ecs = (*iter).EnvironmentConf_kind_children ();
-      for (std::set<EnvironmentConf>::iterator eiter = ecs.begin ();
-        eiter != ecs.end ();
-        ++eiter)
-        (*eiter).Accept (*this);
+	  for(auto ec : ecs)
+		  ec.Accept(*this);
     }
   }
 
@@ -243,12 +241,9 @@ namespace CQML
 
     std::set<RealTimeConfiguration> rts = assembly.RealTimeConfiguration_kind_children ();
 
-    for (std::set<RealTimeConfiguration>::iterator rtsiter = rts.begin ();
-       rtsiter != rts.end ();
-       ++rtsiter)
-    {
-      (*rtsiter).Accept (*this);
-    }
+	  
+	for(auto rtsiter : rts)
+		rtsiter.Accept(*this);
 
     this->pop ();
 

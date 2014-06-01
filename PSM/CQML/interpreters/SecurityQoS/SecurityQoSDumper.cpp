@@ -105,12 +105,8 @@ namespace CQML
 
             Auto_DOM dom (*this, "security-policy");
             dom.curr()->setAttribute (GAME::Xml::String("policy-name"), GAME::Xml::String (std::string (policy.name ())));
-            for (RuleSet::iterator rule_itr=rules_set.begin();
-                  rule_itr != rules_set.end();
-                  ++rule_itr)
-              {
-                generateRule (*rule_itr);
-              }
+			for(auto rule_itr : rules_set)
+				generateRule(rule_itr);
           }
         this->dumpDocument();
       }

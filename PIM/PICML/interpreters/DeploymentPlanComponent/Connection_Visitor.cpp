@@ -1,5 +1,4 @@
-// $Id$ change only for test new branch
-
+// $Id$ 
 #include "Connection_Visitor.h"
 #include "game/xml/String.h"
 
@@ -50,14 +49,18 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
 //
 // Visit_OutEventPort
 //
+void test(PICML::Visitor *v)
+{
+	;
+}
 void Connection_Visitor::
-Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
+Visit_OutEventPortInstance ( PICML::OutEventPortInstance & source)
 {
   PICML::ComponentInstance inst = source.ComponentInstance_parent ();
   const std::string uuid = std::string ("_") + std::string (inst.UUID ());
   PICML::OutEventPort port = source.ref ();
   const char * kind = port.single_destination () ? "EventEmitter" : "EventPublisher";
-
+				
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
   this->endpoint_ = this->doc_->createElement (String ("internalEndpoint"));
@@ -71,13 +74,13 @@ Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
   this->name_ = source.getPath (".", false, true, "name", true);
 
   std::set <PICML::SendsTo> sends = source.dstSendsTo ();
-  for(auto &send :sends)
-	  send.Accept(*this);
+  for(auto send :sends)
+	send.Accept(*this);
 
   // Lastly, visit the delegation connections.
   std::set <PICML::EventSourceDelegate>
     delegates = source.dstEventSourceDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate :delegates)
 	  delegate.Accept(*this);
 
   // We can release this endpoint now.
@@ -111,13 +114,13 @@ Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance & re
 
   // Visit all the connections.
   std::set <PICML::Invoke> invokes = receptacle.dstinvoke ();
-  for(auto &invoke :invokes)
+  for(auto invoke :invokes)
 	  invoke.Accept(*this);
 
   // Lastly, visit the delegation connections.
   std::set <PICML::ReceptacleDelegate>
     delegates = receptacle.srcReceptacleDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate :delegates)
 	  delegate.Accept(*this);
 
   // We can release this endpoint now.
@@ -250,7 +253,7 @@ void Connection_Visitor::
 Visit_RequiredRequestPortDelegate (const PICML::RequiredRequestPortDelegate & facet)
 {
   std::set <PICML::Invoke> invokes = facet.dstinvoke ();
-  for(auto &invoke :invokes)
+  for(auto invoke :invokes)
 	  invoke.Accept(*this);
 }
 
@@ -278,7 +281,7 @@ void Connection_Visitor::
 Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & facet)
 {
   std::set <PICML::FacetDelegate> delegates = facet.dstFacetDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate :delegates)
 	  delegate.Accept(*this);
 }
 
@@ -304,7 +307,7 @@ void Connection_Visitor::
 Visit_OutEventPortDelegate (const PICML::OutEventPortDelegate & facet)
 {
   std::set <PICML::SendsTo> sends = facet.dstSendsTo();
-  for(auto &send :sends)
+  for(auto send :sends)
 	  send.Accept(*this);
 
 }
@@ -331,7 +334,7 @@ void Connection_Visitor::
 Visit_InEventPortDelegate (const PICML::InEventPortDelegate & facet)
 {
   std::set <PICML::EventSinkDelegate> delegates = facet.dstEventSinkDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate :delegates)
 	  delegate.Accept(*this);
  
 }

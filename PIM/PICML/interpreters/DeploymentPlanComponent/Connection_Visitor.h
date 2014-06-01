@@ -40,7 +40,7 @@ public:
 
   virtual void Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance &);
 
-  virtual void Visit_OutEventPortInstance (const PICML::OutEventPortInstance & );
+  virtual void Visit_OutEventPortInstance ( PICML::OutEventPortInstance & );
 
   virtual void Visit_InEventPortInstance (const PICML::InEventPortInstance & sink);
 

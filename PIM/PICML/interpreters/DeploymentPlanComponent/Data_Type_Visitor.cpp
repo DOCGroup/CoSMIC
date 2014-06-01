@@ -173,11 +173,8 @@ void PICML_Data_Type_Visitor::Visit_Enum (const PICML::Enum & e)
   //std::set <PICML::EnumValue, sort_type> values = e.EnumValue_children_sorted (sort_type ());
 
   std::swap (enum_element, this->curr_);
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&PICML::EnumValue::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto sorted_value : sorted_values)
+	  sorted_value.Accept(*this);
 
   std::swap (enum_element, this->curr_);
 }
@@ -241,17 +238,12 @@ void PICML_Data_Type_Visitor::Visit_Aggregate (const PICML::Aggregate & aggr)
   sorted_values_t sorted_values (sorter);
 
   std::vector <PICML::Member> members = aggr.Member_children ();
-  std::for_each (members.begin (),
-                 members.end (),
-                 boost::bind (&sorted_values_t::insert,
-                              boost::ref (sorted_values),
-                              _1));
+  for(auto & member : members)
+	  sorted_values.insert(member);
 
   std::swap (aggregate, this->curr_);
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&PICML::Member::Accept, _1, boost::ref (*this)));
-
+  for(auto sorted_value : sorted_values)
+	  sorted_value.Accept(*this);
   std::swap (aggregate, this->curr_);
 }
 

@@ -176,11 +176,8 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
   this->create_simple_content (this->curr_resource_, "name", "Node Address");
   this->create_simple_content (this->curr_resource_, "resourceType", "edu.vanderbilt.dre.DAnCE.NodeAddress");
 
-  std::for_each (mapping.begin (),
-                 mapping.end (),
-                 boost::bind (&PICML::PropertyMapping::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto m:mapping)
+	  m.Accept(*this);
 }
 
 

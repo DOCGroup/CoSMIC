@@ -109,11 +109,8 @@ Visit_RootFolder (const PICML::RootFolder & rf)
   typedef std::set <PICML::DeploymentPlans> DeploymentPlans_Set;
   DeploymentPlans_Set folders = rf.DeploymentPlans_kind_children ();
 
-  std::for_each (folders.begin (),
-                 folders.end (),
-                 boost::bind (&DeploymentPlans_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto folder : folders)
+	  folder.Accept(*this);
 }
 
 //
@@ -125,11 +122,8 @@ Visit_DeploymentPlans (const PICML::DeploymentPlans & dps)
   typedef std::set <PICML::DeploymentPlan> DeploymentPlan_Set;
   DeploymentPlan_Set plans = dps.DeploymentPlan_kind_children ();
 
-  std::for_each (plans.begin (),
-                 plans.end (),
-                 boost::bind (&DeploymentPlan_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto plan : plans)
+	  plan.Accept(*this);
 }
 
 //
@@ -166,11 +160,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   // all the deployed instances. This will make a life a little less
   // hectic in the long run.
   std::vector <PICML::NodeReference> nodes = plan.NodeReference_children ();
-  std::for_each (nodes.begin (),
-                 nodes.end (),
-                 boost::bind (&PICML::NodeReference::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto node : nodes)
+	  node.Accept(*this);
 
   // Finally, get all the connections. To simplify this problem, we
   // can look at the outbound connections and if there is a connection
@@ -203,66 +194,37 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   // so the deployment will be valid.
 
   // <implementation>
-  std::for_each (this->impls_.begin (),
-                 this->impls_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              boost::bind (&std::map <PICML::Implemenation,
-                                                      xercesc::DOMElement *>::
-                                                      value_type::second, _1)));
+  for(auto & imp : impls_)
+	  root.ptr ()->appendChild (imp.second);
 
 
   if (this->config_.has_locality_manager_)
     Locality_Manager::generate_default_implementation (root);
 
   // <instance>
-  std::for_each (this->insts_.begin (),
-                 this->insts_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              boost::bind (&std::map <PICML::ComponentInstance,
-                                                      xercesc::DOMElement *>::
-                                                      value_type::second, _1)));
+  for(auto & insts : insts_)
+	  root.ptr ()->appendChild (insts.second);
 
-  std::for_each (this->connector_insts_.begin (),
-                 this->connector_insts_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              boost::bind (&std::map <std::string,
-                                                      xercesc::DOMElement *>::
-                                                      value_type::second, _1)));
+  for(auto & conn_insts : connector_insts_)
+	  root.ptr ()->appendChild (conn_insts.second);
 
-  std::for_each (this->locality_insts_.begin (),
-                 this->locality_insts_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              _1));
+  for(auto & loc_insts : locality_insts_)
+	  root.ptr ()->appendChild (loc_insts);
 
   // <connection>
-  std::for_each (this->conns_.begin (),
-                 this->conns_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              _1));
+  for(auto & conn : conns_)
+	  root.ptr ()->appendChild (conn);
 
   // <artifact>
-  std::for_each (this->artifacts_.begin (),
-                 this->artifacts_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              boost::bind (&std::map <PICML::ImplementationArtifact,
-                                                      xercesc::DOMElement *>::
-                                                      value_type::second, _1)));
+  for(auto & art : artifacts_)
+	  root.ptr ()->appendChild (art.second);
 
   if (this->config_.has_locality_manager_)
     Locality_Manager::generate_default_artifacts (root);
 
   // <localityConstraint>
-  std::for_each (this->locality_.begin (),
-                 this->locality_.end (),
-                 boost::bind (&xercesc::DOMElement::appendChild,
-                              root.ptr (),
-                              boost::bind (&locality_t::value_type::second, _1)));
+  for(auto & loc : locality_)
+	  root.ptr ()->appendChild (loc.second);
 
   // Open the XML file for writing.
   std::ostringstream filename;
@@ -311,11 +273,9 @@ Visit_NodeReference (const PICML::NodeReference & noderef)
   this->current_node_ = noderef;
   std::set <PICML::InstanceMapping> mapping = noderef.srcInstanceMapping () ;
 
-  std::for_each (mapping.begin (),
-                 mapping.end (),
-                 boost::bind (&PICML::InstanceMapping::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto map : mapping)
+	  map.Accept(*this);
+
 }
 
 //
@@ -366,11 +326,8 @@ Visit_CollocationGroup (const PICML::CollocationGroup & group)
     this->param_parent_ = instance;
 
     std::set <PICML::CollocationGroupProperty> props = group.srcCollocationGroupProperty ();
-    std::for_each (props.begin (),
-                   props.end (),
-                   boost::bind (&PICML::CollocationGroupProperty::Accept,
-                                _1,
-                                boost::ref (*this)));
+	for(auto prop : props)
+		prop.Accept(*this);
 
     // Save this element to the locality instances.
     this->locality_insts_.insert (instance);
@@ -458,11 +415,8 @@ Visit_ComponentInstance (const PICML::ComponentInstance & inst)
   CoSMIC::Udm::visit_all <PICML::AttributeInstance> (inst, *this);
 
   std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
-  std::for_each (configs.begin (),
-                 configs.end (),
-                 boost::bind (&PICML::AssemblyConfigProperty::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto conf : configs)
+	  conf.Accept(*this);
 
   //@deployedResource
   //@deployedSharedResource
@@ -506,11 +460,8 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   this->param_parent_ = this->curr_instance_;
 
   std::set <PICML::ConfigProperty> configs = impl.dstConfigProperty ();
-  std::for_each (configs.begin (),
-                 configs.end (),
-                 boost::bind (&PICML::ConfigProperty::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto conf : configs)
+	  conf.Accept(*this);
 
   // There is no need to continue if we have already seen this
   // implementation before.
@@ -531,11 +482,8 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   // The next part of this element is the artifacts. Therefore, visit
   // all the primary artifacts for this component.
   std::set <PICML::MonolithprimaryArtifact> mpas = impl.dstMonolithprimaryArtifact ();
-  std::for_each (mpas.begin (),
-                 mpas.end (),
-                 boost::bind (&PICML::MonolithprimaryArtifact::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto mpa : mpas)
+	  mpa.Accept(*this);
 
   // Set the property parameter's parent.
   this->param_parent_ = this->curr_impl_;
@@ -559,11 +507,8 @@ Visit_MonolithicImplementationBase (const PICML::MonolithicImplementationBase & 
   // parameters for this implementation.
   std::set <PICML::MonolithExecParameter> mexecs = impl.dstMonolithExecParameter ();
 
-  std::for_each (mexecs.begin (),
-                 mexecs.end (),
-                 boost::bind (&PICML::MonolithExecParameter::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto mexec : mexecs)
+	  mexec.Accept(*this);
 
   // @deployRequirement
 }
@@ -632,19 +577,13 @@ Visit_ImplementationArtifact (const PICML::ImplementationArtifact & artifact)
   this->param_parent_ = this->curr_artifact_;
 
   std::set <PICML::ArtifactExecParameter> params = artifact.dstArtifactExecParameter ();
-  std::for_each (params.begin (),
-                 params.end (),
-                 boost::bind (&PICML::ArtifactExecParameter::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto param : params)
+	  param.Accept(*this);
 
   // Finally, make sure we include all the artifact dependencies.
   std::set <PICML::ArtifactDependency> dependencies = artifact.srcArtifactDependency ();
-  std::for_each (dependencies.begin (),
-                 dependencies.end (),
-                 boost::bind (&PICML::ArtifactDependency::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto dependency : dependencies)
+	  dependency.Accept(*this);
 
   // @deployRequirement
   // @deployedResource
@@ -743,11 +682,8 @@ deploy_connector_fragment (const PICML::ConnectorInstance & inst,
   CoSMIC::Udm::visit_all <PICML::AttributeInstance> (inst, *this);
 
   std::set <PICML::AssemblyConfigProperty> configs = inst.dstAssemblyConfigProperty ();
-  std::for_each (configs.begin (),
-                 configs.end (),
-                 boost::bind (&PICML::AssemblyConfigProperty::Accept,
-                              _1,
-                              boost::ref (*this)));
+  for(auto config : configs)
+	  config.Accept(*this);
 }
 
 //
@@ -997,18 +933,12 @@ Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
   // Visit all the component instances in this assembly.
   std::vector <PICML::ComponentInstance> insts = assembly.ComponentInstance_children ();
 
-  std::for_each (insts.begin (),
-                 insts.end (),
-                 boost::bind (&PICML::ComponentInstance::Accept,
-                               _1,
-                               boost::ref (*this)));
+  for(auto inst : insts)
+	  inst.Accept(*this);
 
   // Visit all the component assemblies in this assembly.
   std::vector <PICML::ComponentAssembly> assemblies = assembly.ComponentAssembly_children ();
 
-  std::for_each (assemblies.begin (),
-                 assemblies.end (),
-                 boost::bind (&PICML::ComponentAssembly::Accept,
-                               _1,
-                               boost::ref (*this)));
+  for(auto assembly : assemblies)
+	  assembly.Accept(*this);
 }

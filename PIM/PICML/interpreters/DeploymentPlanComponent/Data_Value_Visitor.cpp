@@ -256,19 +256,12 @@ Visit_DataValueContainer (const PICML::DataValueContainer & c)
     sorted_values_t sorted_values (sorter);
 
     std::vector <PICML::DataValueBase> values = c.DataValueBase_kind_children ();
-    std::for_each (values.begin (),
-                   values.end (),
-                   boost::bind (&sorted_values_t::insert,
-                                boost::ref (sorted_values),
-                                _1));
+	for(auto & value : values)
+		sorted_values.insert(value);
 
     // Visit each member of the container.
-    std::for_each (sorted_values.begin (),
-                   sorted_values.end (),
-                   boost::bind (&DataValueBase_Dispatcher::dispatch,
-                                boost::ref (this->dvb_dispatcher_),
-                                boost::ref (*this),
-                                _1));
+	for(auto & s_value : sorted_values)
+		this->dvb_dispatcher_.dispatch(*this, s_value);
   }
 }
 
@@ -307,17 +300,10 @@ void PICML_Data_Value_Visitor::Visit_ComplexProperty (const PICML::ComplexProper
   sorted_values_t sorted_values (sorter);
 
   std::vector <PICML::DataValueBase> values = prop.DataValueBase_kind_children ();
-  std::for_each (values.begin (),
-                 values.end (),
-                 boost::bind (&sorted_values_t::insert,
-                              boost::ref (sorted_values),
-                              _1));
+  for(auto & value : values)
+	  sorted_values.insert(value);
 
   // Visit each member of the container.
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&DataValueBase_Dispatcher::dispatch,
-                              boost::ref (this->dvb_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  for(auto & value : values)
+	  this->dvb_dispatcher_.dispatch(*this, value);
 }

@@ -55,7 +55,7 @@ public:
   void Visit_ProvidedRequestPortDelegate (const PICML::ProvidedRequestPortDelegate & inst)
   {
     std::set <PICML::FacetDelegate> delegates = inst.dstFacetDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate : delegates)
 	  delegate.Accept(*this);
   }
 
@@ -332,12 +332,12 @@ void Connector_Visitor::
 Visit_RequiredRequestPortEnd (const PICML::RequiredRequestPortEnd & end)
 {
   std::set <PICML::ConnectorToReceptacle> conns = end.dstConnectorToReceptacle ();
-  for(auto &conn :conns)
+  for(auto conn : conns)
 	  conn.Accept(*this);
 
   // We need to visit the receptacle delegates.
   std::set <PICML::ReceptacleDelegate> delegates = end.srcReceptacleDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate : delegates)
 	  delegate.Accept(*this);
 }
 
@@ -348,11 +348,11 @@ void Connector_Visitor::
 Visit_ProvidedRequestPortEnd (const PICML::ProvidedRequestPortEnd & end)
 {
   std::set <PICML::ConnectorToFacet> conns = end.srcConnectorToFacet ();
-  for(auto &conn :conns)
+  for(auto conn : conns)
 	  conn.Accept(*this);
   // We need to visit the facet delegates.
   std::set <PICML::FacetDelegate> delegates = end.srcFacetDelegate ();
-  for(auto &delegate :delegates)
+  for(auto delegate : delegates)
 	  delegate.Accept(*this);
 }
 
@@ -385,7 +385,7 @@ Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle & conn)
     ProvidedRequestPortInstance_Collector facet_gatherer (facets);
 
     std::set <PICML::ConnectorToFacet> conns = inst.dstConnectorToFacet ();
-	for(auto &conn :conns)
+	for(auto conn : conns)
 		conn.Accept(*this);
 
     std::set <PICML::ProvidedRequestPortInstance>::iterator
