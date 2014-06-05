@@ -28,7 +28,7 @@ namespace PICML
   //
   // get_Workers
   //
-  ::GAME::Mga::Iterator <Worker> WorkerPackageBase_Impl::get_Workers (void) const
+  ::GAME::Mga::Collection_T <Worker> WorkerPackageBase_Impl::get_Workers (void) const
   {
     return this->children <Worker> ();
   }

@@ -53,9 +53,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static DurabilityQosPolicy _create (const TopicQos_in parent);
-    static DurabilityQosPolicy _create (const DataWriterQos_in parent);
     static DurabilityQosPolicy _create (const DataReaderQos_in parent);
+    static DurabilityQosPolicy _create (const DataWriterQos_in parent);
+    static DurabilityQosPolicy _create (const TopicQos_in parent);
     static DurabilityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -70,6 +70,15 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -88,14 +97,14 @@ namespace DQML
      */
     ///@{
 
+    /// Get the dst dw_durqos_Connection connection.
+    size_t dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
+
     /// Get the dst dr_durqos_Connection connection.
     size_t dst_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
 
     /// Get the dst topic_durqos_Connection connection.
     size_t dst_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
-
-    /// Get the dst dw_durqos_Connection connection.
-    size_t dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
     ///@}
   };
 }

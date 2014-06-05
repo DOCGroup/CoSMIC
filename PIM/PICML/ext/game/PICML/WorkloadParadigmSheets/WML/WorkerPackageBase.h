@@ -64,7 +64,7 @@ namespace PICML
      */
     ///@{
     size_t get_Workers (std::vector <Worker> & items) const;
-    ::GAME::Mga::Iterator <Worker> get_Workers (void) const;
+    ::GAME::Mga::Collection_T <Worker> get_Workers (void) const;
 
     ///@}
   };

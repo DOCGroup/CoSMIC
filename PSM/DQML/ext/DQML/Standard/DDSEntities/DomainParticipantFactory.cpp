@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/Main/dpf_dp_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -36,18 +36,13 @@ namespace DQML
   //
   void DomainParticipantFactory_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_DomainParticipantFactory (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_DomainParticipantFactory (this);
+    else
       v->visit_Model (this);
-    }
   }
 
   //

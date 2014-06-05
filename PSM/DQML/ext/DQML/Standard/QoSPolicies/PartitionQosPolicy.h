@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static PartitionQosPolicy _create (const PublisherQos_in parent);
     static PartitionQosPolicy _create (const SubscriberQos_in parent);
+    static PartitionQosPolicy _create (const PublisherQos_in parent);
     static PartitionQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -69,6 +69,14 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    SubscriberQos parent_SubscriberQos (void);
+    PublisherQos parent_PublisherQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods

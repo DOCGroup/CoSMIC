@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static LifespanQosPolicy _create (const TopicQos_in parent);
     static LifespanQosPolicy _create (const DataWriterQos_in parent);
+    static LifespanQosPolicy _create (const TopicQos_in parent);
     static LifespanQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -69,6 +69,14 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -87,11 +95,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_lifespan_Connection connection.
-    size_t dst_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
-
     /// Get the dst dw_lifespan_Connection connection.
     size_t dst_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
+
+    /// Get the dst topic_lifespan_Connection connection.
+    size_t dst_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
     ///@}
   };
 }

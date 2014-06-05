@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/SrcEdge.h"
-#include "PICML/PathDiagram/Path.h"
 
 namespace PICML
 {

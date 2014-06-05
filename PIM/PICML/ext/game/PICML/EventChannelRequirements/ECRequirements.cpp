@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/EventChannelRequirements/ECRole.h"
 #include "PICML/EventChannelRequirements/ECBehavior.h"
+#include "PICML/EventChannelRequirements/ECRole.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
@@ -90,7 +90,7 @@ namespace PICML
   //
   // get_ECRoles
   //
-  ::GAME::Mga::Iterator <ECRole> ECRequirements_Impl::get_ECRoles (void) const
+  ::GAME::Mga::Collection_T <ECRole> ECRequirements_Impl::get_ECRoles (void) const
   {
     return this->children <ECRole> ();
   }

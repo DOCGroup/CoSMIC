@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/Main/dp_topic_Connection.h"
-#include "DQML/Standard/Main/dp_pub_Connection.h"
 #include "DQML/Standard/Main/dp_sub_Connection.h"
+#include "DQML/Standard/Main/dp_pub_Connection.h"
 #include "DQML/Standard/Main/dpf_dp_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -40,18 +40,13 @@ namespace DQML
   //
   void DomainParticipant_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_DomainParticipant (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_DomainParticipant (this);
+    else
       v->visit_Model (this);
-    }
   }
 
   //
@@ -63,19 +58,19 @@ namespace DQML
   }
 
   //
-  // src_dp_pub_Connection
-  //
-  size_t DomainParticipant_Impl::src_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const
-  {
-    return this->in_connections <dp_pub_Connection> (items);
-  }
-
-  //
   // src_dp_sub_Connection
   //
   size_t DomainParticipant_Impl::src_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const
   {
     return this->in_connections <dp_sub_Connection> (items);
+  }
+
+  //
+  // src_dp_pub_Connection
+  //
+  size_t DomainParticipant_Impl::src_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const
+  {
+    return this->in_connections <dp_pub_Connection> (items);
   }
 
   //

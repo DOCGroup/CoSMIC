@@ -9,12 +9,12 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 
 namespace PICML
 {

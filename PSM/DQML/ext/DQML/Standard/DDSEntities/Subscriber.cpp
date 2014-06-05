@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/Main/dr_sub_Connection.h"
 #include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -40,18 +40,13 @@ namespace DQML
   //
   void Subscriber_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_Subscriber (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_Subscriber (this);
+    else
       v->visit_Model (this);
-    }
   }
 
   //
@@ -79,19 +74,19 @@ namespace DQML
   }
 
   //
-  // src_sub_part_Connection
-  //
-  size_t Subscriber_Impl::src_sub_part_Connection (std::vector <sub_part_Connection> & items) const
-  {
-    return this->in_connections <sub_part_Connection> (items);
-  }
-
-  //
   // src_sub_entityfactory_Connection
   //
   size_t Subscriber_Impl::src_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
   {
     return this->in_connections <sub_entityfactory_Connection> (items);
+  }
+
+  //
+  // src_sub_part_Connection
+  //
+  size_t Subscriber_Impl::src_sub_part_Connection (std::vector <sub_part_Connection> & items) const
+  {
+    return this->in_connections <sub_part_Connection> (items);
   }
 
   //

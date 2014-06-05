@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/Main/dw_pub_Connection.h"
 #include "DQML/Standard/Main/dp_pub_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
 #include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -40,18 +40,13 @@ namespace DQML
   //
   void Publisher_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_Publisher (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_Publisher (this);
+    else
       v->visit_Model (this);
-    }
   }
 
   //
@@ -60,6 +55,14 @@ namespace DQML
   size_t Publisher_Impl::src_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const
   {
     return this->in_connections <dw_pub_Connection> (items);
+  }
+
+  //
+  // src_pub_entityfactory_Connection
+  //
+  size_t Publisher_Impl::src_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <pub_entityfactory_Connection> (items);
   }
 
   //
@@ -84,14 +87,6 @@ namespace DQML
   size_t Publisher_Impl::src_pub_part_Connection (std::vector <pub_part_Connection> & items) const
   {
     return this->in_connections <pub_part_Connection> (items);
-  }
-
-  //
-  // src_pub_entityfactory_Connection
-  //
-  size_t Publisher_Impl::src_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> (items);
   }
 
   //

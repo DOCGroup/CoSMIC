@@ -53,9 +53,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static LivelinessQosPolicy _create (const TopicQos_in parent);
-    static LivelinessQosPolicy _create (const DataWriterQos_in parent);
     static LivelinessQosPolicy _create (const DataReaderQos_in parent);
+    static LivelinessQosPolicy _create (const DataWriterQos_in parent);
+    static LivelinessQosPolicy _create (const TopicQos_in parent);
     static LivelinessQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -70,6 +70,15 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods

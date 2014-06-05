@@ -67,7 +67,7 @@ namespace PICML
   //
   PackageType TemplatePackageInstance_Impl::get_PackageType (void) const
   {
-    return this->children <PackageType> ().item ();
+    return this->children <PackageType> ().first ();
   }
 
   //
@@ -81,7 +81,7 @@ namespace PICML
   //
   // get_TemplateParameterValues
   //
-  ::GAME::Mga::Iterator <TemplateParameterValue> TemplatePackageInstance_Impl::get_TemplateParameterValues (void) const
+  ::GAME::Mga::Collection_T <TemplateParameterValue> TemplatePackageInstance_Impl::get_TemplateParameterValues (void) const
   {
     return this->children <TemplateParameterValue> ();
   }

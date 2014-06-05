@@ -53,9 +53,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static ReliabilityQosPolicy _create (const TopicQos_in parent);
-    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
     static ReliabilityQosPolicy _create (const DataReaderQos_in parent);
+    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
+    static ReliabilityQosPolicy _create (const TopicQos_in parent);
     static ReliabilityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -70,6 +70,15 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -94,14 +103,14 @@ namespace DQML
      */
     ///@{
 
+    /// Get the dst dw_reliability_Connection connection.
+    size_t dst_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
+
     /// Get the dst dr_reliability_Connection connection.
     size_t dst_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
 
     /// Get the dst topic_reliability_Connection connection.
     size_t dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
-
-    /// Get the dst dw_reliability_Connection connection.
-    size_t dst_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
     ///@}
   };
 }

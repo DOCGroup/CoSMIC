@@ -7,7 +7,6 @@ project (PICML_MPCComponent): picmllib, gme_udm_component {
   libs  += PICML_MPC
 
   Source_Files {
-    Component.rc
   }
 
   Header_Files {
@@ -15,6 +14,7 @@ project (PICML_MPCComponent): picmllib, gme_udm_component {
   }
 
   Resource_Files {
+    Component.rc
     CompIcon.ico
   }
 

@@ -65,14 +65,14 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_Inheritss (std::vector <Inherits> & items) const;
+    ::GAME::Mga::Collection_T <Inherits> get_Inheritss (void) const;
+
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
-    ::GAME::Mga::Iterator <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
+    ::GAME::Mga::Collection_T <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
 
     size_t get_Attributes (std::vector <Attribute> & items) const;
-    ::GAME::Mga::Iterator <Attribute> get_Attributes (void) const;
-
-    size_t get_Inheritss (std::vector <Inherits> & items) const;
-    ::GAME::Mga::Iterator <Inherits> get_Inheritss (void) const;
+    ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
 
     ///@}
   };

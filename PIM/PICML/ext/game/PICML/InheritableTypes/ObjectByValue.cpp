@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -24,22 +24,6 @@ namespace PICML
   const std::string ObjectByValue_Impl::metaname ("ObjectByValue");
 
   //
-  // get_MakeMemberPrivates
-  //
-  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_MakeMemberPrivates
-  //
-  ::GAME::Mga::Iterator <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
-  {
-    return this->children <MakeMemberPrivate> ();
-  }
-
-  //
   // get_Members
   //
   size_t ObjectByValue_Impl::get_Members (std::vector <Member> & items) const
@@ -50,7 +34,7 @@ namespace PICML
   //
   // get_Members
   //
-  ::GAME::Mga::Iterator <Member> ObjectByValue_Impl::get_Members (void) const
+  ::GAME::Mga::Collection_T <Member> ObjectByValue_Impl::get_Members (void) const
   {
     return this->children <Member> ();
   }
@@ -66,9 +50,25 @@ namespace PICML
   //
   // get_ArrayMembers
   //
-  ::GAME::Mga::Iterator <ArrayMember> ObjectByValue_Impl::get_ArrayMembers (void) const
+  ::GAME::Mga::Collection_T <ArrayMember> ObjectByValue_Impl::get_ArrayMembers (void) const
   {
     return this->children <ArrayMember> ();
+  }
+
+  //
+  // get_MakeMemberPrivates
+  //
+  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MakeMemberPrivates
+  //
+  ::GAME::Mga::Collection_T <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
+  {
+    return this->children <MakeMemberPrivate> ();
   }
 
   //
@@ -82,7 +82,7 @@ namespace PICML
   //
   // get_PrivateFlags
   //
-  ::GAME::Mga::Iterator <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
+  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
   {
     return this->children <PrivateFlag> ();
   }
@@ -98,7 +98,7 @@ namespace PICML
   //
   // get_FactoryOperations
   //
-  ::GAME::Mga::Iterator <FactoryOperation> ObjectByValue_Impl::get_FactoryOperations (void) const
+  ::GAME::Mga::Collection_T <FactoryOperation> ObjectByValue_Impl::get_FactoryOperations (void) const
   {
     return this->children <FactoryOperation> ();
   }

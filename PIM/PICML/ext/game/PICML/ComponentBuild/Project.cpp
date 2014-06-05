@@ -9,13 +9,13 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ComponentBuild/ExternalResources.h"
-#include "PICML/ComponentBuild/ExtResourceConn.h"
 #include "PICML/ComponentBuild/MPC.h"
 #include "PICML/ComponentBuild/ComponentLib.h"
-#include "PICML/ComponentBuild/ExecutorProject.h"
-#include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
+#include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ComponentBuild/ExtResourceConn.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -69,9 +69,57 @@ namespace PICML
   //
   // get_ImplementationArtifacts
   //
-  ::GAME::Mga::Iterator <ImplementationArtifact> Project_Impl::get_ImplementationArtifacts (void) const
+  ::GAME::Mga::Collection_T <ImplementationArtifact> Project_Impl::get_ImplementationArtifacts (void) const
   {
     return this->children <ImplementationArtifact> ();
+  }
+
+  //
+  // get_StubProjects
+  //
+  size_t Project_Impl::get_StubProjects (std::vector <StubProject> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_StubProjects
+  //
+  ::GAME::Mga::Collection_T <StubProject> Project_Impl::get_StubProjects (void) const
+  {
+    return this->children <StubProject> ();
+  }
+
+  //
+  // get_ServantProjects
+  //
+  size_t Project_Impl::get_ServantProjects (std::vector <ServantProject> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ServantProjects
+  //
+  ::GAME::Mga::Collection_T <ServantProject> Project_Impl::get_ServantProjects (void) const
+  {
+    return this->children <ServantProject> ();
+  }
+
+  //
+  // get_ExecutorProjects
+  //
+  size_t Project_Impl::get_ExecutorProjects (std::vector <ExecutorProject> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExecutorProjects
+  //
+  ::GAME::Mga::Collection_T <ExecutorProject> Project_Impl::get_ExecutorProjects (void) const
+  {
+    return this->children <ExecutorProject> ();
   }
 
   //
@@ -85,7 +133,7 @@ namespace PICML
   //
   // get_ExternalResourcess
   //
-  ::GAME::Mga::Iterator <ExternalResources> Project_Impl::get_ExternalResourcess (void) const
+  ::GAME::Mga::Collection_T <ExternalResources> Project_Impl::get_ExternalResourcess (void) const
   {
     return this->children <ExternalResources> ();
   }
@@ -101,57 +149,9 @@ namespace PICML
   //
   // get_ExtResourceConns
   //
-  ::GAME::Mga::Iterator <ExtResourceConn> Project_Impl::get_ExtResourceConns (void) const
+  ::GAME::Mga::Collection_T <ExtResourceConn> Project_Impl::get_ExtResourceConns (void) const
   {
     return this->children <ExtResourceConn> ();
-  }
-
-  //
-  // get_ExecutorProjects
-  //
-  size_t Project_Impl::get_ExecutorProjects (std::vector <ExecutorProject> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ExecutorProjects
-  //
-  ::GAME::Mga::Iterator <ExecutorProject> Project_Impl::get_ExecutorProjects (void) const
-  {
-    return this->children <ExecutorProject> ();
-  }
-
-  //
-  // get_ServantProjects
-  //
-  size_t Project_Impl::get_ServantProjects (std::vector <ServantProject> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ServantProjects
-  //
-  ::GAME::Mga::Iterator <ServantProject> Project_Impl::get_ServantProjects (void) const
-  {
-    return this->children <ServantProject> ();
-  }
-
-  //
-  // get_StubProjects
-  //
-  size_t Project_Impl::get_StubProjects (std::vector <StubProject> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_StubProjects
-  //
-  ::GAME::Mga::Iterator <StubProject> Project_Impl::get_StubProjects (void) const
-  {
-    return this->children <StubProject> ();
   }
 }
 

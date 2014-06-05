@@ -63,7 +63,7 @@ namespace PICML
   //
   // get_WorkerFiles
   //
-  ::GAME::Mga::Iterator <WorkerFile> WorkerLibrary_Impl::get_WorkerFiles (void) const
+  ::GAME::Mga::Collection_T <WorkerFile> WorkerLibrary_Impl::get_WorkerFiles (void) const
   {
     return this->children <WorkerFile> ();
   }

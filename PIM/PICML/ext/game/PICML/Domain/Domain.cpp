@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Domain/Targets.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/TargetElements/Node.h"
-#include "PICML/Domain/InterconnectConnection.h"
+#include "PICML/TargetElements/SharedResource.h"
 #include "PICML/TargetElements/Interconnect.h"
-#include "PICML/Domain/BridgeConnection.h"
 #include "PICML/TargetElements/Bridge.h"
 #include "PICML/Domain/Shares.h"
-#include "PICML/TargetElements/SharedResource.h"
-#include "PICML/Domain/Targets.h"
+#include "PICML/Domain/InterconnectConnection.h"
+#include "PICML/Domain/BridgeConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -62,22 +62,6 @@ namespace PICML
   }
 
   //
-  // get_ComplexPropertys
-  //
-  size_t Domain_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Iterator <ComplexProperty> Domain_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
   // get_SimplePropertys
   //
   size_t Domain_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
@@ -88,9 +72,25 @@ namespace PICML
   //
   // get_SimplePropertys
   //
-  ::GAME::Mga::Iterator <SimpleProperty> Domain_Impl::get_SimplePropertys (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> Domain_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t Domain_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> Domain_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 
   //
@@ -104,25 +104,25 @@ namespace PICML
   //
   // get_Nodes
   //
-  ::GAME::Mga::Iterator <Node> Domain_Impl::get_Nodes (void) const
+  ::GAME::Mga::Collection_T <Node> Domain_Impl::get_Nodes (void) const
   {
     return this->children <Node> ();
   }
 
   //
-  // get_InterconnectConnections
+  // get_SharedResources
   //
-  size_t Domain_Impl::get_InterconnectConnections (std::vector <InterconnectConnection> & items) const
+  size_t Domain_Impl::get_SharedResources (std::vector <SharedResource> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_InterconnectConnections
+  // get_SharedResources
   //
-  ::GAME::Mga::Iterator <InterconnectConnection> Domain_Impl::get_InterconnectConnections (void) const
+  ::GAME::Mga::Collection_T <SharedResource> Domain_Impl::get_SharedResources (void) const
   {
-    return this->children <InterconnectConnection> ();
+    return this->children <SharedResource> ();
   }
 
   //
@@ -136,25 +136,9 @@ namespace PICML
   //
   // get_Interconnects
   //
-  ::GAME::Mga::Iterator <Interconnect> Domain_Impl::get_Interconnects (void) const
+  ::GAME::Mga::Collection_T <Interconnect> Domain_Impl::get_Interconnects (void) const
   {
     return this->children <Interconnect> ();
-  }
-
-  //
-  // get_BridgeConnections
-  //
-  size_t Domain_Impl::get_BridgeConnections (std::vector <BridgeConnection> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_BridgeConnections
-  //
-  ::GAME::Mga::Iterator <BridgeConnection> Domain_Impl::get_BridgeConnections (void) const
-  {
-    return this->children <BridgeConnection> ();
   }
 
   //
@@ -168,7 +152,7 @@ namespace PICML
   //
   // get_Bridges
   //
-  ::GAME::Mga::Iterator <Bridge> Domain_Impl::get_Bridges (void) const
+  ::GAME::Mga::Collection_T <Bridge> Domain_Impl::get_Bridges (void) const
   {
     return this->children <Bridge> ();
   }
@@ -184,25 +168,41 @@ namespace PICML
   //
   // get_Sharess
   //
-  ::GAME::Mga::Iterator <Shares> Domain_Impl::get_Sharess (void) const
+  ::GAME::Mga::Collection_T <Shares> Domain_Impl::get_Sharess (void) const
   {
     return this->children <Shares> ();
   }
 
   //
-  // get_SharedResources
+  // get_InterconnectConnections
   //
-  size_t Domain_Impl::get_SharedResources (std::vector <SharedResource> & items) const
+  size_t Domain_Impl::get_InterconnectConnections (std::vector <InterconnectConnection> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_SharedResources
+  // get_InterconnectConnections
   //
-  ::GAME::Mga::Iterator <SharedResource> Domain_Impl::get_SharedResources (void) const
+  ::GAME::Mga::Collection_T <InterconnectConnection> Domain_Impl::get_InterconnectConnections (void) const
   {
-    return this->children <SharedResource> ();
+    return this->children <InterconnectConnection> ();
+  }
+
+  //
+  // get_BridgeConnections
+  //
+  size_t Domain_Impl::get_BridgeConnections (std::vector <BridgeConnection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_BridgeConnections
+  //
+  ::GAME::Mga::Collection_T <BridgeConnection> Domain_Impl::get_BridgeConnections (void) const
+  {
+    return this->children <BridgeConnection> ();
   }
 }
 

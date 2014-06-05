@@ -38,7 +38,7 @@ namespace PICML
   //
   // get_InParameters
   //
-  ::GAME::Mga::Iterator <InParameter> OperationBase_Impl::get_InParameters (void) const
+  ::GAME::Mga::Collection_T <InParameter> OperationBase_Impl::get_InParameters (void) const
   {
     return this->children <InParameter> ();
   }

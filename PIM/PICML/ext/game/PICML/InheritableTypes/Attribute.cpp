@@ -82,7 +82,7 @@ namespace PICML
   //
   // get_SetExceptions
   //
-  ::GAME::Mga::Iterator <SetException> Attribute_Impl::get_SetExceptions (void) const
+  ::GAME::Mga::Collection_T <SetException> Attribute_Impl::get_SetExceptions (void) const
   {
     return this->children <SetException> ();
   }

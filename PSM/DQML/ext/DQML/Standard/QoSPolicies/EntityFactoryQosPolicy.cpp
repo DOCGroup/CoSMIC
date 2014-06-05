@@ -8,14 +8,14 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -29,17 +29,17 @@ namespace DQML
   const std::string EntityFactoryQosPolicy_Impl::metaname ("EntityFactoryQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // _create (const SubscriberQos_in)
   //
-  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
+  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
     return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const SubscriberQos_in)
+  // _create (const PublisherQos_in)
   //
-  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
@@ -65,18 +65,37 @@ namespace DQML
   //
   void EntityFactoryQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_EntityFactoryQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_EntityFactoryQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
+  }
+
+  //
+  // parent_SubscriberQos
+  //
+  SubscriberQos EntityFactoryQosPolicy_Impl::parent_SubscriberQos (void)
+  {
+    return SubscriberQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PublisherQos
+  //
+  PublisherQos EntityFactoryQosPolicy_Impl::parent_PublisherQos (void)
+  {
+    return PublisherQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Participant
+  //
+  Participant EntityFactoryQosPolicy_Impl::parent_Participant (void)
+  {
+    return Participant::_narrow (this->parent ());
   }
 
   //
@@ -85,14 +104,6 @@ namespace DQML
   size_t EntityFactoryQosPolicy_Impl::dst_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
   {
     return this->in_connections <dpfactory_entityfactory_Connection> (items);
-  }
-
-  //
-  // dst_dp_entityfactory_Connection
-  //
-  size_t EntityFactoryQosPolicy_Impl::dst_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <dp_entityfactory_Connection> (items);
   }
 
   //
@@ -109,6 +120,14 @@ namespace DQML
   size_t EntityFactoryQosPolicy_Impl::dst_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
   {
     return this->in_connections <sub_entityfactory_Connection> (items);
+  }
+
+  //
+  // dst_dp_entityfactory_Connection
+  //
+  size_t EntityFactoryQosPolicy_Impl::dst_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <dp_entityfactory_Connection> (items);
   }
 }
 

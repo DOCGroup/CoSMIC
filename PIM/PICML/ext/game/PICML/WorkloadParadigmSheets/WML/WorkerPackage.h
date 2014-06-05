@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static WorkerPackage _create (const WorkerPackage_in parent);
     static WorkerPackage _create (const WorkerFile_in parent);
+    static WorkerPackage _create (const WorkerPackage_in parent);
     ///@}
 
     // Default constructor.
@@ -73,8 +73,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    WorkerPackage parent_WorkerPackage (void);
     WorkerFile parent_WorkerFile (void);
+    WorkerPackage parent_WorkerPackage (void);
     ///@}
 
     /**
@@ -82,7 +82,7 @@ namespace PICML
      */
     ///@{
     size_t get_WorkerPackages (std::vector <WorkerPackage> & items) const;
-    ::GAME::Mga::Iterator <WorkerPackage> get_WorkerPackages (void) const;
+    ::GAME::Mga::Collection_T <WorkerPackage> get_WorkerPackages (void) const;
 
     ///@}
   };

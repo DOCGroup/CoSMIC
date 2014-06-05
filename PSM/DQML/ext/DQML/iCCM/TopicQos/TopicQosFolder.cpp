@@ -8,9 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/iCCM/iCCM.h"
-#include "DQML/iCCM/TopicQos/TopicQosFolder.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -36,18 +35,21 @@ namespace DQML
   //
   void TopicQosFolder_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_TopicQosFolder (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_TopicQosFolder (this);
+    else
       v->visit_Folder (this);
-    }
+  }
+
+  //
+  // parent_iCCM
+  //
+  iCCM TopicQosFolder_Impl::parent_iCCM (void)
+  {
+    return iCCM::_narrow (this->parent ());
   }
 
   //
@@ -56,14 +58,6 @@ namespace DQML
   size_t TopicQosFolder_Impl::get_TopicQoss (std::vector <TopicQos> & items) const
   {
     return this->children (items);
-  }
-
-  //
-  // get_TopicQosFolders
-  //
-  size_t TopicQosFolder_Impl::get_TopicQosFolders (std::vector <TopicQosFolder> & items) const
-  {
-    return this->folders (items);
   }
 }
 

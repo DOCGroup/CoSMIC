@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -44,18 +44,21 @@ namespace DQML
   //
   void TopicDataQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_TopicDataQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_TopicDataQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos TopicDataQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
   }
 
   //

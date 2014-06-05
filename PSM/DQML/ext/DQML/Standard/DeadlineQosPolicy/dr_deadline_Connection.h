@@ -66,6 +66,12 @@ namespace DQML
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
 
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DDSQoS parent_DDSQoS (void);
+    ///@}
     DataReader src_DataReader (void) const;
     DeadlineQosPolicy dst_DeadlineQosPolicy (void) const;
   };

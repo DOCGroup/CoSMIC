@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/DataType.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -74,7 +74,7 @@ namespace PICML
   //
   DataType ComponentPropertyDescription_Impl::get_DataType (void) const
   {
-	  return this->children <DataType> ().first ();
+    return this->children <DataType> ().first ();
   }
 }
 

@@ -8,9 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
-#include "DQML/iCCM/DomainQos/Domain.h"
 #include "DQML/iCCM/iCCM/iCCM.h"
+#include "DQML/iCCM/DomainQos/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -36,26 +35,21 @@ namespace DQML
   //
   void DomainQosFolder_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_DomainQosFolder (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_DomainQosFolder (this);
+    else
       v->visit_Folder (this);
-    }
   }
 
   //
-  // get_DomainQosFolders
+  // parent_iCCM
   //
-  size_t DomainQosFolder_Impl::get_DomainQosFolders (std::vector <DomainQosFolder> & items) const
+  iCCM DomainQosFolder_Impl::parent_iCCM (void)
   {
-    return this->folders (items);
+    return iCCM::_narrow (this->parent ());
   }
 
   //

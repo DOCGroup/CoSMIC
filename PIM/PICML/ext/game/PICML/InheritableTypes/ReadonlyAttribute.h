@@ -89,7 +89,7 @@ namespace PICML
     bool has_AttributeMember (void) const;
     AttributeMember get_AttributeMember (void) const;
     size_t get_GetExceptions (std::vector <GetException> & items) const;
-    ::GAME::Mga::Iterator <GetException> get_GetExceptions (void) const;
+    ::GAME::Mga::Collection_T <GetException> get_GetExceptions (void) const;
 
     ///@}
   };

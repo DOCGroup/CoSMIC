@@ -108,7 +108,7 @@ namespace PICML
      */
     ///@{
     size_t get_Resources (std::vector <Resource> & items) const;
-    ::GAME::Mga::Iterator <Resource> get_Resources (void) const;
+    ::GAME::Mga::Collection_T <Resource> get_Resources (void) const;
 
     ///@}
   };

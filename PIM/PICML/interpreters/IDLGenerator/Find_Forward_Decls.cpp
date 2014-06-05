@@ -125,7 +125,7 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a)
   if (this->current_file_ != file)
     this->includes_.insert (file);
 
-  Udm::visit_all <PICML::TemplateParameterValue> (a, *this);
+  CoSMIC::Udm::visit_all <PICML::TemplateParameterValue> (a, *this);
 
   // We all need to visit the contents of the template package
   // instance's type. This will determine what other things
@@ -181,7 +181,7 @@ Visit_Collection (const PICML::Collection & c)
 void Find_Forward_Decls::
 Visit_Exception (const PICML::Exception & e)
 {
-  Udm::visit_all <PICML::Member> (e, *this);
+  CoSMIC::Udm::visit_all <PICML::Member> (e, *this);
 }
 
 //
@@ -197,7 +197,7 @@ void Find_Forward_Decls::Visit_Member (const PICML::Member & m)
 //
 void Find_Forward_Decls::Visit_Aggregate (const PICML::Aggregate & a)
 {
-  Udm::visit_all <PICML::Member> (a, *this);
+  CoSMIC::Udm::visit_all <PICML::Member> (a, *this);
 
   // All we need is one aggregate to have a key for the
   // entire file to need type support.
@@ -211,7 +211,7 @@ void Find_Forward_Decls::Visit_Aggregate (const PICML::Aggregate & a)
 void Find_Forward_Decls::
 Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 {
-  Udm::visit_all <PICML::Member> (s, *this);
+  CoSMIC::Udm::visit_all <PICML::Member> (s, *this);
 }
 
 /**
@@ -243,20 +243,20 @@ void Find_Forward_Decls::Visit_Object (const PICML::Object & o)
   this->has_ami4ccm_ |= o.SupportsAsync ();
 
   // Visit the remaining elements in the object.
-  Udm::visit_all <PICML::Inherits> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Inherits> (o, *this);
 
-  Udm::visit_all <PICML::Aggregate> (o, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
-  Udm::visit_all <PICML::Alias> (o, *this);
-  Udm::visit_all <PICML::Constant> (o, *this);
-  Udm::visit_all <PICML::Enum> (o, *this);
-  Udm::visit_all <PICML::Collection> (o, *this);
-  Udm::visit_all <PICML::Exception> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Alias> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Constant> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Enum> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Collection> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Exception> (o, *this);
 
-  Udm::visit_all <PICML::OnewayOperation> (o, *this);
-  Udm::visit_all <PICML::TwowayOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (o, *this);
 
-  Udm::visit_all <PICML::ReadonlyAttribute> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::ReadonlyAttribute> (o, *this);
 }
 
 //
@@ -282,19 +282,19 @@ void Find_Forward_Decls::Visit_ValueObject (const PICML::ValueObject & v)
 void Find_Forward_Decls::
 Visit_ObjectByValue (const PICML::ObjectByValue & v)
 {
-  Udm::visit_all <PICML::Member> (v, *this);
-  Udm::visit_all <PICML::Aggregate> (v, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (v, *this);
-  Udm::visit_all <PICML::Alias> (v, *this);
-  Udm::visit_all <PICML::Constant> (v, *this);
-  Udm::visit_all <PICML::Enum> (v, *this);
-  Udm::visit_all <PICML::Collection> (v, *this);
-  Udm::visit_all <PICML::Exception> (v, *this);
-  Udm::visit_all <PICML::PortType> (v, *this);
-  Udm::visit_all <PICML::FactoryOperation> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Member> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Alias> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Constant> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Enum> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Collection> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::Exception> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::PortType> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::FactoryOperation> (v, *this);
 
-  Udm::visit_all <PICML::OnewayOperation> (v, *this);
-  Udm::visit_all <PICML::TwowayOperation> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (v, *this);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (v, *this);
 }
 
 //
@@ -317,8 +317,8 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 void Find_Forward_Decls::
 Visit_ExtendedPort (const PICML::ExtendedPort & p)
 {
-  Udm::visit_all <PICML::ProvidedRequestPort> (p, *this);
-  Udm::visit_all <PICML::RequiredRequestPort> (p, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (p, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (p, *this);
 }
 
 //
@@ -366,12 +366,12 @@ void Find_Forward_Decls::Visit_Component (const PICML::Component & c)
 {
   this->has_component_ = true;
 
-  Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
-  Udm::visit_all <PICML::ExtendedPort> (c, *this);
-  Udm::visit_all <PICML::InEventPort> (c, *this);
-  Udm::visit_all <PICML::OutEventPort> (c, *this);
-  Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
-  Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ExtendedPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::InEventPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::OutEventPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
 }
 
 //
@@ -382,9 +382,9 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
 {
   this->has_component_ = true;
 
-  Udm::visit_all <PICML::ObjectPort> (c, *this);
-  Udm::visit_all <PICML::ExtendedPort> (c, *this);
-  Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ObjectPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ExtendedPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ReadonlyAttribute> (c, *this);
 }
 
 //
@@ -393,21 +393,21 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
 void Find_Forward_Decls::
 Visit_ComponentFactory (const PICML::ComponentFactory & f)
 {
-  Udm::visit_all <PICML::Aggregate> (f, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (f, *this);
-  Udm::visit_all <PICML::Alias> (f, *this);
-  Udm::visit_all <PICML::Constant> (f, *this);
-  Udm::visit_all <PICML::Enum> (f, *this);
-  Udm::visit_all <PICML::Collection> (f, *this);
-  Udm::visit_all <PICML::Exception> (f, *this);
-  Udm::visit_all <PICML::PortType> (f, *this);
-  Udm::visit_all <PICML::ReadonlyAttribute> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Alias> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Constant> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Enum> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Collection> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Exception> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::PortType> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::ReadonlyAttribute> (f, *this);
 
-  Udm::visit_all <PICML::FactoryOperation> (f, *this);
-  Udm::visit_all <PICML::LookupOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::FactoryOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::LookupOperation> (f, *this);
 
-  Udm::visit_all <PICML::OnewayOperation> (f, *this);
-  Udm::visit_all <PICML::TwowayOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (f, *this);
 }
 
 //

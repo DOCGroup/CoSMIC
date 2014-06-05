@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,17 +24,17 @@ namespace DQML
   const std::string TopicQosReference_Impl::metaname ("TopicQosReference");
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const DataReaderQos_in)
   //
-  TopicQosReference TopicQosReference_Impl::_create (const DataWriterQos_in parent)
+  TopicQosReference TopicQosReference_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const DataWriterQos_in)
   //
-  TopicQosReference TopicQosReference_Impl::_create (const DataReaderQos_in parent)
+  TopicQosReference TopicQosReference_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create_object < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
   }
@@ -44,18 +44,29 @@ namespace DQML
   //
   void TopicQosReference_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_TopicQosReference (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_TopicQosReference (this);
+    else
       v->visit_Reference (this);
-    }
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos TopicQosReference_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos TopicQosReference_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
   }
 
   //
@@ -64,6 +75,14 @@ namespace DQML
   bool TopicQosReference_Impl::TopicQos_is_nil (void) const
   {
     return !this->refers_to ().is_nil ();
+  }
+
+  //
+  // set_TopicQos
+  //
+  void TopicQosReference_Impl::set_TopicQos (TopicQos_in item)
+  {
+    this->refers_to (item);
   }
 
   //

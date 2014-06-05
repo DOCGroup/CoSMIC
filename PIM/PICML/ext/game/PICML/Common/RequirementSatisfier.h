@@ -76,7 +76,7 @@ namespace PICML
      */
     ///@{
     size_t get_SatisfierPropertys (std::vector <SatisfierProperty> & items) const;
-    ::GAME::Mga::Iterator <SatisfierProperty> get_SatisfierPropertys (void) const;
+    ::GAME::Mga::Collection_T <SatisfierProperty> get_SatisfierPropertys (void) const;
 
     ///@}
   };

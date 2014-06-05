@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,9 +28,9 @@ namespace DQML
   const std::string DestinationOrderQosPolicy_Impl::metaname ("DestinationOrderQosPolicy");
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
@@ -44,9 +44,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create_object < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
@@ -64,26 +64,45 @@ namespace DQML
   //
   void DestinationOrderQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_DestinationOrderQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_DestinationOrderQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
   }
 
   //
-  // dst_dr_dstOrder_Connection
+  // parent_DataReaderQos
   //
-  size_t DestinationOrderQosPolicy_Impl::dst_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
+  DataReaderQos DestinationOrderQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return this->in_connections <dr_dstOrder_Connection> (items);
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos DestinationOrderQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos DestinationOrderQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // dst_dw_dstOrder_Connection
+  //
+  size_t DestinationOrderQosPolicy_Impl::dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
+  {
+    return this->in_connections <dw_dstOrder_Connection> (items);
   }
 
   //
@@ -95,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_dstOrder_Connection
+  // dst_dr_dstOrder_Connection
   //
-  size_t DestinationOrderQosPolicy_Impl::dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
+  size_t DestinationOrderQosPolicy_Impl::dst_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
   {
-    return this->in_connections <dw_dstOrder_Connection> (items);
+    return this->in_connections <dr_dstOrder_Connection> (items);
   }
 }
 

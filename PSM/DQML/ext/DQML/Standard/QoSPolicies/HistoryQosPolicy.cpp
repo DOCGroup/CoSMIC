@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,9 +28,9 @@ namespace DQML
   const std::string HistoryQosPolicy_Impl::metaname ("HistoryQosPolicy");
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -44,9 +44,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create_object < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -64,26 +64,45 @@ namespace DQML
   //
   void HistoryQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_HistoryQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_HistoryQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
   }
 
   //
-  // dst_dr_history_Connection
+  // parent_DataReaderQos
   //
-  size_t HistoryQosPolicy_Impl::dst_dr_history_Connection (std::vector <dr_history_Connection> & items) const
+  DataReaderQos HistoryQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return this->in_connections <dr_history_Connection> (items);
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos HistoryQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // dst_dw_history_Connection
+  //
+  size_t HistoryQosPolicy_Impl::dst_dw_history_Connection (std::vector <dw_history_Connection> & items) const
+  {
+    return this->in_connections <dw_history_Connection> (items);
   }
 
   //
@@ -95,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_history_Connection
+  // dst_dr_history_Connection
   //
-  size_t HistoryQosPolicy_Impl::dst_dw_history_Connection (std::vector <dw_history_Connection> & items) const
+  size_t HistoryQosPolicy_Impl::dst_dr_history_Connection (std::vector <dr_history_Connection> & items) const
   {
-    return this->in_connections <dw_history_Connection> (items);
+    return this->in_connections <dr_history_Connection> (items);
   }
 }
 

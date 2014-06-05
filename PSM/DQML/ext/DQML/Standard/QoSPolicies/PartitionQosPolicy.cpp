@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
 #include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,17 +26,17 @@ namespace DQML
   const std::string PartitionQosPolicy_Impl::metaname ("PartitionQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // _create (const SubscriberQos_in)
   //
-  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const PublisherQos_in parent)
+  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
     return ::GAME::Mga::create_object < PartitionQosPolicy > (parent, PartitionQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const SubscriberQos_in)
+  // _create (const PublisherQos_in)
   //
-  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create_object < PartitionQosPolicy > (parent, PartitionQosPolicy_Impl::metaname);
   }
@@ -54,18 +54,29 @@ namespace DQML
   //
   void PartitionQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_PartitionQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_PartitionQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
+  }
+
+  //
+  // parent_SubscriberQos
+  //
+  SubscriberQos PartitionQosPolicy_Impl::parent_SubscriberQos (void)
+  {
+    return SubscriberQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PublisherQos
+  //
+  PublisherQos PartitionQosPolicy_Impl::parent_PublisherQos (void)
+  {
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //

@@ -69,12 +69,21 @@ namespace DQML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
 
     /// Get the src dw_pub_Connection connection.
     size_t src_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const;
+
+    /// Get the src pub_entityfactory_Connection connection.
+    size_t src_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
 
     /// Get the src pub_presqos_Connection connection.
     size_t src_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const;
@@ -84,9 +93,6 @@ namespace DQML
 
     /// Get the src pub_part_Connection connection.
     size_t src_pub_part_Connection (std::vector <pub_part_Connection> & items) const;
-
-    /// Get the src pub_entityfactory_Connection connection.
-    size_t src_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
     ///@}
 
     /**

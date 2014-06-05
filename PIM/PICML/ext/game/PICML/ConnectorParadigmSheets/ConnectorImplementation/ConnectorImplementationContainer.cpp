@@ -9,9 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -55,19 +55,19 @@ namespace PICML
   }
 
   //
-  // get_ConnectorTypes
+  // get_ConnectorImplementations
   //
-  size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
+  size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ConnectorTypes
+  // get_ConnectorImplementations
   //
-  ::GAME::Mga::Iterator <ConnectorType> ConnectorImplementationContainer_Impl::get_ConnectorTypes (void) const
+  ::GAME::Mga::Collection_T <ConnectorImplementation> ConnectorImplementationContainer_Impl::get_ConnectorImplementations (void) const
   {
-    return this->children <ConnectorType> ();
+    return this->children <ConnectorImplementation> ();
   }
 
   //
@@ -81,25 +81,25 @@ namespace PICML
   //
   // get_ConnectorImplementss
   //
-  ::GAME::Mga::Iterator <ConnectorImplements> ConnectorImplementationContainer_Impl::get_ConnectorImplementss (void) const
+  ::GAME::Mga::Collection_T <ConnectorImplements> ConnectorImplementationContainer_Impl::get_ConnectorImplementss (void) const
   {
     return this->children <ConnectorImplements> ();
   }
 
   //
-  // get_ConnectorImplementations
+  // get_ConnectorTypes
   //
-  size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const
+  size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ConnectorImplementations
+  // get_ConnectorTypes
   //
-  ::GAME::Mga::Iterator <ConnectorImplementation> ConnectorImplementationContainer_Impl::get_ConnectorImplementations (void) const
+  ::GAME::Mga::Collection_T <ConnectorType> ConnectorImplementationContainer_Impl::get_ConnectorTypes (void) const
   {
-    return this->children <ConnectorImplementation> ();
+    return this->children <ConnectorType> ();
   }
 }
 

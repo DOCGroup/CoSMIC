@@ -15,9 +15,9 @@
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
-#include "PICML/ComponentBuild/ExecutorProject.h"
-#include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -40,9 +40,9 @@ namespace PICML
   }
 
   //
-  // _create (const ExecutorProject_in)
+  // _create (const StubProject_in)
   //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ExecutorProject_in parent)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const StubProject_in parent)
   {
     return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
@@ -56,9 +56,9 @@ namespace PICML
   }
 
   //
-  // _create (const StubProject_in)
+  // _create (const ExecutorProject_in)
   //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const StubProject_in parent)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ExecutorProject_in parent)
   {
     return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
@@ -94,11 +94,11 @@ namespace PICML
   }
 
   //
-  // parent_ExecutorProject
+  // parent_StubProject
   //
-  ExecutorProject ImplementationArtifactReference_Impl::parent_ExecutorProject (void)
+  StubProject ImplementationArtifactReference_Impl::parent_StubProject (void)
   {
-    return ExecutorProject::_narrow (this->parent ());
+    return StubProject::_narrow (this->parent ());
   }
 
   //
@@ -110,11 +110,11 @@ namespace PICML
   }
 
   //
-  // parent_StubProject
+  // parent_ExecutorProject
   //
-  StubProject ImplementationArtifactReference_Impl::parent_StubProject (void)
+  ExecutorProject ImplementationArtifactReference_Impl::parent_ExecutorProject (void)
   {
-    return StubProject::_narrow (this->parent ());
+    return ExecutorProject::_narrow (this->parent ());
   }
 
   //

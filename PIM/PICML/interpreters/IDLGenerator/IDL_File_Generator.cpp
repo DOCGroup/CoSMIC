@@ -53,7 +53,7 @@ IDL_File_Generator::~IDL_File_Generator (void)
 void IDL_File_Generator::Visit_File (const PICML::File & file)
 {
   this->templates_only_ = true;
-  Udm::visit_all <PICML::Package> (file, *this);
+  CoSMIC::Udm::visit_all <PICML::Package> (file, *this);
 
   this->templates_only_ = false;
   this->Visit_FilePackage (file);
@@ -298,11 +298,8 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
   {
     // First, gather all the members in sorted order.
     std::set <PICML::KeyMember> key_members = key.dstKeyMember ();
-    std::for_each (key_members.begin (),
-                   key_members.end (),
-                   boost::bind (&sorted_values_t::insert,
-                                boost::ref (key_values),
-                                boost::bind (&PICML::KeyMember::dstKeyMember_end, _1)));
+    for (auto & key_member : key_members)
+      key_values.insert (key_member.dstKeyMember_end());
 
     // We can declare this as a DDS type.
     this->idl_ << "#pragma DCPS_DATA_TYPE \"" << a.name () << "\"" << nl;
@@ -324,18 +321,11 @@ void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
   // Sort the elements by the position in the InterfaceDefinition aspect.
   sorted_values_t sorted_values (sorter);
   std::vector <PICML::Member> members = a.Member_kind_children ();
-  std::for_each (members.begin (),
-                 members.end (),
-                 boost::bind (&sorted_values_t::insert,
-                              boost::ref (sorted_values),
-                              _1));
+  for (auto & member : members)
+    sorted_values.insert (member);
 
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->member_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  for (auto & sorted_value : sorted_values)
+    member_dispatcher_.dispatch (*this, sorted_value);
 
   this->idl_ << uidt_nl << "};" << nl
              << nl;
@@ -380,18 +370,11 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 
   sorted_values_t sorted_values (sorter);
   std::vector <PICML::Member> members = s.Member_kind_children ();
-  std::for_each (members.begin (),
-                 members.end (),
-                 boost::bind (&sorted_values_t::insert,
-                              boost::ref (sorted_values),
-                              _1));
+  for (auto & member : members)
+    sorted_values.insert (member);
 
-  std::for_each (sorted_values.begin (),
-                 sorted_values.end (),
-                 boost::bind (&Member_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->member_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  for (auto & sorted_value : sorted_values)
+    member_dispatcher_.dispatch (*this, sorted_value);
 
   this->idl_ << uidt_nl << "};" << nl
              << nl;
@@ -557,18 +540,18 @@ Visit_ValueObject (const PICML::ValueObject & v)
 void IDL_File_Generator::
 Visit_ObjectByValue (const PICML::ObjectByValue & o)
 {
-  Udm::visit_all <PICML::Aggregate> (o, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
-  Udm::visit_all <PICML::Alias> (o, *this);
-  Udm::visit_all <PICML::Constant> (o, *this);
-  Udm::visit_all <PICML::Enum> (o, *this);
-  Udm::visit_all <PICML::Collection> (o, *this);
-  Udm::visit_all <PICML::Exception> (o, *this);
-  Udm::visit_all <PICML::PortType> (o, *this);
-  Udm::visit_all <PICML::FactoryOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Alias> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Constant> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Enum> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Collection> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Exception> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::PortType> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::FactoryOperation> (o, *this);
 
-  Udm::visit_all <PICML::OnewayOperation> (o, *this);
-  Udm::visit_all <PICML::TwowayOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (o, *this);
 
   std::vector <PICML::ReadonlyAttribute> attrs = o.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
@@ -581,7 +564,7 @@ Visit_ObjectByValue (const PICML::ObjectByValue & o)
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
   sorted_values_t values = o.Member_children_sorted (sorter_t ());
-  Udm::visit_all (values, *this);
+  CoSMIC::Udm::visit_all (values, *this);
 }
 
 //
@@ -636,10 +619,10 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
              << "{" << idt_nl;
 
   // Write each of the ports for the component.
-  Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
-  Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
-  Udm::visit_all <PICML::InEventPort> (c, *this);
-  Udm::visit_all <PICML::OutEventPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::InEventPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::OutEventPort> (c, *this);
 
   std::vector <PICML::ExtendedPort> extended = c.ExtendedPort_kind_children ();
   std::for_each (extended.begin (),
@@ -680,10 +663,10 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
   this->idl_ << nl
              << "{" << idt_nl;
 
-  Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
-  Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
 
-  Udm::visit_all <PICML::ExtendedPort> (c, *this);
+  CoSMIC::Udm::visit_all <PICML::ExtendedPort> (c, *this);
 
   std::vector <PICML::ReadonlyAttribute> attrs = c.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
@@ -860,16 +843,16 @@ void IDL_File_Generator::Visit_Object (const PICML::Object & o)
   this->idl_ << nl
              << "{" << idt;
 
-  Udm::visit_all <PICML::Aggregate> (o, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
-  Udm::visit_all <PICML::Alias> (o, *this);
-  Udm::visit_all <PICML::Constant> (o, *this);
-  Udm::visit_all <PICML::Enum> (o, *this);
-  Udm::visit_all <PICML::Collection> (o, *this);
-  Udm::visit_all <PICML::Exception> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Alias> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Constant> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Enum> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Collection> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::Exception> (o, *this);
 
-  Udm::visit_all <PICML::OnewayOperation> (o, *this);
-  Udm::visit_all <PICML::TwowayOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (o, *this);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (o, *this);
 
   std::vector <PICML::ReadonlyAttribute> attrs = o.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
@@ -1150,7 +1133,7 @@ void IDL_File_Generator::Visit_Exception (const PICML::Exception & e)
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
   sorted_values_t values = e.Member_children_sorted (sorter_t ());
 
-  Udm::visit_all (values, *this);
+  CoSMIC::Udm::visit_all (values, *this);
 
   this->idl_ << uidt_nl
              << "};" << nl;
@@ -1215,14 +1198,14 @@ Visit_ComponentFactory (const PICML::ComponentFactory & f)
   this->idl_ << nl
              << "{" << idt_nl;
 
-  Udm::visit_all <PICML::Aggregate> (f, *this);
-  Udm::visit_all <PICML::SwitchedAggregate> (f, *this);
-  Udm::visit_all <PICML::Alias> (f, *this);
-  Udm::visit_all <PICML::Constant> (f, *this);
-  Udm::visit_all <PICML::Enum> (f, *this);
-  Udm::visit_all <PICML::Collection> (f, *this);
-  Udm::visit_all <PICML::Exception> (f, *this);
-  Udm::visit_all <PICML::PortType> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Alias> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Constant> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Enum> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Collection> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::Exception> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::PortType> (f, *this);
 
   std::vector <PICML::ReadonlyAttribute> attrs = f.ReadonlyAttribute_kind_children ();
   std::for_each (attrs.begin (),
@@ -1232,11 +1215,11 @@ Visit_ComponentFactory (const PICML::ComponentFactory & f)
                               boost::ref (*this),
                               _1));
 
-  Udm::visit_all <PICML::FactoryOperation> (f, *this);
-  Udm::visit_all <PICML::LookupOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::FactoryOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::LookupOperation> (f, *this);
 
-  Udm::visit_all <PICML::OnewayOperation> (f, *this);
-  Udm::visit_all <PICML::TwowayOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (f, *this);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (f, *this);
 
   this->idl_ << uidt_nl
              << "};" << nl

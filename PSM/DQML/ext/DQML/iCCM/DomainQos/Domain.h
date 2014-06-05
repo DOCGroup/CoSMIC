@@ -67,14 +67,21 @@ namespace DQML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    DomainQosFolder parent_DomainQosFolder (void);
+    ///@}
+
+    /**
      * @name Containment Methods
      */
     ///@{
     size_t get_PublishesConnections (std::vector <PublishesConnection> & items) const;
-    ::GAME::Mga::Iterator <PublishesConnection> get_PublishesConnections (void) const;
+    ::GAME::Mga::Collection_T <PublishesConnection> get_PublishesConnections (void) const;
 
     size_t get_Participants (std::vector <Participant> & items) const;
-    ::GAME::Mga::Iterator <Participant> get_Participants (void) const;
+    ::GAME::Mga::Collection_T <Participant> get_Participants (void) const;
 
     ///@}
   };

@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
@@ -97,19 +97,19 @@ namespace PICML
   }
 
   //
-  // dst_AssemblyselectRequirement
-  //
-  size_t Requirement_Impl::dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
-  {
-    return this->in_connections <AssemblyselectRequirement> (items);
-  }
-
-  //
   // dst_ArtifactDeployRequirement
   //
   size_t Requirement_Impl::dst_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
   {
     return this->in_connections <ArtifactDeployRequirement> (items);
+  }
+
+  //
+  // dst_AssemblyselectRequirement
+  //
+  size_t Requirement_Impl::dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
+  {
+    return this->in_connections <AssemblyselectRequirement> (items);
   }
 }
 

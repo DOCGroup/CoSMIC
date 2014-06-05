@@ -10,6 +10,7 @@
 #include "game/mga/Model.h"
 #include "game/mga/Reference.h"
 #include "game/mga/Iterator_T.h"
+#include "game/mga/Collection_T.h"
 #include "game/mga/graphics/Stock_Objects.h"
 
 #include "boost/bind.hpp"
@@ -53,12 +54,12 @@ initialize (const GAME::Mga::Project & proj,
   using GAME::Mga::Iterator;
 
   Model model = Model::_narrow (fco);
-  Iterator <Reference> iter = model->children <Reference> ("ConnectorImplementationType");
+  GAME::Mga::Collection_T <Reference> collection = model->children <Reference> ("ConnectorImplementationType").first();
 
-  if (!iter.is_done ())
+  if (collection.count()!=0)
   {
     using GAME::Mga::FCO;
-    FCO refers_to = (*iter)->refers_to ();
+    FCO refers_to = collection.first();
 
     if (!refers_to.is_nil ())
       this->impl_label_ = refers_to->name ();

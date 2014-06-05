@@ -67,7 +67,7 @@ namespace PICML
      */
     ///@{
     size_t get_InParameters (std::vector <InParameter> & items) const;
-    ::GAME::Mga::Iterator <InParameter> get_InParameters (void) const;
+    ::GAME::Mga::Collection_T <InParameter> get_InParameters (void) const;
 
     ///@}
   };

@@ -102,11 +102,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src InterconnectConnection connection.
-    size_t src_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
-
     /// Get the src Shares connection.
     size_t src_Shares (std::vector <Shares> & items) const;
+
+    /// Get the src InterconnectConnection connection.
+    size_t src_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
     ///@}
 
     /**
@@ -114,7 +114,7 @@ namespace PICML
      */
     ///@{
     size_t get_Resources (std::vector <Resource> & items) const;
-    ::GAME::Mga::Iterator <Resource> get_Resources (void) const;
+    ::GAME::Mga::Collection_T <Resource> get_Resources (void) const;
 
     ///@}
   };

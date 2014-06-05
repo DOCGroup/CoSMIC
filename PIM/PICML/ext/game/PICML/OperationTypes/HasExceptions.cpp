@@ -29,7 +29,7 @@ namespace PICML
   //
   // get_ExceptionRefs
   //
-  ::GAME::Mga::Iterator <ExceptionRef> HasExceptions_Impl::get_ExceptionRefs (void) const
+  ::GAME::Mga::Collection_T <ExceptionRef> HasExceptions_Impl::get_ExceptionRefs (void) const
   {
     return this->children <ExceptionRef> ();
   }

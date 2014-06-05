@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static GroupDataQosPolicy _create (const PublisherQos_in parent);
     static GroupDataQosPolicy _create (const SubscriberQos_in parent);
+    static GroupDataQosPolicy _create (const PublisherQos_in parent);
     static GroupDataQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -69,6 +69,14 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    SubscriberQos parent_SubscriberQos (void);
+    PublisherQos parent_PublisherQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods
@@ -87,11 +95,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst pub_groupdata_Connection connection.
-    size_t dst_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const;
-
     /// Get the dst sub_groupdata_Connection connection.
     size_t dst_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const;
+
+    /// Get the dst pub_groupdata_Connection connection.
+    size_t dst_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const;
     ///@}
   };
 }

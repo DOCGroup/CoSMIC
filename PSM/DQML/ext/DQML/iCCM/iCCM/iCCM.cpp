@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "DQML/iCCM/TopicQos/TopicQosFolder.h"
+#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,7 +27,7 @@ namespace DQML
   //
   iCCM iCCM_Impl::_create (const ::GAME::Mga::RootFolder_in parent)
   {
-    return ::GAME::Mga::create_root_object <iCCM> (parent, iCCM_Impl::metaname);
+    return ::GAME::Mga::create_root_folder <iCCM> (parent, iCCM_Impl::metaname);
   }
 
   //
@@ -35,32 +35,35 @@ namespace DQML
   //
   void iCCM_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_iCCM (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_iCCM (this);
+    else
       v->visit_Folder (this);
-    }
   }
 
   //
-  // get_DomainQosFolders
+  // parent_RootFolder (void)
   //
-  size_t iCCM_Impl::get_DomainQosFolders (std::vector <DomainQosFolder> & items) const
+  RootFolder iCCM_Impl::parent_RootFolder (void)
   {
-    return this->folders (items);
+    return RootFolder::_narrow (this->parent ());
   }
 
   //
   // get_TopicQosFolders
   //
   size_t iCCM_Impl::get_TopicQosFolders (std::vector <TopicQosFolder> & items) const
+  {
+    return this->folders (items);
+  }
+
+  //
+  // get_DomainQosFolders
+  //
+  size_t iCCM_Impl::get_DomainQosFolders (std::vector <DomainQosFolder> & items) const
   {
     return this->folders (items);
   }

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/InterfaceDefinition/PackageType.h"
+#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "game/mga/Functional_T.h"
@@ -67,7 +67,7 @@ namespace PICML
   //
   PackageType TemplatePackageAlias_Impl::get_PackageType (void) const
   {
-    return this->children <PackageType> ().item ();
+    return this->children <PackageType> ().first ();
   }
 
   //
@@ -81,7 +81,7 @@ namespace PICML
   //
   // get_TemplateParameterReferences
   //
-  ::GAME::Mga::Iterator <TemplateParameterReference> TemplatePackageAlias_Impl::get_TemplateParameterReferences (void) const
+  ::GAME::Mga::Collection_T <TemplateParameterReference> TemplatePackageAlias_Impl::get_TemplateParameterReferences (void) const
   {
     return this->children <TemplateParameterReference> ();
   }

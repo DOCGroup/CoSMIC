@@ -83,7 +83,7 @@ namespace PICML
     bool has_PackageType (void) const;
     PackageType get_PackageType (void) const;
     size_t get_TemplateParameterValues (std::vector <TemplateParameterValue> & items) const;
-    ::GAME::Mga::Iterator <TemplateParameterValue> get_TemplateParameterValues (void) const;
+    ::GAME::Mga::Collection_T <TemplateParameterValue> get_TemplateParameterValues (void) const;
 
     ///@}
   };

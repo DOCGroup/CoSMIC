@@ -82,11 +82,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ConfigProperty connection.
-    size_t src_ConfigProperty (std::vector <ConfigProperty> & items) const;
-
     /// Get the src InfoProperty connection.
     size_t src_InfoProperty (std::vector <InfoProperty> & items) const;
+
+    /// Get the src ConfigProperty connection.
+    size_t src_ConfigProperty (std::vector <ConfigProperty> & items) const;
     ///@}
   };
 }

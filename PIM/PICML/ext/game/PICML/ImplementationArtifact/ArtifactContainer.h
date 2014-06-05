@@ -77,47 +77,47 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
-
-    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
-    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
-
-    size_t get_ImplementationArtifactReferences (std::vector <ImplementationArtifactReference> & items) const;
-    ::GAME::Mga::Iterator <ImplementationArtifactReference> get_ImplementationArtifactReferences (void) const;
-
-    size_t get_ComponentImplementationArtifacts (std::vector <ComponentImplementationArtifact> & items) const;
-    ::GAME::Mga::Iterator <ComponentImplementationArtifact> get_ComponentImplementationArtifacts (void) const;
-
-    size_t get_ComponentServantArtifacts (std::vector <ComponentServantArtifact> & items) const;
-    ::GAME::Mga::Iterator <ComponentServantArtifact> get_ComponentServantArtifacts (void) const;
-
     size_t get_Requirements (std::vector <Requirement> & items) const;
-    ::GAME::Mga::Iterator <Requirement> get_Requirements (void) const;
-
-    size_t get_RTRequirementss (std::vector <RTRequirements> & items) const;
-    ::GAME::Mga::Iterator <RTRequirements> get_RTRequirementss (void) const;
+    ::GAME::Mga::Collection_T <Requirement> get_Requirements (void) const;
 
     size_t get_ECRequirementss (std::vector <ECRequirements> & items) const;
-    ::GAME::Mga::Iterator <ECRequirements> get_ECRequirementss (void) const;
+    ::GAME::Mga::Collection_T <ECRequirements> get_ECRequirementss (void) const;
 
-    size_t get_ArtifactDeployRequirements (std::vector <ArtifactDeployRequirement> & items) const;
-    ::GAME::Mga::Iterator <ArtifactDeployRequirement> get_ArtifactDeployRequirements (void) const;
+    size_t get_RTRequirementss (std::vector <RTRequirements> & items) const;
+    ::GAME::Mga::Collection_T <RTRequirements> get_RTRequirementss (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     size_t get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const;
-    ::GAME::Mga::Iterator <ImplementationArtifact> get_ImplementationArtifacts (void) const;
+    ::GAME::Mga::Collection_T <ImplementationArtifact> get_ImplementationArtifacts (void) const;
 
-    size_t get_ArtifactDependencys (std::vector <ArtifactDependency> & items) const;
-    ::GAME::Mga::Iterator <ArtifactDependency> get_ArtifactDependencys (void) const;
-
-    size_t get_ArtifactInfoPropertys (std::vector <ArtifactInfoProperty> & items) const;
-    ::GAME::Mga::Iterator <ArtifactInfoProperty> get_ArtifactInfoPropertys (void) const;
-
-    size_t get_ArtifactExecParameters (std::vector <ArtifactExecParameter> & items) const;
-    ::GAME::Mga::Iterator <ArtifactExecParameter> get_ArtifactExecParameters (void) const;
+    size_t get_ArtifactDeployRequirements (std::vector <ArtifactDeployRequirement> & items) const;
+    ::GAME::Mga::Collection_T <ArtifactDeployRequirement> get_ArtifactDeployRequirements (void) const;
 
     size_t get_ArtifactDependsOns (std::vector <ArtifactDependsOn> & items) const;
-    ::GAME::Mga::Iterator <ArtifactDependsOn> get_ArtifactDependsOns (void) const;
+    ::GAME::Mga::Collection_T <ArtifactDependsOn> get_ArtifactDependsOns (void) const;
+
+    size_t get_ImplementationArtifactReferences (std::vector <ImplementationArtifactReference> & items) const;
+    ::GAME::Mga::Collection_T <ImplementationArtifactReference> get_ImplementationArtifactReferences (void) const;
+
+    size_t get_ComponentServantArtifacts (std::vector <ComponentServantArtifact> & items) const;
+    ::GAME::Mga::Collection_T <ComponentServantArtifact> get_ComponentServantArtifacts (void) const;
+
+    size_t get_ComponentImplementationArtifacts (std::vector <ComponentImplementationArtifact> & items) const;
+    ::GAME::Mga::Collection_T <ComponentImplementationArtifact> get_ComponentImplementationArtifacts (void) const;
+
+    size_t get_ArtifactExecParameters (std::vector <ArtifactExecParameter> & items) const;
+    ::GAME::Mga::Collection_T <ArtifactExecParameter> get_ArtifactExecParameters (void) const;
+
+    size_t get_ArtifactInfoPropertys (std::vector <ArtifactInfoProperty> & items) const;
+    ::GAME::Mga::Collection_T <ArtifactInfoProperty> get_ArtifactInfoPropertys (void) const;
+
+    size_t get_ArtifactDependencys (std::vector <ArtifactDependency> & items) const;
+    ::GAME::Mga::Collection_T <ArtifactDependency> get_ArtifactDependencys (void) const;
 
     ///@}
   };

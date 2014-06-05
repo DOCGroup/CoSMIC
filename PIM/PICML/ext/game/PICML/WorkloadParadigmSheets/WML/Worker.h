@@ -90,7 +90,7 @@ namespace PICML
      */
     ///@{
     size_t get_Operations (std::vector <Operation> & items) const;
-    ::GAME::Mga::Iterator <Operation> get_Operations (void) const;
+    ::GAME::Mga::Collection_T <Operation> get_Operations (void) const;
 
     ///@}
   };

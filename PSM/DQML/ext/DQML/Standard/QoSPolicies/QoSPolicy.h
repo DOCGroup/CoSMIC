@@ -54,6 +54,13 @@ namespace DQML
     virtual ~QoSPolicy_Impl (void) = 0;
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    DDSQoS parent_DDSQoS (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

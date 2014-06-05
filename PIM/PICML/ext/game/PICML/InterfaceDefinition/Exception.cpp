@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/Object.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/Event.h"
-#include "PICML/NamedTypes/Member.h"
-#include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/Package.h"
-#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -105,7 +105,7 @@ namespace PICML
   //
   // get_Members
   //
-  ::GAME::Mga::Iterator <Member> Exception_Impl::get_Members (void) const
+  ::GAME::Mga::Collection_T <Member> Exception_Impl::get_Members (void) const
   {
     return this->children <Member> ();
   }
@@ -121,7 +121,7 @@ namespace PICML
   //
   // get_ArrayMembers
   //
-  ::GAME::Mga::Iterator <ArrayMember> Exception_Impl::get_ArrayMembers (void) const
+  ::GAME::Mga::Collection_T <ArrayMember> Exception_Impl::get_ArrayMembers (void) const
   {
     return this->children <ArrayMember> ();
   }

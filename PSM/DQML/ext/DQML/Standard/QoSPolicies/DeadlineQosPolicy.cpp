@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
-#include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
+#include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,9 +28,9 @@ namespace DQML
   const std::string DeadlineQosPolicy_Impl::metaname ("DeadlineQosPolicy");
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const TopicQos_in parent)
+  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < DeadlineQosPolicy > (parent, DeadlineQosPolicy_Impl::metaname);
   }
@@ -44,9 +44,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create_object < DeadlineQosPolicy > (parent, DeadlineQosPolicy_Impl::metaname);
   }
@@ -64,26 +64,45 @@ namespace DQML
   //
   void DeadlineQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_DeadlineQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_DeadlineQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
   }
 
   //
-  // dst_dr_deadline_Connection
+  // parent_DataReaderQos
   //
-  size_t DeadlineQosPolicy_Impl::dst_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
+  DataReaderQos DeadlineQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return this->in_connections <dr_deadline_Connection> (items);
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos DeadlineQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos DeadlineQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // dst_dw_deadline_Connection
+  //
+  size_t DeadlineQosPolicy_Impl::dst_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const
+  {
+    return this->in_connections <dw_deadline_Connection> (items);
   }
 
   //
@@ -95,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_deadline_Connection
+  // dst_dr_deadline_Connection
   //
-  size_t DeadlineQosPolicy_Impl::dst_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const
+  size_t DeadlineQosPolicy_Impl::dst_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
   {
-    return this->in_connections <dw_deadline_Connection> (items);
+    return this->in_connections <dr_deadline_Connection> (items);
   }
 }
 

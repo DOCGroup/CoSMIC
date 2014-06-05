@@ -67,6 +67,13 @@ namespace DQML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    Participant parent_Participant (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{
@@ -95,11 +102,8 @@ namespace DQML
      */
     ///@{
 
-    bool has_DurabilityQosPolicy (void) const;
-    DurabilityQosPolicy get_DurabilityQosPolicy (void) const;
-
-    bool has_DeadlineQosPolicy (void) const;
-    DeadlineQosPolicy get_DeadlineQosPolicy (void) const;
+    bool has_TopicQosReference (void) const;
+    TopicQosReference get_TopicQosReference (void) const;
 
     bool has_LatencyBudgetQosPolicy (void) const;
     LatencyBudgetQosPolicy get_LatencyBudgetQosPolicy (void) const;
@@ -107,20 +111,11 @@ namespace DQML
     bool has_OwnershipQosPolicy (void) const;
     OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
 
+    bool has_DeadlineQosPolicy (void) const;
+    DeadlineQosPolicy get_DeadlineQosPolicy (void) const;
+
     bool has_LivelinessQosPolicy (void) const;
     LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
-
-    bool has_ReliabilityQosPolicy (void) const;
-    ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
-
-    bool has_DestinationOrderQosPolicy (void) const;
-    DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
-
-    bool has_UserDataQosPolicy (void) const;
-    UserDataQosPolicy get_UserDataQosPolicy (void) const;
-
-    bool has_OwnershipStrengthQosPolicy (void) const;
-    OwnershipStrengthQosPolicy get_OwnershipStrengthQosPolicy (void) const;
 
     bool has_TransportPriorityQosPolicy (void) const;
     TransportPriorityQosPolicy get_TransportPriorityQosPolicy (void) const;
@@ -134,11 +129,23 @@ namespace DQML
     bool has_ResourceLimitsQosPolicy (void) const;
     ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
 
+    bool has_UserDataQosPolicy (void) const;
+    UserDataQosPolicy get_UserDataQosPolicy (void) const;
+
     bool has_WriterDataLifecycleQosPolicy (void) const;
     WriterDataLifecycleQosPolicy get_WriterDataLifecycleQosPolicy (void) const;
 
-    bool has_TopicQosReference (void) const;
-    TopicQosReference get_TopicQosReference (void) const;
+    bool has_DurabilityQosPolicy (void) const;
+    DurabilityQosPolicy get_DurabilityQosPolicy (void) const;
+
+    bool has_ReliabilityQosPolicy (void) const;
+    ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
+
+    bool has_OwnershipStrengthQosPolicy (void) const;
+    OwnershipStrengthQosPolicy get_OwnershipStrengthQosPolicy (void) const;
+
+    bool has_DestinationOrderQosPolicy (void) const;
+    DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
     ///@}
   };
 }

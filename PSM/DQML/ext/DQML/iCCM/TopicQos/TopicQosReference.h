@@ -51,8 +51,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static TopicQosReference _create (const DataWriterQos_in parent);
     static TopicQosReference _create (const DataReaderQos_in parent);
+    static TopicQosReference _create (const DataWriterQos_in parent);
     ///@}
 
     // Default constructor.
@@ -68,11 +68,20 @@ namespace DQML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    ///@}
+
+    /**
      * @name Refers To Methods
      */
     ///@{
     bool TopicQos_is_nil (void) const;
     TopicQos get_TopicQos (void) const;
+    void set_TopicQos (TopicQos_in item);
     ///@}
   };
 }

@@ -28,7 +28,7 @@ namespace PICML
   //
   // get_SatisfierPropertys
   //
-  ::GAME::Mga::Iterator <SatisfierProperty> RequirementSatisfier_Impl::get_SatisfierPropertys (void) const
+  ::GAME::Mga::Collection_T <SatisfierProperty> RequirementSatisfier_Impl::get_SatisfierPropertys (void) const
   {
     return this->children <SatisfierProperty> ();
   }

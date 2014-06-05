@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerLibrary.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -63,7 +63,7 @@ namespace PICML
   //
   // get_WorkerPackages
   //
-  ::GAME::Mga::Iterator <WorkerPackage> WorkerFile_Impl::get_WorkerPackages (void) const
+  ::GAME::Mga::Collection_T <WorkerPackage> WorkerFile_Impl::get_WorkerPackages (void) const
   {
     return this->children <WorkerPackage> ();
   }

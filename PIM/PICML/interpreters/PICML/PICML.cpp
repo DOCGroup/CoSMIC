@@ -1,6 +1,6 @@
 // cpp (meta datanetwork format) source file PICML.cpp
 // generated from diagram PICML
-// generated on Sat May 31 00:34:42 2014
+// generated on Thu Jun 05 02:11:47 2014
 
 #include "PICML.h"
 #include <UmlExt.h>
@@ -991,14 +991,14 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::GraphVertex> ConnectedComponent::GraphVertex_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GraphVertex>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::DstEdge> ConnectedComponent::DstEdge_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::DstEdge>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Taggable> ConnectedComponent::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> ConnectedComponent::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::EventPort> ConnectedComponent::EventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ObjectPort> ConnectedComponent::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Port> ConnectedComponent::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::InEventPort> ConnectedComponent::InEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InEventPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> ConnectedComponent::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> ConnectedComponent::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::OutEventPort> ConnectedComponent::OutEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OutEventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::EventPort> ConnectedComponent::EventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ObjectPort> ConnectedComponent::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> ConnectedComponent::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> ConnectedComponent::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::Path> ConnectedComponent::parent() const { return ::Udm::ParentAttr< ::PICML::Path>(impl, ::Udm::NULLPARENTROLE); }
 	void ConnectedComponent::Accept(Visitor &v) { v.Visit_ConnectedComponent(*this); }
@@ -1044,15 +1044,15 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::ComplexProperty> Path::ComplexProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComplexProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::SimpleProperty> Path::SimpleProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SimpleProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Property> Path::Property_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Property>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::EventPort> Path::EventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ObjectPort> Path::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Manageable> Path::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentRef> Path::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Port> Path::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::InEventPort> Path::InEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InEventPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> Path::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> Path::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::OutEventPort> Path::OutEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OutEventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::EventPort> Path::EventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ObjectPort> Path::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Manageable> Path::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> Path::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::Paths> Path::Paths_parent() const { return ::Udm::ParentAttr< ::PICML::Paths>(impl, meta_Paths_parent); }
 	::Udm::ParentAttr< ::PICML::Paths> Path::parent() const { return ::Udm::ParentAttr< ::PICML::Paths>(impl, ::Udm::NULLPARENTROLE); }
@@ -1459,9 +1459,9 @@ namespace PICML {
 	::Udm::DerivedAttr< OperationRef> OperationRef::Derived() { return ::Udm::DerivedAttr< OperationRef>(impl); }
 	::Udm::ArchetypeAttr< OperationRef> OperationRef::Archetype() const { return ::Udm::ArchetypeAttr< OperationRef>(impl); }
 	::Udm::AClassPointerAttr< WorkLoadOperationConnection, Task> OperationRef::dstWorkLoadOperationConnection() const { return ::Udm::AClassPointerAttr< WorkLoadOperationConnection, Task>(impl, meta_dstWorkLoadOperationConnection, meta_dstWorkLoadOperationConnection_rev); }
-	::Udm::AClassPointerAttr< ComponentOperation, CompRef> OperationRef::dstComponentOperation() const { return ::Udm::AClassPointerAttr< ComponentOperation, CompRef>(impl, meta_dstComponentOperation, meta_dstComponentOperation_rev); }
 	::Udm::AClassPointerAttr< TimerConnection, TimeProbe> OperationRef::dstTimerConnection() const { return ::Udm::AClassPointerAttr< TimerConnection, TimeProbe>(impl, meta_dstTimerConnection, meta_dstTimerConnection_rev); }
 	::Udm::AClassPointerAttr< MetricConnection, MetricsBase> OperationRef::dstMetricConnection() const { return ::Udm::AClassPointerAttr< MetricConnection, MetricsBase>(impl, meta_dstMetricConnection, meta_dstMetricConnection_rev); }
+	::Udm::AClassPointerAttr< ComponentOperation, CompRef> OperationRef::dstComponentOperation() const { return ::Udm::AClassPointerAttr< ComponentOperation, CompRef>(impl, meta_dstComponentOperation, meta_dstComponentOperation_rev); }
 	::Udm::PointerAttr< OperationBase> OperationRef::ref() const { return ::Udm::PointerAttr< OperationBase>(impl, meta_ref); }
 	::Udm::ParentAttr< ::PICML::BenchmarkAnalysis> OperationRef::BenchmarkAnalysis_parent() const { return ::Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 	::Udm::ParentAttr< ::PICML::BenchmarkAnalysis> OperationRef::parent() const { return ::Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, ::Udm::NULLPARENTROLE); }
@@ -1470,12 +1470,12 @@ namespace PICML {
 	::Uml::Class OperationRef::meta;
 	::Uml::AssociationRole OperationRef::meta_dstWorkLoadOperationConnection;
 	::Uml::AssociationRole OperationRef::meta_dstWorkLoadOperationConnection_rev;
-	::Uml::AssociationRole OperationRef::meta_dstComponentOperation;
-	::Uml::AssociationRole OperationRef::meta_dstComponentOperation_rev;
 	::Uml::AssociationRole OperationRef::meta_dstTimerConnection;
 	::Uml::AssociationRole OperationRef::meta_dstTimerConnection_rev;
 	::Uml::AssociationRole OperationRef::meta_dstMetricConnection;
 	::Uml::AssociationRole OperationRef::meta_dstMetricConnection_rev;
+	::Uml::AssociationRole OperationRef::meta_dstComponentOperation;
+	::Uml::AssociationRole OperationRef::meta_dstComponentOperation_rev;
 	::Uml::AssociationRole OperationRef::meta_ref;
 	::Uml::CompositionParentRole OperationRef::meta_BenchmarkAnalysis_parent;
 
@@ -2648,8 +2648,8 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::PackageConfConfigProperty> PackageConfigurationContainer::PackageConfConfigProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PackageConfConfigProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::PackageConfReference> PackageConfigurationContainer::PackageConfReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PackageConfReference>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::PackageConfBasePackage> PackageConfigurationContainer::PackageConfBasePackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PackageConfBasePackage>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentPackageReference> PackageConfigurationContainer::ComponentPackageReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPackageReference>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentPackage> PackageConfigurationContainer::ComponentPackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPackage>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentPackageReference> PackageConfigurationContainer::ComponentPackageReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPackageReference>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComplexProperty> PackageConfigurationContainer::ComplexProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComplexProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::SimpleProperty> PackageConfigurationContainer::SimpleProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SimpleProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Property> PackageConfigurationContainer::Property_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Property>(impl, ::Udm::NULLCHILDROLE); }
@@ -3231,6 +3231,85 @@ namespace PICML {
 	::Uml::CompositionChildRole TopLevelPackageContainer::meta_PackageConfigurationReference_child;
 	::Uml::CompositionParentRole TopLevelPackageContainer::meta_TopLevelPackages_parent;
 
+	ComponentPackage::ComponentPackage() {}
+	ComponentPackage::ComponentPackage(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	ComponentPackage::ComponentPackage(const ComponentPackage &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ComponentPackage::ComponentPackage(ComponentPackage &&master) : MgaObject(master) {};
+
+	ComponentPackage ComponentPackage::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ComponentPackage& ComponentPackage::operator=(ComponentPackage &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ComponentPackage ComponentPackage::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ComponentPackage ComponentPackage::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ComponentPackage ComponentPackage::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ComponentPackage> ComponentPackage::Instances() { return ::Udm::InstantiatedAttr< ComponentPackage>(impl); }
+	ComponentPackage ComponentPackage::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ComponentPackage> ComponentPackage::Derived() { return ::Udm::DerivedAttr< ComponentPackage>(impl); }
+	::Udm::ArchetypeAttr< ComponentPackage> ComponentPackage::Archetype() const { return ::Udm::ArchetypeAttr< ComponentPackage>(impl); }
+	::Udm::StringAttr ComponentPackage::label() const { return ::Udm::StringAttr(impl, meta_label); }
+	::Udm::StringAttr ComponentPackage::UUID() const { return ::Udm::StringAttr(impl, meta_UUID); }
+	::Udm::AClassAssocAttr< PackageConfBasePackage, PackageConfiguration> ComponentPackage::srcPackageConfBasePackage() const { return ::Udm::AClassAssocAttr< PackageConfBasePackage, PackageConfiguration>(impl, meta_srcPackageConfBasePackage, meta_srcPackageConfBasePackage_rev); }
+	::Udm::AClassAssocAttr< PackageInfoProperty, Property> ComponentPackage::dstPackageInfoProperty() const { return ::Udm::AClassAssocAttr< PackageInfoProperty, Property>(impl, meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev); }
+	::Udm::AClassAssocAttr< PackageConfigProperty, Property> ComponentPackage::dstPackageConfigProperty() const { return ::Udm::AClassAssocAttr< PackageConfigProperty, Property>(impl, meta_dstPackageConfigProperty, meta_dstPackageConfigProperty_rev); }
+	::Udm::AClassAssocAttr< Implementation, ComponentImplementationReference> ComponentPackage::dstImplementation() const { return ::Udm::AClassAssocAttr< Implementation, ComponentImplementationReference>(impl, meta_dstImplementation, meta_dstImplementation_rev); }
+	::Udm::AClassPointerAttr< PackageInterface, ComponentRef> ComponentPackage::dstPackageInterface() const { return ::Udm::AClassPointerAttr< PackageInterface, ComponentRef>(impl, meta_dstPackageInterface, meta_dstPackageInterface_rev); }
+	::Udm::AssocAttr< ComponentPackageReference> ComponentPackage::referedbyComponentPackageReference() const { return ::Udm::AssocAttr< ComponentPackageReference>(impl, meta_referedbyComponentPackageReference); }
+	::Udm::ParentAttr< ::PICML::PackageConfigurationContainer> ComponentPackage::PackageConfigurationContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
+	::Udm::ParentAttr< ::PICML::PackageContainer> ComponentPackage::PackageContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
+	::Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentPackage::ComponentAssembly_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+	::Udm::ParentAttr< ::PICML::MgaObject> ComponentPackage::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void ComponentPackage::Accept(Visitor &v) { v.Visit_ComponentPackage(*this); }
+
+	::Uml::Class ComponentPackage::meta;
+	::Uml::Attribute ComponentPackage::meta_label;
+	::Uml::Attribute ComponentPackage::meta_UUID;
+	::Uml::AssociationRole ComponentPackage::meta_srcPackageConfBasePackage;
+	::Uml::AssociationRole ComponentPackage::meta_srcPackageConfBasePackage_rev;
+	::Uml::AssociationRole ComponentPackage::meta_dstPackageInfoProperty;
+	::Uml::AssociationRole ComponentPackage::meta_dstPackageInfoProperty_rev;
+	::Uml::AssociationRole ComponentPackage::meta_dstPackageConfigProperty;
+	::Uml::AssociationRole ComponentPackage::meta_dstPackageConfigProperty_rev;
+	::Uml::AssociationRole ComponentPackage::meta_dstImplementation;
+	::Uml::AssociationRole ComponentPackage::meta_dstImplementation_rev;
+	::Uml::AssociationRole ComponentPackage::meta_dstPackageInterface;
+	::Uml::AssociationRole ComponentPackage::meta_dstPackageInterface_rev;
+	::Uml::AssociationRole ComponentPackage::meta_referedbyComponentPackageReference;
+	::Uml::CompositionParentRole ComponentPackage::meta_PackageConfigurationContainer_parent;
+	::Uml::CompositionParentRole ComponentPackage::meta_PackageContainer_parent;
+	::Uml::CompositionParentRole ComponentPackage::meta_ComponentAssembly_parent;
+
+	PackageInfoProperty::PackageInfoProperty() {}
+	PackageInfoProperty::PackageInfoProperty(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	PackageInfoProperty::PackageInfoProperty(const PackageInfoProperty &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	PackageInfoProperty::PackageInfoProperty(PackageInfoProperty &&master) : MgaObject(master) {};
+
+	PackageInfoProperty PackageInfoProperty::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	PackageInfoProperty& PackageInfoProperty::operator=(PackageInfoProperty &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	PackageInfoProperty PackageInfoProperty::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	PackageInfoProperty PackageInfoProperty::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	PackageInfoProperty PackageInfoProperty::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< PackageInfoProperty> PackageInfoProperty::Instances() { return ::Udm::InstantiatedAttr< PackageInfoProperty>(impl); }
+	PackageInfoProperty PackageInfoProperty::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< PackageInfoProperty> PackageInfoProperty::Derived() { return ::Udm::DerivedAttr< PackageInfoProperty>(impl); }
+	::Udm::ArchetypeAttr< PackageInfoProperty> PackageInfoProperty::Archetype() const { return ::Udm::ArchetypeAttr< PackageInfoProperty>(impl); }
+	::Udm::ParentAttr< ::PICML::PackageContainer> PackageInfoProperty::PackageContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
+	::Udm::ParentAttr< ::PICML::PackageContainer> PackageInfoProperty::parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, ::Udm::NULLPARENTROLE); }
+	::Udm::AssocEndAttr< ::PICML::ComponentPackage> PackageInfoProperty::srcPackageInfoProperty_end() const { return ::Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_srcPackageInfoProperty_end_); }
+	::Udm::AssocEndAttr< ::PICML::Property> PackageInfoProperty::dstPackageInfoProperty_end() const { return ::Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstPackageInfoProperty_end_); }
+	void PackageInfoProperty::Accept(Visitor &v) { v.Visit_PackageInfoProperty(*this); }
+
+	::Uml::Class PackageInfoProperty::meta;
+	::Uml::CompositionParentRole PackageInfoProperty::meta_PackageContainer_parent;
+	::Uml::AssociationRole PackageInfoProperty::meta_srcPackageInfoProperty_end_;
+	::Uml::AssociationRole PackageInfoProperty::meta_dstPackageInfoProperty_end_;
+
 	ComponentPackageReference::ComponentPackageReference() {}
 	ComponentPackageReference::ComponentPackageReference(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
 	ComponentPackageReference::ComponentPackageReference(const ComponentPackageReference &master) : MgaObject(master) {}
@@ -3269,85 +3348,6 @@ namespace PICML {
 	::Uml::CompositionParentRole ComponentPackageReference::meta_PackageConfigurationContainer_parent;
 	::Uml::CompositionParentRole ComponentPackageReference::meta_ComponentAssembly_parent;
 
-	ComponentPackage::ComponentPackage() {}
-	ComponentPackage::ComponentPackage(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	ComponentPackage::ComponentPackage(const ComponentPackage &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ComponentPackage::ComponentPackage(ComponentPackage &&master) : MgaObject(master) {};
-
-	ComponentPackage ComponentPackage::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ComponentPackage& ComponentPackage::operator=(ComponentPackage &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ComponentPackage ComponentPackage::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ComponentPackage ComponentPackage::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ComponentPackage ComponentPackage::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ComponentPackage> ComponentPackage::Instances() { return ::Udm::InstantiatedAttr< ComponentPackage>(impl); }
-	ComponentPackage ComponentPackage::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ComponentPackage> ComponentPackage::Derived() { return ::Udm::DerivedAttr< ComponentPackage>(impl); }
-	::Udm::ArchetypeAttr< ComponentPackage> ComponentPackage::Archetype() const { return ::Udm::ArchetypeAttr< ComponentPackage>(impl); }
-	::Udm::StringAttr ComponentPackage::label() const { return ::Udm::StringAttr(impl, meta_label); }
-	::Udm::StringAttr ComponentPackage::UUID() const { return ::Udm::StringAttr(impl, meta_UUID); }
-	::Udm::AClassAssocAttr< PackageConfBasePackage, PackageConfiguration> ComponentPackage::srcPackageConfBasePackage() const { return ::Udm::AClassAssocAttr< PackageConfBasePackage, PackageConfiguration>(impl, meta_srcPackageConfBasePackage, meta_srcPackageConfBasePackage_rev); }
-	::Udm::AssocAttr< ComponentPackageReference> ComponentPackage::referedbyComponentPackageReference() const { return ::Udm::AssocAttr< ComponentPackageReference>(impl, meta_referedbyComponentPackageReference); }
-	::Udm::AClassAssocAttr< PackageInfoProperty, Property> ComponentPackage::dstPackageInfoProperty() const { return ::Udm::AClassAssocAttr< PackageInfoProperty, Property>(impl, meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev); }
-	::Udm::AClassAssocAttr< PackageConfigProperty, Property> ComponentPackage::dstPackageConfigProperty() const { return ::Udm::AClassAssocAttr< PackageConfigProperty, Property>(impl, meta_dstPackageConfigProperty, meta_dstPackageConfigProperty_rev); }
-	::Udm::AClassAssocAttr< Implementation, ComponentImplementationReference> ComponentPackage::dstImplementation() const { return ::Udm::AClassAssocAttr< Implementation, ComponentImplementationReference>(impl, meta_dstImplementation, meta_dstImplementation_rev); }
-	::Udm::AClassPointerAttr< PackageInterface, ComponentRef> ComponentPackage::dstPackageInterface() const { return ::Udm::AClassPointerAttr< PackageInterface, ComponentRef>(impl, meta_dstPackageInterface, meta_dstPackageInterface_rev); }
-	::Udm::ParentAttr< ::PICML::PackageConfigurationContainer> ComponentPackage::PackageConfigurationContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
-	::Udm::ParentAttr< ::PICML::PackageContainer> ComponentPackage::PackageContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
-	::Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentPackage::ComponentAssembly_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-	::Udm::ParentAttr< ::PICML::MgaObject> ComponentPackage::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void ComponentPackage::Accept(Visitor &v) { v.Visit_ComponentPackage(*this); }
-
-	::Uml::Class ComponentPackage::meta;
-	::Uml::Attribute ComponentPackage::meta_label;
-	::Uml::Attribute ComponentPackage::meta_UUID;
-	::Uml::AssociationRole ComponentPackage::meta_srcPackageConfBasePackage;
-	::Uml::AssociationRole ComponentPackage::meta_srcPackageConfBasePackage_rev;
-	::Uml::AssociationRole ComponentPackage::meta_referedbyComponentPackageReference;
-	::Uml::AssociationRole ComponentPackage::meta_dstPackageInfoProperty;
-	::Uml::AssociationRole ComponentPackage::meta_dstPackageInfoProperty_rev;
-	::Uml::AssociationRole ComponentPackage::meta_dstPackageConfigProperty;
-	::Uml::AssociationRole ComponentPackage::meta_dstPackageConfigProperty_rev;
-	::Uml::AssociationRole ComponentPackage::meta_dstImplementation;
-	::Uml::AssociationRole ComponentPackage::meta_dstImplementation_rev;
-	::Uml::AssociationRole ComponentPackage::meta_dstPackageInterface;
-	::Uml::AssociationRole ComponentPackage::meta_dstPackageInterface_rev;
-	::Uml::CompositionParentRole ComponentPackage::meta_PackageConfigurationContainer_parent;
-	::Uml::CompositionParentRole ComponentPackage::meta_PackageContainer_parent;
-	::Uml::CompositionParentRole ComponentPackage::meta_ComponentAssembly_parent;
-
-	PackageInfoProperty::PackageInfoProperty() {}
-	PackageInfoProperty::PackageInfoProperty(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	PackageInfoProperty::PackageInfoProperty(const PackageInfoProperty &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	PackageInfoProperty::PackageInfoProperty(PackageInfoProperty &&master) : MgaObject(master) {};
-
-	PackageInfoProperty PackageInfoProperty::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	PackageInfoProperty& PackageInfoProperty::operator=(PackageInfoProperty &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	PackageInfoProperty PackageInfoProperty::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	PackageInfoProperty PackageInfoProperty::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	PackageInfoProperty PackageInfoProperty::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< PackageInfoProperty> PackageInfoProperty::Instances() { return ::Udm::InstantiatedAttr< PackageInfoProperty>(impl); }
-	PackageInfoProperty PackageInfoProperty::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< PackageInfoProperty> PackageInfoProperty::Derived() { return ::Udm::DerivedAttr< PackageInfoProperty>(impl); }
-	::Udm::ArchetypeAttr< PackageInfoProperty> PackageInfoProperty::Archetype() const { return ::Udm::ArchetypeAttr< PackageInfoProperty>(impl); }
-	::Udm::ParentAttr< ::PICML::PackageContainer> PackageInfoProperty::PackageContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
-	::Udm::ParentAttr< ::PICML::PackageContainer> PackageInfoProperty::parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, ::Udm::NULLPARENTROLE); }
-	::Udm::AssocEndAttr< ::PICML::ComponentPackage> PackageInfoProperty::srcPackageInfoProperty_end() const { return ::Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_srcPackageInfoProperty_end_); }
-	::Udm::AssocEndAttr< ::PICML::Property> PackageInfoProperty::dstPackageInfoProperty_end() const { return ::Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstPackageInfoProperty_end_); }
-	void PackageInfoProperty::Accept(Visitor &v) { v.Visit_PackageInfoProperty(*this); }
-
-	::Uml::Class PackageInfoProperty::meta;
-	::Uml::CompositionParentRole PackageInfoProperty::meta_PackageContainer_parent;
-	::Uml::AssociationRole PackageInfoProperty::meta_srcPackageInfoProperty_end_;
-	::Uml::AssociationRole PackageInfoProperty::meta_dstPackageInfoProperty_end_;
-
 	PackageContainer::PackageContainer() {}
 	PackageContainer::PackageContainer(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
 	PackageContainer::PackageContainer(const PackageContainer &master) : MgaObject(master) {}
@@ -3382,9 +3382,9 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::ComplexProperty> PackageContainer::ComplexProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComplexProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::SimpleProperty> PackageContainer::SimpleProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SimpleProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Property> PackageContainer::Property_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Property>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentImplementationReference> PackageContainer::ComponentImplementationReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentImplementationReference>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Manageable> PackageContainer::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentRef> PackageContainer::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Manageable> PackageContainer::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentImplementationReference> PackageContainer::ComponentImplementationReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentImplementationReference>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> PackageContainer::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::ComponentPackages> PackageContainer::ComponentPackages_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentPackages>(impl, meta_ComponentPackages_parent); }
 	::Udm::ParentAttr< ::PICML::ComponentPackages> PackageContainer::parent() const { return ::Udm::ParentAttr< ::PICML::ComponentPackages>(impl, ::Udm::NULLPARENTROLE); }
@@ -4876,8 +4876,8 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::GetException> ReadonlyAttribute::GetException_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GetException>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> ReadonlyAttribute::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::Inheritable> ReadonlyAttribute::Inheritable_parent() const { return ::Udm::ParentAttr< ::PICML::Inheritable>(impl, meta_Inheritable_parent); }
-	::Udm::ParentAttr< ::PICML::PortType> ReadonlyAttribute::PortType_parent() const { return ::Udm::ParentAttr< ::PICML::PortType>(impl, meta_PortType_parent); }
 	::Udm::ParentAttr< ::PICML::Component> ReadonlyAttribute::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
+	::Udm::ParentAttr< ::PICML::PortType> ReadonlyAttribute::PortType_parent() const { return ::Udm::ParentAttr< ::PICML::PortType>(impl, meta_PortType_parent); }
 	::Udm::ParentAttr< ::PICML::ConnectorObject> ReadonlyAttribute::ConnectorObject_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectorObject>(impl, meta_ConnectorObject_parent); }
 	::Udm::ParentAttr< ::PICML::NamedType> ReadonlyAttribute::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
 	void ReadonlyAttribute::Accept(Visitor &v) { v.Visit_ReadonlyAttribute(*this); }
@@ -4887,8 +4887,8 @@ namespace PICML {
 	::Uml::CompositionChildRole ReadonlyAttribute::meta_AttributeMember_child;
 	::Uml::CompositionChildRole ReadonlyAttribute::meta_GetException_children;
 	::Uml::CompositionParentRole ReadonlyAttribute::meta_Inheritable_parent;
-	::Uml::CompositionParentRole ReadonlyAttribute::meta_PortType_parent;
 	::Uml::CompositionParentRole ReadonlyAttribute::meta_Component_parent;
+	::Uml::CompositionParentRole ReadonlyAttribute::meta_PortType_parent;
 	::Uml::CompositionParentRole ReadonlyAttribute::meta_ConnectorObject_parent;
 
 	Supports::Supports() {}
@@ -6096,29 +6096,6 @@ namespace PICML {
 
 	::Uml::Class GenericObject::meta;
 
-	String::String() {}
-	String::String(::Udm::ObjectImpl *impl) : StringType(impl), MgaObject(impl) {}
-	String::String(const String &master) : StringType(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	String::String(String &&master) : StringType(master), MgaObject(master) {};
-
-	String String::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	String& String::operator=(String &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	String String::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	String String::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	String String::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< String> String::Instances() { return ::Udm::InstantiatedAttr< String>(impl); }
-	String String::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< String> String::Derived() { return ::Udm::DerivedAttr< String>(impl); }
-	::Udm::ArchetypeAttr< String> String::Archetype() const { return ::Udm::ArchetypeAttr< String>(impl); }
-	::Udm::ParentAttr< ::PICML::PredefinedTypes> String::parent() const { return ::Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, ::Udm::NULLPARENTROLE); }
-	void String::Accept(Visitor &v) { v.Visit_String(*this); }
-
-	::Uml::Class String::meta;
-
 	FloatNumber::FloatNumber() {}
 	FloatNumber::FloatNumber(::Udm::ObjectImpl *impl) : FloatingPointType(impl), MgaObject(impl) {}
 	FloatNumber::FloatNumber(const FloatNumber &master) : FloatingPointType(master), MgaObject(master) {}
@@ -6302,13 +6279,13 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::GenericValue> PredefinedTypes::GenericValue_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GenericValue>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::GenericValueObject> PredefinedTypes::GenericValueObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GenericValueObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::GenericObject> PredefinedTypes::GenericObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GenericObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::String> PredefinedTypes::String_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::String>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::FloatNumber> PredefinedTypes::FloatNumber_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::FloatNumber>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::LongInteger> PredefinedTypes::LongInteger_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::LongInteger>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ShortInteger> PredefinedTypes::ShortInteger_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ShortInteger>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Boolean> PredefinedTypes::Boolean_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Boolean>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Byte> PredefinedTypes::Byte_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Byte>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::PredefinedType> PredefinedTypes::PredefinedType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PredefinedType>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::String> PredefinedTypes::String_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::String>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::TemplateParameterValueType> PredefinedTypes::TemplateParameterValueType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::TemplateParameterValueType>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> PredefinedTypes::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::RootFolder> PredefinedTypes::RootFolder_parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
@@ -6319,6 +6296,29 @@ namespace PICML {
 	::Uml::Attribute PredefinedTypes::meta_name;
 	::Uml::CompositionChildRole PredefinedTypes::meta_PredefinedType_children;
 	::Uml::CompositionParentRole PredefinedTypes::meta_RootFolder_parent;
+
+	String::String() {}
+	String::String(::Udm::ObjectImpl *impl) : StringType(impl), MgaObject(impl) {}
+	String::String(const String &master) : StringType(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	String::String(String &&master) : StringType(master), MgaObject(master) {};
+
+	String String::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	String& String::operator=(String &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	String String::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	String String::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	String String::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< String> String::Instances() { return ::Udm::InstantiatedAttr< String>(impl); }
+	String String::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< String> String::Derived() { return ::Udm::DerivedAttr< String>(impl); }
+	::Udm::ArchetypeAttr< String> String::Archetype() const { return ::Udm::ArchetypeAttr< String>(impl); }
+	::Udm::ParentAttr< ::PICML::PredefinedTypes> String::parent() const { return ::Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, ::Udm::NULLPARENTROLE); }
+	void String::Accept(Visitor &v) { v.Visit_String(*this); }
+
+	::Uml::Class String::meta;
 
 	TemplatePackageAlias::TemplatePackageAlias() {}
 	TemplatePackageAlias::TemplatePackageAlias(::Udm::ObjectImpl *impl) : Package(impl), MgaObject(impl) {}
@@ -6855,12 +6855,12 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::FileRef> File::FileRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::FileRef>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Exception> File::Exception_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Exception>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Package> File::Package_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Package>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentRef> File::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Component> File::Component_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Component>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::PortType> File::PortType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PortType>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentFactory> File::ComponentFactory_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentFactory>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Manageable> File::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ManagesComponent> File::ManagesComponent_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ManagesComponent>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentRef> File::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Component> File::Component_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Component>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ConnectorObject> File::ConnectorObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ConnectorObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> File::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::InterfaceDefinitions> File::InterfaceDefinitions_parent() const { return ::Udm::ParentAttr< ::PICML::InterfaceDefinitions>(impl, meta_InterfaceDefinitions_parent); }
@@ -6936,14 +6936,14 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::Constant> Package::Constant_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Constant>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Exception> Package::Exception_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Exception>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Package> Package::Package_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Package>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentRef> Package::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Component> Package::Component_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Component>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::EventType> Package::EventType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventType>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::PortType> Package::PortType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PortType>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Provideable> Package::Provideable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Provideable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentFactory> Package::ComponentFactory_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentFactory>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Manageable> Package::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ManagesComponent> Package::ManagesComponent_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ManagesComponent>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentRef> Package::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Component> Package::Component_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Component>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ConnectorObject> Package::ConnectorObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ConnectorObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> Package::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::File> Package::File_parent() const { return ::Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
@@ -7398,8 +7398,8 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::RTRequirements> ComponentAssembly::RTRequirements_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RTRequirements>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ECRequirements> ComponentAssembly::ECRequirements_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ECRequirements>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::CollocationGroupMember> ComponentAssembly::CollocationGroupMember_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CollocationGroupMember>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentPackageReference> ComponentAssembly::ComponentPackageReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPackageReference>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentPackage> ComponentAssembly::ComponentPackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPackage>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentPackageReference> ComponentAssembly::ComponentPackageReference_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPackageReference>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComplexProperty> ComponentAssembly::ComplexProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComplexProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::SimpleProperty> ComponentAssembly::SimpleProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SimpleProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Property> ComponentAssembly::Property_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Property>(impl, ::Udm::NULLCHILDROLE); }
@@ -8503,6 +8503,229 @@ namespace PICML {
 	::Uml::AssociationRole Invoke::meta_srcinvoke_end_;
 	::Uml::AssociationRole Invoke::meta_dstinvoke_end_;
 
+	Operation::Operation() {}
+	Operation::Operation(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	Operation::Operation(const Operation &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Operation::Operation(Operation &&master) : MgaObject(master) {};
+
+	Operation Operation::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Operation& Operation::operator=(Operation &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Operation Operation::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Operation Operation::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Operation Operation::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Operation> Operation::Instances() { return ::Udm::InstantiatedAttr< Operation>(impl); }
+	Operation Operation::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Operation> Operation::Derived() { return ::Udm::DerivedAttr< Operation>(impl); }
+	::Udm::ArchetypeAttr< Operation> Operation::Archetype() const { return ::Udm::ArchetypeAttr< Operation>(impl); }
+	::Udm::AssocAttr< ActionType> Operation::referedbyActionType() const { return ::Udm::AssocAttr< ActionType>(impl, meta_referedbyActionType); }
+	::Udm::ChildAttr< ::PICML::ReturnType> Operation::ReturnType_child() const { return ::Udm::ChildAttr< ::PICML::ReturnType>(impl, meta_ReturnType_child); }
+	::Udm::ChildrenAttr< ::PICML::ParameterType> Operation::ParameterType_children() const { return ::Udm::ChildrenAttr< ::PICML::ParameterType>(impl, meta_ParameterType_children); }
+	::Udm::ChildrenAttr< ::PICML::ParameterType> Operation::ParameterType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ParameterType>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ReturnType> Operation::ReturnType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ReturnType>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::OutParameter> Operation::OutParameter_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OutParameter>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::InoutParameter> Operation::InoutParameter_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InoutParameter>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::InParameter> Operation::InParameter_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InParameter>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> Operation::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::Worker> Operation::Worker_parent() const { return ::Udm::ParentAttr< ::PICML::Worker>(impl, meta_Worker_parent); }
+	::Udm::ParentAttr< ::PICML::Worker> Operation::parent() const { return ::Udm::ParentAttr< ::PICML::Worker>(impl, ::Udm::NULLPARENTROLE); }
+	void Operation::Accept(Visitor &v) { v.Visit_Operation(*this); }
+
+	::Uml::Class Operation::meta;
+	::Uml::AssociationRole Operation::meta_referedbyActionType;
+	::Uml::CompositionChildRole Operation::meta_ReturnType_child;
+	::Uml::CompositionChildRole Operation::meta_ParameterType_children;
+	::Uml::CompositionParentRole Operation::meta_Worker_parent;
+
+	WorkerPackageBase::WorkerPackageBase() {}
+	WorkerPackageBase::WorkerPackageBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	WorkerPackageBase::WorkerPackageBase(const WorkerPackageBase &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	WorkerPackageBase::WorkerPackageBase(WorkerPackageBase &&master) : MgaObject(master) {};
+
+	WorkerPackageBase WorkerPackageBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	WorkerPackageBase& WorkerPackageBase::operator=(WorkerPackageBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	WorkerPackageBase WorkerPackageBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	WorkerPackageBase WorkerPackageBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	WorkerPackageBase WorkerPackageBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< WorkerPackageBase> WorkerPackageBase::Instances() { return ::Udm::InstantiatedAttr< WorkerPackageBase>(impl); }
+	WorkerPackageBase WorkerPackageBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< WorkerPackageBase> WorkerPackageBase::Derived() { return ::Udm::DerivedAttr< WorkerPackageBase>(impl); }
+	::Udm::ArchetypeAttr< WorkerPackageBase> WorkerPackageBase::Archetype() const { return ::Udm::ArchetypeAttr< WorkerPackageBase>(impl); }
+	::Udm::ChildrenAttr< ::PICML::Worker> WorkerPackageBase::Worker_children() const { return ::Udm::ChildrenAttr< ::PICML::Worker>(impl, meta_Worker_children); }
+	::Udm::ChildrenAttr< ::PICML::Worker> WorkerPackageBase::Worker_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Worker>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerPackageBase::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::MgaObject> WorkerPackageBase::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class WorkerPackageBase::meta;
+	::Uml::CompositionChildRole WorkerPackageBase::meta_Worker_children;
+
+	WorkerPackage::WorkerPackage() {}
+	WorkerPackage::WorkerPackage(::Udm::ObjectImpl *impl) : WorkerPackageBase(impl) {}
+	WorkerPackage::WorkerPackage(const WorkerPackage &master) : WorkerPackageBase(master) {}
+
+#ifdef UDM_RVALUE
+	WorkerPackage::WorkerPackage(WorkerPackage &&master) : WorkerPackageBase(master) {};
+
+	WorkerPackage WorkerPackage::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	WorkerPackage& WorkerPackage::operator=(WorkerPackage &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	WorkerPackage WorkerPackage::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	WorkerPackage WorkerPackage::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	WorkerPackage WorkerPackage::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< WorkerPackage> WorkerPackage::Instances() { return ::Udm::InstantiatedAttr< WorkerPackage>(impl); }
+	WorkerPackage WorkerPackage::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< WorkerPackage> WorkerPackage::Derived() { return ::Udm::DerivedAttr< WorkerPackage>(impl); }
+	::Udm::ArchetypeAttr< WorkerPackage> WorkerPackage::Archetype() const { return ::Udm::ArchetypeAttr< WorkerPackage>(impl); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerPackage::WorkerPackage_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_children); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackageBase> WorkerPackage::WorkerPackageBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerPackage::WorkerPackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerPackage::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::WorkerPackage> WorkerPackage::WorkerPackage_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_parent); }
+	::Udm::ParentAttr< ::PICML::WorkerFile> WorkerPackage::WorkerFile_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerFile>(impl, meta_WorkerFile_parent); }
+	::Udm::ParentAttr< ::PICML::WorkerPackageBase> WorkerPackage::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLPARENTROLE); }
+	void WorkerPackage::Accept(Visitor &v) { v.Visit_WorkerPackage(*this); }
+
+	::Uml::Class WorkerPackage::meta;
+	::Uml::CompositionChildRole WorkerPackage::meta_WorkerPackage_children;
+	::Uml::CompositionParentRole WorkerPackage::meta_WorkerPackage_parent;
+	::Uml::CompositionParentRole WorkerPackage::meta_WorkerFile_parent;
+
+	WorkerFile::WorkerFile() {}
+	WorkerFile::WorkerFile(::Udm::ObjectImpl *impl) : WorkerPackageBase(impl) {}
+	WorkerFile::WorkerFile(const WorkerFile &master) : WorkerPackageBase(master) {}
+
+#ifdef UDM_RVALUE
+	WorkerFile::WorkerFile(WorkerFile &&master) : WorkerPackageBase(master) {};
+
+	WorkerFile WorkerFile::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	WorkerFile& WorkerFile::operator=(WorkerFile &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	WorkerFile WorkerFile::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	WorkerFile WorkerFile::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	WorkerFile WorkerFile::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< WorkerFile> WorkerFile::Instances() { return ::Udm::InstantiatedAttr< WorkerFile>(impl); }
+	WorkerFile WorkerFile::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< WorkerFile> WorkerFile::Derived() { return ::Udm::DerivedAttr< WorkerFile>(impl); }
+	::Udm::ArchetypeAttr< WorkerFile> WorkerFile::Archetype() const { return ::Udm::ArchetypeAttr< WorkerFile>(impl); }
+	::Udm::StringAttr WorkerFile::Location() const { return ::Udm::StringAttr(impl, meta_Location); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerFile::WorkerPackage_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_children); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackageBase> WorkerFile::WorkerPackageBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerFile::WorkerPackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerFile::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::WorkerLibrary> WorkerFile::WorkerLibrary_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibrary>(impl, meta_WorkerLibrary_parent); }
+	::Udm::ParentAttr< ::PICML::WorkerLibrary> WorkerFile::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibrary>(impl, ::Udm::NULLPARENTROLE); }
+	void WorkerFile::Accept(Visitor &v) { v.Visit_WorkerFile(*this); }
+
+	::Uml::Class WorkerFile::meta;
+	::Uml::Attribute WorkerFile::meta_Location;
+	::Uml::CompositionChildRole WorkerFile::meta_WorkerPackage_children;
+	::Uml::CompositionParentRole WorkerFile::meta_WorkerLibrary_parent;
+
+	WorkerLibraries::WorkerLibraries() {}
+	WorkerLibraries::WorkerLibraries(::Udm::ObjectImpl *impl) : UDM_OBJECT(impl) {}
+	WorkerLibraries::WorkerLibraries(const WorkerLibraries &master) : UDM_OBJECT(master) {}
+
+#ifdef UDM_RVALUE
+	WorkerLibraries::WorkerLibraries(WorkerLibraries &&master) : UDM_OBJECT(master) {};
+
+	WorkerLibraries WorkerLibraries::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	WorkerLibraries& WorkerLibraries::operator=(WorkerLibraries &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	WorkerLibraries WorkerLibraries::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	WorkerLibraries WorkerLibraries::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	WorkerLibraries WorkerLibraries::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< WorkerLibraries> WorkerLibraries::Instances() { return ::Udm::InstantiatedAttr< WorkerLibraries>(impl); }
+	WorkerLibraries WorkerLibraries::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< WorkerLibraries> WorkerLibraries::Derived() { return ::Udm::DerivedAttr< WorkerLibraries>(impl); }
+	::Udm::ArchetypeAttr< WorkerLibraries> WorkerLibraries::Archetype() const { return ::Udm::ArchetypeAttr< WorkerLibraries>(impl); }
+	::Udm::StringAttr WorkerLibraries::name() const { return ::Udm::StringAttr(impl, meta_name); }
+	::Udm::ChildrenAttr< ::PICML::WorkerLibrary> WorkerLibraries::WorkerLibrary_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibrary>(impl, meta_WorkerLibrary_children); }
+	::Udm::ChildrenAttr< ::PICML::WorkerLibrary> WorkerLibraries::WorkerLibrary_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibrary>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerLibraries::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::RootFolder> WorkerLibraries::RootFolder_parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
+	::Udm::ParentAttr< ::PICML::RootFolder> WorkerLibraries::parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, ::Udm::NULLPARENTROLE); }
+	void WorkerLibraries::Accept(Visitor &v) { v.Visit_WorkerLibraries(*this); }
+
+	::Uml::Class WorkerLibraries::meta;
+	::Uml::Attribute WorkerLibraries::meta_name;
+	::Uml::CompositionChildRole WorkerLibraries::meta_WorkerLibrary_children;
+	::Uml::CompositionParentRole WorkerLibraries::meta_RootFolder_parent;
+
+	Worker::Worker() {}
+	Worker::Worker(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	Worker::Worker(const Worker &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Worker::Worker(Worker &&master) : MgaObject(master) {};
+
+	Worker Worker::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Worker& Worker::operator=(Worker &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Worker Worker::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Worker Worker::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Worker Worker::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Worker> Worker::Instances() { return ::Udm::InstantiatedAttr< Worker>(impl); }
+	Worker Worker::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Worker> Worker::Derived() { return ::Udm::DerivedAttr< Worker>(impl); }
+	::Udm::ArchetypeAttr< Worker> Worker::Archetype() const { return ::Udm::ArchetypeAttr< Worker>(impl); }
+	::Udm::BooleanAttr Worker::Abstract() const { return ::Udm::BooleanAttr(impl, meta_Abstract); }
+	::Udm::AssocAttr< WorkerType> Worker::referedbyWorkerType() const { return ::Udm::AssocAttr< WorkerType>(impl, meta_referedbyWorkerType); }
+	::Udm::ChildrenAttr< ::PICML::Operation> Worker::Operation_children() const { return ::Udm::ChildrenAttr< ::PICML::Operation>(impl, meta_Operation_children); }
+	::Udm::ChildrenAttr< ::PICML::Operation> Worker::Operation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Operation>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> Worker::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::WorkerPackageBase> Worker::WorkerPackageBase_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, meta_WorkerPackageBase_parent); }
+	::Udm::ParentAttr< ::PICML::WorkerPackageBase> Worker::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLPARENTROLE); }
+	void Worker::Accept(Visitor &v) { v.Visit_Worker(*this); }
+
+	::Uml::Class Worker::meta;
+	::Uml::Attribute Worker::meta_Abstract;
+	::Uml::AssociationRole Worker::meta_referedbyWorkerType;
+	::Uml::CompositionChildRole Worker::meta_Operation_children;
+	::Uml::CompositionParentRole Worker::meta_WorkerPackageBase_parent;
+
+	WorkerLibrary::WorkerLibrary() {}
+	WorkerLibrary::WorkerLibrary(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	WorkerLibrary::WorkerLibrary(const WorkerLibrary &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	WorkerLibrary::WorkerLibrary(WorkerLibrary &&master) : MgaObject(master) {};
+
+	WorkerLibrary WorkerLibrary::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	WorkerLibrary& WorkerLibrary::operator=(WorkerLibrary &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	WorkerLibrary WorkerLibrary::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	WorkerLibrary WorkerLibrary::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	WorkerLibrary WorkerLibrary::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< WorkerLibrary> WorkerLibrary::Instances() { return ::Udm::InstantiatedAttr< WorkerLibrary>(impl); }
+	WorkerLibrary WorkerLibrary::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< WorkerLibrary> WorkerLibrary::Derived() { return ::Udm::DerivedAttr< WorkerLibrary>(impl); }
+	::Udm::ArchetypeAttr< WorkerLibrary> WorkerLibrary::Archetype() const { return ::Udm::ArchetypeAttr< WorkerLibrary>(impl); }
+	::Udm::StringAttr WorkerLibrary::Location() const { return ::Udm::StringAttr(impl, meta_Location); }
+	::Udm::ChildrenAttr< ::PICML::WorkerFile> WorkerLibrary::WorkerFile_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerFile>(impl, meta_WorkerFile_children); }
+	::Udm::ChildrenAttr< ::PICML::WorkerPackageBase> WorkerLibrary::WorkerPackageBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::WorkerFile> WorkerLibrary::WorkerFile_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerFile>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerLibrary::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::WorkerLibraries> WorkerLibrary::WorkerLibraries_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibraries>(impl, meta_WorkerLibraries_parent); }
+	::Udm::ParentAttr< ::PICML::WorkerLibraries> WorkerLibrary::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibraries>(impl, ::Udm::NULLPARENTROLE); }
+	void WorkerLibrary::Accept(Visitor &v) { v.Visit_WorkerLibrary(*this); }
+
+	::Uml::Class WorkerLibrary::meta;
+	::Uml::Attribute WorkerLibrary::meta_Location;
+	::Uml::CompositionChildRole WorkerLibrary::meta_WorkerFile_children;
+	::Uml::CompositionParentRole WorkerLibrary::meta_WorkerLibraries_parent;
+
 	PortInstance::PortInstance() {}
 	PortInstance::PortInstance(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
 	PortInstance::PortInstance(const PortInstance &master) : MgaObject(master) {}
@@ -8814,6 +9037,652 @@ namespace PICML {
 	::Uml::CompositionChildRole ComponentInstance::meta_ComponentInstanceType_child;
 	::Uml::CompositionParentRole ComponentInstance::meta_ComponentAssembly_parent;
 
+	ComponentRef::ComponentRef() {}
+	ComponentRef::ComponentRef(::Udm::ObjectImpl *impl) : Manageable(impl), MgaObject(impl) {}
+	ComponentRef::ComponentRef(const ComponentRef &master) : Manageable(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ComponentRef::ComponentRef(ComponentRef &&master) : Manageable(master), MgaObject(master) {};
+
+	ComponentRef ComponentRef::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ComponentRef& ComponentRef::operator=(ComponentRef &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ComponentRef ComponentRef::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ComponentRef ComponentRef::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ComponentRef ComponentRef::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ComponentRef> ComponentRef::Instances() { return ::Udm::InstantiatedAttr< ComponentRef>(impl); }
+	ComponentRef ComponentRef::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ComponentRef> ComponentRef::Derived() { return ::Udm::DerivedAttr< ComponentRef>(impl); }
+	::Udm::ArchetypeAttr< ComponentRef> ComponentRef::Archetype() const { return ::Udm::ArchetypeAttr< ComponentRef>(impl); }
+	::Udm::AClassPointerAttr< PackageInterface, ComponentPackage> ComponentRef::srcPackageInterface() const { return ::Udm::AClassPointerAttr< PackageInterface, ComponentPackage>(impl, meta_srcPackageInterface, meta_srcPackageInterface_rev); }
+	::Udm::PointerAttr< Component> ComponentRef::ref() const { return ::Udm::PointerAttr< Component>(impl, meta_ref); }
+	::Udm::AClassAssocAttr< ComponentInfoProperty, Property> ComponentRef::dstComponentInfoProperty() const { return ::Udm::AClassAssocAttr< ComponentInfoProperty, Property>(impl, meta_dstComponentInfoProperty, meta_dstComponentInfoProperty_rev); }
+	::Udm::AClassAssocAttr< ComponentConfigProperty, Property> ComponentRef::dstComponentConfigProperty() const { return ::Udm::AClassAssocAttr< ComponentConfigProperty, Property>(impl, meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev); }
+	::Udm::AClassAssocAttr< ComponentProperty, ComponentPropertyDescription> ComponentRef::dstComponentProperty() const { return ::Udm::AClassAssocAttr< ComponentProperty, ComponentPropertyDescription>(impl, meta_dstComponentProperty, meta_dstComponentProperty_rev); }
+	::Udm::AClassPointerAttr< Implements, ComponentImplementation> ComponentRef::srcImplements() const { return ::Udm::AClassPointerAttr< Implements, ComponentImplementation>(impl, meta_srcImplements, meta_srcImplements_rev); }
+	::Udm::ParentAttr< ::PICML::Path> ComponentRef::Path_parent() const { return ::Udm::ParentAttr< ::PICML::Path>(impl, meta_Path_parent); }
+	::Udm::ParentAttr< ::PICML::PackageContainer> ComponentRef::PackageContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
+	::Udm::ParentAttr< ::PICML::File> ComponentRef::File_parent() const { return ::Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
+	::Udm::ParentAttr< ::PICML::Package> ComponentRef::Package_parent() const { return ::Udm::ParentAttr< ::PICML::Package>(impl, meta_Package_parent); }
+	::Udm::ParentAttr< ::PICML::ComponentImplementationContainer> ComponentRef::ComponentImplementationContainer_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
+	::Udm::ParentAttr< ::PICML::ComponentContainer> ComponentRef::ComponentContainer_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentContainer>(impl, meta_ComponentContainer_parent); }
+	::Udm::ParentAttr< ::PICML::MgaObject> ComponentRef::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void ComponentRef::Accept(Visitor &v) { v.Visit_ComponentRef(*this); }
+
+	::Uml::Class ComponentRef::meta;
+	::Uml::AssociationRole ComponentRef::meta_srcPackageInterface;
+	::Uml::AssociationRole ComponentRef::meta_srcPackageInterface_rev;
+	::Uml::AssociationRole ComponentRef::meta_ref;
+	::Uml::AssociationRole ComponentRef::meta_dstComponentInfoProperty;
+	::Uml::AssociationRole ComponentRef::meta_dstComponentInfoProperty_rev;
+	::Uml::AssociationRole ComponentRef::meta_dstComponentConfigProperty;
+	::Uml::AssociationRole ComponentRef::meta_dstComponentConfigProperty_rev;
+	::Uml::AssociationRole ComponentRef::meta_dstComponentProperty;
+	::Uml::AssociationRole ComponentRef::meta_dstComponentProperty_rev;
+	::Uml::AssociationRole ComponentRef::meta_srcImplements;
+	::Uml::AssociationRole ComponentRef::meta_srcImplements_rev;
+	::Uml::CompositionParentRole ComponentRef::meta_Path_parent;
+	::Uml::CompositionParentRole ComponentRef::meta_PackageContainer_parent;
+	::Uml::CompositionParentRole ComponentRef::meta_File_parent;
+	::Uml::CompositionParentRole ComponentRef::meta_Package_parent;
+	::Uml::CompositionParentRole ComponentRef::meta_ComponentImplementationContainer_parent;
+	::Uml::CompositionParentRole ComponentRef::meta_ComponentContainer_parent;
+
+	Port::Port() {}
+	Port::Port(::Udm::ObjectImpl *impl) : GraphVertex(impl),Taggable(impl),CommonPortAttrs(impl), MgaObject(impl) {}
+	Port::Port(const Port &master) : GraphVertex(master),Taggable(master),CommonPortAttrs(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Port::Port(Port &&master) : GraphVertex(master),Taggable(master),CommonPortAttrs(master), MgaObject(master) {};
+
+	Port Port::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Port& Port::operator=(Port &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Port Port::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Port Port::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Port Port::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Port> Port::Instances() { return ::Udm::InstantiatedAttr< Port>(impl); }
+	Port Port::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Port> Port::Derived() { return ::Udm::DerivedAttr< Port>(impl); }
+	::Udm::ArchetypeAttr< Port> Port::Archetype() const { return ::Udm::ArchetypeAttr< Port>(impl); }
+	::Udm::ParentAttr< ::PICML::ConnectedComponent> Port::ConnectedComponent_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectedComponent>(impl, meta_ConnectedComponent_parent); }
+	::Udm::ParentAttr< ::PICML::Component> Port::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
+	::Udm::ParentAttr< ::PICML::MgaObject> Port::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class Port::meta;
+	::Uml::CompositionParentRole Port::meta_ConnectedComponent_parent;
+	::Uml::CompositionParentRole Port::meta_Component_parent;
+
+	InEventPort::InEventPort() {}
+	InEventPort::InEventPort(::Udm::ObjectImpl *impl) : EventPort(impl),QueryInputBase(impl),SingleInputBase(impl), MgaObject(impl) {}
+	InEventPort::InEventPort(const InEventPort &master) : EventPort(master),QueryInputBase(master),SingleInputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	InEventPort::InEventPort(InEventPort &&master) : EventPort(master),QueryInputBase(master),SingleInputBase(master), MgaObject(master) {};
+
+	InEventPort InEventPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	InEventPort& InEventPort::operator=(InEventPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	InEventPort InEventPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	InEventPort InEventPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	InEventPort InEventPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< InEventPort> InEventPort::Instances() { return ::Udm::InstantiatedAttr< InEventPort>(impl); }
+	InEventPort InEventPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< InEventPort> InEventPort::Derived() { return ::Udm::DerivedAttr< InEventPort>(impl); }
+	::Udm::ArchetypeAttr< InEventPort> InEventPort::Archetype() const { return ::Udm::ArchetypeAttr< InEventPort>(impl); }
+	::Udm::AssocAttr< InEventPortInstance> InEventPort::referedbyInEventPortInstance() const { return ::Udm::AssocAttr< InEventPortInstance>(impl, meta_referedbyInEventPortInstance); }
+	::Udm::PointerAttr< EventType> InEventPort::ref() const { return ::Udm::PointerAttr< EventType>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::MgaObject> InEventPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void InEventPort::Accept(Visitor &v) { v.Visit_InEventPort(*this); }
+
+	::Uml::Class InEventPort::meta;
+	::Uml::AssociationRole InEventPort::meta_referedbyInEventPortInstance;
+	::Uml::AssociationRole InEventPort::meta_ref;
+
+	RequiredRequestPort::RequiredRequestPort() {}
+	RequiredRequestPort::RequiredRequestPort(::Udm::ObjectImpl *impl) : ObjectPort(impl),MultiOutputBase(impl), MgaObject(impl) {}
+	RequiredRequestPort::RequiredRequestPort(const RequiredRequestPort &master) : ObjectPort(master),MultiOutputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	RequiredRequestPort::RequiredRequestPort(RequiredRequestPort &&master) : ObjectPort(master),MultiOutputBase(master), MgaObject(master) {};
+
+	RequiredRequestPort RequiredRequestPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	RequiredRequestPort& RequiredRequestPort::operator=(RequiredRequestPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	RequiredRequestPort RequiredRequestPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	RequiredRequestPort RequiredRequestPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	RequiredRequestPort RequiredRequestPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< RequiredRequestPort> RequiredRequestPort::Instances() { return ::Udm::InstantiatedAttr< RequiredRequestPort>(impl); }
+	RequiredRequestPort RequiredRequestPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< RequiredRequestPort> RequiredRequestPort::Derived() { return ::Udm::DerivedAttr< RequiredRequestPort>(impl); }
+	::Udm::ArchetypeAttr< RequiredRequestPort> RequiredRequestPort::Archetype() const { return ::Udm::ArchetypeAttr< RequiredRequestPort>(impl); }
+	::Udm::BooleanAttr RequiredRequestPort::multiple_connections() const { return ::Udm::BooleanAttr(impl, meta_multiple_connections); }
+	::Udm::BooleanAttr RequiredRequestPort::AsyncCommunication() const { return ::Udm::BooleanAttr(impl, meta_AsyncCommunication); }
+	::Udm::AssocAttr< RequiredRequestPortInstance> RequiredRequestPort::referedbyRequiredRequestPortInstance() const { return ::Udm::AssocAttr< RequiredRequestPortInstance>(impl, meta_referedbyRequiredRequestPortInstance); }
+	::Udm::PointerAttr< Provideable> RequiredRequestPort::ref() const { return ::Udm::PointerAttr< Provideable>(impl, meta_ref); }
+	::Udm::AssocAttr< TargetRequiredRequestPort> RequiredRequestPort::referedbyTargetRequiredRequestPort() const { return ::Udm::AssocAttr< TargetRequiredRequestPort>(impl, meta_referedbyTargetRequiredRequestPort); }
+	::Udm::ParentAttr< ::PICML::MgaObject> RequiredRequestPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void RequiredRequestPort::Accept(Visitor &v) { v.Visit_RequiredRequestPort(*this); }
+
+	::Uml::Class RequiredRequestPort::meta;
+	::Uml::Attribute RequiredRequestPort::meta_multiple_connections;
+	::Uml::Attribute RequiredRequestPort::meta_AsyncCommunication;
+	::Uml::AssociationRole RequiredRequestPort::meta_referedbyRequiredRequestPortInstance;
+	::Uml::AssociationRole RequiredRequestPort::meta_ref;
+	::Uml::AssociationRole RequiredRequestPort::meta_referedbyTargetRequiredRequestPort;
+
+	ProvidedRequestPort::ProvidedRequestPort() {}
+	ProvidedRequestPort::ProvidedRequestPort(::Udm::ObjectImpl *impl) : ObjectPort(impl),MultiInputBase(impl), MgaObject(impl) {}
+	ProvidedRequestPort::ProvidedRequestPort(const ProvidedRequestPort &master) : ObjectPort(master),MultiInputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ProvidedRequestPort::ProvidedRequestPort(ProvidedRequestPort &&master) : ObjectPort(master),MultiInputBase(master), MgaObject(master) {};
+
+	ProvidedRequestPort ProvidedRequestPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ProvidedRequestPort& ProvidedRequestPort::operator=(ProvidedRequestPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ProvidedRequestPort ProvidedRequestPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ProvidedRequestPort ProvidedRequestPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ProvidedRequestPort ProvidedRequestPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ProvidedRequestPort> ProvidedRequestPort::Instances() { return ::Udm::InstantiatedAttr< ProvidedRequestPort>(impl); }
+	ProvidedRequestPort ProvidedRequestPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ProvidedRequestPort> ProvidedRequestPort::Derived() { return ::Udm::DerivedAttr< ProvidedRequestPort>(impl); }
+	::Udm::ArchetypeAttr< ProvidedRequestPort> ProvidedRequestPort::Archetype() const { return ::Udm::ArchetypeAttr< ProvidedRequestPort>(impl); }
+	::Udm::AssocAttr< ProvidedRequestPortInstance> ProvidedRequestPort::referedbyProvidedRequestPortInstance() const { return ::Udm::AssocAttr< ProvidedRequestPortInstance>(impl, meta_referedbyProvidedRequestPortInstance); }
+	::Udm::PointerAttr< Provideable> ProvidedRequestPort::ref() const { return ::Udm::PointerAttr< Provideable>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::MgaObject> ProvidedRequestPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void ProvidedRequestPort::Accept(Visitor &v) { v.Visit_ProvidedRequestPort(*this); }
+
+	::Uml::Class ProvidedRequestPort::meta;
+	::Uml::AssociationRole ProvidedRequestPort::meta_referedbyProvidedRequestPortInstance;
+	::Uml::AssociationRole ProvidedRequestPort::meta_ref;
+
+	OutEventPort::OutEventPort() {}
+	OutEventPort::OutEventPort(::Udm::ObjectImpl *impl) : EventPort(impl),SingleOutputBase(impl), MgaObject(impl) {}
+	OutEventPort::OutEventPort(const OutEventPort &master) : EventPort(master),SingleOutputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	OutEventPort::OutEventPort(OutEventPort &&master) : EventPort(master),SingleOutputBase(master), MgaObject(master) {};
+
+	OutEventPort OutEventPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	OutEventPort& OutEventPort::operator=(OutEventPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	OutEventPort OutEventPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	OutEventPort OutEventPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	OutEventPort OutEventPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< OutEventPort> OutEventPort::Instances() { return ::Udm::InstantiatedAttr< OutEventPort>(impl); }
+	OutEventPort OutEventPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< OutEventPort> OutEventPort::Derived() { return ::Udm::DerivedAttr< OutEventPort>(impl); }
+	::Udm::ArchetypeAttr< OutEventPort> OutEventPort::Archetype() const { return ::Udm::ArchetypeAttr< OutEventPort>(impl); }
+	::Udm::BooleanAttr OutEventPort::single_destination() const { return ::Udm::BooleanAttr(impl, meta_single_destination); }
+	::Udm::StringAttr OutEventPort::out_event_port_type() const { return ::Udm::StringAttr(impl, meta_out_event_port_type); }
+	::Udm::AssocAttr< OutEventPortInstance> OutEventPort::referedbyOutEventPortInstance() const { return ::Udm::AssocAttr< OutEventPortInstance>(impl, meta_referedbyOutEventPortInstance); }
+	::Udm::PointerAttr< EventType> OutEventPort::ref() const { return ::Udm::PointerAttr< EventType>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::MgaObject> OutEventPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void OutEventPort::Accept(Visitor &v) { v.Visit_OutEventPort(*this); }
+
+	::Uml::Class OutEventPort::meta;
+	::Uml::Attribute OutEventPort::meta_single_destination;
+	::Uml::Attribute OutEventPort::meta_out_event_port_type;
+	::Uml::AssociationRole OutEventPort::meta_referedbyOutEventPortInstance;
+	::Uml::AssociationRole OutEventPort::meta_ref;
+
+	Component::Component() {}
+	Component::Component(::Udm::ObjectImpl *impl) : SupportsInterfaces(impl),NamedType(impl),Manageable(impl),TopLevelBehavior(impl), MgaObject(impl) {}
+	Component::Component(const Component &master) : SupportsInterfaces(master),NamedType(master),Manageable(master),TopLevelBehavior(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Component::Component(Component &&master) : SupportsInterfaces(master),NamedType(master),Manageable(master),TopLevelBehavior(master), MgaObject(master) {};
+
+	Component Component::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Component& Component::operator=(Component &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Component Component::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Component Component::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Component Component::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Component> Component::Instances() { return ::Udm::InstantiatedAttr< Component>(impl); }
+	Component Component::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Component> Component::Derived() { return ::Udm::DerivedAttr< Component>(impl); }
+	::Udm::ArchetypeAttr< Component> Component::Archetype() const { return ::Udm::ArchetypeAttr< Component>(impl); }
+	::Udm::StringAttr Component::label() const { return ::Udm::StringAttr(impl, meta_label); }
+	::Udm::StringAttr Component::UUID() const { return ::Udm::StringAttr(impl, meta_UUID); }
+	::Udm::AssocAttr< CompRef> Component::referedbyCompRef() const { return ::Udm::AssocAttr< CompRef>(impl, meta_referedbyCompRef); }
+	::Udm::AssocAttr< ComponentRef> Component::referedbyComponentRef() const { return ::Udm::AssocAttr< ComponentRef>(impl, meta_referedbyComponentRef); }
+	::Udm::AssocAttr< ComponentInherits> Component::referedbyComponentInherits() const { return ::Udm::AssocAttr< ComponentInherits>(impl, meta_referedbyComponentInherits); }
+	::Udm::ChildrenAttr< ::PICML::ExtendedPortBase> Component::ExtendedPortBase_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPortBase>(impl, meta_ExtendedPortBase_children); }
+	::Udm::ChildAttr< ::PICML::ComponentInherits> Component::ComponentInherits_child() const { return ::Udm::ChildAttr< ::PICML::ComponentInherits>(impl, meta_ComponentInherits_child); }
+	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> Component::ReadonlyAttribute_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
+	::Udm::ChildrenAttr< ::PICML::Port> Component::Port_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, meta_Port_children); }
+	::Udm::ChildrenAttr< ::PICML::GraphVertex> Component::GraphVertex_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GraphVertex>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Taggable> Component::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Attribute> Component::Attribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Attribute>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> Component::ReadonlyAttribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Port> Component::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::InEventPort> Component::InEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InEventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> Component::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> Component::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::OutEventPort> Component::OutEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OutEventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ExtendedPortBase> Component::ExtendedPortBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPortBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MirrorPort> Component::MirrorPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MirrorPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentInherits> Component::ComponentInherits_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentInherits>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ExtendedPort> Component::ExtendedPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::EventPort> Component::EventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ObjectPort> Component::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> Component::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> Component::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::Prefixable> Component::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
+	void Component::Accept(Visitor &v) { v.Visit_Component(*this); }
+
+	::Uml::Class Component::meta;
+	::Uml::Attribute Component::meta_label;
+	::Uml::Attribute Component::meta_UUID;
+	::Uml::AssociationRole Component::meta_referedbyCompRef;
+	::Uml::AssociationRole Component::meta_referedbyComponentRef;
+	::Uml::AssociationRole Component::meta_referedbyComponentInherits;
+	::Uml::CompositionChildRole Component::meta_ExtendedPortBase_children;
+	::Uml::CompositionChildRole Component::meta_ComponentInherits_child;
+	::Uml::CompositionChildRole Component::meta_ReadonlyAttribute_children;
+	::Uml::CompositionChildRole Component::meta_Port_children;
+
+	LookupKeyType::LookupKeyType() {}
+	LookupKeyType::LookupKeyType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	LookupKeyType::LookupKeyType(const LookupKeyType &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	LookupKeyType::LookupKeyType(LookupKeyType &&master) : MgaObject(master) {};
+
+	LookupKeyType LookupKeyType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	LookupKeyType& LookupKeyType::operator=(LookupKeyType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	LookupKeyType LookupKeyType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	LookupKeyType LookupKeyType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	LookupKeyType LookupKeyType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< LookupKeyType> LookupKeyType::Instances() { return ::Udm::InstantiatedAttr< LookupKeyType>(impl); }
+	LookupKeyType LookupKeyType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< LookupKeyType> LookupKeyType::Derived() { return ::Udm::DerivedAttr< LookupKeyType>(impl); }
+	::Udm::ArchetypeAttr< LookupKeyType> LookupKeyType::Archetype() const { return ::Udm::ArchetypeAttr< LookupKeyType>(impl); }
+	::Udm::AssocAttr< LookupKey> LookupKeyType::referedbyLookupKey() const { return ::Udm::AssocAttr< LookupKey>(impl, meta_referedbyLookupKey); }
+	::Udm::ParentAttr< ::Udm::Object> LookupKeyType::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class LookupKeyType::meta;
+	::Uml::AssociationRole LookupKeyType::meta_referedbyLookupKey;
+
+	LookupKey::LookupKey() {}
+	LookupKey::LookupKey(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	LookupKey::LookupKey(const LookupKey &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	LookupKey::LookupKey(LookupKey &&master) : MgaObject(master) {};
+
+	LookupKey LookupKey::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	LookupKey& LookupKey::operator=(LookupKey &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	LookupKey LookupKey::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	LookupKey LookupKey::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	LookupKey LookupKey::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< LookupKey> LookupKey::Instances() { return ::Udm::InstantiatedAttr< LookupKey>(impl); }
+	LookupKey LookupKey::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< LookupKey> LookupKey::Derived() { return ::Udm::DerivedAttr< LookupKey>(impl); }
+	::Udm::ArchetypeAttr< LookupKey> LookupKey::Archetype() const { return ::Udm::ArchetypeAttr< LookupKey>(impl); }
+	::Udm::PointerAttr< LookupKeyType> LookupKey::ref() const { return ::Udm::PointerAttr< LookupKeyType>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::ComponentFactory> LookupKey::ComponentFactory_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
+	::Udm::ParentAttr< ::PICML::ComponentFactory> LookupKey::parent() const { return ::Udm::ParentAttr< ::PICML::ComponentFactory>(impl, ::Udm::NULLPARENTROLE); }
+	void LookupKey::Accept(Visitor &v) { v.Visit_LookupKey(*this); }
+
+	::Uml::Class LookupKey::meta;
+	::Uml::AssociationRole LookupKey::meta_ref;
+	::Uml::CompositionParentRole LookupKey::meta_ComponentFactory_parent;
+
+	ExtendedPortBase::ExtendedPortBase() {}
+	ExtendedPortBase::ExtendedPortBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	ExtendedPortBase::ExtendedPortBase(const ExtendedPortBase &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ExtendedPortBase::ExtendedPortBase(ExtendedPortBase &&master) : MgaObject(master) {};
+
+	ExtendedPortBase ExtendedPortBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ExtendedPortBase& ExtendedPortBase::operator=(ExtendedPortBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ExtendedPortBase ExtendedPortBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ExtendedPortBase ExtendedPortBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ExtendedPortBase ExtendedPortBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ExtendedPortBase> ExtendedPortBase::Instances() { return ::Udm::InstantiatedAttr< ExtendedPortBase>(impl); }
+	ExtendedPortBase ExtendedPortBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ExtendedPortBase> ExtendedPortBase::Derived() { return ::Udm::DerivedAttr< ExtendedPortBase>(impl); }
+	::Udm::ArchetypeAttr< ExtendedPortBase> ExtendedPortBase::Archetype() const { return ::Udm::ArchetypeAttr< ExtendedPortBase>(impl); }
+	::Udm::PointerAttr< PortType> ExtendedPortBase::ref() const { return ::Udm::PointerAttr< PortType>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::Component> ExtendedPortBase::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
+	::Udm::ParentAttr< ::PICML::ConnectorObject> ExtendedPortBase::ConnectorObject_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectorObject>(impl, meta_ConnectorObject_parent); }
+	::Udm::ParentAttr< ::PICML::NamedType> ExtendedPortBase::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class ExtendedPortBase::meta;
+	::Uml::AssociationRole ExtendedPortBase::meta_ref;
+	::Uml::CompositionParentRole ExtendedPortBase::meta_Component_parent;
+	::Uml::CompositionParentRole ExtendedPortBase::meta_ConnectorObject_parent;
+
+	MirrorPort::MirrorPort() {}
+	MirrorPort::MirrorPort(::Udm::ObjectImpl *impl) : ExtendedPortBase(impl) {}
+	MirrorPort::MirrorPort(const MirrorPort &master) : ExtendedPortBase(master) {}
+
+#ifdef UDM_RVALUE
+	MirrorPort::MirrorPort(MirrorPort &&master) : ExtendedPortBase(master) {};
+
+	MirrorPort MirrorPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	MirrorPort& MirrorPort::operator=(MirrorPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	MirrorPort MirrorPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	MirrorPort MirrorPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	MirrorPort MirrorPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< MirrorPort> MirrorPort::Instances() { return ::Udm::InstantiatedAttr< MirrorPort>(impl); }
+	MirrorPort MirrorPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< MirrorPort> MirrorPort::Derived() { return ::Udm::DerivedAttr< MirrorPort>(impl); }
+	::Udm::ArchetypeAttr< MirrorPort> MirrorPort::Archetype() const { return ::Udm::ArchetypeAttr< MirrorPort>(impl); }
+	::Udm::AssocAttr< MirrorPortInstance> MirrorPort::referedbyMirrorPortInstance() const { return ::Udm::AssocAttr< MirrorPortInstance>(impl, meta_referedbyMirrorPortInstance); }
+	::Udm::ParentAttr< ::PICML::NamedType> MirrorPort::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
+	void MirrorPort::Accept(Visitor &v) { v.Visit_MirrorPort(*this); }
+
+	::Uml::Class MirrorPort::meta;
+	::Uml::AssociationRole MirrorPort::meta_referedbyMirrorPortInstance;
+
+	ComponentInherits::ComponentInherits() {}
+	ComponentInherits::ComponentInherits(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	ComponentInherits::ComponentInherits(const ComponentInherits &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ComponentInherits::ComponentInherits(ComponentInherits &&master) : MgaObject(master) {};
+
+	ComponentInherits ComponentInherits::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ComponentInherits& ComponentInherits::operator=(ComponentInherits &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ComponentInherits ComponentInherits::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ComponentInherits ComponentInherits::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ComponentInherits ComponentInherits::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ComponentInherits> ComponentInherits::Instances() { return ::Udm::InstantiatedAttr< ComponentInherits>(impl); }
+	ComponentInherits ComponentInherits::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ComponentInherits> ComponentInherits::Derived() { return ::Udm::DerivedAttr< ComponentInherits>(impl); }
+	::Udm::ArchetypeAttr< ComponentInherits> ComponentInherits::Archetype() const { return ::Udm::ArchetypeAttr< ComponentInherits>(impl); }
+	::Udm::PointerAttr< Component> ComponentInherits::ref() const { return ::Udm::PointerAttr< Component>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::Component> ComponentInherits::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
+	::Udm::ParentAttr< ::PICML::Component> ComponentInherits::parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, ::Udm::NULLPARENTROLE); }
+	void ComponentInherits::Accept(Visitor &v) { v.Visit_ComponentInherits(*this); }
+
+	::Uml::Class ComponentInherits::meta;
+	::Uml::AssociationRole ComponentInherits::meta_ref;
+	::Uml::CompositionParentRole ComponentInherits::meta_Component_parent;
+
+	EventType::EventType() {}
+	EventType::EventType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	EventType::EventType(const EventType &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	EventType::EventType(EventType &&master) : MgaObject(master) {};
+
+	EventType EventType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	EventType& EventType::operator=(EventType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	EventType EventType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	EventType EventType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	EventType EventType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< EventType> EventType::Instances() { return ::Udm::InstantiatedAttr< EventType>(impl); }
+	EventType EventType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< EventType> EventType::Derived() { return ::Udm::DerivedAttr< EventType>(impl); }
+	::Udm::ArchetypeAttr< EventType> EventType::Archetype() const { return ::Udm::ArchetypeAttr< EventType>(impl); }
+	::Udm::AssocAttr< InEventPort> EventType::referedbyInEventPort() const { return ::Udm::AssocAttr< InEventPort>(impl, meta_referedbyInEventPort); }
+	::Udm::AssocAttr< OutEventPort> EventType::referedbyOutEventPort() const { return ::Udm::AssocAttr< OutEventPort>(impl, meta_referedbyOutEventPort); }
+	::Udm::ParentAttr< ::PICML::MgaObject> EventType::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class EventType::meta;
+	::Uml::AssociationRole EventType::meta_referedbyInEventPort;
+	::Uml::AssociationRole EventType::meta_referedbyOutEventPort;
+
+	PortType::PortType() {}
+	PortType::PortType(::Udm::ObjectImpl *impl) : NoInheritable(impl), MgaObject(impl) {}
+	PortType::PortType(const PortType &master) : NoInheritable(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	PortType::PortType(PortType &&master) : NoInheritable(master), MgaObject(master) {};
+
+	PortType PortType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	PortType& PortType::operator=(PortType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	PortType PortType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	PortType PortType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	PortType PortType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< PortType> PortType::Instances() { return ::Udm::InstantiatedAttr< PortType>(impl); }
+	PortType PortType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< PortType> PortType::Derived() { return ::Udm::DerivedAttr< PortType>(impl); }
+	::Udm::ArchetypeAttr< PortType> PortType::Archetype() const { return ::Udm::ArchetypeAttr< PortType>(impl); }
+	::Udm::AssocAttr< ExtendedPortBase> PortType::referedbyExtendedPortBase() const { return ::Udm::AssocAttr< ExtendedPortBase>(impl, meta_referedbyExtendedPortBase); }
+	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> PortType::ReadonlyAttribute_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
+	::Udm::ChildrenAttr< ::PICML::ObjectPort> PortType::ObjectPort_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, meta_ObjectPort_children); }
+	::Udm::ChildrenAttr< ::PICML::GraphVertex> PortType::GraphVertex_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GraphVertex>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Taggable> PortType::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Attribute> PortType::Attribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Attribute>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> PortType::ReadonlyAttribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Port> PortType::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> PortType::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> PortType::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ObjectPort> PortType::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> PortType::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> PortType::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::MgaObject> PortType::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	void PortType::Accept(Visitor &v) { v.Visit_PortType(*this); }
+
+	::Uml::Class PortType::meta;
+	::Uml::AssociationRole PortType::meta_referedbyExtendedPortBase;
+	::Uml::CompositionChildRole PortType::meta_ReadonlyAttribute_children;
+	::Uml::CompositionChildRole PortType::meta_ObjectPort_children;
+
+	ExtendedPort::ExtendedPort() {}
+	ExtendedPort::ExtendedPort(::Udm::ObjectImpl *impl) : ExtendedPortBase(impl) {}
+	ExtendedPort::ExtendedPort(const ExtendedPort &master) : ExtendedPortBase(master) {}
+
+#ifdef UDM_RVALUE
+	ExtendedPort::ExtendedPort(ExtendedPort &&master) : ExtendedPortBase(master) {};
+
+	ExtendedPort ExtendedPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ExtendedPort& ExtendedPort::operator=(ExtendedPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ExtendedPort ExtendedPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ExtendedPort ExtendedPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ExtendedPort ExtendedPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ExtendedPort> ExtendedPort::Instances() { return ::Udm::InstantiatedAttr< ExtendedPort>(impl); }
+	ExtendedPort ExtendedPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ExtendedPort> ExtendedPort::Derived() { return ::Udm::DerivedAttr< ExtendedPort>(impl); }
+	::Udm::ArchetypeAttr< ExtendedPort> ExtendedPort::Archetype() const { return ::Udm::ArchetypeAttr< ExtendedPort>(impl); }
+	::Udm::AssocAttr< ExtendedPortInstance> ExtendedPort::referedbyExtendedPortInstance() const { return ::Udm::AssocAttr< ExtendedPortInstance>(impl, meta_referedbyExtendedPortInstance); }
+	::Udm::ParentAttr< ::PICML::NamedType> ExtendedPort::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
+	void ExtendedPort::Accept(Visitor &v) { v.Visit_ExtendedPort(*this); }
+
+	::Uml::Class ExtendedPort::meta;
+	::Uml::AssociationRole ExtendedPort::meta_referedbyExtendedPortInstance;
+
+	EventPort::EventPort() {}
+	EventPort::EventPort(::Udm::ObjectImpl *impl) : Port(impl), MgaObject(impl) {}
+	EventPort::EventPort(const EventPort &master) : Port(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	EventPort::EventPort(EventPort &&master) : Port(master), MgaObject(master) {};
+
+	EventPort EventPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	EventPort& EventPort::operator=(EventPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	EventPort EventPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	EventPort EventPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	EventPort EventPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< EventPort> EventPort::Instances() { return ::Udm::InstantiatedAttr< EventPort>(impl); }
+	EventPort EventPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< EventPort> EventPort::Derived() { return ::Udm::DerivedAttr< EventPort>(impl); }
+	::Udm::ArchetypeAttr< EventPort> EventPort::Archetype() const { return ::Udm::ArchetypeAttr< EventPort>(impl); }
+	::Udm::ParentAttr< ::PICML::MgaObject> EventPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class EventPort::meta;
+
+	ObjectPort::ObjectPort() {}
+	ObjectPort::ObjectPort(::Udm::ObjectImpl *impl) : Port(impl), MgaObject(impl) {}
+	ObjectPort::ObjectPort(const ObjectPort &master) : Port(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ObjectPort::ObjectPort(ObjectPort &&master) : Port(master), MgaObject(master) {};
+
+	ObjectPort ObjectPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ObjectPort& ObjectPort::operator=(ObjectPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ObjectPort ObjectPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ObjectPort ObjectPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ObjectPort ObjectPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ObjectPort> ObjectPort::Instances() { return ::Udm::InstantiatedAttr< ObjectPort>(impl); }
+	ObjectPort ObjectPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ObjectPort> ObjectPort::Derived() { return ::Udm::DerivedAttr< ObjectPort>(impl); }
+	::Udm::ArchetypeAttr< ObjectPort> ObjectPort::Archetype() const { return ::Udm::ArchetypeAttr< ObjectPort>(impl); }
+	::Udm::ParentAttr< ::PICML::PortType> ObjectPort::PortType_parent() const { return ::Udm::ParentAttr< ::PICML::PortType>(impl, meta_PortType_parent); }
+	::Udm::ParentAttr< ::PICML::ConnectorObject> ObjectPort::ConnectorObject_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectorObject>(impl, meta_ConnectorObject_parent); }
+	::Udm::ParentAttr< ::PICML::MgaObject> ObjectPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class ObjectPort::meta;
+	::Uml::CompositionParentRole ObjectPort::meta_PortType_parent;
+	::Uml::CompositionParentRole ObjectPort::meta_ConnectorObject_parent;
+
+	Provideable::Provideable() {}
+	Provideable::Provideable(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	Provideable::Provideable(const Provideable &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Provideable::Provideable(Provideable &&master) : MgaObject(master) {};
+
+	Provideable Provideable::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Provideable& Provideable::operator=(Provideable &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Provideable Provideable::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Provideable Provideable::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Provideable Provideable::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Provideable> Provideable::Instances() { return ::Udm::InstantiatedAttr< Provideable>(impl); }
+	Provideable Provideable::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Provideable> Provideable::Derived() { return ::Udm::DerivedAttr< Provideable>(impl); }
+	::Udm::ArchetypeAttr< Provideable> Provideable::Archetype() const { return ::Udm::ArchetypeAttr< Provideable>(impl); }
+	::Udm::AssocAttr< RequiredRequestPort> Provideable::referedbyRequiredRequestPort() const { return ::Udm::AssocAttr< RequiredRequestPort>(impl, meta_referedbyRequiredRequestPort); }
+	::Udm::AssocAttr< ProvidedRequestPort> Provideable::referedbyProvidedRequestPort() const { return ::Udm::AssocAttr< ProvidedRequestPort>(impl, meta_referedbyProvidedRequestPort); }
+	::Udm::ParentAttr< ::PICML::Package> Provideable::parent() const { return ::Udm::ParentAttr< ::PICML::Package>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class Provideable::meta;
+	::Uml::AssociationRole Provideable::meta_referedbyRequiredRequestPort;
+	::Uml::AssociationRole Provideable::meta_referedbyProvidedRequestPort;
+
+	ComponentFactory::ComponentFactory() {}
+	ComponentFactory::ComponentFactory(::Udm::ObjectImpl *impl) : SupportsInterfaces(impl),HasOperations(impl), MgaObject(impl) {}
+	ComponentFactory::ComponentFactory(const ComponentFactory &master) : SupportsInterfaces(master),HasOperations(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ComponentFactory::ComponentFactory(ComponentFactory &&master) : SupportsInterfaces(master),HasOperations(master), MgaObject(master) {};
+
+	ComponentFactory ComponentFactory::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ComponentFactory& ComponentFactory::operator=(ComponentFactory &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ComponentFactory ComponentFactory::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ComponentFactory ComponentFactory::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ComponentFactory ComponentFactory::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ComponentFactory> ComponentFactory::Instances() { return ::Udm::InstantiatedAttr< ComponentFactory>(impl); }
+	ComponentFactory ComponentFactory::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ComponentFactory> ComponentFactory::Derived() { return ::Udm::DerivedAttr< ComponentFactory>(impl); }
+	::Udm::ArchetypeAttr< ComponentFactory> ComponentFactory::Archetype() const { return ::Udm::ArchetypeAttr< ComponentFactory>(impl); }
+	::Udm::AssocAttr< ComponentFactoryInstance> ComponentFactory::referedbyComponentFactoryInstance() const { return ::Udm::AssocAttr< ComponentFactoryInstance>(impl, meta_referedbyComponentFactoryInstance); }
+	::Udm::AClassPointerAttr< ManagesComponent, Manageable> ComponentFactory::dstManagesComponent() const { return ::Udm::AClassPointerAttr< ManagesComponent, Manageable>(impl, meta_dstManagesComponent, meta_dstManagesComponent_rev); }
+	::Udm::ChildAttr< ::PICML::LookupKey> ComponentFactory::LookupKey_child() const { return ::Udm::ChildAttr< ::PICML::LookupKey>(impl, meta_LookupKey_child); }
+	::Udm::ChildrenAttr< ::PICML::LookupOperation> ComponentFactory::LookupOperation_children() const { return ::Udm::ChildrenAttr< ::PICML::LookupOperation>(impl, meta_LookupOperation_children); }
+	::Udm::ChildrenAttr< ::PICML::FactoryOperation> ComponentFactory::FactoryOperation_children() const { return ::Udm::ChildrenAttr< ::PICML::FactoryOperation>(impl, meta_FactoryOperation_children); }
+	::Udm::ChildrenAttr< ::PICML::Taggable> ComponentFactory::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::HasExceptions> ComponentFactory::HasExceptions_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::HasExceptions>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::LookupOperation> ComponentFactory::LookupOperation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::LookupOperation>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::FactoryOperation> ComponentFactory::FactoryOperation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::FactoryOperation>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::OperationBase> ComponentFactory::OperationBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OperationBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::LookupKey> ComponentFactory::LookupKey_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::LookupKey>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> ComponentFactory::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::PICML::Prefixable> ComponentFactory::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
+	void ComponentFactory::Accept(Visitor &v) { v.Visit_ComponentFactory(*this); }
+
+	::Uml::Class ComponentFactory::meta;
+	::Uml::AssociationRole ComponentFactory::meta_referedbyComponentFactoryInstance;
+	::Uml::AssociationRole ComponentFactory::meta_dstManagesComponent;
+	::Uml::AssociationRole ComponentFactory::meta_dstManagesComponent_rev;
+	::Uml::CompositionChildRole ComponentFactory::meta_LookupKey_child;
+	::Uml::CompositionChildRole ComponentFactory::meta_LookupOperation_children;
+	::Uml::CompositionChildRole ComponentFactory::meta_FactoryOperation_children;
+
+	Manageable::Manageable() {}
+	Manageable::Manageable(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	Manageable::Manageable(const Manageable &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Manageable::Manageable(Manageable &&master) : MgaObject(master) {};
+
+	Manageable Manageable::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Manageable& Manageable::operator=(Manageable &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Manageable Manageable::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Manageable Manageable::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Manageable Manageable::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Manageable> Manageable::Instances() { return ::Udm::InstantiatedAttr< Manageable>(impl); }
+	Manageable Manageable::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Manageable> Manageable::Derived() { return ::Udm::DerivedAttr< Manageable>(impl); }
+	::Udm::ArchetypeAttr< Manageable> Manageable::Archetype() const { return ::Udm::ArchetypeAttr< Manageable>(impl); }
+	::Udm::AClassAssocAttr< ManagesComponent, ComponentFactory> Manageable::srcManagesComponent() const { return ::Udm::AClassAssocAttr< ManagesComponent, ComponentFactory>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
+	::Udm::ParentAttr< ::PICML::MgaObject> Manageable::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class Manageable::meta;
+	::Uml::AssociationRole Manageable::meta_srcManagesComponent;
+	::Uml::AssociationRole Manageable::meta_srcManagesComponent_rev;
+
+	ManagesComponent::ManagesComponent() {}
+	ManagesComponent::ManagesComponent(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	ManagesComponent::ManagesComponent(const ManagesComponent &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ManagesComponent::ManagesComponent(ManagesComponent &&master) : MgaObject(master) {};
+
+	ManagesComponent ManagesComponent::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ManagesComponent& ManagesComponent::operator=(ManagesComponent &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ManagesComponent ManagesComponent::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ManagesComponent ManagesComponent::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ManagesComponent ManagesComponent::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ManagesComponent> ManagesComponent::Instances() { return ::Udm::InstantiatedAttr< ManagesComponent>(impl); }
+	ManagesComponent ManagesComponent::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ManagesComponent> ManagesComponent::Derived() { return ::Udm::DerivedAttr< ManagesComponent>(impl); }
+	::Udm::ArchetypeAttr< ManagesComponent> ManagesComponent::Archetype() const { return ::Udm::ArchetypeAttr< ManagesComponent>(impl); }
+	::Udm::ParentAttr< ::PICML::File> ManagesComponent::File_parent() const { return ::Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
+	::Udm::ParentAttr< ::PICML::Package> ManagesComponent::Package_parent() const { return ::Udm::ParentAttr< ::PICML::Package>(impl, meta_Package_parent); }
+	::Udm::ParentAttr< ::PICML::Prefixable> ManagesComponent::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
+	::Udm::AssocEndAttr< ::PICML::ComponentFactory> ManagesComponent::srcManagesComponent_end() const { return ::Udm::AssocEndAttr< ::PICML::ComponentFactory>(impl, meta_srcManagesComponent_end_); }
+	::Udm::AssocEndAttr< ::PICML::Manageable> ManagesComponent::dstManagesComponent_end() const { return ::Udm::AssocEndAttr< ::PICML::Manageable>(impl, meta_dstManagesComponent_end_); }
+	void ManagesComponent::Accept(Visitor &v) { v.Visit_ManagesComponent(*this); }
+
+	::Uml::Class ManagesComponent::meta;
+	::Uml::CompositionParentRole ManagesComponent::meta_File_parent;
+	::Uml::CompositionParentRole ManagesComponent::meta_Package_parent;
+	::Uml::AssociationRole ManagesComponent::meta_srcManagesComponent_end_;
+	::Uml::AssociationRole ManagesComponent::meta_dstManagesComponent_end_;
+
 	CriticalPath::CriticalPath() {}
 	CriticalPath::CriticalPath(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
 	CriticalPath::CriticalPath(const CriticalPath &master) : MgaObject(master) {}
@@ -8903,14 +9772,14 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::RequirementSatisfier> ComponentImplementationContainer::RequirementSatisfier_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequirementSatisfier>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ImplementationDependency> ComponentImplementationContainer::ImplementationDependency_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ImplementationDependency>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentAssembly> ComponentImplementationContainer::ComponentAssembly_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentAssembly>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentRef> ComponentImplementationContainer::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Manageable> ComponentImplementationContainer::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::CriticalPath> ComponentImplementationContainer::CriticalPath_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CriticalPath>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MonolithicImplementation> ComponentImplementationContainer::MonolithicImplementation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MonolithicImplementation>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentImplementation> ComponentImplementationContainer::ComponentImplementation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentImplementation>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Implements> ComponentImplementationContainer::Implements_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Implements>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ImplementationDependsOn> ComponentImplementationContainer::ImplementationDependsOn_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ImplementationDependsOn>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ImplementationCapability> ComponentImplementationContainer::ImplementationCapability_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ImplementationCapability>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Manageable> ComponentImplementationContainer::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentRef> ComponentImplementationContainer::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> ComponentImplementationContainer::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::ComponentImplementations> ComponentImplementationContainer::ComponentImplementations_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentImplementations>(impl, meta_ComponentImplementations_parent); }
 	::Udm::ParentAttr< ::PICML::ComponentImplementations> ComponentImplementationContainer::parent() const { return ::Udm::ParentAttr< ::PICML::ComponentImplementations>(impl, ::Udm::NULLPARENTROLE); }
@@ -9225,12 +10094,12 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::ComplexProperty> ComponentContainer::ComplexProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComplexProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::SimpleProperty> ComponentContainer::SimpleProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SimpleProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Property> ComponentContainer::Property_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Property>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ComponentRef> ComponentContainer::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Manageable> ComponentContainer::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentInfoProperty> ComponentContainer::ComponentInfoProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentInfoProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentConfigProperty> ComponentContainer::ComponentConfigProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentConfigProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentProperty> ComponentContainer::ComponentProperty_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentProperty>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentPropertyDescription> ComponentContainer::ComponentPropertyDescription_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentPropertyDescription>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Manageable> ComponentContainer::Manageable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Manageable>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentRef> ComponentContainer::ComponentRef_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentRef>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> ComponentContainer::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::ComponentTypes> ComponentContainer::ComponentTypes_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentTypes>(impl, meta_ComponentTypes_parent); }
 	::Udm::ParentAttr< ::PICML::ComponentTypes> ComponentContainer::parent() const { return ::Udm::ParentAttr< ::PICML::ComponentTypes>(impl, ::Udm::NULLPARENTROLE); }
@@ -9336,652 +10205,6 @@ namespace PICML {
 	::Uml::Attribute ComponentTypes::meta_name;
 	::Uml::CompositionChildRole ComponentTypes::meta_ComponentContainer_children;
 	::Uml::CompositionParentRole ComponentTypes::meta_RootFolder_parent;
-
-	LookupKeyType::LookupKeyType() {}
-	LookupKeyType::LookupKeyType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	LookupKeyType::LookupKeyType(const LookupKeyType &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	LookupKeyType::LookupKeyType(LookupKeyType &&master) : MgaObject(master) {};
-
-	LookupKeyType LookupKeyType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	LookupKeyType& LookupKeyType::operator=(LookupKeyType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	LookupKeyType LookupKeyType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	LookupKeyType LookupKeyType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	LookupKeyType LookupKeyType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< LookupKeyType> LookupKeyType::Instances() { return ::Udm::InstantiatedAttr< LookupKeyType>(impl); }
-	LookupKeyType LookupKeyType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< LookupKeyType> LookupKeyType::Derived() { return ::Udm::DerivedAttr< LookupKeyType>(impl); }
-	::Udm::ArchetypeAttr< LookupKeyType> LookupKeyType::Archetype() const { return ::Udm::ArchetypeAttr< LookupKeyType>(impl); }
-	::Udm::AssocAttr< LookupKey> LookupKeyType::referedbyLookupKey() const { return ::Udm::AssocAttr< LookupKey>(impl, meta_referedbyLookupKey); }
-	::Udm::ParentAttr< ::Udm::Object> LookupKeyType::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class LookupKeyType::meta;
-	::Uml::AssociationRole LookupKeyType::meta_referedbyLookupKey;
-
-	LookupKey::LookupKey() {}
-	LookupKey::LookupKey(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	LookupKey::LookupKey(const LookupKey &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	LookupKey::LookupKey(LookupKey &&master) : MgaObject(master) {};
-
-	LookupKey LookupKey::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	LookupKey& LookupKey::operator=(LookupKey &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	LookupKey LookupKey::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	LookupKey LookupKey::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	LookupKey LookupKey::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< LookupKey> LookupKey::Instances() { return ::Udm::InstantiatedAttr< LookupKey>(impl); }
-	LookupKey LookupKey::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< LookupKey> LookupKey::Derived() { return ::Udm::DerivedAttr< LookupKey>(impl); }
-	::Udm::ArchetypeAttr< LookupKey> LookupKey::Archetype() const { return ::Udm::ArchetypeAttr< LookupKey>(impl); }
-	::Udm::PointerAttr< LookupKeyType> LookupKey::ref() const { return ::Udm::PointerAttr< LookupKeyType>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::ComponentFactory> LookupKey::ComponentFactory_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
-	::Udm::ParentAttr< ::PICML::ComponentFactory> LookupKey::parent() const { return ::Udm::ParentAttr< ::PICML::ComponentFactory>(impl, ::Udm::NULLPARENTROLE); }
-	void LookupKey::Accept(Visitor &v) { v.Visit_LookupKey(*this); }
-
-	::Uml::Class LookupKey::meta;
-	::Uml::AssociationRole LookupKey::meta_ref;
-	::Uml::CompositionParentRole LookupKey::meta_ComponentFactory_parent;
-
-	ExtendedPortBase::ExtendedPortBase() {}
-	ExtendedPortBase::ExtendedPortBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	ExtendedPortBase::ExtendedPortBase(const ExtendedPortBase &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ExtendedPortBase::ExtendedPortBase(ExtendedPortBase &&master) : MgaObject(master) {};
-
-	ExtendedPortBase ExtendedPortBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ExtendedPortBase& ExtendedPortBase::operator=(ExtendedPortBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ExtendedPortBase ExtendedPortBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ExtendedPortBase ExtendedPortBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ExtendedPortBase ExtendedPortBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ExtendedPortBase> ExtendedPortBase::Instances() { return ::Udm::InstantiatedAttr< ExtendedPortBase>(impl); }
-	ExtendedPortBase ExtendedPortBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ExtendedPortBase> ExtendedPortBase::Derived() { return ::Udm::DerivedAttr< ExtendedPortBase>(impl); }
-	::Udm::ArchetypeAttr< ExtendedPortBase> ExtendedPortBase::Archetype() const { return ::Udm::ArchetypeAttr< ExtendedPortBase>(impl); }
-	::Udm::PointerAttr< PortType> ExtendedPortBase::ref() const { return ::Udm::PointerAttr< PortType>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::Component> ExtendedPortBase::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
-	::Udm::ParentAttr< ::PICML::ConnectorObject> ExtendedPortBase::ConnectorObject_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectorObject>(impl, meta_ConnectorObject_parent); }
-	::Udm::ParentAttr< ::PICML::NamedType> ExtendedPortBase::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class ExtendedPortBase::meta;
-	::Uml::AssociationRole ExtendedPortBase::meta_ref;
-	::Uml::CompositionParentRole ExtendedPortBase::meta_Component_parent;
-	::Uml::CompositionParentRole ExtendedPortBase::meta_ConnectorObject_parent;
-
-	MirrorPort::MirrorPort() {}
-	MirrorPort::MirrorPort(::Udm::ObjectImpl *impl) : ExtendedPortBase(impl) {}
-	MirrorPort::MirrorPort(const MirrorPort &master) : ExtendedPortBase(master) {}
-
-#ifdef UDM_RVALUE
-	MirrorPort::MirrorPort(MirrorPort &&master) : ExtendedPortBase(master) {};
-
-	MirrorPort MirrorPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	MirrorPort& MirrorPort::operator=(MirrorPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	MirrorPort MirrorPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	MirrorPort MirrorPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	MirrorPort MirrorPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< MirrorPort> MirrorPort::Instances() { return ::Udm::InstantiatedAttr< MirrorPort>(impl); }
-	MirrorPort MirrorPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< MirrorPort> MirrorPort::Derived() { return ::Udm::DerivedAttr< MirrorPort>(impl); }
-	::Udm::ArchetypeAttr< MirrorPort> MirrorPort::Archetype() const { return ::Udm::ArchetypeAttr< MirrorPort>(impl); }
-	::Udm::AssocAttr< MirrorPortInstance> MirrorPort::referedbyMirrorPortInstance() const { return ::Udm::AssocAttr< MirrorPortInstance>(impl, meta_referedbyMirrorPortInstance); }
-	::Udm::ParentAttr< ::PICML::NamedType> MirrorPort::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
-	void MirrorPort::Accept(Visitor &v) { v.Visit_MirrorPort(*this); }
-
-	::Uml::Class MirrorPort::meta;
-	::Uml::AssociationRole MirrorPort::meta_referedbyMirrorPortInstance;
-
-	ComponentInherits::ComponentInherits() {}
-	ComponentInherits::ComponentInherits(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	ComponentInherits::ComponentInherits(const ComponentInherits &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ComponentInherits::ComponentInherits(ComponentInherits &&master) : MgaObject(master) {};
-
-	ComponentInherits ComponentInherits::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ComponentInherits& ComponentInherits::operator=(ComponentInherits &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ComponentInherits ComponentInherits::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ComponentInherits ComponentInherits::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ComponentInherits ComponentInherits::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ComponentInherits> ComponentInherits::Instances() { return ::Udm::InstantiatedAttr< ComponentInherits>(impl); }
-	ComponentInherits ComponentInherits::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ComponentInherits> ComponentInherits::Derived() { return ::Udm::DerivedAttr< ComponentInherits>(impl); }
-	::Udm::ArchetypeAttr< ComponentInherits> ComponentInherits::Archetype() const { return ::Udm::ArchetypeAttr< ComponentInherits>(impl); }
-	::Udm::PointerAttr< Component> ComponentInherits::ref() const { return ::Udm::PointerAttr< Component>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::Component> ComponentInherits::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
-	::Udm::ParentAttr< ::PICML::Component> ComponentInherits::parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, ::Udm::NULLPARENTROLE); }
-	void ComponentInherits::Accept(Visitor &v) { v.Visit_ComponentInherits(*this); }
-
-	::Uml::Class ComponentInherits::meta;
-	::Uml::AssociationRole ComponentInherits::meta_ref;
-	::Uml::CompositionParentRole ComponentInherits::meta_Component_parent;
-
-	EventType::EventType() {}
-	EventType::EventType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	EventType::EventType(const EventType &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	EventType::EventType(EventType &&master) : MgaObject(master) {};
-
-	EventType EventType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	EventType& EventType::operator=(EventType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	EventType EventType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	EventType EventType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	EventType EventType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< EventType> EventType::Instances() { return ::Udm::InstantiatedAttr< EventType>(impl); }
-	EventType EventType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< EventType> EventType::Derived() { return ::Udm::DerivedAttr< EventType>(impl); }
-	::Udm::ArchetypeAttr< EventType> EventType::Archetype() const { return ::Udm::ArchetypeAttr< EventType>(impl); }
-	::Udm::AssocAttr< InEventPort> EventType::referedbyInEventPort() const { return ::Udm::AssocAttr< InEventPort>(impl, meta_referedbyInEventPort); }
-	::Udm::AssocAttr< OutEventPort> EventType::referedbyOutEventPort() const { return ::Udm::AssocAttr< OutEventPort>(impl, meta_referedbyOutEventPort); }
-	::Udm::ParentAttr< ::PICML::MgaObject> EventType::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class EventType::meta;
-	::Uml::AssociationRole EventType::meta_referedbyInEventPort;
-	::Uml::AssociationRole EventType::meta_referedbyOutEventPort;
-
-	PortType::PortType() {}
-	PortType::PortType(::Udm::ObjectImpl *impl) : NoInheritable(impl), MgaObject(impl) {}
-	PortType::PortType(const PortType &master) : NoInheritable(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	PortType::PortType(PortType &&master) : NoInheritable(master), MgaObject(master) {};
-
-	PortType PortType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	PortType& PortType::operator=(PortType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	PortType PortType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	PortType PortType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	PortType PortType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< PortType> PortType::Instances() { return ::Udm::InstantiatedAttr< PortType>(impl); }
-	PortType PortType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< PortType> PortType::Derived() { return ::Udm::DerivedAttr< PortType>(impl); }
-	::Udm::ArchetypeAttr< PortType> PortType::Archetype() const { return ::Udm::ArchetypeAttr< PortType>(impl); }
-	::Udm::AssocAttr< ExtendedPortBase> PortType::referedbyExtendedPortBase() const { return ::Udm::AssocAttr< ExtendedPortBase>(impl, meta_referedbyExtendedPortBase); }
-	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> PortType::ReadonlyAttribute_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
-	::Udm::ChildrenAttr< ::PICML::ObjectPort> PortType::ObjectPort_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, meta_ObjectPort_children); }
-	::Udm::ChildrenAttr< ::PICML::GraphVertex> PortType::GraphVertex_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GraphVertex>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Taggable> PortType::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Attribute> PortType::Attribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Attribute>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> PortType::ReadonlyAttribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> PortType::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ObjectPort> PortType::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Port> PortType::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> PortType::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> PortType::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> PortType::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::MgaObject> PortType::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void PortType::Accept(Visitor &v) { v.Visit_PortType(*this); }
-
-	::Uml::Class PortType::meta;
-	::Uml::AssociationRole PortType::meta_referedbyExtendedPortBase;
-	::Uml::CompositionChildRole PortType::meta_ReadonlyAttribute_children;
-	::Uml::CompositionChildRole PortType::meta_ObjectPort_children;
-
-	ExtendedPort::ExtendedPort() {}
-	ExtendedPort::ExtendedPort(::Udm::ObjectImpl *impl) : ExtendedPortBase(impl) {}
-	ExtendedPort::ExtendedPort(const ExtendedPort &master) : ExtendedPortBase(master) {}
-
-#ifdef UDM_RVALUE
-	ExtendedPort::ExtendedPort(ExtendedPort &&master) : ExtendedPortBase(master) {};
-
-	ExtendedPort ExtendedPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ExtendedPort& ExtendedPort::operator=(ExtendedPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ExtendedPort ExtendedPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ExtendedPort ExtendedPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ExtendedPort ExtendedPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ExtendedPort> ExtendedPort::Instances() { return ::Udm::InstantiatedAttr< ExtendedPort>(impl); }
-	ExtendedPort ExtendedPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ExtendedPort> ExtendedPort::Derived() { return ::Udm::DerivedAttr< ExtendedPort>(impl); }
-	::Udm::ArchetypeAttr< ExtendedPort> ExtendedPort::Archetype() const { return ::Udm::ArchetypeAttr< ExtendedPort>(impl); }
-	::Udm::AssocAttr< ExtendedPortInstance> ExtendedPort::referedbyExtendedPortInstance() const { return ::Udm::AssocAttr< ExtendedPortInstance>(impl, meta_referedbyExtendedPortInstance); }
-	::Udm::ParentAttr< ::PICML::NamedType> ExtendedPort::parent() const { return ::Udm::ParentAttr< ::PICML::NamedType>(impl, ::Udm::NULLPARENTROLE); }
-	void ExtendedPort::Accept(Visitor &v) { v.Visit_ExtendedPort(*this); }
-
-	::Uml::Class ExtendedPort::meta;
-	::Uml::AssociationRole ExtendedPort::meta_referedbyExtendedPortInstance;
-
-	EventPort::EventPort() {}
-	EventPort::EventPort(::Udm::ObjectImpl *impl) : Port(impl), MgaObject(impl) {}
-	EventPort::EventPort(const EventPort &master) : Port(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	EventPort::EventPort(EventPort &&master) : Port(master), MgaObject(master) {};
-
-	EventPort EventPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	EventPort& EventPort::operator=(EventPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	EventPort EventPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	EventPort EventPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	EventPort EventPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< EventPort> EventPort::Instances() { return ::Udm::InstantiatedAttr< EventPort>(impl); }
-	EventPort EventPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< EventPort> EventPort::Derived() { return ::Udm::DerivedAttr< EventPort>(impl); }
-	::Udm::ArchetypeAttr< EventPort> EventPort::Archetype() const { return ::Udm::ArchetypeAttr< EventPort>(impl); }
-	::Udm::ParentAttr< ::PICML::MgaObject> EventPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class EventPort::meta;
-
-	ObjectPort::ObjectPort() {}
-	ObjectPort::ObjectPort(::Udm::ObjectImpl *impl) : Port(impl), MgaObject(impl) {}
-	ObjectPort::ObjectPort(const ObjectPort &master) : Port(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ObjectPort::ObjectPort(ObjectPort &&master) : Port(master), MgaObject(master) {};
-
-	ObjectPort ObjectPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ObjectPort& ObjectPort::operator=(ObjectPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ObjectPort ObjectPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ObjectPort ObjectPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ObjectPort ObjectPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ObjectPort> ObjectPort::Instances() { return ::Udm::InstantiatedAttr< ObjectPort>(impl); }
-	ObjectPort ObjectPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ObjectPort> ObjectPort::Derived() { return ::Udm::DerivedAttr< ObjectPort>(impl); }
-	::Udm::ArchetypeAttr< ObjectPort> ObjectPort::Archetype() const { return ::Udm::ArchetypeAttr< ObjectPort>(impl); }
-	::Udm::ParentAttr< ::PICML::PortType> ObjectPort::PortType_parent() const { return ::Udm::ParentAttr< ::PICML::PortType>(impl, meta_PortType_parent); }
-	::Udm::ParentAttr< ::PICML::ConnectorObject> ObjectPort::ConnectorObject_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectorObject>(impl, meta_ConnectorObject_parent); }
-	::Udm::ParentAttr< ::PICML::MgaObject> ObjectPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class ObjectPort::meta;
-	::Uml::CompositionParentRole ObjectPort::meta_PortType_parent;
-	::Uml::CompositionParentRole ObjectPort::meta_ConnectorObject_parent;
-
-	Provideable::Provideable() {}
-	Provideable::Provideable(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	Provideable::Provideable(const Provideable &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	Provideable::Provideable(Provideable &&master) : MgaObject(master) {};
-
-	Provideable Provideable::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Provideable& Provideable::operator=(Provideable &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	Provideable Provideable::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Provideable Provideable::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Provideable Provideable::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Provideable> Provideable::Instances() { return ::Udm::InstantiatedAttr< Provideable>(impl); }
-	Provideable Provideable::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Provideable> Provideable::Derived() { return ::Udm::DerivedAttr< Provideable>(impl); }
-	::Udm::ArchetypeAttr< Provideable> Provideable::Archetype() const { return ::Udm::ArchetypeAttr< Provideable>(impl); }
-	::Udm::AssocAttr< RequiredRequestPort> Provideable::referedbyRequiredRequestPort() const { return ::Udm::AssocAttr< RequiredRequestPort>(impl, meta_referedbyRequiredRequestPort); }
-	::Udm::AssocAttr< ProvidedRequestPort> Provideable::referedbyProvidedRequestPort() const { return ::Udm::AssocAttr< ProvidedRequestPort>(impl, meta_referedbyProvidedRequestPort); }
-	::Udm::ParentAttr< ::PICML::Package> Provideable::parent() const { return ::Udm::ParentAttr< ::PICML::Package>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class Provideable::meta;
-	::Uml::AssociationRole Provideable::meta_referedbyRequiredRequestPort;
-	::Uml::AssociationRole Provideable::meta_referedbyProvidedRequestPort;
-
-	ComponentFactory::ComponentFactory() {}
-	ComponentFactory::ComponentFactory(::Udm::ObjectImpl *impl) : SupportsInterfaces(impl),HasOperations(impl), MgaObject(impl) {}
-	ComponentFactory::ComponentFactory(const ComponentFactory &master) : SupportsInterfaces(master),HasOperations(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ComponentFactory::ComponentFactory(ComponentFactory &&master) : SupportsInterfaces(master),HasOperations(master), MgaObject(master) {};
-
-	ComponentFactory ComponentFactory::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ComponentFactory& ComponentFactory::operator=(ComponentFactory &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ComponentFactory ComponentFactory::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ComponentFactory ComponentFactory::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ComponentFactory ComponentFactory::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ComponentFactory> ComponentFactory::Instances() { return ::Udm::InstantiatedAttr< ComponentFactory>(impl); }
-	ComponentFactory ComponentFactory::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ComponentFactory> ComponentFactory::Derived() { return ::Udm::DerivedAttr< ComponentFactory>(impl); }
-	::Udm::ArchetypeAttr< ComponentFactory> ComponentFactory::Archetype() const { return ::Udm::ArchetypeAttr< ComponentFactory>(impl); }
-	::Udm::AssocAttr< ComponentFactoryInstance> ComponentFactory::referedbyComponentFactoryInstance() const { return ::Udm::AssocAttr< ComponentFactoryInstance>(impl, meta_referedbyComponentFactoryInstance); }
-	::Udm::AClassPointerAttr< ManagesComponent, Manageable> ComponentFactory::dstManagesComponent() const { return ::Udm::AClassPointerAttr< ManagesComponent, Manageable>(impl, meta_dstManagesComponent, meta_dstManagesComponent_rev); }
-	::Udm::ChildAttr< ::PICML::LookupKey> ComponentFactory::LookupKey_child() const { return ::Udm::ChildAttr< ::PICML::LookupKey>(impl, meta_LookupKey_child); }
-	::Udm::ChildrenAttr< ::PICML::LookupOperation> ComponentFactory::LookupOperation_children() const { return ::Udm::ChildrenAttr< ::PICML::LookupOperation>(impl, meta_LookupOperation_children); }
-	::Udm::ChildrenAttr< ::PICML::FactoryOperation> ComponentFactory::FactoryOperation_children() const { return ::Udm::ChildrenAttr< ::PICML::FactoryOperation>(impl, meta_FactoryOperation_children); }
-	::Udm::ChildrenAttr< ::PICML::Taggable> ComponentFactory::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::HasExceptions> ComponentFactory::HasExceptions_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::HasExceptions>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::LookupOperation> ComponentFactory::LookupOperation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::LookupOperation>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::FactoryOperation> ComponentFactory::FactoryOperation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::FactoryOperation>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::OperationBase> ComponentFactory::OperationBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OperationBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::LookupKey> ComponentFactory::LookupKey_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::LookupKey>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> ComponentFactory::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::Prefixable> ComponentFactory::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
-	void ComponentFactory::Accept(Visitor &v) { v.Visit_ComponentFactory(*this); }
-
-	::Uml::Class ComponentFactory::meta;
-	::Uml::AssociationRole ComponentFactory::meta_referedbyComponentFactoryInstance;
-	::Uml::AssociationRole ComponentFactory::meta_dstManagesComponent;
-	::Uml::AssociationRole ComponentFactory::meta_dstManagesComponent_rev;
-	::Uml::CompositionChildRole ComponentFactory::meta_LookupKey_child;
-	::Uml::CompositionChildRole ComponentFactory::meta_LookupOperation_children;
-	::Uml::CompositionChildRole ComponentFactory::meta_FactoryOperation_children;
-
-	Manageable::Manageable() {}
-	Manageable::Manageable(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	Manageable::Manageable(const Manageable &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	Manageable::Manageable(Manageable &&master) : MgaObject(master) {};
-
-	Manageable Manageable::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Manageable& Manageable::operator=(Manageable &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	Manageable Manageable::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Manageable Manageable::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Manageable Manageable::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Manageable> Manageable::Instances() { return ::Udm::InstantiatedAttr< Manageable>(impl); }
-	Manageable Manageable::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Manageable> Manageable::Derived() { return ::Udm::DerivedAttr< Manageable>(impl); }
-	::Udm::ArchetypeAttr< Manageable> Manageable::Archetype() const { return ::Udm::ArchetypeAttr< Manageable>(impl); }
-	::Udm::AClassAssocAttr< ManagesComponent, ComponentFactory> Manageable::srcManagesComponent() const { return ::Udm::AClassAssocAttr< ManagesComponent, ComponentFactory>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
-	::Udm::ParentAttr< ::PICML::MgaObject> Manageable::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class Manageable::meta;
-	::Uml::AssociationRole Manageable::meta_srcManagesComponent;
-	::Uml::AssociationRole Manageable::meta_srcManagesComponent_rev;
-
-	ManagesComponent::ManagesComponent() {}
-	ManagesComponent::ManagesComponent(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	ManagesComponent::ManagesComponent(const ManagesComponent &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ManagesComponent::ManagesComponent(ManagesComponent &&master) : MgaObject(master) {};
-
-	ManagesComponent ManagesComponent::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ManagesComponent& ManagesComponent::operator=(ManagesComponent &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ManagesComponent ManagesComponent::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ManagesComponent ManagesComponent::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ManagesComponent ManagesComponent::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ManagesComponent> ManagesComponent::Instances() { return ::Udm::InstantiatedAttr< ManagesComponent>(impl); }
-	ManagesComponent ManagesComponent::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ManagesComponent> ManagesComponent::Derived() { return ::Udm::DerivedAttr< ManagesComponent>(impl); }
-	::Udm::ArchetypeAttr< ManagesComponent> ManagesComponent::Archetype() const { return ::Udm::ArchetypeAttr< ManagesComponent>(impl); }
-	::Udm::ParentAttr< ::PICML::File> ManagesComponent::File_parent() const { return ::Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
-	::Udm::ParentAttr< ::PICML::Package> ManagesComponent::Package_parent() const { return ::Udm::ParentAttr< ::PICML::Package>(impl, meta_Package_parent); }
-	::Udm::ParentAttr< ::PICML::Prefixable> ManagesComponent::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
-	::Udm::AssocEndAttr< ::PICML::ComponentFactory> ManagesComponent::srcManagesComponent_end() const { return ::Udm::AssocEndAttr< ::PICML::ComponentFactory>(impl, meta_srcManagesComponent_end_); }
-	::Udm::AssocEndAttr< ::PICML::Manageable> ManagesComponent::dstManagesComponent_end() const { return ::Udm::AssocEndAttr< ::PICML::Manageable>(impl, meta_dstManagesComponent_end_); }
-	void ManagesComponent::Accept(Visitor &v) { v.Visit_ManagesComponent(*this); }
-
-	::Uml::Class ManagesComponent::meta;
-	::Uml::CompositionParentRole ManagesComponent::meta_File_parent;
-	::Uml::CompositionParentRole ManagesComponent::meta_Package_parent;
-	::Uml::AssociationRole ManagesComponent::meta_srcManagesComponent_end_;
-	::Uml::AssociationRole ManagesComponent::meta_dstManagesComponent_end_;
-
-	ComponentRef::ComponentRef() {}
-	ComponentRef::ComponentRef(::Udm::ObjectImpl *impl) : Manageable(impl), MgaObject(impl) {}
-	ComponentRef::ComponentRef(const ComponentRef &master) : Manageable(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ComponentRef::ComponentRef(ComponentRef &&master) : Manageable(master), MgaObject(master) {};
-
-	ComponentRef ComponentRef::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ComponentRef& ComponentRef::operator=(ComponentRef &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ComponentRef ComponentRef::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ComponentRef ComponentRef::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ComponentRef ComponentRef::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ComponentRef> ComponentRef::Instances() { return ::Udm::InstantiatedAttr< ComponentRef>(impl); }
-	ComponentRef ComponentRef::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ComponentRef> ComponentRef::Derived() { return ::Udm::DerivedAttr< ComponentRef>(impl); }
-	::Udm::ArchetypeAttr< ComponentRef> ComponentRef::Archetype() const { return ::Udm::ArchetypeAttr< ComponentRef>(impl); }
-	::Udm::AClassPointerAttr< PackageInterface, ComponentPackage> ComponentRef::srcPackageInterface() const { return ::Udm::AClassPointerAttr< PackageInterface, ComponentPackage>(impl, meta_srcPackageInterface, meta_srcPackageInterface_rev); }
-	::Udm::AClassPointerAttr< Implements, ComponentImplementation> ComponentRef::srcImplements() const { return ::Udm::AClassPointerAttr< Implements, ComponentImplementation>(impl, meta_srcImplements, meta_srcImplements_rev); }
-	::Udm::PointerAttr< Component> ComponentRef::ref() const { return ::Udm::PointerAttr< Component>(impl, meta_ref); }
-	::Udm::AClassAssocAttr< ComponentInfoProperty, Property> ComponentRef::dstComponentInfoProperty() const { return ::Udm::AClassAssocAttr< ComponentInfoProperty, Property>(impl, meta_dstComponentInfoProperty, meta_dstComponentInfoProperty_rev); }
-	::Udm::AClassAssocAttr< ComponentConfigProperty, Property> ComponentRef::dstComponentConfigProperty() const { return ::Udm::AClassAssocAttr< ComponentConfigProperty, Property>(impl, meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev); }
-	::Udm::AClassAssocAttr< ComponentProperty, ComponentPropertyDescription> ComponentRef::dstComponentProperty() const { return ::Udm::AClassAssocAttr< ComponentProperty, ComponentPropertyDescription>(impl, meta_dstComponentProperty, meta_dstComponentProperty_rev); }
-	::Udm::ParentAttr< ::PICML::Path> ComponentRef::Path_parent() const { return ::Udm::ParentAttr< ::PICML::Path>(impl, meta_Path_parent); }
-	::Udm::ParentAttr< ::PICML::PackageContainer> ComponentRef::PackageContainer_parent() const { return ::Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
-	::Udm::ParentAttr< ::PICML::File> ComponentRef::File_parent() const { return ::Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
-	::Udm::ParentAttr< ::PICML::Package> ComponentRef::Package_parent() const { return ::Udm::ParentAttr< ::PICML::Package>(impl, meta_Package_parent); }
-	::Udm::ParentAttr< ::PICML::ComponentImplementationContainer> ComponentRef::ComponentImplementationContainer_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-	::Udm::ParentAttr< ::PICML::ComponentContainer> ComponentRef::ComponentContainer_parent() const { return ::Udm::ParentAttr< ::PICML::ComponentContainer>(impl, meta_ComponentContainer_parent); }
-	::Udm::ParentAttr< ::PICML::MgaObject> ComponentRef::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void ComponentRef::Accept(Visitor &v) { v.Visit_ComponentRef(*this); }
-
-	::Uml::Class ComponentRef::meta;
-	::Uml::AssociationRole ComponentRef::meta_srcPackageInterface;
-	::Uml::AssociationRole ComponentRef::meta_srcPackageInterface_rev;
-	::Uml::AssociationRole ComponentRef::meta_srcImplements;
-	::Uml::AssociationRole ComponentRef::meta_srcImplements_rev;
-	::Uml::AssociationRole ComponentRef::meta_ref;
-	::Uml::AssociationRole ComponentRef::meta_dstComponentInfoProperty;
-	::Uml::AssociationRole ComponentRef::meta_dstComponentInfoProperty_rev;
-	::Uml::AssociationRole ComponentRef::meta_dstComponentConfigProperty;
-	::Uml::AssociationRole ComponentRef::meta_dstComponentConfigProperty_rev;
-	::Uml::AssociationRole ComponentRef::meta_dstComponentProperty;
-	::Uml::AssociationRole ComponentRef::meta_dstComponentProperty_rev;
-	::Uml::CompositionParentRole ComponentRef::meta_Path_parent;
-	::Uml::CompositionParentRole ComponentRef::meta_PackageContainer_parent;
-	::Uml::CompositionParentRole ComponentRef::meta_File_parent;
-	::Uml::CompositionParentRole ComponentRef::meta_Package_parent;
-	::Uml::CompositionParentRole ComponentRef::meta_ComponentImplementationContainer_parent;
-	::Uml::CompositionParentRole ComponentRef::meta_ComponentContainer_parent;
-
-	Port::Port() {}
-	Port::Port(::Udm::ObjectImpl *impl) : GraphVertex(impl),Taggable(impl),CommonPortAttrs(impl), MgaObject(impl) {}
-	Port::Port(const Port &master) : GraphVertex(master),Taggable(master),CommonPortAttrs(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	Port::Port(Port &&master) : GraphVertex(master),Taggable(master),CommonPortAttrs(master), MgaObject(master) {};
-
-	Port Port::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Port& Port::operator=(Port &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	Port Port::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Port Port::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Port Port::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Port> Port::Instances() { return ::Udm::InstantiatedAttr< Port>(impl); }
-	Port Port::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Port> Port::Derived() { return ::Udm::DerivedAttr< Port>(impl); }
-	::Udm::ArchetypeAttr< Port> Port::Archetype() const { return ::Udm::ArchetypeAttr< Port>(impl); }
-	::Udm::ParentAttr< ::PICML::ConnectedComponent> Port::ConnectedComponent_parent() const { return ::Udm::ParentAttr< ::PICML::ConnectedComponent>(impl, meta_ConnectedComponent_parent); }
-	::Udm::ParentAttr< ::PICML::Component> Port::Component_parent() const { return ::Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
-	::Udm::ParentAttr< ::PICML::MgaObject> Port::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class Port::meta;
-	::Uml::CompositionParentRole Port::meta_ConnectedComponent_parent;
-	::Uml::CompositionParentRole Port::meta_Component_parent;
-
-	InEventPort::InEventPort() {}
-	InEventPort::InEventPort(::Udm::ObjectImpl *impl) : EventPort(impl),QueryInputBase(impl),SingleInputBase(impl), MgaObject(impl) {}
-	InEventPort::InEventPort(const InEventPort &master) : EventPort(master),QueryInputBase(master),SingleInputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	InEventPort::InEventPort(InEventPort &&master) : EventPort(master),QueryInputBase(master),SingleInputBase(master), MgaObject(master) {};
-
-	InEventPort InEventPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	InEventPort& InEventPort::operator=(InEventPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	InEventPort InEventPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	InEventPort InEventPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	InEventPort InEventPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< InEventPort> InEventPort::Instances() { return ::Udm::InstantiatedAttr< InEventPort>(impl); }
-	InEventPort InEventPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< InEventPort> InEventPort::Derived() { return ::Udm::DerivedAttr< InEventPort>(impl); }
-	::Udm::ArchetypeAttr< InEventPort> InEventPort::Archetype() const { return ::Udm::ArchetypeAttr< InEventPort>(impl); }
-	::Udm::AssocAttr< InEventPortInstance> InEventPort::referedbyInEventPortInstance() const { return ::Udm::AssocAttr< InEventPortInstance>(impl, meta_referedbyInEventPortInstance); }
-	::Udm::PointerAttr< EventType> InEventPort::ref() const { return ::Udm::PointerAttr< EventType>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::MgaObject> InEventPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void InEventPort::Accept(Visitor &v) { v.Visit_InEventPort(*this); }
-
-	::Uml::Class InEventPort::meta;
-	::Uml::AssociationRole InEventPort::meta_referedbyInEventPortInstance;
-	::Uml::AssociationRole InEventPort::meta_ref;
-
-	RequiredRequestPort::RequiredRequestPort() {}
-	RequiredRequestPort::RequiredRequestPort(::Udm::ObjectImpl *impl) : ObjectPort(impl),MultiOutputBase(impl), MgaObject(impl) {}
-	RequiredRequestPort::RequiredRequestPort(const RequiredRequestPort &master) : ObjectPort(master),MultiOutputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	RequiredRequestPort::RequiredRequestPort(RequiredRequestPort &&master) : ObjectPort(master),MultiOutputBase(master), MgaObject(master) {};
-
-	RequiredRequestPort RequiredRequestPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	RequiredRequestPort& RequiredRequestPort::operator=(RequiredRequestPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	RequiredRequestPort RequiredRequestPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	RequiredRequestPort RequiredRequestPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	RequiredRequestPort RequiredRequestPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< RequiredRequestPort> RequiredRequestPort::Instances() { return ::Udm::InstantiatedAttr< RequiredRequestPort>(impl); }
-	RequiredRequestPort RequiredRequestPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< RequiredRequestPort> RequiredRequestPort::Derived() { return ::Udm::DerivedAttr< RequiredRequestPort>(impl); }
-	::Udm::ArchetypeAttr< RequiredRequestPort> RequiredRequestPort::Archetype() const { return ::Udm::ArchetypeAttr< RequiredRequestPort>(impl); }
-	::Udm::BooleanAttr RequiredRequestPort::multiple_connections() const { return ::Udm::BooleanAttr(impl, meta_multiple_connections); }
-	::Udm::BooleanAttr RequiredRequestPort::AsyncCommunication() const { return ::Udm::BooleanAttr(impl, meta_AsyncCommunication); }
-	::Udm::AssocAttr< RequiredRequestPortInstance> RequiredRequestPort::referedbyRequiredRequestPortInstance() const { return ::Udm::AssocAttr< RequiredRequestPortInstance>(impl, meta_referedbyRequiredRequestPortInstance); }
-	::Udm::PointerAttr< Provideable> RequiredRequestPort::ref() const { return ::Udm::PointerAttr< Provideable>(impl, meta_ref); }
-	::Udm::AssocAttr< TargetRequiredRequestPort> RequiredRequestPort::referedbyTargetRequiredRequestPort() const { return ::Udm::AssocAttr< TargetRequiredRequestPort>(impl, meta_referedbyTargetRequiredRequestPort); }
-	::Udm::ParentAttr< ::PICML::MgaObject> RequiredRequestPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void RequiredRequestPort::Accept(Visitor &v) { v.Visit_RequiredRequestPort(*this); }
-
-	::Uml::Class RequiredRequestPort::meta;
-	::Uml::Attribute RequiredRequestPort::meta_multiple_connections;
-	::Uml::Attribute RequiredRequestPort::meta_AsyncCommunication;
-	::Uml::AssociationRole RequiredRequestPort::meta_referedbyRequiredRequestPortInstance;
-	::Uml::AssociationRole RequiredRequestPort::meta_ref;
-	::Uml::AssociationRole RequiredRequestPort::meta_referedbyTargetRequiredRequestPort;
-
-	ProvidedRequestPort::ProvidedRequestPort() {}
-	ProvidedRequestPort::ProvidedRequestPort(::Udm::ObjectImpl *impl) : ObjectPort(impl),MultiInputBase(impl), MgaObject(impl) {}
-	ProvidedRequestPort::ProvidedRequestPort(const ProvidedRequestPort &master) : ObjectPort(master),MultiInputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ProvidedRequestPort::ProvidedRequestPort(ProvidedRequestPort &&master) : ObjectPort(master),MultiInputBase(master), MgaObject(master) {};
-
-	ProvidedRequestPort ProvidedRequestPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ProvidedRequestPort& ProvidedRequestPort::operator=(ProvidedRequestPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ProvidedRequestPort ProvidedRequestPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ProvidedRequestPort ProvidedRequestPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ProvidedRequestPort ProvidedRequestPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ProvidedRequestPort> ProvidedRequestPort::Instances() { return ::Udm::InstantiatedAttr< ProvidedRequestPort>(impl); }
-	ProvidedRequestPort ProvidedRequestPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ProvidedRequestPort> ProvidedRequestPort::Derived() { return ::Udm::DerivedAttr< ProvidedRequestPort>(impl); }
-	::Udm::ArchetypeAttr< ProvidedRequestPort> ProvidedRequestPort::Archetype() const { return ::Udm::ArchetypeAttr< ProvidedRequestPort>(impl); }
-	::Udm::AssocAttr< ProvidedRequestPortInstance> ProvidedRequestPort::referedbyProvidedRequestPortInstance() const { return ::Udm::AssocAttr< ProvidedRequestPortInstance>(impl, meta_referedbyProvidedRequestPortInstance); }
-	::Udm::PointerAttr< Provideable> ProvidedRequestPort::ref() const { return ::Udm::PointerAttr< Provideable>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::MgaObject> ProvidedRequestPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void ProvidedRequestPort::Accept(Visitor &v) { v.Visit_ProvidedRequestPort(*this); }
-
-	::Uml::Class ProvidedRequestPort::meta;
-	::Uml::AssociationRole ProvidedRequestPort::meta_referedbyProvidedRequestPortInstance;
-	::Uml::AssociationRole ProvidedRequestPort::meta_ref;
-
-	OutEventPort::OutEventPort() {}
-	OutEventPort::OutEventPort(::Udm::ObjectImpl *impl) : EventPort(impl),SingleOutputBase(impl), MgaObject(impl) {}
-	OutEventPort::OutEventPort(const OutEventPort &master) : EventPort(master),SingleOutputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	OutEventPort::OutEventPort(OutEventPort &&master) : EventPort(master),SingleOutputBase(master), MgaObject(master) {};
-
-	OutEventPort OutEventPort::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	OutEventPort& OutEventPort::operator=(OutEventPort &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	OutEventPort OutEventPort::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	OutEventPort OutEventPort::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	OutEventPort OutEventPort::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< OutEventPort> OutEventPort::Instances() { return ::Udm::InstantiatedAttr< OutEventPort>(impl); }
-	OutEventPort OutEventPort::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< OutEventPort> OutEventPort::Derived() { return ::Udm::DerivedAttr< OutEventPort>(impl); }
-	::Udm::ArchetypeAttr< OutEventPort> OutEventPort::Archetype() const { return ::Udm::ArchetypeAttr< OutEventPort>(impl); }
-	::Udm::BooleanAttr OutEventPort::single_destination() const { return ::Udm::BooleanAttr(impl, meta_single_destination); }
-	::Udm::StringAttr OutEventPort::out_event_port_type() const { return ::Udm::StringAttr(impl, meta_out_event_port_type); }
-	::Udm::AssocAttr< OutEventPortInstance> OutEventPort::referedbyOutEventPortInstance() const { return ::Udm::AssocAttr< OutEventPortInstance>(impl, meta_referedbyOutEventPortInstance); }
-	::Udm::PointerAttr< EventType> OutEventPort::ref() const { return ::Udm::PointerAttr< EventType>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::MgaObject> OutEventPort::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
-	void OutEventPort::Accept(Visitor &v) { v.Visit_OutEventPort(*this); }
-
-	::Uml::Class OutEventPort::meta;
-	::Uml::Attribute OutEventPort::meta_single_destination;
-	::Uml::Attribute OutEventPort::meta_out_event_port_type;
-	::Uml::AssociationRole OutEventPort::meta_referedbyOutEventPortInstance;
-	::Uml::AssociationRole OutEventPort::meta_ref;
-
-	Component::Component() {}
-	Component::Component(::Udm::ObjectImpl *impl) : SupportsInterfaces(impl),NamedType(impl),Manageable(impl),TopLevelBehavior(impl), MgaObject(impl) {}
-	Component::Component(const Component &master) : SupportsInterfaces(master),NamedType(master),Manageable(master),TopLevelBehavior(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	Component::Component(Component &&master) : SupportsInterfaces(master),NamedType(master),Manageable(master),TopLevelBehavior(master), MgaObject(master) {};
-
-	Component Component::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Component& Component::operator=(Component &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	Component Component::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Component Component::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Component Component::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Component> Component::Instances() { return ::Udm::InstantiatedAttr< Component>(impl); }
-	Component Component::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Component> Component::Derived() { return ::Udm::DerivedAttr< Component>(impl); }
-	::Udm::ArchetypeAttr< Component> Component::Archetype() const { return ::Udm::ArchetypeAttr< Component>(impl); }
-	::Udm::StringAttr Component::label() const { return ::Udm::StringAttr(impl, meta_label); }
-	::Udm::StringAttr Component::UUID() const { return ::Udm::StringAttr(impl, meta_UUID); }
-	::Udm::AssocAttr< CompRef> Component::referedbyCompRef() const { return ::Udm::AssocAttr< CompRef>(impl, meta_referedbyCompRef); }
-	::Udm::AssocAttr< ComponentInherits> Component::referedbyComponentInherits() const { return ::Udm::AssocAttr< ComponentInherits>(impl, meta_referedbyComponentInherits); }
-	::Udm::AssocAttr< ComponentRef> Component::referedbyComponentRef() const { return ::Udm::AssocAttr< ComponentRef>(impl, meta_referedbyComponentRef); }
-	::Udm::ChildrenAttr< ::PICML::ExtendedPortBase> Component::ExtendedPortBase_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPortBase>(impl, meta_ExtendedPortBase_children); }
-	::Udm::ChildAttr< ::PICML::ComponentInherits> Component::ComponentInherits_child() const { return ::Udm::ChildAttr< ::PICML::ComponentInherits>(impl, meta_ComponentInherits_child); }
-	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> Component::ReadonlyAttribute_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
-	::Udm::ChildrenAttr< ::PICML::Port> Component::Port_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, meta_Port_children); }
-	::Udm::ChildrenAttr< ::PICML::GraphVertex> Component::GraphVertex_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::GraphVertex>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Taggable> Component::Taggable_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Taggable>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Attribute> Component::Attribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Attribute>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute> Component::ReadonlyAttribute_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ReadonlyAttribute>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> Component::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ExtendedPortBase> Component::ExtendedPortBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPortBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MirrorPort> Component::MirrorPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MirrorPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ComponentInherits> Component::ComponentInherits_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentInherits>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ExtendedPort> Component::ExtendedPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::EventPort> Component::EventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::EventPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ObjectPort> Component::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Port> Component::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::InEventPort> Component::InEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InEventPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> Component::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> Component::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::OutEventPort> Component::OutEventPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OutEventPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> Component::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::Prefixable> Component::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
-	void Component::Accept(Visitor &v) { v.Visit_Component(*this); }
-
-	::Uml::Class Component::meta;
-	::Uml::Attribute Component::meta_label;
-	::Uml::Attribute Component::meta_UUID;
-	::Uml::AssociationRole Component::meta_referedbyCompRef;
-	::Uml::AssociationRole Component::meta_referedbyComponentInherits;
-	::Uml::AssociationRole Component::meta_referedbyComponentRef;
-	::Uml::CompositionChildRole Component::meta_ExtendedPortBase_children;
-	::Uml::CompositionChildRole Component::meta_ComponentInherits_child;
-	::Uml::CompositionChildRole Component::meta_ReadonlyAttribute_children;
-	::Uml::CompositionChildRole Component::meta_Port_children;
 
 	ConnectorType::ConnectorType() {}
 	ConnectorType::ConnectorType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
@@ -10189,8 +10412,8 @@ namespace PICML {
 	::Udm::StringAttr ConnectorInstance::UUID() const { return ::Udm::StringAttr(impl, meta_UUID); }
 	::Udm::AClassAssocAttr< ConnectorToReceptacle, RequiredRequestPortEnd> ConnectorInstance::srcConnectorToReceptacle() const { return ::Udm::AClassAssocAttr< ConnectorToReceptacle, RequiredRequestPortEnd>(impl, meta_srcConnectorToReceptacle, meta_srcConnectorToReceptacle_rev); }
 	::Udm::AClassAssocAttr< Publish, ExtendPortEnd> ConnectorInstance::srcPublish() const { return ::Udm::AClassAssocAttr< Publish, ExtendPortEnd>(impl, meta_srcPublish, meta_srcPublish_rev); }
-	::Udm::AClassAssocAttr< ConnectorToFacet, ProvidedRequestPortEnd> ConnectorInstance::dstConnectorToFacet() const { return ::Udm::AClassAssocAttr< ConnectorToFacet, ProvidedRequestPortEnd>(impl, meta_dstConnectorToFacet, meta_dstConnectorToFacet_rev); }
 	::Udm::AClassAssocAttr< Consume, ExtendPortEnd> ConnectorInstance::dstConsume() const { return ::Udm::AClassAssocAttr< Consume, ExtendPortEnd>(impl, meta_dstConsume, meta_dstConsume_rev); }
+	::Udm::AClassAssocAttr< ConnectorToFacet, ProvidedRequestPortEnd> ConnectorInstance::dstConnectorToFacet() const { return ::Udm::AClassAssocAttr< ConnectorToFacet, ProvidedRequestPortEnd>(impl, meta_dstConnectorToFacet, meta_dstConnectorToFacet_rev); }
 	::Udm::ChildrenAttr< ::PICML::AttributeInstance> ConnectorInstance::AttributeInstance_children() const { return ::Udm::ChildrenAttr< ::PICML::AttributeInstance>(impl, meta_AttributeInstance_children); }
 	::Udm::ChildAttr< ::PICML::ConnectorImplementationType> ConnectorInstance::ConnectorImplementationType_child() const { return ::Udm::ChildAttr< ::PICML::ConnectorImplementationType>(impl, meta_ConnectorImplementationType_child); }
 	::Udm::ChildrenAttr< ::PICML::PortInstance> ConnectorInstance::PortInstance_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PortInstance>(impl, ::Udm::NULLCHILDROLE); }
@@ -10207,10 +10430,10 @@ namespace PICML {
 	::Uml::AssociationRole ConnectorInstance::meta_srcConnectorToReceptacle_rev;
 	::Uml::AssociationRole ConnectorInstance::meta_srcPublish;
 	::Uml::AssociationRole ConnectorInstance::meta_srcPublish_rev;
-	::Uml::AssociationRole ConnectorInstance::meta_dstConnectorToFacet;
-	::Uml::AssociationRole ConnectorInstance::meta_dstConnectorToFacet_rev;
 	::Uml::AssociationRole ConnectorInstance::meta_dstConsume;
 	::Uml::AssociationRole ConnectorInstance::meta_dstConsume_rev;
+	::Uml::AssociationRole ConnectorInstance::meta_dstConnectorToFacet;
+	::Uml::AssociationRole ConnectorInstance::meta_dstConnectorToFacet_rev;
 	::Uml::CompositionChildRole ConnectorInstance::meta_AttributeInstance_children;
 	::Uml::CompositionChildRole ConnectorInstance::meta_ConnectorImplementationType_child;
 	::Uml::CompositionParentRole ConnectorInstance::meta_ComponentAssembly_parent;
@@ -10280,14 +10503,14 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::MemberType> ConnectorObject::MemberType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MemberType>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::Aggregate> ConnectorObject::Aggregate_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Aggregate>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::TemplateParameterValueType> ConnectorObject::TemplateParameterValueType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::TemplateParameterValueType>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> ConnectorObject::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Port> ConnectorObject::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> ConnectorObject::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> ConnectorObject::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ExtendedPortBase> ConnectorObject::ExtendedPortBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPortBase>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MirrorPort> ConnectorObject::MirrorPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MirrorPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ExtendedPort> ConnectorObject::ExtendedPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ExtendedPort>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ObjectPort> ConnectorObject::ObjectPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ObjectPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Port> ConnectorObject::Port_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Port>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::RequiredRequestPort> ConnectorObject::RequiredRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RequiredRequestPort>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort> ConnectorObject::ProvidedRequestPort_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ProvidedRequestPort>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::CommonPortAttrs> ConnectorObject::CommonPortAttrs_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::CommonPortAttrs>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ConnectorInherits> ConnectorObject::ConnectorInherits_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ConnectorInherits>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::MgaObject> ConnectorObject::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::Prefixable> ConnectorObject::parent() const { return ::Udm::ParentAttr< ::PICML::Prefixable>(impl, ::Udm::NULLPARENTROLE); }
@@ -10755,364 +10978,6 @@ namespace PICML {
 	::Uml::AssociationRole Transition::meta_srcTransition_end_;
 	::Uml::AssociationRole Transition::meta_dstTransition_end_;
 
-	QueryInputBase::QueryInputBase() {}
-	QueryInputBase::QueryInputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	QueryInputBase::QueryInputBase(const QueryInputBase &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	QueryInputBase::QueryInputBase(QueryInputBase &&master) : MgaObject(master) {};
-
-	QueryInputBase QueryInputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	QueryInputBase& QueryInputBase::operator=(QueryInputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	QueryInputBase QueryInputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	QueryInputBase QueryInputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	QueryInputBase QueryInputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< QueryInputBase> QueryInputBase::Instances() { return ::Udm::InstantiatedAttr< QueryInputBase>(impl); }
-	QueryInputBase QueryInputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< QueryInputBase> QueryInputBase::Derived() { return ::Udm::DerivedAttr< QueryInputBase>(impl); }
-	::Udm::ArchetypeAttr< QueryInputBase> QueryInputBase::Archetype() const { return ::Udm::ArchetypeAttr< QueryInputBase>(impl); }
-	::Udm::AClassPointerAttr< QueryInput, QueryInputAction> QueryInputBase::dstQueryInput() const { return ::Udm::AClassPointerAttr< QueryInput, QueryInputAction>(impl, meta_dstQueryInput, meta_dstQueryInput_rev); }
-	::Udm::ParentAttr< ::Udm::Object> QueryInputBase::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class QueryInputBase::meta;
-	::Uml::AssociationRole QueryInputBase::meta_dstQueryInput;
-	::Uml::AssociationRole QueryInputBase::meta_dstQueryInput_rev;
-
-	QueryInput::QueryInput() {}
-	QueryInput::QueryInput(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	QueryInput::QueryInput(const QueryInput &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	QueryInput::QueryInput(QueryInput &&master) : MgaObject(master) {};
-
-	QueryInput QueryInput::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	QueryInput& QueryInput::operator=(QueryInput &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	QueryInput QueryInput::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	QueryInput QueryInput::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	QueryInput QueryInput::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< QueryInput> QueryInput::Instances() { return ::Udm::InstantiatedAttr< QueryInput>(impl); }
-	QueryInput QueryInput::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< QueryInput> QueryInput::Derived() { return ::Udm::DerivedAttr< QueryInput>(impl); }
-	::Udm::ArchetypeAttr< QueryInput> QueryInput::Archetype() const { return ::Udm::ArchetypeAttr< QueryInput>(impl); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> QueryInput::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> QueryInput::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	::Udm::AssocEndAttr< ::PICML::QueryInputBase> QueryInput::srcQueryInput_end() const { return ::Udm::AssocEndAttr< ::PICML::QueryInputBase>(impl, meta_srcQueryInput_end_); }
-	::Udm::AssocEndAttr< ::PICML::QueryInputAction> QueryInput::dstQueryInput_end() const { return ::Udm::AssocEndAttr< ::PICML::QueryInputAction>(impl, meta_dstQueryInput_end_); }
-	void QueryInput::Accept(Visitor &v) { v.Visit_QueryInput(*this); }
-
-	::Uml::Class QueryInput::meta;
-	::Uml::CompositionParentRole QueryInput::meta_TopLevelBehavior_parent;
-	::Uml::AssociationRole QueryInput::meta_srcQueryInput_end_;
-	::Uml::AssociationRole QueryInput::meta_dstQueryInput_end_;
-
-	TopLevelBehavior::TopLevelBehavior() {}
-	TopLevelBehavior::TopLevelBehavior(::Udm::ObjectImpl *impl) : BehaviorModel(impl), MgaObject(impl) {}
-	TopLevelBehavior::TopLevelBehavior(const TopLevelBehavior &master) : BehaviorModel(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	TopLevelBehavior::TopLevelBehavior(TopLevelBehavior &&master) : BehaviorModel(master), MgaObject(master) {};
-
-	TopLevelBehavior TopLevelBehavior::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	TopLevelBehavior& TopLevelBehavior::operator=(TopLevelBehavior &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	TopLevelBehavior TopLevelBehavior::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	TopLevelBehavior TopLevelBehavior::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	TopLevelBehavior TopLevelBehavior::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< TopLevelBehavior> TopLevelBehavior::Instances() { return ::Udm::InstantiatedAttr< TopLevelBehavior>(impl); }
-	TopLevelBehavior TopLevelBehavior::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< TopLevelBehavior> TopLevelBehavior::Derived() { return ::Udm::DerivedAttr< TopLevelBehavior>(impl); }
-	::Udm::ArchetypeAttr< TopLevelBehavior> TopLevelBehavior::Archetype() const { return ::Udm::ArchetypeAttr< TopLevelBehavior>(impl); }
-	::Udm::ChildrenAttr< ::PICML::WorkerType> TopLevelBehavior::WorkerType_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerType>(impl, meta_WorkerType_children); }
-	::Udm::ChildrenAttr< ::PICML::QueryInput> TopLevelBehavior::QueryInput_children() const { return ::Udm::ChildrenAttr< ::PICML::QueryInput>(impl, meta_QueryInput_children); }
-	::Udm::ChildrenAttr< ::PICML::Input> TopLevelBehavior::Input_children() const { return ::Udm::ChildrenAttr< ::PICML::Input>(impl, meta_Input_children); }
-	::Udm::ChildrenAttr< ::PICML::MultiInput> TopLevelBehavior::MultiInput_children() const { return ::Udm::ChildrenAttr< ::PICML::MultiInput>(impl, meta_MultiInput_children); }
-	::Udm::ChildAttr< ::PICML::Environment> TopLevelBehavior::Environment_child() const { return ::Udm::ChildAttr< ::PICML::Environment>(impl, meta_Environment_child); }
-	::Udm::ChildrenAttr< ::PICML::ApplicationTask> TopLevelBehavior::ApplicationTask_children() const { return ::Udm::ChildrenAttr< ::PICML::ApplicationTask>(impl, meta_ApplicationTask_children); }
-	::Udm::ChildrenAttr< ::PICML::PeriodicEvent> TopLevelBehavior::PeriodicEvent_children() const { return ::Udm::ChildrenAttr< ::PICML::PeriodicEvent>(impl, meta_PeriodicEvent_children); }
-	::Udm::ChildrenAttr< ::PICML::QueryInput> TopLevelBehavior::QueryInput_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::QueryInput>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MultiInput> TopLevelBehavior::MultiInput_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MultiInput>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MultiInputBase> TopLevelBehavior::MultiInputBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MultiInputBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::SingleInputBase> TopLevelBehavior::SingleInputBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SingleInputBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Input> TopLevelBehavior::Input_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Input>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::WorkerType> TopLevelBehavior::WorkerType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerType>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ApplicationTask> TopLevelBehavior::ApplicationTask_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ApplicationTask>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::PeriodicEvent> TopLevelBehavior::PeriodicEvent_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PeriodicEvent>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::Environment> TopLevelBehavior::Environment_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Environment>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> TopLevelBehavior::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::Udm::Object> TopLevelBehavior::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class TopLevelBehavior::meta;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_WorkerType_children;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_QueryInput_children;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_Input_children;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_MultiInput_children;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_Environment_child;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_ApplicationTask_children;
-	::Uml::CompositionChildRole TopLevelBehavior::meta_PeriodicEvent_children;
-
-	MultiInput::MultiInput() {}
-	MultiInput::MultiInput(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	MultiInput::MultiInput(const MultiInput &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	MultiInput::MultiInput(MultiInput &&master) : MgaObject(master) {};
-
-	MultiInput MultiInput::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	MultiInput& MultiInput::operator=(MultiInput &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	MultiInput MultiInput::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	MultiInput MultiInput::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	MultiInput MultiInput::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< MultiInput> MultiInput::Instances() { return ::Udm::InstantiatedAttr< MultiInput>(impl); }
-	MultiInput MultiInput::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< MultiInput> MultiInput::Derived() { return ::Udm::DerivedAttr< MultiInput>(impl); }
-	::Udm::ArchetypeAttr< MultiInput> MultiInput::Archetype() const { return ::Udm::ArchetypeAttr< MultiInput>(impl); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> MultiInput::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> MultiInput::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	::Udm::AssocEndAttr< ::PICML::MultiInputBase> MultiInput::srcMultiInput_end() const { return ::Udm::AssocEndAttr< ::PICML::MultiInputBase>(impl, meta_srcMultiInput_end_); }
-	::Udm::AssocEndAttr< ::PICML::MultiInputAction> MultiInput::dstMultiInput_end() const { return ::Udm::AssocEndAttr< ::PICML::MultiInputAction>(impl, meta_dstMultiInput_end_); }
-	void MultiInput::Accept(Visitor &v) { v.Visit_MultiInput(*this); }
-
-	::Uml::Class MultiInput::meta;
-	::Uml::CompositionParentRole MultiInput::meta_TopLevelBehavior_parent;
-	::Uml::AssociationRole MultiInput::meta_srcMultiInput_end_;
-	::Uml::AssociationRole MultiInput::meta_dstMultiInput_end_;
-
-	SingleOutputBase::SingleOutputBase() {}
-	SingleOutputBase::SingleOutputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	SingleOutputBase::SingleOutputBase(const SingleOutputBase &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	SingleOutputBase::SingleOutputBase(SingleOutputBase &&master) : MgaObject(master) {};
-
-	SingleOutputBase SingleOutputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	SingleOutputBase& SingleOutputBase::operator=(SingleOutputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	SingleOutputBase SingleOutputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	SingleOutputBase SingleOutputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	SingleOutputBase SingleOutputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< SingleOutputBase> SingleOutputBase::Instances() { return ::Udm::InstantiatedAttr< SingleOutputBase>(impl); }
-	SingleOutputBase SingleOutputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< SingleOutputBase> SingleOutputBase::Derived() { return ::Udm::DerivedAttr< SingleOutputBase>(impl); }
-	::Udm::ArchetypeAttr< SingleOutputBase> SingleOutputBase::Archetype() const { return ::Udm::ArchetypeAttr< SingleOutputBase>(impl); }
-	::Udm::ParentAttr< ::Udm::Object> SingleOutputBase::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class SingleOutputBase::meta;
-
-	MultiOutputBase::MultiOutputBase() {}
-	MultiOutputBase::MultiOutputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	MultiOutputBase::MultiOutputBase(const MultiOutputBase &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	MultiOutputBase::MultiOutputBase(MultiOutputBase &&master) : MgaObject(master) {};
-
-	MultiOutputBase MultiOutputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	MultiOutputBase& MultiOutputBase::operator=(MultiOutputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	MultiOutputBase MultiOutputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	MultiOutputBase MultiOutputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	MultiOutputBase MultiOutputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< MultiOutputBase> MultiOutputBase::Instances() { return ::Udm::InstantiatedAttr< MultiOutputBase>(impl); }
-	MultiOutputBase MultiOutputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< MultiOutputBase> MultiOutputBase::Derived() { return ::Udm::DerivedAttr< MultiOutputBase>(impl); }
-	::Udm::ArchetypeAttr< MultiOutputBase> MultiOutputBase::Archetype() const { return ::Udm::ArchetypeAttr< MultiOutputBase>(impl); }
-	::Udm::ParentAttr< ::Udm::Object> MultiOutputBase::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class MultiOutputBase::meta;
-
-	MultiInputBase::MultiInputBase() {}
-	MultiInputBase::MultiInputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	MultiInputBase::MultiInputBase(const MultiInputBase &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	MultiInputBase::MultiInputBase(MultiInputBase &&master) : MgaObject(master) {};
-
-	MultiInputBase MultiInputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	MultiInputBase& MultiInputBase::operator=(MultiInputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	MultiInputBase MultiInputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	MultiInputBase MultiInputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	MultiInputBase MultiInputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< MultiInputBase> MultiInputBase::Instances() { return ::Udm::InstantiatedAttr< MultiInputBase>(impl); }
-	MultiInputBase MultiInputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< MultiInputBase> MultiInputBase::Derived() { return ::Udm::DerivedAttr< MultiInputBase>(impl); }
-	::Udm::ArchetypeAttr< MultiInputBase> MultiInputBase::Archetype() const { return ::Udm::ArchetypeAttr< MultiInputBase>(impl); }
-	::Udm::AClassAssocAttr< MultiInput, MultiInputAction> MultiInputBase::dstMultiInput() const { return ::Udm::AClassAssocAttr< MultiInput, MultiInputAction>(impl, meta_dstMultiInput, meta_dstMultiInput_rev); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> MultiInputBase::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class MultiInputBase::meta;
-	::Uml::AssociationRole MultiInputBase::meta_dstMultiInput;
-	::Uml::AssociationRole MultiInputBase::meta_dstMultiInput_rev;
-
-	SingleInputBase::SingleInputBase() {}
-	SingleInputBase::SingleInputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	SingleInputBase::SingleInputBase(const SingleInputBase &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	SingleInputBase::SingleInputBase(SingleInputBase &&master) : MgaObject(master) {};
-
-	SingleInputBase SingleInputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	SingleInputBase& SingleInputBase::operator=(SingleInputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	SingleInputBase SingleInputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	SingleInputBase SingleInputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	SingleInputBase SingleInputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< SingleInputBase> SingleInputBase::Instances() { return ::Udm::InstantiatedAttr< SingleInputBase>(impl); }
-	SingleInputBase SingleInputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< SingleInputBase> SingleInputBase::Derived() { return ::Udm::DerivedAttr< SingleInputBase>(impl); }
-	::Udm::ArchetypeAttr< SingleInputBase> SingleInputBase::Archetype() const { return ::Udm::ArchetypeAttr< SingleInputBase>(impl); }
-	::Udm::AClassPointerAttr< Input, InputAction> SingleInputBase::dstInput() const { return ::Udm::AClassPointerAttr< Input, InputAction>(impl, meta_dstInput, meta_dstInput_rev); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> SingleInputBase::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-
-	::Uml::Class SingleInputBase::meta;
-	::Uml::AssociationRole SingleInputBase::meta_dstInput;
-	::Uml::AssociationRole SingleInputBase::meta_dstInput_rev;
-
-	Input::Input() {}
-	Input::Input(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	Input::Input(const Input &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	Input::Input(Input &&master) : MgaObject(master) {};
-
-	Input Input::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Input& Input::operator=(Input &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	Input Input::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Input Input::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Input Input::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Input> Input::Instances() { return ::Udm::InstantiatedAttr< Input>(impl); }
-	Input Input::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Input> Input::Derived() { return ::Udm::DerivedAttr< Input>(impl); }
-	::Udm::ArchetypeAttr< Input> Input::Archetype() const { return ::Udm::ArchetypeAttr< Input>(impl); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Input::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Input::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	::Udm::AssocEndAttr< ::PICML::SingleInputBase> Input::srcInput_end() const { return ::Udm::AssocEndAttr< ::PICML::SingleInputBase>(impl, meta_srcInput_end_); }
-	::Udm::AssocEndAttr< ::PICML::InputAction> Input::dstInput_end() const { return ::Udm::AssocEndAttr< ::PICML::InputAction>(impl, meta_dstInput_end_); }
-	void Input::Accept(Visitor &v) { v.Visit_Input(*this); }
-
-	::Uml::Class Input::meta;
-	::Uml::CompositionParentRole Input::meta_TopLevelBehavior_parent;
-	::Uml::AssociationRole Input::meta_srcInput_end_;
-	::Uml::AssociationRole Input::meta_dstInput_end_;
-
-	WorkerType::WorkerType() {}
-	WorkerType::WorkerType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	WorkerType::WorkerType(const WorkerType &master) : MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	WorkerType::WorkerType(WorkerType &&master) : MgaObject(master) {};
-
-	WorkerType WorkerType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	WorkerType& WorkerType::operator=(WorkerType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	WorkerType WorkerType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	WorkerType WorkerType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	WorkerType WorkerType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< WorkerType> WorkerType::Instances() { return ::Udm::InstantiatedAttr< WorkerType>(impl); }
-	WorkerType WorkerType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< WorkerType> WorkerType::Derived() { return ::Udm::DerivedAttr< WorkerType>(impl); }
-	::Udm::ArchetypeAttr< WorkerType> WorkerType::Archetype() const { return ::Udm::ArchetypeAttr< WorkerType>(impl); }
-	::Udm::PointerAttr< Worker> WorkerType::ref() const { return ::Udm::PointerAttr< Worker>(impl, meta_ref); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> WorkerType::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> WorkerType::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	void WorkerType::Accept(Visitor &v) { v.Visit_WorkerType(*this); }
-
-	::Uml::Class WorkerType::meta;
-	::Uml::AssociationRole WorkerType::meta_ref;
-	::Uml::CompositionParentRole WorkerType::meta_TopLevelBehavior_parent;
-
-	ApplicationTask::ApplicationTask() {}
-	ApplicationTask::ApplicationTask(::Udm::ObjectImpl *impl) : SingleInputBase(impl), MgaObject(impl) {}
-	ApplicationTask::ApplicationTask(const ApplicationTask &master) : SingleInputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	ApplicationTask::ApplicationTask(ApplicationTask &&master) : SingleInputBase(master), MgaObject(master) {};
-
-	ApplicationTask ApplicationTask::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	ApplicationTask& ApplicationTask::operator=(ApplicationTask &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	ApplicationTask ApplicationTask::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	ApplicationTask ApplicationTask::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	ApplicationTask ApplicationTask::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< ApplicationTask> ApplicationTask::Instances() { return ::Udm::InstantiatedAttr< ApplicationTask>(impl); }
-	ApplicationTask ApplicationTask::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< ApplicationTask> ApplicationTask::Derived() { return ::Udm::DerivedAttr< ApplicationTask>(impl); }
-	::Udm::ArchetypeAttr< ApplicationTask> ApplicationTask::Archetype() const { return ::Udm::ArchetypeAttr< ApplicationTask>(impl); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> ApplicationTask::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> ApplicationTask::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	void ApplicationTask::Accept(Visitor &v) { v.Visit_ApplicationTask(*this); }
-
-	::Uml::Class ApplicationTask::meta;
-	::Uml::CompositionParentRole ApplicationTask::meta_TopLevelBehavior_parent;
-
-	PeriodicEvent::PeriodicEvent() {}
-	PeriodicEvent::PeriodicEvent(::Udm::ObjectImpl *impl) : SingleInputBase(impl), MgaObject(impl) {}
-	PeriodicEvent::PeriodicEvent(const PeriodicEvent &master) : SingleInputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	PeriodicEvent::PeriodicEvent(PeriodicEvent &&master) : SingleInputBase(master), MgaObject(master) {};
-
-	PeriodicEvent PeriodicEvent::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	PeriodicEvent& PeriodicEvent::operator=(PeriodicEvent &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	PeriodicEvent PeriodicEvent::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	PeriodicEvent PeriodicEvent::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	PeriodicEvent PeriodicEvent::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< PeriodicEvent> PeriodicEvent::Instances() { return ::Udm::InstantiatedAttr< PeriodicEvent>(impl); }
-	PeriodicEvent PeriodicEvent::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< PeriodicEvent> PeriodicEvent::Derived() { return ::Udm::DerivedAttr< PeriodicEvent>(impl); }
-	::Udm::ArchetypeAttr< PeriodicEvent> PeriodicEvent::Archetype() const { return ::Udm::ArchetypeAttr< PeriodicEvent>(impl); }
-	::Udm::StringAttr PeriodicEvent::Hertz() const { return ::Udm::StringAttr(impl, meta_Hertz); }
-	::Udm::StringAttr PeriodicEvent::Distribution() const { return ::Udm::StringAttr(impl, meta_Distribution); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> PeriodicEvent::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> PeriodicEvent::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	void PeriodicEvent::Accept(Visitor &v) { v.Visit_PeriodicEvent(*this); }
-
-	::Uml::Class PeriodicEvent::meta;
-	::Uml::Attribute PeriodicEvent::meta_Hertz;
-	::Uml::Attribute PeriodicEvent::meta_Distribution;
-	::Uml::CompositionParentRole PeriodicEvent::meta_TopLevelBehavior_parent;
-
-	Environment::Environment() {}
-	Environment::Environment(::Udm::ObjectImpl *impl) : MultiInputBase(impl), MgaObject(impl) {}
-	Environment::Environment(const Environment &master) : MultiInputBase(master), MgaObject(master) {}
-
-#ifdef UDM_RVALUE
-	Environment::Environment(Environment &&master) : MultiInputBase(master), MgaObject(master) {};
-
-	Environment Environment::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Environment& Environment::operator=(Environment &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
-
-#endif
-	Environment Environment::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Environment Environment::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Environment Environment::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Environment> Environment::Instances() { return ::Udm::InstantiatedAttr< Environment>(impl); }
-	Environment Environment::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Environment> Environment::Derived() { return ::Udm::DerivedAttr< Environment>(impl); }
-	::Udm::ArchetypeAttr< Environment> Environment::Archetype() const { return ::Udm::ArchetypeAttr< Environment>(impl); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Environment::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
-	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Environment::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
-	void Environment::Accept(Visitor &v) { v.Visit_Environment(*this); }
-
-	::Uml::Class Environment::meta;
-	::Uml::CompositionParentRole Environment::meta_TopLevelBehavior_parent;
-
 	TargetRequiredRequestPort::TargetRequiredRequestPort() {}
 	TargetRequiredRequestPort::TargetRequiredRequestPort(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
 	TargetRequiredRequestPort::TargetRequiredRequestPort(const TargetRequiredRequestPort &master) : MgaObject(master) {}
@@ -11506,13 +11371,13 @@ namespace PICML {
 	::Udm::DerivedAttr< BehaviorModel> BehaviorModel::Derived() { return ::Udm::DerivedAttr< BehaviorModel>(impl); }
 	::Udm::ArchetypeAttr< BehaviorModel> BehaviorModel::Archetype() const { return ::Udm::ArchetypeAttr< BehaviorModel>(impl); }
 	::Udm::ChildrenAttr< ::PICML::Variable> BehaviorModel::Variable_children() const { return ::Udm::ChildrenAttr< ::PICML::Variable>(impl, meta_Variable_children); }
-	::Udm::ChildrenAttr< ::PICML::TerminalEffect> BehaviorModel::TerminalEffect_children() const { return ::Udm::ChildrenAttr< ::PICML::TerminalEffect>(impl, meta_TerminalEffect_children); }
-	::Udm::ChildrenAttr< ::PICML::Terminal> BehaviorModel::Terminal_children() const { return ::Udm::ChildrenAttr< ::PICML::Terminal>(impl, meta_Terminal_children); }
-	::Udm::ChildrenAttr< ::PICML::TerminalTransition> BehaviorModel::TerminalTransition_children() const { return ::Udm::ChildrenAttr< ::PICML::TerminalTransition>(impl, meta_TerminalTransition_children); }
 	::Udm::ChildrenAttr< ::PICML::LoopTransition> BehaviorModel::LoopTransition_children() const { return ::Udm::ChildrenAttr< ::PICML::LoopTransition>(impl, meta_LoopTransition_children); }
 	::Udm::ChildrenAttr< ::PICML::Transition> BehaviorModel::Transition_children() const { return ::Udm::ChildrenAttr< ::PICML::Transition>(impl, meta_Transition_children); }
 	::Udm::ChildrenAttr< ::PICML::BranchTransition> BehaviorModel::BranchTransition_children() const { return ::Udm::ChildrenAttr< ::PICML::BranchTransition>(impl, meta_BranchTransition_children); }
 	::Udm::ChildrenAttr< ::PICML::StateBase> BehaviorModel::StateBase_children() const { return ::Udm::ChildrenAttr< ::PICML::StateBase>(impl, meta_StateBase_children); }
+	::Udm::ChildrenAttr< ::PICML::TerminalEffect> BehaviorModel::TerminalEffect_children() const { return ::Udm::ChildrenAttr< ::PICML::TerminalEffect>(impl, meta_TerminalEffect_children); }
+	::Udm::ChildrenAttr< ::PICML::Terminal> BehaviorModel::Terminal_children() const { return ::Udm::ChildrenAttr< ::PICML::Terminal>(impl, meta_Terminal_children); }
+	::Udm::ChildrenAttr< ::PICML::TerminalTransition> BehaviorModel::TerminalTransition_children() const { return ::Udm::ChildrenAttr< ::PICML::TerminalTransition>(impl, meta_TerminalTransition_children); }
 	::Udm::ChildrenAttr< ::PICML::QueryInputAction> BehaviorModel::QueryInputAction_children() const { return ::Udm::ChildrenAttr< ::PICML::QueryInputAction>(impl, meta_QueryInputAction_children); }
 	::Udm::ChildrenAttr< ::PICML::Effect> BehaviorModel::Effect_children() const { return ::Udm::ChildrenAttr< ::PICML::Effect>(impl, meta_Effect_children); }
 	::Udm::ChildrenAttr< ::PICML::ActionBase> BehaviorModel::ActionBase_children() const { return ::Udm::ChildrenAttr< ::PICML::ActionBase>(impl, meta_ActionBase_children); }
@@ -11552,13 +11417,13 @@ namespace PICML {
 
 	::Uml::Class BehaviorModel::meta;
 	::Uml::CompositionChildRole BehaviorModel::meta_Variable_children;
-	::Uml::CompositionChildRole BehaviorModel::meta_TerminalEffect_children;
-	::Uml::CompositionChildRole BehaviorModel::meta_Terminal_children;
-	::Uml::CompositionChildRole BehaviorModel::meta_TerminalTransition_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_LoopTransition_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_Transition_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_BranchTransition_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_StateBase_children;
+	::Uml::CompositionChildRole BehaviorModel::meta_TerminalEffect_children;
+	::Uml::CompositionChildRole BehaviorModel::meta_Terminal_children;
+	::Uml::CompositionChildRole BehaviorModel::meta_TerminalTransition_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_QueryInputAction_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_Effect_children;
 	::Uml::CompositionChildRole BehaviorModel::meta_ActionBase_children;
@@ -11595,228 +11460,363 @@ namespace PICML {
 	::Uml::AssociationRole Variable::meta_ref;
 	::Uml::CompositionParentRole Variable::meta_BehaviorModel_parent;
 
-	Operation::Operation() {}
-	Operation::Operation(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	Operation::Operation(const Operation &master) : MgaObject(master) {}
+	QueryInputBase::QueryInputBase() {}
+	QueryInputBase::QueryInputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	QueryInputBase::QueryInputBase(const QueryInputBase &master) : MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	Operation::Operation(Operation &&master) : MgaObject(master) {};
+	QueryInputBase::QueryInputBase(QueryInputBase &&master) : MgaObject(master) {};
 
-	Operation Operation::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Operation& Operation::operator=(Operation &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	QueryInputBase QueryInputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	QueryInputBase& QueryInputBase::operator=(QueryInputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	Operation Operation::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Operation Operation::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Operation Operation::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Operation> Operation::Instances() { return ::Udm::InstantiatedAttr< Operation>(impl); }
-	Operation Operation::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Operation> Operation::Derived() { return ::Udm::DerivedAttr< Operation>(impl); }
-	::Udm::ArchetypeAttr< Operation> Operation::Archetype() const { return ::Udm::ArchetypeAttr< Operation>(impl); }
-	::Udm::AssocAttr< ActionType> Operation::referedbyActionType() const { return ::Udm::AssocAttr< ActionType>(impl, meta_referedbyActionType); }
-	::Udm::ChildAttr< ::PICML::ReturnType> Operation::ReturnType_child() const { return ::Udm::ChildAttr< ::PICML::ReturnType>(impl, meta_ReturnType_child); }
-	::Udm::ChildrenAttr< ::PICML::ParameterType> Operation::ParameterType_children() const { return ::Udm::ChildrenAttr< ::PICML::ParameterType>(impl, meta_ParameterType_children); }
-	::Udm::ChildrenAttr< ::PICML::ParameterType> Operation::ParameterType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ParameterType>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::ReturnType> Operation::ReturnType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ReturnType>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::OutParameter> Operation::OutParameter_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::OutParameter>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::InoutParameter> Operation::InoutParameter_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InoutParameter>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::InParameter> Operation::InParameter_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InParameter>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> Operation::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::Worker> Operation::Worker_parent() const { return ::Udm::ParentAttr< ::PICML::Worker>(impl, meta_Worker_parent); }
-	::Udm::ParentAttr< ::PICML::Worker> Operation::parent() const { return ::Udm::ParentAttr< ::PICML::Worker>(impl, ::Udm::NULLPARENTROLE); }
-	void Operation::Accept(Visitor &v) { v.Visit_Operation(*this); }
+	QueryInputBase QueryInputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	QueryInputBase QueryInputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	QueryInputBase QueryInputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< QueryInputBase> QueryInputBase::Instances() { return ::Udm::InstantiatedAttr< QueryInputBase>(impl); }
+	QueryInputBase QueryInputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< QueryInputBase> QueryInputBase::Derived() { return ::Udm::DerivedAttr< QueryInputBase>(impl); }
+	::Udm::ArchetypeAttr< QueryInputBase> QueryInputBase::Archetype() const { return ::Udm::ArchetypeAttr< QueryInputBase>(impl); }
+	::Udm::AClassPointerAttr< QueryInput, QueryInputAction> QueryInputBase::dstQueryInput() const { return ::Udm::AClassPointerAttr< QueryInput, QueryInputAction>(impl, meta_dstQueryInput, meta_dstQueryInput_rev); }
+	::Udm::ParentAttr< ::Udm::Object> QueryInputBase::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
 
-	::Uml::Class Operation::meta;
-	::Uml::AssociationRole Operation::meta_referedbyActionType;
-	::Uml::CompositionChildRole Operation::meta_ReturnType_child;
-	::Uml::CompositionChildRole Operation::meta_ParameterType_children;
-	::Uml::CompositionParentRole Operation::meta_Worker_parent;
+	::Uml::Class QueryInputBase::meta;
+	::Uml::AssociationRole QueryInputBase::meta_dstQueryInput;
+	::Uml::AssociationRole QueryInputBase::meta_dstQueryInput_rev;
 
-	WorkerPackageBase::WorkerPackageBase() {}
-	WorkerPackageBase::WorkerPackageBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	WorkerPackageBase::WorkerPackageBase(const WorkerPackageBase &master) : MgaObject(master) {}
+	QueryInput::QueryInput() {}
+	QueryInput::QueryInput(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	QueryInput::QueryInput(const QueryInput &master) : MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	WorkerPackageBase::WorkerPackageBase(WorkerPackageBase &&master) : MgaObject(master) {};
+	QueryInput::QueryInput(QueryInput &&master) : MgaObject(master) {};
 
-	WorkerPackageBase WorkerPackageBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	WorkerPackageBase& WorkerPackageBase::operator=(WorkerPackageBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	QueryInput QueryInput::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	QueryInput& QueryInput::operator=(QueryInput &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	WorkerPackageBase WorkerPackageBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	WorkerPackageBase WorkerPackageBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	WorkerPackageBase WorkerPackageBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< WorkerPackageBase> WorkerPackageBase::Instances() { return ::Udm::InstantiatedAttr< WorkerPackageBase>(impl); }
-	WorkerPackageBase WorkerPackageBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< WorkerPackageBase> WorkerPackageBase::Derived() { return ::Udm::DerivedAttr< WorkerPackageBase>(impl); }
-	::Udm::ArchetypeAttr< WorkerPackageBase> WorkerPackageBase::Archetype() const { return ::Udm::ArchetypeAttr< WorkerPackageBase>(impl); }
-	::Udm::ChildrenAttr< ::PICML::Worker> WorkerPackageBase::Worker_children() const { return ::Udm::ChildrenAttr< ::PICML::Worker>(impl, meta_Worker_children); }
-	::Udm::ChildrenAttr< ::PICML::Worker> WorkerPackageBase::Worker_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Worker>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerPackageBase::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::MgaObject> WorkerPackageBase::parent() const { return ::Udm::ParentAttr< ::PICML::MgaObject>(impl, ::Udm::NULLPARENTROLE); }
+	QueryInput QueryInput::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	QueryInput QueryInput::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	QueryInput QueryInput::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< QueryInput> QueryInput::Instances() { return ::Udm::InstantiatedAttr< QueryInput>(impl); }
+	QueryInput QueryInput::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< QueryInput> QueryInput::Derived() { return ::Udm::DerivedAttr< QueryInput>(impl); }
+	::Udm::ArchetypeAttr< QueryInput> QueryInput::Archetype() const { return ::Udm::ArchetypeAttr< QueryInput>(impl); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> QueryInput::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> QueryInput::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	::Udm::AssocEndAttr< ::PICML::QueryInputBase> QueryInput::srcQueryInput_end() const { return ::Udm::AssocEndAttr< ::PICML::QueryInputBase>(impl, meta_srcQueryInput_end_); }
+	::Udm::AssocEndAttr< ::PICML::QueryInputAction> QueryInput::dstQueryInput_end() const { return ::Udm::AssocEndAttr< ::PICML::QueryInputAction>(impl, meta_dstQueryInput_end_); }
+	void QueryInput::Accept(Visitor &v) { v.Visit_QueryInput(*this); }
 
-	::Uml::Class WorkerPackageBase::meta;
-	::Uml::CompositionChildRole WorkerPackageBase::meta_Worker_children;
+	::Uml::Class QueryInput::meta;
+	::Uml::CompositionParentRole QueryInput::meta_TopLevelBehavior_parent;
+	::Uml::AssociationRole QueryInput::meta_srcQueryInput_end_;
+	::Uml::AssociationRole QueryInput::meta_dstQueryInput_end_;
 
-	WorkerPackage::WorkerPackage() {}
-	WorkerPackage::WorkerPackage(::Udm::ObjectImpl *impl) : WorkerPackageBase(impl) {}
-	WorkerPackage::WorkerPackage(const WorkerPackage &master) : WorkerPackageBase(master) {}
+	TopLevelBehavior::TopLevelBehavior() {}
+	TopLevelBehavior::TopLevelBehavior(::Udm::ObjectImpl *impl) : BehaviorModel(impl), MgaObject(impl) {}
+	TopLevelBehavior::TopLevelBehavior(const TopLevelBehavior &master) : BehaviorModel(master), MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	WorkerPackage::WorkerPackage(WorkerPackage &&master) : WorkerPackageBase(master) {};
+	TopLevelBehavior::TopLevelBehavior(TopLevelBehavior &&master) : BehaviorModel(master), MgaObject(master) {};
 
-	WorkerPackage WorkerPackage::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	WorkerPackage& WorkerPackage::operator=(WorkerPackage &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	TopLevelBehavior TopLevelBehavior::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	TopLevelBehavior& TopLevelBehavior::operator=(TopLevelBehavior &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	WorkerPackage WorkerPackage::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	WorkerPackage WorkerPackage::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	WorkerPackage WorkerPackage::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< WorkerPackage> WorkerPackage::Instances() { return ::Udm::InstantiatedAttr< WorkerPackage>(impl); }
-	WorkerPackage WorkerPackage::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< WorkerPackage> WorkerPackage::Derived() { return ::Udm::DerivedAttr< WorkerPackage>(impl); }
-	::Udm::ArchetypeAttr< WorkerPackage> WorkerPackage::Archetype() const { return ::Udm::ArchetypeAttr< WorkerPackage>(impl); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerPackage::WorkerPackage_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_children); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackageBase> WorkerPackage::WorkerPackageBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerPackage::WorkerPackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerPackage::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::WorkerPackage> WorkerPackage::WorkerPackage_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_parent); }
-	::Udm::ParentAttr< ::PICML::WorkerFile> WorkerPackage::WorkerFile_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerFile>(impl, meta_WorkerFile_parent); }
-	::Udm::ParentAttr< ::PICML::WorkerPackageBase> WorkerPackage::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLPARENTROLE); }
-	void WorkerPackage::Accept(Visitor &v) { v.Visit_WorkerPackage(*this); }
+	TopLevelBehavior TopLevelBehavior::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	TopLevelBehavior TopLevelBehavior::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	TopLevelBehavior TopLevelBehavior::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< TopLevelBehavior> TopLevelBehavior::Instances() { return ::Udm::InstantiatedAttr< TopLevelBehavior>(impl); }
+	TopLevelBehavior TopLevelBehavior::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< TopLevelBehavior> TopLevelBehavior::Derived() { return ::Udm::DerivedAttr< TopLevelBehavior>(impl); }
+	::Udm::ArchetypeAttr< TopLevelBehavior> TopLevelBehavior::Archetype() const { return ::Udm::ArchetypeAttr< TopLevelBehavior>(impl); }
+	::Udm::ChildrenAttr< ::PICML::WorkerType> TopLevelBehavior::WorkerType_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerType>(impl, meta_WorkerType_children); }
+	::Udm::ChildrenAttr< ::PICML::QueryInput> TopLevelBehavior::QueryInput_children() const { return ::Udm::ChildrenAttr< ::PICML::QueryInput>(impl, meta_QueryInput_children); }
+	::Udm::ChildrenAttr< ::PICML::Input> TopLevelBehavior::Input_children() const { return ::Udm::ChildrenAttr< ::PICML::Input>(impl, meta_Input_children); }
+	::Udm::ChildrenAttr< ::PICML::MultiInput> TopLevelBehavior::MultiInput_children() const { return ::Udm::ChildrenAttr< ::PICML::MultiInput>(impl, meta_MultiInput_children); }
+	::Udm::ChildAttr< ::PICML::Environment> TopLevelBehavior::Environment_child() const { return ::Udm::ChildAttr< ::PICML::Environment>(impl, meta_Environment_child); }
+	::Udm::ChildrenAttr< ::PICML::ApplicationTask> TopLevelBehavior::ApplicationTask_children() const { return ::Udm::ChildrenAttr< ::PICML::ApplicationTask>(impl, meta_ApplicationTask_children); }
+	::Udm::ChildrenAttr< ::PICML::PeriodicEvent> TopLevelBehavior::PeriodicEvent_children() const { return ::Udm::ChildrenAttr< ::PICML::PeriodicEvent>(impl, meta_PeriodicEvent_children); }
+	::Udm::ChildrenAttr< ::PICML::QueryInput> TopLevelBehavior::QueryInput_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::QueryInput>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MultiInput> TopLevelBehavior::MultiInput_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MultiInput>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MultiInputBase> TopLevelBehavior::MultiInputBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MultiInputBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::SingleInputBase> TopLevelBehavior::SingleInputBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::SingleInputBase>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Input> TopLevelBehavior::Input_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Input>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::WorkerType> TopLevelBehavior::WorkerType_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerType>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::ApplicationTask> TopLevelBehavior::ApplicationTask_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ApplicationTask>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::PeriodicEvent> TopLevelBehavior::PeriodicEvent_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PeriodicEvent>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::Environment> TopLevelBehavior::Environment_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Environment>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::MgaObject> TopLevelBehavior::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ParentAttr< ::Udm::Object> TopLevelBehavior::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
 
-	::Uml::Class WorkerPackage::meta;
-	::Uml::CompositionChildRole WorkerPackage::meta_WorkerPackage_children;
-	::Uml::CompositionParentRole WorkerPackage::meta_WorkerPackage_parent;
-	::Uml::CompositionParentRole WorkerPackage::meta_WorkerFile_parent;
+	::Uml::Class TopLevelBehavior::meta;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_WorkerType_children;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_QueryInput_children;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_Input_children;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_MultiInput_children;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_Environment_child;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_ApplicationTask_children;
+	::Uml::CompositionChildRole TopLevelBehavior::meta_PeriodicEvent_children;
 
-	WorkerFile::WorkerFile() {}
-	WorkerFile::WorkerFile(::Udm::ObjectImpl *impl) : WorkerPackageBase(impl) {}
-	WorkerFile::WorkerFile(const WorkerFile &master) : WorkerPackageBase(master) {}
+	MultiInput::MultiInput() {}
+	MultiInput::MultiInput(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	MultiInput::MultiInput(const MultiInput &master) : MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	WorkerFile::WorkerFile(WorkerFile &&master) : WorkerPackageBase(master) {};
+	MultiInput::MultiInput(MultiInput &&master) : MgaObject(master) {};
 
-	WorkerFile WorkerFile::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	WorkerFile& WorkerFile::operator=(WorkerFile &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	MultiInput MultiInput::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	MultiInput& MultiInput::operator=(MultiInput &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	WorkerFile WorkerFile::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	WorkerFile WorkerFile::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	WorkerFile WorkerFile::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< WorkerFile> WorkerFile::Instances() { return ::Udm::InstantiatedAttr< WorkerFile>(impl); }
-	WorkerFile WorkerFile::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< WorkerFile> WorkerFile::Derived() { return ::Udm::DerivedAttr< WorkerFile>(impl); }
-	::Udm::ArchetypeAttr< WorkerFile> WorkerFile::Archetype() const { return ::Udm::ArchetypeAttr< WorkerFile>(impl); }
-	::Udm::StringAttr WorkerFile::Location() const { return ::Udm::StringAttr(impl, meta_Location); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerFile::WorkerPackage_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_children); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackageBase> WorkerFile::WorkerPackageBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackage> WorkerFile::WorkerPackage_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackage>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerFile::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::WorkerLibrary> WorkerFile::WorkerLibrary_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibrary>(impl, meta_WorkerLibrary_parent); }
-	::Udm::ParentAttr< ::PICML::WorkerLibrary> WorkerFile::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibrary>(impl, ::Udm::NULLPARENTROLE); }
-	void WorkerFile::Accept(Visitor &v) { v.Visit_WorkerFile(*this); }
+	MultiInput MultiInput::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	MultiInput MultiInput::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	MultiInput MultiInput::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< MultiInput> MultiInput::Instances() { return ::Udm::InstantiatedAttr< MultiInput>(impl); }
+	MultiInput MultiInput::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< MultiInput> MultiInput::Derived() { return ::Udm::DerivedAttr< MultiInput>(impl); }
+	::Udm::ArchetypeAttr< MultiInput> MultiInput::Archetype() const { return ::Udm::ArchetypeAttr< MultiInput>(impl); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> MultiInput::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> MultiInput::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	::Udm::AssocEndAttr< ::PICML::MultiInputBase> MultiInput::srcMultiInput_end() const { return ::Udm::AssocEndAttr< ::PICML::MultiInputBase>(impl, meta_srcMultiInput_end_); }
+	::Udm::AssocEndAttr< ::PICML::MultiInputAction> MultiInput::dstMultiInput_end() const { return ::Udm::AssocEndAttr< ::PICML::MultiInputAction>(impl, meta_dstMultiInput_end_); }
+	void MultiInput::Accept(Visitor &v) { v.Visit_MultiInput(*this); }
 
-	::Uml::Class WorkerFile::meta;
-	::Uml::Attribute WorkerFile::meta_Location;
-	::Uml::CompositionChildRole WorkerFile::meta_WorkerPackage_children;
-	::Uml::CompositionParentRole WorkerFile::meta_WorkerLibrary_parent;
+	::Uml::Class MultiInput::meta;
+	::Uml::CompositionParentRole MultiInput::meta_TopLevelBehavior_parent;
+	::Uml::AssociationRole MultiInput::meta_srcMultiInput_end_;
+	::Uml::AssociationRole MultiInput::meta_dstMultiInput_end_;
 
-	WorkerLibraries::WorkerLibraries() {}
-	WorkerLibraries::WorkerLibraries(::Udm::ObjectImpl *impl) : UDM_OBJECT(impl) {}
-	WorkerLibraries::WorkerLibraries(const WorkerLibraries &master) : UDM_OBJECT(master) {}
+	SingleOutputBase::SingleOutputBase() {}
+	SingleOutputBase::SingleOutputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	SingleOutputBase::SingleOutputBase(const SingleOutputBase &master) : MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	WorkerLibraries::WorkerLibraries(WorkerLibraries &&master) : UDM_OBJECT(master) {};
+	SingleOutputBase::SingleOutputBase(SingleOutputBase &&master) : MgaObject(master) {};
 
-	WorkerLibraries WorkerLibraries::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	WorkerLibraries& WorkerLibraries::operator=(WorkerLibraries &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	SingleOutputBase SingleOutputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	SingleOutputBase& SingleOutputBase::operator=(SingleOutputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	WorkerLibraries WorkerLibraries::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	WorkerLibraries WorkerLibraries::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	WorkerLibraries WorkerLibraries::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< WorkerLibraries> WorkerLibraries::Instances() { return ::Udm::InstantiatedAttr< WorkerLibraries>(impl); }
-	WorkerLibraries WorkerLibraries::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< WorkerLibraries> WorkerLibraries::Derived() { return ::Udm::DerivedAttr< WorkerLibraries>(impl); }
-	::Udm::ArchetypeAttr< WorkerLibraries> WorkerLibraries::Archetype() const { return ::Udm::ArchetypeAttr< WorkerLibraries>(impl); }
-	::Udm::StringAttr WorkerLibraries::name() const { return ::Udm::StringAttr(impl, meta_name); }
-	::Udm::ChildrenAttr< ::PICML::WorkerLibrary> WorkerLibraries::WorkerLibrary_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibrary>(impl, meta_WorkerLibrary_children); }
-	::Udm::ChildrenAttr< ::PICML::WorkerLibrary> WorkerLibraries::WorkerLibrary_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibrary>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerLibraries::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::RootFolder> WorkerLibraries::RootFolder_parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
-	::Udm::ParentAttr< ::PICML::RootFolder> WorkerLibraries::parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, ::Udm::NULLPARENTROLE); }
-	void WorkerLibraries::Accept(Visitor &v) { v.Visit_WorkerLibraries(*this); }
+	SingleOutputBase SingleOutputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	SingleOutputBase SingleOutputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	SingleOutputBase SingleOutputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< SingleOutputBase> SingleOutputBase::Instances() { return ::Udm::InstantiatedAttr< SingleOutputBase>(impl); }
+	SingleOutputBase SingleOutputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< SingleOutputBase> SingleOutputBase::Derived() { return ::Udm::DerivedAttr< SingleOutputBase>(impl); }
+	::Udm::ArchetypeAttr< SingleOutputBase> SingleOutputBase::Archetype() const { return ::Udm::ArchetypeAttr< SingleOutputBase>(impl); }
+	::Udm::ParentAttr< ::Udm::Object> SingleOutputBase::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
 
-	::Uml::Class WorkerLibraries::meta;
-	::Uml::Attribute WorkerLibraries::meta_name;
-	::Uml::CompositionChildRole WorkerLibraries::meta_WorkerLibrary_children;
-	::Uml::CompositionParentRole WorkerLibraries::meta_RootFolder_parent;
+	::Uml::Class SingleOutputBase::meta;
 
-	Worker::Worker() {}
-	Worker::Worker(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	Worker::Worker(const Worker &master) : MgaObject(master) {}
+	MultiOutputBase::MultiOutputBase() {}
+	MultiOutputBase::MultiOutputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	MultiOutputBase::MultiOutputBase(const MultiOutputBase &master) : MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	Worker::Worker(Worker &&master) : MgaObject(master) {};
+	MultiOutputBase::MultiOutputBase(MultiOutputBase &&master) : MgaObject(master) {};
 
-	Worker Worker::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	Worker& Worker::operator=(Worker &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	MultiOutputBase MultiOutputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	MultiOutputBase& MultiOutputBase::operator=(MultiOutputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	Worker Worker::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	Worker Worker::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	Worker Worker::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< Worker> Worker::Instances() { return ::Udm::InstantiatedAttr< Worker>(impl); }
-	Worker Worker::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< Worker> Worker::Derived() { return ::Udm::DerivedAttr< Worker>(impl); }
-	::Udm::ArchetypeAttr< Worker> Worker::Archetype() const { return ::Udm::ArchetypeAttr< Worker>(impl); }
-	::Udm::BooleanAttr Worker::Abstract() const { return ::Udm::BooleanAttr(impl, meta_Abstract); }
-	::Udm::AssocAttr< WorkerType> Worker::referedbyWorkerType() const { return ::Udm::AssocAttr< WorkerType>(impl, meta_referedbyWorkerType); }
-	::Udm::ChildrenAttr< ::PICML::Operation> Worker::Operation_children() const { return ::Udm::ChildrenAttr< ::PICML::Operation>(impl, meta_Operation_children); }
-	::Udm::ChildrenAttr< ::PICML::Operation> Worker::Operation_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::Operation>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> Worker::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::WorkerPackageBase> Worker::WorkerPackageBase_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, meta_WorkerPackageBase_parent); }
-	::Udm::ParentAttr< ::PICML::WorkerPackageBase> Worker::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLPARENTROLE); }
-	void Worker::Accept(Visitor &v) { v.Visit_Worker(*this); }
+	MultiOutputBase MultiOutputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	MultiOutputBase MultiOutputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	MultiOutputBase MultiOutputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< MultiOutputBase> MultiOutputBase::Instances() { return ::Udm::InstantiatedAttr< MultiOutputBase>(impl); }
+	MultiOutputBase MultiOutputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< MultiOutputBase> MultiOutputBase::Derived() { return ::Udm::DerivedAttr< MultiOutputBase>(impl); }
+	::Udm::ArchetypeAttr< MultiOutputBase> MultiOutputBase::Archetype() const { return ::Udm::ArchetypeAttr< MultiOutputBase>(impl); }
+	::Udm::ParentAttr< ::Udm::Object> MultiOutputBase::parent() const { return ::Udm::ParentAttr< ::Udm::Object>(impl, ::Udm::NULLPARENTROLE); }
 
-	::Uml::Class Worker::meta;
-	::Uml::Attribute Worker::meta_Abstract;
-	::Uml::AssociationRole Worker::meta_referedbyWorkerType;
-	::Uml::CompositionChildRole Worker::meta_Operation_children;
-	::Uml::CompositionParentRole Worker::meta_WorkerPackageBase_parent;
+	::Uml::Class MultiOutputBase::meta;
 
-	WorkerLibrary::WorkerLibrary() {}
-	WorkerLibrary::WorkerLibrary(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
-	WorkerLibrary::WorkerLibrary(const WorkerLibrary &master) : MgaObject(master) {}
+	MultiInputBase::MultiInputBase() {}
+	MultiInputBase::MultiInputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	MultiInputBase::MultiInputBase(const MultiInputBase &master) : MgaObject(master) {}
 
 #ifdef UDM_RVALUE
-	WorkerLibrary::WorkerLibrary(WorkerLibrary &&master) : MgaObject(master) {};
+	MultiInputBase::MultiInputBase(MultiInputBase &&master) : MgaObject(master) {};
 
-	WorkerLibrary WorkerLibrary::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
-	WorkerLibrary& WorkerLibrary::operator=(WorkerLibrary &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+	MultiInputBase MultiInputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	MultiInputBase& MultiInputBase::operator=(MultiInputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
 
 #endif
-	WorkerLibrary WorkerLibrary::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
-	WorkerLibrary WorkerLibrary::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
-	WorkerLibrary WorkerLibrary::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
-	::Udm::InstantiatedAttr< WorkerLibrary> WorkerLibrary::Instances() { return ::Udm::InstantiatedAttr< WorkerLibrary>(impl); }
-	WorkerLibrary WorkerLibrary::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
-	::Udm::DerivedAttr< WorkerLibrary> WorkerLibrary::Derived() { return ::Udm::DerivedAttr< WorkerLibrary>(impl); }
-	::Udm::ArchetypeAttr< WorkerLibrary> WorkerLibrary::Archetype() const { return ::Udm::ArchetypeAttr< WorkerLibrary>(impl); }
-	::Udm::StringAttr WorkerLibrary::Location() const { return ::Udm::StringAttr(impl, meta_Location); }
-	::Udm::ChildrenAttr< ::PICML::WorkerFile> WorkerLibrary::WorkerFile_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerFile>(impl, meta_WorkerFile_children); }
-	::Udm::ChildrenAttr< ::PICML::WorkerPackageBase> WorkerLibrary::WorkerPackageBase_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerPackageBase>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::WorkerFile> WorkerLibrary::WorkerFile_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerFile>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::MgaObject> WorkerLibrary::MgaObject_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::MgaObject>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ParentAttr< ::PICML::WorkerLibraries> WorkerLibrary::WorkerLibraries_parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibraries>(impl, meta_WorkerLibraries_parent); }
-	::Udm::ParentAttr< ::PICML::WorkerLibraries> WorkerLibrary::parent() const { return ::Udm::ParentAttr< ::PICML::WorkerLibraries>(impl, ::Udm::NULLPARENTROLE); }
-	void WorkerLibrary::Accept(Visitor &v) { v.Visit_WorkerLibrary(*this); }
+	MultiInputBase MultiInputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	MultiInputBase MultiInputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	MultiInputBase MultiInputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< MultiInputBase> MultiInputBase::Instances() { return ::Udm::InstantiatedAttr< MultiInputBase>(impl); }
+	MultiInputBase MultiInputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< MultiInputBase> MultiInputBase::Derived() { return ::Udm::DerivedAttr< MultiInputBase>(impl); }
+	::Udm::ArchetypeAttr< MultiInputBase> MultiInputBase::Archetype() const { return ::Udm::ArchetypeAttr< MultiInputBase>(impl); }
+	::Udm::AClassAssocAttr< MultiInput, MultiInputAction> MultiInputBase::dstMultiInput() const { return ::Udm::AClassAssocAttr< MultiInput, MultiInputAction>(impl, meta_dstMultiInput, meta_dstMultiInput_rev); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> MultiInputBase::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
 
-	::Uml::Class WorkerLibrary::meta;
-	::Uml::Attribute WorkerLibrary::meta_Location;
-	::Uml::CompositionChildRole WorkerLibrary::meta_WorkerFile_children;
-	::Uml::CompositionParentRole WorkerLibrary::meta_WorkerLibraries_parent;
+	::Uml::Class MultiInputBase::meta;
+	::Uml::AssociationRole MultiInputBase::meta_dstMultiInput;
+	::Uml::AssociationRole MultiInputBase::meta_dstMultiInput_rev;
+
+	SingleInputBase::SingleInputBase() {}
+	SingleInputBase::SingleInputBase(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	SingleInputBase::SingleInputBase(const SingleInputBase &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	SingleInputBase::SingleInputBase(SingleInputBase &&master) : MgaObject(master) {};
+
+	SingleInputBase SingleInputBase::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	SingleInputBase& SingleInputBase::operator=(SingleInputBase &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	SingleInputBase SingleInputBase::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	SingleInputBase SingleInputBase::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	SingleInputBase SingleInputBase::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< SingleInputBase> SingleInputBase::Instances() { return ::Udm::InstantiatedAttr< SingleInputBase>(impl); }
+	SingleInputBase SingleInputBase::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< SingleInputBase> SingleInputBase::Derived() { return ::Udm::DerivedAttr< SingleInputBase>(impl); }
+	::Udm::ArchetypeAttr< SingleInputBase> SingleInputBase::Archetype() const { return ::Udm::ArchetypeAttr< SingleInputBase>(impl); }
+	::Udm::AClassPointerAttr< Input, InputAction> SingleInputBase::dstInput() const { return ::Udm::AClassPointerAttr< Input, InputAction>(impl, meta_dstInput, meta_dstInput_rev); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> SingleInputBase::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+
+	::Uml::Class SingleInputBase::meta;
+	::Uml::AssociationRole SingleInputBase::meta_dstInput;
+	::Uml::AssociationRole SingleInputBase::meta_dstInput_rev;
+
+	Input::Input() {}
+	Input::Input(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	Input::Input(const Input &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Input::Input(Input &&master) : MgaObject(master) {};
+
+	Input Input::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Input& Input::operator=(Input &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Input Input::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Input Input::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Input Input::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Input> Input::Instances() { return ::Udm::InstantiatedAttr< Input>(impl); }
+	Input Input::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Input> Input::Derived() { return ::Udm::DerivedAttr< Input>(impl); }
+	::Udm::ArchetypeAttr< Input> Input::Archetype() const { return ::Udm::ArchetypeAttr< Input>(impl); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Input::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Input::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	::Udm::AssocEndAttr< ::PICML::SingleInputBase> Input::srcInput_end() const { return ::Udm::AssocEndAttr< ::PICML::SingleInputBase>(impl, meta_srcInput_end_); }
+	::Udm::AssocEndAttr< ::PICML::InputAction> Input::dstInput_end() const { return ::Udm::AssocEndAttr< ::PICML::InputAction>(impl, meta_dstInput_end_); }
+	void Input::Accept(Visitor &v) { v.Visit_Input(*this); }
+
+	::Uml::Class Input::meta;
+	::Uml::CompositionParentRole Input::meta_TopLevelBehavior_parent;
+	::Uml::AssociationRole Input::meta_srcInput_end_;
+	::Uml::AssociationRole Input::meta_dstInput_end_;
+
+	WorkerType::WorkerType() {}
+	WorkerType::WorkerType(::Udm::ObjectImpl *impl) : MgaObject(impl) {}
+	WorkerType::WorkerType(const WorkerType &master) : MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	WorkerType::WorkerType(WorkerType &&master) : MgaObject(master) {};
+
+	WorkerType WorkerType::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	WorkerType& WorkerType::operator=(WorkerType &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	WorkerType WorkerType::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	WorkerType WorkerType::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	WorkerType WorkerType::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< WorkerType> WorkerType::Instances() { return ::Udm::InstantiatedAttr< WorkerType>(impl); }
+	WorkerType WorkerType::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< WorkerType> WorkerType::Derived() { return ::Udm::DerivedAttr< WorkerType>(impl); }
+	::Udm::ArchetypeAttr< WorkerType> WorkerType::Archetype() const { return ::Udm::ArchetypeAttr< WorkerType>(impl); }
+	::Udm::PointerAttr< Worker> WorkerType::ref() const { return ::Udm::PointerAttr< Worker>(impl, meta_ref); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> WorkerType::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> WorkerType::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	void WorkerType::Accept(Visitor &v) { v.Visit_WorkerType(*this); }
+
+	::Uml::Class WorkerType::meta;
+	::Uml::AssociationRole WorkerType::meta_ref;
+	::Uml::CompositionParentRole WorkerType::meta_TopLevelBehavior_parent;
+
+	ApplicationTask::ApplicationTask() {}
+	ApplicationTask::ApplicationTask(::Udm::ObjectImpl *impl) : SingleInputBase(impl), MgaObject(impl) {}
+	ApplicationTask::ApplicationTask(const ApplicationTask &master) : SingleInputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	ApplicationTask::ApplicationTask(ApplicationTask &&master) : SingleInputBase(master), MgaObject(master) {};
+
+	ApplicationTask ApplicationTask::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	ApplicationTask& ApplicationTask::operator=(ApplicationTask &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	ApplicationTask ApplicationTask::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	ApplicationTask ApplicationTask::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	ApplicationTask ApplicationTask::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< ApplicationTask> ApplicationTask::Instances() { return ::Udm::InstantiatedAttr< ApplicationTask>(impl); }
+	ApplicationTask ApplicationTask::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< ApplicationTask> ApplicationTask::Derived() { return ::Udm::DerivedAttr< ApplicationTask>(impl); }
+	::Udm::ArchetypeAttr< ApplicationTask> ApplicationTask::Archetype() const { return ::Udm::ArchetypeAttr< ApplicationTask>(impl); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> ApplicationTask::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> ApplicationTask::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	void ApplicationTask::Accept(Visitor &v) { v.Visit_ApplicationTask(*this); }
+
+	::Uml::Class ApplicationTask::meta;
+	::Uml::CompositionParentRole ApplicationTask::meta_TopLevelBehavior_parent;
+
+	PeriodicEvent::PeriodicEvent() {}
+	PeriodicEvent::PeriodicEvent(::Udm::ObjectImpl *impl) : SingleInputBase(impl), MgaObject(impl) {}
+	PeriodicEvent::PeriodicEvent(const PeriodicEvent &master) : SingleInputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	PeriodicEvent::PeriodicEvent(PeriodicEvent &&master) : SingleInputBase(master), MgaObject(master) {};
+
+	PeriodicEvent PeriodicEvent::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	PeriodicEvent& PeriodicEvent::operator=(PeriodicEvent &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	PeriodicEvent PeriodicEvent::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	PeriodicEvent PeriodicEvent::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	PeriodicEvent PeriodicEvent::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< PeriodicEvent> PeriodicEvent::Instances() { return ::Udm::InstantiatedAttr< PeriodicEvent>(impl); }
+	PeriodicEvent PeriodicEvent::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< PeriodicEvent> PeriodicEvent::Derived() { return ::Udm::DerivedAttr< PeriodicEvent>(impl); }
+	::Udm::ArchetypeAttr< PeriodicEvent> PeriodicEvent::Archetype() const { return ::Udm::ArchetypeAttr< PeriodicEvent>(impl); }
+	::Udm::StringAttr PeriodicEvent::Hertz() const { return ::Udm::StringAttr(impl, meta_Hertz); }
+	::Udm::StringAttr PeriodicEvent::Distribution() const { return ::Udm::StringAttr(impl, meta_Distribution); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> PeriodicEvent::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> PeriodicEvent::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	void PeriodicEvent::Accept(Visitor &v) { v.Visit_PeriodicEvent(*this); }
+
+	::Uml::Class PeriodicEvent::meta;
+	::Uml::Attribute PeriodicEvent::meta_Hertz;
+	::Uml::Attribute PeriodicEvent::meta_Distribution;
+	::Uml::CompositionParentRole PeriodicEvent::meta_TopLevelBehavior_parent;
+
+	Environment::Environment() {}
+	Environment::Environment(::Udm::ObjectImpl *impl) : MultiInputBase(impl), MgaObject(impl) {}
+	Environment::Environment(const Environment &master) : MultiInputBase(master), MgaObject(master) {}
+
+#ifdef UDM_RVALUE
+	Environment::Environment(Environment &&master) : MultiInputBase(master), MgaObject(master) {};
+
+	Environment Environment::Cast(::Udm::Object &&a) { return __Cast(std::move(a), meta); };
+	Environment& Environment::operator=(Environment &&a) { ::Udm::Object::operator =(std::move(a)); return *this; };
+
+#endif
+	Environment Environment::Cast(const ::Udm::Object &a) { return __Cast(a, meta); }
+	Environment Environment::Create(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role); }
+	Environment Environment::CreateInstance(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl); }
+	::Udm::InstantiatedAttr< Environment> Environment::Instances() { return ::Udm::InstantiatedAttr< Environment>(impl); }
+	Environment Environment::CreateDerived(const ::Udm::Object &parent, const ::Uml::CompositionChildRole &role) { return __Create(meta, parent, role, impl, true); }
+	::Udm::DerivedAttr< Environment> Environment::Derived() { return ::Udm::DerivedAttr< Environment>(impl); }
+	::Udm::ArchetypeAttr< Environment> Environment::Archetype() const { return ::Udm::ArchetypeAttr< Environment>(impl); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Environment::TopLevelBehavior_parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
+	::Udm::ParentAttr< ::PICML::TopLevelBehavior> Environment::parent() const { return ::Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, ::Udm::NULLPARENTROLE); }
+	void Environment::Accept(Visitor &v) { v.Visit_Environment(*this); }
+
+	::Uml::Class Environment::meta;
+	::Uml::CompositionParentRole Environment::meta_TopLevelBehavior_parent;
 
 	RootFolder::RootFolder() {}
 	RootFolder::RootFolder(::Udm::ObjectImpl *impl) : UDM_OBJECT(impl) {}
@@ -11849,10 +11849,10 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::PredefinedTypes> RootFolder::PredefinedTypes_children() const { return ::Udm::ChildrenAttr< ::PICML::PredefinedTypes>(impl, meta_PredefinedTypes_children); }
 	::Udm::ChildrenAttr< ::PICML::InterfaceDefinitions> RootFolder::InterfaceDefinitions_children() const { return ::Udm::ChildrenAttr< ::PICML::InterfaceDefinitions>(impl, meta_InterfaceDefinitions_children); }
 	::Udm::ChildrenAttr< ::PICML::ComponentBuild> RootFolder::ComponentBuild_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentBuild>(impl, meta_ComponentBuild_children); }
+	::Udm::ChildrenAttr< ::PICML::WorkerLibraries> RootFolder::WorkerLibraries_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibraries>(impl, meta_WorkerLibraries_children); }
 	::Udm::ChildrenAttr< ::PICML::ComponentImplementations> RootFolder::ComponentImplementations_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentImplementations>(impl, meta_ComponentImplementations_children); }
 	::Udm::ChildrenAttr< ::PICML::ComponentTypes> RootFolder::ComponentTypes_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentTypes>(impl, meta_ComponentTypes_children); }
 	::Udm::ChildrenAttr< ::PICML::ConnectorImplementations> RootFolder::ConnectorImplementations_children() const { return ::Udm::ChildrenAttr< ::PICML::ConnectorImplementations>(impl, meta_ConnectorImplementations_children); }
-	::Udm::ChildrenAttr< ::PICML::WorkerLibraries> RootFolder::WorkerLibraries_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibraries>(impl, meta_WorkerLibraries_children); }
 	::Udm::ChildrenAttr< ::PICML::RootFolder> RootFolder::RootFolder_children() const { return ::Udm::ChildrenAttr< ::PICML::RootFolder>(impl, meta_RootFolder_children); }
 	::Udm::ChildrenAttr< ::PICML::ComponentFactoryImplementations> RootFolder::ComponentFactoryImplementations_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentFactoryImplementations>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::PathDiagrams> RootFolder::PathDiagrams_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PathDiagrams>(impl, ::Udm::NULLCHILDROLE); }
@@ -11866,10 +11866,10 @@ namespace PICML {
 	::Udm::ChildrenAttr< ::PICML::PredefinedTypes> RootFolder::PredefinedTypes_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::PredefinedTypes>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::InterfaceDefinitions> RootFolder::InterfaceDefinitions_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::InterfaceDefinitions>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentBuild> RootFolder::ComponentBuild_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentBuild>(impl, ::Udm::NULLCHILDROLE); }
+	::Udm::ChildrenAttr< ::PICML::WorkerLibraries> RootFolder::WorkerLibraries_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibraries>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentImplementations> RootFolder::ComponentImplementations_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentImplementations>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ComponentTypes> RootFolder::ComponentTypes_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ComponentTypes>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::ConnectorImplementations> RootFolder::ConnectorImplementations_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::ConnectorImplementations>(impl, ::Udm::NULLCHILDROLE); }
-	::Udm::ChildrenAttr< ::PICML::WorkerLibraries> RootFolder::WorkerLibraries_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::WorkerLibraries>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ChildrenAttr< ::PICML::RootFolder> RootFolder::RootFolder_kind_children() const { return ::Udm::ChildrenAttr< ::PICML::RootFolder>(impl, ::Udm::NULLCHILDROLE); }
 	::Udm::ParentAttr< ::PICML::RootFolder> RootFolder::RootFolder_parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 	::Udm::ParentAttr< ::PICML::RootFolder> RootFolder::parent() const { return ::Udm::ParentAttr< ::PICML::RootFolder>(impl, ::Udm::NULLPARENTROLE); }
@@ -11889,10 +11889,10 @@ namespace PICML {
 	::Uml::CompositionChildRole RootFolder::meta_PredefinedTypes_children;
 	::Uml::CompositionChildRole RootFolder::meta_InterfaceDefinitions_children;
 	::Uml::CompositionChildRole RootFolder::meta_ComponentBuild_children;
+	::Uml::CompositionChildRole RootFolder::meta_WorkerLibraries_children;
 	::Uml::CompositionChildRole RootFolder::meta_ComponentImplementations_children;
 	::Uml::CompositionChildRole RootFolder::meta_ComponentTypes_children;
 	::Uml::CompositionChildRole RootFolder::meta_ConnectorImplementations_children;
-	::Uml::CompositionChildRole RootFolder::meta_WorkerLibraries_children;
 	::Uml::CompositionChildRole RootFolder::meta_RootFolder_children;
 	::Uml::CompositionParentRole RootFolder::meta_RootFolder_parent;
 
@@ -13945,15 +13945,6 @@ namespace PICML {
 		}
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "ComponentOperation");
-			OperationRef::meta_dstComponentOperation = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(OperationRef::meta_dstComponentOperation, "dstComponentOperation", true, false, 0, 1);
-			CompRef::meta_srcComponentOperation = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(CompRef::meta_srcComponentOperation, "srcComponentOperation", true, false, 1, 1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "TimerConnection");
 			OperationRef::meta_dstTimerConnection = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(OperationRef::meta_dstTimerConnection, "dstTimerConnection", true, false, 0, 1);
@@ -13968,6 +13959,15 @@ namespace PICML {
 			::Uml::InitAssociationRoleProps(OperationRef::meta_dstMetricConnection, "dstMetricConnection", true, false, 0, 1);
 			MetricsBase::meta_srcMetricConnection = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(MetricsBase::meta_srcMetricConnection, "srcMetricConnection", true, false, 1, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "ComponentOperation");
+			OperationRef::meta_dstComponentOperation = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(OperationRef::meta_dstComponentOperation, "dstComponentOperation", true, false, 0, 1);
+			CompRef::meta_srcComponentOperation = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(CompRef::meta_srcComponentOperation, "srcComponentOperation", true, false, 1, 1);
 
 		}
 		{
@@ -14197,15 +14197,6 @@ namespace PICML {
 		}
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "");
-			ComponentPackageReference::meta_ref = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentPackageReference::meta_ref, "ref", true, false, 0, 1);
-			ComponentPackage::meta_referedbyComponentPackageReference = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentPackage::meta_referedbyComponentPackageReference, "referedbyComponentPackageReference", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "PackageInfoProperty");
 			ComponentPackage::meta_dstPackageInfoProperty = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(ComponentPackage::meta_dstPackageInfoProperty, "dstPackageInfoProperty", true, false, 0, -1);
@@ -14238,6 +14229,15 @@ namespace PICML {
 			::Uml::InitAssociationRoleProps(ComponentPackage::meta_dstPackageInterface, "dstPackageInterface", true, false, 0, 1);
 			ComponentRef::meta_srcPackageInterface = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(ComponentRef::meta_srcPackageInterface, "srcPackageInterface", true, false, 0, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "");
+			ComponentPackageReference::meta_ref = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentPackageReference::meta_ref, "ref", true, false, 0, 1);
+			ComponentPackage::meta_referedbyComponentPackageReference = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentPackage::meta_referedbyComponentPackageReference, "referedbyComponentPackageReference", true, false, 0, -1);
 
 		}
 		{
@@ -14782,78 +14782,6 @@ namespace PICML {
 		}
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "Implements");
-			ComponentImplementation::meta_dstImplements = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_dstImplements, "dstImplements", true, false, 0, 1);
-			ComponentRef::meta_srcImplements = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentRef::meta_srcImplements, "srcImplements", true, false, 0, 1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "ImplementationDependsOn");
-			ComponentImplementation::meta_dstImplementationDependsOn = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_dstImplementationDependsOn, "dstImplementationDependsOn", true, false, 0, -1);
-			ImplementationDependency::meta_srcImplementationDependsOn = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ImplementationDependency::meta_srcImplementationDependsOn, "srcImplementationDependsOn", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "ImplementationCapability");
-			ComponentImplementation::meta_dstImplementationCapability = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_dstImplementationCapability, "dstImplementationCapability", true, false, 0, -1);
-			Capability::meta_srcImplementationCapability = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(Capability::meta_srcImplementationCapability, "srcImplementationCapability", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "");
-			ComponentImplementationReference::meta_ref = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentImplementationReference::meta_ref, "ref", true, false, 0, 1);
-			ComponentImplementation::meta_referedbyComponentImplementationReference = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_referedbyComponentImplementationReference, "referedbyComponentImplementationReference", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "");
-			LookupKey::meta_ref = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(LookupKey::meta_ref, "ref", true, false, 0, 1);
-			LookupKeyType::meta_referedbyLookupKey = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(LookupKeyType::meta_referedbyLookupKey, "referedbyLookupKey", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "");
-			ExtendedPortBase::meta_ref = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ExtendedPortBase::meta_ref, "ref", true, false, 0, 1);
-			PortType::meta_referedbyExtendedPortBase = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(PortType::meta_referedbyExtendedPortBase, "referedbyExtendedPortBase", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "");
-			ComponentInherits::meta_ref = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentInherits::meta_ref, "ref", true, false, 0, 1);
-			Component::meta_referedbyComponentInherits = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(Component::meta_referedbyComponentInherits, "referedbyComponentInherits", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "ManagesComponent");
-			ComponentFactory::meta_dstManagesComponent = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ComponentFactory::meta_dstManagesComponent, "dstManagesComponent", true, false, 1, 1);
-			Manageable::meta_srcManagesComponent = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(Manageable::meta_srcManagesComponent, "srcManagesComponent", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "");
 			ComponentRef::meta_ref = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(ComponentRef::meta_ref, "ref", true, false, 0, 1);
@@ -14927,6 +14855,78 @@ namespace PICML {
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "");
+			LookupKey::meta_ref = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(LookupKey::meta_ref, "ref", true, false, 0, 1);
+			LookupKeyType::meta_referedbyLookupKey = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(LookupKeyType::meta_referedbyLookupKey, "referedbyLookupKey", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "");
+			ExtendedPortBase::meta_ref = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ExtendedPortBase::meta_ref, "ref", true, false, 0, 1);
+			PortType::meta_referedbyExtendedPortBase = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(PortType::meta_referedbyExtendedPortBase, "referedbyExtendedPortBase", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "");
+			ComponentInherits::meta_ref = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentInherits::meta_ref, "ref", true, false, 0, 1);
+			Component::meta_referedbyComponentInherits = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(Component::meta_referedbyComponentInherits, "referedbyComponentInherits", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "ManagesComponent");
+			ComponentFactory::meta_dstManagesComponent = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentFactory::meta_dstManagesComponent, "dstManagesComponent", true, false, 1, 1);
+			Manageable::meta_srcManagesComponent = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(Manageable::meta_srcManagesComponent, "srcManagesComponent", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "Implements");
+			ComponentImplementation::meta_dstImplements = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_dstImplements, "dstImplements", true, false, 0, 1);
+			ComponentRef::meta_srcImplements = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentRef::meta_srcImplements, "srcImplements", true, false, 0, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "ImplementationDependsOn");
+			ComponentImplementation::meta_dstImplementationDependsOn = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_dstImplementationDependsOn, "dstImplementationDependsOn", true, false, 0, -1);
+			ImplementationDependency::meta_srcImplementationDependsOn = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ImplementationDependency::meta_srcImplementationDependsOn, "srcImplementationDependsOn", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "ImplementationCapability");
+			ComponentImplementation::meta_dstImplementationCapability = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_dstImplementationCapability, "dstImplementationCapability", true, false, 0, -1);
+			Capability::meta_srcImplementationCapability = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(Capability::meta_srcImplementationCapability, "srcImplementationCapability", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "");
+			ComponentImplementationReference::meta_ref = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentImplementationReference::meta_ref, "ref", true, false, 0, 1);
+			ComponentImplementation::meta_referedbyComponentImplementationReference = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ComponentImplementation::meta_referedbyComponentImplementationReference, "referedbyComponentImplementationReference", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "");
 			ConnectorType::meta_ref = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(ConnectorType::meta_ref, "ref", true, false, 0, 1);
 			ConnectorObject::meta_referedbyConnectorType = ::Uml::AssociationRole::Create(ass);
@@ -14953,20 +14953,20 @@ namespace PICML {
 		}
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "ConnectorToFacet");
-			ConnectorInstance::meta_dstConnectorToFacet = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ConnectorInstance::meta_dstConnectorToFacet, "dstConnectorToFacet", true, false, 0, -1);
-			ProvidedRequestPortEnd::meta_srcConnectorToFacet = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(ProvidedRequestPortEnd::meta_srcConnectorToFacet, "srcConnectorToFacet", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "Consume");
 			ConnectorInstance::meta_dstConsume = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(ConnectorInstance::meta_dstConsume, "dstConsume", true, false, 0, -1);
 			ExtendPortEnd::meta_srcConsume = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(ExtendPortEnd::meta_srcConsume, "srcConsume", true, false, 0, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "ConnectorToFacet");
+			ConnectorInstance::meta_dstConnectorToFacet = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ConnectorInstance::meta_dstConnectorToFacet, "dstConnectorToFacet", true, false, 0, -1);
+			ProvidedRequestPortEnd::meta_srcConnectorToFacet = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(ProvidedRequestPortEnd::meta_srcConnectorToFacet, "srcConnectorToFacet", true, false, 0, -1);
 
 		}
 		{
@@ -15034,42 +15034,6 @@ namespace PICML {
 		}
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "QueryInput");
-			QueryInputBase::meta_dstQueryInput = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(QueryInputBase::meta_dstQueryInput, "dstQueryInput", true, false, 0, 1);
-			QueryInputAction::meta_srcQueryInput = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(QueryInputAction::meta_srcQueryInput, "srcQueryInput", true, false, 0, 1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "MultiInput");
-			MultiInputBase::meta_dstMultiInput = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(MultiInputBase::meta_dstMultiInput, "dstMultiInput", true, false, 0, -1);
-			MultiInputAction::meta_srcMultiInput = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(MultiInputAction::meta_srcMultiInput, "srcMultiInput", true, false, 0, 1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "Input");
-			SingleInputBase::meta_dstInput = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(SingleInputBase::meta_dstInput, "dstInput", true, false, 0, 1);
-			InputAction::meta_srcInput = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(InputAction::meta_srcInput, "srcInput", true, false, 0, 1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "");
-			WorkerType::meta_ref = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(WorkerType::meta_ref, "ref", true, false, 0, 1);
-			Worker::meta_referedbyWorkerType = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(Worker::meta_referedbyWorkerType, "referedbyWorkerType", true, false, 0, -1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "");
 			TargetRequiredRequestPort::meta_ref = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(TargetRequiredRequestPort::meta_ref, "ref", true, false, 0, 1);
@@ -15111,6 +15075,42 @@ namespace PICML {
 			::Uml::InitAssociationRoleProps(Variable::meta_ref, "ref", true, false, 0, 1);
 			PredefinedType::meta_referedbyVariable = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(PredefinedType::meta_referedbyVariable, "referedbyVariable", true, false, 0, -1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "QueryInput");
+			QueryInputBase::meta_dstQueryInput = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(QueryInputBase::meta_dstQueryInput, "dstQueryInput", true, false, 0, 1);
+			QueryInputAction::meta_srcQueryInput = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(QueryInputAction::meta_srcQueryInput, "srcQueryInput", true, false, 0, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "MultiInput");
+			MultiInputBase::meta_dstMultiInput = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(MultiInputBase::meta_dstMultiInput, "dstMultiInput", true, false, 0, -1);
+			MultiInputAction::meta_srcMultiInput = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(MultiInputAction::meta_srcMultiInput, "srcMultiInput", true, false, 0, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "Input");
+			SingleInputBase::meta_dstInput = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(SingleInputBase::meta_dstInput, "dstInput", true, false, 0, 1);
+			InputAction::meta_srcInput = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(InputAction::meta_srcInput, "srcInput", true, false, 0, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "");
+			WorkerType::meta_ref = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(WorkerType::meta_ref, "ref", true, false, 0, 1);
+			Worker::meta_referedbyWorkerType = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(Worker::meta_referedbyWorkerType, "referedbyWorkerType", true, false, 0, -1);
 
 		}
 
@@ -16999,6 +16999,78 @@ namespace PICML {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
+			ReturnType::meta_Operation_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ReturnType::meta_Operation_parent, "Operation_parent", true);
+			Operation::meta_ReturnType_child = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Operation::meta_ReturnType_child, "ReturnType", true, 0, 1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			ParameterType::meta_Operation_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ParameterType::meta_Operation_parent, "Operation_parent", true);
+			Operation::meta_ParameterType_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Operation::meta_ParameterType_children, "ParameterType", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			Worker::meta_WorkerPackageBase_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Worker::meta_WorkerPackageBase_parent, "WorkerPackageBase_parent", true);
+			WorkerPackageBase::meta_Worker_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(WorkerPackageBase::meta_Worker_children, "Worker", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			WorkerPackage::meta_WorkerPackage_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(WorkerPackage::meta_WorkerPackage_parent, "WorkerPackage_parent", true);
+			WorkerPackage::meta_WorkerPackage_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(WorkerPackage::meta_WorkerPackage_children, "WorkerPackage", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			WorkerPackage::meta_WorkerFile_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(WorkerPackage::meta_WorkerFile_parent, "WorkerFile_parent", true);
+			WorkerFile::meta_WorkerPackage_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(WorkerFile::meta_WorkerPackage_children, "WorkerPackage", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			WorkerLibrary::meta_WorkerLibraries_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(WorkerLibrary::meta_WorkerLibraries_parent, "WorkerLibraries_parent", true);
+			WorkerLibraries::meta_WorkerLibrary_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(WorkerLibraries::meta_WorkerLibrary_children, "WorkerLibrary", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			Operation::meta_Worker_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Operation::meta_Worker_parent, "Worker_parent", true);
+			Worker::meta_Operation_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Worker::meta_Operation_children, "Operation", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			WorkerFile::meta_WorkerLibrary_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(WorkerFile::meta_WorkerLibrary_parent, "WorkerLibrary_parent", true);
+			WorkerLibrary::meta_WorkerFile_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(WorkerLibrary::meta_WorkerFile_children, "WorkerFile", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
 			PortInstance::meta_ComponentInstance_parent = ::Uml::CompositionParentRole::Create(comp);
 			::Uml::InitCompositionParentRoleProps(PortInstance::meta_ComponentInstance_parent, "ComponentInstance_parent", true);
 			ComponentInstance::meta_PortInstance_children = ::Uml::CompositionChildRole::Create(comp);
@@ -17021,6 +17093,87 @@ namespace PICML {
 			::Uml::InitCompositionParentRoleProps(ComponentInstanceType::meta_ComponentInstance_parent, "ComponentInstance_parent", true);
 			ComponentInstance::meta_ComponentInstanceType_child = ::Uml::CompositionChildRole::Create(comp);
 			::Uml::InitCompositionChildRoleProps(ComponentInstance::meta_ComponentInstanceType_child, "ComponentInstanceType", true, 1, 1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			ExtendedPortBase::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ExtendedPortBase::meta_Component_parent, "Component_parent", true);
+			Component::meta_ExtendedPortBase_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Component::meta_ExtendedPortBase_children, "ExtendedPortBase", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			ComponentInherits::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ComponentInherits::meta_Component_parent, "Component_parent", true);
+			Component::meta_ComponentInherits_child = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Component::meta_ComponentInherits_child, "ComponentInherits", true, 0, 1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			ReadonlyAttribute::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ReadonlyAttribute::meta_Component_parent, "Component_parent", true);
+			Component::meta_ReadonlyAttribute_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Component::meta_ReadonlyAttribute_children, "ReadonlyAttribute", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			Port::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Port::meta_Component_parent, "Component_parent", true);
+			Component::meta_Port_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(Component::meta_Port_children, "Port", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			ReadonlyAttribute::meta_PortType_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ReadonlyAttribute::meta_PortType_parent, "PortType_parent", true);
+			PortType::meta_ReadonlyAttribute_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(PortType::meta_ReadonlyAttribute_children, "ReadonlyAttribute", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			ObjectPort::meta_PortType_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ObjectPort::meta_PortType_parent, "PortType_parent", true);
+			PortType::meta_ObjectPort_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(PortType::meta_ObjectPort_children, "ObjectPort", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			LookupKey::meta_ComponentFactory_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(LookupKey::meta_ComponentFactory_parent, "ComponentFactory_parent", true);
+			ComponentFactory::meta_LookupKey_child = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(ComponentFactory::meta_LookupKey_child, "LookupKey", true, 0, 1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			LookupOperation::meta_ComponentFactory_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(LookupOperation::meta_ComponentFactory_parent, "ComponentFactory_parent", true);
+			ComponentFactory::meta_LookupOperation_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(ComponentFactory::meta_LookupOperation_children, "LookupOperation", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			FactoryOperation::meta_ComponentFactory_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(FactoryOperation::meta_ComponentFactory_parent, "ComponentFactory_parent", true);
+			ComponentFactory::meta_FactoryOperation_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(ComponentFactory::meta_FactoryOperation_children, "FactoryOperation", true, 0, -1);
 
 		}
 		{
@@ -17188,87 +17341,6 @@ namespace PICML {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			ReadonlyAttribute::meta_PortType_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ReadonlyAttribute::meta_PortType_parent, "PortType_parent", true);
-			PortType::meta_ReadonlyAttribute_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(PortType::meta_ReadonlyAttribute_children, "ReadonlyAttribute", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			ObjectPort::meta_PortType_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ObjectPort::meta_PortType_parent, "PortType_parent", true);
-			PortType::meta_ObjectPort_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(PortType::meta_ObjectPort_children, "ObjectPort", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			LookupKey::meta_ComponentFactory_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(LookupKey::meta_ComponentFactory_parent, "ComponentFactory_parent", true);
-			ComponentFactory::meta_LookupKey_child = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(ComponentFactory::meta_LookupKey_child, "LookupKey", true, 0, 1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			LookupOperation::meta_ComponentFactory_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(LookupOperation::meta_ComponentFactory_parent, "ComponentFactory_parent", true);
-			ComponentFactory::meta_LookupOperation_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(ComponentFactory::meta_LookupOperation_children, "LookupOperation", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			FactoryOperation::meta_ComponentFactory_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(FactoryOperation::meta_ComponentFactory_parent, "ComponentFactory_parent", true);
-			ComponentFactory::meta_FactoryOperation_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(ComponentFactory::meta_FactoryOperation_children, "FactoryOperation", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			ExtendedPortBase::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ExtendedPortBase::meta_Component_parent, "Component_parent", true);
-			Component::meta_ExtendedPortBase_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Component::meta_ExtendedPortBase_children, "ExtendedPortBase", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			ComponentInherits::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ComponentInherits::meta_Component_parent, "Component_parent", true);
-			Component::meta_ComponentInherits_child = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Component::meta_ComponentInherits_child, "ComponentInherits", true, 0, 1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			ReadonlyAttribute::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ReadonlyAttribute::meta_Component_parent, "Component_parent", true);
-			Component::meta_ReadonlyAttribute_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Component::meta_ReadonlyAttribute_children, "ReadonlyAttribute", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			Port::meta_Component_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Port::meta_Component_parent, "Component_parent", true);
-			Component::meta_Port_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Component::meta_Port_children, "Port", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
 			ConnectorImplements::meta_ConnectorImplementationContainer_parent = ::Uml::CompositionParentRole::Create(comp);
 			::Uml::InitCompositionParentRoleProps(ConnectorImplements::meta_ConnectorImplementationContainer_parent, "ConnectorImplementationContainer_parent", true);
 			ConnectorImplementationContainer::meta_ConnectorImplements_children = ::Uml::CompositionChildRole::Create(comp);
@@ -17377,69 +17449,6 @@ namespace PICML {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			WorkerType::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(WorkerType::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_WorkerType_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_WorkerType_children, "WorkerType", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			QueryInput::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(QueryInput::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_QueryInput_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_QueryInput_children, "QueryInput", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			Input::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Input::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_Input_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_Input_children, "Input", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			MultiInput::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(MultiInput::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_MultiInput_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_MultiInput_children, "MultiInput", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			Environment::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Environment::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_Environment_child = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_Environment_child, "Environment", true, 0, 1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			ApplicationTask::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ApplicationTask::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_ApplicationTask_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_ApplicationTask_children, "ApplicationTask", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			PeriodicEvent::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(PeriodicEvent::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
-			TopLevelBehavior::meta_PeriodicEvent_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_PeriodicEvent_children, "PeriodicEvent", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
 			TargetRequiredRequestPort::meta_CallAction_parent = ::Uml::CompositionParentRole::Create(comp);
 			::Uml::InitCompositionParentRoleProps(TargetRequiredRequestPort::meta_CallAction_parent, "CallAction_parent", true);
 			CallAction::meta_TargetRequiredRequestPort_child = ::Uml::CompositionChildRole::Create(comp);
@@ -17494,33 +17503,6 @@ namespace PICML {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			TerminalEffect::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(TerminalEffect::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
-			BehaviorModel::meta_TerminalEffect_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_TerminalEffect_children, "TerminalEffect", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			Terminal::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Terminal::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
-			BehaviorModel::meta_Terminal_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_Terminal_children, "Terminal", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			TerminalTransition::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(TerminalTransition::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
-			BehaviorModel::meta_TerminalTransition_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_TerminalTransition_children, "TerminalTransition", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
 			LoopTransition::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
 			::Uml::InitCompositionParentRoleProps(LoopTransition::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
 			BehaviorModel::meta_LoopTransition_children = ::Uml::CompositionChildRole::Create(comp);
@@ -17552,6 +17534,33 @@ namespace PICML {
 			::Uml::InitCompositionParentRoleProps(StateBase::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
 			BehaviorModel::meta_StateBase_children = ::Uml::CompositionChildRole::Create(comp);
 			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_StateBase_children, "StateBase", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			TerminalEffect::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(TerminalEffect::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
+			BehaviorModel::meta_TerminalEffect_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_TerminalEffect_children, "TerminalEffect", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			Terminal::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Terminal::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
+			BehaviorModel::meta_Terminal_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_Terminal_children, "Terminal", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			TerminalTransition::meta_BehaviorModel_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(TerminalTransition::meta_BehaviorModel_parent, "BehaviorModel_parent", true);
+			BehaviorModel::meta_TerminalTransition_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(BehaviorModel::meta_TerminalTransition_children, "TerminalTransition", true, 0, -1);
 
 		}
 		{
@@ -17611,73 +17620,64 @@ namespace PICML {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			ReturnType::meta_Operation_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ReturnType::meta_Operation_parent, "Operation_parent", true);
-			Operation::meta_ReturnType_child = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Operation::meta_ReturnType_child, "ReturnType", true, 0, 1);
+			WorkerType::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(WorkerType::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_WorkerType_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_WorkerType_children, "WorkerType", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			ParameterType::meta_Operation_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ParameterType::meta_Operation_parent, "Operation_parent", true);
-			Operation::meta_ParameterType_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Operation::meta_ParameterType_children, "ParameterType", true, 0, -1);
+			QueryInput::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(QueryInput::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_QueryInput_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_QueryInput_children, "QueryInput", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Worker::meta_WorkerPackageBase_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Worker::meta_WorkerPackageBase_parent, "WorkerPackageBase_parent", true);
-			WorkerPackageBase::meta_Worker_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(WorkerPackageBase::meta_Worker_children, "Worker", true, 0, -1);
+			Input::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Input::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_Input_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_Input_children, "Input", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			WorkerPackage::meta_WorkerPackage_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(WorkerPackage::meta_WorkerPackage_parent, "WorkerPackage_parent", true);
-			WorkerPackage::meta_WorkerPackage_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(WorkerPackage::meta_WorkerPackage_children, "WorkerPackage", true, 0, -1);
+			MultiInput::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(MultiInput::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_MultiInput_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_MultiInput_children, "MultiInput", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			WorkerPackage::meta_WorkerFile_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(WorkerPackage::meta_WorkerFile_parent, "WorkerFile_parent", true);
-			WorkerFile::meta_WorkerPackage_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(WorkerFile::meta_WorkerPackage_children, "WorkerPackage", true, 0, -1);
+			Environment::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Environment::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_Environment_child = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_Environment_child, "Environment", true, 0, 1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			WorkerLibrary::meta_WorkerLibraries_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(WorkerLibrary::meta_WorkerLibraries_parent, "WorkerLibraries_parent", true);
-			WorkerLibraries::meta_WorkerLibrary_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(WorkerLibraries::meta_WorkerLibrary_children, "WorkerLibrary", true, 0, -1);
+			ApplicationTask::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(ApplicationTask::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_ApplicationTask_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_ApplicationTask_children, "ApplicationTask", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Operation::meta_Worker_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Operation::meta_Worker_parent, "Worker_parent", true);
-			Worker::meta_Operation_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Worker::meta_Operation_children, "Operation", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			WorkerFile::meta_WorkerLibrary_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(WorkerFile::meta_WorkerLibrary_parent, "WorkerLibrary_parent", true);
-			WorkerLibrary::meta_WorkerFile_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(WorkerLibrary::meta_WorkerFile_children, "WorkerFile", true, 0, -1);
+			PeriodicEvent::meta_TopLevelBehavior_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(PeriodicEvent::meta_TopLevelBehavior_parent, "TopLevelBehavior_parent", true);
+			TopLevelBehavior::meta_PeriodicEvent_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(TopLevelBehavior::meta_PeriodicEvent_children, "PeriodicEvent", true, 0, -1);
 
 		}
 		{
@@ -17791,6 +17791,15 @@ namespace PICML {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
+			WorkerLibraries::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(WorkerLibraries::meta_RootFolder_parent, "RootFolder_parent", true);
+			RootFolder::meta_WorkerLibraries_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(RootFolder::meta_WorkerLibraries_children, "WorkerLibraries", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
 			ComponentImplementations::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
 			::Uml::InitCompositionParentRoleProps(ComponentImplementations::meta_RootFolder_parent, "RootFolder_parent", true);
 			RootFolder::meta_ComponentImplementations_children = ::Uml::CompositionChildRole::Create(comp);
@@ -17813,15 +17822,6 @@ namespace PICML {
 			::Uml::InitCompositionParentRoleProps(ConnectorImplementations::meta_RootFolder_parent, "RootFolder_parent", true);
 			RootFolder::meta_ConnectorImplementations_children = ::Uml::CompositionChildRole::Create(comp);
 			::Uml::InitCompositionChildRoleProps(RootFolder::meta_ConnectorImplementations_children, "ConnectorImplementations", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			WorkerLibraries::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(WorkerLibraries::meta_RootFolder_parent, "RootFolder_parent", true);
-			RootFolder::meta_WorkerLibraries_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(RootFolder::meta_WorkerLibraries_children, "WorkerLibraries", true, 0, -1);
 
 		}
 		{
@@ -17960,13 +17960,13 @@ namespace PICML {
 		BehaviorInputAction::meta.subTypes() += MultiInputAction::meta;
 
 		Variable::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
-		TerminalEffect::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
-		Terminal::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
-		TerminalTransition::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		LoopTransition::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		Transition::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		BranchTransition::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		StateBase::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
+		TerminalEffect::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
+		Terminal::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
+		TerminalTransition::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		QueryInputAction::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		Effect::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
 		ActionBase::meta_BehaviorModel_parent.target() = BehaviorModel::meta;
@@ -18071,8 +18071,8 @@ namespace PICML {
 		DataValueContainer::meta_ComplexTypeReference_child.target() = ComplexTypeReference::meta;
 
 		Component::meta_referedbyCompRef.target() = CompRef::meta;
-		Component::meta_referedbyComponentInherits.target() = ComponentInherits::meta;
 		Component::meta_referedbyComponentRef.target() = ComponentRef::meta;
+		Component::meta_referedbyComponentInherits.target() = ComponentInherits::meta;
 		ExtendedPortBase::meta_Component_parent.target() = Component::meta;
 		ComponentInherits::meta_Component_parent.target() = Component::meta;
 		ReadonlyAttribute::meta_Component_parent.target() = Component::meta;
@@ -18218,11 +18218,11 @@ namespace PICML {
 		ComponentOperation::meta_srcComponentOperation_end_ = OperationRef::meta_dstComponentOperation_rev = CompRef::meta_srcComponentOperation;
 
 		ComponentPackage::meta_srcPackageConfBasePackage.target() = PackageConfiguration::meta;
-		ComponentPackage::meta_referedbyComponentPackageReference.target() = ComponentPackageReference::meta;
 		ComponentPackage::meta_dstPackageInfoProperty.target() = Property::meta;
 		ComponentPackage::meta_dstPackageConfigProperty.target() = Property::meta;
 		ComponentPackage::meta_dstImplementation.target() = ComponentImplementationReference::meta;
 		ComponentPackage::meta_dstPackageInterface.target() = ComponentRef::meta;
+		ComponentPackage::meta_referedbyComponentPackageReference.target() = ComponentPackageReference::meta;
 		PackageConfigurationContainer::meta_ComponentPackage_child.target() = ComponentPackage::meta;
 		PackageContainer::meta_ComponentPackage_child.target() = ComponentPackage::meta;
 		ComponentAssembly::meta_ComponentPackage_children.target() = ComponentPackage::meta;
@@ -18245,11 +18245,11 @@ namespace PICML {
 		ComponentContainer::meta_ComponentPropertyDescription_children.target() = ComponentPropertyDescription::meta;
 
 		ComponentRef::meta_srcPackageInterface.target() = ComponentPackage::meta;
-		ComponentRef::meta_srcImplements.target() = ComponentImplementation::meta;
 		ComponentRef::meta_ref.target() = Component::meta;
 		ComponentRef::meta_dstComponentInfoProperty.target() = Property::meta;
 		ComponentRef::meta_dstComponentConfigProperty.target() = Property::meta;
 		ComponentRef::meta_dstComponentProperty.target() = ComponentPropertyDescription::meta;
+		ComponentRef::meta_srcImplements.target() = ComponentImplementation::meta;
 		Path::meta_ComponentRef_children.target() = ComponentRef::meta;
 		PackageContainer::meta_ComponentRef_child.target() = ComponentRef::meta;
 		File::meta_ComponentRef_children.target() = ComponentRef::meta;
@@ -18295,8 +18295,8 @@ namespace PICML {
 
 		ConnectorInstance::meta_srcConnectorToReceptacle.target() = RequiredRequestPortEnd::meta;
 		ConnectorInstance::meta_srcPublish.target() = ExtendPortEnd::meta;
-		ConnectorInstance::meta_dstConnectorToFacet.target() = ProvidedRequestPortEnd::meta;
 		ConnectorInstance::meta_dstConsume.target() = ExtendPortEnd::meta;
+		ConnectorInstance::meta_dstConnectorToFacet.target() = ProvidedRequestPortEnd::meta;
 		AttributeInstance::meta_ConnectorInstance_parent.target() = ConnectorInstance::meta;
 		ConnectorImplementationType::meta_ConnectorInstance_parent.target() = ConnectorInstance::meta;
 		ComponentAssembly::meta_ConnectorInstance_children.target() = ConnectorInstance::meta;
@@ -18886,9 +18886,9 @@ namespace PICML {
 		MgaObject::meta.subTypes() += package::meta;
 		MgaObject::meta.subTypes() += TopLevelPackage::meta;
 		MgaObject::meta.subTypes() += TopLevelPackageContainer::meta;
-		MgaObject::meta.subTypes() += ComponentPackageReference::meta;
 		MgaObject::meta.subTypes() += ComponentPackage::meta;
 		MgaObject::meta.subTypes() += PackageInfoProperty::meta;
+		MgaObject::meta.subTypes() += ComponentPackageReference::meta;
 		MgaObject::meta.subTypes() += PackageContainer::meta;
 		MgaObject::meta.subTypes() += PackageConfigProperty::meta;
 		MgaObject::meta.subTypes() += Implementation::meta;
@@ -18963,8 +18963,20 @@ namespace PICML {
 		MgaObject::meta.subTypes() += AssemblyConfigProperty::meta;
 		MgaObject::meta.subTypes() += AssemblyselectRequirement::meta;
 		MgaObject::meta.subTypes() += Invoke::meta;
+		MgaObject::meta.subTypes() += Operation::meta;
+		MgaObject::meta.subTypes() += WorkerPackageBase::meta;
+		MgaObject::meta.subTypes() += Worker::meta;
+		MgaObject::meta.subTypes() += WorkerLibrary::meta;
 		MgaObject::meta.subTypes() += PortInstance::meta;
 		MgaObject::meta.subTypes() += ComponentInstanceType::meta;
+		MgaObject::meta.subTypes() += LookupKeyType::meta;
+		MgaObject::meta.subTypes() += LookupKey::meta;
+		MgaObject::meta.subTypes() += ExtendedPortBase::meta;
+		MgaObject::meta.subTypes() += ComponentInherits::meta;
+		MgaObject::meta.subTypes() += EventType::meta;
+		MgaObject::meta.subTypes() += Provideable::meta;
+		MgaObject::meta.subTypes() += Manageable::meta;
+		MgaObject::meta.subTypes() += ManagesComponent::meta;
 		MgaObject::meta.subTypes() += CriticalPath::meta;
 		MgaObject::meta.subTypes() += ComponentImplementationReference::meta;
 		MgaObject::meta.subTypes() += Implements::meta;
@@ -18976,14 +18988,6 @@ namespace PICML {
 		MgaObject::meta.subTypes() += ComponentContainer::meta;
 		MgaObject::meta.subTypes() += ComponentProperty::meta;
 		MgaObject::meta.subTypes() += ComponentPropertyDescription::meta;
-		MgaObject::meta.subTypes() += LookupKeyType::meta;
-		MgaObject::meta.subTypes() += LookupKey::meta;
-		MgaObject::meta.subTypes() += ExtendedPortBase::meta;
-		MgaObject::meta.subTypes() += ComponentInherits::meta;
-		MgaObject::meta.subTypes() += EventType::meta;
-		MgaObject::meta.subTypes() += Provideable::meta;
-		MgaObject::meta.subTypes() += Manageable::meta;
-		MgaObject::meta.subTypes() += ManagesComponent::meta;
 		MgaObject::meta.subTypes() += ConnectorType::meta;
 		MgaObject::meta.subTypes() += ConnectorImplements::meta;
 		MgaObject::meta.subTypes() += ConnectorImplementationType::meta;
@@ -18995,6 +18999,14 @@ namespace PICML {
 		MgaObject::meta.subTypes() += StateBase::meta;
 		MgaObject::meta.subTypes() += BranchTransition::meta;
 		MgaObject::meta.subTypes() += Transition::meta;
+		MgaObject::meta.subTypes() += TargetRequiredRequestPort::meta;
+		MgaObject::meta.subTypes() += ActionType::meta;
+		MgaObject::meta.subTypes() += QueryInputAction::meta;
+		MgaObject::meta.subTypes() += ActionBase::meta;
+		MgaObject::meta.subTypes() += Finish::meta;
+		MgaObject::meta.subTypes() += BehaviorInputAction::meta;
+		MgaObject::meta.subTypes() += BehaviorModel::meta;
+		MgaObject::meta.subTypes() += Variable::meta;
 		MgaObject::meta.subTypes() += QueryInputBase::meta;
 		MgaObject::meta.subTypes() += QueryInput::meta;
 		MgaObject::meta.subTypes() += MultiInput::meta;
@@ -19004,18 +19016,6 @@ namespace PICML {
 		MgaObject::meta.subTypes() += SingleInputBase::meta;
 		MgaObject::meta.subTypes() += Input::meta;
 		MgaObject::meta.subTypes() += WorkerType::meta;
-		MgaObject::meta.subTypes() += TargetRequiredRequestPort::meta;
-		MgaObject::meta.subTypes() += ActionType::meta;
-		MgaObject::meta.subTypes() += QueryInputAction::meta;
-		MgaObject::meta.subTypes() += ActionBase::meta;
-		MgaObject::meta.subTypes() += Finish::meta;
-		MgaObject::meta.subTypes() += BehaviorInputAction::meta;
-		MgaObject::meta.subTypes() += BehaviorModel::meta;
-		MgaObject::meta.subTypes() += Variable::meta;
-		MgaObject::meta.subTypes() += Operation::meta;
-		MgaObject::meta.subTypes() += WorkerPackageBase::meta;
-		MgaObject::meta.subTypes() += Worker::meta;
-		MgaObject::meta.subTypes() += WorkerLibrary::meta;
 
 		ComponentAssembly::meta_MirrorDelegate_children.target() = MirrorDelegate::meta;
 		MirrorDelegate::meta.association() = MirrorPortInstanceBase::meta_dstMirrorDelegate.parent();
@@ -19132,9 +19132,9 @@ namespace PICML {
 		OperationBase::meta.subTypes() += OnewayOperation::meta;
 
 		OperationRef::meta_dstWorkLoadOperationConnection.target() = Task::meta;
-		OperationRef::meta_dstComponentOperation.target() = CompRef::meta;
 		OperationRef::meta_dstTimerConnection.target() = TimeProbe::meta;
 		OperationRef::meta_dstMetricConnection.target() = MetricsBase::meta;
+		OperationRef::meta_dstComponentOperation.target() = CompRef::meta;
 		OperationRef::meta_ref.target() = OperationBase::meta;
 		BenchmarkAnalysis::meta_OperationRef_children.target() = OperationRef::meta;
 
@@ -19419,8 +19419,8 @@ namespace PICML {
 		AttributeMember::meta_ReadonlyAttribute_parent.target() = ReadonlyAttribute::meta;
 		GetException::meta_ReadonlyAttribute_parent.target() = ReadonlyAttribute::meta;
 		Inheritable::meta_ReadonlyAttribute_children.target() = ReadonlyAttribute::meta;
-		PortType::meta_ReadonlyAttribute_children.target() = ReadonlyAttribute::meta;
 		Component::meta_ReadonlyAttribute_children.target() = ReadonlyAttribute::meta;
+		PortType::meta_ReadonlyAttribute_children.target() = ReadonlyAttribute::meta;
 		ConnectorObject::meta_ReadonlyAttribute_children.target() = ReadonlyAttribute::meta;
 		ReadonlyAttribute::meta.subTypes() += Attribute::meta;
 
@@ -19482,10 +19482,10 @@ namespace PICML {
 		PredefinedTypes::meta_RootFolder_parent.target() = RootFolder::meta;
 		InterfaceDefinitions::meta_RootFolder_parent.target() = RootFolder::meta;
 		ComponentBuild::meta_RootFolder_parent.target() = RootFolder::meta;
+		WorkerLibraries::meta_RootFolder_parent.target() = RootFolder::meta;
 		ComponentImplementations::meta_RootFolder_parent.target() = RootFolder::meta;
 		ComponentTypes::meta_RootFolder_parent.target() = RootFolder::meta;
 		ConnectorImplementations::meta_RootFolder_parent.target() = RootFolder::meta;
-		WorkerLibraries::meta_RootFolder_parent.target() = RootFolder::meta;
 		RootFolder::meta_RootFolder_parent.target() = RootFolder::meta;
 		RootFolder::meta_RootFolder_children.target() = RootFolder::meta;
 
@@ -19568,8 +19568,8 @@ namespace PICML {
 
 		Supports::meta_SupportsInterfaces_parent.target() = SupportsInterfaces::meta;
 		SupportsInterfaces::meta.subTypes() += ObjectByValue::meta;
-		SupportsInterfaces::meta.subTypes() += ComponentFactory::meta;
 		SupportsInterfaces::meta.subTypes() += Component::meta;
+		SupportsInterfaces::meta.subTypes() += ComponentFactory::meta;
 
 		LabelConnection::meta_SwitchedAggregate_parent.target() = SwitchedAggregate::meta;
 		Discriminator::meta_SwitchedAggregate_parent.target() = SwitchedAggregate::meta;
@@ -20716,13 +20716,13 @@ namespace PICML {
 		::Uml::SetParentRole(BehaviorInputAction::meta_BehaviorModel_parent, BehaviorInputAction::meta, BehaviorModel::meta, "", "");
 
 		::Uml::SetChildRole(BehaviorModel::meta_Variable_children, BehaviorModel::meta, Variable::meta, "", "");
-		::Uml::SetChildRole(BehaviorModel::meta_TerminalEffect_children, BehaviorModel::meta, TerminalEffect::meta, "", "");
-		::Uml::SetChildRole(BehaviorModel::meta_Terminal_children, BehaviorModel::meta, Terminal::meta, "", "");
-		::Uml::SetChildRole(BehaviorModel::meta_TerminalTransition_children, BehaviorModel::meta, TerminalTransition::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_LoopTransition_children, BehaviorModel::meta, LoopTransition::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_Transition_children, BehaviorModel::meta, Transition::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_BranchTransition_children, BehaviorModel::meta, BranchTransition::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_StateBase_children, BehaviorModel::meta, StateBase::meta, "", "");
+		::Uml::SetChildRole(BehaviorModel::meta_TerminalEffect_children, BehaviorModel::meta, TerminalEffect::meta, "", "");
+		::Uml::SetChildRole(BehaviorModel::meta_Terminal_children, BehaviorModel::meta, Terminal::meta, "", "");
+		::Uml::SetChildRole(BehaviorModel::meta_TerminalTransition_children, BehaviorModel::meta, TerminalTransition::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_QueryInputAction_children, BehaviorModel::meta, QueryInputAction::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_Effect_children, BehaviorModel::meta, Effect::meta, "", "");
 		::Uml::SetChildRole(BehaviorModel::meta_ActionBase_children, BehaviorModel::meta, ActionBase::meta, "", "");
@@ -20808,8 +20808,8 @@ namespace PICML {
 		::Uml::SetParentRole(ComplexTypeReference::meta_DataValueContainer_parent, ComplexTypeReference::meta, DataValueContainer::meta, "", "");
 
 		::Uml::SetAssocRole(Component::meta_referedbyCompRef, Component::meta, CompRef::meta, "ref");
-		::Uml::SetAssocRole(Component::meta_referedbyComponentInherits, Component::meta, ComponentInherits::meta, "ref");
 		::Uml::SetAssocRole(Component::meta_referedbyComponentRef, Component::meta, ComponentRef::meta, "ref");
+		::Uml::SetAssocRole(Component::meta_referedbyComponentInherits, Component::meta, ComponentInherits::meta, "ref");
 		::Uml::SetChildRole(Component::meta_ExtendedPortBase_children, Component::meta, ExtendedPortBase::meta, "", "");
 		::Uml::SetChildRole(Component::meta_ComponentInherits_child, Component::meta, ComponentInherits::meta, "", "");
 		::Uml::SetChildRole(Component::meta_ReadonlyAttribute_children, Component::meta, ReadonlyAttribute::meta, "", "");
@@ -20951,7 +20951,6 @@ namespace PICML {
 
 		::Uml::SetAssocRole(ComponentPackage::meta_srcPackageConfBasePackage, ComponentPackage::meta, PackageConfiguration::meta, "dstPackageConfBasePackage");
 		PackageConfBasePackage::meta_srcPackageConfBasePackage_end_ = PackageConfiguration::meta_dstPackageConfBasePackage_rev = ComponentPackage::meta_srcPackageConfBasePackage;
-		::Uml::SetAssocRole(ComponentPackage::meta_referedbyComponentPackageReference, ComponentPackage::meta, ComponentPackageReference::meta, "ref");
 		::Uml::SetAssocRole(ComponentPackage::meta_dstPackageInfoProperty, ComponentPackage::meta, Property::meta, "srcPackageInfoProperty");
 		PackageInfoProperty::meta_dstPackageInfoProperty_end_ = Property::meta_srcPackageInfoProperty_rev = ComponentPackage::meta_dstPackageInfoProperty;
 		::Uml::SetAssocRole(ComponentPackage::meta_dstPackageConfigProperty, ComponentPackage::meta, Property::meta, "srcPackageConfigProperty");
@@ -20960,6 +20959,7 @@ namespace PICML {
 		Implementation::meta_dstImplementation_end_ = ComponentImplementationReference::meta_srcImplementation_rev = ComponentPackage::meta_dstImplementation;
 		::Uml::SetAssocRole(ComponentPackage::meta_dstPackageInterface, ComponentPackage::meta, ComponentRef::meta, "srcPackageInterface");
 		PackageInterface::meta_dstPackageInterface_end_ = ComponentRef::meta_srcPackageInterface_rev = ComponentPackage::meta_dstPackageInterface;
+		::Uml::SetAssocRole(ComponentPackage::meta_referedbyComponentPackageReference, ComponentPackage::meta, ComponentPackageReference::meta, "ref");
 		::Uml::SetParentRole(ComponentPackage::meta_PackageConfigurationContainer_parent, ComponentPackage::meta, PackageConfigurationContainer::meta, "", "");
 		::Uml::SetParentRole(ComponentPackage::meta_PackageContainer_parent, ComponentPackage::meta, PackageContainer::meta, "", "");
 		::Uml::SetParentRole(ComponentPackage::meta_ComponentAssembly_parent, ComponentPackage::meta, ComponentAssembly::meta, "", "");
@@ -20982,8 +20982,6 @@ namespace PICML {
 
 		::Uml::SetAssocRole(ComponentRef::meta_srcPackageInterface, ComponentRef::meta, ComponentPackage::meta, "dstPackageInterface");
 		PackageInterface::meta_srcPackageInterface_end_ = ComponentPackage::meta_dstPackageInterface_rev = ComponentRef::meta_srcPackageInterface;
-		::Uml::SetAssocRole(ComponentRef::meta_srcImplements, ComponentRef::meta, ComponentImplementation::meta, "dstImplements");
-		Implements::meta_srcImplements_end_ = ComponentImplementation::meta_dstImplements_rev = ComponentRef::meta_srcImplements;
 		::Uml::SetAssocRole(ComponentRef::meta_ref, ComponentRef::meta, Component::meta, "referedbyComponentRef");
 		::Uml::SetAssocRole(ComponentRef::meta_dstComponentInfoProperty, ComponentRef::meta, Property::meta, "srcComponentInfoProperty");
 		ComponentInfoProperty::meta_dstComponentInfoProperty_end_ = Property::meta_srcComponentInfoProperty_rev = ComponentRef::meta_dstComponentInfoProperty;
@@ -20991,6 +20989,8 @@ namespace PICML {
 		ComponentConfigProperty::meta_dstComponentConfigProperty_end_ = Property::meta_srcComponentConfigProperty_rev = ComponentRef::meta_dstComponentConfigProperty;
 		::Uml::SetAssocRole(ComponentRef::meta_dstComponentProperty, ComponentRef::meta, ComponentPropertyDescription::meta, "srcComponentProperty");
 		ComponentProperty::meta_dstComponentProperty_end_ = ComponentPropertyDescription::meta_srcComponentProperty_rev = ComponentRef::meta_dstComponentProperty;
+		::Uml::SetAssocRole(ComponentRef::meta_srcImplements, ComponentRef::meta, ComponentImplementation::meta, "dstImplements");
+		Implements::meta_srcImplements_end_ = ComponentImplementation::meta_dstImplements_rev = ComponentRef::meta_srcImplements;
 		::Uml::SetParentRole(ComponentRef::meta_Path_parent, ComponentRef::meta, Path::meta, "", "");
 		::Uml::SetParentRole(ComponentRef::meta_PackageContainer_parent, ComponentRef::meta, PackageContainer::meta, "", "");
 		::Uml::SetParentRole(ComponentRef::meta_File_parent, ComponentRef::meta, File::meta, "", "");
@@ -21033,10 +21033,10 @@ namespace PICML {
 		ConnectorToReceptacle::meta_srcConnectorToReceptacle_end_ = RequiredRequestPortEnd::meta_dstConnectorToReceptacle_rev = ConnectorInstance::meta_srcConnectorToReceptacle;
 		::Uml::SetAssocRole(ConnectorInstance::meta_srcPublish, ConnectorInstance::meta, ExtendPortEnd::meta, "dstPublish");
 		Publish::meta_srcPublish_end_ = ExtendPortEnd::meta_dstPublish_rev = ConnectorInstance::meta_srcPublish;
-		::Uml::SetAssocRole(ConnectorInstance::meta_dstConnectorToFacet, ConnectorInstance::meta, ProvidedRequestPortEnd::meta, "srcConnectorToFacet");
-		ConnectorToFacet::meta_dstConnectorToFacet_end_ = ProvidedRequestPortEnd::meta_srcConnectorToFacet_rev = ConnectorInstance::meta_dstConnectorToFacet;
 		::Uml::SetAssocRole(ConnectorInstance::meta_dstConsume, ConnectorInstance::meta, ExtendPortEnd::meta, "srcConsume");
 		Consume::meta_dstConsume_end_ = ExtendPortEnd::meta_srcConsume_rev = ConnectorInstance::meta_dstConsume;
+		::Uml::SetAssocRole(ConnectorInstance::meta_dstConnectorToFacet, ConnectorInstance::meta, ProvidedRequestPortEnd::meta, "srcConnectorToFacet");
+		ConnectorToFacet::meta_dstConnectorToFacet_end_ = ProvidedRequestPortEnd::meta_srcConnectorToFacet_rev = ConnectorInstance::meta_dstConnectorToFacet;
 		::Uml::SetChildRole(ConnectorInstance::meta_AttributeInstance_children, ConnectorInstance::meta, AttributeInstance::meta, "", "");
 		::Uml::SetChildRole(ConnectorInstance::meta_ConnectorImplementationType_child, ConnectorInstance::meta, ConnectorImplementationType::meta, "", "");
 		::Uml::SetParentRole(ConnectorInstance::meta_ComponentAssembly_parent, ConnectorInstance::meta, ComponentAssembly::meta, "", "");
@@ -21517,12 +21517,12 @@ namespace PICML {
 
 		::Uml::SetAssocRole(OperationRef::meta_dstWorkLoadOperationConnection, OperationRef::meta, Task::meta, "srcWorkLoadOperationConnection");
 		WorkLoadOperationConnection::meta_dstWorkLoadOperationConnection_end_ = Task::meta_srcWorkLoadOperationConnection_rev = OperationRef::meta_dstWorkLoadOperationConnection;
-		::Uml::SetAssocRole(OperationRef::meta_dstComponentOperation, OperationRef::meta, CompRef::meta, "srcComponentOperation");
-		ComponentOperation::meta_dstComponentOperation_end_ = CompRef::meta_srcComponentOperation_rev = OperationRef::meta_dstComponentOperation;
 		::Uml::SetAssocRole(OperationRef::meta_dstTimerConnection, OperationRef::meta, TimeProbe::meta, "srcTimerConnection");
 		TimerConnection::meta_dstTimerConnection_end_ = TimeProbe::meta_srcTimerConnection_rev = OperationRef::meta_dstTimerConnection;
 		::Uml::SetAssocRole(OperationRef::meta_dstMetricConnection, OperationRef::meta, MetricsBase::meta, "srcMetricConnection");
 		MetricConnection::meta_dstMetricConnection_end_ = MetricsBase::meta_srcMetricConnection_rev = OperationRef::meta_dstMetricConnection;
+		::Uml::SetAssocRole(OperationRef::meta_dstComponentOperation, OperationRef::meta, CompRef::meta, "srcComponentOperation");
+		ComponentOperation::meta_dstComponentOperation_end_ = CompRef::meta_srcComponentOperation_rev = OperationRef::meta_dstComponentOperation;
 		::Uml::SetAssocRole(OperationRef::meta_ref, OperationRef::meta, OperationBase::meta, "referedbyOperationRef");
 		::Uml::SetParentRole(OperationRef::meta_BenchmarkAnalysis_parent, OperationRef::meta, BenchmarkAnalysis::meta, "", "");
 
@@ -21766,8 +21766,8 @@ namespace PICML {
 		::Uml::SetChildRole(ReadonlyAttribute::meta_AttributeMember_child, ReadonlyAttribute::meta, AttributeMember::meta, "", "");
 		::Uml::SetChildRole(ReadonlyAttribute::meta_GetException_children, ReadonlyAttribute::meta, GetException::meta, "", "");
 		::Uml::SetParentRole(ReadonlyAttribute::meta_Inheritable_parent, ReadonlyAttribute::meta, Inheritable::meta, "", "");
-		::Uml::SetParentRole(ReadonlyAttribute::meta_PortType_parent, ReadonlyAttribute::meta, PortType::meta, "", "");
 		::Uml::SetParentRole(ReadonlyAttribute::meta_Component_parent, ReadonlyAttribute::meta, Component::meta, "", "");
+		::Uml::SetParentRole(ReadonlyAttribute::meta_PortType_parent, ReadonlyAttribute::meta, PortType::meta, "", "");
 		::Uml::SetParentRole(ReadonlyAttribute::meta_ConnectorObject_parent, ReadonlyAttribute::meta, ConnectorObject::meta, "", "");
 
 		::Uml::SetParentRole(ReceptacleDelegate::meta_ComponentAssembly_parent, ReceptacleDelegate::meta, ComponentAssembly::meta, "", "");
@@ -21823,10 +21823,10 @@ namespace PICML {
 		::Uml::SetChildRole(RootFolder::meta_PredefinedTypes_children, RootFolder::meta, PredefinedTypes::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_InterfaceDefinitions_children, RootFolder::meta, InterfaceDefinitions::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_ComponentBuild_children, RootFolder::meta, ComponentBuild::meta, "", "");
+		::Uml::SetChildRole(RootFolder::meta_WorkerLibraries_children, RootFolder::meta, WorkerLibraries::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_ComponentImplementations_children, RootFolder::meta, ComponentImplementations::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_ComponentTypes_children, RootFolder::meta, ComponentTypes::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_ConnectorImplementations_children, RootFolder::meta, ConnectorImplementations::meta, "", "");
-		::Uml::SetChildRole(RootFolder::meta_WorkerLibraries_children, RootFolder::meta, WorkerLibraries::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_RootFolder_children, RootFolder::meta, RootFolder::meta, "", "");
 		::Uml::SetParentRole(RootFolder::meta_RootFolder_parent, RootFolder::meta, RootFolder::meta, "", "");
 
@@ -22104,9 +22104,9 @@ namespace PICML {
 	void Visitor::Visit_TopLevelPackages(const TopLevelPackages &) {}
 	void Visitor::Visit_TopLevelPackage(const TopLevelPackage &) {}
 	void Visitor::Visit_TopLevelPackageContainer(const TopLevelPackageContainer &) {}
-	void Visitor::Visit_ComponentPackageReference(const ComponentPackageReference &) {}
 	void Visitor::Visit_ComponentPackage(const ComponentPackage &) {}
 	void Visitor::Visit_PackageInfoProperty(const PackageInfoProperty &) {}
+	void Visitor::Visit_ComponentPackageReference(const ComponentPackageReference &) {}
 	void Visitor::Visit_PackageContainer(const PackageContainer &) {}
 	void Visitor::Visit_PackageConfigProperty(const PackageConfigProperty &) {}
 	void Visitor::Visit_Implementation(const Implementation &) {}
@@ -22177,13 +22177,13 @@ namespace PICML {
 	void Visitor::Visit_GenericValue(const GenericValue &) {}
 	void Visitor::Visit_GenericValueObject(const GenericValueObject &) {}
 	void Visitor::Visit_GenericObject(const GenericObject &) {}
-	void Visitor::Visit_String(const String &) {}
 	void Visitor::Visit_FloatNumber(const FloatNumber &) {}
 	void Visitor::Visit_LongInteger(const LongInteger &) {}
 	void Visitor::Visit_ShortInteger(const ShortInteger &) {}
 	void Visitor::Visit_Boolean(const Boolean &) {}
 	void Visitor::Visit_Byte(const Byte &) {}
 	void Visitor::Visit_PredefinedTypes(const PredefinedTypes &) {}
+	void Visitor::Visit_String(const String &) {}
 	void Visitor::Visit_TemplatePackageAlias(const TemplatePackageAlias &) {}
 	void Visitor::Visit_TemplateParameterReference(const TemplateParameterReference &) {}
 	void Visitor::Visit_NativeValue(const NativeValue &) {}
@@ -22237,6 +22237,12 @@ namespace PICML {
 	void Visitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty &) {}
 	void Visitor::Visit_AssemblyselectRequirement(const AssemblyselectRequirement &) {}
 	void Visitor::Visit_Invoke(const Invoke &) {}
+	void Visitor::Visit_Operation(const Operation &) {}
+	void Visitor::Visit_WorkerPackage(const WorkerPackage &) {}
+	void Visitor::Visit_WorkerFile(const WorkerFile &) {}
+	void Visitor::Visit_WorkerLibraries(const WorkerLibraries &) {}
+	void Visitor::Visit_Worker(const Worker &) {}
+	void Visitor::Visit_WorkerLibrary(const WorkerLibrary &) {}
 	void Visitor::Visit_SupportsInstance(const SupportsInstance &) {}
 	void Visitor::Visit_RequiredRequestPortInstance(const RequiredRequestPortInstance &) {}
 	void Visitor::Visit_InEventPortInstance(const InEventPortInstance &) {}
@@ -22247,6 +22253,19 @@ namespace PICML {
 	void Visitor::Visit_AttributeInstance(const AttributeInstance &) {}
 	void Visitor::Visit_ComponentInstanceType(const ComponentInstanceType &) {}
 	void Visitor::Visit_ComponentInstance(const ComponentInstance &) {}
+	void Visitor::Visit_ComponentRef(const ComponentRef &) {}
+	void Visitor::Visit_InEventPort(const InEventPort &) {}
+	void Visitor::Visit_RequiredRequestPort(const RequiredRequestPort &) {}
+	void Visitor::Visit_ProvidedRequestPort(const ProvidedRequestPort &) {}
+	void Visitor::Visit_OutEventPort(const OutEventPort &) {}
+	void Visitor::Visit_Component(const Component &) {}
+	void Visitor::Visit_LookupKey(const LookupKey &) {}
+	void Visitor::Visit_MirrorPort(const MirrorPort &) {}
+	void Visitor::Visit_ComponentInherits(const ComponentInherits &) {}
+	void Visitor::Visit_PortType(const PortType &) {}
+	void Visitor::Visit_ExtendedPort(const ExtendedPort &) {}
+	void Visitor::Visit_ComponentFactory(const ComponentFactory &) {}
+	void Visitor::Visit_ManagesComponent(const ManagesComponent &) {}
 	void Visitor::Visit_CriticalPath(const CriticalPath &) {}
 	void Visitor::Visit_MonolithicImplementation(const MonolithicImplementation &) {}
 	void Visitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer &) {}
@@ -22261,19 +22280,6 @@ namespace PICML {
 	void Visitor::Visit_ComponentProperty(const ComponentProperty &) {}
 	void Visitor::Visit_ComponentPropertyDescription(const ComponentPropertyDescription &) {}
 	void Visitor::Visit_ComponentTypes(const ComponentTypes &) {}
-	void Visitor::Visit_LookupKey(const LookupKey &) {}
-	void Visitor::Visit_MirrorPort(const MirrorPort &) {}
-	void Visitor::Visit_ComponentInherits(const ComponentInherits &) {}
-	void Visitor::Visit_PortType(const PortType &) {}
-	void Visitor::Visit_ExtendedPort(const ExtendedPort &) {}
-	void Visitor::Visit_ComponentFactory(const ComponentFactory &) {}
-	void Visitor::Visit_ManagesComponent(const ManagesComponent &) {}
-	void Visitor::Visit_ComponentRef(const ComponentRef &) {}
-	void Visitor::Visit_InEventPort(const InEventPort &) {}
-	void Visitor::Visit_RequiredRequestPort(const RequiredRequestPort &) {}
-	void Visitor::Visit_ProvidedRequestPort(const ProvidedRequestPort &) {}
-	void Visitor::Visit_OutEventPort(const OutEventPort &) {}
-	void Visitor::Visit_Component(const Component &) {}
 	void Visitor::Visit_ConnectorType(const ConnectorType &) {}
 	void Visitor::Visit_ConnectorImplements(const ConnectorImplements &) {}
 	void Visitor::Visit_ConnectorImplementation(const ConnectorImplementation &) {}
@@ -22296,13 +22302,6 @@ namespace PICML {
 	void Visitor::Visit_BranchState(const BranchState &) {}
 	void Visitor::Visit_State(const State &) {}
 	void Visitor::Visit_Transition(const Transition &) {}
-	void Visitor::Visit_QueryInput(const QueryInput &) {}
-	void Visitor::Visit_MultiInput(const MultiInput &) {}
-	void Visitor::Visit_Input(const Input &) {}
-	void Visitor::Visit_WorkerType(const WorkerType &) {}
-	void Visitor::Visit_ApplicationTask(const ApplicationTask &) {}
-	void Visitor::Visit_PeriodicEvent(const PeriodicEvent &) {}
-	void Visitor::Visit_Environment(const Environment &) {}
 	void Visitor::Visit_TargetRequiredRequestPort(const TargetRequiredRequestPort &) {}
 	void Visitor::Visit_CallAction(const CallAction &) {}
 	void Visitor::Visit_ActionType(const ActionType &) {}
@@ -22315,12 +22314,13 @@ namespace PICML {
 	void Visitor::Visit_OutputAction(const OutputAction &) {}
 	void Visitor::Visit_Action(const Action &) {}
 	void Visitor::Visit_Variable(const Variable &) {}
-	void Visitor::Visit_Operation(const Operation &) {}
-	void Visitor::Visit_WorkerPackage(const WorkerPackage &) {}
-	void Visitor::Visit_WorkerFile(const WorkerFile &) {}
-	void Visitor::Visit_WorkerLibraries(const WorkerLibraries &) {}
-	void Visitor::Visit_Worker(const Worker &) {}
-	void Visitor::Visit_WorkerLibrary(const WorkerLibrary &) {}
+	void Visitor::Visit_QueryInput(const QueryInput &) {}
+	void Visitor::Visit_MultiInput(const MultiInput &) {}
+	void Visitor::Visit_Input(const Input &) {}
+	void Visitor::Visit_WorkerType(const WorkerType &) {}
+	void Visitor::Visit_ApplicationTask(const ApplicationTask &) {}
+	void Visitor::Visit_PeriodicEvent(const PeriodicEvent &) {}
+	void Visitor::Visit_Environment(const Environment &) {}
 	void Visitor::Visit_RootFolder(const RootFolder &) {}
 	void Visitor::Visit_Object(const ::Udm::Object &) {}
 

@@ -17,7 +17,7 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "game/mga/RootFolder.h"
+#include "PICML/RootFolder.h"
 #include "game/mga/Folder.h"
 
 namespace PICML
@@ -71,7 +71,7 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ::GAME::Mga::RootFolder parent_RootFolder (void);
+    RootFolder parent_RootFolder (void);
     ///@}
 
     size_t get_ComponentFactoryImplementationContainers (std::vector <ComponentFactoryImplementationContainer> & items) const;

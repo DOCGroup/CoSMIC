@@ -86,23 +86,23 @@ namespace PICML
 
     bool has_PackageInterface (void) const;
     PackageInterface get_PackageInterface (void) const;
-    size_t get_PackageConfigPropertys (std::vector <PackageConfigProperty> & items) const;
-    ::GAME::Mga::Iterator <PackageConfigProperty> get_PackageConfigPropertys (void) const;
-
-    size_t get_PackageInfoPropertys (std::vector <PackageInfoProperty> & items) const;
-    ::GAME::Mga::Iterator <PackageInfoProperty> get_PackageInfoPropertys (void) const;
-
-    size_t get_Implementations (std::vector <Implementation> & items) const;
-    ::GAME::Mga::Iterator <Implementation> get_Implementations (void) const;
-
-    size_t get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const;
-    ::GAME::Mga::Iterator <ComponentImplementationReference> get_ComponentImplementationReferences (void) const;
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
 
     size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
-    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
-    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
+    size_t get_PackageConfigPropertys (std::vector <PackageConfigProperty> & items) const;
+    ::GAME::Mga::Collection_T <PackageConfigProperty> get_PackageConfigPropertys (void) const;
+
+    size_t get_Implementations (std::vector <Implementation> & items) const;
+    ::GAME::Mga::Collection_T <Implementation> get_Implementations (void) const;
+
+    size_t get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const;
+    ::GAME::Mga::Collection_T <ComponentImplementationReference> get_ComponentImplementationReferences (void) const;
+
+    size_t get_PackageInfoPropertys (std::vector <PackageInfoProperty> & items) const;
+    ::GAME::Mga::Collection_T <PackageInfoProperty> get_PackageInfoPropertys (void) const;
 
     ///@}
   };

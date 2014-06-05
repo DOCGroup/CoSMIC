@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h"
 #include "DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.h"
+#include "DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -45,26 +45,21 @@ namespace DQML
   //
   void DurabilityServiceQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_DurabilityServiceQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_DurabilityServiceQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
   }
 
   //
-  // dst_topic_dursvc_Connection
+  // parent_TopicQos
   //
-  size_t DurabilityServiceQosPolicy_Impl::dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
+  TopicQos DurabilityServiceQosPolicy_Impl::parent_TopicQos (void)
   {
-    return this->in_connections <topic_dursvc_Connection> (items);
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -73,6 +68,14 @@ namespace DQML
   size_t DurabilityServiceQosPolicy_Impl::dst_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const
   {
     return this->in_connections <dw_dursvc_Connection> (items);
+  }
+
+  //
+  // dst_topic_dursvc_Connection
+  //
+  size_t DurabilityServiceQosPolicy_Impl::dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
+  {
+    return this->in_connections <topic_dursvc_Connection> (items);
   }
 }
 

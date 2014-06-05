@@ -17,7 +17,7 @@
 #include "DQML/DQML_fwd.h"
 #include "DQML/DQML_export.h"
 
-#include "game/mga/RootFolder.h"
+#include "DQML/RootFolder.h"
 #include "game/mga/Folder.h"
 
 namespace DQML
@@ -67,9 +67,16 @@ namespace DQML
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
 
-    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    RootFolder parent_RootFolder (void);
+    ///@}
 
     size_t get_TopicQosFolders (std::vector <TopicQosFolder> & items) const;
+
+    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
   };
 }
 

@@ -88,26 +88,26 @@ namespace PICML
 
     bool has_PathReference (void) const;
     PathReference get_PathReference (void) const;
-    size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
-    ::GAME::Mga::Iterator <ImplementationDependsOn> get_ImplementationDependsOns (void) const;
+    size_t get_Capabilitys (std::vector <Capability> & items) const;
+    ::GAME::Mga::Collection_T <Capability> get_Capabilitys (void) const;
 
     size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
-    ::GAME::Mga::Iterator <ComponentAssembly> get_ComponentAssemblys (void) const;
+    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
 
     size_t get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const;
-    ::GAME::Mga::Iterator <MonolithicImplementation> get_MonolithicImplementations (void) const;
-
-    size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
-    ::GAME::Mga::Iterator <ImplementationDependency> get_ImplementationDependencys (void) const;
-
-    size_t get_Capabilitys (std::vector <Capability> & items) const;
-    ::GAME::Mga::Iterator <Capability> get_Capabilitys (void) const;
+    ::GAME::Mga::Collection_T <MonolithicImplementation> get_MonolithicImplementations (void) const;
 
     size_t get_ImplementationCapabilitys (std::vector <ImplementationCapability> & items) const;
-    ::GAME::Mga::Iterator <ImplementationCapability> get_ImplementationCapabilitys (void) const;
+    ::GAME::Mga::Collection_T <ImplementationCapability> get_ImplementationCapabilitys (void) const;
+
+    size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
+    ::GAME::Mga::Collection_T <ImplementationDependency> get_ImplementationDependencys (void) const;
+
+    size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
+    ::GAME::Mga::Collection_T <ImplementationDependsOn> get_ImplementationDependsOns (void) const;
 
     size_t get_CriticalPaths (std::vector <CriticalPath> & items) const;
-    ::GAME::Mga::Iterator <CriticalPath> get_CriticalPaths (void) const;
+    ::GAME::Mga::Collection_T <CriticalPath> get_CriticalPaths (void) const;
 
     ///@}
   };

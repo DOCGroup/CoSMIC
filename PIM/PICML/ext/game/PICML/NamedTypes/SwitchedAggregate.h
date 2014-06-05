@@ -83,17 +83,17 @@ namespace PICML
 
     bool has_Discriminator (void) const;
     Discriminator get_Discriminator (void) const;
-    size_t get_LabelConnections (std::vector <LabelConnection> & items) const;
-    ::GAME::Mga::Iterator <LabelConnection> get_LabelConnections (void) const;
-
-    size_t get_Labels (std::vector <Label> & items) const;
-    ::GAME::Mga::Iterator <Label> get_Labels (void) const;
-
     size_t get_Members (std::vector <Member> & items) const;
-    ::GAME::Mga::Iterator <Member> get_Members (void) const;
+    ::GAME::Mga::Collection_T <Member> get_Members (void) const;
 
     size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
-    ::GAME::Mga::Iterator <ArrayMember> get_ArrayMembers (void) const;
+    ::GAME::Mga::Collection_T <ArrayMember> get_ArrayMembers (void) const;
+
+    size_t get_Labels (std::vector <Label> & items) const;
+    ::GAME::Mga::Collection_T <Label> get_Labels (void) const;
+
+    size_t get_LabelConnections (std::vector <LabelConnection> & items) const;
+    ::GAME::Mga::Collection_T <LabelConnection> get_LabelConnections (void) const;
 
     ///@}
   };

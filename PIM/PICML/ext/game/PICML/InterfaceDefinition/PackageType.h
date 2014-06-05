@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static PackageType _create (const TemplatePackageAlias_in parent);
     static PackageType _create (const TemplatePackageInstance_in parent);
+    static PackageType _create (const TemplatePackageAlias_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +71,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    TemplatePackageAlias parent_TemplatePackageAlias (void);
     TemplatePackageInstance parent_TemplatePackageInstance (void);
+    TemplatePackageAlias parent_TemplatePackageAlias (void);
     ///@}
 
     /**

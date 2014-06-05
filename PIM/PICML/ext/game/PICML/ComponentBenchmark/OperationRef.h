@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src WorkLoadOperationConnection connection.
-    size_t src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
+    /// Get the src MetricConnection connection.
+    size_t src_MetricConnection (std::vector <MetricConnection> & items) const;
 
     /// Get the src TimerConnection connection.
     size_t src_TimerConnection (std::vector <TimerConnection> & items) const;
@@ -87,8 +87,8 @@ namespace PICML
     /// Get the src ComponentOperation connection.
     size_t src_ComponentOperation (std::vector <ComponentOperation> & items) const;
 
-    /// Get the src MetricConnection connection.
-    size_t src_MetricConnection (std::vector <MetricConnection> & items) const;
+    /// Get the src WorkLoadOperationConnection connection.
+    size_t src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
     ///@}
 
     /**

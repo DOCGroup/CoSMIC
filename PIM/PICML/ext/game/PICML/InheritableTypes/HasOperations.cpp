@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/NamedTypes/NoInheritable.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/Alias.h"
+#include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/Package.h"
 
@@ -28,22 +28,6 @@ namespace PICML
   // metaname
   //
   const std::string HasOperations_Impl::metaname ("HasOperations");
-
-  //
-  // get_Exceptions
-  //
-  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Exceptions
-  //
-  ::GAME::Mga::Iterator <Exception> HasOperations_Impl::get_Exceptions (void) const
-  {
-    return this->children <Exception> ();
-  }
 
   //
   // get_PortTypes
@@ -56,7 +40,7 @@ namespace PICML
   //
   // get_PortTypes
   //
-  ::GAME::Mga::Iterator <PortType> HasOperations_Impl::get_PortTypes (void) const
+  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
   {
     return this->children <PortType> ();
   }
@@ -72,7 +56,7 @@ namespace PICML
   //
   // get_Aggregates
   //
-  ::GAME::Mga::Iterator <Aggregate> HasOperations_Impl::get_Aggregates (void) const
+  ::GAME::Mga::Collection_T <Aggregate> HasOperations_Impl::get_Aggregates (void) const
   {
     return this->children <Aggregate> ();
   }
@@ -88,25 +72,9 @@ namespace PICML
   //
   // get_Collections
   //
-  ::GAME::Mga::Iterator <Collection> HasOperations_Impl::get_Collections (void) const
+  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
   {
     return this->children <Collection> ();
-  }
-
-  //
-  // get_Enums
-  //
-  size_t HasOperations_Impl::get_Enums (std::vector <Enum> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Enums
-  //
-  ::GAME::Mga::Iterator <Enum> HasOperations_Impl::get_Enums (void) const
-  {
-    return this->children <Enum> ();
   }
 
   //
@@ -120,9 +88,25 @@ namespace PICML
   //
   // get_Aliass
   //
-  ::GAME::Mga::Iterator <Alias> HasOperations_Impl::get_Aliass (void) const
+  ::GAME::Mga::Collection_T <Alias> HasOperations_Impl::get_Aliass (void) const
   {
     return this->children <Alias> ();
+  }
+
+  //
+  // get_Enums
+  //
+  size_t HasOperations_Impl::get_Enums (std::vector <Enum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Enums
+  //
+  ::GAME::Mga::Collection_T <Enum> HasOperations_Impl::get_Enums (void) const
+  {
+    return this->children <Enum> ();
   }
 
   //
@@ -136,25 +120,9 @@ namespace PICML
   //
   // get_SwitchedAggregates
   //
-  ::GAME::Mga::Iterator <SwitchedAggregate> HasOperations_Impl::get_SwitchedAggregates (void) const
+  ::GAME::Mga::Collection_T <SwitchedAggregate> HasOperations_Impl::get_SwitchedAggregates (void) const
   {
     return this->children <SwitchedAggregate> ();
-  }
-
-  //
-  // get_Constants
-  //
-  size_t HasOperations_Impl::get_Constants (std::vector <Constant> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Constants
-  //
-  ::GAME::Mga::Iterator <Constant> HasOperations_Impl::get_Constants (void) const
-  {
-    return this->children <Constant> ();
   }
 
   //
@@ -168,7 +136,7 @@ namespace PICML
   //
   // get_OnewayOperations
   //
-  ::GAME::Mga::Iterator <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
+  ::GAME::Mga::Collection_T <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
   {
     return this->children <OnewayOperation> ();
   }
@@ -184,9 +152,41 @@ namespace PICML
   //
   // get_TwowayOperations
   //
-  ::GAME::Mga::Iterator <TwowayOperation> HasOperations_Impl::get_TwowayOperations (void) const
+  ::GAME::Mga::Collection_T <TwowayOperation> HasOperations_Impl::get_TwowayOperations (void) const
   {
     return this->children <TwowayOperation> ();
+  }
+
+  //
+  // get_Exceptions
+  //
+  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Exceptions
+  //
+  ::GAME::Mga::Collection_T <Exception> HasOperations_Impl::get_Exceptions (void) const
+  {
+    return this->children <Exception> ();
+  }
+
+  //
+  // get_Constants
+  //
+  size_t HasOperations_Impl::get_Constants (std::vector <Constant> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Constants
+  //
+  ::GAME::Mga::Collection_T <Constant> HasOperations_Impl::get_Constants (void) const
+  {
+    return this->children <Constant> ();
   }
 }
 

@@ -80,7 +80,7 @@ namespace PICML
      */
     ///@{
     size_t get_ComponentFactoryInstances (std::vector <ComponentFactoryInstance> & items) const;
-    ::GAME::Mga::Iterator <ComponentFactoryInstance> get_ComponentFactoryInstances (void) const;
+    ::GAME::Mga::Collection_T <ComponentFactoryInstance> get_ComponentFactoryInstances (void) const;
 
     ///@}
   };

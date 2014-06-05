@@ -86,25 +86,25 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst LoopTransition connection.
-    size_t dst_LoopTransition (std::vector <LoopTransition> & items) const;
+    /// Get the dst Transition connection.
+    size_t dst_Transition (std::vector <Transition> & items) const;
 
     /// Get the dst BranchTransition connection.
     size_t dst_BranchTransition (std::vector <BranchTransition> & items) const;
 
-    /// Get the dst Transition connection.
-    size_t dst_Transition (std::vector <Transition> & items) const;
+    /// Get the dst LoopTransition connection.
+    size_t dst_LoopTransition (std::vector <LoopTransition> & items) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Iterator <ComplexProperty> get_ComplexPropertys (void) const;
-
     size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
-    ::GAME::Mga::Iterator <SimpleProperty> get_SimplePropertys (void) const;
+    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     ///@}
   };

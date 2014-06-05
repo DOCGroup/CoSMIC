@@ -69,6 +69,12 @@ namespace DQML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    ///@}
+
+    /**
      * @name Source Connection Point Methods
      */
     ///@{
@@ -82,11 +88,11 @@ namespace DQML
     /// Get the src sub_groupdata_Connection connection.
     size_t src_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const;
 
-    /// Get the src sub_part_Connection connection.
-    size_t src_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
-
     /// Get the src sub_entityfactory_Connection connection.
     size_t src_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
+
+    /// Get the src sub_part_Connection connection.
+    size_t src_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
     ///@}
 
     /**

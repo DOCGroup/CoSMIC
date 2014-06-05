@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -63,7 +63,7 @@ namespace PICML
   //
   // get_ComponentFactoryInstances
   //
-  ::GAME::Mga::Iterator <ComponentFactoryInstance> ComponentFactoryImplementationContainer_Impl::get_ComponentFactoryInstances (void) const
+  ::GAME::Mga::Collection_T <ComponentFactoryInstance> ComponentFactoryImplementationContainer_Impl::get_ComponentFactoryInstances (void) const
   {
     return this->children <ComponentFactoryInstance> ();
   }

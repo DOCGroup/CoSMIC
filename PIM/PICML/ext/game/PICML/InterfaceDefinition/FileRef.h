@@ -51,9 +51,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static FileRef _create (const ServantProject_in parent);
-    static FileRef _create (const File_in parent);
     static FileRef _create (const StubProject_in parent);
+    static FileRef _create (const File_in parent);
+    static FileRef _create (const ServantProject_in parent);
     ///@}
 
     // Default constructor.
@@ -72,9 +72,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ServantProject parent_ServantProject (void);
-    File parent_File (void);
     StubProject parent_StubProject (void);
+    File parent_File (void);
+    ServantProject parent_ServantProject (void);
     ///@}
 
     /**

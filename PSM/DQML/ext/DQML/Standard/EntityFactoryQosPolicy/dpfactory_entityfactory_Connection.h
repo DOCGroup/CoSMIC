@@ -66,6 +66,12 @@ namespace DQML
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
 
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DDSQoS parent_DDSQoS (void);
+    ///@}
     DomainParticipantFactory src_DomainParticipantFactory (void) const;
     EntityFactoryQosPolicy dst_EntityFactoryQosPolicy (void) const;
   };

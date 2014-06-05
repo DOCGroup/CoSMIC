@@ -8,19 +8,19 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InheritableTypes/GetException.h"
+#include "PICML/InheritableTypes/AttributeMember.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/Object.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/Event.h"
-#include "PICML/InheritableTypes/GetException.h"
-#include "PICML/InheritableTypes/AttributeMember.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -138,7 +138,7 @@ namespace PICML
   //
   // get_GetExceptions
   //
-  ::GAME::Mga::Iterator <GetException> ReadonlyAttribute_Impl::get_GetExceptions (void) const
+  ::GAME::Mga::Collection_T <GetException> ReadonlyAttribute_Impl::get_GetExceptions (void) const
   {
     return this->children <GetException> ();
   }

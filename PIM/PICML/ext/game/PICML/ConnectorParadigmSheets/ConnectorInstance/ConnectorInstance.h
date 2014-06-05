@@ -119,7 +119,7 @@ namespace PICML
     bool has_ConnectorImplementationType (void) const;
     ConnectorImplementationType get_ConnectorImplementationType (void) const;
     size_t get_AttributeInstances (std::vector <AttributeInstance> & items) const;
-    ::GAME::Mga::Iterator <AttributeInstance> get_AttributeInstances (void) const;
+    ::GAME::Mga::Collection_T <AttributeInstance> get_AttributeInstances (void) const;
 
     ///@}
   };

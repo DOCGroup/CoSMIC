@@ -54,8 +54,8 @@ namespace PICML
      */
     ///@{
     static ComponentRef _create (const Path_in parent);
-    static ComponentRef _create (const ComponentImplementationContainer_in parent);
     static ComponentRef _create (const ComponentContainer_in parent);
+    static ComponentRef _create (const ComponentImplementationContainer_in parent);
     static ComponentRef _create (const File_in parent);
     static ComponentRef _create (const Package_in parent);
     static ComponentRef _create (const PackageContainer_in parent);
@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     Path parent_Path (void);
-    ComponentImplementationContainer parent_ComponentImplementationContainer (void);
     ComponentContainer parent_ComponentContainer (void);
+    ComponentImplementationContainer parent_ComponentImplementationContainer (void);
     File parent_File (void);
     Package parent_Package (void);
     PackageContainer parent_PackageContainer (void);
@@ -90,14 +90,14 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ComponentInfoProperty connection.
-    size_t src_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
+    /// Get the src ComponentProperty connection.
+    size_t src_ComponentProperty (std::vector <ComponentProperty> & items) const;
 
     /// Get the src ComponentConfigProperty connection.
     size_t src_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
 
-    /// Get the src ComponentProperty connection.
-    size_t src_ComponentProperty (std::vector <ComponentProperty> & items) const;
+    /// Get the src ComponentInfoProperty connection.
+    size_t src_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
     ///@}
 
     /**

@@ -46,9 +46,9 @@ namespace PICML
   //
   // parent_RootFolder (void)
   //
-  ::GAME::Mga::RootFolder Targets_Impl::parent_RootFolder (void)
+  RootFolder Targets_Impl::parent_RootFolder (void)
   {
-    return ::GAME::Mga::RootFolder::_narrow (this->parent ());
+    return RootFolder::_narrow (this->parent ());
   }
 
   //

@@ -66,7 +66,7 @@ namespace PICML
      */
     ///@{
     size_t get_ExceptionRefs (std::vector <ExceptionRef> & items) const;
-    ::GAME::Mga::Iterator <ExceptionRef> get_ExceptionRefs (void) const;
+    ::GAME::Mga::Collection_T <ExceptionRef> get_ExceptionRefs (void) const;
 
     ///@}
   };

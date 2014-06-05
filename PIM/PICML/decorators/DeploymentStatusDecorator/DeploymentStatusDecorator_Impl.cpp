@@ -46,7 +46,7 @@ initialize (const GAME::Mga::Project & project,
     return -1;
 
   // Get the elements deployment information.
-  GAME::Mga::Iterator <GAME::Mga::Set> sets = fco->in_sets ();
+  GAME::Mga::Collection_T <GAME::Mga::Set> sets = fco->in_sets ();
 
   if (sets.count ())
   {

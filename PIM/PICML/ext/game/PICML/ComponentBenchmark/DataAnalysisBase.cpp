@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
-#include "PICML/ComponentBenchmark/Throughput.h"
 #include "PICML/ComponentBenchmark/Latency.h"
+#include "PICML/ComponentBenchmark/Throughput.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML

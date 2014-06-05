@@ -11,7 +11,6 @@ project (PICML_DeploymentStatusDecorator) : game_graphics, game_mga_decorator, c
     DeploymentStatusDecorator_Module.cpp
     DeploymentStatusDecorator.idl
 
-    DeploymentStatusDecorator.rc
   }
 
   Header_Files {
@@ -20,6 +19,7 @@ project (PICML_DeploymentStatusDecorator) : game_graphics, game_mga_decorator, c
 
   Resource_Files {
     question.png
+    DeploymentStatusDecorator.rc
   }
 
   specific (wix) {

@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/PathDiagrams.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/PathProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -57,22 +57,6 @@ namespace PICML
   }
 
   //
-  // get_ComplexPropertys
-  //
-  size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Iterator <ComplexProperty> Paths_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
   // get_SimplePropertys
   //
   size_t Paths_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
@@ -83,9 +67,25 @@ namespace PICML
   //
   // get_SimplePropertys
   //
-  ::GAME::Mga::Iterator <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> Paths_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 
   //
@@ -99,7 +99,7 @@ namespace PICML
   //
   // get_Paths
   //
-  ::GAME::Mga::Iterator <Path> Paths_Impl::get_Paths (void) const
+  ::GAME::Mga::Collection_T <Path> Paths_Impl::get_Paths (void) const
   {
     return this->children <Path> ();
   }
@@ -115,7 +115,7 @@ namespace PICML
   //
   // get_PathPropertys
   //
-  ::GAME::Mga::Iterator <PathProperty> Paths_Impl::get_PathPropertys (void) const
+  ::GAME::Mga::Collection_T <PathProperty> Paths_Impl::get_PathPropertys (void) const
   {
     return this->children <PathProperty> ();
   }

@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static TransportPriorityQosPolicy _create (const TopicQos_in parent);
     static TransportPriorityQosPolicy _create (const DataWriterQos_in parent);
+    static TransportPriorityQosPolicy _create (const TopicQos_in parent);
     static TransportPriorityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -69,6 +69,14 @@ namespace DQML
 
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
+    ///@}
 
     /**
      * @name Attribute Methods

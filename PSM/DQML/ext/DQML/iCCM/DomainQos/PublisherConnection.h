@@ -66,6 +66,12 @@ namespace DQML
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
 
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    Participant parent_Participant (void);
+    ///@}
     DataWriterQos src_DataWriterQos (void) const;
     PublisherQos dst_PublisherQos (void) const;
   };

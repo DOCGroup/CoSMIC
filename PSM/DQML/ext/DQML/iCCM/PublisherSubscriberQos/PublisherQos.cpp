@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
+#include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -39,18 +39,21 @@ namespace DQML
   //
   void PublisherQos_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_PublisherQos (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_PublisherQos (this);
+    else
       v->visit_Model (this);
-    }
+  }
+
+  //
+  // parent_Participant
+  //
+  Participant PublisherQos_Impl::parent_Participant (void)
+  {
+    return Participant::_narrow (this->parent ());
   }
 
   //
@@ -59,22 +62,6 @@ namespace DQML
   size_t PublisherQos_Impl::dst_PublisherConnection (std::vector <PublisherConnection> & items) const
   {
     return this->in_connections <PublisherConnection> (items);
-  }
-
-  //
-  // has_PresentationQosPolicy
-  //
-  bool PublisherQos_Impl::has_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_PresentationQosPolicy
-  //
-  PresentationQosPolicy PublisherQos_Impl::get_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().first ();
   }
 
   //
@@ -94,6 +81,22 @@ namespace DQML
   }
 
   //
+  // has_EntityFactoryQosPolicy
+  //
+  bool PublisherQos_Impl::has_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_EntityFactoryQosPolicy
+  //
+  EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().first ();
+  }
+
+  //
   // has_PartitionQosPolicy
   //
   bool PublisherQos_Impl::has_PartitionQosPolicy (void) const
@@ -110,19 +113,19 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
+  // has_PresentationQosPolicy
   //
-  bool PublisherQos_Impl::has_EntityFactoryQosPolicy (void) const
+  bool PublisherQos_Impl::has_PresentationQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+    return this->children <PresentationQosPolicy> ().count () == 1;
   }
 
   //
-  // get_EntityFactoryQosPolicy
+  // get_PresentationQosPolicy
   //
-  EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
+  PresentationQosPolicy PublisherQos_Impl::get_PresentationQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().first ();
+    return this->children <PresentationQosPolicy> ().first ();
   }
 }
 

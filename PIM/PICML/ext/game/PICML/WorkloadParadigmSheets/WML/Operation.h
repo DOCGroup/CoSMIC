@@ -81,13 +81,13 @@ namespace PICML
     bool has_ReturnType (void) const;
     ReturnType get_ReturnType (void) const;
     size_t get_InParameters (std::vector <InParameter> & items) const;
-    ::GAME::Mga::Iterator <InParameter> get_InParameters (void) const;
-
-    size_t get_OutParameters (std::vector <OutParameter> & items) const;
-    ::GAME::Mga::Iterator <OutParameter> get_OutParameters (void) const;
+    ::GAME::Mga::Collection_T <InParameter> get_InParameters (void) const;
 
     size_t get_InoutParameters (std::vector <InoutParameter> & items) const;
-    ::GAME::Mga::Iterator <InoutParameter> get_InoutParameters (void) const;
+    ::GAME::Mga::Collection_T <InoutParameter> get_InoutParameters (void) const;
+
+    size_t get_OutParameters (std::vector <OutParameter> & items) const;
+    ::GAME::Mga::Collection_T <OutParameter> get_OutParameters (void) const;
 
     ///@}
   };

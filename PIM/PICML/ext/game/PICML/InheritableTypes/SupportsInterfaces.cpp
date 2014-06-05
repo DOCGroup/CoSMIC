@@ -28,7 +28,7 @@ namespace PICML
   //
   // get_Supportss
   //
-  ::GAME::Mga::Iterator <Supports> SupportsInterfaces_Impl::get_Supportss (void) const
+  ::GAME::Mga::Collection_T <Supports> SupportsInterfaces_Impl::get_Supportss (void) const
   {
     return this->children <Supports> ();
   }

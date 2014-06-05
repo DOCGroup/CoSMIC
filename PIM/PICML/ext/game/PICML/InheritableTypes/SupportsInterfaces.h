@@ -64,7 +64,7 @@ namespace PICML
      */
     ///@{
     size_t get_Supportss (std::vector <Supports> & items) const;
-    ::GAME::Mga::Iterator <Supports> get_Supportss (void) const;
+    ::GAME::Mga::Collection_T <Supports> get_Supportss (void) const;
 
     ///@}
   };

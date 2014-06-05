@@ -73,7 +73,7 @@ namespace PICML
   //
   // get_EnumValues
   //
-  ::GAME::Mga::Iterator <EnumValue> Enum_Impl::get_EnumValues (void) const
+  ::GAME::Mga::Collection_T <EnumValue> Enum_Impl::get_EnumValues (void) const
   {
     return this->children <EnumValue> ();
   }

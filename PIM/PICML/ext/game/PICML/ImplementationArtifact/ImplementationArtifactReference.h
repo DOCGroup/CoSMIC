@@ -52,9 +52,9 @@ namespace PICML
      */
     ///@{
     static ImplementationArtifactReference _create (const ImplementationContainer_in parent);
-    static ImplementationArtifactReference _create (const ExecutorProject_in parent);
-    static ImplementationArtifactReference _create (const ServantProject_in parent);
     static ImplementationArtifactReference _create (const StubProject_in parent);
+    static ImplementationArtifactReference _create (const ServantProject_in parent);
+    static ImplementationArtifactReference _create (const ExecutorProject_in parent);
     static ImplementationArtifactReference _create (const ArtifactContainer_in parent);
     ///@}
 
@@ -75,9 +75,9 @@ namespace PICML
      */
     ///@{
     ImplementationContainer parent_ImplementationContainer (void);
-    ExecutorProject parent_ExecutorProject (void);
-    ServantProject parent_ServantProject (void);
     StubProject parent_StubProject (void);
+    ServantProject parent_ServantProject (void);
+    ExecutorProject parent_ExecutorProject (void);
     ArtifactContainer parent_ArtifactContainer (void);
     ///@}
 

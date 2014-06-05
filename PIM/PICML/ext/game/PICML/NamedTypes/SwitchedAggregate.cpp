@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/LabelConnection.h"
-#include "PICML/NamedTypes/Label.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/NamedTypes/Label.h"
+#include "PICML/NamedTypes/LabelConnection.h"
 #include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -79,39 +79,7 @@ namespace PICML
   //
   Discriminator SwitchedAggregate_Impl::get_Discriminator (void) const
   {
-    return this->children <Discriminator> ().item ();
-  }
-
-  //
-  // get_LabelConnections
-  //
-  size_t SwitchedAggregate_Impl::get_LabelConnections (std::vector <LabelConnection> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_LabelConnections
-  //
-  ::GAME::Mga::Iterator <LabelConnection> SwitchedAggregate_Impl::get_LabelConnections (void) const
-  {
-    return this->children <LabelConnection> ();
-  }
-
-  //
-  // get_Labels
-  //
-  size_t SwitchedAggregate_Impl::get_Labels (std::vector <Label> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Labels
-  //
-  ::GAME::Mga::Iterator <Label> SwitchedAggregate_Impl::get_Labels (void) const
-  {
-    return this->children <Label> ();
+    return this->children <Discriminator> ().first ();
   }
 
   //
@@ -125,7 +93,7 @@ namespace PICML
   //
   // get_Members
   //
-  ::GAME::Mga::Iterator <Member> SwitchedAggregate_Impl::get_Members (void) const
+  ::GAME::Mga::Collection_T <Member> SwitchedAggregate_Impl::get_Members (void) const
   {
     return this->children <Member> ();
   }
@@ -141,9 +109,41 @@ namespace PICML
   //
   // get_ArrayMembers
   //
-  ::GAME::Mga::Iterator <ArrayMember> SwitchedAggregate_Impl::get_ArrayMembers (void) const
+  ::GAME::Mga::Collection_T <ArrayMember> SwitchedAggregate_Impl::get_ArrayMembers (void) const
   {
     return this->children <ArrayMember> ();
+  }
+
+  //
+  // get_Labels
+  //
+  size_t SwitchedAggregate_Impl::get_Labels (std::vector <Label> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Labels
+  //
+  ::GAME::Mga::Collection_T <Label> SwitchedAggregate_Impl::get_Labels (void) const
+  {
+    return this->children <Label> ();
+  }
+
+  //
+  // get_LabelConnections
+  //
+  size_t SwitchedAggregate_Impl::get_LabelConnections (std::vector <LabelConnection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_LabelConnections
+  //
+  ::GAME::Mga::Collection_T <LabelConnection> SwitchedAggregate_Impl::get_LabelConnections (void) const
+  {
+    return this->children <LabelConnection> ();
   }
 }
 

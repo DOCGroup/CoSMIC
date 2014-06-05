@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
-#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
+#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -63,22 +63,6 @@ namespace PICML
   }
 
   //
-  // has_ComponentImplementationArtifact
-  //
-  bool ExecutorProject_Impl::has_ComponentImplementationArtifact (void) const
-  {
-    return this->children <ComponentImplementationArtifact> ().count () == 1;
-  }
-
-  //
-  // get_ComponentImplementationArtifact
-  //
-  ComponentImplementationArtifact ExecutorProject_Impl::get_ComponentImplementationArtifact (void) const
-  {
-    return this->children <ComponentImplementationArtifact> ().first ();
-  }
-
-  //
   // has_ComponentServantArtifact
   //
   bool ExecutorProject_Impl::has_ComponentServantArtifact (void) const
@@ -92,6 +76,22 @@ namespace PICML
   ComponentServantArtifact ExecutorProject_Impl::get_ComponentServantArtifact (void) const
   {
     return this->children <ComponentServantArtifact> ().first ();
+  }
+
+  //
+  // has_ComponentImplementationArtifact
+  //
+  bool ExecutorProject_Impl::has_ComponentImplementationArtifact (void) const
+  {
+    return this->children <ComponentImplementationArtifact> ().count () == 1;
+  }
+
+  //
+  // get_ComponentImplementationArtifact
+  //
+  ComponentImplementationArtifact ExecutorProject_Impl::get_ComponentImplementationArtifact (void) const
+  {
+    return this->children <ComponentImplementationArtifact> ().first ();
   }
 }
 

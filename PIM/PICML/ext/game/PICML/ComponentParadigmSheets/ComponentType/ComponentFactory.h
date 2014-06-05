@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
+#include "PICML/InheritableTypes/HasOperations.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export ComponentFactory_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual HasOperations_Impl,
-    public virtual SupportsInterfaces_Impl
+    public virtual SupportsInterfaces_Impl,
+    public virtual HasOperations_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -93,11 +93,11 @@ namespace PICML
 
     bool has_LookupKey (void) const;
     LookupKey get_LookupKey (void) const;
-    size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
-    ::GAME::Mga::Iterator <LookupOperation> get_LookupOperations (void) const;
-
     size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
-    ::GAME::Mga::Iterator <FactoryOperation> get_FactoryOperations (void) const;
+    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
+
+    size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
+    ::GAME::Mga::Collection_T <LookupOperation> get_LookupOperations (void) const;
 
     ///@}
   };

@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
-#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
 #include "PICML/ComponentPackage/PackageConfigProperty.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/ComponentPackage/Implementation.h"
-#include "PICML/ComponentPackage/PackageInterface.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentPackage/PackageInterface.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -38,17 +38,17 @@ namespace PICML
   }
 
   //
-  // _create (const PackageConfigurationContainer_in)
+  // _create (const PackageContainer_in)
   //
-  ComponentPackage ComponentPackage_Impl::_create (const PackageConfigurationContainer_in parent)
+  ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
   {
     return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
 
   //
-  // _create (const PackageContainer_in)
+  // _create (const PackageConfigurationContainer_in)
   //
-  ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
+  ComponentPackage ComponentPackage_Impl::_create (const PackageConfigurationContainer_in parent)
   {
     return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
@@ -76,14 +76,6 @@ namespace PICML
   }
 
   //
-  // parent_PackageConfigurationContainer
-  //
-  PackageConfigurationContainer ComponentPackage_Impl::parent_PackageConfigurationContainer (void)
-  {
-    return PackageConfigurationContainer::_narrow (this->parent ());
-  }
-
-  //
   // parent_PackageContainer
   //
   PackageContainer ComponentPackage_Impl::parent_PackageContainer (void)
@@ -92,19 +84,19 @@ namespace PICML
   }
 
   //
+  // parent_PackageConfigurationContainer
+  //
+  PackageConfigurationContainer ComponentPackage_Impl::parent_PackageConfigurationContainer (void)
+  {
+    return PackageConfigurationContainer::_narrow (this->parent ());
+  }
+
+  //
   // src_PackageConfigProperty
   //
   size_t ComponentPackage_Impl::src_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const
   {
     return this->in_connections <PackageConfigProperty> (items);
-  }
-
-  //
-  // src_PackageInfoProperty
-  //
-  size_t ComponentPackage_Impl::src_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
-  {
-    return this->in_connections <PackageInfoProperty> (items);
   }
 
   //
@@ -121,6 +113,14 @@ namespace PICML
   size_t ComponentPackage_Impl::src_PackageInterface (std::vector <PackageInterface> & items) const
   {
     return this->in_connections <PackageInterface> (items);
+  }
+
+  //
+  // src_PackageInfoProperty
+  //
+  size_t ComponentPackage_Impl::src_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
+  {
+    return this->in_connections <PackageInfoProperty> (items);
   }
 
   //

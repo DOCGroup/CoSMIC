@@ -10,9 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentBuild/ExecutorProject.h"
-#include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -35,9 +35,9 @@ namespace PICML
   }
 
   //
-  // _create (const ExecutorProject_in)
+  // _create (const StubProject_in)
   //
-  ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ExecutorProject_in parent)
+  ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const StubProject_in parent)
   {
     return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }
@@ -51,9 +51,9 @@ namespace PICML
   }
 
   //
-  // _create (const StubProject_in)
+  // _create (const ExecutorProject_in)
   //
-  ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const StubProject_in parent)
+  ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ExecutorProject_in parent)
   {
     return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }

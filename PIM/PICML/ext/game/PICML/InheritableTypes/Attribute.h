@@ -82,7 +82,7 @@ namespace PICML
      */
     ///@{
     size_t get_SetExceptions (std::vector <SetException> & items) const;
-    ::GAME::Mga::Iterator <SetException> get_SetExceptions (void) const;
+    ::GAME::Mga::Collection_T <SetException> get_SetExceptions (void) const;
 
     ///@}
   };

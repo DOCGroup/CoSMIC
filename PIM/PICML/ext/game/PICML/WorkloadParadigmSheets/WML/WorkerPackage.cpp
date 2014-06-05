@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,17 +23,17 @@ namespace PICML
   const std::string WorkerPackage_Impl::metaname ("WorkerPackage");
 
   //
-  // _create (const WorkerPackage_in)
+  // _create (const WorkerFile_in)
   //
-  WorkerPackage WorkerPackage_Impl::_create (const WorkerPackage_in parent)
+  WorkerPackage WorkerPackage_Impl::_create (const WorkerFile_in parent)
   {
     return ::GAME::Mga::create_object < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
   }
 
   //
-  // _create (const WorkerFile_in)
+  // _create (const WorkerPackage_in)
   //
-  WorkerPackage WorkerPackage_Impl::_create (const WorkerFile_in parent)
+  WorkerPackage WorkerPackage_Impl::_create (const WorkerPackage_in parent)
   {
     return ::GAME::Mga::create_object < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
   }
@@ -53,19 +53,19 @@ namespace PICML
   }
 
   //
-  // parent_WorkerPackage
-  //
-  WorkerPackage WorkerPackage_Impl::parent_WorkerPackage (void)
-  {
-    return WorkerPackage::_narrow (this->parent ());
-  }
-
-  //
   // parent_WorkerFile
   //
   WorkerFile WorkerPackage_Impl::parent_WorkerFile (void)
   {
     return WorkerFile::_narrow (this->parent ());
+  }
+
+  //
+  // parent_WorkerPackage
+  //
+  WorkerPackage WorkerPackage_Impl::parent_WorkerPackage (void)
+  {
+    return WorkerPackage::_narrow (this->parent ());
   }
 
   //
@@ -79,7 +79,7 @@ namespace PICML
   //
   // get_WorkerPackages
   //
-  ::GAME::Mga::Iterator <WorkerPackage> WorkerPackage_Impl::get_WorkerPackages (void) const
+  ::GAME::Mga::Collection_T <WorkerPackage> WorkerPackage_Impl::get_WorkerPackages (void) const
   {
     return this->children <WorkerPackage> ();
   }

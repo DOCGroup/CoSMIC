@@ -10,12 +10,12 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/Package.h"
@@ -80,7 +80,7 @@ namespace PICML
   //
   // get_ReadonlyAttributes
   //
-  ::GAME::Mga::Iterator <ReadonlyAttribute> PortType_Impl::get_ReadonlyAttributes (void) const
+  ::GAME::Mga::Collection_T <ReadonlyAttribute> PortType_Impl::get_ReadonlyAttributes (void) const
   {
     return this->children <ReadonlyAttribute> ();
   }
@@ -96,7 +96,7 @@ namespace PICML
   //
   // get_Attributes
   //
-  ::GAME::Mga::Iterator <Attribute> PortType_Impl::get_Attributes (void) const
+  ::GAME::Mga::Collection_T <Attribute> PortType_Impl::get_Attributes (void) const
   {
     return this->children <Attribute> ();
   }
@@ -112,7 +112,7 @@ namespace PICML
   //
   // get_RequiredRequestPorts
   //
-  ::GAME::Mga::Iterator <RequiredRequestPort> PortType_Impl::get_RequiredRequestPorts (void) const
+  ::GAME::Mga::Collection_T <RequiredRequestPort> PortType_Impl::get_RequiredRequestPorts (void) const
   {
     return this->children <RequiredRequestPort> ();
   }
@@ -128,7 +128,7 @@ namespace PICML
   //
   // get_ProvidedRequestPorts
   //
-  ::GAME::Mga::Iterator <ProvidedRequestPort> PortType_Impl::get_ProvidedRequestPorts (void) const
+  ::GAME::Mga::Collection_T <ProvidedRequestPort> PortType_Impl::get_ProvidedRequestPorts (void) const
   {
     return this->children <ProvidedRequestPort> ();
   }

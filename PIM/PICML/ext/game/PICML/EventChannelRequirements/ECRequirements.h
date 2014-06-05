@@ -96,7 +96,7 @@ namespace PICML
     bool has_ECBehavior (void) const;
     ECBehavior get_ECBehavior (void) const;
     size_t get_ECRoles (std::vector <ECRole> & items) const;
-    ::GAME::Mga::Iterator <ECRole> get_ECRoles (void) const;
+    ::GAME::Mga::Collection_T <ECRole> get_ECRoles (void) const;
 
     ///@}
   };

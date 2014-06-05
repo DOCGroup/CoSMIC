@@ -5,24 +5,15 @@
 
 namespace PICML
 {
-  //
-  // Visitor
-  //
   Visitor::Visitor (void)
   {
   }
 
-  //
-  // ~Visitor
-  //
   Visitor::~Visitor (void)
   {
   }
 
-  //
-  // visit_PredefinedTypes
-  //
-  void Visitor::visit_PredefinedTypes (PredefinedTypes_in item)
+  void Visitor::visit_RootFolder (RootFolder_in folder)
   {
   }
 
@@ -30,6 +21,13 @@ namespace PICML
   // visit_FixedIterationBenchmarks
   //
   void Visitor::visit_FixedIterationBenchmarks (FixedIterationBenchmarks_in item)
+  {
+  }
+
+  //
+  // visit_PredefinedTypes
+  //
+  void Visitor::visit_PredefinedTypes (PredefinedTypes_in item)
   {
   }
 
@@ -174,16 +172,16 @@ namespace PICML
   }
 
   //
-  // visit_Byte
+  // visit_Average
   //
-  void Visitor::visit_Byte (Byte_in item)
+  void Visitor::visit_Average (Average_in item)
   {
   }
 
   //
-  // visit_Average
+  // visit_Byte
   //
-  void Visitor::visit_Average (Average_in item)
+  void Visitor::visit_Byte (Byte_in item)
   {
   }
 
@@ -328,16 +326,16 @@ namespace PICML
   }
 
   //
-  // visit_UnsignedLongLongInteger
+  // visit_Char
   //
-  void Visitor::visit_UnsignedLongLongInteger (UnsignedLongLongInteger_in item)
+  void Visitor::visit_Char (Char_in item)
   {
   }
 
   //
-  // visit_Char
+  // visit_UnsignedLongLongInteger
   //
-  void Visitor::visit_Char (Char_in item)
+  void Visitor::visit_UnsignedLongLongInteger (UnsignedLongLongInteger_in item)
   {
   }
 
@@ -377,16 +375,16 @@ namespace PICML
   }
 
   //
-  // visit_MonolithExecParameter
+  // visit_ArtifactExecParameter
   //
-  void Visitor::visit_MonolithExecParameter (MonolithExecParameter_in item)
+  void Visitor::visit_ArtifactExecParameter (ArtifactExecParameter_in item)
   {
   }
 
   //
-  // visit_ArtifactExecParameter
+  // visit_MonolithExecParameter
   //
-  void Visitor::visit_ArtifactExecParameter (ArtifactExecParameter_in item)
+  void Visitor::visit_MonolithExecParameter (MonolithExecParameter_in item)
   {
   }
 
@@ -440,16 +438,16 @@ namespace PICML
   }
 
   //
-  // visit_ExternalResources
+  // visit_ServiceLevels
   //
-  void Visitor::visit_ExternalResources (ExternalResources_in item)
+  void Visitor::visit_ServiceLevels (ServiceLevels_in item)
   {
   }
 
   //
-  // visit_ServiceLevels
+  // visit_ExternalResources
   //
-  void Visitor::visit_ServiceLevels (ServiceLevels_in item)
+  void Visitor::visit_ExternalResources (ExternalResources_in item)
   {
   }
 
@@ -517,16 +515,16 @@ namespace PICML
   }
 
   //
-  // visit_NameParameter
+  // visit_DoubleNumber
   //
-  void Visitor::visit_NameParameter (NameParameter_in item)
+  void Visitor::visit_DoubleNumber (DoubleNumber_in item)
   {
   }
 
   //
-  // visit_DoubleNumber
+  // visit_NameParameter
   //
-  void Visitor::visit_DoubleNumber (DoubleNumber_in item)
+  void Visitor::visit_NameParameter (NameParameter_in item)
   {
   }
 
@@ -573,16 +571,16 @@ namespace PICML
   }
 
   //
-  // visit_LongInteger
+  // visit_LongLongInteger
   //
-  void Visitor::visit_LongInteger (LongInteger_in item)
+  void Visitor::visit_LongLongInteger (LongLongInteger_in item)
   {
   }
 
   //
-  // visit_LongLongInteger
+  // visit_LongInteger
   //
-  void Visitor::visit_LongLongInteger (LongLongInteger_in item)
+  void Visitor::visit_LongInteger (LongInteger_in item)
   {
   }
 
@@ -818,16 +816,16 @@ namespace PICML
   }
 
   //
-  // visit_Workspaces
+  // visit_RTRequirements
   //
-  void Visitor::visit_Workspaces (Workspaces_in item)
+  void Visitor::visit_RTRequirements (RTRequirements_in item)
   {
   }
 
   //
-  // visit_RTRequirements
+  // visit_Workspaces
   //
-  void Visitor::visit_RTRequirements (RTRequirements_in item)
+  void Visitor::visit_Workspaces (Workspaces_in item)
   {
   }
 
@@ -853,16 +851,16 @@ namespace PICML
   }
 
   //
-  // visit_Alias
+  // visit_PeriodicBenchmarks
   //
-  void Visitor::visit_Alias (Alias_in item)
+  void Visitor::visit_PeriodicBenchmarks (PeriodicBenchmarks_in item)
   {
   }
 
   //
-  // visit_PeriodicBenchmarks
+  // visit_Alias
   //
-  void Visitor::visit_PeriodicBenchmarks (PeriodicBenchmarks_in item)
+  void Visitor::visit_Alias (Alias_in item)
   {
   }
 
@@ -919,6 +917,13 @@ namespace PICML
   // visit_TypeKind
   //
   void Visitor::visit_TypeKind (TypeKind_in item)
+  {
+  }
+
+  //
+  // visit_TargetRequiredRequestPort
+  //
+  void Visitor::visit_TargetRequiredRequestPort (TargetRequiredRequestPort_in item)
   {
   }
 
@@ -1224,9 +1229,9 @@ namespace PICML
   }
 
   //
-  // visit_StubProject
+  // visit_Throughput
   //
-  void Visitor::visit_StubProject (StubProject_in item)
+  void Visitor::visit_Throughput (Throughput_in item)
   {
   }
 
@@ -1238,9 +1243,9 @@ namespace PICML
   }
 
   //
-  // visit_Throughput
+  // visit_StubProject
   //
-  void Visitor::visit_Throughput (Throughput_in item)
+  void Visitor::visit_StubProject (StubProject_in item)
   {
   }
 
@@ -1357,16 +1362,16 @@ namespace PICML
   }
 
   //
-  // visit_LongDoubleNumber
+  // visit_ServiceConsumer
   //
-  void Visitor::visit_LongDoubleNumber (LongDoubleNumber_in item)
+  void Visitor::visit_ServiceConsumer (ServiceConsumer_in item)
   {
   }
 
   //
-  // visit_ServiceConsumer
+  // visit_LongDoubleNumber
   //
-  void Visitor::visit_ServiceConsumer (ServiceConsumer_in item)
+  void Visitor::visit_LongDoubleNumber (LongDoubleNumber_in item)
   {
   }
 
@@ -1388,6 +1393,13 @@ namespace PICML
   // visit_DeploymentPlan
   //
   void Visitor::visit_DeploymentPlan (DeploymentPlan_in item)
+  {
+  }
+
+  //
+  // visit_CallAction
+  //
+  void Visitor::visit_CallAction (CallAction_in item)
   {
   }
 
@@ -1441,16 +1453,16 @@ namespace PICML
   }
 
   //
-  // visit_Boolean
+  // visit_WorkLoadOperationConnection
   //
-  void Visitor::visit_Boolean (Boolean_in item)
+  void Visitor::visit_WorkLoadOperationConnection (WorkLoadOperationConnection_in item)
   {
   }
 
   //
-  // visit_WorkLoadOperationConnection
+  // visit_Boolean
   //
-  void Visitor::visit_WorkLoadOperationConnection (WorkLoadOperationConnection_in item)
+  void Visitor::visit_Boolean (Boolean_in item)
   {
   }
 
@@ -1602,6 +1614,13 @@ namespace PICML
   }
 
   //
+  // visit_ValueObject
+  //
+  void Visitor::visit_ValueObject (ValueObject_in item)
+  {
+  }
+
+  //
   // visit_Boxed
   //
   void Visitor::visit_Boxed (Boxed_in item)
@@ -1612,13 +1631,6 @@ namespace PICML
   // visit_Project
   //
   void Visitor::visit_Project (Project_in item)
-  {
-  }
-
-  //
-  // visit_ValueObject
-  //
-  void Visitor::visit_ValueObject (ValueObject_in item)
   {
   }
 
@@ -1637,16 +1649,16 @@ namespace PICML
   }
 
   //
-  // visit_TwowayOperation
+  // visit_ImplementationDependsOn
   //
-  void Visitor::visit_TwowayOperation (TwowayOperation_in item)
+  void Visitor::visit_ImplementationDependsOn (ImplementationDependsOn_in item)
   {
   }
 
   //
-  // visit_ImplementationDependsOn
+  // visit_TwowayOperation
   //
-  void Visitor::visit_ImplementationDependsOn (ImplementationDependsOn_in item)
+  void Visitor::visit_TwowayOperation (TwowayOperation_in item)
   {
   }
 
@@ -1679,16 +1691,16 @@ namespace PICML
   }
 
   //
-  // visit_ImplementationArtifact
+  // visit_ManagesComponent
   //
-  void Visitor::visit_ImplementationArtifact (ImplementationArtifact_in item)
+  void Visitor::visit_ManagesComponent (ManagesComponent_in item)
   {
   }
 
   //
-  // visit_ManagesComponent
+  // visit_ImplementationArtifact
   //
-  void Visitor::visit_ManagesComponent (ManagesComponent_in item)
+  void Visitor::visit_ImplementationArtifact (ImplementationArtifact_in item)
   {
   }
 
@@ -1875,16 +1887,16 @@ namespace PICML
   }
 
   //
-  // visit_ComponentPackage
+  // visit_PackageConfReference
   //
-  void Visitor::visit_ComponentPackage (ComponentPackage_in item)
+  void Visitor::visit_PackageConfReference (PackageConfReference_in item)
   {
   }
 
   //
-  // visit_PackageConfReference
+  // visit_ComponentPackage
   //
-  void Visitor::visit_PackageConfReference (PackageConfReference_in item)
+  void Visitor::visit_ComponentPackage (ComponentPackage_in item)
   {
   }
 
@@ -2022,13 +2034,6 @@ namespace PICML
   }
 
   //
-  // visit_package
-  //
-  void Visitor::visit_package (package_in item)
-  {
-  }
-
-  //
   // visit_ComponentPackageReference
   //
   void Visitor::visit_ComponentPackageReference (ComponentPackageReference_in item)
@@ -2036,9 +2041,9 @@ namespace PICML
   }
 
   //
-  // visit_Domain
+  // visit_package
   //
-  void Visitor::visit_Domain (Domain_in item)
+  void Visitor::visit_package (package_in item)
   {
   }
 
@@ -2046,6 +2051,13 @@ namespace PICML
   // visit_TimerConnection
   //
   void Visitor::visit_TimerConnection (TimerConnection_in item)
+  {
+  }
+
+  //
+  // visit_Domain
+  //
+  void Visitor::visit_Domain (Domain_in item)
   {
   }
 

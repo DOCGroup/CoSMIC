@@ -66,7 +66,12 @@ namespace DQML
     /// Accept a visitor for this model element.
     virtual void accept (::GAME::Mga::Visitor * v);
 
-    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    iCCM parent_iCCM (void);
+    ///@}
 
     size_t get_Domains (std::vector <Domain> & items) const;
   };

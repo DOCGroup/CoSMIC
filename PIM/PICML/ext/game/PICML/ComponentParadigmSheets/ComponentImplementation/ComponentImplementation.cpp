@@ -9,10 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 
 namespace PICML
 {
@@ -30,11 +30,11 @@ namespace PICML
   }
 
   //
-  // src_ImplementationDependsOn
+  // src_ImplementationCapability
   //
-  size_t ComponentImplementation_Impl::src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
+  size_t ComponentImplementation_Impl::src_ImplementationCapability (std::vector <ImplementationCapability> & items) const
   {
-    return this->in_connections <ImplementationDependsOn> (items);
+    return this->in_connections <ImplementationCapability> (items);
   }
 
   //
@@ -46,11 +46,11 @@ namespace PICML
   }
 
   //
-  // src_ImplementationCapability
+  // src_ImplementationDependsOn
   //
-  size_t ComponentImplementation_Impl::src_ImplementationCapability (std::vector <ImplementationCapability> & items) const
+  size_t ComponentImplementation_Impl::src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
   {
-    return this->in_connections <ImplementationCapability> (items);
+    return this->in_connections <ImplementationDependsOn> (items);
   }
 }
 

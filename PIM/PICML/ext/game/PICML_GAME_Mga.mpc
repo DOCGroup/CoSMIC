@@ -14,11 +14,12 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/Impl_Factory.cpp
     PICML/Init.cpp
     PICML/Visitor.cpp
-    PICML/PredefinedTypes/PredefinedTypes.cpp
+    PICML/RootFolder.cpp
     PICML/ComponentBenchmark/FixedIterationBenchmarks.cpp
+    PICML/PredefinedTypes/PredefinedTypes.cpp
     PICML/InterfaceDefinition/PackageType.cpp
-    PICML/ComponentParadigmSheets/ComponentType/ObjectPort.cpp
     PICML/TargetElements/Interconnect.cpp
+    PICML/ComponentParadigmSheets/ComponentType/ObjectPort.cpp
     PICML/ImplementationArtifact/ArtifactInfoProperty.cpp
     PICML/PathDiagram/PathReference.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.cpp
@@ -36,12 +37,12 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/InheritableTypes/HasOperations.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.cpp
-    PICML/BehaviorParadigmSheets/StateTypes/LoopState.cpp
     PICML/TargetElements/NodeReference.cpp
+    PICML/BehaviorParadigmSheets/StateTypes/LoopState.cpp
     PICML/NamedTypes/Collection.cpp
     PICML/InheritableTypes/Inherits.cpp
-    PICML/PredefinedTypes/Byte.cpp
     PICML/ComponentBenchmark/Average.cpp
+    PICML/PredefinedTypes/Byte.cpp
     PICML/BehaviorParadigmSheets/StateTypes/State.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.cpp
@@ -57,8 +58,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/PackageConfiguration/PackageConfigurationContainer.cpp
     PICML/InterfaceDefinition/TemplateParameter.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.cpp
-    PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.cpp
     PICML/TargetElements/SharedResource.cpp
+    PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.cpp
     PICML/ImplementationCommon/MonolithDeployRequirement.cpp
     PICML/PathDiagram/PathProperty.cpp
     PICML/ComponentBenchmark/TimerEventSinkConn.cpp
@@ -68,11 +69,11 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.cpp
     PICML/NamedTypes/Discriminator.cpp
-    PICML/PredefinedTypes/UnsignedLongLongInteger.cpp
     PICML/PredefinedTypes/Char.cpp
+    PICML/PredefinedTypes/UnsignedLongLongInteger.cpp
     PICML/PathDiagram/DisplayNode.cpp
-    PICML/ImplementationCommon/MonolithicImplementationBase.cpp
     PICML/PackageConfiguration/PackageConfigurationReference.cpp
+    PICML/ImplementationCommon/MonolithicImplementationBase.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.cpp
     PICML/ComponentBenchmark/Latency.cpp
     PICML/NamedTypes/KeyMember.cpp
@@ -80,8 +81,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.cpp
     PICML/Common/SimpleType.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.cpp
-    PICML/ImplementationCommon/MonolithExecParameter.cpp
     PICML/ImplementationArtifact/ArtifactExecParameter.cpp
+    PICML/ImplementationCommon/MonolithExecParameter.cpp
     PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.cpp
     PICML/OperationTypes/OperationBase.cpp
     PICML/ComponentPackage/PackageConfigProperty.cpp
@@ -91,8 +92,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/PredefinedTypes/WideChar.cpp
     PICML/PathDiagram/Edge.cpp
     PICML/InheritableTypes/SetException.cpp
-    PICML/ComponentBuild/ExternalResources.cpp
     PICML/RealTimeRequirements/ServiceLevels.cpp
+    PICML/ComponentBuild/ExternalResources.cpp
     PICML/InterfaceDefinition/FileRef.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/EventSourceDelegate.cpp
     PICML/TargetElements/Bridge.cpp
@@ -103,8 +104,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.cpp
     PICML/ComponentPackage/PackageInfoProperty.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/Action.cpp
-    PICML/InterfaceDefinition/NameParameter.cpp
     PICML/PredefinedTypes/DoubleNumber.cpp
+    PICML/InterfaceDefinition/NameParameter.cpp
     PICML/ComponentBenchmark/CompRef.cpp
     PICML/PathDiagram/DstEdge.cpp
     PICML/BehaviorParadigmSheets/StateTypes/StateBase.cpp
@@ -112,10 +113,10 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.cpp
     PICML/InterfaceDefinition/Exception.cpp
-    PICML/PredefinedTypes/LongInteger.cpp
     PICML/PredefinedTypes/LongLongInteger.cpp
-    PICML/PredefinedTypes/GenericValue.cpp
+    PICML/PredefinedTypes/LongInteger.cpp
     PICML/PredefinedTypes/CharType.cpp
+    PICML/PredefinedTypes/GenericValue.cpp
     PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.cpp
     PICML/DeploymentPlan/DeploymentPlans.cpp
@@ -135,9 +136,9 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.cpp
     PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.cpp
-    PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.cpp
-    PICML/IdTags/Taggable.cpp
     PICML/TargetElements/Node.cpp
+    PICML/IdTags/Taggable.cpp
+    PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.cpp
     PICML/ComponentBuild/MPC.cpp
     PICML/DeploymentPlan/ComponentFactoryRef.cpp
     PICML/DeploymentPlan/CollocationGroup.cpp
@@ -149,8 +150,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/PackageConfiguration/PackageConfSpecializedConfig.cpp
     PICML/ComponentParadigmSheets/ComponentType/ComponentRef.cpp
     PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.cpp
-    PICML/Common/Requirement.cpp
     PICML/ComponentParadigmSheets/ComponentType/Port.cpp
+    PICML/Common/Requirement.cpp
     PICML/Domain/Targets.cpp
     PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.cpp
     PICML/ComponentPackage/PackageContainer.cpp
@@ -158,14 +159,14 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/InterfaceDefinition/NativeValue.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.cpp
     PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.cpp
-    PICML/ComponentBuild/Workspaces.cpp
     PICML/RealTimeRequirements/RTRequirements.cpp
+    PICML/ComponentBuild/Workspaces.cpp
     PICML/WorkloadParadigmSheets/WML/WorkerLibraries.cpp
     PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.cpp
     PICML/NamedTypes/Member.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.cpp
-    PICML/NamedTypes/Alias.cpp
     PICML/ComponentBenchmark/PeriodicBenchmarks.cpp
+    PICML/NamedTypes/Alias.cpp
     PICML/Domain/Shares.cpp
     PICML/ComponentBenchmark/Maximum.cpp
     PICML/ImplementationArtifact/ArtifactContainer.cpp
@@ -174,6 +175,7 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.cpp
     PICML/Common/DataType.cpp
     PICML/PredefinedTypes/TypeKind.cpp
+    PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.cpp
     PICML/OperationTypes/LookupOperation.cpp
     PICML/PathDiagram/GraphVertex.cpp
     PICML/TopLevelPackageDescription/TopLevelPackageContainer.cpp
@@ -193,8 +195,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.cpp
     PICML/ComponentBenchmark/Minimum.cpp
     PICML/InterfaceDefinition/File.cpp
-    PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.cpp
+    PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.cpp
     PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.cpp
     PICML/PathDiagram/ConnectedComponent.cpp
     PICML/EventChannelRequirements/ECRequirements.cpp
@@ -230,9 +232,9 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentParadigmSheets/ComponentType/MirrorPort.cpp
     PICML/PathDiagram/PathDiagrams.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.cpp
-    PICML/ComponentBuild/StubProject.cpp
-    PICML/ComponentBuild/ServantProject.cpp
     PICML/ComponentBenchmark/Throughput.cpp
+    PICML/ComponentBuild/ServantProject.cpp
+    PICML/ComponentBuild/StubProject.cpp
     PICML/PathDiagram/Paths.cpp
     PICML/ComponentBenchmark/ComponentAnalyses.cpp
     PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.cpp
@@ -252,11 +254,12 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/NamedTypes/Enum.cpp
     PICML/WorkloadParadigmSheets/WML/Worker.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.cpp
-    PICML/PredefinedTypes/LongDoubleNumber.cpp
     PICML/RealTimeRequirements/ServiceConsumer.cpp
+    PICML/PredefinedTypes/LongDoubleNumber.cpp
     PICML/OperationTypes/ReturnType.cpp
     PICML/PredefinedTypes/GenericObject.cpp
     PICML/DeploymentPlan/DeploymentPlan.cpp
+    PICML/BehaviorParadigmSheets/ActionTypes/CallAction.cpp
     PICML/RealTimeRequirements/MultipleServiceRequests.cpp
     PICML/RealTimeRequirements/ServiceProvider.cpp
     PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.cpp
@@ -266,8 +269,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/InheritableTypes/Inheritable.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.cpp
     PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.cpp
-    PICML/PredefinedTypes/Boolean.cpp
     PICML/ComponentBenchmark/WorkLoadOperationConnection.cpp
+    PICML/PredefinedTypes/Boolean.cpp
     PICML/ComponentPackage/ComponentPackages.cpp
     PICML/InterfaceDefinition/TemplatePackageAlias.cpp
     PICML/PredefinedTypes/ShortInteger.cpp
@@ -295,21 +298,21 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/InterfaceDefinition/CollectionParameter.cpp
     PICML/OperationTypes/ExceptionRef.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.cpp
+    PICML/InheritableTypes/ValueObject.cpp
     PICML/NamedTypes/Boxed.cpp
     PICML/ComponentBuild/Project.cpp
-    PICML/InheritableTypes/ValueObject.cpp
     PICML/ComponentParadigmSheets/ComponentType/OutEventPort.cpp
     PICML/Common/SimpleProperty.cpp
-    PICML/OperationTypes/TwowayOperation.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.cpp
+    PICML/OperationTypes/TwowayOperation.cpp
     PICML/Common/DataValueContainer.cpp
     PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.cpp
     PICML/OperationTypes/InParameter.cpp
-    PICML/Common/DataValue.cpp
     PICML/ComponentBenchmark/DataAnalysisBase.cpp
+    PICML/Common/DataValue.cpp
     PICML/PredefinedTypes/PredefinedType.cpp
-    PICML/ImplementationArtifact/ImplementationArtifact.cpp
     PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.cpp
+    PICML/ImplementationArtifact/ImplementationArtifact.cpp
     PICML/NamedTypes/Key.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.cpp
     PICML/PredefinedTypes/UnsignedShortInteger.cpp
@@ -342,8 +345,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/BehaviorParadigmSheets/ActionTypes/Finish.cpp
     PICML/BehaviorParadigmSheets/Terminals/Terminal.cpp
     PICML/NamedTypes/NamedType.cpp
-    PICML/ComponentPackage/ComponentPackage.cpp
     PICML/PackageConfiguration/PackageConfReference.cpp
+    PICML/ComponentPackage/ComponentPackage.cpp
     PICML/ImplementationCommon/ComponentServantArtifact.cpp
     PICML/PackageConfiguration/PackageConfConfigProperty.cpp
     PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.cpp
@@ -369,10 +372,10 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentFactoryImplementation/ComponentFactoryInstance.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/ActionType.cpp
-    PICML/TopLevelPackageDescription/package.cpp
     PICML/ComponentPackage/ComponentPackageReference.cpp
-    PICML/Domain/Domain.cpp
+    PICML/TopLevelPackageDescription/package.cpp
     PICML/ComponentBenchmark/TimerConnection.cpp
+    PICML/Domain/Domain.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.cpp
     PICML/InheritableTypes/Supports.cpp
     PICML/PredefinedTypes/String.cpp
@@ -381,8 +384,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/InterfaceDefinition/ExceptionType.cpp
     PICML/InheritableTypes/ReadonlyAttribute.cpp
     PICML/ComponentBuild/ComponentBuild.cpp
-    PICML/ComponentParadigmSheets/ComponentType/EventPort.cpp
     PICML/ComponentParadigmSheets/ComponentType/InEventPort.cpp
+    PICML/ComponentParadigmSheets/ComponentType/EventPort.cpp
     PICML/OperationTypes/OnewayOperation.cpp
     PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.cpp
     PICML/ComponentBuild/ExecutorProject.cpp

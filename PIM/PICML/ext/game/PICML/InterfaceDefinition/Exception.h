@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/IdTags/Taggable.h"
 #include "PICML/InterfaceDefinition/TemplateParameterValueType.h"
+#include "PICML/IdTags/Taggable.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
 #include "game/mga/Model.h"
 
@@ -39,8 +39,8 @@ namespace PICML
    */
   class PICML_Export Exception_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual Taggable_Impl,
     public virtual TemplateParameterValueType_Impl,
+    public virtual Taggable_Impl,
     public virtual ExceptionType_Impl
   {
     public:
@@ -88,10 +88,10 @@ namespace PICML
      */
     ///@{
     size_t get_Members (std::vector <Member> & items) const;
-    ::GAME::Mga::Iterator <Member> get_Members (void) const;
+    ::GAME::Mga::Collection_T <Member> get_Members (void) const;
 
     size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
-    ::GAME::Mga::Iterator <ArrayMember> get_ArrayMembers (void) const;
+    ::GAME::Mga::Collection_T <ArrayMember> get_ArrayMembers (void) const;
 
     ///@}
   };

@@ -36,18 +36,21 @@ namespace DQML
   //
   void Domain_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_Domain (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_Domain (this);
+    else
       v->visit_Model (this);
-    }
+  }
+
+  //
+  // parent_DomainQosFolder
+  //
+  DomainQosFolder Domain_Impl::parent_DomainQosFolder (void)
+  {
+    return DomainQosFolder::_narrow (this->parent ());
   }
 
   //
@@ -61,7 +64,7 @@ namespace DQML
   //
   // get_PublishesConnections
   //
-  ::GAME::Mga::Iterator <PublishesConnection> Domain_Impl::get_PublishesConnections (void) const
+  ::GAME::Mga::Collection_T <PublishesConnection> Domain_Impl::get_PublishesConnections (void) const
   {
     return this->children <PublishesConnection> ();
   }
@@ -77,7 +80,7 @@ namespace DQML
   //
   // get_Participants
   //
-  ::GAME::Mga::Iterator <Participant> Domain_Impl::get_Participants (void) const
+  ::GAME::Mga::Collection_T <Participant> Domain_Impl::get_Participants (void) const
   {
     return this->children <Participant> ();
   }

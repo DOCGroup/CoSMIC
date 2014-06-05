@@ -52,6 +52,13 @@ namespace DQML
 
     // Destructor.
     virtual ~DomainEntity_Impl (void) = 0;
+
+    /**
+     * @name Parent Methods
+     */
+    ///@{
+    DDSQoS parent_DDSQoS (void);
+    ///@}
   };
 }
 

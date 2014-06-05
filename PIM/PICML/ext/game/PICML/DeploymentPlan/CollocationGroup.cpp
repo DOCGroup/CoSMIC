@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/CollocationGroupMember.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
-#include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
+#include "PICML/DeploymentPlan/ComponentInstanceRef.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

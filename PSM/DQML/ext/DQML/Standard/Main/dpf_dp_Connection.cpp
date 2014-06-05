@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/DomainParticipant.h"
 #include "DQML/Standard/DDSEntities/DomainParticipantFactory.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -36,18 +36,21 @@ namespace DQML
   //
   void dpf_dp_Connection_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_dpf_dp_Connection (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_dpf_dp_Connection (this);
+    else
       v->visit_Connection (this);
-    }
+  }
+
+  //
+  // parent_DDSQoS
+  //
+  DDSQoS dpf_dp_Connection_Impl::parent_DDSQoS (void)
+  {
+    return DDSQoS::_narrow (this->parent ());
   }
 
   //

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/ConfigProperty.h"
 #include "PICML/ImplementationCommon/InfoProperty.h"
+#include "PICML/ImplementationCommon/ConfigProperty.h"
 
 namespace PICML
 {
@@ -19,19 +19,19 @@ namespace PICML
   const std::string Implemenation_Impl::metaname ("Implemenation");
 
   //
-  // src_ConfigProperty
-  //
-  size_t Implemenation_Impl::src_ConfigProperty (std::vector <ConfigProperty> & items) const
-  {
-    return this->in_connections <ConfigProperty> (items);
-  }
-
-  //
   // src_InfoProperty
   //
   size_t Implemenation_Impl::src_InfoProperty (std::vector <InfoProperty> & items) const
   {
     return this->in_connections <InfoProperty> (items);
+  }
+
+  //
+  // src_ConfigProperty
+  //
+  size_t Implemenation_Impl::src_ConfigProperty (std::vector <ConfigProperty> & items) const
+  {
+    return this->in_connections <ConfigProperty> (items);
   }
 }
 

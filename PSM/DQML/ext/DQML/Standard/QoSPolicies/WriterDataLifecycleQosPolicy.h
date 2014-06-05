@@ -70,6 +70,13 @@ namespace DQML
     virtual void accept (::GAME::Mga::Visitor * v);
 
     /**
+     * @name Parent Methods
+     */
+    ///@{
+    DataWriterQos parent_DataWriterQos (void);
+    ///@}
+
+    /**
      * @name Attribute Methods
      */
     ///@{

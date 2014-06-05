@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,7 +66,7 @@ namespace PICML
   //
   // get_Operations
   //
-  ::GAME::Mga::Iterator <Operation> Worker_Impl::get_Operations (void) const
+  ::GAME::Mga::Collection_T <Operation> Worker_Impl::get_Operations (void) const
   {
     return this->children <Operation> ();
   }

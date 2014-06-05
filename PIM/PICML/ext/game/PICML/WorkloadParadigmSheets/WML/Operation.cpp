@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/OperationTypes/ParameterType.h"
 #include "PICML/OperationTypes/InParameter.h"
-#include "PICML/OperationTypes/OutParameter.h"
 #include "PICML/OperationTypes/InoutParameter.h"
-#include "PICML/OperationTypes/ReturnType.h"
+#include "PICML/OperationTypes/OutParameter.h"
 #include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
 #include "game/mga/Functional_T.h"
@@ -70,7 +70,7 @@ namespace PICML
   //
   ReturnType Operation_Impl::get_ReturnType (void) const
   {
-    return this->children <ReturnType> ().item ();
+    return this->children <ReturnType> ().first ();
   }
 
   //
@@ -84,25 +84,9 @@ namespace PICML
   //
   // get_InParameters
   //
-  ::GAME::Mga::Iterator <InParameter> Operation_Impl::get_InParameters (void) const
+  ::GAME::Mga::Collection_T <InParameter> Operation_Impl::get_InParameters (void) const
   {
     return this->children <InParameter> ();
-  }
-
-  //
-  // get_OutParameters
-  //
-  size_t Operation_Impl::get_OutParameters (std::vector <OutParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OutParameters
-  //
-  ::GAME::Mga::Iterator <OutParameter> Operation_Impl::get_OutParameters (void) const
-  {
-    return this->children <OutParameter> ();
   }
 
   //
@@ -116,9 +100,25 @@ namespace PICML
   //
   // get_InoutParameters
   //
-  ::GAME::Mga::Iterator <InoutParameter> Operation_Impl::get_InoutParameters (void) const
+  ::GAME::Mga::Collection_T <InoutParameter> Operation_Impl::get_InoutParameters (void) const
   {
     return this->children <InoutParameter> ();
+  }
+
+  //
+  // get_OutParameters
+  //
+  size_t Operation_Impl::get_OutParameters (std::vector <OutParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutParameters
+  //
+  ::GAME::Mga::Collection_T <OutParameter> Operation_Impl::get_OutParameters (void) const
+  {
+    return this->children <OutParameter> ();
   }
 }
 

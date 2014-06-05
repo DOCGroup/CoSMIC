@@ -12,13 +12,13 @@
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
+#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -62,11 +62,11 @@ namespace PICML
   }
 
   //
-  // src_WorkLoadOperationConnection
+  // src_MetricConnection
   //
-  size_t OperationRef_Impl::src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
+  size_t OperationRef_Impl::src_MetricConnection (std::vector <MetricConnection> & items) const
   {
-    return this->in_connections <WorkLoadOperationConnection> (items);
+    return this->in_connections <MetricConnection> (items);
   }
 
   //
@@ -86,11 +86,11 @@ namespace PICML
   }
 
   //
-  // src_MetricConnection
+  // src_WorkLoadOperationConnection
   //
-  size_t OperationRef_Impl::src_MetricConnection (std::vector <MetricConnection> & items) const
+  size_t OperationRef_Impl::src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const
   {
-    return this->in_connections <MetricConnection> (items);
+    return this->in_connections <WorkLoadOperationConnection> (items);
   }
 
   //

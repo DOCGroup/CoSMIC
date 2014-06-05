@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 
 namespace PICML
 {
@@ -49,22 +49,6 @@ namespace PICML
   }
 
   //
-  // get_ComplexPropertys
-  //
-  size_t BehaviorInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Iterator <ComplexProperty> BehaviorInputAction_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
   // get_SimplePropertys
   //
   size_t BehaviorInputAction_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
@@ -75,9 +59,25 @@ namespace PICML
   //
   // get_SimplePropertys
   //
-  ::GAME::Mga::Iterator <SimpleProperty> BehaviorInputAction_Impl::get_SimplePropertys (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> BehaviorInputAction_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t BehaviorInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> BehaviorInputAction_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

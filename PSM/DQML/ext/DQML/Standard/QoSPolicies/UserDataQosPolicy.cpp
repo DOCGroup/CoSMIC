@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
+#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,17 +28,17 @@ namespace DQML
   const std::string UserDataQosPolicy_Impl::metaname ("UserDataQosPolicy");
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const DataReaderQos_in)
   //
-  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const DataWriterQos_in)
   //
-  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create_object < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
   }
@@ -64,18 +64,45 @@ namespace DQML
   //
   void UserDataQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
   {
-    try
-    {
-      // See if this is a visitor we know.
-      Visitor * this_visitor = dynamic_cast <Visitor *> (v);
-      this_visitor->visit_UserDataQosPolicy (this);
-    }
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
 
-    catch (const std::bad_cast & )
-    {
-      // Fallback to the standard visit method.
+    if (0 != this_visitor)
+      this_visitor->visit_UserDataQosPolicy (this);
+    else
       v->visit_Atom (this);
-    }
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos UserDataQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos UserDataQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Participant
+  //
+  Participant UserDataQosPolicy_Impl::parent_Participant (void)
+  {
+    return Participant::_narrow (this->parent ());
+  }
+
+  //
+  // dst_dw_userdata_Connection
+  //
+  size_t UserDataQosPolicy_Impl::dst_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
+  {
+    return this->in_connections <dw_userdata_Connection> (items);
   }
 
   //
@@ -92,14 +119,6 @@ namespace DQML
   size_t UserDataQosPolicy_Impl::dst_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
   {
     return this->in_connections <dr_userdata_Connection> (items);
-  }
-
-  //
-  // dst_dw_userdata_Connection
-  //
-  size_t UserDataQosPolicy_Impl::dst_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
-  {
-    return this->in_connections <dw_userdata_Connection> (items);
   }
 }
 

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/BridgeConnection.h"
 #include "PICML/TargetElements/Resource.h"
+#include "PICML/Domain/BridgeConnection.h"
 #include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -72,7 +72,7 @@ namespace PICML
   //
   // get_Resources
   //
-  ::GAME::Mga::Iterator <Resource> Bridge_Impl::get_Resources (void) const
+  ::GAME::Mga::Collection_T <Resource> Bridge_Impl::get_Resources (void) const
   {
     return this->children <Resource> ();
   }

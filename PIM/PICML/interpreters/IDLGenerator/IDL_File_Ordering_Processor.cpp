@@ -447,33 +447,33 @@ visit_template_module (void)
 void IDL_File_Ordering_Processor::
 visit_all (const Udm::Object & o, PICML::Visitor & visitor, bool forward_declaration)
 {
-  Udm::visit_all <PICML::Constant> (o, visitor);
-  Udm::visit_all <PICML::Alias> (o, visitor);
-  Udm::visit_all <PICML::Collection> (o, visitor);
-  Udm::visit_all <PICML::Exception> (o, visitor);
-  Udm::visit_all <PICML::Enum> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Constant> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Alias> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Collection> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Exception> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Enum> (o, visitor);
 
-  Udm::visit_all <PICML::Aggregate> (o, visitor);
-  Udm::visit_all <PICML::SwitchedAggregate> (o, visitor);
-  Udm::visit_all <PICML::ValueObject> (o, visitor);
-  Udm::visit_all <PICML::Attribute> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Aggregate> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::ValueObject> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Attribute> (o, visitor);
+  
+  CoSMIC::Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
 
-  Udm::visit_all <PICML::TemplatePackageInstance> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (o, visitor);
 
-  Udm::visit_all <PICML::OnewayOperation> (o, visitor);
-  Udm::visit_all <PICML::TwowayOperation> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::PortType> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Event> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Object> (o, visitor);
 
-  Udm::visit_all <PICML::PortType> (o, visitor);
-  Udm::visit_all <PICML::Event> (o, visitor);
-  Udm::visit_all <PICML::Object> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::ManagesComponent> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Component> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::ComponentFactory> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::ConnectorObject> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Boxed> (o, visitor);
 
-  Udm::visit_all <PICML::ManagesComponent> (o, visitor);
-  Udm::visit_all <PICML::Component> (o, visitor);
-  Udm::visit_all <PICML::ComponentFactory> (o, visitor);
-  Udm::visit_all <PICML::ConnectorObject> (o, visitor);
-  Udm::visit_all <PICML::Boxed> (o, visitor);
-
-  Udm::visit_all <PICML::Package> (o, visitor);
+  CoSMIC::Udm::visit_all <PICML::Package> (o, visitor);
 }
 
 //
