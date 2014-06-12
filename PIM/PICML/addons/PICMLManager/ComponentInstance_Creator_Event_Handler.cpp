@@ -81,18 +81,19 @@ handle_object_created (GAME::Mga::Object_in obj)
 
   Filter filter (obj->project ());
   filter.kind (MonolithicImplementation_Impl::metaname);
-  Iterator <MonolithicImplementation> results = filter.apply <MonolithicImplementation> ();
+  std::vector <MonolithicImplementation> results;
+  filter.apply <MonolithicImplementation> (results);
 
   MonolithicImplementation impl;
 
-  switch (results.count ())
+  switch (results.size ())
   {
   case 0:
     ::AfxMessageBox ("Please add at least one monolithic implementation to your project.");
     return -1;
 
   case 1:
-    impl = *results;
+    impl = results.front ();
     break;
 
   default:
@@ -105,8 +106,7 @@ handle_object_created (GAME::Mga::Object_in obj)
       Selection_List_Dialog_T <MonolithicImplementation> dlg (0, ::AfxGetMainWnd ());
 
       dlg.title ("Component Implementation Selector");
-      dlg.insert (GAME::Mga::make_impl_iter (results),
-                  GAME::Mga::make_impl_iter (results.make_end ()));
+      dlg.insert (results);
 
       if (dlg.DoModal () != IDOK)
         return 0;

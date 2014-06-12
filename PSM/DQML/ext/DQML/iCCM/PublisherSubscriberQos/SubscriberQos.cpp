@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -81,22 +81,6 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
-  //
-  bool SubscriberQos_Impl::has_EntityFactoryQosPolicy (void) const
-  {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_EntityFactoryQosPolicy
-  //
-  EntityFactoryQosPolicy SubscriberQos_Impl::get_EntityFactoryQosPolicy (void) const
-  {
-    return this->children <EntityFactoryQosPolicy> ().first ();
-  }
-
-  //
   // has_PartitionQosPolicy
   //
   bool SubscriberQos_Impl::has_PartitionQosPolicy (void) const
@@ -110,6 +94,22 @@ namespace DQML
   PartitionQosPolicy SubscriberQos_Impl::get_PartitionQosPolicy (void) const
   {
     return this->children <PartitionQosPolicy> ().first ();
+  }
+
+  //
+  // has_EntityFactoryQosPolicy
+  //
+  bool SubscriberQos_Impl::has_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_EntityFactoryQosPolicy
+  //
+  EntityFactoryQosPolicy SubscriberQos_Impl::get_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().first ();
   }
 
   //

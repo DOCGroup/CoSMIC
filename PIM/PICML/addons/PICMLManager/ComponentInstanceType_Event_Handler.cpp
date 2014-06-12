@@ -64,11 +64,11 @@ void ComponentInstanceType_Event_Handler::load_defined_types (void)
 {
   GAME::Mga::Filter filter (this->project_);
   filter.kind (ComponentInstanceType_Impl::metaname);
-  GAME::Mga::Iterator <ComponentInstanceType> iter = filter.apply <ComponentInstanceType> ();
+  std::vector <ComponentInstanceType> objs;
+  filter.apply <> (objs);
+  for (auto obj : objs)
+    defined_.insert (obj);
 
-  std::for_each (GAME::Mga::make_impl_iter (iter),
-                 GAME::Mga::make_impl_iter (iter.make_end ()),
-                 boost::bind (&std::set <ComponentInstanceType>::insert, boost::ref (this->defined_), _1));
 }
 
 //

@@ -112,23 +112,14 @@ private:
 
     std::set <GAME::Mga::FCO, top_to_bottom_t> sorted_values;
 
-    std::for_each (data_values.begin (),
-                   data_values.end (),
-                   boost::bind (&std::set <GAME::Mga::FCO, top_to_bottom_t>::insert,
-                                boost::ref (sorted_values),
-                                _1));
+    for (auto & data_value : data_values)
+      sorted_values.insert (data_value);
 
-    std::for_each (data_value_containers.begin (),
-                   data_value_containers.end (),
-                   boost::bind (&std::set <GAME::Mga::FCO, top_to_bottom_t>::insert,
-                                boost::ref (sorted_values),
-                                _1));
+    for (auto & data_value_container : data_value_containers)
+      sorted_values.insert (data_value_container);
 
-    std::for_each (sorted_values.begin (),
-                   sorted_values.end (),
-                   boost::bind (&PICML_Property_Manager_ListView_Expand::Visit_DataValueBase,
-                                this,
-                                _1));
+    for (auto & sorted_value : sorted_values)
+      Visit_DataValueBase (sorted_value); 
 
     // We need to add a "blank" element to the end of the list
     // if this is a collection (i.e., a sequence). This will allow

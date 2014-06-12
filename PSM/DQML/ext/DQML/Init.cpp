@@ -8,7 +8,7 @@ namespace DQML
 {
   class Init
   {
-  public:
+    public:
     /// Default constructor.
     Init (void)
     {
@@ -22,6 +22,7 @@ namespace DQML
       ::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->remove (::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ());
     }
   };
+
 
   /// Extension class initialization.
   static Init init;

@@ -54,11 +54,10 @@ void Component_Observer_Event_Handler::load_instances (void)
   // Locate all the ComponentInstance elements in this project.
   GAME::Mga::Filter filter (this->project_);
   filter.kind ("ComponentInstance");
-
-  GAME::Mga::Iterator <ComponentInstance> iter = filter.apply <ComponentInstance> ();
-  std::for_each (GAME::Mga::make_impl_iter (iter),
-                 GAME::Mga::make_impl_iter (iter.make_end ()),
-                 boost::bind (&Component_Observer_Event_Handler::insert_all, this, _1));
+  std::vector <ComponentInstance> objs;
+  filter.apply(objs);
+  for (auto obj : objs)
+    insert_all (obj);
 }
 
 //
@@ -124,10 +123,9 @@ handle_object_predestroyed (GAME::Mga::Object_in obj)
   // Delete all the port instances, which are the references that
   // refer to this model element.
   GAME::Mga::Reference port = GAME::Mga::Reference::_narrow (obj);
-  GAME::Mga::Iterator <GAME::Mga::Reference> iter = port->referenced_by ();
-
-  for (; !iter.is_done (); ++ iter)
-    (*iter)->destroy ();
+  GAME::Mga::Collection_T <GAME::Mga::Reference> ports = port->referenced_by ();
+  for (auto & port : ports)
+    port->destroy();
 
   return 0;
 }
@@ -165,11 +163,10 @@ handle_object_properties (GAME::Mga::Object_in obj)
   // Delete all the port instances, which are the references that
   // refer to this model element.
   GAME::Mga::FCO fco = GAME::Mga::FCO::_narrow (obj);
-  GAME::Mga::Iterator <GAME::Mga::Reference> iter = fco->referenced_by ();
+  GAME::Mga::Collection_T <GAME::Mga::Reference> collections = fco->referenced_by ();
 
-  std::for_each (GAME::Mga::make_impl_iter (iter),
-                 GAME::Mga::make_impl_iter (iter.make_end ()),
-                 validate_name_t (obj->name ()));
+  for (auto & collection : collections)
+    validate_name_t (collection->name ());
 
   return 0;
 }

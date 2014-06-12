@@ -34,15 +34,13 @@ Topic_Locator::~Topic_Locator (void)
 //
 void Topic_Locator::visit_Participant (DQML::Participant_in item)
 {
-  Iterator <DQML::DataReaderQos> reader_iter = item->get_DataReaderQoss ();
-  std::for_each (GAME::Mga::make_impl_iter (reader_iter),
-                 GAME::Mga::make_impl_iter (reader_iter.make_end ()),
-                 boost::bind (&DQML::DataReaderQos::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::DataReaderQos> readers = item->get_DataReaderQoss ();
+  for (auto & reader : readers)
+    reader->accept (this);
 
-  Iterator <DQML::DataWriterQos> writer_iter = item->get_DataWriterQoss ();
-  std::for_each (GAME::Mga::make_impl_iter (writer_iter),
-                 GAME::Mga::make_impl_iter (writer_iter.make_end ()),
-                 boost::bind (&DQML::DataWriterQos::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::DataWriterQos> writers = item->get_DataWriterQoss ();
+  for (auto & writer : writers)
+    writer->accept (this);
 }
 
 //

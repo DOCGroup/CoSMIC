@@ -10,8 +10,8 @@
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
@@ -81,22 +81,6 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
-  //
-  bool PublisherQos_Impl::has_EntityFactoryQosPolicy (void) const
-  {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_EntityFactoryQosPolicy
-  //
-  EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
-  {
-    return this->children <EntityFactoryQosPolicy> ().first ();
-  }
-
-  //
   // has_PartitionQosPolicy
   //
   bool PublisherQos_Impl::has_PartitionQosPolicy (void) const
@@ -110,6 +94,22 @@ namespace DQML
   PartitionQosPolicy PublisherQos_Impl::get_PartitionQosPolicy (void) const
   {
     return this->children <PartitionQosPolicy> ().first ();
+  }
+
+  //
+  // has_EntityFactoryQosPolicy
+  //
+  bool PublisherQos_Impl::has_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_EntityFactoryQosPolicy
+  //
+  EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().first ();
   }
 
   //

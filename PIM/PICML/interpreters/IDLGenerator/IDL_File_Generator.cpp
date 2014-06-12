@@ -206,19 +206,21 @@ void IDL_File_Generator::Visit_Enum (const PICML::Enum & e)
   typedef std::set <PICML::EnumValue, sorter_t> sorted_values_t;
   sorted_values_t values = e.EnumValue_children_sorted (sorter_t ());
 
-  // Create a iterator to visit values
-  sorted_values_t::iterator enum_value_iter = values.begin (), enum_value_end = values.end ();
-
   // Visit the first element separately as we write it
   // to the idl file without a comma at the end.
-  enum_value_iter->Accept (*this);
+  bool is_not_first = false;
 
   // From the second element onwards we add a semicolon
   // and then write the element to the next line.
-  for (++ enum_value_iter; enum_value_iter != enum_value_end; ++ enum_value_iter)
+  for (PICML::EnumValue m : values)
   {
-    this->idl_ << "," << nl;
-    enum_value_iter->Accept (*this);
+    if (is_not_first)
+    {
+      this->idl_ << ", ";
+      is_not_first = false;
+    }
+
+    m.Accept (*this);
   }
 
   this->idl_ << nl << uidt_nl
@@ -388,12 +390,8 @@ void IDL_File_Generator::Visit_Member (const PICML::Member & m)
   PICML::MemberType mt = m.ref ();
 
   std::set <PICML::LabelConnection> labels = m.dstLabelConnection ();
-  std::for_each (labels.begin (),
-                 labels.end (),
-                 boost::bind (&PICML::LabelConnection::Accept,
-                              _1,
-                              boost::ref (*this)));
-
+  for (auto label : labels)
+    label.Accept (*this);
   this->idl_ << nl;
 
   if (this->in_event_)
@@ -564,7 +562,9 @@ Visit_ObjectByValue (const PICML::ObjectByValue & o)
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
   sorted_values_t values = o.Member_children_sorted (sorter_t ());
-  CoSMIC::Udm::visit_all (values, *this);
+  for (auto value : values)
+    value.Accept (*this);
+  
 }
 
 //
@@ -1132,8 +1132,8 @@ void IDL_File_Generator::Visit_Exception (const PICML::Exception & e)
   typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
   typedef std::set <PICML::Member, sorter_t> sorted_values_t;
   sorted_values_t values = e.Member_children_sorted (sorter_t ());
-
-  CoSMIC::Udm::visit_all (values, *this);
+  for (auto value : values)
+    value.Accept (*this);
 
   this->idl_ << uidt_nl
              << "};" << nl;
@@ -1241,16 +1241,19 @@ Visit_LookupOperation (const PICML::LookupOperation & op)
 
   if (!params.empty ())
   {
-    sorted_values_t::iterator
-      iter = params.begin (), iter_end = params.end ();
+    bool is_first = true;
 
-    iter->Accept (*this);
-
-    for (++ iter; iter != iter_end; ++ iter)
+    for (PICML::InParameter param : params)
     {
-      this->idl_ << ", ";
-      iter->Accept (*this);
+      if (!is_first)
+      {
+        this->idl_ << ", ";
+        is_first = false;
+      }
+
+      param.Accept (*this);
     }
+
   }
 
   this->idl_ << ")";
@@ -1297,12 +1300,21 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
     sorted_values_t::iterator
       iter = params.begin (), iter_end = params.end ();
 
-    iter->Accept (*this);
+    // Visit the first element separately as we write it
+    // to the idl file without a comma at the end.
+    bool is_not_first = false;
 
-    for (++ iter; iter != iter_end; ++ iter)
+    // From the second element onwards we add a semicolon
+    // and then write the element to the next line.
+    for (PICML::InParameter p : params)
     {
-      this->idl_ << ", ";
-      iter->Accept (*this);
+      if (is_not_first)
+      {
+        this->idl_ << ", ";
+        is_not_first = true;
+      }
+
+      p.Accept (*this);
     }
   }
 

@@ -9,14 +9,14 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
-#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -108,19 +108,35 @@ namespace DQML
   }
 
   //
-  // get_SubscriberConnections
+  // get_PublisherQoss
   //
-  size_t Participant_Impl::get_SubscriberConnections (std::vector <SubscriberConnection> & items) const
+  size_t Participant_Impl::get_PublisherQoss (std::vector <PublisherQos> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_SubscriberConnections
+  // get_PublisherQoss
   //
-  ::GAME::Mga::Collection_T <SubscriberConnection> Participant_Impl::get_SubscriberConnections (void) const
+  ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
   {
-    return this->children <SubscriberConnection> ();
+    return this->children <PublisherQos> ();
+  }
+
+  //
+  // get_DataWriterQoss
+  //
+  size_t Participant_Impl::get_DataWriterQoss (std::vector <DataWriterQos> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_DataWriterQoss
+  //
+  ::GAME::Mga::Collection_T <DataWriterQos> Participant_Impl::get_DataWriterQoss (void) const
+  {
+    return this->children <DataWriterQos> ();
   }
 
   //
@@ -156,35 +172,19 @@ namespace DQML
   }
 
   //
-  // get_DataWriterQoss
+  // get_SubscriberConnections
   //
-  size_t Participant_Impl::get_DataWriterQoss (std::vector <DataWriterQos> & items) const
+  size_t Participant_Impl::get_SubscriberConnections (std::vector <SubscriberConnection> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_DataWriterQoss
+  // get_SubscriberConnections
   //
-  ::GAME::Mga::Collection_T <DataWriterQos> Participant_Impl::get_DataWriterQoss (void) const
+  ::GAME::Mga::Collection_T <SubscriberConnection> Participant_Impl::get_SubscriberConnections (void) const
   {
-    return this->children <DataWriterQos> ();
-  }
-
-  //
-  // get_PublisherQoss
-  //
-  size_t Participant_Impl::get_PublisherQoss (std::vector <PublisherQos> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PublisherQoss
-  //
-  ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
-  {
-    return this->children <PublisherQos> ();
+    return this->children <SubscriberConnection> ();
   }
 }
 

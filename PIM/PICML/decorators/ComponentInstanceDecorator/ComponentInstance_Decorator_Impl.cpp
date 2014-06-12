@@ -132,11 +132,11 @@ initialize (const GAME::Mga::Project & proj,
   using GAME::Mga::Reference;
 
   Model model = Model::_narrow (fco);
-  Iterator <Reference> iter = model->children <Reference> ("ComponentInstanceType");
+  GAME::Mga::Collection_T <Reference> iter = model->children <Reference> ("ComponentInstanceType");
 
-  if (!iter.is_done ())
+  if (iter.count() > 0)
   {
-    FCO refers_to = (*iter)->refers_to ();
+    FCO refers_to = iter.first();
 
     if (!refers_to.is_nil ())
       this->impl_label_ = refers_to->name ();
@@ -414,17 +414,11 @@ int ComponentInstance_Decorator_Impl::draw_ports (Gdiplus::Graphics * g)
 int ComponentInstance_Decorator_Impl::
 get_ports (std::vector < ::GAME::Mga::FCO> & v)
 {
-  std::for_each (this->l_ports_.begin (),
-                 this->l_ports_.end (),
-                 boost::bind (&std::vector < ::GAME::Mga::FCO>::push_back,
-                              boost::ref (v),
-                              boost::bind (&GAME::Mga::Port_Decorator::fco, _1)));
+  for (auto & l_port : l_ports_)
+    v.push_back (l_port->fco ());
 
-  std::for_each (this->r_ports_.begin (),
-                 this->r_ports_.end (),
-                 boost::bind (&std::vector < ::GAME::Mga::FCO>::push_back,
-                              boost::ref (v),
-                              boost::bind (&GAME::Mga::Port_Decorator::fco, _1)));
+  for (auto & r_port : r_ports_)
+    v.push_back (r_port->fco ());
 
   return 0;
 }

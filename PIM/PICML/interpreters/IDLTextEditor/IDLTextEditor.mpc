@@ -28,7 +28,6 @@ project (PICML_IDLTextEditor) : t3_runtime, picml_udm_utils, game_mga_interprete
       rules/*.cpp
     }
 
-    Component.rc
     DSL_Document.cpp
     DSL_DocTemplate.cpp
     DSL_Deserializer.cpp
@@ -56,6 +55,7 @@ project (PICML_IDLTextEditor) : t3_runtime, picml_udm_utils, game_mga_interprete
 
   Resource_Files {
     DSL.ico
+    Component.rc
   }
 
   Template_Files {

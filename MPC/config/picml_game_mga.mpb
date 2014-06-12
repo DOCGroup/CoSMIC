@@ -4,6 +4,6 @@ project : game_mga {
   after += PICML_GAME_Mga
   libs  += PICML_GAME_Mga
 
-  includes += $(COSMIC_ROOT)/PIM/PICML/ext/game
+  includes += $(COSMIC_ROOT)/PIM/PICML/ext
   libpaths += $(COSMIC_ROOT)/lib
 }

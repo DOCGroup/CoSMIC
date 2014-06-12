@@ -54,12 +54,12 @@ initialize (const GAME::Mga::Project & proj,
   using GAME::Mga::Iterator;
 
   Model model = Model::_narrow (fco);
-  GAME::Mga::Collection_T <Reference> collection = model->children <Reference> ("ConnectorImplementationType").first();
-
-  if (collection.count()!=0)
+  GAME::Mga::Collection_T <Reference> iter = model->children <Reference> ("ConnectorImplementationType");
+  if (iter.count() > 0)
   {
     using GAME::Mga::FCO;
-    FCO refers_to = collection.first();
+    
+    FCO refers_to = iter.first()->refers_to ();
 
     if (!refers_to.is_nil ())
       this->impl_label_ = refers_to->name ();

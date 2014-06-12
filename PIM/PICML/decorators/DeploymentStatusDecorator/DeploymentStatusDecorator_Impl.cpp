@@ -51,7 +51,7 @@ initialize (const GAME::Mga::Project & project,
   if (sets.count ())
   {
     // Save the name of the collocation group.
-    GAME::Mga::Set group = sets.item ();
+    GAME::Mga::Set group = sets.first ();
     this->deployment_ = group->name () + "@";
 
     // Trace the collocation group to its node.

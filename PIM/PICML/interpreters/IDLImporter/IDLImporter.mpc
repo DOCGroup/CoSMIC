@@ -63,7 +63,7 @@ project(PICML_IDL_TO_PICML_EXE) : aceexe, core, crosscompile, game_xme, tao_idl_
   }
 
   specific (prop:microsoft) {
-    subsystem = 0
+    subsystem = console
   }
 
   Source_Files {

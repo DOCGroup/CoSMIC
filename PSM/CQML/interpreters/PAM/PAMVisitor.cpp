@@ -62,16 +62,19 @@ namespace CQML
         transform (this->selectedObjects_.begin(), this->selectedObjects_.end(),
                    inserter (plans, plans.begin()),
                    UdmCaster<DeploymentPlan>());
-        for_each (plans.begin(), plans.end(),
-                  bind (&DeploymentPlan::Accept, _1, ref (*this)));
+
+        for (auto item : plans)
+          item.Accept (*this);
+
         this->UpdateDeploymentPlans (plans);
         this->CleanUpAssemblies();
       }
     else if (selectedObjects_.empty())
       {
         set<DeploymentPlans> dps = rf.DeploymentPlans_kind_children();
-        for_each (dps.begin(), dps.end(),
-                  bind (&DeploymentPlans::Accept, _1, ref (*this)));
+
+        for (auto item : dps)
+          item.Accept (*this);
       }
     else
       {
@@ -140,8 +143,10 @@ namespace CQML
   void PAMVisitor::Visit_DeploymentPlans (const DeploymentPlans& dps)
   {
     set<DeploymentPlan> plans = dps.DeploymentPlan_kind_children();
-    for_each (plans.begin(), plans.end(),
-              bind (&DeploymentPlan::Accept, _1, ref (*this)));
+
+    for (auto item : plans)
+      item.Accept (*this);
+
     this->UpdateDeploymentPlans (plans);
     this->CleanUpAssemblies();
   }
@@ -150,8 +155,9 @@ namespace CQML
   {
     // Visit each Collocation Group
     set<CollocationGroup> cgs = plan.CollocationGroup_kind_children();
-    for_each (cgs.begin(), cgs.end(),
-              bind (&CollocationGroup::Accept, _1, ref (*this)));
+
+    for (auto item : cgs)
+      item.Accept (*this);
   }
 
   void PAMVisitor::Visit_CollocationGroup (const CollocationGroup& cg)
@@ -1142,8 +1148,7 @@ namespace CQML
 
 
 
-  void PAMVisitor::GenerateCliqueSets (set<Component>& candidateTypes,
-                                       CompCliques& cliqueSets)
+  void PAMVisitor::GenerateCliqueSets (set<Component>& candidateTypes, CompCliques& cliqueSets)
   {
     typedef set<Component>::iterator CompIter;
     for (CandidateMap::size_type count = 1;
@@ -1151,47 +1156,31 @@ namespace CQML
          ++count)
       {
         set<Component> sameCountTypes;
-        CompIter tBegin, tEnd;
-        for (boost::tie (tBegin, tEnd)
-               = make_pair (candidateTypes.begin(),
-                            candidateTypes.end());
-             tBegin != tEnd;
-             ++tBegin)
-          {
-            if (this->candidateMap_.count (*tBegin) == count)
-              sameCountTypes.insert (*tBegin);
-          }
-        for (boost::tie (tBegin, tEnd)
-               = make_pair (sameCountTypes.begin(),
-                            sameCountTypes.end());
-             tBegin != tEnd;
-             ++tBegin)
-          {
-            candidateTypes.erase (remove (candidateTypes.begin(),
-                                          candidateTypes.end(),
-                                          *tBegin),
-                                  candidateTypes.end());
-          }
+
+        for (Component c : candidateTypes)
+          if (this->candidateMap_.count (c) == count)
+            sameCountTypes.insert (c);
+
+        for (Component c : sameCountTypes)
+          candidateTypes.erase (c);
+
         set<Component> candidateComps;
         for (CandidateMap::size_type i = 0; i < count; ++i)
+        {
+          for (Component c : sameCountTypes)
           {
-            for (boost::tie (tBegin, tEnd)
-                   = make_pair (sameCountTypes.begin(),
-                                sameCountTypes.end());
-                 tBegin != tEnd;
-                 ++tBegin)
-              {
-                CandidateMap::iterator vBegin =
-                  this->candidateMap_.lower_bound (*tBegin);
-                if (vBegin == this->candidateMap_.end())
-                  throw udm_exception ("Candidate type not found in map");
-                candidateComps.insert (vBegin->second);
-                this->candidateMap_.erase (vBegin);
-              }
+            CandidateMap::iterator vBegin = this->candidateMap_.lower_bound (c);
+
+            if (vBegin == this->candidateMap_.end())
+              throw udm_exception ("Candidate type not found in map");
+
+            candidateComps.insert (vBegin->second);
+            this->candidateMap_.erase (vBegin);
           }
-        ComponentGraph g(candidateComps.size());
-        EnumerateCliques (candidateComps, cliqueSets,
-                          PAMPredicate (candidateComps), g);
+        }
+
+        ComponentGraph g (candidateComps.size());
+        EnumerateCliques (candidateComps, cliqueSets, PAMPredicate (candidateComps), g);
       }
   }
 
@@ -1199,8 +1188,9 @@ namespace CQML
   {
     set<ComponentImplementationContainer>
       cics = cimpls.ComponentImplementationContainer_kind_children();
-    for_each (cics.begin(), cics.end(),
-              bind (&ComponentImplementationContainer::Accept, _1, ref (*this)));
+
+    for (auto item : cics)
+      item.Accept (*this);
   }
 
   void PAMVisitor::Visit_ComponentImplementationContainer (const ComponentImplementationContainer& cic)

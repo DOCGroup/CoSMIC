@@ -3,7 +3,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
  elementFormDefault="qualified" 
 >
-<!-- generated on Thu Jun 05 02:11:32 2014 -->
+<!-- generated on Tue Jun 10 01:07:23 2014 -->
 
 
 	<xsd:complexType name="ComponentImplementationArtifactType">

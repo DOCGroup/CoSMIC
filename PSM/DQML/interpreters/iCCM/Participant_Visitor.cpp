@@ -78,28 +78,24 @@ void Participant_Visitor::visit_Participant (DQML::Participant_in item)
                  boost::bind (&DQML::TopicQos::impl_type::accept, _1, this));
 
   // publisher(s) go here
-  Iterator <DQML::PublisherQos> publishers = item->get_PublisherQoss ();
-  std::for_each (GAME::Mga::make_impl_iter (publishers),
-                 GAME::Mga::make_impl_iter (publishers.make_end ()),
-                 boost::bind (&DQML::PublisherQos::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::PublisherQos> publishers = item->get_PublisherQoss ();
+  for (auto & publisher : publishers)
+    publisher->accept (this);
 
   // subscribers(s) go here
-  Iterator <DQML::SubscriberQos> subscribers = item->get_SubscriberQoss ();
-  std::for_each (GAME::Mga::make_impl_iter (subscribers),
-                 GAME::Mga::make_impl_iter (subscribers.make_end ()),
-                 boost::bind (&DQML::SubscriberQos::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::SubscriberQos> subscribers = item->get_SubscriberQoss ();
+  for (auto & subscriber : subscribers)
+    subscriber->accept (this);
 
   // datawriter(s) go here
-  Iterator <DQML::DataWriterQos> datawriters = item->get_DataWriterQoss ();
-  std::for_each (GAME::Mga::make_impl_iter (datawriters),
-                 GAME::Mga::make_impl_iter (datawriters.make_end ()),
-                 boost::bind (&DQML::DataWriterQos::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::DataWriterQos> datawriters = item->get_DataWriterQoss ();
+  for (auto & datawriter : datawriters)
+    datawriter->accept (this);
 
   // datareaders(s) go here
-  Iterator <DQML::DataReaderQos> datareaders = item->get_DataReaderQoss ();
-  std::for_each (GAME::Mga::make_impl_iter (datareaders),
-                 GAME::Mga::make_impl_iter (datareaders.make_end ()),
-                 boost::bind (&DQML::DataReaderQos::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::DataReaderQos> datareaders = item->get_DataReaderQoss ();
+  for (auto & datareader : datareaders)
+    datareader->accept (this);
 }
 
 //

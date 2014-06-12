@@ -595,23 +595,16 @@ substitute_template_parameters (const GAME::Mga::Model_in tpi,
   std::vector <GAME::Mga::Reference> refs;
 
   if (0 != tpi->children (idl_aspect, refs))
-    std::for_each (refs.begin (),
-                   refs.end (),
-                   boost::bind (&Package_Type_Handler::substitute_template_parameter_reference,
-                                this,
-                                _1,
-                                boost::cref (mapping)));
-
+    for (auto ref : refs)
+      substitute_template_parameter_reference (ref, mapping);
+    
   // Perform the same operation on all the model elements.
   std::vector <GAME::Mga::Model> models;
-
+  std::vector <GAME::Mga::FCO> FC;
+  FC = models;
   if (0 != tpi->children (idl_aspect, models))
-    std::for_each (models.begin (),
-                   models.end (),
-                   boost::bind (&Package_Type_Handler::substitute_template_parameters,
-                                this,
-                                _1,
-                                boost::cref (mapping)));
+    for (auto model : models)
+      substitute_template_parameters (model, mapping);
 }
 
 //

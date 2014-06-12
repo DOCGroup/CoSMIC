@@ -46,9 +46,8 @@ void Participant_File_Locator::visit_RootFolder (GAME::Mga::RootFolder_in item)
   std::vector <DQML::iCCM> iccm_folders;
   item->folders (iccm_folders);
 
-  std::for_each (GAME::Mga::make_impl_iter (iccm_folders.begin ()),
-                 GAME::Mga::make_impl_iter (iccm_folders.end ()),
-                 boost::bind (&DQML::iCCM::impl_type::accept, _1, this));
+  for (auto & iccm_folder : iccm_folders)
+    iccm_folder->accept (this);
 }
 
 //
@@ -59,9 +58,9 @@ void Participant_File_Locator::visit_iCCM (DQML::iCCM_in item)
   std::vector <DQML::DomainQosFolder> qos_folders;
   item->folders (qos_folders);
 
-  std::for_each (GAME::Mga::make_impl_iter (qos_folders.begin ()),
-                 GAME::Mga::make_impl_iter (qos_folders.end ()),
-                 boost::bind (&DQML::DomainQosFolder::impl_type::accept, _1, this));
+  for (auto & qos_folder : qos_folders)
+    qos_folder->accept (this);
+
 }
 
 //
@@ -70,10 +69,9 @@ void Participant_File_Locator::visit_iCCM (DQML::iCCM_in item)
 void Participant_File_Locator::
 visit_DomainQosFolder (DQML::DomainQosFolder_in item)
 {
-  Iterator <DQML::Domain> iter = item->children <DQML::Domain> ();
-  std::for_each (GAME::Mga::make_impl_iter (iter),
-                 GAME::Mga::make_impl_iter (iter.make_end ()),
-                 boost::bind (&DQML::Domain::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::Domain> domains = item->children <DQML::Domain> ();
+  for (auto & domain : domains)
+    domain->accept (this);
 }
 
 //
@@ -83,10 +81,9 @@ void Participant_File_Locator::visit_Domain (DQML::Domain_in item)
 {
   this->domain_ = item->name ();
 
-  Iterator <DQML::Participant> iter = item->get_Participants ();
-  std::for_each (GAME::Mga::make_impl_iter (iter),
-                 GAME::Mga::make_impl_iter (iter.make_end ()),
-                 boost::bind (&DQML::Participant::impl_type::accept, _1, this));
+  GAME::Mga::Collection_T <DQML::Participant> participants = item->get_Participants ();
+  for (auto & participant : participants)
+    participant->accept (this);
 }
 
 //

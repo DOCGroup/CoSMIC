@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,14 +28,6 @@ namespace DQML
   const std::string DurabilityQosPolicy_Impl::metaname ("DurabilityQosPolicy");
 
   //
-  // _create (const DataReaderQos_in)
-  //
-  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const DataWriterQos_in)
   //
   DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataWriterQos_in parent)
@@ -47,6 +39,14 @@ namespace DQML
   // _create (const TopicQos_in)
   //
   DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const TopicQos_in parent)
+  {
+    return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
   }
@@ -74,14 +74,6 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
-  //
-  DataReaderQos DurabilityQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos DurabilityQosPolicy_Impl::parent_DataWriterQos (void)
@@ -98,11 +90,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_durqos_Connection
+  // parent_DataReaderQos
   //
-  size_t DurabilityQosPolicy_Impl::dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
+  DataReaderQos DurabilityQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return this->in_connections <dw_durqos_Connection> (items);
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -119,6 +111,14 @@ namespace DQML
   size_t DurabilityQosPolicy_Impl::dst_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const
   {
     return this->in_connections <topic_durqos_Connection> (items);
+  }
+
+  //
+  // dst_dw_durqos_Connection
+  //
+  size_t DurabilityQosPolicy_Impl::dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
+  {
+    return this->in_connections <dw_durqos_Connection> (items);
   }
 }
 
