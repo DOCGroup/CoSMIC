@@ -600,8 +600,6 @@ substitute_template_parameters (const GAME::Mga::Model_in tpi,
     
   // Perform the same operation on all the model elements.
   std::vector <GAME::Mga::Model> models;
-  std::vector <GAME::Mga::FCO> FC;
-  FC = models;
   if (0 != tpi->children (idl_aspect, models))
     for (auto model : models)
       substitute_template_parameters (model, mapping);

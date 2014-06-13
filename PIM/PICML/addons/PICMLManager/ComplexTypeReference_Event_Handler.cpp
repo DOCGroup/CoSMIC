@@ -70,7 +70,7 @@ handle_object_relation (GAME::Mga::Object_in obj)
     GAME::Mga::Model aggregate = GAME::Mga::Model::_narrow (real_type);
 
     // Get all the members of the aggregate.
-    std::vector <GAME::Mga::FCO> members;
+    std::vector <GAME::Mga::Reference> members;
     aggregate->children (members);
 
     std::for_each (members.begin (),
