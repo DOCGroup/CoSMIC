@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
+#include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
-#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -80,19 +80,19 @@ namespace DQML
   }
 
   //
-  // dst_pub_groupdata_Connection
-  //
-  size_t GroupDataQosPolicy_Impl::dst_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const
-  {
-    return this->in_connections <pub_groupdata_Connection> (items);
-  }
-
-  //
   // dst_sub_groupdata_Connection
   //
   size_t GroupDataQosPolicy_Impl::dst_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
   {
     return this->in_connections <sub_groupdata_Connection> (items);
+  }
+
+  //
+  // dst_pub_groupdata_Connection
+  //
+  size_t GroupDataQosPolicy_Impl::dst_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const
+  {
+    return this->in_connections <pub_groupdata_Connection> (items);
   }
 }
 

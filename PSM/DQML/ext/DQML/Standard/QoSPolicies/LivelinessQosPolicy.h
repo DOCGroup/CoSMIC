@@ -54,8 +54,8 @@ namespace DQML
      */
     ///@{
     static LivelinessQosPolicy _create (const DataWriterQos_in parent);
-    static LivelinessQosPolicy _create (const TopicQos_in parent);
     static LivelinessQosPolicy _create (const DataReaderQos_in parent);
+    static LivelinessQosPolicy _create (const TopicQos_in parent);
     static LivelinessQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -76,8 +76,8 @@ namespace DQML
      */
     ///@{
     DataWriterQos parent_DataWriterQos (void);
-    TopicQos parent_TopicQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -106,11 +106,11 @@ namespace DQML
     /// Get the dst dr_liveliness_Connection connection.
     size_t dst_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
 
-    /// Get the dst dw_liveliness_Connection connection.
-    size_t dst_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
-
     /// Get the dst topic_liveliness_Connection connection.
     size_t dst_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const;
+
+    /// Get the dst dw_liveliness_Connection connection.
+    size_t dst_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
     ///@}
   };
 }

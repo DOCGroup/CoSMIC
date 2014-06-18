@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -80,19 +80,19 @@ namespace DQML
   }
 
   //
-  // dst_sub_part_Connection
-  //
-  size_t PartitionQosPolicy_Impl::dst_sub_part_Connection (std::vector <sub_part_Connection> & items) const
-  {
-    return this->in_connections <sub_part_Connection> (items);
-  }
-
-  //
   // dst_pub_part_Connection
   //
   size_t PartitionQosPolicy_Impl::dst_pub_part_Connection (std::vector <pub_part_Connection> & items) const
   {
     return this->in_connections <pub_part_Connection> (items);
+  }
+
+  //
+  // dst_sub_part_Connection
+  //
+  size_t PartitionQosPolicy_Impl::dst_sub_part_Connection (std::vector <sub_part_Connection> & items) const
+  {
+    return this->in_connections <sub_part_Connection> (items);
   }
 }
 

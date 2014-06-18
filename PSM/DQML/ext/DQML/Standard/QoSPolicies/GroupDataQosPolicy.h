@@ -95,11 +95,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst pub_groupdata_Connection connection.
-    size_t dst_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const;
-
     /// Get the dst sub_groupdata_Connection connection.
     size_t dst_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const;
+
+    /// Get the dst pub_groupdata_Connection connection.
+    size_t dst_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const;
     ///@}
   };
 }

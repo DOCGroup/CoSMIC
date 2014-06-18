@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -36,17 +36,17 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const TopicQos_in parent)
+  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
   }
@@ -82,14 +82,6 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos ResourceLimitsQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos ResourceLimitsQosPolicy_Impl::parent_DataReaderQos (void)
@@ -98,11 +90,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_res_Connection
+  // parent_TopicQos
   //
-  size_t ResourceLimitsQosPolicy_Impl::dst_dw_res_Connection (std::vector <dw_res_Connection> & items) const
+  TopicQos ResourceLimitsQosPolicy_Impl::parent_TopicQos (void)
   {
-    return this->in_connections <dw_res_Connection> (items);
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -111,6 +103,14 @@ namespace DQML
   size_t ResourceLimitsQosPolicy_Impl::dst_topic_res_Connection (std::vector <topic_res_Connection> & items) const
   {
     return this->in_connections <topic_res_Connection> (items);
+  }
+
+  //
+  // dst_dw_res_Connection
+  //
+  size_t ResourceLimitsQosPolicy_Impl::dst_dw_res_Connection (std::vector <dw_res_Connection> & items) const
+  {
+    return this->in_connections <dw_res_Connection> (items);
   }
 
   //

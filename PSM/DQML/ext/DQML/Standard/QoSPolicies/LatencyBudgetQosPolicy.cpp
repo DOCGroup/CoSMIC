@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -36,17 +36,17 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const TopicQos_in parent)
+  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < LatencyBudgetQosPolicy > (parent, LatencyBudgetQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create_object < LatencyBudgetQosPolicy > (parent, LatencyBudgetQosPolicy_Impl::metaname);
   }
@@ -82,19 +82,19 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos LatencyBudgetQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos LatencyBudgetQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos LatencyBudgetQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -106,19 +106,19 @@ namespace DQML
   }
 
   //
-  // dst_top_latency_Connection
-  //
-  size_t LatencyBudgetQosPolicy_Impl::dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const
-  {
-    return this->in_connections <top_latency_Connection> (items);
-  }
-
-  //
   // dst_dw_latency_Connection
   //
   size_t LatencyBudgetQosPolicy_Impl::dst_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const
   {
     return this->in_connections <dw_latency_Connection> (items);
+  }
+
+  //
+  // dst_top_latency_Connection
+  //
+  size_t LatencyBudgetQosPolicy_Impl::dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const
+  {
+    return this->in_connections <top_latency_Connection> (items);
   }
 }
 

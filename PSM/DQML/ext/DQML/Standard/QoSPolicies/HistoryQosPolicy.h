@@ -54,8 +54,8 @@ namespace DQML
      */
     ///@{
     static HistoryQosPolicy _create (const DataWriterQos_in parent);
-    static HistoryQosPolicy _create (const TopicQos_in parent);
     static HistoryQosPolicy _create (const DataReaderQos_in parent);
+    static HistoryQosPolicy _create (const TopicQos_in parent);
     static HistoryQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -76,8 +76,8 @@ namespace DQML
      */
     ///@{
     DataWriterQos parent_DataWriterQos (void);
-    TopicQos parent_TopicQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**

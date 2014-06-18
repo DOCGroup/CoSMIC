@@ -54,8 +54,8 @@ namespace DQML
      */
     ///@{
     static LatencyBudgetQosPolicy _create (const DataWriterQos_in parent);
-    static LatencyBudgetQosPolicy _create (const TopicQos_in parent);
     static LatencyBudgetQosPolicy _create (const DataReaderQos_in parent);
+    static LatencyBudgetQosPolicy _create (const TopicQos_in parent);
     static LatencyBudgetQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -76,8 +76,8 @@ namespace DQML
      */
     ///@{
     DataWriterQos parent_DataWriterQos (void);
-    TopicQos parent_TopicQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -100,11 +100,11 @@ namespace DQML
     /// Get the dst dr_latency_Connection connection.
     size_t dst_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
 
-    /// Get the dst top_latency_Connection connection.
-    size_t dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
-
     /// Get the dst dw_latency_Connection connection.
     size_t dst_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
+
+    /// Get the dst top_latency_Connection connection.
+    size_t dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
     ///@}
   };
 }

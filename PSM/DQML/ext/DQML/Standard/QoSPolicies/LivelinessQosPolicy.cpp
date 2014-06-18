@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
 #include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -36,17 +36,17 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const TopicQos_in parent)
+  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create_object < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
   }
@@ -82,19 +82,19 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos LivelinessQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos LivelinessQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos LivelinessQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -106,19 +106,19 @@ namespace DQML
   }
 
   //
-  // dst_dw_liveliness_Connection
-  //
-  size_t LivelinessQosPolicy_Impl::dst_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const
-  {
-    return this->in_connections <dw_liveliness_Connection> (items);
-  }
-
-  //
   // dst_topic_liveliness_Connection
   //
   size_t LivelinessQosPolicy_Impl::dst_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const
   {
     return this->in_connections <topic_liveliness_Connection> (items);
+  }
+
+  //
+  // dst_dw_liveliness_Connection
+  //
+  size_t LivelinessQosPolicy_Impl::dst_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const
+  {
+    return this->in_connections <dw_liveliness_Connection> (items);
   }
 }
 

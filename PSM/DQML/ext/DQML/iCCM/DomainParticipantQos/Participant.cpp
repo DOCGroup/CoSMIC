@@ -8,15 +8,15 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/PublisherConnection.h"
-#include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
-#include "DQML/iCCM/DomainQos/Domain.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
 #include "DQML/iCCM/DomainQos/SubscriberConnection.h"
+#include "DQML/iCCM/DomainQos/PublisherConnection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DomainQos/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -60,6 +60,22 @@ namespace DQML
   }
 
   //
+  // has_EntityFactoryQosPolicy
+  //
+  bool Participant_Impl::has_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_EntityFactoryQosPolicy
+  //
+  EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().first ();
+  }
+
+  //
   // has_UserDataQosPolicy
   //
   bool Participant_Impl::has_UserDataQosPolicy (void) const
@@ -76,19 +92,19 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
+  // get_SubscriberConnections
   //
-  bool Participant_Impl::has_EntityFactoryQosPolicy (void) const
+  size_t Participant_Impl::get_SubscriberConnections (std::vector <SubscriberConnection> & items) const
   {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+    return this->children (items);
   }
 
   //
-  // get_EntityFactoryQosPolicy
+  // get_SubscriberConnections
   //
-  EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
+  ::GAME::Mga::Collection_T <SubscriberConnection> Participant_Impl::get_SubscriberConnections (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().first ();
+    return this->children <SubscriberConnection> ();
   }
 
   //
@@ -108,22 +124,6 @@ namespace DQML
   }
 
   //
-  // get_PublisherQoss
-  //
-  size_t Participant_Impl::get_PublisherQoss (std::vector <PublisherQos> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PublisherQoss
-  //
-  ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
-  {
-    return this->children <PublisherQos> ();
-  }
-
-  //
   // get_DataWriterQoss
   //
   size_t Participant_Impl::get_DataWriterQoss (std::vector <DataWriterQos> & items) const
@@ -140,19 +140,19 @@ namespace DQML
   }
 
   //
-  // get_DataReaderQoss
+  // get_PublisherQoss
   //
-  size_t Participant_Impl::get_DataReaderQoss (std::vector <DataReaderQos> & items) const
+  size_t Participant_Impl::get_PublisherQoss (std::vector <PublisherQos> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_DataReaderQoss
+  // get_PublisherQoss
   //
-  ::GAME::Mga::Collection_T <DataReaderQos> Participant_Impl::get_DataReaderQoss (void) const
+  ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
   {
-    return this->children <DataReaderQos> ();
+    return this->children <PublisherQos> ();
   }
 
   //
@@ -172,19 +172,19 @@ namespace DQML
   }
 
   //
-  // get_SubscriberConnections
+  // get_DataReaderQoss
   //
-  size_t Participant_Impl::get_SubscriberConnections (std::vector <SubscriberConnection> & items) const
+  size_t Participant_Impl::get_DataReaderQoss (std::vector <DataReaderQos> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_SubscriberConnections
+  // get_DataReaderQoss
   //
-  ::GAME::Mga::Collection_T <SubscriberConnection> Participant_Impl::get_SubscriberConnections (void) const
+  ::GAME::Mga::Collection_T <DataReaderQos> Participant_Impl::get_DataReaderQoss (void) const
   {
-    return this->children <SubscriberConnection> ();
+    return this->children <DataReaderQos> ();
   }
 }
 
