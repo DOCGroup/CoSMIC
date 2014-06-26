@@ -70,7 +70,18 @@ void Participant_Visitor::visit_Participant (DQML::Participant_in item)
   }
 
   // watchdog_scheduling goes here
+  if (item->has_WatchdogSchedulingQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, this->current_.create_element ("watchdog_scheduling"));
+    item->get_WatchdogSchedulingQosPolicy ()->accept (this);
+  }
+
   // listener_scheduling goes here
+  if (item->has_ListenerSchedulingQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, this->current_.create_element ("listener_scheduling"));
+    item->get_ListenerSchedulingQosPolicy ()->accept (this);
+  }
 
   // Gather all the topics and then visit them. When we visit the topic,
   // we are going to write it to the Xml document.
@@ -139,6 +150,7 @@ visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item)
 void Participant_Visitor::
 visit_UserDataQosPolicy (DQML::UserDataQosPolicy_in item)
 {
+  //<!-- xsd:element name="value" type="xsd:base64Binary" minOccurs="0" maxOccurs="1" / -->
 }
 
 //
@@ -246,7 +258,7 @@ void Participant_Visitor::visit_TopicQos (DQML::TopicQos_in item)
 //
 void Participant_Visitor::visit_GroupDataQosPolicy (DQML::GroupDataQosPolicy item)
 {
-
+  //<!-- xsd:element name="value" type="xsd:base64Binary" minOccurs="0" maxOccurs="1" / -->
 }
 
 //
@@ -254,7 +266,7 @@ void Participant_Visitor::visit_GroupDataQosPolicy (DQML::GroupDataQosPolicy ite
 //
 void Participant_Visitor::visit_TopicDataQosPolicy (DQML::TopicDataQosPolicy_in item)
 {
-
+  //<!-- xsd:element name="value" type="xsd:base64Binary" minOccurs="0" maxOccurs="1" / -->
 }
 
 //
@@ -315,7 +327,7 @@ void Participant_Visitor::
 visit_ReliabilityQosPolicy (DQML::ReliabilityQosPolicy_in item)
 {
   this->current_.set_attribute ("kind", item->reliability_kind ());
-  //this->current_.set_attribute ("synchronous", item->synchronous ());
+  this->current_.set_attribute ("synchronous", item->synchronous ());
   this->current_.set_attribute ("max_blocking_time", item->max_blocking_time ());
 }
 
@@ -374,6 +386,90 @@ void Participant_Visitor::
 visit_OwnershipQosPolicy (DQML::OwnershipQosPolicy_in item)
 {
   this->current_.set_attribute ("kind", item->ownership_kind ());
+}
+
+//
+// visit_SchedulingPriorityQosPolicy
+//
+void Participant_Visitor::
+visit_SchedulingPriorityQosPolicy (DQML::SchedulingPriorityQosPolicy_in item)
+{
+  Fragment scheduling_priority (this->current_.create_element ("scheduling_priority_kind"));
+  scheduling_priority.set_attribute ("kind", item->scheduling_priority_kind ());
+}
+
+//
+// visit_SchedulingClassQosPolicy
+//
+void Participant_Visitor::
+visit_SchedulingClassQosPolicy (DQML::SchedulingClassQosPolicy_in item)
+{
+  Fragment scheduling_class (this->current_.create_element ("scheduling_class"));
+  scheduling_class.set_attribute ("kind", item->scheduling_class_kind ());
+}
+
+//
+// visit_SchedulingQosPolicy
+//
+void Participant_Visitor::
+visit_SchedulingQosPolicy (DQML::SchedulingQosPolicy_in item)
+{
+  if (item->has_SchedulingClassQosPolicy ())
+    item->get_SchedulingClassQosPolicy ()->accept (this);
+  
+  if (item->has_SchedulingPriorityQosPolicy ())
+    item->get_SchedulingPriorityQosPolicy ()->accept (this);
+}
+
+//
+// visit_ListenerSchedulingQosPolicy
+//
+void Participant_Visitor::
+visit_ListenerSchedulingQosPolicy (DQML::ListenerSchedulingQosPolicy_in item)
+{
+  this->visit_SchedulingQosPolicy (item);
+}
+
+//
+// visit_WatchdogSchedulingQosPolicy
+//
+void Participant_Visitor::
+visit_WatchdogSchedulingQosPolicy (DQML::WatchdogSchedulingQosPolicy_in item)
+{
+  this->visit_SchedulingQosPolicy (item);
+}
+
+//
+// visit_ShareQosPolicy
+//
+void Participant_Visitor::
+visit_ShareQosPolicy (DQML::ShareQosPolicy_in item)
+{
+  this->current_.set_attribute ("name", item->name ());
+  this->current_.set_attribute ("enable", item->share_qos_enable ());
+}
+
+//
+// visit_PublisherQos
+//
+void Participant_Visitor::
+visit_SubscriptionKeyQosPolicy (DQML::SubscriptionKeyQosPolicy_in item)
+{      
+  if (item->has_StringSeq ())
+  {
+    Swap_Fragment f (this->current_, this->current_.create_element ("name"));
+    item->get_StringSeq ()->accept (this);
+  }
+}
+
+//
+// visit_PublisherQos
+//
+void Participant_Visitor::
+visit_ReaderLifespanQosPolicy (DQML::ReaderLifespanQosPolicy_in item)
+{
+  this->current_.set_attribute ("duration", item->duration ());
+  this->current_.set_attribute ("use_lifespan", item->use_lifespan ());
 }
 
 //
@@ -452,6 +548,11 @@ visit_SubscriberQos (DQML::SubscriberQos_in item)
   }
 
   //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
+  if (item->has_ShareQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, subscriber.create_element ("share"));
+    item->get_ShareQosPolicy ()->accept (this);
+  }
 }
 
 //
@@ -486,6 +587,9 @@ void Participant_Visitor::visit_DataWriterQos (DQML::DataWriterQos_in item)
 {
   Fragment writer (this->current_.create_element ("datawriter"));
   writer.set_attribute ("name", item->name ());
+  writer.set_attribute ("topic_name", item->topic_name ());
+  writer.set_attribute ("isinstance", item->IsInstance ());
+  writer.set_attribute ("isprivate", item->isprivate ());
 
   std::vector <DQML::PublisherConnection> publisher_conn;
   if (item->src_PublisherConnection (publisher_conn))
@@ -616,8 +720,8 @@ visit_OwnershipStrengthQosPolicy (DQML::OwnershipStrengthQosPolicy_in item)
 void Participant_Visitor::
 visit_WriterDataLifecycleQosPolicy (DQML::WriterDataLifecycleQosPolicy_in item)
 {
-  //<xsd:attribute name="autopurge_suspended_samples_delay" type="Duration_t" />
-  //<xsd:attribute name="autounregister_instance_delay" type="Duration_t" />
+  this->current_.set_attribute ("autopurge_suspended_samples_delay", item->autopurge_suspended_samples_delay ());
+  this->current_.set_attribute ("autounregister_instance_delay", item->autounregister_instance_delay ());
   this->current_.set_attribute ("autodispose_unregistered_instances", item->autodispose_unregistered_instances ());
 }
 
@@ -628,6 +732,7 @@ void Participant_Visitor::visit_DataReaderQos (DQML::DataReaderQos_in item)
 {
   Fragment reader (this->current_.create_element ("datareader"));
   reader.set_attribute ("name", item->name ());
+  reader.set_attribute ("isprivate", item->isprivate ());
 
   std::vector <DQML::SubscriberConnection> subscriber_conn;
   if (item->src_SubscriberConnection (subscriber_conn))
@@ -729,10 +834,25 @@ void Participant_Visitor::visit_DataReaderQos (DQML::DataReaderQos_in item)
   }
 
   //<xsd:element name="subscription_keys" type="SubscriptionKeyQosPolicy" minOccurs="0" maxOccurs="1" />
+  if (item->has_SubscriptionKeyQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, reader.create_element ("subscription_keys"));
+    item->get_SubscriptionKeyQosPolicy ()->accept (this);
+  }
 
   //<xsd:element name="reader_lifespan" type="ReaderLifespanQosPolicy" minOccurs="0" maxOccurs="1" />
+  if (item->has_ReaderLifespanQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, reader.create_element ("reader_lifespan"));
+    item->get_ReaderLifespanQosPolicy ()->accept (this);
+  }
 
   //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
+  if (item->has_ShareQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, reader.create_element ("share"));
+    item->get_ShareQosPolicy ()->accept (this);
+  }
 
 }
 
@@ -753,7 +873,8 @@ visit_ReaderDataLifecycleQosPolicy (DQML::ReaderDataLifecycleQosPolicy_in item)
 {
   this->current_.set_attribute ("autopurge_nowriter_samples_delay", item->autopurge_nowriter_samples_delay ());
   this->current_.set_attribute ("autopurge_disposed_samples_delay", item->autopurge_disposed_samples_delay ());
-  //<xsd:attribute name="enable_invalid_samples" type="xsd:boolean" />
+  this->current_.set_attribute ("enable_invalid_samples", item->enable_invalid_samples ());
+  
 }
 
 }

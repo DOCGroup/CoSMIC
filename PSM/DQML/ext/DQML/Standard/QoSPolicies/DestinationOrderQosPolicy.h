@@ -97,14 +97,14 @@ namespace DQML
      */
     ///@{
 
+    /// Get the dst topic_dstOrder_Connection connection.
+    size_t dst_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const;
+
     /// Get the dst dr_dstOrder_Connection connection.
     size_t dst_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const;
 
     /// Get the dst dw_dstOrder_Connection connection.
     size_t dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const;
-
-    /// Get the dst topic_dstOrder_Connection connection.
-    size_t dst_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const;
     ///@}
   };
 }

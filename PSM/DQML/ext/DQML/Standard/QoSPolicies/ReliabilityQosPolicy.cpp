@@ -11,9 +11,9 @@
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -98,11 +98,11 @@ namespace DQML
   }
 
   //
-  // dst_dr_reliability_Connection
+  // dst_topic_reliability_Connection
   //
-  size_t ReliabilityQosPolicy_Impl::dst_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
+  size_t ReliabilityQosPolicy_Impl::dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
   {
-    return this->in_connections <dr_reliability_Connection> (items);
+    return this->in_connections <topic_reliability_Connection> (items);
   }
 
   //
@@ -114,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_topic_reliability_Connection
+  // dst_dr_reliability_Connection
   //
-  size_t ReliabilityQosPolicy_Impl::dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
+  size_t ReliabilityQosPolicy_Impl::dst_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
   {
-    return this->in_connections <topic_reliability_Connection> (items);
+    return this->in_connections <dr_reliability_Connection> (items);
   }
 }
 

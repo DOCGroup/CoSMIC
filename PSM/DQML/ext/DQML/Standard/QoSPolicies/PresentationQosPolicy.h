@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static PresentationQosPolicy _create (const PublisherQos_in parent);
     static PresentationQosPolicy _create (const SubscriberQos_in parent);
+    static PresentationQosPolicy _create (const PublisherQos_in parent);
     static PresentationQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -74,8 +74,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    PublisherQos parent_PublisherQos (void);
     SubscriberQos parent_SubscriberQos (void);
+    PublisherQos parent_PublisherQos (void);
     ///@}
 
     /**
@@ -107,11 +107,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst pub_presqos_Connection connection.
-    size_t dst_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const;
-
     /// Get the dst sub_presqos_Connection connection.
     size_t dst_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const;
+
+    /// Get the dst pub_presqos_Connection connection.
+    size_t dst_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const;
     ///@}
   };
 }

@@ -109,14 +109,14 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_reliability_Connection connection.
-    size_t dst_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
+    /// Get the dst topic_reliability_Connection connection.
+    size_t dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
 
     /// Get the dst dw_reliability_Connection connection.
     size_t dst_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
 
-    /// Get the dst topic_reliability_Connection connection.
-    size_t dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
+    /// Get the dst dr_reliability_Connection connection.
+    size_t dst_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
     ///@}
   };
 }

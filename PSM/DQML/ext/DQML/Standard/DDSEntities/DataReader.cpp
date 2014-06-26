@@ -8,20 +8,20 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/dr_sub_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
 #include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
-#include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
-#include "DQML/Standard/Main/dr_topic_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
-#include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
 #include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
+#include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
+#include "DQML/Standard/Main/dr_topic_Connection.h"
+#include "DQML/Standard/Main/dr_sub_Connection.h"
+#include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -58,30 +58,6 @@ namespace DQML
   }
 
   //
-  // src_dr_dstOrder_Connection
-  //
-  size_t DataReader_Impl::src_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> (items);
-  }
-
-  //
-  // src_dr_reliability_Connection
-  //
-  size_t DataReader_Impl::src_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
-  {
-    return this->in_connections <dr_reliability_Connection> (items);
-  }
-
-  //
-  // src_dr_latency_Connection
-  //
-  size_t DataReader_Impl::src_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
-  {
-    return this->in_connections <dr_latency_Connection> (items);
-  }
-
-  //
   // src_dr_timebased_Connection
   //
   size_t DataReader_Impl::src_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const
@@ -98,11 +74,11 @@ namespace DQML
   }
 
   //
-  // src_dr_history_Connection
+  // src_dr_liveliness_Connection
   //
-  size_t DataReader_Impl::src_dr_history_Connection (std::vector <dr_history_Connection> & items) const
+  size_t DataReader_Impl::src_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
   {
-    return this->in_connections <dr_history_Connection> (items);
+    return this->in_connections <dr_liveliness_Connection> (items);
   }
 
   //
@@ -114,19 +90,19 @@ namespace DQML
   }
 
   //
-  // src_dr_userdata_Connection
+  // src_dr_dstOrder_Connection
   //
-  size_t DataReader_Impl::src_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
+  size_t DataReader_Impl::src_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
   {
-    return this->in_connections <dr_userdata_Connection> (items);
+    return this->in_connections <dr_dstOrder_Connection> (items);
   }
 
   //
-  // src_dr_topic_Connection
+  // src_dr_ownership_Connection
   //
-  size_t DataReader_Impl::src_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const
+  size_t DataReader_Impl::src_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
   {
-    return this->in_connections <dr_topic_Connection> (items);
+    return this->in_connections <dr_ownership_Connection> (items);
   }
 
   //
@@ -138,6 +114,14 @@ namespace DQML
   }
 
   //
+  // src_dr_topic_Connection
+  //
+  size_t DataReader_Impl::src_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const
+  {
+    return this->in_connections <dr_topic_Connection> (items);
+  }
+
+  //
   // src_dr_deadline_Connection
   //
   size_t DataReader_Impl::src_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
@@ -146,19 +130,35 @@ namespace DQML
   }
 
   //
-  // src_dr_liveliness_Connection
+  // src_dr_history_Connection
   //
-  size_t DataReader_Impl::src_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
+  size_t DataReader_Impl::src_dr_history_Connection (std::vector <dr_history_Connection> & items) const
   {
-    return this->in_connections <dr_liveliness_Connection> (items);
+    return this->in_connections <dr_history_Connection> (items);
   }
 
   //
-  // src_dr_ownership_Connection
+  // src_dr_latency_Connection
   //
-  size_t DataReader_Impl::src_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
+  size_t DataReader_Impl::src_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
   {
-    return this->in_connections <dr_ownership_Connection> (items);
+    return this->in_connections <dr_latency_Connection> (items);
+  }
+
+  //
+  // src_dr_userdata_Connection
+  //
+  size_t DataReader_Impl::src_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
+  {
+    return this->in_connections <dr_userdata_Connection> (items);
+  }
+
+  //
+  // src_dr_reliability_Connection
+  //
+  size_t DataReader_Impl::src_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
+  {
+    return this->in_connections <dr_reliability_Connection> (items);
   }
 
   //

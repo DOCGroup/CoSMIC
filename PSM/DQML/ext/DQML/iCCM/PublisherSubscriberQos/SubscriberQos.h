@@ -87,8 +87,8 @@ namespace DQML
      */
     ///@{
 
-    bool has_GroupDataQosPolicy (void) const;
-    GroupDataQosPolicy get_GroupDataQosPolicy (void) const;
+    bool has_PartitionQosPolicy (void) const;
+    PartitionQosPolicy get_PartitionQosPolicy (void) const;
 
     bool has_ShareQosPolicy (void) const;
     ShareQosPolicy get_ShareQosPolicy (void) const;
@@ -99,8 +99,8 @@ namespace DQML
     bool has_EntityFactoryQosPolicy (void) const;
     EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
 
-    bool has_PartitionQosPolicy (void) const;
-    PartitionQosPolicy get_PartitionQosPolicy (void) const;
+    bool has_GroupDataQosPolicy (void) const;
+    GroupDataQosPolicy get_GroupDataQosPolicy (void) const;
     ///@}
   };
 }

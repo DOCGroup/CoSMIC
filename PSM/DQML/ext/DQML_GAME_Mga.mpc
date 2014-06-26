@@ -18,49 +18,54 @@ project (DQML_GAME_Mga) : game_extension_classes {
     DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.cpp
     DQML/Standard/QoSPolicies/LifespanQosPolicy.cpp
     DQML/Standard/QoSPolicies/QoSPolicy.cpp
+    DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.cpp
+    DQML/Standard/QoSPolicies/SchedulingClassQosPolicy.cpp
     DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.cpp
     DQML/Standard/DDSEntities/DomainParticipantFactory.cpp
+    DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.cpp
     DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.cpp
     DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.cpp
-    DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.cpp
     DQML/iCCM/DataWriterQos/DataWriterQos.cpp
     DQML/Standard/QoSPolicies/PartitionQosPolicy.cpp
     DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.cpp
     DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.cpp
     DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.cpp
     DQML/iCCM/DomainQos/DomainQosFolder.cpp
+    DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.cpp
     DQML/Standard/QoSPolicies/OwnershipStrengthQosPolicy.cpp
     DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.cpp
-    DQML/Standard/QoSPolicies/LivelinessQosPolicy.cpp
     DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.cpp
+    DQML/Standard/QoSPolicies/LivelinessQosPolicy.cpp
     DQML/Standard/QoSPolicies/SubscriptionKeyQosPolicy.cpp
     DQML/Standard/QoSPolicies/OwnershipQosPolicy.cpp
+    DQML/Standard/Main/dp_sub_Connection.cpp
     DQML/Standard/Main/dr_sub_Connection.cpp
     DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.cpp
     DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.cpp
-    DQML/Standard/Main/dp_sub_Connection.cpp
     DQML/iCCM/iCCM/iCCM.cpp
     DQML/Standard/QoSPolicies/GroupDataQosPolicy.cpp
     DQML/Standard/DDSEntities/DomainEntity.cpp
-    DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.cpp
     DQML/Standard/QoSPolicies/DurabilityServiceQosPolicy.cpp
+    DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.cpp
     DQML/Standard/QoSPolicies/ReaderLifespanQosPolicy.cpp
     DQML/Standard/QoSPolicies/HistoryQosPolicy.cpp
     DQML/Standard/PartitionQosPolicy/pub_part_Connection.cpp
     DQML/iCCM/DomainParticipantQos/Participant.cpp
     DQML/Standard/QoSPolicies/TopicDataQosPolicy.cpp
+    DQML/Standard/QoSPolicies/SchedulingPriorityQosPolicy.cpp
     DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.cpp
     DQML/iCCM/PublisherSubscriberQos/SubscriberQos.cpp
     DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.cpp
-    DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.cpp
     DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.cpp
+    DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.cpp
+    DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.cpp
+    DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.cpp
     DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.cpp
     DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.cpp
-    DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.cpp
-    DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.cpp
     DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.cpp
     DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.cpp
     DQML/Standard/DDSEntities/DomainParticipant.cpp
+    DQML/Standard/SchedulingQosPolicy/SchedulingQosPolicy.cpp
     DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.cpp
     DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.cpp
     DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.cpp
@@ -69,8 +74,8 @@ project (DQML_GAME_Mga) : game_extension_classes {
     DQML/Standard/DDSEntities/Topic.cpp
     DQML/iCCM/TopicQos/TopicQosFolder.cpp
     DQML/iCCM/TopicQos/TopicQosReference.cpp
-    DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.cpp
     DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.cpp
+    DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.cpp
     DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.cpp
     DQML/iCCM/DataReaderQos/DataReaderQos.cpp
     DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.cpp
@@ -83,20 +88,20 @@ project (DQML_GAME_Mga) : game_extension_classes {
     DQML/Standard/QoSPolicies/DeadlineQosPolicy.cpp
     DQML/iCCM/DomainQos/PublisherConnection.cpp
     DQML/iCCM/DomainQos/PublishesConnection.cpp
-    DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.cpp
     DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.cpp
+    DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.cpp
     DQML/Standard/QoSPolicies/ReliabilityQosPolicy.cpp
-    DQML/Standard/HistoryQosPolicy/dr_history_Connection.cpp
     DQML/Standard/Main/dw_topic_Connection.cpp
+    DQML/Standard/HistoryQosPolicy/dr_history_Connection.cpp
     DQML/Standard/QoSPolicies/TimeBasedFilterQosPolicy.cpp
-    DQML/Standard/HistoryQosPolicy/dw_history_Connection.cpp
     DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.cpp
+    DQML/Standard/HistoryQosPolicy/dw_history_Connection.cpp
     DQML/Standard/QoSPolicies/StringSeq_Item.cpp
     DQML/Standard/DDSEntities/Subscriber.cpp
     DQML/Standard/QoSPolicies/DurabilityQosPolicy.cpp
     DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.cpp
-    DQML/Standard/Main/dp_topic_Connection.cpp
     DQML/Standard/Main/dr_topic_Connection.cpp
+    DQML/Standard/Main/dp_topic_Connection.cpp
     DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.cpp
     DQML/Standard/QoSPolicies/UserDataQosPolicy.cpp
     DQML/iCCM/TopicQos/TopicQos.cpp
@@ -107,18 +112,18 @@ project (DQML_GAME_Mga) : game_extension_classes {
     DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.cpp
     DQML/Standard/PartitionQosPolicy/sub_part_Connection.cpp
     DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.cpp
-    DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.cpp
     DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.cpp
+    DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.cpp
     DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.cpp
     DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.cpp
     DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.cpp
-    DQML/Standard/DDSEntities/DataWriter.cpp
     DQML/Standard/DDSEntities/DataReader.cpp
+    DQML/Standard/DDSEntities/DataWriter.cpp
     DQML/Standard/QoSPolicies/StringSeq.cpp
     DQML/Standard/QoSPolicies/PresentationQosPolicy.cpp
     DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.cpp
-    DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.cpp
     DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.cpp
+    DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.cpp
     DQML/Standard/DDSEntities/Publisher.cpp
     DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.cpp
     DQML/Standard/QoSPolicies/ShareQosPolicy.cpp

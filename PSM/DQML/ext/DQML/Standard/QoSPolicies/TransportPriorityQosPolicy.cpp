@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"

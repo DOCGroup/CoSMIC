@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
-#include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
 #include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,19 +66,19 @@ namespace DQML
   }
 
   //
-  // has_GroupDataQosPolicy
+  // has_PartitionQosPolicy
   //
-  bool SubscriberQos_Impl::has_GroupDataQosPolicy (void) const
+  bool SubscriberQos_Impl::has_PartitionQosPolicy (void) const
   {
-    return this->children <GroupDataQosPolicy> ().count () == 1;
+    return this->children <PartitionQosPolicy> ().count () == 1;
   }
 
   //
-  // get_GroupDataQosPolicy
+  // get_PartitionQosPolicy
   //
-  GroupDataQosPolicy SubscriberQos_Impl::get_GroupDataQosPolicy (void) const
+  PartitionQosPolicy SubscriberQos_Impl::get_PartitionQosPolicy (void) const
   {
-    return this->children <GroupDataQosPolicy> ().first ();
+    return this->children <PartitionQosPolicy> ().first ();
   }
 
   //
@@ -130,19 +130,19 @@ namespace DQML
   }
 
   //
-  // has_PartitionQosPolicy
+  // has_GroupDataQosPolicy
   //
-  bool SubscriberQos_Impl::has_PartitionQosPolicy (void) const
+  bool SubscriberQos_Impl::has_GroupDataQosPolicy (void) const
   {
-    return this->children <PartitionQosPolicy> ().count () == 1;
+    return this->children <GroupDataQosPolicy> ().count () == 1;
   }
 
   //
-  // get_PartitionQosPolicy
+  // get_GroupDataQosPolicy
   //
-  PartitionQosPolicy SubscriberQos_Impl::get_PartitionQosPolicy (void) const
+  GroupDataQosPolicy SubscriberQos_Impl::get_GroupDataQosPolicy (void) const
   {
-    return this->children <PartitionQosPolicy> ().first ();
+    return this->children <GroupDataQosPolicy> ().first ();
   }
 }
 

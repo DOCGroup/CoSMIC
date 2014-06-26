@@ -11,8 +11,8 @@
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
+#include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -98,19 +98,19 @@ namespace DQML
   }
 
   //
-  // dst_top_deadline_Connection
-  //
-  size_t DeadlineQosPolicy_Impl::dst_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const
-  {
-    return this->in_connections <top_deadline_Connection> (items);
-  }
-
-  //
   // dst_dr_deadline_Connection
   //
   size_t DeadlineQosPolicy_Impl::dst_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
   {
     return this->in_connections <dr_deadline_Connection> (items);
+  }
+
+  //
+  // dst_top_deadline_Connection
+  //
+  size_t DeadlineQosPolicy_Impl::dst_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const
+  {
+    return this->in_connections <top_deadline_Connection> (items);
   }
 
   //

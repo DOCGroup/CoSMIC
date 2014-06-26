@@ -49,6 +49,15 @@ public:
   virtual void visit_ReliabilityQosPolicy (DQML::ReliabilityQosPolicy_in item);
   virtual void visit_TopicDataQosPolicy (DQML::TopicDataQosPolicy_in item);
   virtual void visit_UserDataQosPolicy (DQML::UserDataQosPolicy_in item);
+  virtual void visit_ShareQosPolicy (DQML::ShareQosPolicy_in item);
+  virtual void visit_SubscriptionKeyQosPolicy (DQML::SubscriptionKeyQosPolicy_in item);
+  virtual void visit_ReaderLifespanQosPolicy (DQML::ReaderLifespanQosPolicy_in item);
+
+  virtual void visit_SchedulingPriorityQosPolicy (DQML::SchedulingPriorityQosPolicy_in item);
+  virtual void visit_SchedulingClassQosPolicy (DQML::SchedulingClassQosPolicy_in item);
+  virtual void visit_SchedulingQosPolicy (DQML::SchedulingQosPolicy_in item);
+  virtual void visit_ListenerSchedulingQosPolicy (DQML::ListenerSchedulingQosPolicy_in item);
+  virtual void visit_WatchdogSchedulingQosPolicy (DQML::WatchdogSchedulingQosPolicy_in item);
 
   virtual void visit_PublisherQos (DQML::PublisherQos_in item);
   virtual void visit_SubscriberQos (DQML::SubscriberQos_in item);

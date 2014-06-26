@@ -79,44 +79,44 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dr_dstOrder_Connection connection.
-    size_t src_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const;
-
-    /// Get the src dr_reliability_Connection connection.
-    size_t src_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
-
-    /// Get the src dr_latency_Connection connection.
-    size_t src_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
-
     /// Get the src dr_timebased_Connection connection.
     size_t src_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const;
 
     /// Get the src dr_res_Connection connection.
     size_t src_dr_res_Connection (std::vector <dr_res_Connection> & items) const;
 
-    /// Get the src dr_history_Connection connection.
-    size_t src_dr_history_Connection (std::vector <dr_history_Connection> & items) const;
+    /// Get the src dr_liveliness_Connection connection.
+    size_t src_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
 
     /// Get the src dr_readerdatalifecycle_Connection connection.
     size_t src_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const;
 
-    /// Get the src dr_userdata_Connection connection.
-    size_t src_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const;
+    /// Get the src dr_dstOrder_Connection connection.
+    size_t src_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const;
 
-    /// Get the src dr_topic_Connection connection.
-    size_t src_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const;
+    /// Get the src dr_ownership_Connection connection.
+    size_t src_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
 
     /// Get the src dr_durqos_Connection connection.
     size_t src_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
 
+    /// Get the src dr_topic_Connection connection.
+    size_t src_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const;
+
     /// Get the src dr_deadline_Connection connection.
     size_t src_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
 
-    /// Get the src dr_liveliness_Connection connection.
-    size_t src_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
+    /// Get the src dr_history_Connection connection.
+    size_t src_dr_history_Connection (std::vector <dr_history_Connection> & items) const;
 
-    /// Get the src dr_ownership_Connection connection.
-    size_t src_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
+    /// Get the src dr_latency_Connection connection.
+    size_t src_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
+
+    /// Get the src dr_userdata_Connection connection.
+    size_t src_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const;
+
+    /// Get the src dr_reliability_Connection connection.
+    size_t src_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
     ///@}
 
     /**
