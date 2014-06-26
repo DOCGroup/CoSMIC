@@ -4,23 +4,24 @@ REGEDIT4
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID]
 
-[HKEY_CURRENT_USER\Software\Classes\CLSID\{8238d1f3-6d1c-4224-8046-9d06cf990926}]
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{f995afe4-8236-4a70-981e-5a55ed7b5de6}]
 @="GAME.Interpreter.DQML_iCCM"
 
-[HKEY_CURRENT_USER\Software\Classes\CLSID\{8238d1f3-6d1c-4224-8046-9d06cf990926}\ProgID]
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{f995afe4-8236-4a70-981e-5a55ed7b5de6}\ProgID]
 @="GAME.Interpreter.DQML_iCCM"
 
-[HKEY_CURRENT_USER\Software\Classes\CLSID\{8238d1f3-6d1c-4224-8046-9d06cf990926}\InProcServer32]
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{f995afe4-8236-4a70-981e-5a55ed7b5de6}\InProcServer32]
 @="DQML_iCCM_Component.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.DQML_iCCM]
 @="GAME.Interpreter.DQML_iCCM"
 
 [HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.DQML_iCCM\CLSID]
-@="{8238d1f3-6d1c-4224-8046-9d06cf990926}"
+@="{f995afe4-8236-4a70-981e-5a55ed7b5de6}"
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.DQML_iCCM]
 "Tooltip"="DQML iCCM Interpreter"
+"Icon"=",IDI_COMPICON"
 "Paradigm"="DQML"
 "Type"=dword:00000001
 "Description"="DQML iCCM"

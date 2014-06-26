@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/Standard/Main/DDSQoS.h"
+#include "DQML/Standard/QoSPolicies/StringSeq.h"
+#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,14 +42,6 @@ namespace DQML
   }
 
   //
-  // _create (const DDSQoS_in)
-  //
-  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const DDSQoS_in parent)
-  {
-    return ::GAME::Mga::create_object < PartitionQosPolicy > (parent, PartitionQosPolicy_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void PartitionQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
@@ -60,7 +52,7 @@ namespace DQML
     if (0 != this_visitor)
       this_visitor->visit_PartitionQosPolicy (this);
     else
-      v->visit_Atom (this);
+      v->visit_Model (this);
   }
 
   //
@@ -93,6 +85,22 @@ namespace DQML
   size_t PartitionQosPolicy_Impl::dst_sub_part_Connection (std::vector <sub_part_Connection> & items) const
   {
     return this->in_connections <sub_part_Connection> (items);
+  }
+
+  //
+  // has_StringSeq
+  //
+  bool PartitionQosPolicy_Impl::has_StringSeq (void) const
+  {
+    return this->children <StringSeq> ().count () == 1;
+  }
+
+  //
+  // get_StringSeq
+  //
+  StringSeq PartitionQosPolicy_Impl::get_StringSeq (void) const
+  {
+    return this->children <StringSeq> ().first ();
   }
 }
 

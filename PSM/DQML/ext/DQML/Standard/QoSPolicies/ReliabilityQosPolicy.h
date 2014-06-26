@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
     static ReliabilityQosPolicy _create (const DataReaderQos_in parent);
+    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
     static ReliabilityQosPolicy _create (const TopicQos_in parent);
     static ReliabilityQosPolicy _create (const DDSQoS_in parent);
     ///@}
@@ -75,8 +75,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     TopicQos parent_TopicQos (void);
     ///@}
 
@@ -96,6 +96,12 @@ namespace DQML
 
     /// Get the value of max_blocking_time
     double max_blocking_time (void) const;
+
+    /// Set the value of synchronous
+    void synchronous (bool val);
+
+    /// Get the value of synchronous
+    bool synchronous (void) const;
     ///@}
 
     /**

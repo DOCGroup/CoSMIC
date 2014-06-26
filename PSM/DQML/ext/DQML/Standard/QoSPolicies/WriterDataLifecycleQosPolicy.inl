@@ -42,5 +42,41 @@ namespace DQML
     static const std::string attr_name ("autodispose_unregistered_instances");
     return this->attribute (attr_name)->bool_value ();
   }
+
+  //
+  // autopurge_suspended_samples_delay
+  //
+  GAME_INLINE void WriterDataLifecycleQosPolicy_Impl::autopurge_suspended_samples_delay (double val)
+  {
+    static const std::string attr_name ("autopurge_suspended_samples_delay");
+    this->attribute (attr_name)->double_value (val);
+  }
+
+  //
+  // autopurge_suspended_samples_delay
+  //
+  GAME_INLINE double WriterDataLifecycleQosPolicy_Impl::autopurge_suspended_samples_delay (void) const
+  {
+    static const std::string attr_name ("autopurge_suspended_samples_delay");
+    return this->attribute (attr_name)->double_value ();
+  }
+
+  //
+  // autounregister_instance_delay
+  //
+  GAME_INLINE void WriterDataLifecycleQosPolicy_Impl::autounregister_instance_delay (double val)
+  {
+    static const std::string attr_name ("autounregister_instance_delay");
+    this->attribute (attr_name)->double_value (val);
+  }
+
+  //
+  // autounregister_instance_delay
+  //
+  GAME_INLINE double WriterDataLifecycleQosPolicy_Impl::autounregister_instance_delay (void) const
+  {
+    static const std::string attr_name ("autounregister_instance_delay");
+    return this->attribute (attr_name)->double_value ();
+  }
 }
 

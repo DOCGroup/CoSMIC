@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,17 +28,17 @@ namespace DQML
   const std::string LatencyBudgetQosPolicy_Impl::metaname ("LatencyBudgetQosPolicy");
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const DataReaderQos_in)
   //
-  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < LatencyBudgetQosPolicy > (parent, LatencyBudgetQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const DataWriterQos_in)
   //
-  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create_object < LatencyBudgetQosPolicy > (parent, LatencyBudgetQosPolicy_Impl::metaname);
   }
@@ -74,19 +74,19 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
-  //
-  DataWriterQos LatencyBudgetQosPolicy_Impl::parent_DataWriterQos (void)
-  {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos LatencyBudgetQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos LatencyBudgetQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
   }
 
   //
@@ -98,19 +98,19 @@ namespace DQML
   }
 
   //
-  // dst_dr_latency_Connection
-  //
-  size_t LatencyBudgetQosPolicy_Impl::dst_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
-  {
-    return this->in_connections <dr_latency_Connection> (items);
-  }
-
-  //
   // dst_dw_latency_Connection
   //
   size_t LatencyBudgetQosPolicy_Impl::dst_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const
   {
     return this->in_connections <dw_latency_Connection> (items);
+  }
+
+  //
+  // dst_dr_latency_Connection
+  //
+  size_t LatencyBudgetQosPolicy_Impl::dst_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
+  {
+    return this->in_connections <dr_latency_Connection> (items);
   }
 
   //

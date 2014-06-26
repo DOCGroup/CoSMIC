@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{B7B11E6F-48E7-4E3A-8BBE-ED2BF628152B}" cdate="Wed Sep 04 12:14:32 2013" mdate="Wed Sep 04 12:14:32 2013" >
+<paradigm name="PICML" guid="{9AB431F4-C439-4619-BC47-92738B2A5C53}" cdate="Wed Jun 18 18:58:14 2014" mdate="Wed Jun 18 18:58:14 2014" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2880,6 +2880,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		</reference>
 		<reference name = "ArrayMember" metaref = "5514" attributes = "Size">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "showPorts" value ="false"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyMember"></regnode>
 			<constraint name="LegalTemplateParameter" eventmask = "0x0" depth = "1" priority = "2">
@@ -3675,6 +3676,7 @@ let y = value.toInteger () in
 		</reference>
 		<reference name = "ExtendedPort" metaref = "5484">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "showPorts" value ="false"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyExtendedPortBase"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
@@ -3822,6 +3824,7 @@ not x.isNull ()]]>
 		</reference>
 		<reference name = "InParameter" metaref = "1188">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "showPorts" value ="false"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyParameterType"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
@@ -3891,6 +3894,7 @@ not x.isNull ()]]>
 		</reference>
 		<reference name = "InoutParameter" metaref = "1190">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "showPorts" value ="false"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyParameterType"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
@@ -4025,6 +4029,7 @@ not x.isNull ()]]>
 		</reference>
 		<reference name = "MirrorPort" metaref = "5493">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "showPorts" value ="false"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyExtendedPortBase"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
@@ -4170,6 +4175,7 @@ type.single_destination implies (n = 0 or n = 1)]]>
 		</reference>
 		<reference name = "OutParameter" metaref = "1197">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "showPorts" value ="false"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyParameterType"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
@@ -7027,12 +7033,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality204" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality205" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -7274,12 +7280,12 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality212" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality213" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>

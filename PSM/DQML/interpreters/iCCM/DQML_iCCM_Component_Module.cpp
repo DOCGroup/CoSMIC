@@ -7,4 +7,4 @@
 DECLARE_COMPONENT_MODULE ("DQML_iCCM",
                           LIBID_DQML_iCCM_Component,
                           1000,
-                          "{ddf199a3-f8ca-49ca-86a6-43afaf921779}");
+                          "{60700d9a-57b5-46c8-8f35-9f0971a8373f}");

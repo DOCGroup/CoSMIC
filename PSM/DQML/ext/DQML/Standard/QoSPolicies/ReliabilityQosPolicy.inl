@@ -60,5 +60,23 @@ namespace DQML
     static const std::string attr_name ("max_blocking_time");
     return this->attribute (attr_name)->double_value ();
   }
+
+  //
+  // synchronous
+  //
+  GAME_INLINE void ReliabilityQosPolicy_Impl::synchronous (bool val)
+  {
+    static const std::string attr_name ("synchronous");
+    this->attribute (attr_name)->bool_value (val);
+  }
+
+  //
+  // synchronous
+  //
+  GAME_INLINE bool ReliabilityQosPolicy_Impl::synchronous (void) const
+  {
+    static const std::string attr_name ("synchronous");
+    return this->attribute (attr_name)->bool_value ();
+  }
 }
 

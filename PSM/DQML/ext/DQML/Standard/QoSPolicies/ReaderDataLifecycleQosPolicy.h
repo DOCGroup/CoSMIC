@@ -92,6 +92,12 @@ namespace DQML
 
     /// Get the value of autopurge_disposed_samples_delay
     double autopurge_disposed_samples_delay (void) const;
+
+    /// Set the value of enable_invalid_samples
+    void enable_invalid_samples (bool val);
+
+    /// Get the value of enable_invalid_samples
+    bool enable_invalid_samples (void) const;
     ///@}
 
     /**

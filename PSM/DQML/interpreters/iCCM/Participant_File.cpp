@@ -44,6 +44,7 @@ Participant_File_Locator::~Participant_File_Locator (void)
 void Participant_File_Locator::visit_RootFolder (GAME::Mga::RootFolder_in item)
 {
   std::vector <DQML::iCCM> iccm_folders;
+
   item->folders (iccm_folders);
 
   for (auto & iccm_folder : iccm_folders)

@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static ResourceLimitsQosPolicy _create (const DataWriterQos_in parent);
     static ResourceLimitsQosPolicy _create (const DataReaderQos_in parent);
+    static ResourceLimitsQosPolicy _create (const DataWriterQos_in parent);
     static ResourceLimitsQosPolicy _create (const TopicQos_in parent);
     static ResourceLimitsQosPolicy _create (const DDSQoS_in parent);
     ///@}
@@ -75,8 +75,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     TopicQos parent_TopicQos (void);
     ///@}
 
@@ -109,14 +109,14 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_res_Connection connection.
-    size_t dst_topic_res_Connection (std::vector <topic_res_Connection> & items) const;
-
     /// Get the dst dw_res_Connection connection.
     size_t dst_dw_res_Connection (std::vector <dw_res_Connection> & items) const;
 
     /// Get the dst dr_res_Connection connection.
     size_t dst_dr_res_Connection (std::vector <dr_res_Connection> & items) const;
+
+    /// Get the dst topic_res_Connection connection.
+    size_t dst_topic_res_Connection (std::vector <topic_res_Connection> & items) const;
     ///@}
   };
 }

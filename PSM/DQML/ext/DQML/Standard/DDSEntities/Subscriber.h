@@ -82,9 +82,6 @@ namespace DQML
     /// Get the src dr_sub_Connection connection.
     size_t src_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const;
 
-    /// Get the src sub_groupdata_Connection connection.
-    size_t src_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const;
-
     /// Get the src sub_entityfactory_Connection connection.
     size_t src_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
 
@@ -93,6 +90,9 @@ namespace DQML
 
     /// Get the src sub_presqos_Connection connection.
     size_t src_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const;
+
+    /// Get the src sub_groupdata_Connection connection.
+    size_t src_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const;
     ///@}
 
     /**

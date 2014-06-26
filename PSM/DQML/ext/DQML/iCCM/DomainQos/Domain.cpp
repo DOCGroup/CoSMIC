@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "DQML/iCCM/DomainQos/PublishesConnection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

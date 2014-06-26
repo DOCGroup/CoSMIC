@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
-#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
+#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

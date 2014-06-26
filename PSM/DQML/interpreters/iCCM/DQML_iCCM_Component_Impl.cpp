@@ -1,7 +1,6 @@
 // $Id$
 
 #include "StdAfx.h"
-
 #include "DQML_iCCM_Component.h"
 #include "DQML_iCCM_Component_Impl.h"
 #include "Participant_File.h"
@@ -14,6 +13,7 @@
 #include "game/mga/Utils.h"
 #include "game/mga/component/Interpreter_T.h"
 
+#include <iostream>
 #include "Utils/Utils.h"
 
 GAME_DECLARE_INTERPRETER (DQML_iCCM_Component, DQML_iCCM_Component_Impl);
@@ -49,10 +49,12 @@ invoke_ex (GAME::Mga::Project project,
   // Select the target output directory. If no directory is
   // selected, then we need to return control to the client.
   const char * prompt = "Select target output directory for iCCM configurations files:";
-  std::string path;
+  std::string path = "C:\\";
 
-  if (!Utils::getPath (prompt, path))
-    return 0;
+  
+
+//  if (!Utils::getPath (prompt, path))
+  //  return 0;
 
   try
   {

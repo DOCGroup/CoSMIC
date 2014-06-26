@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

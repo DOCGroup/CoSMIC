@@ -32,6 +32,9 @@ public:
 
   virtual void visit_Participant (DQML::Participant_in item);
 
+  virtual void visit_StringSeq (DQML::StringSeq_in item);
+  virtual void visit_StringSeq_Item (DQML::StringSeq_Item_in item);
+
   virtual void visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item);
   virtual void visit_TopicQos (DQML::TopicQos_in item);
 

@@ -86,6 +86,18 @@ namespace DQML
 
     /// Get the value of autodispose_unregistered_instances
     bool autodispose_unregistered_instances (void) const;
+
+    /// Set the value of autopurge_suspended_samples_delay
+    void autopurge_suspended_samples_delay (double val);
+
+    /// Get the value of autopurge_suspended_samples_delay
+    double autopurge_suspended_samples_delay (void) const;
+
+    /// Set the value of autounregister_instance_delay
+    void autounregister_instance_delay (double val);
+
+    /// Get the value of autounregister_instance_delay
+    double autounregister_instance_delay (void) const;
     ///@}
 
     /**

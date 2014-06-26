@@ -79,32 +79,26 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dw_topic_Connection connection.
-    size_t src_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const;
-
-    /// Get the src dw_dursvc_Connection connection.
-    size_t src_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const;
-
     /// Get the src dw_writerdatalifecycle_Connection connection.
     size_t src_dw_writerdatalifecycle_Connection (std::vector <dw_writerdatalifecycle_Connection> & items) const;
 
     /// Get the src dw_ownerstrength_Connection connection.
     size_t src_dw_ownerstrength_Connection (std::vector <dw_ownerstrength_Connection> & items) const;
 
-    /// Get the src dw_transpri_Connection connection.
-    size_t src_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const;
+    /// Get the src dw_dstOrder_Connection connection.
+    size_t src_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const;
 
-    /// Get the src dw_ownership_Connection connection.
-    size_t src_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
+    /// Get the src dw_latency_Connection connection.
+    size_t src_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
 
-    /// Get the src dw_lifespan_Connection connection.
-    size_t src_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
+    /// Get the src dw_dursvc_Connection connection.
+    size_t src_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const;
 
     /// Get the src dw_res_Connection connection.
     size_t src_dw_res_Connection (std::vector <dw_res_Connection> & items) const;
 
-    /// Get the src dw_liveliness_Connection connection.
-    size_t src_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
+    /// Get the src dw_transpri_Connection connection.
+    size_t src_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const;
 
     /// Get the src dw_history_Connection connection.
     size_t src_dw_history_Connection (std::vector <dw_history_Connection> & items) const;
@@ -112,20 +106,26 @@ namespace DQML
     /// Get the src dw_userdata_Connection connection.
     size_t src_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const;
 
-    /// Get the src dw_durqos_Connection connection.
-    size_t src_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
+    /// Get the src dw_topic_Connection connection.
+    size_t src_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const;
+
+    /// Get the src dw_lifespan_Connection connection.
+    size_t src_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
+
+    /// Get the src dw_reliability_Connection connection.
+    size_t src_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
+
+    /// Get the src dw_liveliness_Connection connection.
+    size_t src_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
+
+    /// Get the src dw_ownership_Connection connection.
+    size_t src_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
 
     /// Get the src dw_deadline_Connection connection.
     size_t src_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
 
-    /// Get the src dw_latency_Connection connection.
-    size_t src_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
-
-    /// Get the src dw_dstOrder_Connection connection.
-    size_t src_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const;
-
-    /// Get the src dw_reliability_Connection connection.
-    size_t src_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
+    /// Get the src dw_durqos_Connection connection.
+    size_t src_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
     ///@}
 
     /**

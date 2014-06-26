@@ -60,5 +60,23 @@ namespace DQML
     static const std::string attr_name ("autopurge_disposed_samples_delay");
     return this->attribute (attr_name)->double_value ();
   }
+
+  //
+  // enable_invalid_samples
+  //
+  GAME_INLINE void ReaderDataLifecycleQosPolicy_Impl::enable_invalid_samples (bool val)
+  {
+    static const std::string attr_name ("enable_invalid_samples");
+    this->attribute (attr_name)->bool_value (val);
+  }
+
+  //
+  // enable_invalid_samples
+  //
+  GAME_INLINE bool ReaderDataLifecycleQosPolicy_Impl::enable_invalid_samples (void) const
+  {
+    static const std::string attr_name ("enable_invalid_samples");
+    return this->attribute (attr_name)->bool_value ();
+  }
 }
 

@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,17 +28,17 @@ namespace DQML
   const std::string ReliabilityQosPolicy_Impl::metaname ("ReliabilityQosPolicy");
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const DataReaderQos_in)
   //
-  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const DataWriterQos_in)
   //
-  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create_object < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
   }
@@ -74,19 +74,19 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
-  //
-  DataWriterQos ReliabilityQosPolicy_Impl::parent_DataWriterQos (void)
-  {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos ReliabilityQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
   }
 
   //

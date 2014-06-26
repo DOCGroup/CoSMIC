@@ -74,9 +74,9 @@ namespace DQML
     RootFolder parent_RootFolder (void);
     ///@}
 
-    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
-
     size_t get_TopicQosFolders (std::vector <TopicQosFolder> & items) const;
+
+    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
   };
 }
 

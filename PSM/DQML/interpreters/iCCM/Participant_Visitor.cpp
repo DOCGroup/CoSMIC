@@ -58,10 +58,16 @@ Participant_Visitor::~Participant_Visitor (void)
 void Participant_Visitor::visit_Participant (DQML::Participant_in item)
 {
   if (item->has_UserDataQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, this->current_.create_element ("user_data"));
     item->get_UserDataQosPolicy ()->accept (this);
+  }
 
   if (item->has_EntityFactoryQosPolicy ())
+  {
+    Swap_Fragment f (this->current_, this->current_.create_element ("entity_factory"));
     item->get_EntityFactoryQosPolicy ()->accept (this);
+  }
 
   // watchdog_scheduling goes here
   // listener_scheduling goes here
@@ -73,9 +79,9 @@ void Participant_Visitor::visit_Participant (DQML::Participant_in item)
   Topic_Locator topic_locator (topics);
   item->accept (&topic_locator);
 
-  std::for_each (GAME::Mga::make_impl_iter (topics.begin ()),
-                 GAME::Mga::make_impl_iter (topics.end ()),
-                 boost::bind (&DQML::TopicQos::impl_type::accept, _1, this));
+  // topic(s) go here
+  for (auto topic : topics)
+    topic->accept (this);
 
   // publisher(s) go here
   GAME::Mga::Collection_T <DQML::PublisherQos> publishers = item->get_PublisherQoss ();
@@ -99,13 +105,32 @@ void Participant_Visitor::visit_Participant (DQML::Participant_in item)
 }
 
 //
+// visit_StringSeq_Item
+//
+void Participant_Visitor::
+visit_StringSeq_Item (DQML::StringSeq_Item_in item)
+{
+  Fragment item_string (this->current_.create_element ("item"));
+  item_string->setTextContent(String (item->value ()));
+}
+
+//
+// visit_StringSeq
+//
+void Participant_Visitor::
+visit_StringSeq (DQML::StringSeq_in item)
+{
+  for (DQML::StringSeq_Item ss_item : item->get_StringSeq_Items ())
+    ss_item->accept (this);
+}
+
+//
 // visit_EntityFactoryQosPolicy
 //
 void Participant_Visitor::
 visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item)
 {
-  Fragment entity_factory = this->current_.create_element ("entity_factory");
-  entity_factory.set_attribute ("autoenable_created_entities", item->autoenable_created_entities ());
+  this->current_.set_attribute ("autoenable_created_entities", item->autoenable_created_entities ());
 }
 
 //
@@ -114,7 +139,6 @@ visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item)
 void Participant_Visitor::
 visit_UserDataQosPolicy (DQML::UserDataQosPolicy_in item)
 {
-  Fragment user_data = this->current_.create_element ("user_data");
 }
 
 //
@@ -448,6 +472,11 @@ void Participant_Visitor::
 visit_PartitionQosPolicy (DQML::PartitionQosPolicy_in item)
 {
    // <name><item></item><item></item></name>
+  if (item->has_StringSeq ())
+  {
+    Swap_Fragment f (this->current_, this->current_.create_element ("name"));
+    item->get_StringSeq ()->accept (this);
+  }
 }
 
 //
