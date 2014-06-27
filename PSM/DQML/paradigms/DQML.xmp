@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="DQML" guid="{5F0E532C-57A8-4115-A0A3-AA14DF8E0D43}" cdate="Wed Jun 18 18:56:54 2014" mdate="Wed Jun 18 18:56:54 2014" >
+<paradigm name="DQML" guid="{E3EA60B1-BC1B-4C26-8429-D1F9A0427948}" cdate="Wed Jun 18 18:56:54 2014" mdate="Wed Jun 18 18:56:54 2014" >
 
 	<comment></comment>
 
@@ -540,6 +540,8 @@ endif]]>
 			<enumitem dispname = "SCHEDULING_DEFAULT" value = "SCHEDULING_DEFAULT"></enumitem>
 			<enumitem dispname = "SCHEDULING_TIMESHARING" value = "SCHEDULING_TIMESHARING"></enumitem>
 			<enumitem dispname = "SCHEDULING_REALTIME" value = "SCHEDULING_REALTIME"></enumitem>
+		</attrdef>
+		<attrdef name="scheduling_priority" metaref = "1808" valuetype = "integer" defvalue = "">
 		</attrdef>
 		<attrdef name="scheduling_priority_kind" metaref = "1662" valuetype = "enum" defvalue = "PRIORITY_RELATIVE">
 			<enumitem dispname = "PRIORITY_RELATIVE" value = "PRIORITY_RELATIVE"></enumitem>
@@ -1984,7 +1986,7 @@ else
 endif]]>
 				<dispname>For consistency, the History depth must be less than or equal to  Resource_Limits max_samples_per_instance.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1793" >
+			<aspect name = "Aspect" metaref = "1809" >
 			</aspect>
 		</model>
 		<model name = "DataReaderQos" metaref = "1492" attributes = "isprivate" >
@@ -1992,7 +1994,7 @@ endif]]>
 				<regnode name = "icon" value ="DataReader.png"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidDataReaderQosPartCardinality125" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "SubscriptionKeyQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopicQosReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2002,7 +2004,7 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality127" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2012,32 +2014,32 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality129" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality130" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataReaderQosPartCardinality131" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DestinationOrderQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidDataReaderQosPartCardinality131" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality132" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ShareQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "SubscriptionKeyQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality133" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TimeBasedFilterQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ReaderDataLifecycleQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality134" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2047,27 +2049,27 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality136" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ShareQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality137" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ReaderDataLifecycleQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataReaderQosPartCardinality138" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataReaderQosPartCardinality139" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ReaderLifespanQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidDataReaderQosPartCardinality138" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TimeBasedFilterQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataReaderQosPartCardinality139" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidDataReaderQosPartCardinality140" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopicQosReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataReaderQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2263,7 +2265,7 @@ else
 endif]]>
 				<dispname>For consistency, the History depth must be less than or equal to  Resource_Limits max_samples_per_instance.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1795" >
+			<aspect name = "Aspect" metaref = "1810" >
 			</aspect>
 		</model>
 		<model name = "DataWriterQos" metaref = "1521" attributes = "IsInstance topic_name isprivate" >
@@ -2271,32 +2273,32 @@ endif]]>
 				<regnode name = "icon" value ="DataWriter.png"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidDataWriterQosPartCardinality141" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "DurabilityQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopicQosReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataWriterQosPartCardinality142" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "DurabilityQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataWriterQosPartCardinality143" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LatencyBudgetQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality144" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality145" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality146" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDataWriterQosPartCardinality144" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LatencyBudgetQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality145" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LifespanQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality146" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2306,42 +2308,42 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataWriterQosPartCardinality148" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TransportPriorityQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDataWriterQosPartCardinality149" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality150" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WriterDataLifecycleQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality151" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "OwnershipQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality152" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality153" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "OwnershipStrengthQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDataWriterQosPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality150" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "OwnershipQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality151" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "OwnershipStrengthQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality152" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "WriterDataLifecycleQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality153" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TransportPriorityQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDataWriterQosPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "UserDataQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidDataWriterQosPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopicQosReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DataWriterQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2429,7 +2431,7 @@ endif]]>
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to DomainParticipant as &quot;src&quot; over dpf_dp_Connection, has to match 1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1796" >
+			<aspect name = "Aspect" metaref = "1811" >
 			</aspect>
 		</model>
 		<model name = "DomainParticipantFactory" metaref = "1427" >
@@ -2446,10 +2448,10 @@ endif]]>
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to DomainParticipantFactory as &quot;dst&quot; over dpfactory_entityfactory_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1797" >
+			<aspect name = "Aspect" metaref = "1812" >
 			</aspect>
 		</model>
-		<model name = "ListenerSchedulingQosPolicy" metaref = "1756" >
+		<model name = "ListenerSchedulingQosPolicy" metaref = "1756" attributes = "scheduling_priority" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Basic-Listen-icon-150x150.png"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -2465,7 +2467,7 @@ endif]]>
 			</constraint>
 			<role name = "SchedulingClassQosPolicy" metaref = "1757" kind = "SchedulingClassQosPolicy"></role>
 			<role name = "SchedulingPriorityQosPolicy" metaref = "1758" kind = "SchedulingPriorityQosPolicy"></role>
-			<aspect name = "Aspect" metaref = "1798" >
+			<aspect name = "Aspect" metaref = "1813" attributes = "scheduling_priority" >
 				<part metaref = "1760" role = "SchedulingClassQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1761" role = "SchedulingPriorityQosPolicy" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -2475,17 +2477,17 @@ endif]]>
 				<regnode name = "icon" value ="background.png"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidParticipantPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ListenerSchedulingQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Participant, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidParticipantPartCardinality157" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WatchdogSchedulingQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ListenerSchedulingQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Participant, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidParticipantPartCardinality158" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "WatchdogSchedulingQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Participant, has to match 0..1.</dispname>
 			</constraint>
@@ -2532,7 +2534,7 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by PartitionQosPolicy, has to match 1..1.</dispname>
 			</constraint>
 			<role name = "StringSeq" metaref = "1694" kind = "StringSeq"></role>
-			<aspect name = "Aspect" metaref = "1799" >
+			<aspect name = "Aspect" metaref = "1814" >
 				<part metaref = "1696" role = "StringSeq" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -2570,7 +2572,7 @@ endif]]>
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Publisher as &quot;dst&quot; over pub_presqos_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1800" >
+			<aspect name = "Aspect" metaref = "1815" >
 			</aspect>
 		</model>
 		<model name = "PublisherQos" metaref = "1579" >
@@ -2578,17 +2580,17 @@ endif]]>
 				<regnode name = "icon" value ="remote.bmp"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidPublisherQosPartCardinality161" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PartitionQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PublisherQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPublisherQosPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "GroupDataQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PublisherQos, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPublisherQosPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPublisherQosPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PublisherQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPublisherQosPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PartitionQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PublisherQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2605,13 +2607,11 @@ endif]]>
 				<dispname>Qos Policy</dispname>
 				<part metaref = "1585" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1586" role = "GroupDataQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1816" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1588" role = "PresentationQosPolicy" primary = "yes" linked = "no"></part>
 			</aspect>
-			<aspect name = "ComplexAttributes" metaref = "1724" >
-				<part metaref = "1725" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
-			</aspect>
 		</model>
-		<model name = "SchedulingQosPolicy" metaref = "1746" >
+		<model name = "SchedulingQosPolicy" metaref = "1746" attributes = "scheduling_priority" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidSchedulingQosPolicyPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
@@ -2626,7 +2626,7 @@ endif]]>
 			</constraint>
 			<role name = "SchedulingClassQosPolicy" metaref = "1747" kind = "SchedulingClassQosPolicy"></role>
 			<role name = "SchedulingPriorityQosPolicy" metaref = "1748" kind = "SchedulingPriorityQosPolicy"></role>
-			<aspect name = "Aspect" metaref = "1801" >
+			<aspect name = "Aspect" metaref = "1817" attributes = "scheduling_priority" >
 				<part metaref = "1750" role = "SchedulingClassQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1751" role = "SchedulingPriorityQosPolicy" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -2635,7 +2635,7 @@ endif]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<role name = "StringSeq_Item" metaref = "1700" kind = "StringSeq_Item"></role>
-			<aspect name = "Aspect" metaref = "1802" >
+			<aspect name = "Aspect" metaref = "1818" >
 				<part metaref = "1702" role = "StringSeq_Item" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -2673,7 +2673,7 @@ endif]]>
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Subscriber as &quot;dst&quot; over sub_presqos_Connection, has to match 0..1.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1803" >
+			<aspect name = "Aspect" metaref = "1819" >
 			</aspect>
 		</model>
 		<model name = "SubscriberQos" metaref = "1590" >
@@ -2681,27 +2681,27 @@ endif]]>
 				<regnode name = "icon" value ="subscribe.jpg"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
 			<constraint name="ValidSubscriberQosPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PartitionQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SubscriberQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidSubscriberQosPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "GroupDataQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SubscriberQos, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSubscriberQosPartCardinality169" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSubscriberQosPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "EntityFactoryQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SubscriberQos, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidSubscriberQosPartCardinality169" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PartitionQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SubscriberQos, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidSubscriberQosPartCardinality170" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ShareQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "PresentationQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SubscriberQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidSubscriberQosPartCardinality171" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PresentationQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ShareQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SubscriberQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2714,11 +2714,9 @@ endif]]>
 				<dispname>Qos Policy</dispname>
 				<part metaref = "1596" role = "EntityFactoryQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1597" role = "GroupDataQosPolicy" primary = "yes" linked = "no"></part>
+				<part metaref = "1820" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1599" role = "PresentationQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1789" role = "ShareQosPolicy" primary = "yes" linked = "no"></part>
-			</aspect>
-			<aspect name = "ComplexAttributes" metaref = "1728" >
-				<part metaref = "1729" role = "PartitionQosPolicy" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SubscriptionKeyQosPolicy" metaref = "1804" >
@@ -2730,7 +2728,7 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by SubscriptionKeyQosPolicy, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "StringSeq" metaref = "1805" kind = "StringSeq"></role>
-			<aspect name = "Aspect" metaref = "1806" >
+			<aspect name = "Aspect" metaref = "1821" >
 				<part metaref = "1807" role = "StringSeq" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -2972,7 +2970,7 @@ else
 endif]]>
 				<dispname>For consistency, the History depth must be less than or equal to  Resource_Limits max_samples_per_instance.</dispname>
 			</constraint>
-			<aspect name = "Aspect" metaref = "1808" >
+			<aspect name = "Aspect" metaref = "1822" >
 			</aspect>
 		</model>
 		<model name = "TopicQos" metaref = "1601" >
@@ -2984,7 +2982,7 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopicQosPartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
@@ -2994,37 +2992,37 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopicQosPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopicQosPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "DurabilityServiceQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopicQosPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LivelinessQosPolicy" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopicQosPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LifespanQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTopicQosPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTopicQosPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "HistoryQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidTopicQosPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DestinationOrderQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidTopicQosPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DeadlineQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidTopicQosPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "DurabilityServiceQosPolicy" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidTopicQosPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopicDataQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopicQosPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TransportPriorityQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopicDataQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
@@ -3034,12 +3032,12 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopicQosPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "TransportPriorityQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopicQosPartCardinality185" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ResourceLimitsQosPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ReliabilityQosPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopicQos, has to match 0..1.</dispname>
 			</constraint>
@@ -3073,7 +3071,7 @@ endif]]>
 				<part metaref = "1628" role = "TransportPriorityQosPolicy" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WatchdogSchedulingQosPolicy" metaref = "1773" >
+		<model name = "WatchdogSchedulingQosPolicy" metaref = "1773" attributes = "scheduling_priority" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="alarm-clock-icon.png"></regnode>
 				<regnode name = "isTypeInfoShown" value ="true"></regnode>
@@ -3089,7 +3087,7 @@ endif]]>
 			</constraint>
 			<role name = "SchedulingClassQosPolicy" metaref = "1774" kind = "SchedulingClassQosPolicy"></role>
 			<role name = "SchedulingPriorityQosPolicy" metaref = "1775" kind = "SchedulingPriorityQosPolicy"></role>
-			<aspect name = "Aspect" metaref = "1809" >
+			<aspect name = "Aspect" metaref = "1823" attributes = "scheduling_priority" >
 				<part metaref = "1777" role = "SchedulingClassQosPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "1778" role = "SchedulingPriorityQosPolicy" primary = "yes" linked = "no"></part>
 			</aspect>

@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

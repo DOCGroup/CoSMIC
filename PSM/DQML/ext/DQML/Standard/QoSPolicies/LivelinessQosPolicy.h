@@ -103,11 +103,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_liveliness_Connection connection.
-    size_t dst_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
-
     /// Get the dst dw_liveliness_Connection connection.
     size_t dst_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
+
+    /// Get the dst dr_liveliness_Connection connection.
+    size_t dst_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
 
     /// Get the dst topic_liveliness_Connection connection.
     size_t dst_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const;

@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -98,19 +98,19 @@ namespace DQML
   }
 
   //
-  // dst_dr_liveliness_Connection
-  //
-  size_t LivelinessQosPolicy_Impl::dst_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
-  {
-    return this->in_connections <dr_liveliness_Connection> (items);
-  }
-
-  //
   // dst_dw_liveliness_Connection
   //
   size_t LivelinessQosPolicy_Impl::dst_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const
   {
     return this->in_connections <dw_liveliness_Connection> (items);
+  }
+
+  //
+  // dst_dr_liveliness_Connection
+  //
+  size_t LivelinessQosPolicy_Impl::dst_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
+  {
+    return this->in_connections <dr_liveliness_Connection> (items);
   }
 
   //

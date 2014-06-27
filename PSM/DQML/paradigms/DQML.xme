@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{56F75AEA-BBD1-430C-A6FB-53BD2AE7B359}" cdate="Wed Jun 18 18:56:54 2014" mdate="Wed Jun 18 18:56:54 2014" version="" metaguid="{C84D2738-4519-44F2-B4C1-114F73567576}" metaversion="" metaname="MetaGME">
+<project guid="{82063BAF-6FC5-4F03-89CA-A5281FC49EC0}" cdate="Wed Jun 18 18:56:54 2014" mdate="Wed Jun 18 18:56:54 2014" version="" metaguid="{C84D2738-4519-44F2-B4C1-114F73567576}" metaversion="" metaname="MetaGME">
 	<name>DQML</name>
 	<comment></comment>
 	<author></author>
@@ -4340,6 +4340,12 @@
 									<value>1743</value>
 								</regnode>
 							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="scheduling_priority-7-FieldAttribute" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>1808</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34368,7 +34374,7 @@ dName = dstdr_readerdatalifecycle_Connection</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000021" kind="ParadigmSheet" guid="{61e7533f-8984-482e-b858-d46fcec20408}" relid="0x1b" childrelidcntr="0x6">
+			<model id="id-0065-00000021" kind="ParadigmSheet" guid="{61e7533f-8984-482e-b858-d46fcec20408}" relid="0x1b" childrelidcntr="0x8">
 				<name>SchedulingQosPolicy</name>
 				<atom id="id-0066-0000011b" kind="Model" role="Model" guid="{3d8713c8-dbe8-40c1-ae86-09dfc4d26889}" relid="0x1">
 					<name>SchedulingQosPolicy</name>
@@ -34487,6 +34493,48 @@ dName = dstdr_readerdatalifecycle_Connection</value>
 						<value></value>
 					</attribute>
 					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000122" kind="FieldAttribute" role="FieldAttribute" guid="{c658e65f-97ba-433b-838a-9476a2335116}" relid="0x7">
+					<name>scheduling_priority</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="All" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>84,77</value>
+							</regnode>
+						</regnode>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>84,77</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="ContentType" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DataType">
+						<value>integer</value>
+					</attribute>
+					<attribute kind="FieldDefault" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GlobalScope" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Help" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsViewable" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Multiline" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="Prompt" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -34617,7 +34665,7 @@ dName = dstdr_readerdatalifecycle_Connection</value>
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>392,182</value>
+								<value>427,147</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
@@ -34751,6 +34799,14 @@ dName = dstdr_readerdatalifecycle_Connection</value>
 					</attribute>
 					<connpoint role="dst" target="id-0066-0000011b"/>
 					<connpoint role="src" target="id-0067-000000bd"/>
+				</connection>
+				<connection id="id-0068-000001f7" kind="HasAttribute" role="HasAttribute" guid="{2536fd0b-7cd2-4df4-86dc-b3adb0451955}" relid="0x8">
+					<name>HasAttribute</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-0000011b"/>
+					<connpoint role="src" target="id-0066-00000122"/>
 				</connection>
 			</model>
 		</folder>

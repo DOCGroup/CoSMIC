@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.h"
 #include "DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h"
+#include "DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -63,19 +63,19 @@ namespace DQML
   }
 
   //
-  // dst_dw_dursvc_Connection
-  //
-  size_t DurabilityServiceQosPolicy_Impl::dst_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const
-  {
-    return this->in_connections <dw_dursvc_Connection> (items);
-  }
-
-  //
   // dst_topic_dursvc_Connection
   //
   size_t DurabilityServiceQosPolicy_Impl::dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
   {
     return this->in_connections <topic_dursvc_Connection> (items);
+  }
+
+  //
+  // dst_dw_dursvc_Connection
+  //
+  size_t DurabilityServiceQosPolicy_Impl::dst_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const
+  {
+    return this->in_connections <dw_dursvc_Connection> (items);
   }
 }
 

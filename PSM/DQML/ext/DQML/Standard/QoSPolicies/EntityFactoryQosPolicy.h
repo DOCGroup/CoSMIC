@@ -53,9 +53,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static EntityFactoryQosPolicy _create (const Participant_in parent);
-    static EntityFactoryQosPolicy _create (const SubscriberQos_in parent);
     static EntityFactoryQosPolicy _create (const PublisherQos_in parent);
+    static EntityFactoryQosPolicy _create (const SubscriberQos_in parent);
+    static EntityFactoryQosPolicy _create (const Participant_in parent);
     static EntityFactoryQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -75,9 +75,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    Participant parent_Participant (void);
-    SubscriberQos parent_SubscriberQos (void);
     PublisherQos parent_PublisherQos (void);
+    SubscriberQos parent_SubscriberQos (void);
+    Participant parent_Participant (void);
     ///@}
 
     /**
@@ -97,11 +97,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst pub_entityfactory_Connection connection.
-    size_t dst_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
-
     /// Get the dst dpfactory_entityfactory_Connection connection.
     size_t dst_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
+
+    /// Get the dst pub_entityfactory_Connection connection.
+    size_t dst_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
 
     /// Get the dst sub_entityfactory_Connection connection.
     size_t dst_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;

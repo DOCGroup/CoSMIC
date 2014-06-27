@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -98,6 +98,14 @@ namespace DQML
   }
 
   //
+  // dst_dp_userdata_Connection
+  //
+  size_t UserDataQosPolicy_Impl::dst_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
+  {
+    return this->in_connections <dp_userdata_Connection> (items);
+  }
+
+  //
   // dst_dr_userdata_Connection
   //
   size_t UserDataQosPolicy_Impl::dst_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
@@ -111,14 +119,6 @@ namespace DQML
   size_t UserDataQosPolicy_Impl::dst_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
   {
     return this->in_connections <dw_userdata_Connection> (items);
-  }
-
-  //
-  // dst_dp_userdata_Connection
-  //
-  size_t UserDataQosPolicy_Impl::dst_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
-  {
-    return this->in_connections <dp_userdata_Connection> (items);
   }
 }
 

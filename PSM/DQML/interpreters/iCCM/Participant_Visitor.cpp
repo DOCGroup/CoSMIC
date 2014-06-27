@@ -414,6 +414,8 @@ visit_SchedulingClassQosPolicy (DQML::SchedulingClassQosPolicy_in item)
 void Participant_Visitor::
 visit_SchedulingQosPolicy (DQML::SchedulingQosPolicy_in item)
 {
+  this->current_.set_attribute ("scheduling_priority", item->scheduling_priority ());
+
   if (item->has_SchedulingClassQosPolicy ())
     item->get_SchedulingClassQosPolicy ()->accept (this);
   

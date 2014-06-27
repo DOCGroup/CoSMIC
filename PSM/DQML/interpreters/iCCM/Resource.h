@@ -3,8 +3,7 @@
 // Used by Component.rc
 //
 #define IDS_PROJNAME                    100
-#define IDI_ICON1                       201
-#define IDI_COMPICON                    201
+#define IDI_COMPICON                    1414
 
 // Next default values for new objects
 // 

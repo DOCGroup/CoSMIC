@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/DataWriter.h"
-#include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

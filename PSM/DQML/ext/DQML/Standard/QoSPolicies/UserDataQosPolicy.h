@@ -97,14 +97,14 @@ namespace DQML
      */
     ///@{
 
+    /// Get the dst dp_userdata_Connection connection.
+    size_t dst_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
+
     /// Get the dst dr_userdata_Connection connection.
     size_t dst_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const;
 
     /// Get the dst dw_userdata_Connection connection.
     size_t dst_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const;
-
-    /// Get the dst dp_userdata_Connection connection.
-    size_t dst_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
     ///@}
   };
 }

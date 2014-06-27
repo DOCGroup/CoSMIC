@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -98,6 +98,14 @@ namespace DQML
   }
 
   //
+  // dst_dr_res_Connection
+  //
+  size_t ResourceLimitsQosPolicy_Impl::dst_dr_res_Connection (std::vector <dr_res_Connection> & items) const
+  {
+    return this->in_connections <dr_res_Connection> (items);
+  }
+
+  //
   // dst_topic_res_Connection
   //
   size_t ResourceLimitsQosPolicy_Impl::dst_topic_res_Connection (std::vector <topic_res_Connection> & items) const
@@ -111,14 +119,6 @@ namespace DQML
   size_t ResourceLimitsQosPolicy_Impl::dst_dw_res_Connection (std::vector <dw_res_Connection> & items) const
   {
     return this->in_connections <dw_res_Connection> (items);
-  }
-
-  //
-  // dst_dr_res_Connection
-  //
-  size_t ResourceLimitsQosPolicy_Impl::dst_dr_res_Connection (std::vector <dr_res_Connection> & items) const
-  {
-    return this->in_connections <dr_res_Connection> (items);
   }
 }
 
