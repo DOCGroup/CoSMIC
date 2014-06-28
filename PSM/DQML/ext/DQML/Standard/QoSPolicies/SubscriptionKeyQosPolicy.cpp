@@ -9,7 +9,7 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/Standard/QoSPolicies/StringSeq.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -31,6 +31,14 @@ namespace DQML
   }
 
   //
+  // _create (const DDSQoS_in)
+  //
+  SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DDSQoS_in parent)
+  {
+    return ::GAME::Mga::create_object < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
+  }
+
+  //
   // accept
   //
   void SubscriptionKeyQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
@@ -41,7 +49,7 @@ namespace DQML
     if (0 != this_visitor)
       this_visitor->visit_SubscriptionKeyQosPolicy (this);
     else
-      v->visit_Model (this);
+      v->visit_Atom (this);
   }
 
   //
@@ -50,22 +58,6 @@ namespace DQML
   DataReaderQos SubscriptionKeyQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
-  // has_StringSeq
-  //
-  bool SubscriptionKeyQosPolicy_Impl::has_StringSeq (void) const
-  {
-    return this->children <StringSeq> ().count () == 1;
-  }
-
-  //
-  // get_StringSeq
-  //
-  StringSeq SubscriptionKeyQosPolicy_Impl::get_StringSeq (void) const
-  {
-    return this->children <StringSeq> ().first ();
   }
 }
 

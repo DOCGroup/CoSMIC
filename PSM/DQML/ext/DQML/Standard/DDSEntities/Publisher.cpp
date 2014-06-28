@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
+#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
 #include "DQML/Standard/Main/dp_pub_Connection.h"
 #include "DQML/Standard/Main/dw_pub_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
-#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -50,11 +50,27 @@ namespace DQML
   }
 
   //
+  // src_pub_part_Connection
+  //
+  size_t Publisher_Impl::src_pub_part_Connection (std::vector <pub_part_Connection> & items) const
+  {
+    return this->in_connections <pub_part_Connection> (items);
+  }
+
+  //
   // src_pub_groupdata_Connection
   //
   size_t Publisher_Impl::src_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const
   {
     return this->in_connections <pub_groupdata_Connection> (items);
+  }
+
+  //
+  // src_pub_presqos_Connection
+  //
+  size_t Publisher_Impl::src_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const
+  {
+    return this->in_connections <pub_presqos_Connection> (items);
   }
 
   //
@@ -71,22 +87,6 @@ namespace DQML
   size_t Publisher_Impl::src_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const
   {
     return this->in_connections <dw_pub_Connection> (items);
-  }
-
-  //
-  // src_pub_part_Connection
-  //
-  size_t Publisher_Impl::src_pub_part_Connection (std::vector <pub_part_Connection> & items) const
-  {
-    return this->in_connections <pub_part_Connection> (items);
-  }
-
-  //
-  // src_pub_presqos_Connection
-  //
-  size_t Publisher_Impl::src_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const
-  {
-    return this->in_connections <pub_presqos_Connection> (items);
   }
 
   //

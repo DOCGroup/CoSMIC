@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
-#include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -65,35 +65,19 @@ namespace DQML
   }
 
   //
-  // has_GroupDataQosPolicy
+  // has_PartitionQosPolicy
   //
-  bool PublisherQos_Impl::has_GroupDataQosPolicy (void) const
+  bool PublisherQos_Impl::has_PartitionQosPolicy (void) const
   {
-    return this->children <GroupDataQosPolicy> ().count () == 1;
+    return this->children <PartitionQosPolicy> ().count () == 1;
   }
 
   //
-  // get_GroupDataQosPolicy
+  // get_PartitionQosPolicy
   //
-  GroupDataQosPolicy PublisherQos_Impl::get_GroupDataQosPolicy (void) const
+  PartitionQosPolicy PublisherQos_Impl::get_PartitionQosPolicy (void) const
   {
-    return this->children <GroupDataQosPolicy> ().first ();
-  }
-
-  //
-  // has_PresentationQosPolicy
-  //
-  bool PublisherQos_Impl::has_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_PresentationQosPolicy
-  //
-  PresentationQosPolicy PublisherQos_Impl::get_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().first ();
+    return this->children <PartitionQosPolicy> ().first ();
   }
 
   //
@@ -113,19 +97,35 @@ namespace DQML
   }
 
   //
-  // has_PartitionQosPolicy
+  // has_PresentationQosPolicy
   //
-  bool PublisherQos_Impl::has_PartitionQosPolicy (void) const
+  bool PublisherQos_Impl::has_PresentationQosPolicy (void) const
   {
-    return this->children <PartitionQosPolicy> ().count () == 1;
+    return this->children <PresentationQosPolicy> ().count () == 1;
   }
 
   //
-  // get_PartitionQosPolicy
+  // get_PresentationQosPolicy
   //
-  PartitionQosPolicy PublisherQos_Impl::get_PartitionQosPolicy (void) const
+  PresentationQosPolicy PublisherQos_Impl::get_PresentationQosPolicy (void) const
   {
-    return this->children <PartitionQosPolicy> ().first ();
+    return this->children <PresentationQosPolicy> ().first ();
+  }
+
+  //
+  // has_GroupDataQosPolicy
+  //
+  bool PublisherQos_Impl::has_GroupDataQosPolicy (void) const
+  {
+    return this->children <GroupDataQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_GroupDataQosPolicy
+  //
+  GroupDataQosPolicy PublisherQos_Impl::get_GroupDataQosPolicy (void) const
+  {
+    return this->children <GroupDataQosPolicy> ().first ();
   }
 }
 

@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -98,14 +98,6 @@ namespace DQML
   }
 
   //
-  // dst_dw_durqos_Connection
-  //
-  size_t DurabilityQosPolicy_Impl::dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
-  {
-    return this->in_connections <dw_durqos_Connection> (items);
-  }
-
-  //
   // dst_topic_durqos_Connection
   //
   size_t DurabilityQosPolicy_Impl::dst_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const
@@ -119,6 +111,14 @@ namespace DQML
   size_t DurabilityQosPolicy_Impl::dst_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const
   {
     return this->in_connections <dr_durqos_Connection> (items);
+  }
+
+  //
+  // dst_dw_durqos_Connection
+  //
+  size_t DurabilityQosPolicy_Impl::dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
+  {
+    return this->in_connections <dw_durqos_Connection> (items);
   }
 }
 

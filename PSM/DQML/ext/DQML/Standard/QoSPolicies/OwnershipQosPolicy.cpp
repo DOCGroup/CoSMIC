@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h"
+#include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
@@ -98,14 +98,6 @@ namespace DQML
   }
 
   //
-  // dst_dw_ownership_Connection
-  //
-  size_t OwnershipQosPolicy_Impl::dst_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const
-  {
-    return this->in_connections <dw_ownership_Connection> (items);
-  }
-
-  //
   // dst_dr_ownership_Connection
   //
   size_t OwnershipQosPolicy_Impl::dst_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
@@ -119,6 +111,14 @@ namespace DQML
   size_t OwnershipQosPolicy_Impl::dst_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const
   {
     return this->in_connections <topic_ownership_Connection> (items);
+  }
+
+  //
+  // dst_dw_ownership_Connection
+  //
+  size_t OwnershipQosPolicy_Impl::dst_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const
+  {
+    return this->in_connections <dw_ownership_Connection> (items);
   }
 }
 

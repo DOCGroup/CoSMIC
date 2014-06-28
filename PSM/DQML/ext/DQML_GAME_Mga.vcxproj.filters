@@ -304,12 +304,6 @@
     <ClCompile Include="DQML\Standard\QoSPolicies\ShareQosPolicy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DQML\Standard\QoSPolicies\StringSeq.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DQML\Standard\QoSPolicies\StringSeq_Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DQML\Standard\QoSPolicies\SubscriptionKeyQosPolicy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -658,12 +652,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DQML\Standard\QoSPolicies\ShareQosPolicy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DQML\Standard\QoSPolicies\StringSeq.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DQML\Standard\QoSPolicies\StringSeq_Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DQML\Standard\QoSPolicies\SubscriptionKeyQosPolicy.h">
@@ -1016,12 +1004,6 @@
       <Filter>Inline Files</Filter>
     </None>
     <None Include="DQML\Standard\QoSPolicies\ShareQosPolicy.inl">
-      <Filter>Inline Files</Filter>
-    </None>
-    <None Include="DQML\Standard\QoSPolicies\StringSeq.inl">
-      <Filter>Inline Files</Filter>
-    </None>
-    <None Include="DQML\Standard\QoSPolicies\StringSeq_Item.inl">
       <Filter>Inline Files</Filter>
     </None>
     <None Include="DQML\Standard\QoSPolicies\SubscriptionKeyQosPolicy.inl">
