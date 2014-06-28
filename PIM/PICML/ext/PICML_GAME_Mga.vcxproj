@@ -1,0 +1,1846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>PICML_GAME_Mga</ProjectName>
+    <ProjectGuid>{20699443-FECA-1BAD-C288-BABED7CD7A60}</ProjectGuid>
+    <RootNamespace>PICML_GAME_Mga</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\PICML_GAME_Mga\I386\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PICML_GAME_Mgad</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\PICML_GAME_Mga\I386\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PICML_GAME_Mga</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Debug\PICML_GAME_Mga\AMD64\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PICML_GAME_Mgad</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Release\PICML_GAME_Mga\AMD64\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PICML_GAME_Mga</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Release|x64'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PICML_BUILD_DLL;USING_PCH;_DEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;MPC_LIB_MODIFIER=&quot;d&quot;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ACEd.lib;GAME_Mgad.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)PICML_GAME_Mgad.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(BOOST_ROOT)\lib;..\..\..\lib;..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\..\..\lib\PICML_GAME_Mgad.lib</ImportLibrary>
+    </Link>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PICML_BUILD_DLL;USING_PCH;NDEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ACE.lib;GAME_Mga.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)PICML_GAME_Mga.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(BOOST_ROOT)\lib;..\..\..\lib;..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>..\..\..\lib\PICML_GAME_Mga.lib</ImportLibrary>
+    </Link>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>x64</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PICML_BUILD_DLL;USING_PCH;_DEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_AMD64_;_WIN64;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;MPC_LIB_MODIFIER=&quot;d&quot;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ACEd.lib;GAME_Mgad.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)PICML_GAME_Mgad.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(BOOST_ROOT)\lib;..\..\..\lib;..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\..\..\lib\PICML_GAME_Mgad.lib</ImportLibrary>
+<!--
+  Though we can set TargetMachine explicitly, VC++
+  can figure it out by project type. We don't need
+  to set it by ourselves.
+-->
+<!--      <TargetMachine>0</TargetMachine>-->
+      <AdditionalOptions>/machine:AMD64 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>x64</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PICML_BUILD_DLL;USING_PCH;NDEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_AMD64_;_WIN64;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;_AFXDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(ACE_ROOT);$(GAME_ROOT);$(GAME_ROOT)\game;$(GAME_ROOT)\game\mga;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;..\..\..;.;PICML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ACE.lib;GAME_Mga.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)PICML_GAME_Mga.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(BOOST_ROOT)\lib;..\..\..\lib;..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>..\..\..\lib\PICML_GAME_Mga.lib</ImportLibrary>
+<!--
+  Though we can set TargetMachine explicitly, VC++
+  can figure it out by project type. We don't need
+  to set it by ourselves.
+-->
+<!--      <TargetMachine>0</TargetMachine>-->
+      <AdditionalOptions>/machine:AMD64 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PICML\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\Action.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\ActionBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\ActionType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\BehaviorInputAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\CallAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\Finish.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\InputAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\MultiInputAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\OutputAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\QueryAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\QueryInputAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\RequestAction.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\ActionTypes\TargetRequiredRequestPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\BehaviorModel\BehaviorModel.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\BehaviorModel\Variable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\EffectTypes\Effect.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\EffectTypes\EffectBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\EffectTypes\InputEffect.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\EffectTypes\TerminalEffect.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\InputHooks\ApplicationTask.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\InputHooks\Environment.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\InputHooks\PeriodicEvent.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\BranchState.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\BranchTransition.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\DoWhileState.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\ForState.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\LoopState.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\LoopTransition.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\State.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\StateBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\Transition.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\StateTypes\WhileState.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\Terminals\Terminal.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\Terminals\TerminalTransition.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\Input.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiInput.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiInputBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiOutputBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\QueryInput.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\QueryInputBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\SingleInputBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\SingleOutputBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\TopLevelBehavior.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\WorkerType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\Capability.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\ComplexProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\ComplexType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\ComplexTypeReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\DataType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\DataValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\DataValueBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\DataValueContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\ImplementationDependency.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\ImplementationRequirement.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\Property.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\Requirement.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\RequirementBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\RequirementSatisfier.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\SatisfierProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\SimpleProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Common\SimpleType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyConfigProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyConfigPropertyEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyselectRequirement.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMapping.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMappingDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMappingValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ConnectorToFacet.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ConnectorToReceptacle.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\Consume.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\EventSinkDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\EventSourceDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedPortDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedPortInstanceBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendPortEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExternalDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExternalPortEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\FacetDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\InEventPortDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\InEventPortEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\Invoke.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorPortDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorPortInstanceBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\OutEventPortDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\OutEventPortEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ProvidedRequestPortDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ProvidedRequestPortEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\Publish.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\ReceptacleDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\RequiredRequestPortDelegate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\RequiredRequestPortEnd.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\AssemblyConnections\SendsTo.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\ComponentAssembly\ComponentAssembly.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\ComponentAssembly\ComponentAssemblyReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentAssemblySheets\ComponentAssembly\ExternalPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Average.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\BenchmarkAnalysis.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\BenchmarkCharacteristics.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\BenchmarkType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\ComponentAnalyses.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\ComponentOperation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\CompRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\DataAnalysisBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\EventRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\FixedIterationBenchmarks.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Jitter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Latency.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Maximum.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\MetricConnection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\MetricsBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Minimum.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\OperationRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\PeriodicBenchmarks.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Task.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\TaskSet.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\Throughput.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\TimeProbe.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\TimerConnection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\TimerEventSinkConn.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\TriggerBenchmarks.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\WorkloadCharacteristics.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBenchmark\WorkLoadOperationConnection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\ComponentBuild.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\ComponentLib.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\ExecutorProject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\ExternalResources.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\ExtResourceConn.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\MPC.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\Project.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\ServantProject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\StubProject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentBuild\Workspaces.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentFactoryImplementation\ComponentFactoryImplementationContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentFactoryImplementation\ComponentFactoryImplementations.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentFactoryImplementation\ComponentFactoryInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\ComponentPackage.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\ComponentPackageReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\ComponentPackages.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\Implementation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\PackageConfigProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\PackageContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\PackageInfoProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentPackage\PackageInterface.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementationContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementationReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementations.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\CriticalPath.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\ImplementationCapability.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\ImplementationDependsOn.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\Implements.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentImplementation\MonolithicImplementation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\AttributeInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\ComponentInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\ComponentInstanceType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\ExtendedPortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\InEventPortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\MirrorPortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\OutEventPortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\PortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\ProvidedRequestPortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\RequiredRequestPortInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInstance\SupportsInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\CommonPortAttrs.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentConfigProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentInfoProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentPropertyDescription.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentTypes.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\Component.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ComponentFactory.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ComponentInherits.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ComponentRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\EventPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\EventType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ExtendedPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ExtendedPortBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\InEventPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\LookupKey.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\LookupKeyType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\Manageable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ManagesComponent.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\MirrorPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ObjectPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\OutEventPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\Port.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\PortType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\Provideable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\ProvidedRequestPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ComponentParadigmSheets\ComponentType\RequiredRequestPort.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementationContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementations.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplements.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorInstance\ConnectorImplementationType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorInstance\ConnectorInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorInterface\ConnectorInherits.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ConnectorParadigmSheets\ConnectorInterface\ConnectorObject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\CollocationGroup.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\CollocationGroupMember.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\CollocationGroupProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\ComponentFactoryRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\ComponentInstanceRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\DeploymentPlan.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\DeploymentPlans.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\Deploys.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\InstanceMapping.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\DeploymentPlan\PropertyMapping.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Domain\BridgeConnection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Domain\Domain.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Domain\InterconnectConnection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Domain\Shares.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Domain\Targets.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\EventChannelRequirements\ECBehavior.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\EventChannelRequirements\ECRequirements.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\EventChannelRequirements\ECRole.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\IdTags\Prefixable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\IdTags\Taggable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Impl_Factory.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ArtifactContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ArtifactDependency.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ArtifactDependsOn.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ArtifactDeployRequirement.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ArtifactExecParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ArtifactInfoProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ImplementationArtifact.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ImplementationArtifactReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationArtifact\ImplementationArtifacts.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\ComponentImplementationArtifact.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\ComponentServantArtifact.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\ConfigProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\Implemenation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\ImplementationContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\InfoProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\MonolithDeployRequirement.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\MonolithExecParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\MonolithicImplementationBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\ImplementationCommon\MonolithprimaryArtifact.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\Attribute.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\AttributeMember.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\Event.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\GetException.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\HasOperations.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\Inheritable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\Inherits.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\MakeMemberPrivate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\Object.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\ObjectByValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\PrivateFlag.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\ReadonlyAttribute.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\SetException.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\Supports.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\SupportsInterfaces.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InheritableTypes\ValueObject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Init.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\CollectionParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\Constant.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\ConstantType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\Exception.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\ExceptionType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\File.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\FileRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\InterfaceDefinitions.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\NameParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\NativeValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\Package.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\PackageType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TemplatePackageAlias.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TemplatePackageInstance.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TemplateParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TemplateParameterReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TemplateParameterValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TemplateParameterValueType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\InterfaceDefinition\TypeParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Aggregate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Alias.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\ArrayMember.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Boxed.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Collection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Discriminator.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Enum.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\EnumValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Key.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\KeyMember.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Label.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\LabelConnection.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\Member.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\MemberType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\NamedType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\NoInheritable.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\NamedTypes\SwitchedAggregate.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\ExceptionRef.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\FactoryOperation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\HasExceptions.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\InoutParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\InParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\LookupOperation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\OnewayOperation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\OperationBase.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\OutParameter.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\ParameterType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\ReturnType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\OperationTypes\TwowayOperation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfBasePackage.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfConfigProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfiguration.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfigurationContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfigurationReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfigurations.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfSelectRequirement.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PackageConfiguration\PackageConfSpecializedConfig.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\ConnectedComponent.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\DisplayNode.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\DstEdge.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\Edge.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\EdgeProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\GraphVertex.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\Path.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\PathDiagrams.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\PathProperty.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\PathReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\Paths.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PathDiagram\SrcEdge.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\Boolean.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\Byte.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\Char.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\CharType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\DoubleNumber.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\FloatingPointType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\FloatNumber.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\GenericObject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\GenericValue.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\GenericValueObject.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\IntegerType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\LongDoubleNumber.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\LongInteger.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\LongLongInteger.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\PredefinedType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\PredefinedTypes.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\ShortInteger.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\SignedIntegerType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\String.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\StringType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\TypeEncoding.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\TypeKind.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\UnsignedIntegerType.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\UnsignedLongInteger.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\UnsignedLongLongInteger.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\UnsignedShortInteger.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\WideChar.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\PredefinedTypes\WideString.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\RealTimeRequirements\MultipleServiceRequests.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\RealTimeRequirements\RTRequirements.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\RealTimeRequirements\ServiceConsumer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\RealTimeRequirements\ServiceLevels.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\RealTimeRequirements\ServiceProvider.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\RootFolder.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TargetElements\Bridge.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TargetElements\Interconnect.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TargetElements\Node.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TargetElements\NodeReference.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TargetElements\Resource.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TargetElements\SharedResource.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TopLevelPackageDescription\package.cpp">
+      <ObjectFileName>$(IntDir)\%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="PICML\TopLevelPackageDescription\TopLevelPackage.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TopLevelPackageDescription\TopLevelPackageContainer.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\TopLevelPackageDescription\TopLevelPackages.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\Visitor.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\Operation.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\Worker.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\WorkerFile.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\WorkerLibraries.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\WorkerLibrary.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\WorkerPackage.cpp">
+    </ClCompile>
+    <ClCompile Include="PICML\WorkloadParadigmSheets\WML\WorkerPackageBase.cpp">
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\Action.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\ActionBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\ActionType.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\BehaviorInputAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\CallAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\Finish.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\InputAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\MultiInputAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\OutputAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\QueryAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\QueryInputAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\RequestAction.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\ActionTypes\TargetRequiredRequestPort.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\BehaviorModel\BehaviorModel.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\BehaviorModel\Variable.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\EffectTypes\Effect.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\EffectTypes\EffectBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\EffectTypes\InputEffect.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\EffectTypes\TerminalEffect.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\InputHooks\ApplicationTask.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\InputHooks\Environment.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\InputHooks\PeriodicEvent.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\BranchState.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\BranchTransition.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\DoWhileState.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\ForState.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\LoopState.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\LoopTransition.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\State.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\StateBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\Transition.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\StateTypes\WhileState.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\Terminals\Terminal.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\Terminals\TerminalTransition.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\Input.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiInput.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiInputBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiOutputBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\QueryInput.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\QueryInputBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\SingleInputBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\SingleOutputBase.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\TopLevelBehavior.h" />
+    <ClInclude Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\WorkerType.h" />
+    <ClInclude Include="PICML\Common\Capability.h" />
+    <ClInclude Include="PICML\Common\ComplexProperty.h" />
+    <ClInclude Include="PICML\Common\ComplexType.h" />
+    <ClInclude Include="PICML\Common\ComplexTypeReference.h" />
+    <ClInclude Include="PICML\Common\DataType.h" />
+    <ClInclude Include="PICML\Common\DataValue.h" />
+    <ClInclude Include="PICML\Common\DataValueBase.h" />
+    <ClInclude Include="PICML\Common\DataValueContainer.h" />
+    <ClInclude Include="PICML\Common\ImplementationDependency.h" />
+    <ClInclude Include="PICML\Common\ImplementationRequirement.h" />
+    <ClInclude Include="PICML\Common\Property.h" />
+    <ClInclude Include="PICML\Common\Requirement.h" />
+    <ClInclude Include="PICML\Common\RequirementBase.h" />
+    <ClInclude Include="PICML\Common\RequirementSatisfier.h" />
+    <ClInclude Include="PICML\Common\SatisfierProperty.h" />
+    <ClInclude Include="PICML\Common\SimpleProperty.h" />
+    <ClInclude Include="PICML\Common\SimpleType.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyConfigProperty.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyConfigPropertyEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyselectRequirement.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMapping.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMappingDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMappingValue.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeValue.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ConnectorToFacet.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ConnectorToReceptacle.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\Consume.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\EventSinkDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\EventSourceDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedPortDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedPortInstanceBase.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendPortEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExternalDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExternalPortEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\FacetDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\InEventPortDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\InEventPortEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\Invoke.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorPortDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorPortInstanceBase.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\OutEventPortDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\OutEventPortEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ProvidedRequestPortDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ProvidedRequestPortEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\Publish.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\ReceptacleDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\RequiredRequestPortDelegate.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\RequiredRequestPortEnd.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\AssemblyConnections\SendsTo.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\ComponentAssembly\ComponentAssembly.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\ComponentAssembly\ComponentAssemblyReference.h" />
+    <ClInclude Include="PICML\ComponentAssemblySheets\ComponentAssembly\ExternalPort.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Average.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\BenchmarkAnalysis.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\BenchmarkCharacteristics.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\BenchmarkType.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\ComponentAnalyses.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\ComponentOperation.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\CompRef.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\DataAnalysisBase.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\EventRef.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\FixedIterationBenchmarks.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Jitter.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Latency.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Maximum.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\MetricConnection.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\MetricsBase.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Minimum.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\OperationRef.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\PeriodicBenchmarks.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Task.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\TaskSet.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\Throughput.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\TimeProbe.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\TimerConnection.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\TimerEventSinkConn.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\TriggerBenchmarks.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\WorkloadCharacteristics.h" />
+    <ClInclude Include="PICML\ComponentBenchmark\WorkLoadOperationConnection.h" />
+    <ClInclude Include="PICML\ComponentBuild\ComponentBuild.h" />
+    <ClInclude Include="PICML\ComponentBuild\ComponentLib.h" />
+    <ClInclude Include="PICML\ComponentBuild\ExecutorProject.h" />
+    <ClInclude Include="PICML\ComponentBuild\ExternalResources.h" />
+    <ClInclude Include="PICML\ComponentBuild\ExtResourceConn.h" />
+    <ClInclude Include="PICML\ComponentBuild\MPC.h" />
+    <ClInclude Include="PICML\ComponentBuild\Project.h" />
+    <ClInclude Include="PICML\ComponentBuild\ServantProject.h" />
+    <ClInclude Include="PICML\ComponentBuild\StubProject.h" />
+    <ClInclude Include="PICML\ComponentBuild\Workspaces.h" />
+    <ClInclude Include="PICML\ComponentFactoryImplementation\ComponentFactoryImplementationContainer.h" />
+    <ClInclude Include="PICML\ComponentFactoryImplementation\ComponentFactoryImplementations.h" />
+    <ClInclude Include="PICML\ComponentFactoryImplementation\ComponentFactoryInstance.h" />
+    <ClInclude Include="PICML\ComponentPackage\ComponentPackage.h" />
+    <ClInclude Include="PICML\ComponentPackage\ComponentPackageReference.h" />
+    <ClInclude Include="PICML\ComponentPackage\ComponentPackages.h" />
+    <ClInclude Include="PICML\ComponentPackage\Implementation.h" />
+    <ClInclude Include="PICML\ComponentPackage\PackageConfigProperty.h" />
+    <ClInclude Include="PICML\ComponentPackage\PackageContainer.h" />
+    <ClInclude Include="PICML\ComponentPackage\PackageInfoProperty.h" />
+    <ClInclude Include="PICML\ComponentPackage\PackageInterface.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementation.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementationContainer.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementationReference.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementations.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\CriticalPath.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\ImplementationCapability.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\ImplementationDependsOn.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\Implements.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentImplementation\MonolithicImplementation.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\AttributeInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\ComponentInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\ComponentInstanceType.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\ExtendedPortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\InEventPortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\MirrorPortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\OutEventPortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\PortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\ProvidedRequestPortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\RequiredRequestPortInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInstance\SupportsInstance.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\CommonPortAttrs.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentConfigProperty.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentContainer.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentInfoProperty.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentProperty.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentPropertyDescription.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentTypes.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\Component.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ComponentFactory.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ComponentInherits.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ComponentRef.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\EventPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\EventType.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ExtendedPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ExtendedPortBase.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\InEventPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\LookupKey.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\LookupKeyType.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\Manageable.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ManagesComponent.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\MirrorPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ObjectPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\OutEventPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\Port.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\PortType.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\Provideable.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\ProvidedRequestPort.h" />
+    <ClInclude Include="PICML\ComponentParadigmSheets\ComponentType\RequiredRequestPort.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementation.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementationContainer.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementations.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplements.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorType.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorInstance\ConnectorImplementationType.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorInstance\ConnectorInstance.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorInterface\ConnectorInherits.h" />
+    <ClInclude Include="PICML\ConnectorParadigmSheets\ConnectorInterface\ConnectorObject.h" />
+    <ClInclude Include="PICML\DeploymentPlan\CollocationGroup.h" />
+    <ClInclude Include="PICML\DeploymentPlan\CollocationGroupMember.h" />
+    <ClInclude Include="PICML\DeploymentPlan\CollocationGroupProperty.h" />
+    <ClInclude Include="PICML\DeploymentPlan\ComponentFactoryRef.h" />
+    <ClInclude Include="PICML\DeploymentPlan\ComponentInstanceRef.h" />
+    <ClInclude Include="PICML\DeploymentPlan\DeploymentPlan.h" />
+    <ClInclude Include="PICML\DeploymentPlan\DeploymentPlans.h" />
+    <ClInclude Include="PICML\DeploymentPlan\Deploys.h" />
+    <ClInclude Include="PICML\DeploymentPlan\InstanceMapping.h" />
+    <ClInclude Include="PICML\DeploymentPlan\PropertyMapping.h" />
+    <ClInclude Include="PICML\Domain\BridgeConnection.h" />
+    <ClInclude Include="PICML\Domain\Domain.h" />
+    <ClInclude Include="PICML\Domain\InterconnectConnection.h" />
+    <ClInclude Include="PICML\Domain\Shares.h" />
+    <ClInclude Include="PICML\Domain\Targets.h" />
+    <ClInclude Include="PICML\EventChannelRequirements\ECBehavior.h" />
+    <ClInclude Include="PICML\EventChannelRequirements\ECRequirements.h" />
+    <ClInclude Include="PICML\EventChannelRequirements\ECRole.h" />
+    <ClInclude Include="PICML\IdTags\Prefixable.h" />
+    <ClInclude Include="PICML\IdTags\Taggable.h" />
+    <ClInclude Include="PICML\Impl_Factory.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ArtifactContainer.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ArtifactDependency.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ArtifactDependsOn.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ArtifactDeployRequirement.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ArtifactExecParameter.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ArtifactInfoProperty.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ImplementationArtifact.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ImplementationArtifactReference.h" />
+    <ClInclude Include="PICML\ImplementationArtifact\ImplementationArtifacts.h" />
+    <ClInclude Include="PICML\ImplementationCommon\ComponentImplementationArtifact.h" />
+    <ClInclude Include="PICML\ImplementationCommon\ComponentServantArtifact.h" />
+    <ClInclude Include="PICML\ImplementationCommon\ConfigProperty.h" />
+    <ClInclude Include="PICML\ImplementationCommon\Implemenation.h" />
+    <ClInclude Include="PICML\ImplementationCommon\ImplementationContainer.h" />
+    <ClInclude Include="PICML\ImplementationCommon\InfoProperty.h" />
+    <ClInclude Include="PICML\ImplementationCommon\MonolithDeployRequirement.h" />
+    <ClInclude Include="PICML\ImplementationCommon\MonolithExecParameter.h" />
+    <ClInclude Include="PICML\ImplementationCommon\MonolithicImplementationBase.h" />
+    <ClInclude Include="PICML\ImplementationCommon\MonolithprimaryArtifact.h" />
+    <ClInclude Include="PICML\InheritableTypes\Attribute.h" />
+    <ClInclude Include="PICML\InheritableTypes\AttributeMember.h" />
+    <ClInclude Include="PICML\InheritableTypes\Event.h" />
+    <ClInclude Include="PICML\InheritableTypes\GetException.h" />
+    <ClInclude Include="PICML\InheritableTypes\HasOperations.h" />
+    <ClInclude Include="PICML\InheritableTypes\Inheritable.h" />
+    <ClInclude Include="PICML\InheritableTypes\Inherits.h" />
+    <ClInclude Include="PICML\InheritableTypes\MakeMemberPrivate.h" />
+    <ClInclude Include="PICML\InheritableTypes\Object.h" />
+    <ClInclude Include="PICML\InheritableTypes\ObjectByValue.h" />
+    <ClInclude Include="PICML\InheritableTypes\PrivateFlag.h" />
+    <ClInclude Include="PICML\InheritableTypes\ReadonlyAttribute.h" />
+    <ClInclude Include="PICML\InheritableTypes\SetException.h" />
+    <ClInclude Include="PICML\InheritableTypes\Supports.h" />
+    <ClInclude Include="PICML\InheritableTypes\SupportsInterfaces.h" />
+    <ClInclude Include="PICML\InheritableTypes\ValueObject.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\CollectionParameter.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\Constant.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\ConstantType.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\Exception.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\ExceptionType.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\File.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\FileRef.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\InterfaceDefinitions.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\NameParameter.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\NativeValue.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\Package.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\PackageType.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TemplatePackageAlias.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TemplatePackageInstance.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TemplateParameter.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TemplateParameterReference.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TemplateParameterValue.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TemplateParameterValueType.h" />
+    <ClInclude Include="PICML\InterfaceDefinition\TypeParameter.h" />
+    <ClInclude Include="PICML\NamedTypes\Aggregate.h" />
+    <ClInclude Include="PICML\NamedTypes\Alias.h" />
+    <ClInclude Include="PICML\NamedTypes\ArrayMember.h" />
+    <ClInclude Include="PICML\NamedTypes\Boxed.h" />
+    <ClInclude Include="PICML\NamedTypes\Collection.h" />
+    <ClInclude Include="PICML\NamedTypes\Discriminator.h" />
+    <ClInclude Include="PICML\NamedTypes\Enum.h" />
+    <ClInclude Include="PICML\NamedTypes\EnumValue.h" />
+    <ClInclude Include="PICML\NamedTypes\Key.h" />
+    <ClInclude Include="PICML\NamedTypes\KeyMember.h" />
+    <ClInclude Include="PICML\NamedTypes\Label.h" />
+    <ClInclude Include="PICML\NamedTypes\LabelConnection.h" />
+    <ClInclude Include="PICML\NamedTypes\Member.h" />
+    <ClInclude Include="PICML\NamedTypes\MemberType.h" />
+    <ClInclude Include="PICML\NamedTypes\NamedType.h" />
+    <ClInclude Include="PICML\NamedTypes\NoInheritable.h" />
+    <ClInclude Include="PICML\NamedTypes\SwitchedAggregate.h" />
+    <ClInclude Include="PICML\OperationTypes\ExceptionRef.h" />
+    <ClInclude Include="PICML\OperationTypes\FactoryOperation.h" />
+    <ClInclude Include="PICML\OperationTypes\HasExceptions.h" />
+    <ClInclude Include="PICML\OperationTypes\InoutParameter.h" />
+    <ClInclude Include="PICML\OperationTypes\InParameter.h" />
+    <ClInclude Include="PICML\OperationTypes\LookupOperation.h" />
+    <ClInclude Include="PICML\OperationTypes\OnewayOperation.h" />
+    <ClInclude Include="PICML\OperationTypes\OperationBase.h" />
+    <ClInclude Include="PICML\OperationTypes\OutParameter.h" />
+    <ClInclude Include="PICML\OperationTypes\ParameterType.h" />
+    <ClInclude Include="PICML\OperationTypes\ReturnType.h" />
+    <ClInclude Include="PICML\OperationTypes\TwowayOperation.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfBasePackage.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfConfigProperty.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfiguration.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfigurationContainer.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfigurationReference.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfigurations.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfReference.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfSelectRequirement.h" />
+    <ClInclude Include="PICML\PackageConfiguration\PackageConfSpecializedConfig.h" />
+    <ClInclude Include="PICML\PathDiagram\ConnectedComponent.h" />
+    <ClInclude Include="PICML\PathDiagram\DisplayNode.h" />
+    <ClInclude Include="PICML\PathDiagram\DstEdge.h" />
+    <ClInclude Include="PICML\PathDiagram\Edge.h" />
+    <ClInclude Include="PICML\PathDiagram\EdgeProperty.h" />
+    <ClInclude Include="PICML\PathDiagram\GraphVertex.h" />
+    <ClInclude Include="PICML\PathDiagram\Path.h" />
+    <ClInclude Include="PICML\PathDiagram\PathDiagrams.h" />
+    <ClInclude Include="PICML\PathDiagram\PathProperty.h" />
+    <ClInclude Include="PICML\PathDiagram\PathReference.h" />
+    <ClInclude Include="PICML\PathDiagram\Paths.h" />
+    <ClInclude Include="PICML\PathDiagram\SrcEdge.h" />
+    <ClInclude Include="PICML\PredefinedTypes\Boolean.h" />
+    <ClInclude Include="PICML\PredefinedTypes\Byte.h" />
+    <ClInclude Include="PICML\PredefinedTypes\Char.h" />
+    <ClInclude Include="PICML\PredefinedTypes\CharType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\DoubleNumber.h" />
+    <ClInclude Include="PICML\PredefinedTypes\FloatingPointType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\FloatNumber.h" />
+    <ClInclude Include="PICML\PredefinedTypes\GenericObject.h" />
+    <ClInclude Include="PICML\PredefinedTypes\GenericValue.h" />
+    <ClInclude Include="PICML\PredefinedTypes\GenericValueObject.h" />
+    <ClInclude Include="PICML\PredefinedTypes\IntegerType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\LongDoubleNumber.h" />
+    <ClInclude Include="PICML\PredefinedTypes\LongInteger.h" />
+    <ClInclude Include="PICML\PredefinedTypes\LongLongInteger.h" />
+    <ClInclude Include="PICML\PredefinedTypes\PredefinedType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\PredefinedTypes.h" />
+    <ClInclude Include="PICML\PredefinedTypes\ShortInteger.h" />
+    <ClInclude Include="PICML\PredefinedTypes\SignedIntegerType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\String.h" />
+    <ClInclude Include="PICML\PredefinedTypes\StringType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\TypeEncoding.h" />
+    <ClInclude Include="PICML\PredefinedTypes\TypeKind.h" />
+    <ClInclude Include="PICML\PredefinedTypes\UnsignedIntegerType.h" />
+    <ClInclude Include="PICML\PredefinedTypes\UnsignedLongInteger.h" />
+    <ClInclude Include="PICML\PredefinedTypes\UnsignedLongLongInteger.h" />
+    <ClInclude Include="PICML\PredefinedTypes\UnsignedShortInteger.h" />
+    <ClInclude Include="PICML\PredefinedTypes\WideChar.h" />
+    <ClInclude Include="PICML\PredefinedTypes\WideString.h" />
+    <ClInclude Include="PICML\RealTimeRequirements\MultipleServiceRequests.h" />
+    <ClInclude Include="PICML\RealTimeRequirements\RTRequirements.h" />
+    <ClInclude Include="PICML\RealTimeRequirements\ServiceConsumer.h" />
+    <ClInclude Include="PICML\RealTimeRequirements\ServiceLevels.h" />
+    <ClInclude Include="PICML\RealTimeRequirements\ServiceProvider.h" />
+    <ClInclude Include="PICML\RootFolder.h" />
+    <ClInclude Include="PICML\TargetElements\Bridge.h" />
+    <ClInclude Include="PICML\TargetElements\Interconnect.h" />
+    <ClInclude Include="PICML\TargetElements\Node.h" />
+    <ClInclude Include="PICML\TargetElements\NodeReference.h" />
+    <ClInclude Include="PICML\TargetElements\Resource.h" />
+    <ClInclude Include="PICML\TargetElements\SharedResource.h" />
+    <ClInclude Include="PICML\TopLevelPackageDescription\package.h" />
+    <ClInclude Include="PICML\TopLevelPackageDescription\TopLevelPackage.h" />
+    <ClInclude Include="PICML\TopLevelPackageDescription\TopLevelPackageContainer.h" />
+    <ClInclude Include="PICML\TopLevelPackageDescription\TopLevelPackages.h" />
+    <ClInclude Include="PICML\Visitor.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\Operation.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\Worker.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\WorkerFile.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\WorkerLibraries.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\WorkerLibrary.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\WorkerPackage.h" />
+    <ClInclude Include="PICML\WorkloadParadigmSheets\WML\WorkerPackageBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PICML_GAME_Mga.mpc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="PICML_GAME_Mga.mwc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\Action.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\ActionBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\ActionType.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\BehaviorInputAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\CallAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\Finish.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\InputAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\MultiInputAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\OutputAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\QueryAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\QueryInputAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\RequestAction.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\ActionTypes\TargetRequiredRequestPort.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\BehaviorModel\BehaviorModel.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\BehaviorModel\Variable.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\EffectTypes\Effect.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\EffectTypes\EffectBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\EffectTypes\InputEffect.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\EffectTypes\TerminalEffect.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\InputHooks\ApplicationTask.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\InputHooks\Environment.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\InputHooks\PeriodicEvent.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\BranchState.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\BranchTransition.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\DoWhileState.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\ForState.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\LoopState.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\LoopTransition.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\State.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\StateBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\Transition.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\StateTypes\WhileState.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\Terminals\Terminal.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\Terminals\TerminalTransition.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\Input.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiInput.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiInputBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\MultiOutputBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\QueryInput.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\QueryInputBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\SingleInputBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\SingleOutputBase.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\TopLevelBehavior.inl" />
+    <None Include="PICML\BehaviorParadigmSheets\TopLevelBehaviorModel\WorkerType.inl" />
+    <None Include="PICML\Common\Capability.inl" />
+    <None Include="PICML\Common\ComplexProperty.inl" />
+    <None Include="PICML\Common\ComplexType.inl" />
+    <None Include="PICML\Common\ComplexTypeReference.inl" />
+    <None Include="PICML\Common\DataType.inl" />
+    <None Include="PICML\Common\DataValue.inl" />
+    <None Include="PICML\Common\DataValueBase.inl" />
+    <None Include="PICML\Common\DataValueContainer.inl" />
+    <None Include="PICML\Common\ImplementationDependency.inl" />
+    <None Include="PICML\Common\ImplementationRequirement.inl" />
+    <None Include="PICML\Common\Property.inl" />
+    <None Include="PICML\Common\Requirement.inl" />
+    <None Include="PICML\Common\RequirementBase.inl" />
+    <None Include="PICML\Common\RequirementSatisfier.inl" />
+    <None Include="PICML\Common\SatisfierProperty.inl" />
+    <None Include="PICML\Common\SimpleProperty.inl" />
+    <None Include="PICML\Common\SimpleType.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyConfigProperty.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyConfigPropertyEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AssemblyselectRequirement.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMapping.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMappingDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeMappingValue.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\AttributeValue.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ConnectorToFacet.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ConnectorToReceptacle.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\Consume.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\EventSinkDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\EventSourceDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedPortDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendedPortInstanceBase.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExtendPortEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExternalDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ExternalPortEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\FacetDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\InEventPortDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\InEventPortEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\Invoke.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorPortDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\MirrorPortInstanceBase.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\OutEventPortDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\OutEventPortEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ProvidedRequestPortDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ProvidedRequestPortEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\Publish.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\ReceptacleDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\RequiredRequestPortDelegate.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\RequiredRequestPortEnd.inl" />
+    <None Include="PICML\ComponentAssemblySheets\AssemblyConnections\SendsTo.inl" />
+    <None Include="PICML\ComponentAssemblySheets\ComponentAssembly\ComponentAssembly.inl" />
+    <None Include="PICML\ComponentAssemblySheets\ComponentAssembly\ComponentAssemblyReference.inl" />
+    <None Include="PICML\ComponentAssemblySheets\ComponentAssembly\ExternalPort.inl" />
+    <None Include="PICML\ComponentBenchmark\Average.inl" />
+    <None Include="PICML\ComponentBenchmark\BenchmarkAnalysis.inl" />
+    <None Include="PICML\ComponentBenchmark\BenchmarkCharacteristics.inl" />
+    <None Include="PICML\ComponentBenchmark\BenchmarkType.inl" />
+    <None Include="PICML\ComponentBenchmark\ComponentAnalyses.inl" />
+    <None Include="PICML\ComponentBenchmark\ComponentOperation.inl" />
+    <None Include="PICML\ComponentBenchmark\CompRef.inl" />
+    <None Include="PICML\ComponentBenchmark\DataAnalysisBase.inl" />
+    <None Include="PICML\ComponentBenchmark\EventRef.inl" />
+    <None Include="PICML\ComponentBenchmark\FixedIterationBenchmarks.inl" />
+    <None Include="PICML\ComponentBenchmark\Jitter.inl" />
+    <None Include="PICML\ComponentBenchmark\Latency.inl" />
+    <None Include="PICML\ComponentBenchmark\Maximum.inl" />
+    <None Include="PICML\ComponentBenchmark\MetricConnection.inl" />
+    <None Include="PICML\ComponentBenchmark\MetricsBase.inl" />
+    <None Include="PICML\ComponentBenchmark\Minimum.inl" />
+    <None Include="PICML\ComponentBenchmark\OperationRef.inl" />
+    <None Include="PICML\ComponentBenchmark\PeriodicBenchmarks.inl" />
+    <None Include="PICML\ComponentBenchmark\Task.inl" />
+    <None Include="PICML\ComponentBenchmark\TaskSet.inl" />
+    <None Include="PICML\ComponentBenchmark\Throughput.inl" />
+    <None Include="PICML\ComponentBenchmark\TimeProbe.inl" />
+    <None Include="PICML\ComponentBenchmark\TimerConnection.inl" />
+    <None Include="PICML\ComponentBenchmark\TimerEventSinkConn.inl" />
+    <None Include="PICML\ComponentBenchmark\TriggerBenchmarks.inl" />
+    <None Include="PICML\ComponentBenchmark\WorkloadCharacteristics.inl" />
+    <None Include="PICML\ComponentBenchmark\WorkLoadOperationConnection.inl" />
+    <None Include="PICML\ComponentBuild\ComponentBuild.inl" />
+    <None Include="PICML\ComponentBuild\ComponentLib.inl" />
+    <None Include="PICML\ComponentBuild\ExecutorProject.inl" />
+    <None Include="PICML\ComponentBuild\ExternalResources.inl" />
+    <None Include="PICML\ComponentBuild\ExtResourceConn.inl" />
+    <None Include="PICML\ComponentBuild\MPC.inl" />
+    <None Include="PICML\ComponentBuild\Project.inl" />
+    <None Include="PICML\ComponentBuild\ServantProject.inl" />
+    <None Include="PICML\ComponentBuild\StubProject.inl" />
+    <None Include="PICML\ComponentBuild\Workspaces.inl" />
+    <None Include="PICML\ComponentFactoryImplementation\ComponentFactoryImplementationContainer.inl" />
+    <None Include="PICML\ComponentFactoryImplementation\ComponentFactoryImplementations.inl" />
+    <None Include="PICML\ComponentFactoryImplementation\ComponentFactoryInstance.inl" />
+    <None Include="PICML\ComponentPackage\ComponentPackage.inl" />
+    <None Include="PICML\ComponentPackage\ComponentPackageReference.inl" />
+    <None Include="PICML\ComponentPackage\ComponentPackages.inl" />
+    <None Include="PICML\ComponentPackage\Implementation.inl" />
+    <None Include="PICML\ComponentPackage\PackageConfigProperty.inl" />
+    <None Include="PICML\ComponentPackage\PackageContainer.inl" />
+    <None Include="PICML\ComponentPackage\PackageInfoProperty.inl" />
+    <None Include="PICML\ComponentPackage\PackageInterface.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementation.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementationContainer.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementationReference.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\ComponentImplementations.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\CriticalPath.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\ImplementationCapability.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\ImplementationDependsOn.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\Implements.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentImplementation\MonolithicImplementation.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\AttributeInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\ComponentInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\ComponentInstanceType.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\ExtendedPortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\InEventPortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\MirrorPortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\OutEventPortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\PortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\ProvidedRequestPortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\RequiredRequestPortInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInstance\SupportsInstance.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\CommonPortAttrs.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentConfigProperty.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentContainer.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentInfoProperty.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentProperty.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentPropertyDescription.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentInterface\ComponentTypes.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\Component.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ComponentFactory.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ComponentInherits.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ComponentRef.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\EventPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\EventType.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ExtendedPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ExtendedPortBase.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\InEventPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\LookupKey.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\LookupKeyType.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\Manageable.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ManagesComponent.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\MirrorPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ObjectPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\OutEventPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\Port.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\PortType.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\Provideable.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\ProvidedRequestPort.inl" />
+    <None Include="PICML\ComponentParadigmSheets\ComponentType\RequiredRequestPort.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementation.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementationContainer.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplementations.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorImplements.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorImplementation\ConnectorType.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorInstance\ConnectorImplementationType.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorInstance\ConnectorInstance.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorInterface\ConnectorInherits.inl" />
+    <None Include="PICML\ConnectorParadigmSheets\ConnectorInterface\ConnectorObject.inl" />
+    <None Include="PICML\DeploymentPlan\CollocationGroup.inl" />
+    <None Include="PICML\DeploymentPlan\CollocationGroupMember.inl" />
+    <None Include="PICML\DeploymentPlan\CollocationGroupProperty.inl" />
+    <None Include="PICML\DeploymentPlan\ComponentFactoryRef.inl" />
+    <None Include="PICML\DeploymentPlan\ComponentInstanceRef.inl" />
+    <None Include="PICML\DeploymentPlan\DeploymentPlan.inl" />
+    <None Include="PICML\DeploymentPlan\DeploymentPlans.inl" />
+    <None Include="PICML\DeploymentPlan\Deploys.inl" />
+    <None Include="PICML\DeploymentPlan\InstanceMapping.inl" />
+    <None Include="PICML\DeploymentPlan\PropertyMapping.inl" />
+    <None Include="PICML\Domain\BridgeConnection.inl" />
+    <None Include="PICML\Domain\Domain.inl" />
+    <None Include="PICML\Domain\InterconnectConnection.inl" />
+    <None Include="PICML\Domain\Shares.inl" />
+    <None Include="PICML\Domain\Targets.inl" />
+    <None Include="PICML\EventChannelRequirements\ECBehavior.inl" />
+    <None Include="PICML\EventChannelRequirements\ECRequirements.inl" />
+    <None Include="PICML\EventChannelRequirements\ECRole.inl" />
+    <None Include="PICML\IdTags\Prefixable.inl" />
+    <None Include="PICML\IdTags\Taggable.inl" />
+    <None Include="PICML\ImplementationArtifact\ArtifactContainer.inl" />
+    <None Include="PICML\ImplementationArtifact\ArtifactDependency.inl" />
+    <None Include="PICML\ImplementationArtifact\ArtifactDependsOn.inl" />
+    <None Include="PICML\ImplementationArtifact\ArtifactDeployRequirement.inl" />
+    <None Include="PICML\ImplementationArtifact\ArtifactExecParameter.inl" />
+    <None Include="PICML\ImplementationArtifact\ArtifactInfoProperty.inl" />
+    <None Include="PICML\ImplementationArtifact\ImplementationArtifact.inl" />
+    <None Include="PICML\ImplementationArtifact\ImplementationArtifactReference.inl" />
+    <None Include="PICML\ImplementationArtifact\ImplementationArtifacts.inl" />
+    <None Include="PICML\ImplementationCommon\ComponentImplementationArtifact.inl" />
+    <None Include="PICML\ImplementationCommon\ComponentServantArtifact.inl" />
+    <None Include="PICML\ImplementationCommon\ConfigProperty.inl" />
+    <None Include="PICML\ImplementationCommon\Implemenation.inl" />
+    <None Include="PICML\ImplementationCommon\ImplementationContainer.inl" />
+    <None Include="PICML\ImplementationCommon\InfoProperty.inl" />
+    <None Include="PICML\ImplementationCommon\MonolithDeployRequirement.inl" />
+    <None Include="PICML\ImplementationCommon\MonolithExecParameter.inl" />
+    <None Include="PICML\ImplementationCommon\MonolithicImplementationBase.inl" />
+    <None Include="PICML\ImplementationCommon\MonolithprimaryArtifact.inl" />
+    <None Include="PICML\InheritableTypes\Attribute.inl" />
+    <None Include="PICML\InheritableTypes\AttributeMember.inl" />
+    <None Include="PICML\InheritableTypes\Event.inl" />
+    <None Include="PICML\InheritableTypes\GetException.inl" />
+    <None Include="PICML\InheritableTypes\HasOperations.inl" />
+    <None Include="PICML\InheritableTypes\Inheritable.inl" />
+    <None Include="PICML\InheritableTypes\Inherits.inl" />
+    <None Include="PICML\InheritableTypes\MakeMemberPrivate.inl" />
+    <None Include="PICML\InheritableTypes\Object.inl" />
+    <None Include="PICML\InheritableTypes\ObjectByValue.inl" />
+    <None Include="PICML\InheritableTypes\PrivateFlag.inl" />
+    <None Include="PICML\InheritableTypes\ReadonlyAttribute.inl" />
+    <None Include="PICML\InheritableTypes\SetException.inl" />
+    <None Include="PICML\InheritableTypes\Supports.inl" />
+    <None Include="PICML\InheritableTypes\SupportsInterfaces.inl" />
+    <None Include="PICML\InheritableTypes\ValueObject.inl" />
+    <None Include="PICML\InterfaceDefinition\CollectionParameter.inl" />
+    <None Include="PICML\InterfaceDefinition\Constant.inl" />
+    <None Include="PICML\InterfaceDefinition\ConstantType.inl" />
+    <None Include="PICML\InterfaceDefinition\Exception.inl" />
+    <None Include="PICML\InterfaceDefinition\ExceptionType.inl" />
+    <None Include="PICML\InterfaceDefinition\File.inl" />
+    <None Include="PICML\InterfaceDefinition\FileRef.inl" />
+    <None Include="PICML\InterfaceDefinition\InterfaceDefinitions.inl" />
+    <None Include="PICML\InterfaceDefinition\NameParameter.inl" />
+    <None Include="PICML\InterfaceDefinition\NativeValue.inl" />
+    <None Include="PICML\InterfaceDefinition\Package.inl" />
+    <None Include="PICML\InterfaceDefinition\PackageType.inl" />
+    <None Include="PICML\InterfaceDefinition\TemplatePackageAlias.inl" />
+    <None Include="PICML\InterfaceDefinition\TemplatePackageInstance.inl" />
+    <None Include="PICML\InterfaceDefinition\TemplateParameter.inl" />
+    <None Include="PICML\InterfaceDefinition\TemplateParameterReference.inl" />
+    <None Include="PICML\InterfaceDefinition\TemplateParameterValue.inl" />
+    <None Include="PICML\InterfaceDefinition\TemplateParameterValueType.inl" />
+    <None Include="PICML\InterfaceDefinition\TypeParameter.inl" />
+    <None Include="PICML\NamedTypes\Aggregate.inl" />
+    <None Include="PICML\NamedTypes\Alias.inl" />
+    <None Include="PICML\NamedTypes\ArrayMember.inl" />
+    <None Include="PICML\NamedTypes\Boxed.inl" />
+    <None Include="PICML\NamedTypes\Collection.inl" />
+    <None Include="PICML\NamedTypes\Discriminator.inl" />
+    <None Include="PICML\NamedTypes\Enum.inl" />
+    <None Include="PICML\NamedTypes\EnumValue.inl" />
+    <None Include="PICML\NamedTypes\Key.inl" />
+    <None Include="PICML\NamedTypes\KeyMember.inl" />
+    <None Include="PICML\NamedTypes\Label.inl" />
+    <None Include="PICML\NamedTypes\LabelConnection.inl" />
+    <None Include="PICML\NamedTypes\Member.inl" />
+    <None Include="PICML\NamedTypes\MemberType.inl" />
+    <None Include="PICML\NamedTypes\NamedType.inl" />
+    <None Include="PICML\NamedTypes\NoInheritable.inl" />
+    <None Include="PICML\NamedTypes\SwitchedAggregate.inl" />
+    <None Include="PICML\OperationTypes\ExceptionRef.inl" />
+    <None Include="PICML\OperationTypes\FactoryOperation.inl" />
+    <None Include="PICML\OperationTypes\HasExceptions.inl" />
+    <None Include="PICML\OperationTypes\InoutParameter.inl" />
+    <None Include="PICML\OperationTypes\InParameter.inl" />
+    <None Include="PICML\OperationTypes\LookupOperation.inl" />
+    <None Include="PICML\OperationTypes\OnewayOperation.inl" />
+    <None Include="PICML\OperationTypes\OperationBase.inl" />
+    <None Include="PICML\OperationTypes\OutParameter.inl" />
+    <None Include="PICML\OperationTypes\ParameterType.inl" />
+    <None Include="PICML\OperationTypes\ReturnType.inl" />
+    <None Include="PICML\OperationTypes\TwowayOperation.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfBasePackage.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfConfigProperty.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfiguration.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfigurationContainer.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfigurationReference.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfigurations.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfReference.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfSelectRequirement.inl" />
+    <None Include="PICML\PackageConfiguration\PackageConfSpecializedConfig.inl" />
+    <None Include="PICML\PathDiagram\ConnectedComponent.inl" />
+    <None Include="PICML\PathDiagram\DisplayNode.inl" />
+    <None Include="PICML\PathDiagram\DstEdge.inl" />
+    <None Include="PICML\PathDiagram\Edge.inl" />
+    <None Include="PICML\PathDiagram\EdgeProperty.inl" />
+    <None Include="PICML\PathDiagram\GraphVertex.inl" />
+    <None Include="PICML\PathDiagram\Path.inl" />
+    <None Include="PICML\PathDiagram\PathDiagrams.inl" />
+    <None Include="PICML\PathDiagram\PathProperty.inl" />
+    <None Include="PICML\PathDiagram\PathReference.inl" />
+    <None Include="PICML\PathDiagram\Paths.inl" />
+    <None Include="PICML\PathDiagram\SrcEdge.inl" />
+    <None Include="PICML\PredefinedTypes\Boolean.inl" />
+    <None Include="PICML\PredefinedTypes\Byte.inl" />
+    <None Include="PICML\PredefinedTypes\Char.inl" />
+    <None Include="PICML\PredefinedTypes\CharType.inl" />
+    <None Include="PICML\PredefinedTypes\DoubleNumber.inl" />
+    <None Include="PICML\PredefinedTypes\FloatingPointType.inl" />
+    <None Include="PICML\PredefinedTypes\FloatNumber.inl" />
+    <None Include="PICML\PredefinedTypes\GenericObject.inl" />
+    <None Include="PICML\PredefinedTypes\GenericValue.inl" />
+    <None Include="PICML\PredefinedTypes\GenericValueObject.inl" />
+    <None Include="PICML\PredefinedTypes\IntegerType.inl" />
+    <None Include="PICML\PredefinedTypes\LongDoubleNumber.inl" />
+    <None Include="PICML\PredefinedTypes\LongInteger.inl" />
+    <None Include="PICML\PredefinedTypes\LongLongInteger.inl" />
+    <None Include="PICML\PredefinedTypes\PredefinedType.inl" />
+    <None Include="PICML\PredefinedTypes\PredefinedTypes.inl" />
+    <None Include="PICML\PredefinedTypes\ShortInteger.inl" />
+    <None Include="PICML\PredefinedTypes\SignedIntegerType.inl" />
+    <None Include="PICML\PredefinedTypes\String.inl" />
+    <None Include="PICML\PredefinedTypes\StringType.inl" />
+    <None Include="PICML\PredefinedTypes\TypeEncoding.inl" />
+    <None Include="PICML\PredefinedTypes\TypeKind.inl" />
+    <None Include="PICML\PredefinedTypes\UnsignedIntegerType.inl" />
+    <None Include="PICML\PredefinedTypes\UnsignedLongInteger.inl" />
+    <None Include="PICML\PredefinedTypes\UnsignedLongLongInteger.inl" />
+    <None Include="PICML\PredefinedTypes\UnsignedShortInteger.inl" />
+    <None Include="PICML\PredefinedTypes\WideChar.inl" />
+    <None Include="PICML\PredefinedTypes\WideString.inl" />
+    <None Include="PICML\RealTimeRequirements\MultipleServiceRequests.inl" />
+    <None Include="PICML\RealTimeRequirements\RTRequirements.inl" />
+    <None Include="PICML\RealTimeRequirements\ServiceConsumer.inl" />
+    <None Include="PICML\RealTimeRequirements\ServiceLevels.inl" />
+    <None Include="PICML\RealTimeRequirements\ServiceProvider.inl" />
+    <None Include="PICML\TargetElements\Bridge.inl" />
+    <None Include="PICML\TargetElements\Interconnect.inl" />
+    <None Include="PICML\TargetElements\Node.inl" />
+    <None Include="PICML\TargetElements\NodeReference.inl" />
+    <None Include="PICML\TargetElements\Resource.inl" />
+    <None Include="PICML\TargetElements\SharedResource.inl" />
+    <None Include="PICML\TopLevelPackageDescription\package.inl" />
+    <None Include="PICML\TopLevelPackageDescription\TopLevelPackage.inl" />
+    <None Include="PICML\TopLevelPackageDescription\TopLevelPackageContainer.inl" />
+    <None Include="PICML\TopLevelPackageDescription\TopLevelPackages.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\Operation.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\Worker.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\WorkerFile.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\WorkerLibraries.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\WorkerLibrary.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\WorkerPackage.inl" />
+    <None Include="PICML\WorkloadParadigmSheets\WML\WorkerPackageBase.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
