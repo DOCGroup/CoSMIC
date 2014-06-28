@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
 #include "DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.h"
+#include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
@@ -80,19 +80,19 @@ namespace DQML
   }
 
   //
-  // dst_dw_lifespan_Connection
-  //
-  size_t LifespanQosPolicy_Impl::dst_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const
-  {
-    return this->in_connections <dw_lifespan_Connection> (items);
-  }
-
-  //
   // dst_topic_lifespan_Connection
   //
   size_t LifespanQosPolicy_Impl::dst_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const
   {
     return this->in_connections <topic_lifespan_Connection> (items);
+  }
+
+  //
+  // dst_dw_lifespan_Connection
+  //
+  size_t LifespanQosPolicy_Impl::dst_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const
+  {
+    return this->in_connections <dw_lifespan_Connection> (items);
   }
 }
 

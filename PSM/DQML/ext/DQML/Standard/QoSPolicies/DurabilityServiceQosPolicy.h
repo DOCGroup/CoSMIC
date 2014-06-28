@@ -123,11 +123,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_dursvc_Connection connection.
-    size_t dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const;
-
     /// Get the dst dw_dursvc_Connection connection.
     size_t dst_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const;
+
+    /// Get the dst topic_dursvc_Connection connection.
+    size_t dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const;
     ///@}
   };
 }

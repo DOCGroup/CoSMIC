@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/iCCM/iCCM.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

@@ -17,7 +17,8 @@
 #include "DQML/DQML_fwd.h"
 #include "DQML/DQML_export.h"
 
-#include "game/mga/Model.h"
+#include "DQML/Standard/QoSPolicies/QoSPolicy.h"
+#include "game/mga/Atom.h"
 
 namespace DQML
 {
@@ -35,14 +36,15 @@ namespace DQML
    * Implementation for the PartitionQosPolicy model element.
    */
   class DQML_Export PartitionQosPolicy_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual QoSPolicy_Impl
   {
     public:
     /// Tag type of this extension class.
-    typedef ::GAME::Mga::model_tag_t type_tag;
+    typedef ::GAME::Mga::atom_tag_t type_tag;
 
     /// Type definition of this class's interface.
-    typedef IMgaModel interface_type;
+    typedef IMgaAtom interface_type;
 
     /// Metaname for this extension class.
     static const std::string metaname;
@@ -53,13 +55,14 @@ namespace DQML
     ///@{
     static PartitionQosPolicy _create (const PublisherQos_in parent);
     static PartitionQosPolicy _create (const SubscriberQos_in parent);
+    static PartitionQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
     // Default constructor.
     PartitionQosPolicy_Impl (void);
 
     // Initializing constructor.
-    PartitionQosPolicy_Impl (IMgaModel * ptr);
+    PartitionQosPolicy_Impl (IMgaAtom * ptr);
 
     // Destructor.
     virtual ~PartitionQosPolicy_Impl (void);
@@ -76,6 +79,18 @@ namespace DQML
     ///@}
 
     /**
+     * @name Attribute Methods
+     */
+    ///@{
+
+    /// Set the value of partition_name
+    void partition_name (const std::string & val);
+
+    /// Get the value of partition_name
+    std::string partition_name (void) const;
+    ///@}
+
+    /**
      * @name Destination Connection Point Methods
      */
     ///@{
@@ -85,15 +100,6 @@ namespace DQML
 
     /// Get the dst sub_part_Connection connection.
     size_t dst_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
-    ///@}
-
-    /**
-     * @name Containment Methods
-     */
-    ///@{
-
-    bool has_StringSeq (void) const;
-    StringSeq get_StringSeq (void) const;
     ///@}
   };
 }

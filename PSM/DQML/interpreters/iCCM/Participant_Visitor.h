@@ -32,12 +32,15 @@ public:
 
   virtual void visit_Participant (DQML::Participant_in item);
 
-  virtual void visit_StringSeq (DQML::StringSeq_in item);
-  virtual void visit_StringSeq_Item (DQML::StringSeq_Item_in item);
-
-  virtual void visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item);
   virtual void visit_TopicQos (DQML::TopicQos_in item);
 
+  virtual void visit_PublisherQos (DQML::PublisherQos_in item);
+  virtual void visit_SubscriberQos (DQML::SubscriberQos_in item);
+
+  virtual void visit_DataWriterQos (DQML::DataWriterQos_in item);
+  virtual void visit_DataReaderQos (DQML::DataReaderQos_in item);
+
+  virtual void visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item);
   virtual void visit_DestinationOrderQosPolicy (DQML::DestinationOrderQosPolicy_in item);
   virtual void visit_DeadlineQosPolicy (DQML::DeadlineQosPolicy_in item);
   virtual void visit_DurabilityQosPolicy (DQML::DurabilityQosPolicy_in item);
@@ -52,33 +55,25 @@ public:
   virtual void visit_ShareQosPolicy (DQML::ShareQosPolicy_in item);
   virtual void visit_SubscriptionKeyQosPolicy (DQML::SubscriptionKeyQosPolicy_in item);
   virtual void visit_ReaderLifespanQosPolicy (DQML::ReaderLifespanQosPolicy_in item);
-
+  virtual void visit_PresentationQosPolicy (DQML::PresentationQosPolicy_in item);
+  virtual void visit_PartitionQosPolicy (DQML::PartitionQosPolicy_in item);
+  virtual void visit_WriterDataLifecycleQosPolicy (DQML::WriterDataLifecycleQosPolicy_in item);
+  virtual void visit_ResourceLimitsQosPolicy (DQML::ResourceLimitsQosPolicy_in item);
+  virtual void visit_TransportPriorityQosPolicy (DQML::TransportPriorityQosPolicy_in item);
+  virtual void visit_LifespanQosPolicy (DQML::LifespanQosPolicy_in item);
+  virtual void visit_OwnershipQosPolicy (DQML::OwnershipQosPolicy_in item);
+  virtual void visit_OwnershipStrengthQosPolicy (DQML::OwnershipStrengthQosPolicy_in item);
+  virtual void visit_TimeBasedFilterQosPolicy (DQML::TimeBasedFilterQosPolicy_in item);
+  virtual void visit_ReaderDataLifecycleQosPolicy (DQML::ReaderDataLifecycleQosPolicy_in item);
   virtual void visit_SchedulingPriorityQosPolicy (DQML::SchedulingPriorityQosPolicy_in item);
   virtual void visit_SchedulingClassQosPolicy (DQML::SchedulingClassQosPolicy_in item);
   virtual void visit_SchedulingQosPolicy (DQML::SchedulingQosPolicy_in item);
   virtual void visit_ListenerSchedulingQosPolicy (DQML::ListenerSchedulingQosPolicy_in item);
   virtual void visit_WatchdogSchedulingQosPolicy (DQML::WatchdogSchedulingQosPolicy_in item);
 
-  virtual void visit_PublisherQos (DQML::PublisherQos_in item);
-  virtual void visit_SubscriberQos (DQML::SubscriberQos_in item);
-
-  virtual void visit_ResourceLimitsQosPolicy (DQML::ResourceLimitsQosPolicy_in item);
-  virtual void visit_TransportPriorityQosPolicy (DQML::TransportPriorityQosPolicy_in item);
-  virtual void visit_LifespanQosPolicy (DQML::LifespanQosPolicy_in item);
-  virtual void visit_OwnershipQosPolicy (DQML::OwnershipQosPolicy_in item);
-  virtual void visit_OwnershipStrengthQosPolicy (DQML::OwnershipStrengthQosPolicy_in item);
-
-  virtual void visit_PresentationQosPolicy (DQML::PresentationQosPolicy_in item);
-  virtual void visit_PartitionQosPolicy (DQML::PartitionQosPolicy_in item);
-  virtual void visit_WriterDataLifecycleQosPolicy (DQML::WriterDataLifecycleQosPolicy_in item);
-
-  virtual void visit_DataWriterQos (DQML::DataWriterQos_in item);
-  virtual void visit_DataReaderQos (DQML::DataReaderQos_in item);
-
-  virtual void visit_TimeBasedFilterQosPolicy (DQML::TimeBasedFilterQosPolicy_in item);
-  virtual void visit_ReaderDataLifecycleQosPolicy (DQML::ReaderDataLifecycleQosPolicy_in item);
-
 private:
+  void stringseq_splitter (std::string & str);
+
   GAME::Xml::Document & doc_;
 
   GAME::Xml::Fragment current_;

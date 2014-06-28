@@ -16,6 +16,7 @@ project (DQML_iCCM_Component) : game_xml, dqml_game_mga, game_mga_interpreter, c
   }
 
   Resource_Files {
+	component.ico
     Component.rc
   }
 

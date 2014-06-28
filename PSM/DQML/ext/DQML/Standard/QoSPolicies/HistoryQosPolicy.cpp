@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
@@ -98,19 +98,19 @@ namespace DQML
   }
 
   //
-  // dst_dr_history_Connection
-  //
-  size_t HistoryQosPolicy_Impl::dst_dr_history_Connection (std::vector <dr_history_Connection> & items) const
-  {
-    return this->in_connections <dr_history_Connection> (items);
-  }
-
-  //
   // dst_dw_history_Connection
   //
   size_t HistoryQosPolicy_Impl::dst_dw_history_Connection (std::vector <dw_history_Connection> & items) const
   {
     return this->in_connections <dw_history_Connection> (items);
+  }
+
+  //
+  // dst_dr_history_Connection
+  //
+  size_t HistoryQosPolicy_Impl::dst_dr_history_Connection (std::vector <dr_history_Connection> & items) const
+  {
+    return this->in_connections <dr_history_Connection> (items);
   }
 
   //

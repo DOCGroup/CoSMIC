@@ -97,14 +97,14 @@ namespace DQML
      */
     ///@{
 
+    /// Get the dst top_latency_Connection connection.
+    size_t dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
+
     /// Get the dst dr_latency_Connection connection.
     size_t dst_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
 
     /// Get the dst dw_latency_Connection connection.
     size_t dst_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
-
-    /// Get the dst top_latency_Connection connection.
-    size_t dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
     ///@}
   };
 }
