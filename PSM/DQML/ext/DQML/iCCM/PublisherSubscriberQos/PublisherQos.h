@@ -87,14 +87,14 @@ namespace DQML
      */
     ///@{
 
-    bool has_EntityFactoryQosPolicy (void) const;
-    EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
-
     bool has_GroupDataQosPolicy (void) const;
     GroupDataQosPolicy get_GroupDataQosPolicy (void) const;
 
     bool has_PresentationQosPolicy (void) const;
     PresentationQosPolicy get_PresentationQosPolicy (void) const;
+
+    bool has_EntityFactoryQosPolicy (void) const;
+    EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
 
     bool has_PartitionQosPolicy (void) const;
     PartitionQosPolicy get_PartitionQosPolicy (void) const;

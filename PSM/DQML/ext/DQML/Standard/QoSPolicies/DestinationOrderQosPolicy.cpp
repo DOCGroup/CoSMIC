@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
@@ -98,11 +98,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_dstOrder_Connection
+  // dst_dr_dstOrder_Connection
   //
-  size_t DestinationOrderQosPolicy_Impl::dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
+  size_t DestinationOrderQosPolicy_Impl::dst_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
   {
-    return this->in_connections <dw_dstOrder_Connection> (items);
+    return this->in_connections <dr_dstOrder_Connection> (items);
   }
 
   //
@@ -114,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_dr_dstOrder_Connection
+  // dst_dw_dstOrder_Connection
   //
-  size_t DestinationOrderQosPolicy_Impl::dst_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
+  size_t DestinationOrderQosPolicy_Impl::dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
   {
-    return this->in_connections <dr_dstOrder_Connection> (items);
+    return this->in_connections <dw_dstOrder_Connection> (items);
   }
 }
 

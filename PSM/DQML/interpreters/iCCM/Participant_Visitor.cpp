@@ -8,6 +8,7 @@
 
 #include "game/xml/Swap_Fragment.h"
 
+#include <boost/algorithm/string.hpp>
 #include "boost/bind.hpp"
 #include <algorithm>
 
@@ -57,7 +58,7 @@ namespace DQML_iCCM
   //
   void Participant_Visitor::visit_Participant (DQML::Participant_in item)
   {
-    xercesc::DOMComment * comment = this->doc_->createComment (String ("BEGIN DDS::DomainParticipantQoS parameters "));
+    xercesc::DOMComment * comment = this->doc_->createComment (String (" BEGIN DDS::DomainParticipantQoS parameters "));
     this->current_->appendChild (comment);
     if (item->has_UserDataQosPolicy ())
     {
@@ -71,9 +72,9 @@ namespace DQML_iCCM
       item->get_EntityFactoryQosPolicy ()->accept (this);
     }
 
-    // watchdog_scheduling goes here
-    comment = this->doc_->createComment (String ("BEGIN DDS::DomainParticipantQoS(SchedulingQosPolicy) parameters "));
+    comment = this->doc_->createComment (String (" BEGIN DDS::DomainParticipantQoS (SchedulingQosPolicy) parameters "));
     this->current_->appendChild (comment);
+    // watchdog_scheduling goes here
     if (item->has_WatchdogSchedulingQosPolicy ())
     {
       Swap_Fragment f (this->current_, this->current_.create_element ("watchdog_scheduling"));
@@ -87,17 +88,15 @@ namespace DQML_iCCM
       item->get_ListenerSchedulingQosPolicy ()->accept (this);
     }
 
-    // topic(s) go here
     // Gather all the topics and then visit them. When we visit the topic,
     // we are going to write it to the Xml document.
+    // topic(s) go here
     std::set <DQML::TopicQos> topics;
-
     Topic_Locator topic_locator (topics);
     item->accept (&topic_locator);
-
-    if (topics.size() != 0)
+    if (topics.size () != 0)
     {
-      comment = this->doc_->createComment (String ("BEGIN DDS::TopicQos parameters "));
+      comment = this->doc_->createComment (String (" BEGIN DDS::TopicQoS parameters "));
       this->current_->appendChild (comment);
     }
     for (auto topic : topics)
@@ -105,9 +104,9 @@ namespace DQML_iCCM
 
     // publisher(s) go here
     GAME::Mga::Collection_T <DQML::PublisherQos> publishers = item->get_PublisherQoss ();
-    if (publishers.count() != 0)
+    if (publishers.count () != 0)
     {
-      comment = this->doc_->createComment (String ("BEGIN DDS::PublisherQos parameters "));
+      comment = this->doc_->createComment (String (" BEGIN DDS::PublisherQoss parameters "));
       this->current_->appendChild (comment);
     }
     for (auto & publisher : publishers)
@@ -115,9 +114,9 @@ namespace DQML_iCCM
 
     // subscribers(s) go here
     GAME::Mga::Collection_T <DQML::SubscriberQos> subscribers = item->get_SubscriberQoss ();
-    if (subscribers.count() != 0)
+    if (subscribers.count () != 0)
     {
-      comment = this->doc_->createComment (String ("BEGIN DDS::SubscriberQos parameters "));
+      comment = this->doc_->createComment (String (" BEGIN DDS::SubscriberQoS parameters "));
       this->current_->appendChild (comment);
     }
     for (auto & subscriber : subscribers)
@@ -125,9 +124,9 @@ namespace DQML_iCCM
 
     // datawriter(s) go here
     GAME::Mga::Collection_T <DQML::DataWriterQos> datawriters = item->get_DataWriterQoss ();
-    if (datawriters.count() != 0)
+    if (datawriters.count () != 0)
     {
-      comment = this->doc_->createComment (String ("BEGIN DDS::DataWriterQos parameters "));
+      comment = this->doc_->createComment (String (" BEGIN DDS::DataWriterQos parameters "));
       this->current_->appendChild (comment);
     }
     for (auto & datawriter : datawriters)
@@ -135,9 +134,9 @@ namespace DQML_iCCM
 
     // datareaders(s) go here
     GAME::Mga::Collection_T <DQML::DataReaderQos> datareaders = item->get_DataReaderQoss ();
-    if (datareaders.count() != 0)
+    if (datareaders.count () != 0)
     {
-      comment = this->doc_->createComment (String ("BEGIN DDS::DataReaderQos parameters "));
+      comment = this->doc_->createComment (String (" BEGIN DDS::DataReaderQos parameters "));
       this->current_->appendChild (comment);
     }
     for (auto & datareader : datareaders)
@@ -145,47 +144,10 @@ namespace DQML_iCCM
   }
 
   //
-  // visit_StringSeq_Item
-  //
-  void Participant_Visitor::
-    visit_StringSeq_Item (DQML::StringSeq_Item_in item)
-  {
-    Fragment item_string (this->current_.create_element ("item"));
-    item_string->setTextContent(String (item->value ()));
-  }
-
-  //
-  // visit_StringSeq
-  //
-  void Participant_Visitor::
-    visit_StringSeq (DQML::StringSeq_in item)
-  {
-    for (DQML::StringSeq_Item ss_item : item->get_StringSeq_Items ())
-      ss_item->accept (this);
-  }
-
-  //
-  // visit_EntityFactoryQosPolicy
-  //
-  void Participant_Visitor::
-    visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item)
-  {
-    this->current_.set_attribute ("autoenable_created_entities", item->autoenable_created_entities ());
-  }
-
-  //
-  // visit_UserDataQosPolicy
-  //
-  void Participant_Visitor::
-    visit_UserDataQosPolicy (DQML::UserDataQosPolicy_in item)
-  {
-    //<!-- xsd:element name="value" type="xsd:base64Binary" minOccurs="0" maxOccurs="1" / -->
-  }
-
-  //
   // visit_TopicQos
   //
-  void Participant_Visitor::visit_TopicQos (DQML::TopicQos_in item)
+  void Participant_Visitor::
+    visit_TopicQos (DQML::TopicQos_in item)
   {
     Swap_Fragment topic (this->current_, this->current_.create_element ("topic"));
     topic.set_attribute ("name", item->name ());
@@ -282,6 +244,358 @@ namespace DQML_iCCM
     }
   }
 
+  //
+  // visit_PublisherQos
+  //
+  void Participant_Visitor::
+    visit_PublisherQos (DQML::PublisherQos_in item)
+  {
+    Fragment publisher (this->current_.create_element ("publisher"));
+    publisher.set_attribute ("name", item->name ());
+
+    //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_PresentationQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, publisher.create_element ("presentation"));
+      item->get_PresentationQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="partition" type="PartitionQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_PartitionQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, publisher.create_element ("partition"));
+      item->get_PartitionQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="group_data" type="GroupDataQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_GroupDataQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, publisher.create_element ("group_data"));
+      item->get_GroupDataQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="entity_factory" type="EntityFactoryQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_EntityFactoryQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, publisher.create_element ("entity_factory"));
+      item->get_EntityFactoryQosPolicy ()->accept (this);
+    }
+  }
+
+  //
+  // visit_SubscriberQos
+  //
+  void Participant_Visitor::
+    visit_SubscriberQos (DQML::SubscriberQos_in item)
+  {
+    Fragment subscriber (this->current_.create_element ("subscriber"));
+    subscriber.set_attribute ("name", item->name ());
+
+    //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_PresentationQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, subscriber.create_element ("presentation"));
+      item->get_PresentationQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="partition" type="PartitionQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_PartitionQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, subscriber.create_element ("partition"));
+      item->get_PartitionQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="group_data" type="GroupDataQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_GroupDataQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, subscriber.create_element ("group_data"));
+      item->get_GroupDataQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="entity_factory" type="EntityFactoryQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_EntityFactoryQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, subscriber.create_element ("entity_factory"));
+      item->get_EntityFactoryQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ShareQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, subscriber.create_element ("share"));
+      item->get_ShareQosPolicy ()->accept (this);
+    }
+  }
+
+  //
+  // visit_DataWriterQos
+  //
+  void Participant_Visitor::visit_DataWriterQos (DQML::DataWriterQos_in item)
+  {
+    Fragment writer (this->current_.create_element ("datawriter"));
+    writer.set_attribute ("name", item->name ());
+    writer.set_attribute ("topic_name", item->topic_name ());
+    writer.set_attribute ("isinstance", item->IsInstance ());
+    writer.set_attribute ("isprivate", item->isprivate ());
+
+    std::vector <DQML::PublisherConnection> publisher_conn;
+    if (item->src_PublisherConnection (publisher_conn))
+    {
+      DQML::PublisherQos publisher = publisher_conn.front ()->dst_PublisherQos ();
+      writer.set_attribute ("publisher", publisher->name ());
+    }
+
+    if (item->has_TopicQosReference ())
+    {
+      DQML::TopicQos topic = item->get_TopicQosReference ()->get_TopicQos ();
+
+      if (!topic.is_nil ())
+        writer.set_attribute ("topic", topic->name ());
+    }
+
+    //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_DurabilityQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("durability"));
+      item->get_DurabilityQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_DeadlineQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("deadline"));
+      item->get_DeadlineQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_LatencyBudgetQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("latency_budget"));
+      item->get_LatencyBudgetQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_LivelinessQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("liveliness"));
+      item->get_LivelinessQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ReliabilityQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("reliability"));
+      item->get_ReliabilityQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_DestinationOrderQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("destination_order"));
+      item->get_DestinationOrderQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_HistoryQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("history"));
+      item->get_HistoryQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ResourceLimitsQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("resource_limits"));
+      item->get_ResourceLimitsQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="transport_priorty" type="TransportPriorityQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_TransportPriorityQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("transport_priorty"));
+      item->get_TransportPriorityQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="lifespan" type="LifespanQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_LifespanQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("lifespan"));
+      item->get_LifespanQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="user_data" type="UserDataQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_UserDataQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("user_data"));
+      item->get_UserDataQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_OwnershipQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("ownership"));
+      item->get_OwnershipQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="ownership_strength" type="OwnershipStrengthQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_OwnershipStrengthQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("ownership_strength"));
+      item->get_OwnershipStrengthQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="writer_data_lifecycle" type="WriterDataLifecycleQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_WriterDataLifecycleQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, writer.create_element ("writer_data_lifecycle"));
+      item->get_WriterDataLifecycleQosPolicy ()->accept (this);
+    }
+  }
+
+  //
+  // visit_DataReaderQos
+  //
+  void Participant_Visitor::visit_DataReaderQos (DQML::DataReaderQos_in item)
+  {
+    Fragment reader (this->current_.create_element ("datareader"));
+    reader.set_attribute ("name", item->name ());
+    reader.set_attribute ("isprivate", item->isprivate ());
+
+    std::vector <DQML::SubscriberConnection> subscriber_conn;
+    if (item->src_SubscriberConnection (subscriber_conn))
+    {
+      DQML::SubscriberQos subscriber = subscriber_conn.front ()->dst_SubscriberQos ();
+      reader.set_attribute ("subscriber", subscriber->name ());
+    }
+
+    if (item->has_TopicQosReference ())
+    {
+      DQML::TopicQos topic = item->get_TopicQosReference ()->get_TopicQos ();
+
+      if (!topic.is_nil ())
+        reader.set_attribute ("topic", topic->name ());
+    }
+
+    //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_DurabilityQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("durability"));
+      item->get_DurabilityQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_DeadlineQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("deadline"));
+      item->get_DeadlineQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_LatencyBudgetQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("latency_budget"));
+      item->get_LatencyBudgetQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_LivelinessQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("liveliness"));
+      item->get_LivelinessQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ReliabilityQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("reliability"));
+      item->get_ReliabilityQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_DestinationOrderQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("destination_order"));
+      item->get_DestinationOrderQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_HistoryQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("history"));
+      item->get_HistoryQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ResourceLimitsQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("resource_limits"));
+      item->get_ResourceLimitsQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="user_data" type="UserDataQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_UserDataQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("user_data"));
+      item->get_UserDataQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_OwnershipQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("ownership"));
+      item->get_OwnershipQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="time_based_filter" type="TimeBasedFilterQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_TimeBasedFilterQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("time_based_filter"));
+      item->get_TimeBasedFilterQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="reader_data_lifecycle" type="ReaderDataLifecycleQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ReaderDataLifecycleQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("reader_data_lifecycle"));
+      item->get_ReaderDataLifecycleQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="subscription_keys" type="SubscriptionKeyQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_SubscriptionKeyQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("subscription_keys"));
+      item->get_SubscriptionKeyQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="reader_lifespan" type="ReaderLifespanQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ReaderLifespanQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("reader_lifespan"));
+      item->get_ReaderLifespanQosPolicy ()->accept (this);
+    }
+
+    //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
+    if (item->has_ShareQosPolicy ())
+    {
+      Swap_Fragment f (this->current_, reader.create_element ("share"));
+      item->get_ShareQosPolicy ()->accept (this);
+    }
+
+  }
+
+  //
+  // visit_GroupDataQosPolicy
+  //
+  void Participant_Visitor::stringseq_splitter (std::string & str)
+  {
+    std::vector<std::string> parts;
+    boost::split (parts , str , boost::is_any_of ("."));
+    for (std::string part : parts)
+    {
+      Fragment item_string (this->current_.create_element ("item"));
+      item_string->setTextContent (String (part));
+    }
+  }
   //
   // visit_GroupDataQosPolicy
   //
@@ -481,109 +795,24 @@ namespace DQML_iCCM
   }
 
   //
-  // visit_PublisherQos
+  // visit_SubscriptionKeyQosPolicy
   //
   void Participant_Visitor::
     visit_SubscriptionKeyQosPolicy (DQML::SubscriptionKeyQosPolicy_in item)
   {      
-    if (item->has_StringSeq ())
-    {
-      Swap_Fragment f (this->current_, this->current_.create_element ("name"));
-      item->get_StringSeq ()->accept (this);
-    }
+    // <name><item></item><item></item></name>
+    Swap_Fragment f (this->current_, this->current_.create_element ("name"));
+    this->stringseq_splitter (item->key_list ());
   }
 
   //
-  // visit_PublisherQos
+  // visit_ReaderLifespanQosPolicy
   //
   void Participant_Visitor::
     visit_ReaderLifespanQosPolicy (DQML::ReaderLifespanQosPolicy_in item)
   {
     this->current_.set_attribute ("duration", item->duration ());
     this->current_.set_attribute ("use_lifespan", item->use_lifespan ());
-  }
-
-  //
-  // visit_PublisherQos
-  //
-  void Participant_Visitor::
-    visit_PublisherQos (DQML::PublisherQos_in item)
-  {
-    Fragment publisher (this->current_.create_element ("publisher"));
-    publisher.set_attribute ("name", item->name ());
-
-    //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_PresentationQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, publisher.create_element ("presentation"));
-      item->get_PresentationQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="partition" type="PartitionQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_PartitionQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, publisher.create_element ("partition"));
-      item->get_PartitionQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="group_data" type="GroupDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_GroupDataQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, publisher.create_element ("group_data"));
-      item->get_GroupDataQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="entity_factory" type="EntityFactoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_EntityFactoryQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, publisher.create_element ("entity_factory"));
-      item->get_EntityFactoryQosPolicy ()->accept (this);
-    }
-  }
-
-  //
-  // visit_SubscriberQos
-  //
-  void Participant_Visitor::
-    visit_SubscriberQos (DQML::SubscriberQos_in item)
-  {
-    Fragment subscriber (this->current_.create_element ("subscriber"));
-    subscriber.set_attribute ("name", item->name ());
-
-    //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_PresentationQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, subscriber.create_element ("presentation"));
-      item->get_PresentationQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="partition" type="PartitionQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_PartitionQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, subscriber.create_element ("partition"));
-      item->get_PartitionQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="group_data" type="GroupDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_GroupDataQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, subscriber.create_element ("group_data"));
-      item->get_GroupDataQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="entity_factory" type="EntityFactoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_EntityFactoryQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, subscriber.create_element ("entity_factory"));
-      item->get_EntityFactoryQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ShareQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, subscriber.create_element ("share"));
-      item->get_ShareQosPolicy ()->accept (this);
-    }
   }
 
   //
@@ -604,136 +833,8 @@ namespace DQML_iCCM
     visit_PartitionQosPolicy (DQML::PartitionQosPolicy_in item)
   {
     // <name><item></item><item></item></name>
-    if (item->has_StringSeq ())
-    {
-      Swap_Fragment f (this->current_, this->current_.create_element ("name"));
-      item->get_StringSeq ()->accept (this);
-    }
-  }
-
-  //
-  // visit_DataWriterQos
-  //
-  void Participant_Visitor::visit_DataWriterQos (DQML::DataWriterQos_in item)
-  {
-    Fragment writer (this->current_.create_element ("datawriter"));
-    writer.set_attribute ("name", item->name ());
-    writer.set_attribute ("topic_name", item->topic_name ());
-    writer.set_attribute ("isinstance", item->IsInstance ());
-    writer.set_attribute ("isprivate", item->isprivate ());
-
-    std::vector <DQML::PublisherConnection> publisher_conn;
-    if (item->src_PublisherConnection (publisher_conn))
-    {
-      DQML::PublisherQos publisher = publisher_conn.front ()->dst_PublisherQos ();
-      writer.set_attribute ("publisher", publisher->name ());
-    }
-
-    if (item->has_TopicQosReference ())
-    {
-      DQML::TopicQos topic = item->get_TopicQosReference ()->get_TopicQos ();
-
-      if (!topic.is_nil ())
-        writer.set_attribute ("topic", topic->name ());
-    }
-
-    //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_DurabilityQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("durability"));
-      item->get_DurabilityQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_DeadlineQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("deadline"));
-      item->get_DeadlineQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_LatencyBudgetQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("latency_budget"));
-      item->get_LatencyBudgetQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_LivelinessQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("liveliness"));
-      item->get_LivelinessQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ReliabilityQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("reliability"));
-      item->get_ReliabilityQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_DestinationOrderQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("destination_order"));
-      item->get_DestinationOrderQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_HistoryQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("history"));
-      item->get_HistoryQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ResourceLimitsQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("resource_limits"));
-      item->get_ResourceLimitsQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="transport_priorty" type="TransportPriorityQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_TransportPriorityQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("transport_priorty"));
-      item->get_TransportPriorityQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="lifespan" type="LifespanQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_LifespanQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("lifespan"));
-      item->get_LifespanQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="user_data" type="UserDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_UserDataQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("user_data"));
-      item->get_UserDataQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_OwnershipQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("ownership"));
-      item->get_OwnershipQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="ownership_strength" type="OwnershipStrengthQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_OwnershipStrengthQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("ownership_strength"));
-      item->get_OwnershipStrengthQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="writer_data_lifecycle" type="WriterDataLifecycleQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_WriterDataLifecycleQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, writer.create_element ("writer_data_lifecycle"));
-      item->get_WriterDataLifecycleQosPolicy ()->accept (this);
-    }
+    Swap_Fragment f (this->current_, this->current_.create_element ("name"));
+    this->stringseq_splitter (item->partition_name ());
   }
 
   //
@@ -757,134 +858,21 @@ namespace DQML_iCCM
   }
 
   //
-  // visit_DataReaderQos
+  // visit_EntityFactoryQosPolicy
   //
-  void Participant_Visitor::visit_DataReaderQos (DQML::DataReaderQos_in item)
+  void Participant_Visitor::
+    visit_EntityFactoryQosPolicy (DQML::EntityFactoryQosPolicy_in item)
   {
-    Fragment reader (this->current_.create_element ("datareader"));
-    reader.set_attribute ("name", item->name ());
-    reader.set_attribute ("isprivate", item->isprivate ());
+    this->current_.set_attribute ("autoenable_created_entities", item->autoenable_created_entities ());
+  }
 
-    std::vector <DQML::SubscriberConnection> subscriber_conn;
-    if (item->src_SubscriberConnection (subscriber_conn))
-    {
-      DQML::SubscriberQos subscriber = subscriber_conn.front ()->dst_SubscriberQos ();
-      reader.set_attribute ("subscriber", subscriber->name ());
-    }
-
-    if (item->has_TopicQosReference ())
-    {
-      DQML::TopicQos topic = item->get_TopicQosReference ()->get_TopicQos ();
-
-      if (!topic.is_nil ())
-        reader.set_attribute ("topic", topic->name ());
-    }
-
-    //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_DurabilityQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("durability"));
-      item->get_DurabilityQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_DeadlineQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("deadline"));
-      item->get_DeadlineQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_LatencyBudgetQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("latency_budget"));
-      item->get_LatencyBudgetQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_LivelinessQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("liveliness"));
-      item->get_LivelinessQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ReliabilityQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("reliability"));
-      item->get_ReliabilityQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_DestinationOrderQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("destination_order"));
-      item->get_DestinationOrderQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_HistoryQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("history"));
-      item->get_HistoryQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ResourceLimitsQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("resource_limits"));
-      item->get_ResourceLimitsQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="user_data" type="UserDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_UserDataQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("user_data"));
-      item->get_UserDataQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_OwnershipQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("ownership"));
-      item->get_OwnershipQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="time_based_filter" type="TimeBasedFilterQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_TimeBasedFilterQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("time_based_filter"));
-      item->get_TimeBasedFilterQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="reader_data_lifecycle" type="ReaderDataLifecycleQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ReaderDataLifecycleQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("reader_data_lifecycle"));
-      item->get_ReaderDataLifecycleQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="subscription_keys" type="SubscriptionKeyQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_SubscriptionKeyQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("subscription_keys"));
-      item->get_SubscriptionKeyQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="reader_lifespan" type="ReaderLifespanQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ReaderLifespanQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("reader_lifespan"));
-      item->get_ReaderLifespanQosPolicy ()->accept (this);
-    }
-
-    //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
-    if (item->has_ShareQosPolicy ())
-    {
-      Swap_Fragment f (this->current_, reader.create_element ("share"));
-      item->get_ShareQosPolicy ()->accept (this);
-    }
-
+  //
+  // visit_UserDataQosPolicy
+  //
+  void Participant_Visitor::
+    visit_UserDataQosPolicy (DQML::UserDataQosPolicy_in item)
+  {
+    //<!-- xsd:element name="value" type="xsd:base64Binary" minOccurs="0" maxOccurs="1" / -->
   }
 
   //
