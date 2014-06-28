@@ -95,11 +95,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_transpri_Connection connection.
-    size_t dst_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const;
-
     /// Get the dst dw_transpri_Connection connection.
     size_t dst_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const;
+
+    /// Get the dst topic_transpri_Connection connection.
+    size_t dst_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const;
     ///@}
   };
 }

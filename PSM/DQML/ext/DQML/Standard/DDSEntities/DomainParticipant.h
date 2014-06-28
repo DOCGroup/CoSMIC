@@ -79,20 +79,20 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dp_topic_Connection connection.
-    size_t src_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const;
-
     /// Get the src dp_pub_Connection connection.
     size_t src_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const;
 
     /// Get the src dp_sub_Connection connection.
     size_t src_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const;
 
-    /// Get the src dp_userdata_Connection connection.
-    size_t src_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
-
     /// Get the src dp_entityfactory_Connection connection.
     size_t src_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const;
+
+    /// Get the src dp_topic_Connection connection.
+    size_t src_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const;
+
+    /// Get the src dp_userdata_Connection connection.
+    size_t src_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
     ///@}
 
     /**

@@ -97,14 +97,14 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dw_ownership_Connection connection.
-    size_t dst_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
-
     /// Get the dst dr_ownership_Connection connection.
     size_t dst_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
 
     /// Get the dst topic_ownership_Connection connection.
     size_t dst_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const;
+
+    /// Get the dst dw_ownership_Connection connection.
+    size_t dst_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
     ///@}
   };
 }

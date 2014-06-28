@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
@@ -98,19 +98,19 @@ namespace DQML
   }
 
   //
-  // dst_topic_reliability_Connection
-  //
-  size_t ReliabilityQosPolicy_Impl::dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
-  {
-    return this->in_connections <topic_reliability_Connection> (items);
-  }
-
-  //
   // dst_dw_reliability_Connection
   //
   size_t ReliabilityQosPolicy_Impl::dst_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const
   {
     return this->in_connections <dw_reliability_Connection> (items);
+  }
+
+  //
+  // dst_topic_reliability_Connection
+  //
+  size_t ReliabilityQosPolicy_Impl::dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
+  {
+    return this->in_connections <topic_reliability_Connection> (items);
   }
 
   //

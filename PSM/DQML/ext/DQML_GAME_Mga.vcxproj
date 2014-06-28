@@ -485,10 +485,6 @@
     </ClCompile>
     <ClCompile Include="DQML\Standard\QoSPolicies\ShareQosPolicy.cpp">
     </ClCompile>
-    <ClCompile Include="DQML\Standard\QoSPolicies\StringSeq.cpp">
-    </ClCompile>
-    <ClCompile Include="DQML\Standard\QoSPolicies\StringSeq_Item.cpp">
-    </ClCompile>
     <ClCompile Include="DQML\Standard\QoSPolicies\SubscriptionKeyQosPolicy.cpp">
     </ClCompile>
     <ClCompile Include="DQML\Standard\QoSPolicies\TimeBasedFilterQosPolicy.cpp">
@@ -630,8 +626,6 @@
     <ClInclude Include="DQML\Standard\QoSPolicies\SchedulingClassQosPolicy.h" />
     <ClInclude Include="DQML\Standard\QoSPolicies\SchedulingPriorityQosPolicy.h" />
     <ClInclude Include="DQML\Standard\QoSPolicies\ShareQosPolicy.h" />
-    <ClInclude Include="DQML\Standard\QoSPolicies\StringSeq.h" />
-    <ClInclude Include="DQML\Standard\QoSPolicies\StringSeq_Item.h" />
     <ClInclude Include="DQML\Standard\QoSPolicies\SubscriptionKeyQosPolicy.h" />
     <ClInclude Include="DQML\Standard\QoSPolicies\TimeBasedFilterQosPolicy.h" />
     <ClInclude Include="DQML\Standard\QoSPolicies\TopicDataQosPolicy.h" />
@@ -762,8 +756,6 @@
     <None Include="DQML\Standard\QoSPolicies\SchedulingClassQosPolicy.inl" />
     <None Include="DQML\Standard\QoSPolicies\SchedulingPriorityQosPolicy.inl" />
     <None Include="DQML\Standard\QoSPolicies\ShareQosPolicy.inl" />
-    <None Include="DQML\Standard\QoSPolicies\StringSeq.inl" />
-    <None Include="DQML\Standard\QoSPolicies\StringSeq_Item.inl" />
     <None Include="DQML\Standard\QoSPolicies\SubscriptionKeyQosPolicy.inl" />
     <None Include="DQML\Standard\QoSPolicies\TimeBasedFilterQosPolicy.inl" />
     <None Include="DQML\Standard\QoSPolicies\TopicDataQosPolicy.inl" />

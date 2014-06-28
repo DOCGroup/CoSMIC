@@ -17,7 +17,8 @@
 #include "DQML/DQML_fwd.h"
 #include "DQML/DQML_export.h"
 
-#include "game/mga/Model.h"
+#include "DQML/Standard/QoSPolicies/QoSPolicy.h"
+#include "game/mga/Atom.h"
 
 namespace DQML
 {
@@ -35,14 +36,15 @@ namespace DQML
    * Implementation for the SubscriptionKeyQosPolicy model element.
    */
   class DQML_Export SubscriptionKeyQosPolicy_Impl :
-    public virtual ::GAME::Mga::Model_Impl
+    public virtual ::GAME::Mga::Atom_Impl,
+    public virtual QoSPolicy_Impl
   {
     public:
     /// Tag type of this extension class.
-    typedef ::GAME::Mga::model_tag_t type_tag;
+    typedef ::GAME::Mga::atom_tag_t type_tag;
 
     /// Type definition of this class's interface.
-    typedef IMgaModel interface_type;
+    typedef IMgaAtom interface_type;
 
     /// Metaname for this extension class.
     static const std::string metaname;
@@ -52,13 +54,14 @@ namespace DQML
      */
     ///@{
     static SubscriptionKeyQosPolicy _create (const DataReaderQos_in parent);
+    static SubscriptionKeyQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
     // Default constructor.
     SubscriptionKeyQosPolicy_Impl (void);
 
     // Initializing constructor.
-    SubscriptionKeyQosPolicy_Impl (IMgaModel * ptr);
+    SubscriptionKeyQosPolicy_Impl (IMgaAtom * ptr);
 
     // Destructor.
     virtual ~SubscriptionKeyQosPolicy_Impl (void);
@@ -74,12 +77,15 @@ namespace DQML
     ///@}
 
     /**
-     * @name Containment Methods
+     * @name Attribute Methods
      */
     ///@{
 
-    bool has_StringSeq (void) const;
-    StringSeq get_StringSeq (void) const;
+    /// Set the value of key_list
+    void key_list (const std::string & val);
+
+    /// Get the value of key_list
+    std::string key_list (void) const;
     ///@}
   };
 }
