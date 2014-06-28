@@ -95,11 +95,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_lifespan_Connection connection.
-    size_t dst_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
-
     /// Get the dst dw_lifespan_Connection connection.
     size_t dst_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
+
+    /// Get the dst topic_lifespan_Connection connection.
+    size_t dst_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
     ///@}
   };
 }

@@ -32,16 +32,16 @@ namespace DQML
   }
 
   //
-  // visit_ListenerSchedulingQosPolicy
+  // visit_SchedulingClassQosPolicy
   //
-  void Visitor::visit_ListenerSchedulingQosPolicy (ListenerSchedulingQosPolicy_in item)
+  void Visitor::visit_SchedulingClassQosPolicy (SchedulingClassQosPolicy_in item)
   {
   }
 
   //
-  // visit_SchedulingClassQosPolicy
+  // visit_ListenerSchedulingQosPolicy
   //
-  void Visitor::visit_SchedulingClassQosPolicy (SchedulingClassQosPolicy_in item)
+  void Visitor::visit_ListenerSchedulingQosPolicy (ListenerSchedulingQosPolicy_in item)
   {
   }
 
@@ -60,6 +60,13 @@ namespace DQML
   }
 
   //
+  // visit_dw_transpri_Connection
+  //
+  void Visitor::visit_dw_transpri_Connection (dw_transpri_Connection_in item)
+  {
+  }
+
+  //
   // visit_sub_presqos_Connection
   //
   void Visitor::visit_sub_presqos_Connection (sub_presqos_Connection_in item)
@@ -70,13 +77,6 @@ namespace DQML
   // visit_pub_presqos_Connection
   //
   void Visitor::visit_pub_presqos_Connection (pub_presqos_Connection_in item)
-  {
-  }
-
-  //
-  // visit_dw_transpri_Connection
-  //
-  void Visitor::visit_dw_transpri_Connection (dw_transpri_Connection_in item)
   {
   }
 
@@ -144,16 +144,16 @@ namespace DQML
   }
 
   //
-  // visit_LivelinessQosPolicy
+  // visit_TransportPriorityQosPolicy
   //
-  void Visitor::visit_LivelinessQosPolicy (LivelinessQosPolicy_in item)
+  void Visitor::visit_TransportPriorityQosPolicy (TransportPriorityQosPolicy_in item)
   {
   }
 
   //
-  // visit_TransportPriorityQosPolicy
+  // visit_LivelinessQosPolicy
   //
-  void Visitor::visit_TransportPriorityQosPolicy (TransportPriorityQosPolicy_in item)
+  void Visitor::visit_LivelinessQosPolicy (LivelinessQosPolicy_in item)
   {
   }
 
@@ -214,16 +214,16 @@ namespace DQML
   }
 
   //
-  // visit_DurabilityServiceQosPolicy
+  // visit_WriterDataLifecycleQosPolicy
   //
-  void Visitor::visit_DurabilityServiceQosPolicy (DurabilityServiceQosPolicy_in item)
+  void Visitor::visit_WriterDataLifecycleQosPolicy (WriterDataLifecycleQosPolicy_in item)
   {
   }
 
   //
-  // visit_WriterDataLifecycleQosPolicy
+  // visit_DurabilityServiceQosPolicy
   //
-  void Visitor::visit_WriterDataLifecycleQosPolicy (WriterDataLifecycleQosPolicy_in item)
+  void Visitor::visit_DurabilityServiceQosPolicy (DurabilityServiceQosPolicy_in item)
   {
   }
 
@@ -291,6 +291,13 @@ namespace DQML
   }
 
   //
+  // visit_dw_res_Connection
+  //
+  void Visitor::visit_dw_res_Connection (dw_res_Connection_in item)
+  {
+  }
+
+  //
   // visit_dr_res_Connection
   //
   void Visitor::visit_dr_res_Connection (dr_res_Connection_in item)
@@ -298,9 +305,9 @@ namespace DQML
   }
 
   //
-  // visit_dw_res_Connection
+  // visit_dr_dstOrder_Connection
   //
-  void Visitor::visit_dw_res_Connection (dw_res_Connection_in item)
+  void Visitor::visit_dr_dstOrder_Connection (dr_dstOrder_Connection_in item)
   {
   }
 
@@ -322,13 +329,6 @@ namespace DQML
   // visit_pub_groupdata_Connection
   //
   void Visitor::visit_pub_groupdata_Connection (pub_groupdata_Connection_in item)
-  {
-  }
-
-  //
-  // visit_dr_dstOrder_Connection
-  //
-  void Visitor::visit_dr_dstOrder_Connection (dr_dstOrder_Connection_in item)
   {
   }
 
@@ -361,6 +361,13 @@ namespace DQML
   }
 
   //
+  // visit_topic_dstOrder_Connection
+  //
+  void Visitor::visit_topic_dstOrder_Connection (topic_dstOrder_Connection_in item)
+  {
+  }
+
+  //
   // visit_pub_entityfactory_Connection
   //
   void Visitor::visit_pub_entityfactory_Connection (pub_entityfactory_Connection_in item)
@@ -371,13 +378,6 @@ namespace DQML
   // visit_sub_entityfactory_Connection
   //
   void Visitor::visit_sub_entityfactory_Connection (sub_entityfactory_Connection_in item)
-  {
-  }
-
-  //
-  // visit_topic_dstOrder_Connection
-  //
-  void Visitor::visit_topic_dstOrder_Connection (topic_dstOrder_Connection_in item)
   {
   }
 
@@ -417,16 +417,16 @@ namespace DQML
   }
 
   //
-  // visit_dr_ownership_Connection
+  // visit_dw_ownership_Connection
   //
-  void Visitor::visit_dr_ownership_Connection (dr_ownership_Connection_in item)
+  void Visitor::visit_dw_ownership_Connection (dw_ownership_Connection_in item)
   {
   }
 
   //
-  // visit_dw_ownership_Connection
+  // visit_dr_ownership_Connection
   //
-  void Visitor::visit_dw_ownership_Connection (dw_ownership_Connection_in item)
+  void Visitor::visit_dr_ownership_Connection (dr_ownership_Connection_in item)
   {
   }
 
@@ -501,16 +501,16 @@ namespace DQML
   }
 
   //
-  // visit_PublishesConnection
+  // visit_PublisherConnection
   //
-  void Visitor::visit_PublishesConnection (PublishesConnection_in item)
+  void Visitor::visit_PublisherConnection (PublisherConnection_in item)
   {
   }
 
   //
-  // visit_PublisherConnection
+  // visit_PublishesConnection
   //
-  void Visitor::visit_PublisherConnection (PublisherConnection_in item)
+  void Visitor::visit_PublishesConnection (PublishesConnection_in item)
   {
   }
 
@@ -536,16 +536,16 @@ namespace DQML
   }
 
   //
-  // visit_dw_topic_Connection
+  // visit_dr_history_Connection
   //
-  void Visitor::visit_dw_topic_Connection (dw_topic_Connection_in item)
+  void Visitor::visit_dr_history_Connection (dr_history_Connection_in item)
   {
   }
 
   //
-  // visit_dr_history_Connection
+  // visit_dw_topic_Connection
   //
-  void Visitor::visit_dr_history_Connection (dr_history_Connection_in item)
+  void Visitor::visit_dw_topic_Connection (dw_topic_Connection_in item)
   {
   }
 
@@ -571,6 +571,13 @@ namespace DQML
   }
 
   //
+  // visit_StringSeq_Item
+  //
+  void Visitor::visit_StringSeq_Item (StringSeq_Item_in item)
+  {
+  }
+
+  //
   // visit_Subscriber
   //
   void Visitor::visit_Subscriber (Subscriber_in item)
@@ -581,6 +588,13 @@ namespace DQML
   // visit_DurabilityQosPolicy
   //
   void Visitor::visit_DurabilityQosPolicy (DurabilityQosPolicy_in item)
+  {
+  }
+
+  //
+  // visit_dw_writerdatalifecycle_Connection
+  //
+  void Visitor::visit_dw_writerdatalifecycle_Connection (dw_writerdatalifecycle_Connection_in item)
   {
   }
 
@@ -599,9 +613,9 @@ namespace DQML
   }
 
   //
-  // visit_dw_writerdatalifecycle_Connection
+  // visit_DestinationOrderQosPolicy
   //
-  void Visitor::visit_dw_writerdatalifecycle_Connection (dw_writerdatalifecycle_Connection_in item)
+  void Visitor::visit_DestinationOrderQosPolicy (DestinationOrderQosPolicy_in item)
   {
   }
 
@@ -609,13 +623,6 @@ namespace DQML
   // visit_UserDataQosPolicy
   //
   void Visitor::visit_UserDataQosPolicy (UserDataQosPolicy_in item)
-  {
-  }
-
-  //
-  // visit_DestinationOrderQosPolicy
-  //
-  void Visitor::visit_DestinationOrderQosPolicy (DestinationOrderQosPolicy_in item)
   {
   }
 
@@ -648,16 +655,16 @@ namespace DQML
   }
 
   //
-  // visit_dr_durqos_Connection
+  // visit_dpf_dp_Connection
   //
-  void Visitor::visit_dr_durqos_Connection (dr_durqos_Connection_in item)
+  void Visitor::visit_dpf_dp_Connection (dpf_dp_Connection_in item)
   {
   }
 
   //
-  // visit_dpf_dp_Connection
+  // visit_dr_durqos_Connection
   //
-  void Visitor::visit_dpf_dp_Connection (dpf_dp_Connection_in item)
+  void Visitor::visit_dr_durqos_Connection (dr_durqos_Connection_in item)
   {
   }
 
@@ -669,9 +676,9 @@ namespace DQML
   }
 
   //
-  // visit_dr_liveliness_Connection
+  // visit_dr_reliability_Connection
   //
-  void Visitor::visit_dr_liveliness_Connection (dr_liveliness_Connection_in item)
+  void Visitor::visit_dr_reliability_Connection (dr_reliability_Connection_in item)
   {
   }
 
@@ -683,9 +690,9 @@ namespace DQML
   }
 
   //
-  // visit_dr_reliability_Connection
+  // visit_dr_liveliness_Connection
   //
-  void Visitor::visit_dr_reliability_Connection (dr_reliability_Connection_in item)
+  void Visitor::visit_dr_liveliness_Connection (dr_liveliness_Connection_in item)
   {
   }
 
@@ -697,6 +704,13 @@ namespace DQML
   }
 
   //
+  // visit_dw_reliability_Connection
+  //
+  void Visitor::visit_dw_reliability_Connection (dw_reliability_Connection_in item)
+  {
+  }
+
+  //
   // visit_dw_latency_Connection
   //
   void Visitor::visit_dw_latency_Connection (dw_latency_Connection_in item)
@@ -704,9 +718,9 @@ namespace DQML
   }
 
   //
-  // visit_dw_reliability_Connection
+  // visit_DataReader
   //
-  void Visitor::visit_dw_reliability_Connection (dw_reliability_Connection_in item)
+  void Visitor::visit_DataReader (DataReader_in item)
   {
   }
 
@@ -718,9 +732,9 @@ namespace DQML
   }
 
   //
-  // visit_DataReader
+  // visit_StringSeq
   //
-  void Visitor::visit_DataReader (DataReader_in item)
+  void Visitor::visit_StringSeq (StringSeq_in item)
   {
   }
 
