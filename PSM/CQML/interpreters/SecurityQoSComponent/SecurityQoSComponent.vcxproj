@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>SecurityQoSComponent</ProjectName>
+    <ProjectGuid>{C4E4FC6A-FECA-1BAD-AAA1-5E33EB7C4279}</ProjectGuid>
+    <RootNamespace>SecurityQoSComponent</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\SecurityQoSComponent\I386\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SecurityQoSComponentd</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\SecurityQoSComponent\I386\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SecurityQoSComponent</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Debug\SecurityQoSComponent\AMD64\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SecurityQoSComponentd</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Release\SecurityQoSComponent\AMD64\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SecurityQoSComponent</TargetName>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Release|x64'"></LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(GME_ROOT)/Interfaces;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+      <AdditionalOptions>/server none /client none</AdditionalOptions>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CQML_HAS_DLL;USING_PCH;_DEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;MPC_LIB_MODIFIER=&quot;d&quot;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4250;4251;4355;4180;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;SecurityQoSd.lib;iphlpapi.lib;UdmDllD.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)SecurityQoSComponentd.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\..\..\..\lib\SecurityQoSComponentd.lib</ImportLibrary>
+      <AdditionalOptions>/DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Registering ..\..\..\..\bin/SecurityQoSComponentd.dll... &amp;&amp; reg.exe import SecurityQoSComponentd.reg</Command>
+    </PostBuildEvent>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(GME_ROOT)/Interfaces;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+      <AdditionalOptions>/server none /client none</AdditionalOptions>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CQML_HAS_DLL;USING_PCH;NDEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4250;4251;4355;4180;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Utils.lib;CQML.lib;SecurityQoS.lib;iphlpapi.lib;UdmDll.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)SecurityQoSComponent.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>..\..\..\..\lib\SecurityQoSComponent.lib</ImportLibrary>
+      <AdditionalOptions>/DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Registering ..\..\..\..\bin/SecurityQoSComponent.dll... &amp;&amp; reg.exe import SecurityQoSComponent.reg</Command>
+    </PostBuildEvent>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(GME_ROOT)/Interfaces;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>x64</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+      <AdditionalOptions>/server none /client none</AdditionalOptions>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CQML_HAS_DLL;USING_PCH;_DEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_AMD64_;_WIN64;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;MPC_LIB_MODIFIER=&quot;d&quot;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4250;4251;4355;4180;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;SecurityQoSd.lib;iphlpapi.lib;UdmDllD.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)SecurityQoSComponentd.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\..\..\..\lib\SecurityQoSComponentd.lib</ImportLibrary>
+<!--
+  Though we can set TargetMachine explicitly, VC++
+  can figure it out by project type. We don't need
+  to set it by ourselves.
+-->
+<!--      <TargetMachine>0</TargetMachine>-->
+      <AdditionalOptions>/machine:AMD64 /DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Registering ..\..\..\..\bin/SecurityQoSComponentd.dll... &amp;&amp; reg.exe import SecurityQoSComponentd.reg</Command>
+    </PostBuildEvent>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(GME_ROOT)/Interfaces;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TargetEnvironment>x64</TargetEnvironment>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+      <AdditionalOptions>/server none /client none</AdditionalOptions>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CQML_HAS_DLL;USING_PCH;NDEBUG;WIN32;_WINDOWS;_CRT_NONSTDC_NO_WARNINGS;_AMD64_;_WIN64;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4250;4251;4355;4180;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;UDM_DYNAMIC_LINKING;_AFXDLL;RAWCOMPONENT;_USRDLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>1033</Culture>
+      <AdditionalIncludeDirectories>$(XERCESCROOT)\include;.;$(GME_ROOT)\SDK\BON\Common;$(UDM_PATH)\include;$(GME_ROOT)\SDK\BON;$(GME_ROOT)\Interfaces;$(BOOST_ROOT)\include\$(BOOST_VERSION);$(BOOST_ROOT)\.;$(ACE_ROOT);..\..\..\..;..\..\..\..\Utils;..\..\..\..\PSM\CQML\interpreters;$(GME_ROOT);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Utils.lib;CQML.lib;SecurityQoS.lib;iphlpapi.lib;UdmDll.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)SecurityQoSComponent.dll</OutputFile>
+      <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>..\..\..\..\lib\SecurityQoSComponent.lib</ImportLibrary>
+<!--
+  Though we can set TargetMachine explicitly, VC++
+  can figure it out by project type. We don't need
+  to set it by ourselves.
+-->
+<!--      <TargetMachine>0</TargetMachine>-->
+      <AdditionalOptions>/machine:AMD64 /DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Registering ..\..\..\..\bin/SecurityQoSComponent.dll... &amp;&amp; reg.exe import SecurityQoSComponent.reg</Command>
+    </PostBuildEvent>
+<!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
+     Check if msbuild has any support for a custom post-cleaning step
+ -->
+<!-- No known equivalent for DeploymentTool in vc10:
+-->
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\ComHelp.cpp">
+    </ClCompile>
+    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\ComponentDll.cpp">
+    </ClCompile>
+    <Midl Include="$(GME_ROOT)\SDK\BON\Common\ComponentLib.idl" />
+    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\ComponentObj.cpp">
+    </ClCompile>
+    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\Console.cpp">
+    </ClCompile>
+    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\Exceptions.cpp">
+    </ClCompile>
+    <ClCompile Include="RawComponent.cpp">
+    </ClCompile>
+    <ClCompile Include="UdmApp.cpp">
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ComponentConfig.h" />
+    <ClInclude Include="ComponentLib.h" />
+    <ClInclude Include="ComponentLib_h.h" />
+    <ClInclude Include="RawComponent.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="UdmApp.h" />
+    <ClInclude Include="UdmConfig.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SecurityQoSComponent.mpc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CompIcon.ico" />
+    <ResourceCompile Include="Component.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

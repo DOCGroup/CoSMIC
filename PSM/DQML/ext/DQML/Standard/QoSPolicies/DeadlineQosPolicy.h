@@ -97,14 +97,14 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_deadline_Connection connection.
-    size_t dst_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
+    /// Get the dst top_deadline_Connection connection.
+    size_t dst_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;
 
     /// Get the dst dw_deadline_Connection connection.
     size_t dst_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
 
-    /// Get the dst top_deadline_Connection connection.
-    size_t dst_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;
+    /// Get the dst dr_deadline_Connection connection.
+    size_t dst_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
     ///@}
   };
 }

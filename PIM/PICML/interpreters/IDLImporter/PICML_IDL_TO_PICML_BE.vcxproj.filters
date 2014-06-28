@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B1F27843-FECA-1BAD-1F28-700BA851F4BF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;cc;c;C</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{06319535-FECA-1BAD-1F28-700BA851F4BF}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hh</Extensions>
+    </Filter>
+    <Filter Include="Build Files">
+      <UniqueIdentifier>{A1909F1C-FECA-1BAD-1F28-700BA851F4BF}</UniqueIdentifier>
+      <Extensions>mpc;mpb;mwc</Extensions>
+    </Filter>
+    <Filter Include="Inline Files">
+      <UniqueIdentifier>{763028EF-FECA-1BAD-1F28-700BA851F4BF}</UniqueIdentifier>
+      <Extensions>i;ipp;inl</Extensions>
+    </Filter>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{B14BBA74-FECA-1BAD-1F28-700BA851F4BF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="be_global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="be_init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="be_produce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="be_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="File_Creator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Preprocessor_Importer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Project_Generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scope.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Template_Parameter_Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Type_Trait.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="be_extern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="be_global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="be_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="File_Creator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDL_TO_PICML_BE_Export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Predefined_Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Preprocessor_Importer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Project_Generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scope.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Template_Parameter_Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Type_Trait.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IDLImporter.mpc">
+      <Filter>Build Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="File_Creator.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Project_Generator.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Scope.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="PICML_IDL_TO_PICML_BE.html">
+      <Filter>Documentation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PICML_IDL_TO_PICML_EXE.html">
+      <Filter>Documentation</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

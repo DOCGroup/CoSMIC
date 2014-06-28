@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h"
+#include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
@@ -80,19 +80,19 @@ namespace DQML
   }
 
   //
-  // dst_topic_transpri_Connection
-  //
-  size_t TransportPriorityQosPolicy_Impl::dst_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
-  {
-    return this->in_connections <topic_transpri_Connection> (items);
-  }
-
-  //
   // dst_dw_transpri_Connection
   //
   size_t TransportPriorityQosPolicy_Impl::dst_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
   {
     return this->in_connections <dw_transpri_Connection> (items);
+  }
+
+  //
+  // dst_topic_transpri_Connection
+  //
+  size_t TransportPriorityQosPolicy_Impl::dst_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
+  {
+    return this->in_connections <topic_transpri_Connection> (items);
   }
 }
 

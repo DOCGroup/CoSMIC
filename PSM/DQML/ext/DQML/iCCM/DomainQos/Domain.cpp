@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DomainQos/PublishesConnection.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -54,22 +54,6 @@ namespace DQML
   }
 
   //
-  // get_Participants
-  //
-  size_t Domain_Impl::get_Participants (std::vector <Participant> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Participants
-  //
-  ::GAME::Mga::Collection_T <Participant> Domain_Impl::get_Participants (void) const
-  {
-    return this->children <Participant> ();
-  }
-
-  //
   // get_PublishesConnections
   //
   size_t Domain_Impl::get_PublishesConnections (std::vector <PublishesConnection> & items) const
@@ -83,6 +67,22 @@ namespace DQML
   ::GAME::Mga::Collection_T <PublishesConnection> Domain_Impl::get_PublishesConnections (void) const
   {
     return this->children <PublishesConnection> ();
+  }
+
+  //
+  // get_Participants
+  //
+  size_t Domain_Impl::get_Participants (std::vector <Participant> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Participants
+  //
+  ::GAME::Mga::Collection_T <Participant> Domain_Impl::get_Participants (void) const
+  {
+    return this->children <Participant> ();
   }
 }
 

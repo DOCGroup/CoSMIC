@@ -9,11 +9,11 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
-#include "DQML/Standard/Main/dr_sub_Connection.h"
-#include "DQML/Standard/Main/dp_sub_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
-#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
+#include "DQML/Standard/Main/dr_sub_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
+#include "DQML/Standard/Main/dp_sub_Connection.h"
+#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -58,6 +58,14 @@ namespace DQML
   }
 
   //
+  // src_sub_entityfactory_Connection
+  //
+  size_t Subscriber_Impl::src_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <sub_entityfactory_Connection> (items);
+  }
+
+  //
   // src_dr_sub_Connection
   //
   size_t Subscriber_Impl::src_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const
@@ -79,14 +87,6 @@ namespace DQML
   size_t Subscriber_Impl::src_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const
   {
     return this->in_connections <sub_presqos_Connection> (items);
-  }
-
-  //
-  // src_sub_entityfactory_Connection
-  //
-  size_t Subscriber_Impl::src_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <sub_entityfactory_Connection> (items);
   }
 
   //

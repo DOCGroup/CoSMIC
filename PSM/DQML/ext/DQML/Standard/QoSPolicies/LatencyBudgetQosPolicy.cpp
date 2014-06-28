@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -98,14 +98,6 @@ namespace DQML
   }
 
   //
-  // dst_top_latency_Connection
-  //
-  size_t LatencyBudgetQosPolicy_Impl::dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const
-  {
-    return this->in_connections <top_latency_Connection> (items);
-  }
-
-  //
   // dst_dr_latency_Connection
   //
   size_t LatencyBudgetQosPolicy_Impl::dst_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
@@ -119,6 +111,14 @@ namespace DQML
   size_t LatencyBudgetQosPolicy_Impl::dst_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const
   {
     return this->in_connections <dw_latency_Connection> (items);
+  }
+
+  //
+  // dst_top_latency_Connection
+  //
+  size_t LatencyBudgetQosPolicy_Impl::dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const
+  {
+    return this->in_connections <top_latency_Connection> (items);
   }
 }
 

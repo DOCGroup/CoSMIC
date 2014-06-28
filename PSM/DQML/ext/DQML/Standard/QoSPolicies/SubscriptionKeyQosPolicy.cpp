@@ -1,0 +1,71 @@
+// $Id$
+
+#include "StdAfx.h"
+#include "SubscriptionKeyQosPolicy.h"
+
+#if !defined (__GAME_INLINE__)
+#include "SubscriptionKeyQosPolicy.inl"
+#endif
+
+#include "DQML/Visitor.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/QoSPolicies/StringSeq.h"
+#include "game/mga/Functional_T.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/MetaFolder.h"
+
+
+namespace DQML
+{
+  //
+  // metaname
+  //
+  const std::string SubscriptionKeyQosPolicy_Impl::metaname ("SubscriptionKeyQosPolicy");
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create_object < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
+  }
+
+  //
+  // accept
+  //
+  void SubscriptionKeyQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)
+  {
+    // See if this is a visitor we know.
+    Visitor * this_visitor = dynamic_cast <Visitor *> (v);
+
+    if (0 != this_visitor)
+      this_visitor->visit_SubscriptionKeyQosPolicy (this);
+    else
+      v->visit_Model (this);
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos SubscriptionKeyQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // has_StringSeq
+  //
+  bool SubscriptionKeyQosPolicy_Impl::has_StringSeq (void) const
+  {
+    return this->children <StringSeq> ().count () == 1;
+  }
+
+  //
+  // get_StringSeq
+  //
+  StringSeq SubscriptionKeyQosPolicy_Impl::get_StringSeq (void) const
+  {
+    return this->children <StringSeq> ().first ();
+  }
+}
+
