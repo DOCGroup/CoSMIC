@@ -97,11 +97,11 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_durqos_Connection connection.
-    size_t dst_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
-
     /// Get the dst dw_durqos_Connection connection.
     size_t dst_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
+
+    /// Get the dst topic_durqos_Connection connection.
+    size_t dst_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
 
     /// Get the dst dr_durqos_Connection connection.
     size_t dst_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
