@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/DstEdge.h"
-#include "PICML/PathDiagram/EdgeProperty.h"
 #include "PICML/PathDiagram/SrcEdge.h"
+#include "PICML/PathDiagram/EdgeProperty.h"
+#include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -63,19 +63,19 @@ namespace PICML
   }
 
   //
-  // dst_DstEdge
-  //
-  size_t Edge_Impl::dst_DstEdge (std::vector <DstEdge> & items) const
-  {
-    return this->in_connections <DstEdge> (items);
-  }
-
-  //
   // dst_EdgeProperty
   //
   size_t Edge_Impl::dst_EdgeProperty (std::vector <EdgeProperty> & items) const
   {
     return this->in_connections <EdgeProperty> (items);
+  }
+
+  //
+  // dst_DstEdge
+  //
+  size_t Edge_Impl::dst_DstEdge (std::vector <DstEdge> & items) const
+  {
+    return this->in_connections <DstEdge> (items);
   }
 }
 

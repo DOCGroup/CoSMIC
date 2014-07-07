@@ -78,11 +78,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst TimerEventSinkConn connection.
-    size_t dst_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
-
     /// Get the dst TimerConnection connection.
     size_t dst_TimerConnection (std::vector <TimerConnection> & items) const;
+
+    /// Get the dst TimerEventSinkConn connection.
+    size_t dst_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
     ///@}
   };
 }

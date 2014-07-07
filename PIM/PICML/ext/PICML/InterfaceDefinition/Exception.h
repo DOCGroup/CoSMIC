@@ -17,9 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/IdTags/Taggable.h"
-#include "PICML/InterfaceDefinition/TemplateParameterValueType.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/InterfaceDefinition/TemplateParameterValueType.h"
+#include "PICML/IdTags/Taggable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -39,9 +39,9 @@ namespace PICML
    */
   class PICML_Export Exception_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual Taggable_Impl,
+    public virtual ExceptionType_Impl,
     public virtual TemplateParameterValueType_Impl,
-    public virtual ExceptionType_Impl
+    public virtual Taggable_Impl
   {
     public:
     /// Tag type of this extension class.

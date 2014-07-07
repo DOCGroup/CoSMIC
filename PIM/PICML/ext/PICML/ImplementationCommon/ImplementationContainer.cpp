@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/ImplementationRequirement.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
+#include "PICML/ImplementationCommon/ConfigProperty.h"
 #include "PICML/ImplementationCommon/InfoProperty.h"
 #include "PICML/ImplementationCommon/MonolithExecParameter.h"
 #include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
-#include "PICML/ImplementationCommon/ConfigProperty.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
 
 namespace PICML
 {
@@ -27,6 +27,38 @@ namespace PICML
   // metaname
   //
   const std::string ImplementationContainer_Impl::metaname ("ImplementationContainer");
+
+  //
+  // get_SimplePropertys
+  //
+  size_t ImplementationContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Collection_T <SimpleProperty> ImplementationContainer_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t ImplementationContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> ImplementationContainer_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
+  }
 
   //
   // get_ImplementationRequirements
@@ -42,6 +74,38 @@ namespace PICML
   ::GAME::Mga::Collection_T <ImplementationRequirement> ImplementationContainer_Impl::get_ImplementationRequirements (void) const
   {
     return this->children <ImplementationRequirement> ();
+  }
+
+  //
+  // get_MonolithprimaryArtifacts
+  //
+  size_t ImplementationContainer_Impl::get_MonolithprimaryArtifacts (std::vector <MonolithprimaryArtifact> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MonolithprimaryArtifacts
+  //
+  ::GAME::Mga::Collection_T <MonolithprimaryArtifact> ImplementationContainer_Impl::get_MonolithprimaryArtifacts (void) const
+  {
+    return this->children <MonolithprimaryArtifact> ();
+  }
+
+  //
+  // get_ConfigPropertys
+  //
+  size_t ImplementationContainer_Impl::get_ConfigPropertys (std::vector <ConfigProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ConfigPropertys
+  //
+  ::GAME::Mga::Collection_T <ConfigProperty> ImplementationContainer_Impl::get_ConfigPropertys (void) const
+  {
+    return this->children <ConfigProperty> ();
   }
 
   //
@@ -138,70 +202,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentServantArtifact> ImplementationContainer_Impl::get_ComponentServantArtifacts (void) const
   {
     return this->children <ComponentServantArtifact> ();
-  }
-
-  //
-  // get_MonolithprimaryArtifacts
-  //
-  size_t ImplementationContainer_Impl::get_MonolithprimaryArtifacts (std::vector <MonolithprimaryArtifact> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_MonolithprimaryArtifacts
-  //
-  ::GAME::Mga::Collection_T <MonolithprimaryArtifact> ImplementationContainer_Impl::get_MonolithprimaryArtifacts (void) const
-  {
-    return this->children <MonolithprimaryArtifact> ();
-  }
-
-  //
-  // get_ConfigPropertys
-  //
-  size_t ImplementationContainer_Impl::get_ConfigPropertys (std::vector <ConfigProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ConfigPropertys
-  //
-  ::GAME::Mga::Collection_T <ConfigProperty> ImplementationContainer_Impl::get_ConfigPropertys (void) const
-  {
-    return this->children <ConfigProperty> ();
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t ImplementationContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> ImplementationContainer_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  size_t ImplementationContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> ImplementationContainer_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
   }
 }
 

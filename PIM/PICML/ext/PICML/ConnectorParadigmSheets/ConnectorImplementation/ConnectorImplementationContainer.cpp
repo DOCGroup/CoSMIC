@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -55,6 +55,22 @@ namespace PICML
   }
 
   //
+  // get_ConnectorImplementations
+  //
+  size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ConnectorImplementations
+  //
+  ::GAME::Mga::Collection_T <ConnectorImplementation> ConnectorImplementationContainer_Impl::get_ConnectorImplementations (void) const
+  {
+    return this->children <ConnectorImplementation> ();
+  }
+
+  //
   // get_ConnectorTypes
   //
   size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
@@ -84,22 +100,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ConnectorImplements> ConnectorImplementationContainer_Impl::get_ConnectorImplementss (void) const
   {
     return this->children <ConnectorImplements> ();
-  }
-
-  //
-  // get_ConnectorImplementations
-  //
-  size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ConnectorImplementations
-  //
-  ::GAME::Mga::Collection_T <ConnectorImplementation> ConnectorImplementationContainer_Impl::get_ConnectorImplementations (void) const
-  {
-    return this->children <ConnectorImplementation> ();
   }
 }
 

@@ -66,14 +66,14 @@ namespace PICML
      */
     ///@{
 
+    /// Get the src MonolithprimaryArtifact connection.
+    size_t src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+
     /// Get the src MonolithExecParameter connection.
     size_t src_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
 
     /// Get the src MonolithDeployRequirement connection.
     size_t src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
-
-    /// Get the src MonolithprimaryArtifact connection.
-    size_t src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
     ///@}
   };
 }

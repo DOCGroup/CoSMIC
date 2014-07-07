@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export OutEventPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual SingleOutputBase_Impl,
-    public virtual EventPort_Impl
+    public virtual EventPort_Impl,
+    public virtual SingleOutputBase_Impl
   {
     public:
     /// Tag type of this extension class.

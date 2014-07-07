@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
-#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/ValueObject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,6 +28,14 @@ namespace DQML
   const std::string UserDataQosPolicy_Impl::metaname ("UserDataQosPolicy");
 
   //
+  // _create (const DataWriterQos_in)
+  //
+  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  {
+    return ::GAME::Mga::create_object < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
+  }
+
+  //
   // _create (const Participant_in)
   //
   UserDataQosPolicy UserDataQosPolicy_Impl::_create (const Participant_in parent)
@@ -39,14 +47,6 @@ namespace DQML
   // _create (const DataReaderQos_in)
   //
   UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
-  }
-
-  //
-  // _create (const DataWriterQos_in)
-  //
-  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create_object < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
   }
@@ -74,6 +74,14 @@ namespace DQML
   }
 
   //
+  // parent_DataWriterQos
+  //
+  DataWriterQos UserDataQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
   // parent_Participant
   //
   Participant UserDataQosPolicy_Impl::parent_Participant (void)
@@ -90,19 +98,11 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
+  // dst_dp_userdata_Connection
   //
-  DataWriterQos UserDataQosPolicy_Impl::parent_DataWriterQos (void)
+  size_t UserDataQosPolicy_Impl::dst_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
   {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_dw_userdata_Connection
-  //
-  size_t UserDataQosPolicy_Impl::dst_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
-  {
-    return this->in_connections <dw_userdata_Connection> (items);
+    return this->in_connections <dp_userdata_Connection> (items);
   }
 
   //
@@ -114,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_dp_userdata_Connection
+  // dst_dw_userdata_Connection
   //
-  size_t UserDataQosPolicy_Impl::dst_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
+  size_t UserDataQosPolicy_Impl::dst_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
   {
-    return this->in_connections <dp_userdata_Connection> (items);
+    return this->in_connections <dw_userdata_Connection> (items);
   }
 }
 

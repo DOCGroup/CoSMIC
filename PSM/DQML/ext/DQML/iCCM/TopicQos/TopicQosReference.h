@@ -51,8 +51,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static TopicQosReference _create (const DataReaderQos_in parent);
     static TopicQosReference _create (const DataWriterQos_in parent);
+    static TopicQosReference _create (const DataReaderQos_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +71,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataReaderQos parent_DataReaderQos (void);
     DataWriterQos parent_DataWriterQos (void);
+    DataReaderQos parent_DataReaderQos (void);
     ///@}
 
     /**

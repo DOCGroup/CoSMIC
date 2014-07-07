@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfReference.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "PICML/PackageConfiguration/PackageConfBasePackage.h"
 #include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -58,11 +58,11 @@ namespace PICML
   }
 
   //
-  // src_PackageConfReference
+  // src_PackageConfSelectRequirement
   //
-  size_t PackageConfiguration_Impl::src_PackageConfReference (std::vector <PackageConfReference> & items) const
+  size_t PackageConfiguration_Impl::src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
   {
-    return this->in_connections <PackageConfReference> (items);
+    return this->in_connections <PackageConfSelectRequirement> (items);
   }
 
   //
@@ -90,11 +90,11 @@ namespace PICML
   }
 
   //
-  // src_PackageConfSelectRequirement
+  // src_PackageConfReference
   //
-  size_t PackageConfiguration_Impl::src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  size_t PackageConfiguration_Impl::src_PackageConfReference (std::vector <PackageConfReference> & items) const
   {
-    return this->in_connections <PackageConfSelectRequirement> (items);
+    return this->in_connections <PackageConfReference> (items);
   }
 }
 

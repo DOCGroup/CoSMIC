@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Label.h"
+#include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/LabelConnection.h"
-#include "PICML/NamedTypes/Label.h"
-#include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -83,6 +83,22 @@ namespace PICML
   }
 
   //
+  // get_Labels
+  //
+  size_t SwitchedAggregate_Impl::get_Labels (std::vector <Label> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Labels
+  //
+  ::GAME::Mga::Collection_T <Label> SwitchedAggregate_Impl::get_Labels (void) const
+  {
+    return this->children <Label> ();
+  }
+
+  //
   // get_Members
   //
   size_t SwitchedAggregate_Impl::get_Members (std::vector <Member> & items) const
@@ -128,22 +144,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <LabelConnection> SwitchedAggregate_Impl::get_LabelConnections (void) const
   {
     return this->children <LabelConnection> ();
-  }
-
-  //
-  // get_Labels
-  //
-  size_t SwitchedAggregate_Impl::get_Labels (std::vector <Label> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Labels
-  //
-  ::GAME::Mga::Collection_T <Label> SwitchedAggregate_Impl::get_Labels (void) const
-  {
-    return this->children <Label> ();
   }
 }
 

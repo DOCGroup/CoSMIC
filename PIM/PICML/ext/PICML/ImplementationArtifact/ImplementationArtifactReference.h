@@ -51,11 +51,11 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ImplementationArtifactReference _create (const ImplementationContainer_in parent);
-    static ImplementationArtifactReference _create (const ArtifactContainer_in parent);
-    static ImplementationArtifactReference _create (const StubProject_in parent);
     static ImplementationArtifactReference _create (const ServantProject_in parent);
+    static ImplementationArtifactReference _create (const ImplementationContainer_in parent);
+    static ImplementationArtifactReference _create (const StubProject_in parent);
     static ImplementationArtifactReference _create (const ExecutorProject_in parent);
+    static ImplementationArtifactReference _create (const ArtifactContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -74,11 +74,11 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ImplementationContainer parent_ImplementationContainer (void);
-    ArtifactContainer parent_ArtifactContainer (void);
-    StubProject parent_StubProject (void);
     ServantProject parent_ServantProject (void);
+    ImplementationContainer parent_ImplementationContainer (void);
+    StubProject parent_StubProject (void);
     ExecutorProject parent_ExecutorProject (void);
+    ArtifactContainer parent_ArtifactContainer (void);
     ///@}
 
     /**
@@ -86,11 +86,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst ArtifactDependsOn connection.
-    size_t dst_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
-
     /// Get the dst MonolithprimaryArtifact connection.
     size_t dst_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+
+    /// Get the dst ArtifactDependsOn connection.
+    size_t dst_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
     ///@}
 
     /**

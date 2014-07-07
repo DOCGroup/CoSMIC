@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Average _create (const MetricsBase_in parent);
     static Average _create (const BenchmarkAnalysis_in parent);
+    static Average _create (const MetricsBase_in parent);
     ///@}
 
     // Default constructor.

@@ -57,20 +57,20 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ComponentAssembly parent_ComponentAssembly (void);
     RequirementBase parent_RequirementBase (void);
-    ActionBase parent_ActionBase (void);
-    Path parent_Path (void);
     BehaviorInputAction parent_BehaviorInputAction (void);
-    QueryInputAction parent_QueryInputAction (void);
-    ComponentContainer parent_ComponentContainer (void);
+    ActionBase parent_ActionBase (void);
     ImplementationContainer parent_ImplementationContainer (void);
-    Domain parent_Domain (void);
+    QueryInputAction parent_QueryInputAction (void);
+    Path parent_Path (void);
+    ComponentAssembly parent_ComponentAssembly (void);
+    ComponentContainer parent_ComponentContainer (void);
     ArtifactContainer parent_ArtifactContainer (void);
-    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
-    PackageContainer parent_PackageContainer (void);
-    Paths parent_Paths (void);
+    Domain parent_Domain (void);
     DeploymentPlan parent_DeploymentPlan (void);
+    Paths parent_Paths (void);
+    PackageContainer parent_PackageContainer (void);
+    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     ///@}
 
     /**
@@ -90,50 +90,50 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst ComponentConfigProperty connection.
-    size_t dst_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
-
-    /// Get the dst ComponentInfoProperty connection.
-    size_t dst_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
-
-    /// Get the dst InfoProperty connection.
-    size_t dst_InfoProperty (std::vector <InfoProperty> & items) const;
-
-    /// Get the dst PropertyMapping connection.
-    size_t dst_PropertyMapping (std::vector <PropertyMapping> & items) const;
+    /// Get the dst AttributeValue connection.
+    size_t dst_AttributeValue (std::vector <AttributeValue> & items) const;
 
     /// Get the dst PackageConfigProperty connection.
     size_t dst_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const;
 
-    /// Get the dst AttributeMappingValue connection.
-    size_t dst_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
+    /// Get the dst ConfigProperty connection.
+    size_t dst_ConfigProperty (std::vector <ConfigProperty> & items) const;
 
-    /// Get the dst PathProperty connection.
-    size_t dst_PathProperty (std::vector <PathProperty> & items) const;
-
-    /// Get the dst AttributeValue connection.
-    size_t dst_AttributeValue (std::vector <AttributeValue> & items) const;
+    /// Get the dst InfoProperty connection.
+    size_t dst_InfoProperty (std::vector <InfoProperty> & items) const;
 
     /// Get the dst MonolithExecParameter connection.
     size_t dst_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
 
-    /// Get the dst PackageConfConfigProperty connection.
-    size_t dst_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
-
-    /// Get the dst AssemblyConfigProperty connection.
-    size_t dst_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const;
+    /// Get the dst ArtifactExecParameter connection.
+    size_t dst_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
 
     /// Get the dst ArtifactInfoProperty connection.
     size_t dst_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const;
 
-    /// Get the dst ConfigProperty connection.
-    size_t dst_ConfigProperty (std::vector <ConfigProperty> & items) const;
-
-    /// Get the dst ArtifactExecParameter connection.
-    size_t dst_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
+    /// Get the dst PackageConfConfigProperty connection.
+    size_t dst_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
 
     /// Get the dst PackageInfoProperty connection.
     size_t dst_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const;
+
+    /// Get the dst AssemblyConfigProperty connection.
+    size_t dst_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const;
+
+    /// Get the dst ComponentInfoProperty connection.
+    size_t dst_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
+
+    /// Get the dst ComponentConfigProperty connection.
+    size_t dst_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
+
+    /// Get the dst PropertyMapping connection.
+    size_t dst_PropertyMapping (std::vector <PropertyMapping> & items) const;
+
+    /// Get the dst PathProperty connection.
+    size_t dst_PathProperty (std::vector <PathProperty> & items) const;
+
+    /// Get the dst AttributeMappingValue connection.
+    size_t dst_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
     ///@}
   };
 }

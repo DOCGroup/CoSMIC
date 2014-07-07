@@ -74,14 +74,14 @@ namespace PICML
      */
     ///@{
 
+    /// Get the dst Effect connection.
+    size_t dst_Effect (std::vector <Effect> & items) const;
+
     /// Get the dst InputEffect connection.
     size_t dst_InputEffect (std::vector <InputEffect> & items) const;
 
     /// Get the dst TerminalEffect connection.
     size_t dst_TerminalEffect (std::vector <TerminalEffect> & items) const;
-
-    /// Get the dst Effect connection.
-    size_t dst_Effect (std::vector <Effect> & items) const;
     ///@}
   };
 }

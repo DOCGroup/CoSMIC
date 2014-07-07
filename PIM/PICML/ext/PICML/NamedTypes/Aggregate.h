@@ -87,14 +87,14 @@ namespace PICML
 
     bool has_Key (void) const;
     Key get_Key (void) const;
-    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
-    ::GAME::Mga::Collection_T <KeyMember> get_KeyMembers (void) const;
-
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Collection_T <Member> get_Members (void) const;
 
     size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
     ::GAME::Mga::Collection_T <ArrayMember> get_ArrayMembers (void) const;
+
+    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
+    ::GAME::Mga::Collection_T <KeyMember> get_KeyMembers (void) const;
 
     ///@}
   };

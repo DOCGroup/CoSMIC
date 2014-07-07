@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,14 +28,6 @@ namespace DQML
   const std::string DestinationOrderQosPolicy_Impl::metaname ("DestinationOrderQosPolicy");
 
   //
-  // _create (const DataReaderQos_in)
-  //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const DataWriterQos_in)
   //
   DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataWriterQos_in parent)
@@ -47,6 +39,14 @@ namespace DQML
   // _create (const TopicQos_in)
   //
   DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
+  {
+    return ::GAME::Mga::create_object < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
@@ -74,14 +74,6 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
-  //
-  DataReaderQos DestinationOrderQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos DestinationOrderQosPolicy_Impl::parent_DataWriterQos (void)
@@ -98,11 +90,19 @@ namespace DQML
   }
 
   //
-  // dst_topic_dstOrder_Connection
+  // parent_DataReaderQos
   //
-  size_t DestinationOrderQosPolicy_Impl::dst_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const
+  DataReaderQos DestinationOrderQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return this->in_connections <topic_dstOrder_Connection> (items);
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // dst_dw_dstOrder_Connection
+  //
+  size_t DestinationOrderQosPolicy_Impl::dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
+  {
+    return this->in_connections <dw_dstOrder_Connection> (items);
   }
 
   //
@@ -114,11 +114,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_dstOrder_Connection
+  // dst_topic_dstOrder_Connection
   //
-  size_t DestinationOrderQosPolicy_Impl::dst_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
+  size_t DestinationOrderQosPolicy_Impl::dst_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const
   {
-    return this->in_connections <dw_dstOrder_Connection> (items);
+    return this->in_connections <topic_dstOrder_Connection> (items);
   }
 }
 

@@ -57,8 +57,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Component parent_Component (void);
     ConnectorObject parent_ConnectorObject (void);
+    Component parent_Component (void);
     ///@}
 
     /**

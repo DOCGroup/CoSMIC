@@ -67,14 +67,14 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ImplementationDependsOn connection.
-    size_t src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
-
     /// Get the src ImplementationCapability connection.
     size_t src_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
 
     /// Get the src Implements connection.
     size_t src_Implements (std::vector <Implements> & items) const;
+
+    /// Get the src ImplementationDependsOn connection.
+    size_t src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
     ///@}
   };
 }

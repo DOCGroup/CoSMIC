@@ -66,11 +66,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst EventSinkDelegate connection.
-    size_t dst_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
-
     /// Get the dst SendsTo connection.
     size_t dst_SendsTo (std::vector <SendsTo> & items) const;
+
+    /// Get the dst EventSinkDelegate connection.
+    size_t dst_EventSinkDelegate (std::vector <EventSinkDelegate> & items) const;
     ///@}
   };
 }

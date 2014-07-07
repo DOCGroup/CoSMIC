@@ -8,21 +8,21 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
-#include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ComponentBenchmark/CompRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentInherits.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
@@ -84,67 +84,19 @@ namespace PICML
   }
 
   //
-  // get_ReadonlyAttributes
+  // get_ProvidedRequestPorts
   //
-  size_t Component_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
+  size_t Component_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ReadonlyAttributes
+  // get_ProvidedRequestPorts
   //
-  ::GAME::Mga::Collection_T <ReadonlyAttribute> Component_Impl::get_ReadonlyAttributes (void) const
+  ::GAME::Mga::Collection_T <ProvidedRequestPort> Component_Impl::get_ProvidedRequestPorts (void) const
   {
-    return this->children <ReadonlyAttribute> ();
-  }
-
-  //
-  // get_Attributes
-  //
-  size_t Component_Impl::get_Attributes (std::vector <Attribute> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Attributes
-  //
-  ::GAME::Mga::Collection_T <Attribute> Component_Impl::get_Attributes (void) const
-  {
-    return this->children <Attribute> ();
-  }
-
-  //
-  // get_ExtendedPorts
-  //
-  size_t Component_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ExtendedPorts
-  //
-  ::GAME::Mga::Collection_T <ExtendedPort> Component_Impl::get_ExtendedPorts (void) const
-  {
-    return this->children <ExtendedPort> ();
-  }
-
-  //
-  // get_MirrorPorts
-  //
-  size_t Component_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_MirrorPorts
-  //
-  ::GAME::Mga::Collection_T <MirrorPort> Component_Impl::get_MirrorPorts (void) const
-  {
-    return this->children <MirrorPort> ();
+    return this->children <ProvidedRequestPort> ();
   }
 
   //
@@ -161,22 +113,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <RequiredRequestPort> Component_Impl::get_RequiredRequestPorts (void) const
   {
     return this->children <RequiredRequestPort> ();
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  size_t Component_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  ::GAME::Mga::Collection_T <ProvidedRequestPort> Component_Impl::get_ProvidedRequestPorts (void) const
-  {
-    return this->children <ProvidedRequestPort> ();
   }
 
   //
@@ -209,6 +145,70 @@ namespace PICML
   ::GAME::Mga::Collection_T <InEventPort> Component_Impl::get_InEventPorts (void) const
   {
     return this->children <InEventPort> ();
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  size_t Component_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  ::GAME::Mga::Collection_T <ReadonlyAttribute> Component_Impl::get_ReadonlyAttributes (void) const
+  {
+    return this->children <ReadonlyAttribute> ();
+  }
+
+  //
+  // get_Attributes
+  //
+  size_t Component_Impl::get_Attributes (std::vector <Attribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Attributes
+  //
+  ::GAME::Mga::Collection_T <Attribute> Component_Impl::get_Attributes (void) const
+  {
+    return this->children <Attribute> ();
+  }
+
+  //
+  // get_MirrorPorts
+  //
+  size_t Component_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MirrorPorts
+  //
+  ::GAME::Mga::Collection_T <MirrorPort> Component_Impl::get_MirrorPorts (void) const
+  {
+    return this->children <MirrorPort> ();
+  }
+
+  //
+  // get_ExtendedPorts
+  //
+  size_t Component_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExtendedPorts
+  //
+  ::GAME::Mga::Collection_T <ExtendedPort> Component_Impl::get_ExtendedPorts (void) const
+  {
+    return this->children <ExtendedPort> ();
   }
 }
 

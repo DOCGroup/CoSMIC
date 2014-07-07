@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -29,6 +29,14 @@ namespace DQML
   const std::string EntityFactoryQosPolicy_Impl::metaname ("EntityFactoryQosPolicy");
 
   //
+  // _create (const SubscriberQos_in)
+  //
+  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  {
+    return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
+  }
+
+  //
   // _create (const Participant_in)
   //
   EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const Participant_in parent)
@@ -40,14 +48,6 @@ namespace DQML
   // _create (const PublisherQos_in)
   //
   EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
-  {
-    return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
-  }
-
-  //
-  // _create (const SubscriberQos_in)
-  //
-  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
     return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
@@ -75,6 +75,14 @@ namespace DQML
   }
 
   //
+  // parent_SubscriberQos
+  //
+  SubscriberQos EntityFactoryQosPolicy_Impl::parent_SubscriberQos (void)
+  {
+    return SubscriberQos::_narrow (this->parent ());
+  }
+
+  //
   // parent_Participant
   //
   Participant EntityFactoryQosPolicy_Impl::parent_Participant (void)
@@ -91,27 +99,19 @@ namespace DQML
   }
 
   //
-  // parent_SubscriberQos
-  //
-  SubscriberQos EntityFactoryQosPolicy_Impl::parent_SubscriberQos (void)
-  {
-    return SubscriberQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_pub_entityfactory_Connection
-  //
-  size_t EntityFactoryQosPolicy_Impl::dst_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> (items);
-  }
-
-  //
   // dst_dp_entityfactory_Connection
   //
   size_t EntityFactoryQosPolicy_Impl::dst_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
   {
     return this->in_connections <dp_entityfactory_Connection> (items);
+  }
+
+  //
+  // dst_dpfactory_entityfactory_Connection
+  //
+  size_t EntityFactoryQosPolicy_Impl::dst_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <dpfactory_entityfactory_Connection> (items);
   }
 
   //
@@ -123,11 +123,11 @@ namespace DQML
   }
 
   //
-  // dst_dpfactory_entityfactory_Connection
+  // dst_pub_entityfactory_Connection
   //
-  size_t EntityFactoryQosPolicy_Impl::dst_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
+  size_t EntityFactoryQosPolicy_Impl::dst_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
   {
-    return this->in_connections <dpfactory_entityfactory_Connection> (items);
+    return this->in_connections <pub_entityfactory_Connection> (items);
   }
 }
 

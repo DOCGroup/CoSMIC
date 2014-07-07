@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0595 */
-/* at Thu Jun 19 02:10:01 2014
+/* at Thu Jul 03 10:52:36 2014
  */
 /* Compiler settings for IDL_Generator_Component.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0595 

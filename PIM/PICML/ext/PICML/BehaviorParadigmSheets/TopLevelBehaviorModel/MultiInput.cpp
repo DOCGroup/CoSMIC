@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"

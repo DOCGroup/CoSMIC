@@ -104,11 +104,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst Publish connection.
-    size_t dst_Publish (std::vector <Publish> & items) const;
-
     /// Get the dst ConnectorToReceptacle connection.
     size_t dst_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
+
+    /// Get the dst Publish connection.
+    size_t dst_Publish (std::vector <Publish> & items) const;
     ///@}
 
     /**

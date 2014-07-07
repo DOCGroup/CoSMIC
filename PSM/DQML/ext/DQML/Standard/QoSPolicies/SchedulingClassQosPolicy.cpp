@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/SchedulingQosPolicy/SchedulingQosPolicy.h"
-#include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
+#include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

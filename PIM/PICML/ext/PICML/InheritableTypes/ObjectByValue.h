@@ -17,9 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "PICML/IdTags/Prefixable.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
+#include "PICML/InheritableTypes/HasOperations.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -36,9 +36,9 @@ namespace PICML
    */
   class PICML_Export ObjectByValue_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual HasOperations_Impl,
+    public virtual Prefixable_Impl,
     public virtual SupportsInterfaces_Impl,
-    public virtual Prefixable_Impl
+    public virtual HasOperations_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -81,6 +81,12 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_PrivateFlags (std::vector <PrivateFlag> & items) const;
+    ::GAME::Mga::Collection_T <PrivateFlag> get_PrivateFlags (void) const;
+
+    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
+    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
+
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Collection_T <Member> get_Members (void) const;
 
@@ -89,12 +95,6 @@ namespace PICML
 
     size_t get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const;
     ::GAME::Mga::Collection_T <MakeMemberPrivate> get_MakeMemberPrivates (void) const;
-
-    size_t get_PrivateFlags (std::vector <PrivateFlag> & items) const;
-    ::GAME::Mga::Collection_T <PrivateFlag> get_PrivateFlags (void) const;
-
-    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
-    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
 
     ///@}
   };

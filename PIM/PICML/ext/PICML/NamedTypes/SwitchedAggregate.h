@@ -83,6 +83,9 @@ namespace PICML
 
     bool has_Discriminator (void) const;
     Discriminator get_Discriminator (void) const;
+    size_t get_Labels (std::vector <Label> & items) const;
+    ::GAME::Mga::Collection_T <Label> get_Labels (void) const;
+
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Collection_T <Member> get_Members (void) const;
 
@@ -91,9 +94,6 @@ namespace PICML
 
     size_t get_LabelConnections (std::vector <LabelConnection> & items) const;
     ::GAME::Mga::Collection_T <LabelConnection> get_LabelConnections (void) const;
-
-    size_t get_Labels (std::vector <Label> & items) const;
-    ::GAME::Mga::Collection_T <Label> get_Labels (void) const;
 
     ///@}
   };

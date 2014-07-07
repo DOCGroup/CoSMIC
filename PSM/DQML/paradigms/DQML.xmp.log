@@ -1,10 +1,10 @@
-=============================================================
-METAINTERPRETER LOG STARTED Friday, June 27, 2014 10:59:06 PM
-=============================================================
-Warning: Model "<A HREF="mga:id-0066-00000116">ListenerSchedulingQosPolicy</A>" has no aspect defined and may contain: SchedulingClassQosPolicy, SchedulingPriorityQosPolicy
-Warning: Model "<A HREF="mga:id-0066-000000ff">SchedulingQosPolicy</A>" has no aspect defined and may contain: SchedulingClassQosPolicy, SchedulingPriorityQosPolicy
-Warning: Model "<A HREF="mga:id-0066-00000115">WatchdogSchedulingQosPolicy</A>" has no aspect defined and may contain: SchedulingClassQosPolicy, SchedulingPriorityQosPolicy
-Error: Duplicate global attribute name found "<A HREF="mga:id-0066-0000010a">isprivate</A>".
+===========================================================
+METAINTERPRETER LOG STARTED Sunday, July 6, 2014 1:23:53 AM
+===========================================================
+Warning: Model "<A HREF="mga:id-0066-00000115">ListenerSchedulingQosPolicy</A>" has no aspect defined and may contain: SchedulingClassQosPolicy, SchedulingPriorityQosPolicy
+Warning: Model "<A HREF="mga:id-0066-000000fe">SchedulingQosPolicy</A>" has no aspect defined and may contain: SchedulingClassQosPolicy, SchedulingPriorityQosPolicy
+Warning: Model "<A HREF="mga:id-0066-00000114">WatchdogSchedulingQosPolicy</A>" has no aspect defined and may contain: SchedulingClassQosPolicy, SchedulingPriorityQosPolicy
+Error: Duplicate global attribute name found "<A HREF="mga:id-0066-0000010d">isprivate</A>".
 
 END OF LOG
 

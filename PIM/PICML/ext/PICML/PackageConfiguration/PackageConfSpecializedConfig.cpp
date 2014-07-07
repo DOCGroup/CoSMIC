@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
+#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
 #include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/OperationTypes/ParameterType.h"
 #include "PICML/OperationTypes/InParameter.h"
 #include "PICML/OperationTypes/InoutParameter.h"
 #include "PICML/OperationTypes/OutParameter.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
