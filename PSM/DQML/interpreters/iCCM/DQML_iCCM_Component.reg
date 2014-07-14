@@ -21,7 +21,7 @@ REGEDIT4
 
 [HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.DQML_iCCM]
 "Tooltip"="DQML iCCM Interpreter"
-"Icon"=",IDI_COMPICON"
+"Icon"=",1414"
 "Paradigm"="DQML"
 "Type"=dword:00000001
 "Description"="DQML iCCM"

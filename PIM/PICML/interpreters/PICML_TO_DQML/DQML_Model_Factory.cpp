@@ -169,6 +169,16 @@ namespace PICML_To_DQML
     return ret_obj;
   }
   //
+  //create_PublisherConnection
+  //
+  DQML::PublishesConnection DQML_Model_Factory::create_PublishesConnection (DQML::Domain_in parent , 
+    DQML::DataWriterQos_in src, DQML::DataReaderQos_in dest)
+  {
+    GAME::Mga::Connection ret_obj = GAME::Mga::Connection_Impl::_create (parent, "PublishesConnection", src, dest);
+    return ret_obj;
+      
+  }
+  //
   //set_name
   //
   void DQML_Model_Factory::set_name(GAME::Mga::Object obj, std::string name)

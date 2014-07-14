@@ -39,6 +39,8 @@ namespace PICML_To_DQML
     DQML::TopicQosFolder create_TopicQosFolder (DQML::iCCM_in parent , const std::string name);
     DQML::TopicQos create_TopicQos (DQML::TopicQosFolder_in parent , const std::string name);
     DQML::TopicQos create_TopicQos (GAME::Mga::Model node , const std::string name);
+
+    DQML::PublishesConnection create_PublishesConnection (DQML::Domain_in parent , DQML::DataWriterQos_in src, DQML::DataReaderQos_in dest);
   private:
     void set_name(GAME::Mga::Object obj, std::string name);
     GAME::Mga::Project project_;

@@ -62,7 +62,7 @@ invoke_ex (GAME::Mga::Project project,
   {
     GAME::Mga::Transaction t_readonly (project, TRANSACTION_READ_ONLY);
 
-    path = "MGA=" + path + project.name () + ".mga";
+    path = "MGA=" + path +"\\"+ project.name () + ".mga";
     PICML_To_DQML::DQML_Model_Factory DQML_mf (path);
 
     PICML_To_DQML::PICML_Model_Visitor PICML_mv (DQML_mf);

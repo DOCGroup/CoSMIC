@@ -13,6 +13,7 @@
 #include "PICML/PICML.h"
 #include "PICML/Visitor.h"
 #include "DQML_Model_Factory.h"
+#include <map>
 
 namespace PICML_To_DQML
 {
@@ -25,6 +26,7 @@ namespace PICML_To_DQML
     ~Component_Asm_Visitor(void);
 
     void visit_ComponentAssembly (PICML::ComponentAssembly_in item);
+    void visit_SendsTo (PICML::SendsTo_in item);
     void visit_ComponentInstance (PICML::ComponentInstance_in item);
     void visit_InEventPortInstance (PICML::InEventPortInstance_in item);
     void visit_OutEventPortInstance (PICML::OutEventPortInstance_in item);
@@ -35,7 +37,7 @@ namespace PICML_To_DQML
     DQML_Model_Factory & factory_;
     GAME::Mga::Object current_node_;
 
-    std::vector <PICML::AttributeInstance> messages;
+    std::map <GAME::Mga::FCO, GAME::Mga::FCO> ports_map_;
   };
 }
 

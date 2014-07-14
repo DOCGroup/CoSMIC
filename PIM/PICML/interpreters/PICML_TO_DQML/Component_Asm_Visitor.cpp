@@ -23,16 +23,28 @@ namespace PICML_To_DQML
     GAME::Mga::Object current_node = this->current_node_;
     this->current_node_ = this->factory_.create_Domain (DQML::DomainQosFolder::_narrow (this->current_node_), item->name ());
 
+    this->ports_map_.clear ();
     //Looking for component instances
     std::vector <PICML::ComponentInstance> comp_inst_models;
     item->children (comp_inst_models);
     for (PICML::ComponentInstance & comp_inst_model : comp_inst_models)
       comp_inst_model->accept (this);
 
+    //Looking for connections
+    std::vector <PICML::SendsTo> send_Tos;
+    item->children (send_Tos);
+    for (PICML::SendsTo & send_To : send_Tos)
+      send_To->accept (this);
 
     this->current_node_ = current_node;
   }
 
+  void Component_Asm_Visitor::visit_SendsTo (PICML::SendsTo_in item)
+  {
+    this->factory_.create_PublishesConnection (DQML::Domain::_narrow (this->current_node_), 
+      DQML::DataWriterQos::_narrow (this->ports_map_ [item->src ()]), 
+      DQML::DataReaderQos::_narrow (this->ports_map_ [item->dst ()]));
+  }
   //
   //visit_ComponentInstance
   //
@@ -62,8 +74,9 @@ namespace PICML_To_DQML
   void Component_Asm_Visitor::visit_InEventPortInstance (PICML::InEventPortInstance_in item)
   {
     GAME::Mga::Object current_node = this->current_node_;
-    this->current_node_ = this->factory_.create_DataReaderQos (DQML::Participant::_narrow (this->current_node_), item->name ());
-
+    DQML::DataReaderQos dr = this->factory_.create_DataReaderQos (DQML::Participant::_narrow (this->current_node_), item->name ());
+    this->current_node_ = dr;
+    this->ports_map_ [item] = dr;
     item->refers_to ()->accept (this);
 
     this->current_node_ = current_node;
@@ -75,8 +88,9 @@ namespace PICML_To_DQML
   void Component_Asm_Visitor::visit_OutEventPortInstance (PICML::OutEventPortInstance_in item)
   {
     GAME::Mga::Object current_node = this->current_node_;
-    this->current_node_ = this->factory_.create_DataWriterQos (DQML::Participant::_narrow (this->current_node_), item->name ());
-
+    DQML::DataWriterQos dw = this->factory_.create_DataWriterQos (DQML::Participant::_narrow (this->current_node_), item->name ());
+    this->current_node_ = dw;
+    this->ports_map_ [item] = dw;
     item->refers_to ()->accept (this);
 
     this->current_node_ = current_node;
