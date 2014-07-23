@@ -79,14 +79,14 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const;
+    ::GAME::Mga::Collection_T <ConnectorImplementation> get_ConnectorImplementations (void) const;
+
     size_t get_ConnectorTypes (std::vector <ConnectorType> & items) const;
     ::GAME::Mga::Collection_T <ConnectorType> get_ConnectorTypes (void) const;
 
     size_t get_ConnectorImplementss (std::vector <ConnectorImplements> & items) const;
     ::GAME::Mga::Collection_T <ConnectorImplements> get_ConnectorImplementss (void) const;
-
-    size_t get_ConnectorImplementations (std::vector <ConnectorImplementation> & items) const;
-    ::GAME::Mga::Collection_T <ConnectorImplementation> get_ConnectorImplementations (void) const;
 
     ///@}
   };

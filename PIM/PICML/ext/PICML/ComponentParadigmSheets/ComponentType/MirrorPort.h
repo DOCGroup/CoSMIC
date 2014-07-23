@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static MirrorPort _create (const Component_in parent);
     static MirrorPort _create (const ConnectorObject_in parent);
+    static MirrorPort _create (const Component_in parent);
     ///@}
 
     // Default constructor.

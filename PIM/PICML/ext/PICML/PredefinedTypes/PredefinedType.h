@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/NamedTypes/MemberType.h"
 #include "PICML/Common/SimpleType.h"
+#include "PICML/NamedTypes/MemberType.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -35,8 +35,8 @@ namespace PICML
    */
   class PICML_Export PredefinedType_Impl :
     public virtual ::GAME::Mga::FCO_Impl,
-    public virtual MemberType_Impl,
-    public virtual SimpleType_Impl
+    public virtual SimpleType_Impl,
+    public virtual MemberType_Impl
   {
     public:
     /// Tag type of this extension class.

@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
+#include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
-#include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,6 +66,22 @@ namespace DQML
   }
 
   //
+  // has_ShareQosPolicy
+  //
+  bool SubscriberQos_Impl::has_ShareQosPolicy (void) const
+  {
+    return this->children <ShareQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_ShareQosPolicy
+  //
+  ShareQosPolicy SubscriberQos_Impl::get_ShareQosPolicy (void) const
+  {
+    return this->children <ShareQosPolicy> ().first ();
+  }
+
+  //
   // has_PartitionQosPolicy
   //
   bool SubscriberQos_Impl::has_PartitionQosPolicy (void) const
@@ -98,38 +114,6 @@ namespace DQML
   }
 
   //
-  // has_PresentationQosPolicy
-  //
-  bool SubscriberQos_Impl::has_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_PresentationQosPolicy
-  //
-  PresentationQosPolicy SubscriberQos_Impl::get_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().first ();
-  }
-
-  //
-  // has_ShareQosPolicy
-  //
-  bool SubscriberQos_Impl::has_ShareQosPolicy (void) const
-  {
-    return this->children <ShareQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_ShareQosPolicy
-  //
-  ShareQosPolicy SubscriberQos_Impl::get_ShareQosPolicy (void) const
-  {
-    return this->children <ShareQosPolicy> ().first ();
-  }
-
-  //
   // has_GroupDataQosPolicy
   //
   bool SubscriberQos_Impl::has_GroupDataQosPolicy (void) const
@@ -143,6 +127,22 @@ namespace DQML
   GroupDataQosPolicy SubscriberQos_Impl::get_GroupDataQosPolicy (void) const
   {
     return this->children <GroupDataQosPolicy> ().first ();
+  }
+
+  //
+  // has_PresentationQosPolicy
+  //
+  bool SubscriberQos_Impl::has_PresentationQosPolicy (void) const
+  {
+    return this->children <PresentationQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_PresentationQosPolicy
+  //
+  PresentationQosPolicy SubscriberQos_Impl::get_PresentationQosPolicy (void) const
+  {
+    return this->children <PresentationQosPolicy> ().first ();
   }
 }
 

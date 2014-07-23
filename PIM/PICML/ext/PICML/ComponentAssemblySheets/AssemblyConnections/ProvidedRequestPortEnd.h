@@ -69,11 +69,11 @@ namespace PICML
     /// Get the dst ConnectorToFacet connection.
     size_t dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
 
-    /// Get the dst FacetDelegate connection.
-    size_t dst_FacetDelegate (std::vector <FacetDelegate> & items) const;
-
     /// Get the dst Invoke connection.
     size_t dst_Invoke (std::vector <Invoke> & items) const;
+
+    /// Get the dst FacetDelegate connection.
+    size_t dst_FacetDelegate (std::vector <FacetDelegate> & items) const;
     ///@}
   };
 }

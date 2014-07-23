@@ -57,8 +57,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ComplexProperty parent_ComplexProperty (void);
     DataValueContainer parent_DataValueContainer (void);
+    ComplexProperty parent_ComplexProperty (void);
     ///@}
   };
 }

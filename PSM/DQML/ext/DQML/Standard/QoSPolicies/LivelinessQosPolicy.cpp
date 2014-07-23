@@ -11,9 +11,9 @@
 #include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
 #include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
 #include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,14 +28,6 @@ namespace DQML
   const std::string LivelinessQosPolicy_Impl::metaname ("LivelinessQosPolicy");
 
   //
-  // _create (const DataReaderQos_in)
-  //
-  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const DataWriterQos_in)
   //
   LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataWriterQos_in parent)
@@ -47,6 +39,14 @@ namespace DQML
   // _create (const TopicQos_in)
   //
   LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const TopicQos_in parent)
+  {
+    return ::GAME::Mga::create_object < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
   }
@@ -74,14 +74,6 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
-  //
-  DataReaderQos LivelinessQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos LivelinessQosPolicy_Impl::parent_DataWriterQos (void)
@@ -95,6 +87,14 @@ namespace DQML
   TopicQos LivelinessQosPolicy_Impl::parent_TopicQos (void)
   {
     return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos LivelinessQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //

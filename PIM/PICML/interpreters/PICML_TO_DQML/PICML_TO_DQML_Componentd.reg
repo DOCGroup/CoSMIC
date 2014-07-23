@@ -1,0 +1,32 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{7532794b-5132-4de9-8edf-421983ea13b0}]
+@="GAME.Interpreter.PICML_TO_DQML"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{7532794b-5132-4de9-8edf-421983ea13b0}\ProgID]
+@="GAME.Interpreter.PICML_TO_DQML"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{7532794b-5132-4de9-8edf-421983ea13b0}\InProcServer32]
+@="PICML_TO_DQML_Componentd.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.PICML_TO_DQML]
+@="GAME.Interpreter.PICML_TO_DQML"
+
+[HKEY_CURRENT_USER\Software\Classes\GAME.Interpreter.PICML_TO_DQML\CLSID]
+@="{7532794b-5132-4de9-8edf-421983ea13b0}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.PICML_TO_DQML]
+"Tooltip"="PICML TO DQML Interpreter"
+"Icon"=",IDI_COMPICON"
+"Paradigm"="PICML"
+"Type"=dword:00000001
+"Description"="PICML TO DQML"
+
+
+[HKEY_CURRENT_USER\Software\GME\Components\GAME.Interpreter.PICML_TO_DQML\Associated]
+"PICML"=""
+

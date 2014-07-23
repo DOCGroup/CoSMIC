@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/dp_pub_Connection.h"
-#include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
-#include "DQML/Standard/Main/dpf_dp_Connection.h"
 #include "DQML/Standard/Main/dp_topic_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
+#include "DQML/Standard/Main/dp_sub_Connection.h"
+#include "DQML/Standard/Main/dpf_dp_Connection.h"
+#include "DQML/Standard/Main/dp_pub_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -50,22 +50,6 @@ namespace DQML
   }
 
   //
-  // src_dp_pub_Connection
-  //
-  size_t DomainParticipant_Impl::src_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const
-  {
-    return this->in_connections <dp_pub_Connection> (items);
-  }
-
-  //
-  // src_dp_sub_Connection
-  //
-  size_t DomainParticipant_Impl::src_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const
-  {
-    return this->in_connections <dp_sub_Connection> (items);
-  }
-
-  //
   // src_dp_entityfactory_Connection
   //
   size_t DomainParticipant_Impl::src_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
@@ -87,6 +71,22 @@ namespace DQML
   size_t DomainParticipant_Impl::src_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
   {
     return this->in_connections <dp_userdata_Connection> (items);
+  }
+
+  //
+  // src_dp_sub_Connection
+  //
+  size_t DomainParticipant_Impl::src_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const
+  {
+    return this->in_connections <dp_sub_Connection> (items);
+  }
+
+  //
+  // src_dp_pub_Connection
+  //
+  size_t DomainParticipant_Impl::src_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const
+  {
+    return this->in_connections <dp_pub_Connection> (items);
   }
 
   //

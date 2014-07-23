@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"

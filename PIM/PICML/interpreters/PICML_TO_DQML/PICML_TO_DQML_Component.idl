@@ -1,0 +1,36 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      PICML_TO_DQML_Component.idl
+ *
+ * $Id$
+ *
+ * @author    Tanumoy Pati
+ */
+//=============================================================================
+
+#ifndef _PICML_TO_DQML_COMPONENT_IDL_
+#define _PICML_TO_DQML_COMPONENT_IDL_
+
+#include <Gme.idl>
+#include <Core.idl>
+
+[
+	uuid (8c9b7339-5807-4f83-bcb0-84dc55ebfcc1),
+	version (1.0),
+]
+library PICML_TO_DQML_Component
+{
+	importlib ("stdole32.tlb");
+
+	[uuid (7532794b-5132-4de9-8edf-421983ea13b0)]
+	coclass PICML_TO_DQML_Component
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+                interface IGMEVersionInfo;
+	};
+};
+
+#endif  // !defined _PICML_TO_DQML_COMPONENT_IDL_

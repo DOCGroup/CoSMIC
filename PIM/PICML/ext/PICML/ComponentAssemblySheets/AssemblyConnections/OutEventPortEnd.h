@@ -66,11 +66,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src EventSourceDelegate connection.
-    size_t src_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
-
     /// Get the src SendsTo connection.
     size_t src_SendsTo (std::vector <SendsTo> & items) const;
+
+    /// Get the src EventSourceDelegate connection.
+    size_t src_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
     ///@}
   };
 }

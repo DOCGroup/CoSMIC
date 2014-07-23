@@ -27,7 +27,7 @@ namespace DQML
   //
   TopicQosFolder TopicQosFolder_Impl::_create (const iCCM_in parent)
   {
-    return ::GAME::Mga::create_root_object < TopicQosFolder > (parent, TopicQosFolder_Impl::metaname);
+    return ::GAME::Mga::create_folder < TopicQosFolder > (parent, TopicQosFolder_Impl::metaname);
   }
 
   //

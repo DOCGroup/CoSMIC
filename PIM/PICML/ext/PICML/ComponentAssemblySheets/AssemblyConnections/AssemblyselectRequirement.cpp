@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/Common/Requirement.h"
-#include "PICML/RealTimeRequirements/RTRequirements.h"
-#include "PICML/EventChannelRequirements/ECRequirements.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "PICML/Common/Requirement.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

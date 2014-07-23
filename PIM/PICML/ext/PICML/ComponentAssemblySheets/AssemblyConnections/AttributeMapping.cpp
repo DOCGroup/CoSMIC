@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -56,19 +56,19 @@ namespace PICML
   }
 
   //
-  // src_AttributeMappingValue
-  //
-  size_t AttributeMapping_Impl::src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
-  {
-    return this->in_connections <AttributeMappingValue> (items);
-  }
-
-  //
   // src_AttributeDelegate
   //
   size_t AttributeMapping_Impl::src_AttributeDelegate (std::vector <AttributeDelegate> & items) const
   {
     return this->in_connections <AttributeDelegate> (items);
+  }
+
+  //
+  // src_AttributeMappingValue
+  //
+  size_t AttributeMapping_Impl::src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
+  {
+    return this->in_connections <AttributeMappingValue> (items);
   }
 
   //

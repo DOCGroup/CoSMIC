@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
 #include "PICML/NamedTypes/Collection.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -81,6 +81,38 @@ namespace PICML
   }
 
   //
+  // get_ProvidedRequestPorts
+  //
+  size_t ConnectorObject_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  ::GAME::Mga::Collection_T <ProvidedRequestPort> ConnectorObject_Impl::get_ProvidedRequestPorts (void) const
+  {
+    return this->children <ProvidedRequestPort> ();
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectorObject_Impl::get_RequiredRequestPorts (void) const
+  {
+    return this->children <RequiredRequestPort> ();
+  }
+
+  //
   // get_ReadonlyAttributes
   //
   size_t ConnectorObject_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
@@ -113,19 +145,19 @@ namespace PICML
   }
 
   //
-  // get_ExtendedPorts
+  // get_Collections
   //
-  size_t ConnectorObject_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
+  size_t ConnectorObject_Impl::get_Collections (std::vector <Collection> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ExtendedPorts
+  // get_Collections
   //
-  ::GAME::Mga::Collection_T <ExtendedPort> ConnectorObject_Impl::get_ExtendedPorts (void) const
+  ::GAME::Mga::Collection_T <Collection> ConnectorObject_Impl::get_Collections (void) const
   {
-    return this->children <ExtendedPort> ();
+    return this->children <Collection> ();
   }
 
   //
@@ -145,51 +177,19 @@ namespace PICML
   }
 
   //
-  // get_Collections
+  // get_ExtendedPorts
   //
-  size_t ConnectorObject_Impl::get_Collections (std::vector <Collection> & items) const
+  size_t ConnectorObject_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Collections
+  // get_ExtendedPorts
   //
-  ::GAME::Mga::Collection_T <Collection> ConnectorObject_Impl::get_Collections (void) const
+  ::GAME::Mga::Collection_T <ExtendedPort> ConnectorObject_Impl::get_ExtendedPorts (void) const
   {
-    return this->children <Collection> ();
-  }
-
-  //
-  // get_RequiredRequestPorts
-  //
-  size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_RequiredRequestPorts
-  //
-  ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectorObject_Impl::get_RequiredRequestPorts (void) const
-  {
-    return this->children <RequiredRequestPort> ();
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  size_t ConnectorObject_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  ::GAME::Mga::Collection_T <ProvidedRequestPort> ConnectorObject_Impl::get_ProvidedRequestPorts (void) const
-  {
-    return this->children <ProvidedRequestPort> ();
+    return this->children <ExtendedPort> ();
   }
 
   //

@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Domain/Shares.h"
-#include "PICML/Domain/InterconnectConnection.h"
 #include "PICML/TargetElements/NodeReference.h"
+#include "PICML/Domain/InterconnectConnection.h"
 #include "PICML/TargetElements/Resource.h"
 #include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"

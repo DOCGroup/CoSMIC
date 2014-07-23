@@ -79,6 +79,9 @@ namespace PICML
      */
     ///@{
 
+    bool has_FileRef (void) const;
+    FileRef get_FileRef (void) const;
+
     bool has_ImplementationArtifactReference (void) const;
     ImplementationArtifactReference get_ImplementationArtifactReference (void) const;
 
@@ -87,9 +90,6 @@ namespace PICML
 
     bool has_ComponentServantArtifact (void) const;
     ComponentServantArtifact get_ComponentServantArtifact (void) const;
-
-    bool has_FileRef (void) const;
-    FileRef get_FileRef (void) const;
     ///@}
   };
 }

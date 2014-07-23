@@ -10,8 +10,8 @@
 #include "DQML/Visitor.h"
 #include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
 #include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,17 +26,17 @@ namespace DQML
   const std::string PartitionQosPolicy_Impl::metaname ("PartitionQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // _create (const SubscriberQos_in)
   //
-  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const PublisherQos_in parent)
+  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
     return ::GAME::Mga::create_object < PartitionQosPolicy > (parent, PartitionQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const SubscriberQos_in)
+  // _create (const PublisherQos_in)
   //
-  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  PartitionQosPolicy PartitionQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create_object < PartitionQosPolicy > (parent, PartitionQosPolicy_Impl::metaname);
   }
@@ -64,19 +64,19 @@ namespace DQML
   }
 
   //
-  // parent_PublisherQos
-  //
-  PublisherQos PartitionQosPolicy_Impl::parent_PublisherQos (void)
-  {
-    return PublisherQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_SubscriberQos
   //
   SubscriberQos PartitionQosPolicy_Impl::parent_SubscriberQos (void)
   {
     return SubscriberQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PublisherQos
+  //
+  PublisherQos PartitionQosPolicy_Impl::parent_PublisherQos (void)
+  {
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //

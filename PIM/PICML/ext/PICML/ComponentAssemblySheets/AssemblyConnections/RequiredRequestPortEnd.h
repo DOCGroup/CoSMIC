@@ -66,11 +66,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src Invoke connection.
-    size_t src_Invoke (std::vector <Invoke> & items) const;
-
     /// Get the src ConnectorToReceptacle connection.
     size_t src_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
+
+    /// Get the src Invoke connection.
+    size_t src_Invoke (std::vector <Invoke> & items) const;
     ///@}
 
     /**

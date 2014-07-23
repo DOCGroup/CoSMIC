@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,14 +28,6 @@ namespace DQML
   const std::string ReliabilityQosPolicy_Impl::metaname ("ReliabilityQosPolicy");
 
   //
-  // _create (const DataReaderQos_in)
-  //
-  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const DataWriterQos_in)
   //
   ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataWriterQos_in parent)
@@ -47,6 +39,14 @@ namespace DQML
   // _create (const TopicQos_in)
   //
   ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const TopicQos_in parent)
+  {
+    return ::GAME::Mga::create_object < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
   }
@@ -74,14 +74,6 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
-  //
-  DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos ReliabilityQosPolicy_Impl::parent_DataWriterQos (void)
@@ -98,11 +90,11 @@ namespace DQML
   }
 
   //
-  // dst_dw_reliability_Connection
+  // parent_DataReaderQos
   //
-  size_t ReliabilityQosPolicy_Impl::dst_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const
+  DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return this->in_connections <dw_reliability_Connection> (items);
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -111,6 +103,14 @@ namespace DQML
   size_t ReliabilityQosPolicy_Impl::dst_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
   {
     return this->in_connections <topic_reliability_Connection> (items);
+  }
+
+  //
+  // dst_dw_reliability_Connection
+  //
+  size_t ReliabilityQosPolicy_Impl::dst_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const
+  {
+    return this->in_connections <dw_reliability_Connection> (items);
   }
 
   //

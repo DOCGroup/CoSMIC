@@ -96,8 +96,8 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src PackageConfReference connection.
-    size_t src_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    /// Get the src PackageConfSelectRequirement connection.
+    size_t src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
 
     /// Get the src PackageConfBasePackage connection.
     size_t src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
@@ -108,8 +108,8 @@ namespace PICML
     /// Get the src PackageConfSpecializedConfig connection.
     size_t src_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
 
-    /// Get the src PackageConfSelectRequirement connection.
-    size_t src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
+    /// Get the src PackageConfReference connection.
+    size_t src_PackageConfReference (std::vector <PackageConfReference> & items) const;
     ///@}
   };
 }

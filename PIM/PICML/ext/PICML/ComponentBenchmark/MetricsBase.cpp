@@ -10,13 +10,13 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/DataAnalysisBase.h"
 #include "PICML/ComponentBenchmark/Jitter.h"
-#include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/Average.h"
 #include "PICML/ComponentBenchmark/Maximum.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
+#include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {
@@ -74,22 +74,6 @@ namespace PICML
   }
 
   //
-  // get_Minimums
-  //
-  size_t MetricsBase_Impl::get_Minimums (std::vector <Minimum> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Minimums
-  //
-  ::GAME::Mga::Collection_T <Minimum> MetricsBase_Impl::get_Minimums (void) const
-  {
-    return this->children <Minimum> ();
-  }
-
-  //
   // get_Averages
   //
   size_t MetricsBase_Impl::get_Averages (std::vector <Average> & items) const
@@ -119,6 +103,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Maximum> MetricsBase_Impl::get_Maximums (void) const
   {
     return this->children <Maximum> ();
+  }
+
+  //
+  // get_Minimums
+  //
+  size_t MetricsBase_Impl::get_Minimums (std::vector <Minimum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Minimums
+  //
+  ::GAME::Mga::Collection_T <Minimum> MetricsBase_Impl::get_Minimums (void) const
+  {
+    return this->children <Minimum> ();
   }
 }
 

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

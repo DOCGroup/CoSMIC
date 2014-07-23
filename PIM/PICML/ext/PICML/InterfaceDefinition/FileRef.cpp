@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/File.h"
-#include "PICML/ComponentBuild/StubProject.h"
 #include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,9 +24,9 @@ namespace PICML
   const std::string FileRef_Impl::metaname ("FileRef");
 
   //
-  // _create (const File_in)
+  // _create (const ServantProject_in)
   //
-  FileRef FileRef_Impl::_create (const File_in parent)
+  FileRef FileRef_Impl::_create (const ServantProject_in parent)
   {
     return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
   }
@@ -40,9 +40,9 @@ namespace PICML
   }
 
   //
-  // _create (const ServantProject_in)
+  // _create (const File_in)
   //
-  FileRef FileRef_Impl::_create (const ServantProject_in parent)
+  FileRef FileRef_Impl::_create (const File_in parent)
   {
     return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
   }
@@ -62,11 +62,11 @@ namespace PICML
   }
 
   //
-  // parent_File
+  // parent_ServantProject
   //
-  File FileRef_Impl::parent_File (void)
+  ServantProject FileRef_Impl::parent_ServantProject (void)
   {
-    return File::_narrow (this->parent ());
+    return ServantProject::_narrow (this->parent ());
   }
 
   //
@@ -78,11 +78,11 @@ namespace PICML
   }
 
   //
-  // parent_ServantProject
+  // parent_File
   //
-  ServantProject FileRef_Impl::parent_ServantProject (void)
+  File FileRef_Impl::parent_File (void)
   {
-    return ServantProject::_narrow (this->parent ());
+    return File::_narrow (this->parent ());
   }
 
   //

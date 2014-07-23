@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static DataValue _create (const ComplexProperty_in parent);
     static DataValue _create (const DataValueContainer_in parent);
+    static DataValue _create (const ComplexProperty_in parent);
     ///@}
 
     // Default constructor.

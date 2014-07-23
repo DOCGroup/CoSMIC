@@ -1,0 +1,34 @@
+// $Id$
+
+project (PICML_TO_DQML_Component) : game_mga_interpreter, game_mga_utils, dqml_game_mga, picml_game_mga, cosmic_utils, cosmic_lib {
+  sharedname = PICML_TO_DQML_Component
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    PICML_TO_DQML_Component.idl
+    PICML_TO_DQML_Component_Impl.cpp
+    PICML_TO_DQML_Component_Module.cpp
+	
+	PICML_Model_Visitor.cpp
+	Component_Asm_Visitor.cpp
+	DQML_Model_Factory.cpp
+  }
+
+  Resource_Files {
+	Component.ico
+    Component.rc
+  }
+  
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = PICML.Interpreter.PICML_TO_DQML
+    gme_uuid        = 7532794b-5132-4de9-8edf-421983ea13b0
+    gme_paradigms   = PICML
+    gme_description = PICML TO DQML Interpreter
+    gme_tooltip     = PICML TO DQML Interpreter
+    
+  }
+
+}

@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/ExtResourceConn.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

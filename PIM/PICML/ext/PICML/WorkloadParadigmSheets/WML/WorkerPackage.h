@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static WorkerPackage _create (const WorkerPackage_in parent);
     static WorkerPackage _create (const WorkerFile_in parent);
+    static WorkerPackage _create (const WorkerPackage_in parent);
     ///@}
 
     // Default constructor.
@@ -73,8 +73,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    WorkerPackage parent_WorkerPackage (void);
     WorkerFile parent_WorkerFile (void);
+    WorkerPackage parent_WorkerPackage (void);
     ///@}
 
     /**

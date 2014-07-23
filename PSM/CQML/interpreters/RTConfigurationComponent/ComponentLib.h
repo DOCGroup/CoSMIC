@@ -4,9 +4,9 @@
 
 
  /* File created by MIDL compiler version 8.00.0595 */
-/* at Thu Jun 19 02:19:23 2014
+/* at Sun Jul 06 19:49:00 2014
  */
-/* Compiler settings for C:\Program Files\GME\\SDK\BON\Common\ComponentLib.idl:
+/* Compiler settings for C:\Program Files\GME\SDK\BON\Common\ComponentLib.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0595 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 

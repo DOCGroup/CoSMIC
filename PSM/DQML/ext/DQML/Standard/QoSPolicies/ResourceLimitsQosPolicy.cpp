@@ -11,9 +11,9 @@
 #include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,14 +28,6 @@ namespace DQML
   const std::string ResourceLimitsQosPolicy_Impl::metaname ("ResourceLimitsQosPolicy");
 
   //
-  // _create (const DataReaderQos_in)
-  //
-  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataReaderQos_in parent)
-  {
-    return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const DataWriterQos_in)
   //
   ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataWriterQos_in parent)
@@ -47,6 +39,14 @@ namespace DQML
   // _create (const TopicQos_in)
   //
   ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const TopicQos_in parent)
+  {
+    return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  ResourceLimitsQosPolicy ResourceLimitsQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create_object < ResourceLimitsQosPolicy > (parent, ResourceLimitsQosPolicy_Impl::metaname);
   }
@@ -74,14 +74,6 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
-  //
-  DataReaderQos ResourceLimitsQosPolicy_Impl::parent_DataReaderQos (void)
-  {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos ResourceLimitsQosPolicy_Impl::parent_DataWriterQos (void)
@@ -95,6 +87,14 @@ namespace DQML
   TopicQos ResourceLimitsQosPolicy_Impl::parent_TopicQos (void)
   {
     return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataReaderQos
+  //
+  DataReaderQos ResourceLimitsQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //

@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InterfaceDefinition/ConstantType.h"
 #include "PICML/Common/SimpleType.h"
+#include "PICML/InterfaceDefinition/ConstantType.h"
 #include "PICML/NamedTypes/NoInheritable.h"
 #include "game/mga/Model.h"
 
@@ -39,8 +39,8 @@ namespace PICML
    */
   class PICML_Export Enum_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual ConstantType_Impl,
     public virtual SimpleType_Impl,
+    public virtual ConstantType_Impl,
     public virtual NoInheritable_Impl
   {
     public:

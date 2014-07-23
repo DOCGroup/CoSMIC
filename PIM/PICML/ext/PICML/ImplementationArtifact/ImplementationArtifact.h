@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ImplementationArtifact _create (const ArtifactContainer_in parent);
     static ImplementationArtifact _create (const Project_in parent);
+    static ImplementationArtifact _create (const ArtifactContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +71,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ArtifactContainer parent_ArtifactContainer (void);
     Project parent_Project (void);
+    ArtifactContainer parent_ArtifactContainer (void);
     ///@}
 
     /**
@@ -134,14 +134,14 @@ namespace PICML
     /// Get the src ArtifactDependency connection.
     size_t src_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
 
-    /// Get the src ArtifactInfoProperty connection.
-    size_t src_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const;
+    /// Get the src ArtifactExecParameter connection.
+    size_t src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
 
     /// Get the src ArtifactDeployRequirement connection.
     size_t src_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
 
-    /// Get the src ArtifactExecParameter connection.
-    size_t src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
+    /// Get the src ArtifactInfoProperty connection.
+    size_t src_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const;
     ///@}
 
     /**

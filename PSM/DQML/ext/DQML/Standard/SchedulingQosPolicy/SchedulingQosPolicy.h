@@ -88,11 +88,11 @@ namespace DQML
      */
     ///@{
 
-    bool has_SchedulingPriorityQosPolicy (void) const;
-    SchedulingPriorityQosPolicy get_SchedulingPriorityQosPolicy (void) const;
-
     bool has_SchedulingClassQosPolicy (void) const;
     SchedulingClassQosPolicy get_SchedulingClassQosPolicy (void) const;
+
+    bool has_SchedulingPriorityQosPolicy (void) const;
+    SchedulingPriorityQosPolicy get_SchedulingPriorityQosPolicy (void) const;
     ///@}
   };
 }

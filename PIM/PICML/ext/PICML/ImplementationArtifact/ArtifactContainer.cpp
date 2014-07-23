@@ -8,22 +8,22 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
 #include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
 #include "PICML/ImplementationArtifact/ArtifactDependency.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -64,6 +64,54 @@ namespace PICML
   ImplementationArtifacts ArtifactContainer_Impl::parent_ImplementationArtifacts (void)
   {
     return ImplementationArtifacts::_narrow (this->parent ());
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t ArtifactContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Collection_T <SimpleProperty> ArtifactContainer_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t ArtifactContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> ArtifactContainer_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
+  }
+
+  //
+  // get_ImplementationArtifacts
+  //
+  size_t ArtifactContainer_Impl::get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ImplementationArtifacts
+  //
+  ::GAME::Mga::Collection_T <ImplementationArtifact> ArtifactContainer_Impl::get_ImplementationArtifacts (void) const
+  {
+    return this->children <ImplementationArtifact> ();
   }
 
   //
@@ -147,6 +195,38 @@ namespace PICML
   }
 
   //
+  // get_ArtifactExecParameters
+  //
+  size_t ArtifactContainer_Impl::get_ArtifactExecParameters (std::vector <ArtifactExecParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ArtifactExecParameters
+  //
+  ::GAME::Mga::Collection_T <ArtifactExecParameter> ArtifactContainer_Impl::get_ArtifactExecParameters (void) const
+  {
+    return this->children <ArtifactExecParameter> ();
+  }
+
+  //
+  // get_ArtifactDeployRequirements
+  //
+  size_t ArtifactContainer_Impl::get_ArtifactDeployRequirements (std::vector <ArtifactDeployRequirement> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ArtifactDeployRequirements
+  //
+  ::GAME::Mga::Collection_T <ArtifactDeployRequirement> ArtifactContainer_Impl::get_ArtifactDeployRequirements (void) const
+  {
+    return this->children <ArtifactDeployRequirement> ();
+  }
+
+  //
   // get_ArtifactInfoPropertys
   //
   size_t ArtifactContainer_Impl::get_ArtifactInfoPropertys (std::vector <ArtifactInfoProperty> & items) const
@@ -208,86 +288,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentServantArtifact> ArtifactContainer_Impl::get_ComponentServantArtifacts (void) const
   {
     return this->children <ComponentServantArtifact> ();
-  }
-
-  //
-  // get_ArtifactDeployRequirements
-  //
-  size_t ArtifactContainer_Impl::get_ArtifactDeployRequirements (std::vector <ArtifactDeployRequirement> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ArtifactDeployRequirements
-  //
-  ::GAME::Mga::Collection_T <ArtifactDeployRequirement> ArtifactContainer_Impl::get_ArtifactDeployRequirements (void) const
-  {
-    return this->children <ArtifactDeployRequirement> ();
-  }
-
-  //
-  // get_ArtifactExecParameters
-  //
-  size_t ArtifactContainer_Impl::get_ArtifactExecParameters (std::vector <ArtifactExecParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ArtifactExecParameters
-  //
-  ::GAME::Mga::Collection_T <ArtifactExecParameter> ArtifactContainer_Impl::get_ArtifactExecParameters (void) const
-  {
-    return this->children <ArtifactExecParameter> ();
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t ArtifactContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> ArtifactContainer_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  size_t ArtifactContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> ArtifactContainer_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_ImplementationArtifacts
-  //
-  size_t ArtifactContainer_Impl::get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ImplementationArtifacts
-  //
-  ::GAME::Mga::Collection_T <ImplementationArtifact> ArtifactContainer_Impl::get_ImplementationArtifacts (void) const
-  {
-    return this->children <ImplementationArtifact> ();
   }
 }
 

@@ -87,11 +87,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst DstEdge connection.
-    size_t dst_DstEdge (std::vector <DstEdge> & items) const;
-
     /// Get the dst EdgeProperty connection.
     size_t dst_EdgeProperty (std::vector <EdgeProperty> & items) const;
+
+    /// Get the dst DstEdge connection.
+    size_t dst_DstEdge (std::vector <DstEdge> & items) const;
     ///@}
   };
 }

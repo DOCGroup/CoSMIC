@@ -64,11 +64,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src AssemblyConfigProperty connection.
-    size_t src_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const;
-
     /// Get the src AssemblyselectRequirement connection.
     size_t src_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+
+    /// Get the src AssemblyConfigProperty connection.
+    size_t src_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const;
     ///@}
   };
 }

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {

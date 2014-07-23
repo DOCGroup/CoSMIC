@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 
 namespace PICML
 {
@@ -20,19 +20,19 @@ namespace PICML
   const std::string ExtendedPortBase_Impl::metaname ("ExtendedPortBase");
 
   //
-  // parent_Component
-  //
-  Component ExtendedPortBase_Impl::parent_Component (void)
-  {
-    return Component::_narrow (this->parent ());
-  }
-
-  //
   // parent_ConnectorObject
   //
   ConnectorObject ExtendedPortBase_Impl::parent_ConnectorObject (void)
   {
     return ConnectorObject::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Component
+  //
+  Component ExtendedPortBase_Impl::parent_Component (void)
+  {
+    return Component::_narrow (this->parent ());
   }
 
   //

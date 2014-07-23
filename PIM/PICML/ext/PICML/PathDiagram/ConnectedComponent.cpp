@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -52,19 +52,19 @@ namespace PICML
   }
 
   //
-  // get_DstEdges
+  // get_ProvidedRequestPorts
   //
-  size_t ConnectedComponent_Impl::get_DstEdges (std::vector <DstEdge> & items) const
+  size_t ConnectedComponent_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_DstEdges
+  // get_ProvidedRequestPorts
   //
-  ::GAME::Mga::Collection_T <DstEdge> ConnectedComponent_Impl::get_DstEdges (void) const
+  ::GAME::Mga::Collection_T <ProvidedRequestPort> ConnectedComponent_Impl::get_ProvidedRequestPorts (void) const
   {
-    return this->children <DstEdge> ();
+    return this->children <ProvidedRequestPort> ();
   }
 
   //
@@ -81,22 +81,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectedComponent_Impl::get_RequiredRequestPorts (void) const
   {
     return this->children <RequiredRequestPort> ();
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  size_t ConnectedComponent_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  ::GAME::Mga::Collection_T <ProvidedRequestPort> ConnectedComponent_Impl::get_ProvidedRequestPorts (void) const
-  {
-    return this->children <ProvidedRequestPort> ();
   }
 
   //
@@ -129,6 +113,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <InEventPort> ConnectedComponent_Impl::get_InEventPorts (void) const
   {
     return this->children <InEventPort> ();
+  }
+
+  //
+  // get_DstEdges
+  //
+  size_t ConnectedComponent_Impl::get_DstEdges (std::vector <DstEdge> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_DstEdges
+  //
+  ::GAME::Mga::Collection_T <DstEdge> ConnectedComponent_Impl::get_DstEdges (void) const
+  {
+    return this->children <DstEdge> ();
   }
 }
 

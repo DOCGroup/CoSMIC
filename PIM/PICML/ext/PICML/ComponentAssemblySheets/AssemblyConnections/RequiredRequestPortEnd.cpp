@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
 
 namespace PICML
@@ -20,19 +20,19 @@ namespace PICML
   const std::string RequiredRequestPortEnd_Impl::metaname ("RequiredRequestPortEnd");
 
   //
-  // src_Invoke
-  //
-  size_t RequiredRequestPortEnd_Impl::src_Invoke (std::vector <Invoke> & items) const
-  {
-    return this->in_connections <Invoke> (items);
-  }
-
-  //
   // src_ConnectorToReceptacle
   //
   size_t RequiredRequestPortEnd_Impl::src_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
   {
     return this->in_connections <ConnectorToReceptacle> (items);
+  }
+
+  //
+  // src_Invoke
+  //
+  size_t RequiredRequestPortEnd_Impl::src_Invoke (std::vector <Invoke> & items) const
+  {
+    return this->in_connections <Invoke> (items);
   }
 
   //

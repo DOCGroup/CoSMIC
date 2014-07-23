@@ -49,11 +49,10 @@ invoke_ex (GAME::Mga::Project project,
   // Select the target output directory. If no directory is
   // selected, then we need to return control to the client.
   const char * prompt = "Select target output directory for iCCM configurations files:";
-  std::string path;
-
-  
-
-  if (!Utils::getPath (prompt, path))
+  std::string path = project.connstr ();   
+  int i = path.find ("=");
+  path = path.substr (i + 1 , path.find_last_of ("/\\") - i);
+  if ( ! GAME::Utils::get_path (prompt, path, path))
     return 0;
 
   try
@@ -62,6 +61,8 @@ invoke_ex (GAME::Mga::Project project,
 
     DQML_iCCM::Participant_File_Locator locator (path);
     project.root_folder ()->accept (&locator);
+
+    t_readonly.commit();
 
     ::AfxMessageBox ("Successfully generated configuration files.", MB_OK);
   }

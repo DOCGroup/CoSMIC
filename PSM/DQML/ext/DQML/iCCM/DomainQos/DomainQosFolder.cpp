@@ -27,7 +27,7 @@ namespace DQML
   //
   DomainQosFolder DomainQosFolder_Impl::_create (const iCCM_in parent)
   {
-    return ::GAME::Mga::create_root_object < DomainQosFolder > (parent, DomainQosFolder_Impl::metaname);
+    return ::GAME::Mga::create_folder < DomainQosFolder > (parent, DomainQosFolder_Impl::metaname);
   }
 
   //

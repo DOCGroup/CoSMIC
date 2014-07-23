@@ -12,14 +12,14 @@ namespace PICML
     /// Default constructor.
     Init (void)
     {
-      ::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->register_factory (&this->impl_factory_);
+      ::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->register_factory (&this->impl_factory_, "PICML");
     }
 
 
     /// Destructor.
     ~Init (void)
     {
-      ::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->unregister_factory (&this->impl_factory_);
+      ::GAME::Mga::GLOBAL_IMPL_FACTORY::instance ()->unregister_factory ("PICML");
     }
 
     private:Impl_Factory impl_factory_;

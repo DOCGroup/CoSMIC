@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

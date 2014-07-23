@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -79,54 +79,6 @@ namespace PICML
   }
 
   //
-  // get_SupportsInstances
-  //
-  size_t ComponentInstance_Impl::get_SupportsInstances (std::vector <SupportsInstance> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SupportsInstances
-  //
-  ::GAME::Mga::Collection_T <SupportsInstance> ComponentInstance_Impl::get_SupportsInstances (void) const
-  {
-    return this->children <SupportsInstance> ();
-  }
-
-  //
-  // get_RequiredRequestPortInstances
-  //
-  size_t ComponentInstance_Impl::get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_RequiredRequestPortInstances
-  //
-  ::GAME::Mga::Collection_T <RequiredRequestPortInstance> ComponentInstance_Impl::get_RequiredRequestPortInstances (void) const
-  {
-    return this->children <RequiredRequestPortInstance> ();
-  }
-
-  //
-  // get_ProvidedRequestPortInstances
-  //
-  size_t ComponentInstance_Impl::get_ProvidedRequestPortInstances (std::vector <ProvidedRequestPortInstance> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ProvidedRequestPortInstances
-  //
-  ::GAME::Mga::Collection_T <ProvidedRequestPortInstance> ComponentInstance_Impl::get_ProvidedRequestPortInstances (void) const
-  {
-    return this->children <ProvidedRequestPortInstance> ();
-  }
-
-  //
   // get_OutEventPortInstances
   //
   size_t ComponentInstance_Impl::get_OutEventPortInstances (std::vector <OutEventPortInstance> & items) const
@@ -159,19 +111,19 @@ namespace PICML
   }
 
   //
-  // get_ExtendedPortInstances
+  // get_AttributeInstances
   //
-  size_t ComponentInstance_Impl::get_ExtendedPortInstances (std::vector <ExtendedPortInstance> & items) const
+  size_t ComponentInstance_Impl::get_AttributeInstances (std::vector <AttributeInstance> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ExtendedPortInstances
+  // get_AttributeInstances
   //
-  ::GAME::Mga::Collection_T <ExtendedPortInstance> ComponentInstance_Impl::get_ExtendedPortInstances (void) const
+  ::GAME::Mga::Collection_T <AttributeInstance> ComponentInstance_Impl::get_AttributeInstances (void) const
   {
-    return this->children <ExtendedPortInstance> ();
+    return this->children <AttributeInstance> ();
   }
 
   //
@@ -191,19 +143,67 @@ namespace PICML
   }
 
   //
-  // get_AttributeInstances
+  // get_ProvidedRequestPortInstances
   //
-  size_t ComponentInstance_Impl::get_AttributeInstances (std::vector <AttributeInstance> & items) const
+  size_t ComponentInstance_Impl::get_ProvidedRequestPortInstances (std::vector <ProvidedRequestPortInstance> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeInstances
+  // get_ProvidedRequestPortInstances
   //
-  ::GAME::Mga::Collection_T <AttributeInstance> ComponentInstance_Impl::get_AttributeInstances (void) const
+  ::GAME::Mga::Collection_T <ProvidedRequestPortInstance> ComponentInstance_Impl::get_ProvidedRequestPortInstances (void) const
   {
-    return this->children <AttributeInstance> ();
+    return this->children <ProvidedRequestPortInstance> ();
+  }
+
+  //
+  // get_RequiredRequestPortInstances
+  //
+  size_t ComponentInstance_Impl::get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPortInstances
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPortInstance> ComponentInstance_Impl::get_RequiredRequestPortInstances (void) const
+  {
+    return this->children <RequiredRequestPortInstance> ();
+  }
+
+  //
+  // get_ExtendedPortInstances
+  //
+  size_t ComponentInstance_Impl::get_ExtendedPortInstances (std::vector <ExtendedPortInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExtendedPortInstances
+  //
+  ::GAME::Mga::Collection_T <ExtendedPortInstance> ComponentInstance_Impl::get_ExtendedPortInstances (void) const
+  {
+    return this->children <ExtendedPortInstance> ();
+  }
+
+  //
+  // get_SupportsInstances
+  //
+  size_t ComponentInstance_Impl::get_SupportsInstances (std::vector <SupportsInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SupportsInstances
+  //
+  ::GAME::Mga::Collection_T <SupportsInstance> ComponentInstance_Impl::get_SupportsInstances (void) const
+  {
+    return this->children <SupportsInstance> ();
   }
 }
 

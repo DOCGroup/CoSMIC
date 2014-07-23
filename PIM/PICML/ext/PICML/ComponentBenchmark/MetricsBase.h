@@ -130,14 +130,14 @@ namespace PICML
     size_t get_Jitters (std::vector <Jitter> & items) const;
     ::GAME::Mga::Collection_T <Jitter> get_Jitters (void) const;
 
-    size_t get_Minimums (std::vector <Minimum> & items) const;
-    ::GAME::Mga::Collection_T <Minimum> get_Minimums (void) const;
-
     size_t get_Averages (std::vector <Average> & items) const;
     ::GAME::Mga::Collection_T <Average> get_Averages (void) const;
 
     size_t get_Maximums (std::vector <Maximum> & items) const;
     ::GAME::Mga::Collection_T <Maximum> get_Maximums (void) const;
+
+    size_t get_Minimums (std::vector <Minimum> & items) const;
+    ::GAME::Mga::Collection_T <Minimum> get_Minimums (void) const;
 
     ///@}
   };

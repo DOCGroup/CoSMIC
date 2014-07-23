@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Minimum _create (const MetricsBase_in parent);
     static Minimum _create (const BenchmarkAnalysis_in parent);
+    static Minimum _create (const MetricsBase_in parent);
     ///@}
 
     // Default constructor.

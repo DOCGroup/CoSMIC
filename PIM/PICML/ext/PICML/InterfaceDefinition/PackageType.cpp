@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/Package.h"
-#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,17 +24,17 @@ namespace PICML
   const std::string PackageType_Impl::metaname ("PackageType");
 
   //
-  // _create (const TemplatePackageInstance_in)
+  // _create (const TemplatePackageAlias_in)
   //
-  PackageType PackageType_Impl::_create (const TemplatePackageInstance_in parent)
+  PackageType PackageType_Impl::_create (const TemplatePackageAlias_in parent)
   {
     return ::GAME::Mga::create_object < PackageType > (parent, PackageType_Impl::metaname);
   }
 
   //
-  // _create (const TemplatePackageAlias_in)
+  // _create (const TemplatePackageInstance_in)
   //
-  PackageType PackageType_Impl::_create (const TemplatePackageAlias_in parent)
+  PackageType PackageType_Impl::_create (const TemplatePackageInstance_in parent)
   {
     return ::GAME::Mga::create_object < PackageType > (parent, PackageType_Impl::metaname);
   }
@@ -54,19 +54,19 @@ namespace PICML
   }
 
   //
-  // parent_TemplatePackageInstance
-  //
-  TemplatePackageInstance PackageType_Impl::parent_TemplatePackageInstance (void)
-  {
-    return TemplatePackageInstance::_narrow (this->parent ());
-  }
-
-  //
   // parent_TemplatePackageAlias
   //
   TemplatePackageAlias PackageType_Impl::parent_TemplatePackageAlias (void)
   {
     return TemplatePackageAlias::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TemplatePackageInstance
+  //
+  TemplatePackageInstance PackageType_Impl::parent_TemplatePackageInstance (void)
+  {
+    return TemplatePackageInstance::_narrow (this->parent ());
   }
 
   //

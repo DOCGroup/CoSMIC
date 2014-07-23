@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static PartitionQosPolicy _create (const PublisherQos_in parent);
     static PartitionQosPolicy _create (const SubscriberQos_in parent);
+    static PartitionQosPolicy _create (const PublisherQos_in parent);
     static PartitionQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -74,8 +74,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    PublisherQos parent_PublisherQos (void);
     SubscriberQos parent_SubscriberQos (void);
+    PublisherQos parent_PublisherQos (void);
     ///@}
 
     /**
