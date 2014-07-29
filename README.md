@@ -1,5 +1,3 @@
-Component Synthesis using Model-Integrated Computing (CoSMIC) README
-
 Overview of CoSMIC
 ============================
 The CoSMIC tool-suite consists of a collection of Domain Specific
