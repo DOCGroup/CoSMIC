@@ -41,12 +41,12 @@ III. Getting Started
 ============================
 1.  Start GME.
 
-2.  Select File->Import XML, and navigate to the directory “examples” under
+2.  Select File->Import XML, and navigate to the directory ï¿½examplesï¿½ under
     the directory in which CoSMIC was installed. Note that each paradigm
-    mentioned above has its examples in its corresponding “examples”
-    directory. Choose Hello.xme. Leave the default item “Create
-    project file” checked in the dialog box that pops up. Click Next. Accept
-    the default name “Hello”. Click Open.
+    mentioned above has its examples in its corresponding ï¿½examplesï¿½
+    directory. Choose Hello.xme. Leave the default item ï¿½Create
+    project fileï¿½ checked in the dialog box that pops up. Click Next. Accept
+    the default name ï¿½Helloï¿½. Click Open.
 
 3.  The importer should succeed. Click on OK button on the next dialog box.
 
@@ -66,7 +66,7 @@ IV. Generating Descriptors
     which lets you specify the output directory for the generated descriptors.
 
 2.  For example, in case of PICML models, to generate component package
-    descriptors, click on the icon that says “Generate Package Descriptors”.
+    descriptors, click on the icon that says ï¿½Generate Package Descriptorsï¿½.
     It will generate the component packaging, deployment and configuration
     related descriptors.
 
@@ -74,28 +74,28 @@ V. Supported Features
 ============================
 PICML is currently capable of generating the following types of descriptors
 specified in the D&C specification:
-    *   CORBA Component Descriptor (.ccd) – Contains information about
+    *   CORBA Component Descriptor (.ccd) ï¿½ Contains information about
         component interfaces including component ports.
-    *   Component Implementation Descriptor (.cid) – Contains information
+    *   Component Implementation Descriptor (.cid) ï¿½ Contains information
         about component implementations which might be either monolithic or
         assembly based. In the case of assembly based implementations, this
         descriptor also captures the dependencies and the connections among
         components
-    *   Implementation Artifact Descriptor (.iad) – Contains information
+    *   Implementation Artifact Descriptor (.iad) ï¿½ Contains information
         about implementation artifacts including dependencies between such
         artifacts
-    *   Component Package Descriptor (.cpd) – Contains information about
+    *   Component Package Descriptor (.cpd) ï¿½ Contains information about
         grouping of multiple implementations of the same component interface
         into component packages
-    *   Package Configuration Descriptor (.pcd) – Contains information about
+    *   Package Configuration Descriptor (.pcd) ï¿½ Contains information about
         specific configurations of such component packages
-    *   Component Domain Descriptor (.cdd) – Contains information about the
+    *   Component Domain Descriptor (.cdd) ï¿½ Contains information about the
         target environment in which the component-based application will be
         deployed
-    *   Top-Level Package Descriptor (.tpd) – Contains information identifying
+    *   Top-Level Package Descriptor (.tpd) ï¿½ Contains information identifying
         the top-level element in a component package descriptor which might
         include information about multiple elements
-    *   Component Deployment Plan (.cdp) – Contains information that actually
+    *   Component Deployment Plan (.cdp) ï¿½ Contains information that actually
         drives the deployment including information about individual
         components that represent the leaf-nodes in case of a hierarchical
         assembly, connections between components, and assignment of
