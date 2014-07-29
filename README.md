@@ -65,37 +65,44 @@ Supported Features
 ============================
 PICML is currently capable of generating the following types of descriptors
 specified in the D&C specification:
-    *   CORBA Component Descriptor (.ccd) - Contains information about
-        component interfaces including component ports.
-    *   Component Implementation Descriptor (.cid) - Contains information
-        about component implementations which might be either monolithic or
-        assembly based. In the case of assembly based implementations, this
-        descriptor also captures the dependencies and the connections among
-        components
-    *   Implementation Artifact Descriptor (.iad) - Contains information
-        about implementation artifacts including dependencies between such
-        artifacts
-    *   Component Package Descriptor (.cpd) - Contains information about
-        grouping of multiple implementations of the same component interface
-        into component packages
-    *   Package Configuration Descriptor (.pcd) - Contains information about
-        specific configurations of such component packages
-    *   Component Domain Descriptor (.cdd) - Contains information about the
-        target environment in which the component-based application will be
-        deployed
-    *   Top-Level Package Descriptor (.tpd) - Contains information identifying
-        the top-level element in a component package descriptor which might
-        include information about multiple elements
-    *   Component Deployment Plan (.cdp) - Contains information that actually
-        drives the deployment including information about individual
-        components that represent the leaf-nodes in case of a hierarchical
-        assembly, connections between components, and assignment of
-        components to nodes etc.
 
-Note:
-While importing the .xme files generated with the previous versions of
-CoSMIC, GME will pop up dialog boxes about deleted properties. You can safely
-click "ignore" to suppress these messages.
+* CORBA Component Descriptor (.ccd) - Contains information about component 
+  interfaces including component ports.
+
+* Component Implementation Descriptor (.cid) - Contains information
+  about component implementations which might be either monolithic or
+  assembly based. In the case of assembly based implementations, this
+  descriptor also captures the dependencies and the connections among
+  components
+
+* Implementation Artifact Descriptor (.iad) - Contains information
+  about implementation artifacts including dependencies between such
+  artifacts
+
+* Component Package Descriptor (.cpd) - Contains information about
+  grouping of multiple implementations of the same component interface
+  into component packages
+
+* Package Configuration Descriptor (.pcd) - Contains information about
+  specific configurations of such component packages
+
+* Component Domain Descriptor (.cdd) - Contains information about the
+  target environment in which the component-based application will be
+  deployed
+
+* Top-Level Package Descriptor (.tpd) - Contains information identifying
+  the top-level element in a component package descriptor which might
+  include information about multiple elements
+
+* Component Deployment Plan (.cdp) - Contains information that actually
+  drives the deployment including information about individual
+  components that represent the leaf-nodes in case of a hierarchical
+  assembly, connections between components, and assignment of
+  components to nodes etc.
+
+**Note.** While importing the .xme files generated with the previous versions 
+of CoSMIC, GME will pop up dialog boxes about deleted properties. You can 
+safely click "ignore" to suppress these messages.
 
 You can find more information on how to use the tools by clicking
 Start -> CoSMIC -> Docs.
