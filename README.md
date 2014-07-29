@@ -1,15 +1,6 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC) README
 
-Table of Contents
-============================
-I.   Overview of CoSMIC
-II.  Minimum Requirements
-III. Getting Started
-IV.  Generating Descriptors
-V.   Supported Features
-
-
-I. Overview of CoSMIC
+Overview of CoSMIC
 ============================
 The CoSMIC tool-suite consists of a collection of Domain Specific
 Modeling Languages (DSML) and related tools for meta-data generation,
@@ -27,7 +18,7 @@ of following DSMLs.
 If you have problems with the installation, please send mail to:
 cosmic-users@list.isis.vanderbilt.edu
 
-II. Minimum Requirements
+Minimum Requirements
 ============================
 You need to have administrator privileges to install CoSMIC. The following
 are the minimum system requirements for installing CoSMIC:
@@ -37,7 +28,7 @@ are the minimum system requirements for installing CoSMIC:
 This document gives some preliminary information on getting started with
 using CoSMIC as well as information on supported features.
 
-III. Getting Started
+Getting Started
 ============================
 1.  Start GME.
 
@@ -60,7 +51,7 @@ III. Getting Started
     Double-click on any one of them to show the contents in the model-editor
     pane.
 
-IV. Generating Descriptors
+Generating Descriptors
 ============================
 1.  Clicking on any of the interpreter icons opens up a directory browser,
     which lets you specify the output directory for the generated descriptors.
@@ -70,32 +61,32 @@ IV. Generating Descriptors
     It will generate the component packaging, deployment and configuration
     related descriptors.
 
-V. Supported Features
+Supported Features
 ============================
 PICML is currently capable of generating the following types of descriptors
 specified in the D&C specification:
-    *   CORBA Component Descriptor (.ccd) � Contains information about
+    *   CORBA Component Descriptor (.ccd) - Contains information about
         component interfaces including component ports.
-    *   Component Implementation Descriptor (.cid) � Contains information
+    *   Component Implementation Descriptor (.cid) - Contains information
         about component implementations which might be either monolithic or
         assembly based. In the case of assembly based implementations, this
         descriptor also captures the dependencies and the connections among
         components
-    *   Implementation Artifact Descriptor (.iad) � Contains information
+    *   Implementation Artifact Descriptor (.iad) - Contains information
         about implementation artifacts including dependencies between such
         artifacts
-    *   Component Package Descriptor (.cpd) � Contains information about
+    *   Component Package Descriptor (.cpd) - Contains information about
         grouping of multiple implementations of the same component interface
         into component packages
-    *   Package Configuration Descriptor (.pcd) � Contains information about
+    *   Package Configuration Descriptor (.pcd) - Contains information about
         specific configurations of such component packages
-    *   Component Domain Descriptor (.cdd) � Contains information about the
+    *   Component Domain Descriptor (.cdd) - Contains information about the
         target environment in which the component-based application will be
         deployed
-    *   Top-Level Package Descriptor (.tpd) � Contains information identifying
+    *   Top-Level Package Descriptor (.tpd) - Contains information identifying
         the top-level element in a component package descriptor which might
         include information about multiple elements
-    *   Component Deployment Plan (.cdp) � Contains information that actually
+    *   Component Deployment Plan (.cdp) - Contains information that actually
         drives the deployment including information about individual
         components that represent the leaf-nodes in case of a hierarchical
         assembly, connections between components, and assignment of
