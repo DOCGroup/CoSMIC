@@ -2,16 +2,16 @@
 #define MOBIES_CQML_H
 
 // header file CQML.h generated from diagram CQML
-// generated with Udm version 3.33 on Thu Jun 19 01:54:57 2014
+// generated with Udm version 3.31 on Tue Jul 29 20:42:37 2014
 
 #include <UdmBase.h>
 
 #if !defined(UDM_VERSION_MAJOR) || !defined(UDM_VERSION_MINOR)
 #    error "Udm headers too old, they do not define UDM_VERSION"
 #elif UDM_VERSION_MAJOR < 3
-#    error "Udm headers too old, minimum version required 3.33"
-#elif UDM_VERSION_MAJOR == 3 && UDM_VERSION_MINOR < 33
-#    error "Udm headers too old, minimum version required 3.33"
+#    error "Udm headers too old, minimum version required 3.31"
+#elif UDM_VERSION_MAJOR == 3 && UDM_VERSION_MINOR < 31
+#    error "Udm headers too old, minimum version required 3.31"
 #endif
 
 #include <Uml.h>

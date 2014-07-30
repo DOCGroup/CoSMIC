@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -22,6 +22,9 @@
     <ClCompile Include="Component_Asm_Visitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DQML_Model_Factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="PICML_Model_Visitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,15 +37,12 @@
     <ClCompile Include="PICML_TO_DQML_Component_Module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DQML_Model_Factory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component_Asm_Visitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DQML_Model_Factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PICML_Model_Visitor.h">
@@ -54,19 +54,16 @@
     <ClInclude Include="PICML_TO_DQML_Component_Impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DQML_Model_Factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PICML_TO_DQML.mpc">
       <Filter>Build Files</Filter>
     </None>
-    <None Include="Component.ico">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="Component.ico">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <ResourceCompile Include="Component.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
