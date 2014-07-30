@@ -49,11 +49,11 @@ void IDL_File_Processor::Visit_File (const PICML::File & file)
     this->idl_ << "#include <Components.idl>" << nl;
 
   // Generate the include files for this file.
-  std::for_each (fwd_decls.includes ().begin (),
-                 fwd_decls.includes ().end (),
-                 boost::bind (&IDL_File_Processor::generate_include_file,
-                              this,
-                              _1));
+  auto includes = fwd_decls.includes ();
+  std::for_each (includes.begin (), includes.end (), [&] (const PICML::File & fwd_decl) {
+    this->generate_include_file (fwd_decl);
+  });
+ 
   // Write the pragma statement for the local executor mapping.
   if (fwd_decls.has_component () || this->file_has_object_with_reference (file))
     this->idl_ << nl

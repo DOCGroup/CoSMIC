@@ -16,8 +16,9 @@ namespace CoSMIC
 		bool contains_t <PRED>::operator () (const P & parent, T & element)
 		{
 			// Get the children of the parent.
-			typedef std::vector <T> T_set;
-			T_set children = UDM_NAMESPACE::ChildrenAttr <T> (parent.__impl (), UDM_NAMESPACE::NULLCHILDROLE);
+			std::vector <T> children = 
+        ::UDM_NAMESPACE::ChildrenAttr <T> (parent.__impl (), 
+                                           ::UDM_NAMESPACE::NULLCHILDROLE);
 
 			return (*this) (children, element);
 		}
@@ -191,8 +192,7 @@ namespace CoSMIC
 		// create_instance_if
 		//
 		template <typename P, typename C, typename T, typename PRED>
-		bool create_instance_if (P & parent, const C & container,
-			T & element, T & instance, PRED predicate)
+		bool create_instance_if (P & parent, const C & container, T & element, T & instance, PRED predicate)
 		{
 			// Determine if the parent has an element that matches the specified
 			// predicate. If it does not contain such an element then we need to

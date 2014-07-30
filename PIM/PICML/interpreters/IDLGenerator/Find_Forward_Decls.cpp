@@ -305,10 +305,9 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 {
   std::vector <PICML::ParameterType> params = op.ParameterType_kind_children ();
 
-  std::for_each (params.begin (),
-                 params.end (),
-                 boost::bind (&Find_Forward_Decls::Visit_MemberType, this,
-                              boost::bind (&PICML::ParameterType::ref, _1)));
+  std::for_each (params.begin (), params.end (), [&] (const PICML::ParameterType & pt) {
+    this->Visit_MemberType (pt.ref ());
+  });
 }
 
 //
@@ -338,11 +337,9 @@ void Find_Forward_Decls::
 Visit_OnewayOperation (const PICML::OnewayOperation & op)
 {
   std::vector <PICML::ParameterType> params = op.ParameterType_kind_children ();
-
-  std::for_each (params.begin (),
-                 params.end (),
-                 boost::bind (&Find_Forward_Decls::Visit_MemberType, this,
-                              boost::bind (&PICML::ParameterType::ref, _1)));
+  std::for_each (params.begin (), params.end (), [&] (const PICML::ParameterType & pt) {
+    this->Visit_MemberType (pt.ref ());
+  });
 }
 
 //
@@ -352,11 +349,9 @@ void Find_Forward_Decls::
 Visit_TwowayOperation (const PICML::TwowayOperation & op)
 {
   std::vector <PICML::ParameterType> params = op.ParameterType_kind_children ();
-
-  std::for_each (params.begin (),
-                 params.end (),
-                 boost::bind (&Find_Forward_Decls::Visit_MemberType, this,
-                              boost::bind (&PICML::ParameterType::ref, _1)));
+  std::for_each (params.begin (), params.end (), [&] (const PICML::ParameterType & pt) {
+    this->Visit_MemberType (pt.ref ());
+  });
 }
 
 //
