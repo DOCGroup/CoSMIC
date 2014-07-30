@@ -1,6 +1,12 @@
-*.vcproj
+*.vcproj*
+*.vcxproj*
+
 Debug/
+Static_Debug/
+
 Release/
+Static_Release/
+
 *_i.c
 *_p.c
 *.exe
@@ -16,4 +22,6 @@ lib/
 *.user
 *.exp
 *.suo
+*.sdf
+
 /GAME\game\mga\utils/MgaUtil.h
