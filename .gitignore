@@ -23,5 +23,6 @@ lib/
 *.exp
 *.suo
 *.sdf
+*.opensdf
 
 /GAME\game\mga\utils/MgaUtil.h
