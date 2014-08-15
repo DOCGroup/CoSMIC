@@ -54,7 +54,7 @@ void test(PICML::Visitor *v)
 	;
 }
 void Connection_Visitor::
-Visit_OutEventPortInstance ( PICML::OutEventPortInstance & source)
+Visit_OutEventPortInstance (const PICML::OutEventPortInstance & source)
 {
   PICML::ComponentInstance inst = source.ComponentInstance_parent ();
   const std::string uuid = std::string ("_") + std::string (inst.UUID ());
