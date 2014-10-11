@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_ComponentImplementationGenerator_Component) : game_mga_utils, picml_game_mga, game_mga_interpreter, game_lib {
+project (PICML_ComponentImplementationGenerator_Component) : game_mga_utils, picml_game_mga, game_mga_interpreter, cosmic_lib {
   sharedname = PICML_ComponentImplementationGenerator_Component
 
   dynamicflags += PICML_BE_COMPONENTIMPLEMENTATIONGENERATOR_BUILD_DLL
