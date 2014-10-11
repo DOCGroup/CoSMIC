@@ -1,0 +1,36 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      Domain_Component.idl
+ *
+ * $Id$
+ *
+ * @author    Tanumoy Pati
+ */
+//=============================================================================
+
+#ifndef _DOMAIN_COMPONENT_IDL_
+#define _DOMAIN_COMPONENT_IDL_
+
+#include <Gme.idl>
+#include <Core.idl>
+
+[
+	uuid (ba0333cb-fcfc-432d-b578-f16b0bfdedfb),
+	version (1.0),
+]
+library Domain_Component
+{
+	importlib ("stdole32.tlb");
+
+	[uuid (2b1e69a7-cb13-443e-ae3d-c68878922a21)]
+	coclass Domain_Component
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+                interface IGMEVersionInfo;
+	};
+};
+
+#endif  // !defined _DOMAIN_COMPONENT_IDL_

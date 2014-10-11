@@ -1,0 +1,32 @@
+// $Id$
+
+project (PICML_Domain_Component) : game_mga_interpreter, game_xml, picml_game_mga, cosmic_lib {
+  sharedname = PICML_Domain_Component
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    Domain_Component.idl
+    Domain_Component_Impl.cpp
+    Domain_Component_Module.cpp
+    Domain_Visitor.cpp
+
+    Data_Type_Visitor.cpp
+    Data_Value_Visitor.cpp
+  }
+
+  Resource_Files {
+    Component.rc
+  }
+  
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = PICML.Interpreter.Domain
+    gme_uuid        = 2b1e69a7-cb13-443e-ae3d-c68878922a21
+    gme_paradigms   = PICML
+    gme_description = Domain Interpreter
+    gme_tooltip     = Domain Interpreter
+    gme_has_icon    = 1
+  }
+}
