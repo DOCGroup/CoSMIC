@@ -78,11 +78,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst package connection.
-    size_t dst_package (std::vector <package> & items) const;
-
     /// Get the dst PackageConfSpecializedConfig connection.
     size_t dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
+
+    /// Get the dst package connection.
+    size_t dst_package (std::vector <package> & items) const;
     ///@}
 
     /**

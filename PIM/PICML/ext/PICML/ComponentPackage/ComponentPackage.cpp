@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
 #include "PICML/ComponentPackage/PackageInfoProperty.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/ComponentPackage/Implementation.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentPackage/PackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -38,17 +38,17 @@ namespace PICML
   }
 
   //
-  // _create (const PackageContainer_in)
+  // _create (const PackageConfigurationContainer_in)
   //
-  ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
+  ComponentPackage ComponentPackage_Impl::_create (const PackageConfigurationContainer_in parent)
   {
     return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
 
   //
-  // _create (const PackageConfigurationContainer_in)
+  // _create (const PackageContainer_in)
   //
-  ComponentPackage ComponentPackage_Impl::_create (const PackageConfigurationContainer_in parent)
+  ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
   {
     return ::GAME::Mga::create_object < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
@@ -76,19 +76,19 @@ namespace PICML
   }
 
   //
-  // parent_PackageContainer
-  //
-  PackageContainer ComponentPackage_Impl::parent_PackageContainer (void)
-  {
-    return PackageContainer::_narrow (this->parent ());
-  }
-
-  //
   // parent_PackageConfigurationContainer
   //
   PackageConfigurationContainer ComponentPackage_Impl::parent_PackageConfigurationContainer (void)
   {
     return PackageConfigurationContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PackageContainer
+  //
+  PackageContainer ComponentPackage_Impl::parent_PackageContainer (void)
+  {
+    return PackageContainer::_narrow (this->parent ());
   }
 
   //

@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
 #include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
-#include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

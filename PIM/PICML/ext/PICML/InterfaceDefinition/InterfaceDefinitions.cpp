@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_Files
+  //
+  ::GAME::Mga::Collection_T <File> InterfaceDefinitions_Impl::get_Files (void) const
+  {
+    return this->children <File> ();
+  }
 }
 

@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
-#include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
+#include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -55,19 +55,19 @@ namespace PICML
   }
 
   //
-  // dst_package
-  //
-  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
-  {
-    return this->in_connections <package> (items);
-  }
-
-  //
   // dst_PackageConfSpecializedConfig
   //
   size_t PackageConfigurationReference_Impl::dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
     return this->in_connections <PackageConfSpecializedConfig> (items);
+  }
+
+  //
+  // dst_package
+  //
+  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
+  {
+    return this->in_connections <package> (items);
   }
 
   //

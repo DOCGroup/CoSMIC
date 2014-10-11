@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_ComponentImplementationContainers
+  //
+  ::GAME::Mga::Collection_T <ComponentImplementationContainer> ComponentImplementations_Impl::get_ComponentImplementationContainers (void) const
+  {
+    return this->children <ComponentImplementationContainer> ();
+  }
 }
 

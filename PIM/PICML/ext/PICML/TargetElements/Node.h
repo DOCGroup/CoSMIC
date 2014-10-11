@@ -102,11 +102,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src Shares connection.
-    size_t src_Shares (std::vector <Shares> & items) const;
-
     /// Get the src InterconnectConnection connection.
     size_t src_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
+
+    /// Get the src Shares connection.
+    size_t src_Shares (std::vector <Shares> & items) const;
     ///@}
 
     /**

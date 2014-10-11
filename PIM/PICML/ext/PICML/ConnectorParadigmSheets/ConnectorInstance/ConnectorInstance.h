@@ -92,11 +92,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ConnectorToFacet connection.
-    size_t src_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
-
     /// Get the src Consume connection.
     size_t src_Consume (std::vector <Consume> & items) const;
+
+    /// Get the src ConnectorToFacet connection.
+    size_t src_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
     ///@}
 
     /**
@@ -104,11 +104,11 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst ConnectorToReceptacle connection.
-    size_t dst_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
-
     /// Get the dst Publish connection.
     size_t dst_Publish (std::vector <Publish> & items) const;
+
+    /// Get the dst ConnectorToReceptacle connection.
+    size_t dst_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
     ///@}
 
     /**

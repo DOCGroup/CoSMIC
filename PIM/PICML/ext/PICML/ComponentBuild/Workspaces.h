@@ -72,6 +72,14 @@ namespace PICML
     ///@{
     MPC parent_MPC (void);
     ///@}
+
+    /**
+     * @name Set Member Getters
+     */
+    ///@{
+
+    ::GAME::Mga::Collection_T <Project> members_Project (void);
+    ///@}
   };
 }
 

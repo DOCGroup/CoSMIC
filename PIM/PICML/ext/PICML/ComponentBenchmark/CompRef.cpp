@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

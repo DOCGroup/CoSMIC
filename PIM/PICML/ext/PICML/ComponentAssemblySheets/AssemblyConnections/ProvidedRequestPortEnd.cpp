@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 
 namespace PICML
 {
@@ -28,19 +28,19 @@ namespace PICML
   }
 
   //
-  // dst_Invoke
-  //
-  size_t ProvidedRequestPortEnd_Impl::dst_Invoke (std::vector <Invoke> & items) const
-  {
-    return this->in_connections <Invoke> (items);
-  }
-
-  //
   // dst_FacetDelegate
   //
   size_t ProvidedRequestPortEnd_Impl::dst_FacetDelegate (std::vector <FacetDelegate> & items) const
   {
     return this->in_connections <FacetDelegate> (items);
+  }
+
+  //
+  // dst_Invoke
+  //
+  size_t ProvidedRequestPortEnd_Impl::dst_Invoke (std::vector <Invoke> & items) const
+  {
+    return this->in_connections <Invoke> (items);
   }
 }
 

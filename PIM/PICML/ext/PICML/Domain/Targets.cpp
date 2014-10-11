@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_Domains
+  //
+  ::GAME::Mga::Collection_T <Domain> Targets_Impl::get_Domains (void) const
+  {
+    return this->children <Domain> ();
+  }
 }
 

@@ -99,6 +99,14 @@ namespace PICML
     /// Get the dst WorkloadCharacteristics connection.
     size_t dst_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const;
     ///@}
+
+    /**
+     * @name Set Member Getters
+     */
+    ///@{
+
+    ::GAME::Mga::Collection_T <Task> members_Task (void);
+    ///@}
   };
 }
 

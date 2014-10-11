@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
@@ -89,14 +89,6 @@ namespace PICML
   }
 
   //
-  // dst_PackageConfSelectRequirement
-  //
-  size_t Requirement_Impl::dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
-  {
-    return this->in_connections <PackageConfSelectRequirement> (items);
-  }
-
-  //
   // dst_ArtifactDeployRequirement
   //
   size_t Requirement_Impl::dst_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
@@ -110,6 +102,14 @@ namespace PICML
   size_t Requirement_Impl::dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
   {
     return this->in_connections <AssemblyselectRequirement> (items);
+  }
+
+  //
+  // dst_PackageConfSelectRequirement
+  //
+  size_t Requirement_Impl::dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> (items);
   }
 }
 

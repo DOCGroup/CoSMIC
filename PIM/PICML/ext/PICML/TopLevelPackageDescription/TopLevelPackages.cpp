@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_TopLevelPackageContainers
+  //
+  ::GAME::Mga::Collection_T <TopLevelPackageContainer> TopLevelPackages_Impl::get_TopLevelPackageContainers (void) const
+  {
+    return this->children <TopLevelPackageContainer> ();
+  }
 }
 

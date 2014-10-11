@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_DeploymentPlans
+  //
+  ::GAME::Mga::Collection_T <DeploymentPlan> DeploymentPlans_Impl::get_DeploymentPlans (void) const
+  {
+    return this->children <DeploymentPlan> ();
+  }
 }
 

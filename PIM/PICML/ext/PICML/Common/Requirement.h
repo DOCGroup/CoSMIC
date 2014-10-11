@@ -84,14 +84,14 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst PackageConfSelectRequirement connection.
-    size_t dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
-
     /// Get the dst ArtifactDeployRequirement connection.
     size_t dst_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
 
     /// Get the dst AssemblyselectRequirement connection.
     size_t dst_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+
+    /// Get the dst PackageConfSelectRequirement connection.
+    size_t dst_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
     ///@}
   };
 }

@@ -102,14 +102,14 @@ namespace PICML
     /// Get the src PackageConfBasePackage connection.
     size_t src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
 
-    /// Get the src PackageConfConfigProperty connection.
-    size_t src_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
+    /// Get the src PackageConfReference connection.
+    size_t src_PackageConfReference (std::vector <PackageConfReference> & items) const;
 
     /// Get the src PackageConfSpecializedConfig connection.
     size_t src_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
 
-    /// Get the src PackageConfReference connection.
-    size_t src_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    /// Get the src PackageConfConfigProperty connection.
+    size_t src_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
     ///@}
   };
 }

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 #include "PICML/ImplementationCommon/MonolithExecParameter.h"
 #include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 
 namespace PICML
 {
@@ -18,14 +18,6 @@ namespace PICML
   // metaname
   //
   const std::string MonolithicImplementationBase_Impl::metaname ("MonolithicImplementationBase");
-
-  //
-  // src_MonolithprimaryArtifact
-  //
-  size_t MonolithicImplementationBase_Impl::src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
-  {
-    return this->in_connections <MonolithprimaryArtifact> (items);
-  }
 
   //
   // src_MonolithExecParameter
@@ -41,6 +33,14 @@ namespace PICML
   size_t MonolithicImplementationBase_Impl::src_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const
   {
     return this->in_connections <MonolithDeployRequirement> (items);
+  }
+
+  //
+  // src_MonolithprimaryArtifact
+  //
+  size_t MonolithicImplementationBase_Impl::src_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const
+  {
+    return this->in_connections <MonolithprimaryArtifact> (items);
   }
 }
 

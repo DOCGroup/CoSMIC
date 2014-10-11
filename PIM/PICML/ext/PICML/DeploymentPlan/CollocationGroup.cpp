@@ -72,5 +72,13 @@ namespace PICML
   {
     return this->in_connections <CollocationGroupProperty> (items);
   }
+
+  //
+  // members_CollocationGroupMember
+  //
+  ::GAME::Mga::Collection_T <CollocationGroupMember> CollocationGroup_Impl::members_CollocationGroupMember (void)
+  {
+    return this->members <CollocationGroupMember> ();
+  }
 }
 

@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
 #include "game/mga/Atom.h"
 
@@ -39,8 +39,8 @@ namespace PICML
    */
   class PICML_Export TypeParameter_Impl :
     public virtual ::GAME::Mga::Atom_Impl,
-    public virtual LookupKeyType_Impl,
     public virtual ExceptionType_Impl,
+    public virtual LookupKeyType_Impl,
     public virtual TemplateParameter_Impl
   {
     public:

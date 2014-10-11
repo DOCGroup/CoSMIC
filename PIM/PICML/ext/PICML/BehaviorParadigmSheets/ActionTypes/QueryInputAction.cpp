@@ -9,12 +9,12 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,22 +66,6 @@ namespace PICML
   }
 
   //
-  // get_SimplePropertys
-  //
-  size_t QueryInputAction_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> QueryInputAction_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
-  }
-
-  //
   // get_ComplexPropertys
   //
   size_t QueryInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
@@ -95,6 +79,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComplexProperty> QueryInputAction_Impl::get_ComplexPropertys (void) const
   {
     return this->children <ComplexProperty> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t QueryInputAction_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Collection_T <SimpleProperty> QueryInputAction_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
   }
 }
 

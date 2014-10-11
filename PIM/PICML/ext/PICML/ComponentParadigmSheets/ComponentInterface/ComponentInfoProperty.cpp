@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "game/mga/Functional_T.h"

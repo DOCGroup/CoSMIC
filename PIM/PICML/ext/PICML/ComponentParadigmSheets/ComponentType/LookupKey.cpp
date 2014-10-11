@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

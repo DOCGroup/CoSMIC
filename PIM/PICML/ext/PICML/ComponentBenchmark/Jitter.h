@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Jitter _create (const BenchmarkAnalysis_in parent);
     static Jitter _create (const MetricsBase_in parent);
+    static Jitter _create (const BenchmarkAnalysis_in parent);
     ///@}
 
     // Default constructor.

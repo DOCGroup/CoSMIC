@@ -9,30 +9,24 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/NamedType.h"
-#include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/Alias.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/NamedTypes/Enum.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/Object.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/NamedTypes/Boxed.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/Enum.h"
+#include "PICML/NamedTypes/Alias.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/NamedTypes/Boxed.h"
 #include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
-#include "PICML/InterfaceDefinition/NativeValue.h"
-#include "PICML/InterfaceDefinition/PackageType.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/InterfaceDefinition/Constant.h"
@@ -40,6 +34,12 @@
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InterfaceDefinition/PackageType.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/InterfaceDefinition/NativeValue.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -99,99 +99,19 @@ namespace PICML
   }
 
   //
-  // get_Collections
+  // get_Objects
   //
-  size_t Package_Impl::get_Collections (std::vector <Collection> & items) const
+  size_t Package_Impl::get_Objects (std::vector <Object> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Collections
+  // get_Objects
   //
-  ::GAME::Mga::Collection_T <Collection> Package_Impl::get_Collections (void) const
+  ::GAME::Mga::Collection_T <Object> Package_Impl::get_Objects (void) const
   {
-    return this->children <Collection> ();
-  }
-
-  //
-  // get_Aliass
-  //
-  size_t Package_Impl::get_Aliass (std::vector <Alias> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aliass
-  //
-  ::GAME::Mga::Collection_T <Alias> Package_Impl::get_Aliass (void) const
-  {
-    return this->children <Alias> ();
-  }
-
-  //
-  // get_Aggregates
-  //
-  size_t Package_Impl::get_Aggregates (std::vector <Aggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aggregates
-  //
-  ::GAME::Mga::Collection_T <Aggregate> Package_Impl::get_Aggregates (void) const
-  {
-    return this->children <Aggregate> ();
-  }
-
-  //
-  // get_PortTypes
-  //
-  size_t Package_Impl::get_PortTypes (std::vector <PortType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PortTypes
-  //
-  ::GAME::Mga::Collection_T <PortType> Package_Impl::get_PortTypes (void) const
-  {
-    return this->children <PortType> ();
-  }
-
-  //
-  // get_SwitchedAggregates
-  //
-  size_t Package_Impl::get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SwitchedAggregates
-  //
-  ::GAME::Mga::Collection_T <SwitchedAggregate> Package_Impl::get_SwitchedAggregates (void) const
-  {
-    return this->children <SwitchedAggregate> ();
-  }
-
-  //
-  // get_Enums
-  //
-  size_t Package_Impl::get_Enums (std::vector <Enum> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Enums
-  //
-  ::GAME::Mga::Collection_T <Enum> Package_Impl::get_Enums (void) const
-  {
-    return this->children <Enum> ();
+    return this->children <Object> ();
   }
 
   //
@@ -208,22 +128,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentFactory> Package_Impl::get_ComponentFactorys (void) const
   {
     return this->children <ComponentFactory> ();
-  }
-
-  //
-  // get_Objects
-  //
-  size_t Package_Impl::get_Objects (std::vector <Object> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Objects
-  //
-  ::GAME::Mga::Collection_T <Object> Package_Impl::get_Objects (void) const
-  {
-    return this->children <Object> ();
   }
 
   //
@@ -259,19 +163,115 @@ namespace PICML
   }
 
   //
-  // get_Boxeds
+  // get_Components
   //
-  size_t Package_Impl::get_Boxeds (std::vector <Boxed> & items) const
+  size_t Package_Impl::get_Components (std::vector <Component> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Boxeds
+  // get_Components
   //
-  ::GAME::Mga::Collection_T <Boxed> Package_Impl::get_Boxeds (void) const
+  ::GAME::Mga::Collection_T <Component> Package_Impl::get_Components (void) const
   {
-    return this->children <Boxed> ();
+    return this->children <Component> ();
+  }
+
+  //
+  // get_PortTypes
+  //
+  size_t Package_Impl::get_PortTypes (std::vector <PortType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PortTypes
+  //
+  ::GAME::Mga::Collection_T <PortType> Package_Impl::get_PortTypes (void) const
+  {
+    return this->children <PortType> ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t Package_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Collection_T <Aggregate> Package_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
+  }
+
+  //
+  // get_Collections
+  //
+  size_t Package_Impl::get_Collections (std::vector <Collection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Collections
+  //
+  ::GAME::Mga::Collection_T <Collection> Package_Impl::get_Collections (void) const
+  {
+    return this->children <Collection> ();
+  }
+
+  //
+  // get_SwitchedAggregates
+  //
+  size_t Package_Impl::get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SwitchedAggregates
+  //
+  ::GAME::Mga::Collection_T <SwitchedAggregate> Package_Impl::get_SwitchedAggregates (void) const
+  {
+    return this->children <SwitchedAggregate> ();
+  }
+
+  //
+  // get_Enums
+  //
+  size_t Package_Impl::get_Enums (std::vector <Enum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Enums
+  //
+  ::GAME::Mga::Collection_T <Enum> Package_Impl::get_Enums (void) const
+  {
+    return this->children <Enum> ();
+  }
+
+  //
+  // get_Aliass
+  //
+  size_t Package_Impl::get_Aliass (std::vector <Alias> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aliass
+  //
+  ::GAME::Mga::Collection_T <Alias> Package_Impl::get_Aliass (void) const
+  {
+    return this->children <Alias> ();
   }
 
   //
@@ -291,19 +291,19 @@ namespace PICML
   }
 
   //
-  // get_Components
+  // get_Boxeds
   //
-  size_t Package_Impl::get_Components (std::vector <Component> & items) const
+  size_t Package_Impl::get_Boxeds (std::vector <Boxed> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Components
+  // get_Boxeds
   //
-  ::GAME::Mga::Collection_T <Component> Package_Impl::get_Components (void) const
+  ::GAME::Mga::Collection_T <Boxed> Package_Impl::get_Boxeds (void) const
   {
-    return this->children <Component> ();
+    return this->children <Boxed> ();
   }
 
   //
@@ -320,70 +320,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Exception> Package_Impl::get_Exceptions (void) const
   {
     return this->children <Exception> ();
-  }
-
-  //
-  // get_NameParameters
-  //
-  size_t Package_Impl::get_NameParameters (std::vector <NameParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_NameParameters
-  //
-  ::GAME::Mga::Collection_T <NameParameter> Package_Impl::get_NameParameters (void) const
-  {
-    return this->children <NameParameter> ();
-  }
-
-  //
-  // get_TypeParameters
-  //
-  size_t Package_Impl::get_TypeParameters (std::vector <TypeParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TypeParameters
-  //
-  ::GAME::Mga::Collection_T <TypeParameter> Package_Impl::get_TypeParameters (void) const
-  {
-    return this->children <TypeParameter> ();
-  }
-
-  //
-  // get_CollectionParameters
-  //
-  size_t Package_Impl::get_CollectionParameters (std::vector <CollectionParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_CollectionParameters
-  //
-  ::GAME::Mga::Collection_T <CollectionParameter> Package_Impl::get_CollectionParameters (void) const
-  {
-    return this->children <CollectionParameter> ();
-  }
-
-  //
-  // get_NativeValues
-  //
-  size_t Package_Impl::get_NativeValues (std::vector <NativeValue> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_NativeValues
-  //
-  ::GAME::Mga::Collection_T <NativeValue> Package_Impl::get_NativeValues (void) const
-  {
-    return this->children <NativeValue> ();
   }
 
   //
@@ -480,6 +416,70 @@ namespace PICML
   ::GAME::Mga::Collection_T <TemplatePackageInstance> Package_Impl::get_TemplatePackageInstances (void) const
   {
     return this->children <TemplatePackageInstance> ();
+  }
+
+  //
+  // get_CollectionParameters
+  //
+  size_t Package_Impl::get_CollectionParameters (std::vector <CollectionParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_CollectionParameters
+  //
+  ::GAME::Mga::Collection_T <CollectionParameter> Package_Impl::get_CollectionParameters (void) const
+  {
+    return this->children <CollectionParameter> ();
+  }
+
+  //
+  // get_TypeParameters
+  //
+  size_t Package_Impl::get_TypeParameters (std::vector <TypeParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_TypeParameters
+  //
+  ::GAME::Mga::Collection_T <TypeParameter> Package_Impl::get_TypeParameters (void) const
+  {
+    return this->children <TypeParameter> ();
+  }
+
+  //
+  // get_NameParameters
+  //
+  size_t Package_Impl::get_NameParameters (std::vector <NameParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_NameParameters
+  //
+  ::GAME::Mga::Collection_T <NameParameter> Package_Impl::get_NameParameters (void) const
+  {
+    return this->children <NameParameter> ();
+  }
+
+  //
+  // get_NativeValues
+  //
+  size_t Package_Impl::get_NativeValues (std::vector <NativeValue> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_NativeValues
+  //
+  ::GAME::Mga::Collection_T <NativeValue> Package_Impl::get_NativeValues (void) const
+  {
+    return this->children <NativeValue> ();
   }
 }
 

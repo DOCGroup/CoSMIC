@@ -11,14 +11,14 @@
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
-#include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
-#include "PICML/ComponentBuild/StubProject.h"
-#include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ComponentBuild/ExecutorProject.h"
+#include "PICML/ComponentBuild/ServantProject.h"
+#include "PICML/ComponentBuild/StubProject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,14 +32,6 @@ namespace PICML
   const std::string ImplementationArtifactReference_Impl::metaname ("ImplementationArtifactReference");
 
   //
-  // _create (const ServantProject_in)
-  //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ServantProject_in parent)
-  {
-    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
-  }
-
-  //
   // _create (const ImplementationContainer_in)
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ImplementationContainer_in parent)
@@ -48,9 +40,9 @@ namespace PICML
   }
 
   //
-  // _create (const StubProject_in)
+  // _create (const ArtifactContainer_in)
   //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const StubProject_in parent)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
   {
     return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
@@ -64,9 +56,17 @@ namespace PICML
   }
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const ServantProject_in)
   //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ServantProject_in parent)
+  {
+    return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+  }
+
+  //
+  // _create (const StubProject_in)
+  //
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const StubProject_in parent)
   {
     return ::GAME::Mga::create_object < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
   }
@@ -86,14 +86,6 @@ namespace PICML
   }
 
   //
-  // parent_ServantProject
-  //
-  ServantProject ImplementationArtifactReference_Impl::parent_ServantProject (void)
-  {
-    return ServantProject::_narrow (this->parent ());
-  }
-
-  //
   // parent_ImplementationContainer
   //
   ImplementationContainer ImplementationArtifactReference_Impl::parent_ImplementationContainer (void)
@@ -102,11 +94,11 @@ namespace PICML
   }
 
   //
-  // parent_StubProject
+  // parent_ArtifactContainer
   //
-  StubProject ImplementationArtifactReference_Impl::parent_StubProject (void)
+  ArtifactContainer ImplementationArtifactReference_Impl::parent_ArtifactContainer (void)
   {
-    return StubProject::_narrow (this->parent ());
+    return ArtifactContainer::_narrow (this->parent ());
   }
 
   //
@@ -118,11 +110,19 @@ namespace PICML
   }
 
   //
-  // parent_ArtifactContainer
+  // parent_ServantProject
   //
-  ArtifactContainer ImplementationArtifactReference_Impl::parent_ArtifactContainer (void)
+  ServantProject ImplementationArtifactReference_Impl::parent_ServantProject (void)
   {
-    return ArtifactContainer::_narrow (this->parent ());
+    return ServantProject::_narrow (this->parent ());
+  }
+
+  //
+  // parent_StubProject
+  //
+  StubProject ImplementationArtifactReference_Impl::parent_StubProject (void)
+  {
+    return StubProject::_narrow (this->parent ());
   }
 
   //

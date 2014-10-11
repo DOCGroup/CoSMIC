@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
-#include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/OperationTypes/ParameterType.h"
 #include "PICML/OperationTypes/InParameter.h"
-#include "PICML/OperationTypes/InoutParameter.h"
 #include "PICML/OperationTypes/OutParameter.h"
+#include "PICML/OperationTypes/InoutParameter.h"
+#include "PICML/OperationTypes/ReturnType.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -90,22 +90,6 @@ namespace PICML
   }
 
   //
-  // get_InoutParameters
-  //
-  size_t Operation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_InoutParameters
-  //
-  ::GAME::Mga::Collection_T <InoutParameter> Operation_Impl::get_InoutParameters (void) const
-  {
-    return this->children <InoutParameter> ();
-  }
-
-  //
   // get_OutParameters
   //
   size_t Operation_Impl::get_OutParameters (std::vector <OutParameter> & items) const
@@ -119,6 +103,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <OutParameter> Operation_Impl::get_OutParameters (void) const
   {
     return this->children <OutParameter> ();
+  }
+
+  //
+  // get_InoutParameters
+  //
+  size_t Operation_Impl::get_InoutParameters (std::vector <InoutParameter> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InoutParameters
+  //
+  ::GAME::Mga::Collection_T <InoutParameter> Operation_Impl::get_InoutParameters (void) const
+  {
+    return this->children <InoutParameter> ();
   }
 }
 

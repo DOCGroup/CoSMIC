@@ -10,17 +10,17 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/Object.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/AttributeMember.h"
 #include "PICML/InheritableTypes/GetException.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -42,9 +42,9 @@ namespace PICML
   }
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const Component_in)
   //
-  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const ConnectorObject_in parent)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create_object < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
@@ -58,9 +58,9 @@ namespace PICML
   }
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectorObject_in)
   //
-  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Component_in parent)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create_object < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
@@ -88,11 +88,11 @@ namespace PICML
   }
 
   //
-  // parent_ConnectorObject
+  // parent_Component
   //
-  ConnectorObject ReadonlyAttribute_Impl::parent_ConnectorObject (void)
+  Component ReadonlyAttribute_Impl::parent_Component (void)
   {
-    return ConnectorObject::_narrow (this->parent ());
+    return Component::_narrow (this->parent ());
   }
 
   //
@@ -104,11 +104,11 @@ namespace PICML
   }
 
   //
-  // parent_Component
+  // parent_ConnectorObject
   //
-  Component ReadonlyAttribute_Impl::parent_Component (void)
+  ConnectorObject ReadonlyAttribute_Impl::parent_ConnectorObject (void)
   {
-    return Component::_narrow (this->parent ());
+    return ConnectorObject::_narrow (this->parent ());
   }
 
   //

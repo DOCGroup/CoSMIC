@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_Pathss
+  //
+  ::GAME::Mga::Collection_T <Paths> PathDiagrams_Impl::get_Pathss (void) const
+  {
+    return this->children <Paths> ();
+  }
 }
 

@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/DataValueBase.h"
-#include "PICML/Common/DataValue.h"
-#include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/ComplexTypeReference.h"
+#include "PICML/Common/DataValueBase.h"
+#include "PICML/Common/DataValueContainer.h"
+#include "PICML/Common/DataValue.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,17 +26,17 @@ namespace PICML
   const std::string DataValueContainer_Impl::metaname ("DataValueContainer");
 
   //
-  // _create (const DataValueContainer_in)
+  // _create (const ComplexProperty_in)
   //
-  DataValueContainer DataValueContainer_Impl::_create (const DataValueContainer_in parent)
+  DataValueContainer DataValueContainer_Impl::_create (const ComplexProperty_in parent)
   {
     return ::GAME::Mga::create_object < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
   }
 
   //
-  // _create (const ComplexProperty_in)
+  // _create (const DataValueContainer_in)
   //
-  DataValueContainer DataValueContainer_Impl::_create (const ComplexProperty_in parent)
+  DataValueContainer DataValueContainer_Impl::_create (const DataValueContainer_in parent)
   {
     return ::GAME::Mga::create_object < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
   }
@@ -72,22 +72,6 @@ namespace PICML
   }
 
   //
-  // get_DataValues
-  //
-  size_t DataValueContainer_Impl::get_DataValues (std::vector <DataValue> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_DataValues
-  //
-  ::GAME::Mga::Collection_T <DataValue> DataValueContainer_Impl::get_DataValues (void) const
-  {
-    return this->children <DataValue> ();
-  }
-
-  //
   // get_DataValueContainers
   //
   size_t DataValueContainer_Impl::get_DataValueContainers (std::vector <DataValueContainer> & items) const
@@ -101,6 +85,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <DataValueContainer> DataValueContainer_Impl::get_DataValueContainers (void) const
   {
     return this->children <DataValueContainer> ();
+  }
+
+  //
+  // get_DataValues
+  //
+  size_t DataValueContainer_Impl::get_DataValues (std::vector <DataValue> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_DataValues
+  //
+  ::GAME::Mga::Collection_T <DataValue> DataValueContainer_Impl::get_DataValues (void) const
+  {
+    return this->children <DataValue> ();
   }
 }
 

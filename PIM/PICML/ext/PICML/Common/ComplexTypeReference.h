@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComplexTypeReference _create (const DataValueContainer_in parent);
     static ComplexTypeReference _create (const ComplexProperty_in parent);
+    static ComplexTypeReference _create (const DataValueContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +71,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    DataValueContainer parent_DataValueContainer (void);
     ComplexProperty parent_ComplexProperty (void);
+    DataValueContainer parent_DataValueContainer (void);
     ///@}
 
     /**

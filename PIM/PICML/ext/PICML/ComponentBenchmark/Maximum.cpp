@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,17 +23,17 @@ namespace PICML
   const std::string Maximum_Impl::metaname ("Maximum");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // _create (const MetricsBase_in)
   //
-  Maximum Maximum_Impl::_create (const BenchmarkAnalysis_in parent)
+  Maximum Maximum_Impl::_create (const MetricsBase_in parent)
   {
     return ::GAME::Mga::create_object < Maximum > (parent, Maximum_Impl::metaname);
   }
 
   //
-  // _create (const MetricsBase_in)
+  // _create (const BenchmarkAnalysis_in)
   //
-  Maximum Maximum_Impl::_create (const MetricsBase_in parent)
+  Maximum Maximum_Impl::_create (const BenchmarkAnalysis_in parent)
   {
     return ::GAME::Mga::create_object < Maximum > (parent, Maximum_Impl::metaname);
   }

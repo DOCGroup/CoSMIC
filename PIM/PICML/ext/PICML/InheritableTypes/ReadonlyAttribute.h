@@ -54,9 +54,9 @@ namespace PICML
      */
     ///@{
     static ReadonlyAttribute _create (const Inheritable_in parent);
-    static ReadonlyAttribute _create (const ConnectorObject_in parent);
-    static ReadonlyAttribute _create (const PortType_in parent);
     static ReadonlyAttribute _create (const Component_in parent);
+    static ReadonlyAttribute _create (const PortType_in parent);
+    static ReadonlyAttribute _create (const ConnectorObject_in parent);
     ///@}
 
     // Default constructor.
@@ -76,9 +76,9 @@ namespace PICML
      */
     ///@{
     Inheritable parent_Inheritable (void);
-    ConnectorObject parent_ConnectorObject (void);
-    PortType parent_PortType (void);
     Component parent_Component (void);
+    PortType parent_PortType (void);
+    ConnectorObject parent_ConnectorObject (void);
     ///@}
 
     /**
