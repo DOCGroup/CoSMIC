@@ -9,16 +9,16 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentPackage/ComponentPackages.h"
 #include "PICML/ComponentPackage/PackageConfigProperty.h"
 #include "PICML/ComponentPackage/PackageInfoProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentPackage/Implementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentPackage/ComponentPackages.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -78,22 +78,6 @@ namespace PICML
   }
 
   //
-  // has_ComponentRef
-  //
-  bool PackageContainer_Impl::has_ComponentRef (void) const
-  {
-    return this->children <ComponentRef> ().count () == 1;
-  }
-
-  //
-  // get_ComponentRef
-  //
-  ComponentRef PackageContainer_Impl::get_ComponentRef (void) const
-  {
-    return this->children <ComponentRef> ().first ();
-  }
-
-  //
   // has_PackageInterface
   //
   bool PackageContainer_Impl::has_PackageInterface (void) const
@@ -110,19 +94,19 @@ namespace PICML
   }
 
   //
-  // get_SimplePropertys
+  // has_ComponentRef
   //
-  size_t PackageContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  bool PackageContainer_Impl::has_ComponentRef (void) const
   {
-    return this->children (items);
+    return this->children <ComponentRef> ().count () == 1;
   }
 
   //
-  // get_SimplePropertys
+  // get_ComponentRef
   //
-  ::GAME::Mga::Collection_T <SimpleProperty> PackageContainer_Impl::get_SimplePropertys (void) const
+  ComponentRef PackageContainer_Impl::get_ComponentRef (void) const
   {
-    return this->children <SimpleProperty> ();
+    return this->children <ComponentRef> ().first ();
   }
 
   //
@@ -139,6 +123,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComplexProperty> PackageContainer_Impl::get_ComplexPropertys (void) const
   {
     return this->children <ComplexProperty> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t PackageContainer_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Collection_T <SimpleProperty> PackageContainer_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
   }
 
   //
@@ -174,22 +174,6 @@ namespace PICML
   }
 
   //
-  // get_ComponentImplementationReferences
-  //
-  size_t PackageContainer_Impl::get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentImplementationReferences
-  //
-  ::GAME::Mga::Collection_T <ComponentImplementationReference> PackageContainer_Impl::get_ComponentImplementationReferences (void) const
-  {
-    return this->children <ComponentImplementationReference> ();
-  }
-
-  //
   // get_Implementations
   //
   size_t PackageContainer_Impl::get_Implementations (std::vector <Implementation> & items) const
@@ -203,6 +187,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Implementation> PackageContainer_Impl::get_Implementations (void) const
   {
     return this->children <Implementation> ();
+  }
+
+  //
+  // get_ComponentImplementationReferences
+  //
+  size_t PackageContainer_Impl::get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentImplementationReferences
+  //
+  ::GAME::Mga::Collection_T <ComponentImplementationReference> PackageContainer_Impl::get_ComponentImplementationReferences (void) const
+  {
+    return this->children <ComponentImplementationReference> ();
   }
 }
 

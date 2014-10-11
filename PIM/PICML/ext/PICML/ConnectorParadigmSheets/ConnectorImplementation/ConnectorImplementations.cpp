@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_ConnectorImplementationContainers
+  //
+  ::GAME::Mga::Collection_T <ConnectorImplementationContainer> ConnectorImplementations_Impl::get_ConnectorImplementationContainers (void) const
+  {
+    return this->children <ConnectorImplementationContainer> ();
+  }
 }
 

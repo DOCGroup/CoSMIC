@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
 #include "game/mga/Reference.h"
 
@@ -39,8 +39,8 @@ namespace PICML
    */
   class PICML_Export InEventPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual SingleInputBase_Impl,
     public virtual QueryInputBase_Impl,
+    public virtual SingleInputBase_Impl,
     public virtual EventPort_Impl
   {
     public:

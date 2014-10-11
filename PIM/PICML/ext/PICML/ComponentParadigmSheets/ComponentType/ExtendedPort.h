@@ -53,8 +53,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ExtendedPort _create (const ConnectorObject_in parent);
     static ExtendedPort _create (const Component_in parent);
+    static ExtendedPort _create (const ConnectorObject_in parent);
     ///@}
 
     // Default constructor.

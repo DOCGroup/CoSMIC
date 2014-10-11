@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/MPC.h"
 #include "PICML/ComponentBuild/Project.h"
+#include "PICML/ComponentBuild/MPC.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -50,6 +50,14 @@ namespace PICML
   MPC Workspaces_Impl::parent_MPC (void)
   {
     return MPC::_narrow (this->parent ());
+  }
+
+  //
+  // members_Project
+  //
+  ::GAME::Mga::Collection_T <Project> Workspaces_Impl::members_Project (void)
+  {
+    return this->members <Project> ();
   }
 }
 

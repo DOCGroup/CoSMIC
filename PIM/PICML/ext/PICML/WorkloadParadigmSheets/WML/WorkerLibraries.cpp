@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_WorkerLibrarys
+  //
+  ::GAME::Mga::Collection_T <WorkerLibrary> WorkerLibraries_Impl::get_WorkerLibrarys (void) const
+  {
+    return this->children <WorkerLibrary> ();
+  }
 }
 

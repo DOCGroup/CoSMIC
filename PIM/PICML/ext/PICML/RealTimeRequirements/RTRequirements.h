@@ -81,11 +81,11 @@ namespace PICML
      */
     ///@{
 
-    bool has_ServiceProvider (void) const;
-    ServiceProvider get_ServiceProvider (void) const;
-
     bool has_ServiceConsumer (void) const;
     ServiceConsumer get_ServiceConsumer (void) const;
+
+    bool has_ServiceProvider (void) const;
+    ServiceProvider get_ServiceProvider (void) const;
     ///@}
   };
 }

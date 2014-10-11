@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_BenchmarkAnalysiss
+  //
+  ::GAME::Mga::Collection_T <BenchmarkAnalysis> ComponentAnalyses_Impl::get_BenchmarkAnalysiss (void) const
+  {
+    return this->children <BenchmarkAnalysis> ();
+  }
 }
 

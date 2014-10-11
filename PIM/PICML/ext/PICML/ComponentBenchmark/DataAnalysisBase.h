@@ -57,8 +57,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
     MetricsBase parent_MetricsBase (void);
+    BenchmarkAnalysis parent_BenchmarkAnalysis (void);
     ///@}
   };
 }

@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
-#include "PICML/ComponentBenchmark/Jitter.h"
-#include "PICML/ComponentBenchmark/Average.h"
-#include "PICML/ComponentBenchmark/Maximum.h"
-#include "PICML/ComponentBenchmark/Minimum.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
+#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
+#include "PICML/ComponentBenchmark/Jitter.h"
+#include "PICML/ComponentBenchmark/Maximum.h"
+#include "PICML/ComponentBenchmark/Minimum.h"
+#include "PICML/ComponentBenchmark/Average.h"
 
 namespace PICML
 {
@@ -42,19 +42,19 @@ namespace PICML
   }
 
   //
-  // dst_MetricConnection
-  //
-  size_t MetricsBase_Impl::dst_MetricConnection (std::vector <MetricConnection> & items) const
-  {
-    return this->in_connections <MetricConnection> (items);
-  }
-
-  //
   // dst_BenchmarkCharacteristics
   //
   size_t MetricsBase_Impl::dst_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const
   {
     return this->in_connections <BenchmarkCharacteristics> (items);
+  }
+
+  //
+  // dst_MetricConnection
+  //
+  size_t MetricsBase_Impl::dst_MetricConnection (std::vector <MetricConnection> & items) const
+  {
+    return this->in_connections <MetricConnection> (items);
   }
 
   //
@@ -71,22 +71,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Jitter> MetricsBase_Impl::get_Jitters (void) const
   {
     return this->children <Jitter> ();
-  }
-
-  //
-  // get_Averages
-  //
-  size_t MetricsBase_Impl::get_Averages (std::vector <Average> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Averages
-  //
-  ::GAME::Mga::Collection_T <Average> MetricsBase_Impl::get_Averages (void) const
-  {
-    return this->children <Average> ();
   }
 
   //
@@ -119,6 +103,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Minimum> MetricsBase_Impl::get_Minimums (void) const
   {
     return this->children <Minimum> ();
+  }
+
+  //
+  // get_Averages
+  //
+  size_t MetricsBase_Impl::get_Averages (std::vector <Average> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Averages
+  //
+  ::GAME::Mga::Collection_T <Average> MetricsBase_Impl::get_Averages (void) const
+  {
+    return this->children <Average> ();
   }
 }
 

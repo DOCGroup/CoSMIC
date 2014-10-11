@@ -52,8 +52,8 @@ namespace PICML
      */
     ///@{
     static ComponentPackage _create (const ComponentAssembly_in parent);
-    static ComponentPackage _create (const PackageContainer_in parent);
     static ComponentPackage _create (const PackageConfigurationContainer_in parent);
+    static ComponentPackage _create (const PackageContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -73,8 +73,8 @@ namespace PICML
      */
     ///@{
     ComponentAssembly parent_ComponentAssembly (void);
-    PackageContainer parent_PackageContainer (void);
     PackageConfigurationContainer parent_PackageConfigurationContainer (void);
+    PackageContainer parent_PackageContainer (void);
     ///@}
 
     /**

@@ -13,7 +13,10 @@
 #ifndef _PICML_BE_COMPONENT_IMPLEMENTATION_GENERATOR_H_
 #define _PICML_BE_COMPONENT_IMPLEMENTATION_GENERATOR_H_
 
-#include "PICML/PICML.h"
+#include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+
 #include "BE_ImplementationArtifactGenerator.h"
 
 namespace PICML_BE
@@ -28,22 +31,21 @@ class PICML_BE_COMPONENTIMPLEMENTATIONGENERATOR_Export ComponentImplementationGe
 {
 public:
   /// Default constructor.
-  ComponentImplementationGenerator (PICML::ComponentImplementations & impl_folder,
-                                    PICML::ImplementationArtifacts & artifact_folder);
+  ComponentImplementationGenerator (PICML::ComponentImplementations_in impl_folder,
+                                    PICML::ImplementationArtifacts_in artifact_folder);
 
   /// Destructor.
   virtual ~ComponentImplementationGenerator (void);
 
   /// Visit a Component element.
-  virtual void Visit_Component (const PICML::Component & component);
+  virtual void visit_Component (PICML::Component_in component);
 
 private:
   /// Helper method for getting the scope of a named type.
-  static std::string fq_type (const PICML::NamedType & type,
-                              const std::string & separator);
+  static std::string fq_type (PICML::NamedType_in type, const std::string & separator);
 
   /// Target folder for generating implementations.
-  PICML::ComponentImplementations & impl_folder_;
+  PICML::ComponentImplementations impl_folder_;
 
   /// The current component implementation.
   PICML::MonolithicImplementation impl_;

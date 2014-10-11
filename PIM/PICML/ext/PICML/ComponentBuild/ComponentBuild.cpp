@@ -58,5 +58,13 @@ namespace PICML
   {
     return this->children (items);
   }
+
+  //
+  // get_MPCs
+  //
+  ::GAME::Mga::Collection_T <MPC> ComponentBuild_Impl::get_MPCs (void) const
+  {
+    return this->children <MPC> ();
+  }
 }
 

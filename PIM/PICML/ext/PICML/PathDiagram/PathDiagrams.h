@@ -74,7 +74,15 @@ namespace PICML
     RootFolder parent_RootFolder (void);
     ///@}
 
+    /**
+     * @name Folder Getters
+     */
+    ///@{
+
     size_t get_Pathss (std::vector <Paths> & items) const;
+
+    ::GAME::Mga::Collection_T <Paths> get_Pathss (void) const;
+    ///@}
   };
 }
 

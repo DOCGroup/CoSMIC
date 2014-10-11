@@ -90,6 +90,14 @@ namespace PICML
     /// Get the dst CollocationGroupProperty connection.
     size_t dst_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const;
     ///@}
+
+    /**
+     * @name Set Member Getters
+     */
+    ///@{
+
+    ::GAME::Mga::Collection_T <CollocationGroupMember> members_CollocationGroupMember (void);
+    ///@}
   };
 }
 

@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -79,38 +79,6 @@ namespace PICML
   }
 
   //
-  // get_OutEventPortInstances
-  //
-  size_t ComponentInstance_Impl::get_OutEventPortInstances (std::vector <OutEventPortInstance> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OutEventPortInstances
-  //
-  ::GAME::Mga::Collection_T <OutEventPortInstance> ComponentInstance_Impl::get_OutEventPortInstances (void) const
-  {
-    return this->children <OutEventPortInstance> ();
-  }
-
-  //
-  // get_MirrorPortInstances
-  //
-  size_t ComponentInstance_Impl::get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_MirrorPortInstances
-  //
-  ::GAME::Mga::Collection_T <MirrorPortInstance> ComponentInstance_Impl::get_MirrorPortInstances (void) const
-  {
-    return this->children <MirrorPortInstance> ();
-  }
-
-  //
   // get_AttributeInstances
   //
   size_t ComponentInstance_Impl::get_AttributeInstances (std::vector <AttributeInstance> & items) const
@@ -124,6 +92,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <AttributeInstance> ComponentInstance_Impl::get_AttributeInstances (void) const
   {
     return this->children <AttributeInstance> ();
+  }
+
+  //
+  // get_RequiredRequestPortInstances
+  //
+  size_t ComponentInstance_Impl::get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPortInstances
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPortInstance> ComponentInstance_Impl::get_RequiredRequestPortInstances (void) const
+  {
+    return this->children <RequiredRequestPortInstance> ();
   }
 
   //
@@ -159,19 +143,35 @@ namespace PICML
   }
 
   //
-  // get_RequiredRequestPortInstances
+  // get_OutEventPortInstances
   //
-  size_t ComponentInstance_Impl::get_RequiredRequestPortInstances (std::vector <RequiredRequestPortInstance> & items) const
+  size_t ComponentInstance_Impl::get_OutEventPortInstances (std::vector <OutEventPortInstance> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_RequiredRequestPortInstances
+  // get_OutEventPortInstances
   //
-  ::GAME::Mga::Collection_T <RequiredRequestPortInstance> ComponentInstance_Impl::get_RequiredRequestPortInstances (void) const
+  ::GAME::Mga::Collection_T <OutEventPortInstance> ComponentInstance_Impl::get_OutEventPortInstances (void) const
   {
-    return this->children <RequiredRequestPortInstance> ();
+    return this->children <OutEventPortInstance> ();
+  }
+
+  //
+  // get_MirrorPortInstances
+  //
+  size_t ComponentInstance_Impl::get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MirrorPortInstances
+  //
+  ::GAME::Mga::Collection_T <MirrorPortInstance> ComponentInstance_Impl::get_MirrorPortInstances (void) const
+  {
+    return this->children <MirrorPortInstance> ();
   }
 
   //

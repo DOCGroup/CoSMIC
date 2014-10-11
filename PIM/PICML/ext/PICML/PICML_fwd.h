@@ -13,15 +13,15 @@ namespace PICML
   typedef RootFolder_Impl * RootFolder_in;
   typedef ::GAME::Mga::Smart_Ptr <RootFolder_Impl> RootFolder;
 
-  // Forward declarations for FixedIterationBenchmarks
-  class FixedIterationBenchmarks_Impl;
-  typedef FixedIterationBenchmarks_Impl * FixedIterationBenchmarks_in;
-  typedef ::GAME::Mga::Smart_Ptr <FixedIterationBenchmarks_Impl> FixedIterationBenchmarks;
-
   // Forward declarations for PredefinedTypes
   class PredefinedTypes_Impl;
   typedef PredefinedTypes_Impl * PredefinedTypes_in;
   typedef ::GAME::Mga::Smart_Ptr <PredefinedTypes_Impl> PredefinedTypes;
+
+  // Forward declarations for FixedIterationBenchmarks
+  class FixedIterationBenchmarks_Impl;
+  typedef FixedIterationBenchmarks_Impl * FixedIterationBenchmarks_in;
+  typedef ::GAME::Mga::Smart_Ptr <FixedIterationBenchmarks_Impl> FixedIterationBenchmarks;
 
   // Forward declarations for PackageType
   class PackageType_Impl;
@@ -43,15 +43,15 @@ namespace PICML
   typedef ArtifactInfoProperty_Impl * ArtifactInfoProperty_in;
   typedef ::GAME::Mga::Smart_Ptr <ArtifactInfoProperty_Impl> ArtifactInfoProperty;
 
-  // Forward declarations for PathReference
-  class PathReference_Impl;
-  typedef PathReference_Impl * PathReference_in;
-  typedef ::GAME::Mga::Smart_Ptr <PathReference_Impl> PathReference;
-
   // Forward declarations for ProvidedRequestPortDelegate
   class ProvidedRequestPortDelegate_Impl;
   typedef ProvidedRequestPortDelegate_Impl * ProvidedRequestPortDelegate_in;
   typedef ::GAME::Mga::Smart_Ptr <ProvidedRequestPortDelegate_Impl> ProvidedRequestPortDelegate;
+
+  // Forward declarations for PathReference
+  class PathReference_Impl;
+  typedef PathReference_Impl * PathReference_in;
+  typedef ::GAME::Mga::Smart_Ptr <PathReference_Impl> PathReference;
 
   // Forward declarations for PortType
   class PortType_Impl;
@@ -143,15 +143,15 @@ namespace PICML
   typedef Inherits_Impl * Inherits_in;
   typedef ::GAME::Mga::Smart_Ptr <Inherits_Impl> Inherits;
 
-  // Forward declarations for Average
-  class Average_Impl;
-  typedef Average_Impl * Average_in;
-  typedef ::GAME::Mga::Smart_Ptr <Average_Impl> Average;
-
   // Forward declarations for Byte
   class Byte_Impl;
   typedef Byte_Impl * Byte_in;
   typedef ::GAME::Mga::Smart_Ptr <Byte_Impl> Byte;
+
+  // Forward declarations for Average
+  class Average_Impl;
+  typedef Average_Impl * Average_in;
+  typedef ::GAME::Mga::Smart_Ptr <Average_Impl> Average;
 
   // Forward declarations for State
   class State_Impl;
@@ -188,15 +188,15 @@ namespace PICML
   typedef AttributeValue_Impl * AttributeValue_in;
   typedef ::GAME::Mga::Smart_Ptr <AttributeValue_Impl> AttributeValue;
 
-  // Forward declarations for ExtendPortEnd
-  class ExtendPortEnd_Impl;
-  typedef ExtendPortEnd_Impl * ExtendPortEnd_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendPortEnd_Impl> ExtendPortEnd;
-
   // Forward declarations for ConnectorObject
   class ConnectorObject_Impl;
   typedef ConnectorObject_Impl * ConnectorObject_in;
   typedef ::GAME::Mga::Smart_Ptr <ConnectorObject_Impl> ConnectorObject;
+
+  // Forward declarations for ExtendPortEnd
+  class ExtendPortEnd_Impl;
+  typedef ExtendPortEnd_Impl * ExtendPortEnd_in;
+  typedef ::GAME::Mga::Smart_Ptr <ExtendPortEnd_Impl> ExtendPortEnd;
 
   // Forward declarations for ConfigProperty
   class ConfigProperty_Impl;
@@ -213,15 +213,15 @@ namespace PICML
   typedef WorkloadCharacteristics_Impl * WorkloadCharacteristics_in;
   typedef ::GAME::Mga::Smart_Ptr <WorkloadCharacteristics_Impl> WorkloadCharacteristics;
 
-  // Forward declarations for PackageConfigurationContainer
-  class PackageConfigurationContainer_Impl;
-  typedef PackageConfigurationContainer_Impl * PackageConfigurationContainer_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageConfigurationContainer_Impl> PackageConfigurationContainer;
-
   // Forward declarations for TemplateParameter
   class TemplateParameter_Impl;
   typedef TemplateParameter_Impl * TemplateParameter_in;
   typedef ::GAME::Mga::Smart_Ptr <TemplateParameter_Impl> TemplateParameter;
+
+  // Forward declarations for PackageConfigurationContainer
+  class PackageConfigurationContainer_Impl;
+  typedef PackageConfigurationContainer_Impl * PackageConfigurationContainer_in;
+  typedef ::GAME::Mga::Smart_Ptr <PackageConfigurationContainer_Impl> PackageConfigurationContainer;
 
   // Forward declarations for AttributeMapping
   class AttributeMapping_Impl;
@@ -278,20 +278,20 @@ namespace PICML
   typedef AssemblyConfigProperty_Impl * AssemblyConfigProperty_in;
   typedef ::GAME::Mga::Smart_Ptr <AssemblyConfigProperty_Impl> AssemblyConfigProperty;
 
-  // Forward declarations for Discriminator
-  class Discriminator_Impl;
-  typedef Discriminator_Impl * Discriminator_in;
-  typedef ::GAME::Mga::Smart_Ptr <Discriminator_Impl> Discriminator;
+  // Forward declarations for UnsignedLongLongInteger
+  class UnsignedLongLongInteger_Impl;
+  typedef UnsignedLongLongInteger_Impl * UnsignedLongLongInteger_in;
+  typedef ::GAME::Mga::Smart_Ptr <UnsignedLongLongInteger_Impl> UnsignedLongLongInteger;
 
   // Forward declarations for Char
   class Char_Impl;
   typedef Char_Impl * Char_in;
   typedef ::GAME::Mga::Smart_Ptr <Char_Impl> Char;
 
-  // Forward declarations for UnsignedLongLongInteger
-  class UnsignedLongLongInteger_Impl;
-  typedef UnsignedLongLongInteger_Impl * UnsignedLongLongInteger_in;
-  typedef ::GAME::Mga::Smart_Ptr <UnsignedLongLongInteger_Impl> UnsignedLongLongInteger;
+  // Forward declarations for Discriminator
+  class Discriminator_Impl;
+  typedef Discriminator_Impl * Discriminator_in;
+  typedef ::GAME::Mga::Smart_Ptr <Discriminator_Impl> Discriminator;
 
   // Forward declarations for DisplayNode
   class DisplayNode_Impl;
@@ -328,6 +328,11 @@ namespace PICML
   typedef IntegerType_Impl * IntegerType_in;
   typedef ::GAME::Mga::Smart_Ptr <IntegerType_Impl> IntegerType;
 
+  // Forward declarations for WorkerPackageBase
+  class WorkerPackageBase_Impl;
+  typedef WorkerPackageBase_Impl * WorkerPackageBase_in;
+  typedef ::GAME::Mga::Smart_Ptr <WorkerPackageBase_Impl> WorkerPackageBase;
+
   // Forward declarations for SimpleType
   class SimpleType_Impl;
   typedef SimpleType_Impl * SimpleType_in;
@@ -337,11 +342,6 @@ namespace PICML
   class ComponentImplementationReference_Impl;
   typedef ComponentImplementationReference_Impl * ComponentImplementationReference_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentImplementationReference_Impl> ComponentImplementationReference;
-
-  // Forward declarations for WorkerPackageBase
-  class WorkerPackageBase_Impl;
-  typedef WorkerPackageBase_Impl * WorkerPackageBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerPackageBase_Impl> WorkerPackageBase;
 
   // Forward declarations for ArtifactExecParameter
   class ArtifactExecParameter_Impl;
@@ -398,15 +398,15 @@ namespace PICML
   typedef SetException_Impl * SetException_in;
   typedef ::GAME::Mga::Smart_Ptr <SetException_Impl> SetException;
 
-  // Forward declarations for ServiceLevels
-  class ServiceLevels_Impl;
-  typedef ServiceLevels_Impl * ServiceLevels_in;
-  typedef ::GAME::Mga::Smart_Ptr <ServiceLevels_Impl> ServiceLevels;
-
   // Forward declarations for ExternalResources
   class ExternalResources_Impl;
   typedef ExternalResources_Impl * ExternalResources_in;
   typedef ::GAME::Mga::Smart_Ptr <ExternalResources_Impl> ExternalResources;
+
+  // Forward declarations for ServiceLevels
+  class ServiceLevels_Impl;
+  typedef ServiceLevels_Impl * ServiceLevels_in;
+  typedef ::GAME::Mga::Smart_Ptr <ServiceLevels_Impl> ServiceLevels;
 
   // Forward declarations for FileRef
   class FileRef_Impl;
@@ -458,15 +458,15 @@ namespace PICML
   typedef Action_Impl * Action_in;
   typedef ::GAME::Mga::Smart_Ptr <Action_Impl> Action;
 
-  // Forward declarations for DoubleNumber
-  class DoubleNumber_Impl;
-  typedef DoubleNumber_Impl * DoubleNumber_in;
-  typedef ::GAME::Mga::Smart_Ptr <DoubleNumber_Impl> DoubleNumber;
-
   // Forward declarations for NameParameter
   class NameParameter_Impl;
   typedef NameParameter_Impl * NameParameter_in;
   typedef ::GAME::Mga::Smart_Ptr <NameParameter_Impl> NameParameter;
+
+  // Forward declarations for DoubleNumber
+  class DoubleNumber_Impl;
+  typedef DoubleNumber_Impl * DoubleNumber_in;
+  typedef ::GAME::Mga::Smart_Ptr <DoubleNumber_Impl> DoubleNumber;
 
   // Forward declarations for CompRef
   class CompRef_Impl;
@@ -503,25 +503,25 @@ namespace PICML
   typedef Exception_Impl * Exception_in;
   typedef ::GAME::Mga::Smart_Ptr <Exception_Impl> Exception;
 
-  // Forward declarations for LongLongInteger
-  class LongLongInteger_Impl;
-  typedef LongLongInteger_Impl * LongLongInteger_in;
-  typedef ::GAME::Mga::Smart_Ptr <LongLongInteger_Impl> LongLongInteger;
-
   // Forward declarations for LongInteger
   class LongInteger_Impl;
   typedef LongInteger_Impl * LongInteger_in;
   typedef ::GAME::Mga::Smart_Ptr <LongInteger_Impl> LongInteger;
 
-  // Forward declarations for CharType
-  class CharType_Impl;
-  typedef CharType_Impl * CharType_in;
-  typedef ::GAME::Mga::Smart_Ptr <CharType_Impl> CharType;
+  // Forward declarations for LongLongInteger
+  class LongLongInteger_Impl;
+  typedef LongLongInteger_Impl * LongLongInteger_in;
+  typedef ::GAME::Mga::Smart_Ptr <LongLongInteger_Impl> LongLongInteger;
 
   // Forward declarations for GenericValue
   class GenericValue_Impl;
   typedef GenericValue_Impl * GenericValue_in;
   typedef ::GAME::Mga::Smart_Ptr <GenericValue_Impl> GenericValue;
+
+  // Forward declarations for CharType
+  class CharType_Impl;
+  typedef CharType_Impl * CharType_in;
+  typedef ::GAME::Mga::Smart_Ptr <CharType_Impl> CharType;
 
   // Forward declarations for DoWhileState
   class DoWhileState_Impl;
@@ -623,15 +623,15 @@ namespace PICML
   typedef Node_Impl * Node_in;
   typedef ::GAME::Mga::Smart_Ptr <Node_Impl> Node;
 
-  // Forward declarations for Taggable
-  class Taggable_Impl;
-  typedef Taggable_Impl * Taggable_in;
-  typedef ::GAME::Mga::Smart_Ptr <Taggable_Impl> Taggable;
-
   // Forward declarations for ActionBase
   class ActionBase_Impl;
   typedef ActionBase_Impl * ActionBase_in;
   typedef ::GAME::Mga::Smart_Ptr <ActionBase_Impl> ActionBase;
+
+  // Forward declarations for Taggable
+  class Taggable_Impl;
+  typedef Taggable_Impl * Taggable_in;
+  typedef ::GAME::Mga::Smart_Ptr <Taggable_Impl> Taggable;
 
   // Forward declarations for MPC
   class MPC_Impl;
@@ -733,15 +733,15 @@ namespace PICML
   typedef ComponentPropertyDescription_Impl * ComponentPropertyDescription_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentPropertyDescription_Impl> ComponentPropertyDescription;
 
-  // Forward declarations for RTRequirements
-  class RTRequirements_Impl;
-  typedef RTRequirements_Impl * RTRequirements_in;
-  typedef ::GAME::Mga::Smart_Ptr <RTRequirements_Impl> RTRequirements;
-
   // Forward declarations for Workspaces
   class Workspaces_Impl;
   typedef Workspaces_Impl * Workspaces_in;
   typedef ::GAME::Mga::Smart_Ptr <Workspaces_Impl> Workspaces;
+
+  // Forward declarations for RTRequirements
+  class RTRequirements_Impl;
+  typedef RTRequirements_Impl * RTRequirements_in;
+  typedef ::GAME::Mga::Smart_Ptr <RTRequirements_Impl> RTRequirements;
 
   // Forward declarations for WorkerLibraries
   class WorkerLibraries_Impl;
@@ -763,15 +763,15 @@ namespace PICML
   typedef RequiredRequestPortEnd_Impl * RequiredRequestPortEnd_in;
   typedef ::GAME::Mga::Smart_Ptr <RequiredRequestPortEnd_Impl> RequiredRequestPortEnd;
 
-  // Forward declarations for PeriodicBenchmarks
-  class PeriodicBenchmarks_Impl;
-  typedef PeriodicBenchmarks_Impl * PeriodicBenchmarks_in;
-  typedef ::GAME::Mga::Smart_Ptr <PeriodicBenchmarks_Impl> PeriodicBenchmarks;
-
   // Forward declarations for Alias
   class Alias_Impl;
   typedef Alias_Impl * Alias_in;
   typedef ::GAME::Mga::Smart_Ptr <Alias_Impl> Alias;
+
+  // Forward declarations for PeriodicBenchmarks
+  class PeriodicBenchmarks_Impl;
+  typedef PeriodicBenchmarks_Impl * PeriodicBenchmarks_in;
+  typedef ::GAME::Mga::Smart_Ptr <PeriodicBenchmarks_Impl> PeriodicBenchmarks;
 
   // Forward declarations for Shares
   class Shares_Impl;
@@ -798,15 +798,15 @@ namespace PICML
   typedef Package_Impl * Package_in;
   typedef ::GAME::Mga::Smart_Ptr <Package_Impl> Package;
 
-  // Forward declarations for ComponentAssemblyReference
-  class ComponentAssemblyReference_Impl;
-  typedef ComponentAssemblyReference_Impl * ComponentAssemblyReference_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentAssemblyReference_Impl> ComponentAssemblyReference;
-
   // Forward declarations for DataType
   class DataType_Impl;
   typedef DataType_Impl * DataType_in;
   typedef ::GAME::Mga::Smart_Ptr <DataType_Impl> DataType;
+
+  // Forward declarations for ComponentAssemblyReference
+  class ComponentAssemblyReference_Impl;
+  typedef ComponentAssemblyReference_Impl * ComponentAssemblyReference_in;
+  typedef ::GAME::Mga::Smart_Ptr <ComponentAssemblyReference_Impl> ComponentAssemblyReference;
 
   // Forward declarations for TypeKind
   class TypeKind_Impl;
@@ -1098,50 +1098,50 @@ namespace PICML
   typedef CriticalPath_Impl * CriticalPath_in;
   typedef ::GAME::Mga::Smart_Ptr <CriticalPath_Impl> CriticalPath;
 
-  // Forward declarations for Throughput
-  class Throughput_Impl;
-  typedef Throughput_Impl * Throughput_in;
-  typedef ::GAME::Mga::Smart_Ptr <Throughput_Impl> Throughput;
+  // Forward declarations for StubProject
+  class StubProject_Impl;
+  typedef StubProject_Impl * StubProject_in;
+  typedef ::GAME::Mga::Smart_Ptr <StubProject_Impl> StubProject;
 
   // Forward declarations for ServantProject
   class ServantProject_Impl;
   typedef ServantProject_Impl * ServantProject_in;
   typedef ::GAME::Mga::Smart_Ptr <ServantProject_Impl> ServantProject;
 
-  // Forward declarations for StubProject
-  class StubProject_Impl;
-  typedef StubProject_Impl * StubProject_in;
-  typedef ::GAME::Mga::Smart_Ptr <StubProject_Impl> StubProject;
-
-  // Forward declarations for Paths
-  class Paths_Impl;
-  typedef Paths_Impl * Paths_in;
-  typedef ::GAME::Mga::Smart_Ptr <Paths_Impl> Paths;
+  // Forward declarations for Throughput
+  class Throughput_Impl;
+  typedef Throughput_Impl * Throughput_in;
+  typedef ::GAME::Mga::Smart_Ptr <Throughput_Impl> Throughput;
 
   // Forward declarations for ComponentAnalyses
   class ComponentAnalyses_Impl;
   typedef ComponentAnalyses_Impl * ComponentAnalyses_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentAnalyses_Impl> ComponentAnalyses;
 
+  // Forward declarations for Paths
+  class Paths_Impl;
+  typedef Paths_Impl * Paths_in;
+  typedef ::GAME::Mga::Smart_Ptr <Paths_Impl> Paths;
+
   // Forward declarations for ComponentInherits
   class ComponentInherits_Impl;
   typedef ComponentInherits_Impl * ComponentInherits_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentInherits_Impl> ComponentInherits;
 
-  // Forward declarations for ExternalDelegate
-  class ExternalDelegate_Impl;
-  typedef ExternalDelegate_Impl * ExternalDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExternalDelegate_Impl> ExternalDelegate;
+  // Forward declarations for WorkerPackage
+  class WorkerPackage_Impl;
+  typedef WorkerPackage_Impl * WorkerPackage_in;
+  typedef ::GAME::Mga::Smart_Ptr <WorkerPackage_Impl> WorkerPackage;
 
   // Forward declarations for Provideable
   class Provideable_Impl;
   typedef Provideable_Impl * Provideable_in;
   typedef ::GAME::Mga::Smart_Ptr <Provideable_Impl> Provideable;
 
-  // Forward declarations for WorkerPackage
-  class WorkerPackage_Impl;
-  typedef WorkerPackage_Impl * WorkerPackage_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkerPackage_Impl> WorkerPackage;
+  // Forward declarations for ExternalDelegate
+  class ExternalDelegate_Impl;
+  typedef ExternalDelegate_Impl * ExternalDelegate_in;
+  typedef ::GAME::Mga::Smart_Ptr <ExternalDelegate_Impl> ExternalDelegate;
 
   // Forward declarations for TaskSet
   class TaskSet_Impl;
@@ -1168,15 +1168,15 @@ namespace PICML
   typedef CollocationGroupMember_Impl * CollocationGroupMember_in;
   typedef ::GAME::Mga::Smart_Ptr <CollocationGroupMember_Impl> CollocationGroupMember;
 
-  // Forward declarations for ForState
-  class ForState_Impl;
-  typedef ForState_Impl * ForState_in;
-  typedef ::GAME::Mga::Smart_Ptr <ForState_Impl> ForState;
-
   // Forward declarations for WorkerFile
   class WorkerFile_Impl;
   typedef WorkerFile_Impl * WorkerFile_in;
   typedef ::GAME::Mga::Smart_Ptr <WorkerFile_Impl> WorkerFile;
+
+  // Forward declarations for ForState
+  class ForState_Impl;
+  typedef ForState_Impl * ForState_in;
+  typedef ::GAME::Mga::Smart_Ptr <ForState_Impl> ForState;
 
   // Forward declarations for PackageConfigurations
   class PackageConfigurations_Impl;
@@ -1208,15 +1208,15 @@ namespace PICML
   typedef MirrorPortDelegate_Impl * MirrorPortDelegate_in;
   typedef ::GAME::Mga::Smart_Ptr <MirrorPortDelegate_Impl> MirrorPortDelegate;
 
-  // Forward declarations for ServiceConsumer
-  class ServiceConsumer_Impl;
-  typedef ServiceConsumer_Impl * ServiceConsumer_in;
-  typedef ::GAME::Mga::Smart_Ptr <ServiceConsumer_Impl> ServiceConsumer;
-
   // Forward declarations for LongDoubleNumber
   class LongDoubleNumber_Impl;
   typedef LongDoubleNumber_Impl * LongDoubleNumber_in;
   typedef ::GAME::Mga::Smart_Ptr <LongDoubleNumber_Impl> LongDoubleNumber;
+
+  // Forward declarations for ServiceConsumer
+  class ServiceConsumer_Impl;
+  typedef ServiceConsumer_Impl * ServiceConsumer_in;
+  typedef ::GAME::Mga::Smart_Ptr <ServiceConsumer_Impl> ServiceConsumer;
 
   // Forward declarations for ReturnType
   class ReturnType_Impl;
@@ -1283,25 +1283,25 @@ namespace PICML
   typedef ComponentInfoProperty_Impl * ComponentInfoProperty_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentInfoProperty_Impl> ComponentInfoProperty;
 
-  // Forward declarations for WorkLoadOperationConnection
-  class WorkLoadOperationConnection_Impl;
-  typedef WorkLoadOperationConnection_Impl * WorkLoadOperationConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <WorkLoadOperationConnection_Impl> WorkLoadOperationConnection;
-
   // Forward declarations for Boolean
   class Boolean_Impl;
   typedef Boolean_Impl * Boolean_in;
   typedef ::GAME::Mga::Smart_Ptr <Boolean_Impl> Boolean;
 
-  // Forward declarations for ComponentPackages
-  class ComponentPackages_Impl;
-  typedef ComponentPackages_Impl * ComponentPackages_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentPackages_Impl> ComponentPackages;
+  // Forward declarations for WorkLoadOperationConnection
+  class WorkLoadOperationConnection_Impl;
+  typedef WorkLoadOperationConnection_Impl * WorkLoadOperationConnection_in;
+  typedef ::GAME::Mga::Smart_Ptr <WorkLoadOperationConnection_Impl> WorkLoadOperationConnection;
 
   // Forward declarations for TemplatePackageAlias
   class TemplatePackageAlias_Impl;
   typedef TemplatePackageAlias_Impl * TemplatePackageAlias_in;
   typedef ::GAME::Mga::Smart_Ptr <TemplatePackageAlias_Impl> TemplatePackageAlias;
+
+  // Forward declarations for ComponentPackages
+  class ComponentPackages_Impl;
+  typedef ComponentPackages_Impl * ComponentPackages_in;
+  typedef ::GAME::Mga::Smart_Ptr <ComponentPackages_Impl> ComponentPackages;
 
   // Forward declarations for ShortInteger
   class ShortInteger_Impl;
@@ -1353,15 +1353,15 @@ namespace PICML
   typedef ECBehavior_Impl * ECBehavior_in;
   typedef ::GAME::Mga::Smart_Ptr <ECBehavior_Impl> ECBehavior;
 
-  // Forward declarations for ComplexType
-  class ComplexType_Impl;
-  typedef ComplexType_Impl * ComplexType_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComplexType_Impl> ComplexType;
-
   // Forward declarations for MultiOutputBase
   class MultiOutputBase_Impl;
   typedef MultiOutputBase_Impl * MultiOutputBase_in;
   typedef ::GAME::Mga::Smart_Ptr <MultiOutputBase_Impl> MultiOutputBase;
+
+  // Forward declarations for ComplexType
+  class ComplexType_Impl;
+  typedef ComplexType_Impl * ComplexType_in;
+  typedef ::GAME::Mga::Smart_Ptr <ComplexType_Impl> ComplexType;
 
   // Forward declarations for ExtendedPortBase
   class ExtendedPortBase_Impl;
@@ -1428,6 +1428,11 @@ namespace PICML
   typedef InEventPortDelegate_Impl * InEventPortDelegate_in;
   typedef ::GAME::Mga::Smart_Ptr <InEventPortDelegate_Impl> InEventPortDelegate;
 
+  // Forward declarations for Project
+  class Project_Impl;
+  typedef Project_Impl * Project_in;
+  typedef ::GAME::Mga::Smart_Ptr <Project_Impl> Project;
+
   // Forward declarations for Boxed
   class Boxed_Impl;
   typedef Boxed_Impl * Boxed_in;
@@ -1437,11 +1442,6 @@ namespace PICML
   class ValueObject_Impl;
   typedef ValueObject_Impl * ValueObject_in;
   typedef ::GAME::Mga::Smart_Ptr <ValueObject_Impl> ValueObject;
-
-  // Forward declarations for Project
-  class Project_Impl;
-  typedef Project_Impl * Project_in;
-  typedef ::GAME::Mga::Smart_Ptr <Project_Impl> Project;
 
   // Forward declarations for OutEventPort
   class OutEventPort_Impl;
@@ -1478,15 +1478,15 @@ namespace PICML
   typedef InParameter_Impl * InParameter_in;
   typedef ::GAME::Mga::Smart_Ptr <InParameter_Impl> InParameter;
 
-  // Forward declarations for DataAnalysisBase
-  class DataAnalysisBase_Impl;
-  typedef DataAnalysisBase_Impl * DataAnalysisBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <DataAnalysisBase_Impl> DataAnalysisBase;
-
   // Forward declarations for DataValue
   class DataValue_Impl;
   typedef DataValue_Impl * DataValue_in;
   typedef ::GAME::Mga::Smart_Ptr <DataValue_Impl> DataValue;
+
+  // Forward declarations for DataAnalysisBase
+  class DataAnalysisBase_Impl;
+  typedef DataAnalysisBase_Impl * DataAnalysisBase_in;
+  typedef ::GAME::Mga::Smart_Ptr <DataAnalysisBase_Impl> DataAnalysisBase;
 
   // Forward declarations for PredefinedType
   class PredefinedType_Impl;
@@ -1538,15 +1538,15 @@ namespace PICML
   typedef Invoke_Impl * Invoke_in;
   typedef ::GAME::Mga::Smart_Ptr <Invoke_Impl> Invoke;
 
-  // Forward declarations for PackageInterface
-  class PackageInterface_Impl;
-  typedef PackageInterface_Impl * PackageInterface_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageInterface_Impl> PackageInterface;
-
   // Forward declarations for MakeMemberPrivate
   class MakeMemberPrivate_Impl;
   typedef MakeMemberPrivate_Impl * MakeMemberPrivate_in;
   typedef ::GAME::Mga::Smart_Ptr <MakeMemberPrivate_Impl> MakeMemberPrivate;
+
+  // Forward declarations for PackageInterface
+  class PackageInterface_Impl;
+  typedef PackageInterface_Impl * PackageInterface_in;
+  typedef ::GAME::Mga::Smart_Ptr <PackageInterface_Impl> PackageInterface;
 
   // Forward declarations for Component
   class Component_Impl;
@@ -1583,15 +1583,15 @@ namespace PICML
   typedef EventRef_Impl * EventRef_in;
   typedef ::GAME::Mga::Smart_Ptr <EventRef_Impl> EventRef;
 
-  // Forward declarations for MonolithprimaryArtifact
-  class MonolithprimaryArtifact_Impl;
-  typedef MonolithprimaryArtifact_Impl * MonolithprimaryArtifact_in;
-  typedef ::GAME::Mga::Smart_Ptr <MonolithprimaryArtifact_Impl> MonolithprimaryArtifact;
-
   // Forward declarations for Effect
   class Effect_Impl;
   typedef Effect_Impl * Effect_in;
   typedef ::GAME::Mga::Smart_Ptr <Effect_Impl> Effect;
+
+  // Forward declarations for MonolithprimaryArtifact
+  class MonolithprimaryArtifact_Impl;
+  typedef MonolithprimaryArtifact_Impl * MonolithprimaryArtifact_in;
+  typedef ::GAME::Mga::Smart_Ptr <MonolithprimaryArtifact_Impl> MonolithprimaryArtifact;
 
   // Forward declarations for TriggerBenchmarks
   class TriggerBenchmarks_Impl;
@@ -1658,15 +1658,15 @@ namespace PICML
   typedef Terminal_Impl * Terminal_in;
   typedef ::GAME::Mga::Smart_Ptr <Terminal_Impl> Terminal;
 
-  // Forward declarations for NamedType
-  class NamedType_Impl;
-  typedef NamedType_Impl * NamedType_in;
-  typedef ::GAME::Mga::Smart_Ptr <NamedType_Impl> NamedType;
-
   // Forward declarations for PackageConfReference
   class PackageConfReference_Impl;
   typedef PackageConfReference_Impl * PackageConfReference_in;
   typedef ::GAME::Mga::Smart_Ptr <PackageConfReference_Impl> PackageConfReference;
+
+  // Forward declarations for NamedType
+  class NamedType_Impl;
+  typedef NamedType_Impl * NamedType_in;
+  typedef ::GAME::Mga::Smart_Ptr <NamedType_Impl> NamedType;
 
   // Forward declarations for ComponentPackage
   class ComponentPackage_Impl;
@@ -1788,35 +1788,35 @@ namespace PICML
   typedef ComponentFactoryInstance_Impl * ComponentFactoryInstance_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentFactoryInstance_Impl> ComponentFactoryInstance;
 
-  // Forward declarations for OutEventPortDelegate
-  class OutEventPortDelegate_Impl;
-  typedef OutEventPortDelegate_Impl * OutEventPortDelegate_in;
-  typedef ::GAME::Mga::Smart_Ptr <OutEventPortDelegate_Impl> OutEventPortDelegate;
-
   // Forward declarations for ActionType
   class ActionType_Impl;
   typedef ActionType_Impl * ActionType_in;
   typedef ::GAME::Mga::Smart_Ptr <ActionType_Impl> ActionType;
 
-  // Forward declarations for ComponentPackageReference
-  class ComponentPackageReference_Impl;
-  typedef ComponentPackageReference_Impl * ComponentPackageReference_in;
-  typedef ::GAME::Mga::Smart_Ptr <ComponentPackageReference_Impl> ComponentPackageReference;
+  // Forward declarations for OutEventPortDelegate
+  class OutEventPortDelegate_Impl;
+  typedef OutEventPortDelegate_Impl * OutEventPortDelegate_in;
+  typedef ::GAME::Mga::Smart_Ptr <OutEventPortDelegate_Impl> OutEventPortDelegate;
 
   // Forward declarations for package
   class package_Impl;
   typedef package_Impl * package_in;
   typedef ::GAME::Mga::Smart_Ptr <package_Impl> package;
 
-  // Forward declarations for TimerConnection
-  class TimerConnection_Impl;
-  typedef TimerConnection_Impl * TimerConnection_in;
-  typedef ::GAME::Mga::Smart_Ptr <TimerConnection_Impl> TimerConnection;
+  // Forward declarations for ComponentPackageReference
+  class ComponentPackageReference_Impl;
+  typedef ComponentPackageReference_Impl * ComponentPackageReference_in;
+  typedef ::GAME::Mga::Smart_Ptr <ComponentPackageReference_Impl> ComponentPackageReference;
 
   // Forward declarations for Domain
   class Domain_Impl;
   typedef Domain_Impl * Domain_in;
   typedef ::GAME::Mga::Smart_Ptr <Domain_Impl> Domain;
+
+  // Forward declarations for TimerConnection
+  class TimerConnection_Impl;
+  typedef TimerConnection_Impl * TimerConnection_in;
+  typedef ::GAME::Mga::Smart_Ptr <TimerConnection_Impl> TimerConnection;
 
   // Forward declarations for RequestAction
   class RequestAction_Impl;

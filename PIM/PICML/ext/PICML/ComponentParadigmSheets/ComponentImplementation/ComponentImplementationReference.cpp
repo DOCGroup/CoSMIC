@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentPackage/Implementation.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
 #include "game/mga/Functional_T.h"

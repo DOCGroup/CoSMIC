@@ -1,47 +1,32 @@
 // $Id$
 
-project (PICML_BE_ComponentImplementationGenerator) : acedefaults, boost_base, picmllib {
-  sharedname    = PICML_BE_ComponentImplementationGenerator
+project (PICML_ComponentImplementationGenerator_Component) : game_mga_utils, picml_game_mga, game_mga_interpreter, game_lib {
+  sharedname = PICML_ComponentImplementationGenerator_Component
+
   dynamicflags += PICML_BE_COMPONENTIMPLEMENTATIONGENERATOR_BUILD_DLL
+   
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
 
   Source_Files {
-    BE_ComponentImplementationGenerator.cpp
     BE_ImplementationArtifactGenerator.cpp
+    BE_ComponentImplementationGenerator.cpp
+
+    ComponentImplementationGenerator_Component.idl
+    ComponentImplementationGenerator_Component_Impl.cpp
+    ComponentImplementationGenerator_Component_Module.cpp
   }
 
-  Header_Files {
-    BE_ComponentImplementationGenerator_export.h
-  }
-}
-
-project (PICML_ComponentImplementationGenerator) : acedefaults, picmllib, gme_udm_component {
-  sharedname = PICML_ComponentImplementationGenerator
-
-  after += PICML_BE_ComponentImplementationGenerator
-  libs  += PICML_BE_ComponentImplementationGenerator
-
-  Source_Files {
-
-  }
-
-  Header_Files {
-
-  }
-
-  Inline_Files {
-
-  }
-  
   Resource_Files {
     Component.rc
   }
-
+  
   specific (wix) {
     gme_install     = 1
-    gme_progid      = MGA.Interpreter.PICML.ComponentImplementationGenerator
-    gme_uuid        = B787C813-5E3F-4A06-B608-2903539B42B1
+    gme_progid      = PICML.Interpreter.ComponentImplementationGenerator
+    gme_uuid        = 6517188b-c068-4f74-940c-2a84e47c9593
     gme_paradigms   = PICML
-    gme_description = Component Implementation Generator
-    gme_tooltip     = Generate default component implementation artifacts
+    gme_description = ComponentImplementationGenerator Interpreter
+    gme_tooltip     = ComponentImplementationGenerator Interpreter
   }
 }

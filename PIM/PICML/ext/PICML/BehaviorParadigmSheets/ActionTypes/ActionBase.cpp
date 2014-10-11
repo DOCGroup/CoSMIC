@@ -9,15 +9,15 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
+#include "PICML/Common/SimpleProperty.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
 
 namespace PICML
 {
@@ -43,6 +43,14 @@ namespace PICML
   }
 
   //
+  // dst_LoopTransition
+  //
+  size_t ActionBase_Impl::dst_LoopTransition (std::vector <LoopTransition> & items) const
+  {
+    return this->in_connections <LoopTransition> (items);
+  }
+
+  //
   // dst_BranchTransition
   //
   size_t ActionBase_Impl::dst_BranchTransition (std::vector <BranchTransition> & items) const
@@ -59,11 +67,19 @@ namespace PICML
   }
 
   //
-  // dst_LoopTransition
+  // get_ComplexPropertys
   //
-  size_t ActionBase_Impl::dst_LoopTransition (std::vector <LoopTransition> & items) const
+  size_t ActionBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
-    return this->in_connections <LoopTransition> (items);
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> ActionBase_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 
   //
@@ -80,22 +96,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> ActionBase_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t ActionBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> ActionBase_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
   }
 }
 

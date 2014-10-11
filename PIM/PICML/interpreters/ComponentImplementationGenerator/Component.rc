@@ -1,4 +1,5 @@
-// Microsoft Visual C++ generated resource script.
+
+//Microsoft Developer Studio generated resource script.
 //
 #include "resource.h"
 
@@ -27,12 +28,12 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE DISCARDABLE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE DISCARDABLE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
@@ -41,6 +42,7 @@ END
 #endif    // APSTUDIO_INVOKED
 
 
+#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
@@ -63,13 +65,15 @@ BEGIN
     BEGIN
         BLOCK "040904B0"
         BEGIN
-            VALUE "FileDescription", "Interpreter Module"
-            VALUE "FileVersion", "1, 0, 0, 1"
-            VALUE "InternalName", "Interpreter"
-            VALUE "LegalCopyright", "Copyright 2000"
-            VALUE "OriginalFilename", "Interpreter.DLL"
-            VALUE "ProductName", "Interpreter Module"
-            VALUE "ProductVersion", "1, 0, 0, 1"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Interpreter Module\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Interpreter\0"
+            VALUE "LegalCopyright", "Copyright 2000\0"
+            VALUE "OriginalFilename", "Interpreter.DLL\0"
+            VALUE "ProductName", "Interpreter Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "OLESelfRegister", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -77,6 +81,8 @@ BEGIN
         VALUE "Translation", 0x409, 1200
     END
 END
+
+#endif    // !_MAC
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,54 +92,14 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_COMPICON            ICON                    "MonolithicImplementation.ico"
-
-/////////////////////////////////////////////////////////////////////////////
 //
-// Dialog
-//
-
-IDD_MAINDIALOG DIALOGEX 0, 0, 231, 66
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
-CAPTION "Deployment Plan Options"
-FONT 8, "MS Shell Dlg", 400, 0, 0x1
-BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,174,45,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,118,45,50,14
-    CONTROL         "Disable optimizations",IDC_DISABLE_OPTS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,12,36,82,10
-    EDITTEXT        IDC_OUTPUT_DIR,12,18,162,14,ES_AUTOHSCROLL
-    LTEXT           "Output Directory:",IDC_STATIC,12,6,58,8
-    DEFPUSHBUTTON   "Browse...",IDC_BROWSE,174,18,50,14
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
-BEGIN
-    IDD_MAINDIALOG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 224
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 59
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_PROJNAME            "Component"
 END

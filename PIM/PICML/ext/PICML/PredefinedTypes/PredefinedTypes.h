@@ -74,7 +74,15 @@ namespace PICML
     RootFolder parent_RootFolder (void);
     ///@}
 
+    /**
+     * @name Folder Getters
+     */
+    ///@{
+
     size_t get_PredefinedTypes (std::vector <PredefinedType> & items) const;
+
+    ::GAME::Mga::Collection_T <PredefinedType> get_PredefinedTypes (void) const;
+    ///@}
   };
 }
 

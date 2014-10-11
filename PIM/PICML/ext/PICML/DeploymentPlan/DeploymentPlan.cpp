@@ -13,15 +13,15 @@
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/DeploymentPlan/CollocationGroup.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
+#include "PICML/TargetElements/NodeReference.h"
+#include "PICML/DeploymentPlan/PropertyMapping.h"
 #include "PICML/DeploymentPlan/DeploymentPlans.h"
 #include "PICML/DeploymentPlan/Deploys.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
-#include "PICML/DeploymentPlan/PropertyMapping.h"
-#include "PICML/TargetElements/NodeReference.h"
-#include "PICML/DeploymentPlan/CollocationGroup.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -113,22 +113,6 @@ namespace PICML
   }
 
   //
-  // get_SimplePropertys
-  //
-  size_t DeploymentPlan_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> DeploymentPlan_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
-  }
-
-  //
   // get_ComplexPropertys
   //
   size_t DeploymentPlan_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
@@ -145,19 +129,19 @@ namespace PICML
   }
 
   //
-  // get_Deployss
+  // get_SimplePropertys
   //
-  size_t DeploymentPlan_Impl::get_Deployss (std::vector <Deploys> & items) const
+  size_t DeploymentPlan_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Deployss
+  // get_SimplePropertys
   //
-  ::GAME::Mga::Collection_T <Deploys> DeploymentPlan_Impl::get_Deployss (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> DeploymentPlan_Impl::get_SimplePropertys (void) const
   {
-    return this->children <Deploys> ();
+    return this->children <SimpleProperty> ();
   }
 
   //
@@ -177,6 +161,22 @@ namespace PICML
   }
 
   //
+  // get_CollocationGroups
+  //
+  size_t DeploymentPlan_Impl::get_CollocationGroups (std::vector <CollocationGroup> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_CollocationGroups
+  //
+  ::GAME::Mga::Collection_T <CollocationGroup> DeploymentPlan_Impl::get_CollocationGroups (void) const
+  {
+    return this->children <CollocationGroup> ();
+  }
+
+  //
   // get_InstanceMappings
   //
   size_t DeploymentPlan_Impl::get_InstanceMappings (std::vector <InstanceMapping> & items) const
@@ -190,22 +190,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <InstanceMapping> DeploymentPlan_Impl::get_InstanceMappings (void) const
   {
     return this->children <InstanceMapping> ();
-  }
-
-  //
-  // get_PropertyMappings
-  //
-  size_t DeploymentPlan_Impl::get_PropertyMappings (std::vector <PropertyMapping> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PropertyMappings
-  //
-  ::GAME::Mga::Collection_T <PropertyMapping> DeploymentPlan_Impl::get_PropertyMappings (void) const
-  {
-    return this->children <PropertyMapping> ();
   }
 
   //
@@ -225,19 +209,35 @@ namespace PICML
   }
 
   //
-  // get_CollocationGroups
+  // get_PropertyMappings
   //
-  size_t DeploymentPlan_Impl::get_CollocationGroups (std::vector <CollocationGroup> & items) const
+  size_t DeploymentPlan_Impl::get_PropertyMappings (std::vector <PropertyMapping> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_CollocationGroups
+  // get_PropertyMappings
   //
-  ::GAME::Mga::Collection_T <CollocationGroup> DeploymentPlan_Impl::get_CollocationGroups (void) const
+  ::GAME::Mga::Collection_T <PropertyMapping> DeploymentPlan_Impl::get_PropertyMappings (void) const
   {
-    return this->children <CollocationGroup> ();
+    return this->children <PropertyMapping> ();
+  }
+
+  //
+  // get_Deployss
+  //
+  size_t DeploymentPlan_Impl::get_Deployss (std::vector <Deploys> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Deployss
+  //
+  ::GAME::Mga::Collection_T <Deploys> DeploymentPlan_Impl::get_Deployss (void) const
+  {
+    return this->children <Deploys> ();
   }
 }
 

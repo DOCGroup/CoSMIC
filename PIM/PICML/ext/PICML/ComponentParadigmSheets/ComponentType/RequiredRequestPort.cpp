@@ -12,13 +12,13 @@
 #include "PICML/InheritableTypes/Object.h"
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Path.h"
@@ -35,17 +35,17 @@ namespace PICML
   const std::string RequiredRequestPort_Impl::metaname ("RequiredRequestPort");
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const PortType_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
   {
     return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
-  // _create (const PortType_in)
+  // _create (const ConnectorObject_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }

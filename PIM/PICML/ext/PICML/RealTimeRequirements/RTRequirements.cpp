@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/RealTimeRequirements/ServiceProvider.h"
 #include "PICML/RealTimeRequirements/ServiceConsumer.h"
+#include "PICML/RealTimeRequirements/ServiceProvider.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
@@ -64,22 +64,6 @@ namespace PICML
   }
 
   //
-  // has_ServiceProvider
-  //
-  bool RTRequirements_Impl::has_ServiceProvider (void) const
-  {
-    return this->children <ServiceProvider> ().count () == 1;
-  }
-
-  //
-  // get_ServiceProvider
-  //
-  ServiceProvider RTRequirements_Impl::get_ServiceProvider (void) const
-  {
-    return this->children <ServiceProvider> ().first ();
-  }
-
-  //
   // has_ServiceConsumer
   //
   bool RTRequirements_Impl::has_ServiceConsumer (void) const
@@ -93,6 +77,22 @@ namespace PICML
   ServiceConsumer RTRequirements_Impl::get_ServiceConsumer (void) const
   {
     return this->children <ServiceConsumer> ().first ();
+  }
+
+  //
+  // has_ServiceProvider
+  //
+  bool RTRequirements_Impl::has_ServiceProvider (void) const
+  {
+    return this->children <ServiceProvider> ().count () == 1;
+  }
+
+  //
+  // get_ServiceProvider
+  //
+  ServiceProvider RTRequirements_Impl::get_ServiceProvider (void) const
+  {
+    return this->children <ServiceProvider> ().first ();
   }
 }
 

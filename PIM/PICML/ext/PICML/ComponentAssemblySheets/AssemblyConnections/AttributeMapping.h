@@ -81,11 +81,11 @@ namespace PICML
     /// Get the src AttributeDelegate connection.
     size_t src_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
 
-    /// Get the src AttributeMappingValue connection.
-    size_t src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
-
     /// Get the src AttributeMappingDelegate connection.
     size_t src_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
+
+    /// Get the src AttributeMappingValue connection.
+    size_t src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
     ///@}
 
     /**

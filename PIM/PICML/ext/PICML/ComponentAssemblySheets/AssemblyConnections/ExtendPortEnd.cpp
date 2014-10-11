@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
 
 namespace PICML
 {

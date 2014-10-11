@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/Common/DataValueContainer.h"
 
 namespace PICML
 {
@@ -19,19 +19,19 @@ namespace PICML
   const std::string DataValueBase_Impl::metaname ("DataValueBase");
 
   //
-  // parent_DataValueContainer
-  //
-  DataValueContainer DataValueBase_Impl::parent_DataValueContainer (void)
-  {
-    return DataValueContainer::_narrow (this->parent ());
-  }
-
-  //
   // parent_ComplexProperty
   //
   ComplexProperty DataValueBase_Impl::parent_ComplexProperty (void)
   {
     return ComplexProperty::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataValueContainer
+  //
+  DataValueContainer DataValueBase_Impl::parent_DataValueContainer (void)
+  {
+    return DataValueContainer::_narrow (this->parent ());
   }
 }
 

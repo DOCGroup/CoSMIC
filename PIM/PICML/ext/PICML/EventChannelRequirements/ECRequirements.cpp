@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/EventChannelRequirements/ECBehavior.h"
 #include "PICML/EventChannelRequirements/ECRole.h"
+#include "PICML/EventChannelRequirements/ECBehavior.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"

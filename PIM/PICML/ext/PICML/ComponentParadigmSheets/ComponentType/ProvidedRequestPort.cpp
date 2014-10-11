@@ -12,12 +12,12 @@
 #include "PICML/InheritableTypes/Object.h"
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Path.h"
@@ -34,17 +34,17 @@ namespace PICML
   const std::string ProvidedRequestPort_Impl::metaname ("ProvidedRequestPort");
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const PortType_in)
   //
-  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const ConnectorObject_in parent)
+  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const PortType_in parent)
   {
     return ::GAME::Mga::create_object < ProvidedRequestPort > (parent, ProvidedRequestPort_Impl::metaname);
   }
 
   //
-  // _create (const PortType_in)
+  // _create (const ConnectorObject_in)
   //
-  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const PortType_in parent)
+  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create_object < ProvidedRequestPort > (parent, ProvidedRequestPort_Impl::metaname);
   }

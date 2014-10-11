@@ -74,7 +74,15 @@ namespace PICML
     RootFolder parent_RootFolder (void);
     ///@}
 
+    /**
+     * @name Folder Getters
+     */
+    ///@{
+
     size_t get_DeploymentPlans (std::vector <DeploymentPlan> & items) const;
+
+    ::GAME::Mga::Collection_T <DeploymentPlan> get_DeploymentPlans (void) const;
+    ///@}
   };
 }
 

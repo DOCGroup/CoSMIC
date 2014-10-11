@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,17 +24,17 @@ namespace PICML
   const std::string MirrorPort_Impl::metaname ("MirrorPort");
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const Component_in)
   //
-  MirrorPort MirrorPort_Impl::_create (const ConnectorObject_in parent)
+  MirrorPort MirrorPort_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create_object < MirrorPort > (parent, MirrorPort_Impl::metaname);
   }
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectorObject_in)
   //
-  MirrorPort MirrorPort_Impl::_create (const Component_in parent)
+  MirrorPort MirrorPort_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create_object < MirrorPort > (parent, MirrorPort_Impl::metaname);
   }
