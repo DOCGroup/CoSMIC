@@ -330,7 +330,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeploymentStatusDecorator.h" />
     <ClInclude Include="DeploymentStatusDecorator_Impl.h" />
   </ItemGroup>
   <ItemGroup>

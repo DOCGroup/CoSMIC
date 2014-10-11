@@ -30,9 +30,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeploymentStatusDecorator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DeploymentStatusDecorator_Impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>

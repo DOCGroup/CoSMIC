@@ -26,9 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NoShowRefersTo_Decorator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NoShowRefersTo_Decorator_Impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>

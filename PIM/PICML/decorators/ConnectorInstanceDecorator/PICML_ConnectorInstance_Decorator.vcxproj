@@ -330,7 +330,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConnectorInstance_Decorator.h" />
     <ClInclude Include="ConnectorInstance_Decorator_Impl.h" />
   </ItemGroup>
   <ItemGroup>
