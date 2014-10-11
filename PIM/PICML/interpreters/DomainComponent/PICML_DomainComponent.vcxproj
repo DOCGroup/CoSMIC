@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>PICML_DomainComponent</ProjectName>
-    <ProjectGuid>{38127D61-FECA-1BAD-FC33-52912398C3A8}</ProjectGuid>
+    <ProjectGuid>{38127D61-FECA-1BAD-FC33-52913367AE08}</ProjectGuid>
     <RootNamespace>PICML_DomainComponent</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>

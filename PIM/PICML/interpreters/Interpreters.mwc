@@ -18,8 +18,7 @@ workspace {
 
   PropertyManager
 
-  Target
-  TargetComponent
+  DomainComponent
 
   IDLImporter
 

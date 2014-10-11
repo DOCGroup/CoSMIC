@@ -2,22 +2,22 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{B1F27843-FECA-1BAD-FC33-52912398C3A8}</UniqueIdentifier>
+      <UniqueIdentifier>{B1F27843-FECA-1BAD-FC33-52913367AE08}</UniqueIdentifier>
       <Extensions>cpp;cxx;cc;c;C</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{06319535-FECA-1BAD-FC33-52912398C3A8}</UniqueIdentifier>
+      <UniqueIdentifier>{06319535-FECA-1BAD-FC33-52913367AE08}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hh</Extensions>
     </Filter>
     <Filter Include="Build Files">
-      <UniqueIdentifier>{A1909F1C-FECA-1BAD-FC33-52912398C3A8}</UniqueIdentifier>
+      <UniqueIdentifier>{A1909F1C-FECA-1BAD-FC33-52913367AE08}</UniqueIdentifier>
       <Extensions>mpc;mpb;mwc</Extensions>
     </Filter>
     <Filter Include="Documentation">
-      <UniqueIdentifier>{B14BBA74-FECA-1BAD-FC33-52912398C3A8}</UniqueIdentifier>
+      <UniqueIdentifier>{B14BBA74-FECA-1BAD-FC33-52913367AE08}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{502A2050-FECA-1BAD-FC33-52912398C3A8}</UniqueIdentifier>
+      <UniqueIdentifier>{502A2050-FECA-1BAD-FC33-52913367AE08}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
   </ItemGroup>
