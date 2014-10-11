@@ -1,9 +1,22 @@
-// $Id$
+#include "StdAfx.h"
 
 #include "BE_ComponentImplementationGenerator.h"
-#include "Utils/UDM/modelgen.h"
-#include "boost/bind.hpp"
-#include "Uml.h"
+
+#include "game/mga/Connection.h"
+#include "game/mga/Model.h"
+#include "game/mga/MetaModel.h"
+#include "game/mga/modelgen.h"
+#include "game/mga/utils/Point.h"
+
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
+#include "PICML/ImplementationCommon/ComponentServantArtifact.h"
+#include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
+
 #include <stack>
 
 namespace PICML_BE
@@ -12,8 +25,8 @@ namespace PICML_BE
 // BE_ComponentImplementationGenerator
 //
 ComponentImplementationGenerator::
-ComponentImplementationGenerator (PICML::ComponentImplementations & impl_folder,
-                                  PICML::ImplementationArtifacts & artifact_folder)
+ComponentImplementationGenerator (PICML::ComponentImplementations_in impl_folder,
+                                  PICML::ImplementationArtifacts_in artifact_folder)
 : impl_folder_ (impl_folder),
   artifact_generator_ (artifact_folder)
 {
@@ -32,88 +45,92 @@ ComponentImplementationGenerator::~ComponentImplementationGenerator (void)
 // Visit_Component
 //
 void ComponentImplementationGenerator::
-Visit_Component (const PICML::Component & component)
+visit_Component (PICML::Component_in component)
 {
-  std::string name = component.name ();
+  std::string name = component->name ();
   std::string impl_name = this->fq_type (component, "_") + "Impl";
 
   // Create a new container for the component implementation.
   PICML::ComponentImplementationContainer container;
 
-  if (CoSMIC::Udm::create_if_not (this->impl_folder_, container,
-      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
-                     impl_name,
-                     boost::bind (&PICML::ComponentImplementationContainer::name, _1)))))
+  if (GAME::create_if_not <GAME::Mga_t> (this->impl_folder_, container,
+      GAME::contains <GAME::Mga_t> ([&](PICML::ComponentImplementationContainer_in container) { 
+        return container->name () == impl_name; })))
   {
-    container.name () = impl_name;
+    container->name (impl_name);
   }
 
   // Create the monolithic implementation for the component.
-  if (CoSMIC::Udm::create_if_not (container, this->impl_,
-      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
-                     impl_name,
-                     boost::bind (&PICML::MonolithicImplementation::name, _1)))))
+  if (GAME::create_if_not <GAME::Mga_t> (container, this->impl_,
+      GAME::contains <GAME::Mga_t> ([&](PICML::MonolithicImplementation_in curr) { return curr->name () == impl_name; })))
   {
-    this->impl_.name () = impl_name;
-    this->impl_.position () = "(250,250)";
+    this->impl_->name (impl_name);
+    GAME::Mga::set_position ("Packaging", GAME::Mga::Point (250, 250), this->impl_);
   }
 
   // Create the reference to the target component.
-  PICML::ComponentRef ref = PICML::ComponentRef::Create (container);
-  ref.name () = name;
-  ref.position () = "(187,75)";
+  PICML::ComponentRef ref = PICML::ComponentRef_Impl::_create (container);
+  ref->name (name);
+  GAME::Mga::set_position ("Packaging", GAME::Mga::Point (187, 75), ref);
 
   // Associate the monolithic implementation with the reference.
-  PICML::Implements implements = PICML::Implements::Create (container);
-  implements.srcImplements_end () = this->impl_;
-  implements.dstImplements_end () = ref;
+  GAME::Mga::Connection implements =
+    GAME::Mga::Connection_Impl::_create (container, 
+                                               PICML::Implements_Impl::metaname,
+                                               this->impl_,
+                                               ref);
 
   // Generate the artifacts for the component.
-  PICML::Component (component).Accept (this->artifact_generator_);
+  component->accept (&this->artifact_generator_);
 
   // Insert the servant artifact for this component.
   PICML::ComponentServantArtifact svnt_artifact =
-    PICML::ComponentServantArtifact::Create (container);
+    PICML::ComponentServantArtifact_Impl::_create (container);
 
-  svnt_artifact.ref () = this->artifact_generator_.svnt_artifact ();
-  svnt_artifact.name () = this->artifact_generator_.svnt_artifact ().name ();
-  svnt_artifact.EntryPoint () = "create_" + this->fq_type (component, "_") + "_Servant";
-  svnt_artifact.position () = "(506,347)";
+  svnt_artifact->refers_to (this->artifact_generator_.svnt_artifact ());
+  svnt_artifact->name (this->artifact_generator_.svnt_artifact ()->name ());
+  svnt_artifact->EntryPoint ("create_" + this->fq_type (component, "_") + "_Servant");
+  GAME::Mga::set_position ("Packaging", GAME::Mga::Point (560, 347), svnt_artifact);
 
-  PICML::MonolithprimaryArtifact pa = PICML::MonolithprimaryArtifact::Create (container);
-  pa.srcMonolithprimaryArtifact_end () = this->impl_;
-  pa.dstMonolithprimaryArtifact_end () = svnt_artifact;
+  // Associate the monolithic implementation with the reference.
+  GAME::Mga::Connection pa =
+    GAME::Mga::Connection_Impl::_create (container, 
+                                         PICML::MonolithprimaryArtifact_Impl::metaname,
+                                         this->impl_,
+                                         svnt_artifact);
 
   // Insert the implementation artifact for this component.
   PICML::ComponentImplementationArtifact impl_artifact =
-    PICML::ComponentImplementationArtifact::Create (container);
+    PICML::ComponentImplementationArtifact_Impl::_create (container);
 
-  impl_artifact.ref () = this->artifact_generator_.impl_artifact ();
-  impl_artifact.name () = this->artifact_generator_.impl_artifact ().name ();
-  impl_artifact.EntryPoint () = "create_" + this->fq_type (component, "_") + "_Impl";
-  impl_artifact.position () = "(506,151)";
+  impl_artifact->refers_to (this->artifact_generator_.impl_artifact ());
+  impl_artifact->name (this->artifact_generator_.impl_artifact ()->name ());
+  impl_artifact->EntryPoint ("create_" + this->fq_type (component, "_") + "_Impl");
+  GAME::Mga::set_position ("Packaging", GAME::Mga::Point (506, 151), svnt_artifact);
 
-  pa = PICML::MonolithprimaryArtifact::Create (container);
-  pa.srcMonolithprimaryArtifact_end () = this->impl_;
-  pa.dstMonolithprimaryArtifact_end () = impl_artifact;
+  pa =
+    GAME::Mga::Connection_Impl::_create (container, 
+                                         PICML::MonolithprimaryArtifact_Impl::metaname,
+                                         this->impl_,
+                                         impl_artifact);
 }
 
 //
 // scope
 //
 std::string ComponentImplementationGenerator::
-fq_type (const PICML::NamedType & type, const std::string & separator)
+fq_type (PICML::NamedType_in type, const std::string & separator)
 {
   std::string scope;
-  std::stack <PICML::MgaObject> temp_stack;
+  std::stack <GAME::Mga::Model> temp_stack;
 
-  // Continue walking up the tree until we reach a File object.
-  PICML::MgaObject parent = PICML::MgaObject::Cast (type.parent ());
+  // Continue walking up the tree until we reach a File object
+  GAME::Mga::Model parent = type->parent ();
 
-  while (PICML::File::meta != parent.type () )
+  while (PICML::File_Impl::metaname != parent->meta ()->name ())
   {
     temp_stack.push (parent);
-    parent = PICML::MgaObject::Cast (parent.parent ());
+    parent = parent->parent_model ();
   }
 
   // Empty the remainder of the stack.
@@ -122,10 +139,10 @@ fq_type (const PICML::NamedType & type, const std::string & separator)
     parent = temp_stack.top ();
     temp_stack.pop ();
 
-    scope += std::string (parent.name ()) + separator;
+    scope += std::string (parent->name ()) + separator;
   }
 
-  return scope + std::string (type.name ());
+  return scope + type->name ();
 }
 
 }

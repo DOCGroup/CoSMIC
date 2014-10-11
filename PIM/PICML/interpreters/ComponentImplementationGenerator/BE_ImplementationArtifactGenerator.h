@@ -13,7 +13,10 @@
 #ifndef _PICML_BE_IMPLEMENTATION_ARTIFACT_GENERATOR_H_
 #define _PICML_BE_IMPLEMENTATION_ARTIFACT_GENERATOR_H_
 
-#include "PICML/PICML.h"
+#include "PICML/Visitor.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
+
 #include "BE_ComponentImplementationGenerator_export.h"
 
 namespace PICML_BE
@@ -28,24 +31,22 @@ class PICML_BE_COMPONENTIMPLEMENTATIONGENERATOR_Export ImplementationArtifactGen
 {
 public:
   /// Default constructor.
-  ImplementationArtifactGenerator (PICML::ImplementationArtifacts & artifact_folder);
+  ImplementationArtifactGenerator (PICML::ImplementationArtifacts_in artifact_folder);
 
   /// Destructor.
   virtual ~ImplementationArtifactGenerator (void);
 
-  virtual void Visit_Component (const PICML::Component & component);
+  virtual void visit_Component (PICML::Component_in component);
 
-  const PICML::ImplementationArtifact & svnt_artifact (void) const;
-
-  const PICML::ImplementationArtifact & impl_artifact (void) const;
+  PICML::ImplementationArtifact svnt_artifact (void) const;
+  PICML::ImplementationArtifact impl_artifact (void) const;
 
 private:
   /// Helper method for getting the scope of a named type.
-  static std::string fq_type (const PICML::NamedType & type,
-                              const std::string & separator);
+  static std::string fq_type (PICML::NamedType_in type, const std::string & separator);
 
   /// Target folder for generating artifacts.
-  PICML::ImplementationArtifacts & artifact_folder_;
+  PICML::ImplementationArtifacts artifact_folder_;
 
   /// The servant artifact.
   PICML::ImplementationArtifact svnt_artifact_;

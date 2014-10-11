@@ -1,0 +1,7 @@
+
+
+workspace (ComponentImplementationGenerator) {
+  cmdline += -include $GAME_ROOT/MPC/config
+             
+  ComponentImplementationGenerator.mpc
+}

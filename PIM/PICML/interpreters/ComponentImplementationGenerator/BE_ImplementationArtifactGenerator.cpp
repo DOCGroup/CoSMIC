@@ -1,36 +1,23 @@
-// $Id$
-
+#include "StdAfx.h"
 #include "BE_ImplementationArtifactGenerator.h"
-#include "Utils/UDM/modelgen.h"
-#include "boost/bind.hpp"
-#include "Uml.h"
+
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/NamedTypes/NamedType.h"
+
+#include "game/mga/Model.h"
+#include "game/mga/MetaModel.h"
+
+#include "game/mga/modelgen.h"
+#include "game/mga/utils/Point.h"
+
 #include <stack>
 
 namespace PICML_BE
 {
-//
-// ImplementationArtifactGenerator
-//
-ImplementationArtifactGenerator::
-ImplementationArtifactGenerator (PICML::ImplementationArtifacts & artifact_folder)
-: artifact_folder_ (artifact_folder)
-{
 
-}
-
-//
-// ~ImplementationArtifactGenerator
-//
-ImplementationArtifactGenerator::~ImplementationArtifactGenerator (void)
-{
-
-}
-
-//
-// Visit_Component
-//
-void ImplementationArtifactGenerator::
-Visit_Component (const PICML::Component & component)
+void ImplementationArtifactGenerator::visit_Component (PICML::Component_in component)
 {
   std::string name = this->fq_type (component, "_");
   std::string impl_name = name + "_exec";
@@ -40,42 +27,40 @@ Visit_Component (const PICML::Component & component)
   PICML::ArtifactContainer container;
   std::string container_name = name + "Artifacts";
 
-  if (CoSMIC::Udm::create_if_not (this->artifact_folder_, container,
-      CoSMIC::Udm::contains (boost::bind (std::equal_to <std::string> (),
-                     name,
-                     boost::bind (&PICML::ArtifactContainer::name, _1)))))
+  if (GAME::create_if_not <GAME::Mga_t> (this->artifact_folder_, container,
+      GAME::contains <GAME::Mga_t> ([&](PICML::ArtifactContainer_in curr) { return curr->name () == name; })))
   {
-    container.name () = name;
+    container->name (name);
   }
 
   // Create the monolithic implementation for the component.
-  this->svnt_artifact_ = PICML::ImplementationArtifact::Create (container);
-  this->svnt_artifact_.name () = svnt_name;
-  this->svnt_artifact_.location () = svnt_name;
-  this->svnt_artifact_.position () = "(150,150)";
+  this->svnt_artifact_ = PICML::ImplementationArtifact_Impl::_create (container);
+  this->svnt_artifact_->name (svnt_name);
+  this->svnt_artifact_->location (svnt_name);
+  GAME::Mga::set_position ("Packaging", GAME::Mga::Point (150, 150), this->svnt_artifact_);
 
-  this->impl_artifact_ = PICML::ImplementationArtifact::Create (container);
-  this->impl_artifact_.name () = impl_name;
-  this->impl_artifact_.location () = impl_name;
-  this->impl_artifact_.position () = "(450,150)";
+  this->impl_artifact_ = PICML::ImplementationArtifact_Impl::_create (container);
+  this->impl_artifact_->name (impl_name);
+  this->impl_artifact_->location (impl_name);
+  GAME::Mga::set_position ("Packaging", GAME::Mga::Point (450, 150), this->impl_artifact_);
 }
 
 //
 // scope
 //
 std::string ImplementationArtifactGenerator::
-fq_type (const PICML::NamedType & type, const std::string & separator)
+fq_type (PICML::NamedType_in type, const std::string & separator)
 {
   std::string scope;
-  std::stack <PICML::MgaObject> temp_stack;
+  std::stack <GAME::Mga::Model> temp_stack;
 
-  // Continue walking up the tree until we reach a File object.
-  PICML::MgaObject parent = PICML::MgaObject::Cast (type.parent ());
+  // Continue walking up the tree until we reach a File object
+  GAME::Mga::Model parent = type->parent ();
 
-  while (PICML::File::meta != parent.type () )
+  while (PICML::File_Impl::metaname != parent->meta ()->name ())
   {
     temp_stack.push (parent);
-    parent = PICML::MgaObject::Cast (parent.parent ());
+    parent = parent->parent_model ();
   }
 
   // Empty the remainder of the stack.
@@ -84,10 +69,10 @@ fq_type (const PICML::NamedType & type, const std::string & separator)
     parent = temp_stack.top ();
     temp_stack.pop ();
 
-    scope += std::string (parent.name ()) + separator;
+    scope += std::string (parent->name ()) + separator;
   }
 
-  return scope + std::string (type.name ());
+  return scope + type->name ();
 }
 
 }

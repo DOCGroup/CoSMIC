@@ -1,0 +1,36 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      ComponentImplementationGenerator_Component.idl
+ *
+ * $Id$
+ *
+ * @author    Tanumoy Pati
+ */
+//=============================================================================
+
+#ifndef _COMPONENTIMPLEMENTATIONGENERATOR_COMPONENT_IDL_
+#define _COMPONENTIMPLEMENTATIONGENERATOR_COMPONENT_IDL_
+
+#include <Gme.idl>
+#include <Core.idl>
+
+[
+	uuid (cef24c73-402e-4eba-be80-5b25337911d2),
+	version (1.0),
+]
+library ComponentImplementationGenerator_Component
+{
+	importlib ("stdole32.tlb");
+
+	[uuid (6517188b-c068-4f74-940c-2a84e47c9593)]
+	coclass ComponentImplementationGenerator_Component
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+                interface IGMEVersionInfo;
+	};
+};
+
+#endif  // !defined _COMPONENTIMPLEMENTATIONGENERATOR_COMPONENT_IDL_
