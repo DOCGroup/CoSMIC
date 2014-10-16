@@ -24,7 +24,7 @@ GAME_DECLARE_INTERPRETER (PICML_MPCComponent, PICML_MPCComponent_Impl);
 PICML_MPCComponent_Impl::PICML_MPCComponent_Impl (void)
 : GAME::Mga::Interpreter_Impl_Base ("GAME PICML_MPC Generator",
                                     "PICML",
-                                    "GAME.Interpreter.PICML_MPC")
+                                    "MGA.Interpreter.MPC")
 {
 
 }
