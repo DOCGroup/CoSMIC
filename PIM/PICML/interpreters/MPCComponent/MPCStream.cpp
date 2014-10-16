@@ -1,7 +1,9 @@
-#include "MPC/MPCStream.h"
+#include "StdAfx.h"
+
+#include "MPCStream.h"
 #include <ctype.h>
-#include "UdmBase.h"
 #include <algorithm>
+#include <cassert>
 
 NL::NL (void)
 {
@@ -23,10 +25,10 @@ const INDENT idt_nl (1);
 const UNINDENT uidt;
 const UNINDENT uidt_nl (1);
 
-MPCStream::MPCStream (std::ostream& strm, std::string path)
+MPCStream::MPCStream (std::ostream & strm, std::string path)
 : strm_ (strm),
   output_path_ (path),
-indent_level_ (0)
+  indent_level_ (0)
 {
 }
 
@@ -45,9 +47,7 @@ void
 MPCStream::decr_indent (unsigned short flag)
 {
   if (this->indent_level_ > 0)
-    {
     --this->indent_level_;
-    }
 }
 
 void
@@ -63,16 +63,14 @@ MPCStream::indent (void)
   // Based on the current indentation level, leave appropriate number of blank
   // spaces in the output.
   if (this->indent_level_ > 0)
-    {
+  {
     for (int i = 0; i < this->indent_level_; ++i)
-        {
       this->strm_ << "  ";
-        }
-    }
+  }
 }
 
 void
-MPCStream::create_workspace (const PICML::Workspaces &workspace)
+MPCStream::create_workspace (const PICML::Workspaces_in workspace)
 {
   // Write out the header for the workspace
   this->write_mwc_header ();
@@ -82,75 +80,68 @@ MPCStream::create_workspace (const PICML::Workspaces &workspace)
 
   // Step 2: Get the individual projects in the workspace
   // and write them in order
-  std::set<PICML::Project> proj_names = workspace.members ();
-  for (std::set<PICML::Project>::iterator iter = proj_names.begin ();
-  iter != proj_names.end ();
-  iter ++)
+  for (auto project : workspace->members_Project ())
   {
     this->nl ();
     this->indent ();
 
-    std::string temp;
-    (* iter).GetStrValue ("name", temp);
-
     //Write this name in the file
-    this->strm_ << temp;
+    this->strm_ << project->name ();
   }
 
   // close workspace
-    this->write_mwc_footer ();
+  this->write_mwc_footer ();
 }
 
 bool
-MPCStream::dependent_project (PICML::ImplementationArtifact &artifact,
-                std::string &dependent_proj)
+MPCStream::dependent_project (PICML::ImplementationArtifact_in artifact,
+                              std::string & dependent_proj)
 {
   // Obtain a list of all dependent artifacts
-  const std::set<PICML::ArtifactDependsOn> depends =
-    artifact.dstArtifactDependsOn();
+  std::vector <PICML::ArtifactDependsOn> depends;
+  artifact->src_ArtifactDependsOn (depends);
 
   bool ret_val = false; // Flag
 
   // Check if these dependant artifacts are in some Stub_Project
   // if so include them in the after list
-  for (std::set<PICML::ArtifactDependsOn>::const_iterator iter = depends.begin ();
-  iter != depends.end ();
-  iter ++)
+  for (PICML::ArtifactDependsOn dependency : depends)
   {
-    PICML::ImplementationArtifactReference impl_ref =
-      iter->dstArtifactDependsOn_end();
+    PICML::ImplementationArtifactReference impl_ref = 
+      dependency->dst_ImplementationArtifactReference ();
+
     try
     {
-      PICML::StubProject proj = impl_ref.StubProject_parent ();
+      PICML::StubProject proj = impl_ref->parent_StubProject ();
       ret_val = true;
       // Add this to the dependent project
-      std::string name;
-      proj.GetStrValue ("name", name);
+      std::string name = proj->name ();
+
       if (name.size () != 0)
         dependent_proj.append (name);
       else
       {
-        PICML::ImplementationArtifact art = impl_ref.ref ();
-        art.GetStrValue ("name", name);
+        PICML::ImplementationArtifact art = impl_ref->refers_to ();
+        name = art->name ();
         dependent_proj.append (name);
       }
 
       // Add a project separation
       dependent_proj.append (" ");
-
-    } catch(udm_exception &)
+    }
+    catch (GAME::Mga::Exception &)
     {
       // Indicates that this artifact is not present in the
       // folder
       // continue;
-    }
+    }   
   }
 
   return ret_val;
 }
 
 void
-MPCStream::create_project_defn (std::string& proj_name, std::string root_proj)
+MPCStream::create_project_defn (std::string & proj_name, std::string root_proj)
 {
   // Write out the stub header to the file
   this->strm_ << "project (";
@@ -162,19 +153,19 @@ MPCStream::create_project_defn (std::string& proj_name, std::string root_proj)
 
 }
 
-void MPCStream::create_after_defn (std::string& dep_proj_name)
+void MPCStream::create_after_defn (std::string & dep_proj_name)
 {
   // Write the after definitions
-    this->incr_indent ();
-    this->indent ();
-    this->strm_ << "after += ";
+  this->incr_indent ();
+  this->indent ();
+  this->strm_ << "after += ";
   this->strm_ << dep_proj_name;
   this->nl ();
 
 }
 
 void
-MPCStream::create_shared_defn (std::string& shared_name)
+MPCStream::create_shared_defn (std::string & shared_name)
 {
   // Write out the shared lib name
   this->indent ();
@@ -183,7 +174,7 @@ MPCStream::create_shared_defn (std::string& shared_name)
 }
 
 void
-MPCStream::create_export_defn (std::string& shared_name)
+MPCStream::create_export_defn (std::string & shared_name)
 {
   this->nl ();
   this->indent ();
@@ -208,7 +199,7 @@ MPCStream::create_close_proj_defn ()
 }
 
 void
-MPCStream::create_idl_file_defn (std::vector<std::string>& idl_files)
+MPCStream::create_idl_file_defn (std::vector <std::string> & idl_files)
 {
   // Write the IDL files and the Source_files
   this->nl ();
@@ -216,10 +207,10 @@ MPCStream::create_idl_file_defn (std::vector<std::string>& idl_files)
   this->strm_ << "IDL_Files {";
   this->nl ();
   this->incr_indent ();
-  for (size_t i =0; i < idl_files.size (); i ++)
+  for (std::string & idl_file : idl_files)
   {
     this->indent ();
-    this->strm_ << idl_files[i];
+    this->strm_ << idl_file;
     this->nl ();
   }
 
@@ -230,7 +221,7 @@ MPCStream::create_idl_file_defn (std::vector<std::string>& idl_files)
 }
 
 void
-MPCStream::create_dynamic_flags_defn (std::string& shared_name)
+MPCStream::create_dynamic_flags_defn (std::string & shared_name)
 {
   //Write out the dynamic flags
   this->nl ();
@@ -242,7 +233,7 @@ MPCStream::create_dynamic_flags_defn (std::string& shared_name)
 }
 
 void
-MPCStream::create_source_file_defn (std::vector<std::string>& idl_c_files)
+MPCStream::create_source_file_defn (std::vector <std::string> & idl_c_files)
 {
   // Write out the Source_Files
   this->nl ();
@@ -250,10 +241,10 @@ MPCStream::create_source_file_defn (std::vector<std::string>& idl_c_files)
   this->strm_ << "Source_Files {";
   this->nl ();
   this->incr_indent ();
-  for (size_t counter =0; counter < idl_c_files.size (); counter ++)
+  for (std::string & idl_c_file : idl_c_files)
   {
     this->indent ();
-    this->strm_ << idl_c_files[counter];
+    this->strm_ << idl_c_file;
     this->nl ();
   }
 
@@ -266,28 +257,20 @@ MPCStream::create_source_file_defn (std::vector<std::string>& idl_c_files)
 }
 
 std::string
-MPCStream::skel_export_macro (PICML::Project project)
+MPCStream::skel_export_macro (PICML::Project_in project)
 {
-  std::set<PICML::ServantProject> skel =
-    project.ServantProject_kind_children ();
-
   std::string component_name;
-  for (std::set<PICML::ServantProject>::iterator iter = skel.begin ();
-     iter != skel.end ();
-     iter ++)
-     {
-       // Obtain the library name -- Name of the artifact
-      PICML::ImplementationArtifactReference art_ref =
-        iter->ImplementationArtifactReference_child();
-      PICML::ImplementationArtifact artifact = art_ref.ref ();
+  for (auto skel : project->get_ServantProjects ())
+  {
+    // Obtain the library name -- Name of the artifact
+    component_name = skel->get_ImplementationArtifactReference ()->refers_to ()->name ();
+  }
 
-      artifact.GetStrValue ("name", component_name);
-     }
   return component_name;
 }
 
 void
-MPCStream::create_export_macro (std::string& shared_name)
+MPCStream::create_export_macro (std::string & shared_name)
 {
   // Generate the stub export file name as well
   std::string command = "generate_export_file.pl -s ";
@@ -298,9 +281,9 @@ MPCStream::create_export_macro (std::string& shared_name)
   char c;
 
   while ((c = str[i++]) != '\0')
-    {
+  {
     command += toupper (c);
-    }
+  }
 
   // Redirect to required file
   command.append (" > ");
@@ -319,15 +302,12 @@ MPCStream::create_export_macro (std::string& shared_name)
 }
 
 void
-MPCStream::create_stub_definition (const PICML::StubProject &stub)
+MPCStream::create_stub_definition (const PICML::StubProject_in stub)
 {
   // Obtain the library name -- Name of the artifact
-  PICML::ImplementationArtifactReference art_ref =
-    stub.ImplementationArtifactReference_child();
-  PICML::ImplementationArtifact artifact = art_ref.ref ();
-
   std::string proj_name;
-  artifact.GetStrValue ("name", proj_name);
+  PICML::ImplementationArtifact artifact = stub->get_ImplementationArtifactReference ()->refers_to ();
+  proj_name = artifact->name ();
 
   this->stub_project_ = proj_name;
 
@@ -344,8 +324,7 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
     this->incr_indent ();
 
   // Obtain the Library shared name for the project
-  std::string shared_name;
-  artifact.GetStrValue ("name", shared_name);
+  std::string shared_name = artifact->name ();
   this->create_shared_defn(shared_name);
 
   // Write out IDL-Flags Definition
@@ -364,8 +343,8 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
   this->create_export_macro (shared_name);
 
   // Obtain the Skeleton Export Macros
-  std::string &skel_component_name =
-    this->skel_export_macro (stub.Project_parent ());
+  std::string & skel_component_name =
+    this->skel_export_macro (stub->parent_Project ());
 
   this->strm_ << "-Wb,skel_export_macro=";
   this->upcase (skel_component_name.c_str ());
@@ -382,10 +361,9 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
   std::vector<std::string> idl_c_files;
   std::vector<std::string> idl_files;
 
-  PICML::FileRef idl_file_ref = stub.FileRef_child ();
-  PICML::File idl_file = idl_file_ref.ref ();
-  std::string base;
-  idl_file.GetStrValue ("name", base);
+  PICML::FileRef idl_file_ref = stub->get_FileRef ();
+  PICML::File idl_file = idl_file_ref->refers_to ();
+  std::string base = idl_file->name ();
   std::string temp = base;
 
   this->idl_files_.push_back (base);
@@ -405,7 +383,7 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
 }
 
 void
-MPCStream::create_lib_path_defn (std::string& lib_path)
+MPCStream::create_lib_path_defn (std::string & lib_path)
 {
   this->nl ();
   this->indent ();
@@ -415,7 +393,7 @@ MPCStream::create_lib_path_defn (std::string& lib_path)
 
 
 void
-MPCStream::create_dependant_libs_defn (std::vector<std::string>& lib_list)
+MPCStream::create_dependant_libs_defn (std::vector <std::string> & lib_list)
 {
   // @@ The problem here could be when using static libraries, where the ordering
   // of the libraries are needed to build the artifact. In fact the ordering needs
@@ -436,28 +414,25 @@ MPCStream::create_dependant_libs_defn (std::vector<std::string>& lib_list)
 
   // 3: Copy this to the output file
   std::copy (lib_list.begin (), lib_list.end (),
-    std::ostream_iterator<std::string> (this->strm_, " "));
+    std::ostream_iterator <std::string> (this->strm_, " "));
 }
 
 void
-MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
+MPCStream::create_cidl_defn (PICML::ImplementationArtifact_in artifact)
 {
   // Step 1: From the implementation artifact get all the references
   // Obtain the reference that is contained in the Implementations
   // foler
-  std::set<PICML::ImplementationArtifactReference> impl_refs =
-    artifact.referedbyImplementationArtifactReference ();
+
+  auto impl_refs = artifact->referenced_by ();
 
   bool entered_loop = 0;
-  for (std::set<PICML::ImplementationArtifactReference>::iterator iter =
-       impl_refs.begin ();
-       iter != impl_refs.end ();
-       iter ++)
+  for (auto artifact_ref : impl_refs)
   {
+
     try
     {
-      PICML::ComponentImplementationContainer parent =
-        PICML::ComponentImplementationContainer::Cast (iter->parent ());
+      PICML::ComponentImplementationContainer parent = artifact_ref->parent ();
 
       // @@ There should only be one Container that should hold
       // a reference to this
@@ -465,27 +440,29 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 
       // Step 2: Obtain the Component name that is present within this
       // Implements folder
-      std::vector <PICML::ComponentImplementation>
-        children = parent.ComponentImplementation_children ();
+      auto children = parent->get_MonolithprimaryArtifacts ();
 
-      if (!children.empty ())
+      if (children.count ())
       {
-        PICML::Implements impls = children.begin ()->dstImplements();
+        PICML::ComponentImplementation ci = *children.begin ();
 
-        PICML::ComponentRef type = impls.dstImplements_end();
+        std::vector <PICML::Implements> impls;
+        ci->src_Implements (impls);
+
+        PICML::ComponentRef type = impls[0]->dst_ComponentRef ();
 
         // Get the name of the ComponentType
-        PICML::Component comp = type.ref ();
+        PICML::Component comp = type->refers_to ();
 
         // Step 3: The name of the cidl will be based on the component idl
         // file name
-        std::string name;
-        comp.GetStrValue ("name", name);
+        std::string name = comp->name ();
+
         std::string message = "Cidl_file_name" + name;
         this->cidl_file_.push_back (name);
       }
     }
-    catch (udm_exception& )
+    catch (GAME::Mga::Exception & )
     {
 
     }
@@ -498,40 +475,35 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
   this->strm_ << "CIDL_Files {";
   this->nl ();
   this->incr_indent ();
-  for (std::vector<std::string>::iterator cidl_iter = this->cidl_file_.begin ();
-     cidl_iter != this->cidl_file_.end ();
-     cidl_iter ++)
-    {
-      this->indent ();
-      this->strm_ << (* cidl_iter);
-      //@@ Need to check for command line arguments to the cidl file
-      // if any
-      this->strm_ << ".cidl";
-      this->nl ();
-    }
-
-    // Close the Cidl file
-    this->decr_indent ();
+  for (std::string & cidl_entry : this->cidl_file_)
+  {
     this->indent ();
-    this->strm_<< "}";
+    this->strm_ << (cidl_entry);
+    //@@ Need to check for command line arguments to the cidl file
+    // if any
+    this->strm_ << ".cidl";
     this->nl ();
+  }
+
+  // Close the Cidl file
+  this->decr_indent ();
+  this->indent ();
+  this->strm_<< "}";
+  this->nl ();
 }
 
 void
-MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool exec_not_present)
+MPCStream::create_skeleton_definition (const PICML::ServantProject_in skel, bool exec_not_present)
 {
   // Obtain the library name -- Name of the artifact
-  PICML::ImplementationArtifactReference art_ref =
-    skel.ImplementationArtifactReference_child();
-  PICML::ImplementationArtifact artifact = art_ref.ref ();
+  PICML::ImplementationArtifact artifact = skel->get_ImplementationArtifactReference ()->refers_to ();
 
-  std::string proj_name;
-  artifact.GetStrValue ("name", proj_name);
+  std::string proj_name = artifact->name ();
 
   this->servant_project_ = proj_name;
 
   /// Check if File ref is present
-  PICML::FileRef file_ref = skel.FileRef_child ();
+  PICML::FileRef file_ref = skel->get_FileRef ();
 
   this->create_project_defn (proj_name, "ciao_servant_dnc");
 
@@ -542,9 +514,7 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool e
   this->create_after_defn (dep_proj_name);
 
   // Obtain the Library shared name for the project
-  std::string shared_name;
-  artifact.GetStrValue ("name", shared_name);
-  this->create_shared_defn (shared_name);
+  std::string shared_name = artifact->name ();
 
   // Write out name for the idlflag
   this->create_export_defn (shared_name);
@@ -555,8 +525,9 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool e
 
   // Identify the dependent libraries and
   // generate the lib+= definition
-  std::set<PICML::ArtifactDependsOn> dep_list =
-    artifact.dstArtifactDependsOn ();
+
+  std::vector <PICML::ArtifactDependsOn> dep_list;
+  artifact->src_ArtifactDependsOn (dep_list);
 
   /// Obtain the dependecy names from the list
   std::vector<std::string> &lib_list =
@@ -584,8 +555,8 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool e
   if (exec_not_present)
   {
     // Write out the source file definitions
-     for (size_t i = 0; i < this->idl_files_.size (); i++)
-       source_file_names.push_back (this->idl_files_[i] + "S.cpp");
+    for (std::string idl_file : this->idl_files_)
+      source_file_names.push_back (idl_file + "S.cpp");
   }
   else
   {
@@ -593,17 +564,15 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool e
     this->create_cidl_defn (artifact);
 
     // Write out the IDL files generated by the cidl compiler
-    std::vector<std::string> idl_file_names;
+    std::vector <std::string> idl_file_names;
 
-    for (std::vector<std::string>::iterator iter = this->cidl_file_.begin ();
-       iter != this->cidl_file_.end ();
-      iter ++)
+    for (std::string cidl_file : this->cidl_file_)
     {
-       idl_file_names.push_back ((*iter) + "E.idl");
-       source_file_names.push_back ((* iter) + "EC.cpp");
-       source_file_names.push_back ((* iter) + "S.cpp");
-       source_file_names.push_back ((* iter) + "_svnt.cpp");
-     }
+      idl_file_names.push_back (cidl_file + "E.idl");
+      source_file_names.push_back (cidl_file + "EC.cpp");
+      source_file_names.push_back (cidl_file + "S.cpp");
+      source_file_names.push_back (cidl_file + "_svnt.cpp");
+    }
 
     // Write out the IDL file definitions
     this->create_idl_file_defn (idl_file_names);
@@ -617,39 +586,33 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool e
 }
 
 std::vector<std::string>
-MPCStream::generate_dependant_libs (std::set<PICML::ArtifactDependsOn>& art_deps)
+MPCStream::generate_dependant_libs (std::vector <PICML::ArtifactDependsOn> art_deps)
 {
-  std::vector<std::string> return_list;
+  std::vector <std::string> return_list;
 
   // Stopping Criteria for the function
   if (! art_deps.size ())
     return return_list;
 
-  std::set<PICML::ArtifactDependsOn>::iterator iter =
-    art_deps.begin ();
-
-  for ( ; iter != art_deps.end (); iter ++)
+  for (PICML::ArtifactDependsOn dep : art_deps)
   {
     // Get the implementation artifact
-    PICML::ImplementationArtifactReference ref =
-      iter->dstArtifactDependsOn_end ();
-    PICML::ImplementationArtifact artifact = ref.ref ();
+    PICML::ImplementationArtifact artifact = dep->dst_ImplementationArtifactReference ()->refers_to ();
 
     // Get the name of the Artifact -- Add to dependency list
-    std::string name;
-    artifact.GetStrValue ("name", name);
+    std::string name = artifact->name ();
     return_list.push_back (name);
 
     /// Generate the dependencies of this artifact
-    std::set<PICML::ArtifactDependsOn> artifact_dependencies =
-      artifact.dstArtifactDependsOn ();
+    std::vector <PICML::ArtifactDependsOn> artifact_dependencies;
+    artifact->src_ArtifactDependsOn (artifact_dependencies);
 
     // Get the destination reference
-    std::vector<std::string> &depends_names =
+    std::vector <std::string> & depends_names =
       this->generate_dependant_libs (artifact_dependencies);
 
-    for (size_t i =0; i < depends_names.size (); i++)
-      return_list.push_back (depends_names [i]);
+    for (std::string & name : depends_names)
+      return_list.push_back (name);
   }
 
   // Return dependancy list
@@ -657,15 +620,12 @@ MPCStream::generate_dependant_libs (std::set<PICML::ArtifactDependsOn>& art_deps
 }
 
 void
-MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
+MPCStream::create_executor_definition (const PICML::ExecutorProject_in exec)
 {
   // Obtain the library name -- Name of the artifact
-  PICML::ImplementationArtifactReference art_ref =
-    exec.ImplementationArtifactReference_child();
-  PICML::ImplementationArtifact artifact = art_ref.ref ();
+  PICML::ImplementationArtifact artifact = exec->get_ImplementationArtifactReference ()->refers_to ();
 
-  std::string proj_name;
-  artifact.GetStrValue ("name", proj_name);
+  std::string proj_name = artifact->name ();
 
   this->create_project_defn (proj_name, "ciao_component_dnc");
 
@@ -673,8 +633,7 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
   this->create_after_defn (this->servant_project_);
 
   // Write out the shared name for the project
-  std::string shared_name;
-  artifact.GetStrValue ("name", shared_name);
+  std::string shared_name = artifact->name ();
   this->create_shared_defn (shared_name);
 
   // Write out idl_flags +=
@@ -689,8 +648,8 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
 
   // Identify the dependent libraries and
   // generate the lib+= definition
-  std::set<PICML::ArtifactDependsOn> dep_list =
-    artifact.dstArtifactDependsOn ();
+  std::vector <PICML::ArtifactDependsOn> dep_list;
+  artifact->src_ArtifactDependsOn (dep_list);
 
   /// Obtain the dependecy names from the list
   std::vector<std::string> &lib_list =
@@ -726,43 +685,36 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
 }
 
 void
-MPCStream::create_project (const PICML::Project &project)
+MPCStream::create_project (const PICML::Project_in project)
 {
   // For each project generate the stub, skel and exec part
 
   // Step 1: Generating the stub part --> Obtain dependencies
-  std::set<PICML::StubProject> stub = project.StubProject_kind_children ();
+  auto stub = project->get_StubProjects ();
 
   // There should only be one project -- Constraint checked via constraints
-  assert (stub.size () == 1);
-  std::set<PICML::StubProject>::iterator stub_iter = stub.begin ();
-  this->create_stub_definition (* stub_iter);
+  assert (stub.count () == 1);
+  this->create_stub_definition (*stub.begin ());
 
   // Step 2: Generating the skeleton part --> Depends on stub project
-  std::set<PICML::ServantProject> skel = project.ServantProject_kind_children ();
+  auto skel = project->get_ServantProjects ();
 
   // There should be atmost one project -- Constraint checked via constraints
-  assert (skel.size () <= 1);
+  assert (skel.count () <= 1);
 
   // If there is an executor project modeled, then CIDL files should be generated
   // for the servant. Otherwise it should be a plain vanilla servant.
-  std::set<PICML::ExecutorProject> exec = project.ExecutorProject_kind_children ();
+  auto exec = project->get_ExecutorProjects ();
 
   // There should be atmost one project -- Constraint checked via constraints
-  assert (exec.size () <= 1);
-  if (skel.size ())
-  {
-    std::set<PICML::ServantProject>::iterator skel_iter = skel.begin ();
-    this->create_skeleton_definition (* skel_iter, (exec.size () == 0));
-  }
+  assert (exec.count () <= 1);
+  if (skel.count ())
+    this->create_skeleton_definition (*skel.begin (), (exec.count () == 0));
 
   // Step 3: Generating the executor part --> Depends on this skeleton and
   // External libraries if any
-  if (exec.size ())
-  {
-    std::set<PICML::ExecutorProject>::iterator exec_iter = exec.begin ();
-    this->create_executor_definition (* exec_iter);
-  }
+  if (exec.count ())
+    this->create_executor_definition (*exec.begin ());
 
 }
 
@@ -788,7 +740,7 @@ MPCStream::nl (void)
 }
 
 MPCStream &
-MPCStream::operator<< (const std::string &s)
+MPCStream::operator<< (const std::string & s)
 {
   this->strm_ << s.c_str ();
   return *this;
@@ -809,67 +761,62 @@ MPCStream::operator<< (const long &l)
 }
 
 MPCStream &
-MPCStream::operator<< (const unsigned long &ul)
+MPCStream::operator<< (const unsigned long & ul)
 {
   this->strm_ << ul;
   return *this;
 }
 
 MPCStream &
-MPCStream::operator<< (const double &d)
+MPCStream::operator<< (const double & d)
 {
   this->strm_ << d;
   return *this;
 }
 
 MPCStream &
-MPCStream::operator<< (const char &c)
+MPCStream::operator<< (const char & c)
 {
   this->strm_ << c;
   return *this;
 }
 
 MPCStream &
-MPCStream::operator<< (const NL&)
+MPCStream::operator<< (const NL & )
 {
   (void) this->nl ();
   return *this;
 }
 
 MPCStream &
-MPCStream::operator<< (const INDENT& i)
+MPCStream::operator<< (const INDENT & i)
 {
   this->incr_indent (0);
 
   if (i.do_now_)
-    {
     (void) this->nl ();
-    }
 
   return *this;
 }
 
 MPCStream &
-MPCStream::operator<< (const UNINDENT& i)
+MPCStream::operator<< (const UNINDENT & i)
 {
   this->decr_indent (0);
 
   if (i.do_now_)
-    {
     this->nl ();
-    }
 
   return *this;
 }
 
 void
-MPCStream::upcase (const char *str)
+MPCStream::upcase (const char * str)
 {
   int i = 0;
   char c;
 
   while ((c = str[i++]) != '\0')
-    {
     this->strm_ << static_cast<char> (toupper (c));
-    }
+
 }

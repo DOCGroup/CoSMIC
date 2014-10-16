@@ -22,51 +22,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\ComHelp.cpp">
+    <ClCompile Include="MPC_Visitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\ComponentDll.cpp">
+    <ClCompile Include="MPCStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <Midl Include="$(GME_ROOT)\SDK\BON\Common\ComponentLib.idl">
+    <Midl Include="PICML_MPCComponent.idl">
       <Filter>Source Files</Filter>
     </Midl>
-    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\ComponentObj.cpp">
+    <ClCompile Include="PICML_MPCComponent_Impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(GME_ROOT)\SDK\BON\Common\Exceptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RawComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UdmApp.cpp">
+    <ClCompile Include="PICML_MPCComponent_Module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComponentConfig.h">
+    <ClInclude Include="MPC_Visitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentLib.h">
+    <ClInclude Include="MPCStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentLib_h.h">
+    <ClInclude Include="PICML_MPCComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RawComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UdmApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UdmConfig.h">
+    <ClInclude Include="PICML_MPCComponent_Impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -81,7 +63,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="CompIcon.ico">
+    <ResourceCompile Include="Component.ico">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
     <ResourceCompile Include="Component.rc">

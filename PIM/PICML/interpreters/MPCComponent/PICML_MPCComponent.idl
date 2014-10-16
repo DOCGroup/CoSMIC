@@ -1,0 +1,36 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file      PICML_MPCComponent.idl
+ *
+ * $Id$
+ *
+ * @author    Tanumoy Pati
+ */
+//=============================================================================
+
+#ifndef _PICML_MPCCOMPONENT_IDL_
+#define _PICML_MPCCOMPONENT_IDL_
+
+#include <Gme.idl>
+#include <Core.idl>
+
+[
+	uuid (74255f9a-634e-4fb7-a983-d977cd6e6dc0),
+	version (1.0),
+]
+library PICML_MPCComponent
+{
+	importlib ("stdole32.tlb");
+
+	[uuid (8f1e738f-594b-4a90-a1b2-840b074192fe)]
+	coclass PICML_MPCComponent
+	{
+		[default] interface IMgaComponentEx;
+		interface IMgaComponent;
+		interface IGMEVersionInfo;
+	};
+};
+
+#endif  // !defined _PICML_MPCCOMPONENT_IDL_
