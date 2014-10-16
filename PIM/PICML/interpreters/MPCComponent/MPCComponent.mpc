@@ -7,9 +7,9 @@ project (PICML_MPCComponent) : game_mga_interpreter, game_mga_utils, picml_game_
   pch_source = StdAfx.cpp
 
   Source_Files {
-    MPC_Component.idl
-    MPC_Component_Impl.cpp
-    MPC_Component_Module.cpp
+    PICML_MPCComponent.idl
+    PICML_MPCComponent_Impl.cpp
+    PICML_MPCComponent_Module.cpp
 
     MPCStream.cpp
     MPC_Visitor.cpp
