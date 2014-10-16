@@ -24,7 +24,7 @@ library PICML_MPCComponent
 {
 	importlib ("stdole32.tlb");
 
-	[uuid (8f1e738f-594b-4a90-a1b2-840b074192fe)]
+	[uuid (FECCFB52-4281-4C58-8673-11D9593EF453)]
 	coclass PICML_MPCComponent
 	{
 		[default] interface IMgaComponentEx;
