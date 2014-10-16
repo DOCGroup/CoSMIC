@@ -7,7 +7,6 @@ workspace {
   ComponentImplementationGenerator
   DeploymentPlanComponent
   IDLGenerator
-  MPC
   MPCComponent
 
   PackageComponent
