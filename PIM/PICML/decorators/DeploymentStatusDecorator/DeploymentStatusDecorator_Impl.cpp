@@ -46,9 +46,16 @@ initialize (const GAME::Mga::Project & project,
     return -1;
 
   // Get the elements deployment information.
+
   GAME::Mga::Collection_T <GAME::Mga::Set> sets = fco->in_sets ();
 
-  if (sets.count ())
+  if (sets.is_empty ())
+  {
+    // Show the question mark on the image.
+    using GAME::Mga::graphics::Image_Resource;
+    this->question_.reset (Image_Resource::load (IDB_QUESTION, "PNG"));
+  }
+  else
   {
     // Save the name of the collocation group.
     GAME::Mga::Set group = sets.first ();
@@ -58,11 +65,6 @@ initialize (const GAME::Mga::Project & project,
     std::vector <GAME::Mga::Connection> conns;
     if (group->in_connections ("InstanceMapping", conns))
       this->deployment_ += conns[0]->dst ()->name ();
-  }
-  else
-  {
-    using GAME::Mga::graphics::Image_Resource;
-    this->question_.reset (Image_Resource::load (IDB_QUESTION, "PNG"));
   }
 
   return 0;
