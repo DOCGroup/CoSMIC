@@ -1,0 +1,12 @@
+project (PICML_Xml) : picml_game_utils, game_xml, picml_game_mga, cosmic_lib {
+  sharedname   += PICML_Xml
+  dynamicflags += PICML_XML_BUILD_DLL
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    Data_Type_Visitor.cpp
+    Data_Value_Visitor.cpp
+  }
+}
