@@ -125,6 +125,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\DQML_GAME_Mga\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -139,6 +140,7 @@
       <AdditionalDependencies>ACEd.lib;GAME_Mgad.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)DQML_GAME_Mgad.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\DQML_GAME_Mgad_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>$(GAME_ROOT)\lib\DQML_GAME_Mgad.lib</ImportLibrary>
     </Link>
 <!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
@@ -209,6 +211,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\DQML_GAME_Mga\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -223,6 +226,7 @@
       <AdditionalDependencies>ACEd.lib;GAME_Mgad.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)DQML_GAME_Mgad.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\DQML_GAME_Mgad_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>$(GAME_ROOT)\lib\DQML_GAME_Mgad.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++

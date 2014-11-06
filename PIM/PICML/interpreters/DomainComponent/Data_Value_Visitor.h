@@ -18,8 +18,7 @@ class Data_Value_Visitor : public PICML::Visitor
 {
 public:
   /// Default constructor.
-  Data_Value_Visitor (const GAME::Xml::Fragment & parent, 
-                      const std::string & value);
+  Data_Value_Visitor (const GAME::Xml::Fragment & parent, const std::string & value);
 
   /// Destructor.
   virtual ~Data_Value_Visitor (void);        

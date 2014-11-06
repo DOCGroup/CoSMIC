@@ -7,11 +7,6 @@ workspace {
   ComponentImplementationGenerator
   DeploymentPlanComponent
   IDLGenerator
-  MPC
-  MPCComponent
-
-  PackageComponent
-  PICML/PICML.mpc
 
   PICML_TO_DQML
 

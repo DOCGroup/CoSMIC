@@ -8,6 +8,7 @@ workspace (PICML) {
     addons
     decorators
     utils
+    xml
 
     cosmic_lib {
       cmdline += -base cosmic_lib

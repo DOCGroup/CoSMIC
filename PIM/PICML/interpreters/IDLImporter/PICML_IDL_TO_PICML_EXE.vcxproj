@@ -123,6 +123,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\PICML_IDL_TO_PICML_EXE\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;4250;4290;4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -137,6 +138,7 @@
       <AdditionalDependencies>ACEd.lib;GAME_XMLd.lib;GAME_XMEd.lib;TAO_IDL_FEd.lib;PICML_IDL_TO_PICML_BEd.lib;iphlpapi.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)idl_to_picml.exe</OutputFile>
       <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(XERCESCROOT)\lib;$(GAME_ROOT)\lib;$(BOOST_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\idl_to_picml_exe.pdb</ProgramDatabaseFile>
     </Link>
 <!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
      Check if msbuild has any support for a custom post-cleaning step
@@ -201,6 +203,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\PICML_IDL_TO_PICML_EXE\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;4250;4290;4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -215,6 +218,7 @@
       <AdditionalDependencies>ACEd.lib;GAME_XMLd.lib;GAME_XMEd.lib;TAO_IDL_FEd.lib;PICML_IDL_TO_PICML_BEd.lib;iphlpapi.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)idl_to_picml.exe</OutputFile>
       <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(XERCESCROOT)\lib;$(GAME_ROOT)\lib;$(BOOST_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\idl_to_picml_exe.pdb</ProgramDatabaseFile>
 <!--
   Though we can set TargetMachine explicitly, VC++
   can figure it out by project type. We don't need

@@ -123,6 +123,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\CoSMIC_Utils\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -136,6 +137,7 @@
       <AdditionalDependencies>ACEd.lib;iphlpapi.lib;rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Utilsd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(BOOST_ROOT)\lib;..\lib;..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\Utilsd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\lib\Utilsd.lib</ImportLibrary>
     </Link>
 <!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
@@ -201,6 +203,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\CoSMIC_Utils\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -214,6 +217,7 @@
       <AdditionalDependencies>ACEd.lib;iphlpapi.lib;rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Utilsd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(ACE_ROOT)\lib;$(BOOST_ROOT)\lib;..\lib;..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\Utilsd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\lib\Utilsd.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++

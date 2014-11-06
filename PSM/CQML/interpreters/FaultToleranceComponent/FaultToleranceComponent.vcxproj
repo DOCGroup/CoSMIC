@@ -126,6 +126,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\FaultToleranceComponent\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4250;4251;4355;4180;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -137,9 +138,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;FaultToleranced.lib;iphlpapi.lib;UdmDllD.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;FaultToleranced.lib;iphlpapi.lib;UdmDll_v110_Win32D.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)FaultToleranceComponentd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\FaultToleranceComponentd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\FaultToleranceComponentd.lib</ImportLibrary>
       <AdditionalOptions>/DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -183,7 +185,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utils.lib;CQML.lib;FaultTolerance.lib;iphlpapi.lib;UdmDll.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utils.lib;CQML.lib;FaultTolerance.lib;iphlpapi.lib;UdmDll_v110_Win32.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)FaultToleranceComponent.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
@@ -220,6 +222,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\FaultToleranceComponent\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4250;4251;4355;4180;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -231,9 +234,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;FaultToleranced.lib;iphlpapi.lib;UdmDllD.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;FaultToleranced.lib;iphlpapi.lib;UdmDll_v110_Win32D.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)FaultToleranceComponentd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\FaultToleranceComponentd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\FaultToleranceComponentd.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++
@@ -283,7 +287,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utils.lib;CQML.lib;FaultTolerance.lib;iphlpapi.lib;UdmDll.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utils.lib;CQML.lib;FaultTolerance.lib;iphlpapi.lib;UdmDll_v110_Win32.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)FaultToleranceComponent.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>

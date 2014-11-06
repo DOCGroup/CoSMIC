@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 #include "Domain_Visitor.h"
 
-#include "Data_Type_Visitor.h"
-#include "Data_Value_Visitor.h"
+#include "PIM/PICML/xml/Data_Type_Visitor.h"
+#include "PIM/PICML/xml/Data_Value_Visitor.h"
 
 #include "PICML/RootFolder.h"
 #include "PICML/Domain/Targets.h"
@@ -209,9 +209,9 @@ void Domain_Visitor::visit_SatisfierProperty (PICML::SatisfierProperty_in prop)
   // Write the type and value of the property.
   PICML::DataType data_type = prop->get_DataType ();
   Fragment value = fragment.create_element ("value");
-  Data_Type_Visitor data_type_visitor (value);
+  PICML::Xml::Data_Type_Visitor data_type_visitor (value);
   data_type->accept (&data_type_visitor);
 
-  Data_Value_Visitor data_value_visitor (value, prop->DataValue ());
+  PICML::Xml::Data_Value_Visitor data_value_visitor (value, prop->DataValue ());
   data_type->accept (&data_value_visitor);
 }

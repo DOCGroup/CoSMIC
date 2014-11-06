@@ -124,6 +124,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\CIAOEvents\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -134,9 +135,10 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ACEd.lib;GAME_XMLd.lib;Utilsd.lib;CQMLd.lib;UdmDllD.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACEd.lib;GAME_XMLd.lib;Utilsd.lib;CQMLd.lib;UdmDll_v110_Win32D.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)CIAOEventsd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\CIAOEventsd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\CIAOEventsd.lib</ImportLibrary>
     </Link>
 <!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
@@ -173,7 +175,7 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ACE.lib;GAME_XML.lib;Utils.lib;CQML.lib;UdmDll.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;GAME_XML.lib;Utils.lib;CQML.lib;UdmDll_v110_Win32.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)CIAOEvents.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
@@ -204,6 +206,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\CIAOEvents\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4355;4250;4290;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -214,9 +217,10 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ACEd.lib;GAME_XMLd.lib;Utilsd.lib;CQMLd.lib;UdmDllD.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACEd.lib;GAME_XMLd.lib;Utilsd.lib;CQMLd.lib;UdmDll_v110_Win32D.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)CIAOEventsd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\CIAOEventsd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\CIAOEventsd.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++
@@ -260,7 +264,7 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ACE.lib;GAME_XML.lib;Utils.lib;CQML.lib;UdmDll.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;GAME_XML.lib;Utils.lib;CQML.lib;UdmDll_v110_Win32.lib;xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)CIAOEvents.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(ACE_ROOT)\lib;$(GAME_ROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>

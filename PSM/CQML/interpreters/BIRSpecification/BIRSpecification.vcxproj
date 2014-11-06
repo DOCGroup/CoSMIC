@@ -124,6 +124,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\BIRSpecification\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4250;4290;4355;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -134,9 +135,10 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;DeploymentPlanFrameworkd.lib;iphlpapi.lib;UdmDllD.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;DeploymentPlanFrameworkd.lib;iphlpapi.lib;UdmDll_v110_Win32D.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)BIRSpecificationd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\BIRSpecificationd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\BIRSpecificationd.lib</ImportLibrary>
     </Link>
 <!-- "postclean" was made-up by MPC for use by vs_postclean.pl.
@@ -173,7 +175,7 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utils.lib;CQML.lib;DeploymentPlanFramework.lib;iphlpapi.lib;UdmDll.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utils.lib;CQML.lib;DeploymentPlanFramework.lib;iphlpapi.lib;UdmDll_v110_Win32.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)BIRSpecification.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
@@ -204,6 +206,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>Debug\BIRSpecification\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4250;4290;4355;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -214,9 +217,10 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;DeploymentPlanFrameworkd.lib;iphlpapi.lib;UdmDllD.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utilsd.lib;CQMLd.lib;DeploymentPlanFrameworkd.lib;iphlpapi.lib;UdmDll_v110_Win32D.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)BIRSpecificationd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\BIRSpecificationd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\BIRSpecificationd.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++
@@ -260,7 +264,7 @@
     </ResourceCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Utils.lib;CQML.lib;DeploymentPlanFramework.lib;iphlpapi.lib;UdmDll.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Utils.lib;CQML.lib;DeploymentPlanFramework.lib;iphlpapi.lib;UdmDll_v110_Win32.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)BIRSpecification.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(UDM_PATH)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>

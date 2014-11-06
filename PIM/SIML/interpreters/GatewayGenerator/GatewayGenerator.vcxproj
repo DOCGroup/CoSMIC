@@ -126,6 +126,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\GatewayGenerator\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4250;4290;4355;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -141,6 +142,7 @@
       <AdditionalDependencies>CodeGenerationKitsd.lib;Utilsd.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)GatewayGeneratord.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(GAME_ROOT)\contrib\CCF\CCF\CCF;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\GatewayGeneratord_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\GatewayGeneratord.lib</ImportLibrary>
       <AdditionalOptions>/DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -222,6 +224,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\GatewayGenerator\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4250;4290;4355;4251;4180;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -237,6 +240,7 @@
       <AdditionalDependencies>CodeGenerationKitsd.lib;Utilsd.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)GatewayGeneratord.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(GAME_ROOT)\contrib\CCF\CCF\CCF;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\GatewayGeneratord_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\GatewayGeneratord.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++

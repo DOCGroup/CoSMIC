@@ -126,6 +126,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\ConfiguratorInterpreter\I386\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4290;4355;4251;4180;4800;4250;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -140,6 +141,7 @@
       <AdditionalDependencies>xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)ConfiguratorInterpreterd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\ConfiguratorInterpreterd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\ConfiguratorInterpreterd.lib</ImportLibrary>
       <AdditionalOptions>/DEF:..\..\..\../includes/GME/Component.def %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -220,6 +222,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>Debug\ConfiguratorInterpreter\AMD64\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4290;4355;4251;4180;4800;4250;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -234,6 +237,7 @@
       <AdditionalDependencies>xerces-c_3.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)ConfiguratorInterpreterd.dll</OutputFile>
       <AdditionalLibraryDirectories>.;$(XERCESCROOT)\lib;$(BOOST_ROOT)\lib;$(ACE_ROOT)\lib;..\..\..\..\lib;..\..\..\..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)\ConfiguratorInterpreterd_dll.pdb</ProgramDatabaseFile>
       <ImportLibrary>..\..\..\..\lib\ConfiguratorInterpreterd.lib</ImportLibrary>
 <!--
   Though we can set TargetMachine explicitly, VC++

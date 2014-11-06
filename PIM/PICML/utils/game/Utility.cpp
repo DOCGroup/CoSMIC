@@ -4,15 +4,15 @@
 #include "Utility.h"
 #include "game/mga/MetaBase.h"
 #include "game/mga/MetaModel.h"
+
 #include <stack>
+#include <sstream>
 
 namespace PICML
 {
-//
-// scope
-//
-std::string scope (const GAME::Mga::Model_in named_type,
-                   const std::string & separator,
+
+std::string scope (GAME::Mga::Model_in named_type,
+                   const std::string & separator, 
                    bool leading)
 {
   std::string scope;
@@ -44,10 +44,22 @@ std::string scope (const GAME::Mga::Model_in named_type,
   return scope;
 }
 
-//
-// fq_type
-//
-std::string fq_type (const GAME::Mga::Model_in named_type,
+std::string scope (PICML::NamedType_in named_type, const std::string & separator, bool leading)
+{
+  return scope (GAME::Mga::Model::_narrow (named_type), separator, leading);
+}
+
+std::string scope (PICML::Exception_in ex, const std::string & separator, bool leading)
+{
+  return scope (GAME::Mga::Model::_narrow (ex), separator, leading);
+}
+
+std::string scope (PICML::Package_in package, const std::string & separator, bool leading)
+{
+  return scope (GAME::Mga::Model::_narrow (package), separator, leading);
+}
+
+std::string fq_type (GAME::Mga::Model_in named_type,
                      const std::string & separator,
                      bool leading)
 {
@@ -56,9 +68,21 @@ std::string fq_type (const GAME::Mga::Model_in named_type,
     named_type->name ();
 }
 
-//
-// get_template_package_inst
-//
+std::string fq_type (PICML::NamedType_in named_type, const std::string & separator, bool leading)
+{
+  return fq_type (GAME::Mga::Model::_narrow (named_type), separator, leading);
+}
+
+std::string fq_type (PICML::Exception_in ex, const std::string & separator, bool leading)
+{
+  return fq_type (GAME::Mga::Model::_narrow (ex), separator, leading);
+}
+
+std::string fq_type (PICML::Package_in package, const std::string & separator, bool leading)
+{
+  return fq_type (GAME::Mga::Model::_narrow (package), separator, leading);
+}
+
 GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type)
 {
   ::GAME::Mga::Model parent = type->parent_model ();
@@ -80,5 +104,26 @@ GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type)
 
   return GAME::Mga::Model ();
 }
+
+std::string repository_id (PICML::NamedType_in named_type)
+{
+  std::ostringstream ostr;
+  ostr << "IDL:";
+
+  // Write the prefix, if applicable.
+  std::string prefix = named_type->SpecifyIdTag ();
+  if (!prefix.empty ())
+    ostr << prefix << "/";
+
+  // Write the full scope of the named type.
+  ostr << fq_type (named_type, "/", false) << ":";
+
+  // Write the version tag, if applicable.
+  std::string version = named_type->VersionTag ();
+  ostr << (version.empty () ? "1.0" : version);
+
+  return ostr.str ();
+}
+
 
 }
