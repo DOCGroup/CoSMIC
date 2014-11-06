@@ -1,0 +1,4 @@
+project : game_xml {
+  after += PICML_Xml
+  libs  += PICML_Xml
+}
