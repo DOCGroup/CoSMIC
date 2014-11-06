@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_DeploymentPlanComponent): game_xml, game_mga_interpreter, picml_game_mga, game_mga_utils, cosmic_lib {
+project (PICML_DeploymentPlanComponent): picml_xml, game_mga_interpreter, picml_game_mga, game_mga_utils, cosmic_lib {
   sharedname = PICML_DeploymentPlanComponent
 
   pch_header = StdAfx.h

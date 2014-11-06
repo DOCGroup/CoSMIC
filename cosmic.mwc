@@ -29,8 +29,4 @@ workspace (cosmic) {
   PSM/DQML/examples
   PSM/DQML/paradigms
   PSM/DQML/ext
-
-  // The follow directories and workspaces only apply to
-  // building CoSMIC using Visual C++.
-  Utils/Utils.mpc
 }
