@@ -16,6 +16,8 @@
 #include "game/mga/Atom.h"
 #include "game/mga/Project.h"
 
+#include "PIM/PICML/ext/PICML/PICML.h"
+
 namespace PICML
 {
 namespace MI
@@ -48,26 +50,23 @@ public:
    *
    * @param[in]       component         Compent
    */
-  bool generate (const Implementation_Configuration & config,
-                 const GAME::Mga::Model_in type);
+  bool generate (const Implementation_Configuration & config, Component_in type);
 
-  GAME::Mga::Atom svnt_artifact (void);
+  ImplementationArtifact svnt_artifact (void);
 
-  GAME::Mga::Atom exec_artifact (void);
+  ImplementationArtifact exec_artifact (void);
 
 private:
-  std::string get_location_basename (const GAME::Mga::Model_in type);
-
   GAME::Mga::Model get_file (const GAME::Mga::Model_in type);
 
   /// The root folder for the project.
-  GAME::Mga::Folder artifact_folder_;
+  ImplementationArtifacts artifact_folder_;
 
   /// The servant's artifact.
-  GAME::Mga::Atom svnt_artifact_;
+  ImplementationArtifact svnt_artifact_;
 
   /// The implementation's artifact.
-  GAME::Mga::Atom impl_artifact_;
+  ImplementationArtifact impl_artifact_;
 };
 
 }

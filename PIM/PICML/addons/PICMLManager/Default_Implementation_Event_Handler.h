@@ -19,6 +19,8 @@
 #include "Default_Implementation_Generator.h"
 #include "Implementation_Configuration.h"
 
+#include "PIM/PICML/ext/PICML/ComponentParadigmSheets/ComponentType/Component.h"
+
 namespace PICML
 {
 namespace MI
@@ -45,7 +47,14 @@ public:
 
   virtual int handle_object_created (GAME::Mga::Object_in obj);
 
-  int generate_default_implementation (const GAME::Mga::Object_in obj);
+  /**
+   * Generate the default implemenation for a component type. This will produce
+   * the component implementation model elements, and the component implementation
+   * artifacts for the component type.
+   *
+   * @param[in]         type          The component type
+   */
+  int generate_default_implementation (PICML::Component_in type);
 
   bool insert (std::string meta, const meta_info_t & info);
 
