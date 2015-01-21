@@ -16,6 +16,9 @@
 
 #include <iostream>
 
+#include "game/mga/component/Console_Service.h"
+#include <sstream>
+
 GAME_DECLARE_INTERPRETER (PICML_MPCComponent, PICML_MPCComponent_Impl);
 
 //
@@ -43,7 +46,7 @@ PICML_MPCComponent_Impl::~PICML_MPCComponent_Impl (void)
 int PICML_MPCComponent_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
   GAME::Mga::Readonly_Transaction t (project);
@@ -55,7 +58,7 @@ invoke_ex (GAME::Mga::Project project,
 
 	bool valid_interpretation = 0;
 
-  if (focus || !selected.empty())
+  if (focus || selected.count ())
   {
     PICML::MPC_Visitor visitor (outputPath);
 
@@ -63,7 +66,6 @@ invoke_ex (GAME::Mga::Project project,
     {
       // dfeiock: FIX - Original code put the selected and focus into a set then interated over them.
       //                Now I am doing selected first then the focus.
-      //                Allocating an extra vector seemed silly and caused problems with FCO and FCO_in conversion.
       //                not sure if the automatic sorting of the set is required
       if (target->meta ()->name () == PICML::MPC::impl_type::metaname)
       {

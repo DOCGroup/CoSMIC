@@ -99,7 +99,7 @@ MPCStream::dependent_project (PICML::ImplementationArtifact_in artifact,
 {
   // Obtain a list of all dependent artifacts
   std::vector <PICML::ArtifactDependsOn> depends;
-  artifact->src_ArtifactDependsOn (depends);
+  artifact->src_of_ArtifactDependsOn (depends);
 
   bool ret_val = false; // Flag
 
@@ -447,7 +447,7 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact_in artifact)
         PICML::ComponentImplementation ci = *children.begin ();
 
         std::vector <PICML::Implements> impls;
-        ci->src_Implements (impls);
+        ci->src_of_Implements (impls);
 
         PICML::ComponentRef type = impls[0]->dst_ComponentRef ();
 
@@ -527,7 +527,7 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject_in skel, bool
   // generate the lib+= definition
 
   std::vector <PICML::ArtifactDependsOn> dep_list;
-  artifact->src_ArtifactDependsOn (dep_list);
+  artifact->src_of_ArtifactDependsOn (dep_list);
 
   /// Obtain the dependecy names from the list
   std::vector<std::string> &lib_list =
@@ -605,7 +605,7 @@ MPCStream::generate_dependant_libs (std::vector <PICML::ArtifactDependsOn> art_d
 
     /// Generate the dependencies of this artifact
     std::vector <PICML::ArtifactDependsOn> artifact_dependencies;
-    artifact->src_ArtifactDependsOn (artifact_dependencies);
+    artifact->src_of_ArtifactDependsOn (artifact_dependencies);
 
     // Get the destination reference
     std::vector <std::string> & depends_names =
@@ -649,7 +649,7 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject_in exec)
   // Identify the dependent libraries and
   // generate the lib+= definition
   std::vector <PICML::ArtifactDependsOn> dep_list;
-  artifact->src_ArtifactDependsOn (dep_list);
+  artifact->src_of_ArtifactDependsOn (dep_list);
 
   /// Obtain the dependecy names from the list
   std::vector<std::string> &lib_list =
