@@ -97,15 +97,11 @@ bool
 MPCStream::dependent_project (PICML::ImplementationArtifact_in artifact,
                               std::string & dependent_proj)
 {
-  // Obtain a list of all dependent artifacts
-  std::vector <PICML::ArtifactDependsOn> depends;
-  artifact->src_of_ArtifactDependsOn (depends);
-
   bool ret_val = false; // Flag
 
   // Check if these dependant artifacts are in some Stub_Project
   // if so include them in the after list
-  for (PICML::ArtifactDependsOn dependency : depends)
+  for (PICML::ArtifactDependsOn dependency : artifact->src_of_ArtifactDependsOn ())
   {
     PICML::ImplementationArtifactReference impl_ref = 
       dependency->dst_ImplementationArtifactReference ();
