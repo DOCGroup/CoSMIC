@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool ExceptionType_is_nil (void) const;
-    ExceptionType get_ExceptionType (void) const;
-    void set_ExceptionType (ExceptionType_in item);
+    ExceptionType refers_to_ExceptionType (void) const;
+    void refers_to_ExceptionType (ExceptionType_in item);
     ///@}
   };
 }

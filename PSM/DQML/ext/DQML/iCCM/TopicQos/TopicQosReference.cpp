@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,7 +28,7 @@ namespace DQML
   //
   TopicQosReference TopicQosReference_Impl::_create (const DataWriterQos_in parent)
   {
-    return ::GAME::Mga::create_object < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
+    return ::GAME::Mga::create < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
   }
 
   //
@@ -36,7 +36,7 @@ namespace DQML
   //
   TopicQosReference TopicQosReference_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
+    return ::GAME::Mga::create < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
   }
 
   //
@@ -78,17 +78,17 @@ namespace DQML
   }
 
   //
-  // set_TopicQos
+  // refers_to_TopicQos
   //
-  void TopicQosReference_Impl::set_TopicQos (TopicQos_in item)
+  void TopicQosReference_Impl::refers_to_TopicQos (TopicQos_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_TopicQos
+  // refers_to_TopicQos
   //
-  TopicQos TopicQosReference_Impl::get_TopicQos (void) const
+  TopicQos TopicQosReference_Impl::refers_to_TopicQos (void) const
   {
     return TopicQos::_narrow (this->refers_to ());
   }

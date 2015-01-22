@@ -27,7 +27,7 @@ namespace DQML
   //
   ReaderLifespanQosPolicy ReaderLifespanQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < ReaderLifespanQosPolicy > (parent, ReaderLifespanQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ReaderLifespanQosPolicy > (parent, ReaderLifespanQosPolicy_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace DQML
   //
   ReaderLifespanQosPolicy ReaderLifespanQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < ReaderLifespanQosPolicy > (parent, ReaderLifespanQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ReaderLifespanQosPolicy > (parent, ReaderLifespanQosPolicy_Impl::metaname);
   }
 
   //

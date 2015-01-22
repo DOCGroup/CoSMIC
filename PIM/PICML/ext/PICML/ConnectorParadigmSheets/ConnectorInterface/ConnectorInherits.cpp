@@ -26,7 +26,7 @@ namespace PICML
   //
   ConnectorInherits ConnectorInherits_Impl::_create (const ConnectorObject_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorInherits > (parent, ConnectorInherits_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorInherits > (parent, ConnectorInherits_Impl::metaname);
   }
 
   //
@@ -60,17 +60,17 @@ namespace PICML
   }
 
   //
-  // set_ConnectorObject
+  // refers_to_ConnectorObject
   //
-  void ConnectorInherits_Impl::set_ConnectorObject (ConnectorObject_in item)
+  void ConnectorInherits_Impl::refers_to_ConnectorObject (ConnectorObject_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ConnectorObject
+  // refers_to_ConnectorObject
   //
-  ConnectorObject ConnectorInherits_Impl::get_ConnectorObject (void) const
+  ConnectorObject ConnectorInherits_Impl::refers_to_ConnectorObject (void) const
   {
     return ConnectorObject::_narrow (this->refers_to ());
   }

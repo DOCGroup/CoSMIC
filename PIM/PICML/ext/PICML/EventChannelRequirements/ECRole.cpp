@@ -26,7 +26,7 @@ namespace PICML
   //
   ECRole ECRole_Impl::_create (const ECRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ECRole > (parent, ECRole_Impl::metaname);
+    return ::GAME::Mga::create < ECRole > (parent, ECRole_Impl::metaname);
   }
 
   //

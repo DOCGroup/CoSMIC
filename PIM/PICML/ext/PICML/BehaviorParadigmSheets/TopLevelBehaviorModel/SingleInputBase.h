@@ -65,7 +65,8 @@ namespace PICML
     ///@{
 
     /// Get the src Input connection.
-    size_t src_Input (std::vector <Input> & items) const;
+    size_t src_of_Input (std::vector <Input> & items) const;
+    GAME::Mga::Collection_T <Input> src_of_Input (void) const;
     ///@}
   };
 }

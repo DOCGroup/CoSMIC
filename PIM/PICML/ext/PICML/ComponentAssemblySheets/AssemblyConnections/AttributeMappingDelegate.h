@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static AttributeMappingDelegate _create (const ComponentAssembly_in parent);
+    static AttributeMappingDelegate _create (const ComponentAssembly_in parent, AttributeMapping_in src, AttributeMapping_in dst);
     ///@}
 
     // Default constructor.

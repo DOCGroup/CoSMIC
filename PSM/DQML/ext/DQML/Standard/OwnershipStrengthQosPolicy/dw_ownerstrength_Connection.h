@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static dw_ownerstrength_Connection _create (const DDSQoS_in parent);
+    static dw_ownerstrength_Connection _create (const DDSQoS_in parent, DataWriter_in src, OwnershipStrengthQosPolicy_in dst);
     ///@}
 
     // Default constructor.

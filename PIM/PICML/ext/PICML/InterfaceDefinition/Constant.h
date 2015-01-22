@@ -96,8 +96,8 @@ namespace PICML
      */
     ///@{
     bool ConstantType_is_nil (void) const;
-    ConstantType get_ConstantType (void) const;
-    void set_ConstantType (ConstantType_in item);
+    ConstantType refers_to_ConstantType (void) const;
+    void refers_to_ConstantType (ConstantType_in item);
     ///@}
   };
 }

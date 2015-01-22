@@ -29,7 +29,7 @@ namespace PICML
   //
   PrivateFlag PrivateFlag_Impl::_create (const ObjectByValue_in parent)
   {
-    return ::GAME::Mga::create_object < PrivateFlag > (parent, PrivateFlag_Impl::metaname);
+    return ::GAME::Mga::create < PrivateFlag > (parent, PrivateFlag_Impl::metaname);
   }
 
   //
@@ -55,11 +55,19 @@ namespace PICML
   }
 
   //
-  // dst_MakeMemberPrivate
+  // dst_of_MakeMemberPrivate
   //
-  size_t PrivateFlag_Impl::dst_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
+  size_t PrivateFlag_Impl::dst_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
   {
     return this->in_connections <MakeMemberPrivate> (items);
+  }
+
+  //
+  // dst_of_MakeMemberPrivate
+  //
+  GAME::Mga::Collection_T <MakeMemberPrivate> PrivateFlag_Impl::dst_of_MakeMemberPrivate (void) const
+  {
+    return this->in_connections <MakeMemberPrivate> ("dst");
   }
 }
 

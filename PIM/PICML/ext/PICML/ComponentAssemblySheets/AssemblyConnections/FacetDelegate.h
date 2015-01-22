@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static FacetDelegate _create (const ComponentAssembly_in parent);
+    static FacetDelegate _create (const ComponentAssembly_in parent, ProvidedRequestPortDelegate_in src, ProvidedRequestPortEnd_in dst);
     ///@}
 
     // Default constructor.

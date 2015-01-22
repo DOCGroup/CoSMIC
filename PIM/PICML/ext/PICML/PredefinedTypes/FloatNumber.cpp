@@ -26,7 +26,7 @@ namespace PICML
   //
   FloatNumber FloatNumber_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < FloatNumber > (parent, FloatNumber_Impl::metaname);
+    return ::GAME::Mga::create < FloatNumber > (parent, FloatNumber_Impl::metaname);
   }
 
   //

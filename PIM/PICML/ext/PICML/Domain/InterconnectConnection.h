@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static InterconnectConnection _create (const Domain_in parent);
+    static InterconnectConnection _create (const Domain_in parent, Node_in src, Interconnect_in dst);
     ///@}
 
     // Default constructor.

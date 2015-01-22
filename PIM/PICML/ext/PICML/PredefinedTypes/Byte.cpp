@@ -26,7 +26,7 @@ namespace PICML
   //
   Byte Byte_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < Byte > (parent, Byte_Impl::metaname);
+    return ::GAME::Mga::create < Byte > (parent, Byte_Impl::metaname);
   }
 
   //

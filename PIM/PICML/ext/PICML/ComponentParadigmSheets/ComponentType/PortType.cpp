@@ -10,12 +10,12 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -36,7 +36,7 @@ namespace PICML
   //
   PortType PortType_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < PortType > (parent, PortType_Impl::metaname);
+    return ::GAME::Mga::create < PortType > (parent, PortType_Impl::metaname);
   }
 
   //
@@ -44,7 +44,7 @@ namespace PICML
   //
   PortType PortType_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < PortType > (parent, PortType_Impl::metaname);
+    return ::GAME::Mga::create < PortType > (parent, PortType_Impl::metaname);
   }
 
   //
@@ -52,7 +52,7 @@ namespace PICML
   //
   PortType PortType_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < PortType > (parent, PortType_Impl::metaname);
+    return ::GAME::Mga::create < PortType > (parent, PortType_Impl::metaname);
   }
 
   //

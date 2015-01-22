@@ -24,11 +24,11 @@ namespace DQML
   const std::string sub_part_Connection_Impl::metaname ("sub_part_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Subscriber_in src, PartitionQosPolicy_in dst)
   //
-  sub_part_Connection sub_part_Connection_Impl::_create (const DDSQoS_in parent)
+  sub_part_Connection sub_part_Connection_Impl::_create (const DDSQoS_in parent, Subscriber_in src, PartitionQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < sub_part_Connection > (parent, sub_part_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, sub_part_Connection_Impl::metaname, src, dst);
   }
 
   //

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
@@ -32,7 +32,7 @@ namespace PICML
   //
   AttributeInstance AttributeInstance_Impl::_create (const ConnectorInstance_in parent)
   {
-    return ::GAME::Mga::create_object < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
+    return ::GAME::Mga::create < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
   }
 
   //
@@ -40,7 +40,7 @@ namespace PICML
   //
   AttributeInstance AttributeInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
+    return ::GAME::Mga::create < AttributeInstance > (parent, AttributeInstance_Impl::metaname);
   }
 
   //
@@ -66,19 +66,35 @@ namespace PICML
   }
 
   //
-  // src_AttributeValue
+  // src_of_AttributeValue
   //
-  size_t AttributeInstance_Impl::src_AttributeValue (std::vector <AttributeValue> & items) const
+  size_t AttributeInstance_Impl::src_of_AttributeValue (std::vector <AttributeValue> & items) const
   {
     return this->in_connections <AttributeValue> (items);
   }
 
   //
-  // dst_AttributeDelegate
+  // src_of_AttributeValue
   //
-  size_t AttributeInstance_Impl::dst_AttributeDelegate (std::vector <AttributeDelegate> & items) const
+  GAME::Mga::Collection_T <AttributeValue> AttributeInstance_Impl::src_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("src");
+  }
+
+  //
+  // dst_of_AttributeDelegate
+  //
+  size_t AttributeInstance_Impl::dst_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const
   {
     return this->in_connections <AttributeDelegate> (items);
+  }
+
+  //
+  // dst_of_AttributeDelegate
+  //
+  GAME::Mga::Collection_T <AttributeDelegate> AttributeInstance_Impl::dst_of_AttributeDelegate (void) const
+  {
+    return this->in_connections <AttributeDelegate> ("dst");
   }
 
   //
@@ -90,17 +106,17 @@ namespace PICML
   }
 
   //
-  // set_ReadonlyAttribute
+  // refers_to_ReadonlyAttribute
   //
-  void AttributeInstance_Impl::set_ReadonlyAttribute (ReadonlyAttribute_in item)
+  void AttributeInstance_Impl::refers_to_ReadonlyAttribute (ReadonlyAttribute_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ReadonlyAttribute
+  // refers_to_ReadonlyAttribute
   //
-  ReadonlyAttribute AttributeInstance_Impl::get_ReadonlyAttribute (void) const
+  ReadonlyAttribute AttributeInstance_Impl::refers_to_ReadonlyAttribute (void) const
   {
     return ReadonlyAttribute::_narrow (this->refers_to ());
   }

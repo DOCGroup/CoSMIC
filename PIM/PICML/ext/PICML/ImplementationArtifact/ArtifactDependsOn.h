@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ArtifactDependsOn _create (const ArtifactContainer_in parent);
+    static ArtifactDependsOn _create (const ArtifactContainer_in parent, ImplementationArtifact_in src, ImplementationArtifactReference_in dst);
     ///@}
 
     // Default constructor.

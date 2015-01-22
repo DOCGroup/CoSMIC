@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ManagesComponent _create (const Package_in parent);
-    static ManagesComponent _create (const File_in parent);
+    static ManagesComponent _create (const Package_in parent, ComponentFactory_in src, Manageable_in dst);
+    static ManagesComponent _create (const File_in parent, ComponentFactory_in src, Manageable_in dst);
     ///@}
 
     // Default constructor.

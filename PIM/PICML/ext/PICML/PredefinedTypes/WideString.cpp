@@ -26,7 +26,7 @@ namespace PICML
   //
   WideString WideString_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < WideString > (parent, WideString_Impl::metaname);
+    return ::GAME::Mga::create < WideString > (parent, WideString_Impl::metaname);
   }
 
   //

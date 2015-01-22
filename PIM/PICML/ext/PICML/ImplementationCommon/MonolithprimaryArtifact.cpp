@@ -32,11 +32,11 @@ namespace PICML
   const std::string MonolithprimaryArtifact_Impl::metaname ("MonolithprimaryArtifact");
 
   //
-  // _create (const ImplementationContainer_in)
+  // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, ImplementationArtifactReference_in dst)
   //
-  MonolithprimaryArtifact MonolithprimaryArtifact_Impl::_create (const ImplementationContainer_in parent)
+  MonolithprimaryArtifact MonolithprimaryArtifact_Impl::_create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, ImplementationArtifactReference_in dst)
   {
-    return ::GAME::Mga::create_object < MonolithprimaryArtifact > (parent, MonolithprimaryArtifact_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MonolithprimaryArtifact_Impl::metaname, src, dst);
   }
 
   //

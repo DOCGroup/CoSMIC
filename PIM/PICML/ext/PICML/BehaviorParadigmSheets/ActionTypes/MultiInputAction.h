@@ -80,7 +80,8 @@ namespace PICML
     ///@{
 
     /// Get the dst MultiInput connection.
-    size_t dst_MultiInput (std::vector <MultiInput> & items) const;
+    size_t dst_of_MultiInput (std::vector <MultiInput> & items) const;
+    GAME::Mga::Collection_T <MultiInput> dst_of_MultiInput (void) const;
     ///@}
   };
 }

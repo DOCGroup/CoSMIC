@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/ComplexType.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Collection.h"
+#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/DataValueContainer.h"
 #include "game/mga/Functional_T.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   ComplexTypeReference ComplexTypeReference_Impl::_create (const ComplexProperty_in parent)
   {
-    return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
+    return ::GAME::Mga::create < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
@@ -38,7 +38,7 @@ namespace PICML
   //
   ComplexTypeReference ComplexTypeReference_Impl::_create (const DataValueContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
+    return ::GAME::Mga::create < ComplexTypeReference > (parent, ComplexTypeReference_Impl::metaname);
   }
 
   //
@@ -80,17 +80,17 @@ namespace PICML
   }
 
   //
-  // set_ComplexType
+  // refers_to_ComplexType
   //
-  void ComplexTypeReference_Impl::set_ComplexType (ComplexType_in item)
+  void ComplexTypeReference_Impl::refers_to_ComplexType (ComplexType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComplexType
+  // refers_to_ComplexType
   //
-  ComplexType ComplexTypeReference_Impl::get_ComplexType (void) const
+  ComplexType ComplexTypeReference_Impl::refers_to_ComplexType (void) const
   {
     return ComplexType::_narrow (this->refers_to ());
   }

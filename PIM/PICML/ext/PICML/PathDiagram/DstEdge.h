@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static DstEdge _create (const Path_in parent);
-    static DstEdge _create (const ConnectedComponent_in parent);
+    static DstEdge _create (const Path_in parent, GraphVertex_in src, Edge_in dst);
+    static DstEdge _create (const ConnectedComponent_in parent, GraphVertex_in src, Edge_in dst);
     ///@}
 
     // Default constructor.

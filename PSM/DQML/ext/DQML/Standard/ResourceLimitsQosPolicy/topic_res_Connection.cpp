@@ -24,11 +24,11 @@ namespace DQML
   const std::string topic_res_Connection_Impl::metaname ("topic_res_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Topic_in src, ResourceLimitsQosPolicy_in dst)
   //
-  topic_res_Connection topic_res_Connection_Impl::_create (const DDSQoS_in parent)
+  topic_res_Connection topic_res_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, ResourceLimitsQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < topic_res_Connection > (parent, topic_res_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, topic_res_Connection_Impl::metaname, src, dst);
   }
 
   //

@@ -80,8 +80,8 @@ namespace PICML
      */
     ///@{
     bool ComplexType_is_nil (void) const;
-    ComplexType get_ComplexType (void) const;
-    void set_ComplexType (ComplexType_in item);
+    ComplexType refers_to_ComplexType (void) const;
+    void refers_to_ComplexType (ComplexType_in item);
     ///@}
   };
 }

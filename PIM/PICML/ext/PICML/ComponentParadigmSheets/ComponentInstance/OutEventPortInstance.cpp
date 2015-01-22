@@ -27,7 +27,7 @@ namespace PICML
   //
   OutEventPortInstance OutEventPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPortInstance > (parent, OutEventPortInstance_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPortInstance > (parent, OutEventPortInstance_Impl::metaname);
   }
 
   //
@@ -53,17 +53,17 @@ namespace PICML
   }
 
   //
-  // set_OutEventPort
+  // refers_to_OutEventPort
   //
-  void OutEventPortInstance_Impl::set_OutEventPort (OutEventPort_in item)
+  void OutEventPortInstance_Impl::refers_to_OutEventPort (OutEventPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_OutEventPort
+  // refers_to_OutEventPort
   //
-  OutEventPort OutEventPortInstance_Impl::get_OutEventPort (void) const
+  OutEventPort OutEventPortInstance_Impl::refers_to_OutEventPort (void) const
   {
     return OutEventPort::_narrow (this->refers_to ());
   }

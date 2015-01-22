@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static DeadlineQosPolicy _create (const DataWriterQos_in parent);
     static DeadlineQosPolicy _create (const TopicQos_in parent);
+    static DeadlineQosPolicy _create (const DataWriterQos_in parent);
     static DeadlineQosPolicy _create (const DataReaderQos_in parent);
     static DeadlineQosPolicy _create (const DDSQoS_in parent);
     ///@}
@@ -75,8 +75,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     TopicQos parent_TopicQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
     ///@}
 
@@ -97,14 +97,17 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_deadline_Connection connection.
-    size_t dst_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
+    /// Get the dst dw_deadline_Connection connection.
+    size_t dst_of_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
+    GAME::Mga::Collection_T <dw_deadline_Connection> dst_of_dw_deadline_Connection (void) const;
 
     /// Get the dst top_deadline_Connection connection.
-    size_t dst_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;
+    size_t dst_of_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;
+    GAME::Mga::Collection_T <top_deadline_Connection> dst_of_top_deadline_Connection (void) const;
 
-    /// Get the dst dw_deadline_Connection connection.
-    size_t dst_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
+    /// Get the dst dr_deadline_Connection connection.
+    size_t dst_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_deadline_Connection> dst_of_dr_deadline_Connection (void) const;
     ///@}
   };
 }

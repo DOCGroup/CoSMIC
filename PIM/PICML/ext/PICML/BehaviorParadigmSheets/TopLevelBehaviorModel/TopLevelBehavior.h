@@ -68,6 +68,12 @@ namespace PICML
 
     bool has_Environment (void) const;
     Environment get_Environment (void) const;
+    size_t get_ApplicationTasks (std::vector <ApplicationTask> & items) const;
+    ::GAME::Mga::Collection_T <ApplicationTask> get_ApplicationTasks (void) const;
+
+    size_t get_PeriodicEvents (std::vector <PeriodicEvent> & items) const;
+    ::GAME::Mga::Collection_T <PeriodicEvent> get_PeriodicEvents (void) const;
+
     size_t get_QueryInputs (std::vector <QueryInput> & items) const;
     ::GAME::Mga::Collection_T <QueryInput> get_QueryInputs (void) const;
 
@@ -79,12 +85,6 @@ namespace PICML
 
     size_t get_WorkerTypes (std::vector <WorkerType> & items) const;
     ::GAME::Mga::Collection_T <WorkerType> get_WorkerTypes (void) const;
-
-    size_t get_ApplicationTasks (std::vector <ApplicationTask> & items) const;
-    ::GAME::Mga::Collection_T <ApplicationTask> get_ApplicationTasks (void) const;
-
-    size_t get_PeriodicEvents (std::vector <PeriodicEvent> & items) const;
-    ::GAME::Mga::Collection_T <PeriodicEvent> get_PeriodicEvents (void) const;
 
     ///@}
   };

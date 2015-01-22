@@ -26,11 +26,11 @@ namespace PICML
   const std::string Implements_Impl::metaname ("Implements");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, ComponentRef_in dst)
   //
-  Implements Implements_Impl::_create (const ComponentImplementationContainer_in parent)
+  Implements Implements_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, ComponentRef_in dst)
   {
-    return ::GAME::Mga::create_object < Implements > (parent, Implements_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Implements_Impl::metaname, src, dst);
   }
 
   //

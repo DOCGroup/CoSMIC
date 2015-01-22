@@ -28,7 +28,7 @@ namespace PICML
   //
   ComponentFactoryInstance ComponentFactoryInstance_Impl::_create (const ComponentFactoryImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentFactoryInstance > (parent, ComponentFactoryInstance_Impl::metaname);
+    return ::GAME::Mga::create < ComponentFactoryInstance > (parent, ComponentFactoryInstance_Impl::metaname);
   }
 
   //
@@ -62,17 +62,17 @@ namespace PICML
   }
 
   //
-  // set_ComponentFactory
+  // refers_to_ComponentFactory
   //
-  void ComponentFactoryInstance_Impl::set_ComponentFactory (ComponentFactory_in item)
+  void ComponentFactoryInstance_Impl::refers_to_ComponentFactory (ComponentFactory_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentFactory
+  // refers_to_ComponentFactory
   //
-  ComponentFactory ComponentFactoryInstance_Impl::get_ComponentFactory (void) const
+  ComponentFactory ComponentFactoryInstance_Impl::refers_to_ComponentFactory (void) const
   {
     return ComponentFactory::_narrow (this->refers_to ());
   }

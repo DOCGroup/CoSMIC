@@ -27,11 +27,11 @@ namespace PICML
   const std::string ExtResourceConn_Impl::metaname ("ExtResourceConn");
 
   //
-  // _create (const Project_in)
+  // _create (const Project_in, ComponentLib_in src, ExternalResources_in dst)
   //
-  ExtResourceConn ExtResourceConn_Impl::_create (const Project_in parent)
+  ExtResourceConn ExtResourceConn_Impl::_create (const Project_in parent, ComponentLib_in src, ExternalResources_in dst)
   {
-    return ::GAME::Mga::create_object < ExtResourceConn > (parent, ExtResourceConn_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ExtResourceConn_Impl::metaname, src, dst);
   }
 
   //

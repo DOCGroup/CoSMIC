@@ -53,9 +53,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Attribute _create (const Inheritable_in parent);
     static Attribute _create (const Component_in parent);
     static Attribute _create (const PortType_in parent);
+    static Attribute _create (const Inheritable_in parent);
     static Attribute _create (const ConnectorObject_in parent);
     ///@}
 

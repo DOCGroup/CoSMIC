@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the dst CriticalPath connection.
-    size_t dst_CriticalPath (std::vector <CriticalPath> & items) const;
+    size_t dst_of_CriticalPath (std::vector <CriticalPath> & items) const;
+    GAME::Mga::Collection_T <CriticalPath> dst_of_CriticalPath (void) const;
     ///@}
 
     /**
@@ -87,8 +88,8 @@ namespace PICML
      */
     ///@{
     bool Path_is_nil (void) const;
-    Path get_Path (void) const;
-    void set_Path (Path_in item);
+    Path refers_to_Path (void) const;
+    void refers_to_Path (Path_in item);
     ///@}
   };
 }

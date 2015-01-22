@@ -24,11 +24,11 @@ namespace DQML
   const std::string top_deadline_Connection_Impl::metaname ("top_deadline_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Topic_in src, DeadlineQosPolicy_in dst)
   //
-  top_deadline_Connection top_deadline_Connection_Impl::_create (const DDSQoS_in parent)
+  top_deadline_Connection top_deadline_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, DeadlineQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < top_deadline_Connection > (parent, top_deadline_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, top_deadline_Connection_Impl::metaname, src, dst);
   }
 
   //

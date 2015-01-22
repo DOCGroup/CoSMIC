@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool ConnectorObject_is_nil (void) const;
-    ConnectorObject get_ConnectorObject (void) const;
-    void set_ConnectorObject (ConnectorObject_in item);
+    ConnectorObject refers_to_ConnectorObject (void) const;
+    void refers_to_ConnectorObject (ConnectorObject_in item);
     ///@}
   };
 }

@@ -26,7 +26,7 @@ namespace PICML
   //
   ServiceConsumer ServiceConsumer_Impl::_create (const RTRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ServiceConsumer > (parent, ServiceConsumer_Impl::metaname);
+    return ::GAME::Mga::create < ServiceConsumer > (parent, ServiceConsumer_Impl::metaname);
   }
 
   //

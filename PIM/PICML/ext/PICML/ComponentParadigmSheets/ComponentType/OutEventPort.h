@@ -101,8 +101,8 @@ namespace PICML
      */
     ///@{
     bool EventType_is_nil (void) const;
-    EventType get_EventType (void) const;
-    void set_EventType (EventType_in item);
+    EventType refers_to_EventType (void) const;
+    void refers_to_EventType (EventType_in item);
     ///@}
   };
 }

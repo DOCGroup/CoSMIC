@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool Worker_is_nil (void) const;
-    Worker get_Worker (void) const;
-    void set_Worker (Worker_in item);
+    Worker refers_to_Worker (void) const;
+    void refers_to_Worker (Worker_in item);
     ///@}
   };
 }

@@ -26,11 +26,11 @@ namespace PICML
   const std::string ArtifactDeployRequirement_Impl::metaname ("ArtifactDeployRequirement");
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Requirement_in dst)
   //
-  ArtifactDeployRequirement ArtifactDeployRequirement_Impl::_create (const ArtifactContainer_in parent)
+  ArtifactDeployRequirement ArtifactDeployRequirement_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Requirement_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactDeployRequirement > (parent, ArtifactDeployRequirement_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactDeployRequirement_Impl::metaname, src, dst);
   }
 
   //

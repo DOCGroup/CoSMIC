@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComponentConfigProperty _create (const ComponentContainer_in parent);
+    static ComponentConfigProperty _create (const ComponentContainer_in parent, ComponentRef_in src, Property_in dst);
     ///@}
 
     // Default constructor.

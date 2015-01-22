@@ -28,7 +28,7 @@ namespace PICML
   //
   ComponentInstanceRef ComponentInstanceRef_Impl::_create (const DeploymentPlan_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentInstanceRef > (parent, ComponentInstanceRef_Impl::metaname);
+    return ::GAME::Mga::create < ComponentInstanceRef > (parent, ComponentInstanceRef_Impl::metaname);
   }
 
   //
@@ -46,11 +46,19 @@ namespace PICML
   }
 
   //
-  // dst_Deploys
+  // dst_of_Deploys
   //
-  size_t ComponentInstanceRef_Impl::dst_Deploys (std::vector <Deploys> & items) const
+  size_t ComponentInstanceRef_Impl::dst_of_Deploys (std::vector <Deploys> & items) const
   {
     return this->in_connections <Deploys> (items);
+  }
+
+  //
+  // dst_of_Deploys
+  //
+  GAME::Mga::Collection_T <Deploys> ComponentInstanceRef_Impl::dst_of_Deploys (void) const
+  {
+    return this->in_connections <Deploys> ("dst");
   }
 
   //
@@ -62,17 +70,17 @@ namespace PICML
   }
 
   //
-  // set_ComponentInstance
+  // refers_to_ComponentInstance
   //
-  void ComponentInstanceRef_Impl::set_ComponentInstance (ComponentInstance_in item)
+  void ComponentInstanceRef_Impl::refers_to_ComponentInstance (ComponentInstance_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentInstance
+  // refers_to_ComponentInstance
   //
-  ComponentInstance ComponentInstanceRef_Impl::get_ComponentInstance (void) const
+  ComponentInstance ComponentInstanceRef_Impl::refers_to_ComponentInstance (void) const
   {
     return ComponentInstance::_narrow (this->refers_to ());
   }

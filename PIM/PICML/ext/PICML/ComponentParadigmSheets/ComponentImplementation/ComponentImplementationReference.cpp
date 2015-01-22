@@ -30,7 +30,7 @@ namespace PICML
   //
   ComponentImplementationReference ComponentImplementationReference_Impl::_create (const PackageContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentImplementationReference > (parent, ComponentImplementationReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationReference > (parent, ComponentImplementationReference_Impl::metaname);
   }
 
   //
@@ -56,11 +56,19 @@ namespace PICML
   }
 
   //
-  // dst_Implementation
+  // dst_of_Implementation
   //
-  size_t ComponentImplementationReference_Impl::dst_Implementation (std::vector <Implementation> & items) const
+  size_t ComponentImplementationReference_Impl::dst_of_Implementation (std::vector <Implementation> & items) const
   {
     return this->in_connections <Implementation> (items);
+  }
+
+  //
+  // dst_of_Implementation
+  //
+  GAME::Mga::Collection_T <Implementation> ComponentImplementationReference_Impl::dst_of_Implementation (void) const
+  {
+    return this->in_connections <Implementation> ("dst");
   }
 
   //
@@ -72,17 +80,17 @@ namespace PICML
   }
 
   //
-  // set_ComponentImplementation
+  // refers_to_ComponentImplementation
   //
-  void ComponentImplementationReference_Impl::set_ComponentImplementation (ComponentImplementation_in item)
+  void ComponentImplementationReference_Impl::refers_to_ComponentImplementation (ComponentImplementation_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentImplementation
+  // refers_to_ComponentImplementation
   //
-  ComponentImplementation ComponentImplementationReference_Impl::get_ComponentImplementation (void) const
+  ComponentImplementation ComponentImplementationReference_Impl::refers_to_ComponentImplementation (void) const
   {
     return ComponentImplementation::_narrow (this->refers_to ());
   }

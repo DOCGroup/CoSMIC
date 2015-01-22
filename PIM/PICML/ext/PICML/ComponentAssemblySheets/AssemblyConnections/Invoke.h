@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Invoke _create (const ComponentAssembly_in parent);
+    static Invoke _create (const ComponentAssembly_in parent, RequiredRequestPortEnd_in src, ProvidedRequestPortEnd_in dst);
     ///@}
 
     // Default constructor.

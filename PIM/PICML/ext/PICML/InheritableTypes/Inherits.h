@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool Inheritable_is_nil (void) const;
-    Inheritable get_Inheritable (void) const;
-    void set_Inheritable (Inheritable_in item);
+    Inheritable refers_to_Inheritable (void) const;
+    void refers_to_Inheritable (Inheritable_in item);
     ///@}
   };
 }

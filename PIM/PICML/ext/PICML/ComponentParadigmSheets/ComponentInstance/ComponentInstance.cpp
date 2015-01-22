@@ -37,7 +37,7 @@ namespace PICML
   //
   ComponentInstance ComponentInstance_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentInstance > (parent, ComponentInstance_Impl::metaname);
+    return ::GAME::Mga::create < ComponentInstance > (parent, ComponentInstance_Impl::metaname);
   }
 
   //

@@ -30,7 +30,7 @@ namespace PICML
   //
   FactoryOperation FactoryOperation_Impl::_create (const ComponentFactory_in parent)
   {
-    return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
+    return ::GAME::Mga::create < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
   }
 
   //
@@ -38,7 +38,7 @@ namespace PICML
   //
   FactoryOperation FactoryOperation_Impl::_create (const ObjectByValue_in parent)
   {
-    return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
+    return ::GAME::Mga::create < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
   }
 
   //
@@ -46,7 +46,7 @@ namespace PICML
   //
   FactoryOperation FactoryOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
+    return ::GAME::Mga::create < FactoryOperation > (parent, FactoryOperation_Impl::metaname);
   }
 
   //

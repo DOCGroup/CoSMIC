@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static KeyMember _create (const Aggregate_in parent);
+    static KeyMember _create (const Aggregate_in parent, Key_in src, Member_in dst);
     ///@}
 
     // Default constructor.

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static SendsTo _create (const ComponentAssembly_in parent);
+    static SendsTo _create (const ComponentAssembly_in parent, OutEventPortEnd_in src, InEventPortEnd_in dst);
     ///@}
 
     // Default constructor.

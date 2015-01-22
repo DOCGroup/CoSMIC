@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static SrcEdge _create (const Path_in parent);
+    static SrcEdge _create (const Path_in parent, Edge_in src, GraphVertex_in dst);
     ///@}
 
     // Default constructor.

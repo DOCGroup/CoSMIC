@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static PathProperty _create (const Paths_in parent);
+    static PathProperty _create (const Paths_in parent, Path_in src, Property_in dst);
     ///@}
 
     // Default constructor.

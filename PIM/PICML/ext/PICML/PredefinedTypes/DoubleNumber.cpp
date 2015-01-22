@@ -26,7 +26,7 @@ namespace PICML
   //
   DoubleNumber DoubleNumber_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < DoubleNumber > (parent, DoubleNumber_Impl::metaname);
+    return ::GAME::Mga::create < DoubleNumber > (parent, DoubleNumber_Impl::metaname);
   }
 
   //

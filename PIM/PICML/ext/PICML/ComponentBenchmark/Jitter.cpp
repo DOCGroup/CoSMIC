@@ -27,7 +27,7 @@ namespace PICML
   //
   Jitter Jitter_Impl::_create (const MetricsBase_in parent)
   {
-    return ::GAME::Mga::create_object < Jitter > (parent, Jitter_Impl::metaname);
+    return ::GAME::Mga::create < Jitter > (parent, Jitter_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   Jitter Jitter_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Jitter > (parent, Jitter_Impl::metaname);
+    return ::GAME::Mga::create < Jitter > (parent, Jitter_Impl::metaname);
   }
 
   //

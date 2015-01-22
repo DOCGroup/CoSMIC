@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static PackageConfSelectRequirement _create (const PackageConfigurationContainer_in parent);
+    static PackageConfSelectRequirement _create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, Requirement_in dst);
     ///@}
 
     // Default constructor.

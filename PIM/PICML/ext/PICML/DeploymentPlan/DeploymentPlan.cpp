@@ -39,7 +39,7 @@ namespace PICML
   //
   DeploymentPlan DeploymentPlan_Impl::_create (const DeploymentPlans_in parent)
   {
-    return ::GAME::Mga::create_root_object < DeploymentPlan > (parent, DeploymentPlan_Impl::metaname);
+    return ::GAME::Mga::create < DeploymentPlan > (parent, DeploymentPlan_Impl::metaname);
   }
 
   //

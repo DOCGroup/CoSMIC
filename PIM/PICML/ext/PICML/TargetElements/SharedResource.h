@@ -81,7 +81,8 @@ namespace PICML
     ///@{
 
     /// Get the dst Shares connection.
-    size_t dst_Shares (std::vector <Shares> & items) const;
+    size_t dst_of_Shares (std::vector <Shares> & items) const;
+    GAME::Mga::Collection_T <Shares> dst_of_Shares (void) const;
     ///@}
   };
 }

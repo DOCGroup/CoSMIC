@@ -27,7 +27,7 @@ namespace PICML
   //
   Workspaces Workspaces_Impl::_create (const MPC_in parent)
   {
-    return ::GAME::Mga::create_object < Workspaces > (parent, Workspaces_Impl::metaname);
+    return ::GAME::Mga::create < Workspaces > (parent, Workspaces_Impl::metaname);
   }
 
   //

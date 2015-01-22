@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -24,19 +24,19 @@ namespace DQML
   const std::string ShareQosPolicy_Impl::metaname ("ShareQosPolicy");
 
   //
-  // _create (const SubscriberQos_in)
-  //
-  ShareQosPolicy ShareQosPolicy_Impl::_create (const SubscriberQos_in parent)
-  {
-    return ::GAME::Mga::create_object < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const DataReaderQos_in)
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const SubscriberQos_in)
+  //
+  ShareQosPolicy ShareQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  {
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
   }
 
   //
@@ -44,7 +44,7 @@ namespace DQML
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
   }
 
   //
@@ -62,19 +62,19 @@ namespace DQML
   }
 
   //
-  // parent_SubscriberQos
-  //
-  SubscriberQos ShareQosPolicy_Impl::parent_SubscriberQos (void)
-  {
-    return SubscriberQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos ShareQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_SubscriberQos
+  //
+  SubscriberQos ShareQosPolicy_Impl::parent_SubscriberQos (void)
+  {
+    return SubscriberQos::_narrow (this->parent ());
   }
 }
 

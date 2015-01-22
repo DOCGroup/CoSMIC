@@ -26,7 +26,7 @@ namespace PICML
   //
   DisplayNode DisplayNode_Impl::_create (const Path_in parent)
   {
-    return ::GAME::Mga::create_object < DisplayNode > (parent, DisplayNode_Impl::metaname);
+    return ::GAME::Mga::create < DisplayNode > (parent, DisplayNode_Impl::metaname);
   }
 
   //

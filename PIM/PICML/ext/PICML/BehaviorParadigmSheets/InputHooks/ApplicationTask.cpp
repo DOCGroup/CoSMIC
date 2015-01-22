@@ -27,7 +27,7 @@ namespace PICML
   //
   ApplicationTask ApplicationTask_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < ApplicationTask > (parent, ApplicationTask_Impl::metaname);
+    return ::GAME::Mga::create < ApplicationTask > (parent, ApplicationTask_Impl::metaname);
   }
 
   //

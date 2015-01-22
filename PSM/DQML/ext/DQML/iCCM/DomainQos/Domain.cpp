@@ -28,7 +28,7 @@ namespace DQML
   //
   Domain Domain_Impl::_create (const DomainQosFolder_in parent)
   {
-    return ::GAME::Mga::create_root_object < Domain > (parent, Domain_Impl::metaname);
+    return ::GAME::Mga::create < Domain > (parent, Domain_Impl::metaname);
   }
 
   //

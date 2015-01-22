@@ -26,7 +26,7 @@ namespace PICML
   //
   String String_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < String > (parent, String_Impl::metaname);
+    return ::GAME::Mga::create < String > (parent, String_Impl::metaname);
   }
 
   //

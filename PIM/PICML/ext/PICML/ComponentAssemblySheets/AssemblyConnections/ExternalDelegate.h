@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ExternalDelegate _create (const ComponentAssembly_in parent);
+    static ExternalDelegate _create (const ComponentAssembly_in parent, ExternalPort_in src, ExternalPortEnd_in dst);
     ///@}
 
     // Default constructor.

@@ -24,11 +24,11 @@ namespace PICML
   const std::string Deploys_Impl::metaname ("Deploys");
 
   //
-  // _create (const DeploymentPlan_in)
+  // _create (const DeploymentPlan_in, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)
   //
-  Deploys Deploys_Impl::_create (const DeploymentPlan_in parent)
+  Deploys Deploys_Impl::_create (const DeploymentPlan_in parent, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)
   {
-    return ::GAME::Mga::create_object < Deploys > (parent, Deploys_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Deploys_Impl::metaname, src, dst);
   }
 
   //

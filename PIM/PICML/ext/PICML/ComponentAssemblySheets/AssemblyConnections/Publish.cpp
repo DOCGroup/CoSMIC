@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
@@ -30,11 +30,11 @@ namespace PICML
   const std::string Publish_Impl::metaname ("Publish");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, ExtendPortEnd_in src, ConnectorInstance_in dst)
   //
-  Publish Publish_Impl::_create (const ComponentAssembly_in parent)
+  Publish Publish_Impl::_create (const ComponentAssembly_in parent, ExtendPortEnd_in src, ConnectorInstance_in dst)
   {
-    return ::GAME::Mga::create_object < Publish > (parent, Publish_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Publish_Impl::metaname, src, dst);
   }
 
   //

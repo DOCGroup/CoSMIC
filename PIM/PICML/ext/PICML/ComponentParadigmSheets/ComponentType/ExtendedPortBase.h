@@ -66,8 +66,8 @@ namespace PICML
      */
     ///@{
     bool PortType_is_nil (void) const;
-    PortType get_PortType (void) const;
-    void set_PortType (PortType_in item);
+    PortType refers_to_PortType (void) const;
+    void refers_to_PortType (PortType_in item);
     ///@}
   };
 }

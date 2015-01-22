@@ -9,6 +9,14 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/NamedType.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/Enum.h"
+#include "PICML/NamedTypes/Alias.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/Object.h"
@@ -16,26 +24,18 @@
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/NamedTypes/Enum.h"
-#include "PICML/NamedTypes/Alias.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Boxed.h"
 #include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/InterfaceDefinition/Constant.h"
+#include "PICML/InterfaceDefinition/InterfaceDefinitions.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
-#include "PICML/InterfaceDefinition/InterfaceDefinitions.h"
-#include "PICML/InterfaceDefinition/FileRef.h"
 #include "PICML/InterfaceDefinition/NativeValue.h"
+#include "PICML/InterfaceDefinition/FileRef.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -53,7 +53,7 @@ namespace PICML
   //
   File File_Impl::_create (const InterfaceDefinitions_in parent)
   {
-    return ::GAME::Mga::create_root_object < File > (parent, File_Impl::metaname);
+    return ::GAME::Mga::create < File > (parent, File_Impl::metaname);
   }
 
   //
@@ -76,6 +76,118 @@ namespace PICML
   InterfaceDefinitions File_Impl::parent_InterfaceDefinitions (void)
   {
     return InterfaceDefinitions::_narrow (this->parent ());
+  }
+
+  //
+  // get_PortTypes
+  //
+  size_t File_Impl::get_PortTypes (std::vector <PortType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PortTypes
+  //
+  ::GAME::Mga::Collection_T <PortType> File_Impl::get_PortTypes (void) const
+  {
+    return this->children <PortType> ();
+  }
+
+  //
+  // get_Collections
+  //
+  size_t File_Impl::get_Collections (std::vector <Collection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Collections
+  //
+  ::GAME::Mga::Collection_T <Collection> File_Impl::get_Collections (void) const
+  {
+    return this->children <Collection> ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t File_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Collection_T <Aggregate> File_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
+  }
+
+  //
+  // get_SwitchedAggregates
+  //
+  size_t File_Impl::get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SwitchedAggregates
+  //
+  ::GAME::Mga::Collection_T <SwitchedAggregate> File_Impl::get_SwitchedAggregates (void) const
+  {
+    return this->children <SwitchedAggregate> ();
+  }
+
+  //
+  // get_Enums
+  //
+  size_t File_Impl::get_Enums (std::vector <Enum> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Enums
+  //
+  ::GAME::Mga::Collection_T <Enum> File_Impl::get_Enums (void) const
+  {
+    return this->children <Enum> ();
+  }
+
+  //
+  // get_Aliass
+  //
+  size_t File_Impl::get_Aliass (std::vector <Alias> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aliass
+  //
+  ::GAME::Mga::Collection_T <Alias> File_Impl::get_Aliass (void) const
+  {
+    return this->children <Alias> ();
+  }
+
+  //
+  // get_Components
+  //
+  size_t File_Impl::get_Components (std::vector <Component> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Components
+  //
+  ::GAME::Mga::Collection_T <Component> File_Impl::get_Components (void) const
+  {
+    return this->children <Component> ();
   }
 
   //
@@ -140,118 +252,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ValueObject> File_Impl::get_ValueObjects (void) const
   {
     return this->children <ValueObject> ();
-  }
-
-  //
-  // get_Components
-  //
-  size_t File_Impl::get_Components (std::vector <Component> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Components
-  //
-  ::GAME::Mga::Collection_T <Component> File_Impl::get_Components (void) const
-  {
-    return this->children <Component> ();
-  }
-
-  //
-  // get_PortTypes
-  //
-  size_t File_Impl::get_PortTypes (std::vector <PortType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PortTypes
-  //
-  ::GAME::Mga::Collection_T <PortType> File_Impl::get_PortTypes (void) const
-  {
-    return this->children <PortType> ();
-  }
-
-  //
-  // get_Aggregates
-  //
-  size_t File_Impl::get_Aggregates (std::vector <Aggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aggregates
-  //
-  ::GAME::Mga::Collection_T <Aggregate> File_Impl::get_Aggregates (void) const
-  {
-    return this->children <Aggregate> ();
-  }
-
-  //
-  // get_Collections
-  //
-  size_t File_Impl::get_Collections (std::vector <Collection> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Collections
-  //
-  ::GAME::Mga::Collection_T <Collection> File_Impl::get_Collections (void) const
-  {
-    return this->children <Collection> ();
-  }
-
-  //
-  // get_SwitchedAggregates
-  //
-  size_t File_Impl::get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SwitchedAggregates
-  //
-  ::GAME::Mga::Collection_T <SwitchedAggregate> File_Impl::get_SwitchedAggregates (void) const
-  {
-    return this->children <SwitchedAggregate> ();
-  }
-
-  //
-  // get_Enums
-  //
-  size_t File_Impl::get_Enums (std::vector <Enum> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Enums
-  //
-  ::GAME::Mga::Collection_T <Enum> File_Impl::get_Enums (void) const
-  {
-    return this->children <Enum> ();
-  }
-
-  //
-  // get_Aliass
-  //
-  size_t File_Impl::get_Aliass (std::vector <Alias> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aliass
-  //
-  ::GAME::Mga::Collection_T <Alias> File_Impl::get_Aliass (void) const
-  {
-    return this->children <Alias> ();
   }
 
   //
@@ -399,22 +399,6 @@ namespace PICML
   }
 
   //
-  // get_FileRefs
-  //
-  size_t File_Impl::get_FileRefs (std::vector <FileRef> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_FileRefs
-  //
-  ::GAME::Mga::Collection_T <FileRef> File_Impl::get_FileRefs (void) const
-  {
-    return this->children <FileRef> ();
-  }
-
-  //
   // get_NativeValues
   //
   size_t File_Impl::get_NativeValues (std::vector <NativeValue> & items) const
@@ -428,6 +412,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <NativeValue> File_Impl::get_NativeValues (void) const
   {
     return this->children <NativeValue> ();
+  }
+
+  //
+  // get_FileRefs
+  //
+  size_t File_Impl::get_FileRefs (std::vector <FileRef> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_FileRefs
+  //
+  ::GAME::Mga::Collection_T <FileRef> File_Impl::get_FileRefs (void) const
+  {
+    return this->children <FileRef> ();
   }
 }
 

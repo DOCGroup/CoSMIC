@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ArtifactInfoProperty _create (const ArtifactContainer_in parent);
+    static ArtifactInfoProperty _create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Property_in dst);
     ///@}
 
     // Default constructor.

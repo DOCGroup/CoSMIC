@@ -26,7 +26,7 @@ namespace PICML
   //
   UnsignedShortInteger UnsignedShortInteger_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < UnsignedShortInteger > (parent, UnsignedShortInteger_Impl::metaname);
+    return ::GAME::Mga::create < UnsignedShortInteger > (parent, UnsignedShortInteger_Impl::metaname);
   }
 
   //

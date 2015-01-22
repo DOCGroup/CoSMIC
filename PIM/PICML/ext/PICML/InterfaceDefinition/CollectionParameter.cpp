@@ -27,7 +27,7 @@ namespace PICML
   //
   CollectionParameter CollectionParameter_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < CollectionParameter > (parent, CollectionParameter_Impl::metaname);
+    return ::GAME::Mga::create < CollectionParameter > (parent, CollectionParameter_Impl::metaname);
   }
 
   //
@@ -53,17 +53,17 @@ namespace PICML
   }
 
   //
-  // set_NameParameter
+  // refers_to_NameParameter
   //
-  void CollectionParameter_Impl::set_NameParameter (NameParameter_in item)
+  void CollectionParameter_Impl::refers_to_NameParameter (NameParameter_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_NameParameter
+  // refers_to_NameParameter
   //
-  NameParameter CollectionParameter_Impl::get_NameParameter (void) const
+  NameParameter CollectionParameter_Impl::refers_to_NameParameter (void) const
   {
     return NameParameter::_narrow (this->refers_to ());
   }

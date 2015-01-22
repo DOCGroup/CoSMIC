@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static MakeMemberPrivate _create (const ObjectByValue_in parent);
+    static MakeMemberPrivate _create (const ObjectByValue_in parent, Member_in src, PrivateFlag_in dst);
     ///@}
 
     // Default constructor.

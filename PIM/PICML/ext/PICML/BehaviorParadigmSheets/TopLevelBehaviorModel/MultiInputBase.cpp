@@ -18,11 +18,19 @@ namespace PICML
   const std::string MultiInputBase_Impl::metaname ("MultiInputBase");
 
   //
-  // src_MultiInput
+  // src_of_MultiInput
   //
-  size_t MultiInputBase_Impl::src_MultiInput (std::vector <MultiInput> & items) const
+  size_t MultiInputBase_Impl::src_of_MultiInput (std::vector <MultiInput> & items) const
   {
     return this->in_connections <MultiInput> (items);
+  }
+
+  //
+  // src_of_MultiInput
+  //
+  GAME::Mga::Collection_T <MultiInput> MultiInputBase_Impl::src_of_MultiInput (void) const
+  {
+    return this->in_connections <MultiInput> ("src");
   }
 }
 

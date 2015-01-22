@@ -104,14 +104,17 @@ namespace PICML
     size_t get_TimeProbes (std::vector <TimeProbe> & items) const;
     ::GAME::Mga::Collection_T <TimeProbe> get_TimeProbes (void) const;
 
-    size_t get_Throughputs (std::vector <Throughput> & items) const;
-    ::GAME::Mga::Collection_T <Throughput> get_Throughputs (void) const;
+    size_t get_Jitters (std::vector <Jitter> & items) const;
+    ::GAME::Mga::Collection_T <Jitter> get_Jitters (void) const;
 
-    size_t get_Latencys (std::vector <Latency> & items) const;
-    ::GAME::Mga::Collection_T <Latency> get_Latencys (void) const;
+    size_t get_Maximums (std::vector <Maximum> & items) const;
+    ::GAME::Mga::Collection_T <Maximum> get_Maximums (void) const;
 
-    size_t get_Events (std::vector <Event> & items) const;
-    ::GAME::Mga::Collection_T <Event> get_Events (void) const;
+    size_t get_Minimums (std::vector <Minimum> & items) const;
+    ::GAME::Mga::Collection_T <Minimum> get_Minimums (void) const;
+
+    size_t get_Averages (std::vector <Average> & items) const;
+    ::GAME::Mga::Collection_T <Average> get_Averages (void) const;
 
     size_t get_BenchmarkCharacteristicss (std::vector <BenchmarkCharacteristics> & items) const;
     ::GAME::Mga::Collection_T <BenchmarkCharacteristics> get_BenchmarkCharacteristicss (void) const;
@@ -124,6 +127,15 @@ namespace PICML
 
     size_t get_WorkLoadOperationConnections (std::vector <WorkLoadOperationConnection> & items) const;
     ::GAME::Mga::Collection_T <WorkLoadOperationConnection> get_WorkLoadOperationConnections (void) const;
+
+    size_t get_Throughputs (std::vector <Throughput> & items) const;
+    ::GAME::Mga::Collection_T <Throughput> get_Throughputs (void) const;
+
+    size_t get_Latencys (std::vector <Latency> & items) const;
+    ::GAME::Mga::Collection_T <Latency> get_Latencys (void) const;
+
+    size_t get_Events (std::vector <Event> & items) const;
+    ::GAME::Mga::Collection_T <Event> get_Events (void) const;
 
     size_t get_OperationRefs (std::vector <OperationRef> & items) const;
     ::GAME::Mga::Collection_T <OperationRef> get_OperationRefs (void) const;
@@ -145,18 +157,6 @@ namespace PICML
 
     size_t get_EventRefs (std::vector <EventRef> & items) const;
     ::GAME::Mga::Collection_T <EventRef> get_EventRefs (void) const;
-
-    size_t get_Jitters (std::vector <Jitter> & items) const;
-    ::GAME::Mga::Collection_T <Jitter> get_Jitters (void) const;
-
-    size_t get_Maximums (std::vector <Maximum> & items) const;
-    ::GAME::Mga::Collection_T <Maximum> get_Maximums (void) const;
-
-    size_t get_Minimums (std::vector <Minimum> & items) const;
-    ::GAME::Mga::Collection_T <Minimum> get_Minimums (void) const;
-
-    size_t get_Averages (std::vector <Average> & items) const;
-    ::GAME::Mga::Collection_T <Average> get_Averages (void) const;
 
     ///@}
   };

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static LoopTransition _create (const BehaviorModel_in parent);
+    static LoopTransition _create (const BehaviorModel_in parent, LoopState_in src, ActionBase_in dst);
     ///@}
 
     // Default constructor.

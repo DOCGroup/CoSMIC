@@ -28,7 +28,7 @@ namespace PICML
   //
   ComponentPropertyDescription ComponentPropertyDescription_Impl::_create (const ComponentContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentPropertyDescription > (parent, ComponentPropertyDescription_Impl::metaname);
+    return ::GAME::Mga::create < ComponentPropertyDescription > (parent, ComponentPropertyDescription_Impl::metaname);
   }
 
   //
@@ -54,11 +54,19 @@ namespace PICML
   }
 
   //
-  // dst_ComponentProperty
+  // dst_of_ComponentProperty
   //
-  size_t ComponentPropertyDescription_Impl::dst_ComponentProperty (std::vector <ComponentProperty> & items) const
+  size_t ComponentPropertyDescription_Impl::dst_of_ComponentProperty (std::vector <ComponentProperty> & items) const
   {
     return this->in_connections <ComponentProperty> (items);
+  }
+
+  //
+  // dst_of_ComponentProperty
+  //
+  GAME::Mga::Collection_T <ComponentProperty> ComponentPropertyDescription_Impl::dst_of_ComponentProperty (void) const
+  {
+    return this->in_connections <ComponentProperty> ("dst");
   }
 
   //

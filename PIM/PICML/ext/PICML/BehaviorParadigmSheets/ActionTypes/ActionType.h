@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool Operation_is_nil (void) const;
-    Operation get_Operation (void) const;
-    void set_Operation (Operation_in item);
+    Operation refers_to_Operation (void) const;
+    void refers_to_Operation (Operation_in item);
     ///@}
   };
 }

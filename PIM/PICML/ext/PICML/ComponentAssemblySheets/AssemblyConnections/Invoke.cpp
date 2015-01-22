@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
@@ -29,11 +29,11 @@ namespace PICML
   const std::string Invoke_Impl::metaname ("Invoke");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, RequiredRequestPortEnd_in src, ProvidedRequestPortEnd_in dst)
   //
-  Invoke Invoke_Impl::_create (const ComponentAssembly_in parent)
+  Invoke Invoke_Impl::_create (const ComponentAssembly_in parent, RequiredRequestPortEnd_in src, ProvidedRequestPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < Invoke > (parent, Invoke_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Invoke_Impl::metaname, src, dst);
   }
 
   //

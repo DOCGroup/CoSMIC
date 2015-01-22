@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src InstanceMapping connection.
-    size_t src_InstanceMapping (std::vector <InstanceMapping> & items) const;
+    size_t src_of_InstanceMapping (std::vector <InstanceMapping> & items) const;
+    GAME::Mga::Collection_T <InstanceMapping> src_of_InstanceMapping (void) const;
     ///@}
 
     /**
@@ -88,7 +89,8 @@ namespace PICML
     ///@{
 
     /// Get the dst CollocationGroupProperty connection.
-    size_t dst_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const;
+    size_t dst_of_CollocationGroupProperty (std::vector <CollocationGroupProperty> & items) const;
+    GAME::Mga::Collection_T <CollocationGroupProperty> dst_of_CollocationGroupProperty (void) const;
     ///@}
 
     /**

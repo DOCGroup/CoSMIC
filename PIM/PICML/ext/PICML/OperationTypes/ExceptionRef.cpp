@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,7 +32,7 @@ namespace PICML
   //
   ExceptionRef ExceptionRef_Impl::_create (const HasExceptions_in parent)
   {
-    return ::GAME::Mga::create_object < ExceptionRef > (parent, ExceptionRef_Impl::metaname);
+    return ::GAME::Mga::create < ExceptionRef > (parent, ExceptionRef_Impl::metaname);
   }
 
   //
@@ -66,17 +66,17 @@ namespace PICML
   }
 
   //
-  // set_ExceptionType
+  // refers_to_ExceptionType
   //
-  void ExceptionRef_Impl::set_ExceptionType (ExceptionType_in item)
+  void ExceptionRef_Impl::refers_to_ExceptionType (ExceptionType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ExceptionType
+  // refers_to_ExceptionType
   //
-  ExceptionType ExceptionRef_Impl::get_ExceptionType (void) const
+  ExceptionType ExceptionRef_Impl::refers_to_ExceptionType (void) const
   {
     return ExceptionType::_narrow (this->refers_to ());
   }

@@ -91,7 +91,8 @@ namespace PICML
     ///@{
 
     /// Get the src ExternalDelegate connection.
-    size_t src_ExternalDelegate (std::vector <ExternalDelegate> & items) const;
+    size_t src_of_ExternalDelegate (std::vector <ExternalDelegate> & items) const;
+    GAME::Mga::Collection_T <ExternalDelegate> src_of_ExternalDelegate (void) const;
     ///@}
   };
 }

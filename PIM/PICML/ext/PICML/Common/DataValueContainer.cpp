@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/ComplexTypeReference.h"
 #include "PICML/Common/DataValueBase.h"
 #include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/DataValue.h"
+#include "PICML/Common/ComplexTypeReference.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   DataValueContainer DataValueContainer_Impl::_create (const ComplexProperty_in parent)
   {
-    return ::GAME::Mga::create_object < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
+    return ::GAME::Mga::create < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
   }
 
   //
@@ -38,7 +38,7 @@ namespace PICML
   //
   DataValueContainer DataValueContainer_Impl::_create (const DataValueContainer_in parent)
   {
-    return ::GAME::Mga::create_object < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
+    return ::GAME::Mga::create < DataValueContainer > (parent, DataValueContainer_Impl::metaname);
   }
 
   //

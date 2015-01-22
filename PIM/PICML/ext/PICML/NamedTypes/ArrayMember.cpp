@@ -29,7 +29,7 @@ namespace PICML
   //
   ArrayMember ArrayMember_Impl::_create (const Exception_in parent)
   {
-    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
+    return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //
@@ -37,7 +37,7 @@ namespace PICML
   //
   ArrayMember ArrayMember_Impl::_create (const Aggregate_in parent)
   {
-    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
+    return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //
@@ -45,7 +45,7 @@ namespace PICML
   //
   ArrayMember ArrayMember_Impl::_create (const ObjectByValue_in parent)
   {
-    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
+    return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //
@@ -53,7 +53,7 @@ namespace PICML
   //
   ArrayMember ArrayMember_Impl::_create (const SwitchedAggregate_in parent)
   {
-    return ::GAME::Mga::create_object < ArrayMember > (parent, ArrayMember_Impl::metaname);
+    return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
 
   //

@@ -81,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool MirrorPort_is_nil (void) const;
-    MirrorPort get_MirrorPort (void) const;
-    void set_MirrorPort (MirrorPort_in item);
+    MirrorPort refers_to_MirrorPort (void) const;
+    void refers_to_MirrorPort (MirrorPort_in item);
     ///@}
   };
 }

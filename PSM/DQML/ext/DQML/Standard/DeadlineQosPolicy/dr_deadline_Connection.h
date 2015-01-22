@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static dr_deadline_Connection _create (const DDSQoS_in parent);
+    static dr_deadline_Connection _create (const DDSQoS_in parent, DataReader_in src, DeadlineQosPolicy_in dst);
     ///@}
 
     // Default constructor.

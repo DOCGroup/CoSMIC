@@ -26,7 +26,7 @@ namespace PICML
   //
   Throughput Throughput_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Throughput > (parent, Throughput_Impl::metaname);
+    return ::GAME::Mga::create < Throughput > (parent, Throughput_Impl::metaname);
   }
 
   //

@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static dw_durqos_Connection _create (const DDSQoS_in parent);
+    static dw_durqos_Connection _create (const DDSQoS_in parent, DataWriter_in src, DurabilityQosPolicy_in dst);
     ///@}
 
     // Default constructor.

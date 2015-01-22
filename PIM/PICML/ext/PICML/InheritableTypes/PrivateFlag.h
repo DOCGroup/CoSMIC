@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the dst MakeMemberPrivate connection.
-    size_t dst_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+    size_t dst_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+    GAME::Mga::Collection_T <MakeMemberPrivate> dst_of_MakeMemberPrivate (void) const;
     ///@}
   };
 }

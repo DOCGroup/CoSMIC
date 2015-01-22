@@ -24,11 +24,11 @@ namespace DQML
   const std::string dr_timebased_Connection_Impl::metaname ("dr_timebased_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, DataReader_in src, TimeBasedFilterQosPolicy_in dst)
   //
-  dr_timebased_Connection dr_timebased_Connection_Impl::_create (const DDSQoS_in parent)
+  dr_timebased_Connection dr_timebased_Connection_Impl::_create (const DDSQoS_in parent, DataReader_in src, TimeBasedFilterQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < dr_timebased_Connection > (parent, dr_timebased_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dr_timebased_Connection_Impl::metaname, src, dst);
   }
 
   //

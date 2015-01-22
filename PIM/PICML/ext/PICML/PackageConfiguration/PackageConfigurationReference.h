@@ -79,10 +79,12 @@ namespace PICML
     ///@{
 
     /// Get the dst PackageConfSpecializedConfig connection.
-    size_t dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
+    size_t dst_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
+    GAME::Mga::Collection_T <PackageConfSpecializedConfig> dst_of_PackageConfSpecializedConfig (void) const;
 
     /// Get the dst package connection.
-    size_t dst_package (std::vector <package> & items) const;
+    size_t dst_of_package (std::vector <package> & items) const;
+    GAME::Mga::Collection_T <package> dst_of_package (void) const;
     ///@}
 
     /**
@@ -90,8 +92,8 @@ namespace PICML
      */
     ///@{
     bool PackageConfiguration_is_nil (void) const;
-    PackageConfiguration get_PackageConfiguration (void) const;
-    void set_PackageConfiguration (PackageConfiguration_in item);
+    PackageConfiguration refers_to_PackageConfiguration (void) const;
+    void refers_to_PackageConfiguration (PackageConfiguration_in item);
     ///@}
   };
 }

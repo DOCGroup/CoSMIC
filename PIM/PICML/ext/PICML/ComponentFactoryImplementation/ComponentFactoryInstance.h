@@ -80,8 +80,8 @@ namespace PICML
      */
     ///@{
     bool ComponentFactory_is_nil (void) const;
-    ComponentFactory get_ComponentFactory (void) const;
-    void set_ComponentFactory (ComponentFactory_in item);
+    ComponentFactory refers_to_ComponentFactory (void) const;
+    void refers_to_ComponentFactory (ComponentFactory_in item);
     ///@}
   };
 }

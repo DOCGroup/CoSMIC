@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static CriticalPath _create (const ComponentImplementationContainer_in parent);
+    static CriticalPath _create (const ComponentImplementationContainer_in parent, ComponentAssembly_in src, PathReference_in dst);
     ///@}
 
     // Default constructor.

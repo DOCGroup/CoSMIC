@@ -18,11 +18,19 @@ namespace PICML
   const std::string SingleInputBase_Impl::metaname ("SingleInputBase");
 
   //
-  // src_Input
+  // src_of_Input
   //
-  size_t SingleInputBase_Impl::src_Input (std::vector <Input> & items) const
+  size_t SingleInputBase_Impl::src_of_Input (std::vector <Input> & items) const
   {
     return this->in_connections <Input> (items);
+  }
+
+  //
+  // src_of_Input
+  //
+  GAME::Mga::Collection_T <Input> SingleInputBase_Impl::src_of_Input (void) const
+  {
+    return this->in_connections <Input> ("src");
   }
 }
 

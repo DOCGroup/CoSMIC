@@ -90,7 +90,8 @@ namespace PICML
     ///@{
 
     /// Get the src ExtResourceConn connection.
-    size_t src_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
+    size_t src_of_ExtResourceConn (std::vector <ExtResourceConn> & items) const;
+    GAME::Mga::Collection_T <ExtResourceConn> src_of_ExtResourceConn (void) const;
     ///@}
   };
 }

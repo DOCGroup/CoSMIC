@@ -32,14 +32,6 @@ namespace PICML
   const std::string TerminalEffect_Impl::metaname ("TerminalEffect");
 
   //
-  // _create (const BehaviorModel_in)
-  //
-  TerminalEffect TerminalEffect_Impl::_create (const BehaviorModel_in parent)
-  {
-    return ::GAME::Mga::create_object < TerminalEffect > (parent, TerminalEffect_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void TerminalEffect_Impl::accept (::GAME::Mga::Visitor * v)

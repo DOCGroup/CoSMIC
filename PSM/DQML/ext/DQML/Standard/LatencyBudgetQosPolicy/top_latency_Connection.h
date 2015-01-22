@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static top_latency_Connection _create (const DDSQoS_in parent);
+    static top_latency_Connection _create (const DDSQoS_in parent, Topic_in src, LatencyBudgetQosPolicy_in dst);
     ///@}
 
     // Default constructor.

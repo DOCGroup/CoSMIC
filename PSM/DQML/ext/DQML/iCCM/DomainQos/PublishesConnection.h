@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static PublishesConnection _create (const Domain_in parent);
+    static PublishesConnection _create (const Domain_in parent, DataWriterQos_in src, DataReaderQos_in dst);
     ///@}
 
     // Default constructor.

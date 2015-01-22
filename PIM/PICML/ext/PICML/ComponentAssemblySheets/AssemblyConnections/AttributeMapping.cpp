@@ -30,7 +30,7 @@ namespace PICML
   //
   AttributeMapping AttributeMapping_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < AttributeMapping > (parent, AttributeMapping_Impl::metaname);
+    return ::GAME::Mga::create < AttributeMapping > (parent, AttributeMapping_Impl::metaname);
   }
 
   //
@@ -56,35 +56,67 @@ namespace PICML
   }
 
   //
-  // src_AttributeDelegate
+  // src_of_AttributeDelegate
   //
-  size_t AttributeMapping_Impl::src_AttributeDelegate (std::vector <AttributeDelegate> & items) const
+  size_t AttributeMapping_Impl::src_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const
   {
     return this->in_connections <AttributeDelegate> (items);
   }
 
   //
-  // src_AttributeMappingDelegate
+  // src_of_AttributeDelegate
   //
-  size_t AttributeMapping_Impl::src_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
+  GAME::Mga::Collection_T <AttributeDelegate> AttributeMapping_Impl::src_of_AttributeDelegate (void) const
+  {
+    return this->in_connections <AttributeDelegate> ("src");
+  }
+
+  //
+  // src_of_AttributeMappingDelegate
+  //
+  size_t AttributeMapping_Impl::src_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
   {
     return this->in_connections <AttributeMappingDelegate> (items);
   }
 
   //
-  // src_AttributeMappingValue
+  // src_of_AttributeMappingDelegate
   //
-  size_t AttributeMapping_Impl::src_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
+  GAME::Mga::Collection_T <AttributeMappingDelegate> AttributeMapping_Impl::src_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("src");
+  }
+
+  //
+  // src_of_AttributeMappingValue
+  //
+  size_t AttributeMapping_Impl::src_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
   {
     return this->in_connections <AttributeMappingValue> (items);
   }
 
   //
-  // dst_AttributeMappingDelegate
+  // src_of_AttributeMappingValue
   //
-  size_t AttributeMapping_Impl::dst_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
+  GAME::Mga::Collection_T <AttributeMappingValue> AttributeMapping_Impl::src_of_AttributeMappingValue (void) const
+  {
+    return this->in_connections <AttributeMappingValue> ("src");
+  }
+
+  //
+  // dst_of_AttributeMappingDelegate
+  //
+  size_t AttributeMapping_Impl::dst_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const
   {
     return this->in_connections <AttributeMappingDelegate> (items);
+  }
+
+  //
+  // dst_of_AttributeMappingDelegate
+  //
+  GAME::Mga::Collection_T <AttributeMappingDelegate> AttributeMapping_Impl::dst_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("dst");
   }
 
   //
@@ -96,17 +128,17 @@ namespace PICML
   }
 
   //
-  // set_AttributeInstance
+  // refers_to_AttributeInstance
   //
-  void AttributeMapping_Impl::set_AttributeInstance (AttributeInstance_in item)
+  void AttributeMapping_Impl::refers_to_AttributeInstance (AttributeInstance_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_AttributeInstance
+  // refers_to_AttributeInstance
   //
-  AttributeInstance AttributeMapping_Impl::get_AttributeInstance (void) const
+  AttributeInstance AttributeMapping_Impl::refers_to_AttributeInstance (void) const
   {
     return AttributeInstance::_narrow (this->refers_to ());
   }

@@ -11,10 +11,10 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/TargetElements/Node.h"
+#include "PICML/TargetElements/SharedResource.h"
 #include "PICML/TargetElements/Interconnect.h"
 #include "PICML/TargetElements/Bridge.h"
-#include "PICML/TargetElements/SharedResource.h"
+#include "PICML/TargetElements/Node.h"
 #include "PICML/Domain/InterconnectConnection.h"
 #include "PICML/Domain/BridgeConnection.h"
 #include "PICML/Domain/Shares.h"
@@ -36,7 +36,7 @@ namespace PICML
   //
   Domain Domain_Impl::_create (const Targets_in parent)
   {
-    return ::GAME::Mga::create_root_object < Domain > (parent, Domain_Impl::metaname);
+    return ::GAME::Mga::create < Domain > (parent, Domain_Impl::metaname);
   }
 
   //
@@ -94,19 +94,19 @@ namespace PICML
   }
 
   //
-  // get_Nodes
+  // get_SharedResources
   //
-  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
+  size_t Domain_Impl::get_SharedResources (std::vector <SharedResource> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Nodes
+  // get_SharedResources
   //
-  ::GAME::Mga::Collection_T <Node> Domain_Impl::get_Nodes (void) const
+  ::GAME::Mga::Collection_T <SharedResource> Domain_Impl::get_SharedResources (void) const
   {
-    return this->children <Node> ();
+    return this->children <SharedResource> ();
   }
 
   //
@@ -142,19 +142,19 @@ namespace PICML
   }
 
   //
-  // get_SharedResources
+  // get_Nodes
   //
-  size_t Domain_Impl::get_SharedResources (std::vector <SharedResource> & items) const
+  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_SharedResources
+  // get_Nodes
   //
-  ::GAME::Mga::Collection_T <SharedResource> Domain_Impl::get_SharedResources (void) const
+  ::GAME::Mga::Collection_T <Node> Domain_Impl::get_Nodes (void) const
   {
-    return this->children <SharedResource> ();
+    return this->children <Node> ();
   }
 
   //

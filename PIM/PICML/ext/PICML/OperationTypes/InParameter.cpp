@@ -32,7 +32,7 @@ namespace PICML
   //
   InParameter InParameter_Impl::_create (const OperationBase_in parent)
   {
-    return ::GAME::Mga::create_object < InParameter > (parent, InParameter_Impl::metaname);
+    return ::GAME::Mga::create < InParameter > (parent, InParameter_Impl::metaname);
   }
 
   //
@@ -40,7 +40,7 @@ namespace PICML
   //
   InParameter InParameter_Impl::_create (const Operation_in parent)
   {
-    return ::GAME::Mga::create_object < InParameter > (parent, InParameter_Impl::metaname);
+    return ::GAME::Mga::create < InParameter > (parent, InParameter_Impl::metaname);
   }
 
   //

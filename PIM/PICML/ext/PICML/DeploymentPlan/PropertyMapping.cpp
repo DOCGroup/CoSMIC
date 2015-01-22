@@ -26,11 +26,11 @@ namespace PICML
   const std::string PropertyMapping_Impl::metaname ("PropertyMapping");
 
   //
-  // _create (const DeploymentPlan_in)
+  // _create (const DeploymentPlan_in, NodeReference_in src, Property_in dst)
   //
-  PropertyMapping PropertyMapping_Impl::_create (const DeploymentPlan_in parent)
+  PropertyMapping PropertyMapping_Impl::_create (const DeploymentPlan_in parent, NodeReference_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < PropertyMapping > (parent, PropertyMapping_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PropertyMapping_Impl::metaname, src, dst);
   }
 
   //

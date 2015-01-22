@@ -28,7 +28,7 @@ namespace PICML
   //
   EventRef EventRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < EventRef > (parent, EventRef_Impl::metaname);
+    return ::GAME::Mga::create < EventRef > (parent, EventRef_Impl::metaname);
   }
 
   //
@@ -54,11 +54,19 @@ namespace PICML
   }
 
   //
-  // src_TimerEventSinkConn
+  // src_of_TimerEventSinkConn
   //
-  size_t EventRef_Impl::src_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
+  size_t EventRef_Impl::src_of_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
   {
     return this->in_connections <TimerEventSinkConn> (items);
+  }
+
+  //
+  // src_of_TimerEventSinkConn
+  //
+  GAME::Mga::Collection_T <TimerEventSinkConn> EventRef_Impl::src_of_TimerEventSinkConn (void) const
+  {
+    return this->in_connections <TimerEventSinkConn> ("src");
   }
 
   //
@@ -70,17 +78,17 @@ namespace PICML
   }
 
   //
-  // set_Event
+  // refers_to_Event
   //
-  void EventRef_Impl::set_Event (Event_in item)
+  void EventRef_Impl::refers_to_Event (Event_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Event
+  // refers_to_Event
   //
-  Event EventRef_Impl::get_Event (void) const
+  Event EventRef_Impl::refers_to_Event (void) const
   {
     return Event::_narrow (this->refers_to ());
   }

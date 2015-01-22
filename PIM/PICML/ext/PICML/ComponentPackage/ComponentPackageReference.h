@@ -105,7 +105,8 @@ namespace PICML
     ///@{
 
     /// Get the dst PackageConfReference connection.
-    size_t dst_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    size_t dst_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    GAME::Mga::Collection_T <PackageConfReference> dst_of_PackageConfReference (void) const;
     ///@}
 
     /**
@@ -113,8 +114,8 @@ namespace PICML
      */
     ///@{
     bool ComponentPackage_is_nil (void) const;
-    ComponentPackage get_ComponentPackage (void) const;
-    void set_ComponentPackage (ComponentPackage_in item);
+    ComponentPackage refers_to_ComponentPackage (void) const;
+    void refers_to_ComponentPackage (ComponentPackage_in item);
     ///@}
   };
 }

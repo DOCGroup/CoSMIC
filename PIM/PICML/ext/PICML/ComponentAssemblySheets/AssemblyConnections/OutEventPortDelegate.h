@@ -81,7 +81,8 @@ namespace PICML
     ///@{
 
     /// Get the dst EventSourceDelegate connection.
-    size_t dst_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
+    size_t dst_of_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
+    GAME::Mga::Collection_T <EventSourceDelegate> dst_of_EventSourceDelegate (void) const;
     ///@}
   };
 }

@@ -25,11 +25,11 @@ namespace PICML
   const std::string EventSinkDelegate_Impl::metaname ("EventSinkDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, InEventPortDelegate_in src, InEventPortEnd_in dst)
   //
-  EventSinkDelegate EventSinkDelegate_Impl::_create (const ComponentAssembly_in parent)
+  EventSinkDelegate EventSinkDelegate_Impl::_create (const ComponentAssembly_in parent, InEventPortDelegate_in src, InEventPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < EventSinkDelegate > (parent, EventSinkDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, EventSinkDelegate_Impl::metaname, src, dst);
   }
 
   //

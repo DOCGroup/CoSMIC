@@ -81,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool ComponentAssembly_is_nil (void) const;
-    ComponentAssembly get_ComponentAssembly (void) const;
-    void set_ComponentAssembly (ComponentAssembly_in item);
+    ComponentAssembly refers_to_ComponentAssembly (void) const;
+    void refers_to_ComponentAssembly (ComponentAssembly_in item);
     ///@}
   };
 }

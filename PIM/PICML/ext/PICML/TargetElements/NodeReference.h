@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src PropertyMapping connection.
-    size_t src_PropertyMapping (std::vector <PropertyMapping> & items) const;
+    size_t src_of_PropertyMapping (std::vector <PropertyMapping> & items) const;
+    GAME::Mga::Collection_T <PropertyMapping> src_of_PropertyMapping (void) const;
     ///@}
 
     /**
@@ -88,7 +89,8 @@ namespace PICML
     ///@{
 
     /// Get the dst InstanceMapping connection.
-    size_t dst_InstanceMapping (std::vector <InstanceMapping> & items) const;
+    size_t dst_of_InstanceMapping (std::vector <InstanceMapping> & items) const;
+    GAME::Mga::Collection_T <InstanceMapping> dst_of_InstanceMapping (void) const;
     ///@}
 
     /**
@@ -96,8 +98,8 @@ namespace PICML
      */
     ///@{
     bool Node_is_nil (void) const;
-    Node get_Node (void) const;
-    void set_Node (Node_in item);
+    Node refers_to_Node (void) const;
+    void refers_to_Node (Node_in item);
     ///@}
   };
 }

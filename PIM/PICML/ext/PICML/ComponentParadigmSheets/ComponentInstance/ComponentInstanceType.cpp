@@ -27,7 +27,7 @@ namespace PICML
   //
   ComponentInstanceType ComponentInstanceType_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentInstanceType > (parent, ComponentInstanceType_Impl::metaname);
+    return ::GAME::Mga::create < ComponentInstanceType > (parent, ComponentInstanceType_Impl::metaname);
   }
 
   //
@@ -61,17 +61,17 @@ namespace PICML
   }
 
   //
-  // set_MonolithicImplementation
+  // refers_to_MonolithicImplementation
   //
-  void ComponentInstanceType_Impl::set_MonolithicImplementation (MonolithicImplementation_in item)
+  void ComponentInstanceType_Impl::refers_to_MonolithicImplementation (MonolithicImplementation_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_MonolithicImplementation
+  // refers_to_MonolithicImplementation
   //
-  MonolithicImplementation ComponentInstanceType_Impl::get_MonolithicImplementation (void) const
+  MonolithicImplementation ComponentInstanceType_Impl::refers_to_MonolithicImplementation (void) const
   {
     return MonolithicImplementation::_narrow (this->refers_to ());
   }

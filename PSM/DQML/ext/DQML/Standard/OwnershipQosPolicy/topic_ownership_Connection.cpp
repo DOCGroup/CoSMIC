@@ -24,11 +24,11 @@ namespace DQML
   const std::string topic_ownership_Connection_Impl::metaname ("topic_ownership_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Topic_in src, OwnershipQosPolicy_in dst)
   //
-  topic_ownership_Connection topic_ownership_Connection_Impl::_create (const DDSQoS_in parent)
+  topic_ownership_Connection topic_ownership_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, OwnershipQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < topic_ownership_Connection > (parent, topic_ownership_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, topic_ownership_Connection_Impl::metaname, src, dst);
   }
 
   //

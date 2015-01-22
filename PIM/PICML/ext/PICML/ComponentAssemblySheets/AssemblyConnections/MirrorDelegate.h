@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static MirrorDelegate _create (const ComponentAssembly_in parent);
+    static MirrorDelegate _create (const ComponentAssembly_in parent, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst);
     ///@}
 
     // Default constructor.

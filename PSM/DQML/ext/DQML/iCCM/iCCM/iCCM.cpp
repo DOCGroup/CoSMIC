@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "DQML/iCCM/TopicQos/TopicQosFolder.h"
+#include "DQML/iCCM/DomainQos/DomainQosFolder.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -53,6 +53,22 @@ namespace DQML
   }
 
   //
+  // get_TopicQosFolders
+  //
+  size_t iCCM_Impl::get_TopicQosFolders (std::vector <TopicQosFolder> & items) const
+  {
+    return this->folders (items);
+  }
+
+  //
+  // get_TopicQosFolders
+  //
+  ::GAME::Mga::Collection_T <TopicQosFolder> iCCM_Impl::get_TopicQosFolders (void) const
+  {
+    return this->folders <TopicQosFolder> ();
+  }
+
+  //
   // get_DomainQosFolders
   //
   size_t iCCM_Impl::get_DomainQosFolders (std::vector <DomainQosFolder> & items) const
@@ -61,11 +77,11 @@ namespace DQML
   }
 
   //
-  // get_TopicQosFolders
+  // get_DomainQosFolders
   //
-  size_t iCCM_Impl::get_TopicQosFolders (std::vector <TopicQosFolder> & items) const
+  ::GAME::Mga::Collection_T <DomainQosFolder> iCCM_Impl::get_DomainQosFolders (void) const
   {
-    return this->folders (items);
+    return this->folders <DomainQosFolder> ();
   }
 }
 

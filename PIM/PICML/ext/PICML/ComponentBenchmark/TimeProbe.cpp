@@ -28,7 +28,7 @@ namespace PICML
   //
   TimeProbe TimeProbe_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < TimeProbe > (parent, TimeProbe_Impl::metaname);
+    return ::GAME::Mga::create < TimeProbe > (parent, TimeProbe_Impl::metaname);
   }
 
   //
@@ -54,19 +54,35 @@ namespace PICML
   }
 
   //
-  // dst_TimerConnection
+  // dst_of_TimerConnection
   //
-  size_t TimeProbe_Impl::dst_TimerConnection (std::vector <TimerConnection> & items) const
+  size_t TimeProbe_Impl::dst_of_TimerConnection (std::vector <TimerConnection> & items) const
   {
     return this->in_connections <TimerConnection> (items);
   }
 
   //
-  // dst_TimerEventSinkConn
+  // dst_of_TimerConnection
   //
-  size_t TimeProbe_Impl::dst_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
+  GAME::Mga::Collection_T <TimerConnection> TimeProbe_Impl::dst_of_TimerConnection (void) const
+  {
+    return this->in_connections <TimerConnection> ("dst");
+  }
+
+  //
+  // dst_of_TimerEventSinkConn
+  //
+  size_t TimeProbe_Impl::dst_of_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const
   {
     return this->in_connections <TimerEventSinkConn> (items);
+  }
+
+  //
+  // dst_of_TimerEventSinkConn
+  //
+  GAME::Mga::Collection_T <TimerEventSinkConn> TimeProbe_Impl::dst_of_TimerEventSinkConn (void) const
+  {
+    return this->in_connections <TimerEventSinkConn> ("dst");
   }
 }
 

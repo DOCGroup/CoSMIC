@@ -80,8 +80,8 @@ namespace PICML
      */
     ///@{
     bool Package_is_nil (void) const;
-    Package get_Package (void) const;
-    void set_Package (Package_in item);
+    Package refers_to_Package (void) const;
+    void refers_to_Package (Package_in item);
     ///@}
   };
 }

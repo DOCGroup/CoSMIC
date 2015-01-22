@@ -20,15 +20,20 @@
 #include "PICML/ComponentBenchmark/TriggerBenchmarks.h"
 #include "PICML/ComponentBenchmark/Task.h"
 #include "PICML/ComponentBenchmark/TimeProbe.h"
-#include "PICML/ComponentBenchmark/MetricsBase.h"
-#include "PICML/ComponentBenchmark/Throughput.h"
-#include "PICML/ComponentBenchmark/Latency.h"
-#include "PICML/InheritableTypes/Event.h"
+#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
+#include "PICML/ComponentBenchmark/Jitter.h"
+#include "PICML/ComponentBenchmark/Maximum.h"
+#include "PICML/ComponentBenchmark/Minimum.h"
+#include "PICML/ComponentBenchmark/Average.h"
 #include "PICML/ComponentBenchmark/ComponentAnalyses.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "PICML/ComponentBenchmark/TaskSet.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/ComponentBenchmark/MetricsBase.h"
+#include "PICML/ComponentBenchmark/Throughput.h"
+#include "PICML/ComponentBenchmark/Latency.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/ComponentBenchmark/OperationRef.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentBenchmark/CompRef.h"
@@ -36,11 +41,6 @@
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
 #include "PICML/ComponentBenchmark/EventRef.h"
-#include "PICML/ComponentBenchmark/DataAnalysisBase.h"
-#include "PICML/ComponentBenchmark/Jitter.h"
-#include "PICML/ComponentBenchmark/Maximum.h"
-#include "PICML/ComponentBenchmark/Minimum.h"
-#include "PICML/ComponentBenchmark/Average.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -58,7 +58,7 @@ namespace PICML
   //
   BenchmarkAnalysis BenchmarkAnalysis_Impl::_create (const ComponentAnalyses_in parent)
   {
-    return ::GAME::Mga::create_root_object < BenchmarkAnalysis > (parent, BenchmarkAnalysis_Impl::metaname);
+    return ::GAME::Mga::create < BenchmarkAnalysis > (parent, BenchmarkAnalysis_Impl::metaname);
   }
 
   //
@@ -228,51 +228,67 @@ namespace PICML
   }
 
   //
-  // get_Throughputs
+  // get_Jitters
   //
-  size_t BenchmarkAnalysis_Impl::get_Throughputs (std::vector <Throughput> & items) const
+  size_t BenchmarkAnalysis_Impl::get_Jitters (std::vector <Jitter> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Throughputs
+  // get_Jitters
   //
-  ::GAME::Mga::Collection_T <Throughput> BenchmarkAnalysis_Impl::get_Throughputs (void) const
+  ::GAME::Mga::Collection_T <Jitter> BenchmarkAnalysis_Impl::get_Jitters (void) const
   {
-    return this->children <Throughput> ();
+    return this->children <Jitter> ();
   }
 
   //
-  // get_Latencys
+  // get_Maximums
   //
-  size_t BenchmarkAnalysis_Impl::get_Latencys (std::vector <Latency> & items) const
+  size_t BenchmarkAnalysis_Impl::get_Maximums (std::vector <Maximum> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Latencys
+  // get_Maximums
   //
-  ::GAME::Mga::Collection_T <Latency> BenchmarkAnalysis_Impl::get_Latencys (void) const
+  ::GAME::Mga::Collection_T <Maximum> BenchmarkAnalysis_Impl::get_Maximums (void) const
   {
-    return this->children <Latency> ();
+    return this->children <Maximum> ();
   }
 
   //
-  // get_Events
+  // get_Minimums
   //
-  size_t BenchmarkAnalysis_Impl::get_Events (std::vector <Event> & items) const
+  size_t BenchmarkAnalysis_Impl::get_Minimums (std::vector <Minimum> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Events
+  // get_Minimums
   //
-  ::GAME::Mga::Collection_T <Event> BenchmarkAnalysis_Impl::get_Events (void) const
+  ::GAME::Mga::Collection_T <Minimum> BenchmarkAnalysis_Impl::get_Minimums (void) const
   {
-    return this->children <Event> ();
+    return this->children <Minimum> ();
+  }
+
+  //
+  // get_Averages
+  //
+  size_t BenchmarkAnalysis_Impl::get_Averages (std::vector <Average> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Averages
+  //
+  ::GAME::Mga::Collection_T <Average> BenchmarkAnalysis_Impl::get_Averages (void) const
+  {
+    return this->children <Average> ();
   }
 
   //
@@ -337,6 +353,54 @@ namespace PICML
   ::GAME::Mga::Collection_T <WorkLoadOperationConnection> BenchmarkAnalysis_Impl::get_WorkLoadOperationConnections (void) const
   {
     return this->children <WorkLoadOperationConnection> ();
+  }
+
+  //
+  // get_Throughputs
+  //
+  size_t BenchmarkAnalysis_Impl::get_Throughputs (std::vector <Throughput> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Throughputs
+  //
+  ::GAME::Mga::Collection_T <Throughput> BenchmarkAnalysis_Impl::get_Throughputs (void) const
+  {
+    return this->children <Throughput> ();
+  }
+
+  //
+  // get_Latencys
+  //
+  size_t BenchmarkAnalysis_Impl::get_Latencys (std::vector <Latency> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Latencys
+  //
+  ::GAME::Mga::Collection_T <Latency> BenchmarkAnalysis_Impl::get_Latencys (void) const
+  {
+    return this->children <Latency> ();
+  }
+
+  //
+  // get_Events
+  //
+  size_t BenchmarkAnalysis_Impl::get_Events (std::vector <Event> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Events
+  //
+  ::GAME::Mga::Collection_T <Event> BenchmarkAnalysis_Impl::get_Events (void) const
+  {
+    return this->children <Event> ();
   }
 
   //
@@ -449,70 +513,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <EventRef> BenchmarkAnalysis_Impl::get_EventRefs (void) const
   {
     return this->children <EventRef> ();
-  }
-
-  //
-  // get_Jitters
-  //
-  size_t BenchmarkAnalysis_Impl::get_Jitters (std::vector <Jitter> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Jitters
-  //
-  ::GAME::Mga::Collection_T <Jitter> BenchmarkAnalysis_Impl::get_Jitters (void) const
-  {
-    return this->children <Jitter> ();
-  }
-
-  //
-  // get_Maximums
-  //
-  size_t BenchmarkAnalysis_Impl::get_Maximums (std::vector <Maximum> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Maximums
-  //
-  ::GAME::Mga::Collection_T <Maximum> BenchmarkAnalysis_Impl::get_Maximums (void) const
-  {
-    return this->children <Maximum> ();
-  }
-
-  //
-  // get_Minimums
-  //
-  size_t BenchmarkAnalysis_Impl::get_Minimums (std::vector <Minimum> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Minimums
-  //
-  ::GAME::Mga::Collection_T <Minimum> BenchmarkAnalysis_Impl::get_Minimums (void) const
-  {
-    return this->children <Minimum> ();
-  }
-
-  //
-  // get_Averages
-  //
-  size_t BenchmarkAnalysis_Impl::get_Averages (std::vector <Average> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Averages
-  //
-  ::GAME::Mga::Collection_T <Average> BenchmarkAnalysis_Impl::get_Averages (void) const
-  {
-    return this->children <Average> ();
   }
 }
 

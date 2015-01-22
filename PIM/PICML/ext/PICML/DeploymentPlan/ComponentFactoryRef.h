@@ -80,7 +80,8 @@ namespace PICML
     ///@{
 
     /// Get the src Deploys connection.
-    size_t src_Deploys (std::vector <Deploys> & items) const;
+    size_t src_of_Deploys (std::vector <Deploys> & items) const;
+    GAME::Mga::Collection_T <Deploys> src_of_Deploys (void) const;
     ///@}
 
     /**
@@ -88,8 +89,8 @@ namespace PICML
      */
     ///@{
     bool ComponentFactoryInstance_is_nil (void) const;
-    ComponentFactoryInstance get_ComponentFactoryInstance (void) const;
-    void set_ComponentFactoryInstance (ComponentFactoryInstance_in item);
+    ComponentFactoryInstance refers_to_ComponentFactoryInstance (void) const;
+    void refers_to_ComponentFactoryInstance (ComponentFactoryInstance_in item);
     ///@}
   };
 }

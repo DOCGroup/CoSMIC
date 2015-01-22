@@ -53,7 +53,6 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static TerminalEffect _create (const BehaviorModel_in parent);
     ///@}
 
     // Default constructor.

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static MonolithprimaryArtifact _create (const ImplementationContainer_in parent);
+    static MonolithprimaryArtifact _create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, ImplementationArtifactReference_in dst);
     ///@}
 
     // Default constructor.

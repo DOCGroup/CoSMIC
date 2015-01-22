@@ -85,8 +85,8 @@ namespace PICML
      */
     ///@{
     bool Provideable_is_nil (void) const;
-    Provideable get_Provideable (void) const;
-    void set_Provideable (Provideable_in item);
+    Provideable refers_to_Provideable (void) const;
+    void refers_to_Provideable (Provideable_in item);
     ///@}
   };
 }

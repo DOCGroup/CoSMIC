@@ -26,7 +26,7 @@ namespace PICML
   //
   QueryAction QueryAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < QueryAction > (parent, QueryAction_Impl::metaname);
+    return ::GAME::Mga::create < QueryAction > (parent, QueryAction_Impl::metaname);
   }
 
   //

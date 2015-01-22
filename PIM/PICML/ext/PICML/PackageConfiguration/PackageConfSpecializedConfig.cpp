@@ -24,11 +24,11 @@ namespace PICML
   const std::string PackageConfSpecializedConfig_Impl::metaname ("PackageConfSpecializedConfig");
 
   //
-  // _create (const PackageConfigurationContainer_in)
+  // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, PackageConfigurationReference_in dst)
   //
-  PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent)
+  PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, PackageConfigurationReference_in dst)
   {
-    return ::GAME::Mga::create_object < PackageConfSpecializedConfig > (parent, PackageConfSpecializedConfig_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageConfSpecializedConfig_Impl::metaname, src, dst);
   }
 
   //

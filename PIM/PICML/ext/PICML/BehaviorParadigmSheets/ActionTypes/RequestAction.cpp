@@ -26,7 +26,7 @@ namespace PICML
   //
   RequestAction RequestAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < RequestAction > (parent, RequestAction_Impl::metaname);
+    return ::GAME::Mga::create < RequestAction > (parent, RequestAction_Impl::metaname);
   }
 
   //

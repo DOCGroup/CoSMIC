@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,7 +27,7 @@ namespace PICML
   //
   TargetRequiredRequestPort TargetRequiredRequestPort_Impl::_create (const CallAction_in parent)
   {
-    return ::GAME::Mga::create_object < TargetRequiredRequestPort > (parent, TargetRequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < TargetRequiredRequestPort > (parent, TargetRequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -61,17 +61,17 @@ namespace PICML
   }
 
   //
-  // set_RequiredRequestPort
+  // refers_to_RequiredRequestPort
   //
-  void TargetRequiredRequestPort_Impl::set_RequiredRequestPort (RequiredRequestPort_in item)
+  void TargetRequiredRequestPort_Impl::refers_to_RequiredRequestPort (RequiredRequestPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_RequiredRequestPort
+  // refers_to_RequiredRequestPort
   //
-  RequiredRequestPort TargetRequiredRequestPort_Impl::get_RequiredRequestPort (void) const
+  RequiredRequestPort TargetRequiredRequestPort_Impl::refers_to_RequiredRequestPort (void) const
   {
     return RequiredRequestPort::_narrow (this->refers_to ());
   }

@@ -41,7 +41,7 @@ namespace PICML
   //
   ArtifactContainer ArtifactContainer_Impl::_create (const ImplementationArtifacts_in parent)
   {
-    return ::GAME::Mga::create_root_object < ArtifactContainer > (parent, ArtifactContainer_Impl::metaname);
+    return ::GAME::Mga::create < ArtifactContainer > (parent, ArtifactContainer_Impl::metaname);
   }
 
   //

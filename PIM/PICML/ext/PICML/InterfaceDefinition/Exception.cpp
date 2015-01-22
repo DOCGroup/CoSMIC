@@ -37,7 +37,7 @@ namespace PICML
   //
   Exception Exception_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
+    return ::GAME::Mga::create < Exception > (parent, Exception_Impl::metaname);
   }
 
   //
@@ -45,7 +45,7 @@ namespace PICML
   //
   Exception Exception_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
+    return ::GAME::Mga::create < Exception > (parent, Exception_Impl::metaname);
   }
 
   //
@@ -53,7 +53,7 @@ namespace PICML
   //
   Exception Exception_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < Exception > (parent, Exception_Impl::metaname);
+    return ::GAME::Mga::create < Exception > (parent, Exception_Impl::metaname);
   }
 
   //

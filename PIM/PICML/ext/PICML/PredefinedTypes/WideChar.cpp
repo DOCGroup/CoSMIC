@@ -26,7 +26,7 @@ namespace PICML
   //
   WideChar WideChar_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < WideChar > (parent, WideChar_Impl::metaname);
+    return ::GAME::Mga::create < WideChar > (parent, WideChar_Impl::metaname);
   }
 
   //

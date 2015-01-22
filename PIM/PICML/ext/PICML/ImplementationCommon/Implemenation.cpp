@@ -19,19 +19,35 @@ namespace PICML
   const std::string Implemenation_Impl::metaname ("Implemenation");
 
   //
-  // src_ConfigProperty
+  // src_of_ConfigProperty
   //
-  size_t Implemenation_Impl::src_ConfigProperty (std::vector <ConfigProperty> & items) const
+  size_t Implemenation_Impl::src_of_ConfigProperty (std::vector <ConfigProperty> & items) const
   {
     return this->in_connections <ConfigProperty> (items);
   }
 
   //
-  // src_InfoProperty
+  // src_of_ConfigProperty
   //
-  size_t Implemenation_Impl::src_InfoProperty (std::vector <InfoProperty> & items) const
+  GAME::Mga::Collection_T <ConfigProperty> Implemenation_Impl::src_of_ConfigProperty (void) const
+  {
+    return this->in_connections <ConfigProperty> ("src");
+  }
+
+  //
+  // src_of_InfoProperty
+  //
+  size_t Implemenation_Impl::src_of_InfoProperty (std::vector <InfoProperty> & items) const
   {
     return this->in_connections <InfoProperty> (items);
+  }
+
+  //
+  // src_of_InfoProperty
+  //
+  GAME::Mga::Collection_T <InfoProperty> Implemenation_Impl::src_of_InfoProperty (void) const
+  {
+    return this->in_connections <InfoProperty> ("src");
   }
 }
 

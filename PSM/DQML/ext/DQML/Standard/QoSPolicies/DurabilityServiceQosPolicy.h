@@ -124,10 +124,12 @@ namespace DQML
     ///@{
 
     /// Get the dst topic_dursvc_Connection connection.
-    size_t dst_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const;
+    size_t dst_of_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_dursvc_Connection> dst_of_topic_dursvc_Connection (void) const;
 
     /// Get the dst dw_dursvc_Connection connection.
-    size_t dst_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const;
+    size_t dst_of_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const;
+    GAME::Mga::Collection_T <dw_dursvc_Connection> dst_of_dw_dursvc_Connection (void) const;
     ///@}
   };
 }

@@ -29,7 +29,7 @@ namespace PICML
   //
   SetException SetException_Impl::_create (const Attribute_in parent)
   {
-    return ::GAME::Mga::create_object < SetException > (parent, SetException_Impl::metaname);
+    return ::GAME::Mga::create < SetException > (parent, SetException_Impl::metaname);
   }
 
   //
@@ -63,17 +63,17 @@ namespace PICML
   }
 
   //
-  // set_ExceptionType
+  // refers_to_ExceptionType
   //
-  void SetException_Impl::set_ExceptionType (ExceptionType_in item)
+  void SetException_Impl::refers_to_ExceptionType (ExceptionType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ExceptionType
+  // refers_to_ExceptionType
   //
-  ExceptionType SetException_Impl::get_ExceptionType (void) const
+  ExceptionType SetException_Impl::refers_to_ExceptionType (void) const
   {
     return ExceptionType::_narrow (this->refers_to ());
   }

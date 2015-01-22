@@ -87,10 +87,12 @@ namespace PICML
     ///@{
 
     /// Get the dst MonolithprimaryArtifact connection.
-    size_t dst_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+    size_t dst_of_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+    GAME::Mga::Collection_T <MonolithprimaryArtifact> dst_of_MonolithprimaryArtifact (void) const;
 
     /// Get the dst ArtifactDependsOn connection.
-    size_t dst_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
+    size_t dst_of_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
+    GAME::Mga::Collection_T <ArtifactDependsOn> dst_of_ArtifactDependsOn (void) const;
     ///@}
 
     /**
@@ -98,8 +100,8 @@ namespace PICML
      */
     ///@{
     bool ImplementationArtifact_is_nil (void) const;
-    ImplementationArtifact get_ImplementationArtifact (void) const;
-    void set_ImplementationArtifact (ImplementationArtifact_in item);
+    ImplementationArtifact refers_to_ImplementationArtifact (void) const;
+    void refers_to_ImplementationArtifact (ImplementationArtifact_in item);
     ///@}
   };
 }

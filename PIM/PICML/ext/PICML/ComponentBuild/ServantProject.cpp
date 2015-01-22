@@ -30,7 +30,7 @@ namespace PICML
   //
   ServantProject ServantProject_Impl::_create (const Project_in parent)
   {
-    return ::GAME::Mga::create_object < ServantProject > (parent, ServantProject_Impl::metaname);
+    return ::GAME::Mga::create < ServantProject > (parent, ServantProject_Impl::metaname);
   }
 
   //

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ConnectorToFacet _create (const ComponentAssembly_in parent);
+    static ConnectorToFacet _create (const ComponentAssembly_in parent, ConnectorInstance_in src, ProvidedRequestPortEnd_in dst);
     ///@}
 
     // Default constructor.

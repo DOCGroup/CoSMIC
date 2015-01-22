@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the dst QueryInput connection.
-    size_t dst_QueryInput (std::vector <QueryInput> & items) const;
+    size_t dst_of_QueryInput (std::vector <QueryInput> & items) const;
+    GAME::Mga::Collection_T <QueryInput> dst_of_QueryInput (void) const;
     ///@}
 
     /**

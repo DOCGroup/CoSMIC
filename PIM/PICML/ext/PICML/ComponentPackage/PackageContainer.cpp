@@ -36,7 +36,7 @@ namespace PICML
   //
   PackageContainer PackageContainer_Impl::_create (const ComponentPackages_in parent)
   {
-    return ::GAME::Mga::create_root_object < PackageContainer > (parent, PackageContainer_Impl::metaname);
+    return ::GAME::Mga::create < PackageContainer > (parent, PackageContainer_Impl::metaname);
   }
 
   //

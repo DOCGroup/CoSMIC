@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h"
-#include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
+#include "DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -28,19 +28,19 @@ namespace DQML
   const std::string OwnershipQosPolicy_Impl::metaname ("OwnershipQosPolicy");
 
   //
-  // _create (const DataWriterQos_in)
-  //
-  OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const DataWriterQos_in parent)
-  {
-    return ::GAME::Mga::create_object < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const TopicQos_in)
   //
   OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataWriterQos_in)
+  //
+  OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  {
+    return ::GAME::Mga::create < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
   }
 
   //
@@ -48,7 +48,7 @@ namespace DQML
   //
   OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
   }
 
   //
@@ -56,7 +56,7 @@ namespace DQML
   //
   OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
   }
 
   //
@@ -74,19 +74,19 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
-  //
-  DataWriterQos OwnershipQosPolicy_Impl::parent_DataWriterQos (void)
-  {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_TopicQos
   //
   TopicQos OwnershipQosPolicy_Impl::parent_TopicQos (void)
   {
     return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos OwnershipQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
   }
 
   //
@@ -98,27 +98,51 @@ namespace DQML
   }
 
   //
-  // dst_topic_ownership_Connection
+  // dst_of_dr_ownership_Connection
   //
-  size_t OwnershipQosPolicy_Impl::dst_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const
+  size_t OwnershipQosPolicy_Impl::dst_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
   {
-    return this->in_connections <topic_ownership_Connection> (items);
+    return this->in_connections <dr_ownership_Connection> (items);
   }
 
   //
-  // dst_dw_ownership_Connection
+  // dst_of_dr_ownership_Connection
   //
-  size_t OwnershipQosPolicy_Impl::dst_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const
+  GAME::Mga::Collection_T <dr_ownership_Connection> OwnershipQosPolicy_Impl::dst_of_dr_ownership_Connection (void) const
+  {
+    return this->in_connections <dr_ownership_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dw_ownership_Connection
+  //
+  size_t OwnershipQosPolicy_Impl::dst_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const
   {
     return this->in_connections <dw_ownership_Connection> (items);
   }
 
   //
-  // dst_dr_ownership_Connection
+  // dst_of_dw_ownership_Connection
   //
-  size_t OwnershipQosPolicy_Impl::dst_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
+  GAME::Mga::Collection_T <dw_ownership_Connection> OwnershipQosPolicy_Impl::dst_of_dw_ownership_Connection (void) const
   {
-    return this->in_connections <dr_ownership_Connection> (items);
+    return this->in_connections <dw_ownership_Connection> ("dst");
+  }
+
+  //
+  // dst_of_topic_ownership_Connection
+  //
+  size_t OwnershipQosPolicy_Impl::dst_of_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const
+  {
+    return this->in_connections <topic_ownership_Connection> (items);
+  }
+
+  //
+  // dst_of_topic_ownership_Connection
+  //
+  GAME::Mga::Collection_T <topic_ownership_Connection> OwnershipQosPolicy_Impl::dst_of_topic_ownership_Connection (void) const
+  {
+    return this->in_connections <topic_ownership_Connection> ("dst");
   }
 }
 

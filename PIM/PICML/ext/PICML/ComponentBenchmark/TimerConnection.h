@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static TimerConnection _create (const BenchmarkAnalysis_in parent);
+    static TimerConnection _create (const BenchmarkAnalysis_in parent, OperationRef_in src, TimeProbe_in dst);
     ///@}
 
     // Default constructor.

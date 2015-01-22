@@ -27,7 +27,7 @@ namespace PICML
   //
   ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   ComponentAssemblyReference ComponentAssemblyReference_Impl::_create (const DeploymentPlan_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentAssemblyReference > (parent, ComponentAssemblyReference_Impl::metaname);
   }
 
   //
@@ -69,17 +69,17 @@ namespace PICML
   }
 
   //
-  // set_ComponentAssembly
+  // refers_to_ComponentAssembly
   //
-  void ComponentAssemblyReference_Impl::set_ComponentAssembly (ComponentAssembly_in item)
+  void ComponentAssemblyReference_Impl::refers_to_ComponentAssembly (ComponentAssembly_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentAssembly
+  // refers_to_ComponentAssembly
   //
-  ComponentAssembly ComponentAssemblyReference_Impl::get_ComponentAssembly (void) const
+  ComponentAssembly ComponentAssemblyReference_Impl::refers_to_ComponentAssembly (void) const
   {
     return ComponentAssembly::_narrow (this->refers_to ());
   }

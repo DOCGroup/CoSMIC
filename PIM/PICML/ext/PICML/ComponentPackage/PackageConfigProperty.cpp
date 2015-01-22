@@ -26,11 +26,11 @@ namespace PICML
   const std::string PackageConfigProperty_Impl::metaname ("PackageConfigProperty");
 
   //
-  // _create (const PackageContainer_in)
+  // _create (const PackageContainer_in, ComponentPackage_in src, Property_in dst)
   //
-  PackageConfigProperty PackageConfigProperty_Impl::_create (const PackageContainer_in parent)
+  PackageConfigProperty PackageConfigProperty_Impl::_create (const PackageContainer_in parent, ComponentPackage_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < PackageConfigProperty > (parent, PackageConfigProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageConfigProperty_Impl::metaname, src, dst);
   }
 
   //

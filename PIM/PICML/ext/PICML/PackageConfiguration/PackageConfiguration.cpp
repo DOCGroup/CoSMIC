@@ -32,7 +32,7 @@ namespace PICML
   //
   PackageConfiguration PackageConfiguration_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < PackageConfiguration > (parent, PackageConfiguration_Impl::metaname);
+    return ::GAME::Mga::create < PackageConfiguration > (parent, PackageConfiguration_Impl::metaname);
   }
 
   //
@@ -58,43 +58,83 @@ namespace PICML
   }
 
   //
-  // src_PackageConfSelectRequirement
+  // src_of_PackageConfSelectRequirement
   //
-  size_t PackageConfiguration_Impl::src_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  size_t PackageConfiguration_Impl::src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
   {
     return this->in_connections <PackageConfSelectRequirement> (items);
   }
 
   //
-  // src_PackageConfBasePackage
+  // src_of_PackageConfSelectRequirement
   //
-  size_t PackageConfiguration_Impl::src_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
+  GAME::Mga::Collection_T <PackageConfSelectRequirement> PackageConfiguration_Impl::src_of_PackageConfSelectRequirement (void) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> ("src");
+  }
+
+  //
+  // src_of_PackageConfBasePackage
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
   {
     return this->in_connections <PackageConfBasePackage> (items);
   }
 
   //
-  // src_PackageConfReference
+  // src_of_PackageConfBasePackage
   //
-  size_t PackageConfiguration_Impl::src_PackageConfReference (std::vector <PackageConfReference> & items) const
+  GAME::Mga::Collection_T <PackageConfBasePackage> PackageConfiguration_Impl::src_of_PackageConfBasePackage (void) const
+  {
+    return this->in_connections <PackageConfBasePackage> ("src");
+  }
+
+  //
+  // src_of_PackageConfReference
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfReference (std::vector <PackageConfReference> & items) const
   {
     return this->in_connections <PackageConfReference> (items);
   }
 
   //
-  // src_PackageConfSpecializedConfig
+  // src_of_PackageConfReference
   //
-  size_t PackageConfiguration_Impl::src_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
+  GAME::Mga::Collection_T <PackageConfReference> PackageConfiguration_Impl::src_of_PackageConfReference (void) const
+  {
+    return this->in_connections <PackageConfReference> ("src");
+  }
+
+  //
+  // src_of_PackageConfSpecializedConfig
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
     return this->in_connections <PackageConfSpecializedConfig> (items);
   }
 
   //
-  // src_PackageConfConfigProperty
+  // src_of_PackageConfSpecializedConfig
   //
-  size_t PackageConfiguration_Impl::src_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
+  GAME::Mga::Collection_T <PackageConfSpecializedConfig> PackageConfiguration_Impl::src_of_PackageConfSpecializedConfig (void) const
+  {
+    return this->in_connections <PackageConfSpecializedConfig> ("src");
+  }
+
+  //
+  // src_of_PackageConfConfigProperty
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
   {
     return this->in_connections <PackageConfConfigProperty> (items);
+  }
+
+  //
+  // src_of_PackageConfConfigProperty
+  //
+  GAME::Mga::Collection_T <PackageConfConfigProperty> PackageConfiguration_Impl::src_of_PackageConfConfigProperty (void) const
+  {
+    return this->in_connections <PackageConfConfigProperty> ("src");
   }
 }
 

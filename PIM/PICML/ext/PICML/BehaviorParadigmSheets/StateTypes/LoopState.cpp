@@ -19,11 +19,19 @@ namespace PICML
   const std::string LoopState_Impl::metaname ("LoopState");
 
   //
-  // src_LoopTransition
+  // src_of_LoopTransition
   //
-  size_t LoopState_Impl::src_LoopTransition (std::vector <LoopTransition> & items) const
+  size_t LoopState_Impl::src_of_LoopTransition (std::vector <LoopTransition> & items) const
   {
     return this->in_connections <LoopTransition> (items);
+  }
+
+  //
+  // src_of_LoopTransition
+  //
+  GAME::Mga::Collection_T <LoopTransition> LoopState_Impl::src_of_LoopTransition (void) const
+  {
+    return this->in_connections <LoopTransition> ("src");
   }
 }
 

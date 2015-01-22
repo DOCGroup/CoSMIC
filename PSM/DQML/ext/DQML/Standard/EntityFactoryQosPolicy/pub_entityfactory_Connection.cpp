@@ -24,11 +24,11 @@ namespace DQML
   const std::string pub_entityfactory_Connection_Impl::metaname ("pub_entityfactory_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Publisher_in src, EntityFactoryQosPolicy_in dst)
   //
-  pub_entityfactory_Connection pub_entityfactory_Connection_Impl::_create (const DDSQoS_in parent)
+  pub_entityfactory_Connection pub_entityfactory_Connection_Impl::_create (const DDSQoS_in parent, Publisher_in src, EntityFactoryQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < pub_entityfactory_Connection > (parent, pub_entityfactory_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, pub_entityfactory_Connection_Impl::metaname, src, dst);
   }
 
   //

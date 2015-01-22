@@ -24,11 +24,11 @@ namespace DQML
   const std::string top_latency_Connection_Impl::metaname ("top_latency_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Topic_in src, LatencyBudgetQosPolicy_in dst)
   //
-  top_latency_Connection top_latency_Connection_Impl::_create (const DDSQoS_in parent)
+  top_latency_Connection top_latency_Connection_Impl::_create (const DDSQoS_in parent, Topic_in src, LatencyBudgetQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < top_latency_Connection > (parent, top_latency_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, top_latency_Connection_Impl::metaname, src, dst);
   }
 
   //

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static CollocationGroupProperty _create (const DeploymentPlan_in parent);
+    static CollocationGroupProperty _create (const DeploymentPlan_in parent, Property_in src, CollocationGroup_in dst);
     ///@}
 
     // Default constructor.

@@ -28,7 +28,7 @@ namespace PICML
   //
   MirrorPort MirrorPort_Impl::_create (const Component_in parent)
   {
-    return ::GAME::Mga::create_object < MirrorPort > (parent, MirrorPort_Impl::metaname);
+    return ::GAME::Mga::create < MirrorPort > (parent, MirrorPort_Impl::metaname);
   }
 
   //
@@ -36,7 +36,7 @@ namespace PICML
   //
   MirrorPort MirrorPort_Impl::_create (const ConnectorObject_in parent)
   {
-    return ::GAME::Mga::create_object < MirrorPort > (parent, MirrorPort_Impl::metaname);
+    return ::GAME::Mga::create < MirrorPort > (parent, MirrorPort_Impl::metaname);
   }
 
   //

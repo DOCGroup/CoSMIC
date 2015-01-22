@@ -81,7 +81,8 @@ namespace PICML
     ///@{
 
     /// Get the src ReceptacleDelegate connection.
-    size_t src_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const;
+    size_t src_of_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const;
+    GAME::Mga::Collection_T <ReceptacleDelegate> src_of_ReceptacleDelegate (void) const;
     ///@}
   };
 }

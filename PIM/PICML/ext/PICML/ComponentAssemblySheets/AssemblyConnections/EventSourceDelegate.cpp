@@ -25,11 +25,11 @@ namespace PICML
   const std::string EventSourceDelegate_Impl::metaname ("EventSourceDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, OutEventPortEnd_in src, OutEventPortDelegate_in dst)
   //
-  EventSourceDelegate EventSourceDelegate_Impl::_create (const ComponentAssembly_in parent)
+  EventSourceDelegate EventSourceDelegate_Impl::_create (const ComponentAssembly_in parent, OutEventPortEnd_in src, OutEventPortDelegate_in dst)
   {
-    return ::GAME::Mga::create_object < EventSourceDelegate > (parent, EventSourceDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, EventSourceDelegate_Impl::metaname, src, dst);
   }
 
   //

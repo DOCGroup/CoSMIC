@@ -28,7 +28,7 @@ namespace PICML
   //
   ExtendedPort ExtendedPort_Impl::_create (const Component_in parent)
   {
-    return ::GAME::Mga::create_object < ExtendedPort > (parent, ExtendedPort_Impl::metaname);
+    return ::GAME::Mga::create < ExtendedPort > (parent, ExtendedPort_Impl::metaname);
   }
 
   //
@@ -36,7 +36,7 @@ namespace PICML
   //
   ExtendedPort ExtendedPort_Impl::_create (const ConnectorObject_in parent)
   {
-    return ::GAME::Mga::create_object < ExtendedPort > (parent, ExtendedPort_Impl::metaname);
+    return ::GAME::Mga::create < ExtendedPort > (parent, ExtendedPort_Impl::metaname);
   }
 
   //

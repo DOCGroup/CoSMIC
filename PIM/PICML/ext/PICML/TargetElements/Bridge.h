@@ -91,7 +91,8 @@ namespace PICML
     ///@{
 
     /// Get the dst BridgeConnection connection.
-    size_t dst_BridgeConnection (std::vector <BridgeConnection> & items) const;
+    size_t dst_of_BridgeConnection (std::vector <BridgeConnection> & items) const;
+    GAME::Mga::Collection_T <BridgeConnection> dst_of_BridgeConnection (void) const;
     ///@}
 
     /**

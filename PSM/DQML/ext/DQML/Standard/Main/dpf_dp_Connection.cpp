@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DDSEntities/DomainParticipantFactory.h"
 #include "DQML/Standard/DDSEntities/DomainParticipant.h"
+#include "DQML/Standard/DDSEntities/DomainParticipantFactory.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,11 @@ namespace DQML
   const std::string dpf_dp_Connection_Impl::metaname ("dpf_dp_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, DomainParticipantFactory_in src, DomainParticipant_in dst)
   //
-  dpf_dp_Connection dpf_dp_Connection_Impl::_create (const DDSQoS_in parent)
+  dpf_dp_Connection dpf_dp_Connection_Impl::_create (const DDSQoS_in parent, DomainParticipantFactory_in src, DomainParticipant_in dst)
   {
-    return ::GAME::Mga::create_object < dpf_dp_Connection > (parent, dpf_dp_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dpf_dp_Connection_Impl::metaname, src, dst);
   }
 
   //

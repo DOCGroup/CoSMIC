@@ -27,7 +27,7 @@ namespace PICML
   //
   InoutParameter InoutParameter_Impl::_create (const TwowayOperation_in parent)
   {
-    return ::GAME::Mga::create_object < InoutParameter > (parent, InoutParameter_Impl::metaname);
+    return ::GAME::Mga::create < InoutParameter > (parent, InoutParameter_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   InoutParameter InoutParameter_Impl::_create (const Operation_in parent)
   {
-    return ::GAME::Mga::create_object < InoutParameter > (parent, InoutParameter_Impl::metaname);
+    return ::GAME::Mga::create < InoutParameter > (parent, InoutParameter_Impl::metaname);
   }
 
   //

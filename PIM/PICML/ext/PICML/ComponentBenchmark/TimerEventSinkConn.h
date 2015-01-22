@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static TimerEventSinkConn _create (const BenchmarkAnalysis_in parent);
+    static TimerEventSinkConn _create (const BenchmarkAnalysis_in parent, EventRef_in src, TimeProbe_in dst);
     ///@}
 
     // Default constructor.

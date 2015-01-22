@@ -10,16 +10,16 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
-#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "PICML/NamedTypes/Collection.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
+#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
@@ -39,7 +39,7 @@ namespace PICML
   //
   ConnectorObject ConnectorObject_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorObject > (parent, ConnectorObject_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorObject > (parent, ConnectorObject_Impl::metaname);
   }
 
   //
@@ -47,7 +47,7 @@ namespace PICML
   //
   ConnectorObject ConnectorObject_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorObject > (parent, ConnectorObject_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorObject > (parent, ConnectorObject_Impl::metaname);
   }
 
   //
@@ -113,38 +113,6 @@ namespace PICML
   }
 
   //
-  // get_MirrorPorts
-  //
-  size_t ConnectorObject_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_MirrorPorts
-  //
-  ::GAME::Mga::Collection_T <MirrorPort> ConnectorObject_Impl::get_MirrorPorts (void) const
-  {
-    return this->children <MirrorPort> ();
-  }
-
-  //
-  // get_ExtendedPorts
-  //
-  size_t ConnectorObject_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ExtendedPorts
-  //
-  ::GAME::Mga::Collection_T <ExtendedPort> ConnectorObject_Impl::get_ExtendedPorts (void) const
-  {
-    return this->children <ExtendedPort> ();
-  }
-
-  //
   // get_RequiredRequestPorts
   //
   size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
@@ -177,19 +145,35 @@ namespace PICML
   }
 
   //
-  // get_Aggregates
+  // get_MirrorPorts
   //
-  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  size_t ConnectorObject_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Aggregates
+  // get_MirrorPorts
   //
-  ::GAME::Mga::Collection_T <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
+  ::GAME::Mga::Collection_T <MirrorPort> ConnectorObject_Impl::get_MirrorPorts (void) const
   {
-    return this->children <Aggregate> ();
+    return this->children <MirrorPort> ();
+  }
+
+  //
+  // get_ExtendedPorts
+  //
+  size_t ConnectorObject_Impl::get_ExtendedPorts (std::vector <ExtendedPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExtendedPorts
+  //
+  ::GAME::Mga::Collection_T <ExtendedPort> ConnectorObject_Impl::get_ExtendedPorts (void) const
+  {
+    return this->children <ExtendedPort> ();
   }
 
   //
@@ -206,6 +190,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Collection> ConnectorObject_Impl::get_Collections (void) const
   {
     return this->children <Collection> ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Collection_T <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
   }
 }
 

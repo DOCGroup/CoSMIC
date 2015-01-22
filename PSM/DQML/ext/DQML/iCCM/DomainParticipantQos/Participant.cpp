@@ -8,17 +8,17 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
-#include "DQML/iCCM/DomainQos/PublisherConnection.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
+#include "DQML/iCCM/DomainQos/PublisherConnection.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
-#include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DomainQos/SubscriberConnection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -36,7 +36,7 @@ namespace DQML
   //
   Participant Participant_Impl::_create (const Domain_in parent)
   {
-    return ::GAME::Mga::create_object < Participant > (parent, Participant_Impl::metaname);
+    return ::GAME::Mga::create < Participant > (parent, Participant_Impl::metaname);
   }
 
   //
@@ -62,19 +62,19 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
+  // has_WatchdogSchedulingQosPolicy
   //
-  bool Participant_Impl::has_EntityFactoryQosPolicy (void) const
+  bool Participant_Impl::has_WatchdogSchedulingQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+    return this->children <WatchdogSchedulingQosPolicy> ().count () == 1;
   }
 
   //
-  // get_EntityFactoryQosPolicy
+  // get_WatchdogSchedulingQosPolicy
   //
-  EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
+  WatchdogSchedulingQosPolicy Participant_Impl::get_WatchdogSchedulingQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().first ();
+    return this->children <WatchdogSchedulingQosPolicy> ().first ();
   }
 
   //
@@ -94,19 +94,19 @@ namespace DQML
   }
 
   //
-  // has_WatchdogSchedulingQosPolicy
+  // has_EntityFactoryQosPolicy
   //
-  bool Participant_Impl::has_WatchdogSchedulingQosPolicy (void) const
+  bool Participant_Impl::has_EntityFactoryQosPolicy (void) const
   {
-    return this->children <WatchdogSchedulingQosPolicy> ().count () == 1;
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
   }
 
   //
-  // get_WatchdogSchedulingQosPolicy
+  // get_EntityFactoryQosPolicy
   //
-  WatchdogSchedulingQosPolicy Participant_Impl::get_WatchdogSchedulingQosPolicy (void) const
+  EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
   {
-    return this->children <WatchdogSchedulingQosPolicy> ().first ();
+    return this->children <EntityFactoryQosPolicy> ().first ();
   }
 
   //
@@ -126,22 +126,6 @@ namespace DQML
   }
 
   //
-  // get_SubscriberConnections
-  //
-  size_t Participant_Impl::get_SubscriberConnections (std::vector <SubscriberConnection> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SubscriberConnections
-  //
-  ::GAME::Mga::Collection_T <SubscriberConnection> Participant_Impl::get_SubscriberConnections (void) const
-  {
-    return this->children <SubscriberConnection> ();
-  }
-
-  //
   // get_PublisherConnections
   //
   size_t Participant_Impl::get_PublisherConnections (std::vector <PublisherConnection> & items) const
@@ -155,6 +139,22 @@ namespace DQML
   ::GAME::Mga::Collection_T <PublisherConnection> Participant_Impl::get_PublisherConnections (void) const
   {
     return this->children <PublisherConnection> ();
+  }
+
+  //
+  // get_SubscriberConnections
+  //
+  size_t Participant_Impl::get_SubscriberConnections (std::vector <SubscriberConnection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SubscriberConnections
+  //
+  ::GAME::Mga::Collection_T <SubscriberConnection> Participant_Impl::get_SubscriberConnections (void) const
+  {
+    return this->children <SubscriberConnection> ();
   }
 
   //
@@ -174,19 +174,19 @@ namespace DQML
   }
 
   //
-  // get_SubscriberQoss
+  // get_PublisherQoss
   //
-  size_t Participant_Impl::get_SubscriberQoss (std::vector <SubscriberQos> & items) const
+  size_t Participant_Impl::get_PublisherQoss (std::vector <PublisherQos> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_SubscriberQoss
+  // get_PublisherQoss
   //
-  ::GAME::Mga::Collection_T <SubscriberQos> Participant_Impl::get_SubscriberQoss (void) const
+  ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
   {
-    return this->children <SubscriberQos> ();
+    return this->children <PublisherQos> ();
   }
 
   //
@@ -206,19 +206,19 @@ namespace DQML
   }
 
   //
-  // get_PublisherQoss
+  // get_SubscriberQoss
   //
-  size_t Participant_Impl::get_PublisherQoss (std::vector <PublisherQos> & items) const
+  size_t Participant_Impl::get_SubscriberQoss (std::vector <SubscriberQos> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_PublisherQoss
+  // get_SubscriberQoss
   //
-  ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
+  ::GAME::Mga::Collection_T <SubscriberQos> Participant_Impl::get_SubscriberQoss (void) const
   {
-    return this->children <PublisherQos> ();
+    return this->children <SubscriberQos> ();
   }
 }
 

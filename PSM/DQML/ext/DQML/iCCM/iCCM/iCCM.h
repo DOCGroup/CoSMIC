@@ -74,9 +74,19 @@ namespace DQML
     RootFolder parent_RootFolder (void);
     ///@}
 
-    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
+    /**
+     * @name Folder Getters
+     */
+    ///@{
 
     size_t get_TopicQosFolders (std::vector <TopicQosFolder> & items) const;
+
+    ::GAME::Mga::Collection_T <TopicQosFolder> get_TopicQosFolders (void) const;
+
+    size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
+
+    ::GAME::Mga::Collection_T <DomainQosFolder> get_DomainQosFolders (void) const;
+    ///@}
   };
 }
 

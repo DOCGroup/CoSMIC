@@ -27,7 +27,7 @@ namespace PICML
   //
   ActionType ActionType_Impl::_create (const Action_in parent)
   {
-    return ::GAME::Mga::create_object < ActionType > (parent, ActionType_Impl::metaname);
+    return ::GAME::Mga::create < ActionType > (parent, ActionType_Impl::metaname);
   }
 
   //
@@ -61,17 +61,17 @@ namespace PICML
   }
 
   //
-  // set_Operation
+  // refers_to_Operation
   //
-  void ActionType_Impl::set_Operation (Operation_in item)
+  void ActionType_Impl::refers_to_Operation (Operation_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Operation
+  // refers_to_Operation
   //
-  Operation ActionType_Impl::get_Operation (void) const
+  Operation ActionType_Impl::refers_to_Operation (void) const
   {
     return Operation::_narrow (this->refers_to ());
   }

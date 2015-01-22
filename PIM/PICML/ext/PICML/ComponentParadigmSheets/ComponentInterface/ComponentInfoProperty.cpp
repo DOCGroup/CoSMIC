@@ -26,11 +26,11 @@ namespace PICML
   const std::string ComponentInfoProperty_Impl::metaname ("ComponentInfoProperty");
 
   //
-  // _create (const ComponentContainer_in)
+  // _create (const ComponentContainer_in, ComponentRef_in src, Property_in dst)
   //
-  ComponentInfoProperty ComponentInfoProperty_Impl::_create (const ComponentContainer_in parent)
+  ComponentInfoProperty ComponentInfoProperty_Impl::_create (const ComponentContainer_in parent, ComponentRef_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < ComponentInfoProperty > (parent, ComponentInfoProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ComponentInfoProperty_Impl::metaname, src, dst);
   }
 
   //

@@ -26,7 +26,7 @@ namespace DQML
   //
   WatchdogSchedulingQosPolicy WatchdogSchedulingQosPolicy_Impl::_create (const Participant_in parent)
   {
-    return ::GAME::Mga::create_object < WatchdogSchedulingQosPolicy > (parent, WatchdogSchedulingQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < WatchdogSchedulingQosPolicy > (parent, WatchdogSchedulingQosPolicy_Impl::metaname);
   }
 
   //

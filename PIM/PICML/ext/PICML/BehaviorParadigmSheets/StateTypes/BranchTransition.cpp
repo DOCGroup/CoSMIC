@@ -11,13 +11,13 @@
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -31,11 +31,11 @@ namespace PICML
   const std::string BranchTransition_Impl::metaname ("BranchTransition");
 
   //
-  // _create (const BehaviorModel_in)
+  // _create (const BehaviorModel_in, BranchState_in src, ActionBase_in dst)
   //
-  BranchTransition BranchTransition_Impl::_create (const BehaviorModel_in parent)
+  BranchTransition BranchTransition_Impl::_create (const BehaviorModel_in parent, BranchState_in src, ActionBase_in dst)
   {
-    return ::GAME::Mga::create_object < BranchTransition > (parent, BranchTransition_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, BranchTransition_Impl::metaname, src, dst);
   }
 
   //

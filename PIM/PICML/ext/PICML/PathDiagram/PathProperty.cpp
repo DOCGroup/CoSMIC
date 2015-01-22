@@ -26,11 +26,11 @@ namespace PICML
   const std::string PathProperty_Impl::metaname ("PathProperty");
 
   //
-  // _create (const Paths_in)
+  // _create (const Paths_in, Path_in src, Property_in dst)
   //
-  PathProperty PathProperty_Impl::_create (const Paths_in parent)
+  PathProperty PathProperty_Impl::_create (const Paths_in parent, Path_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < PathProperty > (parent, PathProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PathProperty_Impl::metaname, src, dst);
   }
 
   //

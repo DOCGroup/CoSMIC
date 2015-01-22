@@ -28,7 +28,7 @@ namespace PICML
   //
   ServiceProvider ServiceProvider_Impl::_create (const RTRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ServiceProvider > (parent, ServiceProvider_Impl::metaname);
+    return ::GAME::Mga::create < ServiceProvider > (parent, ServiceProvider_Impl::metaname);
   }
 
   //

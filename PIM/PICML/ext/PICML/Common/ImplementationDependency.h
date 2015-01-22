@@ -91,7 +91,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ImplementationDependsOn connection.
-    size_t dst_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
+    size_t dst_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
+    GAME::Mga::Collection_T <ImplementationDependsOn> dst_of_ImplementationDependsOn (void) const;
     ///@}
   };
 }

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerLibraries.h"
+#include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,7 +27,7 @@ namespace PICML
   //
   WorkerLibrary WorkerLibrary_Impl::_create (const WorkerLibraries_in parent)
   {
-    return ::GAME::Mga::create_root_object < WorkerLibrary > (parent, WorkerLibrary_Impl::metaname);
+    return ::GAME::Mga::create < WorkerLibrary > (parent, WorkerLibrary_Impl::metaname);
   }
 
   //

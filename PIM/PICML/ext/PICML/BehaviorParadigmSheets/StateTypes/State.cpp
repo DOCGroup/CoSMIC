@@ -28,7 +28,7 @@ namespace PICML
   //
   State State_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < State > (parent, State_Impl::metaname);
+    return ::GAME::Mga::create < State > (parent, State_Impl::metaname);
   }
 
   //
@@ -46,19 +46,35 @@ namespace PICML
   }
 
   //
-  // src_TerminalTransition
+  // src_of_TerminalTransition
   //
-  size_t State_Impl::src_TerminalTransition (std::vector <TerminalTransition> & items) const
+  size_t State_Impl::src_of_TerminalTransition (std::vector <TerminalTransition> & items) const
   {
     return this->in_connections <TerminalTransition> (items);
   }
 
   //
-  // src_Transition
+  // src_of_TerminalTransition
   //
-  size_t State_Impl::src_Transition (std::vector <Transition> & items) const
+  GAME::Mga::Collection_T <TerminalTransition> State_Impl::src_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("src");
+  }
+
+  //
+  // src_of_Transition
+  //
+  size_t State_Impl::src_of_Transition (std::vector <Transition> & items) const
   {
     return this->in_connections <Transition> (items);
+  }
+
+  //
+  // src_of_Transition
+  //
+  GAME::Mga::Collection_T <Transition> State_Impl::src_of_Transition (void) const
+  {
+    return this->in_connections <Transition> ("src");
   }
 }
 

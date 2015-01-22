@@ -67,7 +67,8 @@ namespace PICML
     ///@{
 
     /// Get the src Publish connection.
-    size_t src_Publish (std::vector <Publish> & items) const;
+    size_t src_of_Publish (std::vector <Publish> & items) const;
+    GAME::Mga::Collection_T <Publish> src_of_Publish (void) const;
     ///@}
 
     /**
@@ -76,7 +77,8 @@ namespace PICML
     ///@{
 
     /// Get the dst Consume connection.
-    size_t dst_Consume (std::vector <Consume> & items) const;
+    size_t dst_of_Consume (std::vector <Consume> & items) const;
+    GAME::Mga::Collection_T <Consume> dst_of_Consume (void) const;
     ///@}
   };
 }

@@ -23,11 +23,11 @@ namespace PICML
   const std::string AttributeMappingDelegate_Impl::metaname ("AttributeMappingDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, AttributeMapping_in src, AttributeMapping_in dst)
   //
-  AttributeMappingDelegate AttributeMappingDelegate_Impl::_create (const ComponentAssembly_in parent)
+  AttributeMappingDelegate AttributeMappingDelegate_Impl::_create (const ComponentAssembly_in parent, AttributeMapping_in src, AttributeMapping_in dst)
   {
-    return ::GAME::Mga::create_object < AttributeMappingDelegate > (parent, AttributeMappingDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AttributeMappingDelegate_Impl::metaname, src, dst);
   }
 
   //

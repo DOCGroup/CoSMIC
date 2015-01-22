@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
-#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
@@ -27,11 +27,11 @@ namespace PICML
   const std::string MakeMemberPrivate_Impl::metaname ("MakeMemberPrivate");
 
   //
-  // _create (const ObjectByValue_in)
+  // _create (const ObjectByValue_in, Member_in src, PrivateFlag_in dst)
   //
-  MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent)
+  MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent, Member_in src, PrivateFlag_in dst)
   {
-    return ::GAME::Mga::create_object < MakeMemberPrivate > (parent, MakeMemberPrivate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MakeMemberPrivate_Impl::metaname, src, dst);
   }
 
   //

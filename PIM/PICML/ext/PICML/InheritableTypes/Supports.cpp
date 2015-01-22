@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -33,7 +33,7 @@ namespace PICML
   //
   Supports Supports_Impl::_create (const SupportsInterfaces_in parent)
   {
-    return ::GAME::Mga::create_object < Supports > (parent, Supports_Impl::metaname);
+    return ::GAME::Mga::create < Supports > (parent, Supports_Impl::metaname);
   }
 
   //
@@ -67,17 +67,17 @@ namespace PICML
   }
 
   //
-  // set_Object
+  // refers_to_Object
   //
-  void Supports_Impl::set_Object (Object_in item)
+  void Supports_Impl::refers_to_Object (Object_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Object
+  // refers_to_Object
   //
-  Object Supports_Impl::get_Object (void) const
+  Object Supports_Impl::refers_to_Object (void) const
   {
     return Object::_narrow (this->refers_to ());
   }

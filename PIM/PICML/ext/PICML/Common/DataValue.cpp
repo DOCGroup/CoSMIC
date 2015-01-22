@@ -56,7 +56,7 @@ namespace PICML
   //
   DataValue DataValue_Impl::_create (const ComplexProperty_in parent)
   {
-    return ::GAME::Mga::create_object < DataValue > (parent, DataValue_Impl::metaname);
+    return ::GAME::Mga::create < DataValue > (parent, DataValue_Impl::metaname);
   }
 
   //
@@ -64,7 +64,7 @@ namespace PICML
   //
   DataValue DataValue_Impl::_create (const DataValueContainer_in parent)
   {
-    return ::GAME::Mga::create_object < DataValue > (parent, DataValue_Impl::metaname);
+    return ::GAME::Mga::create < DataValue > (parent, DataValue_Impl::metaname);
   }
 
   //
@@ -90,17 +90,17 @@ namespace PICML
   }
 
   //
-  // set_SimpleType
+  // refers_to_SimpleType
   //
-  void DataValue_Impl::set_SimpleType (SimpleType_in item)
+  void DataValue_Impl::refers_to_SimpleType (SimpleType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_SimpleType
+  // refers_to_SimpleType
   //
-  SimpleType DataValue_Impl::get_SimpleType (void) const
+  SimpleType DataValue_Impl::refers_to_SimpleType (void) const
   {
     return SimpleType::_narrow (this->refers_to ());
   }

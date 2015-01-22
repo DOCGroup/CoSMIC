@@ -27,7 +27,7 @@ namespace PICML
   //
   ProvidedRequestPortInstance ProvidedRequestPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < ProvidedRequestPortInstance > (parent, ProvidedRequestPortInstance_Impl::metaname);
+    return ::GAME::Mga::create < ProvidedRequestPortInstance > (parent, ProvidedRequestPortInstance_Impl::metaname);
   }
 
   //
@@ -53,17 +53,17 @@ namespace PICML
   }
 
   //
-  // set_ProvidedRequestPort
+  // refers_to_ProvidedRequestPort
   //
-  void ProvidedRequestPortInstance_Impl::set_ProvidedRequestPort (ProvidedRequestPort_in item)
+  void ProvidedRequestPortInstance_Impl::refers_to_ProvidedRequestPort (ProvidedRequestPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ProvidedRequestPort
+  // refers_to_ProvidedRequestPort
   //
-  ProvidedRequestPort ProvidedRequestPortInstance_Impl::get_ProvidedRequestPort (void) const
+  ProvidedRequestPort ProvidedRequestPortInstance_Impl::refers_to_ProvidedRequestPort (void) const
   {
     return ProvidedRequestPort::_narrow (this->refers_to ());
   }

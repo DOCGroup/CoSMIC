@@ -19,19 +19,35 @@ namespace PICML
   const std::string AssemblyConfigPropertyEnd_Impl::metaname ("AssemblyConfigPropertyEnd");
 
   //
-  // src_AssemblyselectRequirement
+  // src_of_AssemblyselectRequirement
   //
-  size_t AssemblyConfigPropertyEnd_Impl::src_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
+  size_t AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
   {
     return this->in_connections <AssemblyselectRequirement> (items);
   }
 
   //
-  // src_AssemblyConfigProperty
+  // src_of_AssemblyselectRequirement
   //
-  size_t AssemblyConfigPropertyEnd_Impl::src_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const
+  GAME::Mga::Collection_T <AssemblyselectRequirement> AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (void) const
+  {
+    return this->in_connections <AssemblyselectRequirement> ("src");
+  }
+
+  //
+  // src_of_AssemblyConfigProperty
+  //
+  size_t AssemblyConfigPropertyEnd_Impl::src_of_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const
   {
     return this->in_connections <AssemblyConfigProperty> (items);
+  }
+
+  //
+  // src_of_AssemblyConfigProperty
+  //
+  GAME::Mga::Collection_T <AssemblyConfigProperty> AssemblyConfigPropertyEnd_Impl::src_of_AssemblyConfigProperty (void) const
+  {
+    return this->in_connections <AssemblyConfigProperty> ("src");
   }
 }
 

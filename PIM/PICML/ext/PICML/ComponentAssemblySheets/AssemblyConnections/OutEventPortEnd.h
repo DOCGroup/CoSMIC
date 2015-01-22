@@ -67,10 +67,12 @@ namespace PICML
     ///@{
 
     /// Get the src EventSourceDelegate connection.
-    size_t src_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
+    size_t src_of_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const;
+    GAME::Mga::Collection_T <EventSourceDelegate> src_of_EventSourceDelegate (void) const;
 
     /// Get the src SendsTo connection.
-    size_t src_SendsTo (std::vector <SendsTo> & items) const;
+    size_t src_of_SendsTo (std::vector <SendsTo> & items) const;
+    GAME::Mga::Collection_T <SendsTo> src_of_SendsTo (void) const;
     ///@}
   };
 }

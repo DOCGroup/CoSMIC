@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Implementation _create (const PackageContainer_in parent);
+    static Implementation _create (const PackageContainer_in parent, ComponentPackage_in src, ComponentImplementationReference_in dst);
     ///@}
 
     // Default constructor.

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static InstanceMapping _create (const DeploymentPlan_in parent);
+    static InstanceMapping _create (const DeploymentPlan_in parent, CollocationGroup_in src, NodeReference_in dst);
     ///@}
 
     // Default constructor.

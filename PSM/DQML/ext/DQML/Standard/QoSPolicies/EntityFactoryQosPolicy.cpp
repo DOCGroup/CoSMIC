@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -29,11 +29,19 @@ namespace DQML
   const std::string EntityFactoryQosPolicy_Impl::metaname ("EntityFactoryQosPolicy");
 
   //
+  // _create (const PublisherQos_in)
+  //
+  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
+  {
+    return ::GAME::Mga::create < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
+  }
+
+  //
   // _create (const SubscriberQos_in)
   //
   EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
-    return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
 
   //
@@ -41,15 +49,7 @@ namespace DQML
   //
   EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const Participant_in parent)
   {
-    return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
-  }
-
-  //
-  // _create (const PublisherQos_in)
-  //
-  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
-  {
-    return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
 
   //
@@ -57,7 +57,7 @@ namespace DQML
   //
   EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
 
   //
@@ -72,6 +72,14 @@ namespace DQML
       this_visitor->visit_EntityFactoryQosPolicy (this);
     else
       v->visit_Atom (this);
+  }
+
+  //
+  // parent_PublisherQos
+  //
+  PublisherQos EntityFactoryQosPolicy_Impl::parent_PublisherQos (void)
+  {
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //
@@ -91,43 +99,67 @@ namespace DQML
   }
 
   //
-  // parent_PublisherQos
+  // dst_of_dpfactory_entityfactory_Connection
   //
-  PublisherQos EntityFactoryQosPolicy_Impl::parent_PublisherQos (void)
-  {
-    return PublisherQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_dp_entityfactory_Connection
-  //
-  size_t EntityFactoryQosPolicy_Impl::dst_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <dp_entityfactory_Connection> (items);
-  }
-
-  //
-  // dst_dpfactory_entityfactory_Connection
-  //
-  size_t EntityFactoryQosPolicy_Impl::dst_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
+  size_t EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
   {
     return this->in_connections <dpfactory_entityfactory_Connection> (items);
   }
 
   //
-  // dst_sub_entityfactory_Connection
+  // dst_of_dpfactory_entityfactory_Connection
   //
-  size_t EntityFactoryQosPolicy_Impl::dst_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
+  GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dpfactory_entityfactory_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dp_entityfactory_Connection
+  //
+  size_t EntityFactoryQosPolicy_Impl::dst_of_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <dp_entityfactory_Connection> (items);
+  }
+
+  //
+  // dst_of_dp_entityfactory_Connection
+  //
+  GAME::Mga::Collection_T <dp_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_dp_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dp_entityfactory_Connection> ("dst");
+  }
+
+  //
+  // dst_of_sub_entityfactory_Connection
+  //
+  size_t EntityFactoryQosPolicy_Impl::dst_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
   {
     return this->in_connections <sub_entityfactory_Connection> (items);
   }
 
   //
-  // dst_pub_entityfactory_Connection
+  // dst_of_sub_entityfactory_Connection
   //
-  size_t EntityFactoryQosPolicy_Impl::dst_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
+  GAME::Mga::Collection_T <sub_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_sub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <sub_entityfactory_Connection> ("dst");
+  }
+
+  //
+  // dst_of_pub_entityfactory_Connection
+  //
+  size_t EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
   {
     return this->in_connections <pub_entityfactory_Connection> (items);
+  }
+
+  //
+  // dst_of_pub_entityfactory_Connection
+  //
+  GAME::Mga::Collection_T <pub_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <pub_entityfactory_Connection> ("dst");
   }
 }
 

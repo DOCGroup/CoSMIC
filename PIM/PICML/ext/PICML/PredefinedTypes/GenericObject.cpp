@@ -26,7 +26,7 @@ namespace PICML
   //
   GenericObject GenericObject_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < GenericObject > (parent, GenericObject_Impl::metaname);
+    return ::GAME::Mga::create < GenericObject > (parent, GenericObject_Impl::metaname);
   }
 
   //

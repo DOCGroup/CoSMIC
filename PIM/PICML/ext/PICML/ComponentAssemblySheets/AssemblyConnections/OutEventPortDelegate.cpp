@@ -27,7 +27,7 @@ namespace PICML
   //
   OutEventPortDelegate OutEventPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPortDelegate > (parent, OutEventPortDelegate_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPortDelegate > (parent, OutEventPortDelegate_Impl::metaname);
   }
 
   //
@@ -53,11 +53,19 @@ namespace PICML
   }
 
   //
-  // dst_EventSourceDelegate
+  // dst_of_EventSourceDelegate
   //
-  size_t OutEventPortDelegate_Impl::dst_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const
+  size_t OutEventPortDelegate_Impl::dst_of_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const
   {
     return this->in_connections <EventSourceDelegate> (items);
+  }
+
+  //
+  // dst_of_EventSourceDelegate
+  //
+  GAME::Mga::Collection_T <EventSourceDelegate> OutEventPortDelegate_Impl::dst_of_EventSourceDelegate (void) const
+  {
+    return this->in_connections <EventSourceDelegate> ("dst");
   }
 }
 

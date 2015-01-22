@@ -24,11 +24,11 @@ namespace DQML
   const std::string pub_groupdata_Connection_Impl::metaname ("pub_groupdata_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Publisher_in src, GroupDataQosPolicy_in dst)
   //
-  pub_groupdata_Connection pub_groupdata_Connection_Impl::_create (const DDSQoS_in parent)
+  pub_groupdata_Connection pub_groupdata_Connection_Impl::_create (const DDSQoS_in parent, Publisher_in src, GroupDataQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < pub_groupdata_Connection > (parent, pub_groupdata_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, pub_groupdata_Connection_Impl::metaname, src, dst);
   }
 
   //

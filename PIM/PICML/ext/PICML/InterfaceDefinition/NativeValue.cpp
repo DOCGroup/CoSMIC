@@ -29,7 +29,7 @@ namespace PICML
   //
   NativeValue NativeValue_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < NativeValue > (parent, NativeValue_Impl::metaname);
+    return ::GAME::Mga::create < NativeValue > (parent, NativeValue_Impl::metaname);
   }
 
   //
@@ -37,7 +37,7 @@ namespace PICML
   //
   NativeValue NativeValue_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < NativeValue > (parent, NativeValue_Impl::metaname);
+    return ::GAME::Mga::create < NativeValue > (parent, NativeValue_Impl::metaname);
   }
 
   //

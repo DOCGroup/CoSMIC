@@ -53,12 +53,12 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static SimpleProperty _create (const ComponentAssembly_in parent);
-    static SimpleProperty _create (const RequirementBase_in parent);
-    static SimpleProperty _create (const BehaviorInputAction_in parent);
-    static SimpleProperty _create (const ActionBase_in parent);
     static SimpleProperty _create (const QueryInputAction_in parent);
+    static SimpleProperty _create (const ActionBase_in parent);
+    static SimpleProperty _create (const BehaviorInputAction_in parent);
     static SimpleProperty _create (const Path_in parent);
+    static SimpleProperty _create (const RequirementBase_in parent);
+    static SimpleProperty _create (const ComponentAssembly_in parent);
     static SimpleProperty _create (const ImplementationContainer_in parent);
     static SimpleProperty _create (const ComponentContainer_in parent);
     static SimpleProperty _create (const Paths_in parent);
@@ -104,8 +104,8 @@ namespace PICML
      */
     ///@{
     bool MemberType_is_nil (void) const;
-    MemberType get_MemberType (void) const;
-    void set_MemberType (MemberType_in item);
+    MemberType refers_to_MemberType (void) const;
+    void refers_to_MemberType (MemberType_in item);
     ///@}
   };
 }

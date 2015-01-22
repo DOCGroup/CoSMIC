@@ -26,7 +26,7 @@ namespace PICML
   //
   Boolean Boolean_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < Boolean > (parent, Boolean_Impl::metaname);
+    return ::GAME::Mga::create < Boolean > (parent, Boolean_Impl::metaname);
   }
 
   //

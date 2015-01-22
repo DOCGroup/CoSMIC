@@ -27,7 +27,7 @@ namespace PICML
   //
   WorkerPackage WorkerPackage_Impl::_create (const WorkerPackage_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
+    return ::GAME::Mga::create < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   WorkerPackage WorkerPackage_Impl::_create (const WorkerFile_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
+    return ::GAME::Mga::create < WorkerPackage > (parent, WorkerPackage_Impl::metaname);
   }
 
   //

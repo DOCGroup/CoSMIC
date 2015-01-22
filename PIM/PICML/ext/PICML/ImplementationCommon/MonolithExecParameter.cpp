@@ -32,11 +32,11 @@ namespace PICML
   const std::string MonolithExecParameter_Impl::metaname ("MonolithExecParameter");
 
   //
-  // _create (const ImplementationContainer_in)
+  // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, Property_in dst)
   //
-  MonolithExecParameter MonolithExecParameter_Impl::_create (const ImplementationContainer_in parent)
+  MonolithExecParameter MonolithExecParameter_Impl::_create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < MonolithExecParameter > (parent, MonolithExecParameter_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MonolithExecParameter_Impl::metaname, src, dst);
   }
 
   //

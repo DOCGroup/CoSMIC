@@ -26,7 +26,7 @@ namespace PICML
   //
   LongInteger LongInteger_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < LongInteger > (parent, LongInteger_Impl::metaname);
+    return ::GAME::Mga::create < LongInteger > (parent, LongInteger_Impl::metaname);
   }
 
   //

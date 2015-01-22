@@ -27,7 +27,7 @@ namespace PICML
   //
   MultiInputAction MultiInputAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < MultiInputAction > (parent, MultiInputAction_Impl::metaname);
+    return ::GAME::Mga::create < MultiInputAction > (parent, MultiInputAction_Impl::metaname);
   }
 
   //
@@ -45,11 +45,19 @@ namespace PICML
   }
 
   //
-  // dst_MultiInput
+  // dst_of_MultiInput
   //
-  size_t MultiInputAction_Impl::dst_MultiInput (std::vector <MultiInput> & items) const
+  size_t MultiInputAction_Impl::dst_of_MultiInput (std::vector <MultiInput> & items) const
   {
     return this->in_connections <MultiInput> (items);
+  }
+
+  //
+  // dst_of_MultiInput
+  //
+  GAME::Mga::Collection_T <MultiInput> MultiInputAction_Impl::dst_of_MultiInput (void) const
+  {
+    return this->in_connections <MultiInput> ("dst");
   }
 }
 

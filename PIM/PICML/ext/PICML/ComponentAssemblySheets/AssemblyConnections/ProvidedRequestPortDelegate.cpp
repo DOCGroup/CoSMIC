@@ -27,7 +27,7 @@ namespace PICML
   //
   ProvidedRequestPortDelegate ProvidedRequestPortDelegate_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ProvidedRequestPortDelegate > (parent, ProvidedRequestPortDelegate_Impl::metaname);
+    return ::GAME::Mga::create < ProvidedRequestPortDelegate > (parent, ProvidedRequestPortDelegate_Impl::metaname);
   }
 
   //
@@ -53,11 +53,19 @@ namespace PICML
   }
 
   //
-  // src_FacetDelegate
+  // src_of_FacetDelegate
   //
-  size_t ProvidedRequestPortDelegate_Impl::src_FacetDelegate (std::vector <FacetDelegate> & items) const
+  size_t ProvidedRequestPortDelegate_Impl::src_of_FacetDelegate (std::vector <FacetDelegate> & items) const
   {
     return this->in_connections <FacetDelegate> (items);
+  }
+
+  //
+  // src_of_FacetDelegate
+  //
+  GAME::Mga::Collection_T <FacetDelegate> ProvidedRequestPortDelegate_Impl::src_of_FacetDelegate (void) const
+  {
+    return this->in_connections <FacetDelegate> ("src");
   }
 }
 
