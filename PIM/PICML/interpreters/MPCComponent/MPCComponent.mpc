@@ -1,23 +1,25 @@
 // $Id$
 
-project (PICML_MPCComponent): picmllib, gme_udm_component {
+project (PICML_MPCComponent) : game_mga_interpreter, game_mga_utils, picml_game_mga, cosmic_utils, cosmic_lib {
   sharedname = PICML_MPCComponent
 
-  after += PICML_MPC
-  libs  += PICML_MPC
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
 
   Source_Files {
-  }
+    PICML_MPCComponent.idl
+    PICML_MPCComponent_Impl.cpp
+    PICML_MPCComponent_Module.cpp
 
-  Header_Files {
-
+    MPCStream.cpp
+    MPC_Visitor.cpp
   }
 
   Resource_Files {
+    Component.ico
     Component.rc
-    CompIcon.ico
   }
-
+  
   specific (wix) {
     gme_install     = 1
     gme_progid      = MGA.Interpreter.MPC
