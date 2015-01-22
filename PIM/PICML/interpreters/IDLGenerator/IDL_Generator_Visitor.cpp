@@ -31,40 +31,31 @@ IDL_Generator_Visitor::~IDL_Generator_Visitor (void)
 // Visit_RootFolder
 //
 void IDL_Generator_Visitor::
-Visit_RootFolder (const PICML::RootFolder & folder)
+Visit_RootFolder (const PICML::RootFolder_in folder)
 {
-  std::vector <PICML::InterfaceDefinitions> folders = folder.InterfaceDefinitions_children ();
-
-  std::for_each (folders.begin (),
-                 folders.end (),
-                 boost::bind (&PICML::InterfaceDefinitions::Accept, 
-                              _1,
-                              boost::ref (*this)));
+  for (auto folder : folder->get_InterfaceDefinitions ())
+    folder->accept (this);
 }
 
 //
 // Visit_InterfaceDefinitions
 //
 void IDL_Generator_Visitor::
-Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder)
+Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions_in folder)
 {
-  std::vector <PICML::File> files = folder.File_children ();
-  std::for_each (files.begin (),
-                 files.end (),
-                 boost::bind (&PICML::File::Accept, 
-                              _1, 
-                              boost::ref (*this)));
+  for (auto file : folder->get_Files ())
+    file->accept (this);
 }
 
 //
 // Visit_File
 //
-void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
+void IDL_Generator_Visitor::Visit_File (const PICML::File_in file)
 {
   // Construct the name of the IDL file. Make sure to include the
   // path of the IDL file.
   std::string filename (this->outdir_);
-  const std::string path (file.Path ());
+  const std::string path (file->Path ());
 
   if (!path.empty ())
   {
@@ -74,7 +65,7 @@ void IDL_Generator_Visitor::Visit_File (const PICML::File & file)
   }
 
   // Make sure the path exists.
-  filename += "/" + std::string (file.name ()) + ".idl";
+  filename += "/" + std::string (file->name ()) + ".idl";
 
   // Open the target file for writing.
   std::ofstream outfile (filename.c_str ());

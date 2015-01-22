@@ -14,6 +14,7 @@
 #define _IDL_GENERATOR_VISITOR_H_
 
 #include "PICML/PICML.h"
+#include "PICML/Visitor.h"
 
 /**
  * @class IDL_Generator_Visitor
@@ -25,11 +26,11 @@ public:
 
   virtual ~IDL_Generator_Visitor (void);
 
-  virtual void Visit_RootFolder (const PICML::RootFolder & folder);
+  virtual void Visit_RootFolder (const PICML::RootFolder_in folder);
 
-  virtual void Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder);
+  virtual void Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions_in folder);
 
-  virtual void Visit_File (const PICML::File & file);
+  virtual void Visit_File (const PICML::File_in file);
 
 private:
   const std::string & outdir_;
