@@ -38,22 +38,22 @@ public:
   /// Destructor.
   ~IDL_File_Processor (void);
 
-  virtual void Visit_File (const PICML::File_in file);
-  virtual void Visit_Package (const PICML::Package_in p);
+  virtual void visit_File (PICML::File_in file);
+  virtual void visit_Package (PICML::Package_in p);
 
-  virtual void Visit_Aggregate (const PICML::Aggregate_in a);
-  virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s);
+  virtual void visit_Aggregate (PICML::Aggregate_in a);
+  virtual void visit_SwitchedAggregate (PICML::SwitchedAggregate_in s);
 
-  virtual void Visit_PortType (const PICML::PortType_in p);
-  virtual void Visit_Object (const PICML::Object_in o);
-  virtual void Visit_Component (const PICML::Component_in c);
+  virtual void visit_PortType (PICML::PortType_in p);
+  virtual void visit_Object (PICML::Object_in o);
+  virtual void visit_Component (PICML::Component_in c);
 
-  virtual void Visit_Event (const PICML::Event_in e);
-  virtual void Visit_ValueObject (const PICML::ValueObject_in v);
+  virtual void visit_Event (PICML::Event_in e);
+  virtual void visit_ValueObject (PICML::ValueObject_in v);
 
 private:
-  void generate_include_file (const PICML::File_in file);
-  bool file_has_object_with_reference (const PICML::File_in file);
+  void generate_include_file (PICML::File_in file);
+  bool file_has_object_with_reference (PICML::File_in file);
 
   IDL_File_Dependency_Processor & depends_graph_;
 

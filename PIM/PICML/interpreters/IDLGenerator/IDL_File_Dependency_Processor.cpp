@@ -4,6 +4,20 @@
 
 #include "IDL_File_Dependency_Processor.h"
 
+#include "game/mga/component/Console_Service.h"
+#include <sstream>
+
+struct visit_all
+{
+public:
+template <typename T>
+void operator () (T & collection, PICML::Visitor * visitor) const
+{
+  for (auto item : collection)
+    item->accept (visitor);
+}
+};
+
 //
 // IDL_File_Dependency_Processor
 //
@@ -24,7 +38,7 @@ IDL_File_Dependency_Processor::~IDL_File_Dependency_Processor (void)
 // visit_file
 //
 void IDL_File_Dependency_Processor::
-visit_file (const GAME::Mga::Object_in object,
+visit_file (const GAME::Mga::Object & object,
             PICML::Visitor & visitor,
             bool forward_declaration)
 {
@@ -47,9 +61,9 @@ visit_file_package (const GAME::Mga::Object_in object, PICML::Visitor & visitor)
   }
   else
   {
-    container_.clear ();
-    this->idl_order_proc_.topological_sort (container_);
-    this->visit_file_package (container_, visitor);
+    this->container_.clear ();
+    this->idl_order_proc_.topological_sort (this->container_);
+    this->visit_file_package (this->container_, visitor);
   }
 }
 
@@ -75,6 +89,10 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
   for (IDL_File_Ordering_Processor::VECTOR_IT it = container.rbegin (); it != container.rend (); it++)
   {
     o = boost::get (IDL_File_Ordering_Processor::Object (), this->idl_order_proc_.graph (), (*it));
+
+    std::ostringstream ostr;
+    ostr << "In IDL_File_Dependency_Processor::visit_file_package for " << o->name () << ": " << o->meta ()->name ();
+    GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
 
     if (o->parent ()->meta ()->name () != PICML::File::impl_type::metaname)
       continue;
@@ -142,12 +160,29 @@ clear (void)
 
 
 //
-// visit_all
+// visit_package
 //
 void IDL_File_Dependency_Processor::
-visit_all (const GAME::Mga::Object_in o, PICML::Visitor & visitor)
+visit_package (const PICML::Package & p, PICML::Visitor & visitor)
 {
-  this->idl_order_proc_.visit_all (o, visitor);
+  visit_all () (p->get_Constants (), &visitor);
+  visit_all () (p->get_Aliass (), &visitor);
+  visit_all () (p->get_Collections (), &visitor);
+  visit_all () (p->get_Exceptions (), &visitor);
+  visit_all () (p->get_Enums (), &visitor);
+  visit_all () (p->get_Aggregates (), &visitor);
+  visit_all () (p->get_SwitchedAggregates (), &visitor);
+  visit_all () (p->get_ValueObjects (), &visitor);
+  visit_all () (p->get_TemplatePackageInstances (), &visitor);
+  visit_all () (p->get_PortTypes (), &visitor);
+  visit_all () (p->get_Events (), &visitor);
+  visit_all () (p->get_Objects (), &visitor);
+  visit_all () (p->get_ManagesComponents (), &visitor);
+  visit_all () (p->get_Components (), &visitor);
+  visit_all () (p->get_ComponentFactorys (), &visitor);
+  visit_all () (p->get_ConnectorObjects (), &visitor);
+  visit_all () (p->get_Boxeds (), &visitor);
+  visit_all () (p->get_Packages (), &visitor);
 }
 
 //
@@ -163,10 +198,10 @@ visit_template_module (bool visit_template_module)
 // visit_all_forward_declaration
 //
 void IDL_File_Dependency_Processor::
-visit_all_forward_declaration (const PICML::Package_in package)
+visit_all_forward_declaration (PICML::Package_in package)
 {
   if (this->idl_file_generator_)
-    this->idl_order_proc_.visit_all (package, *(this->idl_file_generator_), true);
+    this->idl_order_proc_.visit_package (package, this->idl_file_generator_);
 }
 
 //

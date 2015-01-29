@@ -6,8 +6,10 @@
 #include "IDL_File_Ordering_Processor.h"
 #include "boost/graph/topological_sort.hpp"
 
-#include "Utils/UDM/visit.h"
 #include "IDL_Cycle_Detector.h"
+
+#include "game/mga/component/Console_Service.h"
+#include <sstream>
 
 struct visit_all
 {
@@ -40,7 +42,7 @@ IDL_File_Ordering_Processor::~IDL_File_Ordering_Processor (void)
 // visit_file
 //
 void IDL_File_Ordering_Processor::
-visit_file (const PICML::File_in file, bool forward_declaration)
+visit_file (const PICML::File & file, bool forward_declaration)
 {
   this->clear (forward_declaration);
   this->forward_declaration_ = forward_declaration;
@@ -66,10 +68,10 @@ visit_file (const PICML::File_in file, bool forward_declaration)
 }
 
 //
-// Visit_Package
+// visit_Package
 //
 void IDL_File_Ordering_Processor::
-Visit_Package (const PICML::Package_in p)
+visit_Package (PICML::Package_in p)
 {
   this->insert (p);
   this->add_node (p);
@@ -94,40 +96,71 @@ Visit_Package (const PICML::Package_in p)
 }
 
 //
-// Visit_Aggregate
+// visit_Package
 //
 void IDL_File_Ordering_Processor::
-Visit_Aggregate (const PICML::Aggregate_in a)
+visit_package (PICML::Package_in p, PICML::Visitor * v)
 {
-  this->add_node (a);
-  this->add_edge<PICML::Member, PICML::Aggregate> (a);
-  this->add_edge<PICML::ArrayMember, PICML::Aggregate> (a);
-  this->add_edge<PICML::Key, PICML::Aggregate> (a);
+  visit_all () (p->get_Constants (), v);
+  visit_all () (p->get_Aliass (), v);
+  visit_all () (p->get_Collections (), v);
+  visit_all () (p->get_Exceptions (), v);
+  visit_all () (p->get_Enums (), v);
+  visit_all () (p->get_Aggregates (), v);
+  visit_all () (p->get_SwitchedAggregates (), v);
+  visit_all () (p->get_ValueObjects (), v);
+  visit_all () (p->get_TemplatePackageInstances (), v);
+  visit_all () (p->get_PortTypes (), v);
+  visit_all () (p->get_Events (), v);
+  visit_all () (p->get_Objects (), v);
+  visit_all () (p->get_ManagesComponents (), v);
+  visit_all () (p->get_Components (), v);
+  visit_all () (p->get_ComponentFactorys (), v);
+  visit_all () (p->get_ConnectorObjects (), v);
+  visit_all () (p->get_Boxeds (), v);
+  visit_all () (p->get_Packages (), v);
 }
 
 //
-// Visit_ArrayMember
+// visit_Aggregate
 //
 void IDL_File_Ordering_Processor::
-Visit_ArrayMember (const PICML::ArrayMember_in m)
+visit_Aggregate (const PICML::Aggregate & a)
+{
+  std::ostringstream ostr;
+  ostr << "Visiting aggregate in file ordering processor";
+  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
+
+  this->add_node (a);
+  this->add_edge<PICML::Member, PICML::Aggregate> (a);
+  this->add_edge<PICML::ArrayMember, PICML::Aggregate> (a);
+  // From what I could tell, we only add edges for references, so commenting this out
+  //this->add_edge<PICML::Key, PICML::Aggregate> (a);
+}
+
+//
+// visit_ArrayMember
+//
+void IDL_File_Ordering_Processor::
+visit_ArrayMember (PICML::ArrayMember_in m)
 {
   this->add_node (m);
 }
 
 //
-// Visit_Boxed
+// visit_Boxed
 //
 void IDL_File_Ordering_Processor::
-Visit_Boxed (const PICML::Boxed_in b)
+visit_Boxed (PICML::Boxed_in b)
 {
   this->add_node (b);
 }
 
 //
-// Visit_SwitchedAggregate
+// visit_SwitchedAggregate
 //
 void IDL_File_Ordering_Processor::
-Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s)
+visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
 {
   this->add_node (s);
   this->add_edge<PICML::Member, PICML::SwitchedAggregate> (s);
@@ -136,64 +169,64 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s)
 }
 
 //
-// Visit_Member
+// visit_Member
 //
 void IDL_File_Ordering_Processor::
-Visit_Member (const PICML::Member_in a)
+visit_Member (PICML::Member_in a)
 {
   this->add_node (a);
 }
 
 //
-// Visit_Enum
+// visit_Enum
 //
 void IDL_File_Ordering_Processor::
-Visit_Enum (const PICML::Enum_in e)
+visit_Enum (PICML::Enum_in e)
 {
   this->add_node (e);
 }
 
 //
-// Visit_Constant
+// visit_Constant
 //
 void IDL_File_Ordering_Processor::
-Visit_Constant (const PICML::Constant_in a)
+visit_Constant (PICML::Constant_in a)
 {
   this->add_node (a);
 }
 
 //
-// Visit_Alias
+// visit_Alias
 //
 void IDL_File_Ordering_Processor::
-Visit_Alias (const PICML::Alias_in a)
+visit_Alias (PICML::Alias_in a)
 {
   this->add_node (a);
 }
 
 //
-// Visit_Collection
+// visit_Collection
 //
 void IDL_File_Ordering_Processor::
-Visit_Collection (const PICML::Collection_in c)
+visit_Collection (PICML::Collection_in c)
 {
   this->add_node (c);
 }
 
 //
-// Visit_Exception
+// visit_Exception
 //
 void IDL_File_Ordering_Processor::
-Visit_Exception (const PICML::Exception_in e)
+visit_Exception (PICML::Exception_in e)
 {
   this->add_node (e);
 }
 
 //
-// Visit_TemplatePackageInstance
+// visit_TemplatePackageInstance
 //
 void IDL_File_Ordering_Processor::
-Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance_in t)
+visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & t)
 {
   this->add_node (t);
   this->add_edge<PICML::PackageType, PICML::TemplatePackageInstance> (t);
@@ -201,10 +234,10 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance_in t)
 }
 
 //
-// Visit_Object
+// visit_Object
 //
 void IDL_File_Ordering_Processor::
-Visit_Object (const PICML::Object_in o)
+visit_Object (PICML::Object_in o)
 {
   this->add_node (o);
   visit_all () (o->get_Constants (), this);
@@ -221,28 +254,28 @@ Visit_Object (const PICML::Object_in o)
 }
 
 //
-// Visit_PortType
+// visit_PortType
 //
 void IDL_File_Ordering_Processor::
-Visit_PortType (const PICML::PortType_in p)
+visit_PortType (PICML::PortType_in p)
 {
   this->add_node (p);
 }
 
 //
-// Visit_ValueObject
+// visit_ValueObject
 //
 void IDL_File_Ordering_Processor::
-Visit_ValueObject (const PICML::ValueObject_in o)
+visit_ValueObject (PICML::ValueObject_in o)
 {
   this->add_node (o);
 }
 
 //
-// Visit_Event
+// visit_Event
 //
 void IDL_File_Ordering_Processor::
-Visit_Event (const PICML::Event_in e)
+visit_Event (const PICML::Event & e)
 {
   this->add_node (e);
   this->add_edge<PICML::ArrayMember, PICML::Event> (e);
@@ -254,10 +287,10 @@ Visit_Event (const PICML::Event_in e)
 }
 
 //
-// Visit_Component
+// visit_Component
 //
 void IDL_File_Ordering_Processor::
-Visit_Component (const PICML::Component_in c)
+visit_Component (const PICML::Component & c)
 {
   this->add_node (c);
   this->add_edge<PICML::ComponentInherits, PICML::Component> (c);
@@ -272,20 +305,20 @@ Visit_Component (const PICML::Component_in c)
 }
 
 //
-// Visit_ReadonlyAttribute
+// visit_ReadonlyAttribute
 //
 void IDL_File_Ordering_Processor::
-Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute_in r)
+visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & r)
 {
   this->add_edge<PICML::AttributeMember, PICML::ReadonlyAttribute> (r);
   this->add_edge<PICML::GetException, PICML::ReadonlyAttribute> (r);
 }
 
 //
-// Visit_Attribute
+// visit_Attribute
 //
 void IDL_File_Ordering_Processor::
-Visit_Attribute (const PICML::Attribute_in a)
+visit_Attribute (const PICML::Attribute & a)
 {
   this->add_edge<PICML::AttributeMember, PICML::Attribute> (a);
   this->add_edge<PICML::GetException, PICML::Attribute> (a);
@@ -293,37 +326,37 @@ Visit_Attribute (const PICML::Attribute_in a)
 }
 
 //
-// Visit_ConnectorObject
+// visit_ConnectorObject
 //
 void IDL_File_Ordering_Processor::
-Visit_ConnectorObject (const PICML::ConnectorObject_in c)
+visit_ConnectorObject (PICML::ConnectorObject_in c)
 {
   this->add_node (c);
 }
 
 //
-// Visit_ManagesComponent
+// visit_ManagesComponent
 //
 void IDL_File_Ordering_Processor::
-Visit_ManagesComponent (const PICML::ManagesComponent_in m)
+visit_ManagesComponent (const PICML::ManagesComponent & m)
 {
   this->add_edge (m);
 }
 
 //
-// Visit_ComponentFactory
+// visit_ComponentFactory
 //
 void IDL_File_Ordering_Processor::
-Visit_ComponentFactory (const PICML::ComponentFactory_in c)
+visit_ComponentFactory (PICML::ComponentFactory_in c)
 {
   this->add_node (c);
 }
 
 //
-// Visit_TwowayOperation
+// visit_TwowayOperation
 //
 void IDL_File_Ordering_Processor::
-Visit_TwowayOperation (const PICML::TwowayOperation_in t)
+visit_TwowayOperation (const PICML::TwowayOperation & t)
 {
   this->add_edge <PICML::ReturnType, PICML::Object> (t);
   this->add_edge <PICML::InParameter, PICML::Object> (t);
@@ -333,10 +366,10 @@ Visit_TwowayOperation (const PICML::TwowayOperation_in t)
 }
 
 //
-// Visit_OnewayOperation
+// visit_OnewayOperation
 //
 void IDL_File_Ordering_Processor::
-Visit_OnewayOperation (const PICML::OnewayOperation_in o)
+visit_OnewayOperation (const PICML::OnewayOperation & o)
 {
   this->add_edge <PICML::InParameter, PICML::Object> (o);
 }
@@ -347,6 +380,9 @@ Visit_OnewayOperation (const PICML::OnewayOperation_in o)
 void IDL_File_Ordering_Processor::
 add_node (const GAME::Mga::Object & o)
 {
+  std::ostringstream ostr;
+  ostr << "add_node called on: " << o->name ();
+  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
   OBJECT_ACCESSOR information = boost::get (Object (), *this->current_graph_);
 
   if (o->parent ()->meta ()->name () == PICML::File::impl_type::metaname && this->map_.find (o) == this->map_.end ())
@@ -578,6 +614,10 @@ remove_back_edges (GRAPH_PTR graph)
 void IDL_File_Ordering_Processor::
 insert (const GAME::Mga::Object_in o)
 {
+  std::ostringstream ostr;
+  ostr << "Insert called on: " << o->name ();
+  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
+
   if (o->meta ()->name () == PICML::File::impl_type::metaname)
   {
     this->current_graph_ = GRAPH_PTR (new GRAPH);
@@ -656,7 +696,7 @@ parent_file (const GAME::Mga::Object_in o)
 //
 // parent_before_file
 //
-GAME::Mga::Object IDL_File_Ordering_Processor::parent_before_file (const GAME::Mga::Object_in o)
+GAME::Mga::FCO IDL_File_Ordering_Processor::parent_before_file (const GAME::Mga::Object_in o)
 {
   GAME::Mga::Object parent;
 

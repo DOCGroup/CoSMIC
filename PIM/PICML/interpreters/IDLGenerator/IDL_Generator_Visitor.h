@@ -26,11 +26,11 @@ public:
 
   virtual ~IDL_Generator_Visitor (void);
 
-  virtual void Visit_RootFolder (const PICML::RootFolder_in folder);
+  virtual void visit_RootFolder (PICML::RootFolder_in folder);
 
-  virtual void Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions_in folder);
+  virtual void visit_InterfaceDefinitions (PICML::InterfaceDefinitions_in folder);
 
-  virtual void Visit_File (const PICML::File_in file);
+  virtual void visit_File (PICML::File_in file);
 
 private:
   const std::string & outdir_;

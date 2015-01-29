@@ -1,8 +1,10 @@
 // $Id$
 
-project (PICML_IDLGeneratorComponent) : game_mga_interpreter, game_mga_utils, picml_game_mga, cosmic_utils, cosmic_lib {
+project (PICML_IDLGeneratorComponent) : game_mga_interpreter, game_mga_utils, picml_game_mga, picml_game_utils, cosmic_utils, cosmic_lib {
   sharedname    = PICML_IDLGeneratorComponent
-  dynamicflags += IDL_GENERATOR_BUILD_DLL
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
 
   Source_Files {
     IDL_Generator_Component.idl
@@ -20,10 +22,6 @@ project (PICML_IDLGeneratorComponent) : game_mga_interpreter, game_mga_utils, pi
     IDL_File_Dependency_Processor.cpp
     IDL_File_Ordering_Processor.cpp
     IDL_Cycle_Detector.cpp
-  }
-
-  Header_Files {
-
   }
 
   Inline_Files {

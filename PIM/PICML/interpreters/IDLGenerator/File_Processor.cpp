@@ -1,12 +1,22 @@
 // $Id$
 
 #include "StdAfx.h"
+
 #include "File_Processor.h"
 #include "Find_Forward_Decls.h"
 #include "IDL_File_Dependency_Processor.h"
 #include "IDLStream.h"
 
-#include "Utils/UDM/visit.h"
+struct visit_all
+{
+public:
+template <typename T>
+void operator () (T & collection, PICML::Visitor * visitor) const
+{
+  for (auto item : collection)
+    item->accept (visitor);
+}
+};
 
 /**
  * Visitor to detect Provided and Required Request Port References
@@ -60,9 +70,9 @@ IDL_File_Processor::~IDL_File_Processor (void)
 }
 
 //
-// Visit_File
+// visit_File
 //
-void IDL_File_Processor::Visit_File (const PICML::File_in file)
+void IDL_File_Processor::visit_File (PICML::File_in file)
 {
   // Locate all the forward declarations of this file.
   Find_Forward_Decls fwd_decls (this->depends_graph_);
@@ -110,7 +120,7 @@ void IDL_File_Processor::Visit_File (const PICML::File_in file)
 // file_has_object_with_reference
 //
 bool IDL_File_Processor::
-file_has_object_with_reference (const PICML::File_in file)
+file_has_object_with_reference (PICML::File_in file)
 {
   Has_Port_Reference port_ref_visitor;
   for (auto obj : file->get_Objects ())
@@ -125,7 +135,7 @@ file_has_object_with_reference (const PICML::File_in file)
 //
 // generate_include_file
 //
-void IDL_File_Processor::generate_include_file (const PICML::File_in file)
+void IDL_File_Processor::generate_include_file (PICML::File_in file)
 {
   std::string path = file->Path ();
 
@@ -136,9 +146,9 @@ void IDL_File_Processor::generate_include_file (const PICML::File_in file)
 }
 
 //
-// Visit_Package
+// visit_Package
 //
-void IDL_File_Processor::Visit_Package (const PICML::Package_in p)
+void IDL_File_Processor::visit_Package (PICML::Package_in p)
 {
   if (this->depends_graph_.no_forward_declaration (p))
     return;
@@ -152,33 +162,33 @@ void IDL_File_Processor::Visit_Package (const PICML::Package_in p)
      (this->depends_graph_.forward_declaration () ||
       this->depends_graph_.visit_template_module ()))
   {
-    this->depends_graph_.visit_all (p, *this);
+    this->depends_graph_.visit_package (p, *this);
   }
 }
 
 //
-// Visit_Aggregate
+// visit_Aggregate
 //
-void IDL_File_Processor::Visit_Aggregate (const PICML::Aggregate_in a)
+void IDL_File_Processor::visit_Aggregate (PICML::Aggregate_in a)
 {
   if (!this->depends_graph_.no_forward_declaration (a))
     this->idl_ << nl << "struct " << a->name () << ";" << nl;
 }
 
 //
-// Visit_SwitchedAggregate
+// visit_SwitchedAggregate
 //
 void IDL_File_Processor::
-Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s)
+visit_SwitchedAggregate (PICML::SwitchedAggregate_in s)
 {
   if (!this->depends_graph_.no_forward_declaration (s))
     this->idl_ << nl << "union " << s->name () << ";" << nl;
 }
 
 //
-// Visit_Object
+// visit_Object
 //
-void IDL_File_Processor::Visit_Object (const PICML::Object_in o)
+void IDL_File_Processor::visit_Object (PICML::Object_in o)
 {
   if (this->depends_graph_.no_forward_declaration (o))
     return;
@@ -196,9 +206,9 @@ void IDL_File_Processor::Visit_Object (const PICML::Object_in o)
 }
 
 //
-// Visit_Event
+// visit_Event
 //
-void IDL_File_Processor::Visit_Event (const PICML::Event_in e)
+void IDL_File_Processor::visit_Event (PICML::Event_in e)
 {
   if (this->depends_graph_.no_forward_declaration (e))
     return;
@@ -212,9 +222,9 @@ void IDL_File_Processor::Visit_Event (const PICML::Event_in e)
 }
 
 //
-// Visit_ValueObject
+// visit_ValueObject
 //
-void IDL_File_Processor::Visit_ValueObject (const PICML::ValueObject_in v)
+void IDL_File_Processor::visit_ValueObject (PICML::ValueObject_in v)
 {
   if (this->depends_graph_.no_forward_declaration (v))
     return;
@@ -228,19 +238,19 @@ void IDL_File_Processor::Visit_ValueObject (const PICML::ValueObject_in v)
 }
 
 //
-// Visit_PortType
+// visit_PortType
 //
 void IDL_File_Processor::
-Visit_PortType (const PICML::PortType_in p)
+visit_PortType (PICML::PortType_in p)
 {
   if (!this->depends_graph_.no_forward_declaration (p))
     this->idl_ << nl << "porttype " << p->name () << ";" << nl;
 }
 
 //
-// Visit_Component
+// visit_Component
 //
-void IDL_File_Processor::Visit_Component (const PICML::Component_in c)
+void IDL_File_Processor::visit_Component (PICML::Component_in c)
 {
   if (!this->depends_graph_.no_forward_declaration (c))
     this->idl_ << nl << "component " << c->name () << ";" << nl;

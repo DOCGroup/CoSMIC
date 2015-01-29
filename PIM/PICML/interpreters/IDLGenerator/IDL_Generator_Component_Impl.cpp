@@ -51,7 +51,8 @@ invoke_ex (GAME::Mga::Project project,
 
   // Generate all the IDL files.
   IDL_Generator_Visitor visitor (this->output_);
-  project.root_folder ()->accept (&visitor);
+  PICML::RootFolder root_folder = project.root_folder ();
+  root_folder->accept (&visitor);
 
   if (this->is_interactive_)
     ::AfxMessageBox ("Successfully generated IDL files");

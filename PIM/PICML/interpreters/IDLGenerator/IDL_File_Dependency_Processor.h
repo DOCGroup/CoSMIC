@@ -40,17 +40,17 @@ public:
   * @param[in]      foward_declaration      If true process forward
   * declarations for this object o; otherwise do not process
   */
-  void visit_file (const GAME::Mga::Object_in o,
+  void visit_file (const GAME::Mga::Object & o,
                    PICML::Visitor & v,
                    bool foward_declaration = false);
   /**
-  * Visit all childrems in object o
+  * Visits all childrems in a package
   *
   * @param[in]      o      A object to visit
   * @param[in]      v      Visitor used to visit the object o
   */
-  void visit_all (const GAME::Mga::Object_in o,
-                  PICML::Visitor & v);
+  void visit_package (const PICML::Package & o,
+                      PICML::Visitor & v);
   /**
   * Visit all childrems in object o
   *
@@ -86,7 +86,7 @@ public:
   *
   * @param      p      Package being visited
   */
-  void visit_all_forward_declaration (const PICML::Package_in p);
+  void visit_all_forward_declaration (PICML::Package_in p);
 
 private:
   /// file_generator

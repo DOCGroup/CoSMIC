@@ -20,11 +20,11 @@ struct derives_from
 {
 public:
 template <typename T>
-bool operator (const T & derived) const
+bool operator () (const T & derived) const
 {
   try
   {
-    BASE base = BASE::_narrow (dervied);
+    BASE base = BASE::_narrow (derived);
     return true;
   }
   catch (GAME::Mga::Exception &)
@@ -112,33 +112,33 @@ const Find_Forward_Decls::includes_t & Find_Forward_Decls::includes (void) const
 }
 
 //
-// Visit_File
+// visit_File
 //
-void Find_Forward_Decls::Visit_File (const PICML::File_in file)
+void Find_Forward_Decls::visit_File (PICML::File_in file)
 {
   this->current_file_ = file;
   // the state of the dependency processor is cleared on each request
   this->depends_graph_.clear ();
   // determine forward declaration kind exists in package
-  this->depends_graph_.visit_file (fp, *this);
+  this->depends_graph_.visit_file (file, *this);
 }
 
 //
-// Visit_Package
+// visit_Package
 //
-void Find_Forward_Decls::Visit_Package (const PICML::Package_in package)
+void Find_Forward_Decls::visit_Package (PICML::Package_in package)
 {
   GAME::Mga::Collection_T <PICML::TemplateParameter> params = package->children <PICML::TemplateParameter> ();
 
   if (!params.size () || (params.size () && this->visit_template_module_))
-    this->depends_graph_.visit_all (package, *this);
+    this->depends_graph_.visit_package (package, *this);
 }
 
 //
-// Visit_TemplatePackageAlias
+// visit_TemplatePackageAlias
 //
 void Find_Forward_Decls::
-Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance_in a)
+visit_TemplatePackageInstance (PICML::TemplatePackageInstance_in a)
 {
   PICML::File file = this->get_file (a->get_PackageType ()->refers_to_Package ());
 
@@ -167,17 +167,17 @@ Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance_in a)
 }
 
 //
-// Visit_Alias
+// visit_Alias
 //
-void Find_Forward_Decls::Visit_Alias (const PICML::Alias_in a)
+void Find_Forward_Decls::visit_Alias (PICML::Alias_in a)
 {
-  this->Visit_MemberType (a->refers_to_MemberType ());
+  this->visit_MemberType (a->refers_to_MemberType ());
 }
 
 //
-// Visit_Constant
+// visit_Constant
 //
-void Find_Forward_Decls::Visit_Constant (const PICML::Constant_in c)
+void Find_Forward_Decls::visit_Constant (PICML::Constant_in c)
 {
   PICML::ConstantType t = c->refers_to_ConstantType ();
 
@@ -186,35 +186,35 @@ void Find_Forward_Decls::Visit_Constant (const PICML::Constant_in c)
 }
 
 //
-// Visit_Collection
+// visit_Collection
 //
 void Find_Forward_Decls::
-Visit_Collection (const PICML::Collection_in c)
+visit_Collection (PICML::Collection_in c)
 {
-  this->Visit_MemberType (c->refers_to_MemberType ());
+  this->visit_MemberType (c->refers_to_MemberType ());
 }
 
 //
-// Visit_Exception
+// visit_Exception
 //
 void Find_Forward_Decls::
-Visit_Exception (const PICML::Exception_in e)
+visit_Exception (PICML::Exception_in e)
 {
   visit_all () (e->get_Members (), this);
 }
 
 //
-// Visit_Member
+// visit_Member
 //
-void Find_Forward_Decls::Visit_Member (const PICML::Member_in m)
+void Find_Forward_Decls::visit_Member (PICML::Member_in m)
 {
-  this->Visit_MemberType (m->refers_to_MemberType ());
+  this->visit_MemberType (m->refers_to_MemberType ());
 }
 
 //
-// Visit_Aggregate
+// visit_Aggregate
 //
-void Find_Forward_Decls::Visit_Aggregate (const PICML::Aggregate_in a)
+void Find_Forward_Decls::visit_Aggregate (PICML::Aggregate_in a)
 {
   visit_all () (a->get_Members (), this);
 
@@ -224,10 +224,10 @@ void Find_Forward_Decls::Visit_Aggregate (const PICML::Aggregate_in a)
 }
 
 //
-// Visit_SwitchedAggregate
+// visit_SwitchedAggregate
 //
 void Find_Forward_Decls::
-Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s)
+visit_SwitchedAggregate (PICML::SwitchedAggregate_in s)
 {
   visit_all () (s->get_Members (), this);
 }
@@ -237,16 +237,16 @@ Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s)
  */
 struct is_async_receptacle_t
 {
-  bool operator () (const PICML::RequiredRequestPort & p) const
+  bool operator () (PICML::RequiredRequestPort & p) const
   {
     return p->AsyncCommunication ();
   }
 };
 
 //
-// Visit_Object
+// visit_Object
 //
-void Find_Forward_Decls::Visit_Object (const PICML::Object_in o)
+void Find_Forward_Decls::visit_Object (PICML::Object_in o)
 {
   // Determine if this object has ami4ccm support. If so, then
   // we need to make sure this file is marked as ami4ccm.
@@ -267,27 +267,27 @@ void Find_Forward_Decls::Visit_Object (const PICML::Object_in o)
 }
 
 //
-// Visit_Event
+// visit_Event
 //
-void Find_Forward_Decls::Visit_Event (const PICML::Event_in e)
+void Find_Forward_Decls::visit_Event (PICML::Event_in e)
 {
   this->has_component_ = true;
-  this->Visit_ObjectByValue (e);
+  this->visit_ObjectByValue (e);
 }
 
 //
-// Visit_ValueObject
+// visit_ValueObject
 //
-void Find_Forward_Decls::Visit_ValueObject (const PICML::ValueObject_in v)
+void Find_Forward_Decls::visit_ValueObject (PICML::ValueObject_in v)
 {
-  this->Visit_ObjectByValue (v);
+  this->visit_ObjectByValue (v);
 }
 
 //
-// Visit_ValueObject
+// visit_ValueObject
 //
 void Find_Forward_Decls::
-Visit_ObjectByValue (const PICML::ObjectByValue_in v)
+visit_ObjectByValue (PICML::ObjectByValue_in v)
 {
   visit_all () (v->get_Members (), this);
   visit_all () (v->get_Aggregates (), this);
@@ -304,58 +304,58 @@ Visit_ObjectByValue (const PICML::ObjectByValue_in v)
 }
 
 //
-// Visit_FactoryOperation
+// visit_FactoryOperation
 //
 void Find_Forward_Decls::
-Visit_FactoryOperation (const PICML::FactoryOperation_in op)
+visit_FactoryOperation (PICML::FactoryOperation_in op)
 {
   for (PICML::ParameterType param : op->children <PICML::ParameterType> ())
-    this->Visit_MemberType (param->refers_to_MemberType ());
+    this->visit_MemberType (param->refers_to_MemberType ());
 }
 
 //
-// Visit_ExtendedPort
+// visit_ExtendedPort
 //
 void Find_Forward_Decls::
-Visit_ExtendedPort (const PICML::ExtendedPort_in p)
+visit_ExtendedPort (PICML::ExtendedPort_in p)
 {
   visit_all () (p->refers_to_PortType ()->get_ProvidedRequestPorts (), this);
   visit_all () (p->refers_to_PortType ()->get_RequiredRequestPorts (), this);
 }
 
 //
-// Visit_ReadonlyAttribute
+// visit_ReadonlyAttribute
 //
 void Find_Forward_Decls::
-Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute_in r)
+visit_ReadonlyAttribute (PICML::ReadonlyAttribute_in r)
 {
-  this->Visit_MemberType (r->get_AttributeMember ()->refers_to_MemberType ());
+  this->visit_MemberType (r->get_AttributeMember ()->refers_to_MemberType ());
 }
 
 //
-// Visit_OnewayOperation
+// visit_OnewayOperation
 //
 void Find_Forward_Decls::
-Visit_OnewayOperation (const PICML::OnewayOperation_in op)
-{
-  for (PICML::ParameterType param : op->children <PICML::ParameterType> ())
-    this->Visit_MemberType (param->refers_to_MemberType ());
-}
-
-//
-// Visit_TwowayOperation
-//
-void Find_Forward_Decls::
-Visit_TwowayOperation (const PICML::TwowayOperation_in op)
+visit_OnewayOperation (PICML::OnewayOperation_in op)
 {
   for (PICML::ParameterType param : op->children <PICML::ParameterType> ())
-    this->Visit_MemberType (param->refers_to_MemberType ());
+    this->visit_MemberType (param->refers_to_MemberType ());
 }
 
 //
-// Visit_Component
+// visit_TwowayOperation
 //
-void Find_Forward_Decls::Visit_Component (const PICML::Component_in c)
+void Find_Forward_Decls::
+visit_TwowayOperation (PICML::TwowayOperation_in op)
+{
+  for (PICML::ParameterType param : op->children <PICML::ParameterType> ())
+    this->visit_MemberType (param->refers_to_MemberType ());
+}
+
+//
+// visit_Component
+//
+void Find_Forward_Decls::visit_Component (PICML::Component_in c)
 {
   this->has_component_ = true;
 
@@ -368,10 +368,10 @@ void Find_Forward_Decls::Visit_Component (const PICML::Component_in c)
 }
 
 //
-// Visit_ConnectorObject
+// visit_ConnectorObject
 //
 void Find_Forward_Decls::
-Visit_ConnectorObject (const PICML::ConnectorObject_in c)
+visit_ConnectorObject (PICML::ConnectorObject_in c)
 {
   this->has_component_ = true;
 
@@ -382,10 +382,10 @@ Visit_ConnectorObject (const PICML::ConnectorObject_in c)
 }
 
 //
-// Visit_ComponentFactory
+// visit_ComponentFactory
 //
 void Find_Forward_Decls::
-Visit_ComponentFactory (const PICML::ComponentFactory_in f)
+visit_ComponentFactory (PICML::ComponentFactory_in f)
 {
   visit_all () (f->get_Aggregates (), this);
   visit_all () (f->get_SwitchedAggregates (), this);
@@ -403,90 +403,90 @@ Visit_ComponentFactory (const PICML::ComponentFactory_in f)
 }
 
 //
-// Visit_RequiredRequestPort
+// visit_RequiredRequestPort
 //
 void Find_Forward_Decls::
-Visit_RequiredRequestPort (const PICML::RequiredRequestPort_in p)
+visit_RequiredRequestPort (PICML::RequiredRequestPort_in p)
 {
   PICML::Provideable provides = p->refers_to_Provideable ();
 
   if (provides->meta ()->name () == PICML::Object::impl_type::metaname)
-    this->Visit_NamedType (PICML::Object::_narrow (provides));
+    this->visit_NamedType (PICML::Object::_narrow (provides));
 }
 
 //
-// Visit_ProvidedRequestPort
+// visit_ProvidedRequestPort
 //
 void Find_Forward_Decls::
-Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort_in p)
+visit_ProvidedRequestPort (PICML::ProvidedRequestPort_in p)
 {
   PICML::Provideable provides = p->refers_to_Provideable ();
 
   if (provides->meta ()->name () == PICML::Object::impl_type::metaname)
-    this->Visit_NamedType (PICML::Object::_narrow (provides));
+    this->visit_NamedType (PICML::Object::_narrow (provides));
 }
 
 //
-// Visit_InEventPort
+// visit_InEventPort
 //
 void Find_Forward_Decls::
-Visit_InEventPort (const PICML::InEventPort_in p)
+visit_InEventPort (PICML::InEventPort_in p)
 {
   PICML::EventType t = p->refers_to_EventType ();
 
   if (t->meta ()->name () == PICML::Event::impl_type::metaname)
-    this->Visit_NamedType (PICML::Event::_narrow (t));
+    this->visit_NamedType (PICML::Event::_narrow (t));
 }
 
 //
-// Visit_OutEventPort
+// visit_OutEventPort
 //
 void Find_Forward_Decls::
-Visit_OutEventPort (const PICML::OutEventPort_in p)
+visit_OutEventPort (PICML::OutEventPort_in p)
 {
   PICML::EventType t = p->refers_to_EventType ();
 
   if (t->meta ()->name () == PICML::Event::impl_type::metaname)
-    this->Visit_NamedType (PICML::Event::_narrow (t));
+    this->visit_NamedType (PICML::Event::_narrow (t));
 }
 
 //
-// Visit_TemplateParameterValue
+// visit_TemplateParameterValue
 //
 void Find_Forward_Decls::
-Visit_TemplateParameterValue (const PICML::TemplateParameterValue_in tpv)
+visit_TemplateParameterValue (PICML::TemplateParameterValue_in tpv)
 {
   PICML::TemplateParameterValueType t = tpv->refers_to_TemplateParameterValueType ();
 
   if (t->meta ()->name () == PICML::Exception::impl_type::metaname)
-    this->Visit_Exception (PICML::Exception::_narrow (t));
+    this->visit_Exception (PICML::Exception::_narrow (t));
   else
-    this->Visit_MemberType (PICML::MemberType::_narrow (t));
+    this->visit_MemberType (PICML::MemberType::_narrow (t));
 }
 
 //
-// Visit_Boxed
+// visit_Boxed
 //
 void Find_Forward_Decls::
-Visit_Boxed (const PICML::Boxed_in b)
+visit_Boxed (PICML::Boxed_in b)
 {
-  this->Visit_MemberType (b->refers_to_MemberType ());
+  this->visit_MemberType (b->refers_to_MemberType ());
 }
 
 //
-// Visit_MemberType
+// visit_MemberType
 //
 void Find_Forward_Decls::
-Visit_MemberType (const PICML::MemberType_in m)
+visit_MemberType (PICML::MemberType_in m)
 {
   if (derives_from <PICML::NamedType> () (m))
-    this->Visit_NamedType (PICML::NamedType::_narrow (m));
+    this->visit_NamedType (PICML::NamedType::_narrow (m));
 }
 
 //
-// Visit_NamedType
+// visit_NamedType
 //
-void Find_Forward_Decls::Visit_NamedType (const PICML::NamedType_in n)
+void Find_Forward_Decls::visit_NamedType (PICML::NamedType_in n)
 {
   PICML::File file = this->get_file (n);
 

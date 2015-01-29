@@ -19,6 +19,7 @@
 #include <boost/graph/properties.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include "PICML/PICML.h"
 #include "PICML/Visitor.h"
 
 /**
@@ -70,168 +71,169 @@ public:
    *
    * @param[in]      p      A package to visit
    */
-  virtual void Visit_Package (const PICML::Package_in p);
+  virtual void visit_Package (PICML::Package_in p);
+  void visit_package (PICML::Package_in p, PICML::Visitor * v);
 
   /**
    * Visitor methods used to visit the aggregate type
    *
    * @param[in]      a      An aggregate to visit
    */
-  virtual void Visit_Aggregate (const PICML::Aggregate_in a);
+  virtual void visit_Aggregate (const PICML::Aggregate & a);
 
   /**
    * Visitor methods used to visit the switched aggregate type
    *
    * @param[in]      s      A switched aggregate to visit
    */
-  virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s);
+  virtual void visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
 
   /**
    * Visitor methods used to visit the array member type
    *
    * @param[in]      m      An array member to visit
    */
-  virtual void Visit_ArrayMember (const PICML::ArrayMember_in m);
+  virtual void visit_ArrayMember (PICML::ArrayMember_in m);
 
   /**
    * Visitor methods used to visit the boxed type
    *
    * @param[in]      b      A boxed to visit
    */
-  virtual void Visit_Boxed (const PICML::Boxed_in b);
+  virtual void visit_Boxed (PICML::Boxed_in b);
 
   /**
   * Visitor methods used to visit the member type
   *
   * @param[in]      a      An array member to visit
   */
-  virtual void Visit_Member (const PICML::Member_in a);
+  virtual void visit_Member (PICML::Member_in a);
 
   /**
   * Visitor methods used to visit the enum type
   *
   * @param[in]      e      An enum to visit
   */
-  virtual void Visit_Enum (const PICML::Enum_in e);
+  virtual void visit_Enum (PICML::Enum_in e);
 
   /**
   * Visitor methods used to visit the constant type
   *
   * @param[in]      c      A constant to visit
   */
-  virtual void Visit_Constant (const PICML::Constant_in c);
+  virtual void visit_Constant (PICML::Constant_in c);
 
   /**
   * Visitor methods used to visit the alias type
   *
   * @param[in]      a      An alias to visit
   */
-  virtual void Visit_Alias (const PICML::Alias_in a);
+  virtual void visit_Alias (PICML::Alias_in a);
 
   /**
   * Visitor methods used to visit the collection type
   *
   * @param[in]      c      A collection to visit
   */
-  virtual void Visit_Collection (const PICML::Collection_in c);
+  virtual void visit_Collection (PICML::Collection_in c);
 
   /**
   * Visitor methods used to visit the exception type
   *
   * @param[in]      e      An exception to visit
   */
-  virtual void Visit_Exception (const PICML::Exception_in e);
+  virtual void visit_Exception (PICML::Exception_in e);
 
   /**
   * Visitor methods used to visit the template package instance type
   *
   * @param[in]      t      A template package instance to visit
   */
-  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance_in t);
+  virtual void visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & t);
 
   /**
   * Visitor methods used to visit the one way operation type
   *
   * @param[in]      o      A one way operation instance to visit
   */
-  virtual void Visit_OnewayOperation (const PICML::OnewayOperation_in o);
+  virtual void visit_OnewayOperation (const PICML::OnewayOperation & o);
 
   /**
   * Visitor methods used to visit the two way operation type
   *
   * @param[in]      t      A two way operation instance to visit
   */
-  virtual void Visit_TwowayOperation (const PICML::TwowayOperation_in t);
+  virtual void visit_TwowayOperation (const PICML::TwowayOperation & t);
 
   /**
   * Visitor methods used to visit the object type
   *
   * @param[in]      t      A template package instance to visit
   */
-  virtual void Visit_Object (const PICML::Object_in o);
+  virtual void visit_Object (PICML::Object_in o);
 
   /**
   * Visitor methods used to visit the port type
   *
   * @param[in]      p      A port to visit
   */
-  virtual void Visit_PortType (const PICML::PortType_in p);
+  virtual void visit_PortType (PICML::PortType_in p);
 
   /**
   * Visitor methods used to visit the value object type
   *
   * @param[in]      o      A value object to visit
   */
-  virtual void Visit_ValueObject (const PICML::ValueObject_in o);
+  virtual void visit_ValueObject (PICML::ValueObject_in o);
 
   /**
   * Visitor methods used to visit the event type
   *
   * @param[in]      e      An event to visit
   */
-  virtual void Visit_Event (const PICML::Event_in e);
+  virtual void visit_Event (const PICML::Event & e);
 
   /**
   * Visitor methods used to visit the component type
   *
   * @param[in]      c      A component to visit
   */
-  virtual void Visit_Component (const PICML::Component_in c);
+  virtual void visit_Component (const PICML::Component & c);
 
   /**
   * Visitor methods used to visit the connector object type
   *
   * @param[in]      c      A connector object to visit
   */
-  virtual void Visit_ConnectorObject (const PICML::ConnectorObject_in c);
+  virtual void visit_ConnectorObject (PICML::ConnectorObject_in c);
 
   /**
   * Visitor methods used to visit the component factory type
   *
   * @param[in]      c      A component factory to visit
   */
-  virtual void Visit_ComponentFactory (const PICML::ComponentFactory_in c);
+  virtual void visit_ComponentFactory (PICML::ComponentFactory_in c);
 
   /**
   * Visitor methods used to visit the read only type
   *
   * @param[in]      r      A read only attribute to visit
   */
-  virtual void Visit_ReadonlyAttribute(const PICML::ReadonlyAttribute_in r);
+  virtual void visit_ReadonlyAttribute(const PICML::ReadonlyAttribute & r);
 
   /**
   * Visitor methods used to visit the attribute type
   *
   * @param[in]      a      An attribute to visit
   */
-  virtual void Visit_Attribute (const PICML::Attribute_in a);
+  virtual void visit_Attribute (const PICML::Attribute & a);
 
   /**
   * Visitor methods used to visit the aManagesComponent type
   *
   * @param[in]      m      A ManagesComponent to visit
   */
-  virtual void Visit_ManagesComponent (const PICML::ManagesComponent_in m);
+  virtual void visit_ManagesComponent (const PICML::ManagesComponent & m);
 
   /**
   * Visits the file object
@@ -239,7 +241,7 @@ public:
   * @param[in]      o      A object to visit
   * @param[in]      f      Is forward declaration
   */
-  void visit_file (const PICML::File_in o, bool f = false);
+  void visit_file (const PICML::File & o, bool f = false);
 
   /**
   * Gets the objects processed by this in topological order
@@ -306,7 +308,7 @@ private:
   void add_node (const GAME::Mga::Object & o);
 
   template <typename T, typename P>
-  void add_edge (const GAME::Mga::Object_in o);
+  void add_edge (const GAME::Mga::Model & o);
 
   void add_edge (const GAME::Mga::Object_in o);
 
@@ -329,11 +331,11 @@ private:
   void add_vertices (const GAME::Mga::FCO & p1, const GAME::Mga::FCO & p2, GRAPH_PTR g);
 
   template <typename T>
-  GAME::Mga::Object find_parent (const GAME::Mga::Object_in o);
+  GAME::Mga::Object find_parent (const GAME::Mga::Object & o);
 
   bool same_parent_before_file (const GAME::Mga::Object_in o, const GAME::Mga::Object_in p);
 
-  GAME::Mga::Object parent_before_file (const GAME::Mga::Object_in o);
+  GAME::Mga::FCO parent_before_file (const GAME::Mga::Object_in o);
 
   bool parent_in_same_file (const GAME::Mga::Object_in o, const GAME::Mga::Object_in p);
 

@@ -39,7 +39,7 @@ public:
   ~IDL_Generator_File (void);
 
   /// Generate the specified file to the attached stream.
-  bool generate (const PICML::File_in file);
+  bool generate (PICML::File_in file);
 
 private:
   /// IDL stream for the file.

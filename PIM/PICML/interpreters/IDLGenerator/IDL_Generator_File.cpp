@@ -20,7 +20,7 @@ struct include_t
 
   }
 
-  void operator () (const PICML::FileRef_in ref) const
+  void operator () (PICML::FileRef_in ref) const
   {
     PICML::File file = ref->refers_to ();
     const std::string name = file->name ();
@@ -52,7 +52,7 @@ IDL_Generator_File::~IDL_Generator_File (void)
 //
 // generate
 //
-bool IDL_Generator_File::generate (const PICML::File_in file)
+bool IDL_Generator_File::generate (PICML::File_in file)
 {
   // Construct the hash definition for this file.
   std::string hashdef = "_" + std::string (file->name ()) + "_IDL_";
