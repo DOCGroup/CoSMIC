@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 #include "Deployment_Domain_Visitor.h"
 
 #include "Data_Type_Visitor.h"

@@ -10,7 +10,6 @@
 
 // Xerces includes
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
-#include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
 
 #include "game/xml/Document.h"
 #include "game/xml/Fragment.h"

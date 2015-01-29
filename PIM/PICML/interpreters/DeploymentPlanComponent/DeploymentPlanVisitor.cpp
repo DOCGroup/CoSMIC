@@ -1,27 +1,15 @@
-// $Id$
+#include "StdAfx.h"
 
 #include "DeploymentPlanVisitor.h"
-
 #include "Deployment_Domain_Visitor.h"
-
 #include "Configuration.h"
-#include "Data_Type_Visitor.h"
-#include "Data_Value_Visitor.h"
 #include "Connection_Visitor.h"
 #include "External_Reference_Visitor.h"
 #include "Connector_Visitor.h"
 #include "Locality_Manager.h"
 
-#include "Utils/udm/visit.h"
-#include "Utils/UDM/Position_Sort_T.h"
-
 #include "game/xml/Fragment.h"
 
-#include "UmlExt.h"
-#include "boost/bind.hpp"
-
-#include <algorithm>
-#include <functional>
 #include <sstream>
 
 using xercesc::LocalFileFormatTarget;
@@ -40,8 +28,7 @@ using GAME::Xml::Fragment;
 //
 // DeploymentPlanVisitor
 //
-DeploymentPlanVisitor::
-DeploymentPlanVisitor (const Configuration & config)
+DeploymentPlanVisitor::DeploymentPlanVisitor (const Configuration & config)
 : impl_ (0),
   doc_ (0),
   output_ (0),

@@ -15,13 +15,10 @@ project (PICML_DeploymentPlanComponent): picml_xml, game_mga_interpreter, picml_
     Configuration.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp
-    Data_Type_Visitor.cpp
-    Data_Value_Visitor.cpp
     Deployment_Domain_Visitor.cpp
     Locality_Manager.cpp
     DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
-    XML_Document.cpp
   }
 
   Resource_Files {
