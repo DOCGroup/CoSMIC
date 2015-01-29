@@ -3,7 +3,6 @@
 #include "StdAfx.h"
 
 #include "IDL_File_Dependency_Processor.h"
-#include "Utils/UDM/visit.h"
 
 //
 // IDL_File_Dependency_Processor
@@ -25,7 +24,7 @@ IDL_File_Dependency_Processor::~IDL_File_Dependency_Processor (void)
 // visit_file
 //
 void IDL_File_Dependency_Processor::
-visit_file (const Udm::Object & object,
+visit_file (const GAME::Mga::Object_in object,
             PICML::Visitor & visitor,
             bool forward_declaration)
 {
@@ -37,7 +36,7 @@ visit_file (const Udm::Object & object,
 // visit_file_package
 //
 void IDL_File_Dependency_Processor::
-visit_file_package (const Udm::Object & object, PICML::Visitor & visitor)
+visit_file_package (const GAME::Mga::Object_in object, PICML::Visitor & visitor)
 {
   this->idl_order_proc_.visit_file (object, this->forward_declaration_);
 
@@ -58,7 +57,7 @@ visit_file_package (const Udm::Object & object, PICML::Visitor & visitor)
 // no_foward_declaration
 //
 bool IDL_File_Dependency_Processor::
-no_forward_declaration (const Udm::Object o)
+no_forward_declaration (const GAME::Mga::Object_in o)
 {
   return this->idl_order_proc_.no_forward_declaration (o);
 }
@@ -70,49 +69,49 @@ void IDL_File_Dependency_Processor::
 visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
                     PICML::Visitor & visitor)
 {
-  Udm::Object o;
+  GAME::Mga::Object o;
 
   // visit the objects in dependency order
   for (IDL_File_Ordering_Processor::VECTOR_IT it = container.rbegin (); it != container.rend (); it++)
   {
-    o = boost::get (IDL_File_Ordering_Processor::Udm_Object (), this->idl_order_proc_.graph (), (*it));
+    o = boost::get (IDL_File_Ordering_Processor::Object (), this->idl_order_proc_.graph (), (*it));
 
-    if (o == Udm::null || o.GetParent ().type () != PICML::File::meta)
+    if (o->parent ()->meta ()->name () != PICML::File::impl_type::metaname)
       continue;
-    else if (o.type () == PICML::Constant::meta)
-      PICML::Constant::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Alias::meta)
-      PICML::Alias::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Collection::meta)
-      PICML::Collection::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Exception::meta)
-      PICML::Exception::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Aggregate::meta)
-      PICML::Aggregate::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::SwitchedAggregate::meta)
-     PICML::SwitchedAggregate::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::ValueObject::meta)
-     PICML::ValueObject::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::TemplatePackageInstance::meta)
-      PICML::TemplatePackageInstance::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Event::meta)
-      PICML::Event::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Object::meta)
-      PICML::Object::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::PortType::meta)
-      PICML::PortType::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Component::meta)
-      PICML::Component::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::ComponentFactory::meta)
-      PICML::ComponentFactory::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::ConnectorObject::meta)
-      PICML::ConnectorObject::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Package::meta)
-      PICML::Package::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Boxed::meta)
-      PICML::Boxed::Cast (o).Accept (visitor);
-    else if (o.type () == PICML::Enum::meta)
-      PICML::Enum::Cast (o).Accept (visitor);
+    else if (o->meta ()->name () == PICML::Constant::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Alias::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Collection::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Exception::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Aggregate::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::SwitchedAggregate::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::ValueObject::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::TemplatePackageInstance::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Event::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Object::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::PortType::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Component::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::ComponentFactory::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::ConnectorObject::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Package::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Boxed::impl_type::metaname)
+      o->accept (&visitor);
+    else if (o->meta ()->name () == PICML::Enum::impl_type::metaname)
+      o->accept (&visitor);
   }
 }
 
@@ -146,7 +145,7 @@ clear (void)
 // visit_all
 //
 void IDL_File_Dependency_Processor::
-visit_all (const Udm::Object & o, PICML::Visitor & visitor)
+visit_all (const GAME::Mga::Object_in o, PICML::Visitor & visitor)
 {
   this->idl_order_proc_.visit_all (o, visitor);
 }
@@ -164,7 +163,7 @@ visit_template_module (bool visit_template_module)
 // visit_all_forward_declaration
 //
 void IDL_File_Dependency_Processor::
-visit_all_forward_declaration (const PICML::Package & package)
+visit_all_forward_declaration (const PICML::Package_in package)
 {
   if (this->idl_file_generator_)
     this->idl_order_proc_.visit_all (package, *(this->idl_file_generator_), true);
