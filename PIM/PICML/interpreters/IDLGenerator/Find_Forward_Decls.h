@@ -13,7 +13,7 @@
 #ifndef _IDL_FIND_FORWARD_DECLS_H_
 #define _IDL_FIND_FORWARD_DECLS_H_
 
-#include "PICML/PICML.h"
+#include "PICML/Visitor.h"
 
 // Forward decl.
 class IDL_File_Dependency_Processor;
@@ -28,7 +28,7 @@ class Find_Forward_Decls : public PICML::Visitor
 {
 public:
   /// Type definition for the set of forward declared objects.
-  typedef std::set <Udm::Object> fwd_decls_t;
+  typedef std::set <GAME::Mga::Object> fwd_decls_t;
 
   /// Type definition for the set of include files.
   typedef std::set <PICML::File> includes_t;
@@ -50,46 +50,44 @@ public:
   void clear (void);
 
   // visitor method(s)
-  virtual void Visit_File (const PICML::File &);
-  virtual void Visit_Package (const PICML::Package & );
-  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & a);
-  virtual void Visit_Alias (const PICML::Alias & a);
-  virtual void Visit_Constant (const PICML::Constant & c);
-  virtual void Visit_Collection (const PICML::Collection & c);
-  virtual void Visit_Exception (const PICML::Exception & e);
-  virtual void Visit_Member (const PICML::Member & m);
-  virtual void Visit_Aggregate (const PICML::Aggregate & a);
-  virtual void Visit_Component (const PICML::Component & c);
-  virtual void Visit_ConnectorObject (const PICML::ConnectorObject & c);
-  virtual void Visit_ComponentFactory (const PICML::ComponentFactory & f);
-  virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
-  virtual void Visit_Object (const PICML::Object & o);
-  virtual void Visit_Event (const PICML::Event & e);
-  virtual void Visit_ValueObject (const PICML::ValueObject & v);
-  virtual void Visit_FactoryOperation (const PICML::FactoryOperation & op);
-  virtual void Visit_ExtendedPort (const PICML::ExtendedPort & p);
-  virtual void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & r);
-  virtual void Visit_OnewayOperation (const PICML::OnewayOperation & op);
-  virtual void Visit_TwowayOperation (const PICML::TwowayOperation & op);
-  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort & op);
-  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & op);
-  virtual void Visit_InEventPort (const PICML::InEventPort & in);
-  virtual void Visit_OutEventPort (const PICML::OutEventPort & out);
-  virtual void Visit_TemplateParameterValue (const PICML::TemplateParameterValue &t);
-  virtual void Visit_Boxed (const PICML::Boxed &b);
+  virtual void Visit_File (const PICML::File_in);
+  virtual void Visit_Package (const PICML::Package_in );
+  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance_in a);
+  virtual void Visit_Alias (const PICML::Alias_in a);
+  virtual void Visit_Constant (const PICML::Constant_in c);
+  virtual void Visit_Collection (const PICML::Collection_in c);
+  virtual void Visit_Exception (const PICML::Exception_in e);
+  virtual void Visit_Member (const PICML::Member_in m);
+  virtual void Visit_Aggregate (const PICML::Aggregate_in a);
+  virtual void Visit_Component (const PICML::Component_in c);
+  virtual void Visit_ConnectorObject (const PICML::ConnectorObject_in c);
+  virtual void Visit_ComponentFactory (const PICML::ComponentFactory_in f);
+  virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate_in s);
+  virtual void Visit_Object (const PICML::Object_in o);
+  virtual void Visit_Event (const PICML::Event_in e);
+  virtual void Visit_ValueObject (const PICML::ValueObject_in v);
+  virtual void Visit_FactoryOperation (const PICML::FactoryOperation_in op);
+  virtual void Visit_ExtendedPort (const PICML::ExtendedPort_in p);
+  virtual void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute_in r);
+  virtual void Visit_OnewayOperation (const PICML::OnewayOperation_in op);
+  virtual void Visit_TwowayOperation (const PICML::TwowayOperation_in op);
+  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort_in op);
+  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort_in op);
+  virtual void Visit_InEventPort (const PICML::InEventPort_in in);
+  virtual void Visit_OutEventPort (const PICML::OutEventPort_in out);
+  virtual void Visit_TemplateParameterValue (const PICML::TemplateParameterValue_in t);
+  virtual void Visit_Boxed (const PICML::Boxed_in b);
 
   bool has_component (void) const;
   bool has_typesupport (void) const;
   bool has_ami4ccm (void) const;
 
 private:
-  void Visit_FilePackage (const Udm::Object & p);
-  void Visit_ObjectByValue (const PICML::ObjectByValue & obv);
-  void Visit_MemberType (const PICML::MemberType & m);
-  void Visit_NamedType (const PICML::NamedType & n);
+  void Visit_ObjectByValue (const PICML::ObjectByValue_in obv);
+  void Visit_MemberType (const PICML::MemberType_in m);
+  void Visit_NamedType (const PICML::NamedType_in n);
 
-  PICML::File get_file (const Udm::Object & obj);
-  bool is_visible (const Udm::Object & ref);
+  PICML::File get_file (const GAME::Mga::Object_in obj);
 
   IDL_File_Dependency_Processor & depends_graph_;
 
