@@ -11,7 +11,7 @@ namespace PICML
 //
 // scope
 //
-std::string scope (const GAME::Mga::Model_in named_type,
+std::string scope (const GAME::Mga::FCO_in named_type,
                    const std::string & separator,
                    bool leading)
 {
@@ -47,7 +47,7 @@ std::string scope (const GAME::Mga::Model_in named_type,
 //
 // fq_type
 //
-std::string fq_type (const GAME::Mga::Model_in named_type,
+std::string fq_type (const GAME::Mga::FCO_in named_type,
                      const std::string & separator,
                      bool leading)
 {
