@@ -4,9 +4,6 @@
 
 #include "IDL_File_Dependency_Processor.h"
 
-#include "game/mga/component/Console_Service.h"
-#include <sstream>
-
 struct visit_all
 {
 public:
@@ -89,10 +86,6 @@ visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & container,
   for (IDL_File_Ordering_Processor::VECTOR_IT it = container.rbegin (); it != container.rend (); it++)
   {
     o = boost::get (IDL_File_Ordering_Processor::Object (), this->idl_order_proc_.graph (), (*it));
-
-    std::ostringstream ostr;
-    ostr << "In IDL_File_Dependency_Processor::visit_file_package for " << o->name () << ": " << o->meta ()->name ();
-    GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
 
     if (o->parent ()->meta ()->name () != PICML::File::impl_type::metaname)
       continue;

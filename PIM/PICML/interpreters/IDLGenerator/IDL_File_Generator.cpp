@@ -15,9 +15,6 @@
 
 #include <algorithm>
 
-#include "game/mga/component/Console_Service.h"
-#include <sstream>
-
 struct visit_all
 {
 public:
@@ -33,13 +30,10 @@ template <typename T, typename SORTER>
 struct collection_sort
 {
 public:
-std::vector <T> operator () (GAME::Mga::Collection_T <T> & collection, const std::string & aspect = "") const
+std::vector <T> operator () (GAME::Mga::Collection_T <T> & collection, const std::string & aspect) const
 {
   typedef GAME::Mga::Position_Sort_T <T, SORTER> sorter_t;
-  sorter_t sorter;
-
-  if (!aspect.empty ())
-    sorter = sorter_t (aspect, SORTER ());
+  sorter_t sorter (aspect, SORTER ());
 
   std::vector <T> result;
 
@@ -103,14 +97,7 @@ void IDL_File_Generator::visit_File (PICML::File_in file)
 
   this->templates_only_ = false;
 
-  std::ostringstream ostr;
-  ostr << "Visiting depends file on depends graph";
-  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
   this->depends_graph_.visit_file (file, *this);
-
-  std::ostringstream ostr2;
-  ostr2 << "Done";
-  GME_CONSOLE_SERVICE->info (ostr2.str ().c_str ());
 }
 
 //
@@ -137,7 +124,7 @@ void IDL_File_Generator::visit_Package (PICML::Package_in package)
 
     typedef collection_sort <PICML::TemplateParameter, GAME::Mga::PS_Left_To_Right> param_sorter;
     bool first_param = true;
-    for (auto parameter : param_sorter () (params))
+    for (auto parameter : param_sorter () (params, "InterfaceDefinition"))
     {
       if (!first_param)
         this->idl_ << ", ";
@@ -219,7 +206,7 @@ visit_TemplatePackageInstance (PICML::TemplatePackageInstance_in p)
 
   typedef collection_sort <PICML::TemplateParameterValue, GAME::Mga::PS_Left_To_Right> param_sorter;
   bool first_param = true;
-  for (auto parameter : param_sorter () (p->get_TemplateParameterValues ()))
+  for (auto parameter : param_sorter () (p->get_TemplateParameterValues (), "InterfaceDefinition"))
   {
     if (!first_param)
       this->idl_ << ", ";
@@ -242,7 +229,7 @@ void IDL_File_Generator::visit_Enum (PICML::Enum_in e)
   bool first_param = true;
 
   typedef collection_sort <PICML::EnumValue, GAME::Mga::PS_Top_To_Bottom> sorter;
-  for (PICML::EnumValue m : sorter () (e->get_EnumValues ()))
+  for (PICML::EnumValue m : sorter () (e->get_EnumValues (), "InterfaceDefinition"))
   {
     if (!first_param)
       this->idl_ << ", ";
@@ -316,9 +303,6 @@ void IDL_File_Generator::visit_Constant (PICML::Constant_in c)
 //
 void IDL_File_Generator::visit_Aggregate (PICML::Aggregate_in a)
 {
-  std::ostringstream ostr;
-  ostr << "IDL_File_Generator::visit_Aggregate";
-  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
   std::vector <PICML::Member> sorted_members;
 
   // First, generate the RTI-DDS pragma support.
@@ -350,7 +334,7 @@ void IDL_File_Generator::visit_Aggregate (PICML::Aggregate_in a)
 
   // Sort the elements by the position in the InterfaceDefinition aspect.
   typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
-  for (PICML::Member member : sorter () (a->get_Members ()))
+  for (PICML::Member member : sorter () (a->get_Members (), "InterfaceDefinition"))
     member->accept (this);
 
   this->idl_ << uidt_nl << "};" << nl
@@ -559,7 +543,7 @@ visit_ObjectByValue (PICML::ObjectByValue_in o)
   visit_all () (o->get_ReadonlyAttributes (), this);
 
   typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
-  visit_all () (sorter ()(o->get_Members ()), this);
+  visit_all () (sorter ()(o->get_Members (), "InterfaceDefinition"), this);
   
 }
 
@@ -596,7 +580,7 @@ void IDL_File_Generator::visit_Component (PICML::Component_in c)
 
     typedef collection_sort <PICML::Supports, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (PICML::Supports support : sorter () (supports))
+    for (PICML::Supports support : sorter () (supports, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", " << nl;
@@ -618,6 +602,7 @@ void IDL_File_Generator::visit_Component (PICML::Component_in c)
   visit_all () (c->get_OutEventPorts (), this);
   visit_all () (c->get_ExtendedPorts (), this);
   visit_all () (c->get_ReadonlyAttributes (), this);
+  visit_all () (c->get_Attributes (), this);
 
   this->idl_ << uidt_nl
              << "};"
@@ -864,7 +849,7 @@ void IDL_File_Generator::visit_Attribute (PICML::Attribute_in a)
 
     typedef collection_sort <PICML::GetException, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (auto exception : sorter () (get_exceptions))
+    for (auto exception : sorter () (get_exceptions, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", ";
@@ -884,7 +869,7 @@ void IDL_File_Generator::visit_Attribute (PICML::Attribute_in a)
 
     typedef collection_sort <PICML::SetException, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (auto exception : sorter () (set_exceptions))
+    for (auto exception : sorter () (set_exceptions, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", ";
@@ -934,7 +919,7 @@ visit_OnewayOperation (PICML::OnewayOperation_in op)
   {
     typedef collection_sort <PICML::ParameterType, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (auto parameter : sorter () (params))
+    for (auto parameter : sorter () (params, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", ";
@@ -967,7 +952,7 @@ visit_TwowayOperation (PICML::TwowayOperation_in op)
   {
     typedef collection_sort <PICML::ParameterType, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (auto parameter : sorter () (params))
+    for (auto parameter : sorter () (params, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", ";
@@ -990,7 +975,7 @@ visit_TwowayOperation (PICML::TwowayOperation_in op)
 
     typedef collection_sort <PICML::ExceptionRef, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (auto exception : sorter () (exceptions))
+    for (auto exception : sorter () (exceptions, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", ";
@@ -1067,7 +1052,7 @@ void IDL_File_Generator::visit_Exception (PICML::Exception_in e)
              << "{" << idt_nl;
 
   typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
-  for (auto value : sorter () (e->get_Members ()))
+  for (auto value : sorter () (e->get_Members (), "InterfaceDefinition"))
     value->accept (this);
 
   this->idl_ << uidt_nl
@@ -1095,7 +1080,7 @@ visit_ComponentFactory (PICML::ComponentFactory_in f)
 
     typedef collection_sort <PICML::Supports, GAME::Mga::PS_Left_To_Right> sorter;
     bool first_element = true;
-    for (PICML::Supports support : sorter () (supports))
+    for (PICML::Supports support : sorter () (supports, "InterfaceDefinition"))
     {
       if (!first_element)
         this->idl_ << ", ";
@@ -1175,7 +1160,7 @@ visit_LookupOperation (PICML::LookupOperation_in op)
   {
     bool is_first = true;
     typedef collection_sort <PICML::InParameter, GAME::Mga::PS_Left_To_Right> sorter;
-    for (PICML::InParameter param : sorter () (params))
+    for (PICML::InParameter param : sorter () (params, "InterfaceDefinition"))
     {
       if (!is_first)
         this->idl_ << ", ";
@@ -1222,7 +1207,7 @@ visit_FactoryOperation (PICML::FactoryOperation_in op)
   {
     bool is_first = true;
     typedef collection_sort <PICML::InParameter, GAME::Mga::PS_Left_To_Right> sorter;
-    for (PICML::InParameter p : params)
+    for (PICML::InParameter p : sorter () (params, "InterfaceDefinition"))
     {
       if (!is_first)
         this->idl_ << ", ";

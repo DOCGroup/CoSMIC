@@ -10,18 +10,13 @@
 #include <algorithm>
 #include <fstream>
 
-#include "game/mga/component/Console_Service.h"
-#include <sstream>
-
 //
 // IDL_Generator_Visitor
 //
 IDL_Generator_Visitor::IDL_Generator_Visitor (const std::string & outdir)
 : outdir_ (outdir)
 {
-  std::ostringstream ostr;
-  ostr << "IDL_Generator_Visitor ctor";
-  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
+
 }
 
 //
@@ -38,9 +33,6 @@ IDL_Generator_Visitor::~IDL_Generator_Visitor (void)
 void IDL_Generator_Visitor::
 visit_RootFolder (PICML::RootFolder_in folder)
 {
-  std::ostringstream ostr;
-  ostr << "Got root folder";
-  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
   for (auto folder : folder->get_InterfaceDefinitions ())
     folder->accept (this);
 }
@@ -79,10 +71,6 @@ void IDL_Generator_Visitor::visit_File (PICML::File_in file)
   std::ofstream outfile (filename.c_str ());
   if (!outfile.is_open ())
     return;
-
-  std::ostringstream ostr;
-  ostr << "Opened file " << filename.c_str ();
-  GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
 
   IDL_Generator_File idl_file (outfile);
   idl_file.generate (file);

@@ -79,14 +79,14 @@ public:
    *
    * @param[in]      a      An aggregate to visit
    */
-  virtual void visit_Aggregate (const PICML::Aggregate & a);
+  virtual void visit_Aggregate (PICML::Aggregate_in a);
 
   /**
    * Visitor methods used to visit the switched aggregate type
    *
    * @param[in]      s      A switched aggregate to visit
    */
-  virtual void visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
+  virtual void visit_SwitchedAggregate (PICML::SwitchedAggregate_in s);
 
   /**
    * Visitor methods used to visit the array member type
@@ -149,21 +149,21 @@ public:
   *
   * @param[in]      t      A template package instance to visit
   */
-  virtual void visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & t);
+  virtual void visit_TemplatePackageInstance (PICML::TemplatePackageInstance_in t);
 
   /**
   * Visitor methods used to visit the one way operation type
   *
   * @param[in]      o      A one way operation instance to visit
   */
-  virtual void visit_OnewayOperation (const PICML::OnewayOperation & o);
+  virtual void visit_OnewayOperation (PICML::OnewayOperation_in o);
 
   /**
   * Visitor methods used to visit the two way operation type
   *
   * @param[in]      t      A two way operation instance to visit
   */
-  virtual void visit_TwowayOperation (const PICML::TwowayOperation & t);
+  virtual void visit_TwowayOperation (PICML::TwowayOperation_in t);
 
   /**
   * Visitor methods used to visit the object type
@@ -191,14 +191,14 @@ public:
   *
   * @param[in]      e      An event to visit
   */
-  virtual void visit_Event (const PICML::Event & e);
+  virtual void visit_Event (PICML::Event_in e);
 
   /**
   * Visitor methods used to visit the component type
   *
   * @param[in]      c      A component to visit
   */
-  virtual void visit_Component (const PICML::Component & c);
+  virtual void visit_Component (PICML::Component_in c);
 
   /**
   * Visitor methods used to visit the connector object type
@@ -219,21 +219,21 @@ public:
   *
   * @param[in]      r      A read only attribute to visit
   */
-  virtual void visit_ReadonlyAttribute(const PICML::ReadonlyAttribute & r);
+  virtual void visit_ReadonlyAttribute(PICML::ReadonlyAttribute_in r);
 
   /**
   * Visitor methods used to visit the attribute type
   *
   * @param[in]      a      An attribute to visit
   */
-  virtual void visit_Attribute (const PICML::Attribute & a);
+  virtual void visit_Attribute (PICML::Attribute_in a);
 
   /**
   * Visitor methods used to visit the aManagesComponent type
   *
   * @param[in]      m      A ManagesComponent to visit
   */
-  virtual void visit_ManagesComponent (const PICML::ManagesComponent & m);
+  virtual void visit_ManagesComponent (PICML::ManagesComponent_in m);
 
   /**
   * Visits the file object
