@@ -80,8 +80,8 @@ namespace PICML
      */
     ///@{
     bool Supports_is_nil (void) const;
-    Supports get_Supports (void) const;
-    void set_Supports (Supports_in item);
+    Supports refers_to_Supports (void) const;
+    void refers_to_Supports (Supports_in item);
     ///@}
   };
 }

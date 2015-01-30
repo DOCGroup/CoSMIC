@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static HistoryQosPolicy _create (const DataWriterQos_in parent);
     static HistoryQosPolicy _create (const TopicQos_in parent);
+    static HistoryQosPolicy _create (const DataWriterQos_in parent);
     static HistoryQosPolicy _create (const DataReaderQos_in parent);
     static HistoryQosPolicy _create (const DDSQoS_in parent);
     ///@}
@@ -75,8 +75,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     TopicQos parent_TopicQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
     ///@}
 
@@ -103,14 +103,17 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_history_Connection connection.
-    size_t dst_topic_history_Connection (std::vector <topic_history_Connection> & items) const;
-
     /// Get the dst dr_history_Connection connection.
-    size_t dst_dr_history_Connection (std::vector <dr_history_Connection> & items) const;
+    size_t dst_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_history_Connection> dst_of_dr_history_Connection (void) const;
 
     /// Get the dst dw_history_Connection connection.
-    size_t dst_dw_history_Connection (std::vector <dw_history_Connection> & items) const;
+    size_t dst_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const;
+    GAME::Mga::Collection_T <dw_history_Connection> dst_of_dw_history_Connection (void) const;
+
+    /// Get the dst topic_history_Connection connection.
+    size_t dst_of_topic_history_Connection (std::vector <topic_history_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_history_Connection> dst_of_topic_history_Connection (void) const;
     ///@}
   };
 }

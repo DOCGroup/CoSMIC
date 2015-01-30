@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static dp_pub_Connection _create (const DDSQoS_in parent);
+    static dp_pub_Connection _create (const DDSQoS_in parent, DomainParticipant_in src, Publisher_in dst);
     ///@}
 
     // Default constructor.

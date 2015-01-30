@@ -26,7 +26,7 @@ namespace PICML
   //
   UnsignedLongInteger UnsignedLongInteger_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < UnsignedLongInteger > (parent, UnsignedLongInteger_Impl::metaname);
+    return ::GAME::Mga::create < UnsignedLongInteger > (parent, UnsignedLongInteger_Impl::metaname);
   }
 
   //

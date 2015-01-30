@@ -29,19 +29,19 @@ namespace PICML
   const std::string ManagesComponent_Impl::metaname ("ManagesComponent");
 
   //
-  // _create (const Package_in)
+  // _create (const Package_in, ComponentFactory_in src, Manageable_in dst)
   //
-  ManagesComponent ManagesComponent_Impl::_create (const Package_in parent)
+  ManagesComponent ManagesComponent_Impl::_create (const Package_in parent, ComponentFactory_in src, Manageable_in dst)
   {
-    return ::GAME::Mga::create_object < ManagesComponent > (parent, ManagesComponent_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ManagesComponent_Impl::metaname, src, dst);
   }
 
   //
-  // _create (const File_in)
+  // _create (const File_in, ComponentFactory_in src, Manageable_in dst)
   //
-  ManagesComponent ManagesComponent_Impl::_create (const File_in parent)
+  ManagesComponent ManagesComponent_Impl::_create (const File_in parent, ComponentFactory_in src, Manageable_in dst)
   {
-    return ::GAME::Mga::create_object < ManagesComponent > (parent, ManagesComponent_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ManagesComponent_Impl::metaname, src, dst);
   }
 
   //

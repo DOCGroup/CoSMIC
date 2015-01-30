@@ -27,11 +27,19 @@ namespace PICML
   }
 
   //
-  // src_ExtResourceConn
+  // src_of_ExtResourceConn
   //
-  size_t ComponentLib_Impl::src_ExtResourceConn (std::vector <ExtResourceConn> & items) const
+  size_t ComponentLib_Impl::src_of_ExtResourceConn (std::vector <ExtResourceConn> & items) const
   {
     return this->in_connections <ExtResourceConn> (items);
+  }
+
+  //
+  // src_of_ExtResourceConn
+  //
+  GAME::Mga::Collection_T <ExtResourceConn> ComponentLib_Impl::src_of_ExtResourceConn (void) const
+  {
+    return this->in_connections <ExtResourceConn> ("src");
   }
 }
 

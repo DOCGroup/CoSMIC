@@ -35,11 +35,11 @@ namespace PICML
   const std::string InfoProperty_Impl::metaname ("InfoProperty");
 
   //
-  // _create (const ImplementationContainer_in)
+  // _create (const ImplementationContainer_in, Implemenation_in src, Property_in dst)
   //
-  InfoProperty InfoProperty_Impl::_create (const ImplementationContainer_in parent)
+  InfoProperty InfoProperty_Impl::_create (const ImplementationContainer_in parent, Implemenation_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < InfoProperty > (parent, InfoProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, InfoProperty_Impl::metaname, src, dst);
   }
 
   //

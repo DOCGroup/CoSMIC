@@ -26,7 +26,7 @@ namespace PICML
   //
   PeriodicBenchmarks PeriodicBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < PeriodicBenchmarks > (parent, PeriodicBenchmarks_Impl::metaname);
+    return ::GAME::Mga::create < PeriodicBenchmarks > (parent, PeriodicBenchmarks_Impl::metaname);
   }
 
   //

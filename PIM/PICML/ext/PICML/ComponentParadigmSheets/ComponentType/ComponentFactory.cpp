@@ -32,7 +32,7 @@ namespace PICML
   //
   ComponentFactory ComponentFactory_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentFactory > (parent, ComponentFactory_Impl::metaname);
+    return ::GAME::Mga::create < ComponentFactory > (parent, ComponentFactory_Impl::metaname);
   }
 
   //
@@ -40,7 +40,7 @@ namespace PICML
   //
   ComponentFactory ComponentFactory_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentFactory > (parent, ComponentFactory_Impl::metaname);
+    return ::GAME::Mga::create < ComponentFactory > (parent, ComponentFactory_Impl::metaname);
   }
 
   //
@@ -58,11 +58,19 @@ namespace PICML
   }
 
   //
-  // src_ManagesComponent
+  // src_of_ManagesComponent
   //
-  size_t ComponentFactory_Impl::src_ManagesComponent (std::vector <ManagesComponent> & items) const
+  size_t ComponentFactory_Impl::src_of_ManagesComponent (std::vector <ManagesComponent> & items) const
   {
     return this->in_connections <ManagesComponent> (items);
+  }
+
+  //
+  // src_of_ManagesComponent
+  //
+  GAME::Mga::Collection_T <ManagesComponent> ComponentFactory_Impl::src_of_ManagesComponent (void) const
+  {
+    return this->in_connections <ManagesComponent> ("src");
   }
 
   //

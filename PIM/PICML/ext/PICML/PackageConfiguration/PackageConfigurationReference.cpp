@@ -29,7 +29,7 @@ namespace PICML
   //
   PackageConfigurationReference PackageConfigurationReference_Impl::_create (const TopLevelPackageContainer_in parent)
   {
-    return ::GAME::Mga::create_object < PackageConfigurationReference > (parent, PackageConfigurationReference_Impl::metaname);
+    return ::GAME::Mga::create < PackageConfigurationReference > (parent, PackageConfigurationReference_Impl::metaname);
   }
 
   //
@@ -55,19 +55,35 @@ namespace PICML
   }
 
   //
-  // dst_PackageConfSpecializedConfig
+  // dst_of_PackageConfSpecializedConfig
   //
-  size_t PackageConfigurationReference_Impl::dst_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
+  size_t PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
   {
     return this->in_connections <PackageConfSpecializedConfig> (items);
   }
 
   //
-  // dst_package
+  // dst_of_PackageConfSpecializedConfig
   //
-  size_t PackageConfigurationReference_Impl::dst_package (std::vector <package> & items) const
+  GAME::Mga::Collection_T <PackageConfSpecializedConfig> PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
+  {
+    return this->in_connections <PackageConfSpecializedConfig> ("dst");
+  }
+
+  //
+  // dst_of_package
+  //
+  size_t PackageConfigurationReference_Impl::dst_of_package (std::vector <package> & items) const
   {
     return this->in_connections <package> (items);
+  }
+
+  //
+  // dst_of_package
+  //
+  GAME::Mga::Collection_T <package> PackageConfigurationReference_Impl::dst_of_package (void) const
+  {
+    return this->in_connections <package> ("dst");
   }
 
   //
@@ -79,17 +95,17 @@ namespace PICML
   }
 
   //
-  // set_PackageConfiguration
+  // refers_to_PackageConfiguration
   //
-  void PackageConfigurationReference_Impl::set_PackageConfiguration (PackageConfiguration_in item)
+  void PackageConfigurationReference_Impl::refers_to_PackageConfiguration (PackageConfiguration_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_PackageConfiguration
+  // refers_to_PackageConfiguration
   //
-  PackageConfiguration PackageConfigurationReference_Impl::get_PackageConfiguration (void) const
+  PackageConfiguration PackageConfigurationReference_Impl::refers_to_PackageConfiguration (void) const
   {
     return PackageConfiguration::_narrow (this->refers_to ());
   }

@@ -80,10 +80,12 @@ namespace DQML
     ///@{
 
     /// Get the src dpfactory_entityfactory_Connection connection.
-    size_t src_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
+    size_t src_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
+    GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> src_of_dpfactory_entityfactory_Connection (void) const;
 
     /// Get the src dpf_dp_Connection connection.
-    size_t src_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
+    size_t src_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
+    GAME::Mga::Collection_T <dpf_dp_Connection> src_of_dpf_dp_Connection (void) const;
     ///@}
   };
 }

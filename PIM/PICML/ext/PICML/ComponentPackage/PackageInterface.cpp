@@ -24,11 +24,11 @@ namespace PICML
   const std::string PackageInterface_Impl::metaname ("PackageInterface");
 
   //
-  // _create (const PackageContainer_in)
+  // _create (const PackageContainer_in, ComponentPackage_in src, ComponentRef_in dst)
   //
-  PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent)
+  PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent, ComponentPackage_in src, ComponentRef_in dst)
   {
-    return ::GAME::Mga::create_object < PackageInterface > (parent, PackageInterface_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageInterface_Impl::metaname, src, dst);
   }
 
   //

@@ -28,7 +28,7 @@ namespace DQML
   //
   WriterDataLifecycleQosPolicy WriterDataLifecycleQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
-    return ::GAME::Mga::create_object < WriterDataLifecycleQosPolicy > (parent, WriterDataLifecycleQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < WriterDataLifecycleQosPolicy > (parent, WriterDataLifecycleQosPolicy_Impl::metaname);
   }
 
   //
@@ -36,7 +36,7 @@ namespace DQML
   //
   WriterDataLifecycleQosPolicy WriterDataLifecycleQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < WriterDataLifecycleQosPolicy > (parent, WriterDataLifecycleQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < WriterDataLifecycleQosPolicy > (parent, WriterDataLifecycleQosPolicy_Impl::metaname);
   }
 
   //
@@ -62,11 +62,19 @@ namespace DQML
   }
 
   //
-  // dst_dw_writerdatalifecycle_Connection
+  // dst_of_dw_writerdatalifecycle_Connection
   //
-  size_t WriterDataLifecycleQosPolicy_Impl::dst_dw_writerdatalifecycle_Connection (std::vector <dw_writerdatalifecycle_Connection> & items) const
+  size_t WriterDataLifecycleQosPolicy_Impl::dst_of_dw_writerdatalifecycle_Connection (std::vector <dw_writerdatalifecycle_Connection> & items) const
   {
     return this->in_connections <dw_writerdatalifecycle_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_writerdatalifecycle_Connection
+  //
+  GAME::Mga::Collection_T <dw_writerdatalifecycle_Connection> WriterDataLifecycleQosPolicy_Impl::dst_of_dw_writerdatalifecycle_Connection (void) const
+  {
+    return this->in_connections <dw_writerdatalifecycle_Connection> ("dst");
   }
 }
 

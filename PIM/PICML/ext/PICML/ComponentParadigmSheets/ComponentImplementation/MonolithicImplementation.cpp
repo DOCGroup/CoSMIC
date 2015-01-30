@@ -27,7 +27,7 @@ namespace PICML
   //
   MonolithicImplementation MonolithicImplementation_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < MonolithicImplementation > (parent, MonolithicImplementation_Impl::metaname);
+    return ::GAME::Mga::create < MonolithicImplementation > (parent, MonolithicImplementation_Impl::metaname);
   }
 
   //

@@ -27,7 +27,7 @@ namespace PICML
   //
   InputAction InputAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < InputAction > (parent, InputAction_Impl::metaname);
+    return ::GAME::Mga::create < InputAction > (parent, InputAction_Impl::metaname);
   }
 
   //
@@ -45,11 +45,19 @@ namespace PICML
   }
 
   //
-  // dst_Input
+  // dst_of_Input
   //
-  size_t InputAction_Impl::dst_Input (std::vector <Input> & items) const
+  size_t InputAction_Impl::dst_of_Input (std::vector <Input> & items) const
   {
     return this->in_connections <Input> (items);
+  }
+
+  //
+  // dst_of_Input
+  //
+  GAME::Mga::Collection_T <Input> InputAction_Impl::dst_of_Input (void) const
+  {
+    return this->in_connections <Input> ("dst");
   }
 }
 

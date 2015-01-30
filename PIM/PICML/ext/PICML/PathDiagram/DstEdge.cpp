@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/GraphVertex.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
@@ -19,7 +20,6 @@
 #include "PICML/PathDiagram/DisplayNode.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Edge.h"
-#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -33,19 +33,19 @@ namespace PICML
   const std::string DstEdge_Impl::metaname ("DstEdge");
 
   //
-  // _create (const Path_in)
+  // _create (const Path_in, GraphVertex_in src, Edge_in dst)
   //
-  DstEdge DstEdge_Impl::_create (const Path_in parent)
+  DstEdge DstEdge_Impl::_create (const Path_in parent, GraphVertex_in src, Edge_in dst)
   {
-    return ::GAME::Mga::create_object < DstEdge > (parent, DstEdge_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, DstEdge_Impl::metaname, src, dst);
   }
 
   //
-  // _create (const ConnectedComponent_in)
+  // _create (const ConnectedComponent_in, GraphVertex_in src, Edge_in dst)
   //
-  DstEdge DstEdge_Impl::_create (const ConnectedComponent_in parent)
+  DstEdge DstEdge_Impl::_create (const ConnectedComponent_in parent, GraphVertex_in src, Edge_in dst)
   {
-    return ::GAME::Mga::create_object < DstEdge > (parent, DstEdge_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, DstEdge_Impl::metaname, src, dst);
   }
 
   //

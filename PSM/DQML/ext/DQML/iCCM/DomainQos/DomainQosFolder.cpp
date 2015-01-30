@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/iCCM/iCCM.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
+#include "DQML/iCCM/iCCM/iCCM.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,7 +27,7 @@ namespace DQML
   //
   DomainQosFolder DomainQosFolder_Impl::_create (const iCCM_in parent)
   {
-    return ::GAME::Mga::create_folder < DomainQosFolder > (parent, DomainQosFolder_Impl::metaname);
+    return ::GAME::Mga::create < DomainQosFolder > (parent, DomainQosFolder_Impl::metaname);
   }
 
   //
@@ -58,6 +58,14 @@ namespace DQML
   size_t DomainQosFolder_Impl::get_Domains (std::vector <Domain> & items) const
   {
     return this->children (items);
+  }
+
+  //
+  // get_Domains
+  //
+  ::GAME::Mga::Collection_T <Domain> DomainQosFolder_Impl::get_Domains (void) const
+  {
+    return this->children <Domain> ();
   }
 }
 

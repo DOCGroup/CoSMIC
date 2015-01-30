@@ -35,7 +35,7 @@ namespace PICML
   //
   OutEventPort OutEventPort_Impl::_create (const Component_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPort > (parent, OutEventPort_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }
 
   //
@@ -43,7 +43,7 @@ namespace PICML
   //
   OutEventPort OutEventPort_Impl::_create (const ConnectedComponent_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPort > (parent, OutEventPort_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }
 
   //
@@ -51,7 +51,7 @@ namespace PICML
   //
   OutEventPort OutEventPort_Impl::_create (const Path_in parent)
   {
-    return ::GAME::Mga::create_object < OutEventPort > (parent, OutEventPort_Impl::metaname);
+    return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }
 
   //
@@ -77,17 +77,17 @@ namespace PICML
   }
 
   //
-  // set_EventType
+  // refers_to_EventType
   //
-  void OutEventPort_Impl::set_EventType (EventType_in item)
+  void OutEventPort_Impl::refers_to_EventType (EventType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_EventType
+  // refers_to_EventType
   //
-  EventType OutEventPort_Impl::get_EventType (void) const
+  EventType OutEventPort_Impl::refers_to_EventType (void) const
   {
     return EventType::_narrow (this->refers_to ());
   }

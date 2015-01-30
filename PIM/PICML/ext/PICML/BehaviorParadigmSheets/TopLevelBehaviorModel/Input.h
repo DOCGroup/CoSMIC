@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Input _create (const TopLevelBehavior_in parent);
+    static Input _create (const TopLevelBehavior_in parent, SingleInputBase_in src, InputAction_in dst);
     ///@}
 
     // Default constructor.

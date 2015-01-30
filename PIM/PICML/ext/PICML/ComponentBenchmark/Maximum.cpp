@@ -27,7 +27,7 @@ namespace PICML
   //
   Maximum Maximum_Impl::_create (const MetricsBase_in parent)
   {
-    return ::GAME::Mga::create_object < Maximum > (parent, Maximum_Impl::metaname);
+    return ::GAME::Mga::create < Maximum > (parent, Maximum_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   Maximum Maximum_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Maximum > (parent, Maximum_Impl::metaname);
+    return ::GAME::Mga::create < Maximum > (parent, Maximum_Impl::metaname);
   }
 
   //

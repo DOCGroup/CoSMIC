@@ -26,7 +26,7 @@ namespace PICML
   //
   Latency Latency_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Latency > (parent, Latency_Impl::metaname);
+    return ::GAME::Mga::create < Latency > (parent, Latency_Impl::metaname);
   }
 
   //

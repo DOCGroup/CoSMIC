@@ -83,7 +83,8 @@ namespace PICML
     ///@{
 
     /// Get the src ManagesComponent connection.
-    size_t src_ManagesComponent (std::vector <ManagesComponent> & items) const;
+    size_t src_of_ManagesComponent (std::vector <ManagesComponent> & items) const;
+    GAME::Mga::Collection_T <ManagesComponent> src_of_ManagesComponent (void) const;
     ///@}
 
     /**

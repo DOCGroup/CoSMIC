@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src TimerEventSinkConn connection.
-    size_t src_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
+    size_t src_of_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
+    GAME::Mga::Collection_T <TimerEventSinkConn> src_of_TimerEventSinkConn (void) const;
     ///@}
 
     /**
@@ -87,8 +88,8 @@ namespace PICML
      */
     ///@{
     bool Event_is_nil (void) const;
-    Event get_Event (void) const;
-    void set_Event (Event_in item);
+    Event refers_to_Event (void) const;
+    void refers_to_Event (Event_in item);
     ///@}
   };
 }

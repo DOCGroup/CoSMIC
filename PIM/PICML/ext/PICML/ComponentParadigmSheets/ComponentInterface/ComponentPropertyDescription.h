@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ComponentProperty connection.
-    size_t dst_ComponentProperty (std::vector <ComponentProperty> & items) const;
+    size_t dst_of_ComponentProperty (std::vector <ComponentProperty> & items) const;
+    GAME::Mga::Collection_T <ComponentProperty> dst_of_ComponentProperty (void) const;
     ///@}
 
     /**

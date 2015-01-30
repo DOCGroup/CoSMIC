@@ -20,27 +20,51 @@ namespace PICML
   const std::string RequiredRequestPortEnd_Impl::metaname ("RequiredRequestPortEnd");
 
   //
-  // src_Invoke
+  // src_of_Invoke
   //
-  size_t RequiredRequestPortEnd_Impl::src_Invoke (std::vector <Invoke> & items) const
+  size_t RequiredRequestPortEnd_Impl::src_of_Invoke (std::vector <Invoke> & items) const
   {
     return this->in_connections <Invoke> (items);
   }
 
   //
-  // src_ConnectorToReceptacle
+  // src_of_Invoke
   //
-  size_t RequiredRequestPortEnd_Impl::src_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
+  GAME::Mga::Collection_T <Invoke> RequiredRequestPortEnd_Impl::src_of_Invoke (void) const
+  {
+    return this->in_connections <Invoke> ("src");
+  }
+
+  //
+  // src_of_ConnectorToReceptacle
+  //
+  size_t RequiredRequestPortEnd_Impl::src_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
   {
     return this->in_connections <ConnectorToReceptacle> (items);
   }
 
   //
-  // dst_ReceptacleDelegate
+  // src_of_ConnectorToReceptacle
   //
-  size_t RequiredRequestPortEnd_Impl::dst_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const
+  GAME::Mga::Collection_T <ConnectorToReceptacle> RequiredRequestPortEnd_Impl::src_of_ConnectorToReceptacle (void) const
+  {
+    return this->in_connections <ConnectorToReceptacle> ("src");
+  }
+
+  //
+  // dst_of_ReceptacleDelegate
+  //
+  size_t RequiredRequestPortEnd_Impl::dst_of_ReceptacleDelegate (std::vector <ReceptacleDelegate> & items) const
   {
     return this->in_connections <ReceptacleDelegate> (items);
+  }
+
+  //
+  // dst_of_ReceptacleDelegate
+  //
+  GAME::Mga::Collection_T <ReceptacleDelegate> RequiredRequestPortEnd_Impl::dst_of_ReceptacleDelegate (void) const
+  {
+    return this->in_connections <ReceptacleDelegate> ("dst");
   }
 }
 

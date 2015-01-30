@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ExtResourceConn _create (const Project_in parent);
+    static ExtResourceConn _create (const Project_in parent, ComponentLib_in src, ExternalResources_in dst);
     ///@}
 
     // Default constructor.

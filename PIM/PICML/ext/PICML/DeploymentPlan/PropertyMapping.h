@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static PropertyMapping _create (const DeploymentPlan_in parent);
+    static PropertyMapping _create (const DeploymentPlan_in parent, NodeReference_in src, Property_in dst);
     ///@}
 
     // Default constructor.

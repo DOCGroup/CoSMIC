@@ -65,7 +65,8 @@ namespace PICML
     ///@{
 
     /// Get the src QueryInput connection.
-    size_t src_QueryInput (std::vector <QueryInput> & items) const;
+    size_t src_of_QueryInput (std::vector <QueryInput> & items) const;
+    GAME::Mga::Collection_T <QueryInput> src_of_QueryInput (void) const;
     ///@}
   };
 }

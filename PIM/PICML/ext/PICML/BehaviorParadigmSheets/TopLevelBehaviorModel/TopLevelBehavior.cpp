@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
 
 namespace PICML
 {
@@ -37,6 +37,38 @@ namespace PICML
   Environment TopLevelBehavior_Impl::get_Environment (void) const
   {
     return this->children <Environment> ().first ();
+  }
+
+  //
+  // get_ApplicationTasks
+  //
+  size_t TopLevelBehavior_Impl::get_ApplicationTasks (std::vector <ApplicationTask> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ApplicationTasks
+  //
+  ::GAME::Mga::Collection_T <ApplicationTask> TopLevelBehavior_Impl::get_ApplicationTasks (void) const
+  {
+    return this->children <ApplicationTask> ();
+  }
+
+  //
+  // get_PeriodicEvents
+  //
+  size_t TopLevelBehavior_Impl::get_PeriodicEvents (std::vector <PeriodicEvent> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PeriodicEvents
+  //
+  ::GAME::Mga::Collection_T <PeriodicEvent> TopLevelBehavior_Impl::get_PeriodicEvents (void) const
+  {
+    return this->children <PeriodicEvent> ();
   }
 
   //
@@ -101,38 +133,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <WorkerType> TopLevelBehavior_Impl::get_WorkerTypes (void) const
   {
     return this->children <WorkerType> ();
-  }
-
-  //
-  // get_ApplicationTasks
-  //
-  size_t TopLevelBehavior_Impl::get_ApplicationTasks (std::vector <ApplicationTask> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ApplicationTasks
-  //
-  ::GAME::Mga::Collection_T <ApplicationTask> TopLevelBehavior_Impl::get_ApplicationTasks (void) const
-  {
-    return this->children <ApplicationTask> ();
-  }
-
-  //
-  // get_PeriodicEvents
-  //
-  size_t TopLevelBehavior_Impl::get_PeriodicEvents (std::vector <PeriodicEvent> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PeriodicEvents
-  //
-  ::GAME::Mga::Collection_T <PeriodicEvent> TopLevelBehavior_Impl::get_PeriodicEvents (void) const
-  {
-    return this->children <PeriodicEvent> ();
   }
 }
 

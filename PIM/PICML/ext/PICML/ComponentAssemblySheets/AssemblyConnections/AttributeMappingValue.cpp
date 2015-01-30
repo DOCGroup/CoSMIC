@@ -26,11 +26,11 @@ namespace PICML
   const std::string AttributeMappingValue_Impl::metaname ("AttributeMappingValue");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, AttributeMapping_in src, Property_in dst)
   //
-  AttributeMappingValue AttributeMappingValue_Impl::_create (const ComponentAssembly_in parent)
+  AttributeMappingValue AttributeMappingValue_Impl::_create (const ComponentAssembly_in parent, AttributeMapping_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < AttributeMappingValue > (parent, AttributeMappingValue_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AttributeMappingValue_Impl::metaname, src, dst);
   }
 
   //

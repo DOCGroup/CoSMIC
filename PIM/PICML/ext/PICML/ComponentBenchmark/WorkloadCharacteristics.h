@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static WorkloadCharacteristics _create (const BenchmarkAnalysis_in parent);
+    static WorkloadCharacteristics _create (const BenchmarkAnalysis_in parent, MetricsBase_in src, TaskSet_in dst);
     ///@}
 
     // Default constructor.

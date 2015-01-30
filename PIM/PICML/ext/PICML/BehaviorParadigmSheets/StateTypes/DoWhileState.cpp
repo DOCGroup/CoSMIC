@@ -26,7 +26,7 @@ namespace PICML
   //
   DoWhileState DoWhileState_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < DoWhileState > (parent, DoWhileState_Impl::metaname);
+    return ::GAME::Mga::create < DoWhileState > (parent, DoWhileState_Impl::metaname);
   }
 
   //

@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static LatencyBudgetQosPolicy _create (const DataWriterQos_in parent);
     static LatencyBudgetQosPolicy _create (const TopicQos_in parent);
+    static LatencyBudgetQosPolicy _create (const DataWriterQos_in parent);
     static LatencyBudgetQosPolicy _create (const DataReaderQos_in parent);
     static LatencyBudgetQosPolicy _create (const DDSQoS_in parent);
     ///@}
@@ -75,8 +75,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     TopicQos parent_TopicQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
     ///@}
 
@@ -98,13 +98,16 @@ namespace DQML
     ///@{
 
     /// Get the dst dw_latency_Connection connection.
-    size_t dst_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
+    size_t dst_of_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
+    GAME::Mga::Collection_T <dw_latency_Connection> dst_of_dw_latency_Connection (void) const;
 
     /// Get the dst top_latency_Connection connection.
-    size_t dst_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
+    size_t dst_of_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
+    GAME::Mga::Collection_T <top_latency_Connection> dst_of_top_latency_Connection (void) const;
 
     /// Get the dst dr_latency_Connection connection.
-    size_t dst_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
+    size_t dst_of_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_latency_Connection> dst_of_dr_latency_Connection (void) const;
     ///@}
   };
 }

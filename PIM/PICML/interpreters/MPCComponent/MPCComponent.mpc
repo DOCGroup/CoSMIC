@@ -1,0 +1,32 @@
+// $Id$
+
+project (PICML_MPCComponent) : game_mga_interpreter, game_mga_utils, picml_game_mga, cosmic_utils, cosmic_lib {
+  sharedname = PICML_MPCComponent
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  Source_Files {
+    PICML_MPCComponent.idl
+    PICML_MPCComponent_Impl.cpp
+    PICML_MPCComponent_Module.cpp
+
+    MPCStream.cpp
+    MPC_Visitor.cpp
+  }
+
+  Resource_Files {
+    Component.ico
+    Component.rc
+  }
+  
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.MPC
+    gme_uuid        = FECCFB52-4281-4C58-8673-11D9593EF453
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = MPC file generator
+    gme_tooltip     = Generate MPC files
+  }
+}

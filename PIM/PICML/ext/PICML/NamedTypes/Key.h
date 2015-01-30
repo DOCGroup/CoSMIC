@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src KeyMember connection.
-    size_t src_KeyMember (std::vector <KeyMember> & items) const;
+    size_t src_of_KeyMember (std::vector <KeyMember> & items) const;
+    GAME::Mga::Collection_T <KeyMember> src_of_KeyMember (void) const;
     ///@}
   };
 }

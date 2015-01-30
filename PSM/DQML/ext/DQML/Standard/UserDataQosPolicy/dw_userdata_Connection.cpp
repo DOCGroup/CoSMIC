@@ -24,11 +24,11 @@ namespace DQML
   const std::string dw_userdata_Connection_Impl::metaname ("dw_userdata_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, DataWriter_in src, UserDataQosPolicy_in dst)
   //
-  dw_userdata_Connection dw_userdata_Connection_Impl::_create (const DDSQoS_in parent)
+  dw_userdata_Connection dw_userdata_Connection_Impl::_create (const DDSQoS_in parent, DataWriter_in src, UserDataQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < dw_userdata_Connection > (parent, dw_userdata_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dw_userdata_Connection_Impl::metaname, src, dst);
   }
 
   //

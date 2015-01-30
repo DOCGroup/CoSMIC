@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src PathProperty connection.
-    size_t src_PathProperty (std::vector <PathProperty> & items) const;
+    size_t src_of_PathProperty (std::vector <PathProperty> & items) const;
+    GAME::Mga::Collection_T <PathProperty> src_of_PathProperty (void) const;
     ///@}
 
     /**
@@ -94,15 +95,6 @@ namespace PICML
 
     size_t get_ComponentRefs (std::vector <ComponentRef> & items) const;
     ::GAME::Mga::Collection_T <ComponentRef> get_ComponentRefs (void) const;
-
-    size_t get_DstEdges (std::vector <DstEdge> & items) const;
-    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
-
-    size_t get_SrcEdges (std::vector <SrcEdge> & items) const;
-    ::GAME::Mga::Collection_T <SrcEdge> get_SrcEdges (void) const;
-
-    size_t get_EdgePropertys (std::vector <EdgeProperty> & items) const;
-    ::GAME::Mga::Collection_T <EdgeProperty> get_EdgePropertys (void) const;
 
     size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
     ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
@@ -124,6 +116,15 @@ namespace PICML
 
     size_t get_Edges (std::vector <Edge> & items) const;
     ::GAME::Mga::Collection_T <Edge> get_Edges (void) const;
+
+    size_t get_DstEdges (std::vector <DstEdge> & items) const;
+    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
+
+    size_t get_SrcEdges (std::vector <SrcEdge> & items) const;
+    ::GAME::Mga::Collection_T <SrcEdge> get_SrcEdges (void) const;
+
+    size_t get_EdgePropertys (std::vector <EdgeProperty> & items) const;
+    ::GAME::Mga::Collection_T <EdgeProperty> get_EdgePropertys (void) const;
 
     ///@}
   };

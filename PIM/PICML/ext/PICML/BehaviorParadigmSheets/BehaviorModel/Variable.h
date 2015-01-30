@@ -90,8 +90,8 @@ namespace PICML
      */
     ///@{
     bool PredefinedType_is_nil (void) const;
-    PredefinedType get_PredefinedType (void) const;
-    void set_PredefinedType (PredefinedType_in item);
+    PredefinedType refers_to_PredefinedType (void) const;
+    void refers_to_PredefinedType (PredefinedType_in item);
     ///@}
   };
 }

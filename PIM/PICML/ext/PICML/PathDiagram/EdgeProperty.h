@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static EdgeProperty _create (const Path_in parent);
+    static EdgeProperty _create (const Path_in parent, Property_in src, Edge_in dst);
     ///@}
 
     // Default constructor.

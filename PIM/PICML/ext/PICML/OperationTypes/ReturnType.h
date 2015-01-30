@@ -51,8 +51,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ReturnType _create (const TwowayOperation_in parent);
     static ReturnType _create (const Operation_in parent);
+    static ReturnType _create (const TwowayOperation_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +71,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    TwowayOperation parent_TwowayOperation (void);
     Operation parent_Operation (void);
+    TwowayOperation parent_TwowayOperation (void);
     ///@}
 
     /**
@@ -80,8 +80,8 @@ namespace PICML
      */
     ///@{
     bool MemberType_is_nil (void) const;
-    MemberType get_MemberType (void) const;
-    void set_MemberType (MemberType_in item);
+    MemberType refers_to_MemberType (void) const;
+    void refers_to_MemberType (MemberType_in item);
     ///@}
   };
 }

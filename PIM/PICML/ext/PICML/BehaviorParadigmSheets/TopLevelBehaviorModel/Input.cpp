@@ -10,11 +10,11 @@
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
 #include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
 #include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,11 +28,11 @@ namespace PICML
   const std::string Input_Impl::metaname ("Input");
 
   //
-  // _create (const TopLevelBehavior_in)
+  // _create (const TopLevelBehavior_in, SingleInputBase_in src, InputAction_in dst)
   //
-  Input Input_Impl::_create (const TopLevelBehavior_in parent)
+  Input Input_Impl::_create (const TopLevelBehavior_in parent, SingleInputBase_in src, InputAction_in dst)
   {
-    return ::GAME::Mga::create_object < Input > (parent, Input_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, Input_Impl::metaname, src, dst);
   }
 
   //

@@ -27,7 +27,7 @@ namespace PICML
   //
   Environment Environment_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < Environment > (parent, Environment_Impl::metaname);
+    return ::GAME::Mga::create < Environment > (parent, Environment_Impl::metaname);
   }
 
   //

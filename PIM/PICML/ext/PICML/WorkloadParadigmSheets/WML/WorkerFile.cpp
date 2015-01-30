@@ -27,7 +27,7 @@ namespace PICML
   //
   WorkerFile WorkerFile_Impl::_create (const WorkerLibrary_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerFile > (parent, WorkerFile_Impl::metaname);
+    return ::GAME::Mga::create < WorkerFile > (parent, WorkerFile_Impl::metaname);
   }
 
   //

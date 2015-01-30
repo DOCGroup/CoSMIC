@@ -26,7 +26,7 @@ namespace PICML
   //
   TriggerBenchmarks TriggerBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < TriggerBenchmarks > (parent, TriggerBenchmarks_Impl::metaname);
+    return ::GAME::Mga::create < TriggerBenchmarks > (parent, TriggerBenchmarks_Impl::metaname);
   }
 
   //

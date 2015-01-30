@@ -49,7 +49,7 @@ namespace PICML
   //
   Discriminator Discriminator_Impl::_create (const SwitchedAggregate_in parent)
   {
-    return ::GAME::Mga::create_object < Discriminator > (parent, Discriminator_Impl::metaname);
+    return ::GAME::Mga::create < Discriminator > (parent, Discriminator_Impl::metaname);
   }
 
   //
@@ -83,17 +83,17 @@ namespace PICML
   }
 
   //
-  // set_ConstantType
+  // refers_to_ConstantType
   //
-  void Discriminator_Impl::set_ConstantType (ConstantType_in item)
+  void Discriminator_Impl::refers_to_ConstantType (ConstantType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ConstantType
+  // refers_to_ConstantType
   //
-  ConstantType Discriminator_Impl::get_ConstantType (void) const
+  ConstantType Discriminator_Impl::refers_to_ConstantType (void) const
   {
     return ConstantType::_narrow (this->refers_to ());
   }

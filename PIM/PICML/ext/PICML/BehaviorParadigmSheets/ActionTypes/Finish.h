@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Finish _create (const BehaviorModel_in parent);
+    static Finish _create (const BehaviorModel_in parent, StateBase_in src, BehaviorInputAction_in dst);
     ///@}
 
     // Default constructor.

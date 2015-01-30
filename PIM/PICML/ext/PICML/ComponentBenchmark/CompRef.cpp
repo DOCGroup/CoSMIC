@@ -28,7 +28,7 @@ namespace PICML
   //
   CompRef CompRef_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < CompRef > (parent, CompRef_Impl::metaname);
+    return ::GAME::Mga::create < CompRef > (parent, CompRef_Impl::metaname);
   }
 
   //
@@ -54,11 +54,19 @@ namespace PICML
   }
 
   //
-  // dst_ComponentOperation
+  // dst_of_ComponentOperation
   //
-  size_t CompRef_Impl::dst_ComponentOperation (std::vector <ComponentOperation> & items) const
+  size_t CompRef_Impl::dst_of_ComponentOperation (std::vector <ComponentOperation> & items) const
   {
     return this->in_connections <ComponentOperation> (items);
+  }
+
+  //
+  // dst_of_ComponentOperation
+  //
+  GAME::Mga::Collection_T <ComponentOperation> CompRef_Impl::dst_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("dst");
   }
 
   //
@@ -70,17 +78,17 @@ namespace PICML
   }
 
   //
-  // set_Component
+  // refers_to_Component
   //
-  void CompRef_Impl::set_Component (Component_in item)
+  void CompRef_Impl::refers_to_Component (Component_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Component
+  // refers_to_Component
   //
-  Component CompRef_Impl::get_Component (void) const
+  Component CompRef_Impl::refers_to_Component (void) const
   {
     return Component::_narrow (this->refers_to ());
   }

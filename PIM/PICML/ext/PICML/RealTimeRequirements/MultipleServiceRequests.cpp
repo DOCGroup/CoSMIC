@@ -26,7 +26,7 @@ namespace PICML
   //
   MultipleServiceRequests MultipleServiceRequests_Impl::_create (const ServiceProvider_in parent)
   {
-    return ::GAME::Mga::create_object < MultipleServiceRequests > (parent, MultipleServiceRequests_Impl::metaname);
+    return ::GAME::Mga::create < MultipleServiceRequests > (parent, MultipleServiceRequests_Impl::metaname);
   }
 
   //

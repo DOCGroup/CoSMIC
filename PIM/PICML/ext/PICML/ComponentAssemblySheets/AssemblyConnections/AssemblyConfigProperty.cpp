@@ -28,11 +28,11 @@ namespace PICML
   const std::string AssemblyConfigProperty_Impl::metaname ("AssemblyConfigProperty");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, AssemblyConfigPropertyEnd_in src, Property_in dst)
   //
-  AssemblyConfigProperty AssemblyConfigProperty_Impl::_create (const ComponentAssembly_in parent)
+  AssemblyConfigProperty AssemblyConfigProperty_Impl::_create (const ComponentAssembly_in parent, AssemblyConfigPropertyEnd_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < AssemblyConfigProperty > (parent, AssemblyConfigProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, AssemblyConfigProperty_Impl::metaname, src, dst);
   }
 
   //

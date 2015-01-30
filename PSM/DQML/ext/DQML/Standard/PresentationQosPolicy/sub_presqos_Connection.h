@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static sub_presqos_Connection _create (const DDSQoS_in parent);
+    static sub_presqos_Connection _create (const DDSQoS_in parent, Subscriber_in src, PresentationQosPolicy_in dst);
     ///@}
 
     // Default constructor.

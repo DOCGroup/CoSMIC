@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Label.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/LabelConnection.h"
-#include "PICML/NamedTypes/Label.h"
 #include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
@@ -33,7 +33,7 @@ namespace PICML
   //
   SwitchedAggregate SwitchedAggregate_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < SwitchedAggregate > (parent, SwitchedAggregate_Impl::metaname);
+    return ::GAME::Mga::create < SwitchedAggregate > (parent, SwitchedAggregate_Impl::metaname);
   }
 
   //
@@ -41,7 +41,7 @@ namespace PICML
   //
   SwitchedAggregate SwitchedAggregate_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < SwitchedAggregate > (parent, SwitchedAggregate_Impl::metaname);
+    return ::GAME::Mga::create < SwitchedAggregate > (parent, SwitchedAggregate_Impl::metaname);
   }
 
   //
@@ -49,7 +49,7 @@ namespace PICML
   //
   SwitchedAggregate SwitchedAggregate_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < SwitchedAggregate > (parent, SwitchedAggregate_Impl::metaname);
+    return ::GAME::Mga::create < SwitchedAggregate > (parent, SwitchedAggregate_Impl::metaname);
   }
 
   //
@@ -80,6 +80,22 @@ namespace PICML
   Discriminator SwitchedAggregate_Impl::get_Discriminator (void) const
   {
     return this->children <Discriminator> ().first ();
+  }
+
+  //
+  // get_Labels
+  //
+  size_t SwitchedAggregate_Impl::get_Labels (std::vector <Label> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Labels
+  //
+  ::GAME::Mga::Collection_T <Label> SwitchedAggregate_Impl::get_Labels (void) const
+  {
+    return this->children <Label> ();
   }
 
   //
@@ -128,22 +144,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <LabelConnection> SwitchedAggregate_Impl::get_LabelConnections (void) const
   {
     return this->children <LabelConnection> ();
-  }
-
-  //
-  // get_Labels
-  //
-  size_t SwitchedAggregate_Impl::get_Labels (std::vector <Label> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Labels
-  //
-  ::GAME::Mga::Collection_T <Label> SwitchedAggregate_Impl::get_Labels (void) const
-  {
-    return this->children <Label> ();
   }
 }
 

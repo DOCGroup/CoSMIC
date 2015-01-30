@@ -11,8 +11,8 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
@@ -34,7 +34,7 @@ namespace PICML
   //
   ComponentContainer ComponentContainer_Impl::_create (const ComponentTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < ComponentContainer > (parent, ComponentContainer_Impl::metaname);
+    return ::GAME::Mga::create < ComponentContainer > (parent, ComponentContainer_Impl::metaname);
   }
 
   //

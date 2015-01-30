@@ -40,7 +40,7 @@ namespace PICML
   //
   PackageConfigurationContainer PackageConfigurationContainer_Impl::_create (const PackageConfigurations_in parent)
   {
-    return ::GAME::Mga::create_root_object < PackageConfigurationContainer > (parent, PackageConfigurationContainer_Impl::metaname);
+    return ::GAME::Mga::create < PackageConfigurationContainer > (parent, PackageConfigurationContainer_Impl::metaname);
   }
 
   //

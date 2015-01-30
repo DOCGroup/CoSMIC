@@ -29,7 +29,7 @@ namespace PICML
   //
   ExecutorProject ExecutorProject_Impl::_create (const Project_in parent)
   {
-    return ::GAME::Mga::create_object < ExecutorProject > (parent, ExecutorProject_Impl::metaname);
+    return ::GAME::Mga::create < ExecutorProject > (parent, ExecutorProject_Impl::metaname);
   }
 
   //

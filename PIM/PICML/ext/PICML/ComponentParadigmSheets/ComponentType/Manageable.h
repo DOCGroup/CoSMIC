@@ -65,7 +65,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ManagesComponent connection.
-    size_t dst_ManagesComponent (std::vector <ManagesComponent> & items) const;
+    size_t dst_of_ManagesComponent (std::vector <ManagesComponent> & items) const;
+    GAME::Mga::Collection_T <ManagesComponent> dst_of_ManagesComponent (void) const;
     ///@}
   };
 }

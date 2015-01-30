@@ -26,7 +26,7 @@ namespace PICML
   //
   ECBehavior ECBehavior_Impl::_create (const ECRequirements_in parent)
   {
-    return ::GAME::Mga::create_object < ECBehavior > (parent, ECBehavior_Impl::metaname);
+    return ::GAME::Mga::create < ECBehavior > (parent, ECBehavior_Impl::metaname);
   }
 
   //

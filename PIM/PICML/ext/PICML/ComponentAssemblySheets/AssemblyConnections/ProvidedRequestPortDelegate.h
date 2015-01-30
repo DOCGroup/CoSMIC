@@ -81,7 +81,8 @@ namespace PICML
     ///@{
 
     /// Get the src FacetDelegate connection.
-    size_t src_FacetDelegate (std::vector <FacetDelegate> & items) const;
+    size_t src_of_FacetDelegate (std::vector <FacetDelegate> & items) const;
+    GAME::Mga::Collection_T <FacetDelegate> src_of_FacetDelegate (void) const;
     ///@}
   };
 }

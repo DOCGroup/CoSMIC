@@ -32,7 +32,7 @@ namespace PICML
   //
   OnewayOperation OnewayOperation_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
+    return ::GAME::Mga::create < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
   }
 
   //
@@ -40,7 +40,7 @@ namespace PICML
   //
   OnewayOperation OnewayOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
+    return ::GAME::Mga::create < OnewayOperation > (parent, OnewayOperation_Impl::metaname);
   }
 
   //

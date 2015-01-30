@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   ConnectorType ConnectorType_Impl::_create (const ConnectorImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorType > (parent, ConnectorType_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorType > (parent, ConnectorType_Impl::metaname);
   }
 
   //
@@ -54,11 +54,19 @@ namespace PICML
   }
 
   //
-  // dst_ConnectorImplements
+  // dst_of_ConnectorImplements
   //
-  size_t ConnectorType_Impl::dst_ConnectorImplements (std::vector <ConnectorImplements> & items) const
+  size_t ConnectorType_Impl::dst_of_ConnectorImplements (std::vector <ConnectorImplements> & items) const
   {
     return this->in_connections <ConnectorImplements> (items);
+  }
+
+  //
+  // dst_of_ConnectorImplements
+  //
+  GAME::Mga::Collection_T <ConnectorImplements> ConnectorType_Impl::dst_of_ConnectorImplements (void) const
+  {
+    return this->in_connections <ConnectorImplements> ("dst");
   }
 
   //
@@ -70,17 +78,17 @@ namespace PICML
   }
 
   //
-  // set_ConnectorObject
+  // refers_to_ConnectorObject
   //
-  void ConnectorType_Impl::set_ConnectorObject (ConnectorObject_in item)
+  void ConnectorType_Impl::refers_to_ConnectorObject (ConnectorObject_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ConnectorObject
+  // refers_to_ConnectorObject
   //
-  ConnectorObject ConnectorType_Impl::get_ConnectorObject (void) const
+  ConnectorObject ConnectorType_Impl::refers_to_ConnectorObject (void) const
   {
     return ConnectorObject::_narrow (this->refers_to ());
   }

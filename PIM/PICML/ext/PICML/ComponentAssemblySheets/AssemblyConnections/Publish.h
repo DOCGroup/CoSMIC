@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Publish _create (const ComponentAssembly_in parent);
+    static Publish _create (const ComponentAssembly_in parent, ExtendPortEnd_in src, ConnectorInstance_in dst);
     ///@}
 
     // Default constructor.

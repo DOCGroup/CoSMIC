@@ -79,20 +79,25 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dp_entityfactory_Connection connection.
-    size_t src_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const;
-
-    /// Get the src dp_topic_Connection connection.
-    size_t src_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const;
-
     /// Get the src dp_userdata_Connection connection.
-    size_t src_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
-
-    /// Get the src dp_sub_Connection connection.
-    size_t src_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const;
+    size_t src_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
+    GAME::Mga::Collection_T <dp_userdata_Connection> src_of_dp_userdata_Connection (void) const;
 
     /// Get the src dp_pub_Connection connection.
-    size_t src_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const;
+    size_t src_of_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const;
+    GAME::Mga::Collection_T <dp_pub_Connection> src_of_dp_pub_Connection (void) const;
+
+    /// Get the src dp_entityfactory_Connection connection.
+    size_t src_of_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const;
+    GAME::Mga::Collection_T <dp_entityfactory_Connection> src_of_dp_entityfactory_Connection (void) const;
+
+    /// Get the src dp_sub_Connection connection.
+    size_t src_of_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const;
+    GAME::Mga::Collection_T <dp_sub_Connection> src_of_dp_sub_Connection (void) const;
+
+    /// Get the src dp_topic_Connection connection.
+    size_t src_of_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const;
+    GAME::Mga::Collection_T <dp_topic_Connection> src_of_dp_topic_Connection (void) const;
     ///@}
 
     /**
@@ -101,7 +106,8 @@ namespace DQML
     ///@{
 
     /// Get the dst dpf_dp_Connection connection.
-    size_t dst_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
+    size_t dst_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
+    GAME::Mga::Collection_T <dpf_dp_Connection> dst_of_dpf_dp_Connection (void) const;
     ///@}
   };
 }

@@ -29,7 +29,7 @@ namespace PICML
   //
   NodeReference NodeReference_Impl::_create (const DeploymentPlan_in parent)
   {
-    return ::GAME::Mga::create_object < NodeReference > (parent, NodeReference_Impl::metaname);
+    return ::GAME::Mga::create < NodeReference > (parent, NodeReference_Impl::metaname);
   }
 
   //
@@ -55,19 +55,35 @@ namespace PICML
   }
 
   //
-  // src_PropertyMapping
+  // src_of_PropertyMapping
   //
-  size_t NodeReference_Impl::src_PropertyMapping (std::vector <PropertyMapping> & items) const
+  size_t NodeReference_Impl::src_of_PropertyMapping (std::vector <PropertyMapping> & items) const
   {
     return this->in_connections <PropertyMapping> (items);
   }
 
   //
-  // dst_InstanceMapping
+  // src_of_PropertyMapping
   //
-  size_t NodeReference_Impl::dst_InstanceMapping (std::vector <InstanceMapping> & items) const
+  GAME::Mga::Collection_T <PropertyMapping> NodeReference_Impl::src_of_PropertyMapping (void) const
+  {
+    return this->in_connections <PropertyMapping> ("src");
+  }
+
+  //
+  // dst_of_InstanceMapping
+  //
+  size_t NodeReference_Impl::dst_of_InstanceMapping (std::vector <InstanceMapping> & items) const
   {
     return this->in_connections <InstanceMapping> (items);
+  }
+
+  //
+  // dst_of_InstanceMapping
+  //
+  GAME::Mga::Collection_T <InstanceMapping> NodeReference_Impl::dst_of_InstanceMapping (void) const
+  {
+    return this->in_connections <InstanceMapping> ("dst");
   }
 
   //
@@ -79,17 +95,17 @@ namespace PICML
   }
 
   //
-  // set_Node
+  // refers_to_Node
   //
-  void NodeReference_Impl::set_Node (Node_in item)
+  void NodeReference_Impl::refers_to_Node (Node_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Node
+  // refers_to_Node
   //
-  Node NodeReference_Impl::get_Node (void) const
+  Node NodeReference_Impl::refers_to_Node (void) const
   {
     return Node::_narrow (this->refers_to ());
   }

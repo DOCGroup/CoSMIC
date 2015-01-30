@@ -24,11 +24,11 @@ namespace DQML
   const std::string dw_reliability_Connection_Impl::metaname ("dw_reliability_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, DataWriter_in src, ReliabilityQosPolicy_in dst)
   //
-  dw_reliability_Connection dw_reliability_Connection_Impl::_create (const DDSQoS_in parent)
+  dw_reliability_Connection dw_reliability_Connection_Impl::_create (const DDSQoS_in parent, DataWriter_in src, ReliabilityQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < dw_reliability_Connection > (parent, dw_reliability_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dw_reliability_Connection_Impl::metaname, src, dst);
   }
 
   //

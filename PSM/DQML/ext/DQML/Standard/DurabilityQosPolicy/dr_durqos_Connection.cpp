@@ -24,11 +24,11 @@ namespace DQML
   const std::string dr_durqos_Connection_Impl::metaname ("dr_durqos_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, DataReader_in src, DurabilityQosPolicy_in dst)
   //
-  dr_durqos_Connection dr_durqos_Connection_Impl::_create (const DDSQoS_in parent)
+  dr_durqos_Connection dr_durqos_Connection_Impl::_create (const DDSQoS_in parent, DataReader_in src, DurabilityQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < dr_durqos_Connection > (parent, dr_durqos_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dr_durqos_Connection_Impl::metaname, src, dst);
   }
 
   //

@@ -79,16 +79,20 @@ namespace PICML
     ///@{
 
     /// Get the src WorkLoadOperationConnection connection.
-    size_t src_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
+    size_t src_of_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
+    GAME::Mga::Collection_T <WorkLoadOperationConnection> src_of_WorkLoadOperationConnection (void) const;
 
     /// Get the src ComponentOperation connection.
-    size_t src_ComponentOperation (std::vector <ComponentOperation> & items) const;
+    size_t src_of_ComponentOperation (std::vector <ComponentOperation> & items) const;
+    GAME::Mga::Collection_T <ComponentOperation> src_of_ComponentOperation (void) const;
 
     /// Get the src MetricConnection connection.
-    size_t src_MetricConnection (std::vector <MetricConnection> & items) const;
+    size_t src_of_MetricConnection (std::vector <MetricConnection> & items) const;
+    GAME::Mga::Collection_T <MetricConnection> src_of_MetricConnection (void) const;
 
     /// Get the src TimerConnection connection.
-    size_t src_TimerConnection (std::vector <TimerConnection> & items) const;
+    size_t src_of_TimerConnection (std::vector <TimerConnection> & items) const;
+    GAME::Mga::Collection_T <TimerConnection> src_of_TimerConnection (void) const;
     ///@}
 
     /**
@@ -96,8 +100,8 @@ namespace PICML
      */
     ///@{
     bool OperationBase_is_nil (void) const;
-    OperationBase get_OperationBase (void) const;
-    void set_OperationBase (OperationBase_in item);
+    OperationBase refers_to_OperationBase (void) const;
+    void refers_to_OperationBase (OperationBase_in item);
     ///@}
   };
 }

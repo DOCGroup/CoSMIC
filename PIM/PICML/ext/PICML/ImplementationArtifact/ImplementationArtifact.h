@@ -129,19 +129,24 @@ namespace PICML
     ///@{
 
     /// Get the src ArtifactDependsOn connection.
-    size_t src_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
+    size_t src_of_ArtifactDependsOn (std::vector <ArtifactDependsOn> & items) const;
+    GAME::Mga::Collection_T <ArtifactDependsOn> src_of_ArtifactDependsOn (void) const;
 
     /// Get the src ArtifactDependency connection.
-    size_t src_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
+    size_t src_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
+    GAME::Mga::Collection_T <ArtifactDependency> src_of_ArtifactDependency (void) const;
 
     /// Get the src ArtifactInfoProperty connection.
-    size_t src_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const;
+    size_t src_of_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const;
+    GAME::Mga::Collection_T <ArtifactInfoProperty> src_of_ArtifactInfoProperty (void) const;
 
     /// Get the src ArtifactExecParameter connection.
-    size_t src_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
+    size_t src_of_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const;
+    GAME::Mga::Collection_T <ArtifactExecParameter> src_of_ArtifactExecParameter (void) const;
 
     /// Get the src ArtifactDeployRequirement connection.
-    size_t src_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+    size_t src_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+    GAME::Mga::Collection_T <ArtifactDeployRequirement> src_of_ArtifactDeployRequirement (void) const;
     ///@}
 
     /**
@@ -150,7 +155,8 @@ namespace PICML
     ///@{
 
     /// Get the dst ArtifactDependency connection.
-    size_t dst_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
+    size_t dst_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const;
+    GAME::Mga::Collection_T <ArtifactDependency> dst_of_ArtifactDependency (void) const;
     ///@}
   };
 }

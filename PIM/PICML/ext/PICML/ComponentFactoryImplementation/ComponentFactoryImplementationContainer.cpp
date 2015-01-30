@@ -27,7 +27,7 @@ namespace PICML
   //
   ComponentFactoryImplementationContainer ComponentFactoryImplementationContainer_Impl::_create (const ComponentFactoryImplementations_in parent)
   {
-    return ::GAME::Mga::create_root_object < ComponentFactoryImplementationContainer > (parent, ComponentFactoryImplementationContainer_Impl::metaname);
+    return ::GAME::Mga::create < ComponentFactoryImplementationContainer > (parent, ComponentFactoryImplementationContainer_Impl::metaname);
   }
 
   //

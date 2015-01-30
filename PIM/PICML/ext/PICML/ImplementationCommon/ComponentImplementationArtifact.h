@@ -95,8 +95,8 @@ namespace PICML
      */
     ///@{
     bool ImplementationArtifact_is_nil (void) const;
-    ImplementationArtifact get_ImplementationArtifact (void) const;
-    void set_ImplementationArtifact (ImplementationArtifact_in item);
+    ImplementationArtifact refers_to_ImplementationArtifact (void) const;
+    void refers_to_ImplementationArtifact (ImplementationArtifact_in item);
     ///@}
   };
 }

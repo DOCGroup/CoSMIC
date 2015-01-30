@@ -23,11 +23,11 @@ namespace PICML
   const std::string ArtifactDependency_Impl::metaname ("ArtifactDependency");
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, ImplementationArtifact_in dst)
   //
-  ArtifactDependency ArtifactDependency_Impl::_create (const ArtifactContainer_in parent)
+  ArtifactDependency ArtifactDependency_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, ImplementationArtifact_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactDependency > (parent, ArtifactDependency_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactDependency_Impl::metaname, src, dst);
   }
 
   //

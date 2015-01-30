@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src TerminalEffect connection.
-    size_t src_TerminalEffect (std::vector <TerminalEffect> & items) const;
+    size_t src_of_TerminalEffect (std::vector <TerminalEffect> & items) const;
+    GAME::Mga::Collection_T <TerminalEffect> src_of_TerminalEffect (void) const;
     ///@}
 
     /**
@@ -88,7 +89,8 @@ namespace PICML
     ///@{
 
     /// Get the dst TerminalTransition connection.
-    size_t dst_TerminalTransition (std::vector <TerminalTransition> & items) const;
+    size_t dst_of_TerminalTransition (std::vector <TerminalTransition> & items) const;
+    GAME::Mga::Collection_T <TerminalTransition> dst_of_TerminalTransition (void) const;
     ///@}
   };
 }

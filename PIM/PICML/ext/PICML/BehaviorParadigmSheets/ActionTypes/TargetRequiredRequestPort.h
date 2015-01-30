@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool RequiredRequestPort_is_nil (void) const;
-    RequiredRequestPort get_RequiredRequestPort (void) const;
-    void set_RequiredRequestPort (RequiredRequestPort_in item);
+    RequiredRequestPort refers_to_RequiredRequestPort (void) const;
+    void refers_to_RequiredRequestPort (RequiredRequestPort_in item);
     ///@}
   };
 }

@@ -27,7 +27,7 @@ namespace PICML
   //
   SupportsInstance SupportsInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < SupportsInstance > (parent, SupportsInstance_Impl::metaname);
+    return ::GAME::Mga::create < SupportsInstance > (parent, SupportsInstance_Impl::metaname);
   }
 
   //
@@ -61,17 +61,17 @@ namespace PICML
   }
 
   //
-  // set_Supports
+  // refers_to_Supports
   //
-  void SupportsInstance_Impl::set_Supports (Supports_in item)
+  void SupportsInstance_Impl::refers_to_Supports (Supports_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Supports
+  // refers_to_Supports
   //
-  Supports SupportsInstance_Impl::get_Supports (void) const
+  Supports SupportsInstance_Impl::refers_to_Supports (void) const
   {
     return Supports::_narrow (this->refers_to ());
   }

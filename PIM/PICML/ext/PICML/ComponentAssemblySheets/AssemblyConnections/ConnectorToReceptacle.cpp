@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
@@ -26,11 +26,11 @@ namespace PICML
   const std::string ConnectorToReceptacle_Impl::metaname ("ConnectorToReceptacle");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, RequiredRequestPortEnd_in src, ConnectorInstance_in dst)
   //
-  ConnectorToReceptacle ConnectorToReceptacle_Impl::_create (const ComponentAssembly_in parent)
+  ConnectorToReceptacle ConnectorToReceptacle_Impl::_create (const ComponentAssembly_in parent, RequiredRequestPortEnd_in src, ConnectorInstance_in dst)
   {
-    return ::GAME::Mga::create_object < ConnectorToReceptacle > (parent, ConnectorToReceptacle_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ConnectorToReceptacle_Impl::metaname, src, dst);
   }
 
   //

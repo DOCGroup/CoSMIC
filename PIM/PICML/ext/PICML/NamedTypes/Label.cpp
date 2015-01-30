@@ -27,7 +27,7 @@ namespace PICML
   //
   Label Label_Impl::_create (const SwitchedAggregate_in parent)
   {
-    return ::GAME::Mga::create_object < Label > (parent, Label_Impl::metaname);
+    return ::GAME::Mga::create < Label > (parent, Label_Impl::metaname);
   }
 
   //
@@ -53,11 +53,19 @@ namespace PICML
   }
 
   //
-  // dst_LabelConnection
+  // dst_of_LabelConnection
   //
-  size_t Label_Impl::dst_LabelConnection (std::vector <LabelConnection> & items) const
+  size_t Label_Impl::dst_of_LabelConnection (std::vector <LabelConnection> & items) const
   {
     return this->in_connections <LabelConnection> (items);
+  }
+
+  //
+  // dst_of_LabelConnection
+  //
+  GAME::Mga::Collection_T <LabelConnection> Label_Impl::dst_of_LabelConnection (void) const
+  {
+    return this->in_connections <LabelConnection> ("dst");
   }
 }
 

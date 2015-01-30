@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Key.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/KeyMember.h"
-#include "PICML/NamedTypes/Key.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
@@ -33,7 +33,7 @@ namespace PICML
   //
   Aggregate Aggregate_Impl::_create (const ConnectorObject_in parent)
   {
-    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
+    return ::GAME::Mga::create < Aggregate > (parent, Aggregate_Impl::metaname);
   }
 
   //
@@ -41,7 +41,7 @@ namespace PICML
   //
   Aggregate Aggregate_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
+    return ::GAME::Mga::create < Aggregate > (parent, Aggregate_Impl::metaname);
   }
 
   //
@@ -49,7 +49,7 @@ namespace PICML
   //
   Aggregate Aggregate_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
+    return ::GAME::Mga::create < Aggregate > (parent, Aggregate_Impl::metaname);
   }
 
   //
@@ -57,7 +57,7 @@ namespace PICML
   //
   Aggregate Aggregate_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < Aggregate > (parent, Aggregate_Impl::metaname);
+    return ::GAME::Mga::create < Aggregate > (parent, Aggregate_Impl::metaname);
   }
 
   //

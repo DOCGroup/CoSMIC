@@ -24,11 +24,11 @@ namespace PICML
   const std::string InstanceMapping_Impl::metaname ("InstanceMapping");
 
   //
-  // _create (const DeploymentPlan_in)
+  // _create (const DeploymentPlan_in, CollocationGroup_in src, NodeReference_in dst)
   //
-  InstanceMapping InstanceMapping_Impl::_create (const DeploymentPlan_in parent)
+  InstanceMapping InstanceMapping_Impl::_create (const DeploymentPlan_in parent, CollocationGroup_in src, NodeReference_in dst)
   {
-    return ::GAME::Mga::create_object < InstanceMapping > (parent, InstanceMapping_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, InstanceMapping_Impl::metaname, src, dst);
   }
 
   //

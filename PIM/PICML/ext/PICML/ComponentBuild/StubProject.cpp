@@ -30,7 +30,7 @@ namespace PICML
   //
   StubProject StubProject_Impl::_create (const Project_in parent)
   {
-    return ::GAME::Mga::create_object < StubProject > (parent, StubProject_Impl::metaname);
+    return ::GAME::Mga::create < StubProject > (parent, StubProject_Impl::metaname);
   }
 
   //

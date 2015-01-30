@@ -28,7 +28,7 @@ namespace PICML
   //
   ComponentFactoryRef ComponentFactoryRef_Impl::_create (const DeploymentPlan_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentFactoryRef > (parent, ComponentFactoryRef_Impl::metaname);
+    return ::GAME::Mga::create < ComponentFactoryRef > (parent, ComponentFactoryRef_Impl::metaname);
   }
 
   //
@@ -46,11 +46,19 @@ namespace PICML
   }
 
   //
-  // src_Deploys
+  // src_of_Deploys
   //
-  size_t ComponentFactoryRef_Impl::src_Deploys (std::vector <Deploys> & items) const
+  size_t ComponentFactoryRef_Impl::src_of_Deploys (std::vector <Deploys> & items) const
   {
     return this->in_connections <Deploys> (items);
+  }
+
+  //
+  // src_of_Deploys
+  //
+  GAME::Mga::Collection_T <Deploys> ComponentFactoryRef_Impl::src_of_Deploys (void) const
+  {
+    return this->in_connections <Deploys> ("src");
   }
 
   //
@@ -62,17 +70,17 @@ namespace PICML
   }
 
   //
-  // set_ComponentFactoryInstance
+  // refers_to_ComponentFactoryInstance
   //
-  void ComponentFactoryRef_Impl::set_ComponentFactoryInstance (ComponentFactoryInstance_in item)
+  void ComponentFactoryRef_Impl::refers_to_ComponentFactoryInstance (ComponentFactoryInstance_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentFactoryInstance
+  // refers_to_ComponentFactoryInstance
   //
-  ComponentFactoryInstance ComponentFactoryRef_Impl::get_ComponentFactoryInstance (void) const
+  ComponentFactoryInstance ComponentFactoryRef_Impl::refers_to_ComponentFactoryInstance (void) const
   {
     return ComponentFactoryInstance::_narrow (this->refers_to ());
   }

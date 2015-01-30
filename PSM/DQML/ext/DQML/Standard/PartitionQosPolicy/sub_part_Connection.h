@@ -51,7 +51,7 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static sub_part_Connection _create (const DDSQoS_in parent);
+    static sub_part_Connection _create (const DDSQoS_in parent, Subscriber_in src, PartitionQosPolicy_in dst);
     ///@}
 
     // Default constructor.

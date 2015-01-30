@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DDSEntities/Topic.h"
 #include "DQML/Standard/DDSEntities/DataWriter.h"
+#include "DQML/Standard/DDSEntities/Topic.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,11 +24,11 @@ namespace DQML
   const std::string dw_topic_Connection_Impl::metaname ("dw_topic_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, DataWriter_in src, Topic_in dst)
   //
-  dw_topic_Connection dw_topic_Connection_Impl::_create (const DDSQoS_in parent)
+  dw_topic_Connection dw_topic_Connection_Impl::_create (const DDSQoS_in parent, DataWriter_in src, Topic_in dst)
   {
-    return ::GAME::Mga::create_object < dw_topic_Connection > (parent, dw_topic_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, dw_topic_Connection_Impl::metaname, src, dst);
   }
 
   //

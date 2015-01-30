@@ -67,7 +67,8 @@ namespace PICML
     ///@{
 
     /// Get the src MirrorDelegate connection.
-    size_t src_MirrorDelegate (std::vector <MirrorDelegate> & items) const;
+    size_t src_of_MirrorDelegate (std::vector <MirrorDelegate> & items) const;
+    GAME::Mga::Collection_T <MirrorDelegate> src_of_MirrorDelegate (void) const;
     ///@}
   };
 }

@@ -19,19 +19,35 @@ namespace PICML
   const std::string ExtendPortEnd_Impl::metaname ("ExtendPortEnd");
 
   //
-  // src_Publish
+  // src_of_Publish
   //
-  size_t ExtendPortEnd_Impl::src_Publish (std::vector <Publish> & items) const
+  size_t ExtendPortEnd_Impl::src_of_Publish (std::vector <Publish> & items) const
   {
     return this->in_connections <Publish> (items);
   }
 
   //
-  // dst_Consume
+  // src_of_Publish
   //
-  size_t ExtendPortEnd_Impl::dst_Consume (std::vector <Consume> & items) const
+  GAME::Mga::Collection_T <Publish> ExtendPortEnd_Impl::src_of_Publish (void) const
+  {
+    return this->in_connections <Publish> ("src");
+  }
+
+  //
+  // dst_of_Consume
+  //
+  size_t ExtendPortEnd_Impl::dst_of_Consume (std::vector <Consume> & items) const
   {
     return this->in_connections <Consume> (items);
+  }
+
+  //
+  // dst_of_Consume
+  //
+  GAME::Mga::Collection_T <Consume> ExtendPortEnd_Impl::dst_of_Consume (void) const
+  {
+    return this->in_connections <Consume> ("dst");
   }
 }
 

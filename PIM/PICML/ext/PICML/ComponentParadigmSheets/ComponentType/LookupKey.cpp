@@ -29,7 +29,7 @@ namespace PICML
   //
   LookupKey LookupKey_Impl::_create (const ComponentFactory_in parent)
   {
-    return ::GAME::Mga::create_object < LookupKey > (parent, LookupKey_Impl::metaname);
+    return ::GAME::Mga::create < LookupKey > (parent, LookupKey_Impl::metaname);
   }
 
   //
@@ -63,17 +63,17 @@ namespace PICML
   }
 
   //
-  // set_LookupKeyType
+  // refers_to_LookupKeyType
   //
-  void LookupKey_Impl::set_LookupKeyType (LookupKeyType_in item)
+  void LookupKey_Impl::refers_to_LookupKeyType (LookupKeyType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_LookupKeyType
+  // refers_to_LookupKeyType
   //
-  LookupKeyType LookupKey_Impl::get_LookupKeyType (void) const
+  LookupKeyType LookupKey_Impl::refers_to_LookupKeyType (void) const
   {
     return LookupKeyType::_narrow (this->refers_to ());
   }

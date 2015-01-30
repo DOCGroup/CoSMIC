@@ -25,11 +25,11 @@ namespace PICML
   const std::string ReceptacleDelegate_Impl::metaname ("ReceptacleDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, RequiredRequestPortDelegate_in src, RequiredRequestPortEnd_in dst)
   //
-  ReceptacleDelegate ReceptacleDelegate_Impl::_create (const ComponentAssembly_in parent)
+  ReceptacleDelegate ReceptacleDelegate_Impl::_create (const ComponentAssembly_in parent, RequiredRequestPortDelegate_in src, RequiredRequestPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < ReceptacleDelegate > (parent, ReceptacleDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ReceptacleDelegate_Impl::metaname, src, dst);
   }
 
   //

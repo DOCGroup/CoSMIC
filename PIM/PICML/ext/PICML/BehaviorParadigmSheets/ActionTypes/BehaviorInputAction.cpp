@@ -33,19 +33,35 @@ namespace PICML
   }
 
   //
-  // src_InputEffect
+  // src_of_InputEffect
   //
-  size_t BehaviorInputAction_Impl::src_InputEffect (std::vector <InputEffect> & items) const
+  size_t BehaviorInputAction_Impl::src_of_InputEffect (std::vector <InputEffect> & items) const
   {
     return this->in_connections <InputEffect> (items);
   }
 
   //
-  // dst_Finish
+  // src_of_InputEffect
   //
-  size_t BehaviorInputAction_Impl::dst_Finish (std::vector <Finish> & items) const
+  GAME::Mga::Collection_T <InputEffect> BehaviorInputAction_Impl::src_of_InputEffect (void) const
+  {
+    return this->in_connections <InputEffect> ("src");
+  }
+
+  //
+  // dst_of_Finish
+  //
+  size_t BehaviorInputAction_Impl::dst_of_Finish (std::vector <Finish> & items) const
   {
     return this->in_connections <Finish> (items);
+  }
+
+  //
+  // dst_of_Finish
+  //
+  GAME::Mga::Collection_T <Finish> BehaviorInputAction_Impl::dst_of_Finish (void) const
+  {
+    return this->in_connections <Finish> ("dst");
   }
 
   //

@@ -29,7 +29,7 @@ namespace DQML
   //
   SchedulingClassQosPolicy SchedulingClassQosPolicy_Impl::_create (const SchedulingQosPolicy_in parent)
   {
-    return ::GAME::Mga::create_object < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
   }
 
   //
@@ -37,7 +37,7 @@ namespace DQML
   //
   SchedulingClassQosPolicy SchedulingClassQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SchedulingClassQosPolicy > (parent, SchedulingClassQosPolicy_Impl::metaname);
   }
 
   //

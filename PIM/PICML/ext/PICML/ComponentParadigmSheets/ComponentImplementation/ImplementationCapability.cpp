@@ -26,11 +26,11 @@ namespace PICML
   const std::string ImplementationCapability_Impl::metaname ("ImplementationCapability");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, Capability_in dst)
   //
-  ImplementationCapability ImplementationCapability_Impl::_create (const ComponentImplementationContainer_in parent)
+  ImplementationCapability ImplementationCapability_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, Capability_in dst)
   {
-    return ::GAME::Mga::create_object < ImplementationCapability > (parent, ImplementationCapability_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ImplementationCapability_Impl::metaname, src, dst);
   }
 
   //

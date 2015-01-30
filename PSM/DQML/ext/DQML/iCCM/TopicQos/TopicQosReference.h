@@ -80,8 +80,8 @@ namespace DQML
      */
     ///@{
     bool TopicQos_is_nil (void) const;
-    TopicQos get_TopicQos (void) const;
-    void set_TopicQos (TopicQos_in item);
+    TopicQos refers_to_TopicQos (void) const;
+    void refers_to_TopicQos (TopicQos_in item);
     ///@}
   };
 }

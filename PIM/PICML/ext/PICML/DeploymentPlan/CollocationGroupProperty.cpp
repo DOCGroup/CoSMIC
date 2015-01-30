@@ -26,11 +26,11 @@ namespace PICML
   const std::string CollocationGroupProperty_Impl::metaname ("CollocationGroupProperty");
 
   //
-  // _create (const DeploymentPlan_in)
+  // _create (const DeploymentPlan_in, Property_in src, CollocationGroup_in dst)
   //
-  CollocationGroupProperty CollocationGroupProperty_Impl::_create (const DeploymentPlan_in parent)
+  CollocationGroupProperty CollocationGroupProperty_Impl::_create (const DeploymentPlan_in parent, Property_in src, CollocationGroup_in dst)
   {
-    return ::GAME::Mga::create_object < CollocationGroupProperty > (parent, CollocationGroupProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, CollocationGroupProperty_Impl::metaname, src, dst);
   }
 
   //

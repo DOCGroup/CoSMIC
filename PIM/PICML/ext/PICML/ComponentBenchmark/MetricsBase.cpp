@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/DataAnalysisBase.h"
 #include "PICML/ComponentBenchmark/Jitter.h"
 #include "PICML/ComponentBenchmark/Maximum.h"
 #include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/Average.h"
+#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
 
 namespace PICML
 {
@@ -34,27 +34,51 @@ namespace PICML
   }
 
   //
-  // src_WorkloadCharacteristics
+  // src_of_WorkloadCharacteristics
   //
-  size_t MetricsBase_Impl::src_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
+  size_t MetricsBase_Impl::src_of_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
   {
     return this->in_connections <WorkloadCharacteristics> (items);
   }
 
   //
-  // dst_BenchmarkCharacteristics
+  // src_of_WorkloadCharacteristics
   //
-  size_t MetricsBase_Impl::dst_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const
+  GAME::Mga::Collection_T <WorkloadCharacteristics> MetricsBase_Impl::src_of_WorkloadCharacteristics (void) const
+  {
+    return this->in_connections <WorkloadCharacteristics> ("src");
+  }
+
+  //
+  // dst_of_BenchmarkCharacteristics
+  //
+  size_t MetricsBase_Impl::dst_of_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const
   {
     return this->in_connections <BenchmarkCharacteristics> (items);
   }
 
   //
-  // dst_MetricConnection
+  // dst_of_BenchmarkCharacteristics
   //
-  size_t MetricsBase_Impl::dst_MetricConnection (std::vector <MetricConnection> & items) const
+  GAME::Mga::Collection_T <BenchmarkCharacteristics> MetricsBase_Impl::dst_of_BenchmarkCharacteristics (void) const
+  {
+    return this->in_connections <BenchmarkCharacteristics> ("dst");
+  }
+
+  //
+  // dst_of_MetricConnection
+  //
+  size_t MetricsBase_Impl::dst_of_MetricConnection (std::vector <MetricConnection> & items) const
   {
     return this->in_connections <MetricConnection> (items);
+  }
+
+  //
+  // dst_of_MetricConnection
+  //
+  GAME::Mga::Collection_T <MetricConnection> MetricsBase_Impl::dst_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("dst");
   }
 
   //

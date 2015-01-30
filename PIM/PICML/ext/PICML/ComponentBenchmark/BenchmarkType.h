@@ -66,7 +66,8 @@ namespace PICML
     ///@{
 
     /// Get the src BenchmarkCharacteristics connection.
-    size_t src_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+    size_t src_of_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
+    GAME::Mga::Collection_T <BenchmarkCharacteristics> src_of_BenchmarkCharacteristics (void) const;
     ///@}
   };
 }

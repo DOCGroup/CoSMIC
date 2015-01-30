@@ -24,11 +24,11 @@ namespace PICML
   const std::string TimerEventSinkConn_Impl::metaname ("TimerEventSinkConn");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // _create (const BenchmarkAnalysis_in, EventRef_in src, TimeProbe_in dst)
   //
-  TimerEventSinkConn TimerEventSinkConn_Impl::_create (const BenchmarkAnalysis_in parent)
+  TimerEventSinkConn TimerEventSinkConn_Impl::_create (const BenchmarkAnalysis_in parent, EventRef_in src, TimeProbe_in dst)
   {
-    return ::GAME::Mga::create_object < TimerEventSinkConn > (parent, TimerEventSinkConn_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, TimerEventSinkConn_Impl::metaname, src, dst);
   }
 
   //

@@ -28,11 +28,11 @@ namespace PICML
   const std::string SendsTo_Impl::metaname ("SendsTo");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, OutEventPortEnd_in src, InEventPortEnd_in dst)
   //
-  SendsTo SendsTo_Impl::_create (const ComponentAssembly_in parent)
+  SendsTo SendsTo_Impl::_create (const ComponentAssembly_in parent, OutEventPortEnd_in src, InEventPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < SendsTo > (parent, SendsTo_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, SendsTo_Impl::metaname, src, dst);
   }
 
   //

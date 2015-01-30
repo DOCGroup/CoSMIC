@@ -30,27 +30,51 @@ namespace PICML
   }
 
   //
-  // src_Implements
+  // src_of_Implements
   //
-  size_t ComponentImplementation_Impl::src_Implements (std::vector <Implements> & items) const
+  size_t ComponentImplementation_Impl::src_of_Implements (std::vector <Implements> & items) const
   {
     return this->in_connections <Implements> (items);
   }
 
   //
-  // src_ImplementationDependsOn
+  // src_of_Implements
   //
-  size_t ComponentImplementation_Impl::src_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
+  GAME::Mga::Collection_T <Implements> ComponentImplementation_Impl::src_of_Implements (void) const
+  {
+    return this->in_connections <Implements> ("src");
+  }
+
+  //
+  // src_of_ImplementationDependsOn
+  //
+  size_t ComponentImplementation_Impl::src_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
   {
     return this->in_connections <ImplementationDependsOn> (items);
   }
 
   //
-  // src_ImplementationCapability
+  // src_of_ImplementationDependsOn
   //
-  size_t ComponentImplementation_Impl::src_ImplementationCapability (std::vector <ImplementationCapability> & items) const
+  GAME::Mga::Collection_T <ImplementationDependsOn> ComponentImplementation_Impl::src_of_ImplementationDependsOn (void) const
+  {
+    return this->in_connections <ImplementationDependsOn> ("src");
+  }
+
+  //
+  // src_of_ImplementationCapability
+  //
+  size_t ComponentImplementation_Impl::src_of_ImplementationCapability (std::vector <ImplementationCapability> & items) const
   {
     return this->in_connections <ImplementationCapability> (items);
+  }
+
+  //
+  // src_of_ImplementationCapability
+  //
+  GAME::Mga::Collection_T <ImplementationCapability> ComponentImplementation_Impl::src_of_ImplementationCapability (void) const
+  {
+    return this->in_connections <ImplementationCapability> ("src");
   }
 }
 

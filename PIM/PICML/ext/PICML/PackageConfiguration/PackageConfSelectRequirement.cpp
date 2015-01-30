@@ -26,11 +26,11 @@ namespace PICML
   const std::string PackageConfSelectRequirement_Impl::metaname ("PackageConfSelectRequirement");
 
   //
-  // _create (const PackageConfigurationContainer_in)
+  // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, Requirement_in dst)
   //
-  PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent)
+  PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, Requirement_in dst)
   {
-    return ::GAME::Mga::create_object < PackageConfSelectRequirement > (parent, PackageConfSelectRequirement_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, PackageConfSelectRequirement_Impl::metaname, src, dst);
   }
 
   //

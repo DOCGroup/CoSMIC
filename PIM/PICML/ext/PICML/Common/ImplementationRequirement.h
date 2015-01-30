@@ -105,7 +105,8 @@ namespace PICML
     ///@{
 
     /// Get the dst MonolithDeployRequirement connection.
-    size_t dst_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
+    size_t dst_of_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
+    GAME::Mga::Collection_T <MonolithDeployRequirement> dst_of_MonolithDeployRequirement (void) const;
     ///@}
   };
 }

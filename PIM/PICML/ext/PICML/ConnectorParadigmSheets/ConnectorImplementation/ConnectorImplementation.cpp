@@ -28,7 +28,7 @@ namespace PICML
   //
   ConnectorImplementation ConnectorImplementation_Impl::_create (const ConnectorImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ConnectorImplementation > (parent, ConnectorImplementation_Impl::metaname);
+    return ::GAME::Mga::create < ConnectorImplementation > (parent, ConnectorImplementation_Impl::metaname);
   }
 
   //
@@ -54,11 +54,19 @@ namespace PICML
   }
 
   //
-  // src_ConnectorImplements
+  // src_of_ConnectorImplements
   //
-  size_t ConnectorImplementation_Impl::src_ConnectorImplements (std::vector <ConnectorImplements> & items) const
+  size_t ConnectorImplementation_Impl::src_of_ConnectorImplements (std::vector <ConnectorImplements> & items) const
   {
     return this->in_connections <ConnectorImplements> (items);
+  }
+
+  //
+  // src_of_ConnectorImplements
+  //
+  GAME::Mga::Collection_T <ConnectorImplements> ConnectorImplementation_Impl::src_of_ConnectorImplements (void) const
+  {
+    return this->in_connections <ConnectorImplements> ("src");
   }
 }
 

@@ -30,7 +30,7 @@ namespace PICML
   //
   RTRequirements RTRequirements_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < RTRequirements > (parent, RTRequirements_Impl::metaname);
+    return ::GAME::Mga::create < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }
 
   //
@@ -38,7 +38,7 @@ namespace PICML
   //
   RTRequirements RTRequirements_Impl::_create (const ArtifactContainer_in parent)
   {
-    return ::GAME::Mga::create_object < RTRequirements > (parent, RTRequirements_Impl::metaname);
+    return ::GAME::Mga::create < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }
 
   //
@@ -46,7 +46,7 @@ namespace PICML
   //
   RTRequirements RTRequirements_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < RTRequirements > (parent, RTRequirements_Impl::metaname);
+    return ::GAME::Mga::create < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }
 
   //

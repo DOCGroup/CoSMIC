@@ -26,7 +26,7 @@ namespace PICML
   //
   Char Char_Impl::_create (const PredefinedTypes_in parent)
   {
-    return ::GAME::Mga::create_root_object < Char > (parent, Char_Impl::metaname);
+    return ::GAME::Mga::create < Char > (parent, Char_Impl::metaname);
   }
 
   //

@@ -29,11 +29,11 @@ namespace PICML
   const std::string BenchmarkCharacteristics_Impl::metaname ("BenchmarkCharacteristics");
 
   //
-  // _create (const BenchmarkAnalysis_in)
+  // _create (const BenchmarkAnalysis_in, BenchmarkType_in src, MetricsBase_in dst)
   //
-  BenchmarkCharacteristics BenchmarkCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent)
+  BenchmarkCharacteristics BenchmarkCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent, BenchmarkType_in src, MetricsBase_in dst)
   {
-    return ::GAME::Mga::create_object < BenchmarkCharacteristics > (parent, BenchmarkCharacteristics_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, BenchmarkCharacteristics_Impl::metaname, src, dst);
   }
 
   //

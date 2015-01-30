@@ -26,7 +26,7 @@ namespace PICML
   //
   WhileState WhileState_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < WhileState > (parent, WhileState_Impl::metaname);
+    return ::GAME::Mga::create < WhileState > (parent, WhileState_Impl::metaname);
   }
 
   //

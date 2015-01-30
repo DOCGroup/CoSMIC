@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   WorkerType WorkerType_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < WorkerType > (parent, WorkerType_Impl::metaname);
+    return ::GAME::Mga::create < WorkerType > (parent, WorkerType_Impl::metaname);
   }
 
   //
@@ -62,17 +62,17 @@ namespace PICML
   }
 
   //
-  // set_Worker
+  // refers_to_Worker
   //
-  void WorkerType_Impl::set_Worker (Worker_in item)
+  void WorkerType_Impl::refers_to_Worker (Worker_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Worker
+  // refers_to_Worker
   //
-  Worker WorkerType_Impl::get_Worker (void) const
+  Worker WorkerType_Impl::refers_to_Worker (void) const
   {
     return Worker::_narrow (this->refers_to ());
   }

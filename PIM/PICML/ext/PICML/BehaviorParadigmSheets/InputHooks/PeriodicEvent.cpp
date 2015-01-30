@@ -27,7 +27,7 @@ namespace PICML
   //
   PeriodicEvent PeriodicEvent_Impl::_create (const TopLevelBehavior_in parent)
   {
-    return ::GAME::Mga::create_object < PeriodicEvent > (parent, PeriodicEvent_Impl::metaname);
+    return ::GAME::Mga::create < PeriodicEvent > (parent, PeriodicEvent_Impl::metaname);
   }
 
   //

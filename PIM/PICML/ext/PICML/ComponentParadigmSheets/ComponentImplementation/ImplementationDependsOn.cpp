@@ -26,11 +26,11 @@ namespace PICML
   const std::string ImplementationDependsOn_Impl::metaname ("ImplementationDependsOn");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, ImplementationDependency_in dst)
   //
-  ImplementationDependsOn ImplementationDependsOn_Impl::_create (const ComponentImplementationContainer_in parent)
+  ImplementationDependsOn ImplementationDependsOn_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, ImplementationDependency_in dst)
   {
-    return ::GAME::Mga::create_object < ImplementationDependsOn > (parent, ImplementationDependsOn_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ImplementationDependsOn_Impl::metaname, src, dst);
   }
 
   //

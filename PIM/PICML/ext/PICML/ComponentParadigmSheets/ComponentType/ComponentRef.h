@@ -91,13 +91,16 @@ namespace PICML
     ///@{
 
     /// Get the src ComponentInfoProperty connection.
-    size_t src_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
+    size_t src_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
+    GAME::Mga::Collection_T <ComponentInfoProperty> src_of_ComponentInfoProperty (void) const;
 
     /// Get the src ComponentConfigProperty connection.
-    size_t src_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
+    size_t src_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
+    GAME::Mga::Collection_T <ComponentConfigProperty> src_of_ComponentConfigProperty (void) const;
 
     /// Get the src ComponentProperty connection.
-    size_t src_ComponentProperty (std::vector <ComponentProperty> & items) const;
+    size_t src_of_ComponentProperty (std::vector <ComponentProperty> & items) const;
+    GAME::Mga::Collection_T <ComponentProperty> src_of_ComponentProperty (void) const;
     ///@}
 
     /**
@@ -106,10 +109,12 @@ namespace PICML
     ///@{
 
     /// Get the dst PackageInterface connection.
-    size_t dst_PackageInterface (std::vector <PackageInterface> & items) const;
+    size_t dst_of_PackageInterface (std::vector <PackageInterface> & items) const;
+    GAME::Mga::Collection_T <PackageInterface> dst_of_PackageInterface (void) const;
 
     /// Get the dst Implements connection.
-    size_t dst_Implements (std::vector <Implements> & items) const;
+    size_t dst_of_Implements (std::vector <Implements> & items) const;
+    GAME::Mga::Collection_T <Implements> dst_of_Implements (void) const;
     ///@}
 
     /**
@@ -117,8 +122,8 @@ namespace PICML
      */
     ///@{
     bool Component_is_nil (void) const;
-    Component get_Component (void) const;
-    void set_Component (Component_in item);
+    Component refers_to_Component (void) const;
+    void refers_to_Component (Component_in item);
     ///@}
   };
 }

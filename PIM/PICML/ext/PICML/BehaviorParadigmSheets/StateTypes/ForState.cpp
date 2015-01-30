@@ -26,7 +26,7 @@ namespace PICML
   //
   ForState ForState_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < ForState > (parent, ForState_Impl::metaname);
+    return ::GAME::Mga::create < ForState > (parent, ForState_Impl::metaname);
   }
 
   //

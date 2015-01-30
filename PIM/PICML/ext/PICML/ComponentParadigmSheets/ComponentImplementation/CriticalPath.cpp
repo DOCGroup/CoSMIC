@@ -24,11 +24,11 @@ namespace PICML
   const std::string CriticalPath_Impl::metaname ("CriticalPath");
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // _create (const ComponentImplementationContainer_in, ComponentAssembly_in src, PathReference_in dst)
   //
-  CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent)
+  CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent, ComponentAssembly_in src, PathReference_in dst)
   {
-    return ::GAME::Mga::create_object < CriticalPath > (parent, CriticalPath_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, CriticalPath_Impl::metaname, src, dst);
   }
 
   //

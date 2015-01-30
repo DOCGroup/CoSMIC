@@ -28,7 +28,7 @@ namespace DQML
   //
   TopicDataQosPolicy TopicDataQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < TopicDataQosPolicy > (parent, TopicDataQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TopicDataQosPolicy > (parent, TopicDataQosPolicy_Impl::metaname);
   }
 
   //
@@ -36,7 +36,7 @@ namespace DQML
   //
   TopicDataQosPolicy TopicDataQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < TopicDataQosPolicy > (parent, TopicDataQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TopicDataQosPolicy > (parent, TopicDataQosPolicy_Impl::metaname);
   }
 
   //
@@ -62,11 +62,19 @@ namespace DQML
   }
 
   //
-  // dst_topic_topicdata_Connection
+  // dst_of_topic_topicdata_Connection
   //
-  size_t TopicDataQosPolicy_Impl::dst_topic_topicdata_Connection (std::vector <topic_topicdata_Connection> & items) const
+  size_t TopicDataQosPolicy_Impl::dst_of_topic_topicdata_Connection (std::vector <topic_topicdata_Connection> & items) const
   {
     return this->in_connections <topic_topicdata_Connection> (items);
+  }
+
+  //
+  // dst_of_topic_topicdata_Connection
+  //
+  GAME::Mga::Collection_T <topic_topicdata_Connection> TopicDataQosPolicy_Impl::dst_of_topic_topicdata_Connection (void) const
+  {
+    return this->in_connections <topic_topicdata_Connection> ("dst");
   }
 }
 

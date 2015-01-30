@@ -20,27 +20,51 @@ namespace PICML
   const std::string ProvidedRequestPortEnd_Impl::metaname ("ProvidedRequestPortEnd");
 
   //
-  // dst_ConnectorToFacet
+  // dst_of_ConnectorToFacet
   //
-  size_t ProvidedRequestPortEnd_Impl::dst_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
+  size_t ProvidedRequestPortEnd_Impl::dst_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
   {
     return this->in_connections <ConnectorToFacet> (items);
   }
 
   //
-  // dst_FacetDelegate
+  // dst_of_ConnectorToFacet
   //
-  size_t ProvidedRequestPortEnd_Impl::dst_FacetDelegate (std::vector <FacetDelegate> & items) const
+  GAME::Mga::Collection_T <ConnectorToFacet> ProvidedRequestPortEnd_Impl::dst_of_ConnectorToFacet (void) const
+  {
+    return this->in_connections <ConnectorToFacet> ("dst");
+  }
+
+  //
+  // dst_of_FacetDelegate
+  //
+  size_t ProvidedRequestPortEnd_Impl::dst_of_FacetDelegate (std::vector <FacetDelegate> & items) const
   {
     return this->in_connections <FacetDelegate> (items);
   }
 
   //
-  // dst_Invoke
+  // dst_of_FacetDelegate
   //
-  size_t ProvidedRequestPortEnd_Impl::dst_Invoke (std::vector <Invoke> & items) const
+  GAME::Mga::Collection_T <FacetDelegate> ProvidedRequestPortEnd_Impl::dst_of_FacetDelegate (void) const
+  {
+    return this->in_connections <FacetDelegate> ("dst");
+  }
+
+  //
+  // dst_of_Invoke
+  //
+  size_t ProvidedRequestPortEnd_Impl::dst_of_Invoke (std::vector <Invoke> & items) const
   {
     return this->in_connections <Invoke> (items);
+  }
+
+  //
+  // dst_of_Invoke
+  //
+  GAME::Mga::Collection_T <Invoke> ProvidedRequestPortEnd_Impl::dst_of_Invoke (void) const
+  {
+    return this->in_connections <Invoke> ("dst");
   }
 }
 

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static TerminalTransition _create (const BehaviorModel_in parent);
+    static TerminalTransition _create (const BehaviorModel_in parent, State_in src, Terminal_in dst);
     ///@}
 
     // Default constructor.

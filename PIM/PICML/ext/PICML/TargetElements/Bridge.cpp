@@ -28,7 +28,7 @@ namespace PICML
   //
   Bridge Bridge_Impl::_create (const Domain_in parent)
   {
-    return ::GAME::Mga::create_object < Bridge > (parent, Bridge_Impl::metaname);
+    return ::GAME::Mga::create < Bridge > (parent, Bridge_Impl::metaname);
   }
 
   //
@@ -54,11 +54,19 @@ namespace PICML
   }
 
   //
-  // dst_BridgeConnection
+  // dst_of_BridgeConnection
   //
-  size_t Bridge_Impl::dst_BridgeConnection (std::vector <BridgeConnection> & items) const
+  size_t Bridge_Impl::dst_of_BridgeConnection (std::vector <BridgeConnection> & items) const
   {
     return this->in_connections <BridgeConnection> (items);
+  }
+
+  //
+  // dst_of_BridgeConnection
+  //
+  GAME::Mga::Collection_T <BridgeConnection> Bridge_Impl::dst_of_BridgeConnection (void) const
+  {
+    return this->in_connections <BridgeConnection> ("dst");
   }
 
   //

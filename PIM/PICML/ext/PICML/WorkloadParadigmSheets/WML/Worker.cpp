@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   Worker Worker_Impl::_create (const WorkerPackageBase_in parent)
   {
-    return ::GAME::Mga::create_object < Worker > (parent, Worker_Impl::metaname);
+    return ::GAME::Mga::create < Worker > (parent, Worker_Impl::metaname);
   }
 
   //

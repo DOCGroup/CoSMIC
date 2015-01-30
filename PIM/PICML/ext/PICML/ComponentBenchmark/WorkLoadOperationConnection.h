@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static WorkLoadOperationConnection _create (const BenchmarkAnalysis_in parent);
+    static WorkLoadOperationConnection _create (const BenchmarkAnalysis_in parent, OperationRef_in src, Task_in dst);
     ///@}
 
     // Default constructor.

@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Consume _create (const ComponentAssembly_in parent);
+    static Consume _create (const ComponentAssembly_in parent, ConnectorInstance_in src, ExtendPortEnd_in dst);
     ///@}
 
     // Default constructor.

@@ -81,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool InEventPort_is_nil (void) const;
-    InEventPort get_InEventPort (void) const;
-    void set_InEventPort (InEventPort_in item);
+    InEventPort refers_to_InEventPort (void) const;
+    void refers_to_InEventPort (InEventPort_in item);
     ///@}
   };
 }

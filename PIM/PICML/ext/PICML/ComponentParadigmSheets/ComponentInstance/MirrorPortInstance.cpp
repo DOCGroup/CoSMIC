@@ -27,7 +27,7 @@ namespace PICML
   //
   MirrorPortInstance MirrorPortInstance_Impl::_create (const ComponentInstance_in parent)
   {
-    return ::GAME::Mga::create_object < MirrorPortInstance > (parent, MirrorPortInstance_Impl::metaname);
+    return ::GAME::Mga::create < MirrorPortInstance > (parent, MirrorPortInstance_Impl::metaname);
   }
 
   //
@@ -53,17 +53,17 @@ namespace PICML
   }
 
   //
-  // set_MirrorPort
+  // refers_to_MirrorPort
   //
-  void MirrorPortInstance_Impl::set_MirrorPort (MirrorPort_in item)
+  void MirrorPortInstance_Impl::refers_to_MirrorPort (MirrorPort_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_MirrorPort
+  // refers_to_MirrorPort
   //
-  MirrorPort MirrorPortInstance_Impl::get_MirrorPort (void) const
+  MirrorPort MirrorPortInstance_Impl::refers_to_MirrorPort (void) const
   {
     return MirrorPort::_narrow (this->refers_to ());
   }

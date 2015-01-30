@@ -26,7 +26,7 @@ namespace PICML
   //
   OutputAction OutputAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < OutputAction > (parent, OutputAction_Impl::metaname);
+    return ::GAME::Mga::create < OutputAction > (parent, OutputAction_Impl::metaname);
   }
 
   //

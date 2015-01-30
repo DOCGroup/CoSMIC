@@ -27,7 +27,7 @@ namespace PICML
   //
   TopLevelPackage TopLevelPackage_Impl::_create (const TopLevelPackageContainer_in parent)
   {
-    return ::GAME::Mga::create_object < TopLevelPackage > (parent, TopLevelPackage_Impl::metaname);
+    return ::GAME::Mga::create < TopLevelPackage > (parent, TopLevelPackage_Impl::metaname);
   }
 
   //
@@ -53,11 +53,19 @@ namespace PICML
   }
 
   //
-  // src_package
+  // src_of_package
   //
-  size_t TopLevelPackage_Impl::src_package (std::vector <package> & items) const
+  size_t TopLevelPackage_Impl::src_of_package (std::vector <package> & items) const
   {
     return this->in_connections <package> (items);
+  }
+
+  //
+  // src_of_package
+  //
+  GAME::Mga::Collection_T <package> TopLevelPackage_Impl::src_of_package (void) const
+  {
+    return this->in_connections <package> ("src");
   }
 }
 

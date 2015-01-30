@@ -35,35 +35,67 @@ namespace PICML
   }
 
   //
-  // src_Effect
+  // src_of_Effect
   //
-  size_t ActionBase_Impl::src_Effect (std::vector <Effect> & items) const
+  size_t ActionBase_Impl::src_of_Effect (std::vector <Effect> & items) const
   {
     return this->in_connections <Effect> (items);
   }
 
   //
-  // dst_LoopTransition
+  // src_of_Effect
   //
-  size_t ActionBase_Impl::dst_LoopTransition (std::vector <LoopTransition> & items) const
+  GAME::Mga::Collection_T <Effect> ActionBase_Impl::src_of_Effect (void) const
+  {
+    return this->in_connections <Effect> ("src");
+  }
+
+  //
+  // dst_of_LoopTransition
+  //
+  size_t ActionBase_Impl::dst_of_LoopTransition (std::vector <LoopTransition> & items) const
   {
     return this->in_connections <LoopTransition> (items);
   }
 
   //
-  // dst_BranchTransition
+  // dst_of_LoopTransition
   //
-  size_t ActionBase_Impl::dst_BranchTransition (std::vector <BranchTransition> & items) const
+  GAME::Mga::Collection_T <LoopTransition> ActionBase_Impl::dst_of_LoopTransition (void) const
+  {
+    return this->in_connections <LoopTransition> ("dst");
+  }
+
+  //
+  // dst_of_BranchTransition
+  //
+  size_t ActionBase_Impl::dst_of_BranchTransition (std::vector <BranchTransition> & items) const
   {
     return this->in_connections <BranchTransition> (items);
   }
 
   //
-  // dst_Transition
+  // dst_of_BranchTransition
   //
-  size_t ActionBase_Impl::dst_Transition (std::vector <Transition> & items) const
+  GAME::Mga::Collection_T <BranchTransition> ActionBase_Impl::dst_of_BranchTransition (void) const
+  {
+    return this->in_connections <BranchTransition> ("dst");
+  }
+
+  //
+  // dst_of_Transition
+  //
+  size_t ActionBase_Impl::dst_of_Transition (std::vector <Transition> & items) const
   {
     return this->in_connections <Transition> (items);
+  }
+
+  //
+  // dst_of_Transition
+  //
+  GAME::Mga::Collection_T <Transition> ActionBase_Impl::dst_of_Transition (void) const
+  {
+    return this->in_connections <Transition> ("dst");
   }
 
   //

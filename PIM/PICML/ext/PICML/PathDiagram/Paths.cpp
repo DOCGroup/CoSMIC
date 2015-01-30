@@ -31,7 +31,7 @@ namespace PICML
   //
   Paths Paths_Impl::_create (const PathDiagrams_in parent)
   {
-    return ::GAME::Mga::create_root_object < Paths > (parent, Paths_Impl::metaname);
+    return ::GAME::Mga::create < Paths > (parent, Paths_Impl::metaname);
   }
 
   //

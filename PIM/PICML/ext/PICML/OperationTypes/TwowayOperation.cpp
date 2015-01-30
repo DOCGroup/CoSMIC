@@ -35,7 +35,7 @@ namespace PICML
   //
   TwowayOperation TwowayOperation_Impl::_create (const HasOperations_in parent)
   {
-    return ::GAME::Mga::create_object < TwowayOperation > (parent, TwowayOperation_Impl::metaname);
+    return ::GAME::Mga::create < TwowayOperation > (parent, TwowayOperation_Impl::metaname);
   }
 
   //
@@ -43,7 +43,7 @@ namespace PICML
   //
   TwowayOperation TwowayOperation_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < TwowayOperation > (parent, TwowayOperation_Impl::metaname);
+    return ::GAME::Mga::create < TwowayOperation > (parent, TwowayOperation_Impl::metaname);
   }
 
   //

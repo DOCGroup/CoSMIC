@@ -10,6 +10,14 @@
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/MemberType.h"
 #include "PICML/NamedTypes/NamedType.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/Enum.h"
+#include "PICML/NamedTypes/Alias.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/Object.h"
@@ -17,14 +25,6 @@
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/NamedTypes/Enum.h"
-#include "PICML/NamedTypes/Alias.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Boxed.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
@@ -54,11 +54,11 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/NamedTypes/LabelConnection.h"
@@ -80,7 +80,7 @@ namespace PICML
   //
   Member Member_Impl::_create (const Exception_in parent)
   {
-    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
+    return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
   }
 
   //
@@ -88,7 +88,7 @@ namespace PICML
   //
   Member Member_Impl::_create (const Aggregate_in parent)
   {
-    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
+    return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
   }
 
   //
@@ -96,7 +96,7 @@ namespace PICML
   //
   Member Member_Impl::_create (const ObjectByValue_in parent)
   {
-    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
+    return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
   }
 
   //
@@ -104,7 +104,7 @@ namespace PICML
   //
   Member Member_Impl::_create (const SwitchedAggregate_in parent)
   {
-    return ::GAME::Mga::create_object < Member > (parent, Member_Impl::metaname);
+    return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
   }
 
   //
@@ -154,27 +154,51 @@ namespace PICML
   }
 
   //
-  // src_MakeMemberPrivate
+  // src_of_MakeMemberPrivate
   //
-  size_t Member_Impl::src_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
+  size_t Member_Impl::src_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
   {
     return this->in_connections <MakeMemberPrivate> (items);
   }
 
   //
-  // src_LabelConnection
+  // src_of_MakeMemberPrivate
   //
-  size_t Member_Impl::src_LabelConnection (std::vector <LabelConnection> & items) const
+  GAME::Mga::Collection_T <MakeMemberPrivate> Member_Impl::src_of_MakeMemberPrivate (void) const
+  {
+    return this->in_connections <MakeMemberPrivate> ("src");
+  }
+
+  //
+  // src_of_LabelConnection
+  //
+  size_t Member_Impl::src_of_LabelConnection (std::vector <LabelConnection> & items) const
   {
     return this->in_connections <LabelConnection> (items);
   }
 
   //
-  // dst_KeyMember
+  // src_of_LabelConnection
   //
-  size_t Member_Impl::dst_KeyMember (std::vector <KeyMember> & items) const
+  GAME::Mga::Collection_T <LabelConnection> Member_Impl::src_of_LabelConnection (void) const
+  {
+    return this->in_connections <LabelConnection> ("src");
+  }
+
+  //
+  // dst_of_KeyMember
+  //
+  size_t Member_Impl::dst_of_KeyMember (std::vector <KeyMember> & items) const
   {
     return this->in_connections <KeyMember> (items);
+  }
+
+  //
+  // dst_of_KeyMember
+  //
+  GAME::Mga::Collection_T <KeyMember> Member_Impl::dst_of_KeyMember (void) const
+  {
+    return this->in_connections <KeyMember> ("dst");
   }
 
   //
@@ -186,17 +210,17 @@ namespace PICML
   }
 
   //
-  // set_MemberType
+  // refers_to_MemberType
   //
-  void Member_Impl::set_MemberType (MemberType_in item)
+  void Member_Impl::refers_to_MemberType (MemberType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_MemberType
+  // refers_to_MemberType
   //
-  MemberType Member_Impl::get_MemberType (void) const
+  MemberType Member_Impl::refers_to_MemberType (void) const
   {
     return MemberType::_narrow (this->refers_to ());
   }

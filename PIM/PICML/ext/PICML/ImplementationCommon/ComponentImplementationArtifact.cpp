@@ -31,7 +31,7 @@ namespace PICML
   //
   ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -39,7 +39,7 @@ namespace PICML
   //
   ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -47,7 +47,7 @@ namespace PICML
   //
   ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ExecutorProject_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -55,7 +55,7 @@ namespace PICML
   //
   ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ServantProject_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -63,7 +63,7 @@ namespace PICML
   //
   ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const StubProject_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
+    return ::GAME::Mga::create < ComponentImplementationArtifact > (parent, ComponentImplementationArtifact_Impl::metaname);
   }
 
   //
@@ -89,17 +89,17 @@ namespace PICML
   }
 
   //
-  // set_ImplementationArtifact
+  // refers_to_ImplementationArtifact
   //
-  void ComponentImplementationArtifact_Impl::set_ImplementationArtifact (ImplementationArtifact_in item)
+  void ComponentImplementationArtifact_Impl::refers_to_ImplementationArtifact (ImplementationArtifact_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ImplementationArtifact
+  // refers_to_ImplementationArtifact
   //
-  ImplementationArtifact ComponentImplementationArtifact_Impl::get_ImplementationArtifact (void) const
+  ImplementationArtifact ComponentImplementationArtifact_Impl::refers_to_ImplementationArtifact (void) const
   {
     return ImplementationArtifact::_narrow (this->refers_to ());
   }

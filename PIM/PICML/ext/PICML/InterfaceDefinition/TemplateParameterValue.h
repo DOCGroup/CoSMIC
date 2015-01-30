@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool TemplateParameterValueType_is_nil (void) const;
-    TemplateParameterValueType get_TemplateParameterValueType (void) const;
-    void set_TemplateParameterValueType (TemplateParameterValueType_in item);
+    TemplateParameterValueType refers_to_TemplateParameterValueType (void) const;
+    void refers_to_TemplateParameterValueType (TemplateParameterValueType_in item);
     ///@}
   };
 }

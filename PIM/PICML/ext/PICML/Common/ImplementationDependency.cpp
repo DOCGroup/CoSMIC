@@ -27,7 +27,7 @@ namespace PICML
   //
   ImplementationDependency ImplementationDependency_Impl::_create (const ComponentImplementationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ImplementationDependency > (parent, ImplementationDependency_Impl::metaname);
+    return ::GAME::Mga::create < ImplementationDependency > (parent, ImplementationDependency_Impl::metaname);
   }
 
   //
@@ -53,11 +53,19 @@ namespace PICML
   }
 
   //
-  // dst_ImplementationDependsOn
+  // dst_of_ImplementationDependsOn
   //
-  size_t ImplementationDependency_Impl::dst_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
+  size_t ImplementationDependency_Impl::dst_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const
   {
     return this->in_connections <ImplementationDependsOn> (items);
+  }
+
+  //
+  // dst_of_ImplementationDependsOn
+  //
+  GAME::Mga::Collection_T <ImplementationDependsOn> ImplementationDependency_Impl::dst_of_ImplementationDependsOn (void) const
+  {
+    return this->in_connections <ImplementationDependsOn> ("dst");
   }
 }
 

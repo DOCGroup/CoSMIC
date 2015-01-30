@@ -24,11 +24,11 @@ namespace PICML
   const std::string BridgeConnection_Impl::metaname ("BridgeConnection");
 
   //
-  // _create (const Domain_in)
+  // _create (const Domain_in, Interconnect_in src, Bridge_in dst)
   //
-  BridgeConnection BridgeConnection_Impl::_create (const Domain_in parent)
+  BridgeConnection BridgeConnection_Impl::_create (const Domain_in parent, Interconnect_in src, Bridge_in dst)
   {
-    return ::GAME::Mga::create_object < BridgeConnection > (parent, BridgeConnection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, BridgeConnection_Impl::metaname, src, dst);
   }
 
   //

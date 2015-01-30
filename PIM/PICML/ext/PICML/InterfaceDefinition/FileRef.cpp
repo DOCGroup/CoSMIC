@@ -28,7 +28,7 @@ namespace PICML
   //
   FileRef FileRef_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
+    return ::GAME::Mga::create < FileRef > (parent, FileRef_Impl::metaname);
   }
 
   //
@@ -36,7 +36,7 @@ namespace PICML
   //
   FileRef FileRef_Impl::_create (const ServantProject_in parent)
   {
-    return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
+    return ::GAME::Mga::create < FileRef > (parent, FileRef_Impl::metaname);
   }
 
   //
@@ -44,7 +44,7 @@ namespace PICML
   //
   FileRef FileRef_Impl::_create (const StubProject_in parent)
   {
-    return ::GAME::Mga::create_object < FileRef > (parent, FileRef_Impl::metaname);
+    return ::GAME::Mga::create < FileRef > (parent, FileRef_Impl::metaname);
   }
 
   //
@@ -94,17 +94,17 @@ namespace PICML
   }
 
   //
-  // set_File
+  // refers_to_File
   //
-  void FileRef_Impl::set_File (File_in item)
+  void FileRef_Impl::refers_to_File (File_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_File
+  // refers_to_File
   //
-  File FileRef_Impl::get_File (void) const
+  File FileRef_Impl::refers_to_File (void) const
   {
     return File::_narrow (this->refers_to ());
   }

@@ -32,7 +32,7 @@ namespace PICML
   //
   Inherits Inherits_Impl::_create (const Inheritable_in parent)
   {
-    return ::GAME::Mga::create_object < Inherits > (parent, Inherits_Impl::metaname);
+    return ::GAME::Mga::create < Inherits > (parent, Inherits_Impl::metaname);
   }
 
   //
@@ -66,17 +66,17 @@ namespace PICML
   }
 
   //
-  // set_Inheritable
+  // refers_to_Inheritable
   //
-  void Inherits_Impl::set_Inheritable (Inheritable_in item)
+  void Inherits_Impl::refers_to_Inheritable (Inheritable_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Inheritable
+  // refers_to_Inheritable
   //
-  Inheritable Inherits_Impl::get_Inheritable (void) const
+  Inheritable Inherits_Impl::refers_to_Inheritable (void) const
   {
     return Inheritable::_narrow (this->refers_to ());
   }

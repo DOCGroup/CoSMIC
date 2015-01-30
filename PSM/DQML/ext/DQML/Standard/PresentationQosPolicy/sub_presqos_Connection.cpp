@@ -24,11 +24,11 @@ namespace DQML
   const std::string sub_presqos_Connection_Impl::metaname ("sub_presqos_Connection");
 
   //
-  // _create (const DDSQoS_in)
+  // _create (const DDSQoS_in, Subscriber_in src, PresentationQosPolicy_in dst)
   //
-  sub_presqos_Connection sub_presqos_Connection_Impl::_create (const DDSQoS_in parent)
+  sub_presqos_Connection sub_presqos_Connection_Impl::_create (const DDSQoS_in parent, Subscriber_in src, PresentationQosPolicy_in dst)
   {
-    return ::GAME::Mga::create_object < sub_presqos_Connection > (parent, sub_presqos_Connection_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, sub_presqos_Connection_Impl::metaname, src, dst);
   }
 
   //

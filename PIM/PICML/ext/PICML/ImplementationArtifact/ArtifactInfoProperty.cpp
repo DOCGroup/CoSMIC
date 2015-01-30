@@ -26,11 +26,11 @@ namespace PICML
   const std::string ArtifactInfoProperty_Impl::metaname ("ArtifactInfoProperty");
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Property_in dst)
   //
-  ArtifactInfoProperty ArtifactInfoProperty_Impl::_create (const ArtifactContainer_in parent)
+  ArtifactInfoProperty ArtifactInfoProperty_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactInfoProperty > (parent, ArtifactInfoProperty_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactInfoProperty_Impl::metaname, src, dst);
   }
 
   //

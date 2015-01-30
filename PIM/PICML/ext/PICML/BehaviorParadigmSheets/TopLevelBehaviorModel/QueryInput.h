@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static QueryInput _create (const TopLevelBehavior_in parent);
+    static QueryInput _create (const TopLevelBehavior_in parent, QueryInputBase_in src, QueryInputAction_in dst);
     ///@}
 
     // Default constructor.

@@ -16,7 +16,8 @@ namespace DQML
   }
 
   RootFolder_Impl::RootFolder_Impl (IMgaFolder * folder)
-  : ::GAME::Mga::RootFolder_Impl (folder)
+  : ::GAME::Mga::Folder_Impl (folder),
+    ::GAME::Mga::RootFolder_Impl (folder)
   {
   }
 

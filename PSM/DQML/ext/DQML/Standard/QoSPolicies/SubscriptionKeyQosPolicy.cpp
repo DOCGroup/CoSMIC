@@ -27,7 +27,7 @@ namespace DQML
   //
   SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
-    return ::GAME::Mga::create_object < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace DQML
   //
   SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < SubscriptionKeyQosPolicy > (parent, SubscriptionKeyQosPolicy_Impl::metaname);
   }
 
   //

@@ -28,7 +28,7 @@ namespace DQML
   //
   DomainParticipantFactory DomainParticipantFactory_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < DomainParticipantFactory > (parent, DomainParticipantFactory_Impl::metaname);
+    return ::GAME::Mga::create < DomainParticipantFactory > (parent, DomainParticipantFactory_Impl::metaname);
   }
 
   //
@@ -46,19 +46,35 @@ namespace DQML
   }
 
   //
-  // src_dpfactory_entityfactory_Connection
+  // src_of_dpfactory_entityfactory_Connection
   //
-  size_t DomainParticipantFactory_Impl::src_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
+  size_t DomainParticipantFactory_Impl::src_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
   {
     return this->in_connections <dpfactory_entityfactory_Connection> (items);
   }
 
   //
-  // src_dpf_dp_Connection
+  // src_of_dpfactory_entityfactory_Connection
   //
-  size_t DomainParticipantFactory_Impl::src_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const
+  GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> DomainParticipantFactory_Impl::src_of_dpfactory_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dpfactory_entityfactory_Connection> ("src");
+  }
+
+  //
+  // src_of_dpf_dp_Connection
+  //
+  size_t DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const
   {
     return this->in_connections <dpf_dp_Connection> (items);
+  }
+
+  //
+  // src_of_dpf_dp_Connection
+  //
+  GAME::Mga::Collection_T <dpf_dp_Connection> DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
+  {
+    return this->in_connections <dpf_dp_Connection> ("src");
   }
 }
 

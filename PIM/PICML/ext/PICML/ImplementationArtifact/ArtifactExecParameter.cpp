@@ -26,11 +26,11 @@ namespace PICML
   const std::string ArtifactExecParameter_Impl::metaname ("ArtifactExecParameter");
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Property_in dst)
   //
-  ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent)
+  ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Property_in dst)
   {
-    return ::GAME::Mga::create_object < ArtifactExecParameter > (parent, ArtifactExecParameter_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ArtifactExecParameter_Impl::metaname, src, dst);
   }
 
   //

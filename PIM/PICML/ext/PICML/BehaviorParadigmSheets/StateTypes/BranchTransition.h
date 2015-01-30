@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static BranchTransition _create (const BehaviorModel_in parent);
+    static BranchTransition _create (const BehaviorModel_in parent, BranchState_in src, ActionBase_in dst);
     ///@}
 
     // Default constructor.

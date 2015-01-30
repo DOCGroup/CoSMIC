@@ -94,7 +94,8 @@ namespace DQML
     ///@{
 
     /// Get the dst topic_topicdata_Connection connection.
-    size_t dst_topic_topicdata_Connection (std::vector <topic_topicdata_Connection> & items) const;
+    size_t dst_of_topic_topicdata_Connection (std::vector <topic_topicdata_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_topicdata_Connection> dst_of_topic_topicdata_Connection (void) const;
     ///@}
   };
 }

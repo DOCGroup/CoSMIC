@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static LabelConnection _create (const SwitchedAggregate_in parent);
+    static LabelConnection _create (const SwitchedAggregate_in parent, Member_in src, Label_in dst);
     ///@}
 
     // Default constructor.

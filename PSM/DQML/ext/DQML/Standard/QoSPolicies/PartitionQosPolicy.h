@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static PartitionQosPolicy _create (const SubscriberQos_in parent);
     static PartitionQosPolicy _create (const PublisherQos_in parent);
+    static PartitionQosPolicy _create (const SubscriberQos_in parent);
     static PartitionQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -74,8 +74,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    SubscriberQos parent_SubscriberQos (void);
     PublisherQos parent_PublisherQos (void);
+    SubscriberQos parent_SubscriberQos (void);
     ///@}
 
     /**
@@ -96,10 +96,12 @@ namespace DQML
     ///@{
 
     /// Get the dst pub_part_Connection connection.
-    size_t dst_pub_part_Connection (std::vector <pub_part_Connection> & items) const;
+    size_t dst_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const;
+    GAME::Mga::Collection_T <pub_part_Connection> dst_of_pub_part_Connection (void) const;
 
     /// Get the dst sub_part_Connection connection.
-    size_t dst_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
+    size_t dst_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
+    GAME::Mga::Collection_T <sub_part_Connection> dst_of_sub_part_Connection (void) const;
     ///@}
   };
 }

@@ -78,8 +78,8 @@ namespace PICML
      */
     ///@{
     bool MonolithicImplementation_is_nil (void) const;
-    MonolithicImplementation get_MonolithicImplementation (void) const;
-    void set_MonolithicImplementation (MonolithicImplementation_in item);
+    MonolithicImplementation refers_to_MonolithicImplementation (void) const;
+    void refers_to_MonolithicImplementation (MonolithicImplementation_in item);
     ///@}
   };
 }

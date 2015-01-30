@@ -32,7 +32,7 @@ namespace PICML
   //
   QueryInputAction QueryInputAction_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < QueryInputAction > (parent, QueryInputAction_Impl::metaname);
+    return ::GAME::Mga::create < QueryInputAction > (parent, QueryInputAction_Impl::metaname);
   }
 
   //
@@ -58,11 +58,19 @@ namespace PICML
   }
 
   //
-  // dst_QueryInput
+  // dst_of_QueryInput
   //
-  size_t QueryInputAction_Impl::dst_QueryInput (std::vector <QueryInput> & items) const
+  size_t QueryInputAction_Impl::dst_of_QueryInput (std::vector <QueryInput> & items) const
   {
     return this->in_connections <QueryInput> (items);
+  }
+
+  //
+  // dst_of_QueryInput
+  //
+  GAME::Mga::Collection_T <QueryInput> QueryInputAction_Impl::dst_of_QueryInput (void) const
+  {
+    return this->in_connections <QueryInput> ("dst");
   }
 
   //

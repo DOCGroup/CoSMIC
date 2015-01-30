@@ -10,8 +10,8 @@
 #include "DQML/Visitor.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,19 +26,19 @@ namespace DQML
   const std::string TransportPriorityQosPolicy_Impl::metaname ("TransportPriorityQosPolicy");
 
   //
-  // _create (const DataWriterQos_in)
-  //
-  TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const DataWriterQos_in parent)
-  {
-    return ::GAME::Mga::create_object < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
-  }
-
-  //
   // _create (const TopicQos_in)
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const TopicQos_in parent)
   {
-    return ::GAME::Mga::create_object < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const DataWriterQos_in)
+  //
+  TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  {
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
   }
 
   //
@@ -46,7 +46,7 @@ namespace DQML
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const DDSQoS_in parent)
   {
-    return ::GAME::Mga::create_object < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
   }
 
   //
@@ -64,14 +64,6 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
-  //
-  DataWriterQos TransportPriorityQosPolicy_Impl::parent_DataWriterQos (void)
-  {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_TopicQos
   //
   TopicQos TransportPriorityQosPolicy_Impl::parent_TopicQos (void)
@@ -80,19 +72,43 @@ namespace DQML
   }
 
   //
-  // dst_topic_transpri_Connection
+  // parent_DataWriterQos
   //
-  size_t TransportPriorityQosPolicy_Impl::dst_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
+  DataWriterQos TransportPriorityQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // dst_of_topic_transpri_Connection
+  //
+  size_t TransportPriorityQosPolicy_Impl::dst_of_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
   {
     return this->in_connections <topic_transpri_Connection> (items);
   }
 
   //
-  // dst_dw_transpri_Connection
+  // dst_of_topic_transpri_Connection
   //
-  size_t TransportPriorityQosPolicy_Impl::dst_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
+  GAME::Mga::Collection_T <topic_transpri_Connection> TransportPriorityQosPolicy_Impl::dst_of_topic_transpri_Connection (void) const
+  {
+    return this->in_connections <topic_transpri_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dw_transpri_Connection
+  //
+  size_t TransportPriorityQosPolicy_Impl::dst_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
   {
     return this->in_connections <dw_transpri_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_transpri_Connection
+  //
+  GAME::Mga::Collection_T <dw_transpri_Connection> TransportPriorityQosPolicy_Impl::dst_of_dw_transpri_Connection (void) const
+  {
+    return this->in_connections <dw_transpri_Connection> ("dst");
   }
 }
 

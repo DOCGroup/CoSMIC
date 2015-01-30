@@ -81,8 +81,8 @@ namespace PICML
      */
     ///@{
     bool ExtendedPort_is_nil (void) const;
-    ExtendedPort get_ExtendedPort (void) const;
-    void set_ExtendedPort (ExtendedPort_in item);
+    ExtendedPort refers_to_ExtendedPort (void) const;
+    void refers_to_ExtendedPort (ExtendedPort_in item);
     ///@}
   };
 }

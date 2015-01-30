@@ -18,8 +18,8 @@
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
@@ -44,11 +44,11 @@ namespace PICML
   const std::string ExternalDelegate_Impl::metaname ("ExternalDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, ExternalPort_in src, ExternalPortEnd_in dst)
   //
-  ExternalDelegate ExternalDelegate_Impl::_create (const ComponentAssembly_in parent)
+  ExternalDelegate ExternalDelegate_Impl::_create (const ComponentAssembly_in parent, ExternalPort_in src, ExternalPortEnd_in dst)
   {
-    return ::GAME::Mga::create_object < ExternalDelegate > (parent, ExternalDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, ExternalDelegate_Impl::metaname, src, dst);
   }
 
   //

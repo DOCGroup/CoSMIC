@@ -27,7 +27,7 @@ namespace PICML
   //
   Average Average_Impl::_create (const MetricsBase_in parent)
   {
-    return ::GAME::Mga::create_object < Average > (parent, Average_Impl::metaname);
+    return ::GAME::Mga::create < Average > (parent, Average_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   Average Average_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Average > (parent, Average_Impl::metaname);
+    return ::GAME::Mga::create < Average > (parent, Average_Impl::metaname);
   }
 
   //

@@ -82,7 +82,8 @@ namespace PICML
     ///@{
 
     /// Get the src CriticalPath connection.
-    size_t src_CriticalPath (std::vector <CriticalPath> & items) const;
+    size_t src_of_CriticalPath (std::vector <CriticalPath> & items) const;
+    GAME::Mga::Collection_T <CriticalPath> src_of_CriticalPath (void) const;
     ///@}
 
     /**
@@ -101,8 +102,8 @@ namespace PICML
     size_t get_ComponentPackages (std::vector <ComponentPackage> & items) const;
     ::GAME::Mga::Collection_T <ComponentPackage> get_ComponentPackages (void) const;
 
-    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
-    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
+    size_t get_ConnectorInstances (std::vector <ConnectorInstance> & items) const;
+    ::GAME::Mga::Collection_T <ConnectorInstance> get_ConnectorInstances (void) const;
 
     size_t get_Requirements (std::vector <Requirement> & items) const;
     ::GAME::Mga::Collection_T <Requirement> get_Requirements (void) const;
@@ -112,6 +113,9 @@ namespace PICML
 
     size_t get_ECRequirementss (std::vector <ECRequirements> & items) const;
     ::GAME::Mga::Collection_T <ECRequirements> get_ECRequirementss (void) const;
+
+    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
+    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
 
     size_t get_ExternalDelegates (std::vector <ExternalDelegate> & items) const;
     ::GAME::Mga::Collection_T <ExternalDelegate> get_ExternalDelegates (void) const;
@@ -125,14 +129,14 @@ namespace PICML
     size_t get_AssemblyConfigPropertys (std::vector <AssemblyConfigProperty> & items) const;
     ::GAME::Mga::Collection_T <AssemblyConfigProperty> get_AssemblyConfigPropertys (void) const;
 
+    size_t get_ProvidedRequestPortDelegates (std::vector <ProvidedRequestPortDelegate> & items) const;
+    ::GAME::Mga::Collection_T <ProvidedRequestPortDelegate> get_ProvidedRequestPortDelegates (void) const;
+
+    size_t get_RequiredRequestPortDelegates (std::vector <RequiredRequestPortDelegate> & items) const;
+    ::GAME::Mga::Collection_T <RequiredRequestPortDelegate> get_RequiredRequestPortDelegates (void) const;
+
     size_t get_ComponentPackageReferences (std::vector <ComponentPackageReference> & items) const;
     ::GAME::Mga::Collection_T <ComponentPackageReference> get_ComponentPackageReferences (void) const;
-
-    size_t get_ConnectorInstances (std::vector <ConnectorInstance> & items) const;
-    ::GAME::Mga::Collection_T <ConnectorInstance> get_ConnectorInstances (void) const;
-
-    size_t get_ComponentInstances (std::vector <ComponentInstance> & items) const;
-    ::GAME::Mga::Collection_T <ComponentInstance> get_ComponentInstances (void) const;
 
     size_t get_AttributeValues (std::vector <AttributeValue> & items) const;
     ::GAME::Mga::Collection_T <AttributeValue> get_AttributeValues (void) const;
@@ -179,17 +183,8 @@ namespace PICML
     size_t get_EventSourceDelegates (std::vector <EventSourceDelegate> & items) const;
     ::GAME::Mga::Collection_T <EventSourceDelegate> get_EventSourceDelegates (void) const;
 
-    size_t get_SendsTos (std::vector <SendsTo> & items) const;
-    ::GAME::Mga::Collection_T <SendsTo> get_SendsTos (void) const;
-
-    size_t get_EventSinkDelegates (std::vector <EventSinkDelegate> & items) const;
-    ::GAME::Mga::Collection_T <EventSinkDelegate> get_EventSinkDelegates (void) const;
-
-    size_t get_ProvidedRequestPortDelegates (std::vector <ProvidedRequestPortDelegate> & items) const;
-    ::GAME::Mga::Collection_T <ProvidedRequestPortDelegate> get_ProvidedRequestPortDelegates (void) const;
-
-    size_t get_RequiredRequestPortDelegates (std::vector <RequiredRequestPortDelegate> & items) const;
-    ::GAME::Mga::Collection_T <RequiredRequestPortDelegate> get_RequiredRequestPortDelegates (void) const;
+    size_t get_ComponentInstances (std::vector <ComponentInstance> & items) const;
+    ::GAME::Mga::Collection_T <ComponentInstance> get_ComponentInstances (void) const;
 
     size_t get_MirrorPortDelegates (std::vector <MirrorPortDelegate> & items) const;
     ::GAME::Mga::Collection_T <MirrorPortDelegate> get_MirrorPortDelegates (void) const;
@@ -202,6 +197,12 @@ namespace PICML
 
     size_t get_InEventPortDelegates (std::vector <InEventPortDelegate> & items) const;
     ::GAME::Mga::Collection_T <InEventPortDelegate> get_InEventPortDelegates (void) const;
+
+    size_t get_SendsTos (std::vector <SendsTo> & items) const;
+    ::GAME::Mga::Collection_T <SendsTo> get_SendsTos (void) const;
+
+    size_t get_EventSinkDelegates (std::vector <EventSinkDelegate> & items) const;
+    ::GAME::Mga::Collection_T <EventSinkDelegate> get_EventSinkDelegates (void) const;
 
     ///@}
   };

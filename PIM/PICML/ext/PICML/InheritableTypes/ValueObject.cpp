@@ -27,7 +27,7 @@ namespace PICML
   //
   ValueObject ValueObject_Impl::_create (const Package_in parent)
   {
-    return ::GAME::Mga::create_object < ValueObject > (parent, ValueObject_Impl::metaname);
+    return ::GAME::Mga::create < ValueObject > (parent, ValueObject_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   ValueObject ValueObject_Impl::_create (const File_in parent)
   {
-    return ::GAME::Mga::create_object < ValueObject > (parent, ValueObject_Impl::metaname);
+    return ::GAME::Mga::create < ValueObject > (parent, ValueObject_Impl::metaname);
   }
 
   //

@@ -18,11 +18,19 @@ namespace PICML
   const std::string MirrorPortInstanceBase_Impl::metaname ("MirrorPortInstanceBase");
 
   //
-  // src_MirrorDelegate
+  // src_of_MirrorDelegate
   //
-  size_t MirrorPortInstanceBase_Impl::src_MirrorDelegate (std::vector <MirrorDelegate> & items) const
+  size_t MirrorPortInstanceBase_Impl::src_of_MirrorDelegate (std::vector <MirrorDelegate> & items) const
   {
     return this->in_connections <MirrorDelegate> (items);
+  }
+
+  //
+  // src_of_MirrorDelegate
+  //
+  GAME::Mga::Collection_T <MirrorDelegate> MirrorPortInstanceBase_Impl::src_of_MirrorDelegate (void) const
+  {
+    return this->in_connections <MirrorDelegate> ("src");
   }
 }
 

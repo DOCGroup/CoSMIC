@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/ComponentBuild.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/Workspaces.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   MPC MPC_Impl::_create (const ComponentBuild_in parent)
   {
-    return ::GAME::Mga::create_root_object < MPC > (parent, MPC_Impl::metaname);
+    return ::GAME::Mga::create < MPC > (parent, MPC_Impl::metaname);
   }
 
   //

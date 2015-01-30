@@ -53,7 +53,6 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static InputEffect _create (const BehaviorModel_in parent);
     ///@}
 
     // Default constructor.

@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
-#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
 #include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   GetException GetException_Impl::_create (const ReadonlyAttribute_in parent)
   {
-    return ::GAME::Mga::create_object < GetException > (parent, GetException_Impl::metaname);
+    return ::GAME::Mga::create < GetException > (parent, GetException_Impl::metaname);
   }
 
   //
@@ -64,17 +64,17 @@ namespace PICML
   }
 
   //
-  // set_ExceptionType
+  // refers_to_ExceptionType
   //
-  void GetException_Impl::set_ExceptionType (ExceptionType_in item)
+  void GetException_Impl::refers_to_ExceptionType (ExceptionType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ExceptionType
+  // refers_to_ExceptionType
   //
-  ExceptionType GetException_Impl::get_ExceptionType (void) const
+  ExceptionType GetException_Impl::refers_to_ExceptionType (void) const
   {
     return ExceptionType::_narrow (this->refers_to ());
   }

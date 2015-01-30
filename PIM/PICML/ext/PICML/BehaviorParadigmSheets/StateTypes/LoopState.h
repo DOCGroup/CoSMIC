@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the src LoopTransition connection.
-    size_t src_LoopTransition (std::vector <LoopTransition> & items) const;
+    size_t src_of_LoopTransition (std::vector <LoopTransition> & items) const;
+    GAME::Mga::Collection_T <LoopTransition> src_of_LoopTransition (void) const;
     ///@}
   };
 }

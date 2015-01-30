@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Deploys _create (const DeploymentPlan_in parent);
+    static Deploys _create (const DeploymentPlan_in parent, ComponentFactoryRef_in src, ComponentInstanceRef_in dst);
     ///@}
 
     // Default constructor.

@@ -73,7 +73,15 @@ namespace DQML
     iCCM parent_iCCM (void);
     ///@}
 
+    /**
+     * @name Folder Getters
+     */
+    ///@{
+
     size_t get_TopicQoss (std::vector <TopicQos> & items) const;
+
+    ::GAME::Mga::Collection_T <TopicQos> get_TopicQoss (void) const;
+    ///@}
   };
 }
 

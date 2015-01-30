@@ -39,7 +39,7 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -47,7 +47,7 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -55,7 +55,7 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const Component_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -63,7 +63,7 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectedComponent_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -71,7 +71,7 @@ namespace PICML
   //
   RequiredRequestPort RequiredRequestPort_Impl::_create (const Path_in parent)
   {
-    return ::GAME::Mga::create_object < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
+    return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
@@ -97,17 +97,17 @@ namespace PICML
   }
 
   //
-  // set_Provideable
+  // refers_to_Provideable
   //
-  void RequiredRequestPort_Impl::set_Provideable (Provideable_in item)
+  void RequiredRequestPort_Impl::refers_to_Provideable (Provideable_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_Provideable
+  // refers_to_Provideable
   //
-  Provideable RequiredRequestPort_Impl::get_Provideable (void) const
+  Provideable RequiredRequestPort_Impl::refers_to_Provideable (void) const
   {
     return Provideable::_narrow (this->refers_to ());
   }

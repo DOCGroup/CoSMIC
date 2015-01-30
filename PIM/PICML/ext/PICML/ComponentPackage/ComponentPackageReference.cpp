@@ -29,7 +29,7 @@ namespace PICML
   //
   ComponentPackageReference ComponentPackageReference_Impl::_create (const ComponentAssembly_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
   }
 
   //
@@ -37,7 +37,7 @@ namespace PICML
   //
   ComponentPackageReference ComponentPackageReference_Impl::_create (const PackageConfigurationContainer_in parent)
   {
-    return ::GAME::Mga::create_object < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
+    return ::GAME::Mga::create < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
   }
 
   //
@@ -71,11 +71,19 @@ namespace PICML
   }
 
   //
-  // dst_PackageConfReference
+  // dst_of_PackageConfReference
   //
-  size_t ComponentPackageReference_Impl::dst_PackageConfReference (std::vector <PackageConfReference> & items) const
+  size_t ComponentPackageReference_Impl::dst_of_PackageConfReference (std::vector <PackageConfReference> & items) const
   {
     return this->in_connections <PackageConfReference> (items);
+  }
+
+  //
+  // dst_of_PackageConfReference
+  //
+  GAME::Mga::Collection_T <PackageConfReference> ComponentPackageReference_Impl::dst_of_PackageConfReference (void) const
+  {
+    return this->in_connections <PackageConfReference> ("dst");
   }
 
   //
@@ -87,17 +95,17 @@ namespace PICML
   }
 
   //
-  // set_ComponentPackage
+  // refers_to_ComponentPackage
   //
-  void ComponentPackageReference_Impl::set_ComponentPackage (ComponentPackage_in item)
+  void ComponentPackageReference_Impl::refers_to_ComponentPackage (ComponentPackage_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_ComponentPackage
+  // refers_to_ComponentPackage
   //
-  ComponentPackage ComponentPackageReference_Impl::get_ComponentPackage (void) const
+  ComponentPackage ComponentPackageReference_Impl::refers_to_ComponentPackage (void) const
   {
     return ComponentPackage::_narrow (this->refers_to ());
   }

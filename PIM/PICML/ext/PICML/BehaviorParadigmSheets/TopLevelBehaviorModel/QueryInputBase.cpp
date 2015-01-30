@@ -18,11 +18,19 @@ namespace PICML
   const std::string QueryInputBase_Impl::metaname ("QueryInputBase");
 
   //
-  // src_QueryInput
+  // src_of_QueryInput
   //
-  size_t QueryInputBase_Impl::src_QueryInput (std::vector <QueryInput> & items) const
+  size_t QueryInputBase_Impl::src_of_QueryInput (std::vector <QueryInput> & items) const
   {
     return this->in_connections <QueryInput> (items);
+  }
+
+  //
+  // src_of_QueryInput
+  //
+  GAME::Mga::Collection_T <QueryInput> QueryInputBase_Impl::src_of_QueryInput (void) const
+  {
+    return this->in_connections <QueryInput> ("src");
   }
 }
 

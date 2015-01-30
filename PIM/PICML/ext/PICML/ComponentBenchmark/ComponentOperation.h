@@ -51,7 +51,7 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComponentOperation _create (const BenchmarkAnalysis_in parent);
+    static ComponentOperation _create (const BenchmarkAnalysis_in parent, OperationRef_in src, CompRef_in dst);
     ///@}
 
     // Default constructor.

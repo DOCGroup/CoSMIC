@@ -53,8 +53,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static ShareQosPolicy _create (const SubscriberQos_in parent);
     static ShareQosPolicy _create (const DataReaderQos_in parent);
+    static ShareQosPolicy _create (const SubscriberQos_in parent);
     static ShareQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -74,8 +74,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    SubscriberQos parent_SubscriberQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    SubscriberQos parent_SubscriberQos (void);
     ///@}
 
     /**

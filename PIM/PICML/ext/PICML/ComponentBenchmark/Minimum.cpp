@@ -27,7 +27,7 @@ namespace PICML
   //
   Minimum Minimum_Impl::_create (const MetricsBase_in parent)
   {
-    return ::GAME::Mga::create_object < Minimum > (parent, Minimum_Impl::metaname);
+    return ::GAME::Mga::create < Minimum > (parent, Minimum_Impl::metaname);
   }
 
   //
@@ -35,7 +35,7 @@ namespace PICML
   //
   Minimum Minimum_Impl::_create (const BenchmarkAnalysis_in parent)
   {
-    return ::GAME::Mga::create_object < Minimum > (parent, Minimum_Impl::metaname);
+    return ::GAME::Mga::create < Minimum > (parent, Minimum_Impl::metaname);
   }
 
   //

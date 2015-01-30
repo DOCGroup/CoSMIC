@@ -79,7 +79,8 @@ namespace PICML
     ///@{
 
     /// Get the dst WorkLoadOperationConnection connection.
-    size_t dst_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
+    size_t dst_of_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
+    GAME::Mga::Collection_T <WorkLoadOperationConnection> dst_of_WorkLoadOperationConnection (void) const;
     ///@}
   };
 }

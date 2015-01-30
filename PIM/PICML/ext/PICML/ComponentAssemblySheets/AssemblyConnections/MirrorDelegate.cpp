@@ -25,11 +25,11 @@ namespace PICML
   const std::string MirrorDelegate_Impl::metaname ("MirrorDelegate");
 
   //
-  // _create (const ComponentAssembly_in)
+  // _create (const ComponentAssembly_in, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)
   //
-  MirrorDelegate MirrorDelegate_Impl::_create (const ComponentAssembly_in parent)
+  MirrorDelegate MirrorDelegate_Impl::_create (const ComponentAssembly_in parent, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)
   {
-    return ::GAME::Mga::create_object < MirrorDelegate > (parent, MirrorDelegate_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MirrorDelegate_Impl::metaname, src, dst);
   }
 
   //

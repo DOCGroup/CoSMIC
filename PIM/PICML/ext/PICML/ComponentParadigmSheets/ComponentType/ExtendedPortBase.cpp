@@ -44,17 +44,17 @@ namespace PICML
   }
 
   //
-  // set_PortType
+  // refers_to_PortType
   //
-  void ExtendedPortBase_Impl::set_PortType (PortType_in item)
+  void ExtendedPortBase_Impl::refers_to_PortType (PortType_in item)
   {
     this->refers_to (item);
   }
 
   //
-  // get_PortType
+  // refers_to_PortType
   //
-  PortType ExtendedPortBase_Impl::get_PortType (void) const
+  PortType ExtendedPortBase_Impl::refers_to_PortType (void) const
   {
     return PortType::_narrow (this->refers_to ());
   }

@@ -30,11 +30,11 @@ namespace PICML
   const std::string MonolithDeployRequirement_Impl::metaname ("MonolithDeployRequirement");
 
   //
-  // _create (const ImplementationContainer_in)
+  // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, ImplementationRequirement_in dst)
   //
-  MonolithDeployRequirement MonolithDeployRequirement_Impl::_create (const ImplementationContainer_in parent)
+  MonolithDeployRequirement MonolithDeployRequirement_Impl::_create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, ImplementationRequirement_in dst)
   {
-    return ::GAME::Mga::create_object < MonolithDeployRequirement > (parent, MonolithDeployRequirement_Impl::metaname);
+    return ::GAME::Mga::Connection_Impl::_create (parent, MonolithDeployRequirement_Impl::metaname, src, dst);
   }
 
   //

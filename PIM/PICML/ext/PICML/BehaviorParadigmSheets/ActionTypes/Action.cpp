@@ -27,7 +27,7 @@ namespace PICML
   //
   Action Action_Impl::_create (const BehaviorModel_in parent)
   {
-    return ::GAME::Mga::create_object < Action > (parent, Action_Impl::metaname);
+    return ::GAME::Mga::create < Action > (parent, Action_Impl::metaname);
   }
 
   //
