@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
-#include "DQML/Standard/Main/dp_pub_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
-#include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/Main/dp_topic_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/Standard/Main/dpf_dp_Connection.h"
+#include "DQML/Standard/Main/dp_sub_Connection.h"
+#include "DQML/Standard/Main/dp_pub_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,6 +26,11 @@ namespace DQML
   // metaname
   //
   const std::string DomainParticipant_Impl::metaname ("DomainParticipant");
+
+  //
+  // is_abstract
+  //
+  const bool DomainParticipant_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in)
@@ -50,6 +55,22 @@ namespace DQML
   }
 
   //
+  // src_of_dp_topic_Connection
+  //
+  size_t DomainParticipant_Impl::src_of_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const
+  {
+    return this->in_connections <dp_topic_Connection> (items);
+  }
+
+  //
+  // src_of_dp_topic_Connection
+  //
+  GAME::Mga::Collection_T <dp_topic_Connection> DomainParticipant_Impl::src_of_dp_topic_Connection (void) const
+  {
+    return this->in_connections <dp_topic_Connection> ("src");
+  }
+
+  //
   // src_of_dp_userdata_Connection
   //
   size_t DomainParticipant_Impl::src_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
@@ -63,22 +84,6 @@ namespace DQML
   GAME::Mga::Collection_T <dp_userdata_Connection> DomainParticipant_Impl::src_of_dp_userdata_Connection (void) const
   {
     return this->in_connections <dp_userdata_Connection> ("src");
-  }
-
-  //
-  // src_of_dp_pub_Connection
-  //
-  size_t DomainParticipant_Impl::src_of_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const
-  {
-    return this->in_connections <dp_pub_Connection> (items);
-  }
-
-  //
-  // src_of_dp_pub_Connection
-  //
-  GAME::Mga::Collection_T <dp_pub_Connection> DomainParticipant_Impl::src_of_dp_pub_Connection (void) const
-  {
-    return this->in_connections <dp_pub_Connection> ("src");
   }
 
   //
@@ -114,19 +119,19 @@ namespace DQML
   }
 
   //
-  // src_of_dp_topic_Connection
+  // src_of_dp_pub_Connection
   //
-  size_t DomainParticipant_Impl::src_of_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const
+  size_t DomainParticipant_Impl::src_of_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const
   {
-    return this->in_connections <dp_topic_Connection> (items);
+    return this->in_connections <dp_pub_Connection> (items);
   }
 
   //
-  // src_of_dp_topic_Connection
+  // src_of_dp_pub_Connection
   //
-  GAME::Mga::Collection_T <dp_topic_Connection> DomainParticipant_Impl::src_of_dp_topic_Connection (void) const
+  GAME::Mga::Collection_T <dp_pub_Connection> DomainParticipant_Impl::src_of_dp_pub_Connection (void) const
   {
-    return this->in_connections <dp_topic_Connection> ("src");
+    return this->in_connections <dp_pub_Connection> ("src");
   }
 
   //

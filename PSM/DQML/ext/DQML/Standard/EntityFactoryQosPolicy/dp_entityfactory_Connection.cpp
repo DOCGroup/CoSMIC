@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/DDSEntities/DomainParticipant.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/Standard/DDSEntities/DomainParticipant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string dp_entityfactory_Connection_Impl::metaname ("dp_entityfactory_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool dp_entityfactory_Connection_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in, DomainParticipant_in src, EntityFactoryQosPolicy_in dst)

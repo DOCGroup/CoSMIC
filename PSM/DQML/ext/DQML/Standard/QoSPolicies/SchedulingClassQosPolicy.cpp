@@ -25,6 +25,11 @@ namespace DQML
   const std::string SchedulingClassQosPolicy_Impl::metaname ("SchedulingClassQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool SchedulingClassQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const SchedulingQosPolicy_in)
   //
   SchedulingClassQosPolicy SchedulingClassQosPolicy_Impl::_create (const SchedulingQosPolicy_in parent)

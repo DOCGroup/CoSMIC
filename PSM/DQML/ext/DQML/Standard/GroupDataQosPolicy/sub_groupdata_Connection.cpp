@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Subscriber.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string sub_groupdata_Connection_Impl::metaname ("sub_groupdata_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool sub_groupdata_Connection_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in, Subscriber_in src, GroupDataQosPolicy_in dst)

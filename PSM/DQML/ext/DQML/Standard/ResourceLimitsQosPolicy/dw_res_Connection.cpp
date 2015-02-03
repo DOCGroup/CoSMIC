@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h"
 #include "DQML/Standard/DDSEntities/DataWriter.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string dw_res_Connection_Impl::metaname ("dw_res_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool dw_res_Connection_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in, DataWriter_in src, ResourceLimitsQosPolicy_in dst)

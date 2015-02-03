@@ -24,6 +24,11 @@ namespace DQML
   const std::string TopicDataQosPolicy_Impl::metaname ("TopicDataQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool TopicDataQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const TopicQos_in)
   //
   TopicDataQosPolicy TopicDataQosPolicy_Impl::_create (const TopicQos_in parent)

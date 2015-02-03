@@ -24,6 +24,11 @@ namespace DQML
   const std::string TimeBasedFilterQosPolicy_Impl::metaname ("TimeBasedFilterQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool TimeBasedFilterQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const DataReaderQos_in)
   //
   TimeBasedFilterQosPolicy TimeBasedFilterQosPolicy_Impl::_create (const DataReaderQos_in parent)

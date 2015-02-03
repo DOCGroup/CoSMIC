@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Publisher.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string pub_part_Connection_Impl::metaname ("pub_part_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool pub_part_Connection_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in, Publisher_in src, PartitionQosPolicy_in dst)

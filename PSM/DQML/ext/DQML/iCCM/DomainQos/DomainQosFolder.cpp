@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainQos/Domain.h"
 #include "DQML/iCCM/iCCM/iCCM.h"
+#include "DQML/iCCM/DomainQos/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace DQML
   // metaname
   //
   const std::string DomainQosFolder_Impl::metaname ("DomainQosFolder");
+
+  //
+  // is_abstract
+  //
+  const bool DomainQosFolder_Impl::is_abstract (0);
 
   //
   // _create (const iCCM_in)

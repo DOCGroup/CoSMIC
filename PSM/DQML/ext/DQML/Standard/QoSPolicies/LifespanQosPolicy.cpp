@@ -26,6 +26,11 @@ namespace DQML
   const std::string LifespanQosPolicy_Impl::metaname ("LifespanQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool LifespanQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const TopicQos_in)
   //
   LifespanQosPolicy LifespanQosPolicy_Impl::_create (const TopicQos_in parent)

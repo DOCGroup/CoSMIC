@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
-#include "DQML/iCCM/DomainQos/PublisherConnection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/iCCM/DomainQos/PublisherConnection.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,6 +25,11 @@ namespace DQML
   // metaname
   //
   const std::string PublisherQos_Impl::metaname ("PublisherQos");
+
+  //
+  // is_abstract
+  //
+  const bool PublisherQos_Impl::is_abstract (0);
 
   //
   // _create (const Participant_in)
@@ -73,19 +78,19 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
+  // has_PresentationQosPolicy
   //
-  bool PublisherQos_Impl::has_EntityFactoryQosPolicy (void) const
+  bool PublisherQos_Impl::has_PresentationQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+    return this->children <PresentationQosPolicy> ().count () == 1;
   }
 
   //
-  // get_EntityFactoryQosPolicy
+  // get_PresentationQosPolicy
   //
-  EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
+  PresentationQosPolicy PublisherQos_Impl::get_PresentationQosPolicy (void) const
   {
-    return this->children <EntityFactoryQosPolicy> ().first ();
+    return this->children <PresentationQosPolicy> ().first ();
   }
 
   //
@@ -105,22 +110,6 @@ namespace DQML
   }
 
   //
-  // has_PresentationQosPolicy
-  //
-  bool PublisherQos_Impl::has_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_PresentationQosPolicy
-  //
-  PresentationQosPolicy PublisherQos_Impl::get_PresentationQosPolicy (void) const
-  {
-    return this->children <PresentationQosPolicy> ().first ();
-  }
-
-  //
   // has_GroupDataQosPolicy
   //
   bool PublisherQos_Impl::has_GroupDataQosPolicy (void) const
@@ -134,6 +123,22 @@ namespace DQML
   GroupDataQosPolicy PublisherQos_Impl::get_GroupDataQosPolicy (void) const
   {
     return this->children <GroupDataQosPolicy> ().first ();
+  }
+
+  //
+  // has_EntityFactoryQosPolicy
+  //
+  bool PublisherQos_Impl::has_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_EntityFactoryQosPolicy
+  //
+  EntityFactoryQosPolicy PublisherQos_Impl::get_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().first ();
   }
 }
 

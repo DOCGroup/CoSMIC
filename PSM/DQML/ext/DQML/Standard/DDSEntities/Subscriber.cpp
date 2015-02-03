@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
-#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/Main/dr_sub_Connection.h"
+#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,6 +26,11 @@ namespace DQML
   // metaname
   //
   const std::string Subscriber_Impl::metaname ("Subscriber");
+
+  //
+  // is_abstract
+  //
+  const bool Subscriber_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in)
@@ -47,6 +52,22 @@ namespace DQML
       this_visitor->visit_Subscriber (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // src_of_sub_part_Connection
+  //
+  size_t Subscriber_Impl::src_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const
+  {
+    return this->in_connections <sub_part_Connection> (items);
+  }
+
+  //
+  // src_of_sub_part_Connection
+  //
+  GAME::Mga::Collection_T <sub_part_Connection> Subscriber_Impl::src_of_sub_part_Connection (void) const
+  {
+    return this->in_connections <sub_part_Connection> ("src");
   }
 
   //
@@ -82,19 +103,19 @@ namespace DQML
   }
 
   //
-  // src_of_sub_part_Connection
+  // src_of_dr_sub_Connection
   //
-  size_t Subscriber_Impl::src_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const
+  size_t Subscriber_Impl::src_of_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const
   {
-    return this->in_connections <sub_part_Connection> (items);
+    return this->in_connections <dr_sub_Connection> (items);
   }
 
   //
-  // src_of_sub_part_Connection
+  // src_of_dr_sub_Connection
   //
-  GAME::Mga::Collection_T <sub_part_Connection> Subscriber_Impl::src_of_sub_part_Connection (void) const
+  GAME::Mga::Collection_T <dr_sub_Connection> Subscriber_Impl::src_of_dr_sub_Connection (void) const
   {
-    return this->in_connections <sub_part_Connection> ("src");
+    return this->in_connections <dr_sub_Connection> ("src");
   }
 
   //
@@ -111,22 +132,6 @@ namespace DQML
   GAME::Mga::Collection_T <sub_presqos_Connection> Subscriber_Impl::src_of_sub_presqos_Connection (void) const
   {
     return this->in_connections <sub_presqos_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_sub_Connection
-  //
-  size_t Subscriber_Impl::src_of_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const
-  {
-    return this->in_connections <dr_sub_Connection> (items);
-  }
-
-  //
-  // src_of_dr_sub_Connection
-  //
-  GAME::Mga::Collection_T <dr_sub_Connection> Subscriber_Impl::src_of_dr_sub_Connection (void) const
-  {
-    return this->in_connections <dr_sub_Connection> ("src");
   }
 
   //

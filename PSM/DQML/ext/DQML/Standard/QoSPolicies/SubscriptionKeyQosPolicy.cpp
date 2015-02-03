@@ -23,6 +23,11 @@ namespace DQML
   const std::string SubscriptionKeyQosPolicy_Impl::metaname ("SubscriptionKeyQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool SubscriptionKeyQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const DataReaderQos_in)
   //
   SubscriptionKeyQosPolicy SubscriptionKeyQosPolicy_Impl::_create (const DataReaderQos_in parent)

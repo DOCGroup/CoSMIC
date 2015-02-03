@@ -47,6 +47,10 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -110,23 +114,29 @@ namespace DQML
      */
     ///@{
 
-    bool has_LivelinessQosPolicy (void) const;
-    LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
+    bool has_ShareQosPolicy (void) const;
+    ShareQosPolicy get_ShareQosPolicy (void) const;
 
-    bool has_ResourceLimitsQosPolicy (void) const;
-    ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
+    bool has_ReaderLifespanQosPolicy (void) const;
+    ReaderLifespanQosPolicy get_ReaderLifespanQosPolicy (void) const;
 
-    bool has_DurabilityQosPolicy (void) const;
-    DurabilityQosPolicy get_DurabilityQosPolicy (void) const;
+    bool has_SubscriptionKeyQosPolicy (void) const;
+    SubscriptionKeyQosPolicy get_SubscriptionKeyQosPolicy (void) const;
 
-    bool has_DeadlineQosPolicy (void) const;
-    DeadlineQosPolicy get_DeadlineQosPolicy (void) const;
+    bool has_DestinationOrderQosPolicy (void) const;
+    DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
 
     bool has_TimeBasedFilterQosPolicy (void) const;
     TimeBasedFilterQosPolicy get_TimeBasedFilterQosPolicy (void) const;
 
+    bool has_DurabilityQosPolicy (void) const;
+    DurabilityQosPolicy get_DurabilityQosPolicy (void) const;
+
     bool has_LatencyBudgetQosPolicy (void) const;
     LatencyBudgetQosPolicy get_LatencyBudgetQosPolicy (void) const;
+
+    bool has_DeadlineQosPolicy (void) const;
+    DeadlineQosPolicy get_DeadlineQosPolicy (void) const;
 
     bool has_OwnershipQosPolicy (void) const;
     OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
@@ -134,29 +144,23 @@ namespace DQML
     bool has_ReliabilityQosPolicy (void) const;
     ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
 
-    bool has_DestinationOrderQosPolicy (void) const;
-    DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
-
-    bool has_UserDataQosPolicy (void) const;
-    UserDataQosPolicy get_UserDataQosPolicy (void) const;
+    bool has_LivelinessQosPolicy (void) const;
+    LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
 
     bool has_HistoryQosPolicy (void) const;
     HistoryQosPolicy get_HistoryQosPolicy (void) const;
 
-    bool has_ReaderDataLifecycleQosPolicy (void) const;
-    ReaderDataLifecycleQosPolicy get_ReaderDataLifecycleQosPolicy (void) const;
+    bool has_UserDataQosPolicy (void) const;
+    UserDataQosPolicy get_UserDataQosPolicy (void) const;
 
-    bool has_ShareQosPolicy (void) const;
-    ShareQosPolicy get_ShareQosPolicy (void) const;
-
-    bool has_SubscriptionKeyQosPolicy (void) const;
-    SubscriptionKeyQosPolicy get_SubscriptionKeyQosPolicy (void) const;
-
-    bool has_ReaderLifespanQosPolicy (void) const;
-    ReaderLifespanQosPolicy get_ReaderLifespanQosPolicy (void) const;
+    bool has_ResourceLimitsQosPolicy (void) const;
+    ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
 
     bool has_TopicQosReference (void) const;
     TopicQosReference get_TopicQosReference (void) const;
+
+    bool has_ReaderDataLifecycleQosPolicy (void) const;
+    ReaderDataLifecycleQosPolicy get_ReaderDataLifecycleQosPolicy (void) const;
     ///@}
   };
 }

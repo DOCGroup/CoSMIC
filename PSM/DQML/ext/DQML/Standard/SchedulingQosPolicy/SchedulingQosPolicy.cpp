@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/QoSPolicies/SchedulingPriorityQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/SchedulingClassQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/SchedulingPriorityQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace DQML
   // metaname
   //
   const std::string SchedulingQosPolicy_Impl::metaname ("SchedulingQosPolicy");
+
+  //
+  // is_abstract
+  //
+  const bool SchedulingQosPolicy_Impl::is_abstract (0);
 
   //
   // accept
@@ -37,22 +42,6 @@ namespace DQML
   }
 
   //
-  // has_SchedulingPriorityQosPolicy
-  //
-  bool SchedulingQosPolicy_Impl::has_SchedulingPriorityQosPolicy (void) const
-  {
-    return this->children <SchedulingPriorityQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_SchedulingPriorityQosPolicy
-  //
-  SchedulingPriorityQosPolicy SchedulingQosPolicy_Impl::get_SchedulingPriorityQosPolicy (void) const
-  {
-    return this->children <SchedulingPriorityQosPolicy> ().first ();
-  }
-
-  //
   // has_SchedulingClassQosPolicy
   //
   bool SchedulingQosPolicy_Impl::has_SchedulingClassQosPolicy (void) const
@@ -66,6 +55,22 @@ namespace DQML
   SchedulingClassQosPolicy SchedulingQosPolicy_Impl::get_SchedulingClassQosPolicy (void) const
   {
     return this->children <SchedulingClassQosPolicy> ().first ();
+  }
+
+  //
+  // has_SchedulingPriorityQosPolicy
+  //
+  bool SchedulingQosPolicy_Impl::has_SchedulingPriorityQosPolicy (void) const
+  {
+    return this->children <SchedulingPriorityQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_SchedulingPriorityQosPolicy
+  //
+  SchedulingPriorityQosPolicy SchedulingQosPolicy_Impl::get_SchedulingPriorityQosPolicy (void) const
+  {
+    return this->children <SchedulingPriorityQosPolicy> ().first ();
   }
 }
 

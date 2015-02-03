@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,17 +26,22 @@ namespace DQML
   const std::string PresentationQosPolicy_Impl::metaname ("PresentationQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // is_abstract
   //
-  PresentationQosPolicy PresentationQosPolicy_Impl::_create (const PublisherQos_in parent)
-  {
-    return ::GAME::Mga::create < PresentationQosPolicy > (parent, PresentationQosPolicy_Impl::metaname);
-  }
+  const bool PresentationQosPolicy_Impl::is_abstract (0);
 
   //
   // _create (const SubscriberQos_in)
   //
   PresentationQosPolicy PresentationQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  {
+    return ::GAME::Mga::create < PresentationQosPolicy > (parent, PresentationQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const PublisherQos_in)
+  //
+  PresentationQosPolicy PresentationQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create < PresentationQosPolicy > (parent, PresentationQosPolicy_Impl::metaname);
   }
@@ -64,19 +69,19 @@ namespace DQML
   }
 
   //
-  // parent_PublisherQos
-  //
-  PublisherQos PresentationQosPolicy_Impl::parent_PublisherQos (void)
-  {
-    return PublisherQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_SubscriberQos
   //
   SubscriberQos PresentationQosPolicy_Impl::parent_SubscriberQos (void)
   {
     return SubscriberQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PublisherQos
+  //
+  PublisherQos PresentationQosPolicy_Impl::parent_PublisherQos (void)
+  {
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //

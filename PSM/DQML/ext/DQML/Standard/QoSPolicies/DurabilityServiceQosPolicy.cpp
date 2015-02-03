@@ -25,6 +25,11 @@ namespace DQML
   const std::string DurabilityServiceQosPolicy_Impl::metaname ("DurabilityServiceQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool DurabilityServiceQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const TopicQos_in)
   //
   DurabilityServiceQosPolicy DurabilityServiceQosPolicy_Impl::_create (const TopicQos_in parent)

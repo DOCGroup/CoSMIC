@@ -26,6 +26,11 @@ namespace DQML
   const std::string TransportPriorityQosPolicy_Impl::metaname ("TransportPriorityQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool TransportPriorityQosPolicy_Impl::is_abstract (0);
+
+  //
   // _create (const TopicQos_in)
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const TopicQos_in parent)

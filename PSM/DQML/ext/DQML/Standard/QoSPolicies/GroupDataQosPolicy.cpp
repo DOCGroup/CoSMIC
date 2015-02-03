@@ -10,8 +10,8 @@
 #include "DQML/Visitor.h"
 #include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,17 +26,22 @@ namespace DQML
   const std::string GroupDataQosPolicy_Impl::metaname ("GroupDataQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // is_abstract
   //
-  GroupDataQosPolicy GroupDataQosPolicy_Impl::_create (const PublisherQos_in parent)
-  {
-    return ::GAME::Mga::create < GroupDataQosPolicy > (parent, GroupDataQosPolicy_Impl::metaname);
-  }
+  const bool GroupDataQosPolicy_Impl::is_abstract (0);
 
   //
   // _create (const SubscriberQos_in)
   //
   GroupDataQosPolicy GroupDataQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  {
+    return ::GAME::Mga::create < GroupDataQosPolicy > (parent, GroupDataQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const PublisherQos_in)
+  //
+  GroupDataQosPolicy GroupDataQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create < GroupDataQosPolicy > (parent, GroupDataQosPolicy_Impl::metaname);
   }
@@ -64,19 +69,19 @@ namespace DQML
   }
 
   //
-  // parent_PublisherQos
-  //
-  PublisherQos GroupDataQosPolicy_Impl::parent_PublisherQos (void)
-  {
-    return PublisherQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_SubscriberQos
   //
   SubscriberQos GroupDataQosPolicy_Impl::parent_SubscriberQos (void)
   {
     return SubscriberQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PublisherQos
+  //
+  PublisherQos GroupDataQosPolicy_Impl::parent_PublisherQos (void)
+  {
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //

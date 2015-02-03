@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,6 +28,19 @@ namespace DQML
   const std::string ReliabilityQosPolicy_Impl::metaname ("ReliabilityQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool ReliabilityQosPolicy_Impl::is_abstract (0);
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
+  }
+
+  //
   // _create (const TopicQos_in)
   //
   ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const TopicQos_in parent)
@@ -39,14 +52,6 @@ namespace DQML
   // _create (const DataWriterQos_in)
   //
   ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataWriterQos_in parent)
-  {
-    return ::GAME::Mga::create < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
-  }
-
-  //
-  // _create (const DataReaderQos_in)
-  //
-  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
   }
@@ -74,6 +79,14 @@ namespace DQML
   }
 
   //
+  // parent_DataReaderQos
+  //
+  DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
+  {
+    return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
   // parent_TopicQos
   //
   TopicQos ReliabilityQosPolicy_Impl::parent_TopicQos (void)
@@ -90,11 +103,19 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // dst_of_topic_reliability_Connection
   //
-  DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
+  size_t ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return this->in_connections <topic_reliability_Connection> (items);
+  }
+
+  //
+  // dst_of_topic_reliability_Connection
+  //
+  GAME::Mga::Collection_T <topic_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (void) const
+  {
+    return this->in_connections <topic_reliability_Connection> ("dst");
   }
 
   //
@@ -111,22 +132,6 @@ namespace DQML
   GAME::Mga::Collection_T <dr_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_dr_reliability_Connection (void) const
   {
     return this->in_connections <dr_reliability_Connection> ("dst");
-  }
-
-  //
-  // dst_of_topic_reliability_Connection
-  //
-  size_t ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const
-  {
-    return this->in_connections <topic_reliability_Connection> (items);
-  }
-
-  //
-  // dst_of_topic_reliability_Connection
-  //
-  GAME::Mga::Collection_T <topic_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (void) const
-  {
-    return this->in_connections <topic_reliability_Connection> ("dst");
   }
 
   //

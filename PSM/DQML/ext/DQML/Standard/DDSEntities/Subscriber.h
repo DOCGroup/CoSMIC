@@ -49,6 +49,10 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,6 +83,10 @@ namespace DQML
      */
     ///@{
 
+    /// Get the src sub_part_Connection connection.
+    size_t src_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
+    GAME::Mga::Collection_T <sub_part_Connection> src_of_sub_part_Connection (void) const;
+
     /// Get the src sub_groupdata_Connection connection.
     size_t src_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const;
     GAME::Mga::Collection_T <sub_groupdata_Connection> src_of_sub_groupdata_Connection (void) const;
@@ -87,17 +95,13 @@ namespace DQML
     size_t src_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
     GAME::Mga::Collection_T <sub_entityfactory_Connection> src_of_sub_entityfactory_Connection (void) const;
 
-    /// Get the src sub_part_Connection connection.
-    size_t src_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
-    GAME::Mga::Collection_T <sub_part_Connection> src_of_sub_part_Connection (void) const;
+    /// Get the src dr_sub_Connection connection.
+    size_t src_of_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_sub_Connection> src_of_dr_sub_Connection (void) const;
 
     /// Get the src sub_presqos_Connection connection.
     size_t src_of_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const;
     GAME::Mga::Collection_T <sub_presqos_Connection> src_of_sub_presqos_Connection (void) const;
-
-    /// Get the src dr_sub_Connection connection.
-    size_t src_of_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_sub_Connection> src_of_dr_sub_Connection (void) const;
     ///@}
 
     /**

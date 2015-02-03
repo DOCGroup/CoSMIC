@@ -44,6 +44,10 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     QoSPolicy_Impl (void);
 

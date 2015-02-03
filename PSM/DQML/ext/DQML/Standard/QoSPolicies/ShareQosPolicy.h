@@ -49,12 +49,16 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ShareQosPolicy _create (const DataReaderQos_in parent);
     static ShareQosPolicy _create (const SubscriberQos_in parent);
+    static ShareQosPolicy _create (const DataReaderQos_in parent);
     static ShareQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -74,8 +78,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataReaderQos parent_DataReaderQos (void);
     SubscriberQos parent_SubscriberQos (void);
+    DataReaderQos parent_DataReaderQos (void);
     ///@}
 
     /**

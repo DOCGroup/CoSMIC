@@ -8,13 +8,13 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -29,9 +29,14 @@ namespace DQML
   const std::string EntityFactoryQosPolicy_Impl::metaname ("EntityFactoryQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // is_abstract
   //
-  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
+  const bool EntityFactoryQosPolicy_Impl::is_abstract (0);
+
+  //
+  // _create (const Participant_in)
+  //
+  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const Participant_in parent)
   {
     return ::GAME::Mga::create < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
@@ -45,9 +50,9 @@ namespace DQML
   }
 
   //
-  // _create (const Participant_in)
+  // _create (const PublisherQos_in)
   //
-  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const Participant_in parent)
+  EntityFactoryQosPolicy EntityFactoryQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create < EntityFactoryQosPolicy > (parent, EntityFactoryQosPolicy_Impl::metaname);
   }
@@ -75,11 +80,11 @@ namespace DQML
   }
 
   //
-  // parent_PublisherQos
+  // parent_Participant
   //
-  PublisherQos EntityFactoryQosPolicy_Impl::parent_PublisherQos (void)
+  Participant EntityFactoryQosPolicy_Impl::parent_Participant (void)
   {
-    return PublisherQos::_narrow (this->parent ());
+    return Participant::_narrow (this->parent ());
   }
 
   //
@@ -91,27 +96,11 @@ namespace DQML
   }
 
   //
-  // parent_Participant
+  // parent_PublisherQos
   //
-  Participant EntityFactoryQosPolicy_Impl::parent_Participant (void)
+  PublisherQos EntityFactoryQosPolicy_Impl::parent_PublisherQos (void)
   {
-    return Participant::_narrow (this->parent ());
-  }
-
-  //
-  // dst_of_dpfactory_entityfactory_Connection
-  //
-  size_t EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <dpfactory_entityfactory_Connection> (items);
-  }
-
-  //
-  // dst_of_dpfactory_entityfactory_Connection
-  //
-  GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (void) const
-  {
-    return this->in_connections <dpfactory_entityfactory_Connection> ("dst");
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //
@@ -160,6 +149,22 @@ namespace DQML
   GAME::Mga::Collection_T <pub_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (void) const
   {
     return this->in_connections <pub_entityfactory_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dpfactory_entityfactory_Connection
+  //
+  size_t EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <dpfactory_entityfactory_Connection> (items);
+  }
+
+  //
+  // dst_of_dpfactory_entityfactory_Connection
+  //
+  GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dpfactory_entityfactory_Connection> ("dst");
   }
 }
 

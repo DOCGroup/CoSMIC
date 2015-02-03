@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string OwnershipStrengthQosPolicy_Impl::metaname ("OwnershipStrengthQosPolicy");
+
+  //
+  // is_abstract
+  //
+  const bool OwnershipStrengthQosPolicy_Impl::is_abstract (0);
 
   //
   // _create (const DataWriterQos_in)

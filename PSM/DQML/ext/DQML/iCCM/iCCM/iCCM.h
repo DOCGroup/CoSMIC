@@ -48,6 +48,10 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -79,13 +83,13 @@ namespace DQML
      */
     ///@{
 
-    size_t get_TopicQosFolders (std::vector <TopicQosFolder> & items) const;
-
-    ::GAME::Mga::Collection_T <TopicQosFolder> get_TopicQosFolders (void) const;
-
     size_t get_DomainQosFolders (std::vector <DomainQosFolder> & items) const;
 
     ::GAME::Mga::Collection_T <DomainQosFolder> get_DomainQosFolders (void) const;
+
+    size_t get_TopicQosFolders (std::vector <TopicQosFolder> & items) const;
+
+    ::GAME::Mga::Collection_T <TopicQosFolder> get_TopicQosFolders (void) const;
     ///@}
   };
 }

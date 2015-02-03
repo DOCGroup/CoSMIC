@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string topic_reliability_Connection_Impl::metaname ("topic_reliability_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool topic_reliability_Connection_Impl::is_abstract (0);
 
   //
   // _create (const DDSQoS_in, Topic_in src, ReliabilityQosPolicy_in dst)
