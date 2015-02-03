@@ -6,15 +6,11 @@ workspace {
   DeploymentPlanComponent
   IDLGenerator
 
-  MPCComponent
-
-  PackageComponent
   PICML/PICML.mpc
 
   PICML_TO_DQML
 
   PropertyManager
-
   DomainComponent
 
   IDLImporter
