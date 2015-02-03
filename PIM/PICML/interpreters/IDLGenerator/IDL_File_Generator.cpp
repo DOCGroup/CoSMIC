@@ -239,7 +239,7 @@ void IDL_File_Generator::visit_Enum (PICML::Enum_in e)
     m->accept (this);
   }
 
-  this->idl_ << nl << uidt_nl
+  this->idl_ << uidt_nl
              << "};" << nl
              << nl;
 }
@@ -391,8 +391,6 @@ void IDL_File_Generator::visit_Member (PICML::Member_in m)
 
   for (auto member_connection : m->dst_of_KeyMember ())
     this->idl_ << "  // @key";
-
-  this->idl_ << nl;
 }
 
 //
@@ -464,7 +462,8 @@ void IDL_File_Generator::visit_Event (PICML::Event_in e)
   this->in_event_ = false;
 
   this->idl_ << uidt_nl
-             << "};" << nl;
+             << "};"
+             << nl;
 }
 
 //
@@ -803,7 +802,7 @@ void IDL_File_Generator::visit_Object (PICML::Object_in o)
   visit_all () (o->get_ReadonlyAttributes (), this);
 
   this->idl_ << uidt_nl
-             << "};" << nl
+             << "};"
              << nl;
 }
 
@@ -881,7 +880,7 @@ void IDL_File_Generator::visit_Attribute (PICML::Attribute_in a)
     this->idl_ << ")" << uidt_nl;
   }
 
-  this->idl_ << ";" << nl;
+  this->idl_ << ";";
 }
 
 //
@@ -987,7 +986,7 @@ visit_TwowayOperation (PICML::TwowayOperation_in op)
     this->idl_ << ")" << uidt;
   }
 
-  this->idl_ << ";" << nl;
+  this->idl_ << ";";
 }
 
 //

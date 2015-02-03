@@ -17,15 +17,13 @@
 #include "PICML/PICML.h"
 #include "IDLStream.h"
 
-#include "IDL_Generator_export.h"
-
 /**
  * @class IDL_Generator_File
  *
  * Wrapper class for generating the IDL file. This makes it easy for
  * third-party objects to generate valid IDL files.
  */
-class IDL_GENERATOR_Export IDL_Generator_File
+class IDL_Generator_File
 {
 public:
   /**

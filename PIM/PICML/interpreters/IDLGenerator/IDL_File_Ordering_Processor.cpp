@@ -661,7 +661,7 @@ same_parent_before_file (const GAME::Mga::Object_in o, const GAME::Mga::Object_i
 bool IDL_File_Ordering_Processor::
 parent_in_same_file (const GAME::Mga::Object_in o, const GAME::Mga::Object_in p)
 {
-  return parent_file (o)->id () == parent_file (p)->id ();
+  return this->parent_file (o)->id () == this->parent_file (p)->id ();
 }
 
 //
@@ -671,7 +671,7 @@ GAME::Mga::Object IDL_File_Ordering_Processor::
 parent_file (const GAME::Mga::Object_in o)
 {
   if (o->meta ()->name () == PICML::File::impl_type::metaname)
-    return 0;
+    return o;
 
   GAME::Mga::Object parent;
 
