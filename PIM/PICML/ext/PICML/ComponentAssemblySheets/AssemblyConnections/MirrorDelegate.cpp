@@ -25,6 +25,11 @@ namespace PICML
   const std::string MirrorDelegate_Impl::metaname ("MirrorDelegate");
 
   //
+  // is_abstract
+  //
+  const bool MirrorDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)
   //
   MirrorDelegate MirrorDelegate_Impl::_create (const ComponentAssembly_in parent, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)

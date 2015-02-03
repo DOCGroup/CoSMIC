@@ -23,6 +23,11 @@ namespace PICML
   const std::string Key_Impl::metaname ("Key");
 
   //
+  // is_abstract
+  //
+  const bool Key_Impl::is_abstract (0);
+
+  //
   // _create (const Aggregate_in)
   //
   Key Key_Impl::_create (const Aggregate_in parent)

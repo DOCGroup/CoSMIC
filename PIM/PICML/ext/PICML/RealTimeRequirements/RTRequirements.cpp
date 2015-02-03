@@ -26,6 +26,11 @@ namespace PICML
   const std::string RTRequirements_Impl::metaname ("RTRequirements");
 
   //
+  // is_abstract
+  //
+  const bool RTRequirements_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   RTRequirements RTRequirements_Impl::_create (const ComponentAssembly_in parent)

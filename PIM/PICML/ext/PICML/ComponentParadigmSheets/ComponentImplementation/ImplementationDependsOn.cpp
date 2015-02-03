@@ -26,6 +26,11 @@ namespace PICML
   const std::string ImplementationDependsOn_Impl::metaname ("ImplementationDependsOn");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationDependsOn_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, ImplementationDependency_in dst)
   //
   ImplementationDependsOn ImplementationDependsOn_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, ImplementationDependency_in dst)

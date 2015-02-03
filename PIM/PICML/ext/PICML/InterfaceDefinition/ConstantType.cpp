@@ -17,5 +17,10 @@ namespace PICML
   // metaname
   //
   const std::string ConstantType_Impl::metaname ("ConstantType");
+
+  //
+  // is_abstract
+  //
+  const bool ConstantType_Impl::is_abstract (1);
 }
 

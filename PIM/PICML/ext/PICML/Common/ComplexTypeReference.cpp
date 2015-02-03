@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/ComplexType.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/DataValueContainer.h"
 #include "game/mga/Functional_T.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string ComplexTypeReference_Impl::metaname ("ComplexTypeReference");
+
+  //
+  // is_abstract
+  //
+  const bool ComplexTypeReference_Impl::is_abstract (0);
 
   //
   // _create (const ComplexProperty_in)

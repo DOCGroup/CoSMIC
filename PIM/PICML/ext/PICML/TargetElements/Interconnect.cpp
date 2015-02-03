@@ -25,6 +25,11 @@ namespace PICML
   const std::string Interconnect_Impl::metaname ("Interconnect");
 
   //
+  // is_abstract
+  //
+  const bool Interconnect_Impl::is_abstract (0);
+
+  //
   // _create (const Domain_in)
   //
   Interconnect Interconnect_Impl::_create (const Domain_in parent)

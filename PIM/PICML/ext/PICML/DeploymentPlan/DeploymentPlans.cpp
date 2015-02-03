@@ -22,6 +22,11 @@ namespace PICML
   const std::string DeploymentPlans_Impl::metaname ("DeploymentPlans");
 
   //
+  // is_abstract
+  //
+  const bool DeploymentPlans_Impl::is_abstract (0);
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   DeploymentPlans DeploymentPlans_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

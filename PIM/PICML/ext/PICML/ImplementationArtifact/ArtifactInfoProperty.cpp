@@ -26,6 +26,11 @@ namespace PICML
   const std::string ArtifactInfoProperty_Impl::metaname ("ArtifactInfoProperty");
 
   //
+  // is_abstract
+  //
+  const bool ArtifactInfoProperty_Impl::is_abstract (0);
+
+  //
   // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Property_in dst)
   //
   ArtifactInfoProperty ArtifactInfoProperty_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Property_in dst)

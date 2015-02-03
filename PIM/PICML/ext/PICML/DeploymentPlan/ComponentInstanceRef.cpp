@@ -24,6 +24,11 @@ namespace PICML
   const std::string ComponentInstanceRef_Impl::metaname ("ComponentInstanceRef");
 
   //
+  // is_abstract
+  //
+  const bool ComponentInstanceRef_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlan_in)
   //
   ComponentInstanceRef ComponentInstanceRef_Impl::_create (const DeploymentPlan_in parent)

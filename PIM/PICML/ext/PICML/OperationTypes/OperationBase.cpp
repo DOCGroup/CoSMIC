@@ -20,6 +20,11 @@ namespace PICML
   const std::string OperationBase_Impl::metaname ("OperationBase");
 
   //
+  // is_abstract
+  //
+  const bool OperationBase_Impl::is_abstract (1);
+
+  //
   // parent_BenchmarkAnalysis
   //
   BenchmarkAnalysis OperationBase_Impl::parent_BenchmarkAnalysis (void)

@@ -31,6 +31,11 @@ namespace PICML
   const std::string TwowayOperation_Impl::metaname ("TwowayOperation");
 
   //
+  // is_abstract
+  //
+  const bool TwowayOperation_Impl::is_abstract (0);
+
+  //
   // _create (const HasOperations_in)
   //
   TwowayOperation TwowayOperation_Impl::_create (const HasOperations_in parent)

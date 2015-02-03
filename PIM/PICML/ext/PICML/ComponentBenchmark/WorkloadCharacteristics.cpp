@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/TaskSet.h"
 #include "PICML/ComponentBenchmark/MetricsBase.h"
 #include "PICML/ComponentBenchmark/Throughput.h"
 #include "PICML/ComponentBenchmark/Latency.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/TaskSet.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string WorkloadCharacteristics_Impl::metaname ("WorkloadCharacteristics");
+
+  //
+  // is_abstract
+  //
+  const bool WorkloadCharacteristics_Impl::is_abstract (0);
 
   //
   // _create (const BenchmarkAnalysis_in, MetricsBase_in src, TaskSet_in dst)

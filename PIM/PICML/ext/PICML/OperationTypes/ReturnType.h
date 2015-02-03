@@ -47,12 +47,16 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ReturnType _create (const Operation_in parent);
     static ReturnType _create (const TwowayOperation_in parent);
+    static ReturnType _create (const Operation_in parent);
     ///@}
 
     // Default constructor.
@@ -71,8 +75,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Operation parent_Operation (void);
     TwowayOperation parent_TwowayOperation (void);
+    Operation parent_Operation (void);
     ///@}
 
     /**

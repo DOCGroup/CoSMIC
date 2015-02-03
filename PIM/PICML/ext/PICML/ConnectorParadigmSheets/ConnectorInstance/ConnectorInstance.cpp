@@ -28,6 +28,11 @@ namespace PICML
   const std::string ConnectorInstance_Impl::metaname ("ConnectorInstance");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorInstance_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ConnectorInstance ConnectorInstance_Impl::_create (const ComponentAssembly_in parent)

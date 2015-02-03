@@ -25,6 +25,11 @@ namespace PICML
   const std::string ArrayMember_Impl::metaname ("ArrayMember");
 
   //
+  // is_abstract
+  //
+  const bool ArrayMember_Impl::is_abstract (0);
+
+  //
   // _create (const Exception_in)
   //
   ArrayMember ArrayMember_Impl::_create (const Exception_in parent)

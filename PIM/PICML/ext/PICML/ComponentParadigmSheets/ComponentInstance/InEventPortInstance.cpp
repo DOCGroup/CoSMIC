@@ -23,6 +23,11 @@ namespace PICML
   const std::string InEventPortInstance_Impl::metaname ("InEventPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool InEventPortInstance_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentInstance_in)
   //
   InEventPortInstance InEventPortInstance_Impl::_create (const ComponentInstance_in parent)

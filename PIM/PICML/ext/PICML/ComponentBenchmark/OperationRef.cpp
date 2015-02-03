@@ -11,11 +11,11 @@
 #include "PICML/OperationTypes/OperationBase.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
@@ -30,6 +30,11 @@ namespace PICML
   // metaname
   //
   const std::string OperationRef_Impl::metaname ("OperationRef");
+
+  //
+  // is_abstract
+  //
+  const bool OperationRef_Impl::is_abstract (0);
 
   //
   // _create (const BenchmarkAnalysis_in)

@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 
 namespace PICML
 {
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string StateBase_Impl::metaname ("StateBase");
+
+  //
+  // is_abstract
+  //
+  const bool StateBase_Impl::is_abstract (1);
 
   //
   // parent_BehaviorModel

@@ -30,6 +30,11 @@ namespace PICML
   const std::string MonolithDeployRequirement_Impl::metaname ("MonolithDeployRequirement");
 
   //
+  // is_abstract
+  //
+  const bool MonolithDeployRequirement_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, ImplementationRequirement_in dst)
   //
   MonolithDeployRequirement MonolithDeployRequirement_Impl::_create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, ImplementationRequirement_in dst)

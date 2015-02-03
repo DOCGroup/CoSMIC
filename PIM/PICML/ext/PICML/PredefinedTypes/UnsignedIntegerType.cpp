@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string UnsignedIntegerType_Impl::metaname ("UnsignedIntegerType");
+
+  //
+  // is_abstract
+  //
+  const bool UnsignedIntegerType_Impl::is_abstract (1);
 }
 

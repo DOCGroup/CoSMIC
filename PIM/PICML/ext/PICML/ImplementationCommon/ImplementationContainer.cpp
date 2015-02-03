@@ -11,7 +11,6 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/ImplementationCommon/ConfigProperty.h"
 #include "PICML/ImplementationCommon/MonolithExecParameter.h"
 #include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
@@ -19,6 +18,7 @@
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
+#include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/ImplementationCommon/InfoProperty.h"
 
 namespace PICML
@@ -27,6 +27,11 @@ namespace PICML
   // metaname
   //
   const std::string ImplementationContainer_Impl::metaname ("ImplementationContainer");
+
+  //
+  // is_abstract
+  //
+  const bool ImplementationContainer_Impl::is_abstract (1);
 
   //
   // get_ComplexPropertys
@@ -58,22 +63,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> ImplementationContainer_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_ImplementationRequirements
-  //
-  size_t ImplementationContainer_Impl::get_ImplementationRequirements (std::vector <ImplementationRequirement> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ImplementationRequirements
-  //
-  ::GAME::Mga::Collection_T <ImplementationRequirement> ImplementationContainer_Impl::get_ImplementationRequirements (void) const
-  {
-    return this->children <ImplementationRequirement> ();
   }
 
   //
@@ -186,6 +175,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentServantArtifact> ImplementationContainer_Impl::get_ComponentServantArtifacts (void) const
   {
     return this->children <ComponentServantArtifact> ();
+  }
+
+  //
+  // get_ImplementationRequirements
+  //
+  size_t ImplementationContainer_Impl::get_ImplementationRequirements (std::vector <ImplementationRequirement> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ImplementationRequirements
+  //
+  ::GAME::Mga::Collection_T <ImplementationRequirement> ImplementationContainer_Impl::get_ImplementationRequirements (void) const
+  {
+    return this->children <ImplementationRequirement> ();
   }
 
   //

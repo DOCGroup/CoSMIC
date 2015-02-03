@@ -25,6 +25,11 @@ namespace PICML
   const std::string PrivateFlag_Impl::metaname ("PrivateFlag");
 
   //
+  // is_abstract
+  //
+  const bool PrivateFlag_Impl::is_abstract (0);
+
+  //
   // _create (const ObjectByValue_in)
   //
   PrivateFlag PrivateFlag_Impl::_create (const ObjectByValue_in parent)

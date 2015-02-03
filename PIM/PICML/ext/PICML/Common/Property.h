@@ -44,6 +44,10 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     Property_Impl (void);
 
@@ -57,12 +61,12 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    QueryInputAction parent_QueryInputAction (void);
-    ActionBase parent_ActionBase (void);
-    BehaviorInputAction parent_BehaviorInputAction (void);
-    Path parent_Path (void);
     RequirementBase parent_RequirementBase (void);
     ComponentAssembly parent_ComponentAssembly (void);
+    BehaviorInputAction parent_BehaviorInputAction (void);
+    ActionBase parent_ActionBase (void);
+    QueryInputAction parent_QueryInputAction (void);
+    Path parent_Path (void);
     ImplementationContainer parent_ImplementationContainer (void);
     ComponentContainer parent_ComponentContainer (void);
     Paths parent_Paths (void);

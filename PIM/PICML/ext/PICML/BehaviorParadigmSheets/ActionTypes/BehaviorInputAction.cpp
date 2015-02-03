@@ -11,11 +11,11 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 
 namespace PICML
 {
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string BehaviorInputAction_Impl::metaname ("BehaviorInputAction");
+
+  //
+  // is_abstract
+  //
+  const bool BehaviorInputAction_Impl::is_abstract (1);
 
   //
   // parent_BehaviorModel

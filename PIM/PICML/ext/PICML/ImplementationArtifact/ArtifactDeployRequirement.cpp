@@ -26,6 +26,11 @@ namespace PICML
   const std::string ArtifactDeployRequirement_Impl::metaname ("ArtifactDeployRequirement");
 
   //
+  // is_abstract
+  //
+  const bool ArtifactDeployRequirement_Impl::is_abstract (0);
+
+  //
   // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Requirement_in dst)
   //
   ArtifactDeployRequirement ArtifactDeployRequirement_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Requirement_in dst)

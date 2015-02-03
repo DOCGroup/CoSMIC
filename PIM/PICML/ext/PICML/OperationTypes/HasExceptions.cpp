@@ -19,6 +19,11 @@ namespace PICML
   const std::string HasExceptions_Impl::metaname ("HasExceptions");
 
   //
+  // is_abstract
+  //
+  const bool HasExceptions_Impl::is_abstract (1);
+
+  //
   // get_ExceptionRefs
   //
   size_t HasExceptions_Impl::get_ExceptionRefs (std::vector <ExceptionRef> & items) const

@@ -24,6 +24,11 @@ namespace PICML
   const std::string ComponentFactoryRef_Impl::metaname ("ComponentFactoryRef");
 
   //
+  // is_abstract
+  //
+  const bool ComponentFactoryRef_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlan_in)
   //
   ComponentFactoryRef ComponentFactoryRef_Impl::_create (const DeploymentPlan_in parent)

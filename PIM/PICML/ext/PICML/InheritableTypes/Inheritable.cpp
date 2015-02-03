@@ -22,6 +22,11 @@ namespace PICML
   const std::string Inheritable_Impl::metaname ("Inheritable");
 
   //
+  // is_abstract
+  //
+  const bool Inheritable_Impl::is_abstract (1);
+
+  //
   // get_ReadonlyAttributes
   //
   size_t Inheritable_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const

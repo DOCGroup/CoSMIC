@@ -32,6 +32,11 @@ namespace PICML
   const std::string ImplementationArtifactReference_Impl::metaname ("ImplementationArtifactReference");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationArtifactReference_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in)
   //
   ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ImplementationContainer_in parent)

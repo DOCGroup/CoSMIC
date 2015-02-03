@@ -13,9 +13,9 @@
 #include "PICML/ComponentBenchmark/Maximum.h"
 #include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/Average.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 
 namespace PICML
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string MetricsBase_Impl::metaname ("MetricsBase");
+
+  //
+  // is_abstract
+  //
+  const bool MetricsBase_Impl::is_abstract (1);
 
   //
   // parent_BenchmarkAnalysis

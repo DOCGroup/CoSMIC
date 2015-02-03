@@ -25,6 +25,11 @@ namespace PICML
   const std::string EventSourceDelegate_Impl::metaname ("EventSourceDelegate");
 
   //
+  // is_abstract
+  //
+  const bool EventSourceDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, OutEventPortEnd_in src, OutEventPortDelegate_in dst)
   //
   EventSourceDelegate EventSourceDelegate_Impl::_create (const ComponentAssembly_in parent, OutEventPortEnd_in src, OutEventPortDelegate_in dst)

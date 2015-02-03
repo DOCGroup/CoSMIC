@@ -18,6 +18,11 @@ namespace PICML
   const std::string SupportsInterfaces_Impl::metaname ("SupportsInterfaces");
 
   //
+  // is_abstract
+  //
+  const bool SupportsInterfaces_Impl::is_abstract (1);
+
+  //
   // get_Supportss
   //
   size_t SupportsInterfaces_Impl::get_Supportss (std::vector <Supports> & items) const

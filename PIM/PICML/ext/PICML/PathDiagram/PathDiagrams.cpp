@@ -22,6 +22,11 @@ namespace PICML
   const std::string PathDiagrams_Impl::metaname ("PathDiagrams");
 
   //
+  // is_abstract
+  //
+  const bool PathDiagrams_Impl::is_abstract (0);
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   PathDiagrams PathDiagrams_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

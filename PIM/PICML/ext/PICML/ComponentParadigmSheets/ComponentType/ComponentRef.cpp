@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
@@ -33,6 +33,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentRef_Impl::metaname ("ComponentRef");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentRef_Impl::is_abstract (0);
 
   //
   // _create (const Path_in)

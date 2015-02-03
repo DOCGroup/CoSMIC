@@ -22,6 +22,11 @@ namespace PICML
   const std::string WideString_Impl::metaname ("WideString");
 
   //
+  // is_abstract
+  //
+  const bool WideString_Impl::is_abstract (0);
+
+  //
   // _create (const PredefinedTypes_in)
   //
   WideString WideString_Impl::_create (const PredefinedTypes_in parent)

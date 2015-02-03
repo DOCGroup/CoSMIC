@@ -24,6 +24,11 @@ namespace PICML
   const std::string CompRef_Impl::metaname ("CompRef");
 
   //
+  // is_abstract
+  //
+  const bool CompRef_Impl::is_abstract (0);
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   CompRef CompRef_Impl::_create (const BenchmarkAnalysis_in parent)

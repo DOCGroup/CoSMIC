@@ -26,6 +26,11 @@ namespace PICML
   const std::string GetException_Impl::metaname ("GetException");
 
   //
+  // is_abstract
+  //
+  const bool GetException_Impl::is_abstract (0);
+
+  //
   // _create (const ReadonlyAttribute_in)
   //
   GetException GetException_Impl::_create (const ReadonlyAttribute_in parent)

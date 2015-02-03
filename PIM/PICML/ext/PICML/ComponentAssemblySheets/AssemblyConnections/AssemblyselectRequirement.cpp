@@ -28,6 +28,11 @@ namespace PICML
   const std::string AssemblyselectRequirement_Impl::metaname ("AssemblyselectRequirement");
 
   //
+  // is_abstract
+  //
+  const bool AssemblyselectRequirement_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, AssemblyConfigPropertyEnd_in src, Requirement_in dst)
   //
   AssemblyselectRequirement AssemblyselectRequirement_Impl::_create (const ComponentAssembly_in parent, AssemblyConfigPropertyEnd_in src, Requirement_in dst)

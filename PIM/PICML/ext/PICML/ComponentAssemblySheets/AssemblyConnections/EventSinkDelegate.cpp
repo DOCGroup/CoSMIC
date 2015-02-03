@@ -25,6 +25,11 @@ namespace PICML
   const std::string EventSinkDelegate_Impl::metaname ("EventSinkDelegate");
 
   //
+  // is_abstract
+  //
+  const bool EventSinkDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, InEventPortDelegate_in src, InEventPortEnd_in dst)
   //
   EventSinkDelegate EventSinkDelegate_Impl::_create (const ComponentAssembly_in parent, InEventPortDelegate_in src, InEventPortEnd_in dst)

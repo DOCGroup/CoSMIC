@@ -52,6 +52,11 @@ namespace PICML
   const std::string DataValue_Impl::metaname ("DataValue");
 
   //
+  // is_abstract
+  //
+  const bool DataValue_Impl::is_abstract (0);
+
+  //
   // _create (const ComplexProperty_in)
   //
   DataValue DataValue_Impl::_create (const ComplexProperty_in parent)

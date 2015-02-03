@@ -19,6 +19,11 @@ namespace PICML
   const std::string PredefinedType_Impl::metaname ("PredefinedType");
 
   //
+  // is_abstract
+  //
+  const bool PredefinedType_Impl::is_abstract (1);
+
+  //
   // parent_PredefinedTypes
   //
   PredefinedTypes PredefinedType_Impl::parent_PredefinedTypes (void)

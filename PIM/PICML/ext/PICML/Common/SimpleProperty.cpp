@@ -12,12 +12,11 @@
 #include "PICML/NamedTypes/NamedType.h"
 #include "PICML/NamedTypes/NoInheritable.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/Alias.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/Object.h"
@@ -25,6 +24,7 @@
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Boxed.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
@@ -54,17 +54,17 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
+#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/Common/RequirementBase.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/PathDiagram/Paths.h"
@@ -86,36 +86,9 @@ namespace PICML
   const std::string SimpleProperty_Impl::metaname ("SimpleProperty");
 
   //
-  // _create (const QueryInputAction_in)
+  // is_abstract
   //
-  SimpleProperty SimpleProperty_Impl::_create (const QueryInputAction_in parent)
-  {
-    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const ActionBase_in)
-  //
-  SimpleProperty SimpleProperty_Impl::_create (const ActionBase_in parent)
-  {
-    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const BehaviorInputAction_in)
-  //
-  SimpleProperty SimpleProperty_Impl::_create (const BehaviorInputAction_in parent)
-  {
-    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const Path_in)
-  //
-  SimpleProperty SimpleProperty_Impl::_create (const Path_in parent)
-  {
-    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
-  }
+  const bool SimpleProperty_Impl::is_abstract (0);
 
   //
   // _create (const RequirementBase_in)
@@ -129,6 +102,38 @@ namespace PICML
   // _create (const ComponentAssembly_in)
   //
   SimpleProperty SimpleProperty_Impl::_create (const ComponentAssembly_in parent)
+  {
+    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const BehaviorInputAction_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const BehaviorInputAction_in parent)
+  {
+    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ActionBase_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const ActionBase_in parent)
+  {
+    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const QueryInputAction_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const QueryInputAction_in parent)
+  {
+    return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const Path_in)
+  //
+  SimpleProperty SimpleProperty_Impl::_create (const Path_in parent)
   {
     return ::GAME::Mga::create < SimpleProperty > (parent, SimpleProperty_Impl::metaname);
   }

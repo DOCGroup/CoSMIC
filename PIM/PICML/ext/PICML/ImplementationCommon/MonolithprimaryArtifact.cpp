@@ -32,6 +32,11 @@ namespace PICML
   const std::string MonolithprimaryArtifact_Impl::metaname ("MonolithprimaryArtifact");
 
   //
+  // is_abstract
+  //
+  const bool MonolithprimaryArtifact_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, ImplementationArtifactReference_in dst)
   //
   MonolithprimaryArtifact MonolithprimaryArtifact_Impl::_create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, ImplementationArtifactReference_in dst)

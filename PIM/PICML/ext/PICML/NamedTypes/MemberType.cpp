@@ -28,5 +28,10 @@ namespace PICML
   // metaname
   //
   const std::string MemberType_Impl::metaname ("MemberType");
+
+  //
+  // is_abstract
+  //
+  const bool MemberType_Impl::is_abstract (1);
 }
 

@@ -23,6 +23,11 @@ namespace PICML
   const std::string Jitter_Impl::metaname ("Jitter");
 
   //
+  // is_abstract
+  //
+  const bool Jitter_Impl::is_abstract (0);
+
+  //
   // _create (const MetricsBase_in)
   //
   Jitter Jitter_Impl::_create (const MetricsBase_in parent)

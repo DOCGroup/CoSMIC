@@ -26,6 +26,11 @@ namespace PICML
   const std::string ComponentImplementationReference_Impl::metaname ("ComponentImplementationReference");
 
   //
+  // is_abstract
+  //
+  const bool ComponentImplementationReference_Impl::is_abstract (0);
+
+  //
   // _create (const PackageContainer_in)
   //
   ComponentImplementationReference ComponentImplementationReference_Impl::_create (const PackageContainer_in parent)

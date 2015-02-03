@@ -24,6 +24,11 @@ namespace PICML
   const std::string InstanceMapping_Impl::metaname ("InstanceMapping");
 
   //
+  // is_abstract
+  //
+  const bool InstanceMapping_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlan_in, CollocationGroup_in src, NodeReference_in dst)
   //
   InstanceMapping InstanceMapping_Impl::_create (const DeploymentPlan_in parent, CollocationGroup_in src, NodeReference_in dst)

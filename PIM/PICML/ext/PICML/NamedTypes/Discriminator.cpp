@@ -45,6 +45,11 @@ namespace PICML
   const std::string Discriminator_Impl::metaname ("Discriminator");
 
   //
+  // is_abstract
+  //
+  const bool Discriminator_Impl::is_abstract (0);
+
+  //
   // _create (const SwitchedAggregate_in)
   //
   Discriminator Discriminator_Impl::_create (const SwitchedAggregate_in parent)

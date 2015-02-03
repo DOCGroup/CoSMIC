@@ -24,6 +24,11 @@ namespace PICML
   const std::string CriticalPath_Impl::metaname ("CriticalPath");
 
   //
+  // is_abstract
+  //
+  const bool CriticalPath_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentImplementationContainer_in, ComponentAssembly_in src, PathReference_in dst)
   //
   CriticalPath CriticalPath_Impl::_create (const ComponentImplementationContainer_in parent, ComponentAssembly_in src, PathReference_in dst)

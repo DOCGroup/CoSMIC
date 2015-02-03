@@ -28,6 +28,11 @@ namespace PICML
   const std::string AssemblyConfigProperty_Impl::metaname ("AssemblyConfigProperty");
 
   //
+  // is_abstract
+  //
+  const bool AssemblyConfigProperty_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, AssemblyConfigPropertyEnd_in src, Property_in dst)
   //
   AssemblyConfigProperty AssemblyConfigProperty_Impl::_create (const ComponentAssembly_in parent, AssemblyConfigPropertyEnd_in src, Property_in dst)

@@ -22,6 +22,11 @@ namespace PICML
   const std::string TypeKind_Impl::metaname ("TypeKind");
 
   //
+  // is_abstract
+  //
+  const bool TypeKind_Impl::is_abstract (0);
+
+  //
   // _create (const PredefinedTypes_in)
   //
   TypeKind TypeKind_Impl::_create (const PredefinedTypes_in parent)

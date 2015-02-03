@@ -32,6 +32,11 @@ namespace PICML
   const std::string MonolithExecParameter_Impl::metaname ("MonolithExecParameter");
 
   //
+  // is_abstract
+  //
+  const bool MonolithExecParameter_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, Property_in dst)
   //
   MonolithExecParameter MonolithExecParameter_Impl::_create (const ImplementationContainer_in parent, MonolithicImplementationBase_in src, Property_in dst)

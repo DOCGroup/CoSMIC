@@ -23,6 +23,11 @@ namespace PICML
   const std::string SharedResource_Impl::metaname ("SharedResource");
 
   //
+  // is_abstract
+  //
+  const bool SharedResource_Impl::is_abstract (0);
+
+  //
   // _create (const Domain_in)
   //
   SharedResource SharedResource_Impl::_create (const Domain_in parent)

@@ -12,12 +12,11 @@
 #include "PICML/NamedTypes/NamedType.h"
 #include "PICML/NamedTypes/NoInheritable.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/Alias.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/Object.h"
@@ -25,6 +24,7 @@
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Boxed.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
@@ -54,11 +54,11 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
+#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
 #include "PICML/Common/SatisfierProperty.h"
 #include "game/mga/Functional_T.h"
@@ -72,6 +72,11 @@ namespace PICML
   // metaname
   //
   const std::string DataType_Impl::metaname ("DataType");
+
+  //
+  // is_abstract
+  //
+  const bool DataType_Impl::is_abstract (0);
 
   //
   // _create (const ComponentPropertyDescription_in)

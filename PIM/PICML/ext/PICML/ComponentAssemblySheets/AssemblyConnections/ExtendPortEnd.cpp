@@ -19,6 +19,11 @@ namespace PICML
   const std::string ExtendPortEnd_Impl::metaname ("ExtendPortEnd");
 
   //
+  // is_abstract
+  //
+  const bool ExtendPortEnd_Impl::is_abstract (1);
+
+  //
   // src_of_Publish
   //
   size_t ExtendPortEnd_Impl::src_of_Publish (std::vector <Publish> & items) const

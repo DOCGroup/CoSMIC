@@ -26,6 +26,11 @@ namespace PICML
   const std::string StubProject_Impl::metaname ("StubProject");
 
   //
+  // is_abstract
+  //
+  const bool StubProject_Impl::is_abstract (0);
+
+  //
   // _create (const Project_in)
   //
   StubProject StubProject_Impl::_create (const Project_in parent)

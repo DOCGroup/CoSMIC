@@ -25,6 +25,11 @@ namespace PICML
   const std::string TemplatePackageInstance_Impl::metaname ("TemplatePackageInstance");
 
   //
+  // is_abstract
+  //
+  const bool TemplatePackageInstance_Impl::is_abstract (0);
+
+  //
   // _create (const Package_in)
   //
   TemplatePackageInstance TemplatePackageInstance_Impl::_create (const Package_in parent)

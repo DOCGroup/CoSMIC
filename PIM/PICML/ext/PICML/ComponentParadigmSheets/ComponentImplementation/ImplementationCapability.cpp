@@ -26,6 +26,11 @@ namespace PICML
   const std::string ImplementationCapability_Impl::metaname ("ImplementationCapability");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationCapability_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, Capability_in dst)
   //
   ImplementationCapability ImplementationCapability_Impl::_create (const ComponentImplementationContainer_in parent, ComponentImplementation_in src, Capability_in dst)

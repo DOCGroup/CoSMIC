@@ -26,6 +26,11 @@ namespace PICML
   const std::string PathProperty_Impl::metaname ("PathProperty");
 
   //
+  // is_abstract
+  //
+  const bool PathProperty_Impl::is_abstract (0);
+
+  //
   // _create (const Paths_in, Path_in src, Property_in dst)
   //
   PathProperty PathProperty_Impl::_create (const Paths_in parent, Path_in src, Property_in dst)

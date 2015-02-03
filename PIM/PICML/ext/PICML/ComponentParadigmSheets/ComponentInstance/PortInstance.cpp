@@ -18,6 +18,11 @@ namespace PICML
   const std::string PortInstance_Impl::metaname ("PortInstance");
 
   //
+  // is_abstract
+  //
+  const bool PortInstance_Impl::is_abstract (1);
+
+  //
   // parent_ComponentInstance
   //
   ComponentInstance PortInstance_Impl::parent_ComponentInstance (void)

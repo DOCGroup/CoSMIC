@@ -25,6 +25,11 @@ namespace PICML
   const std::string PackageConfigurationReference_Impl::metaname ("PackageConfigurationReference");
 
   //
+  // is_abstract
+  //
+  const bool PackageConfigurationReference_Impl::is_abstract (0);
+
+  //
   // _create (const TopLevelPackageContainer_in)
   //
   PackageConfigurationReference PackageConfigurationReference_Impl::_create (const TopLevelPackageContainer_in parent)

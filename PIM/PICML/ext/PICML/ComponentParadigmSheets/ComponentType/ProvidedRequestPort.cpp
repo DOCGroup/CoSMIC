@@ -34,6 +34,11 @@ namespace PICML
   const std::string ProvidedRequestPort_Impl::metaname ("ProvidedRequestPort");
 
   //
+  // is_abstract
+  //
+  const bool ProvidedRequestPort_Impl::is_abstract (0);
+
+  //
   // _create (const PortType_in)
   //
   ProvidedRequestPort ProvidedRequestPort_Impl::_create (const PortType_in parent)

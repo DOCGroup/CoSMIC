@@ -49,6 +49,10 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -78,6 +82,9 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_DstEdges (std::vector <DstEdge> & items) const;
+    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
+
     size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
     ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
 
@@ -89,9 +96,6 @@ namespace PICML
 
     size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
     ::GAME::Mga::Collection_T <OutEventPort> get_OutEventPorts (void) const;
-
-    size_t get_DstEdges (std::vector <DstEdge> & items) const;
-    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
 
     ///@}
   };

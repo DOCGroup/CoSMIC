@@ -24,6 +24,11 @@ namespace PICML
   const std::string ExternalResources_Impl::metaname ("ExternalResources");
 
   //
+  // is_abstract
+  //
+  const bool ExternalResources_Impl::is_abstract (0);
+
+  //
   // _create (const Project_in)
   //
   ExternalResources ExternalResources_Impl::_create (const Project_in parent)

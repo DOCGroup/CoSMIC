@@ -24,6 +24,11 @@ namespace PICML
   const std::string PackageInterface_Impl::metaname ("PackageInterface");
 
   //
+  // is_abstract
+  //
+  const bool PackageInterface_Impl::is_abstract (0);
+
+  //
   // _create (const PackageContainer_in, ComponentPackage_in src, ComponentRef_in dst)
   //
   PackageInterface PackageInterface_Impl::_create (const PackageContainer_in parent, ComponentPackage_in src, ComponentRef_in dst)

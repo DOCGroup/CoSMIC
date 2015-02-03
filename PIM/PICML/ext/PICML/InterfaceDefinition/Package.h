@@ -51,6 +51,10 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -86,11 +90,11 @@ namespace PICML
     size_t get_PortTypes (std::vector <PortType> & items) const;
     ::GAME::Mga::Collection_T <PortType> get_PortTypes (void) const;
 
-    size_t get_Collections (std::vector <Collection> & items) const;
-    ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
-
     size_t get_Aggregates (std::vector <Aggregate> & items) const;
     ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
+
+    size_t get_Collections (std::vector <Collection> & items) const;
+    ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
 
     size_t get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const;
     ::GAME::Mga::Collection_T <SwitchedAggregate> get_SwitchedAggregates (void) const;
@@ -100,9 +104,6 @@ namespace PICML
 
     size_t get_Aliass (std::vector <Alias> & items) const;
     ::GAME::Mga::Collection_T <Alias> get_Aliass (void) const;
-
-    size_t get_Components (std::vector <Component> & items) const;
-    ::GAME::Mga::Collection_T <Component> get_Components (void) const;
 
     size_t get_Objects (std::vector <Object> & items) const;
     ::GAME::Mga::Collection_T <Object> get_Objects (void) const;
@@ -115,6 +116,9 @@ namespace PICML
 
     size_t get_ValueObjects (std::vector <ValueObject> & items) const;
     ::GAME::Mga::Collection_T <ValueObject> get_ValueObjects (void) const;
+
+    size_t get_Components (std::vector <Component> & items) const;
+    ::GAME::Mga::Collection_T <Component> get_Components (void) const;
 
     size_t get_ConnectorObjects (std::vector <ConnectorObject> & items) const;
     ::GAME::Mga::Collection_T <ConnectorObject> get_ConnectorObjects (void) const;
@@ -134,15 +138,6 @@ namespace PICML
     size_t get_Constants (std::vector <Constant> & items) const;
     ::GAME::Mga::Collection_T <Constant> get_Constants (void) const;
 
-    size_t get_Packages (std::vector <Package> & items) const;
-    ::GAME::Mga::Collection_T <Package> get_Packages (void) const;
-
-    size_t get_TemplatePackageAliass (std::vector <TemplatePackageAlias> & items) const;
-    ::GAME::Mga::Collection_T <TemplatePackageAlias> get_TemplatePackageAliass (void) const;
-
-    size_t get_TemplatePackageInstances (std::vector <TemplatePackageInstance> & items) const;
-    ::GAME::Mga::Collection_T <TemplatePackageInstance> get_TemplatePackageInstances (void) const;
-
     size_t get_CollectionParameters (std::vector <CollectionParameter> & items) const;
     ::GAME::Mga::Collection_T <CollectionParameter> get_CollectionParameters (void) const;
 
@@ -154,6 +149,15 @@ namespace PICML
 
     size_t get_NativeValues (std::vector <NativeValue> & items) const;
     ::GAME::Mga::Collection_T <NativeValue> get_NativeValues (void) const;
+
+    size_t get_Packages (std::vector <Package> & items) const;
+    ::GAME::Mga::Collection_T <Package> get_Packages (void) const;
+
+    size_t get_TemplatePackageAliass (std::vector <TemplatePackageAlias> & items) const;
+    ::GAME::Mga::Collection_T <TemplatePackageAlias> get_TemplatePackageAliass (void) const;
+
+    size_t get_TemplatePackageInstances (std::vector <TemplatePackageInstance> & items) const;
+    ::GAME::Mga::Collection_T <TemplatePackageInstance> get_TemplatePackageInstances (void) const;
 
     ///@}
   };

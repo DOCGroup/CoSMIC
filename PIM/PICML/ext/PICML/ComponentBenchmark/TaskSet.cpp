@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/Task.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string TaskSet_Impl::metaname ("TaskSet");
+
+  //
+  // is_abstract
+  //
+  const bool TaskSet_Impl::is_abstract (0);
 
   //
   // _create (const BenchmarkAnalysis_in)

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string Worker_Impl::metaname ("Worker");
+
+  //
+  // is_abstract
+  //
+  const bool Worker_Impl::is_abstract (0);
 
   //
   // _create (const WorkerPackageBase_in)

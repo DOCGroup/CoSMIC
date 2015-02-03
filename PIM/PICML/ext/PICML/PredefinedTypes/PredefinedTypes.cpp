@@ -48,6 +48,11 @@ namespace PICML
   const std::string PredefinedTypes_Impl::metaname ("PredefinedTypes");
 
   //
+  // is_abstract
+  //
+  const bool PredefinedTypes_Impl::is_abstract (0);
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   PredefinedTypes PredefinedTypes_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

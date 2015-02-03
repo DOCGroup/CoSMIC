@@ -26,6 +26,11 @@ namespace PICML
   const std::string FacetDelegate_Impl::metaname ("FacetDelegate");
 
   //
+  // is_abstract
+  //
+  const bool FacetDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, ProvidedRequestPortDelegate_in src, ProvidedRequestPortEnd_in dst)
   //
   FacetDelegate FacetDelegate_Impl::_create (const ComponentAssembly_in parent, ProvidedRequestPortDelegate_in src, ProvidedRequestPortEnd_in dst)

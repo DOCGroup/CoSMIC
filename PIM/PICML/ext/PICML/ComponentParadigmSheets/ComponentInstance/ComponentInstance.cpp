@@ -33,6 +33,11 @@ namespace PICML
   const std::string ComponentInstance_Impl::metaname ("ComponentInstance");
 
   //
+  // is_abstract
+  //
+  const bool ComponentInstance_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ComponentInstance ComponentInstance_Impl::_create (const ComponentAssembly_in parent)

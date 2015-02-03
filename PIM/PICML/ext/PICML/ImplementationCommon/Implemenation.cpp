@@ -19,6 +19,11 @@ namespace PICML
   const std::string Implemenation_Impl::metaname ("Implemenation");
 
   //
+  // is_abstract
+  //
+  const bool Implemenation_Impl::is_abstract (1);
+
+  //
   // src_of_ConfigProperty
   //
   size_t Implemenation_Impl::src_of_ConfigProperty (std::vector <ConfigProperty> & items) const

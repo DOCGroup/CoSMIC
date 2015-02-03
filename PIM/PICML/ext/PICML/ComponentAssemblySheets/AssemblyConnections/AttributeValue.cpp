@@ -26,6 +26,11 @@ namespace PICML
   const std::string AttributeValue_Impl::metaname ("AttributeValue");
 
   //
+  // is_abstract
+  //
+  const bool AttributeValue_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, AttributeInstance_in src, Property_in dst)
   //
   AttributeValue AttributeValue_Impl::_create (const ComponentAssembly_in parent, AttributeInstance_in src, Property_in dst)

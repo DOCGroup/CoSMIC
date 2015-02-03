@@ -26,6 +26,11 @@ namespace PICML
   const std::string ArtifactExecParameter_Impl::metaname ("ArtifactExecParameter");
 
   //
+  // is_abstract
+  //
+  const bool ArtifactExecParameter_Impl::is_abstract (0);
+
+  //
   // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Property_in dst)
   //
   ArtifactExecParameter ArtifactExecParameter_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, Property_in dst)

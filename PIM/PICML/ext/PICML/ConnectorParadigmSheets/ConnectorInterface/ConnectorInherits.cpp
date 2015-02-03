@@ -22,6 +22,11 @@ namespace PICML
   const std::string ConnectorInherits_Impl::metaname ("ConnectorInherits");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorInherits_Impl::is_abstract (0);
+
+  //
   // _create (const ConnectorObject_in)
   //
   ConnectorInherits ConnectorInherits_Impl::_create (const ConnectorObject_in parent)

@@ -18,5 +18,10 @@ namespace PICML
   // metaname
   //
   const std::string ExceptionType_Impl::metaname ("ExceptionType");
+
+  //
+  // is_abstract
+  //
+  const bool ExceptionType_Impl::is_abstract (1);
 }
 

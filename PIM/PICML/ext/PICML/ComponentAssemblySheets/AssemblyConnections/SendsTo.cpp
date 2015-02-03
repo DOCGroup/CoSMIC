@@ -28,6 +28,11 @@ namespace PICML
   const std::string SendsTo_Impl::metaname ("SendsTo");
 
   //
+  // is_abstract
+  //
+  const bool SendsTo_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, OutEventPortEnd_in src, InEventPortEnd_in dst)
   //
   SendsTo SendsTo_Impl::_create (const ComponentAssembly_in parent, OutEventPortEnd_in src, InEventPortEnd_in dst)

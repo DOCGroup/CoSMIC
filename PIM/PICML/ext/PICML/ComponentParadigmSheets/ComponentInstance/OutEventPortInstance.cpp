@@ -23,6 +23,11 @@ namespace PICML
   const std::string OutEventPortInstance_Impl::metaname ("OutEventPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool OutEventPortInstance_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentInstance_in)
   //
   OutEventPortInstance OutEventPortInstance_Impl::_create (const ComponentInstance_in parent)

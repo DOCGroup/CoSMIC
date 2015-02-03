@@ -23,6 +23,11 @@ namespace PICML
   const std::string Workspaces_Impl::metaname ("Workspaces");
 
   //
+  // is_abstract
+  //
+  const bool Workspaces_Impl::is_abstract (0);
+
+  //
   // _create (const MPC_in)
   //
   Workspaces Workspaces_Impl::_create (const MPC_in parent)

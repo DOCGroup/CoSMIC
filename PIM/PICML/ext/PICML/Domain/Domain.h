@@ -47,6 +47,10 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -101,8 +105,8 @@ namespace PICML
     size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
     ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
 
-    size_t get_SharedResources (std::vector <SharedResource> & items) const;
-    ::GAME::Mga::Collection_T <SharedResource> get_SharedResources (void) const;
+    size_t get_Nodes (std::vector <Node> & items) const;
+    ::GAME::Mga::Collection_T <Node> get_Nodes (void) const;
 
     size_t get_Interconnects (std::vector <Interconnect> & items) const;
     ::GAME::Mga::Collection_T <Interconnect> get_Interconnects (void) const;
@@ -110,8 +114,8 @@ namespace PICML
     size_t get_Bridges (std::vector <Bridge> & items) const;
     ::GAME::Mga::Collection_T <Bridge> get_Bridges (void) const;
 
-    size_t get_Nodes (std::vector <Node> & items) const;
-    ::GAME::Mga::Collection_T <Node> get_Nodes (void) const;
+    size_t get_SharedResources (std::vector <SharedResource> & items) const;
+    ::GAME::Mga::Collection_T <SharedResource> get_SharedResources (void) const;
 
     size_t get_InterconnectConnections (std::vector <InterconnectConnection> & items) const;
     ::GAME::Mga::Collection_T <InterconnectConnection> get_InterconnectConnections (void) const;

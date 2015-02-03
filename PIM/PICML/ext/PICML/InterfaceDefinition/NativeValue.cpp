@@ -25,6 +25,11 @@ namespace PICML
   const std::string NativeValue_Impl::metaname ("NativeValue");
 
   //
+  // is_abstract
+  //
+  const bool NativeValue_Impl::is_abstract (0);
+
+  //
   // _create (const Package_in)
   //
   NativeValue NativeValue_Impl::_create (const Package_in parent)

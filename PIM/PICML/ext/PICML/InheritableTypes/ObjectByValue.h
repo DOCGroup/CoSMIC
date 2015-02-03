@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "PICML/IdTags/Prefixable.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "game/mga/Model.h"
 
@@ -36,8 +36,8 @@ namespace PICML
    */
   class PICML_Export ObjectByValue_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual SupportsInterfaces_Impl,
     public virtual Prefixable_Impl,
+    public virtual SupportsInterfaces_Impl,
     public virtual HasOperations_Impl
   {
     public:
@@ -49,6 +49,10 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
+
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
 
     // Default constructor.
     ObjectByValue_Impl (void);

@@ -24,6 +24,11 @@ namespace PICML
   const std::string ServiceProvider_Impl::metaname ("ServiceProvider");
 
   //
+  // is_abstract
+  //
+  const bool ServiceProvider_Impl::is_abstract (0);
+
+  //
   // _create (const RTRequirements_in)
   //
   ServiceProvider ServiceProvider_Impl::_create (const RTRequirements_in parent)

@@ -26,6 +26,11 @@ namespace PICML
   const std::string ArtifactDependsOn_Impl::metaname ("ArtifactDependsOn");
 
   //
+  // is_abstract
+  //
+  const bool ArtifactDependsOn_Impl::is_abstract (0);
+
+  //
   // _create (const ArtifactContainer_in, ImplementationArtifact_in src, ImplementationArtifactReference_in dst)
   //
   ArtifactDependsOn ArtifactDependsOn_Impl::_create (const ArtifactContainer_in parent, ImplementationArtifact_in src, ImplementationArtifactReference_in dst)

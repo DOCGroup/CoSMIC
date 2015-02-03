@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TargetElements/Interconnect.h"
 #include "PICML/TargetElements/Node.h"
+#include "PICML/TargetElements/Interconnect.h"
 #include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string InterconnectConnection_Impl::metaname ("InterconnectConnection");
+
+  //
+  // is_abstract
+  //
+  const bool InterconnectConnection_Impl::is_abstract (0);
 
   //
   // _create (const Domain_in, Node_in src, Interconnect_in dst)

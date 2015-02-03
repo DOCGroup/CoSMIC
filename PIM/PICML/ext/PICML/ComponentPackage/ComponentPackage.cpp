@@ -30,6 +30,11 @@ namespace PICML
   const std::string ComponentPackage_Impl::metaname ("ComponentPackage");
 
   //
+  // is_abstract
+  //
+  const bool ComponentPackage_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ComponentPackage ComponentPackage_Impl::_create (const ComponentAssembly_in parent)

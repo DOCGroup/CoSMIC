@@ -35,6 +35,11 @@ namespace PICML
   const std::string ConfigProperty_Impl::metaname ("ConfigProperty");
 
   //
+  // is_abstract
+  //
+  const bool ConfigProperty_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in, Implemenation_in src, Property_in dst)
   //
   ConfigProperty ConfigProperty_Impl::_create (const ImplementationContainer_in parent, Implemenation_in src, Property_in dst)

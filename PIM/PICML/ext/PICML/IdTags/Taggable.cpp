@@ -15,5 +15,10 @@ namespace PICML
   // metaname
   //
   const std::string Taggable_Impl::metaname ("Taggable");
+
+  //
+  // is_abstract
+  //
+  const bool Taggable_Impl::is_abstract (1);
 }
 

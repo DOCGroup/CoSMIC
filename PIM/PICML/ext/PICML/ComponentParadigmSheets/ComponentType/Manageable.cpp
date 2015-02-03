@@ -18,6 +18,11 @@ namespace PICML
   const std::string Manageable_Impl::metaname ("Manageable");
 
   //
+  // is_abstract
+  //
+  const bool Manageable_Impl::is_abstract (1);
+
+  //
   // dst_of_ManagesComponent
   //
   size_t Manageable_Impl::dst_of_ManagesComponent (std::vector <ManagesComponent> & items) const

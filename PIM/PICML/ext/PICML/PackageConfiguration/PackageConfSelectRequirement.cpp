@@ -26,6 +26,11 @@ namespace PICML
   const std::string PackageConfSelectRequirement_Impl::metaname ("PackageConfSelectRequirement");
 
   //
+  // is_abstract
+  //
+  const bool PackageConfSelectRequirement_Impl::is_abstract (0);
+
+  //
   // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, Requirement_in dst)
   //
   PackageConfSelectRequirement PackageConfSelectRequirement_Impl::_create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, Requirement_in dst)

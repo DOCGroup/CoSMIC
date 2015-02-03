@@ -18,6 +18,11 @@ namespace PICML
   const std::string WorkerPackageBase_Impl::metaname ("WorkerPackageBase");
 
   //
+  // is_abstract
+  //
+  const bool WorkerPackageBase_Impl::is_abstract (1);
+
+  //
   // get_Workers
   //
   size_t WorkerPackageBase_Impl::get_Workers (std::vector <Worker> & items) const

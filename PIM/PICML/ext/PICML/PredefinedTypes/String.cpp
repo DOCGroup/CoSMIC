@@ -22,6 +22,11 @@ namespace PICML
   const std::string String_Impl::metaname ("String");
 
   //
+  // is_abstract
+  //
+  const bool String_Impl::is_abstract (0);
+
+  //
   // _create (const PredefinedTypes_in)
   //
   String String_Impl::_create (const PredefinedTypes_in parent)

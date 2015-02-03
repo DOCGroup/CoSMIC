@@ -23,6 +23,11 @@ namespace PICML
   const std::string Average_Impl::metaname ("Average");
 
   //
+  // is_abstract
+  //
+  const bool Average_Impl::is_abstract (0);
+
+  //
   // _create (const MetricsBase_in)
   //
   Average Average_Impl::_create (const MetricsBase_in parent)

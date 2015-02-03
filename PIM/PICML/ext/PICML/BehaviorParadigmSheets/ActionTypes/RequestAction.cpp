@@ -22,6 +22,11 @@ namespace PICML
   const std::string RequestAction_Impl::metaname ("RequestAction");
 
   //
+  // is_abstract
+  //
+  const bool RequestAction_Impl::is_abstract (0);
+
+  //
   // _create (const BehaviorModel_in)
   //
   RequestAction RequestAction_Impl::_create (const BehaviorModel_in parent)

@@ -23,6 +23,11 @@ namespace PICML
   const std::string LookupOperation_Impl::metaname ("LookupOperation");
 
   //
+  // is_abstract
+  //
+  const bool LookupOperation_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentFactory_in)
   //
   LookupOperation LookupOperation_Impl::_create (const ComponentFactory_in parent)

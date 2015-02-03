@@ -21,6 +21,11 @@ namespace PICML
   const std::string NamedType_Impl::metaname ("NamedType");
 
   //
+  // is_abstract
+  //
+  const bool NamedType_Impl::is_abstract (1);
+
+  //
   // parent_Package
   //
   Package NamedType_Impl::parent_Package (void)

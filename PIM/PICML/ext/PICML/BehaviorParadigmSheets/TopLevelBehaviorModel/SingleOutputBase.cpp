@@ -15,5 +15,10 @@ namespace PICML
   // metaname
   //
   const std::string SingleOutputBase_Impl::metaname ("SingleOutputBase");
+
+  //
+  // is_abstract
+  //
+  const bool SingleOutputBase_Impl::is_abstract (1);
 }
 

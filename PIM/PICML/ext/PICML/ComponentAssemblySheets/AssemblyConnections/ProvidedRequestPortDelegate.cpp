@@ -23,6 +23,11 @@ namespace PICML
   const std::string ProvidedRequestPortDelegate_Impl::metaname ("ProvidedRequestPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool ProvidedRequestPortDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ProvidedRequestPortDelegate ProvidedRequestPortDelegate_Impl::_create (const ComponentAssembly_in parent)

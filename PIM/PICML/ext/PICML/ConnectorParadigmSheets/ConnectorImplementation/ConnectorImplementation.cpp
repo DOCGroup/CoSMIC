@@ -24,6 +24,11 @@ namespace PICML
   const std::string ConnectorImplementation_Impl::metaname ("ConnectorImplementation");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorImplementation_Impl::is_abstract (0);
+
+  //
   // _create (const ConnectorImplementationContainer_in)
   //
   ConnectorImplementation ConnectorImplementation_Impl::_create (const ConnectorImplementationContainer_in parent)

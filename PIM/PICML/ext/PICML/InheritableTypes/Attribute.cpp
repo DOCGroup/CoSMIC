@@ -9,9 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/SetException.h"
+#include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,6 +26,19 @@ namespace PICML
   const std::string Attribute_Impl::metaname ("Attribute");
 
   //
+  // is_abstract
+  //
+  const bool Attribute_Impl::is_abstract (0);
+
+  //
+  // _create (const Inheritable_in)
+  //
+  Attribute Attribute_Impl::_create (const Inheritable_in parent)
+  {
+    return ::GAME::Mga::create < Attribute > (parent, Attribute_Impl::metaname);
+  }
+
+  //
   // _create (const Component_in)
   //
   Attribute Attribute_Impl::_create (const Component_in parent)
@@ -37,14 +50,6 @@ namespace PICML
   // _create (const PortType_in)
   //
   Attribute Attribute_Impl::_create (const PortType_in parent)
-  {
-    return ::GAME::Mga::create < Attribute > (parent, Attribute_Impl::metaname);
-  }
-
-  //
-  // _create (const Inheritable_in)
-  //
-  Attribute Attribute_Impl::_create (const Inheritable_in parent)
   {
     return ::GAME::Mga::create < Attribute > (parent, Attribute_Impl::metaname);
   }

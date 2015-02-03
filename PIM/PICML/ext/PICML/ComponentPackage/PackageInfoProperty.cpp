@@ -26,6 +26,11 @@ namespace PICML
   const std::string PackageInfoProperty_Impl::metaname ("PackageInfoProperty");
 
   //
+  // is_abstract
+  //
+  const bool PackageInfoProperty_Impl::is_abstract (0);
+
+  //
   // _create (const PackageContainer_in, ComponentPackage_in src, Property_in dst)
   //
   PackageInfoProperty PackageInfoProperty_Impl::_create (const PackageContainer_in parent, ComponentPackage_in src, Property_in dst)

@@ -26,6 +26,11 @@ namespace PICML
   const std::string Node_Impl::metaname ("Node");
 
   //
+  // is_abstract
+  //
+  const bool Node_Impl::is_abstract (0);
+
+  //
   // _create (const Domain_in)
   //
   Node Node_Impl::_create (const Domain_in parent)

@@ -25,6 +25,11 @@ namespace PICML
   const std::string SetException_Impl::metaname ("SetException");
 
   //
+  // is_abstract
+  //
+  const bool SetException_Impl::is_abstract (0);
+
+  //
   // _create (const Attribute_in)
   //
   SetException SetException_Impl::_create (const Attribute_in parent)

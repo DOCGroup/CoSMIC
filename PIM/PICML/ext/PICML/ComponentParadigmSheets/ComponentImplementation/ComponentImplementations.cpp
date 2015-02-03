@@ -22,6 +22,11 @@ namespace PICML
   const std::string ComponentImplementations_Impl::metaname ("ComponentImplementations");
 
   //
+  // is_abstract
+  //
+  const bool ComponentImplementations_Impl::is_abstract (0);
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   ComponentImplementations ComponentImplementations_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

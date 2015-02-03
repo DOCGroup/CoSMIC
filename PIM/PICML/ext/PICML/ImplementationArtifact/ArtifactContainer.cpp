@@ -12,9 +12,6 @@
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/Common/Requirement.h"
-#include "PICML/RealTimeRequirements/RTRequirements.h"
-#include "PICML/EventChannelRequirements/ECRequirements.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
@@ -23,6 +20,9 @@
 #include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
 #include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/Common/Requirement.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "PICML/EventChannelRequirements/ECRequirements.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -35,6 +35,11 @@ namespace PICML
   // metaname
   //
   const std::string ArtifactContainer_Impl::metaname ("ArtifactContainer");
+
+  //
+  // is_abstract
+  //
+  const bool ArtifactContainer_Impl::is_abstract (0);
 
   //
   // _create (const ImplementationArtifacts_in)
@@ -112,54 +117,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ImplementationArtifact> ArtifactContainer_Impl::get_ImplementationArtifacts (void) const
   {
     return this->children <ImplementationArtifact> ();
-  }
-
-  //
-  // get_Requirements
-  //
-  size_t ArtifactContainer_Impl::get_Requirements (std::vector <Requirement> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Requirements
-  //
-  ::GAME::Mga::Collection_T <Requirement> ArtifactContainer_Impl::get_Requirements (void) const
-  {
-    return this->children <Requirement> ();
-  }
-
-  //
-  // get_RTRequirementss
-  //
-  size_t ArtifactContainer_Impl::get_RTRequirementss (std::vector <RTRequirements> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_RTRequirementss
-  //
-  ::GAME::Mga::Collection_T <RTRequirements> ArtifactContainer_Impl::get_RTRequirementss (void) const
-  {
-    return this->children <RTRequirements> ();
-  }
-
-  //
-  // get_ECRequirementss
-  //
-  size_t ArtifactContainer_Impl::get_ECRequirementss (std::vector <ECRequirements> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ECRequirementss
-  //
-  ::GAME::Mga::Collection_T <ECRequirements> ArtifactContainer_Impl::get_ECRequirementss (void) const
-  {
-    return this->children <ECRequirements> ();
   }
 
   //
@@ -288,6 +245,54 @@ namespace PICML
   ::GAME::Mga::Collection_T <ArtifactDeployRequirement> ArtifactContainer_Impl::get_ArtifactDeployRequirements (void) const
   {
     return this->children <ArtifactDeployRequirement> ();
+  }
+
+  //
+  // get_Requirements
+  //
+  size_t ArtifactContainer_Impl::get_Requirements (std::vector <Requirement> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Requirements
+  //
+  ::GAME::Mga::Collection_T <Requirement> ArtifactContainer_Impl::get_Requirements (void) const
+  {
+    return this->children <Requirement> ();
+  }
+
+  //
+  // get_RTRequirementss
+  //
+  size_t ArtifactContainer_Impl::get_RTRequirementss (std::vector <RTRequirements> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RTRequirementss
+  //
+  ::GAME::Mga::Collection_T <RTRequirements> ArtifactContainer_Impl::get_RTRequirementss (void) const
+  {
+    return this->children <RTRequirements> ();
+  }
+
+  //
+  // get_ECRequirementss
+  //
+  size_t ArtifactContainer_Impl::get_ECRequirementss (std::vector <ECRequirements> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ECRequirementss
+  //
+  ::GAME::Mga::Collection_T <ECRequirements> ArtifactContainer_Impl::get_ECRequirementss (void) const
+  {
+    return this->children <ECRequirements> ();
   }
 }
 

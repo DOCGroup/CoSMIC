@@ -22,6 +22,11 @@ namespace PICML
   const std::string TypeParameter_Impl::metaname ("TypeParameter");
 
   //
+  // is_abstract
+  //
+  const bool TypeParameter_Impl::is_abstract (0);
+
+  //
   // _create (const Package_in)
   //
   TypeParameter TypeParameter_Impl::_create (const Package_in parent)

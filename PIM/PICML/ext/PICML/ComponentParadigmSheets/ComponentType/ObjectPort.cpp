@@ -22,6 +22,11 @@ namespace PICML
   const std::string ObjectPort_Impl::metaname ("ObjectPort");
 
   //
+  // is_abstract
+  //
+  const bool ObjectPort_Impl::is_abstract (1);
+
+  //
   // parent_PortType
   //
   PortType ObjectPort_Impl::parent_PortType (void)

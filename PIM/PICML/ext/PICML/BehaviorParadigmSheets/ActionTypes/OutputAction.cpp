@@ -22,6 +22,11 @@ namespace PICML
   const std::string OutputAction_Impl::metaname ("OutputAction");
 
   //
+  // is_abstract
+  //
+  const bool OutputAction_Impl::is_abstract (0);
+
+  //
   // _create (const BehaviorModel_in)
   //
   OutputAction OutputAction_Impl::_create (const BehaviorModel_in parent)

@@ -44,6 +44,11 @@ namespace PICML
   const std::string ExternalDelegate_Impl::metaname ("ExternalDelegate");
 
   //
+  // is_abstract
+  //
+  const bool ExternalDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, ExternalPort_in src, ExternalPortEnd_in dst)
   //
   ExternalDelegate ExternalDelegate_Impl::_create (const ComponentAssembly_in parent, ExternalPort_in src, ExternalPortEnd_in dst)

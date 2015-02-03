@@ -25,6 +25,11 @@ namespace PICML
   const std::string NoInheritable_Impl::metaname ("NoInheritable");
 
   //
+  // is_abstract
+  //
+  const bool NoInheritable_Impl::is_abstract (1);
+
+  //
   // parent_HasOperations
   //
   HasOperations NoInheritable_Impl::parent_HasOperations (void)

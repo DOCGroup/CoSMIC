@@ -22,6 +22,11 @@ namespace PICML
   const std::string TypeEncoding_Impl::metaname ("TypeEncoding");
 
   //
+  // is_abstract
+  //
+  const bool TypeEncoding_Impl::is_abstract (0);
+
+  //
   // _create (const PredefinedTypes_in)
   //
   TypeEncoding TypeEncoding_Impl::_create (const PredefinedTypes_in parent)

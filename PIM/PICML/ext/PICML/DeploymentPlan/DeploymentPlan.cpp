@@ -35,6 +35,11 @@ namespace PICML
   const std::string DeploymentPlan_Impl::metaname ("DeploymentPlan");
 
   //
+  // is_abstract
+  //
+  const bool DeploymentPlan_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlans_in)
   //
   DeploymentPlan DeploymentPlan_Impl::_create (const DeploymentPlans_in parent)

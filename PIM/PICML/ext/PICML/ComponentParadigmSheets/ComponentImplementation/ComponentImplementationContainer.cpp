@@ -12,10 +12,10 @@
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementations.h"
-#include "PICML/Common/Capability.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/Common/ImplementationDependency.h"
+#include "PICML/Common/Capability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
@@ -31,6 +31,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentImplementationContainer_Impl::metaname ("ComponentImplementationContainer");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentImplementationContainer_Impl::is_abstract (0);
 
   //
   // _create (const ComponentImplementations_in)
@@ -143,22 +148,6 @@ namespace PICML
   }
 
   //
-  // get_Capabilitys
-  //
-  size_t ComponentImplementationContainer_Impl::get_Capabilitys (std::vector <Capability> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Capabilitys
-  //
-  ::GAME::Mga::Collection_T <Capability> ComponentImplementationContainer_Impl::get_Capabilitys (void) const
-  {
-    return this->children <Capability> ();
-  }
-
-  //
   // get_ImplementationDependencys
   //
   size_t ComponentImplementationContainer_Impl::get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const
@@ -172,6 +161,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ImplementationDependency> ComponentImplementationContainer_Impl::get_ImplementationDependencys (void) const
   {
     return this->children <ImplementationDependency> ();
+  }
+
+  //
+  // get_Capabilitys
+  //
+  size_t ComponentImplementationContainer_Impl::get_Capabilitys (std::vector <Capability> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Capabilitys
+  //
+  ::GAME::Mga::Collection_T <Capability> ComponentImplementationContainer_Impl::get_Capabilitys (void) const
+  {
+    return this->children <Capability> ();
   }
 
   //

@@ -33,6 +33,11 @@ namespace PICML
   const std::string Exception_Impl::metaname ("Exception");
 
   //
+  // is_abstract
+  //
+  const bool Exception_Impl::is_abstract (0);
+
+  //
   // _create (const HasOperations_in)
   //
   Exception Exception_Impl::_create (const HasOperations_in parent)

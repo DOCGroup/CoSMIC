@@ -24,6 +24,11 @@ namespace PICML
   const std::string MirrorPort_Impl::metaname ("MirrorPort");
 
   //
+  // is_abstract
+  //
+  const bool MirrorPort_Impl::is_abstract (0);
+
+  //
   // _create (const Component_in)
   //
   MirrorPort MirrorPort_Impl::_create (const Component_in parent)

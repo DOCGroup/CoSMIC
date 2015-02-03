@@ -29,6 +29,11 @@ namespace PICML
   const std::string SwitchedAggregate_Impl::metaname ("SwitchedAggregate");
 
   //
+  // is_abstract
+  //
+  const bool SwitchedAggregate_Impl::is_abstract (0);
+
+  //
   // _create (const HasOperations_in)
   //
   SwitchedAggregate SwitchedAggregate_Impl::_create (const HasOperations_in parent)

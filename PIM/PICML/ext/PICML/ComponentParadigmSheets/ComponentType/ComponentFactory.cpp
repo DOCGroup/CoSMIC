@@ -28,6 +28,11 @@ namespace PICML
   const std::string ComponentFactory_Impl::metaname ("ComponentFactory");
 
   //
+  // is_abstract
+  //
+  const bool ComponentFactory_Impl::is_abstract (0);
+
+  //
   // _create (const Package_in)
   //
   ComponentFactory ComponentFactory_Impl::_create (const Package_in parent)

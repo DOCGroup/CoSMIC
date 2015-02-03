@@ -26,6 +26,11 @@ namespace PICML
   const std::string ECRequirements_Impl::metaname ("ECRequirements");
 
   //
+  // is_abstract
+  //
+  const bool ECRequirements_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ECRequirements ECRequirements_Impl::_create (const ComponentAssembly_in parent)

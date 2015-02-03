@@ -20,6 +20,11 @@ namespace PICML
   const std::string Port_Impl::metaname ("Port");
 
   //
+  // is_abstract
+  //
+  const bool Port_Impl::is_abstract (1);
+
+  //
   // parent_Component
   //
   Component Port_Impl::parent_Component (void)

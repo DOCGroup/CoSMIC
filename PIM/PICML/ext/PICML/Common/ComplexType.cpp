@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string ComplexType_Impl::metaname ("ComplexType");
+
+  //
+  // is_abstract
+  //
+  const bool ComplexType_Impl::is_abstract (1);
 }
 

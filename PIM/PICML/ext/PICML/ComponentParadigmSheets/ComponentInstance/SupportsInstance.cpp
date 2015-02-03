@@ -23,6 +23,11 @@ namespace PICML
   const std::string SupportsInstance_Impl::metaname ("SupportsInstance");
 
   //
+  // is_abstract
+  //
+  const bool SupportsInstance_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentInstance_in)
   //
   SupportsInstance SupportsInstance_Impl::_create (const ComponentInstance_in parent)

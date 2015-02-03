@@ -18,6 +18,11 @@ namespace PICML
   const std::string RequirementSatisfier_Impl::metaname ("RequirementSatisfier");
 
   //
+  // is_abstract
+  //
+  const bool RequirementSatisfier_Impl::is_abstract (1);
+
+  //
   // get_SatisfierPropertys
   //
   size_t RequirementSatisfier_Impl::get_SatisfierPropertys (std::vector <SatisfierProperty> & items) const

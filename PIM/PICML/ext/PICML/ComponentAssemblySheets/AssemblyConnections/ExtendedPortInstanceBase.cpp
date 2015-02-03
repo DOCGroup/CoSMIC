@@ -18,6 +18,11 @@ namespace PICML
   const std::string ExtendedPortInstanceBase_Impl::metaname ("ExtendedPortInstanceBase");
 
   //
+  // is_abstract
+  //
+  const bool ExtendedPortInstanceBase_Impl::is_abstract (1);
+
+  //
   // src_of_ExtendedDelegate
   //
   size_t ExtendedPortInstanceBase_Impl::src_of_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const

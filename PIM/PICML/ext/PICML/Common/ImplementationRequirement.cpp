@@ -26,6 +26,11 @@ namespace PICML
   const std::string ImplementationRequirement_Impl::metaname ("ImplementationRequirement");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationRequirement_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in)
   //
   ImplementationRequirement ImplementationRequirement_Impl::_create (const ImplementationContainer_in parent)

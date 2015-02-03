@@ -36,6 +36,11 @@ namespace PICML
   const std::string PackageConfigurationContainer_Impl::metaname ("PackageConfigurationContainer");
 
   //
+  // is_abstract
+  //
+  const bool PackageConfigurationContainer_Impl::is_abstract (0);
+
+  //
   // _create (const PackageConfigurations_in)
   //
   PackageConfigurationContainer PackageConfigurationContainer_Impl::_create (const PackageConfigurations_in parent)

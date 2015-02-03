@@ -23,6 +23,11 @@ namespace PICML
   const std::string Environment_Impl::metaname ("Environment");
 
   //
+  // is_abstract
+  //
+  const bool Environment_Impl::is_abstract (0);
+
+  //
   // _create (const TopLevelBehavior_in)
   //
   Environment Environment_Impl::_create (const TopLevelBehavior_in parent)

@@ -22,6 +22,11 @@ namespace PICML
   const std::string UnsignedLongInteger_Impl::metaname ("UnsignedLongInteger");
 
   //
+  // is_abstract
+  //
+  const bool UnsignedLongInteger_Impl::is_abstract (0);
+
+  //
   // _create (const PredefinedTypes_in)
   //
   UnsignedLongInteger UnsignedLongInteger_Impl::_create (const PredefinedTypes_in parent)

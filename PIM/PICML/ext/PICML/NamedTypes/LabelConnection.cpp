@@ -25,6 +25,11 @@ namespace PICML
   const std::string LabelConnection_Impl::metaname ("LabelConnection");
 
   //
+  // is_abstract
+  //
+  const bool LabelConnection_Impl::is_abstract (0);
+
+  //
   // _create (const SwitchedAggregate_in, Member_in src, Label_in dst)
   //
   LabelConnection LabelConnection_Impl::_create (const SwitchedAggregate_in parent, Member_in src, Label_in dst)

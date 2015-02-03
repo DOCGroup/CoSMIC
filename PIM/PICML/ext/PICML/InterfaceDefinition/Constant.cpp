@@ -54,6 +54,11 @@ namespace PICML
   const std::string Constant_Impl::metaname ("Constant");
 
   //
+  // is_abstract
+  //
+  const bool Constant_Impl::is_abstract (0);
+
+  //
   // _create (const HasOperations_in)
   //
   Constant Constant_Impl::_create (const HasOperations_in parent)

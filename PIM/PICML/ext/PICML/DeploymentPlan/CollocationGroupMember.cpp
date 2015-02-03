@@ -18,6 +18,11 @@ namespace PICML
   const std::string CollocationGroupMember_Impl::metaname ("CollocationGroupMember");
 
   //
+  // is_abstract
+  //
+  const bool CollocationGroupMember_Impl::is_abstract (1);
+
+  //
   // parent_DeploymentPlan
   //
   DeploymentPlan CollocationGroupMember_Impl::parent_DeploymentPlan (void)

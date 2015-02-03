@@ -25,6 +25,11 @@ namespace PICML
   const std::string NodeReference_Impl::metaname ("NodeReference");
 
   //
+  // is_abstract
+  //
+  const bool NodeReference_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlan_in)
   //
   NodeReference NodeReference_Impl::_create (const DeploymentPlan_in parent)

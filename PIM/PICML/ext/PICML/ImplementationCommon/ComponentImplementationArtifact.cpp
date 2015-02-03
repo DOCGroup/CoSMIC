@@ -27,6 +27,11 @@ namespace PICML
   const std::string ComponentImplementationArtifact_Impl::metaname ("ComponentImplementationArtifact");
 
   //
+  // is_abstract
+  //
+  const bool ComponentImplementationArtifact_Impl::is_abstract (0);
+
+  //
   // _create (const ImplementationContainer_in)
   //
   ComponentImplementationArtifact ComponentImplementationArtifact_Impl::_create (const ImplementationContainer_in parent)

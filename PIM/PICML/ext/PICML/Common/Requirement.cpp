@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
 #include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
@@ -25,6 +25,11 @@ namespace PICML
   // metaname
   //
   const std::string Requirement_Impl::metaname ("Requirement");
+
+  //
+  // is_abstract
+  //
+  const bool Requirement_Impl::is_abstract (0);
 
   //
   // _create (const ComponentAssembly_in)

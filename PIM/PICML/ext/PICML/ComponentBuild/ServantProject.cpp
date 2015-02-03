@@ -26,6 +26,11 @@ namespace PICML
   const std::string ServantProject_Impl::metaname ("ServantProject");
 
   //
+  // is_abstract
+  //
+  const bool ServantProject_Impl::is_abstract (0);
+
+  //
   // _create (const Project_in)
   //
   ServantProject ServantProject_Impl::_create (const Project_in parent)

@@ -26,6 +26,11 @@ namespace PICML
   const std::string FactoryOperation_Impl::metaname ("FactoryOperation");
 
   //
+  // is_abstract
+  //
+  const bool FactoryOperation_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentFactory_in)
   //
   FactoryOperation FactoryOperation_Impl::_create (const ComponentFactory_in parent)

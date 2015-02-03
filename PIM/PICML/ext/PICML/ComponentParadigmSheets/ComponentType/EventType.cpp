@@ -17,5 +17,10 @@ namespace PICML
   // metaname
   //
   const std::string EventType_Impl::metaname ("EventType");
+
+  //
+  // is_abstract
+  //
+  const bool EventType_Impl::is_abstract (1);
 }
 

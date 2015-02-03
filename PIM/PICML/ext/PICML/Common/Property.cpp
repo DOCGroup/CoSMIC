@@ -8,27 +8,16 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
-#include "PICML/PathDiagram/Path.h"
-#include "PICML/Common/RequirementBase.h"
-#include "PICML/Common/ImplementationRequirement.h"
-#include "PICML/Common/Requirement.h"
-#include "PICML/RealTimeRequirements/RTRequirements.h"
-#include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationCommon/ConfigProperty.h"
 #include "PICML/ImplementationCommon/MonolithExecParameter.h"
 #include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
 #include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/Common/RequirementBase.h"
+#include "PICML/Common/Requirement.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "PICML/Common/ImplementationRequirement.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
 #include "PICML/ComponentPackage/PackageConfigProperty.h"
 #include "PICML/ComponentPackage/PackageInfoProperty.h"
@@ -36,6 +25,17 @@
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
 #include "PICML/PathDiagram/EdgeProperty.h"
 #include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/ImplementationCommon/InfoProperty.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
@@ -62,36 +62,9 @@ namespace PICML
   const std::string Property_Impl::metaname ("Property");
 
   //
-  // parent_QueryInputAction
+  // is_abstract
   //
-  QueryInputAction Property_Impl::parent_QueryInputAction (void)
-  {
-    return QueryInputAction::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ActionBase
-  //
-  ActionBase Property_Impl::parent_ActionBase (void)
-  {
-    return ActionBase::_narrow (this->parent ());
-  }
-
-  //
-  // parent_BehaviorInputAction
-  //
-  BehaviorInputAction Property_Impl::parent_BehaviorInputAction (void)
-  {
-    return BehaviorInputAction::_narrow (this->parent ());
-  }
-
-  //
-  // parent_Path
-  //
-  Path Property_Impl::parent_Path (void)
-  {
-    return Path::_narrow (this->parent ());
-  }
+  const bool Property_Impl::is_abstract (1);
 
   //
   // parent_RequirementBase
@@ -107,6 +80,38 @@ namespace PICML
   ComponentAssembly Property_Impl::parent_ComponentAssembly (void)
   {
     return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
+  // parent_BehaviorInputAction
+  //
+  BehaviorInputAction Property_Impl::parent_BehaviorInputAction (void)
+  {
+    return BehaviorInputAction::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ActionBase
+  //
+  ActionBase Property_Impl::parent_ActionBase (void)
+  {
+    return ActionBase::_narrow (this->parent ());
+  }
+
+  //
+  // parent_QueryInputAction
+  //
+  QueryInputAction Property_Impl::parent_QueryInputAction (void)
+  {
+    return QueryInputAction::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Path
+  //
+  Path Property_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
   }
 
   //

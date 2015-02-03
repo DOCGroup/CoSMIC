@@ -24,6 +24,11 @@ namespace PICML
   const std::string TimeProbe_Impl::metaname ("TimeProbe");
 
   //
+  // is_abstract
+  //
+  const bool TimeProbe_Impl::is_abstract (0);
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   TimeProbe TimeProbe_Impl::_create (const BenchmarkAnalysis_in parent)

@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string CharType_Impl::metaname ("CharType");
+
+  //
+  // is_abstract
+  //
+  const bool CharType_Impl::is_abstract (1);
 }
 

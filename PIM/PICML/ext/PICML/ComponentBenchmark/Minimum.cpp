@@ -23,6 +23,11 @@ namespace PICML
   const std::string Minimum_Impl::metaname ("Minimum");
 
   //
+  // is_abstract
+  //
+  const bool Minimum_Impl::is_abstract (0);
+
+  //
   // _create (const MetricsBase_in)
   //
   Minimum Minimum_Impl::_create (const MetricsBase_in parent)

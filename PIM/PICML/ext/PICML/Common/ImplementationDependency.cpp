@@ -23,6 +23,11 @@ namespace PICML
   const std::string ImplementationDependency_Impl::metaname ("ImplementationDependency");
 
   //
+  // is_abstract
+  //
+  const bool ImplementationDependency_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentImplementationContainer_in)
   //
   ImplementationDependency ImplementationDependency_Impl::_create (const ComponentImplementationContainer_in parent)

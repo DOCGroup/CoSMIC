@@ -26,6 +26,11 @@ namespace PICML
   const std::string PropertyMapping_Impl::metaname ("PropertyMapping");
 
   //
+  // is_abstract
+  //
+  const bool PropertyMapping_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlan_in, NodeReference_in src, Property_in dst)
   //
   PropertyMapping PropertyMapping_Impl::_create (const DeploymentPlan_in parent, NodeReference_in src, Property_in dst)

@@ -24,6 +24,11 @@ namespace PICML
   const std::string PathReference_Impl::metaname ("PathReference");
 
   //
+  // is_abstract
+  //
+  const bool PathReference_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentImplementationContainer_in)
   //
   PathReference PathReference_Impl::_create (const ComponentImplementationContainer_in parent)

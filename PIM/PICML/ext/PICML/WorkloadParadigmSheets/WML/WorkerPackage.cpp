@@ -23,6 +23,11 @@ namespace PICML
   const std::string WorkerPackage_Impl::metaname ("WorkerPackage");
 
   //
+  // is_abstract
+  //
+  const bool WorkerPackage_Impl::is_abstract (0);
+
+  //
   // _create (const WorkerPackage_in)
   //
   WorkerPackage WorkerPackage_Impl::_create (const WorkerPackage_in parent)

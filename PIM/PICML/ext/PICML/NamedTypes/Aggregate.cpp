@@ -29,6 +29,11 @@ namespace PICML
   const std::string Aggregate_Impl::metaname ("Aggregate");
 
   //
+  // is_abstract
+  //
+  const bool Aggregate_Impl::is_abstract (0);
+
+  //
   // _create (const ConnectorObject_in)
   //
   Aggregate Aggregate_Impl::_create (const ConnectorObject_in parent)

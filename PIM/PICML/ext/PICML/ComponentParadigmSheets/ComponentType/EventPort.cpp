@@ -18,5 +18,10 @@ namespace PICML
   // metaname
   //
   const std::string EventPort_Impl::metaname ("EventPort");
+
+  //
+  // is_abstract
+  //
+  const bool EventPort_Impl::is_abstract (1);
 }
 

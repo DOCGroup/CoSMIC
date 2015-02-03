@@ -20,6 +20,11 @@ namespace PICML
   const std::string ProvidedRequestPortEnd_Impl::metaname ("ProvidedRequestPortEnd");
 
   //
+  // is_abstract
+  //
+  const bool ProvidedRequestPortEnd_Impl::is_abstract (1);
+
+  //
   // dst_of_ConnectorToFacet
   //
   size_t ProvidedRequestPortEnd_Impl::dst_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const

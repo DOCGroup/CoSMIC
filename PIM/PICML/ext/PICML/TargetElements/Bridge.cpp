@@ -24,6 +24,11 @@ namespace PICML
   const std::string Bridge_Impl::metaname ("Bridge");
 
   //
+  // is_abstract
+  //
+  const bool Bridge_Impl::is_abstract (0);
+
+  //
   // _create (const Domain_in)
   //
   Bridge Bridge_Impl::_create (const Domain_in parent)

@@ -11,8 +11,8 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/Edge.h"
+#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string EdgeProperty_Impl::metaname ("EdgeProperty");
+
+  //
+  // is_abstract
+  //
+  const bool EdgeProperty_Impl::is_abstract (0);
 
   //
   // _create (const Path_in, Property_in src, Edge_in dst)

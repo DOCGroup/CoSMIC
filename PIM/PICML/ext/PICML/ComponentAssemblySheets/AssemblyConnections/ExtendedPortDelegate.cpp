@@ -23,6 +23,11 @@ namespace PICML
   const std::string ExtendedPortDelegate_Impl::metaname ("ExtendedPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool ExtendedPortDelegate_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ExtendedPortDelegate ExtendedPortDelegate_Impl::_create (const ComponentAssembly_in parent)

@@ -28,6 +28,11 @@ namespace PICML
   const std::string OnewayOperation_Impl::metaname ("OnewayOperation");
 
   //
+  // is_abstract
+  //
+  const bool OnewayOperation_Impl::is_abstract (0);
+
+  //
   // _create (const HasOperations_in)
   //
   OnewayOperation OnewayOperation_Impl::_create (const HasOperations_in parent)

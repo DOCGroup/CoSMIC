@@ -22,6 +22,11 @@ namespace PICML
   const std::string PeriodicBenchmarks_Impl::metaname ("PeriodicBenchmarks");
 
   //
+  // is_abstract
+  //
+  const bool PeriodicBenchmarks_Impl::is_abstract (0);
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   PeriodicBenchmarks PeriodicBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)

@@ -24,6 +24,11 @@ namespace PICML
   const std::string PackageConfSpecializedConfig_Impl::metaname ("PackageConfSpecializedConfig");
 
   //
+  // is_abstract
+  //
+  const bool PackageConfSpecializedConfig_Impl::is_abstract (0);
+
+  //
   // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, PackageConfigurationReference_in dst)
   //
   PackageConfSpecializedConfig PackageConfSpecializedConfig_Impl::_create (const PackageConfigurationContainer_in parent, PackageConfiguration_in src, PackageConfigurationReference_in dst)

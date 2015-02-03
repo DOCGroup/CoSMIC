@@ -24,6 +24,11 @@ namespace PICML
   const std::string TimerEventSinkConn_Impl::metaname ("TimerEventSinkConn");
 
   //
+  // is_abstract
+  //
+  const bool TimerEventSinkConn_Impl::is_abstract (0);
+
+  //
   // _create (const BenchmarkAnalysis_in, EventRef_in src, TimeProbe_in dst)
   //
   TimerEventSinkConn TimerEventSinkConn_Impl::_create (const BenchmarkAnalysis_in parent, EventRef_in src, TimeProbe_in dst)

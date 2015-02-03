@@ -23,6 +23,11 @@ namespace PICML
   const std::string Action_Impl::metaname ("Action");
 
   //
+  // is_abstract
+  //
+  const bool Action_Impl::is_abstract (0);
+
+  //
   // _create (const BehaviorModel_in)
   //
   Action Action_Impl::_create (const BehaviorModel_in parent)

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/WorkloadParadigmSheets/WML/Worker.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string WorkerType_Impl::metaname ("WorkerType");
+
+  //
+  // is_abstract
+  //
+  const bool WorkerType_Impl::is_abstract (0);
 
   //
   // _create (const TopLevelBehavior_in)

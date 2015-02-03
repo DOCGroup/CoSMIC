@@ -28,6 +28,11 @@ namespace PICML
   const std::string CollocationGroup_Impl::metaname ("CollocationGroup");
 
   //
+  // is_abstract
+  //
+  const bool CollocationGroup_Impl::is_abstract (0);
+
+  //
   // _create (const DeploymentPlan_in)
   //
   CollocationGroup CollocationGroup_Impl::_create (const DeploymentPlan_in parent)

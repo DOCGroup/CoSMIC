@@ -24,6 +24,11 @@ namespace PICML
   const std::string TimerConnection_Impl::metaname ("TimerConnection");
 
   //
+  // is_abstract
+  //
+  const bool TimerConnection_Impl::is_abstract (0);
+
+  //
   // _create (const BenchmarkAnalysis_in, OperationRef_in src, TimeProbe_in dst)
   //
   TimerConnection TimerConnection_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, TimeProbe_in dst)

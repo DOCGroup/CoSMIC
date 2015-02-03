@@ -29,6 +29,11 @@ namespace PICML
   const std::string Invoke_Impl::metaname ("Invoke");
 
   //
+  // is_abstract
+  //
+  const bool Invoke_Impl::is_abstract (0);
+
+  //
   // _create (const ComponentAssembly_in, RequiredRequestPortEnd_in src, ProvidedRequestPortEnd_in dst)
   //
   Invoke Invoke_Impl::_create (const ComponentAssembly_in parent, RequiredRequestPortEnd_in src, ProvidedRequestPortEnd_in dst)

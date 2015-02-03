@@ -17,5 +17,10 @@ namespace PICML
   // metaname
   //
   const std::string Provideable_Impl::metaname ("Provideable");
+
+  //
+  // is_abstract
+  //
+  const bool Provideable_Impl::is_abstract (1);
 }
 

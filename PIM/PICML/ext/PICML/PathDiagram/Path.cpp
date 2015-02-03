@@ -12,6 +12,9 @@
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/PathDiagram/DstEdge.h"
+#include "PICML/PathDiagram/SrcEdge.h"
+#include "PICML/PathDiagram/EdgeProperty.h"
 #include "PICML/PathDiagram/GraphVertex.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
@@ -23,9 +26,6 @@
 #include "PICML/PathDiagram/DisplayNode.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Edge.h"
-#include "PICML/PathDiagram/DstEdge.h"
-#include "PICML/PathDiagram/SrcEdge.h"
-#include "PICML/PathDiagram/EdgeProperty.h"
 #include "PICML/PathDiagram/PathProperty.h"
 #include "PICML/PathDiagram/PathReference.h"
 #include "PICML/PathDiagram/Paths.h"
@@ -40,6 +40,11 @@ namespace PICML
   // metaname
   //
   const std::string Path_Impl::metaname ("Path");
+
+  //
+  // is_abstract
+  //
+  const bool Path_Impl::is_abstract (0);
 
   //
   // _create (const Paths_in)
@@ -133,6 +138,54 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentRef> Path_Impl::get_ComponentRefs (void) const
   {
     return this->children <ComponentRef> ();
+  }
+
+  //
+  // get_DstEdges
+  //
+  size_t Path_Impl::get_DstEdges (std::vector <DstEdge> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_DstEdges
+  //
+  ::GAME::Mga::Collection_T <DstEdge> Path_Impl::get_DstEdges (void) const
+  {
+    return this->children <DstEdge> ();
+  }
+
+  //
+  // get_SrcEdges
+  //
+  size_t Path_Impl::get_SrcEdges (std::vector <SrcEdge> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SrcEdges
+  //
+  ::GAME::Mga::Collection_T <SrcEdge> Path_Impl::get_SrcEdges (void) const
+  {
+    return this->children <SrcEdge> ();
+  }
+
+  //
+  // get_EdgePropertys
+  //
+  size_t Path_Impl::get_EdgePropertys (std::vector <EdgeProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_EdgePropertys
+  //
+  ::GAME::Mga::Collection_T <EdgeProperty> Path_Impl::get_EdgePropertys (void) const
+  {
+    return this->children <EdgeProperty> ();
   }
 
   //
@@ -245,54 +298,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Edge> Path_Impl::get_Edges (void) const
   {
     return this->children <Edge> ();
-  }
-
-  //
-  // get_DstEdges
-  //
-  size_t Path_Impl::get_DstEdges (std::vector <DstEdge> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_DstEdges
-  //
-  ::GAME::Mga::Collection_T <DstEdge> Path_Impl::get_DstEdges (void) const
-  {
-    return this->children <DstEdge> ();
-  }
-
-  //
-  // get_SrcEdges
-  //
-  size_t Path_Impl::get_SrcEdges (std::vector <SrcEdge> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SrcEdges
-  //
-  ::GAME::Mga::Collection_T <SrcEdge> Path_Impl::get_SrcEdges (void) const
-  {
-    return this->children <SrcEdge> ();
-  }
-
-  //
-  // get_EdgePropertys
-  //
-  size_t Path_Impl::get_EdgePropertys (std::vector <EdgeProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_EdgePropertys
-  //
-  ::GAME::Mga::Collection_T <EdgeProperty> Path_Impl::get_EdgePropertys (void) const
-  {
-    return this->children <EdgeProperty> ();
   }
 }
 

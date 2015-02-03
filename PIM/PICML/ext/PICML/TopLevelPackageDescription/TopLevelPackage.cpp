@@ -23,6 +23,11 @@ namespace PICML
   const std::string TopLevelPackage_Impl::metaname ("TopLevelPackage");
 
   //
+  // is_abstract
+  //
+  const bool TopLevelPackage_Impl::is_abstract (0);
+
+  //
   // _create (const TopLevelPackageContainer_in)
   //
   TopLevelPackage TopLevelPackage_Impl::_create (const TopLevelPackageContainer_in parent)

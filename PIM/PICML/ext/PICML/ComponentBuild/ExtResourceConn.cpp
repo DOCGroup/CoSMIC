@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBuild/Project.h"
-#include "PICML/ComponentBuild/ExternalResources.h"
 #include "PICML/ComponentBuild/ComponentLib.h"
 #include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ComponentBuild/ExternalResources.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,6 +25,11 @@ namespace PICML
   // metaname
   //
   const std::string ExtResourceConn_Impl::metaname ("ExtResourceConn");
+
+  //
+  // is_abstract
+  //
+  const bool ExtResourceConn_Impl::is_abstract (0);
 
   //
   // _create (const Project_in, ComponentLib_in src, ExternalResources_in dst)

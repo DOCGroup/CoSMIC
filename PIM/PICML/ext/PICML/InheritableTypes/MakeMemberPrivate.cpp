@@ -27,6 +27,11 @@ namespace PICML
   const std::string MakeMemberPrivate_Impl::metaname ("MakeMemberPrivate");
 
   //
+  // is_abstract
+  //
+  const bool MakeMemberPrivate_Impl::is_abstract (0);
+
+  //
   // _create (const ObjectByValue_in, Member_in src, PrivateFlag_in dst)
   //
   MakeMemberPrivate MakeMemberPrivate_Impl::_create (const ObjectByValue_in parent, Member_in src, PrivateFlag_in dst)

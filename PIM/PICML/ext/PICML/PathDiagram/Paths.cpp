@@ -27,6 +27,11 @@ namespace PICML
   const std::string Paths_Impl::metaname ("Paths");
 
   //
+  // is_abstract
+  //
+  const bool Paths_Impl::is_abstract (0);
+
+  //
   // _create (const PathDiagrams_in)
   //
   Paths Paths_Impl::_create (const PathDiagrams_in parent)

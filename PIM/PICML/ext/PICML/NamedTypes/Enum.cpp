@@ -25,6 +25,11 @@ namespace PICML
   const std::string Enum_Impl::metaname ("Enum");
 
   //
+  // is_abstract
+  //
+  const bool Enum_Impl::is_abstract (0);
+
+  //
   // _create (const HasOperations_in)
   //
   Enum Enum_Impl::_create (const HasOperations_in parent)

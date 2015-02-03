@@ -22,6 +22,11 @@ namespace PICML
   const std::string Latency_Impl::metaname ("Latency");
 
   //
+  // is_abstract
+  //
+  const bool Latency_Impl::is_abstract (0);
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   Latency Latency_Impl::_create (const BenchmarkAnalysis_in parent)

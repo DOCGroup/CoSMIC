@@ -20,6 +20,11 @@ namespace PICML
   const std::string RequirementBase_Impl::metaname ("RequirementBase");
 
   //
+  // is_abstract
+  //
+  const bool RequirementBase_Impl::is_abstract (1);
+
+  //
   // get_ComplexPropertys
   //
   size_t RequirementBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const

@@ -23,6 +23,11 @@ namespace PICML
   const std::string CollectionParameter_Impl::metaname ("CollectionParameter");
 
   //
+  // is_abstract
+  //
+  const bool CollectionParameter_Impl::is_abstract (0);
+
+  //
   // _create (const Package_in)
   //
   CollectionParameter CollectionParameter_Impl::_create (const Package_in parent)
