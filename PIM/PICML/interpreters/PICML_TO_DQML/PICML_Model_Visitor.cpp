@@ -30,10 +30,11 @@ namespace PICML_To_DQML
   //
   // visit_RootFolder
   //
-  void PICML_Model_Visitor::visit_RootFolder (GAME::Mga::RootFolder_in item)
+  void PICML_Model_Visitor::visit_RootFolder (PICML::RootFolder_in item)
   {
-    std::vector <PICML::ComponentImplementations> comp_impl_folders;
-    item->folders (comp_impl_folders);
+    GAME::Mga::Collection_T <PICML::ComponentImplementations> comp_impl_folders = 
+      item->get_ComponentImplementations ();
+
     if (comp_impl_folders.size () == 0)
       return;
 
@@ -48,8 +49,9 @@ namespace PICML_To_DQML
   //
   void PICML_Model_Visitor::visit_ComponentImplementations (PICML::ComponentImplementations_in item)
   {
-    std::vector <PICML::ComponentImplementationContainer> comp_impl_cont_models;
-    item->children (comp_impl_cont_models);
+    GAME::Mga::Collection_T <PICML::ComponentImplementationContainer> comp_impl_cont_models = 
+      item->get_ComponentImplementationContainers ();
+
     if (comp_impl_cont_models.size () == 0)
       return;
 
@@ -67,8 +69,8 @@ namespace PICML_To_DQML
   //
   void PICML_Model_Visitor::visit_ComponentImplementationContainer (PICML::ComponentImplementationContainer_in item)
   {
-    std::vector <PICML::ComponentAssembly> comp_asm_models;
-    item->children (comp_asm_models);
+    GAME::Mga::Collection_T <PICML::ComponentAssembly> comp_asm_models =
+      item->get_ComponentAssemblys ();
     if (comp_asm_models.size () == 0)
       return;
 
