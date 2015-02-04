@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool ReaderDataLifecycleQosPolicy_Impl::is_abstract (0);
+  const bool ReaderDataLifecycleQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)

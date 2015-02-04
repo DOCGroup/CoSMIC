@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/DDSEntities/Subscriber.h"
 #include "DQML/Standard/DDSEntities/DomainParticipant.h"
 #include "DQML/Standard/Main/DDSQoS.h"
-#include "DQML/Standard/DDSEntities/Subscriber.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool dp_sub_Connection_Impl::is_abstract (0);
+  const bool dp_sub_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, DomainParticipant_in src, Subscriber_in dst)

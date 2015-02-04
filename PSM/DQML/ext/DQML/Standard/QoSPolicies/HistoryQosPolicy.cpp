@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -30,7 +30,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool HistoryQosPolicy_Impl::is_abstract (0);
+  const bool HistoryQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)
@@ -41,17 +41,17 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataWriterQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const TopicQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -87,14 +87,6 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos HistoryQosPolicy_Impl::parent_DataWriterQos (void)
@@ -103,19 +95,27 @@ namespace DQML
   }
 
   //
-  // dst_of_topic_history_Connection
+  // parent_TopicQos
   //
-  size_t HistoryQosPolicy_Impl::dst_of_topic_history_Connection (std::vector <topic_history_Connection> & items) const
+  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
   {
-    return this->in_connections <topic_history_Connection> (items);
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
-  // dst_of_topic_history_Connection
+  // dst_of_dw_history_Connection
   //
-  GAME::Mga::Collection_T <topic_history_Connection> HistoryQosPolicy_Impl::dst_of_topic_history_Connection (void) const
+  size_t HistoryQosPolicy_Impl::dst_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const
   {
-    return this->in_connections <topic_history_Connection> ("dst");
+    return this->in_connections <dw_history_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_history_Connection
+  //
+  GAME::Mga::Collection_T <dw_history_Connection> HistoryQosPolicy_Impl::dst_of_dw_history_Connection (void) const
+  {
+    return this->in_connections <dw_history_Connection> ("dst");
   }
 
   //
@@ -135,19 +135,19 @@ namespace DQML
   }
 
   //
-  // dst_of_dw_history_Connection
+  // dst_of_topic_history_Connection
   //
-  size_t HistoryQosPolicy_Impl::dst_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const
+  size_t HistoryQosPolicy_Impl::dst_of_topic_history_Connection (std::vector <topic_history_Connection> & items) const
   {
-    return this->in_connections <dw_history_Connection> (items);
+    return this->in_connections <topic_history_Connection> (items);
   }
 
   //
-  // dst_of_dw_history_Connection
+  // dst_of_topic_history_Connection
   //
-  GAME::Mga::Collection_T <dw_history_Connection> HistoryQosPolicy_Impl::dst_of_dw_history_Connection (void) const
+  GAME::Mga::Collection_T <topic_history_Connection> HistoryQosPolicy_Impl::dst_of_topic_history_Connection (void) const
   {
-    return this->in_connections <dw_history_Connection> ("dst");
+    return this->in_connections <topic_history_Connection> ("dst");
   }
 }
 

@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool dr_ownership_Connection_Impl::is_abstract (0);
+  const bool dr_ownership_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, DataReader_in src, OwnershipQosPolicy_in dst)

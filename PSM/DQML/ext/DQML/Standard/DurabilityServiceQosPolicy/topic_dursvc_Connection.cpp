@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool topic_dursvc_Connection_Impl::is_abstract (0);
+  const bool topic_dursvc_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, Topic_in src, DurabilityServiceQosPolicy_in dst)

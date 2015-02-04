@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
 #include "DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,20 +28,20 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool TransportPriorityQosPolicy_Impl::is_abstract (0);
-
-  //
-  // _create (const TopicQos_in)
-  //
-  TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const TopicQos_in parent)
-  {
-    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
-  }
+  const bool TransportPriorityQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataWriterQos_in)
   //
   TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  {
+    return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const TopicQos_in)
+  //
+  TransportPriorityQosPolicy TransportPriorityQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < TransportPriorityQosPolicy > (parent, TransportPriorityQosPolicy_Impl::metaname);
   }
@@ -69,19 +69,19 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos TransportPriorityQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos TransportPriorityQosPolicy_Impl::parent_DataWriterQos (void)
   {
     return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos TransportPriorityQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
   }
 
   //

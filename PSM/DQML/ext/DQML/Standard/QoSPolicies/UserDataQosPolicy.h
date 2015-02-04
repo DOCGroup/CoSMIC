@@ -49,7 +49,6 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -57,9 +56,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static UserDataQosPolicy _create (const Participant_in parent);
     static UserDataQosPolicy _create (const DataReaderQos_in parent);
     static UserDataQosPolicy _create (const DataWriterQos_in parent);
+    static UserDataQosPolicy _create (const Participant_in parent);
     static UserDataQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -79,9 +78,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    Participant parent_Participant (void);
     DataReaderQos parent_DataReaderQos (void);
     DataWriterQos parent_DataWriterQos (void);
+    Participant parent_Participant (void);
     ///@}
 
     /**
@@ -101,13 +100,13 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dp_userdata_Connection connection.
-    size_t dst_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
-    GAME::Mga::Collection_T <dp_userdata_Connection> dst_of_dp_userdata_Connection (void) const;
-
     /// Get the dst dw_userdata_Connection connection.
     size_t dst_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const;
     GAME::Mga::Collection_T <dw_userdata_Connection> dst_of_dw_userdata_Connection (void) const;
+
+    /// Get the dst dp_userdata_Connection connection.
+    size_t dst_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const;
+    GAME::Mga::Collection_T <dp_userdata_Connection> dst_of_dp_userdata_Connection (void) const;
 
     /// Get the dst dr_userdata_Connection connection.
     size_t dst_of_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const;

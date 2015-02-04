@@ -49,7 +49,6 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -58,8 +57,8 @@ namespace DQML
      */
     ///@{
     static DurabilityQosPolicy _create (const DataReaderQos_in parent);
-    static DurabilityQosPolicy _create (const TopicQos_in parent);
     static DurabilityQosPolicy _create (const DataWriterQos_in parent);
+    static DurabilityQosPolicy _create (const TopicQos_in parent);
     static DurabilityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -80,8 +79,8 @@ namespace DQML
      */
     ///@{
     DataReaderQos parent_DataReaderQos (void);
-    TopicQos parent_TopicQos (void);
     DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -101,10 +100,6 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_durqos_Connection connection.
-    size_t dst_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_durqos_Connection> dst_of_topic_durqos_Connection (void) const;
-
     /// Get the dst dr_durqos_Connection connection.
     size_t dst_of_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
     GAME::Mga::Collection_T <dr_durqos_Connection> dst_of_dr_durqos_Connection (void) const;
@@ -112,6 +107,10 @@ namespace DQML
     /// Get the dst dw_durqos_Connection connection.
     size_t dst_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
     GAME::Mga::Collection_T <dw_durqos_Connection> dst_of_dw_durqos_Connection (void) const;
+
+    /// Get the dst topic_durqos_Connection connection.
+    size_t dst_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_durqos_Connection> dst_of_topic_durqos_Connection (void) const;
     ///@}
   };
 }

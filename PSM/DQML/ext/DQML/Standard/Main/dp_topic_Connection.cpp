@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool dp_topic_Connection_Impl::is_abstract (0);
+  const bool dp_topic_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, DomainParticipant_in src, Topic_in dst)

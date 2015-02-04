@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool TimeBasedFilterQosPolicy_Impl::is_abstract (0);
+  const bool TimeBasedFilterQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)

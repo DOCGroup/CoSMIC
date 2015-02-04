@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool PublishesConnection_Impl::is_abstract (0);
+  const bool PublishesConnection_Impl::is_abstract = false;
 
   //
   // _create (const Domain_in, DataWriterQos_in src, DataReaderQos_in dst)

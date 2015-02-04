@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.h"
-#include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
+#include "DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,20 +28,20 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool LifespanQosPolicy_Impl::is_abstract (0);
-
-  //
-  // _create (const TopicQos_in)
-  //
-  LifespanQosPolicy LifespanQosPolicy_Impl::_create (const TopicQos_in parent)
-  {
-    return ::GAME::Mga::create < LifespanQosPolicy > (parent, LifespanQosPolicy_Impl::metaname);
-  }
+  const bool LifespanQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataWriterQos_in)
   //
   LifespanQosPolicy LifespanQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  {
+    return ::GAME::Mga::create < LifespanQosPolicy > (parent, LifespanQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const TopicQos_in)
+  //
+  LifespanQosPolicy LifespanQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < LifespanQosPolicy > (parent, LifespanQosPolicy_Impl::metaname);
   }
@@ -69,14 +69,6 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos LifespanQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos LifespanQosPolicy_Impl::parent_DataWriterQos (void)
@@ -85,19 +77,11 @@ namespace DQML
   }
 
   //
-  // dst_of_topic_lifespan_Connection
+  // parent_TopicQos
   //
-  size_t LifespanQosPolicy_Impl::dst_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const
+  TopicQos LifespanQosPolicy_Impl::parent_TopicQos (void)
   {
-    return this->in_connections <topic_lifespan_Connection> (items);
-  }
-
-  //
-  // dst_of_topic_lifespan_Connection
-  //
-  GAME::Mga::Collection_T <topic_lifespan_Connection> LifespanQosPolicy_Impl::dst_of_topic_lifespan_Connection (void) const
-  {
-    return this->in_connections <topic_lifespan_Connection> ("dst");
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -114,6 +98,22 @@ namespace DQML
   GAME::Mga::Collection_T <dw_lifespan_Connection> LifespanQosPolicy_Impl::dst_of_dw_lifespan_Connection (void) const
   {
     return this->in_connections <dw_lifespan_Connection> ("dst");
+  }
+
+  //
+  // dst_of_topic_lifespan_Connection
+  //
+  size_t LifespanQosPolicy_Impl::dst_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const
+  {
+    return this->in_connections <topic_lifespan_Connection> (items);
+  }
+
+  //
+  // dst_of_topic_lifespan_Connection
+  //
+  GAME::Mga::Collection_T <topic_lifespan_Connection> LifespanQosPolicy_Impl::dst_of_topic_lifespan_Connection (void) const
+  {
+    return this->in_connections <topic_lifespan_Connection> ("dst");
   }
 }
 

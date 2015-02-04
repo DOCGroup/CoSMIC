@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool SubscriberConnection_Impl::is_abstract (0);
+  const bool SubscriberConnection_Impl::is_abstract = false;
 
   //
   // _create (const Participant_in, DataReaderQos_in src, SubscriberQos_in dst)

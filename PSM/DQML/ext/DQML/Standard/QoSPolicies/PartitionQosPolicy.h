@@ -49,7 +49,6 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -99,13 +98,13 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst sub_part_Connection connection.
-    size_t dst_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
-    GAME::Mga::Collection_T <sub_part_Connection> dst_of_sub_part_Connection (void) const;
-
     /// Get the dst pub_part_Connection connection.
     size_t dst_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const;
     GAME::Mga::Collection_T <pub_part_Connection> dst_of_pub_part_Connection (void) const;
+
+    /// Get the dst sub_part_Connection connection.
+    size_t dst_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
+    GAME::Mga::Collection_T <sub_part_Connection> dst_of_sub_part_Connection (void) const;
     ///@}
   };
 }

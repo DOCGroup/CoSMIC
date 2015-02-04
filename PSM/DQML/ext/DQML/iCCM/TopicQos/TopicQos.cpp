@@ -8,19 +8,19 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/DurabilityQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/LivelinessQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/TopicDataQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/DurabilityServiceQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/DurabilityQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/LifespanQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/HistoryQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/TopicDataQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/DurabilityServiceQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/HistoryQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
 #include "DQML/iCCM/TopicQos/TopicQosFolder.h"
 #include "DQML/iCCM/TopicQos/TopicQosReference.h"
 #include "game/mga/Functional_T.h"
@@ -38,7 +38,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool TopicQos_Impl::is_abstract (0);
+  const bool TopicQos_Impl::is_abstract = false;
 
   //
   // _create (const TopicQosFolder_in)
@@ -71,67 +71,19 @@ namespace DQML
   }
 
   //
-  // has_DestinationOrderQosPolicy
+  // has_LivelinessQosPolicy
   //
-  bool TopicQos_Impl::has_DestinationOrderQosPolicy (void) const
+  bool TopicQos_Impl::has_LivelinessQosPolicy (void) const
   {
-    return this->children <DestinationOrderQosPolicy> ().count () == 1;
+    return this->children <LivelinessQosPolicy> ().count () == 1;
   }
 
   //
-  // get_DestinationOrderQosPolicy
+  // get_LivelinessQosPolicy
   //
-  DestinationOrderQosPolicy TopicQos_Impl::get_DestinationOrderQosPolicy (void) const
+  LivelinessQosPolicy TopicQos_Impl::get_LivelinessQosPolicy (void) const
   {
-    return this->children <DestinationOrderQosPolicy> ().first ();
-  }
-
-  //
-  // has_DurabilityQosPolicy
-  //
-  bool TopicQos_Impl::has_DurabilityQosPolicy (void) const
-  {
-    return this->children <DurabilityQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_DurabilityQosPolicy
-  //
-  DurabilityQosPolicy TopicQos_Impl::get_DurabilityQosPolicy (void) const
-  {
-    return this->children <DurabilityQosPolicy> ().first ();
-  }
-
-  //
-  // has_LatencyBudgetQosPolicy
-  //
-  bool TopicQos_Impl::has_LatencyBudgetQosPolicy (void) const
-  {
-    return this->children <LatencyBudgetQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_LatencyBudgetQosPolicy
-  //
-  LatencyBudgetQosPolicy TopicQos_Impl::get_LatencyBudgetQosPolicy (void) const
-  {
-    return this->children <LatencyBudgetQosPolicy> ().first ();
-  }
-
-  //
-  // has_DeadlineQosPolicy
-  //
-  bool TopicQos_Impl::has_DeadlineQosPolicy (void) const
-  {
-    return this->children <DeadlineQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_DeadlineQosPolicy
-  //
-  DeadlineQosPolicy TopicQos_Impl::get_DeadlineQosPolicy (void) const
-  {
-    return this->children <DeadlineQosPolicy> ().first ();
+    return this->children <LivelinessQosPolicy> ().first ();
   }
 
   //
@@ -151,83 +103,51 @@ namespace DQML
   }
 
   //
-  // has_ReliabilityQosPolicy
+  // has_DeadlineQosPolicy
   //
-  bool TopicQos_Impl::has_ReliabilityQosPolicy (void) const
+  bool TopicQos_Impl::has_DeadlineQosPolicy (void) const
   {
-    return this->children <ReliabilityQosPolicy> ().count () == 1;
+    return this->children <DeadlineQosPolicy> ().count () == 1;
   }
 
   //
-  // get_ReliabilityQosPolicy
+  // get_DeadlineQosPolicy
   //
-  ReliabilityQosPolicy TopicQos_Impl::get_ReliabilityQosPolicy (void) const
+  DeadlineQosPolicy TopicQos_Impl::get_DeadlineQosPolicy (void) const
   {
-    return this->children <ReliabilityQosPolicy> ().first ();
+    return this->children <DeadlineQosPolicy> ().first ();
   }
 
   //
-  // has_LivelinessQosPolicy
+  // has_LatencyBudgetQosPolicy
   //
-  bool TopicQos_Impl::has_LivelinessQosPolicy (void) const
+  bool TopicQos_Impl::has_LatencyBudgetQosPolicy (void) const
   {
-    return this->children <LivelinessQosPolicy> ().count () == 1;
+    return this->children <LatencyBudgetQosPolicy> ().count () == 1;
   }
 
   //
-  // get_LivelinessQosPolicy
+  // get_LatencyBudgetQosPolicy
   //
-  LivelinessQosPolicy TopicQos_Impl::get_LivelinessQosPolicy (void) const
+  LatencyBudgetQosPolicy TopicQos_Impl::get_LatencyBudgetQosPolicy (void) const
   {
-    return this->children <LivelinessQosPolicy> ().first ();
+    return this->children <LatencyBudgetQosPolicy> ().first ();
   }
 
   //
-  // has_TopicDataQosPolicy
+  // has_DurabilityQosPolicy
   //
-  bool TopicQos_Impl::has_TopicDataQosPolicy (void) const
+  bool TopicQos_Impl::has_DurabilityQosPolicy (void) const
   {
-    return this->children <TopicDataQosPolicy> ().count () == 1;
+    return this->children <DurabilityQosPolicy> ().count () == 1;
   }
 
   //
-  // get_TopicDataQosPolicy
+  // get_DurabilityQosPolicy
   //
-  TopicDataQosPolicy TopicQos_Impl::get_TopicDataQosPolicy (void) const
+  DurabilityQosPolicy TopicQos_Impl::get_DurabilityQosPolicy (void) const
   {
-    return this->children <TopicDataQosPolicy> ().first ();
-  }
-
-  //
-  // has_TransportPriorityQosPolicy
-  //
-  bool TopicQos_Impl::has_TransportPriorityQosPolicy (void) const
-  {
-    return this->children <TransportPriorityQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_TransportPriorityQosPolicy
-  //
-  TransportPriorityQosPolicy TopicQos_Impl::get_TransportPriorityQosPolicy (void) const
-  {
-    return this->children <TransportPriorityQosPolicy> ().first ();
-  }
-
-  //
-  // has_DurabilityServiceQosPolicy
-  //
-  bool TopicQos_Impl::has_DurabilityServiceQosPolicy (void) const
-  {
-    return this->children <DurabilityServiceQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_DurabilityServiceQosPolicy
-  //
-  DurabilityServiceQosPolicy TopicQos_Impl::get_DurabilityServiceQosPolicy (void) const
-  {
-    return this->children <DurabilityServiceQosPolicy> ().first ();
+    return this->children <DurabilityQosPolicy> ().first ();
   }
 
   //
@@ -247,19 +167,51 @@ namespace DQML
   }
 
   //
-  // has_HistoryQosPolicy
+  // has_TransportPriorityQosPolicy
   //
-  bool TopicQos_Impl::has_HistoryQosPolicy (void) const
+  bool TopicQos_Impl::has_TransportPriorityQosPolicy (void) const
   {
-    return this->children <HistoryQosPolicy> ().count () == 1;
+    return this->children <TransportPriorityQosPolicy> ().count () == 1;
   }
 
   //
-  // get_HistoryQosPolicy
+  // get_TransportPriorityQosPolicy
   //
-  HistoryQosPolicy TopicQos_Impl::get_HistoryQosPolicy (void) const
+  TransportPriorityQosPolicy TopicQos_Impl::get_TransportPriorityQosPolicy (void) const
   {
-    return this->children <HistoryQosPolicy> ().first ();
+    return this->children <TransportPriorityQosPolicy> ().first ();
+  }
+
+  //
+  // has_TopicDataQosPolicy
+  //
+  bool TopicQos_Impl::has_TopicDataQosPolicy (void) const
+  {
+    return this->children <TopicDataQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_TopicDataQosPolicy
+  //
+  TopicDataQosPolicy TopicQos_Impl::get_TopicDataQosPolicy (void) const
+  {
+    return this->children <TopicDataQosPolicy> ().first ();
+  }
+
+  //
+  // has_DurabilityServiceQosPolicy
+  //
+  bool TopicQos_Impl::has_DurabilityServiceQosPolicy (void) const
+  {
+    return this->children <DurabilityServiceQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_DurabilityServiceQosPolicy
+  //
+  DurabilityServiceQosPolicy TopicQos_Impl::get_DurabilityServiceQosPolicy (void) const
+  {
+    return this->children <DurabilityServiceQosPolicy> ().first ();
   }
 
   //
@@ -276,6 +228,54 @@ namespace DQML
   ResourceLimitsQosPolicy TopicQos_Impl::get_ResourceLimitsQosPolicy (void) const
   {
     return this->children <ResourceLimitsQosPolicy> ().first ();
+  }
+
+  //
+  // has_HistoryQosPolicy
+  //
+  bool TopicQos_Impl::has_HistoryQosPolicy (void) const
+  {
+    return this->children <HistoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_HistoryQosPolicy
+  //
+  HistoryQosPolicy TopicQos_Impl::get_HistoryQosPolicy (void) const
+  {
+    return this->children <HistoryQosPolicy> ().first ();
+  }
+
+  //
+  // has_DestinationOrderQosPolicy
+  //
+  bool TopicQos_Impl::has_DestinationOrderQosPolicy (void) const
+  {
+    return this->children <DestinationOrderQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_DestinationOrderQosPolicy
+  //
+  DestinationOrderQosPolicy TopicQos_Impl::get_DestinationOrderQosPolicy (void) const
+  {
+    return this->children <DestinationOrderQosPolicy> ().first ();
+  }
+
+  //
+  // has_ReliabilityQosPolicy
+  //
+  bool TopicQos_Impl::has_ReliabilityQosPolicy (void) const
+  {
+    return this->children <ReliabilityQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_ReliabilityQosPolicy
+  //
+  ReliabilityQosPolicy TopicQos_Impl::get_ReliabilityQosPolicy (void) const
+  {
+    return this->children <ReliabilityQosPolicy> ().first ();
   }
 }
 

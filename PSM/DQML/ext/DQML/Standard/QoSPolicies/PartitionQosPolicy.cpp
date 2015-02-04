@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,7 +28,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool PartitionQosPolicy_Impl::is_abstract (0);
+  const bool PartitionQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const SubscriberQos_in)
@@ -85,22 +85,6 @@ namespace DQML
   }
 
   //
-  // dst_of_sub_part_Connection
-  //
-  size_t PartitionQosPolicy_Impl::dst_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const
-  {
-    return this->in_connections <sub_part_Connection> (items);
-  }
-
-  //
-  // dst_of_sub_part_Connection
-  //
-  GAME::Mga::Collection_T <sub_part_Connection> PartitionQosPolicy_Impl::dst_of_sub_part_Connection (void) const
-  {
-    return this->in_connections <sub_part_Connection> ("dst");
-  }
-
-  //
   // dst_of_pub_part_Connection
   //
   size_t PartitionQosPolicy_Impl::dst_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const
@@ -114,6 +98,22 @@ namespace DQML
   GAME::Mga::Collection_T <pub_part_Connection> PartitionQosPolicy_Impl::dst_of_pub_part_Connection (void) const
   {
     return this->in_connections <pub_part_Connection> ("dst");
+  }
+
+  //
+  // dst_of_sub_part_Connection
+  //
+  size_t PartitionQosPolicy_Impl::dst_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const
+  {
+    return this->in_connections <sub_part_Connection> (items);
+  }
+
+  //
+  // dst_of_sub_part_Connection
+  //
+  GAME::Mga::Collection_T <sub_part_Connection> PartitionQosPolicy_Impl::dst_of_sub_part_Connection (void) const
+  {
+    return this->in_connections <sub_part_Connection> ("dst");
   }
 }
 

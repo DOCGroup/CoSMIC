@@ -24,7 +24,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool ListenerSchedulingQosPolicy_Impl::is_abstract (0);
+  const bool ListenerSchedulingQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const Participant_in)

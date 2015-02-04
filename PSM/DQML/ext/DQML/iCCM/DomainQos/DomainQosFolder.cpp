@@ -25,7 +25,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool DomainQosFolder_Impl::is_abstract (0);
+  const bool DomainQosFolder_Impl::is_abstract = false;
 
   //
   // _create (const iCCM_in)

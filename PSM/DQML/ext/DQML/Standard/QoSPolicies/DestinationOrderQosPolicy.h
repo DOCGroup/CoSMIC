@@ -49,7 +49,6 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -58,8 +57,8 @@ namespace DQML
      */
     ///@{
     static DestinationOrderQosPolicy _create (const DataReaderQos_in parent);
-    static DestinationOrderQosPolicy _create (const TopicQos_in parent);
     static DestinationOrderQosPolicy _create (const DataWriterQos_in parent);
+    static DestinationOrderQosPolicy _create (const TopicQos_in parent);
     static DestinationOrderQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -80,8 +79,8 @@ namespace DQML
      */
     ///@{
     DataReaderQos parent_DataReaderQos (void);
-    TopicQos parent_TopicQos (void);
     DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**

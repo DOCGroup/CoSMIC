@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
 #include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -30,7 +30,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool LivelinessQosPolicy_Impl::is_abstract (0);
+  const bool LivelinessQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)
@@ -41,17 +41,17 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataWriterQos_in)
   //
-  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const TopicQos_in parent)
+  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const TopicQos_in)
   //
-  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  LivelinessQosPolicy LivelinessQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < LivelinessQosPolicy > (parent, LivelinessQosPolicy_Impl::metaname);
   }
@@ -87,14 +87,6 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos LivelinessQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos LivelinessQosPolicy_Impl::parent_DataWriterQos (void)
@@ -103,19 +95,11 @@ namespace DQML
   }
 
   //
-  // dst_of_topic_liveliness_Connection
+  // parent_TopicQos
   //
-  size_t LivelinessQosPolicy_Impl::dst_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const
+  TopicQos LivelinessQosPolicy_Impl::parent_TopicQos (void)
   {
-    return this->in_connections <topic_liveliness_Connection> (items);
-  }
-
-  //
-  // dst_of_topic_liveliness_Connection
-  //
-  GAME::Mga::Collection_T <topic_liveliness_Connection> LivelinessQosPolicy_Impl::dst_of_topic_liveliness_Connection (void) const
-  {
-    return this->in_connections <topic_liveliness_Connection> ("dst");
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -148,6 +132,22 @@ namespace DQML
   GAME::Mga::Collection_T <dw_liveliness_Connection> LivelinessQosPolicy_Impl::dst_of_dw_liveliness_Connection (void) const
   {
     return this->in_connections <dw_liveliness_Connection> ("dst");
+  }
+
+  //
+  // dst_of_topic_liveliness_Connection
+  //
+  size_t LivelinessQosPolicy_Impl::dst_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const
+  {
+    return this->in_connections <topic_liveliness_Connection> (items);
+  }
+
+  //
+  // dst_of_topic_liveliness_Connection
+  //
+  GAME::Mga::Collection_T <topic_liveliness_Connection> LivelinessQosPolicy_Impl::dst_of_topic_liveliness_Connection (void) const
+  {
+    return this->in_connections <topic_liveliness_Connection> ("dst");
   }
 }
 

@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool PublisherConnection_Impl::is_abstract (0);
+  const bool PublisherConnection_Impl::is_abstract = false;
 
   //
   // _create (const Participant_in, DataWriterQos_in src, PublisherQos_in dst)

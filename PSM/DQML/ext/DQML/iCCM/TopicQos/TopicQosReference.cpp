@@ -9,8 +9,8 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool TopicQosReference_Impl::is_abstract (0);
+  const bool TopicQosReference_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)

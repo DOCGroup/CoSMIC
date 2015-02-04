@@ -20,7 +20,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool QoSPolicy_Impl::is_abstract (1);
+  const bool QoSPolicy_Impl::is_abstract = true;
 
   //
   // parent_DDSQoS

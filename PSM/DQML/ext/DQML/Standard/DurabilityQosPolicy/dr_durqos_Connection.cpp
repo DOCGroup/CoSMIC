@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool dr_durqos_Connection_Impl::is_abstract (0);
+  const bool dr_durqos_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, DataReader_in src, DurabilityQosPolicy_in dst)

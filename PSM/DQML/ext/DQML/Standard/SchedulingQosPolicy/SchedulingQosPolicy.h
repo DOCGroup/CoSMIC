@@ -47,7 +47,6 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -92,11 +91,11 @@ namespace DQML
      */
     ///@{
 
-    bool has_SchedulingClassQosPolicy (void) const;
-    SchedulingClassQosPolicy get_SchedulingClassQosPolicy (void) const;
-
     bool has_SchedulingPriorityQosPolicy (void) const;
     SchedulingPriorityQosPolicy get_SchedulingPriorityQosPolicy (void) const;
+
+    bool has_SchedulingClassQosPolicy (void) const;
+    SchedulingClassQosPolicy get_SchedulingClassQosPolicy (void) const;
     ///@}
   };
 }

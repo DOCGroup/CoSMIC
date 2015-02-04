@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,20 +26,20 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool ShareQosPolicy_Impl::is_abstract (0);
-
-  //
-  // _create (const SubscriberQos_in)
-  //
-  ShareQosPolicy ShareQosPolicy_Impl::_create (const SubscriberQos_in parent)
-  {
-    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
-  }
+  const bool ShareQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const SubscriberQos_in)
+  //
+  ShareQosPolicy ShareQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
     return ::GAME::Mga::create < ShareQosPolicy > (parent, ShareQosPolicy_Impl::metaname);
   }
@@ -67,19 +67,19 @@ namespace DQML
   }
 
   //
-  // parent_SubscriberQos
-  //
-  SubscriberQos ShareQosPolicy_Impl::parent_SubscriberQos (void)
-  {
-    return SubscriberQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos ShareQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_SubscriberQos
+  //
+  SubscriberQos ShareQosPolicy_Impl::parent_SubscriberQos (void)
+  {
+    return SubscriberQos::_narrow (this->parent ());
   }
 }
 

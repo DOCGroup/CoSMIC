@@ -26,7 +26,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool OwnershipStrengthQosPolicy_Impl::is_abstract (0);
+  const bool OwnershipStrengthQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataWriterQos_in)

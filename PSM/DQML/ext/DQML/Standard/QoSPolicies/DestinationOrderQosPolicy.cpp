@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -30,7 +30,7 @@ namespace DQML
   //
   // is_abstract
   //
-  const bool DestinationOrderQosPolicy_Impl::is_abstract (0);
+  const bool DestinationOrderQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)
@@ -41,17 +41,17 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataWriterQos_in)
   //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const TopicQos_in)
   //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
@@ -87,19 +87,19 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
-  //
-  TopicQos DestinationOrderQosPolicy_Impl::parent_TopicQos (void)
-  {
-    return TopicQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataWriterQos
   //
   DataWriterQos DestinationOrderQosPolicy_Impl::parent_DataWriterQos (void)
   {
     return DataWriterQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_TopicQos
+  //
+  TopicQos DestinationOrderQosPolicy_Impl::parent_TopicQos (void)
+  {
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
