@@ -55,7 +55,7 @@ namespace DQML_iCCM
 
   template <typename T, typename ITEM>
   void Participant_Visitor::
-  has_create_accept (ITEM & item, const std::string & label)
+  handle_element (ITEM & item, const std::string & label)
   {
     auto collection = item->children <T> ();
     if (collection.count () != 0)
@@ -67,7 +67,7 @@ namespace DQML_iCCM
 
   template <typename COLLECTION>
   void Participant_Visitor::
-  count_comment_accept (COLLECTION & collection, const std::string & comment)
+  handle_main_qos (COLLECTION & collection, const std::string & comment)
   {
     if (collection.count () == 0)
       return;
@@ -87,14 +87,14 @@ namespace DQML_iCCM
     xercesc::DOMComment * comment = this->doc_->createComment (String (" BEGIN DDS::DomainParticipantQoS parameters "));
     this->current_->appendChild (comment);
 
-    this->has_create_accept <DQML::UserDataQosPolicy> (item, "user_data");
-    this->has_create_accept <DQML::EntityFactoryQosPolicy> (item, "entity_factory");
+    this->handle_element <DQML::UserDataQosPolicy> (item, "user_data");
+    this->handle_element <DQML::EntityFactoryQosPolicy> (item, "entity_factory");
 
     comment = this->doc_->createComment (String (" BEGIN DDS::DomainParticipantQoS (SchedulingQosPolicy) parameters "));
     this->current_->appendChild (comment);
 
-    this->has_create_accept <DQML::WatchdogSchedulingQosPolicy> (item, "watchdog_scheduling");
-    this->has_create_accept <DQML::ListenerSchedulingQosPolicy> (item, "listener_scheduling");
+    this->handle_element <DQML::WatchdogSchedulingQosPolicy> (item, "watchdog_scheduling");
+    this->handle_element <DQML::ListenerSchedulingQosPolicy> (item, "listener_scheduling");
 
     // Gather all the topics and then visit them. When we visit the topic,
     // we are going to write it to the Xml document.
@@ -112,10 +112,10 @@ namespace DQML_iCCM
     for (auto topic : topics)
       topic->accept (this);
 
-    this->count_comment_accept (item->get_PublisherQoss (), " BEGIN DDS::PublisherQoS parameters ");
-    this->count_comment_accept (item->get_SubscriberQoss (), " BEGIN DDS::SubscriberQoS parameters ");
-    this->count_comment_accept (item->get_DataWriterQoss (), " BEGIN DDS::DataWriterQoS parameters ");
-    this->count_comment_accept (item->get_DataReaderQoss (), " BEGIN DDS::DataReaderQoS parameters ");
+    this->handle_main_qos (item->get_PublisherQoss (), " BEGIN DDS::PublisherQoS parameters ");
+    this->handle_main_qos (item->get_SubscriberQoss (), " BEGIN DDS::SubscriberQoS parameters ");
+    this->handle_main_qos (item->get_DataWriterQoss (), " BEGIN DDS::DataWriterQoS parameters ");
+    this->handle_main_qos (item->get_DataReaderQoss (), " BEGIN DDS::DataReaderQoS parameters ");
   }
 
   //
@@ -128,43 +128,43 @@ namespace DQML_iCCM
     topic.set_attribute ("name", item->name ());
 
     //<xsd:element name="topic_data" type="TopicDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::TopicDataQosPolicy> (item, "topic_data");
+    this->handle_element <DQML::TopicDataQosPolicy> (item, "topic_data");
 
     //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DurabilityQosPolicy> (item, "durability");
+    this->handle_element <DQML::DurabilityQosPolicy> (item, "durability");
 
     //<xsd:element name="durability_service" type="DurabilityServiceQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DurabilityServiceQosPolicy> (item, "durability_service");
+    this->handle_element <DQML::DurabilityServiceQosPolicy> (item, "durability_service");
 
     //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DeadlineQosPolicy> (item, "deadline");
+    this->handle_element <DQML::DeadlineQosPolicy> (item, "deadline");
 
     //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LatencyBudgetQosPolicy> (item, "latency_budget");
+    this->handle_element <DQML::LatencyBudgetQosPolicy> (item, "latency_budget");
 
     //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LivelinessQosPolicy> (item, "liveliness");
+    this->handle_element <DQML::LivelinessQosPolicy> (item, "liveliness");
 
     //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ReliabilityQosPolicy> (item, "reliability");
+    this->handle_element <DQML::ReliabilityQosPolicy> (item, "reliability");
 
     //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DestinationOrderQosPolicy> (item, "destination_order");
+    this->handle_element <DQML::DestinationOrderQosPolicy> (item, "destination_order");
 
     //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::HistoryQosPolicy> (item, "history");
+    this->handle_element <DQML::HistoryQosPolicy> (item, "history");
 
     //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ResourceLimitsQosPolicy> (item, "resource_limits");
+    this->handle_element <DQML::ResourceLimitsQosPolicy> (item, "resource_limits");
 
     //<xsd:element name="transport_priority" type="TransportPriorityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::TransportPriorityQosPolicy> (item, "transport_priority");
+    this->handle_element <DQML::TransportPriorityQosPolicy> (item, "transport_priority");
 
     //<xsd:element name="lifespan" type="LifespanQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LifespanQosPolicy> (item, "lifespan");
+    this->handle_element <DQML::LifespanQosPolicy> (item, "lifespan");
 
     //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::OwnershipQosPolicy> (item, "ownership");
+    this->handle_element <DQML::OwnershipQosPolicy> (item, "ownership");
   }
 
   //
@@ -177,16 +177,16 @@ namespace DQML_iCCM
     publisher.set_attribute ("name", item->name ());
 
     //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::PresentationQosPolicy> (item, "presentation");
+    this->handle_element <DQML::PresentationQosPolicy> (item, "presentation");
 
     //<xsd:element name="partition" type="PartitionQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::PartitionQosPolicy> (item, "partition");
+    this->handle_element <DQML::PartitionQosPolicy> (item, "partition");
 
     //<xsd:element name="group_data" type="GroupDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::GroupDataQosPolicy> (item, "group_data");
+    this->handle_element <DQML::GroupDataQosPolicy> (item, "group_data");
 
     //<xsd:element name="entity_factory" type="EntityFactoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::EntityFactoryQosPolicy> (item, "entity_factory");
+    this->handle_element <DQML::EntityFactoryQosPolicy> (item, "entity_factory");
   }
 
   //
@@ -199,19 +199,19 @@ namespace DQML_iCCM
     subscriber.set_attribute ("name", item->name ());
 
     //<xsd:element name="presentation" type="PresentationQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::PresentationQosPolicy> (item, "presentation");
+    this->handle_element <DQML::PresentationQosPolicy> (item, "presentation");
 
     //<xsd:element name="partition" type="PartitionQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::PartitionQosPolicy> (item, "partition");
+    this->handle_element <DQML::PartitionQosPolicy> (item, "partition");
 
     //<xsd:element name="group_data" type="GroupDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::GroupDataQosPolicy> (item, "group_data");
+    this->handle_element <DQML::GroupDataQosPolicy> (item, "group_data");
 
     //<xsd:element name="entity_factory" type="EntityFactoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::EntityFactoryQosPolicy> (item, "entity_factory");
+    this->handle_element <DQML::EntityFactoryQosPolicy> (item, "entity_factory");
 
     //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ShareQosPolicy> (item, "share");
+    this->handle_element <DQML::ShareQosPolicy> (item, "share");
   }
 
   //
@@ -229,7 +229,7 @@ namespace DQML_iCCM
       item->src_of_PublisherConnection ();
     if (publisher_conn.count ())
     {
-      DQML::PublisherQos publisher = (*publisher_conn.begin ())->dst_PublisherQos ();
+      DQML::PublisherQos publisher = publisher_conn.first ()->dst_PublisherQos ();
       writer.set_attribute ("publisher", publisher->name ());
     }
 
@@ -242,46 +242,46 @@ namespace DQML_iCCM
     }
 
     //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DurabilityQosPolicy> (item, "durability");
+    this->handle_element <DQML::DurabilityQosPolicy> (item, "durability");
 
     //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DeadlineQosPolicy> (item, "deadline");
+    this->handle_element <DQML::DeadlineQosPolicy> (item, "deadline");
 
     //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LatencyBudgetQosPolicy> (item, "latency_budget");
+    this->handle_element <DQML::LatencyBudgetQosPolicy> (item, "latency_budget");
 
     //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LivelinessQosPolicy> (item, "liveliness");
+    this->handle_element <DQML::LivelinessQosPolicy> (item, "liveliness");
 
     //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ReliabilityQosPolicy> (item, "reliability");
+    this->handle_element <DQML::ReliabilityQosPolicy> (item, "reliability");
 
     //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DestinationOrderQosPolicy> (item, "destination_order");
+    this->handle_element <DQML::DestinationOrderQosPolicy> (item, "destination_order");
 
     //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::HistoryQosPolicy> (item, "history");
+    this->handle_element <DQML::HistoryQosPolicy> (item, "history");
 
     //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ResourceLimitsQosPolicy> (item, "resource_limits");
+    this->handle_element <DQML::ResourceLimitsQosPolicy> (item, "resource_limits");
 
     //<xsd:element name="transport_priorty" type="TransportPriorityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::TransportPriorityQosPolicy> (item, "transport_priority");
+    this->handle_element <DQML::TransportPriorityQosPolicy> (item, "transport_priority");
 
     //<xsd:element name="lifespan" type="LifespanQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LifespanQosPolicy> (item, "lifespan");
+    this->handle_element <DQML::LifespanQosPolicy> (item, "lifespan");
 
     //<xsd:element name="user_data" type="UserDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::UserDataQosPolicy> (item, "user_data");
+    this->handle_element <DQML::UserDataQosPolicy> (item, "user_data");
 
     //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::OwnershipQosPolicy> (item, "ownership");
+    this->handle_element <DQML::OwnershipQosPolicy> (item, "ownership");
 
     //<xsd:element name="ownership_strength" type="OwnershipStrengthQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::OwnershipStrengthQosPolicy> (item, "ownership_strength");
+    this->handle_element <DQML::OwnershipStrengthQosPolicy> (item, "ownership_strength");
 
     //<xsd:element name="writer_data_lifecycle" type="WriterDataLifecycleQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::WriterDataLifecycleQosPolicy> (item, "writer_data_lifecycle");
+    this->handle_element <DQML::WriterDataLifecycleQosPolicy> (item, "writer_data_lifecycle");
   }
 
   //
@@ -311,49 +311,49 @@ namespace DQML_iCCM
     }
 
     //<xsd:element name="durability" type="DurabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DurabilityQosPolicy> (item, "durability");
+    this->handle_element <DQML::DurabilityQosPolicy> (item, "durability");
 
     //<xsd:element name="deadline" type="DeadlineQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DeadlineQosPolicy> (item, "deadline");
+    this->handle_element <DQML::DeadlineQosPolicy> (item, "deadline");
 
     //<xsd:element name="latency_budget" type="LatencyBudgetQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LatencyBudgetQosPolicy> (item, "latency_budget");
+    this->handle_element <DQML::LatencyBudgetQosPolicy> (item, "latency_budget");
 
     //<xsd:element name="liveliness" type="LivelinessQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::LivelinessQosPolicy> (item, "liveliness");
+    this->handle_element <DQML::LivelinessQosPolicy> (item, "liveliness");
 
     //<xsd:element name="reliability" type="ReliabilityQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ReliabilityQosPolicy> (item, "reliability");
+    this->handle_element <DQML::ReliabilityQosPolicy> (item, "reliability");
 
     //<xsd:element name="destination_order" type="DestinationOrderQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::DestinationOrderQosPolicy> (item, "destination_order");
+    this->handle_element <DQML::DestinationOrderQosPolicy> (item, "destination_order");
 
     //<xsd:element name="history" type="HistoryQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::HistoryQosPolicy> (item, "history");
+    this->handle_element <DQML::HistoryQosPolicy> (item, "history");
 
     //<xsd:element name="resource_limits" type="ResourceLimitsQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ResourceLimitsQosPolicy> (item, "resource_limits");
+    this->handle_element <DQML::ResourceLimitsQosPolicy> (item, "resource_limits");
 
     //<xsd:element name="user_data" type="UserDataQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::UserDataQosPolicy> (item, "user_data");
+    this->handle_element <DQML::UserDataQosPolicy> (item, "user_data");
 
     //<xsd:element name="ownership" type="OwnershipQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::OwnershipQosPolicy> (item, "ownership");
+    this->handle_element <DQML::OwnershipQosPolicy> (item, "ownership");
 
     //<xsd:element name="time_based_filter" type="TimeBasedFilterQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::TimeBasedFilterQosPolicy> (item, "time_based_filter");
+    this->handle_element <DQML::TimeBasedFilterQosPolicy> (item, "time_based_filter");
 
     //<xsd:element name="reader_data_lifecycle" type="ReaderDataLifecycleQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ReaderDataLifecycleQosPolicy> (item, "reader_data_lifecycle");
+    this->handle_element <DQML::ReaderDataLifecycleQosPolicy> (item, "reader_data_lifecycle");
 
     //<xsd:element name="subscription_keys" type="SubscriptionKeyQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::SubscriptionKeyQosPolicy> (item, "subscription_keys");
+    this->handle_element <DQML::SubscriptionKeyQosPolicy> (item, "subscription_keys");
 
     //<xsd:element name="reader_lifespan" type="ReaderLifespanQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ReaderLifespanQosPolicy> (item, "reader_lifespan");
+    this->handle_element <DQML::ReaderLifespanQosPolicy> (item, "reader_lifespan");
 
     //<xsd:element name="share" type="ShareQosPolicy" minOccurs="0" maxOccurs="1" />
-    this->has_create_accept <DQML::ShareQosPolicy> (item, "share");
+    this->handle_element <DQML::ShareQosPolicy> (item, "share");
   }
 
   //

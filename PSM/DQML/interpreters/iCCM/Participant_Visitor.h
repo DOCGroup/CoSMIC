@@ -76,11 +76,11 @@ private:
 
   // Helper method to create fragments and visit children
   template <typename T, typename ITEM>
-  void has_create_accept (ITEM & item, const std::string & label);
+  void handle_element (ITEM & item, const std::string & label);
 
   // Helper method to add a comment and visit children if there are any
   template <typename COLLECTION>
-  void count_comment_accept (COLLECTION & collection, const std::string & comment);
+  void handle_main_qos (COLLECTION & collection, const std::string & comment);
 
   GAME::Xml::Document & doc_;
 
