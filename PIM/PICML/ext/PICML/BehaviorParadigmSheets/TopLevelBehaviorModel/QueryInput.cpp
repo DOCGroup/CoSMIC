@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "game/mga/Functional_T.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string QueryInput_Impl::metaname ("QueryInput");
+
+  //
+  // is_abstract
+  //
+  const bool QueryInput_Impl::is_abstract = false;
 
   //
   // _create (const TopLevelBehavior_in, QueryInputBase_in src, QueryInputAction_in dst)

@@ -49,12 +49,15 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static TransportPriorityQosPolicy _create (const TopicQos_in parent);
     static TransportPriorityQosPolicy _create (const DataWriterQos_in parent);
+    static TransportPriorityQosPolicy _create (const TopicQos_in parent);
     static TransportPriorityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -74,8 +77,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    TopicQos parent_TopicQos (void);
     DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**

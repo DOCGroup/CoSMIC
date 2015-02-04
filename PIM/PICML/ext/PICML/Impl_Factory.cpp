@@ -159,8 +159,8 @@
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
 #include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
 #include "PICML/Common/ImplementationDependency.h"
@@ -474,8 +474,8 @@ namespace PICML
     this->map_.bind ("RequiredRequestPortDelegate", &::GAME::Mga::allocate_impl <RequiredRequestPortDelegate_Impl>);
     this->map_.bind ("ConnectorImplementation", &::GAME::Mga::allocate_impl <ConnectorImplementation_Impl>);
     this->map_.bind ("MultiInput", &::GAME::Mga::allocate_impl <MultiInput_Impl>);
-    this->map_.bind ("Transition", &::GAME::Mga::allocate_impl <Transition_Impl>);
     this->map_.bind ("TerminalTransition", &::GAME::Mga::allocate_impl <TerminalTransition_Impl>);
+    this->map_.bind ("Transition", &::GAME::Mga::allocate_impl <Transition_Impl>);
     this->map_.bind ("ExtendedPort", &::GAME::Mga::allocate_impl <ExtendedPort_Impl>);
     this->map_.bind ("PeriodicEvent", &::GAME::Mga::allocate_impl <PeriodicEvent_Impl>);
     this->map_.bind ("ImplementationDependency", &::GAME::Mga::allocate_impl <ImplementationDependency_Impl>);

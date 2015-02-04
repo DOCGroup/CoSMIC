@@ -23,6 +23,11 @@ namespace DQML
   const std::string iCCM_Impl::metaname ("iCCM");
 
   //
+  // is_abstract
+  //
+  const bool iCCM_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   iCCM iCCM_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

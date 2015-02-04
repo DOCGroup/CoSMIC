@@ -1,0 +1,60 @@
+// $Id$
+
+project (PICML_Package): game_xml, acelib, boost_base, zlib, minizip {
+   sharedname    = PICML_Package
+   dynamicflags += PACKAGE_BUILD_DLL PACKAGER_BUILD_DLL
+
+   includes += $(ACE_ROOT)/contrib/minizip
+   requires += zlib
+
+   Source_Files {
+     PackageVisitor.cpp
+     PackagerVisitor.cpp
+     ZIP_create.cpp
+   }
+
+   Header_Files {
+     Packager_Export.h
+   }
+
+   Resource_Files {
+
+   }
+}
+
+
+project (PICML_PackageComponent): picml_udm_utils, game_mga_utils, game_mga_interpreter, udm, cosmic_utils {
+  sharedname = PICML_PackageComponent
+  requires += zlib
+
+  after    += PICML_Package
+  libs     += PICML_Package
+
+  Source_Files {
+    PackageMainDialog.cpp
+    PackageOptions.cpp
+
+    Package_Component.idl
+    Package_Component_Impl.cpp
+    Package_Component_Module.cpp
+  }
+
+  Header_Files {
+
+  }
+
+  Resource_Files {
+    Component.rc
+    CompIcon.ico
+  }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.PackageComponent
+    gme_uuid        = 61C41FFD-3A5E-468D-9B1E-BD2A89FED148
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = Package descriptor generator
+    gme_tooltip     = Generate package descriptors
+  }
+}

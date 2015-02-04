@@ -22,6 +22,11 @@ namespace PICML
   const std::string FloatNumber_Impl::metaname ("FloatNumber");
 
   //
+  // is_abstract
+  //
+  const bool FloatNumber_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   FloatNumber FloatNumber_Impl::_create (const PredefinedTypes_in parent)

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 
 namespace PICML
 {
@@ -17,6 +17,11 @@ namespace PICML
   // metaname
   //
   const std::string BenchmarkType_Impl::metaname ("BenchmarkType");
+
+  //
+  // is_abstract
+  //
+  const bool BenchmarkType_Impl::is_abstract = true;
 
   //
   // parent_BenchmarkAnalysis

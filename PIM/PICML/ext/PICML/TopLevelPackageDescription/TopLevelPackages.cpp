@@ -22,6 +22,11 @@ namespace PICML
   const std::string TopLevelPackages_Impl::metaname ("TopLevelPackages");
 
   //
+  // is_abstract
+  //
+  const bool TopLevelPackages_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   TopLevelPackages TopLevelPackages_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

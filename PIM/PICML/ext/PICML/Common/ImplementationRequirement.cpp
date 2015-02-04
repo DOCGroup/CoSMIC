@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ImplementationCommon/MonolithDeployRequirement.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string ImplementationRequirement_Impl::metaname ("ImplementationRequirement");
+
+  //
+  // is_abstract
+  //
+  const bool ImplementationRequirement_Impl::is_abstract = false;
 
   //
   // _create (const ImplementationContainer_in)

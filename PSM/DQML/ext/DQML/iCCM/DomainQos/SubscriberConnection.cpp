@@ -24,6 +24,11 @@ namespace DQML
   const std::string SubscriberConnection_Impl::metaname ("SubscriberConnection");
 
   //
+  // is_abstract
+  //
+  const bool SubscriberConnection_Impl::is_abstract = false;
+
+  //
   // _create (const Participant_in, DataReaderQos_in src, SubscriberQos_in dst)
   //
   SubscriberConnection SubscriberConnection_Impl::_create (const Participant_in parent, DataReaderQos_in src, SubscriberQos_in dst)

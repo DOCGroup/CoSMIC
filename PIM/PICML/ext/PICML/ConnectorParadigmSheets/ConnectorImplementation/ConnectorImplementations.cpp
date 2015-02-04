@@ -22,6 +22,11 @@ namespace PICML
   const std::string ConnectorImplementations_Impl::metaname ("ConnectorImplementations");
 
   //
+  // is_abstract
+  //
+  const bool ConnectorImplementations_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   ConnectorImplementations ConnectorImplementations_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

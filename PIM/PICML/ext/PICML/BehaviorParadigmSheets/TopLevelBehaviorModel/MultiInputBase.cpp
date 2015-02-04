@@ -18,6 +18,11 @@ namespace PICML
   const std::string MultiInputBase_Impl::metaname ("MultiInputBase");
 
   //
+  // is_abstract
+  //
+  const bool MultiInputBase_Impl::is_abstract = true;
+
+  //
   // src_of_MultiInput
   //
   size_t MultiInputBase_Impl::src_of_MultiInput (std::vector <MultiInput> & items) const

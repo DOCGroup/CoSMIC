@@ -11,8 +11,12 @@
 
 namespace PICML
 {
-
-std::string scope_impl (GAME::Mga::FCO_in named_type, const std::string & separator,  bool leading)
+//
+// scope
+//
+std::string scope (const GAME::Mga::FCO_in named_type,
+                   const std::string & separator,
+                   bool leading)
 {
   std::string scope;
   std::stack <GAME::Mga::Object> temp_stack;
@@ -43,27 +47,12 @@ std::string scope_impl (GAME::Mga::FCO_in named_type, const std::string & separa
   return scope;
 }
 
-std::string scope (NamedType_in named_type, const std::string & separator, bool leading)
-{
-  return scope_impl (named_type, separator, leading);
-}
-
-std::string scope (Exception_in ex, const std::string & separator, bool leading)
-{
-  return scope_impl (ex, separator, leading);
-}
-
-std::string scope (Package_in package, const std::string & separator, bool leading)
-{
-  return scope_impl (package, separator, leading);
-}
-
-std::string fq_type_impl (GAME::Mga::FCO_in fco, const std::string & separator, bool leading)
-{
-  return scope_impl (fco, separator, leading) + fco->name ();
-}
-
-std::string fq_type (NamedType_in named_type, const std::string & separator, bool leading)
+//
+// fq_type
+//
+std::string fq_type (const GAME::Mga::FCO_in named_type,
+                     const std::string & separator,
+                     bool leading)
 {
   return fq_type_impl (named_type, separator, leading);
 }

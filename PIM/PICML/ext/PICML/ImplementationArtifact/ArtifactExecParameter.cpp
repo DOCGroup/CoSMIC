@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string ArtifactExecParameter_Impl::metaname ("ArtifactExecParameter");
+
+  //
+  // is_abstract
+  //
+  const bool ArtifactExecParameter_Impl::is_abstract = false;
 
   //
   // _create (const ArtifactContainer_in, ImplementationArtifact_in src, Property_in dst)

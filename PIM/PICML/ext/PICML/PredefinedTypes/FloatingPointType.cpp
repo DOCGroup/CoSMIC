@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string FloatingPointType_Impl::metaname ("FloatingPointType");
+
+  //
+  // is_abstract
+  //
+  const bool FloatingPointType_Impl::is_abstract = true;
 }
 

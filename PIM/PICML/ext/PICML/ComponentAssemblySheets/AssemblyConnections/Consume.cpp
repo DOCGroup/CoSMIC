@@ -8,8 +8,6 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
@@ -17,6 +15,8 @@
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,6 +28,11 @@ namespace PICML
   // metaname
   //
   const std::string Consume_Impl::metaname ("Consume");
+
+  //
+  // is_abstract
+  //
+  const bool Consume_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, ConnectorInstance_in src, ExtendPortEnd_in dst)

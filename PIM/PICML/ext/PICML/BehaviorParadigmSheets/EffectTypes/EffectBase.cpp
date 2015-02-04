@@ -15,5 +15,10 @@ namespace PICML
   // metaname
   //
   const std::string EffectBase_Impl::metaname ("EffectBase");
+
+  //
+  // is_abstract
+  //
+  const bool EffectBase_Impl::is_abstract = true;
 }
 

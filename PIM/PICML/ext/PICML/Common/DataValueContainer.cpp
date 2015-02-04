@@ -26,6 +26,11 @@ namespace PICML
   const std::string DataValueContainer_Impl::metaname ("DataValueContainer");
 
   //
+  // is_abstract
+  //
+  const bool DataValueContainer_Impl::is_abstract = false;
+
+  //
   // _create (const ComplexProperty_in)
   //
   DataValueContainer DataValueContainer_Impl::_create (const ComplexProperty_in parent)

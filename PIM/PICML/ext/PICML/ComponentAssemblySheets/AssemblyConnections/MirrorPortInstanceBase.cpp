@@ -18,6 +18,11 @@ namespace PICML
   const std::string MirrorPortInstanceBase_Impl::metaname ("MirrorPortInstanceBase");
 
   //
+  // is_abstract
+  //
+  const bool MirrorPortInstanceBase_Impl::is_abstract = true;
+
+  //
   // src_of_MirrorDelegate
   //
   size_t MirrorPortInstanceBase_Impl::src_of_MirrorDelegate (std::vector <MirrorDelegate> & items) const

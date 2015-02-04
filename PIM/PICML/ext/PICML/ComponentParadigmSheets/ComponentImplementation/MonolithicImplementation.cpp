@@ -23,6 +23,11 @@ namespace PICML
   const std::string MonolithicImplementation_Impl::metaname ("MonolithicImplementation");
 
   //
+  // is_abstract
+  //
+  const bool MonolithicImplementation_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentImplementationContainer_in)
   //
   MonolithicImplementation MonolithicImplementation_Impl::_create (const ComponentImplementationContainer_in parent)

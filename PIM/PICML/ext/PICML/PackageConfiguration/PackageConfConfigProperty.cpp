@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string PackageConfConfigProperty_Impl::metaname ("PackageConfConfigProperty");
+
+  //
+  // is_abstract
+  //
+  const bool PackageConfConfigProperty_Impl::is_abstract = false;
 
   //
   // _create (const PackageConfigurationContainer_in, PackageConfiguration_in src, Property_in dst)

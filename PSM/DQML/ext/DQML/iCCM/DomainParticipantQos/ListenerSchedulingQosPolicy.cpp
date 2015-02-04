@@ -22,6 +22,11 @@ namespace DQML
   const std::string ListenerSchedulingQosPolicy_Impl::metaname ("ListenerSchedulingQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool ListenerSchedulingQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const Participant_in)
   //
   ListenerSchedulingQosPolicy ListenerSchedulingQosPolicy_Impl::_create (const Participant_in parent)

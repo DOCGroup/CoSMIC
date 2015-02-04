@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -102,13 +105,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src InterconnectConnection connection.
-    size_t src_of_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
-    GAME::Mga::Collection_T <InterconnectConnection> src_of_InterconnectConnection (void) const;
-
     /// Get the src Shares connection.
     size_t src_of_Shares (std::vector <Shares> & items) const;
     GAME::Mga::Collection_T <Shares> src_of_Shares (void) const;
+
+    /// Get the src InterconnectConnection connection.
+    size_t src_of_InterconnectConnection (std::vector <InterconnectConnection> & items) const;
+    GAME::Mga::Collection_T <InterconnectConnection> src_of_InterconnectConnection (void) const;
     ///@}
 
     /**

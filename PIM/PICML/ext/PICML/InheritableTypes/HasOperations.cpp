@@ -9,15 +9,15 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/Alias.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Collection.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
-#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -30,52 +30,9 @@ namespace PICML
   const std::string HasOperations_Impl::metaname ("HasOperations");
 
   //
-  // get_PortTypes
+  // is_abstract
   //
-  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PortTypes
-  //
-  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
-  {
-    return this->children <PortType> ();
-  }
-
-  //
-  // get_Collections
-  //
-  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Collections
-  //
-  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
-  {
-    return this->children <Collection> ();
-  }
-
-  //
-  // get_Aggregates
-  //
-  size_t HasOperations_Impl::get_Aggregates (std::vector <Aggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aggregates
-  //
-  ::GAME::Mga::Collection_T <Aggregate> HasOperations_Impl::get_Aggregates (void) const
-  {
-    return this->children <Aggregate> ();
-  }
+  const bool HasOperations_Impl::is_abstract = true;
 
   //
   // get_SwitchedAggregates
@@ -126,6 +83,70 @@ namespace PICML
   }
 
   //
+  // get_PortTypes
+  //
+  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PortTypes
+  //
+  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
+  {
+    return this->children <PortType> ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t HasOperations_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Collection_T <Aggregate> HasOperations_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
+  }
+
+  //
+  // get_Collections
+  //
+  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Collections
+  //
+  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
+  {
+    return this->children <Collection> ();
+  }
+
+  //
+  // get_Exceptions
+  //
+  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Exceptions
+  //
+  ::GAME::Mga::Collection_T <Exception> HasOperations_Impl::get_Exceptions (void) const
+  {
+    return this->children <Exception> ();
+  }
+
+  //
   // get_TwowayOperations
   //
   size_t HasOperations_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
@@ -155,22 +176,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
   {
     return this->children <OnewayOperation> ();
-  }
-
-  //
-  // get_Exceptions
-  //
-  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Exceptions
-  //
-  ::GAME::Mga::Collection_T <Exception> HasOperations_Impl::get_Exceptions (void) const
-  {
-    return this->children <Exception> ();
   }
 
   //

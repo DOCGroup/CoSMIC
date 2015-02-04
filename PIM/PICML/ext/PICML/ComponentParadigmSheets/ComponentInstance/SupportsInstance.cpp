@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/Supports.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "PICML/InheritableTypes/Supports.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace PICML
   // metaname
   //
   const std::string SupportsInstance_Impl::metaname ("SupportsInstance");
+
+  //
+  // is_abstract
+  //
+  const bool SupportsInstance_Impl::is_abstract = false;
 
   //
   // _create (const ComponentInstance_in)

@@ -44,6 +44,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     // Default constructor.
     BehaviorModel_Impl (void);
 
@@ -63,11 +66,11 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_QueryInputActions (std::vector <QueryInputAction> & items) const;
-    ::GAME::Mga::Collection_T <QueryInputAction> get_QueryInputActions (void) const;
+    size_t get_MultiInputActions (std::vector <MultiInputAction> & items) const;
+    ::GAME::Mga::Collection_T <MultiInputAction> get_MultiInputActions (void) const;
 
-    size_t get_CallActions (std::vector <CallAction> & items) const;
-    ::GAME::Mga::Collection_T <CallAction> get_CallActions (void) const;
+    size_t get_InputActions (std::vector <InputAction> & items) const;
+    ::GAME::Mga::Collection_T <InputAction> get_InputActions (void) const;
 
     size_t get_RequestActions (std::vector <RequestAction> & items) const;
     ::GAME::Mga::Collection_T <RequestAction> get_RequestActions (void) const;
@@ -81,20 +84,14 @@ namespace PICML
     size_t get_Actions (std::vector <Action> & items) const;
     ::GAME::Mga::Collection_T <Action> get_Actions (void) const;
 
-    size_t get_MultiInputActions (std::vector <MultiInputAction> & items) const;
-    ::GAME::Mga::Collection_T <MultiInputAction> get_MultiInputActions (void) const;
+    size_t get_CallActions (std::vector <CallAction> & items) const;
+    ::GAME::Mga::Collection_T <CallAction> get_CallActions (void) const;
 
-    size_t get_InputActions (std::vector <InputAction> & items) const;
-    ::GAME::Mga::Collection_T <InputAction> get_InputActions (void) const;
-
-    size_t get_TerminalTransitions (std::vector <TerminalTransition> & items) const;
-    ::GAME::Mga::Collection_T <TerminalTransition> get_TerminalTransitions (void) const;
+    size_t get_QueryInputActions (std::vector <QueryInputAction> & items) const;
+    ::GAME::Mga::Collection_T <QueryInputAction> get_QueryInputActions (void) const;
 
     size_t get_Terminals (std::vector <Terminal> & items) const;
     ::GAME::Mga::Collection_T <Terminal> get_Terminals (void) const;
-
-    size_t get_States (std::vector <State> & items) const;
-    ::GAME::Mga::Collection_T <State> get_States (void) const;
 
     size_t get_WhileStates (std::vector <WhileState> & items) const;
     ::GAME::Mga::Collection_T <WhileState> get_WhileStates (void) const;
@@ -107,6 +104,9 @@ namespace PICML
 
     size_t get_BranchStates (std::vector <BranchState> & items) const;
     ::GAME::Mga::Collection_T <BranchState> get_BranchStates (void) const;
+
+    size_t get_States (std::vector <State> & items) const;
+    ::GAME::Mga::Collection_T <State> get_States (void) const;
 
     size_t get_TerminalEffects (std::vector <TerminalEffect> & items) const;
     ::GAME::Mga::Collection_T <TerminalEffect> get_TerminalEffects (void) const;
@@ -128,6 +128,9 @@ namespace PICML
 
     size_t get_Transitions (std::vector <Transition> & items) const;
     ::GAME::Mga::Collection_T <Transition> get_Transitions (void) const;
+
+    size_t get_TerminalTransitions (std::vector <TerminalTransition> & items) const;
+    ::GAME::Mga::Collection_T <TerminalTransition> get_TerminalTransitions (void) const;
 
     size_t get_Variables (std::vector <Variable> & items) const;
     ::GAME::Mga::Collection_T <Variable> get_Variables (void) const;

@@ -23,6 +23,11 @@ namespace PICML
   const std::string Maximum_Impl::metaname ("Maximum");
 
   //
+  // is_abstract
+  //
+  const bool Maximum_Impl::is_abstract = false;
+
+  //
   // _create (const MetricsBase_in)
   //
   Maximum Maximum_Impl::_create (const MetricsBase_in parent)

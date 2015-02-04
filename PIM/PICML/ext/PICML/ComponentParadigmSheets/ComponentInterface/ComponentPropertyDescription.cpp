@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "PICML/Common/DataType.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentPropertyDescription_Impl::metaname ("ComponentPropertyDescription");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentPropertyDescription_Impl::is_abstract = false;
 
   //
   // _create (const ComponentContainer_in)

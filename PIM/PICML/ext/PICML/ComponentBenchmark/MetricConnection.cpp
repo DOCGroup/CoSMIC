@@ -26,6 +26,11 @@ namespace PICML
   const std::string MetricConnection_Impl::metaname ("MetricConnection");
 
   //
+  // is_abstract
+  //
+  const bool MetricConnection_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in, OperationRef_in src, MetricsBase_in dst)
   //
   MetricConnection MetricConnection_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, MetricsBase_in dst)

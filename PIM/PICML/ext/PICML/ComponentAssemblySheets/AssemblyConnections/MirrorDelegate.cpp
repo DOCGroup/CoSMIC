@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string MirrorDelegate_Impl::metaname ("MirrorDelegate");
+
+  //
+  // is_abstract
+  //
+  const bool MirrorDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, MirrorPortInstanceBase_in src, MirrorPortDelegate_in dst)

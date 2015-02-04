@@ -23,6 +23,11 @@ namespace PICML
   const std::string MultiInputAction_Impl::metaname ("MultiInputAction");
 
   //
+  // is_abstract
+  //
+  const bool MultiInputAction_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   MultiInputAction MultiInputAction_Impl::_create (const BehaviorModel_in parent)

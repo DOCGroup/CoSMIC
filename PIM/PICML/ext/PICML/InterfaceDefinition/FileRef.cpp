@@ -24,6 +24,11 @@ namespace PICML
   const std::string FileRef_Impl::metaname ("FileRef");
 
   //
+  // is_abstract
+  //
+  const bool FileRef_Impl::is_abstract = false;
+
+  //
   // _create (const File_in)
   //
   FileRef FileRef_Impl::_create (const File_in parent)

@@ -23,6 +23,11 @@ namespace PICML
   const std::string OutParameter_Impl::metaname ("OutParameter");
 
   //
+  // is_abstract
+  //
+  const bool OutParameter_Impl::is_abstract = false;
+
+  //
   // _create (const TwowayOperation_in)
   //
   OutParameter OutParameter_Impl::_create (const TwowayOperation_in parent)

@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
 #include "DQML/Standard/DDSEntities/DataReader.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string dr_topic_Connection_Impl::metaname ("dr_topic_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool dr_topic_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, DataReader_in src, Topic_in dst)

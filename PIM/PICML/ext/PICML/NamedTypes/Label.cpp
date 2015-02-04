@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/LabelConnection.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/LabelConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace PICML
   // metaname
   //
   const std::string Label_Impl::metaname ("Label");
+
+  //
+  // is_abstract
+  //
+  const bool Label_Impl::is_abstract = false;
 
   //
   // _create (const SwitchedAggregate_in)

@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string PrivateFlag_Impl::metaname ("PrivateFlag");
+
+  //
+  // is_abstract
+  //
+  const bool PrivateFlag_Impl::is_abstract = false;
 
   //
   // _create (const ObjectByValue_in)

@@ -22,6 +22,11 @@ namespace PICML
   const std::string QueryAction_Impl::metaname ("QueryAction");
 
   //
+  // is_abstract
+  //
+  const bool QueryAction_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   QueryAction QueryAction_Impl::_create (const BehaviorModel_in parent)

@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
 #include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
+#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
-#include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/Main/dr_sub_Connection.h"
+#include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,6 +26,11 @@ namespace DQML
   // metaname
   //
   const std::string Subscriber_Impl::metaname ("Subscriber");
+
+  //
+  // is_abstract
+  //
+  const bool Subscriber_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in)
@@ -47,22 +52,6 @@ namespace DQML
       this_visitor->visit_Subscriber (this);
     else
       v->visit_Model (this);
-  }
-
-  //
-  // src_of_sub_groupdata_Connection
-  //
-  size_t Subscriber_Impl::src_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
-  {
-    return this->in_connections <sub_groupdata_Connection> (items);
-  }
-
-  //
-  // src_of_sub_groupdata_Connection
-  //
-  GAME::Mga::Collection_T <sub_groupdata_Connection> Subscriber_Impl::src_of_sub_groupdata_Connection (void) const
-  {
-    return this->in_connections <sub_groupdata_Connection> ("src");
   }
 
   //
@@ -95,6 +84,22 @@ namespace DQML
   GAME::Mga::Collection_T <sub_part_Connection> Subscriber_Impl::src_of_sub_part_Connection (void) const
   {
     return this->in_connections <sub_part_Connection> ("src");
+  }
+
+  //
+  // src_of_sub_groupdata_Connection
+  //
+  size_t Subscriber_Impl::src_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
+  {
+    return this->in_connections <sub_groupdata_Connection> (items);
+  }
+
+  //
+  // src_of_sub_groupdata_Connection
+  //
+  GAME::Mga::Collection_T <sub_groupdata_Connection> Subscriber_Impl::src_of_sub_groupdata_Connection (void) const
+  {
+    return this->in_connections <sub_groupdata_Connection> ("src");
   }
 
   //

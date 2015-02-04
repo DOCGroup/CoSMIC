@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentPackage/PackageContainer.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/PackageConfiguration/PackageConfBasePackage.h"
 #include "PICML/ComponentPackage/PackageConfigProperty.h"
 #include "PICML/ComponentPackage/PackageInfoProperty.h"
 #include "PICML/ComponentPackage/Implementation.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/ComponentPackage/PackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,12 +30,9 @@ namespace PICML
   const std::string ComponentPackage_Impl::metaname ("ComponentPackage");
 
   //
-  // _create (const ComponentAssembly_in)
+  // is_abstract
   //
-  ComponentPackage ComponentPackage_Impl::_create (const ComponentAssembly_in parent)
-  {
-    return ::GAME::Mga::create < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
-  }
+  const bool ComponentPackage_Impl::is_abstract = false;
 
   //
   // _create (const PackageConfigurationContainer_in)
@@ -49,6 +46,14 @@ namespace PICML
   // _create (const PackageContainer_in)
   //
   ComponentPackage ComponentPackage_Impl::_create (const PackageContainer_in parent)
+  {
+    return ::GAME::Mga::create < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentAssembly_in)
+  //
+  ComponentPackage ComponentPackage_Impl::_create (const ComponentAssembly_in parent)
   {
     return ::GAME::Mga::create < ComponentPackage > (parent, ComponentPackage_Impl::metaname);
   }
@@ -68,14 +73,6 @@ namespace PICML
   }
 
   //
-  // parent_ComponentAssembly
-  //
-  ComponentAssembly ComponentPackage_Impl::parent_ComponentAssembly (void)
-  {
-    return ComponentAssembly::_narrow (this->parent ());
-  }
-
-  //
   // parent_PackageConfigurationContainer
   //
   PackageConfigurationContainer ComponentPackage_Impl::parent_PackageConfigurationContainer (void)
@@ -89,6 +86,14 @@ namespace PICML
   PackageContainer ComponentPackage_Impl::parent_PackageContainer (void)
   {
     return PackageContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ComponentPackage_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

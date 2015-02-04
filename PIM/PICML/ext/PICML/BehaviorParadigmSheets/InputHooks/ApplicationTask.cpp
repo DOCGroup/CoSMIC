@@ -23,6 +23,11 @@ namespace PICML
   const std::string ApplicationTask_Impl::metaname ("ApplicationTask");
 
   //
+  // is_abstract
+  //
+  const bool ApplicationTask_Impl::is_abstract = false;
+
+  //
   // _create (const TopLevelBehavior_in)
   //
   ApplicationTask ApplicationTask_Impl::_create (const TopLevelBehavior_in parent)

@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string SimpleType_Impl::metaname ("SimpleType");
+
+  //
+  // is_abstract
+  //
+  const bool SimpleType_Impl::is_abstract = true;
 }
 

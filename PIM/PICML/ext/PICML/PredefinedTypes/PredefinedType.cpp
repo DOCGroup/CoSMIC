@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 #include "PICML/PredefinedTypes/PredefinedTypes.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 
 namespace PICML
 {
@@ -17,6 +17,11 @@ namespace PICML
   // metaname
   //
   const std::string PredefinedType_Impl::metaname ("PredefinedType");
+
+  //
+  // is_abstract
+  //
+  const bool PredefinedType_Impl::is_abstract = true;
 
   //
   // parent_PredefinedTypes

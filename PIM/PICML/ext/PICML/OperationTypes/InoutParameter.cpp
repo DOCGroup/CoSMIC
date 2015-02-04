@@ -23,6 +23,11 @@ namespace PICML
   const std::string InoutParameter_Impl::metaname ("InoutParameter");
 
   //
+  // is_abstract
+  //
+  const bool InoutParameter_Impl::is_abstract = false;
+
+  //
   // _create (const TwowayOperation_in)
   //
   InoutParameter InoutParameter_Impl::_create (const TwowayOperation_in parent)

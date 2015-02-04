@@ -23,6 +23,11 @@ namespace PICML
   const std::string InEventPortDelegate_Impl::metaname ("InEventPortDelegate");
 
   //
+  // is_abstract
+  //
+  const bool InEventPortDelegate_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   InEventPortDelegate InEventPortDelegate_Impl::_create (const ComponentAssembly_in parent)

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentPackage/PackageContainer.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
-#include "PICML/ComponentPackage/PackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string Implementation_Impl::metaname ("Implementation");
+
+  //
+  // is_abstract
+  //
+  const bool Implementation_Impl::is_abstract = false;
 
   //
   // _create (const PackageContainer_in, ComponentPackage_in src, ComponentImplementationReference_in dst)

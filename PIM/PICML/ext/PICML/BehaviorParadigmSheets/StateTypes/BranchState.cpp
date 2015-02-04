@@ -23,6 +23,11 @@ namespace PICML
   const std::string BranchState_Impl::metaname ("BranchState");
 
   //
+  // is_abstract
+  //
+  const bool BranchState_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   BranchState BranchState_Impl::_create (const BehaviorModel_in parent)

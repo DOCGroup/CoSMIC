@@ -26,6 +26,11 @@ namespace PICML
   const std::string TerminalTransition_Impl::metaname ("TerminalTransition");
 
   //
+  // is_abstract
+  //
+  const bool TerminalTransition_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in, State_in src, Terminal_in dst)
   //
   TerminalTransition TerminalTransition_Impl::_create (const BehaviorModel_in parent, State_in src, Terminal_in dst)

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/DeploymentPlan/CollocationGroup.h"
 #include "PICML/TargetElements/NodeReference.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string InstanceMapping_Impl::metaname ("InstanceMapping");
+
+  //
+  // is_abstract
+  //
+  const bool InstanceMapping_Impl::is_abstract = false;
 
   //
   // _create (const DeploymentPlan_in, CollocationGroup_in src, NodeReference_in dst)

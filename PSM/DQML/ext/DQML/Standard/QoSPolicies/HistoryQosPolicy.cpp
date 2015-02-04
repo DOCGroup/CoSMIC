@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,9 +28,14 @@ namespace DQML
   const std::string HistoryQosPolicy_Impl::metaname ("HistoryQosPolicy");
 
   //
-  // _create (const TopicQos_in)
+  // is_abstract
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
+  const bool HistoryQosPolicy_Impl::is_abstract = false;
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -44,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -74,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos HistoryQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -90,27 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos HistoryQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_of_dr_history_Connection
-  //
-  size_t HistoryQosPolicy_Impl::dst_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const
-  {
-    return this->in_connections <dr_history_Connection> (items);
-  }
-
-  //
-  // dst_of_dr_history_Connection
-  //
-  GAME::Mga::Collection_T <dr_history_Connection> HistoryQosPolicy_Impl::dst_of_dr_history_Connection (void) const
-  {
-    return this->in_connections <dr_history_Connection> ("dst");
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -127,6 +116,22 @@ namespace DQML
   GAME::Mga::Collection_T <dw_history_Connection> HistoryQosPolicy_Impl::dst_of_dw_history_Connection (void) const
   {
     return this->in_connections <dw_history_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dr_history_Connection
+  //
+  size_t HistoryQosPolicy_Impl::dst_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const
+  {
+    return this->in_connections <dr_history_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_history_Connection
+  //
+  GAME::Mga::Collection_T <dr_history_Connection> HistoryQosPolicy_Impl::dst_of_dr_history_Connection (void) const
+  {
+    return this->in_connections <dr_history_Connection> ("dst");
   }
 
   //

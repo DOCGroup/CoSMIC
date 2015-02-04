@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
@@ -23,7 +24,6 @@
 #include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
 #include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
 #include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifacts.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -35,6 +35,11 @@ namespace PICML
   // metaname
   //
   const std::string ArtifactContainer_Impl::metaname ("ArtifactContainer");
+
+  //
+  // is_abstract
+  //
+  const bool ArtifactContainer_Impl::is_abstract = false;
 
   //
   // _create (const ImplementationArtifacts_in)

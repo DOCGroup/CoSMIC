@@ -22,6 +22,11 @@ namespace PICML
   const std::string ServiceConsumer_Impl::metaname ("ServiceConsumer");
 
   //
+  // is_abstract
+  //
+  const bool ServiceConsumer_Impl::is_abstract = false;
+
+  //
   // _create (const RTRequirements_in)
   //
   ServiceConsumer ServiceConsumer_Impl::_create (const RTRequirements_in parent)

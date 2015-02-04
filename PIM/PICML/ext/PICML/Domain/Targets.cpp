@@ -22,6 +22,11 @@ namespace PICML
   const std::string Targets_Impl::metaname ("Targets");
 
   //
+  // is_abstract
+  //
+  const bool Targets_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   Targets Targets_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

@@ -18,6 +18,11 @@ namespace PICML
   const std::string SingleInputBase_Impl::metaname ("SingleInputBase");
 
   //
+  // is_abstract
+  //
+  const bool SingleInputBase_Impl::is_abstract = true;
+
+  //
   // src_of_Input
   //
   size_t SingleInputBase_Impl::src_of_Input (std::vector <Input> & items) const

@@ -18,6 +18,11 @@ namespace DQML
   const std::string QoSPolicy_Impl::metaname ("QoSPolicy");
 
   //
+  // is_abstract
+  //
+  const bool QoSPolicy_Impl::is_abstract = true;
+
+  //
   // parent_DDSQoS
   //
   DDSQoS QoSPolicy_Impl::parent_DDSQoS (void)

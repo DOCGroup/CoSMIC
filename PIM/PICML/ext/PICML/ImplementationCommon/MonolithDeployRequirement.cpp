@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
-#include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/Common/ImplementationRequirement.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,6 +28,11 @@ namespace PICML
   // metaname
   //
   const std::string MonolithDeployRequirement_Impl::metaname ("MonolithDeployRequirement");
+
+  //
+  // is_abstract
+  //
+  const bool MonolithDeployRequirement_Impl::is_abstract = false;
 
   //
   // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, ImplementationRequirement_in dst)

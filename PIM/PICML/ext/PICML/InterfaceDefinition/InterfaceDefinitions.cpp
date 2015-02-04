@@ -22,6 +22,11 @@ namespace PICML
   const std::string InterfaceDefinitions_Impl::metaname ("InterfaceDefinitions");
 
   //
+  // is_abstract
+  //
+  const bool InterfaceDefinitions_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   InterfaceDefinitions InterfaceDefinitions_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

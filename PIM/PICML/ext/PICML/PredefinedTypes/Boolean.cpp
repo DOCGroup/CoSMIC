@@ -22,6 +22,11 @@ namespace PICML
   const std::string Boolean_Impl::metaname ("Boolean");
 
   //
+  // is_abstract
+  //
+  const bool Boolean_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   Boolean Boolean_Impl::_create (const PredefinedTypes_in parent)

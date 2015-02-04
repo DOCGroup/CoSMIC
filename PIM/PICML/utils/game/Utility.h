@@ -26,17 +26,7 @@ namespace PICML
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string scope (NamedType_in named_type,
-                   const std::string & separator,
-                   bool leading = false);
-
-PICML_GAME_UTILS_Export
-std::string scope (Exception_in ex,
-                   const std::string & separator,
-                   bool leading = false);
-
-PICML_GAME_UTILS_Export
-std::string scope (Package_in package,
+std::string scope (const GAME::Mga::FCO_in named_type,
                    const std::string & separator,
                    bool leading = false);
 
@@ -48,12 +38,7 @@ std::string scope (Package_in package,
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string fq_type (NamedType_in named_type,
-                     const std::string & separator,
-                     bool leading = false);
-
-PICML_GAME_UTILS_Export
-std::string fq_type (Exception_in ex,
+std::string fq_type (const GAME::Mga::FCO_in named_type,
                      const std::string & separator,
                      bool leading = false);
 

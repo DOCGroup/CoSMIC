@@ -24,6 +24,11 @@ namespace DQML
   const std::string ShareQosPolicy_Impl::metaname ("ShareQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool ShareQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const DataReaderQos_in)
   //
   ShareQosPolicy ShareQosPolicy_Impl::_create (const DataReaderQos_in parent)

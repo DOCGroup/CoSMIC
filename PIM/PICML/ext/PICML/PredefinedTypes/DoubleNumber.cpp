@@ -22,6 +22,11 @@ namespace PICML
   const std::string DoubleNumber_Impl::metaname ("DoubleNumber");
 
   //
+  // is_abstract
+  //
+  const bool DoubleNumber_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   DoubleNumber DoubleNumber_Impl::_create (const PredefinedTypes_in parent)

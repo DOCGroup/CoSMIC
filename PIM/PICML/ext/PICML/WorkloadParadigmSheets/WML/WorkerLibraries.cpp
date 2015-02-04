@@ -22,6 +22,11 @@ namespace PICML
   const std::string WorkerLibraries_Impl::metaname ("WorkerLibraries");
 
   //
+  // is_abstract
+  //
+  const bool WorkerLibraries_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   WorkerLibraries WorkerLibraries_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

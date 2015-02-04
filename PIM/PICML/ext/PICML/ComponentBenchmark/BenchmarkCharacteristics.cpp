@@ -29,6 +29,11 @@ namespace PICML
   const std::string BenchmarkCharacteristics_Impl::metaname ("BenchmarkCharacteristics");
 
   //
+  // is_abstract
+  //
+  const bool BenchmarkCharacteristics_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in, BenchmarkType_in src, MetricsBase_in dst)
   //
   BenchmarkCharacteristics BenchmarkCharacteristics_Impl::_create (const BenchmarkAnalysis_in parent, BenchmarkType_in src, MetricsBase_in dst)

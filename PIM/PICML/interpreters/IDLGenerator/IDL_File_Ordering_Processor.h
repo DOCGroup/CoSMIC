@@ -20,6 +20,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "PICML/PICML.h"
+#include "PICML/Visitor.h"
 
 /**
  * @class IDL_File_Ordering_Processor
@@ -36,25 +37,25 @@ public:
    *
    * @brief Struct used by boost to add properties to vertices.
    */
-  struct Udm_Object
+  struct Object
   {
     typedef boost::vertex_property_tag kind;
   };
 
   /// Type definitions
-  typedef boost::property<Udm_Object, Udm::Object> VERTEX_PROPERTY;
+  typedef boost::property<Object, GAME::Mga::Object> VERTEX_PROPERTY;
   typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, VERTEX_PROPERTY> GRAPH;
   typedef boost::graph_traits<GRAPH>::vertex_descriptor VERTEX;
   typedef boost::graph_traits<GRAPH>::edge_descriptor EDGE;
   typedef boost::graph_traits<GRAPH>::vertex_iterator VERTEX_ITER;
-  typedef boost::property_map<GRAPH, Udm_Object>::type OBJECT_ACCESSOR;
+  typedef boost::property_map<GRAPH, Object>::type OBJECT_ACCESSOR;
   typedef std::vector<VERTEX> CONTAINER;
   typedef std::vector<EDGE> EDGE_CONTAINER;
   typedef std::vector<VERTEX>::const_reverse_iterator VECTOR_IT;
   typedef std::vector<EDGE>::iterator EDGE_IT;
-  typedef std::map<Udm::Object, bool> MAP;
+  typedef std::map<GAME::Mga::Object, bool> MAP;
   typedef boost::shared_ptr<GRAPH> GRAPH_PTR;
-  typedef std::list<std::pair<Udm::Object, GRAPH_PTR> > LIST;
+  typedef std::list<std::pair<GAME::Mga::Object, GRAPH_PTR> > LIST;
   typedef std::list<std::pair<VERTEX, GRAPH_PTR> > VERTEX_GRAPH;
   typedef std::list<std::pair<VERTEX, GRAPH_PTR> >::iterator FORWARD_IT;
 
@@ -70,168 +71,169 @@ public:
    *
    * @param[in]      p      A package to visit
    */
-  virtual void Visit_Package (const PICML::Package & p);
+  virtual void visit_Package (PICML::Package_in p);
+  void visit_package (PICML::Package_in p, PICML::Visitor * v);
 
   /**
    * Visitor methods used to visit the aggregate type
    *
    * @param[in]      a      An aggregate to visit
    */
-  virtual void Visit_Aggregate (const PICML::Aggregate & a);
+  virtual void visit_Aggregate (PICML::Aggregate_in a);
 
   /**
    * Visitor methods used to visit the switched aggregate type
    *
    * @param[in]      s      A switched aggregate to visit
    */
-  virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s);
+  virtual void visit_SwitchedAggregate (PICML::SwitchedAggregate_in s);
 
   /**
    * Visitor methods used to visit the array member type
    *
    * @param[in]      m      An array member to visit
    */
-  virtual void Visit_ArrayMember (const PICML::ArrayMember & m);
+  virtual void visit_ArrayMember (PICML::ArrayMember_in m);
 
   /**
    * Visitor methods used to visit the boxed type
    *
    * @param[in]      b      A boxed to visit
    */
-  virtual void Visit_Boxed (const PICML::Boxed & b);
+  virtual void visit_Boxed (PICML::Boxed_in b);
 
   /**
   * Visitor methods used to visit the member type
   *
   * @param[in]      a      An array member to visit
   */
-  virtual void Visit_Member (const PICML::Member & a);
+  virtual void visit_Member (PICML::Member_in a);
 
   /**
   * Visitor methods used to visit the enum type
   *
   * @param[in]      e      An enum to visit
   */
-  virtual void Visit_Enum (const PICML::Enum & e);
+  virtual void visit_Enum (PICML::Enum_in e);
 
   /**
   * Visitor methods used to visit the constant type
   *
   * @param[in]      c      A constant to visit
   */
-  virtual void Visit_Constant (const PICML::Constant & c);
+  virtual void visit_Constant (PICML::Constant_in c);
 
   /**
   * Visitor methods used to visit the alias type
   *
   * @param[in]      a      An alias to visit
   */
-  virtual void Visit_Alias (const PICML::Alias & a);
+  virtual void visit_Alias (PICML::Alias_in a);
 
   /**
   * Visitor methods used to visit the collection type
   *
   * @param[in]      c      A collection to visit
   */
-  virtual void Visit_Collection (const PICML::Collection & c);
+  virtual void visit_Collection (PICML::Collection_in c);
 
   /**
   * Visitor methods used to visit the exception type
   *
   * @param[in]      e      An exception to visit
   */
-  virtual void Visit_Exception (const PICML::Exception & e);
+  virtual void visit_Exception (PICML::Exception_in e);
 
   /**
   * Visitor methods used to visit the template package instance type
   *
   * @param[in]      t      A template package instance to visit
   */
-  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & t);
+  virtual void visit_TemplatePackageInstance (PICML::TemplatePackageInstance_in t);
 
   /**
   * Visitor methods used to visit the one way operation type
   *
   * @param[in]      o      A one way operation instance to visit
   */
-  virtual void Visit_OnewayOperation (const PICML::OnewayOperation & o);
+  virtual void visit_OnewayOperation (PICML::OnewayOperation_in o);
 
   /**
   * Visitor methods used to visit the two way operation type
   *
   * @param[in]      t      A two way operation instance to visit
   */
-  virtual void Visit_TwowayOperation (const PICML::TwowayOperation & t);
+  virtual void visit_TwowayOperation (PICML::TwowayOperation_in t);
 
   /**
   * Visitor methods used to visit the object type
   *
   * @param[in]      t      A template package instance to visit
   */
-  virtual void Visit_Object (const PICML::Object & o);
+  virtual void visit_Object (PICML::Object_in o);
 
   /**
   * Visitor methods used to visit the port type
   *
   * @param[in]      p      A port to visit
   */
-  virtual void Visit_PortType (const PICML::PortType & p);
+  virtual void visit_PortType (PICML::PortType_in p);
 
   /**
   * Visitor methods used to visit the value object type
   *
   * @param[in]      o      A value object to visit
   */
-  virtual void Visit_ValueObject (const PICML::ValueObject & o);
+  virtual void visit_ValueObject (PICML::ValueObject_in o);
 
   /**
   * Visitor methods used to visit the event type
   *
   * @param[in]      e      An event to visit
   */
-  virtual void Visit_Event (const PICML::Event & e);
+  virtual void visit_Event (PICML::Event_in e);
 
   /**
   * Visitor methods used to visit the component type
   *
   * @param[in]      c      A component to visit
   */
-  virtual void Visit_Component (const PICML::Component & c);
+  virtual void visit_Component (PICML::Component_in c);
 
   /**
   * Visitor methods used to visit the connector object type
   *
   * @param[in]      c      A connector object to visit
   */
-  virtual void Visit_ConnectorObject (const PICML::ConnectorObject & c);
+  virtual void visit_ConnectorObject (PICML::ConnectorObject_in c);
 
   /**
   * Visitor methods used to visit the component factory type
   *
   * @param[in]      c      A component factory to visit
   */
-  virtual void Visit_ComponentFactory (const PICML::ComponentFactory & c);
+  virtual void visit_ComponentFactory (PICML::ComponentFactory_in c);
 
   /**
   * Visitor methods used to visit the read only type
   *
   * @param[in]      r      A read only attribute to visit
   */
-  virtual void Visit_ReadonlyAttribute(const PICML::ReadonlyAttribute & r);
+  virtual void visit_ReadonlyAttribute(PICML::ReadonlyAttribute_in r);
 
   /**
   * Visitor methods used to visit the attribute type
   *
   * @param[in]      a      An attribute to visit
   */
-  virtual void Visit_Attribute (const PICML::Attribute & a);
+  virtual void visit_Attribute (PICML::Attribute_in a);
 
   /**
   * Visitor methods used to visit the aManagesComponent type
   *
   * @param[in]      m      A ManagesComponent to visit
   */
-  virtual void Visit_ManagesComponent (const PICML::ManagesComponent & m);
+  virtual void visit_ManagesComponent (PICML::ManagesComponent_in m);
 
   /**
   * Visits the file object
@@ -239,16 +241,7 @@ public:
   * @param[in]      o      A object to visit
   * @param[in]      f      Is forward declaration
   */
-  void visit_file (const Udm::Object & o, bool f = false);
-
-  /**
-  * Visits all the children within an object
-  *
-  * @param[in]      o      A object to visit
-  * @param[in]      v      Visitor used to visit the object o
-  * @param[in]      f      Is forward declaration
-  */
-  void visit_all (const Udm::Object & o, PICML::Visitor & v, bool f = false);
+  void visit_file (const PICML::File & o, bool f = false);
 
   /**
   * Gets the objects processed by this in topological order
@@ -301,7 +294,7 @@ public:
    * @return      bool      true if object should be forward declared
    * otherwise false
    */
-  bool no_forward_declaration (const Udm::Object & o);
+  bool no_forward_declaration (const GAME::Mga::Object_in o);
 
   /**
    * Determines if there are elements to forward declare
@@ -311,42 +304,42 @@ public:
   bool forward_declaration (void);
 
 private:
-  void visit_file_package (const Udm::Object & o);
-  void add_node (const Udm::Object & o);
+  void visit_file_package (const GAME::Mga::Object_in o);
+  void add_node (const GAME::Mga::Object & o);
 
   template <typename T, typename P>
-  void add_edge (const Udm::Object & o);
+  void add_edge (const GAME::Mga::Model & o);
 
-  void add_edge (const Udm::Object & o);
+  void add_edge (const GAME::Mga::Object_in o);
 
   void topological_sort_i (CONTAINER & container);
 
-  VERTEX find_vertex (const Udm::Object & o, GRAPH_PTR graph, bool & found);
+  VERTEX find_vertex (const GAME::Mga::Object_in o, GRAPH_PTR graph, bool & found);
 
   void remove_back_edges (GRAPH_PTR g);
 
   void forward_declaration_i (void);
 
-  void insert (const Udm::Object & o);
+  void insert (const GAME::Mga::Object_in o);
 
   void set_forward_declaration (VERTEX & v, GRAPH_PTR g);
 
   void insert (CONTAINER & c);
 
-  void add_vertex (const Udm::Object & o, GRAPH_PTR g);
+  void add_vertex (const GAME::Mga::FCO & o, GRAPH_PTR g);
 
-  void add_vertices (const Udm::Object & p1, const Udm::Object & p2, GRAPH_PTR g);
+  void add_vertices (const GAME::Mga::FCO & p1, const GAME::Mga::FCO & p2, GRAPH_PTR g);
 
   template <typename T>
-  Udm::Object find_parent (const Udm::Object & o);
+  GAME::Mga::Object find_parent (const GAME::Mga::Object & o);
 
-  bool same_parent_before_file (const Udm::Object & o, const Udm::Object & p);
+  bool same_parent_before_file (const GAME::Mga::Object_in o, const GAME::Mga::Object_in p);
 
-  Udm::Object parent_before_file (const Udm::Object & o);
+  GAME::Mga::FCO parent_before_file (const GAME::Mga::Object_in o);
 
-  bool parent_in_same_file (const Udm::Object & o, const Udm::Object & p);
+  bool parent_in_same_file (const GAME::Mga::Object_in o, const GAME::Mga::Object_in p);
 
-  Udm::Object parent_file (const Udm::Object & o);
+  GAME::Mga::Object parent_file (const GAME::Mga::Object_in o);
 
   GRAPH_PTR                   current_graph_;///< contains current graph that is being processed
   VERTEX_GRAPH                forward_decl_;///< contains the elements that need to be foward declared

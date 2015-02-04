@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentInfoProperty_Impl::metaname ("ComponentInfoProperty");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentInfoProperty_Impl::is_abstract = false;
 
   //
   // _create (const ComponentContainer_in, ComponentRef_in src, Property_in dst)

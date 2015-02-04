@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string ReceptacleDelegate_Impl::metaname ("ReceptacleDelegate");
+
+  //
+  // is_abstract
+  //
+  const bool ReceptacleDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, RequiredRequestPortDelegate_in src, RequiredRequestPortEnd_in dst)

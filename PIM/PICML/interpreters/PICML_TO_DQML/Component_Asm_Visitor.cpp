@@ -5,8 +5,8 @@
 namespace PICML_To_DQML
 {
   Component_Asm_Visitor::Component_Asm_Visitor (DQML_Model_Factory & factory,GAME::Mga::Object current_node)
-    :factory_ (factory)
-    ,current_node_(current_node)
+    :factory_ (factory),
+     current_node_ (current_node)
   {
   }
 
@@ -23,27 +23,28 @@ namespace PICML_To_DQML
     this->current_node_ = this->factory_.create_Domain (DQML::DomainQosFolder::_narrow (this->current_node_), item->name ());
 
     this->ports_map_.clear ();
+
     //Looking for component instances
-    std::vector <PICML::ComponentInstance> comp_inst_models;
-    item->children (comp_inst_models);
-    for (PICML::ComponentInstance & comp_inst_model : comp_inst_models)
+    for (auto & comp_inst_model : item->get_ComponentInstances ())
       comp_inst_model->accept (this);
 
     //Looking for connections
-    std::vector <PICML::SendsTo> send_Tos;
-    item->children (send_Tos);
-    for (PICML::SendsTo & send_To : send_Tos)
+    for (auto & send_To : item->get_SendsTos ())
       send_To->accept (this);
 
     this->current_node_ = current_node;
   }
 
+  //
+  // visit_SendsTo
+  //
   void Component_Asm_Visitor::visit_SendsTo (PICML::SendsTo_in item)
   {
     this->factory_.create_PublishesConnection (DQML::Domain::_narrow (this->current_node_), 
       DQML::DataWriterQos::_narrow (this->ports_map_ [item->src ()]), 
       DQML::DataReaderQos::_narrow (this->ports_map_ [item->dst ()]));
   }
+
   //
   //visit_ComponentInstance
   //
@@ -53,15 +54,11 @@ namespace PICML_To_DQML
     this->current_node_ = this->factory_.create_Participant (DQML::Domain::_narrow (this->current_node_), item->name ());
     
     //Looking for Input ports
-    std::vector <PICML::InEventPortInstance> in_event_ports;
-    item->children (in_event_ports);
-    for (PICML::InEventPortInstance & in_event_port : in_event_ports)
+    for (auto & in_event_port : item->get_InEventPortInstances ())
       in_event_port->accept (this);
     
     //Looking for Output ports
-    std::vector <PICML::OutEventPortInstance> out_event_ports;
-    item->children (out_event_ports);
-    for (PICML::OutEventPortInstance & out_event_port : out_event_ports)
+    for (auto & out_event_port : item->get_OutEventPortInstances ())
       out_event_port->accept (this);
 
     this->current_node_ = current_node;
@@ -76,7 +73,7 @@ namespace PICML_To_DQML
     DQML::DataReaderQos dr = this->factory_.create_DataReaderQos (DQML::Participant::_narrow (this->current_node_), item->name ());
     this->current_node_ = dr;
     this->ports_map_ [item] = dr;
-    item->refers_to ()->accept (this);
+    item->refers_to_InEventPort ()->accept (this);
 
     this->current_node_ = current_node;
   }
@@ -90,7 +87,7 @@ namespace PICML_To_DQML
     DQML::DataWriterQos dw = this->factory_.create_DataWriterQos (DQML::Participant::_narrow (this->current_node_), item->name ());
     this->current_node_ = dw;
     this->ports_map_ [item] = dw;
-    item->refers_to ()->accept (this);
+    item->refers_to_OutEventPort ()->accept (this);
 
     this->current_node_ = current_node;
   }
@@ -100,7 +97,7 @@ namespace PICML_To_DQML
   //
   void Component_Asm_Visitor::visit_InEventPort (PICML::InEventPort_in item)
   {
-    PICML::Event ev = item-> refers_to ();
+    PICML::Event ev = item->refers_to_EventType ();
     this->factory_.create_TopicQosReference (DQML::DataReaderQos::_narrow (this->current_node_), ev->name ());
   }
 
@@ -109,7 +106,7 @@ namespace PICML_To_DQML
   //
   void Component_Asm_Visitor::visit_OutEventPort (PICML::OutEventPort_in item)
   {
-    PICML::Event ev = item-> refers_to ();
+    PICML::Event ev = item->refers_to_EventType ();
     this->factory_.create_TopicQosReference (DQML::DataWriterQos::_narrow (this->current_node_), ev->name ());
   }
 

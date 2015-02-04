@@ -19,6 +19,11 @@ namespace PICML
   const std::string InEventPortEnd_Impl::metaname ("InEventPortEnd");
 
   //
+  // is_abstract
+  //
+  const bool InEventPortEnd_Impl::is_abstract = true;
+
+  //
   // dst_of_SendsTo
   //
   size_t InEventPortEnd_Impl::dst_of_SendsTo (std::vector <SendsTo> & items) const

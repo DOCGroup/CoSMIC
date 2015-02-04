@@ -8,41 +8,31 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/MemberType.h"
-#include "PICML/NamedTypes/NamedType.h"
-#include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/MemberType.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
+#include "PICML/NamedTypes/NamedType.h"
+#include "PICML/NamedTypes/Boxed.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/NamedTypes/NoInheritable.h"
 #include "PICML/NamedTypes/Enum.h"
 #include "PICML/NamedTypes/Alias.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
-#include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/NamedTypes/Boxed.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
-#include "PICML/PredefinedTypes/CharType.h"
-#include "PICML/PredefinedTypes/Char.h"
-#include "PICML/PredefinedTypes/WideChar.h"
-#include "PICML/PredefinedTypes/StringType.h"
-#include "PICML/PredefinedTypes/WideString.h"
-#include "PICML/PredefinedTypes/String.h"
-#include "PICML/PredefinedTypes/IntegerType.h"
-#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
-#include "PICML/PredefinedTypes/UnsignedShortInteger.h"
-#include "PICML/PredefinedTypes/UnsignedLongInteger.h"
-#include "PICML/PredefinedTypes/UnsignedLongLongInteger.h"
-#include "PICML/PredefinedTypes/SignedIntegerType.h"
-#include "PICML/PredefinedTypes/LongLongInteger.h"
-#include "PICML/PredefinedTypes/LongInteger.h"
-#include "PICML/PredefinedTypes/ShortInteger.h"
 #include "PICML/PredefinedTypes/FloatingPointType.h"
 #include "PICML/PredefinedTypes/LongDoubleNumber.h"
 #include "PICML/PredefinedTypes/DoubleNumber.h"
@@ -54,11 +44,21 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
-#include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
+#include "PICML/PredefinedTypes/CharType.h"
+#include "PICML/PredefinedTypes/Char.h"
+#include "PICML/PredefinedTypes/WideChar.h"
+#include "PICML/PredefinedTypes/StringType.h"
+#include "PICML/PredefinedTypes/String.h"
+#include "PICML/PredefinedTypes/WideString.h"
+#include "PICML/PredefinedTypes/IntegerType.h"
+#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
+#include "PICML/PredefinedTypes/UnsignedShortInteger.h"
+#include "PICML/PredefinedTypes/UnsignedLongInteger.h"
+#include "PICML/PredefinedTypes/UnsignedLongLongInteger.h"
+#include "PICML/PredefinedTypes/SignedIntegerType.h"
+#include "PICML/PredefinedTypes/LongInteger.h"
+#include "PICML/PredefinedTypes/ShortInteger.h"
+#include "PICML/PredefinedTypes/LongLongInteger.h"
 #include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/NamedTypes/LabelConnection.h"
@@ -76,17 +76,14 @@ namespace PICML
   const std::string Member_Impl::metaname ("Member");
 
   //
-  // _create (const Exception_in)
+  // is_abstract
   //
-  Member Member_Impl::_create (const Exception_in parent)
-  {
-    return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
-  }
+  const bool Member_Impl::is_abstract = false;
 
   //
-  // _create (const Aggregate_in)
+  // _create (const SwitchedAggregate_in)
   //
-  Member Member_Impl::_create (const Aggregate_in parent)
+  Member Member_Impl::_create (const SwitchedAggregate_in parent)
   {
     return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
   }
@@ -100,9 +97,17 @@ namespace PICML
   }
 
   //
-  // _create (const SwitchedAggregate_in)
+  // _create (const Aggregate_in)
   //
-  Member Member_Impl::_create (const SwitchedAggregate_in parent)
+  Member Member_Impl::_create (const Aggregate_in parent)
+  {
+    return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
+  }
+
+  //
+  // _create (const Exception_in)
+  //
+  Member Member_Impl::_create (const Exception_in parent)
   {
     return ::GAME::Mga::create < Member > (parent, Member_Impl::metaname);
   }
@@ -122,19 +127,11 @@ namespace PICML
   }
 
   //
-  // parent_Exception
+  // parent_SwitchedAggregate
   //
-  Exception Member_Impl::parent_Exception (void)
+  SwitchedAggregate Member_Impl::parent_SwitchedAggregate (void)
   {
-    return Exception::_narrow (this->parent ());
-  }
-
-  //
-  // parent_Aggregate
-  //
-  Aggregate Member_Impl::parent_Aggregate (void)
-  {
-    return Aggregate::_narrow (this->parent ());
+    return SwitchedAggregate::_narrow (this->parent ());
   }
 
   //
@@ -146,11 +143,19 @@ namespace PICML
   }
 
   //
-  // parent_SwitchedAggregate
+  // parent_Aggregate
   //
-  SwitchedAggregate Member_Impl::parent_SwitchedAggregate (void)
+  Aggregate Member_Impl::parent_Aggregate (void)
   {
-    return SwitchedAggregate::_narrow (this->parent ());
+    return Aggregate::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Exception
+  //
+  Exception Member_Impl::parent_Exception (void)
+  {
+    return Exception::_narrow (this->parent ());
   }
 
   //

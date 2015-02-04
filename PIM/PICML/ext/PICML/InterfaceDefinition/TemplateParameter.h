@@ -17,9 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
+#include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
 #include "PICML/NamedTypes/MemberType.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
 #include "game/mga/FCO.h"
 
 namespace PICML
@@ -36,9 +36,9 @@ namespace PICML
    */
   class PICML_Export TemplateParameter_Impl :
     public virtual ::GAME::Mga::FCO_Impl,
+    public virtual EventType_Impl,
     public virtual MemberType_Impl,
-    public virtual Provideable_Impl,
-    public virtual EventType_Impl
+    public virtual Provideable_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -49,6 +49,9 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
 
     // Default constructor.
     TemplateParameter_Impl (void);

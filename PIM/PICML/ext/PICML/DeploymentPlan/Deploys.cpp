@@ -24,6 +24,11 @@ namespace PICML
   const std::string Deploys_Impl::metaname ("Deploys");
 
   //
+  // is_abstract
+  //
+  const bool Deploys_Impl::is_abstract = false;
+
+  //
   // _create (const DeploymentPlan_in, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)
   //
   Deploys Deploys_Impl::_create (const DeploymentPlan_in parent, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)

@@ -15,5 +15,10 @@ namespace PICML
   // metaname
   //
   const std::string Prefixable_Impl::metaname ("Prefixable");
+
+  //
+  // is_abstract
+  //
+  const bool Prefixable_Impl::is_abstract = true;
 }
 

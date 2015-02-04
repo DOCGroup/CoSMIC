@@ -23,6 +23,11 @@ namespace PICML
   const std::string ProvidedRequestPortInstance_Impl::metaname ("ProvidedRequestPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool ProvidedRequestPortInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentInstance_in)
   //
   ProvidedRequestPortInstance ProvidedRequestPortInstance_Impl::_create (const ComponentInstance_in parent)

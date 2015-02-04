@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string LookupKeyType_Impl::metaname ("LookupKeyType");
+
+  //
+  // is_abstract
+  //
+  const bool LookupKeyType_Impl::is_abstract = true;
 }
 

@@ -6,24 +6,63 @@
 #include "File_Processor.h"
 #include "IDL_File_Dependency_Processor.h"
 
-#include "Utils/UDM/Position_Sort_T.h"
-#include "Utils/UDM/visit.h"
+#include "PIM/PICML/utils/game/Utility.h"
 
-#include "PIM/PICML/utils/udm/functional.h"
+#include "game/mga/utils/Position_Sort_T.h"
 
 #include "boost/bind.hpp"
 #include "boost/iterator/filter_iterator.hpp"
 
 #include <algorithm>
 
-template <typename T>
-struct is_type
+struct visit_all
 {
 public:
-  bool operator () (const T & element) const
+template <typename T>
+void operator () (T & collection, PICML::Visitor * visitor) const
+{
+  for (auto item : collection)
+    item->accept (visitor);
+}
+};
+
+template <typename T, typename SORTER>
+struct collection_sort
+{
+public:
+std::vector <T> operator () (GAME::Mga::Collection_T <T> & collection, const std::string & aspect) const
+{
+  typedef GAME::Mga::Position_Sort_T <T, SORTER> sorter_t;
+  sorter_t sorter (aspect, SORTER ());
+
+  std::vector <T> result;
+
+  for (T item : collection)
+    result.push_back (item);
+
+  std::sort (result.begin (), result.end (), sorter);
+  return result;
+}
+};
+
+template <typename BASE>
+struct derives_from
+{
+public:
+template <typename T>
+bool operator () (const T & derived) const
+{
+  try
   {
-    return T::meta == element.type ();
+    BASE::_narrow (derived);
+    return true;
   }
+  catch (GAME::Mga::Exception & e)
+  {
+    ACE_UNUSED_ARG (e);
+    return false;
+  }
+}
 };
 
 //
@@ -48,51 +87,50 @@ IDL_File_Generator::~IDL_File_Generator (void)
 }
 
 //
-// Visit_File
+// visit_File
 //
-void IDL_File_Generator::Visit_File (const PICML::File & file)
+void IDL_File_Generator::visit_File (PICML::File_in file)
 {
   this->templates_only_ = true;
-  CoSMIC::Udm::visit_all <PICML::Package> (file, *this);
+  for (auto package : file->get_Packages ())
+    package->accept (this);
 
   this->templates_only_ = false;
-  this->Visit_FilePackage (file);
+
+  this->depends_graph_.visit_file (file, *this);
 }
 
 //
-// Visit_Package
+// visit_Package
 //
-void IDL_File_Generator::Visit_Package (const PICML::Package & package)
+void IDL_File_Generator::visit_Package (PICML::Package_in package)
 {
-  typedef UDM_Position_Sort_T <PICML::TemplateParameter, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::TemplateParameter, sorter_t> parameter_t;
-  parameter_t parameters = package.TemplateParameter_children_sorted (sorter_t ());
+  GAME::Mga::Collection_T <PICML::TemplateParameter> params = package->children <PICML::TemplateParameter> ();
 
-  if (this->templates_only_ && parameters.empty ())
+  if (this->templates_only_ && params.size ())
     return;
-  else if (!this->templates_only_ && !parameters.empty ())
+  else if (!this->templates_only_ && !params.size ())
     return;
 
   // Start the model specification.
-  this->idl_ << "module " << package.name ();
+  this->idl_ << "module " << package->name ();
 
-  if (!parameters.empty ())
+  if (params.size ())
   {
     // Write each of the parameters in the module. We must right
     // the first parameter out of the for-loop to ensure we have
     // the correct placement of commas between each parameter.
     this->idl_ << " < ";
 
-    parameter_t::iterator
-      iter = parameters.begin (),
-      iter_end = parameters.end ();
-
-    this->tp_dispatcher_.dispatch (*this, *iter);
-
-    for (++ iter; iter != iter_end; ++ iter)
+    typedef collection_sort <PICML::TemplateParameter, GAME::Mga::PS_Left_To_Right> param_sorter;
+    bool first_param = true;
+    for (auto parameter : param_sorter () (params, "InterfaceDefinition"))
     {
-      this->idl_ << ", ";
-      this->tp_dispatcher_.dispatch (*this, *iter);
+      if (!first_param)
+        this->idl_ << ", ";
+      first_param = false;
+
+      parameter->accept (this);
     }
 
     this->idl_ << " > ";
@@ -103,45 +141,37 @@ void IDL_File_Generator::Visit_Package (const PICML::Package & package)
              << "{" << idt << nl;
 
   this->depends_graph_.visit_all_forward_declaration (package);
-  this->depends_graph_.visit_all (package, *this);
+  this->depends_graph_.visit_package (package, *this);
 
   this->idl_ << uidt_nl << "};" << nl;
 }
 
 //
-// Visit_FilePackage
+// visit_NameParameter
 //
-void IDL_File_Generator::Visit_FilePackage (const Udm::Object & object)
+void IDL_File_Generator::
+visit_NameParameter (PICML::NameParameter_in c)
 {
-  this->depends_graph_.visit_file (object, *this);
+  this->idl_ << "typename " << c->name ();
 }
 
 //
-// Visit_NameParameter
+// visit_CollectionParameter
 //
 void IDL_File_Generator::
-Visit_NameParameter (const PICML::NameParameter & c)
+visit_CollectionParameter (PICML::CollectionParameter_in c)
 {
-  this->idl_ << "typename " << c.name ();
+  PICML::NameParameter ref = c->refers_to_NameParameter ();
+  this->idl_ << "sequence <" << ref->name () << "> " << c->name ();
 }
 
 //
-// Visit_CollectionParameter
+// visit_TypedParameter
 //
 void IDL_File_Generator::
-Visit_CollectionParameter (const PICML::CollectionParameter & c)
+visit_TypeParameter (PICML::TypeParameter_in c)
 {
-  PICML::MgaObject ref = c.ref ();
-  this->idl_ << "sequence <" << ref.name () << "> " << c.name ();
-}
-
-//
-// Visit_TypedParameter
-//
-void IDL_File_Generator::
-Visit_TypeParameter (const PICML::TypeParameter & c)
-{
-  std::string type = c.Type ();
+  std::string type = c->Type ();
 
   if (type == "Aggregate")
     this->idl_ << "struct ";
@@ -160,104 +190,90 @@ Visit_TypeParameter (const PICML::TypeParameter & c)
   else if (type == "Collection")
     this->idl_ << "sequence ";
 
-  this->idl_ << " " << c.name ();
+  this->idl_ << " " << c->name ();
 }
 
 //
-// Visit_TemplatePackageAlias
+// visit_TemplatePackageInstance
 //
 void IDL_File_Generator::
-Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p)
+visit_TemplatePackageInstance (PICML::TemplatePackageInstance_in p)
 {
-  PICML::PackageType t = p.PackageType_child ();
+  PICML::PackageType t = p->get_PackageType ();
 
   this->idl_ << nl
-    << "module " << PICML::utils::fq_type (t.ref (), "::", true) << "< ";
+    << "module " << PICML::fq_type (t->refers_to_Package (), "::", true) << "< ";
 
-  typedef UDM_Position_Sort_T <PICML::TemplateParameterValue, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::TemplateParameterValue, sorter_t> parameter_t;
-  parameter_t parameters = p.TemplateParameterValue_children_sorted (sorter_t ());
-
-  parameter_t::iterator
-    iter = parameters.begin (),
-    iter_end = parameters.end ();
-
-  this->Visit_TemplateParameterValueType (iter->ref ());
-
-  for (++ iter; iter != iter_end; ++ iter)
+  typedef collection_sort <PICML::TemplateParameterValue, GAME::Mga::PS_Left_To_Right> param_sorter;
+  bool first_param = true;
+  for (auto parameter : param_sorter () (p->get_TemplateParameterValues (), "InterfaceDefinition"))
   {
-    this->idl_ << ", ";
-    this->Visit_TemplateParameterValueType (iter->ref ());
+    if (!first_param)
+      this->idl_ << ", ";
+    first_param = false;
+
+    this->visit_TemplateParameterValueType (parameter->refers_to_TemplateParameterValueType ());
   }
 
-  this->idl_ << " > " << p.name () << ";" << nl;
+  this->idl_ << " > " << p->name () << ";" << nl;
 }
 
 //
-// Visit_Enum
+// visit_Enum
 //
-void IDL_File_Generator::Visit_Enum (const PICML::Enum & e)
+void IDL_File_Generator::visit_Enum (PICML::Enum_in e)
 {
-  this->idl_ << "enum " << e.name () << nl
+  this->idl_ << "enum " << e->name () << nl
              << "{" << idt;
 
-  // Visit the enum values from top to bottom.
-  typedef UDM_Position_Sort_T <PICML::EnumValue, PS_Top_To_Bottom> sorter_t;
-  typedef std::set <PICML::EnumValue, sorter_t> sorted_values_t;
-  sorted_values_t values = e.EnumValue_children_sorted (sorter_t ());
+  bool first_param = true;
 
-  // Visit the first element separately as we write it
-  // to the idl file without a comma at the end.
-  bool is_not_first = false;
-
-  // From the second element onwards we add a semicolon
-  // and then write the element to the next line.
-  for (PICML::EnumValue m : values)
+  typedef collection_sort <PICML::EnumValue, GAME::Mga::PS_Top_To_Bottom> sorter;
+  for (PICML::EnumValue m : sorter () (e->get_EnumValues (), "InterfaceDefinition"))
   {
-    if (is_not_first)
-    {
+    if (!first_param)
       this->idl_ << ", ";
-      is_not_first = false;
-    }
 
-    m.Accept (*this);
+    first_param = false;
+
+    m->accept (this);
   }
 
-  this->idl_ << nl << uidt_nl
+  this->idl_ << uidt_nl
              << "};" << nl
              << nl;
 }
 
 //
-// Visit_EnumValue
+// visit_EnumValue
 //
-void IDL_File_Generator::Visit_EnumValue (const PICML::EnumValue & e)
+void IDL_File_Generator::visit_EnumValue (PICML::EnumValue_in e)
 {
-  this->idl_ << nl << e.name ();
+  this->idl_ << nl << e->name ();
 }
 
 //
-// Visit_Constant
+// visit_Constant
 //
-void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
+void IDL_File_Generator::visit_Constant (PICML::Constant_in c)
 {
   this->idl_ << "const ";
 
   // Write the constant's type.
-  PICML::ConstantType t = c.ref ();
-  this->Visit_ConstantType (t);
+  PICML::ConstantType t = c->refers_to_ConstantType ();
+  this->visit_ConstantType (t);
 
   // Write the name of the constant.
-  this->idl_ << " " << c.name () << " = ";
+  this->idl_ << " " << c->name () << " = ";
 
   // Write the value of the constant, if applicable.
-  std::string value = c.value ();
-  const Uml::Class & cls = t.type ();
+  std::string value = c->value ();
+  std::string cls = t->metaname;
 
-  if (cls == PICML::String::meta || cls == PICML::WideString::meta)
+  if (cls == PICML::String::impl_type::metaname || cls == PICML::WideString::impl_type::metaname)
   {
     // Make sure the wide string has a 'L' prefix.
-    if (cls == PICML::WideString::meta)
+    if (cls == PICML::WideString::impl_type::metaname)
       this->idl_ << "L";
 
     // Make sure the string is enclosed in quotations.
@@ -269,7 +285,7 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
     if (value[value.length () - 1] != '"')
       this->idl_ << '"';
   }
-  else if (cls == PICML::Char::meta)
+  else if (cls == PICML::Char::impl_type::metaname)
   {
     this->idl_ << "'" << value << "'";
   }
@@ -283,334 +299,294 @@ void IDL_File_Generator::Visit_Constant (const PICML::Constant & c)
 }
 
 //
-// Visit_Aggregate
+// visit_Aggregate
 //
-void IDL_File_Generator::Visit_Aggregate (const PICML::Aggregate & a)
+void IDL_File_Generator::visit_Aggregate (PICML::Aggregate_in a)
 {
-  // Sort the elements by the position in the InterfaceDefinition aspect.
-  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
-  sorter_t sorter ("InterfaceDefinition", PS_Top_To_Bottom ());
-  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
+  std::vector <PICML::Member> sorted_members;
 
   // First, generate the RTI-DDS pragma support.
-  PICML::Key key = a.Key_child ();
-  sorted_values_t key_values (sorter);
-
-  if (key != Udm::null)
+  if (a->has_Key ())
   {
-    // First, gather all the members in sorted order.
-    std::set <PICML::KeyMember> key_members = key.dstKeyMember ();
-    for (auto & key_member : key_members)
-      key_values.insert (key_member.dstKeyMember_end());
+    PICML::Key key = a->get_Key ();
+
+    // First, gather all the members
+    for (auto connection : key->src_of_KeyMember ())
+      sorted_members.push_back (connection->dst_Member ());
+
+    // Now sort the members
+    ::GAME::Mga::Position_Sort_T <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter_t;
+    std::sort (sorted_members.begin (), sorted_members.end (), sorter_t);
 
     // We can declare this as a DDS type.
-    this->idl_ << "#pragma DCPS_DATA_TYPE \"" << a.name () << "\"" << nl;
-
-    sorted_values_t::iterator
-      iter = key_values.begin (), iter_end = key_values.end ();
+    this->idl_ << "#pragma DCPS_DATA_TYPE \"" << a->name () << "\"" << nl;
 
     // Write all members of the key.
-    for (; iter != iter_end; ++ iter)
+    for (auto member : sorted_members)
       this->idl_ << "#pragma DCPS_DATA_KEY \""
-                   << a.name () << " " << iter->name () << "\"" << nl;
+                   << a->name () << " " << member->name () << "\"" << nl;
 
     this->idl_ << nl;
   }
 
-  this->idl_ << "struct " << a.name () << nl
+  this->idl_ << "struct " << a->name () << nl
              << "{" << idt;
 
   // Sort the elements by the position in the InterfaceDefinition aspect.
-  sorted_values_t sorted_values (sorter);
-  std::vector <PICML::Member> members = a.Member_kind_children ();
-  for (auto & member : members)
-    sorted_values.insert (member);
-
-  for (auto & sorted_value : sorted_values)
-    member_dispatcher_.dispatch (*this, sorted_value);
+  typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
+  for (PICML::Member member : sorter () (a->get_Members (), "InterfaceDefinition"))
+    member->accept (this);
 
   this->idl_ << uidt_nl << "};" << nl
              << nl;
 
-  if (key != Udm::null)
+  if (a->has_Key ())
   {
     // Since there is a key in this aggregate, we need to write at
     // least an empty key list.
-    this->idl_ << "#pragma keylist " << a.name ();
+    this->idl_ << "#pragma keylist " << a->name ();
 
-    if (!key_values.empty ())
-    {
-      // We can now generate members of the key list.
-      sorted_values_t::iterator
-        iter = key_values.begin (), iter_end = key_values.end ();
-
-      for (; iter != iter_end; ++ iter)
-        this->idl_ << " " << iter->name ();
-    }
+    for (auto member: sorted_members)
+      this->idl_ << " " << member->name ();
 
     this->idl_ << nl << nl;
   }
 }
 
 //
-// Visit_SwitchedAggregate
+// visit_SwitchedAggregate
 //
 void IDL_File_Generator::
-Visit_SwitchedAggregate (const PICML::SwitchedAggregate & s)
+visit_SwitchedAggregate (PICML::SwitchedAggregate_in s)
 {
-  this->idl_ << "union " << s.name () << " switch (";
+  this->idl_ << "union " << s->name () << " switch (";
 
-  PICML::Discriminator d = s.Discriminator_child ();
-  this->Visit_ConstantType (d.ref ());
+  this->visit_ConstantType (s->get_Discriminator ()->refers_to_ConstantType ());
 
   this->idl_ << ")" << nl
              << "{" << idt;
 
-  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
-  sorter_t sorter ("InterfaceDefinition", PS_Top_To_Bottom ());
-  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-
-  sorted_values_t sorted_values (sorter);
-  std::vector <PICML::Member> members = s.Member_kind_children ();
-  for (auto & member : members)
-    sorted_values.insert (member);
-
-  for (auto & sorted_value : sorted_values)
-    member_dispatcher_.dispatch (*this, sorted_value);
+  typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
+  for (PICML::Member member : sorter () (s->get_Members (), "InterfaceDefinition"))
+    member->accept (this);
 
   this->idl_ << uidt_nl << "};" << nl
              << nl;
 }
 
 //
-// Visit_Member
+// visit_Member
 //
-void IDL_File_Generator::Visit_Member (const PICML::Member & m)
+void IDL_File_Generator::visit_Member (PICML::Member_in m)
 {
-  PICML::MemberType mt = m.ref ();
-
-  std::set <PICML::LabelConnection> labels = m.dstLabelConnection ();
-  for (auto label : labels)
-    label.Accept (*this);
+  for (auto label_connection : m->src_of_LabelConnection ())
+    label_connection->accept (this);
   this->idl_ << nl;
 
   if (this->in_event_)
     this->idl_ << "public ";
 
-  this->Visit_MemberType (mt);
-  this->idl_ << " " << m.name () << ";";
+  this->visit_MemberType (m->refers_to_MemberType ());
+  this->idl_ << " " << m->name () << ";";
 
-  PICML::KeyMember key = m.srcKeyMember ();
-  if (key != Udm::null)
+  for (auto member_connection : m->dst_of_KeyMember ())
     this->idl_ << "  // @key";
-
-  this->idl_ << nl;
 }
 
 //
-// Visit_ArrayMember
+// visit_ArrayMember
 //
 void IDL_File_Generator::
-Visit_ArrayMember (const PICML::ArrayMember & m)
+visit_ArrayMember (PICML::ArrayMember_in m)
 {
-  PICML::MemberType mt = m.ref ();
-
   this->idl_ << nl;
-  this->Visit_MemberType (mt);
 
-  long array_size = static_cast <long> (m.Size ());
-  this->idl_ << " " << m.name () << "[" << array_size << "];" << nl;
+  this->visit_MemberType (m->refers_to_MemberType ());
+
+  long array_size = static_cast <long> (m->Size ());
+  this->idl_ << " " << m->name () << "[" << array_size << "];" << nl;
 }
 
 //
-// Visit_Event
+// visit_Event
 //
-void IDL_File_Generator::Visit_Event (const PICML::Event & e)
+void IDL_File_Generator::visit_Event (PICML::Event_in e)
 {
-  if (e.abstract ())
+  if (e->abstract ())
     this->idl_ << "abstract ";
 
-  this->idl_ << "eventtype " << e.name ();
+  this->idl_ << "eventtype " << e->name ();
 
-  std::vector <PICML::Inherits> inherits = e.Inherits_children ();
+  GAME::Mga::Collection_T <PICML::Inherits> inherits = e->get_Inheritss ();
 
-  if (!inherits.empty ())
+  if (inherits.size ())
   {
     this->idl_ << " : " << idt_nl;
 
-    std::vector <PICML::Inherits>::iterator
-      iter = inherits.begin (),
-      iter_end = inherits.end ();
+    bool first_element = true;
+    for (auto inherit : inherits)
+    {
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
-
-    for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (iter->ref (), "::", true);
+      PICML::fq_type (inherit->refers_to_Inheritable (), "::", true);
+    }
 
     this->idl_ << uidt;
   }
 
-  std::vector <PICML::Supports> supports = e.Supports_children ();
+  GAME::Mga::Collection_T <PICML::Supports> supports = e->get_Supportss ();
 
-  if (!supports.empty ())
+  if (supports.size ())
   {
     this->idl_ << idt_nl
                << " supports " << idt_nl;
 
-    std::vector <PICML::Supports>::iterator
-      iter = supports.begin (),
-      iter_end = supports.end ();
+    bool first_element = true;
+    for (auto support : supports)
+    {
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
 
-    this->idl_ << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
-
-    for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
+      PICML::fq_type (support->refers_to_Object (), "::", true);
+    }
   }
 
   this->idl_ << nl
              << "{" << idt;
 
   this->in_event_ = true;
-  this->Visit_ObjectByValue (e);
+  this->visit_ObjectByValue (e);
   this->in_event_ = false;
 
   this->idl_ << uidt_nl
-             << "};" << nl;
+             << "};"
+             << nl;
 }
 
 //
-// Visit_Event
+// visit_Event
 //
 void IDL_File_Generator::
-Visit_ValueObject (const PICML::ValueObject & v)
+visit_ValueObject (PICML::ValueObject_in v)
 {
-  if (v.abstract ())
+  if (v->abstract ())
     this->idl_ << "abstract ";
 
-  this->idl_ << "valuetype " << v.name ();
+  this->idl_ << "valuetype " << v->name ();
 
-  std::vector <PICML::Inherits> inherits = v.Inherits_children ();
+  GAME::Mga::Collection_T <PICML::Inherits> inherits = v->get_Inheritss ();
 
-  if (!inherits.empty ())
+  if (inherits.size ())
   {
     this->idl_ << " : " << idt_nl;
 
-    std::vector <PICML::Inherits>::iterator
-      iter = inherits.begin (),
-      iter_end = inherits.end ();
+    bool first_element = true;
+    for (auto inherit : inherits)
+    {
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
 
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
-
-    for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (iter->ref (), "::", true);
+      this->idl_ << PICML::fq_type (inherit->refers_to_Inheritable (), "::", true);
+    }
 
     this->idl_ << uidt;
   }
 
-  std::vector <PICML::Supports> supports = v.Supports_children ();
+  GAME::Mga::Collection_T <PICML::Supports> supports = v->get_Supportss ();
 
-  if (!supports.empty ())
+  if (supports.size ())
   {
     this->idl_ << idt_nl
                << " supports " << idt_nl;
 
-    std::vector <PICML::Supports>::iterator
-      iter = supports.begin (),
-      iter_end = supports.end ();
+    bool first_element = true;
+    for (auto support : supports)
+    {
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
 
-    this->idl_ << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
-
-    for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
+      this->idl_ << PICML::fq_type (support->refers_to_Object (), "::", true);
+    }
   }
 
   this->idl_ << nl
              << "{" << idt;
 
-  this->Visit_ObjectByValue (v);
+  this->visit_ObjectByValue (v);
 
   this->idl_ << "};" << uidt_nl;
 }
 
 //
-// Visit_ObjectByValue
+// visit_ObjectByValue
 //
 void IDL_File_Generator::
-Visit_ObjectByValue (const PICML::ObjectByValue & o)
+visit_ObjectByValue (PICML::ObjectByValue_in o)
 {
-  CoSMIC::Udm::visit_all <PICML::Aggregate> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Alias> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Constant> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Enum> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Collection> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Exception> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::PortType> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::FactoryOperation> (o, *this);
+  visit_all () (o->get_Aggregates (), this);
+  visit_all () (o->get_SwitchedAggregates (), this);
+  visit_all () (o->get_Aliass (), this);
+  visit_all () (o->get_Constants (), this);
+  visit_all () (o->get_Enums (), this);
+  visit_all () (o->get_Collections (), this);
+  visit_all () (o->get_Exceptions (), this);
+  visit_all () (o->get_PortTypes (), this);
+  visit_all () (o->get_FactoryOperations (), this);
+  visit_all () (o->get_OnewayOperations (), this);
+  visit_all () (o->get_TwowayOperations (), this);
+  visit_all () (o->get_ReadonlyAttributes (), this);
 
-  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (o, *this);
-
-  std::vector <PICML::ReadonlyAttribute> attrs = o.ReadonlyAttribute_kind_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->ro_dispatcher_),
-                              boost::ref (*this),
-                              _1));
-
-  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
-  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-  sorted_values_t values = o.Member_children_sorted (sorter_t ());
-  for (auto value : values)
-    value.Accept (*this);
+  typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
+  visit_all () (sorter ()(o->get_Members (), "InterfaceDefinition"), this);
   
 }
 
 //
-// Visit_LabelConnection
+// visit_LabelConnection
 //
 void IDL_File_Generator::
-Visit_LabelConnection (const PICML::LabelConnection & c)
+visit_LabelConnection (PICML::LabelConnection_in c)
 {
-  PICML::Label label = c.dstLabelConnection_end ();
-  this->idl_ << "case " << label.name () << ":" << nl;
+  PICML::Label label = c->dst_Label ();
+  this->idl_ << "case " << label->name () << ":" << nl;
 }
 
 //
-// Visit_Component
+// visit_Component
 //
-void IDL_File_Generator::Visit_Component (const PICML::Component & c)
+void IDL_File_Generator::visit_Component (PICML::Component_in c)
 {
   this->idl_
     << nl
-    << "component " << c.name ();
+    << "component " << c->name ();
 
   // Write the inherits specification for the component.
-  PICML::ComponentInherits inherits = c.ComponentInherits_child ();
-
-  if (inherits != Udm::null)
+  if (c->has_ComponentInherits ())
     this->idl_ << " : " << idt_nl
-               << PICML::utils::fq_type (inherits.ref (), "::", true) << uidt_nl;
+               << PICML::fq_type (c->get_ComponentInherits ()->refers_to_Component (), "::", true) << uidt_nl;
 
   // Write the interfaces that its supports.
-  typedef UDM_Position_Sort_T <PICML::Supports, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::Supports, sorter_t> sorted_values_t;
-  sorted_values_t values = c.Supports_children_sorted (sorter_t ());
+  GAME::Mga::Collection_T <PICML::Supports> supports = c->get_Supportss ();
 
-  if (!values.empty ())
+  if (supports.size ())
   {
     this->idl_ << idt_nl << " supports ";
 
-    sorted_values_t::iterator
-      iter = values.begin (),
-      iter_end = values.end ();
+    typedef collection_sort <PICML::Supports, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (PICML::Supports support : sorter () (supports, "InterfaceDefinition"))
+    {
+      if (!first_element)
+        this->idl_ << ", " << nl;
+      first_element = false;
 
-    this->idl_ << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
-
-    for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << nl
-                 << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
+      this->idl_ << PICML::fq_type (support->refers_to_Object (), "::", true);
+    }
 
     this->idl_ << uidt;
   }
@@ -619,26 +595,13 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
              << "{" << idt_nl;
 
   // Write each of the ports for the component.
-  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
-  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
-  CoSMIC::Udm::visit_all <PICML::InEventPort> (c, *this);
-  CoSMIC::Udm::visit_all <PICML::OutEventPort> (c, *this);
-
-  std::vector <PICML::ExtendedPort> extended = c.ExtendedPort_kind_children ();
-  std::for_each (extended.begin (),
-                 extended.end (),
-                 boost::bind (&ExtendedPort_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->extended_dispatcher_),
-                              boost::ref (*this),
-                              _1));
-
-  std::vector <PICML::ReadonlyAttribute> attrs = c.ReadonlyAttribute_kind_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->ro_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  visit_all () (c->get_ProvidedRequestPorts (), this);
+  visit_all () (c->get_RequiredRequestPorts (), this);
+  visit_all () (c->get_InEventPorts (), this);
+  visit_all () (c->get_OutEventPorts (), this);
+  visit_all () (c->get_ExtendedPorts (), this);
+  visit_all () (c->get_ReadonlyAttributes (), this);
+  visit_all () (c->get_Attributes (), this);
 
   this->idl_ << uidt_nl
              << "};"
@@ -646,35 +609,25 @@ void IDL_File_Generator::Visit_Component (const PICML::Component & c)
 }
 
 //
-// Visit_ConnectorObject
+// visit_ConnectorObject
 //
 void IDL_File_Generator::
-Visit_ConnectorObject (const PICML::ConnectorObject & c)
+visit_ConnectorObject (PICML::ConnectorObject_in c)
 {
-  this->idl_ << "connector " << c.name ();
+  this->idl_ << "connector " << c->name ();
 
   // Write the inherits specification for the component.
-  PICML::ConnectorInherits inherits = c.ConnectorInherits_child  ();
-
-  if (inherits != Udm::null)
+  if (c->has_ConnectorInherits ())
     this->idl_ << " : " << idt_nl
-               << PICML::utils::fq_type (inherits.ref (), "::", true) << uidt_nl;
+               << PICML::fq_type (c->get_ConnectorInherits ()->refers_to_ConnectorObject (), "::", true) << uidt_nl;
 
   this->idl_ << nl
              << "{" << idt_nl;
 
-  CoSMIC::Udm::visit_all <PICML::ProvidedRequestPort> (c, *this);
-  CoSMIC::Udm::visit_all <PICML::RequiredRequestPort> (c, *this);
-
-  CoSMIC::Udm::visit_all <PICML::ExtendedPort> (c, *this);
-
-  std::vector <PICML::ReadonlyAttribute> attrs = c.ReadonlyAttribute_kind_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->ro_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  visit_all () (c->get_ProvidedRequestPorts (), this);
+  visit_all () (c->get_RequiredRequestPorts (), this);
+  visit_all () (c->get_ExtendedPorts (), this);
+  visit_all () (c->get_ReadonlyAttributes (), this);
 
   this->idl_ << uidt_nl
              << "};" << nl
@@ -682,40 +635,34 @@ Visit_ConnectorObject (const PICML::ConnectorObject & c)
 }
 
 //
-// Visit_ExtendedPort
+// visit_ExtendedPort
 //
 void IDL_File_Generator::
-Visit_ExtendedPort (const PICML::ExtendedPort & p)
+visit_ExtendedPort (PICML::ExtendedPort_in p)
 {
-  this->idl_ << "port " << PICML::utils::fq_type (p.ref (), "::", true)
-             << " " << p.name () << ";" << nl;
+  this->idl_ << "port " << PICML::fq_type (p->refers_to_PortType (), "::", true)
+             << " " << p->name () << ";" << nl;
 }
 
 //
-// Visit_MirrorPort
+// visit_MirrorPort
 //
 void IDL_File_Generator::
-Visit_MirrorPort (const PICML::MirrorPort & p)
+visit_MirrorPort (PICML::MirrorPort_in p)
 {
-  this->idl_ << "mirrorport " << PICML::utils::fq_type (p.ref (), "::", true)
-             << " " << p.name () << ";" << nl;
+  this->idl_ << "mirrorport " << PICML::fq_type (p->refers_to_PortType (), "::", true)
+             << " " << p->name () << ";" << nl;
 }
 
 //
-// Visit_PortType
+// visit_PortType
 //
-void IDL_File_Generator::Visit_PortType (const PICML::PortType & p)
+void IDL_File_Generator::visit_PortType (PICML::PortType_in p)
 {
-  this->idl_ << "porttype " << p.name () << nl
+  this->idl_ << "porttype " << p->name () << nl
              << "{" << idt_nl;
 
-  std::vector <PICML::ObjectPort> ports = p.ObjectPort_children ();
-  std::for_each (ports.begin (),
-                 ports.end (),
-                 boost::bind (&Port_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->port_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  visit_all () (p->children <PICML::ObjectPort> (), this);
 
   this->idl_ << uidt_nl
              << "};" << nl
@@ -723,66 +670,64 @@ void IDL_File_Generator::Visit_PortType (const PICML::PortType & p)
 }
 
 //
-// Visit_ProvidedRequestPort
+// visit_ProvidedRequestPort
 //
 void IDL_File_Generator::
-Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p)
+visit_ProvidedRequestPort (PICML::ProvidedRequestPort_in p)
 {
   this->idl_ << "provides ";
-  this->Visit_Provideable (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl;
+  this->visit_Provideable (p->refers_to_Provideable ());
+  this->idl_ << " " << p->name () << ";" << nl;
 }
 
 //
-// Visit_RequiredRequestPort
+// visit_RequiredRequestPort
 //
 void IDL_File_Generator::
-Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p)
+visit_RequiredRequestPort (PICML::RequiredRequestPort_in p)
 {
-  if (p.AsyncCommunication ())
+  if (p->AsyncCommunication ())
   {
     // Generate the pragma statement for the receptacle to enable
     // ami4ccm support.
-    PICML::Component c = p.Component_parent ();
-
     this->idl_ << "#pragma ciao ami4ccm receptacle \""
-               << PICML::utils::fq_type (c, "::", true)
-               << "::" << p.name () << "\"" << nl;
+               << PICML::fq_type (p->parent_Component (), "::", true)
+               << "::" << p->name () << "\"" << nl;
   }
 
   this->idl_ << "uses ";
 
-  if (p.multiple_connections ())
+  if (p->multiple_connections ())
     this->idl_ << "multiple ";
 
-  this->Visit_Provideable (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl;
+    this->visit_Provideable (p->refers_to_Provideable ());
+  this->idl_ << " " << p->name () << ";" << nl;
 }
 
 //
-// Visit_InEventPort
+// visit_InEventPort
 //
 void IDL_File_Generator::
-Visit_InEventPort (const PICML::InEventPort & p)
+visit_InEventPort (PICML::InEventPort_in p)
 {
   this->idl_ << "consumes ";
 
-  this->Visit_EventType (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl;
+  this->visit_EventType (p->refers_to_EventType ());
+  this->idl_ << " " << p->name () << ";" << nl;
 }
 
 //
-// Visit_OutEventPort
+// visit_OutEventPort
 //
-void IDL_File_Generator::Visit_OutEventPort (const PICML::OutEventPort & p)
+void IDL_File_Generator::visit_OutEventPort (PICML::OutEventPort_in p)
 {
-  if (p.single_destination ())
+  if (p->single_destination ())
     this->idl_ << "emits ";
   else
     this->idl_ << "publishes ";
 
-  this->Visit_EventType (p.ref ());
-  this->idl_ << " " << p.name () << ";" << nl;
+  this->visit_EventType (p->refers_to_EventType ());
+  this->idl_ << " " << p->name () << ";" << nl;
 }
 
 /**
@@ -790,213 +735,196 @@ void IDL_File_Generator::Visit_OutEventPort (const PICML::OutEventPort & p)
  */
 struct is_async_receptacle_t
 {
-  bool operator () (const PICML::RequiredRequestPort & p) const
+  bool operator () (PICML::RequiredRequestPort_in p) const
   {
-    return p.AsyncCommunication ();
+    return p->AsyncCommunication ();
   }
 };
 
 //
-// Visit_Object
+// visit_Object
 //
-void IDL_File_Generator::Visit_Object (const PICML::Object & o)
+void IDL_File_Generator::visit_Object (PICML::Object_in o)
 {
   // Determine if this interface is required by an async receptacle.
   // If this is the case, then we need to generate the pragma statement
   // for it.
-  if (o.SupportsAsync ())
+  if (o->SupportsAsync ())
     this->idl_ << nl
                << "#pragma ciao ami4ccm interface \""
-               << PICML::utils::fq_type (o, "::", true) << "\"" << nl
+               << PICML::fq_type (o, "::", true) << "\"" << nl
                << nl;
 
   // Write the port's semantics. It will either be abstract
   // or a local interface.
-  std::string semantics = o.InterfaceSemantics ();
+  std::string semantics = o->InterfaceSemantics ();
 
   if (semantics != "standard")
     this->idl_ << semantics << " ";
 
-  this->idl_ << "interface " << o.name ();
+  this->idl_ << "interface " << o->name ();
 
-  typedef std::vector <PICML::Inherits> inherits_t;
-  inherits_t inherits = o.Inherits_children ();
+  GAME::Mga::Collection_T <PICML::Inherits> inherits = o->get_Inheritss ();
 
-  if (!inherits.empty ())
+  if (inherits.size ())
   {
     // Generate the interfaces that are inherited by this interface
     // before generating any of its methods.
     this->idl_ << " :" << idt_nl;
 
-    inherits_t::iterator iter = inherits.begin (),
-                         iter_end = inherits.end ();
-
-    this->idl_ << PICML::utils::fq_type (iter->ref (), "::", true);
-
-    std::for_each (++ iter,
-                   iter_end,
-                   boost::bind (&PICML::Inherits::Accept, _1, boost::ref (*this)));
+    bool first_element = true;
+    for (PICML::Inherits inherit : inherits)
+    {
+      if (first_element)
+      {
+        this->idl_ << PICML::fq_type (inherit->refers_to_Inheritable (), "::", true);
+        first_element = false;
+      }
+      else
+        inherit->accept (this);
+     }
 
     this->idl_ << uidt;
   }
 
   this->idl_ << nl
              << "{" << idt;
-
-  CoSMIC::Udm::visit_all <PICML::Aggregate> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Alias> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Constant> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Enum> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Collection> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::Exception> (o, *this);
-
-  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (o, *this);
-  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (o, *this);
-
-  std::vector <PICML::ReadonlyAttribute> attrs = o.ReadonlyAttribute_kind_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->ro_dispatcher_),
-                              boost::ref (*this),
-                              _1));
+  
+  visit_all () (o->get_Aggregates (), this);
+  visit_all () (o->get_SwitchedAggregates (), this);
+  visit_all () (o->get_Aliass (), this);
+  visit_all () (o->get_Constants (), this);
+  visit_all () (o->get_Enums (), this);
+  visit_all () (o->get_Collections (), this);
+  visit_all () (o->get_Exceptions (), this);
+  visit_all () (o->get_OnewayOperations (), this);
+  visit_all () (o->get_TwowayOperations (), this);
+  visit_all () (o->get_ReadonlyAttributes (), this);
 
   this->idl_ << uidt_nl
-             << "};" << nl
+             << "};"
              << nl;
 }
 
 //
-// Visit_Inherits
+// visit_Inherits
 //
-void IDL_File_Generator::Visit_Inherits (const PICML::Inherits & i)
+void IDL_File_Generator::visit_Inherits (PICML::Inherits_in i)
 {
   this->idl_ << ", " << nl
-             << PICML::utils::fq_type (i.ref (), "::", true);
+             << PICML::fq_type (i->refers_to_Inheritable (), "::", true);
 }
 
 //
-// Visit_Alias
+// visit_Alias
 //
-void IDL_File_Generator::Visit_Alias (const PICML::Alias & a)
+void IDL_File_Generator::visit_Alias (PICML::Alias_in a)
 {
   this->idl_ << "typedef ";
 
-  this->Visit_MemberType (a.ref ());
-
-  this->idl_ << " " << a.name () << ";" << nl
+  this->visit_MemberType (a->refers_to_MemberType ());
+  
+  this->idl_ << " " << a->name () << ";" << nl
              << nl;
 }
 
 //
-// Visit_Attribute
+// visit_Attribute
 //
-void IDL_File_Generator::Visit_Attribute (const PICML::Attribute & a)
+void IDL_File_Generator::visit_Attribute (PICML::Attribute_in a)
 {
   this->idl_ << "attribute ";
 
-  PICML::AttributeMember m = a.AttributeMember_child ();
-  this->Visit_MemberType (m.ref ());
+  this->visit_MemberType (a->get_AttributeMember ()->refers_to_MemberType ());
 
-  this->idl_ << " " << a.name ();
+  this->idl_ << " " << a->name ();
 
   // Write the exception list, if any.
-  typedef UDM_Position_Sort_T <PICML::GetException, PS_Left_To_Right> get_sorter_t;
-  typedef std::set <PICML::GetException, get_sorter_t> get_values_t;
-  get_values_t get_exs = a.GetException_children_sorted (get_sorter_t ());
-
-  if (!get_exs.empty ())
+  GAME::Mga::Collection_T <PICML::GetException> get_exceptions = a->get_GetExceptions ();
+  if (get_exceptions.size ())
   {
     this->idl_ << idt_nl
                << "getraises (";
 
-    get_values_t::iterator iter = get_exs.begin (),
-                           iter_end = get_exs.end ();
-
-    this->Visit_ExceptionType (iter->ref ());
-
-    for (++ iter; iter != iter_end; ++ iter)
+    typedef collection_sort <PICML::GetException, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (auto exception : sorter () (get_exceptions, "InterfaceDefinition"))
     {
-      this->idl_ << ", ";
-      this->Visit_ExceptionType (iter->ref ());
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
+
+      this->visit_ExceptionType (exception);
     }
 
     this->idl_ << ")" << uidt_nl;
   }
 
-  typedef UDM_Position_Sort_T <PICML::SetException, PS_Left_To_Right> set_sorter_t;
-  typedef std::set <PICML::SetException, set_sorter_t> set_values_t;
-  set_values_t set_exs = a.SetException_children_sorted (set_sorter_t ());
-
-  if (!set_exs.empty ())
+  GAME::Mga::Collection_T <PICML::SetException> set_exceptions = a->get_SetExceptions ();
+  if (set_exceptions.size ())
   {
     this->idl_ << idt_nl
                << "setraises (";
 
-    set_values_t::iterator iter = set_exs.begin (),
-                           iter_end = set_exs.end ();
-
-    this->Visit_ExceptionType (iter->ref ());
-
-    for (++ iter; iter != iter_end; ++ iter)
+    typedef collection_sort <PICML::SetException, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (auto exception : sorter () (set_exceptions, "InterfaceDefinition"))
     {
-      this->idl_ << ", ";
-      this->Visit_ExceptionType (iter->ref ());
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
+
+      this->visit_ExceptionType (exception);
     }
 
     this->idl_ << ")" << uidt_nl;
   }
 
-  this->idl_ << ";" << nl;
+  this->idl_ << ";";
 }
 
 //
-// Visit_ReadonlyAttribute
+// visit_ReadonlyAttribute
 //
 void IDL_File_Generator::
-Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & a)
+visit_ReadonlyAttribute (PICML::ReadonlyAttribute_in a)
 {
   this->idl_ << "readonly attribute ";
 
-  PICML::AttributeMember m = a.AttributeMember_child ();
-  m.Accept (*this);
+  a->get_AttributeMember ()->accept (this);
 
-  this->idl_ << " " << a.name () << ";" << nl;
+  this->idl_ << " " << a->name () << ";" << nl;
 }
 
 //
-// Visit_AttributeMember
+// visit_AttributeMember
 //
-void IDL_File_Generator::Visit_AttributeMember (const PICML::AttributeMember & m)
+void IDL_File_Generator::visit_AttributeMember (PICML::AttributeMember_in m)
 {
-  this->Visit_MemberType (m.ref ());
+  this->visit_MemberType (m->refers_to_MemberType ());
 }
 
 //
-// Visit_OnewayOperation
+// visit_OnewayOperation
 //
 void IDL_File_Generator::
-Visit_OnewayOperation (const PICML::OnewayOperation & op)
+visit_OnewayOperation (PICML::OnewayOperation_in op)
 {
   this->idl_ << nl
-             << "oneway void " << op.name () << " (";
+             << "oneway void " << op->name () << " (";
 
-  typedef UDM_Position_Sort_T <PICML::ParameterType, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::ParameterType, sorter_t> sorted_values_t;
-  sorted_values_t values = op.ParameterType_kind_children_sorted (sorter_t ());
-
-  if (!values.empty ())
+  GAME::Mga::Collection_T <PICML::ParameterType> params = op->children <PICML::ParameterType> ();
+  if (params.size ())
   {
-    sorted_values_t::iterator iter = values.begin (),
-                              iter_end = values.end ();
-
-    this->param_dispatcher_.dispatch (*this, *iter);
-
-    for (++ iter; iter != iter_end; ++ iter)
+    typedef collection_sort <PICML::ParameterType, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (auto parameter : sorter () (params, "InterfaceDefinition"))
     {
-      this->idl_ << ", ";
-      this->param_dispatcher_.dispatch (*this, *iter);
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
+
+      parameter->accept (this);
     }
   }
 
@@ -1004,36 +932,32 @@ Visit_OnewayOperation (const PICML::OnewayOperation & op)
 }
 
 //
-// Visit_TwowayOperation
+// visit_TwowayOperation
 //
 void IDL_File_Generator::
-Visit_TwowayOperation (const PICML::TwowayOperation & op)
+visit_TwowayOperation (PICML::TwowayOperation_in op)
 {
-  PICML::ReturnType rt = op.ReturnType_child ();
   this->idl_ << nl;
 
-  if (rt == Udm::null)
+  if (!op->has_ReturnType ())
     this->idl_ << "void";
   else
-    this->Visit_MemberType (rt.ref ());
+    this->visit_MemberType (op->get_ReturnType ()->refers_to_MemberType ());
 
-  this->idl_ << " " << op.name () << " (";
+  this->idl_ << " " << op->name () << " (";
 
-  typedef UDM_Position_Sort_T <PICML::ParameterType, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::ParameterType, sorter_t> sorted_values_t;
-  sorted_values_t values = op.ParameterType_kind_children_sorted (sorter_t ());
-
-  if (!values.empty ())
+  GAME::Mga::Collection_T <PICML::ParameterType> params = op->children <PICML::ParameterType> ();
+  if (params.size ())
   {
-    sorted_values_t::iterator iter = values.begin (),
-                              iter_end = values.end ();
-
-    this->param_dispatcher_.dispatch (*this, *iter);
-
-    for (++ iter; iter != iter_end; ++ iter)
+    typedef collection_sort <PICML::ParameterType, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (auto parameter : sorter () (params, "InterfaceDefinition"))
     {
-      this->idl_ << ", ";
-      this->param_dispatcher_.dispatch (*this, *iter);
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
+
+      parameter->accept (this);
     }
   }
 
@@ -1042,300 +966,21 @@ Visit_TwowayOperation (const PICML::TwowayOperation & op)
   // Now, lets see if we need to generate the raises () statement
   // for this method.
 
-  typedef UDM_Position_Sort_T <PICML::ExceptionRef, PS_Left_To_Right> ex_sorter_t;
-  typedef std::set <PICML::ExceptionRef, ex_sorter_t> ex_values_t;
-  ex_values_t exs = op.ExceptionRef_children_sorted (ex_sorter_t ());
-
-  if (!exs.empty ())
+  GAME::Mga::Collection_T <PICML::ExceptionRef> exceptions = op->get_ExceptionRefs ();
+  if (exceptions.size ())
   {
-    ex_values_t::iterator iter = exs.begin (),
-                          iter_end = exs.end ();
-
     this->idl_ << idt_nl
                << "raises (";
 
-    this->Visit_ExceptionType (iter->ref ());
-
-    for (++ iter; iter != iter_end; ++ iter)
+    typedef collection_sort <PICML::ExceptionRef, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (auto exception : sorter () (exceptions, "InterfaceDefinition"))
     {
-      this->idl_ << ", ";
-      this->Visit_ExceptionType (iter->ref ());
-    }
-
-    this->idl_ << ")" << uidt;
-  }
-
-  this->idl_ << ";" << nl;
-}
-
-//
-// Visit_InParameter
-//
-void IDL_File_Generator::Visit_InParameter (const PICML::InParameter & p)
-{
-  this->idl_ << "in ";
-  this->Visit_ParameterType (p);
-}
-
-//
-// Visit_OutParameter
-//
-void IDL_File_Generator::Visit_OutParameter (const PICML::OutParameter & p)
-{
-  this->idl_ << "out ";
-  this->Visit_ParameterType (p);
-}
-
-//
-// Visit_InoutParameter
-//
-void IDL_File_Generator::Visit_InoutParameter (const PICML::InoutParameter & p)
-{
-  this->idl_ << "inout ";
-  this->Visit_ParameterType (p);
-}
-
-//
-// Visit_ParameterType
-//
-void IDL_File_Generator::Visit_ParameterType (const PICML::ParameterType & pt)
-{
-  this->Visit_MemberType (pt.ref ());
-  this->idl_ << " " << pt.name ();
-}
-
-//
-// Visit_Collection
-//
-void IDL_File_Generator::Visit_Collection (const PICML::Collection & c)
-{
-  this->idl_ << "typedef sequence < ";
-
-  this->Visit_MemberType (c.ref ());
-
-  std::string bound = c.bound ();
-  if (!bound.empty ())
-    this->idl_ << ", " << bound;
-
-  this->idl_ << " > " << c.name () << ";" << nl
-             << nl;
-}
-
-//
-// Visit_Exception
-//
-void IDL_File_Generator::Visit_Exception (const PICML::Exception & e)
-{
-  this->idl_ << "exception " << e.name () << nl
-             << "{" << idt_nl;
-
-  typedef UDM_Position_Sort_T <PICML::Member, PS_Top_To_Bottom> sorter_t;
-  typedef std::set <PICML::Member, sorter_t> sorted_values_t;
-  sorted_values_t values = e.Member_children_sorted (sorter_t ());
-  for (auto value : values)
-    value.Accept (*this);
-
-  this->idl_ << uidt_nl
-             << "};" << nl;
-}
-
-//
-// Visit_ComponentFactory
-//
-void IDL_File_Generator::
-Visit_ComponentFactory (const PICML::ComponentFactory & f)
-{
-  this->idl_ << "home " << f.name ();
-
-  // Write the inherits specification for the component.
-  if (f.isSubtype ())
-    this->idl_ << " : " << idt_nl
-               << PICML::utils::fq_type (f.Archetype (), "::", true) << uidt_nl;
-
-  // Write the interfaces that its supports.
-  typedef UDM_Position_Sort_T <PICML::Supports, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::Supports, sorter_t> sorted_values_t;
-  sorted_values_t values = f.Supports_children_sorted (sorter_t ());
-
-  if (!values.empty ())
-  {
-    this->idl_ << idt << "supports" << idt_nl;
-
-    sorted_values_t::iterator iter = values.begin (),
-                              iter_end = values.end ();
-
-    this->idl_ << ", " << nl
-               << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
-
-    for (++ iter; iter != iter_end; ++ iter)
-      this->idl_ << ", " << nl
-                 << PICML::utils::fq_type (PICML::Object::Cast (iter->ref ()), "::", true);
-
-    this->idl_ << uidt << uidt;
-  }
-
-  // Write the component that this home manages.
-  PICML::ManagesComponent mc = f.dstManagesComponent ();
-  PICML::Component c = PICML::Component::Cast (mc.dstManagesComponent_end ());
-  this->idl_ << nl
-             << "manages " << PICML::utils::fq_type (c, "::", true);
-
-  PICML::LookupKey key = f.LookupKey_child ();
-
-  if (key != Udm::null)
-  {
-    this->idl_ << nl
-               << "primarykey ";
-
-    PICML::LookupKeyType t = key.ref ();
-
-    if (t.type () == PICML::ValueObject::meta)
-      this->idl_ << PICML::utils::fq_type (PICML::ValueObject::Cast (t), "::", true);
-    else
-      this->idl_ << PICML::TypeParameter::Cast (t).name ();
-  }
-
-  this->idl_ << nl
-             << "{" << idt_nl;
-
-  CoSMIC::Udm::visit_all <PICML::Aggregate> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::SwitchedAggregate> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::Alias> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::Constant> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::Enum> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::Collection> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::Exception> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::PortType> (f, *this);
-
-  std::vector <PICML::ReadonlyAttribute> attrs = f.ReadonlyAttribute_kind_children ();
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Dispatcher <IDL_File_Generator>::dispatch,
-                              boost::ref (this->ro_dispatcher_),
-                              boost::ref (*this),
-                              _1));
-
-  CoSMIC::Udm::visit_all <PICML::FactoryOperation> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::LookupOperation> (f, *this);
-
-  CoSMIC::Udm::visit_all <PICML::OnewayOperation> (f, *this);
-  CoSMIC::Udm::visit_all <PICML::TwowayOperation> (f, *this);
-
-  this->idl_ << uidt_nl
-             << "};" << nl
-             << nl;
-}
-
-//
-// Visit_LookupOperation
-//
-void IDL_File_Generator::
-Visit_LookupOperation (const PICML::LookupOperation & op)
-{
-  this->idl_ << nl
-             << "finder " << op.name () << " (";
-
-  typedef UDM_Position_Sort_T <PICML::InParameter, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::InParameter, sorter_t> sorted_values_t;
-  sorted_values_t params = op.InParameter_children_sorted (sorter_t ());
-
-  if (!params.empty ())
-  {
-    bool is_first = true;
-
-    for (PICML::InParameter param : params)
-    {
-      if (!is_first)
-      {
+      if (!first_element)
         this->idl_ << ", ";
-        is_first = false;
-      }
+      first_element = false;
 
-      param.Accept (*this);
-    }
-
-  }
-
-  this->idl_ << ")";
-
-  // Finally, write the exception list to the document.
-  std::vector <PICML::ExceptionRef> excepts = op.ExceptionRef_children ();
-
-  if (!excepts.empty ())
-  {
-    this->idl_ << idt_nl << "raises (";
-
-    std::vector <PICML::ExceptionRef>::iterator
-      iter = excepts.begin (), iter_end = excepts.end ();
-
-    this->Visit_ExceptionType (iter->ref ());
-
-    for (++ iter; iter != iter_end; ++ iter)
-    {
-      this->idl_ << ", ";
-      this->Visit_ExceptionType (iter->ref ());
-    }
-
-    this->idl_ << ")" << uidt;
-  }
-
-  this->idl_ << ";" << nl;
-}
-
-//
-// Visit_FactoryOperation
-//
-void IDL_File_Generator::
-Visit_FactoryOperation (const PICML::FactoryOperation & op)
-{
-  this->idl_ << nl
-             << "factory " << op.name () << " (";
-
-  typedef UDM_Position_Sort_T <PICML::InParameter, PS_Left_To_Right> sorter_t;
-  typedef std::set <PICML::InParameter, sorter_t> sorted_values_t;
-  sorted_values_t params = op.InParameter_children_sorted (sorter_t ());
-
-  if (!params.empty ())
-  {
-    sorted_values_t::iterator
-      iter = params.begin (), iter_end = params.end ();
-
-    // Visit the first element separately as we write it
-    // to the idl file without a comma at the end.
-    bool is_not_first = false;
-
-    // From the second element onwards we add a semicolon
-    // and then write the element to the next line.
-    for (PICML::InParameter p : params)
-    {
-      if (is_not_first)
-      {
-        this->idl_ << ", ";
-        is_not_first = true;
-      }
-
-      p.Accept (*this);
-    }
-  }
-
-  this->idl_ << ")";
-
-  // Finally, write the exception list to the document.
-  std::vector <PICML::ExceptionRef> excepts = op.ExceptionRef_children ();
-
-  if (!excepts.empty ())
-  {
-    this->idl_ << idt_nl << "raises (";
-
-    std::vector <PICML::ExceptionRef>::iterator
-      iter = excepts.begin (), iter_end = excepts.end ();
-
-    this->Visit_ExceptionType (iter->ref ());
-
-    for (++ iter; iter != iter_end; ++ iter)
-    {
-      this->idl_ << ", ";
-      this->Visit_ExceptionType (iter->ref ());
+      this->visit_ExceptionType (exception);
     }
 
     this->idl_ << ")" << uidt;
@@ -1345,248 +990,499 @@ Visit_FactoryOperation (const PICML::FactoryOperation & op)
 }
 
 //
-// Visit_Byte
+// visit_InParameter
 //
-void IDL_File_Generator::Visit_Byte (const PICML::Byte & b)
+void IDL_File_Generator::visit_InParameter (PICML::InParameter_in p)
+{
+  this->idl_ << "in ";
+  this->visit_ParameterType (p);
+}
+
+//
+// visit_OutParameter
+//
+void IDL_File_Generator::visit_OutParameter (PICML::OutParameter_in p)
+{
+  this->idl_ << "out ";
+  this->visit_ParameterType (p);
+}
+
+//
+// visit_InoutParameter
+//
+void IDL_File_Generator::visit_InoutParameter (PICML::InoutParameter_in p)
+{
+  this->idl_ << "inout ";
+  this->visit_ParameterType (p);
+}
+
+//
+// visit_ParameterType
+//
+void IDL_File_Generator::visit_ParameterType (PICML::ParameterType_in pt)
+{
+  this->visit_MemberType (pt->refers_to_MemberType ());
+  this->idl_ << " " << pt->name ();
+}
+
+//
+// visit_Collection
+//
+void IDL_File_Generator::visit_Collection (PICML::Collection_in c)
+{
+  this->idl_ << "typedef sequence < ";
+
+  this->visit_MemberType (c->refers_to_MemberType ());
+
+  std::string bound = c->bound ();
+  if (!bound.empty ())
+    this->idl_ << ", " << bound;
+
+  this->idl_ << " > " << c->name () << ";" << nl
+             << nl;
+}
+
+//
+// visit_Exception
+//
+void IDL_File_Generator::visit_Exception (PICML::Exception_in e)
+{
+  this->idl_ << "exception " << e->name () << nl
+             << "{" << idt_nl;
+
+  typedef collection_sort <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter;
+  for (auto value : sorter () (e->get_Members (), "InterfaceDefinition"))
+    value->accept (this);
+
+  this->idl_ << uidt_nl
+             << "};" << nl;
+}
+
+//
+// visit_ComponentFactory
+//
+void IDL_File_Generator::
+visit_ComponentFactory (PICML::ComponentFactory_in f)
+{
+  this->idl_ << "home " << f->name ();
+
+  // Write the inherits specification for the component.
+  if (f->is_subtype ())
+    this->idl_ << " : " << idt_nl
+               << PICML::fq_type (f->archetype (), "::", true) << uidt_nl;
+
+  // Write the interfaces that its supports.
+  GAME::Mga::Collection_T <PICML::Supports> supports = f->get_Supportss ();
+  if (supports.size ())
+  {
+    this->idl_ << idt << "supports " << idt_nl;
+
+    typedef collection_sort <PICML::Supports, GAME::Mga::PS_Left_To_Right> sorter;
+    bool first_element = true;
+    for (PICML::Supports support : sorter () (supports, "InterfaceDefinition"))
+    {
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
+
+      this->idl_ << PICML::fq_type (support->refers_to_Object (), "::", true);
+    }
+
+    this->idl_ << uidt << uidt;
+  }
+
+  // Write the component that this home manages.
+  GAME::Mga::Collection_T <PICML::ManagesComponent> manages = f->src_of_ManagesComponent ();
+  if (manages.size ())
+  {
+    this->idl_ << nl
+               << "manages ";
+
+    bool first_element = true;
+    for (PICML::ManagesComponent connection : manages)
+    {
+      if (!first_element)
+        this->idl_ << ", ";
+      first_element = false;
+
+      this->idl_ << PICML::fq_type (connection->dst_Manageable (), "::", true);
+    }
+  }
+
+
+  if (f->has_LookupKey ())
+  {
+    this->idl_ << nl
+               << "primarykey ";
+
+    PICML::LookupKeyType t = f->get_LookupKey ()->refers_to_LookupKeyType ();
+
+    if (t->metaname == PICML::ValueObject::impl_type::metaname)
+      this->idl_ << PICML::fq_type (t, "::", true);
+    else
+      this->idl_ << t->name ();
+  }
+
+  this->idl_ << nl
+             << "{" << idt_nl;
+
+  visit_all () (f->get_Aggregates (), this);
+  visit_all () (f->get_SwitchedAggregates (), this);
+  visit_all () (f->get_Aliass (), this);
+  visit_all () (f->get_Constants (), this);
+  visit_all () (f->get_Enums (), this);
+  visit_all () (f->get_Collections (), this);
+  visit_all () (f->get_Exceptions (), this);
+  visit_all () (f->get_PortTypes (), this);
+  visit_all () (f->get_ReadonlyAttributes (), this);
+  visit_all () (f->get_FactoryOperations (), this);
+  visit_all () (f->get_LookupOperations (), this);
+  visit_all () (f->get_OnewayOperations (), this);
+  visit_all () (f->get_TwowayOperations (), this);
+
+  this->idl_ << uidt_nl
+             << "};" << nl
+             << nl;
+}
+
+//
+// visit_LookupOperation
+//
+void IDL_File_Generator::
+visit_LookupOperation (PICML::LookupOperation_in op)
+{
+  this->idl_ << nl
+             << "finder " << op->name () << " (";
+
+  GAME::Mga::Collection_T <PICML::InParameter> params = op->get_InParameters ();
+  if (params.size ())
+  {
+    bool is_first = true;
+    typedef collection_sort <PICML::InParameter, GAME::Mga::PS_Left_To_Right> sorter;
+    for (PICML::InParameter param : sorter () (params, "InterfaceDefinition"))
+    {
+      if (!is_first)
+        this->idl_ << ", ";
+      is_first = false;
+
+      param->accept (this);
+    }
+  }
+
+  this->idl_ << ")";
+
+  // Finally, write the exception list to the document.
+  GAME::Mga::Collection_T <PICML::ExceptionRef> excepts = op->get_ExceptionRefs ();
+  if (excepts.size ())
+  {
+    this->idl_ << idt_nl << "raises (";
+
+    bool is_first = true;
+    for (PICML::ExceptionRef exception : excepts)
+    {
+      if (!is_first)
+        this->idl_ << ", ";
+      is_first = false;
+
+      this->visit_ExceptionType (exception->refers_to_ExceptionType ());
+    }
+    this->idl_ << ")" << uidt;
+  }
+
+  this->idl_ << ";" << nl;
+}
+
+//
+// visit_FactoryOperation
+//
+void IDL_File_Generator::
+visit_FactoryOperation (PICML::FactoryOperation_in op)
+{
+  this->idl_ << nl
+             << "factory " << op->name () << " (";
+
+  GAME::Mga::Collection_T <PICML::InParameter> params = op->get_InParameters ();
+  if (params.size ())
+  {
+    bool is_first = true;
+    typedef collection_sort <PICML::InParameter, GAME::Mga::PS_Left_To_Right> sorter;
+    for (PICML::InParameter p : sorter () (params, "InterfaceDefinition"))
+    {
+      if (!is_first)
+        this->idl_ << ", ";
+      is_first = false;
+
+      p->accept (this);
+    }
+  }
+
+  this->idl_ << ")";
+
+  // Finally, write the exception list to the document.
+  GAME::Mga::Collection_T <PICML::ExceptionRef> excepts = op->get_ExceptionRefs ();
+  if (excepts.size ())
+  {
+    this->idl_ << idt_nl << "raises (";
+
+    bool is_first = true;
+    for (PICML::ExceptionRef ex : excepts)
+    {
+      if (!is_first)
+        this->idl_ << ", ";
+      is_first = false;
+
+      this->visit_ExceptionType (ex->refers_to_ExceptionType ());
+    }
+
+    this->idl_ << ")" << uidt;
+  }
+
+  this->idl_ << ";";
+}
+
+//
+// visit_Byte
+//
+void IDL_File_Generator::visit_Byte (PICML::Byte_in b)
 {
   this->idl_ << "octet";
 }
 
 //
-// Visit_Char
+// visit_Char
 //
-void IDL_File_Generator::Visit_Char (const PICML::Char & c)
+void IDL_File_Generator::visit_Char (PICML::Char_in c)
 {
   this->idl_ << "char";
 }
 
 //
-// Visit_WideChar
+// visit_WideChar
 //
-void IDL_File_Generator::Visit_WideChar (const PICML::WideChar & w)
+void IDL_File_Generator::visit_WideChar (PICML::WideChar_in w)
 {
   this->idl_ << "wchar";
 }
 
 //
-// Visit_Boolean
+// visit_Boolean
 //
-void IDL_File_Generator::Visit_Boolean (const PICML::Boolean & b)
+void IDL_File_Generator::visit_Boolean (PICML::Boolean_in b)
 {
   this->idl_ << "boolean";
 }
 
 //
-// Visit_String
+// visit_String
 //
-void IDL_File_Generator::Visit_String (const PICML::String & s)
+void IDL_File_Generator::visit_String (PICML::String_in s)
 {
   this->idl_ << "string";
 }
 
 //
-// Visit_WideString
+// visit_WideString
 //
 void IDL_File_Generator::
-Visit_WideString (const PICML::WideString & )
+visit_WideString (PICML::WideString_in )
 {
   this->idl_ << "wstring";
 }
 
 //
-// Visit_UnsignedShortInteger
+// visit_UnsignedShortInteger
 //
 void IDL_File_Generator::
-Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & s)
+visit_UnsignedShortInteger (PICML::UnsignedShortInteger_in s)
 {
   this->idl_ << "unsigned short";
 }
 
 //
-// Visit_UnsignedLongInteger
+// visit_UnsignedLongInteger
 //
 void IDL_File_Generator::
-Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & l)
+visit_UnsignedLongInteger (PICML::UnsignedLongInteger_in l)
 {
   this->idl_ << "unsigned long";
 }
 
 //
-// Visit_UnsignedLongLongInteger
+// visit_UnsignedLongLongInteger
 //
 void IDL_File_Generator::
-Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & )
+visit_UnsignedLongLongInteger (PICML::UnsignedLongLongInteger_in )
 {
   this->idl_ << "unsigned long long";
 }
 
 //
-// Visit_ShortInteger
+// visit_ShortInteger
 //
-void IDL_File_Generator::Visit_ShortInteger (const PICML::ShortInteger & s)
+void IDL_File_Generator::visit_ShortInteger (PICML::ShortInteger_in s)
 {
   this->idl_ << "short";
 }
 
 //
-// Visit_LongInteger
+// visit_LongInteger
 //
-void IDL_File_Generator::Visit_LongInteger (const PICML::LongInteger & l)
+void IDL_File_Generator::visit_LongInteger (PICML::LongInteger_in l)
 {
   this->idl_ << "long";
 }
 
 //
-// Visit_LongLongInteger
+// visit_LongLongInteger
 //
 void IDL_File_Generator::
-Visit_LongLongInteger (const PICML::LongLongInteger & )
+visit_LongLongInteger (PICML::LongLongInteger_in )
 {
   this->idl_ << "long long";
 }
 
 //
-// Visit_FloatNumber
+// visit_FloatNumber
 //
-void IDL_File_Generator::Visit_FloatNumber (const PICML::FloatNumber & f)
+void IDL_File_Generator::visit_FloatNumber (PICML::FloatNumber_in f)
 {
   this->idl_ << "float";
 }
 
 //
-// Visit_DoubleNumber
+// visit_DoubleNumber
 //
-void IDL_File_Generator::Visit_DoubleNumber (const PICML::DoubleNumber & d)
+void IDL_File_Generator::visit_DoubleNumber (PICML::DoubleNumber_in d)
 {
   this->idl_ << "double";
 }
 
 //
-// Visit_LongDoubleNumber
+// visit_LongDoubleNumber
 //
 void IDL_File_Generator::
-Visit_LongDoubleNumber (const PICML::LongDoubleNumber &)
+visit_LongDoubleNumber (PICML::LongDoubleNumber_in)
 {
   this->idl_ << "long double";
 }
 
 //
-// Visit_GenericObject
+// visit_GenericObject
 //
-void IDL_File_Generator::Visit_GenericObject (const PICML::GenericObject & f)
+void IDL_File_Generator::visit_GenericObject (PICML::GenericObject_in f)
 {
   this->idl_ << "Object";
 }
 
 //
-// Visit_GenericValue
+// visit_GenericValue
 //
-void IDL_File_Generator::Visit_GenericValue (const PICML::GenericValue & f)
+void IDL_File_Generator::visit_GenericValue (PICML::GenericValue_in f)
 {
   this->idl_ << "any";
 }
 
 //
-// Visit_GenericValueObject
+// visit_GenericValueObject
 //
 void IDL_File_Generator::
-Visit_GenericValueObject (const PICML::GenericValueObject & )
+visit_GenericValueObject (PICML::GenericValueObject_in )
 {
   this->idl_ << "ValueBase";
 }
 
 //
-// Visit_TypeEncoding
+// visit_TypeEncoding
 //
 void IDL_File_Generator::
-Visit_TypeEncoding (const PICML::TypeEncoding & t)
+visit_TypeEncoding (PICML::TypeEncoding_in t)
 {
   // This is an "interface"
   this->idl_ << "::CORBA::TypeCode";
 }
 
 //
-// Visit_TypeKind
+// visit_TypeKind
 //
-void IDL_File_Generator::Visit_TypeKind (const PICML::TypeKind & t)
+void IDL_File_Generator::visit_TypeKind (PICML::TypeKind_in t)
 {
   // This is a "enum"
   this->idl_ << "::CORBA::TCKind";
 }
 
 //
-// Visit_Provideable
+// visit_Provideable
 //
-void IDL_File_Generator::Visit_Provideable (const PICML::Provideable & p)
+void IDL_File_Generator::visit_Provideable (PICML::Provideable_in p)
 {
-  if (p.type () == PICML::Object::meta)
-    this->idl_ << PICML::utils::fq_type (PICML::Object::Cast (p), "::", true);
-  else if (p.type () == PICML::GenericObject::meta)
+  if (p->meta ()->name () == PICML::Object::impl_type::metaname)
+    this->idl_ << PICML::fq_type (PICML::Object::_narrow (p), "::", true);
+  else if (p->meta ()->name () == PICML::GenericObject::impl_type::metaname)
     this->idl_ << "Object";
-  else if (Udm::IsDerivedFrom (p.type (), PICML::TemplateParameter::meta))
-    this->idl_ << p.name ();
+  else if (derives_from <PICML::TemplateParameter> () (p))
+    this->idl_ << p->name ();
 }
 
 //
-// Visit_TemplateParameterValueType
+// visit_TemplateParameterValueType
 //
 void IDL_File_Generator::
-Visit_TemplateParameterValueType (const PICML::TemplateParameterValueType & t)
+visit_TemplateParameterValueType (PICML::TemplateParameterValueType_in t)
 {
-  if (t.type () == PICML::Exception::meta)
-    this->idl_ << PICML::utils::fq_type (PICML::Exception::Cast (t), "::", true);
+  if (t->meta ()->name () == PICML::Exception::impl_type::metaname)
+    this->idl_ << PICML::fq_type (t, "::", true);
   else
-    this->Visit_MemberType (PICML::MemberType::Cast (t));
+    this->visit_MemberType (PICML::MemberType::_narrow (t));
 }
 
 //
-// Visit_MemberType
+// visit_MemberType
 //
-void IDL_File_Generator::Visit_MemberType (const PICML::MemberType & mt)
+void IDL_File_Generator::visit_MemberType (PICML::MemberType_in mt)
 {
-  if (Udm::IsDerivedFrom (mt.type (), PICML::PredefinedType::meta))
-    this->pt_dispatcher_.dispatch (*this, mt);
-  else if (Udm::IsDerivedFrom (mt.type (), PICML::NamedType::meta))
-    this->idl_ << PICML::utils::fq_type (PICML::NamedType::Cast (mt), "::", true);
-  else if (Udm::IsDerivedFrom (mt.type (), PICML::TemplateParameter::meta))
-    this->idl_ << mt.name ();
+  if (derives_from <PICML::PredefinedType> () (mt))
+    mt->accept (this);
+  else if (derives_from <PICML::NamedType> () (mt))
+    this->idl_ << PICML::fq_type (mt, "::", true);
+  else if (derives_from <PICML::TemplateParameter> () (mt))
+    this->idl_ << mt->name ();
   else
-    this->idl_ << "/* unknown type (" << mt.type ().name () << ") */";
+    this->idl_ << "/* unknown type (" << mt->meta ()->name () << ") */";
 }
 
 //
-// Visit_ConstantType
+// visit_ConstantType
 //
 void IDL_File_Generator::
-Visit_ConstantType (const PICML::ConstantType & ct)
+visit_ConstantType (PICML::ConstantType_in ct)
 {
-  if (Udm::IsDerivedFrom (ct.type (), PICML::PredefinedType::meta))
-    this->pt_dispatcher_.dispatch (*this, ct);
-  else if (ct.type () == PICML::Enum::meta)
-    this->idl_ << PICML::utils::fq_type (PICML::Enum::Cast (ct), "::", true);
+  if (derives_from <PICML::PredefinedType> () (ct))
+    ct->accept (this);
+  else if (ct->meta ()->name () == PICML::Enum::impl_type::metaname)
+    this->idl_ << PICML::fq_type (ct, "::", true);
   else
     this->idl_ << "/* unknown type */";
 }
 
 //
-// Visit_EventType
+// visit_EventType
 //
-void IDL_File_Generator::Visit_EventType (const PICML::EventType & e)
+void IDL_File_Generator::visit_EventType (PICML::EventType_in e)
 {
-  if (e.type () == PICML::Event::meta)
-    this->idl_ << PICML::utils::fq_type (PICML::Event::Cast (e), "::", true);
-  else if (Udm::IsDerivedFrom (e.type (), PICML::TemplateParameter::meta))
-    this->idl_ << e.name ();
+  if (e->meta ()->name ()== PICML::Event::impl_type::metaname)
+    this->idl_ << PICML::fq_type (e, "::", true);
+  else if (derives_from <PICML::TemplateParameter> () (e))
+    this->idl_ << e->name ();
 }
 
 //
-// Visit_ExceptionType
+// visit_ExceptionType
 //
 void IDL_File_Generator::
-Visit_ExceptionType (const PICML::ExceptionType & e)
+visit_ExceptionType (const PICML::ExceptionType & e)
 {
-  if (e.type () == PICML::Exception::meta)
-    this->idl_ << PICML::utils::fq_type (PICML::Exception::Cast (e), "::", true);
+  if (e->meta ()->name () == PICML::Exception::impl_type::metaname)
+    this->idl_ << PICML::fq_type (e, "::", true);
   else
-    this->idl_ << PICML::TypeParameter::Cast (e).name ();
+    this->idl_ << e->name ();
 }

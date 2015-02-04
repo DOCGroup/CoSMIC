@@ -22,6 +22,11 @@ namespace PICML
   const std::string Throughput_Impl::metaname ("Throughput");
 
   //
+  // is_abstract
+  //
+  const bool Throughput_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   Throughput Throughput_Impl::_create (const BenchmarkAnalysis_in parent)

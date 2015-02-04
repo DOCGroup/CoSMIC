@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
-#include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
+#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,17 +26,22 @@ namespace DQML
   const std::string GroupDataQosPolicy_Impl::metaname ("GroupDataQosPolicy");
 
   //
-  // _create (const PublisherQos_in)
+  // is_abstract
   //
-  GroupDataQosPolicy GroupDataQosPolicy_Impl::_create (const PublisherQos_in parent)
-  {
-    return ::GAME::Mga::create < GroupDataQosPolicy > (parent, GroupDataQosPolicy_Impl::metaname);
-  }
+  const bool GroupDataQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const SubscriberQos_in)
   //
   GroupDataQosPolicy GroupDataQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  {
+    return ::GAME::Mga::create < GroupDataQosPolicy > (parent, GroupDataQosPolicy_Impl::metaname);
+  }
+
+  //
+  // _create (const PublisherQos_in)
+  //
+  GroupDataQosPolicy GroupDataQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create < GroupDataQosPolicy > (parent, GroupDataQosPolicy_Impl::metaname);
   }
@@ -64,14 +69,6 @@ namespace DQML
   }
 
   //
-  // parent_PublisherQos
-  //
-  PublisherQos GroupDataQosPolicy_Impl::parent_PublisherQos (void)
-  {
-    return PublisherQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_SubscriberQos
   //
   SubscriberQos GroupDataQosPolicy_Impl::parent_SubscriberQos (void)
@@ -80,19 +77,11 @@ namespace DQML
   }
 
   //
-  // dst_of_sub_groupdata_Connection
+  // parent_PublisherQos
   //
-  size_t GroupDataQosPolicy_Impl::dst_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
+  PublisherQos GroupDataQosPolicy_Impl::parent_PublisherQos (void)
   {
-    return this->in_connections <sub_groupdata_Connection> (items);
-  }
-
-  //
-  // dst_of_sub_groupdata_Connection
-  //
-  GAME::Mga::Collection_T <sub_groupdata_Connection> GroupDataQosPolicy_Impl::dst_of_sub_groupdata_Connection (void) const
-  {
-    return this->in_connections <sub_groupdata_Connection> ("dst");
+    return PublisherQos::_narrow (this->parent ());
   }
 
   //
@@ -109,6 +98,22 @@ namespace DQML
   GAME::Mga::Collection_T <pub_groupdata_Connection> GroupDataQosPolicy_Impl::dst_of_pub_groupdata_Connection (void) const
   {
     return this->in_connections <pub_groupdata_Connection> ("dst");
+  }
+
+  //
+  // dst_of_sub_groupdata_Connection
+  //
+  size_t GroupDataQosPolicy_Impl::dst_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
+  {
+    return this->in_connections <sub_groupdata_Connection> (items);
+  }
+
+  //
+  // dst_of_sub_groupdata_Connection
+  //
+  GAME::Mga::Collection_T <sub_groupdata_Connection> GroupDataQosPolicy_Impl::dst_of_sub_groupdata_Connection (void) const
+  {
+    return this->in_connections <sub_groupdata_Connection> ("dst");
   }
 }
 

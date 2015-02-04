@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string ExtendedDelegate_Impl::metaname ("ExtendedDelegate");
+
+  //
+  // is_abstract
+  //
+  const bool ExtendedDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, ExtendedPortInstanceBase_in src, ExtendedPortDelegate_in dst)

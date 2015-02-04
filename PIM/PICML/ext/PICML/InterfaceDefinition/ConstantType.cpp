@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/NamedTypes/Discriminator.h"
+#include "PICML/InterfaceDefinition/Constant.h"
 
 namespace PICML
 {
@@ -17,5 +17,10 @@ namespace PICML
   // metaname
   //
   const std::string ConstantType_Impl::metaname ("ConstantType");
+
+  //
+  // is_abstract
+  //
+  const bool ConstantType_Impl::is_abstract = true;
 }
 

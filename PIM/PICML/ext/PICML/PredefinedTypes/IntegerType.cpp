@@ -16,5 +16,10 @@ namespace PICML
   // metaname
   //
   const std::string IntegerType_Impl::metaname ("IntegerType");
+
+  //
+  // is_abstract
+  //
+  const bool IntegerType_Impl::is_abstract = true;
 }
 

@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/TargetElements/NodeReference.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string PropertyMapping_Impl::metaname ("PropertyMapping");
+
+  //
+  // is_abstract
+  //
+  const bool PropertyMapping_Impl::is_abstract = false;
 
   //
   // _create (const DeploymentPlan_in, NodeReference_in src, Property_in dst)

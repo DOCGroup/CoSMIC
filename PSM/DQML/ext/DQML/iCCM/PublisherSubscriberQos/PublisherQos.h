@@ -47,6 +47,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -94,11 +97,11 @@ namespace DQML
     bool has_PartitionQosPolicy (void) const;
     PartitionQosPolicy get_PartitionQosPolicy (void) const;
 
-    bool has_PresentationQosPolicy (void) const;
-    PresentationQosPolicy get_PresentationQosPolicy (void) const;
-
     bool has_GroupDataQosPolicy (void) const;
     GroupDataQosPolicy get_GroupDataQosPolicy (void) const;
+
+    bool has_PresentationQosPolicy (void) const;
+    PresentationQosPolicy get_PresentationQosPolicy (void) const;
     ///@}
   };
 }

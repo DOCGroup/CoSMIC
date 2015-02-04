@@ -19,6 +19,11 @@ namespace PICML
   const std::string LoopState_Impl::metaname ("LoopState");
 
   //
+  // is_abstract
+  //
+  const bool LoopState_Impl::is_abstract = true;
+
+  //
   // src_of_LoopTransition
   //
   size_t LoopState_Impl::src_of_LoopTransition (std::vector <LoopTransition> & items) const

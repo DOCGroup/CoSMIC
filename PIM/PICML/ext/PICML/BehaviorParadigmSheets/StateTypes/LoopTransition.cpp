@@ -12,11 +12,11 @@
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/WhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h"
@@ -32,6 +32,11 @@ namespace PICML
   // metaname
   //
   const std::string LoopTransition_Impl::metaname ("LoopTransition");
+
+  //
+  // is_abstract
+  //
+  const bool LoopTransition_Impl::is_abstract = false;
 
   //
   // _create (const BehaviorModel_in, LoopState_in src, ActionBase_in dst)

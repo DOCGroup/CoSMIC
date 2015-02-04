@@ -12,8 +12,8 @@
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,6 +25,11 @@ namespace PICML
   // metaname
   //
   const std::string MultiInput_Impl::metaname ("MultiInput");
+
+  //
+  // is_abstract
+  //
+  const bool MultiInput_Impl::is_abstract = false;
 
   //
   // _create (const TopLevelBehavior_in, MultiInputBase_in src, MultiInputAction_in dst)

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/ExtResourceConn.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string ExternalResources_Impl::metaname ("ExternalResources");
+
+  //
+  // is_abstract
+  //
+  const bool ExternalResources_Impl::is_abstract = false;
 
   //
   // _create (const Project_in)

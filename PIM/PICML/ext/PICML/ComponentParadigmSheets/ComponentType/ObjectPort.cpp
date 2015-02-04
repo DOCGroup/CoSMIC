@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 
 namespace PICML
@@ -20,6 +20,11 @@ namespace PICML
   // metaname
   //
   const std::string ObjectPort_Impl::metaname ("ObjectPort");
+
+  //
+  // is_abstract
+  //
+  const bool ObjectPort_Impl::is_abstract = true;
 
   //
   // parent_PortType

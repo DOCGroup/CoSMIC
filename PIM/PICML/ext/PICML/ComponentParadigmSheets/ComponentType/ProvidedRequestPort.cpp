@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -32,6 +32,11 @@ namespace PICML
   // metaname
   //
   const std::string ProvidedRequestPort_Impl::metaname ("ProvidedRequestPort");
+
+  //
+  // is_abstract
+  //
+  const bool ProvidedRequestPort_Impl::is_abstract = false;
 
   //
   // _create (const PortType_in)
@@ -50,17 +55,17 @@ namespace PICML
   }
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectedComponent_in)
   //
-  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const Component_in parent)
+  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const ConnectedComponent_in parent)
   {
     return ::GAME::Mga::create < ProvidedRequestPort > (parent, ProvidedRequestPort_Impl::metaname);
   }
 
   //
-  // _create (const ConnectedComponent_in)
+  // _create (const Component_in)
   //
-  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const ConnectedComponent_in parent)
+  ProvidedRequestPort ProvidedRequestPort_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create < ProvidedRequestPort > (parent, ProvidedRequestPort_Impl::metaname);
   }
