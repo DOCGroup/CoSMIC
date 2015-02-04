@@ -60,17 +60,12 @@ visit_OutEventPortInstance (OutEventPortInstance_in source)
 
   this->name_ = source->path (".", false);
 
-  std::vector <SendsTo> sends_to_coll;
-  source->src_SendsTo (sends_to_coll);
-
-  for (SendsTo sends_to : sends_to_coll)
+  // Visit the SendTo connections.
+  for (SendsTo sends_to : source->src_of_SendsTo ())
     sends_to->accept (this);
 
-  // Lastly, visit the delegation connections.
-  std::vector <EventSourceDelegate> delegates;
-  source->src_EventSourceDelegate (delegates);
-
-  for (EventSourceDelegate esd : delegates)
+  // Visit the delegation connections.
+  for (EventSourceDelegate esd : source->src_of_EventSourceDelegate ())
     esd->accept (this);
 
   // We can release this endpoint now.
@@ -102,17 +97,11 @@ visit_RequiredRequestPortInstance (RequiredRequestPortInstance_in receptacle)
   this->name_ = receptacle->path (".", false);
 
   // Visit all the connections.
-  std::vector <Invoke> invokes;
-  receptacle->src_Invoke (invokes);
-
-  for (Invoke invoke : invokes)
+  for (Invoke invoke : receptacle->src_of_Invoke ())
     invoke->accept (this);
 
   // Lastly, visit the delegation connections.
-  std::vector <ReceptacleDelegate> delegates;
-  receptacle->dst_ReceptacleDelegate (delegates);
-
-  for (ReceptacleDelegate deleg : delegates)
+  for (ReceptacleDelegate deleg : receptacle->dst_of_ReceptacleDelegate ())
     deleg->accept (this);
 
   // We can release this endpoint now.
@@ -167,7 +156,7 @@ visit_InEventPortInstance (InEventPortInstance_in sink)
 
   // Create the connection. Make sure we clone the first endpoint so that
   // we are actually adding a "new" fragment for it.
-  this->create_connection (connection_name, this->endpoint_.clone (true), endpoint, false);
+  this->create_connection (connection_name, this->endpoint_.clone (), endpoint, false);
 }
 
 //
@@ -205,7 +194,7 @@ visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in facet)
 
   // Create the connection. Make sure we clone the first endpoint so that
   // we are actually adding a "new" fragment for it.
-  this->create_connection (connection_name, this->endpoint_.clone (true), endpoint, is_local);
+  this->create_connection (connection_name, this->endpoint_.clone (), endpoint, is_local);
 }
 
 //
@@ -223,10 +212,7 @@ visit_ReceptacleDelegate (ReceptacleDelegate_in del)
 void Connection_Visitor::
 visit_RequiredRequestPortDelegate (RequiredRequestPortDelegate_in facet)
 {
-  std::vector <Invoke> invokes;
-  facet->src_Invoke (invokes);
-
-  for (Invoke invoke : invokes)
+  for (Invoke invoke : facet->src_of_Invoke ())
     invoke->accept (this);
 }
 
@@ -245,10 +231,7 @@ visit_FacetDelegate (FacetDelegate_in del)
 void Connection_Visitor::
 visit_ProvidedRequestPortDelegate (ProvidedRequestPortDelegate_in facet)
 {
-  std::vector <FacetDelegate> delegates;
-  facet->dst_FacetDelegate (delegates);
-
-  for (FacetDelegate item : delegates)
+  for (FacetDelegate item : facet->dst_of_FacetDelegate ())
     item->accept (this);
 }
 
@@ -267,10 +250,7 @@ visit_EventSourceDelegate (EventSourceDelegate_in del)
 void Connection_Visitor::
 visit_OutEventPortDelegate (OutEventPortDelegate_in facet)
 {
-  std::vector <SendsTo> delegates;
-  facet->src_SendsTo (delegates);
-
-  for (SendsTo item : delegates)
+  for (SendsTo item : facet->src_of_SendsTo ())
     item->accept (this);
 }
 
@@ -289,10 +269,7 @@ visit_EventSinkDelegate (EventSinkDelegate_in del)
 void Connection_Visitor::
 visit_InEventPortDelegate (InEventPortDelegate_in facet)
 {
-  std::vector <EventSinkDelegate> delegates;
-  facet->src_EventSinkDelegate (delegates);
-
-  for (EventSinkDelegate sink : delegates)
+  for (EventSinkDelegate sink : facet->src_of_EventSinkDelegate ())
     sink->accept (this);
 }
 

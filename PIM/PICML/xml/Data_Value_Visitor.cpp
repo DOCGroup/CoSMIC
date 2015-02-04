@@ -254,7 +254,7 @@ Visit_DataValueContainer (PICML::DataValueContainer_in c)
   {
     // Determine the container class.
     PICML::ComplexTypeReference complex = c->get_ComplexTypeReference ();
-    PICML::ComplexType t = complex->get_ComplexType ();
+    PICML::ComplexType t = complex->refers_to_ComplexType ();
     Container_Setter setter (this->container_);
     t->accept (&setter);
 
@@ -291,7 +291,7 @@ void Data_Value_Visitor::Visit_SimpleProperty (PICML::SimpleProperty_in prop)
 void Data_Value_Visitor::Visit_ComplexProperty (PICML::ComplexProperty_in prop)
 {
   PICML::ComplexTypeReference complex = prop->get_ComplexTypeReference ();
-  PICML::ComplexType t = complex->get_ComplexType ();
+  PICML::ComplexType t = complex->refers_to_ComplexType ();
 
   // Store the container's type for later usage.
   Container_Setter setter (this->container_);

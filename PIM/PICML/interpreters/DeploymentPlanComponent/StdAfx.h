@@ -30,6 +30,8 @@
 extern CComModule _Module;
 #include <atlcom.h>
 
+#include "game/mga/Mga.h"
+
 #pragma warning( disable : 4666)
 
 //{{AFX_INSERT_LOCATION}}
