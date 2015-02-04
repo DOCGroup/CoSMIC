@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
@@ -26,6 +26,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentFactory_Impl::metaname ("ComponentFactory");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentFactory_Impl::is_abstract = false;
 
   //
   // _create (const Package_in)

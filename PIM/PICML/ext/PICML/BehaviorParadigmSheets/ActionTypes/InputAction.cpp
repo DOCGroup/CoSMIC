@@ -23,6 +23,11 @@ namespace PICML
   const std::string InputAction_Impl::metaname ("InputAction");
 
   //
+  // is_abstract
+  //
+  const bool InputAction_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   InputAction InputAction_Impl::_create (const BehaviorModel_in parent)

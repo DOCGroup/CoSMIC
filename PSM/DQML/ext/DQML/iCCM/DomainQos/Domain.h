@@ -47,6 +47,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -77,11 +80,11 @@ namespace DQML
      * @name Containment Methods
      */
     ///@{
-    size_t get_PublishesConnections (std::vector <PublishesConnection> & items) const;
-    ::GAME::Mga::Collection_T <PublishesConnection> get_PublishesConnections (void) const;
-
     size_t get_Participants (std::vector <Participant> & items) const;
     ::GAME::Mga::Collection_T <Participant> get_Participants (void) const;
+
+    size_t get_PublishesConnections (std::vector <PublishesConnection> & items) const;
+    ::GAME::Mga::Collection_T <PublishesConnection> get_PublishesConnections (void) const;
 
     ///@}
   };

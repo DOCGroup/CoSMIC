@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/OperationTypes/OperationBase.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
-#include "PICML/ComponentBenchmark/TimerConnection.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,6 +30,11 @@ namespace PICML
   // metaname
   //
   const std::string OperationRef_Impl::metaname ("OperationRef");
+
+  //
+  // is_abstract
+  //
+  const bool OperationRef_Impl::is_abstract = false;
 
   //
   // _create (const BenchmarkAnalysis_in)
@@ -78,22 +83,6 @@ namespace PICML
   }
 
   //
-  // src_of_ComponentOperation
-  //
-  size_t OperationRef_Impl::src_of_ComponentOperation (std::vector <ComponentOperation> & items) const
-  {
-    return this->in_connections <ComponentOperation> (items);
-  }
-
-  //
-  // src_of_ComponentOperation
-  //
-  GAME::Mga::Collection_T <ComponentOperation> OperationRef_Impl::src_of_ComponentOperation (void) const
-  {
-    return this->in_connections <ComponentOperation> ("src");
-  }
-
-  //
   // src_of_MetricConnection
   //
   size_t OperationRef_Impl::src_of_MetricConnection (std::vector <MetricConnection> & items) const
@@ -107,6 +96,22 @@ namespace PICML
   GAME::Mga::Collection_T <MetricConnection> OperationRef_Impl::src_of_MetricConnection (void) const
   {
     return this->in_connections <MetricConnection> ("src");
+  }
+
+  //
+  // src_of_ComponentOperation
+  //
+  size_t OperationRef_Impl::src_of_ComponentOperation (std::vector <ComponentOperation> & items) const
+  {
+    return this->in_connections <ComponentOperation> (items);
+  }
+
+  //
+  // src_of_ComponentOperation
+  //
+  GAME::Mga::Collection_T <ComponentOperation> OperationRef_Impl::src_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("src");
   }
 
   //

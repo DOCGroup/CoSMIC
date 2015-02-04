@@ -24,6 +24,11 @@ namespace DQML
   const std::string DomainParticipantFactory_Impl::metaname ("DomainParticipantFactory");
 
   //
+  // is_abstract
+  //
+  const bool DomainParticipantFactory_Impl::is_abstract = false;
+
+  //
   // _create (const DDSQoS_in)
   //
   DomainParticipantFactory DomainParticipantFactory_Impl::_create (const DDSQoS_in parent)

@@ -26,7 +26,7 @@ namespace PICML
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string scope (const GAME::Mga::Model_in named_type,
+std::string scope (const GAME::Mga::FCO_in named_type,
                    const std::string & separator,
                    bool leading = false);
 
@@ -38,7 +38,7 @@ std::string scope (const GAME::Mga::Model_in named_type,
  * @param[in]     leading         Include leading separator value
  */
 PICML_GAME_UTILS_Export
-std::string fq_type (const GAME::Mga::Model_in named_type,
+std::string fq_type (const GAME::Mga::FCO_in named_type,
                      const std::string & separator,
                      bool leading = false);
 

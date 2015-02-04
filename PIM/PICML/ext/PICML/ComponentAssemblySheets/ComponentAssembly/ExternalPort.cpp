@@ -23,6 +23,11 @@ namespace PICML
   const std::string ExternalPort_Impl::metaname ("ExternalPort");
 
   //
+  // is_abstract
+  //
+  const bool ExternalPort_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in)
   //
   ExternalPort ExternalPort_Impl::_create (const ComponentAssembly_in parent)

@@ -20,6 +20,11 @@ namespace PICML
   const std::string RequiredRequestPortEnd_Impl::metaname ("RequiredRequestPortEnd");
 
   //
+  // is_abstract
+  //
+  const bool RequiredRequestPortEnd_Impl::is_abstract = true;
+
+  //
   // src_of_Invoke
   //
   size_t RequiredRequestPortEnd_Impl::src_of_Invoke (std::vector <Invoke> & items) const

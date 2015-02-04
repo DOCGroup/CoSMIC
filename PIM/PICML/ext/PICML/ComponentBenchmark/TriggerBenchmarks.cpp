@@ -22,6 +22,11 @@ namespace PICML
   const std::string TriggerBenchmarks_Impl::metaname ("TriggerBenchmarks");
 
   //
+  // is_abstract
+  //
+  const bool TriggerBenchmarks_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   TriggerBenchmarks TriggerBenchmarks_Impl::_create (const BenchmarkAnalysis_in parent)

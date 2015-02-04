@@ -22,6 +22,11 @@ namespace PICML
   const std::string GenericValue_Impl::metaname ("GenericValue");
 
   //
+  // is_abstract
+  //
+  const bool GenericValue_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   GenericValue GenericValue_Impl::_create (const PredefinedTypes_in parent)

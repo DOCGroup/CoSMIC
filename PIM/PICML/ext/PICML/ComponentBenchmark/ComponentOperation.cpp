@@ -24,6 +24,11 @@ namespace PICML
   const std::string ComponentOperation_Impl::metaname ("ComponentOperation");
 
   //
+  // is_abstract
+  //
+  const bool ComponentOperation_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in, OperationRef_in src, CompRef_in dst)
   //
   ComponentOperation ComponentOperation_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, CompRef_in dst)

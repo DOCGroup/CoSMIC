@@ -22,6 +22,11 @@ namespace PICML
   const std::string ServiceLevels_Impl::metaname ("ServiceLevels");
 
   //
+  // is_abstract
+  //
+  const bool ServiceLevels_Impl::is_abstract = false;
+
+  //
   // _create (const ServiceProvider_in)
   //
   ServiceLevels ServiceLevels_Impl::_create (const ServiceProvider_in parent)

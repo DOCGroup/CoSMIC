@@ -22,6 +22,11 @@ namespace DQML
   const std::string WatchdogSchedulingQosPolicy_Impl::metaname ("WatchdogSchedulingQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool WatchdogSchedulingQosPolicy_Impl::is_abstract = false;
+
+  //
   // _create (const Participant_in)
   //
   WatchdogSchedulingQosPolicy WatchdogSchedulingQosPolicy_Impl::_create (const Participant_in parent)

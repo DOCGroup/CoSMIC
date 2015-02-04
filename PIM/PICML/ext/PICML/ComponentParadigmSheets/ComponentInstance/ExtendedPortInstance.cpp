@@ -23,6 +23,11 @@ namespace PICML
   const std::string ExtendedPortInstance_Impl::metaname ("ExtendedPortInstance");
 
   //
+  // is_abstract
+  //
+  const bool ExtendedPortInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentInstance_in)
   //
   ExtendedPortInstance ExtendedPortInstance_Impl::_create (const ComponentInstance_in parent)

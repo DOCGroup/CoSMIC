@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
-#include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,9 +28,14 @@ namespace DQML
   const std::string DeadlineQosPolicy_Impl::metaname ("DeadlineQosPolicy");
 
   //
-  // _create (const TopicQos_in)
+  // is_abstract
   //
-  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const TopicQos_in parent)
+  const bool DeadlineQosPolicy_Impl::is_abstract = false;
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < DeadlineQosPolicy > (parent, DeadlineQosPolicy_Impl::metaname);
   }
@@ -44,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  DeadlineQosPolicy DeadlineQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < DeadlineQosPolicy > (parent, DeadlineQosPolicy_Impl::metaname);
   }
@@ -74,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos DeadlineQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos DeadlineQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -90,11 +95,27 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos DeadlineQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos DeadlineQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return TopicQos::_narrow (this->parent ());
+  }
+
+  //
+  // dst_of_dr_deadline_Connection
+  //
+  size_t DeadlineQosPolicy_Impl::dst_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
+  {
+    return this->in_connections <dr_deadline_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_deadline_Connection
+  //
+  GAME::Mga::Collection_T <dr_deadline_Connection> DeadlineQosPolicy_Impl::dst_of_dr_deadline_Connection (void) const
+  {
+    return this->in_connections <dr_deadline_Connection> ("dst");
   }
 
   //
@@ -127,22 +148,6 @@ namespace DQML
   GAME::Mga::Collection_T <top_deadline_Connection> DeadlineQosPolicy_Impl::dst_of_top_deadline_Connection (void) const
   {
     return this->in_connections <top_deadline_Connection> ("dst");
-  }
-
-  //
-  // dst_of_dr_deadline_Connection
-  //
-  size_t DeadlineQosPolicy_Impl::dst_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
-  {
-    return this->in_connections <dr_deadline_Connection> (items);
-  }
-
-  //
-  // dst_of_dr_deadline_Connection
-  //
-  GAME::Mga::Collection_T <dr_deadline_Connection> DeadlineQosPolicy_Impl::dst_of_dr_deadline_Connection (void) const
-  {
-    return this->in_connections <dr_deadline_Connection> ("dst");
   }
 }
 

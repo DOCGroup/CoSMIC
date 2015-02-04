@@ -19,8 +19,8 @@
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
@@ -42,6 +42,11 @@ namespace PICML
   // metaname
   //
   const std::string ExternalDelegate_Impl::metaname ("ExternalDelegate");
+
+  //
+  // is_abstract
+  //
+  const bool ExternalDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, ExternalPort_in src, ExternalPortEnd_in dst)

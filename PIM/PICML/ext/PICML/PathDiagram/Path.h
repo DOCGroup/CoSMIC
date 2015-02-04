@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -87,14 +90,11 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
+    size_t get_DisplayNodes (std::vector <DisplayNode> & items) const;
+    ::GAME::Mga::Collection_T <DisplayNode> get_DisplayNodes (void) const;
 
-    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
-    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
-
-    size_t get_ComponentRefs (std::vector <ComponentRef> & items) const;
-    ::GAME::Mga::Collection_T <ComponentRef> get_ComponentRefs (void) const;
+    size_t get_ConnectedComponents (std::vector <ConnectedComponent> & items) const;
+    ::GAME::Mga::Collection_T <ConnectedComponent> get_ConnectedComponents (void) const;
 
     size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
     ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
@@ -102,29 +102,32 @@ namespace PICML
     size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
 
-    size_t get_InEventPorts (std::vector <InEventPort> & items) const;
-    ::GAME::Mga::Collection_T <InEventPort> get_InEventPorts (void) const;
-
     size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
     ::GAME::Mga::Collection_T <OutEventPort> get_OutEventPorts (void) const;
 
-    size_t get_DisplayNodes (std::vector <DisplayNode> & items) const;
-    ::GAME::Mga::Collection_T <DisplayNode> get_DisplayNodes (void) const;
-
-    size_t get_ConnectedComponents (std::vector <ConnectedComponent> & items) const;
-    ::GAME::Mga::Collection_T <ConnectedComponent> get_ConnectedComponents (void) const;
+    size_t get_InEventPorts (std::vector <InEventPort> & items) const;
+    ::GAME::Mga::Collection_T <InEventPort> get_InEventPorts (void) const;
 
     size_t get_Edges (std::vector <Edge> & items) const;
     ::GAME::Mga::Collection_T <Edge> get_Edges (void) const;
 
-    size_t get_DstEdges (std::vector <DstEdge> & items) const;
-    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
 
     size_t get_SrcEdges (std::vector <SrcEdge> & items) const;
     ::GAME::Mga::Collection_T <SrcEdge> get_SrcEdges (void) const;
 
     size_t get_EdgePropertys (std::vector <EdgeProperty> & items) const;
     ::GAME::Mga::Collection_T <EdgeProperty> get_EdgePropertys (void) const;
+
+    size_t get_DstEdges (std::vector <DstEdge> & items) const;
+    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
+
+    size_t get_ComponentRefs (std::vector <ComponentRef> & items) const;
+    ::GAME::Mga::Collection_T <ComponentRef> get_ComponentRefs (void) const;
 
     ///@}
   };

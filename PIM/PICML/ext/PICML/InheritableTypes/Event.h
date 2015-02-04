@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export Event_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual EventType_Impl,
-    public virtual ObjectByValue_Impl
+    public virtual ObjectByValue_Impl,
+    public virtual EventType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -50,6 +50,9 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
+
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
 
     /**
      * @name Factory Methods

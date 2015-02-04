@@ -22,6 +22,11 @@ namespace PICML
   const std::string ComponentInherits_Impl::metaname ("ComponentInherits");
 
   //
+  // is_abstract
+  //
+  const bool ComponentInherits_Impl::is_abstract = false;
+
+  //
   // _create (const Component_in)
   //
   ComponentInherits ComponentInherits_Impl::_create (const Component_in parent)

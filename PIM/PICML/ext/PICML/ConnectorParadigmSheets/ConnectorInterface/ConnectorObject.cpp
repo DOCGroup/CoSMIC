@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
-#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "PICML/NamedTypes/Collection.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
@@ -33,6 +33,11 @@ namespace PICML
   // metaname
   //
   const std::string ConnectorObject_Impl::metaname ("ConnectorObject");
+
+  //
+  // is_abstract
+  //
+  const bool ConnectorObject_Impl::is_abstract = false;
 
   //
   // _create (const Package_in)
@@ -81,38 +86,6 @@ namespace PICML
   }
 
   //
-  // get_ReadonlyAttributes
-  //
-  size_t ConnectorObject_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ReadonlyAttributes
-  //
-  ::GAME::Mga::Collection_T <ReadonlyAttribute> ConnectorObject_Impl::get_ReadonlyAttributes (void) const
-  {
-    return this->children <ReadonlyAttribute> ();
-  }
-
-  //
-  // get_Attributes
-  //
-  size_t ConnectorObject_Impl::get_Attributes (std::vector <Attribute> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Attributes
-  //
-  ::GAME::Mga::Collection_T <Attribute> ConnectorObject_Impl::get_Attributes (void) const
-  {
-    return this->children <Attribute> ();
-  }
-
-  //
   // get_RequiredRequestPorts
   //
   size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
@@ -145,19 +118,51 @@ namespace PICML
   }
 
   //
-  // get_MirrorPorts
+  // get_Aggregates
   //
-  size_t ConnectorObject_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
+  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MirrorPorts
+  // get_Aggregates
   //
-  ::GAME::Mga::Collection_T <MirrorPort> ConnectorObject_Impl::get_MirrorPorts (void) const
+  ::GAME::Mga::Collection_T <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
   {
-    return this->children <MirrorPort> ();
+    return this->children <Aggregate> ();
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  size_t ConnectorObject_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  ::GAME::Mga::Collection_T <ReadonlyAttribute> ConnectorObject_Impl::get_ReadonlyAttributes (void) const
+  {
+    return this->children <ReadonlyAttribute> ();
+  }
+
+  //
+  // get_Attributes
+  //
+  size_t ConnectorObject_Impl::get_Attributes (std::vector <Attribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Attributes
+  //
+  ::GAME::Mga::Collection_T <Attribute> ConnectorObject_Impl::get_Attributes (void) const
+  {
+    return this->children <Attribute> ();
   }
 
   //
@@ -177,6 +182,22 @@ namespace PICML
   }
 
   //
+  // get_MirrorPorts
+  //
+  size_t ConnectorObject_Impl::get_MirrorPorts (std::vector <MirrorPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_MirrorPorts
+  //
+  ::GAME::Mga::Collection_T <MirrorPort> ConnectorObject_Impl::get_MirrorPorts (void) const
+  {
+    return this->children <MirrorPort> ();
+  }
+
+  //
   // get_Collections
   //
   size_t ConnectorObject_Impl::get_Collections (std::vector <Collection> & items) const
@@ -190,22 +211,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Collection> ConnectorObject_Impl::get_Collections (void) const
   {
     return this->children <Collection> ();
-  }
-
-  //
-  // get_Aggregates
-  //
-  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aggregates
-  //
-  ::GAME::Mga::Collection_T <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
-  {
-    return this->children <Aggregate> ();
   }
 }
 

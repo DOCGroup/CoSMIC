@@ -40,17 +40,17 @@ public:
   * @param[in]      foward_declaration      If true process forward
   * declarations for this object o; otherwise do not process
   */
-  void visit_file (const Udm::Object & o,
+  void visit_file (const GAME::Mga::Object & o,
                    PICML::Visitor & v,
                    bool foward_declaration = false);
   /**
-  * Visit all childrems in object o
+  * Visits all childrems in a package
   *
   * @param[in]      o      A object to visit
   * @param[in]      v      Visitor used to visit the object o
   */
-  void visit_all (const Udm::Object & o,
-                  PICML::Visitor & v);
+  void visit_package (const PICML::Package & o,
+                      PICML::Visitor & v);
   /**
   * Visit all childrems in object o
   *
@@ -80,19 +80,19 @@ public:
   * @return     bool      true if the object should be forward
   * declared
   */
-  bool no_forward_declaration (const Udm::Object o);
+  bool no_forward_declaration (const GAME::Mga::Object_in o);
   /**
   * Visits a package and process forward declarable elements
   *
   * @param      p      Package being visited
   */
-  void visit_all_forward_declaration (const PICML::Package & p);
+  void visit_all_forward_declaration (PICML::Package_in p);
 
 private:
   /// file_generator
   void file_generator (IDL_File_Generator * v);
   /// visit_file_package
-  void visit_file_package (const Udm::Object & o,
+  void visit_file_package (const GAME::Mga::Object_in o,
                            PICML::Visitor & v);
   /// visit_file_package
   void visit_file_package (const IDL_File_Ordering_Processor::CONTAINER & c,

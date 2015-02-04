@@ -49,15 +49,18 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ComponentImplementationArtifact _create (const ImplementationContainer_in parent);
-    static ComponentImplementationArtifact _create (const ArtifactContainer_in parent);
     static ComponentImplementationArtifact _create (const ExecutorProject_in parent);
     static ComponentImplementationArtifact _create (const ServantProject_in parent);
     static ComponentImplementationArtifact _create (const StubProject_in parent);
+    static ComponentImplementationArtifact _create (const ArtifactContainer_in parent);
+    static ComponentImplementationArtifact _create (const ImplementationContainer_in parent);
     ///@}
 
     // Default constructor.

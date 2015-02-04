@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/ComponentBuild.h"
 #include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/Workspaces.h"
+#include "PICML/ComponentBuild/ComponentBuild.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string MPC_Impl::metaname ("MPC");
+
+  //
+  // is_abstract
+  //
+  const bool MPC_Impl::is_abstract = false;
 
   //
   // _create (const ComponentBuild_in)

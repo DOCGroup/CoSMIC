@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/PathDiagram/PathDiagrams.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/PathProperty.h"
-#include "PICML/PathDiagram/PathDiagrams.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,6 +25,11 @@ namespace PICML
   // metaname
   //
   const std::string Paths_Impl::metaname ("Paths");
+
+  //
+  // is_abstract
+  //
+  const bool Paths_Impl::is_abstract = false;
 
   //
   // _create (const PathDiagrams_in)
@@ -57,6 +62,22 @@ namespace PICML
   }
 
   //
+  // get_Paths
+  //
+  size_t Paths_Impl::get_Paths (std::vector <Path> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Paths
+  //
+  ::GAME::Mga::Collection_T <Path> Paths_Impl::get_Paths (void) const
+  {
+    return this->children <Path> ();
+  }
+
+  //
   // get_ComplexPropertys
   //
   size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
@@ -86,22 +107,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_Paths
-  //
-  size_t Paths_Impl::get_Paths (std::vector <Path> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Paths
-  //
-  ::GAME::Mga::Collection_T <Path> Paths_Impl::get_Paths (void) const
-  {
-    return this->children <Path> ();
   }
 
   //

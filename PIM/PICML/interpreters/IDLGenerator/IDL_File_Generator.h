@@ -14,133 +14,7 @@
 #define _IDL_FILE_GENERATOR_H_
 
 #include "PICML/PICML.h"
-#include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
-
-/**
- * @class PredefinedType_Dispatcher
- */
-template <typename T>
-class PredefinedType_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  PredefinedType_Dispatcher (void)
-  {
-    this->insert <PICML::Boolean> ();
-
-    this->insert <PICML::Byte> ();
-
-    this->insert <PICML::Char> ();
-    this->insert <PICML::WideChar> ();
-
-    this->insert <PICML::String> ();
-    this->insert <PICML::WideString> ();
-
-    this->insert <PICML::ShortInteger> ();
-    this->insert <PICML::LongInteger> ();
-    this->insert <PICML::LongLongInteger> ();
-
-    this->insert <PICML::UnsignedShortInteger> ();
-    this->insert <PICML::UnsignedLongInteger> ();
-    this->insert <PICML::UnsignedLongLongInteger> ();
-
-    this->insert <PICML::FloatNumber> ();
-    this->insert <PICML::DoubleNumber> ();
-    this->insert <PICML::LongDoubleNumber> ();
-
-    this->insert <PICML::GenericObject> ();
-    this->insert <PICML::GenericValue> ();
-    this->insert <PICML::GenericValueObject> ();
-  }
-};
-
-/**
- * @class PredefinedType_Dispatcher
- */
-template <typename T>
-class TemplateParameter_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  TemplateParameter_Dispatcher (void)
-  {
-    this->insert <PICML::NameParameter> ();
-    this->insert <PICML::CollectionParameter> ();
-    this->insert <PICML::TypeParameter> ();
-  }
-};
-
-/**
- * @class ReadonlyAttribute_Dispatcher
- */
-template <typename T>
-class ReadonlyAttribute_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  ReadonlyAttribute_Dispatcher (void)
-  {
-    this->insert <PICML::ReadonlyAttribute> ();
-    this->insert <PICML::Attribute> ();
-  }
-};
-
-/**
- * @class ExtendedPort_Dispatcher
- */
-template <typename T>
-class ExtendedPort_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  ExtendedPort_Dispatcher (void)
-  {
-    this->insert <PICML::ExtendedPort> ();
-    this->insert <PICML::MirrorPort> ();
-  }
-};
-
-/**
- * @class ParameterType_Dispatcher
- */
-template <typename T>
-class ParameterType_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  ParameterType_Dispatcher (void)
-  {
-    this->insert <PICML::InParameter> ();
-    this->insert <PICML::InoutParameter> ();
-    this->insert <PICML::OutParameter> ();
-  }
-};
-
-/**
- * @class Port_Dispatcher
- */
-template <typename T>
-class Port_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  Port_Dispatcher (void)
-  {
-    this->insert <PICML::InEventPort> ();
-    this->insert <PICML::OutEventPort> ();
-    this->insert <PICML::ProvidedRequestPort> ();
-    this->insert <PICML::RequiredRequestPort> ();
-    this->insert <PICML::ExtendedPort> ();
-  }
-};
-
-/**
- * @class Port_Dispatcher
- */
-template <typename T>
-class Member_Dispatcher : public UDM_Abstract_Type_Dispatcher_T <T>
-{
-public:
-  Member_Dispatcher (void)
-  {
-    this->insert <PICML::Member> ();
-    this->insert <PICML::ArrayMember> ();
-  }
-};
+#include "PICML/Visitor.h"
 
 // Forward decl.
 class IDL_File_Dependency_Processor;
@@ -161,95 +35,94 @@ public:
 
   virtual ~IDL_File_Generator (void);
 
-  virtual void Visit_File (const PICML::File & file);
-  virtual void Visit_Package (const PICML::Package & package);
-  virtual void Visit_Enum (const PICML::Enum & e);
-  virtual void Visit_EnumValue (const PICML::EnumValue & v);
+  virtual void visit_File (PICML::File_in file);
+  virtual void visit_Package (PICML::Package_in package);
+  virtual void visit_Enum (PICML::Enum_in e);
+  virtual void visit_EnumValue (PICML::EnumValue_in v);
 
-  virtual void Visit_Alias (const PICML::Alias & a);
-  virtual void Visit_TemplatePackageInstance (const PICML::TemplatePackageInstance & p);
+  virtual void visit_Alias (PICML::Alias_in a);
+  virtual void visit_TemplatePackageInstance (PICML::TemplatePackageInstance_in p);
 
-  virtual void Visit_Constant (const PICML::Constant & c);
-  virtual void Visit_Collection (const PICML::Collection & c);
-  virtual void Visit_NameParameter (const PICML::NameParameter & c);
-  virtual void Visit_CollectionParameter (const PICML::CollectionParameter & c);
-  virtual void Visit_TypeParameter (const PICML::TypeParameter & c);
-  virtual void Visit_Aggregate (const PICML::Aggregate & a);
-  virtual void Visit_SwitchedAggregate (const PICML::SwitchedAggregate & a);
+  virtual void visit_Constant (PICML::Constant_in c);
+  virtual void visit_Collection (PICML::Collection_in c);
+  virtual void visit_NameParameter (PICML::NameParameter_in c);
+  virtual void visit_CollectionParameter (PICML::CollectionParameter_in c);
+  virtual void visit_TypeParameter (PICML::TypeParameter_in c);
+  virtual void visit_Aggregate (PICML::Aggregate_in a);
+  virtual void visit_SwitchedAggregate (PICML::SwitchedAggregate_in a);
 
-  virtual void Visit_Member (const PICML::Member & a);
-  virtual void Visit_ArrayMember (const PICML::ArrayMember & m);
+  virtual void visit_Member (PICML::Member_in a);
+  virtual void visit_ArrayMember (PICML::ArrayMember_in m);
 
-  virtual void Visit_LabelConnection (const PICML::LabelConnection & c);
-  virtual void Visit_Exception (const PICML::Exception & e);
-  virtual void Visit_Object (const PICML::Object & o);
-  virtual void Visit_Inherits (const PICML::Inherits & i);
-  virtual void Visit_Attribute (const PICML::Attribute & a);
-  virtual void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & a);
-  virtual void Visit_AttributeMember (const PICML::AttributeMember & m);
-  virtual void Visit_PortType (const PICML::PortType & p);
+  virtual void visit_LabelConnection (PICML::LabelConnection_in c);
+  virtual void visit_Exception (PICML::Exception_in e);
+  virtual void visit_Object (PICML::Object_in o);
+  virtual void visit_Inherits (PICML::Inherits_in i);
+  virtual void visit_Attribute (PICML::Attribute_in a);
+  virtual void visit_ReadonlyAttribute (PICML::ReadonlyAttribute_in a);
+  virtual void visit_AttributeMember (PICML::AttributeMember_in m);
+  virtual void visit_PortType (PICML::PortType_in p);
 
-  virtual void Visit_OnewayOperation (const PICML::OnewayOperation & op);
-  virtual void Visit_TwowayOperation (const PICML::TwowayOperation & op);
-  virtual void Visit_InParameter (const PICML::InParameter & p);
-  virtual void Visit_OutParameter (const PICML::OutParameter & p);
-  virtual void Visit_InoutParameter (const PICML::InoutParameter & p);
+  virtual void visit_OnewayOperation (PICML::OnewayOperation_in op);
+  virtual void visit_TwowayOperation (PICML::TwowayOperation_in op);
+  virtual void visit_InParameter (PICML::InParameter_in p);
+  virtual void visit_OutParameter (PICML::OutParameter_in p);
+  virtual void visit_InoutParameter (PICML::InoutParameter_in p);
 
-  virtual void Visit_Event (const PICML::Event & e);
-  virtual void Visit_ValueObject (const PICML::ValueObject & e);
+  virtual void visit_Event (PICML::Event_in e);
+  virtual void visit_ValueObject (PICML::ValueObject_in e);
 
-  virtual void Visit_Component (const PICML::Component & c);
-  virtual void Visit_ConnectorObject (const PICML::ConnectorObject & c);
-  virtual void Visit_ComponentFactory (const PICML::ComponentFactory & f);
+  virtual void visit_Component (PICML::Component_in c);
+  virtual void visit_ConnectorObject (PICML::ConnectorObject_in c);
+  virtual void visit_ComponentFactory (PICML::ComponentFactory_in f);
 
-  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & p);
-  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort & p);
-  virtual void Visit_InEventPort (const PICML::InEventPort & p);
-  virtual void Visit_OutEventPort (const PICML::OutEventPort & p);
-  virtual void Visit_ExtendedPort (const PICML::ExtendedPort & p);
-  virtual void Visit_MirrorPort (const PICML::MirrorPort & p);
+  virtual void visit_ProvidedRequestPort (PICML::ProvidedRequestPort_in p);
+  virtual void visit_RequiredRequestPort (PICML::RequiredRequestPort_in p);
+  virtual void visit_InEventPort (PICML::InEventPort_in p);
+  virtual void visit_OutEventPort (PICML::OutEventPort_in p);
+  virtual void visit_ExtendedPort (PICML::ExtendedPort_in p);
+  virtual void visit_MirrorPort (PICML::MirrorPort_in p);
 
-  virtual void Visit_Byte (const PICML::Byte & b);
+  virtual void visit_Byte (PICML::Byte_in b);
 
-  virtual void Visit_Char (const PICML::Char & b);
-  virtual void Visit_WideChar (const PICML::WideChar & b);
+  virtual void visit_Char (PICML::Char_in b);
+  virtual void visit_WideChar (PICML::WideChar_in b);
 
-  virtual void Visit_Boolean (const PICML::Boolean & b);
+  virtual void visit_Boolean (PICML::Boolean_in b);
 
-  virtual void Visit_String (const PICML::String & s);
-  virtual void Visit_WideString (const PICML::WideString & b);
+  virtual void visit_String (PICML::String_in s);
+  virtual void visit_WideString (PICML::WideString_in b);
 
-  virtual void Visit_UnsignedShortInteger (const PICML::UnsignedShortInteger & s);
-  virtual void Visit_UnsignedLongInteger (const PICML::UnsignedLongInteger & l);
-  virtual void Visit_UnsignedLongLongInteger (const PICML::UnsignedLongLongInteger & );
+  virtual void visit_UnsignedShortInteger (PICML::UnsignedShortInteger_in s);
+  virtual void visit_UnsignedLongInteger (PICML::UnsignedLongInteger_in l);
+  virtual void visit_UnsignedLongLongInteger (PICML::UnsignedLongLongInteger_in );
 
-  virtual void Visit_ShortInteger (const PICML::ShortInteger & s);
-  virtual void Visit_LongInteger (const PICML::LongInteger & l);
-  virtual void Visit_LongLongInteger (const PICML::LongLongInteger & );
+  virtual void visit_ShortInteger (PICML::ShortInteger_in s);
+  virtual void visit_LongInteger (PICML::LongInteger_in l);
+  virtual void visit_LongLongInteger (PICML::LongLongInteger_in );
 
-  virtual void Visit_DoubleNumber (const PICML::DoubleNumber & d);
-  virtual void Visit_FloatNumber (const PICML::FloatNumber & f);
-  virtual void Visit_LongDoubleNumber (const PICML::LongDoubleNumber &);
+  virtual void visit_DoubleNumber (PICML::DoubleNumber_in d);
+  virtual void visit_FloatNumber (PICML::FloatNumber_in f);
+  virtual void visit_LongDoubleNumber (PICML::LongDoubleNumber_in);
 
-  virtual void Visit_GenericObject (const PICML::GenericObject & f);
-  virtual void Visit_GenericValue (const PICML::GenericValue & f);
-  virtual void Visit_GenericValueObject (const PICML::GenericValueObject & v);
-  virtual void Visit_TypeEncoding (const PICML::TypeEncoding & t);
-  virtual void Visit_TypeKind (const PICML::TypeKind & t);
+  virtual void visit_GenericObject (PICML::GenericObject_in f);
+  virtual void visit_GenericValue (PICML::GenericValue_in f);
+  virtual void visit_GenericValueObject (PICML::GenericValueObject_in v);
+  virtual void visit_TypeEncoding (PICML::TypeEncoding_in t);
+  virtual void visit_TypeKind (PICML::TypeKind_in t);
 
-  virtual void Visit_LookupOperation (const PICML::LookupOperation & op);
-  virtual void Visit_FactoryOperation (const PICML::FactoryOperation & op);
+  virtual void visit_LookupOperation (PICML::LookupOperation_in op);
+  virtual void visit_FactoryOperation (PICML::FactoryOperation_in op);
 
 private:
-  void Visit_FilePackage (const Udm::Object & object);
-  void Visit_MemberType (const PICML::MemberType & mt);
-  void Visit_ConstantType (const PICML::ConstantType & ct);
-  void Visit_ParameterType (const PICML::ParameterType & pt);
-  void Visit_Provideable (const PICML::Provideable & p);
-  void Visit_EventType (const PICML::EventType & e);
-  void Visit_ObjectByValue (const PICML::ObjectByValue & obv);
-  void Visit_TemplateParameterValueType (const PICML::TemplateParameterValueType &);
-  void Visit_ExceptionType (const PICML::ExceptionType &);
+  void visit_MemberType (PICML::MemberType_in mt);
+  void visit_ConstantType (PICML::ConstantType_in ct);
+  void visit_ParameterType (PICML::ParameterType_in pt);
+  void visit_Provideable (PICML::Provideable_in p);
+  void visit_EventType (PICML::EventType_in e);
+  void visit_ObjectByValue (PICML::ObjectByValue_in obv);
+  void visit_TemplateParameterValueType (PICML::TemplateParameterValueType_in);
+  void visit_ExceptionType (const PICML::ExceptionType &);
 
   /// The source dependency graph.
   IDL_File_Dependency_Processor & depends_graph_;
@@ -260,14 +133,6 @@ private:
   bool templates_only_;
 
   bool in_event_;
-
-  PredefinedType_Dispatcher <IDL_File_Generator> pt_dispatcher_;
-  TemplateParameter_Dispatcher <IDL_File_Generator> tp_dispatcher_;
-  ParameterType_Dispatcher <IDL_File_Generator> param_dispatcher_;
-  ReadonlyAttribute_Dispatcher <IDL_File_Generator> ro_dispatcher_;
-  Port_Dispatcher <IDL_File_Generator> port_dispatcher_;
-  ExtendedPort_Dispatcher <IDL_File_Generator> extended_dispatcher_;
-  Member_Dispatcher <IDL_File_Generator> member_dispatcher_;
 };
 
 #endif  // !defined _IDL_FILE_GENERATOR_H_

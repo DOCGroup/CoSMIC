@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/NamedTypes/Label.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/LabelConnection.h"
-#include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -27,6 +27,11 @@ namespace PICML
   // metaname
   //
   const std::string SwitchedAggregate_Impl::metaname ("SwitchedAggregate");
+
+  //
+  // is_abstract
+  //
+  const bool SwitchedAggregate_Impl::is_abstract = false;
 
   //
   // _create (const HasOperations_in)

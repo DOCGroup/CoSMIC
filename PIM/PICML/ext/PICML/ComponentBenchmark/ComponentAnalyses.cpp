@@ -22,6 +22,11 @@ namespace PICML
   const std::string ComponentAnalyses_Impl::metaname ("ComponentAnalyses");
 
   //
+  // is_abstract
+  //
+  const bool ComponentAnalyses_Impl::is_abstract = false;
+
+  //
   // _create (const ::GAME::Mga::RootFolder_in)
   //
   ComponentAnalyses ComponentAnalyses_Impl::_create (const ::GAME::Mga::RootFolder_in parent)

@@ -24,6 +24,11 @@ namespace PICML
   const std::string AttributeDelegate_Impl::metaname ("AttributeDelegate");
 
   //
+  // is_abstract
+  //
+  const bool AttributeDelegate_Impl::is_abstract = false;
+
+  //
   // _create (const ComponentAssembly_in, AttributeMapping_in src, AttributeInstance_in dst)
   //
   AttributeDelegate AttributeDelegate_Impl::_create (const ComponentAssembly_in parent, AttributeMapping_in src, AttributeInstance_in dst)

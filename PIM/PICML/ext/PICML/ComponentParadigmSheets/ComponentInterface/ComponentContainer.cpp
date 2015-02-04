@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,6 +28,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentContainer_Impl::metaname ("ComponentContainer");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentContainer_Impl::is_abstract = false;
 
   //
   // _create (const ComponentTypes_in)
@@ -76,6 +81,22 @@ namespace PICML
   }
 
   //
+  // get_ComponentPropertyDescriptions
+  //
+  size_t ComponentContainer_Impl::get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentPropertyDescriptions
+  //
+  ::GAME::Mga::Collection_T <ComponentPropertyDescription> ComponentContainer_Impl::get_ComponentPropertyDescriptions (void) const
+  {
+    return this->children <ComponentPropertyDescription> ();
+  }
+
+  //
   // get_ComplexPropertys
   //
   size_t ComponentContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
@@ -108,19 +129,19 @@ namespace PICML
   }
 
   //
-  // get_ComponentPropertyDescriptions
+  // get_ComponentConfigPropertys
   //
-  size_t ComponentContainer_Impl::get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const
+  size_t ComponentContainer_Impl::get_ComponentConfigPropertys (std::vector <ComponentConfigProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ComponentPropertyDescriptions
+  // get_ComponentConfigPropertys
   //
-  ::GAME::Mga::Collection_T <ComponentPropertyDescription> ComponentContainer_Impl::get_ComponentPropertyDescriptions (void) const
+  ::GAME::Mga::Collection_T <ComponentConfigProperty> ComponentContainer_Impl::get_ComponentConfigPropertys (void) const
   {
-    return this->children <ComponentPropertyDescription> ();
+    return this->children <ComponentConfigProperty> ();
   }
 
   //
@@ -137,22 +158,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentInfoProperty> ComponentContainer_Impl::get_ComponentInfoPropertys (void) const
   {
     return this->children <ComponentInfoProperty> ();
-  }
-
-  //
-  // get_ComponentConfigPropertys
-  //
-  size_t ComponentContainer_Impl::get_ComponentConfigPropertys (std::vector <ComponentConfigProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentConfigPropertys
-  //
-  ::GAME::Mga::Collection_T <ComponentConfigProperty> ComponentContainer_Impl::get_ComponentConfigPropertys (void) const
-  {
-    return this->children <ComponentConfigProperty> ();
   }
 
   //

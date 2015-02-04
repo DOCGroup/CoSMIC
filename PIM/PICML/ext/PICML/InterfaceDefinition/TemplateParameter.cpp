@@ -21,6 +21,11 @@ namespace PICML
   const std::string TemplateParameter_Impl::metaname ("TemplateParameter");
 
   //
+  // is_abstract
+  //
+  const bool TemplateParameter_Impl::is_abstract = true;
+
+  //
   // parent_Package
   //
   Package TemplateParameter_Impl::parent_Package (void)

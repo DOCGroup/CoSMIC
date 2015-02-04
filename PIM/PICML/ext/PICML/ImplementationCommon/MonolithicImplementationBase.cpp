@@ -20,6 +20,11 @@ namespace PICML
   const std::string MonolithicImplementationBase_Impl::metaname ("MonolithicImplementationBase");
 
   //
+  // is_abstract
+  //
+  const bool MonolithicImplementationBase_Impl::is_abstract = true;
+
+  //
   // src_of_MonolithExecParameter
   //
   size_t MonolithicImplementationBase_Impl::src_of_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const

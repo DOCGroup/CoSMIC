@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,17 +24,22 @@ namespace DQML
   const std::string TopicQosReference_Impl::metaname ("TopicQosReference");
 
   //
-  // _create (const DataWriterQos_in)
+  // is_abstract
   //
-  TopicQosReference TopicQosReference_Impl::_create (const DataWriterQos_in parent)
-  {
-    return ::GAME::Mga::create < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
-  }
+  const bool TopicQosReference_Impl::is_abstract = false;
 
   //
   // _create (const DataReaderQos_in)
   //
   TopicQosReference TopicQosReference_Impl::_create (const DataReaderQos_in parent)
+  {
+    return ::GAME::Mga::create < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
+  }
+
+  //
+  // _create (const DataWriterQos_in)
+  //
+  TopicQosReference TopicQosReference_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create < TopicQosReference > (parent, TopicQosReference_Impl::metaname);
   }
@@ -54,19 +59,19 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
-  //
-  DataWriterQos TopicQosReference_Impl::parent_DataWriterQos (void)
-  {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos TopicQosReference_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos TopicQosReference_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
   }
 
   //

@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -23,6 +23,11 @@ namespace PICML
   // metaname
   //
   const std::string EventSourceDelegate_Impl::metaname ("EventSourceDelegate");
+
+  //
+  // is_abstract
+  //
+  const bool EventSourceDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, OutEventPortEnd_in src, OutEventPortDelegate_in dst)

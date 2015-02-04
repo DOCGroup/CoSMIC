@@ -24,6 +24,11 @@ namespace PICML
   const std::string EventRef_Impl::metaname ("EventRef");
 
   //
+  // is_abstract
+  //
+  const bool EventRef_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in)
   //
   EventRef EventRef_Impl::_create (const BenchmarkAnalysis_in parent)

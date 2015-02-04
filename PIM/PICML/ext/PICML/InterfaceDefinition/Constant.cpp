@@ -8,39 +8,39 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Package.h"
+#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
+#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
+#include "PICML/InterfaceDefinition/File.h"
 #include "PICML/InterfaceDefinition/ConstantType.h"
-#include "PICML/NamedTypes/Enum.h"
-#include "PICML/PredefinedTypes/CharType.h"
-#include "PICML/PredefinedTypes/Char.h"
-#include "PICML/PredefinedTypes/WideChar.h"
-#include "PICML/PredefinedTypes/StringType.h"
-#include "PICML/PredefinedTypes/WideString.h"
-#include "PICML/PredefinedTypes/String.h"
-#include "PICML/PredefinedTypes/IntegerType.h"
-#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
-#include "PICML/PredefinedTypes/UnsignedShortInteger.h"
-#include "PICML/PredefinedTypes/UnsignedLongInteger.h"
-#include "PICML/PredefinedTypes/UnsignedLongLongInteger.h"
-#include "PICML/PredefinedTypes/SignedIntegerType.h"
-#include "PICML/PredefinedTypes/LongLongInteger.h"
-#include "PICML/PredefinedTypes/LongInteger.h"
-#include "PICML/PredefinedTypes/ShortInteger.h"
 #include "PICML/PredefinedTypes/FloatingPointType.h"
 #include "PICML/PredefinedTypes/LongDoubleNumber.h"
 #include "PICML/PredefinedTypes/DoubleNumber.h"
 #include "PICML/PredefinedTypes/FloatNumber.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
+#include "PICML/NamedTypes/Enum.h"
+#include "PICML/PredefinedTypes/CharType.h"
+#include "PICML/PredefinedTypes/Char.h"
+#include "PICML/PredefinedTypes/WideChar.h"
+#include "PICML/PredefinedTypes/StringType.h"
+#include "PICML/PredefinedTypes/String.h"
+#include "PICML/PredefinedTypes/WideString.h"
+#include "PICML/PredefinedTypes/IntegerType.h"
+#include "PICML/PredefinedTypes/UnsignedIntegerType.h"
+#include "PICML/PredefinedTypes/UnsignedShortInteger.h"
+#include "PICML/PredefinedTypes/UnsignedLongInteger.h"
+#include "PICML/PredefinedTypes/UnsignedLongLongInteger.h"
+#include "PICML/PredefinedTypes/SignedIntegerType.h"
+#include "PICML/PredefinedTypes/LongInteger.h"
+#include "PICML/PredefinedTypes/ShortInteger.h"
+#include "PICML/PredefinedTypes/LongLongInteger.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/InterfaceDefinition/Package.h"
-#include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
-#include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
-#include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -54,12 +54,9 @@ namespace PICML
   const std::string Constant_Impl::metaname ("Constant");
 
   //
-  // _create (const HasOperations_in)
+  // is_abstract
   //
-  Constant Constant_Impl::_create (const HasOperations_in parent)
-  {
-    return ::GAME::Mga::create < Constant > (parent, Constant_Impl::metaname);
-  }
+  const bool Constant_Impl::is_abstract = false;
 
   //
   // _create (const Package_in)
@@ -73,6 +70,14 @@ namespace PICML
   // _create (const File_in)
   //
   Constant Constant_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create < Constant > (parent, Constant_Impl::metaname);
+  }
+
+  //
+  // _create (const HasOperations_in)
+  //
+  Constant Constant_Impl::_create (const HasOperations_in parent)
   {
     return ::GAME::Mga::create < Constant > (parent, Constant_Impl::metaname);
   }
@@ -92,14 +97,6 @@ namespace PICML
   }
 
   //
-  // parent_HasOperations
-  //
-  HasOperations Constant_Impl::parent_HasOperations (void)
-  {
-    return HasOperations::_narrow (this->parent ());
-  }
-
-  //
   // parent_Package
   //
   Package Constant_Impl::parent_Package (void)
@@ -113,6 +110,14 @@ namespace PICML
   File Constant_Impl::parent_File (void)
   {
     return File::_narrow (this->parent ());
+  }
+
+  //
+  // parent_HasOperations
+  //
+  HasOperations Constant_Impl::parent_HasOperations (void)
+  {
+    return HasOperations::_narrow (this->parent ());
   }
 
   //

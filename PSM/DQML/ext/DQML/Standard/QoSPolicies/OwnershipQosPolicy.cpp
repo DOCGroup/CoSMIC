@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,9 +28,14 @@ namespace DQML
   const std::string OwnershipQosPolicy_Impl::metaname ("OwnershipQosPolicy");
 
   //
-  // _create (const TopicQos_in)
+  // is_abstract
   //
-  OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const TopicQos_in parent)
+  const bool OwnershipQosPolicy_Impl::is_abstract = false;
+
+  //
+  // _create (const DataReaderQos_in)
+  //
+  OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
   }
@@ -44,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  OwnershipQosPolicy OwnershipQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < OwnershipQosPolicy > (parent, OwnershipQosPolicy_Impl::metaname);
   }
@@ -74,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos OwnershipQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos OwnershipQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -90,11 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos OwnershipQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos OwnershipQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return TopicQos::_narrow (this->parent ());
   }
 
   //

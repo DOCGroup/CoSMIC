@@ -47,6 +47,9 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -81,11 +84,8 @@ namespace DQML
     bool has_LivelinessQosPolicy (void) const;
     LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
 
-    bool has_ResourceLimitsQosPolicy (void) const;
-    ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
-
-    bool has_DurabilityQosPolicy (void) const;
-    DurabilityQosPolicy get_DurabilityQosPolicy (void) const;
+    bool has_OwnershipQosPolicy (void) const;
+    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
 
     bool has_DeadlineQosPolicy (void) const;
     DeadlineQosPolicy get_DeadlineQosPolicy (void) const;
@@ -93,17 +93,8 @@ namespace DQML
     bool has_LatencyBudgetQosPolicy (void) const;
     LatencyBudgetQosPolicy get_LatencyBudgetQosPolicy (void) const;
 
-    bool has_OwnershipQosPolicy (void) const;
-    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
-
-    bool has_ReliabilityQosPolicy (void) const;
-    ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
-
-    bool has_DestinationOrderQosPolicy (void) const;
-    DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
-
-    bool has_HistoryQosPolicy (void) const;
-    HistoryQosPolicy get_HistoryQosPolicy (void) const;
+    bool has_DurabilityQosPolicy (void) const;
+    DurabilityQosPolicy get_DurabilityQosPolicy (void) const;
 
     bool has_LifespanQosPolicy (void) const;
     LifespanQosPolicy get_LifespanQosPolicy (void) const;
@@ -111,11 +102,23 @@ namespace DQML
     bool has_TransportPriorityQosPolicy (void) const;
     TransportPriorityQosPolicy get_TransportPriorityQosPolicy (void) const;
 
+    bool has_TopicDataQosPolicy (void) const;
+    TopicDataQosPolicy get_TopicDataQosPolicy (void) const;
+
     bool has_DurabilityServiceQosPolicy (void) const;
     DurabilityServiceQosPolicy get_DurabilityServiceQosPolicy (void) const;
 
-    bool has_TopicDataQosPolicy (void) const;
-    TopicDataQosPolicy get_TopicDataQosPolicy (void) const;
+    bool has_ResourceLimitsQosPolicy (void) const;
+    ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
+
+    bool has_HistoryQosPolicy (void) const;
+    HistoryQosPolicy get_HistoryQosPolicy (void) const;
+
+    bool has_DestinationOrderQosPolicy (void) const;
+    DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
+
+    bool has_ReliabilityQosPolicy (void) const;
+    ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
     ///@}
   };
 }

@@ -19,6 +19,11 @@ namespace PICML
   const std::string AssemblyConfigPropertyEnd_Impl::metaname ("AssemblyConfigPropertyEnd");
 
   //
+  // is_abstract
+  //
+  const bool AssemblyConfigPropertyEnd_Impl::is_abstract = true;
+
+  //
   // src_of_AssemblyselectRequirement
   //
   size_t AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const

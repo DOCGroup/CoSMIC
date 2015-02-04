@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/OperationTypes/OutParameter.h"
 #include "PICML/OperationTypes/InoutParameter.h"
@@ -29,6 +29,11 @@ namespace PICML
   // metaname
   //
   const std::string TwowayOperation_Impl::metaname ("TwowayOperation");
+
+  //
+  // is_abstract
+  //
+  const bool TwowayOperation_Impl::is_abstract = false;
 
   //
   // _create (const HasOperations_in)

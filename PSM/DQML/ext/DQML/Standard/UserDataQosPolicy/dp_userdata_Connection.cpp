@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
 #include "DQML/Standard/DDSEntities/DomainParticipant.h"
+#include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace DQML
   // metaname
   //
   const std::string dp_userdata_Connection_Impl::metaname ("dp_userdata_Connection");
+
+  //
+  // is_abstract
+  //
+  const bool dp_userdata_Connection_Impl::is_abstract = false;
 
   //
   // _create (const DDSQoS_in, DomainParticipant_in src, UserDataQosPolicy_in dst)

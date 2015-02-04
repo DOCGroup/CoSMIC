@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TargetElements/SharedResource.h"
-#include "PICML/TargetElements/Node.h"
 #include "PICML/Domain/Domain.h"
+#include "PICML/TargetElements/Node.h"
+#include "PICML/TargetElements/SharedResource.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string Shares_Impl::metaname ("Shares");
+
+  //
+  // is_abstract
+  //
+  const bool Shares_Impl::is_abstract = false;
 
   //
   // _create (const Domain_in, Node_in src, SharedResource_in dst)

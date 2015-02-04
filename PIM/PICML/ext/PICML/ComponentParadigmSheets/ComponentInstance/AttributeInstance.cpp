@@ -28,6 +28,11 @@ namespace PICML
   const std::string AttributeInstance_Impl::metaname ("AttributeInstance");
 
   //
+  // is_abstract
+  //
+  const bool AttributeInstance_Impl::is_abstract = false;
+
+  //
   // _create (const ConnectorInstance_in)
   //
   AttributeInstance AttributeInstance_Impl::_create (const ConnectorInstance_in parent)

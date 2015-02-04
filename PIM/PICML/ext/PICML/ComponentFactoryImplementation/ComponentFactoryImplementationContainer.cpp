@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementations.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace PICML
   // metaname
   //
   const std::string ComponentFactoryImplementationContainer_Impl::metaname ("ComponentFactoryImplementationContainer");
+
+  //
+  // is_abstract
+  //
+  const bool ComponentFactoryImplementationContainer_Impl::is_abstract = false;
 
   //
   // _create (const ComponentFactoryImplementations_in)

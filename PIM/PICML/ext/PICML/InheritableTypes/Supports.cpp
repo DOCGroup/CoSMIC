@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,6 +27,11 @@ namespace PICML
   // metaname
   //
   const std::string Supports_Impl::metaname ("Supports");
+
+  //
+  // is_abstract
+  //
+  const bool Supports_Impl::is_abstract = false;
 
   //
   // _create (const SupportsInterfaces_in)

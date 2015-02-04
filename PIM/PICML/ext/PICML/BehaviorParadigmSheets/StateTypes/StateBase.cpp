@@ -24,6 +24,11 @@ namespace PICML
   const std::string StateBase_Impl::metaname ("StateBase");
 
   //
+  // is_abstract
+  //
+  const bool StateBase_Impl::is_abstract = true;
+
+  //
   // parent_BehaviorModel
   //
   BehaviorModel StateBase_Impl::parent_BehaviorModel (void)

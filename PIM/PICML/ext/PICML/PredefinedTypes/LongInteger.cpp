@@ -22,6 +22,11 @@ namespace PICML
   const std::string LongInteger_Impl::metaname ("LongInteger");
 
   //
+  // is_abstract
+  //
+  const bool LongInteger_Impl::is_abstract = false;
+
+  //
   // _create (const PredefinedTypes_in)
   //
   LongInteger LongInteger_Impl::_create (const PredefinedTypes_in parent)

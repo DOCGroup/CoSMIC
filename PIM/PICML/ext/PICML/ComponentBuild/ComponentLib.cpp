@@ -19,6 +19,11 @@ namespace PICML
   const std::string ComponentLib_Impl::metaname ("ComponentLib");
 
   //
+  // is_abstract
+  //
+  const bool ComponentLib_Impl::is_abstract = true;
+
+  //
   // parent_Project
   //
   Project ComponentLib_Impl::parent_Project (void)

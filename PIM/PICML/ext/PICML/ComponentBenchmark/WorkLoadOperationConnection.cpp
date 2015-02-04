@@ -24,6 +24,11 @@ namespace PICML
   const std::string WorkLoadOperationConnection_Impl::metaname ("WorkLoadOperationConnection");
 
   //
+  // is_abstract
+  //
+  const bool WorkLoadOperationConnection_Impl::is_abstract = false;
+
+  //
   // _create (const BenchmarkAnalysis_in, OperationRef_in src, Task_in dst)
   //
   WorkLoadOperationConnection WorkLoadOperationConnection_Impl::_create (const BenchmarkAnalysis_in parent, OperationRef_in src, Task_in dst)

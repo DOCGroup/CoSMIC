@@ -23,6 +23,11 @@ namespace DQML
   const std::string SchedulingQosPolicy_Impl::metaname ("SchedulingQosPolicy");
 
   //
+  // is_abstract
+  //
+  const bool SchedulingQosPolicy_Impl::is_abstract = false;
+
+  //
   // accept
   //
   void SchedulingQosPolicy_Impl::accept (::GAME::Mga::Visitor * v)

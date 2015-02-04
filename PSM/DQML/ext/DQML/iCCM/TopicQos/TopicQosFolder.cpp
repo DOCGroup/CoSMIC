@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/iCCM/iCCM/iCCM.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace DQML
   // metaname
   //
   const std::string TopicQosFolder_Impl::metaname ("TopicQosFolder");
+
+  //
+  // is_abstract
+  //
+  const bool TopicQosFolder_Impl::is_abstract = false;
 
   //
   // _create (const iCCM_in)

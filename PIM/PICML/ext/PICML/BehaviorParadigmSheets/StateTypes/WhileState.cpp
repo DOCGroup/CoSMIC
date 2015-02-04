@@ -22,6 +22,11 @@ namespace PICML
   const std::string WhileState_Impl::metaname ("WhileState");
 
   //
+  // is_abstract
+  //
+  const bool WhileState_Impl::is_abstract = false;
+
+  //
   // _create (const BehaviorModel_in)
   //
   WhileState WhileState_Impl::_create (const BehaviorModel_in parent)

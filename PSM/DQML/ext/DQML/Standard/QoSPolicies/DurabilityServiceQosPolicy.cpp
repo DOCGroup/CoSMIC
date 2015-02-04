@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h"
 #include "DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -23,6 +23,11 @@ namespace DQML
   // metaname
   //
   const std::string DurabilityServiceQosPolicy_Impl::metaname ("DurabilityServiceQosPolicy");
+
+  //
+  // is_abstract
+  //
+  const bool DurabilityServiceQosPolicy_Impl::is_abstract = false;
 
   //
   // _create (const TopicQos_in)

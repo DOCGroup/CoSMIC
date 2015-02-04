@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -21,6 +21,11 @@ namespace PICML
   // metaname
   //
   const std::string ConnectorImplementationType_Impl::metaname ("ConnectorImplementationType");
+
+  //
+  // is_abstract
+  //
+  const bool ConnectorImplementationType_Impl::is_abstract = false;
 
   //
   // _create (const ConnectorInstance_in)

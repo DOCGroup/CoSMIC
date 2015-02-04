@@ -49,13 +49,16 @@ namespace DQML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static ReliabilityQosPolicy _create (const TopicQos_in parent);
-    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
     static ReliabilityQosPolicy _create (const DataReaderQos_in parent);
+    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
+    static ReliabilityQosPolicy _create (const TopicQos_in parent);
     static ReliabilityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -75,9 +78,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    TopicQos parent_TopicQos (void);
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -113,13 +116,13 @@ namespace DQML
     size_t dst_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
     GAME::Mga::Collection_T <dr_reliability_Connection> dst_of_dr_reliability_Connection (void) const;
 
-    /// Get the dst topic_reliability_Connection connection.
-    size_t dst_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_reliability_Connection> dst_of_topic_reliability_Connection (void) const;
-
     /// Get the dst dw_reliability_Connection connection.
     size_t dst_of_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
     GAME::Mga::Collection_T <dw_reliability_Connection> dst_of_dw_reliability_Connection (void) const;
+
+    /// Get the dst topic_reliability_Connection connection.
+    size_t dst_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_reliability_Connection> dst_of_topic_reliability_Connection (void) const;
     ///@}
   };
 }

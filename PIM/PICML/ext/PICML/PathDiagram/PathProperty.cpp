@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/Paths.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/PathDiagram/Path.h"
-#include "PICML/PathDiagram/Paths.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -24,6 +24,11 @@ namespace PICML
   // metaname
   //
   const std::string PathProperty_Impl::metaname ("PathProperty");
+
+  //
+  // is_abstract
+  //
+  const bool PathProperty_Impl::is_abstract = false;
 
   //
   // _create (const Paths_in, Path_in src, Property_in dst)

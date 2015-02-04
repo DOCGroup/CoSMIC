@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,6 +30,11 @@ namespace PICML
   // metaname
   //
   const std::string MonolithprimaryArtifact_Impl::metaname ("MonolithprimaryArtifact");
+
+  //
+  // is_abstract
+  //
+  const bool MonolithprimaryArtifact_Impl::is_abstract = false;
 
   //
   // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, ImplementationArtifactReference_in dst)

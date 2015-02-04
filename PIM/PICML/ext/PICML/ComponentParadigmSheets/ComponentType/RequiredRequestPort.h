@@ -51,14 +51,17 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
     static RequiredRequestPort _create (const PortType_in parent);
     static RequiredRequestPort _create (const ConnectorObject_in parent);
-    static RequiredRequestPort _create (const Component_in parent);
     static RequiredRequestPort _create (const ConnectedComponent_in parent);
+    static RequiredRequestPort _create (const Component_in parent);
     static RequiredRequestPort _create (const Path_in parent);
     ///@}
 

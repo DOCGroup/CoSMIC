@@ -10,11 +10,11 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,6 +26,11 @@ namespace PICML
   // metaname
   //
   const std::string Inherits_Impl::metaname ("Inherits");
+
+  //
+  // is_abstract
+  //
+  const bool Inherits_Impl::is_abstract = false;
 
   //
   // _create (const Inheritable_in)

@@ -11,10 +11,10 @@
 #include "PICML/BehaviorParadigmSheets/InputHooks/Environment.h"
 #include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
 #include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/Input.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
 
 namespace PICML
 {
@@ -22,6 +22,11 @@ namespace PICML
   // metaname
   //
   const std::string TopLevelBehavior_Impl::metaname ("TopLevelBehavior");
+
+  //
+  // is_abstract
+  //
+  const bool TopLevelBehavior_Impl::is_abstract = true;
 
   //
   // has_Environment
@@ -72,6 +77,22 @@ namespace PICML
   }
 
   //
+  // get_WorkerTypes
+  //
+  size_t TopLevelBehavior_Impl::get_WorkerTypes (std::vector <WorkerType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_WorkerTypes
+  //
+  ::GAME::Mga::Collection_T <WorkerType> TopLevelBehavior_Impl::get_WorkerTypes (void) const
+  {
+    return this->children <WorkerType> ();
+  }
+
+  //
   // get_QueryInputs
   //
   size_t TopLevelBehavior_Impl::get_QueryInputs (std::vector <QueryInput> & items) const
@@ -117,22 +138,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Input> TopLevelBehavior_Impl::get_Inputs (void) const
   {
     return this->children <Input> ();
-  }
-
-  //
-  // get_WorkerTypes
-  //
-  size_t TopLevelBehavior_Impl::get_WorkerTypes (std::vector <WorkerType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_WorkerTypes
-  //
-  ::GAME::Mga::Collection_T <WorkerType> TopLevelBehavior_Impl::get_WorkerTypes (void) const
-  {
-    return this->children <WorkerType> ();
   }
 }
 

@@ -47,14 +47,17 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
     ///@{
-    static Member _create (const Exception_in parent);
-    static Member _create (const Aggregate_in parent);
-    static Member _create (const ObjectByValue_in parent);
     static Member _create (const SwitchedAggregate_in parent);
+    static Member _create (const ObjectByValue_in parent);
+    static Member _create (const Aggregate_in parent);
+    static Member _create (const Exception_in parent);
     ///@}
 
     // Default constructor.
@@ -73,10 +76,10 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Exception parent_Exception (void);
-    Aggregate parent_Aggregate (void);
-    ObjectByValue parent_ObjectByValue (void);
     SwitchedAggregate parent_SwitchedAggregate (void);
+    ObjectByValue parent_ObjectByValue (void);
+    Aggregate parent_Aggregate (void);
+    Exception parent_Exception (void);
     ///@}
 
     /**

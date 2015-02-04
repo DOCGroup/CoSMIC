@@ -19,6 +19,11 @@ namespace PICML
   const std::string OutEventPortEnd_Impl::metaname ("OutEventPortEnd");
 
   //
+  // is_abstract
+  //
+  const bool OutEventPortEnd_Impl::is_abstract = true;
+
+  //
   // src_of_EventSourceDelegate
   //
   size_t OutEventPortEnd_Impl::src_of_EventSourceDelegate (std::vector <EventSourceDelegate> & items) const

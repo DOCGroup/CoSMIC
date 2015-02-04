@@ -47,6 +47,9 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
+    /// Identifier if this class is an abstract type in GME
+    static const bool is_abstract;
+
     /**
      * @name Factory Methods
      */
@@ -88,13 +91,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst DstEdge connection.
-    size_t dst_of_DstEdge (std::vector <DstEdge> & items) const;
-    GAME::Mga::Collection_T <DstEdge> dst_of_DstEdge (void) const;
-
     /// Get the dst EdgeProperty connection.
     size_t dst_of_EdgeProperty (std::vector <EdgeProperty> & items) const;
     GAME::Mga::Collection_T <EdgeProperty> dst_of_EdgeProperty (void) const;
+
+    /// Get the dst DstEdge connection.
+    size_t dst_of_DstEdge (std::vector <DstEdge> & items) const;
+    GAME::Mga::Collection_T <DstEdge> dst_of_DstEdge (void) const;
     ///@}
   };
 }

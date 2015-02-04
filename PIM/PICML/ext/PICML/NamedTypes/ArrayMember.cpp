@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,17 +25,14 @@ namespace PICML
   const std::string ArrayMember_Impl::metaname ("ArrayMember");
 
   //
-  // _create (const Exception_in)
+  // is_abstract
   //
-  ArrayMember ArrayMember_Impl::_create (const Exception_in parent)
-  {
-    return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
-  }
+  const bool ArrayMember_Impl::is_abstract = false;
 
   //
-  // _create (const Aggregate_in)
+  // _create (const SwitchedAggregate_in)
   //
-  ArrayMember ArrayMember_Impl::_create (const Aggregate_in parent)
+  ArrayMember ArrayMember_Impl::_create (const SwitchedAggregate_in parent)
   {
     return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }
@@ -49,9 +46,17 @@ namespace PICML
   }
 
   //
-  // _create (const SwitchedAggregate_in)
+  // _create (const Aggregate_in)
   //
-  ArrayMember ArrayMember_Impl::_create (const SwitchedAggregate_in parent)
+  ArrayMember ArrayMember_Impl::_create (const Aggregate_in parent)
+  {
+    return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
+  }
+
+  //
+  // _create (const Exception_in)
+  //
+  ArrayMember ArrayMember_Impl::_create (const Exception_in parent)
   {
     return ::GAME::Mga::create < ArrayMember > (parent, ArrayMember_Impl::metaname);
   }

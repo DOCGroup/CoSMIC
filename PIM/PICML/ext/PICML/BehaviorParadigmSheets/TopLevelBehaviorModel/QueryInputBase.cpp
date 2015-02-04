@@ -18,6 +18,11 @@ namespace PICML
   const std::string QueryInputBase_Impl::metaname ("QueryInputBase");
 
   //
+  // is_abstract
+  //
+  const bool QueryInputBase_Impl::is_abstract = true;
+
+  //
   // src_of_QueryInput
   //
   size_t QueryInputBase_Impl::src_of_QueryInput (std::vector <QueryInput> & items) const

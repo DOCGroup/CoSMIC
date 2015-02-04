@@ -8,25 +8,24 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
-#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/BehaviorParadigmSheets/Terminals/Terminal.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/StateBase.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/WhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/DoWhileState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/ForState.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/State.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
@@ -34,6 +33,7 @@
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
+#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 
 namespace PICML
@@ -44,35 +44,40 @@ namespace PICML
   const std::string BehaviorModel_Impl::metaname ("BehaviorModel");
 
   //
-  // get_QueryInputActions
+  // is_abstract
   //
-  size_t BehaviorModel_Impl::get_QueryInputActions (std::vector <QueryInputAction> & items) const
+  const bool BehaviorModel_Impl::is_abstract = true;
+
+  //
+  // get_MultiInputActions
+  //
+  size_t BehaviorModel_Impl::get_MultiInputActions (std::vector <MultiInputAction> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_QueryInputActions
+  // get_MultiInputActions
   //
-  ::GAME::Mga::Collection_T <QueryInputAction> BehaviorModel_Impl::get_QueryInputActions (void) const
+  ::GAME::Mga::Collection_T <MultiInputAction> BehaviorModel_Impl::get_MultiInputActions (void) const
   {
-    return this->children <QueryInputAction> ();
+    return this->children <MultiInputAction> ();
   }
 
   //
-  // get_CallActions
+  // get_InputActions
   //
-  size_t BehaviorModel_Impl::get_CallActions (std::vector <CallAction> & items) const
+  size_t BehaviorModel_Impl::get_InputActions (std::vector <InputAction> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_CallActions
+  // get_InputActions
   //
-  ::GAME::Mga::Collection_T <CallAction> BehaviorModel_Impl::get_CallActions (void) const
+  ::GAME::Mga::Collection_T <InputAction> BehaviorModel_Impl::get_InputActions (void) const
   {
-    return this->children <CallAction> ();
+    return this->children <InputAction> ();
   }
 
   //
@@ -140,51 +145,35 @@ namespace PICML
   }
 
   //
-  // get_MultiInputActions
+  // get_CallActions
   //
-  size_t BehaviorModel_Impl::get_MultiInputActions (std::vector <MultiInputAction> & items) const
+  size_t BehaviorModel_Impl::get_CallActions (std::vector <CallAction> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MultiInputActions
+  // get_CallActions
   //
-  ::GAME::Mga::Collection_T <MultiInputAction> BehaviorModel_Impl::get_MultiInputActions (void) const
+  ::GAME::Mga::Collection_T <CallAction> BehaviorModel_Impl::get_CallActions (void) const
   {
-    return this->children <MultiInputAction> ();
+    return this->children <CallAction> ();
   }
 
   //
-  // get_InputActions
+  // get_QueryInputActions
   //
-  size_t BehaviorModel_Impl::get_InputActions (std::vector <InputAction> & items) const
+  size_t BehaviorModel_Impl::get_QueryInputActions (std::vector <QueryInputAction> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_InputActions
+  // get_QueryInputActions
   //
-  ::GAME::Mga::Collection_T <InputAction> BehaviorModel_Impl::get_InputActions (void) const
+  ::GAME::Mga::Collection_T <QueryInputAction> BehaviorModel_Impl::get_QueryInputActions (void) const
   {
-    return this->children <InputAction> ();
-  }
-
-  //
-  // get_TerminalTransitions
-  //
-  size_t BehaviorModel_Impl::get_TerminalTransitions (std::vector <TerminalTransition> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TerminalTransitions
-  //
-  ::GAME::Mga::Collection_T <TerminalTransition> BehaviorModel_Impl::get_TerminalTransitions (void) const
-  {
-    return this->children <TerminalTransition> ();
+    return this->children <QueryInputAction> ();
   }
 
   //
@@ -201,22 +190,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Terminal> BehaviorModel_Impl::get_Terminals (void) const
   {
     return this->children <Terminal> ();
-  }
-
-  //
-  // get_States
-  //
-  size_t BehaviorModel_Impl::get_States (std::vector <State> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_States
-  //
-  ::GAME::Mga::Collection_T <State> BehaviorModel_Impl::get_States (void) const
-  {
-    return this->children <State> ();
   }
 
   //
@@ -281,6 +254,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <BranchState> BehaviorModel_Impl::get_BranchStates (void) const
   {
     return this->children <BranchState> ();
+  }
+
+  //
+  // get_States
+  //
+  size_t BehaviorModel_Impl::get_States (std::vector <State> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_States
+  //
+  ::GAME::Mga::Collection_T <State> BehaviorModel_Impl::get_States (void) const
+  {
+    return this->children <State> ();
   }
 
   //
@@ -393,6 +382,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Transition> BehaviorModel_Impl::get_Transitions (void) const
   {
     return this->children <Transition> ();
+  }
+
+  //
+  // get_TerminalTransitions
+  //
+  size_t BehaviorModel_Impl::get_TerminalTransitions (std::vector <TerminalTransition> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_TerminalTransitions
+  //
+  ::GAME::Mga::Collection_T <TerminalTransition> BehaviorModel_Impl::get_TerminalTransitions (void) const
+  {
+    return this->children <TerminalTransition> ();
   }
 
   //

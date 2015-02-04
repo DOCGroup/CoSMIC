@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 
 namespace PICML
 {
@@ -22,27 +22,16 @@ namespace PICML
   const std::string ComponentImplementation_Impl::metaname ("ComponentImplementation");
 
   //
+  // is_abstract
+  //
+  const bool ComponentImplementation_Impl::is_abstract = true;
+
+  //
   // parent_ComponentImplementationContainer
   //
   ComponentImplementationContainer ComponentImplementation_Impl::parent_ComponentImplementationContainer (void)
   {
     return ComponentImplementationContainer::_narrow (this->parent ());
-  }
-
-  //
-  // src_of_Implements
-  //
-  size_t ComponentImplementation_Impl::src_of_Implements (std::vector <Implements> & items) const
-  {
-    return this->in_connections <Implements> (items);
-  }
-
-  //
-  // src_of_Implements
-  //
-  GAME::Mga::Collection_T <Implements> ComponentImplementation_Impl::src_of_Implements (void) const
-  {
-    return this->in_connections <Implements> ("src");
   }
 
   //
@@ -75,6 +64,22 @@ namespace PICML
   GAME::Mga::Collection_T <ImplementationCapability> ComponentImplementation_Impl::src_of_ImplementationCapability (void) const
   {
     return this->in_connections <ImplementationCapability> ("src");
+  }
+
+  //
+  // src_of_Implements
+  //
+  size_t ComponentImplementation_Impl::src_of_Implements (std::vector <Implements> & items) const
+  {
+    return this->in_connections <Implements> (items);
+  }
+
+  //
+  // src_of_Implements
+  //
+  GAME::Mga::Collection_T <Implements> ComponentImplementation_Impl::src_of_Implements (void) const
+  {
+    return this->in_connections <Implements> ("src");
   }
 }
 

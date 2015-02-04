@@ -11,9 +11,9 @@
 #include "PICML/OperationTypes/OperationBase.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,6 +26,11 @@ namespace PICML
   // metaname
   //
   const std::string InParameter_Impl::metaname ("InParameter");
+
+  //
+  // is_abstract
+  //
+  const bool InParameter_Impl::is_abstract = false;
 
   //
   // _create (const OperationBase_in)

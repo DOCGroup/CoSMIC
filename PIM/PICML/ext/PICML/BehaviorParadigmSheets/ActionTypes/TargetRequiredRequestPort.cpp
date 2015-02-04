@@ -23,6 +23,11 @@ namespace PICML
   const std::string TargetRequiredRequestPort_Impl::metaname ("TargetRequiredRequestPort");
 
   //
+  // is_abstract
+  //
+  const bool TargetRequiredRequestPort_Impl::is_abstract = false;
+
+  //
   // _create (const CallAction_in)
   //
   TargetRequiredRequestPort TargetRequiredRequestPort_Impl::_create (const CallAction_in parent)
