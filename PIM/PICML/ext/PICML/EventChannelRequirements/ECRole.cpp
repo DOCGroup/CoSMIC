@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ECRole_Impl::is_abstract (0);
+  const bool ECRole_Impl::is_abstract = false;
 
   //
   // _create (const ECRequirements_in)

@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Deploys_Impl::is_abstract (0);
+  const bool Deploys_Impl::is_abstract = false;
 
   //
   // _create (const DeploymentPlan_in, ComponentFactoryRef_in src, ComponentInstanceRef_in dst)

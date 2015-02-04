@@ -27,7 +27,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ExecutorProject_Impl::is_abstract (0);
+  const bool ExecutorProject_Impl::is_abstract = false;
 
   //
   // _create (const Project_in)

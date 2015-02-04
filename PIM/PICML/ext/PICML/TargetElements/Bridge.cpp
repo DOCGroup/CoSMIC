@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Domain/Domain.h"
 #include "PICML/TargetElements/Resource.h"
 #include "PICML/Domain/BridgeConnection.h"
-#include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Bridge_Impl::is_abstract (0);
+  const bool Bridge_Impl::is_abstract = false;
 
   //
   // _create (const Domain_in)

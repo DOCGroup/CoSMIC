@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ArtifactDependency_Impl::is_abstract (0);
+  const bool ArtifactDependency_Impl::is_abstract = false;
 
   //
   // _create (const ArtifactContainer_in, ImplementationArtifact_in src, ImplementationArtifact_in dst)

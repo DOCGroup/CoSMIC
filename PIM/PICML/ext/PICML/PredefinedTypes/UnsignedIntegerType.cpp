@@ -20,6 +20,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool UnsignedIntegerType_Impl::is_abstract (1);
+  const bool UnsignedIntegerType_Impl::is_abstract = true;
 }
 

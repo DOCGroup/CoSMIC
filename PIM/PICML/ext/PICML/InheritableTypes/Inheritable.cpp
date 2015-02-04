@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Inheritable_Impl::is_abstract (1);
+  const bool Inheritable_Impl::is_abstract = true;
 
   //
   // get_ReadonlyAttributes

@@ -9,15 +9,15 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/PathDiagram/DisplayNode.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
-#include "PICML/PathDiagram/DisplayNode.h"
-#include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "PICML/PathDiagram/Edge.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
@@ -35,7 +35,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool SrcEdge_Impl::is_abstract (0);
+  const bool SrcEdge_Impl::is_abstract = false;
 
   //
   // _create (const Path_in, Edge_in src, GraphVertex_in dst)

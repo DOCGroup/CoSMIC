@@ -8,36 +8,24 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ExternalPort.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
 #include "PICML/ComponentPackage/ComponentPackageReference.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ProvidedRequestPortDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/RequiredRequestPortDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortDelegate.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
@@ -46,8 +34,20 @@
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/EventSourceDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/SendsTo.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/EventSinkDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExternalDelegate.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -64,7 +64,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentAssembly_Impl::is_abstract (0);
+  const bool ComponentAssembly_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in)
@@ -121,211 +121,19 @@ namespace PICML
   }
 
   //
-  // get_ExternalPorts
+  // get_ComponentInstances
   //
-  size_t ComponentAssembly_Impl::get_ExternalPorts (std::vector <ExternalPort> & items) const
+  size_t ComponentAssembly_Impl::get_ComponentInstances (std::vector <ComponentInstance> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ExternalPorts
+  // get_ComponentInstances
   //
-  ::GAME::Mga::Collection_T <ExternalPort> ComponentAssembly_Impl::get_ExternalPorts (void) const
+  ::GAME::Mga::Collection_T <ComponentInstance> ComponentAssembly_Impl::get_ComponentInstances (void) const
   {
-    return this->children <ExternalPort> ();
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t ComponentAssembly_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> ComponentAssembly_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  size_t ComponentAssembly_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> ComponentAssembly_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_ComponentPackages
-  //
-  size_t ComponentAssembly_Impl::get_ComponentPackages (std::vector <ComponentPackage> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentPackages
-  //
-  ::GAME::Mga::Collection_T <ComponentPackage> ComponentAssembly_Impl::get_ComponentPackages (void) const
-  {
-    return this->children <ComponentPackage> ();
-  }
-
-  //
-  // get_ExternalDelegates
-  //
-  size_t ComponentAssembly_Impl::get_ExternalDelegates (std::vector <ExternalDelegate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ExternalDelegates
-  //
-  ::GAME::Mga::Collection_T <ExternalDelegate> ComponentAssembly_Impl::get_ExternalDelegates (void) const
-  {
-    return this->children <ExternalDelegate> ();
-  }
-
-  //
-  // get_ComponentAssemblyReferences
-  //
-  size_t ComponentAssembly_Impl::get_ComponentAssemblyReferences (std::vector <ComponentAssemblyReference> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentAssemblyReferences
-  //
-  ::GAME::Mga::Collection_T <ComponentAssemblyReference> ComponentAssembly_Impl::get_ComponentAssemblyReferences (void) const
-  {
-    return this->children <ComponentAssemblyReference> ();
-  }
-
-  //
-  // get_Requirements
-  //
-  size_t ComponentAssembly_Impl::get_Requirements (std::vector <Requirement> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Requirements
-  //
-  ::GAME::Mga::Collection_T <Requirement> ComponentAssembly_Impl::get_Requirements (void) const
-  {
-    return this->children <Requirement> ();
-  }
-
-  //
-  // get_RTRequirementss
-  //
-  size_t ComponentAssembly_Impl::get_RTRequirementss (std::vector <RTRequirements> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_RTRequirementss
-  //
-  ::GAME::Mga::Collection_T <RTRequirements> ComponentAssembly_Impl::get_RTRequirementss (void) const
-  {
-    return this->children <RTRequirements> ();
-  }
-
-  //
-  // get_ECRequirementss
-  //
-  size_t ComponentAssembly_Impl::get_ECRequirementss (std::vector <ECRequirements> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ECRequirementss
-  //
-  ::GAME::Mga::Collection_T <ECRequirements> ComponentAssembly_Impl::get_ECRequirementss (void) const
-  {
-    return this->children <ECRequirements> ();
-  }
-
-  //
-  // get_ComponentAssemblys
-  //
-  size_t ComponentAssembly_Impl::get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentAssemblys
-  //
-  ::GAME::Mga::Collection_T <ComponentAssembly> ComponentAssembly_Impl::get_ComponentAssemblys (void) const
-  {
-    return this->children <ComponentAssembly> ();
-  }
-
-  //
-  // get_AssemblyselectRequirements
-  //
-  size_t ComponentAssembly_Impl::get_AssemblyselectRequirements (std::vector <AssemblyselectRequirement> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_AssemblyselectRequirements
-  //
-  ::GAME::Mga::Collection_T <AssemblyselectRequirement> ComponentAssembly_Impl::get_AssemblyselectRequirements (void) const
-  {
-    return this->children <AssemblyselectRequirement> ();
-  }
-
-  //
-  // get_AssemblyConfigPropertys
-  //
-  size_t ComponentAssembly_Impl::get_AssemblyConfigPropertys (std::vector <AssemblyConfigProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_AssemblyConfigPropertys
-  //
-  ::GAME::Mga::Collection_T <AssemblyConfigProperty> ComponentAssembly_Impl::get_AssemblyConfigPropertys (void) const
-  {
-    return this->children <AssemblyConfigProperty> ();
-  }
-
-  //
-  // get_ComponentPackageReferences
-  //
-  size_t ComponentAssembly_Impl::get_ComponentPackageReferences (std::vector <ComponentPackageReference> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentPackageReferences
-  //
-  ::GAME::Mga::Collection_T <ComponentPackageReference> ComponentAssembly_Impl::get_ComponentPackageReferences (void) const
-  {
-    return this->children <ComponentPackageReference> ();
+    return this->children <ComponentInstance> ();
   }
 
   //
@@ -393,6 +201,38 @@ namespace PICML
   }
 
   //
+  // get_OutEventPortDelegates
+  //
+  size_t ComponentAssembly_Impl::get_OutEventPortDelegates (std::vector <OutEventPortDelegate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutEventPortDelegates
+  //
+  ::GAME::Mga::Collection_T <OutEventPortDelegate> ComponentAssembly_Impl::get_OutEventPortDelegates (void) const
+  {
+    return this->children <OutEventPortDelegate> ();
+  }
+
+  //
+  // get_InEventPortDelegates
+  //
+  size_t ComponentAssembly_Impl::get_InEventPortDelegates (std::vector <InEventPortDelegate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InEventPortDelegates
+  //
+  ::GAME::Mga::Collection_T <InEventPortDelegate> ComponentAssembly_Impl::get_InEventPortDelegates (void) const
+  {
+    return this->children <InEventPortDelegate> ();
+  }
+
+  //
   // get_ConnectorInstances
   //
   size_t ComponentAssembly_Impl::get_ConnectorInstances (std::vector <ConnectorInstance> & items) const
@@ -409,163 +249,147 @@ namespace PICML
   }
 
   //
-  // get_ComponentInstances
+  // get_ExternalPorts
   //
-  size_t ComponentAssembly_Impl::get_ComponentInstances (std::vector <ComponentInstance> & items) const
+  size_t ComponentAssembly_Impl::get_ExternalPorts (std::vector <ExternalPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ComponentInstances
+  // get_ExternalPorts
   //
-  ::GAME::Mga::Collection_T <ComponentInstance> ComponentAssembly_Impl::get_ComponentInstances (void) const
+  ::GAME::Mga::Collection_T <ExternalPort> ComponentAssembly_Impl::get_ExternalPorts (void) const
   {
-    return this->children <ComponentInstance> ();
+    return this->children <ExternalPort> ();
   }
 
   //
-  // get_AttributeValues
+  // get_ComplexPropertys
   //
-  size_t ComponentAssembly_Impl::get_AttributeValues (std::vector <AttributeValue> & items) const
+  size_t ComponentAssembly_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeValues
+  // get_ComplexPropertys
   //
-  ::GAME::Mga::Collection_T <AttributeValue> ComponentAssembly_Impl::get_AttributeValues (void) const
+  ::GAME::Mga::Collection_T <ComplexProperty> ComponentAssembly_Impl::get_ComplexPropertys (void) const
   {
-    return this->children <AttributeValue> ();
+    return this->children <ComplexProperty> ();
   }
 
   //
-  // get_AttributeDelegates
+  // get_SimplePropertys
   //
-  size_t ComponentAssembly_Impl::get_AttributeDelegates (std::vector <AttributeDelegate> & items) const
+  size_t ComponentAssembly_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeDelegates
+  // get_SimplePropertys
   //
-  ::GAME::Mga::Collection_T <AttributeDelegate> ComponentAssembly_Impl::get_AttributeDelegates (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> ComponentAssembly_Impl::get_SimplePropertys (void) const
   {
-    return this->children <AttributeDelegate> ();
+    return this->children <SimpleProperty> ();
   }
 
   //
-  // get_AttributeMappings
+  // get_ComponentPackages
   //
-  size_t ComponentAssembly_Impl::get_AttributeMappings (std::vector <AttributeMapping> & items) const
+  size_t ComponentAssembly_Impl::get_ComponentPackages (std::vector <ComponentPackage> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeMappings
+  // get_ComponentPackages
   //
-  ::GAME::Mga::Collection_T <AttributeMapping> ComponentAssembly_Impl::get_AttributeMappings (void) const
+  ::GAME::Mga::Collection_T <ComponentPackage> ComponentAssembly_Impl::get_ComponentPackages (void) const
   {
-    return this->children <AttributeMapping> ();
+    return this->children <ComponentPackage> ();
   }
 
   //
-  // get_AttributeMappingDelegates
+  // get_ComponentAssemblys
   //
-  size_t ComponentAssembly_Impl::get_AttributeMappingDelegates (std::vector <AttributeMappingDelegate> & items) const
+  size_t ComponentAssembly_Impl::get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeMappingDelegates
+  // get_ComponentAssemblys
   //
-  ::GAME::Mga::Collection_T <AttributeMappingDelegate> ComponentAssembly_Impl::get_AttributeMappingDelegates (void) const
+  ::GAME::Mga::Collection_T <ComponentAssembly> ComponentAssembly_Impl::get_ComponentAssemblys (void) const
   {
-    return this->children <AttributeMappingDelegate> ();
+    return this->children <ComponentAssembly> ();
   }
 
   //
-  // get_AttributeMappingValues
+  // get_Requirements
   //
-  size_t ComponentAssembly_Impl::get_AttributeMappingValues (std::vector <AttributeMappingValue> & items) const
+  size_t ComponentAssembly_Impl::get_Requirements (std::vector <Requirement> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeMappingValues
+  // get_Requirements
   //
-  ::GAME::Mga::Collection_T <AttributeMappingValue> ComponentAssembly_Impl::get_AttributeMappingValues (void) const
+  ::GAME::Mga::Collection_T <Requirement> ComponentAssembly_Impl::get_Requirements (void) const
   {
-    return this->children <AttributeMappingValue> ();
+    return this->children <Requirement> ();
   }
 
   //
-  // get_MirrorDelegates
+  // get_RTRequirementss
   //
-  size_t ComponentAssembly_Impl::get_MirrorDelegates (std::vector <MirrorDelegate> & items) const
+  size_t ComponentAssembly_Impl::get_RTRequirementss (std::vector <RTRequirements> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MirrorDelegates
+  // get_RTRequirementss
   //
-  ::GAME::Mga::Collection_T <MirrorDelegate> ComponentAssembly_Impl::get_MirrorDelegates (void) const
+  ::GAME::Mga::Collection_T <RTRequirements> ComponentAssembly_Impl::get_RTRequirementss (void) const
   {
-    return this->children <MirrorDelegate> ();
+    return this->children <RTRequirements> ();
   }
 
   //
-  // get_Publishs
+  // get_ECRequirementss
   //
-  size_t ComponentAssembly_Impl::get_Publishs (std::vector <Publish> & items) const
+  size_t ComponentAssembly_Impl::get_ECRequirementss (std::vector <ECRequirements> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Publishs
+  // get_ECRequirementss
   //
-  ::GAME::Mga::Collection_T <Publish> ComponentAssembly_Impl::get_Publishs (void) const
+  ::GAME::Mga::Collection_T <ECRequirements> ComponentAssembly_Impl::get_ECRequirementss (void) const
   {
-    return this->children <Publish> ();
+    return this->children <ECRequirements> ();
   }
 
   //
-  // get_Consumes
+  // get_ComponentPackageReferences
   //
-  size_t ComponentAssembly_Impl::get_Consumes (std::vector <Consume> & items) const
+  size_t ComponentAssembly_Impl::get_ComponentPackageReferences (std::vector <ComponentPackageReference> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Consumes
+  // get_ComponentPackageReferences
   //
-  ::GAME::Mga::Collection_T <Consume> ComponentAssembly_Impl::get_Consumes (void) const
+  ::GAME::Mga::Collection_T <ComponentPackageReference> ComponentAssembly_Impl::get_ComponentPackageReferences (void) const
   {
-    return this->children <Consume> ();
-  }
-
-  //
-  // get_ConnectorToFacets
-  //
-  size_t ComponentAssembly_Impl::get_ConnectorToFacets (std::vector <ConnectorToFacet> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ConnectorToFacets
-  //
-  ::GAME::Mga::Collection_T <ConnectorToFacet> ComponentAssembly_Impl::get_ConnectorToFacets (void) const
-  {
-    return this->children <ConnectorToFacet> ();
+    return this->children <ComponentPackageReference> ();
   }
 
   //
@@ -697,35 +521,211 @@ namespace PICML
   }
 
   //
-  // get_OutEventPortDelegates
+  // get_MirrorDelegates
   //
-  size_t ComponentAssembly_Impl::get_OutEventPortDelegates (std::vector <OutEventPortDelegate> & items) const
+  size_t ComponentAssembly_Impl::get_MirrorDelegates (std::vector <MirrorDelegate> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_OutEventPortDelegates
+  // get_MirrorDelegates
   //
-  ::GAME::Mga::Collection_T <OutEventPortDelegate> ComponentAssembly_Impl::get_OutEventPortDelegates (void) const
+  ::GAME::Mga::Collection_T <MirrorDelegate> ComponentAssembly_Impl::get_MirrorDelegates (void) const
   {
-    return this->children <OutEventPortDelegate> ();
+    return this->children <MirrorDelegate> ();
   }
 
   //
-  // get_InEventPortDelegates
+  // get_Publishs
   //
-  size_t ComponentAssembly_Impl::get_InEventPortDelegates (std::vector <InEventPortDelegate> & items) const
+  size_t ComponentAssembly_Impl::get_Publishs (std::vector <Publish> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_InEventPortDelegates
+  // get_Publishs
   //
-  ::GAME::Mga::Collection_T <InEventPortDelegate> ComponentAssembly_Impl::get_InEventPortDelegates (void) const
+  ::GAME::Mga::Collection_T <Publish> ComponentAssembly_Impl::get_Publishs (void) const
   {
-    return this->children <InEventPortDelegate> ();
+    return this->children <Publish> ();
+  }
+
+  //
+  // get_Consumes
+  //
+  size_t ComponentAssembly_Impl::get_Consumes (std::vector <Consume> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Consumes
+  //
+  ::GAME::Mga::Collection_T <Consume> ComponentAssembly_Impl::get_Consumes (void) const
+  {
+    return this->children <Consume> ();
+  }
+
+  //
+  // get_ConnectorToFacets
+  //
+  size_t ComponentAssembly_Impl::get_ConnectorToFacets (std::vector <ConnectorToFacet> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ConnectorToFacets
+  //
+  ::GAME::Mga::Collection_T <ConnectorToFacet> ComponentAssembly_Impl::get_ConnectorToFacets (void) const
+  {
+    return this->children <ConnectorToFacet> ();
+  }
+
+  //
+  // get_AttributeValues
+  //
+  size_t ComponentAssembly_Impl::get_AttributeValues (std::vector <AttributeValue> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AttributeValues
+  //
+  ::GAME::Mga::Collection_T <AttributeValue> ComponentAssembly_Impl::get_AttributeValues (void) const
+  {
+    return this->children <AttributeValue> ();
+  }
+
+  //
+  // get_AttributeDelegates
+  //
+  size_t ComponentAssembly_Impl::get_AttributeDelegates (std::vector <AttributeDelegate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AttributeDelegates
+  //
+  ::GAME::Mga::Collection_T <AttributeDelegate> ComponentAssembly_Impl::get_AttributeDelegates (void) const
+  {
+    return this->children <AttributeDelegate> ();
+  }
+
+  //
+  // get_AttributeMappings
+  //
+  size_t ComponentAssembly_Impl::get_AttributeMappings (std::vector <AttributeMapping> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AttributeMappings
+  //
+  ::GAME::Mga::Collection_T <AttributeMapping> ComponentAssembly_Impl::get_AttributeMappings (void) const
+  {
+    return this->children <AttributeMapping> ();
+  }
+
+  //
+  // get_AttributeMappingDelegates
+  //
+  size_t ComponentAssembly_Impl::get_AttributeMappingDelegates (std::vector <AttributeMappingDelegate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AttributeMappingDelegates
+  //
+  ::GAME::Mga::Collection_T <AttributeMappingDelegate> ComponentAssembly_Impl::get_AttributeMappingDelegates (void) const
+  {
+    return this->children <AttributeMappingDelegate> ();
+  }
+
+  //
+  // get_AttributeMappingValues
+  //
+  size_t ComponentAssembly_Impl::get_AttributeMappingValues (std::vector <AttributeMappingValue> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AttributeMappingValues
+  //
+  ::GAME::Mga::Collection_T <AttributeMappingValue> ComponentAssembly_Impl::get_AttributeMappingValues (void) const
+  {
+    return this->children <AttributeMappingValue> ();
+  }
+
+  //
+  // get_ExternalDelegates
+  //
+  size_t ComponentAssembly_Impl::get_ExternalDelegates (std::vector <ExternalDelegate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExternalDelegates
+  //
+  ::GAME::Mga::Collection_T <ExternalDelegate> ComponentAssembly_Impl::get_ExternalDelegates (void) const
+  {
+    return this->children <ExternalDelegate> ();
+  }
+
+  //
+  // get_ComponentAssemblyReferences
+  //
+  size_t ComponentAssembly_Impl::get_ComponentAssemblyReferences (std::vector <ComponentAssemblyReference> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentAssemblyReferences
+  //
+  ::GAME::Mga::Collection_T <ComponentAssemblyReference> ComponentAssembly_Impl::get_ComponentAssemblyReferences (void) const
+  {
+    return this->children <ComponentAssemblyReference> ();
+  }
+
+  //
+  // get_AssemblyselectRequirements
+  //
+  size_t ComponentAssembly_Impl::get_AssemblyselectRequirements (std::vector <AssemblyselectRequirement> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AssemblyselectRequirements
+  //
+  ::GAME::Mga::Collection_T <AssemblyselectRequirement> ComponentAssembly_Impl::get_AssemblyselectRequirements (void) const
+  {
+    return this->children <AssemblyselectRequirement> ();
+  }
+
+  //
+  // get_AssemblyConfigPropertys
+  //
+  size_t ComponentAssembly_Impl::get_AssemblyConfigPropertys (std::vector <AssemblyConfigProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_AssemblyConfigPropertys
+  //
+  ::GAME::Mga::Collection_T <AssemblyConfigProperty> ComponentAssembly_Impl::get_AssemblyConfigPropertys (void) const
+  {
+    return this->children <AssemblyConfigProperty> ();
   }
 }
 

@@ -31,7 +31,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool BenchmarkCharacteristics_Impl::is_abstract (0);
+  const bool BenchmarkCharacteristics_Impl::is_abstract = false;
 
   //
   // _create (const BenchmarkAnalysis_in, BenchmarkType_in src, MetricsBase_in dst)

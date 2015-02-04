@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -110,13 +109,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst Publish connection.
-    size_t dst_of_Publish (std::vector <Publish> & items) const;
-    GAME::Mga::Collection_T <Publish> dst_of_Publish (void) const;
-
     /// Get the dst ConnectorToReceptacle connection.
     size_t dst_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
     GAME::Mga::Collection_T <ConnectorToReceptacle> dst_of_ConnectorToReceptacle (void) const;
+
+    /// Get the dst Publish connection.
+    size_t dst_of_Publish (std::vector <Publish> & items) const;
+    GAME::Mga::Collection_T <Publish> dst_of_Publish (void) const;
     ///@}
 
     /**

@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool AttributeValue_Impl::is_abstract (0);
+  const bool AttributeValue_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, AttributeInstance_in src, Property_in dst)

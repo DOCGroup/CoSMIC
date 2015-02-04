@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
+#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Terminal_Impl::is_abstract (0);
+  const bool Terminal_Impl::is_abstract = false;
 
   //
   // _create (const BehaviorModel_in)

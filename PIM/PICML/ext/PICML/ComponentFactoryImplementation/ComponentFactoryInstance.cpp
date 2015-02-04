@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentFactoryInstance_Impl::is_abstract (0);
+  const bool ComponentFactoryInstance_Impl::is_abstract = false;
 
   //
   // _create (const ComponentFactoryImplementationContainer_in)

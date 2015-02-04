@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ECBehavior_Impl::is_abstract (0);
+  const bool ECBehavior_Impl::is_abstract = false;
 
   //
   // _create (const ECRequirements_in)

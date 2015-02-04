@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Workspaces_Impl::is_abstract (0);
+  const bool Workspaces_Impl::is_abstract = false;
 
   //
   // _create (const MPC_in)

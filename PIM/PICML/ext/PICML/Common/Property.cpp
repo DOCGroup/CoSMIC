@@ -8,51 +8,51 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/ConfigProperty.h"
-#include "PICML/ImplementationCommon/MonolithExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/Common/RequirementBase.h"
-#include "PICML/Common/Requirement.h"
-#include "PICML/RealTimeRequirements/RTRequirements.h"
-#include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/Common/ImplementationRequirement.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
-#include "PICML/PathDiagram/EdgeProperty.h"
-#include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
-#include "PICML/PathDiagram/Path.h"
-#include "PICML/ImplementationCommon/InfoProperty.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
-#include "PICML/PathDiagram/PathProperty.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
-#include "PICML/DeploymentPlan/PropertyMapping.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/Domain/Domain.h"
 #include "PICML/PathDiagram/Paths.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/Domain/Domain.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/Common/RequirementBase.h"
+#include "PICML/Common/ImplementationRequirement.h"
+#include "PICML/Common/Requirement.h"
+#include "PICML/RealTimeRequirements/RTRequirements.h"
+#include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "PICML/PathDiagram/EdgeProperty.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/PathDiagram/PathProperty.h"
+#include "PICML/ImplementationCommon/InfoProperty.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
+#include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
+#include "PICML/ImplementationCommon/ConfigProperty.h"
+#include "PICML/ImplementationCommon/MonolithExecParameter.h"
+#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 
 namespace PICML
 {
@@ -64,70 +64,14 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Property_Impl::is_abstract (1);
+  const bool Property_Impl::is_abstract = true;
 
   //
-  // parent_RequirementBase
+  // parent_Domain
   //
-  RequirementBase Property_Impl::parent_RequirementBase (void)
+  Domain Property_Impl::parent_Domain (void)
   {
-    return RequirementBase::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ComponentAssembly
-  //
-  ComponentAssembly Property_Impl::parent_ComponentAssembly (void)
-  {
-    return ComponentAssembly::_narrow (this->parent ());
-  }
-
-  //
-  // parent_BehaviorInputAction
-  //
-  BehaviorInputAction Property_Impl::parent_BehaviorInputAction (void)
-  {
-    return BehaviorInputAction::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ActionBase
-  //
-  ActionBase Property_Impl::parent_ActionBase (void)
-  {
-    return ActionBase::_narrow (this->parent ());
-  }
-
-  //
-  // parent_QueryInputAction
-  //
-  QueryInputAction Property_Impl::parent_QueryInputAction (void)
-  {
-    return QueryInputAction::_narrow (this->parent ());
-  }
-
-  //
-  // parent_Path
-  //
-  Path Property_Impl::parent_Path (void)
-  {
-    return Path::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ImplementationContainer
-  //
-  ImplementationContainer Property_Impl::parent_ImplementationContainer (void)
-  {
-    return ImplementationContainer::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ComponentContainer
-  //
-  ComponentContainer Property_Impl::parent_ComponentContainer (void)
-  {
-    return ComponentContainer::_narrow (this->parent ());
+    return Domain::_narrow (this->parent ());
   }
 
   //
@@ -171,11 +115,67 @@ namespace PICML
   }
 
   //
-  // parent_Domain
+  // parent_ImplementationContainer
   //
-  Domain Property_Impl::parent_Domain (void)
+  ImplementationContainer Property_Impl::parent_ImplementationContainer (void)
   {
-    return Domain::_narrow (this->parent ());
+    return ImplementationContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentContainer
+  //
+  ComponentContainer Property_Impl::parent_ComponentContainer (void)
+  {
+    return ComponentContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_BehaviorInputAction
+  //
+  BehaviorInputAction Property_Impl::parent_BehaviorInputAction (void)
+  {
+    return BehaviorInputAction::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ActionBase
+  //
+  ActionBase Property_Impl::parent_ActionBase (void)
+  {
+    return ActionBase::_narrow (this->parent ());
+  }
+
+  //
+  // parent_QueryInputAction
+  //
+  QueryInputAction Property_Impl::parent_QueryInputAction (void)
+  {
+    return QueryInputAction::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Path
+  //
+  Path Property_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly Property_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
+  // parent_RequirementBase
+  //
+  RequirementBase Property_Impl::parent_RequirementBase (void)
+  {
+    return RequirementBase::_narrow (this->parent ());
   }
 
   //
@@ -208,6 +208,102 @@ namespace PICML
   GAME::Mga::Collection_T <CollocationGroupProperty> Property_Impl::src_of_CollocationGroupProperty (void) const
   {
     return this->in_connections <CollocationGroupProperty> ("src");
+  }
+
+  //
+  // dst_of_PropertyMapping
+  //
+  size_t Property_Impl::dst_of_PropertyMapping (std::vector <PropertyMapping> & items) const
+  {
+    return this->in_connections <PropertyMapping> (items);
+  }
+
+  //
+  // dst_of_PropertyMapping
+  //
+  GAME::Mga::Collection_T <PropertyMapping> Property_Impl::dst_of_PropertyMapping (void) const
+  {
+    return this->in_connections <PropertyMapping> ("dst");
+  }
+
+  //
+  // dst_of_PathProperty
+  //
+  size_t Property_Impl::dst_of_PathProperty (std::vector <PathProperty> & items) const
+  {
+    return this->in_connections <PathProperty> (items);
+  }
+
+  //
+  // dst_of_PathProperty
+  //
+  GAME::Mga::Collection_T <PathProperty> Property_Impl::dst_of_PathProperty (void) const
+  {
+    return this->in_connections <PathProperty> ("dst");
+  }
+
+  //
+  // dst_of_InfoProperty
+  //
+  size_t Property_Impl::dst_of_InfoProperty (std::vector <InfoProperty> & items) const
+  {
+    return this->in_connections <InfoProperty> (items);
+  }
+
+  //
+  // dst_of_InfoProperty
+  //
+  GAME::Mga::Collection_T <InfoProperty> Property_Impl::dst_of_InfoProperty (void) const
+  {
+    return this->in_connections <InfoProperty> ("dst");
+  }
+
+  //
+  // dst_of_AttributeValue
+  //
+  size_t Property_Impl::dst_of_AttributeValue (std::vector <AttributeValue> & items) const
+  {
+    return this->in_connections <AttributeValue> (items);
+  }
+
+  //
+  // dst_of_AttributeValue
+  //
+  GAME::Mga::Collection_T <AttributeValue> Property_Impl::dst_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("dst");
+  }
+
+  //
+  // dst_of_AttributeMappingValue
+  //
+  size_t Property_Impl::dst_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
+  {
+    return this->in_connections <AttributeMappingValue> (items);
+  }
+
+  //
+  // dst_of_AttributeMappingValue
+  //
+  GAME::Mga::Collection_T <AttributeMappingValue> Property_Impl::dst_of_AttributeMappingValue (void) const
+  {
+    return this->in_connections <AttributeMappingValue> ("dst");
+  }
+
+  //
+  // dst_of_PackageConfConfigProperty
+  //
+  size_t Property_Impl::dst_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
+  {
+    return this->in_connections <PackageConfConfigProperty> (items);
+  }
+
+  //
+  // dst_of_PackageConfConfigProperty
+  //
+  GAME::Mga::Collection_T <PackageConfConfigProperty> Property_Impl::dst_of_PackageConfConfigProperty (void) const
+  {
+    return this->in_connections <PackageConfConfigProperty> ("dst");
   }
 
   //
@@ -323,22 +419,6 @@ namespace PICML
   }
 
   //
-  // dst_of_ComponentInfoProperty
-  //
-  size_t Property_Impl::dst_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const
-  {
-    return this->in_connections <ComponentInfoProperty> (items);
-  }
-
-  //
-  // dst_of_ComponentInfoProperty
-  //
-  GAME::Mga::Collection_T <ComponentInfoProperty> Property_Impl::dst_of_ComponentInfoProperty (void) const
-  {
-    return this->in_connections <ComponentInfoProperty> ("dst");
-  }
-
-  //
   // dst_of_ComponentConfigProperty
   //
   size_t Property_Impl::dst_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const
@@ -355,99 +435,19 @@ namespace PICML
   }
 
   //
-  // dst_of_PackageConfConfigProperty
+  // dst_of_ComponentInfoProperty
   //
-  size_t Property_Impl::dst_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
+  size_t Property_Impl::dst_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const
   {
-    return this->in_connections <PackageConfConfigProperty> (items);
+    return this->in_connections <ComponentInfoProperty> (items);
   }
 
   //
-  // dst_of_PackageConfConfigProperty
+  // dst_of_ComponentInfoProperty
   //
-  GAME::Mga::Collection_T <PackageConfConfigProperty> Property_Impl::dst_of_PackageConfConfigProperty (void) const
+  GAME::Mga::Collection_T <ComponentInfoProperty> Property_Impl::dst_of_ComponentInfoProperty (void) const
   {
-    return this->in_connections <PackageConfConfigProperty> ("dst");
-  }
-
-  //
-  // dst_of_InfoProperty
-  //
-  size_t Property_Impl::dst_of_InfoProperty (std::vector <InfoProperty> & items) const
-  {
-    return this->in_connections <InfoProperty> (items);
-  }
-
-  //
-  // dst_of_InfoProperty
-  //
-  GAME::Mga::Collection_T <InfoProperty> Property_Impl::dst_of_InfoProperty (void) const
-  {
-    return this->in_connections <InfoProperty> ("dst");
-  }
-
-  //
-  // dst_of_AttributeValue
-  //
-  size_t Property_Impl::dst_of_AttributeValue (std::vector <AttributeValue> & items) const
-  {
-    return this->in_connections <AttributeValue> (items);
-  }
-
-  //
-  // dst_of_AttributeValue
-  //
-  GAME::Mga::Collection_T <AttributeValue> Property_Impl::dst_of_AttributeValue (void) const
-  {
-    return this->in_connections <AttributeValue> ("dst");
-  }
-
-  //
-  // dst_of_AttributeMappingValue
-  //
-  size_t Property_Impl::dst_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
-  {
-    return this->in_connections <AttributeMappingValue> (items);
-  }
-
-  //
-  // dst_of_AttributeMappingValue
-  //
-  GAME::Mga::Collection_T <AttributeMappingValue> Property_Impl::dst_of_AttributeMappingValue (void) const
-  {
-    return this->in_connections <AttributeMappingValue> ("dst");
-  }
-
-  //
-  // dst_of_PathProperty
-  //
-  size_t Property_Impl::dst_of_PathProperty (std::vector <PathProperty> & items) const
-  {
-    return this->in_connections <PathProperty> (items);
-  }
-
-  //
-  // dst_of_PathProperty
-  //
-  GAME::Mga::Collection_T <PathProperty> Property_Impl::dst_of_PathProperty (void) const
-  {
-    return this->in_connections <PathProperty> ("dst");
-  }
-
-  //
-  // dst_of_PropertyMapping
-  //
-  size_t Property_Impl::dst_of_PropertyMapping (std::vector <PropertyMapping> & items) const
-  {
-    return this->in_connections <PropertyMapping> (items);
-  }
-
-  //
-  // dst_of_PropertyMapping
-  //
-  GAME::Mga::Collection_T <PropertyMapping> Property_Impl::dst_of_PropertyMapping (void) const
-  {
-    return this->in_connections <PropertyMapping> ("dst");
+    return this->in_connections <ComponentInfoProperty> ("dst");
   }
 }
 

@@ -20,6 +20,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool LookupKeyType_Impl::is_abstract (1);
+  const bool LookupKeyType_Impl::is_abstract = true;
 }
 

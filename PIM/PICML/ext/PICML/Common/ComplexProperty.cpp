@@ -12,20 +12,20 @@
 #include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/DataValue.h"
 #include "PICML/Common/ComplexTypeReference.h"
-#include "PICML/Common/RequirementBase.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
-#include "PICML/PathDiagram/Path.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/Domain/Domain.h"
 #include "PICML/PathDiagram/Paths.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/Domain/Domain.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/Common/RequirementBase.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -41,68 +41,12 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComplexProperty_Impl::is_abstract (0);
+  const bool ComplexProperty_Impl::is_abstract = false;
 
   //
-  // _create (const RequirementBase_in)
+  // _create (const Domain_in)
   //
-  ComplexProperty ComplexProperty_Impl::_create (const RequirementBase_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const ComponentAssembly_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const ComponentAssembly_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const BehaviorInputAction_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const BehaviorInputAction_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const ActionBase_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const ActionBase_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const QueryInputAction_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const QueryInputAction_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const Path_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const Path_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const ImplementationContainer_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const ImplementationContainer_in parent)
-  {
-    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
-  }
-
-  //
-  // _create (const ComponentContainer_in)
-  //
-  ComplexProperty ComplexProperty_Impl::_create (const ComponentContainer_in parent)
+  ComplexProperty ComplexProperty_Impl::_create (const Domain_in parent)
   {
     return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
   }
@@ -148,9 +92,65 @@ namespace PICML
   }
 
   //
-  // _create (const Domain_in)
+  // _create (const ImplementationContainer_in)
   //
-  ComplexProperty ComplexProperty_Impl::_create (const Domain_in parent)
+  ComplexProperty ComplexProperty_Impl::_create (const ImplementationContainer_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentContainer_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const ComponentContainer_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const BehaviorInputAction_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const BehaviorInputAction_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ActionBase_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const ActionBase_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const QueryInputAction_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const QueryInputAction_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const Path_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const Path_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentAssembly_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const ComponentAssembly_in parent)
+  {
+    return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
+  }
+
+  //
+  // _create (const RequirementBase_in)
+  //
+  ComplexProperty ComplexProperty_Impl::_create (const RequirementBase_in parent)
   {
     return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
   }

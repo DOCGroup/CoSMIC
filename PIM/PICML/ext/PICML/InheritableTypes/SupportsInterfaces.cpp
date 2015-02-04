@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool SupportsInterfaces_Impl::is_abstract (1);
+  const bool SupportsInterfaces_Impl::is_abstract = true;
 
   //
   // get_Supportss

@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -57,8 +56,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static FactoryOperation _create (const ComponentFactory_in parent);
     static FactoryOperation _create (const ObjectByValue_in parent);
+    static FactoryOperation _create (const ComponentFactory_in parent);
     static FactoryOperation _create (const BenchmarkAnalysis_in parent);
     ///@}
 
@@ -78,8 +77,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ComponentFactory parent_ComponentFactory (void);
     ObjectByValue parent_ObjectByValue (void);
+    ComponentFactory parent_ComponentFactory (void);
     ///@}
   };
 }

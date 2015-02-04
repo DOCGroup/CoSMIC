@@ -22,7 +22,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MonolithicImplementationBase_Impl::is_abstract (1);
+  const bool MonolithicImplementationBase_Impl::is_abstract = true;
 
   //
   // src_of_MonolithExecParameter

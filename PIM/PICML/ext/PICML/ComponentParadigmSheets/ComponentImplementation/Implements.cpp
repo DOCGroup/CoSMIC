@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Implements_Impl::is_abstract (0);
+  const bool Implements_Impl::is_abstract = false;
 
   //
   // _create (const ComponentImplementationContainer_in, ComponentImplementation_in src, ComponentRef_in dst)

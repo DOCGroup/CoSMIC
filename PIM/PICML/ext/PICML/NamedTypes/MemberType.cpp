@@ -8,6 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/NamedTypes/Boxed.h"
+#include "PICML/NamedTypes/Alias.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/InheritableTypes/AttributeMember.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
@@ -17,10 +21,6 @@
 #include "PICML/OperationTypes/InoutParameter.h"
 #include "PICML/OperationTypes/ReturnType.h"
 #include "PICML/Common/DataType.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/NamedTypes/Boxed.h"
-#include "PICML/NamedTypes/Alias.h"
 
 namespace PICML
 {
@@ -32,6 +32,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MemberType_Impl::is_abstract (1);
+  const bool MemberType_Impl::is_abstract = true;
 }
 

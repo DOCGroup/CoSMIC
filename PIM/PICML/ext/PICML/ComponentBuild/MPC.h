@@ -47,7 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -81,11 +80,11 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_Workspacess (std::vector <Workspaces> & items) const;
-    ::GAME::Mga::Collection_T <Workspaces> get_Workspacess (void) const;
-
     size_t get_Projects (std::vector <Project> & items) const;
     ::GAME::Mga::Collection_T <Project> get_Projects (void) const;
+
+    size_t get_Workspacess (std::vector <Workspaces> & items) const;
+    ::GAME::Mga::Collection_T <Workspaces> get_Workspacess (void) const;
 
     ///@}
   };

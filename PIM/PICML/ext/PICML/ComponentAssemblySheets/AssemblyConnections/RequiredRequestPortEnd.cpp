@@ -22,7 +22,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool RequiredRequestPortEnd_Impl::is_abstract (1);
+  const bool RequiredRequestPortEnd_Impl::is_abstract = true;
 
   //
   // src_of_Invoke

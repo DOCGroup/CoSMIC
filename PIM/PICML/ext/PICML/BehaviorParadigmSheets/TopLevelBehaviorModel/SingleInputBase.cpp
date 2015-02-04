@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool SingleInputBase_Impl::is_abstract (1);
+  const bool SingleInputBase_Impl::is_abstract = true;
 
   //
   // src_of_Input

@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -57,9 +56,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Requirement _create (const ComponentAssembly_in parent);
     static Requirement _create (const ArtifactContainer_in parent);
     static Requirement _create (const PackageConfigurationContainer_in parent);
+    static Requirement _create (const ComponentAssembly_in parent);
     ///@}
 
     // Default constructor.
@@ -78,9 +77,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ComponentAssembly parent_ComponentAssembly (void);
     ArtifactContainer parent_ArtifactContainer (void);
     PackageConfigurationContainer parent_PackageConfigurationContainer (void);
+    ComponentAssembly parent_ComponentAssembly (void);
     ///@}
 
     /**

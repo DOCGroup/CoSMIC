@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export ComponentFactory_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual SupportsInterfaces_Impl,
-    public virtual HasOperations_Impl
+    public virtual HasOperations_Impl,
+    public virtual SupportsInterfaces_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -50,7 +50,6 @@ namespace PICML
 
     /// Metaname for this extension class.
     static const std::string metaname;
-
 
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;

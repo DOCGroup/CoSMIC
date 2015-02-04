@@ -21,7 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ExtendPortEnd_Impl::is_abstract (1);
+  const bool ExtendPortEnd_Impl::is_abstract = true;
 
   //
   // src_of_Publish

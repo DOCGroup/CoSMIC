@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool WorkerPackageBase_Impl::is_abstract (1);
+  const bool WorkerPackageBase_Impl::is_abstract = true;
 
   //
   // get_Workers

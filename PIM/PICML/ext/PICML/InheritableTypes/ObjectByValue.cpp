@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/InheritableTypes/MakeMemberPrivate.h"
@@ -26,23 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ObjectByValue_Impl::is_abstract (1);
-
-  //
-  // get_PrivateFlags
-  //
-  size_t ObjectByValue_Impl::get_PrivateFlags (std::vector <PrivateFlag> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PrivateFlags
-  //
-  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
-  {
-    return this->children <PrivateFlag> ();
-  }
+  const bool ObjectByValue_Impl::is_abstract = true;
 
   //
   // get_FactoryOperations
@@ -58,6 +42,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <FactoryOperation> ObjectByValue_Impl::get_FactoryOperations (void) const
   {
     return this->children <FactoryOperation> ();
+  }
+
+  //
+  // get_PrivateFlags
+  //
+  size_t ObjectByValue_Impl::get_PrivateFlags (std::vector <PrivateFlag> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PrivateFlags
+  //
+  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
+  {
+    return this->children <PrivateFlag> ();
   }
 
   //

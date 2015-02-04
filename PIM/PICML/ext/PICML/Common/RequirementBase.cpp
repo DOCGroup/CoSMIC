@@ -22,7 +22,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool RequirementBase_Impl::is_abstract (1);
+  const bool RequirementBase_Impl::is_abstract = true;
 
   //
   // get_ComplexPropertys

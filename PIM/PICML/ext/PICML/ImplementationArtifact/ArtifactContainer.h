@@ -47,7 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -90,6 +89,15 @@ namespace PICML
     size_t get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const;
     ::GAME::Mga::Collection_T <ImplementationArtifact> get_ImplementationArtifacts (void) const;
 
+    size_t get_Requirements (std::vector <Requirement> & items) const;
+    ::GAME::Mga::Collection_T <Requirement> get_Requirements (void) const;
+
+    size_t get_RTRequirementss (std::vector <RTRequirements> & items) const;
+    ::GAME::Mga::Collection_T <RTRequirements> get_RTRequirementss (void) const;
+
+    size_t get_ECRequirementss (std::vector <ECRequirements> & items) const;
+    ::GAME::Mga::Collection_T <ECRequirements> get_ECRequirementss (void) const;
+
     size_t get_ImplementationArtifactReferences (std::vector <ImplementationArtifactReference> & items) const;
     ::GAME::Mga::Collection_T <ImplementationArtifactReference> get_ImplementationArtifactReferences (void) const;
 
@@ -113,15 +121,6 @@ namespace PICML
 
     size_t get_ArtifactDeployRequirements (std::vector <ArtifactDeployRequirement> & items) const;
     ::GAME::Mga::Collection_T <ArtifactDeployRequirement> get_ArtifactDeployRequirements (void) const;
-
-    size_t get_Requirements (std::vector <Requirement> & items) const;
-    ::GAME::Mga::Collection_T <Requirement> get_Requirements (void) const;
-
-    size_t get_RTRequirementss (std::vector <RTRequirements> & items) const;
-    ::GAME::Mga::Collection_T <RTRequirements> get_RTRequirementss (void) const;
-
-    size_t get_ECRequirementss (std::vector <ECRequirements> & items) const;
-    ::GAME::Mga::Collection_T <ECRequirements> get_ECRequirementss (void) const;
 
     ///@}
   };

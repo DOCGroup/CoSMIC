@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ProvidedRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
-#include "PICML/DeploymentPlan/ComponentInstanceRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -35,7 +35,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentInstance_Impl::is_abstract (0);
+  const bool ComponentInstance_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in)
@@ -84,19 +84,35 @@ namespace PICML
   }
 
   //
-  // get_AttributeInstances
+  // get_MirrorPortInstances
   //
-  size_t ComponentInstance_Impl::get_AttributeInstances (std::vector <AttributeInstance> & items) const
+  size_t ComponentInstance_Impl::get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_AttributeInstances
+  // get_MirrorPortInstances
   //
-  ::GAME::Mga::Collection_T <AttributeInstance> ComponentInstance_Impl::get_AttributeInstances (void) const
+  ::GAME::Mga::Collection_T <MirrorPortInstance> ComponentInstance_Impl::get_MirrorPortInstances (void) const
   {
-    return this->children <AttributeInstance> ();
+    return this->children <MirrorPortInstance> ();
+  }
+
+  //
+  // get_ExtendedPortInstances
+  //
+  size_t ComponentInstance_Impl::get_ExtendedPortInstances (std::vector <ExtendedPortInstance> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ExtendedPortInstances
+  //
+  ::GAME::Mga::Collection_T <ExtendedPortInstance> ComponentInstance_Impl::get_ExtendedPortInstances (void) const
+  {
+    return this->children <ExtendedPortInstance> ();
   }
 
   //
@@ -164,35 +180,19 @@ namespace PICML
   }
 
   //
-  // get_MirrorPortInstances
+  // get_AttributeInstances
   //
-  size_t ComponentInstance_Impl::get_MirrorPortInstances (std::vector <MirrorPortInstance> & items) const
+  size_t ComponentInstance_Impl::get_AttributeInstances (std::vector <AttributeInstance> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MirrorPortInstances
+  // get_AttributeInstances
   //
-  ::GAME::Mga::Collection_T <MirrorPortInstance> ComponentInstance_Impl::get_MirrorPortInstances (void) const
+  ::GAME::Mga::Collection_T <AttributeInstance> ComponentInstance_Impl::get_AttributeInstances (void) const
   {
-    return this->children <MirrorPortInstance> ();
-  }
-
-  //
-  // get_ExtendedPortInstances
-  //
-  size_t ComponentInstance_Impl::get_ExtendedPortInstances (std::vector <ExtendedPortInstance> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ExtendedPortInstances
-  //
-  ::GAME::Mga::Collection_T <ExtendedPortInstance> ComponentInstance_Impl::get_ExtendedPortInstances (void) const
-  {
-    return this->children <ExtendedPortInstance> ();
+    return this->children <AttributeInstance> ();
   }
 
   //

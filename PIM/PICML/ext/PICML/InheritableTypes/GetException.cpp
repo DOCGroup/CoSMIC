@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
 #include "game/mga/Functional_T.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool GetException_Impl::is_abstract (0);
+  const bool GetException_Impl::is_abstract = false;
 
   //
   // _create (const ReadonlyAttribute_in)

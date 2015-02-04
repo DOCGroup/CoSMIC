@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ServiceLevels_Impl::is_abstract (0);
+  const bool ServiceLevels_Impl::is_abstract = false;
 
   //
   // _create (const ServiceProvider_in)

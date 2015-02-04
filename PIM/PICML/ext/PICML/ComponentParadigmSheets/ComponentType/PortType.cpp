@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/ReadonlyAttribute.h"
-#include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/InheritableTypes/ReadonlyAttribute.h"
+#include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -34,7 +34,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool PortType_Impl::is_abstract (0);
+  const bool PortType_Impl::is_abstract = false;
 
   //
   // _create (const HasOperations_in)
@@ -75,38 +75,6 @@ namespace PICML
   }
 
   //
-  // get_ReadonlyAttributes
-  //
-  size_t PortType_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ReadonlyAttributes
-  //
-  ::GAME::Mga::Collection_T <ReadonlyAttribute> PortType_Impl::get_ReadonlyAttributes (void) const
-  {
-    return this->children <ReadonlyAttribute> ();
-  }
-
-  //
-  // get_Attributes
-  //
-  size_t PortType_Impl::get_Attributes (std::vector <Attribute> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Attributes
-  //
-  ::GAME::Mga::Collection_T <Attribute> PortType_Impl::get_Attributes (void) const
-  {
-    return this->children <Attribute> ();
-  }
-
-  //
   // get_RequiredRequestPorts
   //
   size_t PortType_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
@@ -136,6 +104,38 @@ namespace PICML
   ::GAME::Mga::Collection_T <ProvidedRequestPort> PortType_Impl::get_ProvidedRequestPorts (void) const
   {
     return this->children <ProvidedRequestPort> ();
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  size_t PortType_Impl::get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ReadonlyAttributes
+  //
+  ::GAME::Mga::Collection_T <ReadonlyAttribute> PortType_Impl::get_ReadonlyAttributes (void) const
+  {
+    return this->children <ReadonlyAttribute> ();
+  }
+
+  //
+  // get_Attributes
+  //
+  size_t PortType_Impl::get_Attributes (std::vector <Attribute> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Attributes
+  //
+  ::GAME::Mga::Collection_T <Attribute> PortType_Impl::get_Attributes (void) const
+  {
+    return this->children <Attribute> ();
   }
 }
 

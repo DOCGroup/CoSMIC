@@ -21,7 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool LoopState_Impl::is_abstract (1);
+  const bool LoopState_Impl::is_abstract = true;
 
   //
   // src_of_LoopTransition

@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export ProvidedRequestPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual MultiInputBase_Impl,
-    public virtual ObjectPort_Impl
+    public virtual ObjectPort_Impl,
+    public virtual MultiInputBase_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -51,7 +51,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -61,8 +60,8 @@ namespace PICML
     ///@{
     static ProvidedRequestPort _create (const PortType_in parent);
     static ProvidedRequestPort _create (const ConnectorObject_in parent);
-    static ProvidedRequestPort _create (const Component_in parent);
     static ProvidedRequestPort _create (const ConnectedComponent_in parent);
+    static ProvidedRequestPort _create (const Component_in parent);
     static ProvidedRequestPort _create (const Path_in parent);
     ///@}
 

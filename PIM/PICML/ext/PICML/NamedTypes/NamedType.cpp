@@ -23,7 +23,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool NamedType_Impl::is_abstract (1);
+  const bool NamedType_Impl::is_abstract = true;
 
   //
   // parent_Package

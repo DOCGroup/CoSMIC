@@ -8,16 +8,16 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/OutputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/BranchState.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -33,7 +33,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool BranchTransition_Impl::is_abstract (0);
+  const bool BranchTransition_Impl::is_abstract = false;
 
   //
   // _create (const BehaviorModel_in, BranchState_in src, ActionBase_in dst)

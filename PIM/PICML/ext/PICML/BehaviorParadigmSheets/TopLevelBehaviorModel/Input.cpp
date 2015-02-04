@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
-#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/ApplicationTask.h"
+#include "PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Input_Impl::is_abstract (0);
+  const bool Input_Impl::is_abstract = false;
 
   //
   // _create (const TopLevelBehavior_in, SingleInputBase_in src, InputAction_in dst)

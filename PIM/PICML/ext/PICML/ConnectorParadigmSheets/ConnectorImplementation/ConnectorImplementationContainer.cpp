@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "game/mga/Functional_T.h"
@@ -27,7 +27,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ConnectorImplementationContainer_Impl::is_abstract (0);
+  const bool ConnectorImplementationContainer_Impl::is_abstract = false;
 
   //
   // _create (const ConnectorImplementations_in)

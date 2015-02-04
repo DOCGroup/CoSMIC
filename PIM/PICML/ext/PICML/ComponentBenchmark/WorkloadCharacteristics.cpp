@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool WorkloadCharacteristics_Impl::is_abstract (0);
+  const bool WorkloadCharacteristics_Impl::is_abstract = false;
 
   //
   // _create (const BenchmarkAnalysis_in, MetricsBase_in src, TaskSet_in dst)

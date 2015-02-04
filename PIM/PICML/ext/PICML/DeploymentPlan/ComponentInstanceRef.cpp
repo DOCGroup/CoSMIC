@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/DeploymentPlan/Deploys.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentInstanceRef_Impl::is_abstract (0);
+  const bool ComponentInstanceRef_Impl::is_abstract = false;
 
   //
   // _create (const DeploymentPlan_in)

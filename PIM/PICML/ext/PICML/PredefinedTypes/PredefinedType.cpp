@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 #include "PICML/PredefinedTypes/PredefinedTypes.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 
 namespace PICML
 {
@@ -21,7 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool PredefinedType_Impl::is_abstract (1);
+  const bool PredefinedType_Impl::is_abstract = true;
 
   //
   // parent_PredefinedTypes

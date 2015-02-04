@@ -8,6 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
@@ -15,9 +18,6 @@
 #include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 
 namespace PICML
 {
@@ -29,7 +29,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ActionBase_Impl::is_abstract (1);
+  const bool ActionBase_Impl::is_abstract = true;
 
   //
   // parent_BehaviorModel

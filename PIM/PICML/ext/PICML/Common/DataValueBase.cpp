@@ -21,7 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool DataValueBase_Impl::is_abstract (1);
+  const bool DataValueBase_Impl::is_abstract = true;
 
   //
   // parent_ComplexProperty

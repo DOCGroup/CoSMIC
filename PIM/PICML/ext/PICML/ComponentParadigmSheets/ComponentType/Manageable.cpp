@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Manageable_Impl::is_abstract (1);
+  const bool Manageable_Impl::is_abstract = true;
 
   //
   // dst_of_ManagesComponent

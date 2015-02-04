@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool DisplayNode_Impl::is_abstract (0);
+  const bool DisplayNode_Impl::is_abstract = false;
 
   //
   // _create (const Path_in)

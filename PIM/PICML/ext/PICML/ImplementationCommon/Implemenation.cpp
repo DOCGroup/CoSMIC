@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/ConfigProperty.h"
 #include "PICML/ImplementationCommon/InfoProperty.h"
+#include "PICML/ImplementationCommon/ConfigProperty.h"
 
 namespace PICML
 {
@@ -21,23 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Implemenation_Impl::is_abstract (1);
-
-  //
-  // src_of_ConfigProperty
-  //
-  size_t Implemenation_Impl::src_of_ConfigProperty (std::vector <ConfigProperty> & items) const
-  {
-    return this->in_connections <ConfigProperty> (items);
-  }
-
-  //
-  // src_of_ConfigProperty
-  //
-  GAME::Mga::Collection_T <ConfigProperty> Implemenation_Impl::src_of_ConfigProperty (void) const
-  {
-    return this->in_connections <ConfigProperty> ("src");
-  }
+  const bool Implemenation_Impl::is_abstract = true;
 
   //
   // src_of_InfoProperty
@@ -53,6 +37,22 @@ namespace PICML
   GAME::Mga::Collection_T <InfoProperty> Implemenation_Impl::src_of_InfoProperty (void) const
   {
     return this->in_connections <InfoProperty> ("src");
+  }
+
+  //
+  // src_of_ConfigProperty
+  //
+  size_t Implemenation_Impl::src_of_ConfigProperty (std::vector <ConfigProperty> & items) const
+  {
+    return this->in_connections <ConfigProperty> (items);
+  }
+
+  //
+  // src_of_ConfigProperty
+  //
+  GAME::Mga::Collection_T <ConfigProperty> Implemenation_Impl::src_of_ConfigProperty (void) const
+  {
+    return this->in_connections <ConfigProperty> ("src");
   }
 }
 

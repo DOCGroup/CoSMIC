@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Domain/Domain.h"
 #include "PICML/TargetElements/Node.h"
 #include "PICML/TargetElements/Interconnect.h"
-#include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool InterconnectConnection_Impl::is_abstract (0);
+  const bool InterconnectConnection_Impl::is_abstract = false;
 
   //
   // _create (const Domain_in, Node_in src, Interconnect_in dst)

@@ -19,6 +19,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Prefixable_Impl::is_abstract (1);
+  const bool Prefixable_Impl::is_abstract = true;
 }
 

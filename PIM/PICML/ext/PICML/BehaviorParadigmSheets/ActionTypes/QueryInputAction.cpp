@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool QueryInputAction_Impl::is_abstract (0);
+  const bool QueryInputAction_Impl::is_abstract = false;
 
   //
   // _create (const BehaviorModel_in)

@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ForState_Impl::is_abstract (0);
+  const bool ForState_Impl::is_abstract = false;
 
   //
   // _create (const BehaviorModel_in)

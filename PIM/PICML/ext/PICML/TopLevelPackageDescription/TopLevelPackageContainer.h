@@ -47,7 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -82,14 +81,14 @@ namespace PICML
      */
     ///@{
 
+    bool has_TopLevelPackage (void) const;
+    TopLevelPackage get_TopLevelPackage (void) const;
+
     bool has_PackageConfigurationReference (void) const;
     PackageConfigurationReference get_PackageConfigurationReference (void) const;
 
     bool has_package (void) const;
     package get_package (void) const;
-
-    bool has_TopLevelPackage (void) const;
-    TopLevelPackage get_TopLevelPackage (void) const;
     ///@}
   };
 }

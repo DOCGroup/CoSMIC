@@ -973,15 +973,15 @@ namespace PICML
   typedef MultiInput_Impl * MultiInput_in;
   typedef ::GAME::Mga::Smart_Ptr <MultiInput_Impl> MultiInput;
 
-  // Forward declarations for Transition
-  class Transition_Impl;
-  typedef Transition_Impl * Transition_in;
-  typedef ::GAME::Mga::Smart_Ptr <Transition_Impl> Transition;
-
   // Forward declarations for TerminalTransition
   class TerminalTransition_Impl;
   typedef TerminalTransition_Impl * TerminalTransition_in;
   typedef ::GAME::Mga::Smart_Ptr <TerminalTransition_Impl> TerminalTransition;
+
+  // Forward declarations for Transition
+  class Transition_Impl;
+  typedef Transition_Impl * Transition_in;
+  typedef ::GAME::Mga::Smart_Ptr <Transition_Impl> Transition;
 
   // Forward declarations for ComponentLib
   class ComponentLib_Impl;

@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -57,10 +56,10 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ReadonlyAttribute _create (const Inheritable_in parent);
     static ReadonlyAttribute _create (const Component_in parent);
     static ReadonlyAttribute _create (const PortType_in parent);
     static ReadonlyAttribute _create (const ConnectorObject_in parent);
+    static ReadonlyAttribute _create (const Inheritable_in parent);
     ///@}
 
     // Default constructor.
@@ -79,10 +78,10 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Inheritable parent_Inheritable (void);
     Component parent_Component (void);
     PortType parent_PortType (void);
     ConnectorObject parent_ConnectorObject (void);
+    Inheritable parent_Inheritable (void);
     ///@}
 
     /**

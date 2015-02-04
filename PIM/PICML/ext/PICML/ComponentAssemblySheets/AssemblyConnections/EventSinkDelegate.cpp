@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,7 +27,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool EventSinkDelegate_Impl::is_abstract (0);
+  const bool EventSinkDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, InEventPortDelegate_in src, InEventPortEnd_in dst)

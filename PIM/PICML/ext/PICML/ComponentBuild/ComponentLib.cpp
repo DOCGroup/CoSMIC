@@ -21,7 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentLib_Impl::is_abstract (1);
+  const bool ComponentLib_Impl::is_abstract = true;
 
   //
   // parent_Project

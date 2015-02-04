@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool CollocationGroupMember_Impl::is_abstract (1);
+  const bool CollocationGroupMember_Impl::is_abstract = true;
 
   //
   // parent_DeploymentPlan

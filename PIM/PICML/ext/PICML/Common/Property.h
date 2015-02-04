@@ -44,7 +44,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -61,20 +60,20 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    RequirementBase parent_RequirementBase (void);
-    ComponentAssembly parent_ComponentAssembly (void);
-    BehaviorInputAction parent_BehaviorInputAction (void);
-    ActionBase parent_ActionBase (void);
-    QueryInputAction parent_QueryInputAction (void);
-    Path parent_Path (void);
-    ImplementationContainer parent_ImplementationContainer (void);
-    ComponentContainer parent_ComponentContainer (void);
+    Domain parent_Domain (void);
     Paths parent_Paths (void);
     DeploymentPlan parent_DeploymentPlan (void);
     ArtifactContainer parent_ArtifactContainer (void);
     PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     PackageContainer parent_PackageContainer (void);
-    Domain parent_Domain (void);
+    ImplementationContainer parent_ImplementationContainer (void);
+    ComponentContainer parent_ComponentContainer (void);
+    BehaviorInputAction parent_BehaviorInputAction (void);
+    ActionBase parent_ActionBase (void);
+    QueryInputAction parent_QueryInputAction (void);
+    Path parent_Path (void);
+    ComponentAssembly parent_ComponentAssembly (void);
+    RequirementBase parent_RequirementBase (void);
     ///@}
 
     /**
@@ -95,6 +94,30 @@ namespace PICML
      * @name Destination Connection Point Methods
      */
     ///@{
+
+    /// Get the dst PropertyMapping connection.
+    size_t dst_of_PropertyMapping (std::vector <PropertyMapping> & items) const;
+    GAME::Mga::Collection_T <PropertyMapping> dst_of_PropertyMapping (void) const;
+
+    /// Get the dst PathProperty connection.
+    size_t dst_of_PathProperty (std::vector <PathProperty> & items) const;
+    GAME::Mga::Collection_T <PathProperty> dst_of_PathProperty (void) const;
+
+    /// Get the dst InfoProperty connection.
+    size_t dst_of_InfoProperty (std::vector <InfoProperty> & items) const;
+    GAME::Mga::Collection_T <InfoProperty> dst_of_InfoProperty (void) const;
+
+    /// Get the dst AttributeValue connection.
+    size_t dst_of_AttributeValue (std::vector <AttributeValue> & items) const;
+    GAME::Mga::Collection_T <AttributeValue> dst_of_AttributeValue (void) const;
+
+    /// Get the dst AttributeMappingValue connection.
+    size_t dst_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
+    GAME::Mga::Collection_T <AttributeMappingValue> dst_of_AttributeMappingValue (void) const;
+
+    /// Get the dst PackageConfConfigProperty connection.
+    size_t dst_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
+    GAME::Mga::Collection_T <PackageConfConfigProperty> dst_of_PackageConfConfigProperty (void) const;
 
     /// Get the dst ConfigProperty connection.
     size_t dst_of_ConfigProperty (std::vector <ConfigProperty> & items) const;
@@ -124,37 +147,13 @@ namespace PICML
     size_t dst_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const;
     GAME::Mga::Collection_T <PackageInfoProperty> dst_of_PackageInfoProperty (void) const;
 
-    /// Get the dst ComponentInfoProperty connection.
-    size_t dst_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
-    GAME::Mga::Collection_T <ComponentInfoProperty> dst_of_ComponentInfoProperty (void) const;
-
     /// Get the dst ComponentConfigProperty connection.
     size_t dst_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
     GAME::Mga::Collection_T <ComponentConfigProperty> dst_of_ComponentConfigProperty (void) const;
 
-    /// Get the dst PackageConfConfigProperty connection.
-    size_t dst_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
-    GAME::Mga::Collection_T <PackageConfConfigProperty> dst_of_PackageConfConfigProperty (void) const;
-
-    /// Get the dst InfoProperty connection.
-    size_t dst_of_InfoProperty (std::vector <InfoProperty> & items) const;
-    GAME::Mga::Collection_T <InfoProperty> dst_of_InfoProperty (void) const;
-
-    /// Get the dst AttributeValue connection.
-    size_t dst_of_AttributeValue (std::vector <AttributeValue> & items) const;
-    GAME::Mga::Collection_T <AttributeValue> dst_of_AttributeValue (void) const;
-
-    /// Get the dst AttributeMappingValue connection.
-    size_t dst_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
-    GAME::Mga::Collection_T <AttributeMappingValue> dst_of_AttributeMappingValue (void) const;
-
-    /// Get the dst PathProperty connection.
-    size_t dst_of_PathProperty (std::vector <PathProperty> & items) const;
-    GAME::Mga::Collection_T <PathProperty> dst_of_PathProperty (void) const;
-
-    /// Get the dst PropertyMapping connection.
-    size_t dst_of_PropertyMapping (std::vector <PropertyMapping> & items) const;
-    GAME::Mga::Collection_T <PropertyMapping> dst_of_PropertyMapping (void) const;
+    /// Get the dst ComponentInfoProperty connection.
+    size_t dst_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
+    GAME::Mga::Collection_T <ComponentInfoProperty> dst_of_ComponentInfoProperty (void) const;
     ///@}
   };
 }

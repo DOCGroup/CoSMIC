@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -29,15 +29,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Requirement_Impl::is_abstract (0);
-
-  //
-  // _create (const ComponentAssembly_in)
-  //
-  Requirement Requirement_Impl::_create (const ComponentAssembly_in parent)
-  {
-    return ::GAME::Mga::create < Requirement > (parent, Requirement_Impl::metaname);
-  }
+  const bool Requirement_Impl::is_abstract = false;
 
   //
   // _create (const ArtifactContainer_in)
@@ -51,6 +43,14 @@ namespace PICML
   // _create (const PackageConfigurationContainer_in)
   //
   Requirement Requirement_Impl::_create (const PackageConfigurationContainer_in parent)
+  {
+    return ::GAME::Mga::create < Requirement > (parent, Requirement_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentAssembly_in)
+  //
+  Requirement Requirement_Impl::_create (const ComponentAssembly_in parent)
   {
     return ::GAME::Mga::create < Requirement > (parent, Requirement_Impl::metaname);
   }
@@ -70,14 +70,6 @@ namespace PICML
   }
 
   //
-  // parent_ComponentAssembly
-  //
-  ComponentAssembly Requirement_Impl::parent_ComponentAssembly (void)
-  {
-    return ComponentAssembly::_narrow (this->parent ());
-  }
-
-  //
   // parent_ArtifactContainer
   //
   ArtifactContainer Requirement_Impl::parent_ArtifactContainer (void)
@@ -91,6 +83,14 @@ namespace PICML
   PackageConfigurationContainer Requirement_Impl::parent_PackageConfigurationContainer (void)
   {
     return PackageConfigurationContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly Requirement_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

@@ -20,6 +20,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool StringType_Impl::is_abstract (1);
+  const bool StringType_Impl::is_abstract = true;
 }
 

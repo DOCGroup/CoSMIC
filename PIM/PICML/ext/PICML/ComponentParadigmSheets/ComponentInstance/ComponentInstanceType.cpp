@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentInstanceType_Impl::is_abstract (0);
+  const bool ComponentInstanceType_Impl::is_abstract = false;
 
   //
   // _create (const ComponentInstance_in)

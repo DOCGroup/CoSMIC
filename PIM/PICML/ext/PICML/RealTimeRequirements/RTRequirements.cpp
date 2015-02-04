@@ -10,9 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/RealTimeRequirements/ServiceConsumer.h"
 #include "PICML/RealTimeRequirements/ServiceProvider.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -28,15 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool RTRequirements_Impl::is_abstract (0);
-
-  //
-  // _create (const ComponentAssembly_in)
-  //
-  RTRequirements RTRequirements_Impl::_create (const ComponentAssembly_in parent)
-  {
-    return ::GAME::Mga::create < RTRequirements > (parent, RTRequirements_Impl::metaname);
-  }
+  const bool RTRequirements_Impl::is_abstract = false;
 
   //
   // _create (const ArtifactContainer_in)
@@ -50,6 +42,14 @@ namespace PICML
   // _create (const PackageConfigurationContainer_in)
   //
   RTRequirements RTRequirements_Impl::_create (const PackageConfigurationContainer_in parent)
+  {
+    return ::GAME::Mga::create < RTRequirements > (parent, RTRequirements_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentAssembly_in)
+  //
+  RTRequirements RTRequirements_Impl::_create (const ComponentAssembly_in parent)
   {
     return ::GAME::Mga::create < RTRequirements > (parent, RTRequirements_Impl::metaname);
   }

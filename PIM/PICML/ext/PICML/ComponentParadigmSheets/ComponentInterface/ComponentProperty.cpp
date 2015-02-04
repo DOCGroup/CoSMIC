@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentProperty_Impl::is_abstract (0);
+  const bool ComponentProperty_Impl::is_abstract = false;
 
   //
   // _create (const ComponentContainer_in, ComponentRef_in src, ComponentPropertyDescription_in dst)

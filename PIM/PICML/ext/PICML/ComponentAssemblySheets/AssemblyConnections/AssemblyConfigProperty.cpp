@@ -12,8 +12,8 @@
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool AssemblyConfigProperty_Impl::is_abstract (0);
+  const bool AssemblyConfigProperty_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, AssemblyConfigPropertyEnd_in src, Property_in dst)

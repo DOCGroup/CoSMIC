@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -29,23 +29,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentServantArtifact_Impl::is_abstract (0);
-
-  //
-  // _create (const ImplementationContainer_in)
-  //
-  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ImplementationContainer_in parent)
-  {
-    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
-  }
-
-  //
-  // _create (const ArtifactContainer_in)
-  //
-  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ArtifactContainer_in parent)
-  {
-    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
-  }
+  const bool ComponentServantArtifact_Impl::is_abstract = false;
 
   //
   // _create (const ExecutorProject_in)
@@ -67,6 +51,22 @@ namespace PICML
   // _create (const StubProject_in)
   //
   ComponentServantArtifact ComponentServantArtifact_Impl::_create (const StubProject_in parent)
+  {
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+  }
+
+  //
+  // _create (const ArtifactContainer_in)
+  //
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ArtifactContainer_in parent)
+  {
+    return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
+  }
+
+  //
+  // _create (const ImplementationContainer_in)
+  //
+  ComponentServantArtifact ComponentServantArtifact_Impl::_create (const ImplementationContainer_in parent)
   {
     return ::GAME::Mga::create < ComponentServantArtifact > (parent, ComponentServantArtifact_Impl::metaname);
   }

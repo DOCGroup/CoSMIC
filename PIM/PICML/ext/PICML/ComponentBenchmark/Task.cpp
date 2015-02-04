@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Task_Impl::is_abstract (0);
+  const bool Task_Impl::is_abstract = false;
 
   //
   // _create (const BenchmarkAnalysis_in)

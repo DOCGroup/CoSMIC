@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MetricConnection_Impl::is_abstract (0);
+  const bool MetricConnection_Impl::is_abstract = false;
 
   //
   // _create (const BenchmarkAnalysis_in, OperationRef_in src, MetricsBase_in dst)

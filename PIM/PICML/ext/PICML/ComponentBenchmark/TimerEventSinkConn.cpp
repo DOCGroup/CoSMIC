@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool TimerEventSinkConn_Impl::is_abstract (0);
+  const bool TimerEventSinkConn_Impl::is_abstract = false;
 
   //
   // _create (const BenchmarkAnalysis_in, EventRef_in src, TimeProbe_in dst)

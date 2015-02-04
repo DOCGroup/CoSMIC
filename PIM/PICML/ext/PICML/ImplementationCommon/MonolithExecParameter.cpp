@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -34,7 +34,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MonolithExecParameter_Impl::is_abstract (0);
+  const bool MonolithExecParameter_Impl::is_abstract = false;
 
   //
   // _create (const ImplementationContainer_in, MonolithicImplementationBase_in src, Property_in dst)

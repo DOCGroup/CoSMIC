@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ServiceConsumer_Impl::is_abstract (0);
+  const bool ServiceConsumer_Impl::is_abstract = false;
 
   //
   // _create (const RTRequirements_in)

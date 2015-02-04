@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PathDiagram/PathReference.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool CriticalPath_Impl::is_abstract (0);
+  const bool CriticalPath_Impl::is_abstract = false;
 
   //
   // _create (const ComponentImplementationContainer_in, ComponentAssembly_in src, PathReference_in dst)

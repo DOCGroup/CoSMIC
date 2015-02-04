@@ -19,6 +19,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool EffectBase_Impl::is_abstract (1);
+  const bool EffectBase_Impl::is_abstract = true;
 }
 

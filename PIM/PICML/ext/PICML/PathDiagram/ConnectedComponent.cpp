@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -32,7 +32,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ConnectedComponent_Impl::is_abstract (0);
+  const bool ConnectedComponent_Impl::is_abstract = false;
 
   //
   // _create (const Path_in)
@@ -54,22 +54,6 @@ namespace PICML
       this_visitor->visit_ConnectedComponent (this);
     else
       v->visit_Model (this);
-  }
-
-  //
-  // get_DstEdges
-  //
-  size_t ConnectedComponent_Impl::get_DstEdges (std::vector <DstEdge> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_DstEdges
-  //
-  ::GAME::Mga::Collection_T <DstEdge> ConnectedComponent_Impl::get_DstEdges (void) const
-  {
-    return this->children <DstEdge> ();
   }
 
   //
@@ -105,6 +89,22 @@ namespace PICML
   }
 
   //
+  // get_OutEventPorts
+  //
+  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutEventPorts
+  //
+  ::GAME::Mga::Collection_T <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
+  {
+    return this->children <OutEventPort> ();
+  }
+
+  //
   // get_InEventPorts
   //
   size_t ConnectedComponent_Impl::get_InEventPorts (std::vector <InEventPort> & items) const
@@ -121,19 +121,19 @@ namespace PICML
   }
 
   //
-  // get_OutEventPorts
+  // get_DstEdges
   //
-  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
+  size_t ConnectedComponent_Impl::get_DstEdges (std::vector <DstEdge> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_OutEventPorts
+  // get_DstEdges
   //
-  ::GAME::Mga::Collection_T <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
+  ::GAME::Mga::Collection_T <DstEdge> ConnectedComponent_Impl::get_DstEdges (void) const
   {
-    return this->children <OutEventPort> ();
+    return this->children <DstEdge> ();
   }
 }
 

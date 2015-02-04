@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool WorkerFile_Impl::is_abstract (0);
+  const bool WorkerFile_Impl::is_abstract = false;
 
   //
   // _create (const WorkerLibrary_in)

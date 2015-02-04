@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool FileRef_Impl::is_abstract (0);
+  const bool FileRef_Impl::is_abstract = false;
 
   //
   // _create (const File_in)

@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/FileRef.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/InterfaceDefinition/FileRef.h"
 #include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool StubProject_Impl::is_abstract (0);
+  const bool StubProject_Impl::is_abstract = false;
 
   //
   // _create (const Project_in)
@@ -50,6 +50,22 @@ namespace PICML
       this_visitor->visit_StubProject (this);
     else
       v->visit_Model (this);
+  }
+
+  //
+  // has_FileRef
+  //
+  bool StubProject_Impl::has_FileRef (void) const
+  {
+    return this->children <FileRef> ().count () == 1;
+  }
+
+  //
+  // get_FileRef
+  //
+  FileRef StubProject_Impl::get_FileRef (void) const
+  {
+    return this->children <FileRef> ().first ();
   }
 
   //
@@ -98,22 +114,6 @@ namespace PICML
   ComponentServantArtifact StubProject_Impl::get_ComponentServantArtifact (void) const
   {
     return this->children <ComponentServantArtifact> ().first ();
-  }
-
-  //
-  // has_FileRef
-  //
-  bool StubProject_Impl::has_FileRef (void) const
-  {
-    return this->children <FileRef> ().count () == 1;
-  }
-
-  //
-  // get_FileRef
-  //
-  FileRef StubProject_Impl::get_FileRef (void) const
-  {
-    return this->children <FileRef> ().first ();
   }
 }
 

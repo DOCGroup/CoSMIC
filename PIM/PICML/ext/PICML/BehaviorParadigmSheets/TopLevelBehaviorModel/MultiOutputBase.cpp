@@ -19,6 +19,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MultiOutputBase_Impl::is_abstract (1);
+  const bool MultiOutputBase_Impl::is_abstract = true;
 }
 

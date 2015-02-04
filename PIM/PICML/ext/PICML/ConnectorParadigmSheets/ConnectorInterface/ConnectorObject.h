@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -98,18 +97,6 @@ namespace PICML
 
     bool has_ConnectorInherits (void) const;
     ConnectorInherits get_ConnectorInherits (void) const;
-    size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
-    ::GAME::Mga::Collection_T <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
-
-    size_t get_Attributes (std::vector <Attribute> & items) const;
-    ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
-
-    size_t get_MirrorPorts (std::vector <MirrorPort> & items) const;
-    ::GAME::Mga::Collection_T <MirrorPort> get_MirrorPorts (void) const;
-
-    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
-    ::GAME::Mga::Collection_T <ExtendedPort> get_ExtendedPorts (void) const;
-
     size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
     ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
 
@@ -118,6 +105,18 @@ namespace PICML
 
     size_t get_Aggregates (std::vector <Aggregate> & items) const;
     ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
+
+    size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
+    ::GAME::Mga::Collection_T <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
+
+    size_t get_Attributes (std::vector <Attribute> & items) const;
+    ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
+
+    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
+    ::GAME::Mga::Collection_T <ExtendedPort> get_ExtendedPorts (void) const;
+
+    size_t get_MirrorPorts (std::vector <MirrorPort> & items) const;
+    ::GAME::Mga::Collection_T <MirrorPort> get_MirrorPorts (void) const;
 
     size_t get_Collections (std::vector <Collection> & items) const;
     ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;

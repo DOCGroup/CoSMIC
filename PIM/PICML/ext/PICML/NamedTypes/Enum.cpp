@@ -27,7 +27,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Enum_Impl::is_abstract (0);
+  const bool Enum_Impl::is_abstract = false;
 
   //
   // _create (const HasOperations_in)

@@ -9,12 +9,12 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ConnectorInstance_Impl::is_abstract (0);
+  const bool ConnectorInstance_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in)
@@ -95,22 +95,6 @@ namespace PICML
   }
 
   //
-  // dst_of_Publish
-  //
-  size_t ConnectorInstance_Impl::dst_of_Publish (std::vector <Publish> & items) const
-  {
-    return this->in_connections <Publish> (items);
-  }
-
-  //
-  // dst_of_Publish
-  //
-  GAME::Mga::Collection_T <Publish> ConnectorInstance_Impl::dst_of_Publish (void) const
-  {
-    return this->in_connections <Publish> ("dst");
-  }
-
-  //
   // dst_of_ConnectorToReceptacle
   //
   size_t ConnectorInstance_Impl::dst_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
@@ -124,6 +108,22 @@ namespace PICML
   GAME::Mga::Collection_T <ConnectorToReceptacle> ConnectorInstance_Impl::dst_of_ConnectorToReceptacle (void) const
   {
     return this->in_connections <ConnectorToReceptacle> ("dst");
+  }
+
+  //
+  // dst_of_Publish
+  //
+  size_t ConnectorInstance_Impl::dst_of_Publish (std::vector <Publish> & items) const
+  {
+    return this->in_connections <Publish> (items);
+  }
+
+  //
+  // dst_of_Publish
+  //
+  GAME::Mga::Collection_T <Publish> ConnectorInstance_Impl::dst_of_Publish (void) const
+  {
+    return this->in_connections <Publish> ("dst");
   }
 
   //

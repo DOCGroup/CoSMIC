@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfReference.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -27,20 +27,20 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ComponentPackageReference_Impl::is_abstract (0);
-
-  //
-  // _create (const ComponentAssembly_in)
-  //
-  ComponentPackageReference ComponentPackageReference_Impl::_create (const ComponentAssembly_in parent)
-  {
-    return ::GAME::Mga::create < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
-  }
+  const bool ComponentPackageReference_Impl::is_abstract = false;
 
   //
   // _create (const PackageConfigurationContainer_in)
   //
   ComponentPackageReference ComponentPackageReference_Impl::_create (const PackageConfigurationContainer_in parent)
+  {
+    return ::GAME::Mga::create < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
+  }
+
+  //
+  // _create (const ComponentAssembly_in)
+  //
+  ComponentPackageReference ComponentPackageReference_Impl::_create (const ComponentAssembly_in parent)
   {
     return ::GAME::Mga::create < ComponentPackageReference > (parent, ComponentPackageReference_Impl::metaname);
   }
@@ -60,19 +60,19 @@ namespace PICML
   }
 
   //
-  // parent_ComponentAssembly
-  //
-  ComponentAssembly ComponentPackageReference_Impl::parent_ComponentAssembly (void)
-  {
-    return ComponentAssembly::_narrow (this->parent ());
-  }
-
-  //
   // parent_PackageConfigurationContainer
   //
   PackageConfigurationContainer ComponentPackageReference_Impl::parent_PackageConfigurationContainer (void)
   {
     return PackageConfigurationContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly ComponentPackageReference_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //

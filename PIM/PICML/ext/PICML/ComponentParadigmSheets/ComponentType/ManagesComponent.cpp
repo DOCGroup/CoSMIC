@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Manageable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Manageable.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -31,7 +31,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ManagesComponent_Impl::is_abstract (0);
+  const bool ManagesComponent_Impl::is_abstract = false;
 
   //
   // _create (const Package_in, ComponentFactory_in src, Manageable_in dst)

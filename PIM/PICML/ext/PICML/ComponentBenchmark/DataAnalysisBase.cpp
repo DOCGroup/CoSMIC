@@ -23,7 +23,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool DataAnalysisBase_Impl::is_abstract (1);
+  const bool DataAnalysisBase_Impl::is_abstract = true;
 
   //
   // parent_MetricsBase

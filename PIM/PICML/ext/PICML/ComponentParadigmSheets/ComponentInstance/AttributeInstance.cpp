@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool AttributeInstance_Impl::is_abstract (0);
+  const bool AttributeInstance_Impl::is_abstract = false;
 
   //
   // _create (const ConnectorInstance_in)

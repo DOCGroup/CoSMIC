@@ -47,7 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -86,13 +85,13 @@ namespace PICML
     size_t src_of_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
     GAME::Mga::Collection_T <WorkLoadOperationConnection> src_of_WorkLoadOperationConnection (void) const;
 
-    /// Get the src ComponentOperation connection.
-    size_t src_of_ComponentOperation (std::vector <ComponentOperation> & items) const;
-    GAME::Mga::Collection_T <ComponentOperation> src_of_ComponentOperation (void) const;
-
     /// Get the src MetricConnection connection.
     size_t src_of_MetricConnection (std::vector <MetricConnection> & items) const;
     GAME::Mga::Collection_T <MetricConnection> src_of_MetricConnection (void) const;
+
+    /// Get the src ComponentOperation connection.
+    size_t src_of_ComponentOperation (std::vector <ComponentOperation> & items) const;
+    GAME::Mga::Collection_T <ComponentOperation> src_of_ComponentOperation (void) const;
 
     /// Get the src TimerConnection connection.
     size_t src_of_TimerConnection (std::vector <TimerConnection> & items) const;

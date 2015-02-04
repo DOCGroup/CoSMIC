@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ActionType_Impl::is_abstract (0);
+  const bool ActionType_Impl::is_abstract = false;
 
   //
   // _create (const Action_in)

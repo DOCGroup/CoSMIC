@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Key.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/NamedTypes/KeyMember.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -31,7 +31,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Aggregate_Impl::is_abstract (0);
+  const bool Aggregate_Impl::is_abstract = false;
 
   //
   // _create (const ConnectorObject_in)

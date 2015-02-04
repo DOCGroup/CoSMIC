@@ -26,7 +26,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool PackageType_Impl::is_abstract (0);
+  const bool PackageType_Impl::is_abstract = false;
 
   //
   // _create (const TemplatePackageAlias_in)

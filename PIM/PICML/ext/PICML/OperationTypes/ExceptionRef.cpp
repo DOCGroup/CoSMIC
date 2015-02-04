@@ -9,12 +9,12 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -30,7 +30,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ExceptionRef_Impl::is_abstract (0);
+  const bool ExceptionRef_Impl::is_abstract = false;
 
   //
   // _create (const HasExceptions_in)

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/InParameter.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/OperationRef.h"
+#include "PICML/OperationTypes/InParameter.h"
 
 namespace PICML
 {
@@ -22,7 +22,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool OperationBase_Impl::is_abstract (1);
+  const bool OperationBase_Impl::is_abstract = true;
 
   //
   // parent_BenchmarkAnalysis

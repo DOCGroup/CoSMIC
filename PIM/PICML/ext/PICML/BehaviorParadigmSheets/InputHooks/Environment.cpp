@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Environment_Impl::is_abstract (0);
+  const bool Environment_Impl::is_abstract = false;
 
   //
   // _create (const TopLevelBehavior_in)

@@ -47,7 +47,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -85,17 +84,17 @@ namespace PICML
     bool has_ComponentPackage (void) const;
     ComponentPackage get_ComponentPackage (void) const;
 
-    bool has_PackageConfBasePackage (void) const;
-    PackageConfBasePackage get_PackageConfBasePackage (void) const;
-
-    bool has_PackageConfReference (void) const;
-    PackageConfReference get_PackageConfReference (void) const;
+    bool has_PackageConfSpecializedConfig (void) const;
+    PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
 
     bool has_ComponentPackageReference (void) const;
     ComponentPackageReference get_ComponentPackageReference (void) const;
 
-    bool has_PackageConfSpecializedConfig (void) const;
-    PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
+    bool has_PackageConfReference (void) const;
+    PackageConfReference get_PackageConfReference (void) const;
+
+    bool has_PackageConfBasePackage (void) const;
+    PackageConfBasePackage get_PackageConfBasePackage (void) const;
     size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
     ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
@@ -114,11 +113,11 @@ namespace PICML
     size_t get_ECRequirementss (std::vector <ECRequirements> & items) const;
     ::GAME::Mga::Collection_T <ECRequirements> get_ECRequirementss (void) const;
 
-    size_t get_PackageConfSelectRequirements (std::vector <PackageConfSelectRequirement> & items) const;
-    ::GAME::Mga::Collection_T <PackageConfSelectRequirement> get_PackageConfSelectRequirements (void) const;
-
     size_t get_PackageConfConfigPropertys (std::vector <PackageConfConfigProperty> & items) const;
     ::GAME::Mga::Collection_T <PackageConfConfigProperty> get_PackageConfConfigPropertys (void) const;
+
+    size_t get_PackageConfSelectRequirements (std::vector <PackageConfSelectRequirement> & items) const;
+    ::GAME::Mga::Collection_T <PackageConfSelectRequirement> get_PackageConfSelectRequirements (void) const;
 
     ///@}
   };

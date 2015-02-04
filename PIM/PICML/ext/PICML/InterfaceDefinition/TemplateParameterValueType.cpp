@@ -20,6 +20,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool TemplateParameterValueType_Impl::is_abstract (1);
+  const bool TemplateParameterValueType_Impl::is_abstract = true;
 }
 

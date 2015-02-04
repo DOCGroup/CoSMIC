@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool DataValueContainer_Impl::is_abstract (0);
+  const bool DataValueContainer_Impl::is_abstract = false;
 
   //
   // _create (const ComplexProperty_in)

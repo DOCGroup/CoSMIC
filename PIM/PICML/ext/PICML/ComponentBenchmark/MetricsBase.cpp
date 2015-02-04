@@ -28,7 +28,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MetricsBase_Impl::is_abstract (1);
+  const bool MetricsBase_Impl::is_abstract = true;
 
   //
   // parent_BenchmarkAnalysis

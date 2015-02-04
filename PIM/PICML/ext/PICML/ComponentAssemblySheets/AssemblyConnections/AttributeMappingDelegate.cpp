@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool AttributeMappingDelegate_Impl::is_abstract (0);
+  const bool AttributeMappingDelegate_Impl::is_abstract = false;
 
   //
   // _create (const ComponentAssembly_in, AttributeMapping_in src, AttributeMapping_in dst)

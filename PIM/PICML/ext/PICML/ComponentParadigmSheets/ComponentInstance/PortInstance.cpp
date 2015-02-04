@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool PortInstance_Impl::is_abstract (1);
+  const bool PortInstance_Impl::is_abstract = true;
 
   //
   // parent_ComponentInstance

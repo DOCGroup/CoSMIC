@@ -24,7 +24,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool GenericValue_Impl::is_abstract (0);
+  const bool GenericValue_Impl::is_abstract = false;
 
   //
   // _create (const PredefinedTypes_in)

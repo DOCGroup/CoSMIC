@@ -22,7 +22,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool ExtendedPortBase_Impl::is_abstract (1);
+  const bool ExtendedPortBase_Impl::is_abstract = true;
 
   //
   // parent_Component

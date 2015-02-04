@@ -25,7 +25,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool CallAction_Impl::is_abstract (0);
+  const bool CallAction_Impl::is_abstract = false;
 
   //
   // _create (const BehaviorModel_in)

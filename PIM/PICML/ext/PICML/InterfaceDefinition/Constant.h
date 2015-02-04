@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -57,9 +56,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Constant _create (const HasOperations_in parent);
     static Constant _create (const Package_in parent);
     static Constant _create (const File_in parent);
+    static Constant _create (const HasOperations_in parent);
     ///@}
 
     // Default constructor.
@@ -78,9 +77,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    HasOperations parent_HasOperations (void);
     Package parent_Package (void);
     File parent_File (void);
+    HasOperations parent_HasOperations (void);
     ///@}
 
     /**

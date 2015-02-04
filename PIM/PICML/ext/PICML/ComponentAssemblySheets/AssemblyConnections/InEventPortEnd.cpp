@@ -21,7 +21,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool InEventPortEnd_Impl::is_abstract (1);
+  const bool InEventPortEnd_Impl::is_abstract = true;
 
   //
   // dst_of_SendsTo

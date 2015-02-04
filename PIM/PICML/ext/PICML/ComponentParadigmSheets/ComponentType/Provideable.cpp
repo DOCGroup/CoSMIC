@@ -21,6 +21,6 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool Provideable_Impl::is_abstract (1);
+  const bool Provideable_Impl::is_abstract = true;
 }
 

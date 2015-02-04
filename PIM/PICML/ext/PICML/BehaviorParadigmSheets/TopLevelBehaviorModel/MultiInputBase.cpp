@@ -20,7 +20,7 @@ namespace PICML
   //
   // is_abstract
   //
-  const bool MultiInputBase_Impl::is_abstract (1);
+  const bool MultiInputBase_Impl::is_abstract = true;
 
   //
   // src_of_MultiInput

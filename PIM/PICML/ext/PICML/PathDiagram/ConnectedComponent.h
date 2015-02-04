@@ -49,7 +49,6 @@ namespace PICML
     /// Metaname for this extension class.
     static const std::string metaname;
 
-
     /// Identifier if this class is an abstract type in GME
     static const bool is_abstract;
 
@@ -82,20 +81,20 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_DstEdges (std::vector <DstEdge> & items) const;
-    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
-
     size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
     ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
 
     size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
 
+    size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
+    ::GAME::Mga::Collection_T <OutEventPort> get_OutEventPorts (void) const;
+
     size_t get_InEventPorts (std::vector <InEventPort> & items) const;
     ::GAME::Mga::Collection_T <InEventPort> get_InEventPorts (void) const;
 
-    size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
-    ::GAME::Mga::Collection_T <OutEventPort> get_OutEventPorts (void) const;
+    size_t get_DstEdges (std::vector <DstEdge> & items) const;
+    ::GAME::Mga::Collection_T <DstEdge> get_DstEdges (void) const;
 
     ///@}
   };
