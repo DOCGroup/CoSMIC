@@ -74,6 +74,14 @@ public:
 private:
   void stringseq_splitter (std::string & str);
 
+  // Helper method to create fragments and visit children
+  template <typename T, typename ITEM>
+  void handle_element (ITEM & item, const std::string & label);
+
+  // Helper method to add a comment and visit children if there are any
+  template <typename COLLECTION>
+  void handle_main_qos (COLLECTION & collection, const std::string & comment);
+
   GAME::Xml::Document & doc_;
 
   GAME::Xml::Fragment current_;

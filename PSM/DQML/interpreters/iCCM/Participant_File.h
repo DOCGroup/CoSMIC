@@ -21,7 +21,7 @@ public:
   /// Destructor.
   ~Participant_File_Locator (void);
 
-  void visit_RootFolder (GAME::Mga::RootFolder_in item);
+  void visit_RootFolder (DQML::RootFolder_in item);
   void visit_iCCM (DQML::iCCM_in item);
   void visit_DomainQosFolder (DQML::DomainQosFolder_in item);
   void visit_Domain (DQML::Domain_in item);
