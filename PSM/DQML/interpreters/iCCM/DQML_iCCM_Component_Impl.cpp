@@ -43,7 +43,7 @@ DQML_iCCM_Component_Impl::~DQML_iCCM_Component_Impl (void)
 int DQML_iCCM_Component_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
   // Select the target output directory. If no directory is
