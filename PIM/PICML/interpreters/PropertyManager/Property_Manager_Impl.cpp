@@ -79,20 +79,17 @@ PICML_Property_Mangaer_Impl::~PICML_Property_Mangaer_Impl (void)
 int PICML_Property_Mangaer_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in fco,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
   try
   {
-    if (!selected.empty ())
+    if (selected.count ())
     {
       Property_Handler handler;
 
-      std::for_each (selected.begin (),
-                     selected.end (),
-                     boost::bind (&GAME::Mga::FCO_Impl::accept,
-                                  boost::bind (&GAME::Mga::FCO::get, _1),
-                                  &handler));
+      for (auto item : selected)
+        item->accept (&handler);
     }
     else
       ::AfxMessageBox ("Please select one or more Property elements first.", MB_ICONHAND);
