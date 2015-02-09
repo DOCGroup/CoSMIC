@@ -50,19 +50,16 @@ handle_object_relation (GAME::Mga::Object_in obj)
     return 0;
 
   // Get the collection of CollocationGroups the FCO is a member.
-  std::vector <GAME::Mga::Set> sets;
+  GAME::Mga::Collection_T <GAME::Mga::Set> sets = this->fco_->in_sets ();
 
-  if (0 == this->fco_->in_sets (sets))
+  if (!sets.count ())
     return 0;
 
-  std::vector <GAME::Mga::Set>::iterator
-    iter = sets.begin (), iter_end = sets.end ();
-
-  for (; iter != iter_end; ++ iter)
+  for (GAME::Mga::Set set : sets)
   {
     // Remove the recently added object from the other set(s).
-    if (!obj->is_equal_to (*iter))
-      (*iter)->remove (this->fco_);
+    if (!obj->is_equal_to (set))
+      set->remove (this->fco_);
   }
 
   // Reset the FCO reference.
