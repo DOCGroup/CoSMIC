@@ -207,9 +207,8 @@ bool
 GsoapVisitor::visitSystem(const System& object)
 {
   set<ServiceRef> services = object->getWSMLServiceRef();
-  for_each (services.begin(), services.end(),
-            boost::bind (&ServiceImpl::accept,
-                         boost::bind (&ServiceRefImpl::getService, _1), ref (this)));
+  for (ServiceRef ref : object->getWSMLServiceRef ())
+    ref->getService ()->accept (this);
   return true;
 }
 
@@ -293,9 +292,8 @@ GsoapVisitor::visitService(const Service& object)
        ++portIter)
     {
       WSML::Port port (*portIter);
-      set<PortProxy> proxies = port->getOutPortProxyLinks();
-      for_each (proxies.begin(), proxies.end(),
-                bind (&PortProxyImpl::accept, _1, ref (this)));
+      for (PortProxy proxy : port->getOutPortProxyLinks ())
+        proxy->accept (this);
     }
 
   string moduleName (this->transform_name (object->getName().c_str()));
