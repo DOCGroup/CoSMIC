@@ -21,11 +21,14 @@ GAME_DECLARE_INTERPRETER (Property_Manager_Component, PICML_Property_Mangaer_Imp
 class Property_Handler : public GAME::Mga::Visitor
 {
 public:
+  Property_Handler (GAME::Mga::Transaction & transaction)
+  : transaction_ (transaction)
+  {
+
+  }
+
   virtual void visit_Reference (GAME::Mga::Reference_in ref)
   {
-    // Start a new transaction for this property.
-    GAME::Mga::Transaction t (ref->project ());
-
     // Make sure property manager is not used on predefined types.
     GAME::Mga::FCO simple_type = ref->refers_to ();
 
@@ -33,9 +36,8 @@ public:
     {
       // Show the dialog to the user.
       PICML_Property_Manager_Dialog dlg (ref, ::AfxGetMainWnd ());
-
       if (dlg.DoModal () == IDOK)
-        t.commit ();
+        this->transaction_.commit ();
     }
     else
       ::AfxMessageBox ("Property manager cannot be used on predefined types.", MB_ICONERROR);
@@ -43,15 +45,14 @@ public:
 
   virtual void visit_Model (GAME::Mga::Model_in model)
   {
-    // Start a new transaction for this property.
-    GAME::Mga::Transaction t (model->project ());
-
     // Show the dialog to the user.
     PICML_Property_Manager_Dialog dlg (model, ::AfxGetMainWnd ());
-
     if (dlg.DoModal () == IDOK)
-      t.commit ();
+      this->transaction_.commit ();
   }
+
+private:
+  GAME::Mga::Transaction & transaction_;
 };
 
 //
@@ -79,20 +80,19 @@ PICML_Property_Mangaer_Impl::~PICML_Property_Mangaer_Impl (void)
 int PICML_Property_Mangaer_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in fco,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
   try
   {
-    if (!selected.empty ())
-    {
-      Property_Handler handler;
+    GAME::Mga::Transaction t (project);
 
-      std::for_each (selected.begin (),
-                     selected.end (),
-                     boost::bind (&GAME::Mga::FCO_Impl::accept,
-                                  boost::bind (&GAME::Mga::FCO::get, _1),
-                                  &handler));
+    if (selected.count ())
+    {
+      Property_Handler handler (t);
+
+      for (auto item : selected)
+        item->accept (&handler);
     }
     else
       ::AfxMessageBox ("Please select one or more Property elements first.", MB_ICONHAND);
