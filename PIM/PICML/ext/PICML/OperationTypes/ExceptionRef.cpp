@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"

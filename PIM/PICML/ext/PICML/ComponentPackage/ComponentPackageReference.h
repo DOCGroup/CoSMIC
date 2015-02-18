@@ -54,8 +54,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComponentPackageReference _create (const PackageConfigurationContainer_in parent);
     static ComponentPackageReference _create (const ComponentAssembly_in parent);
+    static ComponentPackageReference _create (const PackageConfigurationContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -74,8 +74,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     ComponentAssembly parent_ComponentAssembly (void);
+    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     ///@}
 
     /**
@@ -109,7 +109,8 @@ namespace PICML
 
     /// Get the dst PackageConfReference connection.
     size_t dst_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
-    GAME::Mga::Collection_T <PackageConfReference> dst_of_PackageConfReference (void) const;
+    bool has_dst_of_PackageConfReference (void) const;
+    PackageConfReference dst_of_PackageConfReference (void) const;
     ///@}
 
     /**

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/Discriminator.h"
 #include "PICML/InterfaceDefinition/Constant.h"
+#include "PICML/NamedTypes/Discriminator.h"
 
 namespace PICML
 {

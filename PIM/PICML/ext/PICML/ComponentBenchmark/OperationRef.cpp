@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
-#include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/OperationTypes/OperationBase.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
+#include "PICML/ComponentBenchmark/TimerConnection.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -75,27 +75,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_WorkLoadOperationConnection
+  //
+  bool OperationRef_Impl::has_src_of_WorkLoadOperationConnection (void) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> ("src").count () == 1;
+  }
+
+  //
   // src_of_WorkLoadOperationConnection
   //
-  GAME::Mga::Collection_T <WorkLoadOperationConnection> OperationRef_Impl::src_of_WorkLoadOperationConnection (void) const
+  WorkLoadOperationConnection OperationRef_Impl::src_of_WorkLoadOperationConnection (void) const
   {
-    return this->in_connections <WorkLoadOperationConnection> ("src");
-  }
-
-  //
-  // src_of_MetricConnection
-  //
-  size_t OperationRef_Impl::src_of_MetricConnection (std::vector <MetricConnection> & items) const
-  {
-    return this->in_connections <MetricConnection> (items);
-  }
-
-  //
-  // src_of_MetricConnection
-  //
-  GAME::Mga::Collection_T <MetricConnection> OperationRef_Impl::src_of_MetricConnection (void) const
-  {
-    return this->in_connections <MetricConnection> ("src");
+    return this->in_connections <WorkLoadOperationConnection> ("src").first ();
   }
 
   //
@@ -109,9 +101,25 @@ namespace PICML
   //
   // src_of_ComponentOperation
   //
-  GAME::Mga::Collection_T <ComponentOperation> OperationRef_Impl::src_of_ComponentOperation (void) const
+  ComponentOperation OperationRef_Impl::src_of_ComponentOperation (void) const
   {
-    return this->in_connections <ComponentOperation> ("src");
+    return this->in_connections <ComponentOperation> ("src").first ();
+  }
+
+  //
+  // src_of_MetricConnection
+  //
+  size_t OperationRef_Impl::src_of_MetricConnection (std::vector <MetricConnection> & items) const
+  {
+    return this->in_connections <MetricConnection> (items);
+  }
+
+  //
+  // src_of_MetricConnection
+  //
+  MetricConnection OperationRef_Impl::src_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("src").first ();
   }
 
   //
@@ -123,11 +131,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_TimerConnection
+  //
+  bool OperationRef_Impl::has_src_of_TimerConnection (void) const
+  {
+    return this->in_connections <TimerConnection> ("src").count () == 1;
+  }
+
+  //
   // src_of_TimerConnection
   //
-  GAME::Mga::Collection_T <TimerConnection> OperationRef_Impl::src_of_TimerConnection (void) const
+  TimerConnection OperationRef_Impl::src_of_TimerConnection (void) const
   {
-    return this->in_connections <TimerConnection> ("src");
+    return this->in_connections <TimerConnection> ("src").first ();
   }
 
   //

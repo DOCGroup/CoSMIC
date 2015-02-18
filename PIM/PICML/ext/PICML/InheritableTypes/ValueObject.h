@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKeyType.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export ValueObject_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual ObjectByValue_Impl,
-    public virtual LookupKeyType_Impl
+    public virtual LookupKeyType_Impl,
+    public virtual ObjectByValue_Impl
   {
     public:
     /// Tag type of this extension class.

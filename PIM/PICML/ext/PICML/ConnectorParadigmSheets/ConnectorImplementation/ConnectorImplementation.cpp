@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,11 +67,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_ConnectorImplements
+  //
+  bool ConnectorImplementation_Impl::has_src_of_ConnectorImplements (void) const
+  {
+    return this->in_connections <ConnectorImplements> ("src").count () == 1;
+  }
+
+  //
   // src_of_ConnectorImplements
   //
-  GAME::Mga::Collection_T <ConnectorImplements> ConnectorImplementation_Impl::src_of_ConnectorImplements (void) const
+  ConnectorImplements ConnectorImplementation_Impl::src_of_ConnectorImplements (void) const
   {
-    return this->in_connections <ConnectorImplements> ("src");
+    return this->in_connections <ConnectorImplements> ("src").first ();
   }
 }
 

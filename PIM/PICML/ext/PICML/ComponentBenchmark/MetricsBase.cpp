@@ -13,10 +13,10 @@
 #include "PICML/ComponentBenchmark/Maximum.h"
 #include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/Average.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {
@@ -49,9 +49,9 @@ namespace PICML
   //
   // src_of_WorkloadCharacteristics
   //
-  GAME::Mga::Collection_T <WorkloadCharacteristics> MetricsBase_Impl::src_of_WorkloadCharacteristics (void) const
+  WorkloadCharacteristics MetricsBase_Impl::src_of_WorkloadCharacteristics (void) const
   {
-    return this->in_connections <WorkloadCharacteristics> ("src");
+    return this->in_connections <WorkloadCharacteristics> ("src").first ();
   }
 
   //
@@ -63,11 +63,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_BenchmarkCharacteristics
+  //
+  bool MetricsBase_Impl::has_dst_of_BenchmarkCharacteristics (void) const
+  {
+    return this->in_connections <BenchmarkCharacteristics> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_BenchmarkCharacteristics
   //
-  GAME::Mga::Collection_T <BenchmarkCharacteristics> MetricsBase_Impl::dst_of_BenchmarkCharacteristics (void) const
+  BenchmarkCharacteristics MetricsBase_Impl::dst_of_BenchmarkCharacteristics (void) const
   {
-    return this->in_connections <BenchmarkCharacteristics> ("dst");
+    return this->in_connections <BenchmarkCharacteristics> ("dst").first ();
   }
 
   //
@@ -79,11 +87,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_MetricConnection
+  //
+  bool MetricsBase_Impl::has_dst_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_MetricConnection
   //
-  GAME::Mga::Collection_T <MetricConnection> MetricsBase_Impl::dst_of_MetricConnection (void) const
+  MetricConnection MetricsBase_Impl::dst_of_MetricConnection (void) const
   {
-    return this->in_connections <MetricConnection> ("dst");
+    return this->in_connections <MetricConnection> ("dst").first ();
   }
 
   //

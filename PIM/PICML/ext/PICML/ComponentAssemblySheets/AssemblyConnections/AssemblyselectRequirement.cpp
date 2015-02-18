@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"

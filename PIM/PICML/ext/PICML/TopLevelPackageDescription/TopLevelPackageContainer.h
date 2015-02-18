@@ -84,11 +84,11 @@ namespace PICML
     bool has_TopLevelPackage (void) const;
     TopLevelPackage get_TopLevelPackage (void) const;
 
-    bool has_PackageConfigurationReference (void) const;
-    PackageConfigurationReference get_PackageConfigurationReference (void) const;
-
     bool has_package (void) const;
     package get_package (void) const;
+
+    bool has_PackageConfigurationReference (void) const;
+    PackageConfigurationReference get_PackageConfigurationReference (void) const;
     ///@}
   };
 }

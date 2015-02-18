@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ComponentBuild/ExternalResources.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactDependency.h"
 #include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -37,17 +37,17 @@ namespace PICML
   const bool ImplementationArtifact_Impl::is_abstract = false;
 
   //
-  // _create (const Project_in)
+  // _create (const ArtifactContainer_in)
   //
-  ImplementationArtifact ImplementationArtifact_Impl::_create (const Project_in parent)
+  ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
   {
     return ::GAME::Mga::create < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
 
   //
-  // _create (const ArtifactContainer_in)
+  // _create (const Project_in)
   //
-  ImplementationArtifact ImplementationArtifact_Impl::_create (const ArtifactContainer_in parent)
+  ImplementationArtifact ImplementationArtifact_Impl::_create (const Project_in parent)
   {
     return ::GAME::Mga::create < ImplementationArtifact > (parent, ImplementationArtifact_Impl::metaname);
   }
@@ -67,19 +67,19 @@ namespace PICML
   }
 
   //
-  // parent_Project
-  //
-  Project ImplementationArtifact_Impl::parent_Project (void)
-  {
-    return Project::_narrow (this->parent ());
-  }
-
-  //
   // parent_ArtifactContainer
   //
   ArtifactContainer ImplementationArtifact_Impl::parent_ArtifactContainer (void)
   {
     return ArtifactContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Project
+  //
+  Project ImplementationArtifact_Impl::parent_Project (void)
+  {
+    return Project::_narrow (this->parent ());
   }
 
   //
@@ -96,38 +96,6 @@ namespace PICML
   GAME::Mga::Collection_T <ArtifactDependsOn> ImplementationArtifact_Impl::src_of_ArtifactDependsOn (void) const
   {
     return this->in_connections <ArtifactDependsOn> ("src");
-  }
-
-  //
-  // src_of_ArtifactDependency
-  //
-  size_t ImplementationArtifact_Impl::src_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const
-  {
-    return this->in_connections <ArtifactDependency> (items);
-  }
-
-  //
-  // src_of_ArtifactDependency
-  //
-  GAME::Mga::Collection_T <ArtifactDependency> ImplementationArtifact_Impl::src_of_ArtifactDependency (void) const
-  {
-    return this->in_connections <ArtifactDependency> ("src");
-  }
-
-  //
-  // src_of_ArtifactInfoProperty
-  //
-  size_t ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
-  {
-    return this->in_connections <ArtifactInfoProperty> (items);
-  }
-
-  //
-  // src_of_ArtifactInfoProperty
-  //
-  GAME::Mga::Collection_T <ArtifactInfoProperty> ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (void) const
-  {
-    return this->in_connections <ArtifactInfoProperty> ("src");
   }
 
   //
@@ -160,6 +128,38 @@ namespace PICML
   GAME::Mga::Collection_T <ArtifactDeployRequirement> ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (void) const
   {
     return this->in_connections <ArtifactDeployRequirement> ("src");
+  }
+
+  //
+  // src_of_ArtifactDependency
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const
+  {
+    return this->in_connections <ArtifactDependency> (items);
+  }
+
+  //
+  // src_of_ArtifactDependency
+  //
+  GAME::Mga::Collection_T <ArtifactDependency> ImplementationArtifact_Impl::src_of_ArtifactDependency (void) const
+  {
+    return this->in_connections <ArtifactDependency> ("src");
+  }
+
+  //
+  // src_of_ArtifactInfoProperty
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
+  {
+    return this->in_connections <ArtifactInfoProperty> (items);
+  }
+
+  //
+  // src_of_ArtifactInfoProperty
+  //
+  GAME::Mga::Collection_T <ArtifactInfoProperty> ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (void) const
+  {
+    return this->in_connections <ArtifactInfoProperty> ("src");
   }
 
   //

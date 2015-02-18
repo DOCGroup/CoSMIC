@@ -83,7 +83,8 @@ namespace PICML
 
     /// Get the src TimerEventSinkConn connection.
     size_t src_of_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
-    GAME::Mga::Collection_T <TimerEventSinkConn> src_of_TimerEventSinkConn (void) const;
+    bool has_src_of_TimerEventSinkConn (void) const;
+    TimerEventSinkConn src_of_TimerEventSinkConn (void) const;
     ///@}
 
     /**

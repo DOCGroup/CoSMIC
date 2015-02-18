@@ -9,14 +9,14 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
-#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -36,17 +36,17 @@ namespace PICML
   const bool OutEventPort_Impl::is_abstract = false;
 
   //
-  // _create (const ConnectedComponent_in)
+  // _create (const Component_in)
   //
-  OutEventPort OutEventPort_Impl::_create (const ConnectedComponent_in parent)
+  OutEventPort OutEventPort_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectedComponent_in)
   //
-  OutEventPort OutEventPort_Impl::_create (const Component_in parent)
+  OutEventPort OutEventPort_Impl::_create (const ConnectedComponent_in parent)
   {
     return ::GAME::Mga::create < OutEventPort > (parent, OutEventPort_Impl::metaname);
   }

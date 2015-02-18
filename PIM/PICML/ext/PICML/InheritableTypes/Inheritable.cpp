@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InheritableTypes/Inherits.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
-#include "PICML/InheritableTypes/Inherits.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 
@@ -25,6 +25,22 @@ namespace PICML
   // is_abstract
   //
   const bool Inheritable_Impl::is_abstract = true;
+
+  //
+  // get_Inheritss
+  //
+  size_t Inheritable_Impl::get_Inheritss (std::vector <Inherits> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Inheritss
+  //
+  ::GAME::Mga::Collection_T <Inherits> Inheritable_Impl::get_Inheritss (void) const
+  {
+    return this->children <Inherits> ();
+  }
 
   //
   // get_ReadonlyAttributes
@@ -56,22 +72,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Attribute> Inheritable_Impl::get_Attributes (void) const
   {
     return this->children <Attribute> ();
-  }
-
-  //
-  // get_Inheritss
-  //
-  size_t Inheritable_Impl::get_Inheritss (std::vector <Inherits> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Inheritss
-  //
-  ::GAME::Mga::Collection_T <Inherits> Inheritable_Impl::get_Inheritss (void) const
-  {
-    return this->children <Inherits> ();
   }
 }
 

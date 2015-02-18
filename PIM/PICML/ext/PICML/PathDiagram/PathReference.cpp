@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
+#include "PICML/PathDiagram/Path.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,11 +67,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_CriticalPath
+  //
+  bool PathReference_Impl::has_dst_of_CriticalPath (void) const
+  {
+    return this->in_connections <CriticalPath> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_CriticalPath
   //
-  GAME::Mga::Collection_T <CriticalPath> PathReference_Impl::dst_of_CriticalPath (void) const
+  CriticalPath PathReference_Impl::dst_of_CriticalPath (void) const
   {
-    return this->in_connections <CriticalPath> ("dst");
+    return this->in_connections <CriticalPath> ("dst").first ();
   }
 
   //

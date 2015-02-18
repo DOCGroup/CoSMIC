@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
 
 namespace PICML
 {
@@ -22,22 +22,6 @@ namespace PICML
   // is_abstract
   //
   const bool AssemblyConfigPropertyEnd_Impl::is_abstract = true;
-
-  //
-  // src_of_AssemblyselectRequirement
-  //
-  size_t AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
-  {
-    return this->in_connections <AssemblyselectRequirement> (items);
-  }
-
-  //
-  // src_of_AssemblyselectRequirement
-  //
-  GAME::Mga::Collection_T <AssemblyselectRequirement> AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (void) const
-  {
-    return this->in_connections <AssemblyselectRequirement> ("src");
-  }
 
   //
   // src_of_AssemblyConfigProperty
@@ -53,6 +37,22 @@ namespace PICML
   GAME::Mga::Collection_T <AssemblyConfigProperty> AssemblyConfigPropertyEnd_Impl::src_of_AssemblyConfigProperty (void) const
   {
     return this->in_connections <AssemblyConfigProperty> ("src");
+  }
+
+  //
+  // src_of_AssemblyselectRequirement
+  //
+  size_t AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
+  {
+    return this->in_connections <AssemblyselectRequirement> (items);
+  }
+
+  //
+  // src_of_AssemblyselectRequirement
+  //
+  GAME::Mga::Collection_T <AssemblyselectRequirement> AssemblyConfigPropertyEnd_Impl::src_of_AssemblyselectRequirement (void) const
+  {
+    return this->in_connections <AssemblyselectRequirement> ("src");
   }
 }
 

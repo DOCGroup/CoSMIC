@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"

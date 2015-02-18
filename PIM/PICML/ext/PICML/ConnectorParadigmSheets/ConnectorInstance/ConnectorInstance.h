@@ -97,7 +97,8 @@ namespace PICML
 
     /// Get the src Consume connection.
     size_t src_of_Consume (std::vector <Consume> & items) const;
-    GAME::Mga::Collection_T <Consume> src_of_Consume (void) const;
+    bool has_src_of_Consume (void) const;
+    Consume src_of_Consume (void) const;
 
     /// Get the src ConnectorToFacet connection.
     size_t src_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
@@ -109,13 +110,14 @@ namespace PICML
      */
     ///@{
 
+    /// Get the dst Publish connection.
+    size_t dst_of_Publish (std::vector <Publish> & items) const;
+    bool has_dst_of_Publish (void) const;
+    Publish dst_of_Publish (void) const;
+
     /// Get the dst ConnectorToReceptacle connection.
     size_t dst_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
     GAME::Mga::Collection_T <ConnectorToReceptacle> dst_of_ConnectorToReceptacle (void) const;
-
-    /// Get the dst Publish connection.
-    size_t dst_of_Publish (std::vector <Publish> & items) const;
-    GAME::Mga::Collection_T <Publish> dst_of_Publish (void) const;
     ///@}
 
     /**

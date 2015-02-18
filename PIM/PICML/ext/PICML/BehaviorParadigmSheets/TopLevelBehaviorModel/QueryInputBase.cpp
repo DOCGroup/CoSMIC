@@ -31,11 +31,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_QueryInput
+  //
+  bool QueryInputBase_Impl::has_src_of_QueryInput (void) const
+  {
+    return this->in_connections <QueryInput> ("src").count () == 1;
+  }
+
+  //
   // src_of_QueryInput
   //
-  GAME::Mga::Collection_T <QueryInput> QueryInputBase_Impl::src_of_QueryInput (void) const
+  QueryInput QueryInputBase_Impl::src_of_QueryInput (void) const
   {
-    return this->in_connections <QueryInput> ("src");
+    return this->in_connections <QueryInput> ("src").first ();
   }
 }
 

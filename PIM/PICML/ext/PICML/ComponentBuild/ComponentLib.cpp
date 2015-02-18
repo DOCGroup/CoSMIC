@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBuild/Project.h"
 #include "PICML/ComponentBuild/ExtResourceConn.h"
+#include "PICML/ComponentBuild/Project.h"
 
 namespace PICML
 {

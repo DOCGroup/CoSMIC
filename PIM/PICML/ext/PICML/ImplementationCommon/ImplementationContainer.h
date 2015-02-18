@@ -66,11 +66,11 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
-
     size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
     ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     size_t get_ImplementationRequirements (std::vector <ImplementationRequirement> & items) const;
     ::GAME::Mga::Collection_T <ImplementationRequirement> get_ImplementationRequirements (void) const;
@@ -78,17 +78,17 @@ namespace PICML
     size_t get_InfoPropertys (std::vector <InfoProperty> & items) const;
     ::GAME::Mga::Collection_T <InfoProperty> get_InfoPropertys (void) const;
 
-    size_t get_ConfigPropertys (std::vector <ConfigProperty> & items) const;
-    ::GAME::Mga::Collection_T <ConfigProperty> get_ConfigPropertys (void) const;
-
-    size_t get_MonolithExecParameters (std::vector <MonolithExecParameter> & items) const;
-    ::GAME::Mga::Collection_T <MonolithExecParameter> get_MonolithExecParameters (void) const;
+    size_t get_MonolithprimaryArtifacts (std::vector <MonolithprimaryArtifact> & items) const;
+    ::GAME::Mga::Collection_T <MonolithprimaryArtifact> get_MonolithprimaryArtifacts (void) const;
 
     size_t get_MonolithDeployRequirements (std::vector <MonolithDeployRequirement> & items) const;
     ::GAME::Mga::Collection_T <MonolithDeployRequirement> get_MonolithDeployRequirements (void) const;
 
-    size_t get_MonolithprimaryArtifacts (std::vector <MonolithprimaryArtifact> & items) const;
-    ::GAME::Mga::Collection_T <MonolithprimaryArtifact> get_MonolithprimaryArtifacts (void) const;
+    size_t get_MonolithExecParameters (std::vector <MonolithExecParameter> & items) const;
+    ::GAME::Mga::Collection_T <MonolithExecParameter> get_MonolithExecParameters (void) const;
+
+    size_t get_ConfigPropertys (std::vector <ConfigProperty> & items) const;
+    ::GAME::Mga::Collection_T <ConfigProperty> get_ConfigPropertys (void) const;
 
     size_t get_ImplementationArtifactReferences (std::vector <ImplementationArtifactReference> & items) const;
     ::GAME::Mga::Collection_T <ImplementationArtifactReference> get_ImplementationArtifactReferences (void) const;

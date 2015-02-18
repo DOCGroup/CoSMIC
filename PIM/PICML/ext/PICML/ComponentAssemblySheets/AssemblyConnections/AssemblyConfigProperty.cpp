@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigPropertyEnd.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

@@ -83,7 +83,7 @@ namespace PICML
 
     /// Get the src package connection.
     size_t src_of_package (std::vector <package> & items) const;
-    GAME::Mga::Collection_T <package> src_of_package (void) const;
+    package src_of_package (void) const;
     ///@}
   };
 }

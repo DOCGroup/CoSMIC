@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationDependsOn.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 
 namespace PICML
 {
@@ -75,11 +75,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_Implements
+  //
+  bool ComponentImplementation_Impl::has_src_of_Implements (void) const
+  {
+    return this->in_connections <Implements> ("src").count () == 1;
+  }
+
+  //
   // src_of_Implements
   //
-  GAME::Mga::Collection_T <Implements> ComponentImplementation_Impl::src_of_Implements (void) const
+  Implements ComponentImplementation_Impl::src_of_Implements (void) const
   {
-    return this->in_connections <Implements> ("src");
+    return this->in_connections <Implements> ("src").first ();
   }
 }
 

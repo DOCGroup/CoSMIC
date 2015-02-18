@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Path.h"
 
 namespace PICML

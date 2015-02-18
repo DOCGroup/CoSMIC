@@ -8,21 +8,21 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfigurations.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/PackageConfiguration/PackageConfReference.h"
-#include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
+#include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfigurations.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -87,19 +87,19 @@ namespace PICML
   }
 
   //
-  // has_PackageConfSpecializedConfig
+  // has_PackageConfReference
   //
-  bool PackageConfigurationContainer_Impl::has_PackageConfSpecializedConfig (void) const
+  bool PackageConfigurationContainer_Impl::has_PackageConfReference (void) const
   {
-    return this->children <PackageConfSpecializedConfig> ().count () == 1;
+    return this->children <PackageConfReference> ().count () == 1;
   }
 
   //
-  // get_PackageConfSpecializedConfig
+  // get_PackageConfReference
   //
-  PackageConfSpecializedConfig PackageConfigurationContainer_Impl::get_PackageConfSpecializedConfig (void) const
+  PackageConfReference PackageConfigurationContainer_Impl::get_PackageConfReference (void) const
   {
-    return this->children <PackageConfSpecializedConfig> ().first ();
+    return this->children <PackageConfReference> ().first ();
   }
 
   //
@@ -119,22 +119,6 @@ namespace PICML
   }
 
   //
-  // has_PackageConfReference
-  //
-  bool PackageConfigurationContainer_Impl::has_PackageConfReference (void) const
-  {
-    return this->children <PackageConfReference> ().count () == 1;
-  }
-
-  //
-  // get_PackageConfReference
-  //
-  PackageConfReference PackageConfigurationContainer_Impl::get_PackageConfReference (void) const
-  {
-    return this->children <PackageConfReference> ().first ();
-  }
-
-  //
   // has_PackageConfBasePackage
   //
   bool PackageConfigurationContainer_Impl::has_PackageConfBasePackage (void) const
@@ -151,19 +135,19 @@ namespace PICML
   }
 
   //
-  // get_ComplexPropertys
+  // has_PackageConfSpecializedConfig
   //
-  size_t PackageConfigurationContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  bool PackageConfigurationContainer_Impl::has_PackageConfSpecializedConfig (void) const
   {
-    return this->children (items);
+    return this->children <PackageConfSpecializedConfig> ().count () == 1;
   }
 
   //
-  // get_ComplexPropertys
+  // get_PackageConfSpecializedConfig
   //
-  ::GAME::Mga::Collection_T <ComplexProperty> PackageConfigurationContainer_Impl::get_ComplexPropertys (void) const
+  PackageConfSpecializedConfig PackageConfigurationContainer_Impl::get_PackageConfSpecializedConfig (void) const
   {
-    return this->children <ComplexProperty> ();
+    return this->children <PackageConfSpecializedConfig> ().first ();
   }
 
   //
@@ -180,6 +164,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> PackageConfigurationContainer_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t PackageConfigurationContainer_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> PackageConfigurationContainer_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 
   //

@@ -56,11 +56,11 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static ComponentImplementationArtifact _create (const ImplementationContainer_in parent);
+    static ComponentImplementationArtifact _create (const ArtifactContainer_in parent);
     static ComponentImplementationArtifact _create (const ExecutorProject_in parent);
     static ComponentImplementationArtifact _create (const ServantProject_in parent);
     static ComponentImplementationArtifact _create (const StubProject_in parent);
-    static ComponentImplementationArtifact _create (const ArtifactContainer_in parent);
-    static ComponentImplementationArtifact _create (const ImplementationContainer_in parent);
     ///@}
 
     // Default constructor.

@@ -54,10 +54,10 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Member _create (const SwitchedAggregate_in parent);
-    static Member _create (const ObjectByValue_in parent);
-    static Member _create (const Aggregate_in parent);
     static Member _create (const Exception_in parent);
+    static Member _create (const Aggregate_in parent);
+    static Member _create (const ObjectByValue_in parent);
+    static Member _create (const SwitchedAggregate_in parent);
     ///@}
 
     // Default constructor.
@@ -76,10 +76,10 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    SwitchedAggregate parent_SwitchedAggregate (void);
-    ObjectByValue parent_ObjectByValue (void);
-    Aggregate parent_Aggregate (void);
     Exception parent_Exception (void);
+    Aggregate parent_Aggregate (void);
+    ObjectByValue parent_ObjectByValue (void);
+    SwitchedAggregate parent_SwitchedAggregate (void);
     ///@}
 
     /**
@@ -89,11 +89,11 @@ namespace PICML
 
     /// Get the src MakeMemberPrivate connection.
     size_t src_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
-    GAME::Mga::Collection_T <MakeMemberPrivate> src_of_MakeMemberPrivate (void) const;
+    MakeMemberPrivate src_of_MakeMemberPrivate (void) const;
 
     /// Get the src LabelConnection connection.
     size_t src_of_LabelConnection (std::vector <LabelConnection> & items) const;
-    GAME::Mga::Collection_T <LabelConnection> src_of_LabelConnection (void) const;
+    LabelConnection src_of_LabelConnection (void) const;
     ///@}
 
     /**

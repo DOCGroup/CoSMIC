@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/IdTags/Prefixable.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
+#include "PICML/IdTags/Prefixable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "game/mga/Model.h"
 
@@ -39,8 +39,8 @@ namespace PICML
    */
   class PICML_Export Object_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual Prefixable_Impl,
     public virtual Provideable_Impl,
+    public virtual Prefixable_Impl,
     public virtual HasOperations_Impl
   {
     public:

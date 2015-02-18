@@ -31,11 +31,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_MultiInput
+  //
+  bool MultiInputBase_Impl::has_src_of_MultiInput (void) const
+  {
+    return this->in_connections <MultiInput> ("src").count () == 1;
+  }
+
+  //
   // src_of_MultiInput
   //
-  GAME::Mga::Collection_T <MultiInput> MultiInputBase_Impl::src_of_MultiInput (void) const
+  MultiInput MultiInputBase_Impl::src_of_MultiInput (void) const
   {
-    return this->in_connections <MultiInput> ("src");
+    return this->in_connections <MultiInput> ("src").first ();
   }
 }
 

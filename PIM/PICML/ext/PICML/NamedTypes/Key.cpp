@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/KeyMember.h"
+#include "PICML/NamedTypes/Aggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,11 +66,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_KeyMember
+  //
+  bool Key_Impl::has_src_of_KeyMember (void) const
+  {
+    return this->in_connections <KeyMember> ("src").count () == 1;
+  }
+
+  //
   // src_of_KeyMember
   //
-  GAME::Mga::Collection_T <KeyMember> Key_Impl::src_of_KeyMember (void) const
+  KeyMember Key_Impl::src_of_KeyMember (void) const
   {
-    return this->in_connections <KeyMember> ("src");
+    return this->in_connections <KeyMember> ("src").first ();
   }
 }
 

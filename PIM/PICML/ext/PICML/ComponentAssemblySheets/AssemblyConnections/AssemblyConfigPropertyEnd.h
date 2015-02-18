@@ -67,13 +67,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src AssemblyselectRequirement connection.
-    size_t src_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
-    GAME::Mga::Collection_T <AssemblyselectRequirement> src_of_AssemblyselectRequirement (void) const;
-
     /// Get the src AssemblyConfigProperty connection.
     size_t src_of_AssemblyConfigProperty (std::vector <AssemblyConfigProperty> & items) const;
     GAME::Mga::Collection_T <AssemblyConfigProperty> src_of_AssemblyConfigProperty (void) const;
+
+    /// Get the src AssemblyselectRequirement connection.
+    size_t src_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+    GAME::Mga::Collection_T <AssemblyselectRequirement> src_of_AssemblyselectRequirement (void) const;
     ///@}
   };
 }

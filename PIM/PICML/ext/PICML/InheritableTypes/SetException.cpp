@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InheritableTypes/Attribute.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

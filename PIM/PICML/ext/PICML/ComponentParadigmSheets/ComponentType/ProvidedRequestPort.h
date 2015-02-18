@@ -60,8 +60,8 @@ namespace PICML
     ///@{
     static ProvidedRequestPort _create (const PortType_in parent);
     static ProvidedRequestPort _create (const ConnectorObject_in parent);
-    static ProvidedRequestPort _create (const ConnectedComponent_in parent);
     static ProvidedRequestPort _create (const Component_in parent);
+    static ProvidedRequestPort _create (const ConnectedComponent_in parent);
     static ProvidedRequestPort _create (const Path_in parent);
     ///@}
 

@@ -8,19 +8,19 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
-#include "PICML/InheritableTypes/Object.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/TargetRequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -56,17 +56,17 @@ namespace PICML
   }
 
   //
-  // _create (const ConnectedComponent_in)
+  // _create (const Component_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectedComponent_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectedComponent_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const Component_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectedComponent_in parent)
   {
     return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }

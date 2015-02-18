@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/Common/ImplementationDependency.h"
-#include "PICML/Common/Capability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/MonolithicImplementation.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
@@ -18,8 +18,8 @@
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ImplementationCapability.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/CriticalPath.h"
 #include "PICML/PathDiagram/PathReference.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
+#include "PICML/Common/Capability.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -68,22 +68,6 @@ namespace PICML
   }
 
   //
-  // has_PathReference
-  //
-  bool ComponentImplementationContainer_Impl::has_PathReference (void) const
-  {
-    return this->children <PathReference> ().count () == 1;
-  }
-
-  //
-  // get_PathReference
-  //
-  PathReference ComponentImplementationContainer_Impl::get_PathReference (void) const
-  {
-    return this->children <PathReference> ().first ();
-  }
-
-  //
   // has_ComponentRef
   //
   bool ComponentImplementationContainer_Impl::has_ComponentRef (void) const
@@ -97,6 +81,22 @@ namespace PICML
   ComponentRef ComponentImplementationContainer_Impl::get_ComponentRef (void) const
   {
     return this->children <ComponentRef> ().first ();
+  }
+
+  //
+  // has_PathReference
+  //
+  bool ComponentImplementationContainer_Impl::has_PathReference (void) const
+  {
+    return this->children <PathReference> ().count () == 1;
+  }
+
+  //
+  // get_PathReference
+  //
+  PathReference ComponentImplementationContainer_Impl::get_PathReference (void) const
+  {
+    return this->children <PathReference> ().first ();
   }
 
   //
@@ -129,22 +129,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ImplementationDependency> ComponentImplementationContainer_Impl::get_ImplementationDependencys (void) const
   {
     return this->children <ImplementationDependency> ();
-  }
-
-  //
-  // get_Capabilitys
-  //
-  size_t ComponentImplementationContainer_Impl::get_Capabilitys (std::vector <Capability> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Capabilitys
-  //
-  ::GAME::Mga::Collection_T <Capability> ComponentImplementationContainer_Impl::get_Capabilitys (void) const
-  {
-    return this->children <Capability> ();
   }
 
   //
@@ -225,6 +209,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <CriticalPath> ComponentImplementationContainer_Impl::get_CriticalPaths (void) const
   {
     return this->children <CriticalPath> ();
+  }
+
+  //
+  // get_Capabilitys
+  //
+  size_t ComponentImplementationContainer_Impl::get_Capabilitys (std::vector <Capability> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Capabilitys
+  //
+  ::GAME::Mga::Collection_T <Capability> ComponentImplementationContainer_Impl::get_Capabilitys (void) const
+  {
+    return this->children <Capability> ();
   }
 }
 

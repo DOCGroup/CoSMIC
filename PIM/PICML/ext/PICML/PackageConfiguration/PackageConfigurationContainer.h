@@ -84,22 +84,22 @@ namespace PICML
     bool has_ComponentPackage (void) const;
     ComponentPackage get_ComponentPackage (void) const;
 
-    bool has_PackageConfSpecializedConfig (void) const;
-    PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
+    bool has_PackageConfReference (void) const;
+    PackageConfReference get_PackageConfReference (void) const;
 
     bool has_ComponentPackageReference (void) const;
     ComponentPackageReference get_ComponentPackageReference (void) const;
 
-    bool has_PackageConfReference (void) const;
-    PackageConfReference get_PackageConfReference (void) const;
-
     bool has_PackageConfBasePackage (void) const;
     PackageConfBasePackage get_PackageConfBasePackage (void) const;
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
+    bool has_PackageConfSpecializedConfig (void) const;
+    PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
     size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
     ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     size_t get_PackageConfigurations (std::vector <PackageConfiguration> & items) const;
     ::GAME::Mga::Collection_T <PackageConfiguration> get_PackageConfigurations (void) const;

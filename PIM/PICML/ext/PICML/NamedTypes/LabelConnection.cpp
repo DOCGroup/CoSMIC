@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/NamedTypes/Label.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
+#include "PICML/NamedTypes/Label.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

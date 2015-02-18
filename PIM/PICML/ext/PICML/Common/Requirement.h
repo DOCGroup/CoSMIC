@@ -56,9 +56,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static Requirement _create (const ComponentAssembly_in parent);
     static Requirement _create (const ArtifactContainer_in parent);
     static Requirement _create (const PackageConfigurationContainer_in parent);
-    static Requirement _create (const ComponentAssembly_in parent);
     ///@}
 
     // Default constructor.
@@ -77,9 +77,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
     ArtifactContainer parent_ArtifactContainer (void);
     PackageConfigurationContainer parent_PackageConfigurationContainer (void);
-    ComponentAssembly parent_ComponentAssembly (void);
     ///@}
 
     /**
@@ -87,13 +87,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst ArtifactDeployRequirement connection.
-    size_t dst_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
-    GAME::Mga::Collection_T <ArtifactDeployRequirement> dst_of_ArtifactDeployRequirement (void) const;
-
     /// Get the dst AssemblyselectRequirement connection.
     size_t dst_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
     GAME::Mga::Collection_T <AssemblyselectRequirement> dst_of_AssemblyselectRequirement (void) const;
+
+    /// Get the dst ArtifactDeployRequirement connection.
+    size_t dst_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
+    GAME::Mga::Collection_T <ArtifactDeployRequirement> dst_of_ArtifactDeployRequirement (void) const;
 
     /// Get the dst PackageConfSelectRequirement connection.
     size_t dst_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;

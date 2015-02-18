@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "game/mga/Functional_T.h"

@@ -8,16 +8,16 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/Common/Property.h"
+#include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
-#include "PICML/Common/SimpleProperty.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
-#include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/BranchTransition.h"
+#include "PICML/BehaviorParadigmSheets/StateTypes/LoopTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 
 namespace PICML
 {
@@ -56,22 +56,6 @@ namespace PICML
   }
 
   //
-  // dst_of_LoopTransition
-  //
-  size_t ActionBase_Impl::dst_of_LoopTransition (std::vector <LoopTransition> & items) const
-  {
-    return this->in_connections <LoopTransition> (items);
-  }
-
-  //
-  // dst_of_LoopTransition
-  //
-  GAME::Mga::Collection_T <LoopTransition> ActionBase_Impl::dst_of_LoopTransition (void) const
-  {
-    return this->in_connections <LoopTransition> ("dst");
-  }
-
-  //
   // dst_of_BranchTransition
   //
   size_t ActionBase_Impl::dst_of_BranchTransition (std::vector <BranchTransition> & items) const
@@ -80,11 +64,43 @@ namespace PICML
   }
 
   //
+  // has_dst_of_BranchTransition
+  //
+  bool ActionBase_Impl::has_dst_of_BranchTransition (void) const
+  {
+    return this->in_connections <BranchTransition> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_BranchTransition
   //
-  GAME::Mga::Collection_T <BranchTransition> ActionBase_Impl::dst_of_BranchTransition (void) const
+  BranchTransition ActionBase_Impl::dst_of_BranchTransition (void) const
   {
-    return this->in_connections <BranchTransition> ("dst");
+    return this->in_connections <BranchTransition> ("dst").first ();
+  }
+
+  //
+  // dst_of_LoopTransition
+  //
+  size_t ActionBase_Impl::dst_of_LoopTransition (std::vector <LoopTransition> & items) const
+  {
+    return this->in_connections <LoopTransition> (items);
+  }
+
+  //
+  // has_dst_of_LoopTransition
+  //
+  bool ActionBase_Impl::has_dst_of_LoopTransition (void) const
+  {
+    return this->in_connections <LoopTransition> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_LoopTransition
+  //
+  LoopTransition ActionBase_Impl::dst_of_LoopTransition (void) const
+  {
+    return this->in_connections <LoopTransition> ("dst").first ();
   }
 
   //
@@ -96,27 +112,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Transition
+  //
+  bool ActionBase_Impl::has_dst_of_Transition (void) const
+  {
+    return this->in_connections <Transition> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Transition
   //
-  GAME::Mga::Collection_T <Transition> ActionBase_Impl::dst_of_Transition (void) const
+  Transition ActionBase_Impl::dst_of_Transition (void) const
   {
-    return this->in_connections <Transition> ("dst");
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t ActionBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> ActionBase_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
+    return this->in_connections <Transition> ("dst").first ();
   }
 
   //
@@ -133,6 +141,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> ActionBase_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t ActionBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> ActionBase_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,11 +66,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_WorkLoadOperationConnection
+  //
+  bool Task_Impl::has_dst_of_WorkLoadOperationConnection (void) const
+  {
+    return this->in_connections <WorkLoadOperationConnection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_WorkLoadOperationConnection
   //
-  GAME::Mga::Collection_T <WorkLoadOperationConnection> Task_Impl::dst_of_WorkLoadOperationConnection (void) const
+  WorkLoadOperationConnection Task_Impl::dst_of_WorkLoadOperationConnection (void) const
   {
-    return this->in_connections <WorkLoadOperationConnection> ("dst");
+    return this->in_connections <WorkLoadOperationConnection> ("dst").first ();
   }
 }
 
