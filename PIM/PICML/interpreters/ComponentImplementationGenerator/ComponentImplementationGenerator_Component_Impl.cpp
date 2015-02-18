@@ -50,18 +50,18 @@ ComponentImplementationGenerator_Component_Impl::~ComponentImplementationGenerat
 int ComponentImplementationGenerator_Component_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
+  GAME::Mga::Transaction t (project);
+
   // Allow the user to select which components we should generate. Otherwise,
   // we can just assume that the components of interest are already selected.
-  if (selected.empty ())
+  if (!selected.estimated_count ())
     return 0;
 
   // Convert selected objects into Components, and remove those objects
   // that are not components.
-  GAME::Mga::Transaction t (project);
-
   std::vector <PICML::Component> components;
 
   for (GAME::Mga::FCO fco : selected)
