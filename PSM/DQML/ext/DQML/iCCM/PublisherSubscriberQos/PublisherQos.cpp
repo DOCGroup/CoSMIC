@@ -70,11 +70,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_PublisherConnection
+  //
+  bool PublisherQos_Impl::has_dst_of_PublisherConnection (void) const
+  {
+    return this->in_connections <PublisherConnection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_PublisherConnection
   //
-  GAME::Mga::Collection_T <PublisherConnection> PublisherQos_Impl::dst_of_PublisherConnection (void) const
+  PublisherConnection PublisherQos_Impl::dst_of_PublisherConnection (void) const
   {
-    return this->in_connections <PublisherConnection> ("dst");
+    return this->in_connections <PublisherConnection> ("dst").first ();
   }
 
   //

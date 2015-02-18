@@ -77,9 +77,9 @@ namespace DQML
   //
   // src_of_dpf_dp_Connection
   //
-  GAME::Mga::Collection_T <dpf_dp_Connection> DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
+  dpf_dp_Connection DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
   {
-    return this->in_connections <dpf_dp_Connection> ("src");
+    return this->in_connections <dpf_dp_Connection> ("src").first ();
   }
 }
 

@@ -83,16 +83,14 @@ namespace DQML
 
     /// Get the dst SubscriberConnection connection.
     size_t dst_of_SubscriberConnection (std::vector <SubscriberConnection> & items) const;
-    GAME::Mga::Collection_T <SubscriberConnection> dst_of_SubscriberConnection (void) const;
+    bool has_dst_of_SubscriberConnection (void) const;
+    SubscriberConnection dst_of_SubscriberConnection (void) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-
-    bool has_ShareQosPolicy (void) const;
-    ShareQosPolicy get_ShareQosPolicy (void) const;
 
     bool has_EntityFactoryQosPolicy (void) const;
     EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
@@ -105,6 +103,9 @@ namespace DQML
 
     bool has_PresentationQosPolicy (void) const;
     PresentationQosPolicy get_PresentationQosPolicy (void) const;
+
+    bool has_ShareQosPolicy (void) const;
+    ShareQosPolicy get_ShareQosPolicy (void) const;
     ///@}
   };
 }

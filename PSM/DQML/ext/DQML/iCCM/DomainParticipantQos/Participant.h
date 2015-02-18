@@ -92,17 +92,17 @@ namespace DQML
 
     bool has_WatchdogSchedulingQosPolicy (void) const;
     WatchdogSchedulingQosPolicy get_WatchdogSchedulingQosPolicy (void) const;
-    size_t get_DataReaderQoss (std::vector <DataReaderQos> & items) const;
-    ::GAME::Mga::Collection_T <DataReaderQos> get_DataReaderQoss (void) const;
-
-    size_t get_SubscriberQoss (std::vector <SubscriberQos> & items) const;
-    ::GAME::Mga::Collection_T <SubscriberQos> get_SubscriberQoss (void) const;
-
     size_t get_DataWriterQoss (std::vector <DataWriterQos> & items) const;
     ::GAME::Mga::Collection_T <DataWriterQos> get_DataWriterQoss (void) const;
 
     size_t get_PublisherQoss (std::vector <PublisherQos> & items) const;
     ::GAME::Mga::Collection_T <PublisherQos> get_PublisherQoss (void) const;
+
+    size_t get_DataReaderQoss (std::vector <DataReaderQos> & items) const;
+    ::GAME::Mga::Collection_T <DataReaderQos> get_DataReaderQoss (void) const;
+
+    size_t get_SubscriberQoss (std::vector <SubscriberQos> & items) const;
+    ::GAME::Mga::Collection_T <SubscriberQos> get_SubscriberQoss (void) const;
 
     size_t get_PublisherConnections (std::vector <PublisherConnection> & items) const;
     ::GAME::Mga::Collection_T <PublisherConnection> get_PublisherConnections (void) const;

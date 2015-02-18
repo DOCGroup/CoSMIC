@@ -110,7 +110,8 @@ namespace DQML
 
     /// Get the dst dw_writerdatalifecycle_Connection connection.
     size_t dst_of_dw_writerdatalifecycle_Connection (std::vector <dw_writerdatalifecycle_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_writerdatalifecycle_Connection> dst_of_dw_writerdatalifecycle_Connection (void) const;
+    bool has_dst_of_dw_writerdatalifecycle_Connection (void) const;
+    dw_writerdatalifecycle_Connection dst_of_dw_writerdatalifecycle_Connection (void) const;
     ///@}
   };
 }

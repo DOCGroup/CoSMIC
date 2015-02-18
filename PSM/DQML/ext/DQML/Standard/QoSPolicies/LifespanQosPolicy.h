@@ -56,8 +56,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static LifespanQosPolicy _create (const DataWriterQos_in parent);
     static LifespanQosPolicy _create (const TopicQos_in parent);
+    static LifespanQosPolicy _create (const DataWriterQos_in parent);
     static LifespanQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -77,8 +77,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    DataWriterQos parent_DataWriterQos (void);
     TopicQos parent_TopicQos (void);
+    DataWriterQos parent_DataWriterQos (void);
     ///@}
 
     /**
@@ -98,13 +98,15 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dw_lifespan_Connection connection.
-    size_t dst_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_lifespan_Connection> dst_of_dw_lifespan_Connection (void) const;
-
     /// Get the dst topic_lifespan_Connection connection.
     size_t dst_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_lifespan_Connection> dst_of_topic_lifespan_Connection (void) const;
+    bool has_dst_of_topic_lifespan_Connection (void) const;
+    topic_lifespan_Connection dst_of_topic_lifespan_Connection (void) const;
+
+    /// Get the dst dw_lifespan_Connection connection.
+    size_t dst_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
+    bool has_dst_of_dw_lifespan_Connection (void) const;
+    dw_lifespan_Connection dst_of_dw_lifespan_Connection (void) const;
     ///@}
   };
 }

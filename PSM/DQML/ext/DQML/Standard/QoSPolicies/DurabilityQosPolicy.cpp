@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
 #include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
 #include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
@@ -33,9 +33,9 @@ namespace DQML
   const bool DurabilityQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
   }
@@ -49,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const TopicQos_in parent)
+  DurabilityQosPolicy DurabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < DurabilityQosPolicy > (parent, DurabilityQosPolicy_Impl::metaname);
   }
@@ -79,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos DurabilityQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos DurabilityQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -95,11 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos DurabilityQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos DurabilityQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -111,11 +111,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_dr_durqos_Connection
+  //
+  bool DurabilityQosPolicy_Impl::has_dst_of_dr_durqos_Connection (void) const
+  {
+    return this->in_connections <dr_durqos_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_dr_durqos_Connection
   //
-  GAME::Mga::Collection_T <dr_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_dr_durqos_Connection (void) const
+  dr_durqos_Connection DurabilityQosPolicy_Impl::dst_of_dr_durqos_Connection (void) const
   {
-    return this->in_connections <dr_durqos_Connection> ("dst");
+    return this->in_connections <dr_durqos_Connection> ("dst").first ();
   }
 
   //
@@ -127,11 +135,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_dw_durqos_Connection
+  //
+  bool DurabilityQosPolicy_Impl::has_dst_of_dw_durqos_Connection (void) const
+  {
+    return this->in_connections <dw_durqos_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_dw_durqos_Connection
   //
-  GAME::Mga::Collection_T <dw_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_dw_durqos_Connection (void) const
+  dw_durqos_Connection DurabilityQosPolicy_Impl::dst_of_dw_durqos_Connection (void) const
   {
-    return this->in_connections <dw_durqos_Connection> ("dst");
+    return this->in_connections <dw_durqos_Connection> ("dst").first ();
   }
 
   //
@@ -143,11 +159,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_topic_durqos_Connection
+  //
+  bool DurabilityQosPolicy_Impl::has_dst_of_topic_durqos_Connection (void) const
+  {
+    return this->in_connections <topic_durqos_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_topic_durqos_Connection
   //
-  GAME::Mga::Collection_T <topic_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_topic_durqos_Connection (void) const
+  topic_durqos_Connection DurabilityQosPolicy_Impl::dst_of_topic_durqos_Connection (void) const
   {
-    return this->in_connections <topic_durqos_Connection> ("dst");
+    return this->in_connections <topic_durqos_Connection> ("dst").first ();
   }
 }
 

@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
@@ -33,9 +33,9 @@ namespace DQML
   const bool LatencyBudgetQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < LatencyBudgetQosPolicy > (parent, LatencyBudgetQosPolicy_Impl::metaname);
   }
@@ -49,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const TopicQos_in parent)
+  LatencyBudgetQosPolicy LatencyBudgetQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < LatencyBudgetQosPolicy > (parent, LatencyBudgetQosPolicy_Impl::metaname);
   }
@@ -79,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos LatencyBudgetQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos LatencyBudgetQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -95,11 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos LatencyBudgetQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos LatencyBudgetQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -111,11 +111,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_dr_latency_Connection
+  //
+  bool LatencyBudgetQosPolicy_Impl::has_dst_of_dr_latency_Connection (void) const
+  {
+    return this->in_connections <dr_latency_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_dr_latency_Connection
   //
-  GAME::Mga::Collection_T <dr_latency_Connection> LatencyBudgetQosPolicy_Impl::dst_of_dr_latency_Connection (void) const
+  dr_latency_Connection LatencyBudgetQosPolicy_Impl::dst_of_dr_latency_Connection (void) const
   {
-    return this->in_connections <dr_latency_Connection> ("dst");
+    return this->in_connections <dr_latency_Connection> ("dst").first ();
   }
 
   //
@@ -127,11 +135,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_dw_latency_Connection
+  //
+  bool LatencyBudgetQosPolicy_Impl::has_dst_of_dw_latency_Connection (void) const
+  {
+    return this->in_connections <dw_latency_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_dw_latency_Connection
   //
-  GAME::Mga::Collection_T <dw_latency_Connection> LatencyBudgetQosPolicy_Impl::dst_of_dw_latency_Connection (void) const
+  dw_latency_Connection LatencyBudgetQosPolicy_Impl::dst_of_dw_latency_Connection (void) const
   {
-    return this->in_connections <dw_latency_Connection> ("dst");
+    return this->in_connections <dw_latency_Connection> ("dst").first ();
   }
 
   //
@@ -143,11 +159,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_top_latency_Connection
+  //
+  bool LatencyBudgetQosPolicy_Impl::has_dst_of_top_latency_Connection (void) const
+  {
+    return this->in_connections <top_latency_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_top_latency_Connection
   //
-  GAME::Mga::Collection_T <top_latency_Connection> LatencyBudgetQosPolicy_Impl::dst_of_top_latency_Connection (void) const
+  top_latency_Connection LatencyBudgetQosPolicy_Impl::dst_of_top_latency_Connection (void) const
   {
-    return this->in_connections <top_latency_Connection> ("dst");
+    return this->in_connections <top_latency_Connection> ("dst").first ();
   }
 }
 
