@@ -37,10 +37,7 @@ Visit_RequiredRequestPortInstance (RequiredRequestPortInstance_in inst)
   RequiredRequestPort port = inst->refers_to ();
   const char * kind = port->multiple_connections () ? "MultiplexReceptacle" : "SimplexReceptacle";
 
-  std::vector <ExternalDelegate> delegates;
-  inst->dst_ExternalDelegate (delegates);
-
-  for (ExternalDelegate ed : delegates)
+  for (ExternalDelegate ed : inst->dst_of_ExternalDelegate ())
     this->Visit_Port (inst, port, kind, false, ed);
 }
 
@@ -51,10 +48,7 @@ void External_Reference_Visitor::
 Visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in inst)
 {
   // Check if the port has an external connection.
-  std::vector <ExternalDelegate> delegates;
-  inst->dst_ExternalDelegate (delegates);
-
-  for (ExternalDelegate ed : delegates)
+  for (ExternalDelegate ed : inst->dst_of_ExternalDelegate ())
     this->Visit_Port (inst, inst->refers_to (), "Facet", true, ed);
 }
 
@@ -64,10 +58,7 @@ Visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in inst)
 void External_Reference_Visitor::
 Visit_InEventPortInstance (InEventPortInstance_in inst)
 {
-  std::vector <ExternalDelegate> delegates;
-  inst->dst_ExternalDelegate (delegates);
-
-  for (ExternalDelegate ed : delegates)
+  for (ExternalDelegate ed : inst->dst_of_ExternalDelegate ())
     this->Visit_Port (inst, inst->refers_to (), "EventConsumer", true, ed);
 }
 
@@ -80,10 +71,7 @@ Visit_OutEventPortInstance (OutEventPortInstance_in inst)
   OutEventPort port = inst->refers_to ();
   const char * kind = port->single_destination () ? "EventEmitter" : "EventPublisher";
 
-  std::vector <ExternalDelegate> delegates;
-  inst->dst_ExternalDelegate (delegates);
-
-  for (ExternalDelegate ed : delegates)
+  for (ExternalDelegate ed : inst->dst_of_ExternalDelegate ())
     this->Visit_Port (inst, port, kind, false, ed);
 }
 

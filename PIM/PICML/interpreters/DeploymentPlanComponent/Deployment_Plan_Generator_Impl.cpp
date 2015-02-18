@@ -1,9 +1,7 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "Deployment_Plan_Generator_Impl.h"
+#include "Deployment_Plan_Visitor.h"
 #include "DeploymentPlan_MainDialog.h"
-#include "DeploymentPlanVisitor.h"
 
 #include "game/mga/component/Interpreter_T.h"
 #include "game/mga/utils/Project_Settings.h"
@@ -38,7 +36,7 @@ Deployment_Plan_Generator_Impl::~Deployment_Plan_Generator_Impl (void)
 int Deployment_Plan_Generator_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
   try
@@ -75,33 +73,22 @@ invoke_ex (GAME::Mga::Project project,
       this->save_configuration (project, this->config_);
     }
 
-    // Opening backend
-    DeploymentPlanVisitor dpv (this->config_);
+    // Generate the deployment plan for either all the plans in the project
+    // or the selected objects. The selected objects must be a deployment
+    // plan, or the behavior is unknown.
+    PICML::Deployment::Deployment_Plan_Visitor dpv (this->config_);
 
-    if (selected.empty ())
-    {
+    if (selected.is_empty ())
       project.root_folder ()->accept (&dpv);
-    }
     else
-    {
       for (GAME::Mga::FCO selection : selected)
-      {
-        try
-        {
-          PICML::DeploymentPlan::_narrow (selection)->accept (&dpv);
-        }
-        catch (const GAME::Mga::Invalid_Cast & ex)
-        {
-
-        }
-      }
-    }
+        if (selection->meta ()->name () == PICML::DeploymentPlan::impl_type::metaname)
+          selection->accept (&dpv);
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Successfully generated deployment plan descriptors",
                        MB_ICONINFORMATION);
 
-    // Closing backend
     return 0;
   }
   catch (const GAME::Mga::Exception & ex)

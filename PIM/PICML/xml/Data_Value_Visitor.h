@@ -33,6 +33,7 @@ namespace Xml
 class PICML_XML_Export Data_Value_Visitor : public PICML::Visitor
 {
 public:
+  Data_Value_Visitor (const GAME::Xml::Fragment & frag);
   Data_Value_Visitor (const GAME::Xml::Fragment & frag, const std::string & value);
 
   virtual ~Data_Value_Visitor (void);

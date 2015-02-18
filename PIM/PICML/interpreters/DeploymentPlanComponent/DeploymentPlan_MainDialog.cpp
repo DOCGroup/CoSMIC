@@ -1,12 +1,11 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "DeploymentPlan_MainDialog.h"
 #include "Configuration.h"
 #include "Resource.h"
-#include "Utils/Utils.h"
 #include <string>
 #include <io.h>
+
+#include "game/mga/Utils.h"
 
 //
 // DDX_Text
@@ -153,9 +152,9 @@ void Deployment_Plan_Dialog::OnClick_Browse (void)
   // dialog.
   std::string outdir;
 
-  if (Utils::getPath ("Select output directory for deployment plan(s)",
-                      outdir,
-                      std::string (temp)))
+  if (GAME::Utils::get_path ("Select output directory for deployment plan(s)",
+                             outdir,                      
+                             std::string (temp)))
   {
     this->SetDlgItemText (IDC_OUTPUT_DIR, outdir.c_str ());
   }

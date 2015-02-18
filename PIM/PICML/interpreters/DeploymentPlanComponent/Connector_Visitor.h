@@ -18,6 +18,8 @@
 
 #include "game/xml/Fragment.h"
 
+#include "Deployment_Handler.h"
+
 namespace PICML
 {
 namespace Deployment
@@ -32,9 +34,9 @@ public:
   /**
    * Initializing constructor.
    */
-  Connector_Visitor (GAME::Xml::Fragment document,
-                     std::vector <GAME::Xml::Fragment> & conns,
-                     std::map <ComponentInstance, CollocationGroup> & instances);
+  Connector_Visitor (Deployment_Handler * handler, 
+                     GAME::Xml::Fragment document,
+                     std::vector <GAME::Xml::Fragment> & conns);
 
   /// Destructor.
   virtual ~Connector_Visitor (void);
@@ -81,8 +83,6 @@ private:
     MirrorPortInstanceBase_in base,
     PortType_in pt);
 
-  bool set_active_collocation_group (ComponentInstance_in inst);
-
   void start_new_connection (Object_in obj);
 
   void append_endpoint (const std::string & portname,
@@ -106,11 +106,11 @@ private:
 
   void make_connection_local (xercesc::DOMElement * conn);
 
+  Deployment_Handler * handler_;
+
   GAME::Xml::Fragment document_;
 
   std::vector <GAME::Xml::Fragment> & conns_;
-
-  std::map <ComponentInstance, CollocationGroup> & instance_mapping_;
 
   GAME::Xml::Fragment curr_conn_;
 

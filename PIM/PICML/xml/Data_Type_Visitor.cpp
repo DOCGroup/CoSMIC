@@ -21,6 +21,16 @@ Data_Type_Visitor (GAME::Xml::Fragment parent)
 
 }
 
+void Data_Type_Visitor::Visit_SimpleProperty (PICML::SimpleProperty_in prop)
+{
+  prop->refers_to_MemberType ()->accept (this);
+}
+
+void Data_Type_Visitor::Visit_ComplexProperty (PICML::ComplexProperty_in prop)
+{
+  prop->get_ComplexTypeReference ()->accept (this);
+}
+
 void Data_Type_Visitor::
 visit_Boolean (PICML::Boolean_in b)
 {

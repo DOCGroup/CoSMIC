@@ -2,9 +2,11 @@
 #define _PICML_DOMAIN_VISITOR_H_
 
 #include "PICML/Visitor.h"
-#include "game/xml/Fragment.h"
+#include "game/xml/Document.h"
 
-class Domain_Visitor : public PICML::Visitor
+#include "Domain_Component_export.h"
+
+class DOMAIN_COMPONENT_Export Domain_Visitor : public PICML::Visitor
 {
 public:
   Domain_Visitor (const std::string & output_path);
@@ -22,10 +24,24 @@ public:
   virtual void visit_Resource (PICML::Resource_in res);
   virtual void visit_SatisfierProperty (PICML::SatisfierProperty_in prop);
 
+  void add_shortname (const std::string & name, const std::string & value);
+  void remove_shortname (const std::string & name);
+  std::string expand_shortname (const std::string & shortname);
+
+protected:
+  /// Collection of of long names that replace short names in the models.
+  std::map <std::string, std::string> short_names_;
+
+  /// Begin a new Domain document.
+  void begin_document (const std::string & uuid, const std::string & label);
+  void write_document (const std::string & filename);
+
+  GAME::Xml::Fragment fragment_;
+
 private:
   std::string output_path_;
 
-  GAME::Xml::Fragment fragment_;
+  GAME::Xml::LS_Document xml_doc_;
 };
 
 #endif /* DOMAIN_VISITOR_H */

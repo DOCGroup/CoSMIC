@@ -13,6 +13,14 @@ namespace Xml
 {
 
 Data_Value_Visitor::
+Data_Value_Visitor (const GAME::Xml::Fragment & parent)
+: fragment_ (parent),
+  container_ (NONE)
+{
+
+}
+
+Data_Value_Visitor::
 Data_Value_Visitor (const GAME::Xml::Fragment & parent, const std::string & value)
 : fragment_ (parent),
   value_ (value),

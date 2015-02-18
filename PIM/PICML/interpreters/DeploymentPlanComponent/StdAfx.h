@@ -19,6 +19,8 @@
 #endif
 #define _ATL_APARTMENT_THREADED
 
+#include "game/config.h"
+
 #include <afx.h>
 #include <afxwin.h>
 #include <afxdisp.h>
@@ -30,7 +32,8 @@
 extern CComModule _Module;
 #include <atlcom.h>
 
-#include "game/mga/Mga.h"
+
+#include "Deployment_Plan_Generator.h"
 
 #pragma warning( disable : 4666)
 

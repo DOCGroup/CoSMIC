@@ -8,6 +8,7 @@
 #include "game/mga/Utils.h"
 
 #include <sstream>
+#include <set>
 
 namespace PICML
 {
@@ -37,40 +38,23 @@ public:
 
   void Visit_ConnectorToFacet (ConnectorToFacet_in ctf)
   {
-    ProvidedRequestPortEnd endpoint = ctf.dstConnectorToFacet_end ();
-    this->Visit_ProvidedRequestPortEnd (endpoint);
+    ctf->dst_ProvidedRequestPortEnd ()->accept (this);
   }
 
-  //
-  // Visit_ProvidedRequestPortDelegate
-  //
   void Visit_ProvidedRequestPortDelegate (ProvidedRequestPortDelegate_in inst)
   {
-    std::set <FacetDelegate> delegates = inst.dstFacetDelegate ();
-  for(auto delegate : delegates)
-	  delegate.Accept(*this);
+    for (FacetDelegate item  : inst->src_of_FacetDelegate ())
+      item->accept (this);
   }
 
-  //
-  // Visit_FacetDelegate
-  //
   void Visit_FacetDelegate (FacetDelegate_in fd)
   {
-    ProvidedRequestPortEnd endpoint = fd.dstFacetDelegate_end ();
-    this->Visit_ProvidedRequestPortEnd (endpoint);
+    fd->dst_ProvidedRequestPortEnd ()->accept (this);
   }
 
-  //
-  // Visit_ProvidedRequestPortEnd
-  //
-  void Visit_ProvidedRequestPortEnd (ProvidedRequestPortEnd_in endpoint)
+  void visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in inst)
   {
-    const Uml::Class & meta = endpoint.type ();
-
-    if (meta == ProvidedRequestPortInstance::meta)
-      this->ports_.insert (ProvidedRequestPortInstance::Cast (endpoint));
-    else if (meta == ProvidedRequestPortDelegate::meta)
-      ProvidedRequestPortDelegate::Cast (endpoint).Accept (*this);
+    this->ports_.insert (inst);
   }
 
 private:
@@ -80,23 +64,17 @@ private:
 ///////////////////////////////////////////////////////////////////////////////
 // Connector_Visitor
 
-//
-// Connector_Visitor
-//
 Connector_Visitor::
-Connector_Visitor (GAME::Xml::Fragment document,
-                   std::vector <GAME::Xml::Fragment> & conns,
-                   std::map <ComponentInstance, CollocationGroup> & instances)
-: document_ (document),
-  conns_ (conns),
-  instance_mapping_ (instances)
+Connector_Visitor (Deployment_Handler * handler, 
+                   GAME::Xml::Fragment document,
+                   std::vector <GAME::Xml::Fragment> & conns)
+: handler_ (handler),
+  document_ (document),
+  conns_ (conns)
 {
 
 }
 
-//
-// ~Connector_Visitor
-//
 Connector_Visitor::~Connector_Visitor (void)
 {
 
@@ -104,65 +82,47 @@ Connector_Visitor::~Connector_Visitor (void)
 
 void Connector_Visitor::Visit_ComponentInstance (ComponentInstance_in inst)
 {
+  // Save the component instance since this is needed to deploy
+  // connector fragments to the document.
   this->comp_inst_ = inst;
 
-  if (this->set_active_collocation_group (inst))
-  {
-    // Visit the extended ports.
-    for (ExtendedPortInstance port : inst->get_ExtendedPortInstances ())
-      port->accept (this);
+  // Visit the extended ports.
+  for (ExtendedPortInstance port : inst->get_ExtendedPortInstances ())
+    port->accept (this);
 
-    for (MirrorPortInstance port : inst->get_MirrorPortInstances ())
-      port->accept (this);
+  for (MirrorPortInstance port : inst->get_MirrorPortInstances ())
+    port->accept (this);
 
-    // Visit the standard ports.
-    for (RequiredRequestPortInstance port : inst->get_RequiredRequestPortInstances ())
-      port->accept (this);
+  // Visit the standard ports.
+  for (RequiredRequestPortInstance port : inst->get_RequiredRequestPortInstances ())
+    port->accept (this);
 
-    for (ProvidedRequestPortInstance port : inst->get_ProvidedRequestPortInstances ())
-      port->accept (this);
+  for (ProvidedRequestPortInstance port : inst->get_ProvidedRequestPortInstances ())
+    port->accept (this);
 
-    // Clear the map of connector uuids.
-    if (!this->connector_uuid_.empty ())
-      this->connector_uuids_.clear ();
-  }
+  // Clear the map of connector uuids.
+  if (!this->connector_uuid_.empty ())
+    this->connector_uuids_.clear ();
 }
 
-bool Connector_Visitor::set_active_collocation_group (ComponentInstance_in inst)
-{
-  // Locate the collocation group for this instance.
-  auto iter = this->instance_mapping_.find (inst);
-  if (iter == this->instance_mapping_.end ())
-    return false;
-
-  this->group_ = iter->second;
-  return true;
-}
-
-//
-// Visit_ExtendedPortInstance
-//
 void Connector_Visitor::
 Visit_ExtendedPortInstance (ExtendedPortInstance_in port)
 {
   // Save the prefix for the ports.
-  ExtendedPort ep = port->get_ExtendedPort ();
-  this->prefix1_ = ep->name ();
-  PortType pt = ep->get_PortType ();
+  ExtendedPort ep = port->refers_to_ExtendedPort ();
+  PortType pt = ep->refers_to_PortType ();
 
+  this->prefix1_ = ep->name ();
   this->Visit_ExtendedPortInstanceBase (port, pt);
 }
 
-//
-// Visit_ExtendedPortInstanceBase
-//
 void Connector_Visitor::
 Visit_ExtendedPortInstanceBase (ExtendedPortInstanceBase_in base, PortType_in pt)
 {
   // Vist the publish connection for this port if it exist.
-  Publish publish = base->src_Publish ();
+  Publish publish = base->src_of_Publish ().first ();
 
-  if (!publish.is_nil ())
+  if (publish)
   {
     // Get name of target port, and its connector instance.
     publish->accept (this);
@@ -174,9 +134,9 @@ Visit_ExtendedPortInstanceBase (ExtendedPortInstanceBase_in base, PortType_in pt
 
   // We also need to see if this port type is receiving anything
   // from a connector.
-  Consume consume = base->dst_Consume ();
+  Consume consume = base->dst_of_Consume ().first ();
 
-  if (!consume.is_nil ())
+  if (consume)
   {
     // Get name of target port, and its connector instance.
     consume->accept (this);
@@ -188,41 +148,35 @@ Visit_ExtendedPortInstanceBase (ExtendedPortInstanceBase_in base, PortType_in pt
 
   // Finally, check if this port is part of a delegation. If so,
   // we need to locate the non-delegated port for this port.
-  ExtendedDelegate ed = base.dstExtendedDelegate ();
+  GAME::Mga::Collection_T <ExtendedDelegate> ed = base->src_of_ExtendedDelegate ();
 
-  if (!ed.is_nil ())
+  if (!ed.is_empty ())
   {
-    ExtendedPortDelegate epd = ed->dst_ExtendedPortDelegate ();
+    ExtendedPortDelegate epd = ed.first ()->dst_ExtendedPortDelegate ();
     this->Visit_ExtendedPortInstanceBase (epd, pt);
   }
 }
 
-//
-// Visit_MirrorPortInstance
-//
 void Connector_Visitor::
 Visit_MirrorPortInstance (MirrorPortInstance_in port)
 {
-  MirrorPort mp = port->get_MirrorPort ();
-  this->prefix1_ = mp->name ();
-  PortType pt = mp->get_PortType ();
+  MirrorPort mp = port->refers_to_MirrorPort ();
+  PortType pt = mp->refers_to_PortType ();
 
+  this->prefix1_ = mp->name ();
   this->Visit_MirrorPortInstanceBase (port, pt);
 }
 
-//
-// Visit_MirrorPortInstanceBase
-//
 void Connector_Visitor::
 Visit_MirrorPortInstanceBase (MirrorPortInstanceBase_in base, PortType_in pt)
 {
   // Vist the publish connection for this port if it exist.
-  Publish publish = base.dstPublish ();
+  GAME::Mga::Collection_T <Publish> publish = base->src_of_Publish ();
 
-  if (!publish.is_nil ())
+  if (!publish.is_empty ())
   {
     // Find the target connector.
-    publish->accept (this);
+    publish.first ()->accept (this);
 
     // Write all the connections.
     this->invert_ = true;
@@ -231,12 +185,12 @@ Visit_MirrorPortInstanceBase (MirrorPortInstanceBase_in base, PortType_in pt)
 
   // We also need to see if this port type is receiving anything
   // from a connector.
-  Consume consume = base.srcConsume ();
+  GAME::Mga::Collection_T <Consume> consume = base->dst_of_Consume ();
 
-  if (!consume.is_nil ())
+  if (!consume.is_empty ())
   {
     // Find the target connector.
-    consume->accept (this);
+    consume.first ()->accept (this);
 
     // Write all the connections.
     this->invert_ = true;
@@ -245,48 +199,39 @@ Visit_MirrorPortInstanceBase (MirrorPortInstanceBase_in base, PortType_in pt)
 
   // Finally, check if this port is part of a delegation. If so,
   // we need to locate the non-delegated port for this port.
-  MirrorDelegate md = base.dstMirrorDelegate ();
+  GAME::Mga::Collection_T <MirrorDelegate> md = base->src_of_MirrorDelegate ();
 
-  if (!md.is_nil ())
+  if (!md.is_empty ())
   {
-    MirrorPortDelegate mpd = md->dst_MirrorPortDelegate ();
+    MirrorPortDelegate mpd = md.first ()->dst_MirrorPortDelegate ();
     this->Visit_MirrorPortInstanceBase (mpd, pt);
   }
 }
 
-//
-// Visit_RequiredRequestPortInstance
-//
 void Connector_Visitor::
 Visit_RequiredRequestPortInstance (RequiredRequestPortInstance_in inst)
 {
   // The prefix is not included since the name of the port is
   // only thing that matters with this type of connection.
-  this->receptacle_ = inst->get_RequiredRequestPort ();
+  this->receptacle_ = inst->refers_to_RequiredRequestPort ();
   this->prefix1_.clear ();
 
   this->active_receptacle_ = inst;
   this->Visit_RequiredRequestPortEnd (inst);
 }
 
-//
-// Visit_ProvidedRequestPortInstance
-//
 void Connector_Visitor::
 Visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in inst)
 {
   // The prefix is not included since the name of the port is
   // only thing that matters with this type of connection.
-  this->facet_ = inst->get_ProvidedRequestPort ();
+  this->facet_ = inst->refers_to_ProvidedRequestPort ();
   this->prefix1_.clear ();
 
   this->active_facet_ = inst;
   this->Visit_ProvidedRequestPortEnd (inst);
 }
 
-//
-// Visit_ReceptacleDelegate
-//
 void Connector_Visitor::
 Visit_ReceptacleDelegate (ReceptacleDelegate_in rd)
 {
@@ -294,9 +239,6 @@ Visit_ReceptacleDelegate (ReceptacleDelegate_in rd)
   this->Visit_RequiredRequestPortEnd (rrpe);
 }
 
-//
-// Visit_FacetDelegate
-//
 void Connector_Visitor::
 Visit_FacetDelegate (FacetDelegate_in fd)
 {
@@ -306,43 +248,27 @@ Visit_FacetDelegate (FacetDelegate_in fd)
   this->Visit_ProvidedRequestPortEnd (prpd);
 }
 
-//
-// Visit_RequiredRequestPortEnd
-//
 void Connector_Visitor::
 Visit_RequiredRequestPortEnd (RequiredRequestPortEnd_in end)
 {
-  std::set <ConnectorToReceptacle> conns = end.dstConnectorToReceptacle ();
-
-  for (ConnectorToReceptacle connection : conns)
+  for (ConnectorToReceptacle connection : end->src_of_ConnectorToReceptacle ())
     connection->accept (this);
 
   // We need to visit the receptacle delegates.
-  std::set <ReceptacleDelegate> delegates = end.srcReceptacleDelegate ();
-
-  for (ReceptacleDelegate connection : delegates)
+  for (ReceptacleDelegate connection : end->dst_of_ReceptacleDelegate ())
     connection->accept (this);
 }
 
-//
-// Visit_ProvidedRequestPortEnd
-//
 void Connector_Visitor::
 Visit_ProvidedRequestPortEnd (ProvidedRequestPortEnd_in end)
 {
-  std::set <ConnectorToFacet> conns = end.srcConnectorToFacet ();
-  for (ConnectorToFacet connection : conns)
+  for (ConnectorToFacet connection : end->dst_of_ConnectorToFacet ())
     connection->accept (this);
 
-  // We need to visit the facet delegates.
-  std::set <FacetDelegate> delegates = end.srcFacetDelegate ();
-  for (FacetDelegate connection : delegates)
+  for (FacetDelegate connection : end->dst_of_FacetDelegate ())
     connection->accept (this);
 }
 
-//
-// Visit_ConnectorToReceptacle
-//
 void Connector_Visitor::
 Visit_ConnectorToReceptacle (ConnectorToReceptacle_in conn)
 {
@@ -352,7 +278,7 @@ Visit_ConnectorToReceptacle (ConnectorToReceptacle_in conn)
 
   // We have enough information to generate the connection information
   // for the the receptacle to facet connection.
-  Object obj = Object::_narrow (this->receptacle_->get_Provideable ());
+  Object obj = Object::_narrow (this->receptacle_->refers_to_Provideable ());
 
   // Start a new connection.
   this->start_new_connection (obj);
@@ -366,9 +292,7 @@ Visit_ConnectorToReceptacle (ConnectorToReceptacle_in conn)
     std::set <ProvidedRequestPortInstance> facets;
     ProvidedRequestPortInstance_Collector facet_gatherer (facets);
 
-    std::set <ConnectorToFacet> conns = inst->src_ConnectorToFacet ();
-
-    for (ConnectorToFacet connection : conns)
+    for (ConnectorToFacet connection : inst->dst_of_ConnectorToReceptacle ())
       conn->accept (this);
 
     for (ProvidedRequestPortInstance facet : facets)
@@ -419,7 +343,8 @@ Visit_ConnectorToReceptacle (ConnectorToReceptacle_in conn)
       inst_name << inst->name () << count;
       inst->name (inst_name.str ());
 
-      this->dpv_.deploy_connector_fragment (inst, this->group_);
+      // Deploy the connector fragment.
+      this->handler_->deploy_connector_fragment (inst, this->comp_inst_);
 
       // Update the counter for this connector instance.
       this->connector_counter_[inst] = count;
@@ -438,7 +363,7 @@ Visit_ConnectorToReceptacle (ConnectorToReceptacle_in conn)
       std::ostringstream connection_name;
       connection_name << facet->id ()
                       << "_"
-                      << this->active_receptacle_->id ());
+                      << this->active_receptacle_->id ();
 
       this->connection_name_ = connection_name.str ();
 
@@ -493,7 +418,7 @@ Visit_ConnectorToFacet (ConnectorToFacet_in conn)
   ConnectorInstance inst = conn->src_ConnectorInstance ();
 
   // Start a new connection.
-  Object obj = Object::_narrow (this->facet_->get_Provideable ());
+  Object obj = Object::_narrow (this->facet_->refers_to_Provideable ());
   this->start_new_connection (obj);
 
   if (this->is_ami4ccm_connector (inst))
@@ -572,11 +497,11 @@ Visit_ConnectorToFacet (ConnectorToFacet_in conn)
 bool Connector_Visitor::is_ami4ccm_connector (ConnectorInstance_in inst)
 {
   ConnectorImplementationType impl_type = inst->get_ConnectorImplementationType ();
-  ConnectorImplementation impl = impl_type->get_ConnectorImplementation ();
-  ConnectorImplements implements = impl.dstConnectorImplements ();
+  ConnectorImplementation impl = impl_type->refers_to_ConnectorImplementation ();
+  ConnectorImplements implements = impl->src_of_ConnectorImplements ().first ();
 
   ConnectorType type = implements->dst_ConnectorType ();
-  return this->is_ami4ccm_connector (type->get_ConnectorObject ());
+  return this->is_ami4ccm_connector (type->refers_to_ConnectorObject ());
 }
 
 bool Connector_Visitor::is_ami4ccm_connector (ConnectorObject_in obj)
@@ -593,12 +518,8 @@ bool Connector_Visitor::is_ami4ccm_connector (ConnectorObject_in obj)
     return false;
 
   // Check if this object is an ami4ccm connector.
-  ConnectorObject conn = inherits->get_ConnectorObject ();
-
-  if (!conn.is_nil ())
-    return this->is_ami4ccm_connector (conn);
-
-  return false;
+  ConnectorObject conn = inherits->refers_to_ConnectorObject ();
+  return conn.is_nil () ? false : this->is_ami4ccm_connector (conn);
 }
 
 void Connector_Visitor::Visit_Publish (Publish_in publish)
@@ -632,7 +553,7 @@ void Connector_Visitor::Visit_PortType (PortType_in pt)
 
 void Connector_Visitor::Visit_RequiredRequestPort (RequiredRequestPort_in p)
 {
-  Object obj = Object::_narrow (p->get_Provideable ());
+  Object obj = Object::_narrow (p->refers_to_Provideable ());
   this->start_new_connection (obj);
 
   std::string uuid = "_" + std::string (this->comp_inst_->UUID ());
@@ -657,7 +578,7 @@ void Connector_Visitor::Visit_RequiredRequestPort (RequiredRequestPort_in p)
 void Connector_Visitor::
 Visit_ProvidedRequestPort (ProvidedRequestPort_in p)
 {
-  Object obj = Object::_narrow (p->get_Provideable ());
+  Object obj = Object::_narrow (p->refers_to_Provideable ());
   this->start_new_connection (obj);
 
   std::string uuid = "_" + std::string (this->comp_inst_->UUID ());
@@ -726,26 +647,27 @@ Visit_ProvidedRequestPort_i (const std::string & inst,
 void Connector_Visitor::
 deploy_connector_fragment (ConnectorInstance_in inst)
 {
-  // This will force all ports on the same component instance to
-  // connector with the ports on the same connector instance.
-  std::map <ConnectorInstance, std::string>::iterator
-    result = this->connector_uuids_.find (inst);
-
   std::string fragment_uuid;
 
-  if (result == this->connector_uuids_.end ())
+  try
+  {
+    // This will force all ports on the same component instance to
+    // connector with the ports on the same connector instance.
+    fragment_uuid = this->connector_uuids_.at (inst);
+  }
+  catch (const std::out_of_range &)
   {
     // Save the current name/uuid so we can generate a new one.
     const std::string old_uuid (inst->UUID ());
     const std::string old_name (inst->name ());
 
-    InstanceMapping mapping = this->group_->src_InstanceMapping ();
+    InstanceMapping mapping = this->group_->src_of_InstanceMapping ().first ();
     NodeReference noderef = mapping->dst_NodeReference ();
-    Node node = noderef->get_Node ();
+    Node node = noderef->refers_to_Node ();
 
     // Generate a new UUID and name for this connector fragment.
     fragment_uuid = GAME::Utils::create_uuid ();
-    this->connector_uuids_[inst] = fragment_uuid;
+    this->connector_uuids_.insert (std::make_pair (inst, fragment_uuid));
 
     std::string fragment_name = inst->name ();
     fragment_name += "@" + node->name () + "." + this->group_->name ();
@@ -759,15 +681,11 @@ deploy_connector_fragment (ConnectorInstance_in inst)
 
     // Since this is a new fragment, we need to make sure that it
     // is included in the deployment plan.
-    this->dpv_.deploy_connector_fragment (inst, this->group_);
+    this->handler_->deploy_connector_fragment (inst, this->comp_inst_);
 
     // Restore the original UUID.
     inst->UUID (old_uuid);
     inst->name (old_name);
-  }
-  else
-  {
-    fragment_uuid = result->second;
   }
 
   // Save the UUID for the connector fragment.
