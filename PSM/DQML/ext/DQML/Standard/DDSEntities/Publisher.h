@@ -82,13 +82,13 @@ namespace DQML
      */
     ///@{
 
+    /// Get the src dw_pub_Connection connection.
+    size_t src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const;
+    dw_pub_Connection src_of_dw_pub_Connection (void) const;
+
     /// Get the src pub_entityfactory_Connection connection.
     size_t src_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
     GAME::Mga::Collection_T <pub_entityfactory_Connection> src_of_pub_entityfactory_Connection (void) const;
-
-    /// Get the src dw_pub_Connection connection.
-    size_t src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_pub_Connection> src_of_dw_pub_Connection (void) const;
 
     /// Get the src pub_part_Connection connection.
     size_t src_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const;

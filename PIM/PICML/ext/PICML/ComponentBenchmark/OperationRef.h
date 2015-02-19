@@ -83,19 +83,21 @@ namespace PICML
 
     /// Get the src WorkLoadOperationConnection connection.
     size_t src_of_WorkLoadOperationConnection (std::vector <WorkLoadOperationConnection> & items) const;
-    GAME::Mga::Collection_T <WorkLoadOperationConnection> src_of_WorkLoadOperationConnection (void) const;
-
-    /// Get the src MetricConnection connection.
-    size_t src_of_MetricConnection (std::vector <MetricConnection> & items) const;
-    GAME::Mga::Collection_T <MetricConnection> src_of_MetricConnection (void) const;
+    bool has_src_of_WorkLoadOperationConnection (void) const;
+    WorkLoadOperationConnection src_of_WorkLoadOperationConnection (void) const;
 
     /// Get the src ComponentOperation connection.
     size_t src_of_ComponentOperation (std::vector <ComponentOperation> & items) const;
-    GAME::Mga::Collection_T <ComponentOperation> src_of_ComponentOperation (void) const;
+    ComponentOperation src_of_ComponentOperation (void) const;
+
+    /// Get the src MetricConnection connection.
+    size_t src_of_MetricConnection (std::vector <MetricConnection> & items) const;
+    MetricConnection src_of_MetricConnection (void) const;
 
     /// Get the src TimerConnection connection.
     size_t src_of_TimerConnection (std::vector <TimerConnection> & items) const;
-    GAME::Mga::Collection_T <TimerConnection> src_of_TimerConnection (void) const;
+    bool has_src_of_TimerConnection (void) const;
+    TimerConnection src_of_TimerConnection (void) const;
     ///@}
 
     /**

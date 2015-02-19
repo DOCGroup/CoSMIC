@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/TargetElements/Node.h"
 #include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -84,11 +84,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_InstanceMapping
+  //
+  bool NodeReference_Impl::has_dst_of_InstanceMapping (void) const
+  {
+    return this->in_connections <InstanceMapping> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_InstanceMapping
   //
-  GAME::Mga::Collection_T <InstanceMapping> NodeReference_Impl::dst_of_InstanceMapping (void) const
+  InstanceMapping NodeReference_Impl::dst_of_InstanceMapping (void) const
   {
-    return this->in_connections <InstanceMapping> ("dst");
+    return this->in_connections <InstanceMapping> ("dst").first ();
   }
 
   //

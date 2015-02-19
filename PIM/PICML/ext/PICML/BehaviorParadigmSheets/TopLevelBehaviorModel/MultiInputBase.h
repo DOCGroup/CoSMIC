@@ -69,7 +69,8 @@ namespace PICML
 
     /// Get the src MultiInput connection.
     size_t src_of_MultiInput (std::vector <MultiInput> & items) const;
-    GAME::Mga::Collection_T <MultiInput> src_of_MultiInput (void) const;
+    bool has_src_of_MultiInput (void) const;
+    MultiInput src_of_MultiInput (void) const;
     ///@}
   };
 }

@@ -80,6 +80,15 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const;
+    ::GAME::Mga::Collection_T <ImplementationArtifact> get_ImplementationArtifacts (void) const;
+
+    size_t get_ExtResourceConns (std::vector <ExtResourceConn> & items) const;
+    ::GAME::Mga::Collection_T <ExtResourceConn> get_ExtResourceConns (void) const;
+
+    size_t get_ExternalResourcess (std::vector <ExternalResources> & items) const;
+    ::GAME::Mga::Collection_T <ExternalResources> get_ExternalResourcess (void) const;
+
     size_t get_ExecutorProjects (std::vector <ExecutorProject> & items) const;
     ::GAME::Mga::Collection_T <ExecutorProject> get_ExecutorProjects (void) const;
 
@@ -88,15 +97,6 @@ namespace PICML
 
     size_t get_StubProjects (std::vector <StubProject> & items) const;
     ::GAME::Mga::Collection_T <StubProject> get_StubProjects (void) const;
-
-    size_t get_ExternalResourcess (std::vector <ExternalResources> & items) const;
-    ::GAME::Mga::Collection_T <ExternalResources> get_ExternalResourcess (void) const;
-
-    size_t get_ExtResourceConns (std::vector <ExtResourceConn> & items) const;
-    ::GAME::Mga::Collection_T <ExtResourceConn> get_ExtResourceConns (void) const;
-
-    size_t get_ImplementationArtifacts (std::vector <ImplementationArtifact> & items) const;
-    ::GAME::Mga::Collection_T <ImplementationArtifact> get_ImplementationArtifacts (void) const;
 
     ///@}
   };

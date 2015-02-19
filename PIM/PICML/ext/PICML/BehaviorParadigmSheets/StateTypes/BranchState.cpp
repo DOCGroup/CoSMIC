@@ -58,11 +58,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_BranchTransition
+  //
+  bool BranchState_Impl::has_src_of_BranchTransition (void) const
+  {
+    return this->in_connections <BranchTransition> ("src").count () == 1;
+  }
+
+  //
   // src_of_BranchTransition
   //
-  GAME::Mga::Collection_T <BranchTransition> BranchState_Impl::src_of_BranchTransition (void) const
+  BranchTransition BranchState_Impl::src_of_BranchTransition (void) const
   {
-    return this->in_connections <BranchTransition> ("src");
+    return this->in_connections <BranchTransition> ("src").first ();
   }
 }
 

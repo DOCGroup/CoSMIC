@@ -82,6 +82,10 @@ namespace DQML
      */
     ///@{
 
+    /// Get the src dr_sub_Connection connection.
+    size_t src_of_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_sub_Connection> src_of_dr_sub_Connection (void) const;
+
     /// Get the src sub_entityfactory_Connection connection.
     size_t src_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
     GAME::Mga::Collection_T <sub_entityfactory_Connection> src_of_sub_entityfactory_Connection (void) const;
@@ -97,10 +101,6 @@ namespace DQML
     /// Get the src sub_presqos_Connection connection.
     size_t src_of_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const;
     GAME::Mga::Collection_T <sub_presqos_Connection> src_of_sub_presqos_Connection (void) const;
-
-    /// Get the src dr_sub_Connection connection.
-    size_t src_of_dr_sub_Connection (std::vector <dr_sub_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_sub_Connection> src_of_dr_sub_Connection (void) const;
     ///@}
 
     /**

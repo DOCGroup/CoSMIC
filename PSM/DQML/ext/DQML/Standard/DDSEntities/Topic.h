@@ -82,41 +82,9 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src topic_dursvc_Connection connection.
-    size_t src_of_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_dursvc_Connection> src_of_topic_dursvc_Connection (void) const;
-
-    /// Get the src topic_dstOrder_Connection connection.
-    size_t src_of_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_dstOrder_Connection> src_of_topic_dstOrder_Connection (void) const;
-
-    /// Get the src topic_reliability_Connection connection.
-    size_t src_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_reliability_Connection> src_of_topic_reliability_Connection (void) const;
-
-    /// Get the src topic_liveliness_Connection connection.
-    size_t src_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_liveliness_Connection> src_of_topic_liveliness_Connection (void) const;
-
     /// Get the src topic_ownership_Connection connection.
     size_t src_of_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const;
     GAME::Mga::Collection_T <topic_ownership_Connection> src_of_topic_ownership_Connection (void) const;
-
-    /// Get the src top_deadline_Connection connection.
-    size_t src_of_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;
-    GAME::Mga::Collection_T <top_deadline_Connection> src_of_top_deadline_Connection (void) const;
-
-    /// Get the src top_latency_Connection connection.
-    size_t src_of_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
-    GAME::Mga::Collection_T <top_latency_Connection> src_of_top_latency_Connection (void) const;
-
-    /// Get the src topic_durqos_Connection connection.
-    size_t src_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_durqos_Connection> src_of_topic_durqos_Connection (void) const;
-
-    /// Get the src topic_lifespan_Connection connection.
-    size_t src_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
-    GAME::Mga::Collection_T <topic_lifespan_Connection> src_of_topic_lifespan_Connection (void) const;
 
     /// Get the src topic_res_Connection connection.
     size_t src_of_topic_res_Connection (std::vector <topic_res_Connection> & items) const;
@@ -126,13 +94,45 @@ namespace DQML
     size_t src_of_topic_history_Connection (std::vector <topic_history_Connection> & items) const;
     GAME::Mga::Collection_T <topic_history_Connection> src_of_topic_history_Connection (void) const;
 
+    /// Get the src topic_dstOrder_Connection connection.
+    size_t src_of_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_dstOrder_Connection> src_of_topic_dstOrder_Connection (void) const;
+
+    /// Get the src topic_reliability_Connection connection.
+    size_t src_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_reliability_Connection> src_of_topic_reliability_Connection (void) const;
+
+    /// Get the src top_latency_Connection connection.
+    size_t src_of_top_latency_Connection (std::vector <top_latency_Connection> & items) const;
+    GAME::Mga::Collection_T <top_latency_Connection> src_of_top_latency_Connection (void) const;
+
+    /// Get the src top_deadline_Connection connection.
+    size_t src_of_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;
+    GAME::Mga::Collection_T <top_deadline_Connection> src_of_top_deadline_Connection (void) const;
+
+    /// Get the src topic_durqos_Connection connection.
+    size_t src_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_durqos_Connection> src_of_topic_durqos_Connection (void) const;
+
+    /// Get the src topic_lifespan_Connection connection.
+    size_t src_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_lifespan_Connection> src_of_topic_lifespan_Connection (void) const;
+
     /// Get the src topic_transpri_Connection connection.
     size_t src_of_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const;
     GAME::Mga::Collection_T <topic_transpri_Connection> src_of_topic_transpri_Connection (void) const;
 
+    /// Get the src topic_dursvc_Connection connection.
+    size_t src_of_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_dursvc_Connection> src_of_topic_dursvc_Connection (void) const;
+
     /// Get the src topic_topicdata_Connection connection.
     size_t src_of_topic_topicdata_Connection (std::vector <topic_topicdata_Connection> & items) const;
     GAME::Mga::Collection_T <topic_topicdata_Connection> src_of_topic_topicdata_Connection (void) const;
+
+    /// Get the src topic_liveliness_Connection connection.
+    size_t src_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_liveliness_Connection> src_of_topic_liveliness_Connection (void) const;
     ///@}
 
     /**
@@ -142,15 +142,15 @@ namespace DQML
 
     /// Get the dst dw_topic_Connection connection.
     size_t dst_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_topic_Connection> dst_of_dw_topic_Connection (void) const;
+    dw_topic_Connection dst_of_dw_topic_Connection (void) const;
 
     /// Get the dst dr_topic_Connection connection.
     size_t dst_of_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_topic_Connection> dst_of_dr_topic_Connection (void) const;
+    dr_topic_Connection dst_of_dr_topic_Connection (void) const;
 
     /// Get the dst dp_topic_Connection connection.
     size_t dst_of_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const;
-    GAME::Mga::Collection_T <dp_topic_Connection> dst_of_dp_topic_Connection (void) const;
+    dp_topic_Connection dst_of_dp_topic_Connection (void) const;
     ///@}
   };
 }

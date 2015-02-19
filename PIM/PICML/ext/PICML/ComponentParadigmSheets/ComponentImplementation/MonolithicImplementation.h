@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
 #include "PICML/ImplementationCommon/MonolithicImplementationBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.h"
 #include "game/mga/Atom.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export MonolithicImplementation_Impl :
     public virtual ::GAME::Mga::Atom_Impl,
-    public virtual ComponentImplementation_Impl,
-    public virtual MonolithicImplementationBase_Impl
+    public virtual MonolithicImplementationBase_Impl,
+    public virtual ComponentImplementation_Impl
   {
     public:
     /// Tag type of this extension class.

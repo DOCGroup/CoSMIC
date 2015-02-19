@@ -76,12 +76,10 @@ void Component_Observer_Event_Handler::insert_all (ComponentInstance_in inst)
   if (impl.is_nil ())
     return;
 
-  GAME::Mga::Collection_T <Implements> implements = impl->src_of_Implements ();
-
-  if (!implements.count ())
+  if (!impl->has_src_of_Implements ())
     return;
 
-  ComponentRef ref = implements.first ()->dst_ComponentRef ();
+  ComponentRef ref = impl->src_of_Implements ()->dst_ComponentRef ();
   Component comp = ref->refers_to_Component ();
 
   if (!comp.is_nil ())

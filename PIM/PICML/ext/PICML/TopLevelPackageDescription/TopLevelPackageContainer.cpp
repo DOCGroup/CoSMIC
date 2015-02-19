@@ -9,9 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackages.h"
-#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackages.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -76,22 +76,6 @@ namespace PICML
   }
 
   //
-  // has_PackageConfigurationReference
-  //
-  bool TopLevelPackageContainer_Impl::has_PackageConfigurationReference (void) const
-  {
-    return this->children <PackageConfigurationReference> ().count () == 1;
-  }
-
-  //
-  // get_PackageConfigurationReference
-  //
-  PackageConfigurationReference TopLevelPackageContainer_Impl::get_PackageConfigurationReference (void) const
-  {
-    return this->children <PackageConfigurationReference> ().first ();
-  }
-
-  //
   // has_package
   //
   bool TopLevelPackageContainer_Impl::has_package (void) const
@@ -105,6 +89,22 @@ namespace PICML
   package TopLevelPackageContainer_Impl::get_package (void) const
   {
     return this->children <package> ().first ();
+  }
+
+  //
+  // has_PackageConfigurationReference
+  //
+  bool TopLevelPackageContainer_Impl::has_PackageConfigurationReference (void) const
+  {
+    return this->children <PackageConfigurationReference> ().count () == 1;
+  }
+
+  //
+  // get_PackageConfigurationReference
+  //
+  PackageConfigurationReference TopLevelPackageContainer_Impl::get_PackageConfigurationReference (void) const
+  {
+    return this->children <PackageConfigurationReference> ().first ();
   }
 }
 

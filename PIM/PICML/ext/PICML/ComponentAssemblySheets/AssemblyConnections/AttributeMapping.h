@@ -83,15 +83,18 @@ namespace PICML
 
     /// Get the src AttributeDelegate connection.
     size_t src_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
-    GAME::Mga::Collection_T <AttributeDelegate> src_of_AttributeDelegate (void) const;
+    bool has_src_of_AttributeDelegate (void) const;
+    AttributeDelegate src_of_AttributeDelegate (void) const;
 
     /// Get the src AttributeMappingDelegate connection.
     size_t src_of_AttributeMappingDelegate (std::vector <AttributeMappingDelegate> & items) const;
-    GAME::Mga::Collection_T <AttributeMappingDelegate> src_of_AttributeMappingDelegate (void) const;
+    bool has_src_of_AttributeMappingDelegate (void) const;
+    AttributeMappingDelegate src_of_AttributeMappingDelegate (void) const;
 
     /// Get the src AttributeMappingValue connection.
     size_t src_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const;
-    GAME::Mga::Collection_T <AttributeMappingValue> src_of_AttributeMappingValue (void) const;
+    bool has_src_of_AttributeMappingValue (void) const;
+    AttributeMappingValue src_of_AttributeMappingValue (void) const;
     ///@}
 
     /**

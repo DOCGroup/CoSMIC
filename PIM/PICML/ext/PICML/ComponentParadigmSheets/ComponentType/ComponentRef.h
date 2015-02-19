@@ -56,12 +56,12 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComponentRef _create (const Package_in parent);
-    static ComponentRef _create (const File_in parent);
-    static ComponentRef _create (const PackageContainer_in parent);
+    static ComponentRef _create (const Path_in parent);
     static ComponentRef _create (const ComponentImplementationContainer_in parent);
     static ComponentRef _create (const ComponentContainer_in parent);
-    static ComponentRef _create (const Path_in parent);
+    static ComponentRef _create (const PackageContainer_in parent);
+    static ComponentRef _create (const Package_in parent);
+    static ComponentRef _create (const File_in parent);
     ///@}
 
     // Default constructor.
@@ -80,12 +80,12 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    Package parent_Package (void);
-    File parent_File (void);
-    PackageContainer parent_PackageContainer (void);
+    Path parent_Path (void);
     ComponentImplementationContainer parent_ComponentImplementationContainer (void);
     ComponentContainer parent_ComponentContainer (void);
-    Path parent_Path (void);
+    PackageContainer parent_PackageContainer (void);
+    Package parent_Package (void);
+    File parent_File (void);
     ///@}
 
     /**
@@ -93,13 +93,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ComponentConfigProperty connection.
-    size_t src_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
-    GAME::Mga::Collection_T <ComponentConfigProperty> src_of_ComponentConfigProperty (void) const;
-
     /// Get the src ComponentInfoProperty connection.
     size_t src_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const;
     GAME::Mga::Collection_T <ComponentInfoProperty> src_of_ComponentInfoProperty (void) const;
+
+    /// Get the src ComponentConfigProperty connection.
+    size_t src_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const;
+    GAME::Mga::Collection_T <ComponentConfigProperty> src_of_ComponentConfigProperty (void) const;
 
     /// Get the src ComponentProperty connection.
     size_t src_of_ComponentProperty (std::vector <ComponentProperty> & items) const;
@@ -113,11 +113,13 @@ namespace PICML
 
     /// Get the dst PackageInterface connection.
     size_t dst_of_PackageInterface (std::vector <PackageInterface> & items) const;
-    GAME::Mga::Collection_T <PackageInterface> dst_of_PackageInterface (void) const;
+    bool has_dst_of_PackageInterface (void) const;
+    PackageInterface dst_of_PackageInterface (void) const;
 
     /// Get the dst Implements connection.
     size_t dst_of_Implements (std::vector <Implements> & items) const;
-    GAME::Mga::Collection_T <Implements> dst_of_Implements (void) const;
+    bool has_dst_of_Implements (void) const;
+    Implements dst_of_Implements (void) const;
     ///@}
 
     /**

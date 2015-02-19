@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/NamedTypes/Key.h"
+#include "PICML/NamedTypes/KeyMember.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
-#include "PICML/NamedTypes/KeyMember.h"
+#include "PICML/NamedTypes/Key.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -104,6 +104,22 @@ namespace PICML
   }
 
   //
+  // get_KeyMembers
+  //
+  size_t Aggregate_Impl::get_KeyMembers (std::vector <KeyMember> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_KeyMembers
+  //
+  ::GAME::Mga::Collection_T <KeyMember> Aggregate_Impl::get_KeyMembers (void) const
+  {
+    return this->children <KeyMember> ();
+  }
+
+  //
   // get_Members
   //
   size_t Aggregate_Impl::get_Members (std::vector <Member> & items) const
@@ -133,22 +149,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ArrayMember> Aggregate_Impl::get_ArrayMembers (void) const
   {
     return this->children <ArrayMember> ();
-  }
-
-  //
-  // get_KeyMembers
-  //
-  size_t Aggregate_Impl::get_KeyMembers (std::vector <KeyMember> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_KeyMembers
-  //
-  ::GAME::Mga::Collection_T <KeyMember> Aggregate_Impl::get_KeyMembers (void) const
-  {
-    return this->children <KeyMember> ();
   }
 }
 

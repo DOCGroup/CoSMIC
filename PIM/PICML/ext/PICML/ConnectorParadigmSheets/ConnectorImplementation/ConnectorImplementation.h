@@ -85,7 +85,8 @@ namespace PICML
 
     /// Get the src ConnectorImplements connection.
     size_t src_of_ConnectorImplements (std::vector <ConnectorImplements> & items) const;
-    GAME::Mga::Collection_T <ConnectorImplements> src_of_ConnectorImplements (void) const;
+    bool has_src_of_ConnectorImplements (void) const;
+    ConnectorImplements src_of_ConnectorImplements (void) const;
     ///@}
   };
 }

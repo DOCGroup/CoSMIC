@@ -69,13 +69,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src Invoke connection.
-    size_t src_of_Invoke (std::vector <Invoke> & items) const;
-    GAME::Mga::Collection_T <Invoke> src_of_Invoke (void) const;
-
     /// Get the src ConnectorToReceptacle connection.
     size_t src_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const;
     GAME::Mga::Collection_T <ConnectorToReceptacle> src_of_ConnectorToReceptacle (void) const;
+
+    /// Get the src Invoke connection.
+    size_t src_of_Invoke (std::vector <Invoke> & items) const;
+    GAME::Mga::Collection_T <Invoke> src_of_Invoke (void) const;
     ///@}
 
     /**

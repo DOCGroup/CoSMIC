@@ -83,7 +83,8 @@ namespace PICML
 
     /// Get the src SrcEdge connection.
     size_t src_of_SrcEdge (std::vector <SrcEdge> & items) const;
-    GAME::Mga::Collection_T <SrcEdge> src_of_SrcEdge (void) const;
+    bool has_src_of_SrcEdge (void) const;
+    SrcEdge src_of_SrcEdge (void) const;
     ///@}
 
     /**
@@ -93,11 +94,13 @@ namespace PICML
 
     /// Get the dst EdgeProperty connection.
     size_t dst_of_EdgeProperty (std::vector <EdgeProperty> & items) const;
-    GAME::Mga::Collection_T <EdgeProperty> dst_of_EdgeProperty (void) const;
+    bool has_dst_of_EdgeProperty (void) const;
+    EdgeProperty dst_of_EdgeProperty (void) const;
 
     /// Get the dst DstEdge connection.
     size_t dst_of_DstEdge (std::vector <DstEdge> & items) const;
-    GAME::Mga::Collection_T <DstEdge> dst_of_DstEdge (void) const;
+    bool has_dst_of_DstEdge (void) const;
+    DstEdge dst_of_DstEdge (void) const;
     ///@}
   };
 }

@@ -58,11 +58,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Input
+  //
+  bool InputAction_Impl::has_dst_of_Input (void) const
+  {
+    return this->in_connections <Input> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Input
   //
-  GAME::Mga::Collection_T <Input> InputAction_Impl::dst_of_Input (void) const
+  Input InputAction_Impl::dst_of_Input (void) const
   {
-    return this->in_connections <Input> ("dst");
+    return this->in_connections <Input> ("dst").first ();
   }
 }
 

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,11 +67,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_TimerConnection
+  //
+  bool TimeProbe_Impl::has_dst_of_TimerConnection (void) const
+  {
+    return this->in_connections <TimerConnection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_TimerConnection
   //
-  GAME::Mga::Collection_T <TimerConnection> TimeProbe_Impl::dst_of_TimerConnection (void) const
+  TimerConnection TimeProbe_Impl::dst_of_TimerConnection (void) const
   {
-    return this->in_connections <TimerConnection> ("dst");
+    return this->in_connections <TimerConnection> ("dst").first ();
   }
 
   //
@@ -83,11 +91,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_TimerEventSinkConn
+  //
+  bool TimeProbe_Impl::has_dst_of_TimerEventSinkConn (void) const
+  {
+    return this->in_connections <TimerEventSinkConn> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_TimerEventSinkConn
   //
-  GAME::Mga::Collection_T <TimerEventSinkConn> TimeProbe_Impl::dst_of_TimerEventSinkConn (void) const
+  TimerEventSinkConn TimeProbe_Impl::dst_of_TimerEventSinkConn (void) const
   {
-    return this->in_connections <TimerEventSinkConn> ("dst");
+    return this->in_connections <TimerEventSinkConn> ("dst").first ();
   }
 }
 

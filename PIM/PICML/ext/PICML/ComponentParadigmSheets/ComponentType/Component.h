@@ -17,9 +17,9 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Manageable.h"
 #include "PICML/NamedTypes/NamedType.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
 #include "game/mga/Model.h"
 
@@ -40,9 +40,9 @@ namespace PICML
    */
   class PICML_Export Component_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual TopLevelBehavior_Impl,
     public virtual Manageable_Impl,
     public virtual NamedType_Impl,
+    public virtual TopLevelBehavior_Impl,
     public virtual SupportsInterfaces_Impl
   {
     public:
@@ -115,11 +115,11 @@ namespace PICML
     size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
 
-    size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
-    ::GAME::Mga::Collection_T <OutEventPort> get_OutEventPorts (void) const;
-
     size_t get_InEventPorts (std::vector <InEventPort> & items) const;
     ::GAME::Mga::Collection_T <InEventPort> get_InEventPorts (void) const;
+
+    size_t get_OutEventPorts (std::vector <OutEventPort> & items) const;
+    ::GAME::Mga::Collection_T <OutEventPort> get_OutEventPorts (void) const;
 
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
     ::GAME::Mga::Collection_T <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
@@ -127,11 +127,11 @@ namespace PICML
     size_t get_Attributes (std::vector <Attribute> & items) const;
     ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
 
-    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
-    ::GAME::Mga::Collection_T <ExtendedPort> get_ExtendedPorts (void) const;
-
     size_t get_MirrorPorts (std::vector <MirrorPort> & items) const;
     ::GAME::Mga::Collection_T <MirrorPort> get_MirrorPorts (void) const;
+
+    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
+    ::GAME::Mga::Collection_T <ExtendedPort> get_ExtendedPorts (void) const;
 
     ///@}
   };

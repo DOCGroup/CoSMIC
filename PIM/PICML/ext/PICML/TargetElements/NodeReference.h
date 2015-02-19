@@ -93,7 +93,8 @@ namespace PICML
 
     /// Get the dst InstanceMapping connection.
     size_t dst_of_InstanceMapping (std::vector <InstanceMapping> & items) const;
-    GAME::Mga::Collection_T <InstanceMapping> dst_of_InstanceMapping (void) const;
+    bool has_dst_of_InstanceMapping (void) const;
+    InstanceMapping dst_of_InstanceMapping (void) const;
     ///@}
 
     /**

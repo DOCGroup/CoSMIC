@@ -69,11 +69,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_TerminalEffect
+  //
+  bool Terminal_Impl::has_src_of_TerminalEffect (void) const
+  {
+    return this->in_connections <TerminalEffect> ("src").count () == 1;
+  }
+
+  //
   // src_of_TerminalEffect
   //
-  GAME::Mga::Collection_T <TerminalEffect> Terminal_Impl::src_of_TerminalEffect (void) const
+  TerminalEffect Terminal_Impl::src_of_TerminalEffect (void) const
   {
-    return this->in_connections <TerminalEffect> ("src");
+    return this->in_connections <TerminalEffect> ("src").first ();
   }
 
   //
@@ -85,11 +93,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_TerminalTransition
+  //
+  bool Terminal_Impl::has_dst_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_TerminalTransition
   //
-  GAME::Mga::Collection_T <TerminalTransition> Terminal_Impl::dst_of_TerminalTransition (void) const
+  TerminalTransition Terminal_Impl::dst_of_TerminalTransition (void) const
   {
-    return this->in_connections <TerminalTransition> ("dst");
+    return this->in_connections <TerminalTransition> ("dst").first ();
   }
 }
 

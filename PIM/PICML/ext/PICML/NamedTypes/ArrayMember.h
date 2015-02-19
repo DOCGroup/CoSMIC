@@ -56,10 +56,10 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ArrayMember _create (const SwitchedAggregate_in parent);
-    static ArrayMember _create (const ObjectByValue_in parent);
-    static ArrayMember _create (const Aggregate_in parent);
     static ArrayMember _create (const Exception_in parent);
+    static ArrayMember _create (const Aggregate_in parent);
+    static ArrayMember _create (const ObjectByValue_in parent);
+    static ArrayMember _create (const SwitchedAggregate_in parent);
     ///@}
 
     // Default constructor.

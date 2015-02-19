@@ -311,8 +311,8 @@ void IDL_File_Generator::visit_Aggregate (PICML::Aggregate_in a)
     PICML::Key key = a->get_Key ();
 
     // First, gather all the members
-    for (auto connection : key->src_of_KeyMember ())
-      sorted_members.push_back (connection->dst_Member ());
+    if (key->has_src_of_KeyMember ())
+      sorted_members.push_back (key->src_of_KeyMember ()->dst_Member ());
 
     // Now sort the members
     ::GAME::Mga::Position_Sort_T <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter_t;
@@ -379,8 +379,7 @@ visit_SwitchedAggregate (PICML::SwitchedAggregate_in s)
 //
 void IDL_File_Generator::visit_Member (PICML::Member_in m)
 {
-  for (auto label_connection : m->src_of_LabelConnection ())
-    label_connection->accept (this);
+  m->src_of_LabelConnection ()->accept (this);
   this->idl_ << nl;
 
   if (this->in_event_)

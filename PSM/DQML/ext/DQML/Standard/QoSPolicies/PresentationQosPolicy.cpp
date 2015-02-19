@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
+#include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -31,17 +31,17 @@ namespace DQML
   const bool PresentationQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const SubscriberQos_in)
+  // _create (const PublisherQos_in)
   //
-  PresentationQosPolicy PresentationQosPolicy_Impl::_create (const SubscriberQos_in parent)
+  PresentationQosPolicy PresentationQosPolicy_Impl::_create (const PublisherQos_in parent)
   {
     return ::GAME::Mga::create < PresentationQosPolicy > (parent, PresentationQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const PublisherQos_in)
+  // _create (const SubscriberQos_in)
   //
-  PresentationQosPolicy PresentationQosPolicy_Impl::_create (const PublisherQos_in parent)
+  PresentationQosPolicy PresentationQosPolicy_Impl::_create (const SubscriberQos_in parent)
   {
     return ::GAME::Mga::create < PresentationQosPolicy > (parent, PresentationQosPolicy_Impl::metaname);
   }
@@ -69,19 +69,19 @@ namespace DQML
   }
 
   //
-  // parent_SubscriberQos
-  //
-  SubscriberQos PresentationQosPolicy_Impl::parent_SubscriberQos (void)
-  {
-    return SubscriberQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_PublisherQos
   //
   PublisherQos PresentationQosPolicy_Impl::parent_PublisherQos (void)
   {
     return PublisherQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_SubscriberQos
+  //
+  SubscriberQos PresentationQosPolicy_Impl::parent_SubscriberQos (void)
+  {
+    return SubscriberQos::_narrow (this->parent ());
   }
 
   //
@@ -93,11 +93,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_pub_presqos_Connection
+  //
+  bool PresentationQosPolicy_Impl::has_dst_of_pub_presqos_Connection (void) const
+  {
+    return this->in_connections <pub_presqos_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_pub_presqos_Connection
   //
-  GAME::Mga::Collection_T <pub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (void) const
+  pub_presqos_Connection PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (void) const
   {
-    return this->in_connections <pub_presqos_Connection> ("dst");
+    return this->in_connections <pub_presqos_Connection> ("dst").first ();
   }
 
   //
@@ -109,11 +117,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_sub_presqos_Connection
+  //
+  bool PresentationQosPolicy_Impl::has_dst_of_sub_presqos_Connection (void) const
+  {
+    return this->in_connections <sub_presqos_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_sub_presqos_Connection
   //
-  GAME::Mga::Collection_T <sub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (void) const
+  sub_presqos_Connection PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (void) const
   {
-    return this->in_connections <sub_presqos_Connection> ("dst");
+    return this->in_connections <sub_presqos_Connection> ("dst").first ();
   }
 }
 

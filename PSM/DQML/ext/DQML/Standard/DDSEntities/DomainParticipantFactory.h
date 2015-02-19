@@ -88,7 +88,7 @@ namespace DQML
 
     /// Get the src dpf_dp_Connection connection.
     size_t src_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const;
-    GAME::Mga::Collection_T <dpf_dp_Connection> src_of_dpf_dp_Connection (void) const;
+    dpf_dp_Connection src_of_dpf_dp_Connection (void) const;
     ///@}
   };
 }

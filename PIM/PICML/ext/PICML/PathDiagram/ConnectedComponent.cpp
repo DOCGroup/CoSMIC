@@ -13,8 +13,8 @@
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
@@ -89,22 +89,6 @@ namespace PICML
   }
 
   //
-  // get_OutEventPorts
-  //
-  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OutEventPorts
-  //
-  ::GAME::Mga::Collection_T <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
-  {
-    return this->children <OutEventPort> ();
-  }
-
-  //
   // get_InEventPorts
   //
   size_t ConnectedComponent_Impl::get_InEventPorts (std::vector <InEventPort> & items) const
@@ -118,6 +102,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <InEventPort> ConnectedComponent_Impl::get_InEventPorts (void) const
   {
     return this->children <InEventPort> ();
+  }
+
+  //
+  // get_OutEventPorts
+  //
+  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutEventPorts
+  //
+  ::GAME::Mga::Collection_T <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
+  {
+    return this->children <OutEventPort> ();
   }
 
   //

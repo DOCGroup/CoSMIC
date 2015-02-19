@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {
@@ -40,11 +40,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_BenchmarkCharacteristics
+  //
+  bool BenchmarkType_Impl::has_src_of_BenchmarkCharacteristics (void) const
+  {
+    return this->in_connections <BenchmarkCharacteristics> ("src").count () == 1;
+  }
+
+  //
   // src_of_BenchmarkCharacteristics
   //
-  GAME::Mga::Collection_T <BenchmarkCharacteristics> BenchmarkType_Impl::src_of_BenchmarkCharacteristics (void) const
+  BenchmarkCharacteristics BenchmarkType_Impl::src_of_BenchmarkCharacteristics (void) const
   {
-    return this->in_connections <BenchmarkCharacteristics> ("src");
+    return this->in_connections <BenchmarkCharacteristics> ("src").first ();
   }
 }
 

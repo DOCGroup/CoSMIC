@@ -82,13 +82,14 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src Transition connection.
-    size_t src_of_Transition (std::vector <Transition> & items) const;
-    GAME::Mga::Collection_T <Transition> src_of_Transition (void) const;
-
     /// Get the src TerminalTransition connection.
     size_t src_of_TerminalTransition (std::vector <TerminalTransition> & items) const;
     GAME::Mga::Collection_T <TerminalTransition> src_of_TerminalTransition (void) const;
+
+    /// Get the src Transition connection.
+    size_t src_of_Transition (std::vector <Transition> & items) const;
+    bool has_src_of_Transition (void) const;
+    Transition src_of_Transition (void) const;
     ///@}
   };
 }

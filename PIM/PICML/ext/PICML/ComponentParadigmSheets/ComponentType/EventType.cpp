@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
 
 namespace PICML
 {

@@ -33,9 +33,9 @@ namespace PICML
   //
   // dst_of_ManagesComponent
   //
-  GAME::Mga::Collection_T <ManagesComponent> Manageable_Impl::dst_of_ManagesComponent (void) const
+  ManagesComponent Manageable_Impl::dst_of_ManagesComponent (void) const
   {
-    return this->in_connections <ManagesComponent> ("dst");
+    return this->in_connections <ManagesComponent> ("dst").first ();
   }
 }
 

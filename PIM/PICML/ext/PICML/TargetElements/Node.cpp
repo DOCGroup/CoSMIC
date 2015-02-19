@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/Domain.h"
-#include "PICML/TargetElements/Resource.h"
-#include "PICML/TargetElements/NodeReference.h"
-#include "PICML/Domain/Shares.h"
 #include "PICML/Domain/InterconnectConnection.h"
+#include "PICML/Domain/Shares.h"
+#include "PICML/TargetElements/NodeReference.h"
+#include "PICML/TargetElements/Resource.h"
+#include "PICML/Domain/Domain.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -61,22 +61,6 @@ namespace PICML
   }
 
   //
-  // src_of_Shares
-  //
-  size_t Node_Impl::src_of_Shares (std::vector <Shares> & items) const
-  {
-    return this->in_connections <Shares> (items);
-  }
-
-  //
-  // src_of_Shares
-  //
-  GAME::Mga::Collection_T <Shares> Node_Impl::src_of_Shares (void) const
-  {
-    return this->in_connections <Shares> ("src");
-  }
-
-  //
   // src_of_InterconnectConnection
   //
   size_t Node_Impl::src_of_InterconnectConnection (std::vector <InterconnectConnection> & items) const
@@ -90,6 +74,22 @@ namespace PICML
   GAME::Mga::Collection_T <InterconnectConnection> Node_Impl::src_of_InterconnectConnection (void) const
   {
     return this->in_connections <InterconnectConnection> ("src");
+  }
+
+  //
+  // src_of_Shares
+  //
+  size_t Node_Impl::src_of_Shares (std::vector <Shares> & items) const
+  {
+    return this->in_connections <Shares> (items);
+  }
+
+  //
+  // src_of_Shares
+  //
+  GAME::Mga::Collection_T <Shares> Node_Impl::src_of_Shares (void) const
+  {
+    return this->in_connections <Shares> ("src");
   }
 
   //

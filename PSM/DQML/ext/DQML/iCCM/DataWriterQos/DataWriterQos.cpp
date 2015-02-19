@@ -10,18 +10,18 @@
 #include "DQML/Visitor.h"
 #include "DQML/Standard/QoSPolicies/LivelinessQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/HistoryQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/DurabilityQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/LifespanQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/TransportPriorityQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/OwnershipStrengthQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/HistoryQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DomainQos/PublishesConnection.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
@@ -138,19 +138,83 @@ namespace DQML
   }
 
   //
-  // has_DeadlineQosPolicy
+  // has_UserDataQosPolicy
   //
-  bool DataWriterQos_Impl::has_DeadlineQosPolicy (void) const
+  bool DataWriterQos_Impl::has_UserDataQosPolicy (void) const
   {
-    return this->children <DeadlineQosPolicy> ().count () == 1;
+    return this->children <UserDataQosPolicy> ().count () == 1;
   }
 
   //
-  // get_DeadlineQosPolicy
+  // get_UserDataQosPolicy
   //
-  DeadlineQosPolicy DataWriterQos_Impl::get_DeadlineQosPolicy (void) const
+  UserDataQosPolicy DataWriterQos_Impl::get_UserDataQosPolicy (void) const
   {
-    return this->children <DeadlineQosPolicy> ().first ();
+    return this->children <UserDataQosPolicy> ().first ();
+  }
+
+  //
+  // has_ResourceLimitsQosPolicy
+  //
+  bool DataWriterQos_Impl::has_ResourceLimitsQosPolicy (void) const
+  {
+    return this->children <ResourceLimitsQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_ResourceLimitsQosPolicy
+  //
+  ResourceLimitsQosPolicy DataWriterQos_Impl::get_ResourceLimitsQosPolicy (void) const
+  {
+    return this->children <ResourceLimitsQosPolicy> ().first ();
+  }
+
+  //
+  // has_HistoryQosPolicy
+  //
+  bool DataWriterQos_Impl::has_HistoryQosPolicy (void) const
+  {
+    return this->children <HistoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_HistoryQosPolicy
+  //
+  HistoryQosPolicy DataWriterQos_Impl::get_HistoryQosPolicy (void) const
+  {
+    return this->children <HistoryQosPolicy> ().first ();
+  }
+
+  //
+  // has_DestinationOrderQosPolicy
+  //
+  bool DataWriterQos_Impl::has_DestinationOrderQosPolicy (void) const
+  {
+    return this->children <DestinationOrderQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_DestinationOrderQosPolicy
+  //
+  DestinationOrderQosPolicy DataWriterQos_Impl::get_DestinationOrderQosPolicy (void) const
+  {
+    return this->children <DestinationOrderQosPolicy> ().first ();
+  }
+
+  //
+  // has_ReliabilityQosPolicy
+  //
+  bool DataWriterQos_Impl::has_ReliabilityQosPolicy (void) const
+  {
+    return this->children <ReliabilityQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_ReliabilityQosPolicy
+  //
+  ReliabilityQosPolicy DataWriterQos_Impl::get_ReliabilityQosPolicy (void) const
+  {
+    return this->children <ReliabilityQosPolicy> ().first ();
   }
 
   //
@@ -167,6 +231,22 @@ namespace DQML
   LatencyBudgetQosPolicy DataWriterQos_Impl::get_LatencyBudgetQosPolicy (void) const
   {
     return this->children <LatencyBudgetQosPolicy> ().first ();
+  }
+
+  //
+  // has_DeadlineQosPolicy
+  //
+  bool DataWriterQos_Impl::has_DeadlineQosPolicy (void) const
+  {
+    return this->children <DeadlineQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_DeadlineQosPolicy
+  //
+  DeadlineQosPolicy DataWriterQos_Impl::get_DeadlineQosPolicy (void) const
+  {
+    return this->children <DeadlineQosPolicy> ().first ();
   }
 
   //
@@ -247,86 +327,6 @@ namespace DQML
   OwnershipStrengthQosPolicy DataWriterQos_Impl::get_OwnershipStrengthQosPolicy (void) const
   {
     return this->children <OwnershipStrengthQosPolicy> ().first ();
-  }
-
-  //
-  // has_ResourceLimitsQosPolicy
-  //
-  bool DataWriterQos_Impl::has_ResourceLimitsQosPolicy (void) const
-  {
-    return this->children <ResourceLimitsQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_ResourceLimitsQosPolicy
-  //
-  ResourceLimitsQosPolicy DataWriterQos_Impl::get_ResourceLimitsQosPolicy (void) const
-  {
-    return this->children <ResourceLimitsQosPolicy> ().first ();
-  }
-
-  //
-  // has_HistoryQosPolicy
-  //
-  bool DataWriterQos_Impl::has_HistoryQosPolicy (void) const
-  {
-    return this->children <HistoryQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_HistoryQosPolicy
-  //
-  HistoryQosPolicy DataWriterQos_Impl::get_HistoryQosPolicy (void) const
-  {
-    return this->children <HistoryQosPolicy> ().first ();
-  }
-
-  //
-  // has_UserDataQosPolicy
-  //
-  bool DataWriterQos_Impl::has_UserDataQosPolicy (void) const
-  {
-    return this->children <UserDataQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_UserDataQosPolicy
-  //
-  UserDataQosPolicy DataWriterQos_Impl::get_UserDataQosPolicy (void) const
-  {
-    return this->children <UserDataQosPolicy> ().first ();
-  }
-
-  //
-  // has_DestinationOrderQosPolicy
-  //
-  bool DataWriterQos_Impl::has_DestinationOrderQosPolicy (void) const
-  {
-    return this->children <DestinationOrderQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_DestinationOrderQosPolicy
-  //
-  DestinationOrderQosPolicy DataWriterQos_Impl::get_DestinationOrderQosPolicy (void) const
-  {
-    return this->children <DestinationOrderQosPolicy> ().first ();
-  }
-
-  //
-  // has_ReliabilityQosPolicy
-  //
-  bool DataWriterQos_Impl::has_ReliabilityQosPolicy (void) const
-  {
-    return this->children <ReliabilityQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_ReliabilityQosPolicy
-  //
-  ReliabilityQosPolicy DataWriterQos_Impl::get_ReliabilityQosPolicy (void) const
-  {
-    return this->children <ReliabilityQosPolicy> ().first ();
   }
 
   //

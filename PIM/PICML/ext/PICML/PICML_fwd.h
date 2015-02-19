@@ -298,15 +298,15 @@ namespace PICML
   typedef DisplayNode_Impl * DisplayNode_in;
   typedef ::GAME::Mga::Smart_Ptr <DisplayNode_Impl> DisplayNode;
 
-  // Forward declarations for PackageConfigurationReference
-  class PackageConfigurationReference_Impl;
-  typedef PackageConfigurationReference_Impl * PackageConfigurationReference_in;
-  typedef ::GAME::Mga::Smart_Ptr <PackageConfigurationReference_Impl> PackageConfigurationReference;
-
   // Forward declarations for MonolithicImplementationBase
   class MonolithicImplementationBase_Impl;
   typedef MonolithicImplementationBase_Impl * MonolithicImplementationBase_in;
   typedef ::GAME::Mga::Smart_Ptr <MonolithicImplementationBase_Impl> MonolithicImplementationBase;
+
+  // Forward declarations for PackageConfigurationReference
+  class PackageConfigurationReference_Impl;
+  typedef PackageConfigurationReference_Impl * PackageConfigurationReference_in;
+  typedef ::GAME::Mga::Smart_Ptr <PackageConfigurationReference_Impl> PackageConfigurationReference;
 
   // Forward declarations for InEventPortEnd
   class InEventPortEnd_Impl;
@@ -343,15 +343,15 @@ namespace PICML
   typedef ComponentImplementationReference_Impl * ComponentImplementationReference_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentImplementationReference_Impl> ComponentImplementationReference;
 
-  // Forward declarations for ArtifactExecParameter
-  class ArtifactExecParameter_Impl;
-  typedef ArtifactExecParameter_Impl * ArtifactExecParameter_in;
-  typedef ::GAME::Mga::Smart_Ptr <ArtifactExecParameter_Impl> ArtifactExecParameter;
-
   // Forward declarations for MonolithExecParameter
   class MonolithExecParameter_Impl;
   typedef MonolithExecParameter_Impl * MonolithExecParameter_in;
   typedef ::GAME::Mga::Smart_Ptr <MonolithExecParameter_Impl> MonolithExecParameter;
+
+  // Forward declarations for ArtifactExecParameter
+  class ArtifactExecParameter_Impl;
+  typedef ArtifactExecParameter_Impl * ArtifactExecParameter_in;
+  typedef ::GAME::Mga::Smart_Ptr <ArtifactExecParameter_Impl> ArtifactExecParameter;
 
   // Forward declarations for SingleOutputBase
   class SingleOutputBase_Impl;
@@ -688,15 +688,15 @@ namespace PICML
   typedef RequiredRequestPort_Impl * RequiredRequestPort_in;
   typedef ::GAME::Mga::Smart_Ptr <RequiredRequestPort_Impl> RequiredRequestPort;
 
-  // Forward declarations for Port
-  class Port_Impl;
-  typedef Port_Impl * Port_in;
-  typedef ::GAME::Mga::Smart_Ptr <Port_Impl> Port;
-
   // Forward declarations for Requirement
   class Requirement_Impl;
   typedef Requirement_Impl * Requirement_in;
   typedef ::GAME::Mga::Smart_Ptr <Requirement_Impl> Requirement;
+
+  // Forward declarations for Port
+  class Port_Impl;
+  typedef Port_Impl * Port_in;
+  typedef ::GAME::Mga::Smart_Ptr <Port_Impl> Port;
 
   // Forward declarations for Targets
   class Targets_Impl;
@@ -913,15 +913,15 @@ namespace PICML
   typedef File_Impl * File_in;
   typedef ::GAME::Mga::Smart_Ptr <File_Impl> File;
 
-  // Forward declarations for ExtendedPortInstanceBase
-  class ExtendedPortInstanceBase_Impl;
-  typedef ExtendedPortInstanceBase_Impl * ExtendedPortInstanceBase_in;
-  typedef ::GAME::Mga::Smart_Ptr <ExtendedPortInstanceBase_Impl> ExtendedPortInstanceBase;
-
   // Forward declarations for MirrorPortInstanceBase
   class MirrorPortInstanceBase_Impl;
   typedef MirrorPortInstanceBase_Impl * MirrorPortInstanceBase_in;
   typedef ::GAME::Mga::Smart_Ptr <MirrorPortInstanceBase_Impl> MirrorPortInstanceBase;
+
+  // Forward declarations for ExtendedPortInstanceBase
+  class ExtendedPortInstanceBase_Impl;
+  typedef ExtendedPortInstanceBase_Impl * ExtendedPortInstanceBase_in;
+  typedef ::GAME::Mga::Smart_Ptr <ExtendedPortInstanceBase_Impl> ExtendedPortInstanceBase;
 
   // Forward declarations for SingleInputBase
   class SingleInputBase_Impl;
@@ -973,15 +973,15 @@ namespace PICML
   typedef MultiInput_Impl * MultiInput_in;
   typedef ::GAME::Mga::Smart_Ptr <MultiInput_Impl> MultiInput;
 
-  // Forward declarations for TerminalTransition
-  class TerminalTransition_Impl;
-  typedef TerminalTransition_Impl * TerminalTransition_in;
-  typedef ::GAME::Mga::Smart_Ptr <TerminalTransition_Impl> TerminalTransition;
-
   // Forward declarations for Transition
   class Transition_Impl;
   typedef Transition_Impl * Transition_in;
   typedef ::GAME::Mga::Smart_Ptr <Transition_Impl> Transition;
+
+  // Forward declarations for TerminalTransition
+  class TerminalTransition_Impl;
+  typedef TerminalTransition_Impl * TerminalTransition_in;
+  typedef ::GAME::Mga::Smart_Ptr <TerminalTransition_Impl> TerminalTransition;
 
   // Forward declarations for ComponentLib
   class ComponentLib_Impl;
@@ -1493,15 +1493,15 @@ namespace PICML
   typedef PredefinedType_Impl * PredefinedType_in;
   typedef ::GAME::Mga::Smart_Ptr <PredefinedType_Impl> PredefinedType;
 
-  // Forward declarations for ManagesComponent
-  class ManagesComponent_Impl;
-  typedef ManagesComponent_Impl * ManagesComponent_in;
-  typedef ::GAME::Mga::Smart_Ptr <ManagesComponent_Impl> ManagesComponent;
-
   // Forward declarations for ImplementationArtifact
   class ImplementationArtifact_Impl;
   typedef ImplementationArtifact_Impl * ImplementationArtifact_in;
   typedef ::GAME::Mga::Smart_Ptr <ImplementationArtifact_Impl> ImplementationArtifact;
+
+  // Forward declarations for ManagesComponent
+  class ManagesComponent_Impl;
+  typedef ManagesComponent_Impl * ManagesComponent_in;
+  typedef ::GAME::Mga::Smart_Ptr <ManagesComponent_Impl> ManagesComponent;
 
   // Forward declarations for Key
   class Key_Impl;
@@ -1583,15 +1583,15 @@ namespace PICML
   typedef EventRef_Impl * EventRef_in;
   typedef ::GAME::Mga::Smart_Ptr <EventRef_Impl> EventRef;
 
-  // Forward declarations for Effect
-  class Effect_Impl;
-  typedef Effect_Impl * Effect_in;
-  typedef ::GAME::Mga::Smart_Ptr <Effect_Impl> Effect;
-
   // Forward declarations for MonolithprimaryArtifact
   class MonolithprimaryArtifact_Impl;
   typedef MonolithprimaryArtifact_Impl * MonolithprimaryArtifact_in;
   typedef ::GAME::Mga::Smart_Ptr <MonolithprimaryArtifact_Impl> MonolithprimaryArtifact;
+
+  // Forward declarations for Effect
+  class Effect_Impl;
+  typedef Effect_Impl * Effect_in;
+  typedef ::GAME::Mga::Smart_Ptr <Effect_Impl> Effect;
 
   // Forward declarations for TriggerBenchmarks
   class TriggerBenchmarks_Impl;
@@ -1798,15 +1798,15 @@ namespace PICML
   typedef OutEventPortDelegate_Impl * OutEventPortDelegate_in;
   typedef ::GAME::Mga::Smart_Ptr <OutEventPortDelegate_Impl> OutEventPortDelegate;
 
-  // Forward declarations for package
-  class package_Impl;
-  typedef package_Impl * package_in;
-  typedef ::GAME::Mga::Smart_Ptr <package_Impl> package;
-
   // Forward declarations for ComponentPackageReference
   class ComponentPackageReference_Impl;
   typedef ComponentPackageReference_Impl * ComponentPackageReference_in;
   typedef ::GAME::Mga::Smart_Ptr <ComponentPackageReference_Impl> ComponentPackageReference;
+
+  // Forward declarations for package
+  class package_Impl;
+  typedef package_Impl * package_in;
+  typedef ::GAME::Mga::Smart_Ptr <package_Impl> package;
 
   // Forward declarations for Domain
   class Domain_Impl;

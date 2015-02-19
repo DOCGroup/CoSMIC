@@ -80,7 +80,8 @@ namespace PICML
 
     /// Get the src Implements connection.
     size_t src_of_Implements (std::vector <Implements> & items) const;
-    GAME::Mga::Collection_T <Implements> src_of_Implements (void) const;
+    bool has_src_of_Implements (void) const;
+    Implements src_of_Implements (void) const;
     ///@}
   };
 }

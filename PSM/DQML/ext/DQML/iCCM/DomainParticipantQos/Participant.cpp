@@ -11,10 +11,10 @@
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
@@ -131,38 +131,6 @@ namespace DQML
   }
 
   //
-  // get_DataReaderQoss
-  //
-  size_t Participant_Impl::get_DataReaderQoss (std::vector <DataReaderQos> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_DataReaderQoss
-  //
-  ::GAME::Mga::Collection_T <DataReaderQos> Participant_Impl::get_DataReaderQoss (void) const
-  {
-    return this->children <DataReaderQos> ();
-  }
-
-  //
-  // get_SubscriberQoss
-  //
-  size_t Participant_Impl::get_SubscriberQoss (std::vector <SubscriberQos> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SubscriberQoss
-  //
-  ::GAME::Mga::Collection_T <SubscriberQos> Participant_Impl::get_SubscriberQoss (void) const
-  {
-    return this->children <SubscriberQos> ();
-  }
-
-  //
   // get_DataWriterQoss
   //
   size_t Participant_Impl::get_DataWriterQoss (std::vector <DataWriterQos> & items) const
@@ -192,6 +160,38 @@ namespace DQML
   ::GAME::Mga::Collection_T <PublisherQos> Participant_Impl::get_PublisherQoss (void) const
   {
     return this->children <PublisherQos> ();
+  }
+
+  //
+  // get_DataReaderQoss
+  //
+  size_t Participant_Impl::get_DataReaderQoss (std::vector <DataReaderQos> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_DataReaderQoss
+  //
+  ::GAME::Mga::Collection_T <DataReaderQos> Participant_Impl::get_DataReaderQoss (void) const
+  {
+    return this->children <DataReaderQos> ();
+  }
+
+  //
+  // get_SubscriberQoss
+  //
+  size_t Participant_Impl::get_SubscriberQoss (std::vector <SubscriberQos> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SubscriberQoss
+  //
+  ::GAME::Mga::Collection_T <SubscriberQos> Participant_Impl::get_SubscriberQoss (void) const
+  {
+    return this->children <SubscriberQos> ();
   }
 
   //

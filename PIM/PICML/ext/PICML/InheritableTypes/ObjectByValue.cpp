@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/InheritableTypes/PrivateFlag.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 
@@ -29,35 +29,19 @@ namespace PICML
   const bool ObjectByValue_Impl::is_abstract = true;
 
   //
-  // get_FactoryOperations
+  // get_MakeMemberPrivates
   //
-  size_t ObjectByValue_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
+  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_FactoryOperations
+  // get_MakeMemberPrivates
   //
-  ::GAME::Mga::Collection_T <FactoryOperation> ObjectByValue_Impl::get_FactoryOperations (void) const
+  ::GAME::Mga::Collection_T <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
   {
-    return this->children <FactoryOperation> ();
-  }
-
-  //
-  // get_PrivateFlags
-  //
-  size_t ObjectByValue_Impl::get_PrivateFlags (std::vector <PrivateFlag> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PrivateFlags
-  //
-  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
-  {
-    return this->children <PrivateFlag> ();
+    return this->children <MakeMemberPrivate> ();
   }
 
   //
@@ -93,19 +77,35 @@ namespace PICML
   }
 
   //
-  // get_MakeMemberPrivates
+  // get_PrivateFlags
   //
-  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
+  size_t ObjectByValue_Impl::get_PrivateFlags (std::vector <PrivateFlag> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MakeMemberPrivates
+  // get_PrivateFlags
   //
-  ::GAME::Mga::Collection_T <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
+  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
   {
-    return this->children <MakeMemberPrivate> ();
+    return this->children <PrivateFlag> ();
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  size_t ObjectByValue_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_FactoryOperations
+  //
+  ::GAME::Mga::Collection_T <FactoryOperation> ObjectByValue_Impl::get_FactoryOperations (void) const
+  {
+    return this->children <FactoryOperation> ();
   }
 }
 

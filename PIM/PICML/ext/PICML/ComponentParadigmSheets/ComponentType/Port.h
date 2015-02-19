@@ -66,8 +66,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    ConnectedComponent parent_ConnectedComponent (void);
     Component parent_Component (void);
+    ConnectedComponent parent_ConnectedComponent (void);
     ///@}
   };
 }

@@ -8,20 +8,20 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/DeploymentPlan/Deploys.h"
-#include "PICML/DeploymentPlan/DeploymentPlans.h"
 #include "PICML/DeploymentPlan/CollocationGroupMember.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "PICML/DeploymentPlan/CollocationGroupProperty.h"
 #include "PICML/DeploymentPlan/CollocationGroup.h"
 #include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/TargetElements/NodeReference.h"
 #include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/DeploymentPlan/DeploymentPlans.h"
+#include "PICML/DeploymentPlan/Deploys.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -70,19 +70,19 @@ namespace PICML
   }
 
   //
-  // get_Deployss
+  // get_ComponentAssemblyReferences
   //
-  size_t DeploymentPlan_Impl::get_Deployss (std::vector <Deploys> & items) const
+  size_t DeploymentPlan_Impl::get_ComponentAssemblyReferences (std::vector <ComponentAssemblyReference> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Deployss
+  // get_ComponentAssemblyReferences
   //
-  ::GAME::Mga::Collection_T <Deploys> DeploymentPlan_Impl::get_Deployss (void) const
+  ::GAME::Mga::Collection_T <ComponentAssemblyReference> DeploymentPlan_Impl::get_ComponentAssemblyReferences (void) const
   {
-    return this->children <Deploys> ();
+    return this->children <ComponentAssemblyReference> ();
   }
 
   //
@@ -118,19 +118,19 @@ namespace PICML
   }
 
   //
-  // get_ComponentAssemblyReferences
+  // get_SimplePropertys
   //
-  size_t DeploymentPlan_Impl::get_ComponentAssemblyReferences (std::vector <ComponentAssemblyReference> & items) const
+  size_t DeploymentPlan_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ComponentAssemblyReferences
+  // get_SimplePropertys
   //
-  ::GAME::Mga::Collection_T <ComponentAssemblyReference> DeploymentPlan_Impl::get_ComponentAssemblyReferences (void) const
+  ::GAME::Mga::Collection_T <SimpleProperty> DeploymentPlan_Impl::get_SimplePropertys (void) const
   {
-    return this->children <ComponentAssemblyReference> ();
+    return this->children <SimpleProperty> ();
   }
 
   //
@@ -147,22 +147,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComplexProperty> DeploymentPlan_Impl::get_ComplexPropertys (void) const
   {
     return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  size_t DeploymentPlan_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> DeploymentPlan_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
   }
 
   //
@@ -243,6 +227,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <PropertyMapping> DeploymentPlan_Impl::get_PropertyMappings (void) const
   {
     return this->children <PropertyMapping> ();
+  }
+
+  //
+  // get_Deployss
+  //
+  size_t DeploymentPlan_Impl::get_Deployss (std::vector <Deploys> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Deployss
+  //
+  ::GAME::Mga::Collection_T <Deploys> DeploymentPlan_Impl::get_Deployss (void) const
+  {
+    return this->children <Deploys> ();
   }
 }
 

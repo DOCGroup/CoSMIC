@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -32,6 +32,14 @@ namespace PICML
   const bool Requirement_Impl::is_abstract = false;
 
   //
+  // _create (const ComponentAssembly_in)
+  //
+  Requirement Requirement_Impl::_create (const ComponentAssembly_in parent)
+  {
+    return ::GAME::Mga::create < Requirement > (parent, Requirement_Impl::metaname);
+  }
+
+  //
   // _create (const ArtifactContainer_in)
   //
   Requirement Requirement_Impl::_create (const ArtifactContainer_in parent)
@@ -43,14 +51,6 @@ namespace PICML
   // _create (const PackageConfigurationContainer_in)
   //
   Requirement Requirement_Impl::_create (const PackageConfigurationContainer_in parent)
-  {
-    return ::GAME::Mga::create < Requirement > (parent, Requirement_Impl::metaname);
-  }
-
-  //
-  // _create (const ComponentAssembly_in)
-  //
-  Requirement Requirement_Impl::_create (const ComponentAssembly_in parent)
   {
     return ::GAME::Mga::create < Requirement > (parent, Requirement_Impl::metaname);
   }
@@ -70,6 +70,14 @@ namespace PICML
   }
 
   //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly Requirement_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
+  }
+
+  //
   // parent_ArtifactContainer
   //
   ArtifactContainer Requirement_Impl::parent_ArtifactContainer (void)
@@ -86,11 +94,19 @@ namespace PICML
   }
 
   //
-  // parent_ComponentAssembly
+  // dst_of_AssemblyselectRequirement
   //
-  ComponentAssembly Requirement_Impl::parent_ComponentAssembly (void)
+  size_t Requirement_Impl::dst_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
   {
-    return ComponentAssembly::_narrow (this->parent ());
+    return this->in_connections <AssemblyselectRequirement> (items);
+  }
+
+  //
+  // dst_of_AssemblyselectRequirement
+  //
+  GAME::Mga::Collection_T <AssemblyselectRequirement> Requirement_Impl::dst_of_AssemblyselectRequirement (void) const
+  {
+    return this->in_connections <AssemblyselectRequirement> ("dst");
   }
 
   //
@@ -107,22 +123,6 @@ namespace PICML
   GAME::Mga::Collection_T <ArtifactDeployRequirement> Requirement_Impl::dst_of_ArtifactDeployRequirement (void) const
   {
     return this->in_connections <ArtifactDeployRequirement> ("dst");
-  }
-
-  //
-  // dst_of_AssemblyselectRequirement
-  //
-  size_t Requirement_Impl::dst_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const
-  {
-    return this->in_connections <AssemblyselectRequirement> (items);
-  }
-
-  //
-  // dst_of_AssemblyselectRequirement
-  //
-  GAME::Mga::Collection_T <AssemblyselectRequirement> Requirement_Impl::dst_of_AssemblyselectRequirement (void) const
-  {
-    return this->in_connections <AssemblyselectRequirement> ("dst");
   }
 
   //

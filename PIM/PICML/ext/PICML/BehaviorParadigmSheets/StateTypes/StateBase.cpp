@@ -12,8 +12,8 @@
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 
 namespace PICML
@@ -45,11 +45,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_Finish
+  //
+  bool StateBase_Impl::has_src_of_Finish (void) const
+  {
+    return this->in_connections <Finish> ("src").count () == 1;
+  }
+
+  //
   // src_of_Finish
   //
-  GAME::Mga::Collection_T <Finish> StateBase_Impl::src_of_Finish (void) const
+  Finish StateBase_Impl::src_of_Finish (void) const
   {
-    return this->in_connections <Finish> ("src");
+    return this->in_connections <Finish> ("src").first ();
   }
 
   //
@@ -61,11 +69,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_TerminalEffect
+  //
+  bool StateBase_Impl::has_dst_of_TerminalEffect (void) const
+  {
+    return this->in_connections <TerminalEffect> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_TerminalEffect
   //
-  GAME::Mga::Collection_T <TerminalEffect> StateBase_Impl::dst_of_TerminalEffect (void) const
+  TerminalEffect StateBase_Impl::dst_of_TerminalEffect (void) const
   {
-    return this->in_connections <TerminalEffect> ("dst");
+    return this->in_connections <TerminalEffect> ("dst").first ();
   }
 
   //
@@ -77,11 +93,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_InputEffect
+  //
+  bool StateBase_Impl::has_dst_of_InputEffect (void) const
+  {
+    return this->in_connections <InputEffect> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_InputEffect
   //
-  GAME::Mga::Collection_T <InputEffect> StateBase_Impl::dst_of_InputEffect (void) const
+  InputEffect StateBase_Impl::dst_of_InputEffect (void) const
   {
-    return this->in_connections <InputEffect> ("dst");
+    return this->in_connections <InputEffect> ("dst").first ();
   }
 
   //
@@ -93,11 +117,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Effect
+  //
+  bool StateBase_Impl::has_dst_of_Effect (void) const
+  {
+    return this->in_connections <Effect> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Effect
   //
-  GAME::Mga::Collection_T <Effect> StateBase_Impl::dst_of_Effect (void) const
+  Effect StateBase_Impl::dst_of_Effect (void) const
   {
-    return this->in_connections <Effect> ("dst");
+    return this->in_connections <Effect> ("dst").first ();
   }
 }
 

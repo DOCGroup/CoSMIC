@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
-#include "DQML/Standard/Main/dw_pub_Connection.h"
 #include "DQML/Standard/Main/dp_pub_Connection.h"
+#include "DQML/Standard/Main/dw_pub_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
 #include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
@@ -55,6 +55,22 @@ namespace DQML
   }
 
   //
+  // src_of_dw_pub_Connection
+  //
+  size_t Publisher_Impl::src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const
+  {
+    return this->in_connections <dw_pub_Connection> (items);
+  }
+
+  //
+  // src_of_dw_pub_Connection
+  //
+  dw_pub_Connection Publisher_Impl::src_of_dw_pub_Connection (void) const
+  {
+    return this->in_connections <dw_pub_Connection> ("src").first ();
+  }
+
+  //
   // src_of_pub_entityfactory_Connection
   //
   size_t Publisher_Impl::src_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
@@ -68,22 +84,6 @@ namespace DQML
   GAME::Mga::Collection_T <pub_entityfactory_Connection> Publisher_Impl::src_of_pub_entityfactory_Connection (void) const
   {
     return this->in_connections <pub_entityfactory_Connection> ("src");
-  }
-
-  //
-  // src_of_dw_pub_Connection
-  //
-  size_t Publisher_Impl::src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const
-  {
-    return this->in_connections <dw_pub_Connection> (items);
-  }
-
-  //
-  // src_of_dw_pub_Connection
-  //
-  GAME::Mga::Collection_T <dw_pub_Connection> Publisher_Impl::src_of_dw_pub_Connection (void) const
-  {
-    return this->in_connections <dw_pub_Connection> ("src");
   }
 
   //

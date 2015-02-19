@@ -103,8 +103,8 @@ namespace PICML
     size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
 
-    size_t get_Aggregates (std::vector <Aggregate> & items) const;
-    ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
+    size_t get_Collections (std::vector <Collection> & items) const;
+    ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
 
     size_t get_ReadonlyAttributes (std::vector <ReadonlyAttribute> & items) const;
     ::GAME::Mga::Collection_T <ReadonlyAttribute> get_ReadonlyAttributes (void) const;
@@ -112,14 +112,14 @@ namespace PICML
     size_t get_Attributes (std::vector <Attribute> & items) const;
     ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
 
-    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
-    ::GAME::Mga::Collection_T <ExtendedPort> get_ExtendedPorts (void) const;
-
     size_t get_MirrorPorts (std::vector <MirrorPort> & items) const;
     ::GAME::Mga::Collection_T <MirrorPort> get_MirrorPorts (void) const;
 
-    size_t get_Collections (std::vector <Collection> & items) const;
-    ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
+    size_t get_ExtendedPorts (std::vector <ExtendedPort> & items) const;
+    ::GAME::Mga::Collection_T <ExtendedPort> get_ExtendedPorts (void) const;
+
+    size_t get_Aggregates (std::vector <Aggregate> & items) const;
+    ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
 
     ///@}
   };

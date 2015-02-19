@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -68,11 +68,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_PackageConfSpecializedConfig
+  //
+  bool PackageConfigurationReference_Impl::has_dst_of_PackageConfSpecializedConfig (void) const
+  {
+    return this->in_connections <PackageConfSpecializedConfig> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_PackageConfSpecializedConfig
   //
-  GAME::Mga::Collection_T <PackageConfSpecializedConfig> PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
+  PackageConfSpecializedConfig PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
   {
-    return this->in_connections <PackageConfSpecializedConfig> ("dst");
+    return this->in_connections <PackageConfSpecializedConfig> ("dst").first ();
   }
 
   //
@@ -86,9 +94,9 @@ namespace PICML
   //
   // dst_of_package
   //
-  GAME::Mga::Collection_T <package> PackageConfigurationReference_Impl::dst_of_package (void) const
+  package PackageConfigurationReference_Impl::dst_of_package (void) const
   {
-    return this->in_connections <package> ("dst");
+    return this->in_connections <package> ("dst").first ();
   }
 
   //

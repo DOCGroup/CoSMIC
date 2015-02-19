@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
-#include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentBenchmark/ComponentOperation.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,11 +67,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_ComponentOperation
+  //
+  bool CompRef_Impl::has_dst_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_ComponentOperation
   //
-  GAME::Mga::Collection_T <ComponentOperation> CompRef_Impl::dst_of_ComponentOperation (void) const
+  ComponentOperation CompRef_Impl::dst_of_ComponentOperation (void) const
   {
-    return this->in_connections <ComponentOperation> ("dst");
+    return this->in_connections <ComponentOperation> ("dst").first ();
   }
 
   //

@@ -56,9 +56,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static RTRequirements _create (const ComponentAssembly_in parent);
     static RTRequirements _create (const ArtifactContainer_in parent);
     static RTRequirements _create (const PackageConfigurationContainer_in parent);
-    static RTRequirements _create (const ComponentAssembly_in parent);
     ///@}
 
     // Default constructor.

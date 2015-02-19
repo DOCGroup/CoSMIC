@@ -54,9 +54,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static ComponentPackage _create (const ComponentAssembly_in parent);
     static ComponentPackage _create (const PackageConfigurationContainer_in parent);
     static ComponentPackage _create (const PackageContainer_in parent);
-    static ComponentPackage _create (const ComponentAssembly_in parent);
     ///@}
 
     // Default constructor.
@@ -75,9 +75,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
+    ComponentAssembly parent_ComponentAssembly (void);
     PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     PackageContainer parent_PackageContainer (void);
-    ComponentAssembly parent_ComponentAssembly (void);
     ///@}
 
     /**
@@ -103,6 +103,15 @@ namespace PICML
      */
     ///@{
 
+    /// Get the src PackageInterface connection.
+    size_t src_of_PackageInterface (std::vector <PackageInterface> & items) const;
+    bool has_src_of_PackageInterface (void) const;
+    PackageInterface src_of_PackageInterface (void) const;
+
+    /// Get the src Implementation connection.
+    size_t src_of_Implementation (std::vector <Implementation> & items) const;
+    GAME::Mga::Collection_T <Implementation> src_of_Implementation (void) const;
+
     /// Get the src PackageConfigProperty connection.
     size_t src_of_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const;
     GAME::Mga::Collection_T <PackageConfigProperty> src_of_PackageConfigProperty (void) const;
@@ -110,14 +119,6 @@ namespace PICML
     /// Get the src PackageInfoProperty connection.
     size_t src_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const;
     GAME::Mga::Collection_T <PackageInfoProperty> src_of_PackageInfoProperty (void) const;
-
-    /// Get the src Implementation connection.
-    size_t src_of_Implementation (std::vector <Implementation> & items) const;
-    GAME::Mga::Collection_T <Implementation> src_of_Implementation (void) const;
-
-    /// Get the src PackageInterface connection.
-    size_t src_of_PackageInterface (std::vector <PackageInterface> & items) const;
-    GAME::Mga::Collection_T <PackageInterface> src_of_PackageInterface (void) const;
     ///@}
 
     /**
@@ -127,7 +128,8 @@ namespace PICML
 
     /// Get the dst PackageConfBasePackage connection.
     size_t dst_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
-    GAME::Mga::Collection_T <PackageConfBasePackage> dst_of_PackageConfBasePackage (void) const;
+    bool has_dst_of_PackageConfBasePackage (void) const;
+    PackageConfBasePackage dst_of_PackageConfBasePackage (void) const;
     ///@}
   };
 }

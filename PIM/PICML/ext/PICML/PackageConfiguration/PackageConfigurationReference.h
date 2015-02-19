@@ -83,11 +83,12 @@ namespace PICML
 
     /// Get the dst PackageConfSpecializedConfig connection.
     size_t dst_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
-    GAME::Mga::Collection_T <PackageConfSpecializedConfig> dst_of_PackageConfSpecializedConfig (void) const;
+    bool has_dst_of_PackageConfSpecializedConfig (void) const;
+    PackageConfSpecializedConfig dst_of_PackageConfSpecializedConfig (void) const;
 
     /// Get the dst package connection.
     size_t dst_of_package (std::vector <package> & items) const;
-    GAME::Mga::Collection_T <package> dst_of_package (void) const;
+    package dst_of_package (void) const;
     ///@}
 
     /**

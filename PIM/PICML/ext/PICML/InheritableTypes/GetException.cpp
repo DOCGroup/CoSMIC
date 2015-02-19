@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
 #include "game/mga/Functional_T.h"

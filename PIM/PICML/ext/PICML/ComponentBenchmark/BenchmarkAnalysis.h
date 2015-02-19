@@ -80,6 +80,18 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
+    ::GAME::Mga::Collection_T <LookupOperation> get_LookupOperations (void) const;
+
+    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
+    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
+
+    size_t get_TwowayOperations (std::vector <TwowayOperation> & items) const;
+    ::GAME::Mga::Collection_T <TwowayOperation> get_TwowayOperations (void) const;
+
+    size_t get_OnewayOperations (std::vector <OnewayOperation> & items) const;
+    ::GAME::Mga::Collection_T <OnewayOperation> get_OnewayOperations (void) const;
+
     size_t get_PeriodicBenchmarkss (std::vector <PeriodicBenchmarks> & items) const;
     ::GAME::Mga::Collection_T <PeriodicBenchmarks> get_PeriodicBenchmarkss (void) const;
 
@@ -107,15 +119,6 @@ namespace PICML
     size_t get_Averages (std::vector <Average> & items) const;
     ::GAME::Mga::Collection_T <Average> get_Averages (void) const;
 
-    size_t get_Throughputs (std::vector <Throughput> & items) const;
-    ::GAME::Mga::Collection_T <Throughput> get_Throughputs (void) const;
-
-    size_t get_Latencys (std::vector <Latency> & items) const;
-    ::GAME::Mga::Collection_T <Latency> get_Latencys (void) const;
-
-    size_t get_Events (std::vector <Event> & items) const;
-    ::GAME::Mga::Collection_T <Event> get_Events (void) const;
-
     size_t get_BenchmarkCharacteristicss (std::vector <BenchmarkCharacteristics> & items) const;
     ::GAME::Mga::Collection_T <BenchmarkCharacteristics> get_BenchmarkCharacteristicss (void) const;
 
@@ -131,14 +134,14 @@ namespace PICML
     size_t get_OperationRefs (std::vector <OperationRef> & items) const;
     ::GAME::Mga::Collection_T <OperationRef> get_OperationRefs (void) const;
 
-    size_t get_MetricConnections (std::vector <MetricConnection> & items) const;
-    ::GAME::Mga::Collection_T <MetricConnection> get_MetricConnections (void) const;
-
     size_t get_ComponentOperations (std::vector <ComponentOperation> & items) const;
     ::GAME::Mga::Collection_T <ComponentOperation> get_ComponentOperations (void) const;
 
     size_t get_CompRefs (std::vector <CompRef> & items) const;
     ::GAME::Mga::Collection_T <CompRef> get_CompRefs (void) const;
+
+    size_t get_MetricConnections (std::vector <MetricConnection> & items) const;
+    ::GAME::Mga::Collection_T <MetricConnection> get_MetricConnections (void) const;
 
     size_t get_TimerConnections (std::vector <TimerConnection> & items) const;
     ::GAME::Mga::Collection_T <TimerConnection> get_TimerConnections (void) const;
@@ -149,17 +152,14 @@ namespace PICML
     size_t get_EventRefs (std::vector <EventRef> & items) const;
     ::GAME::Mga::Collection_T <EventRef> get_EventRefs (void) const;
 
-    size_t get_OnewayOperations (std::vector <OnewayOperation> & items) const;
-    ::GAME::Mga::Collection_T <OnewayOperation> get_OnewayOperations (void) const;
+    size_t get_Throughputs (std::vector <Throughput> & items) const;
+    ::GAME::Mga::Collection_T <Throughput> get_Throughputs (void) const;
 
-    size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
-    ::GAME::Mga::Collection_T <LookupOperation> get_LookupOperations (void) const;
+    size_t get_Latencys (std::vector <Latency> & items) const;
+    ::GAME::Mga::Collection_T <Latency> get_Latencys (void) const;
 
-    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
-    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
-
-    size_t get_TwowayOperations (std::vector <TwowayOperation> & items) const;
-    ::GAME::Mga::Collection_T <TwowayOperation> get_TwowayOperations (void) const;
+    size_t get_Events (std::vector <Event> & items) const;
+    ::GAME::Mga::Collection_T <Event> get_Events (void) const;
 
     ///@}
   };

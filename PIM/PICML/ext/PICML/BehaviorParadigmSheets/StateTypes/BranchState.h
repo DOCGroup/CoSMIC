@@ -84,7 +84,8 @@ namespace PICML
 
     /// Get the src BranchTransition connection.
     size_t src_of_BranchTransition (std::vector <BranchTransition> & items) const;
-    GAME::Mga::Collection_T <BranchTransition> src_of_BranchTransition (void) const;
+    bool has_src_of_BranchTransition (void) const;
+    BranchTransition src_of_BranchTransition (void) const;
     ///@}
   };
 }

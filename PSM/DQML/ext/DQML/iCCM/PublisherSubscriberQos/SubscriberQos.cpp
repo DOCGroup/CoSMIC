@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DomainQos/SubscriberConnection.h"
 #include "game/mga/Functional_T.h"
@@ -71,27 +71,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_SubscriberConnection
+  //
+  bool SubscriberQos_Impl::has_dst_of_SubscriberConnection (void) const
+  {
+    return this->in_connections <SubscriberConnection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_SubscriberConnection
   //
-  GAME::Mga::Collection_T <SubscriberConnection> SubscriberQos_Impl::dst_of_SubscriberConnection (void) const
+  SubscriberConnection SubscriberQos_Impl::dst_of_SubscriberConnection (void) const
   {
-    return this->in_connections <SubscriberConnection> ("dst");
-  }
-
-  //
-  // has_ShareQosPolicy
-  //
-  bool SubscriberQos_Impl::has_ShareQosPolicy (void) const
-  {
-    return this->children <ShareQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_ShareQosPolicy
-  //
-  ShareQosPolicy SubscriberQos_Impl::get_ShareQosPolicy (void) const
-  {
-    return this->children <ShareQosPolicy> ().first ();
+    return this->in_connections <SubscriberConnection> ("dst").first ();
   }
 
   //
@@ -156,6 +148,22 @@ namespace DQML
   PresentationQosPolicy SubscriberQos_Impl::get_PresentationQosPolicy (void) const
   {
     return this->children <PresentationQosPolicy> ().first ();
+  }
+
+  //
+  // has_ShareQosPolicy
+  //
+  bool SubscriberQos_Impl::has_ShareQosPolicy (void) const
+  {
+    return this->children <ShareQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_ShareQosPolicy
+  //
+  ShareQosPolicy SubscriberQos_Impl::get_ShareQosPolicy (void) const
+  {
+    return this->children <ShareQosPolicy> ().first ();
   }
 }
 

@@ -8,9 +8,9 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
@@ -33,9 +33,9 @@ namespace DQML
   const bool ReliabilityQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
   }
@@ -49,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const TopicQos_in parent)
+  ReliabilityQosPolicy ReliabilityQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < ReliabilityQosPolicy > (parent, ReliabilityQosPolicy_Impl::metaname);
   }
@@ -79,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos ReliabilityQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -95,11 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos ReliabilityQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos ReliabilityQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -111,11 +111,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_dr_reliability_Connection
+  //
+  bool ReliabilityQosPolicy_Impl::has_dst_of_dr_reliability_Connection (void) const
+  {
+    return this->in_connections <dr_reliability_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_dr_reliability_Connection
   //
-  GAME::Mga::Collection_T <dr_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_dr_reliability_Connection (void) const
+  dr_reliability_Connection ReliabilityQosPolicy_Impl::dst_of_dr_reliability_Connection (void) const
   {
-    return this->in_connections <dr_reliability_Connection> ("dst");
+    return this->in_connections <dr_reliability_Connection> ("dst").first ();
   }
 
   //
@@ -127,11 +135,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_dw_reliability_Connection
+  //
+  bool ReliabilityQosPolicy_Impl::has_dst_of_dw_reliability_Connection (void) const
+  {
+    return this->in_connections <dw_reliability_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_dw_reliability_Connection
   //
-  GAME::Mga::Collection_T <dw_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_dw_reliability_Connection (void) const
+  dw_reliability_Connection ReliabilityQosPolicy_Impl::dst_of_dw_reliability_Connection (void) const
   {
-    return this->in_connections <dw_reliability_Connection> ("dst");
+    return this->in_connections <dw_reliability_Connection> ("dst").first ();
   }
 
   //
@@ -143,11 +159,19 @@ namespace DQML
   }
 
   //
+  // has_dst_of_topic_reliability_Connection
+  //
+  bool ReliabilityQosPolicy_Impl::has_dst_of_topic_reliability_Connection (void) const
+  {
+    return this->in_connections <topic_reliability_Connection> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_topic_reliability_Connection
   //
-  GAME::Mga::Collection_T <topic_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (void) const
+  topic_reliability_Connection ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (void) const
   {
-    return this->in_connections <topic_reliability_Connection> ("dst");
+    return this->in_connections <topic_reliability_Connection> ("dst").first ();
   }
 }
 
