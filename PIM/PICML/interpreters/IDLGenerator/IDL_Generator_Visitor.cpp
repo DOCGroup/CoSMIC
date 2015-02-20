@@ -1,11 +1,8 @@
-// $Id$
-
 #include "StdAfx.h"
 #include "IDL_Generator_Visitor.h"
 #include "IDL_Generator_File.h"
 
-#include "Utils/Utils.h"
-#include "boost/bind.hpp"
+#include "game/mga/Utils.h"
 
 #include <algorithm>
 #include <fstream>
@@ -61,7 +58,7 @@ void IDL_Generator_Visitor::visit_File (PICML::File_in file)
   {
     // Make sure the path existing before creating the file.
     filename += "/" + path;
-    ::Utils::CreatePath (filename);
+    GAME::Utils::create_path (filename);
   }
 
   // Make sure the path exists.

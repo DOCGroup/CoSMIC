@@ -6,8 +6,6 @@ workspace {
   DeploymentPlanComponent
   IDLGenerator
 
-  PICML/PICML.mpc
-
   PICML_TO_DQML
 
   PropertyManager
