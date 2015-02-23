@@ -225,11 +225,9 @@ namespace DQML_iCCM
     writer.set_attribute ("isinstance", item->IsInstance ());
     writer.set_attribute ("isprivate", item->isprivate ());
 
-    GAME::Mga::Collection_T <DQML::PublisherConnection> publisher_conn =
-      item->src_of_PublisherConnection ();
-    if (publisher_conn.count ())
+    if (item->has_src_of_PublisherConnection ())
     {
-      DQML::PublisherQos publisher = publisher_conn.first ()->dst_PublisherQos ();
+      DQML::PublisherQos publisher = item->src_of_PublisherConnection ()->dst_PublisherQos ();
       writer.set_attribute ("publisher", publisher->name ());
     }
 
@@ -293,12 +291,9 @@ namespace DQML_iCCM
     reader.set_attribute ("name", item->name ());
     reader.set_attribute ("isprivate", item->isprivate ());
 
-    GAME::Mga::Collection_T <DQML::SubscriberConnection> subscriber_conn =
-      item->src_of_SubscriberConnection ();
-
-    if (subscriber_conn.count ())
+    if (item->has_src_of_SubscriberConnection ())
     {
-      DQML::SubscriberQos subscriber = subscriber_conn.first ()->dst_SubscriberQos ();
+      DQML::SubscriberQos subscriber = item->src_of_SubscriberConnection ()->dst_SubscriberQos ();
       reader.set_attribute ("subscriber", subscriber->name ());
     }
 
