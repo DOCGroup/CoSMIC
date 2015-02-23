@@ -84,24 +84,6 @@ namespace DQML
     size_t get_LivelinessQosPolicys (std::vector <LivelinessQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <LivelinessQosPolicy> get_LivelinessQosPolicys (void) const;
 
-    size_t get_OwnershipQosPolicys (std::vector <OwnershipQosPolicy> & items) const;
-    ::GAME::Mga::Collection_T <OwnershipQosPolicy> get_OwnershipQosPolicys (void) const;
-
-    size_t get_EntityFactoryQosPolicys (std::vector <EntityFactoryQosPolicy> & items) const;
-    ::GAME::Mga::Collection_T <EntityFactoryQosPolicy> get_EntityFactoryQosPolicys (void) const;
-
-    size_t get_PartitionQosPolicys (std::vector <PartitionQosPolicy> & items) const;
-    ::GAME::Mga::Collection_T <PartitionQosPolicy> get_PartitionQosPolicys (void) const;
-
-    size_t get_GroupDataQosPolicys (std::vector <GroupDataQosPolicy> & items) const;
-    ::GAME::Mga::Collection_T <GroupDataQosPolicy> get_GroupDataQosPolicys (void) const;
-
-    size_t get_PresentationQosPolicys (std::vector <PresentationQosPolicy> & items) const;
-    ::GAME::Mga::Collection_T <PresentationQosPolicy> get_PresentationQosPolicys (void) const;
-
-    size_t get_UserDataQosPolicys (std::vector <UserDataQosPolicy> & items) const;
-    ::GAME::Mga::Collection_T <UserDataQosPolicy> get_UserDataQosPolicys (void) const;
-
     size_t get_ReaderDataLifecycleQosPolicys (std::vector <ReaderDataLifecycleQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <ReaderDataLifecycleQosPolicy> get_ReaderDataLifecycleQosPolicys (void) const;
 
@@ -111,11 +93,17 @@ namespace DQML
     size_t get_HistoryQosPolicys (std::vector <HistoryQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <HistoryQosPolicy> get_HistoryQosPolicys (void) const;
 
+    size_t get_UserDataQosPolicys (std::vector <UserDataQosPolicy> & items) const;
+    ::GAME::Mga::Collection_T <UserDataQosPolicy> get_UserDataQosPolicys (void) const;
+
     size_t get_DestinationOrderQosPolicys (std::vector <DestinationOrderQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <DestinationOrderQosPolicy> get_DestinationOrderQosPolicys (void) const;
 
     size_t get_ReliabilityQosPolicys (std::vector <ReliabilityQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <ReliabilityQosPolicy> get_ReliabilityQosPolicys (void) const;
+
+    size_t get_OwnershipQosPolicys (std::vector <OwnershipQosPolicy> & items) const;
+    ::GAME::Mga::Collection_T <OwnershipQosPolicy> get_OwnershipQosPolicys (void) const;
 
     size_t get_LatencyBudgetQosPolicys (std::vector <LatencyBudgetQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <LatencyBudgetQosPolicy> get_LatencyBudgetQosPolicys (void) const;
@@ -128,6 +116,18 @@ namespace DQML
 
     size_t get_DurabilityQosPolicys (std::vector <DurabilityQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <DurabilityQosPolicy> get_DurabilityQosPolicys (void) const;
+
+    size_t get_EntityFactoryQosPolicys (std::vector <EntityFactoryQosPolicy> & items) const;
+    ::GAME::Mga::Collection_T <EntityFactoryQosPolicy> get_EntityFactoryQosPolicys (void) const;
+
+    size_t get_PartitionQosPolicys (std::vector <PartitionQosPolicy> & items) const;
+    ::GAME::Mga::Collection_T <PartitionQosPolicy> get_PartitionQosPolicys (void) const;
+
+    size_t get_GroupDataQosPolicys (std::vector <GroupDataQosPolicy> & items) const;
+    ::GAME::Mga::Collection_T <GroupDataQosPolicy> get_GroupDataQosPolicys (void) const;
+
+    size_t get_PresentationQosPolicys (std::vector <PresentationQosPolicy> & items) const;
+    ::GAME::Mga::Collection_T <PresentationQosPolicy> get_PresentationQosPolicys (void) const;
 
     size_t get_LifespanQosPolicys (std::vector <LifespanQosPolicy> & items) const;
     ::GAME::Mga::Collection_T <LifespanQosPolicy> get_LifespanQosPolicys (void) const;
@@ -165,20 +165,26 @@ namespace DQML
     size_t get_dw_liveliness_Connections (std::vector <dw_liveliness_Connection> & items) const;
     ::GAME::Mga::Collection_T <dw_liveliness_Connection> get_dw_liveliness_Connections (void) const;
 
+    size_t get_dw_topic_Connections (std::vector <dw_topic_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dw_topic_Connection> get_dw_topic_Connections (void) const;
+
+    size_t get_topic_liveliness_Connections (std::vector <topic_liveliness_Connection> & items) const;
+    ::GAME::Mga::Collection_T <topic_liveliness_Connection> get_topic_liveliness_Connections (void) const;
+
     size_t get_DataWriters (std::vector <DataWriter> & items) const;
     ::GAME::Mga::Collection_T <DataWriter> get_DataWriters (void) const;
 
     size_t get_Topics (std::vector <Topic> & items) const;
     ::GAME::Mga::Collection_T <Topic> get_Topics (void) const;
 
-    size_t get_DataReaders (std::vector <DataReader> & items) const;
-    ::GAME::Mga::Collection_T <DataReader> get_DataReaders (void) const;
+    size_t get_DomainParticipants (std::vector <DomainParticipant> & items) const;
+    ::GAME::Mga::Collection_T <DomainParticipant> get_DomainParticipants (void) const;
 
     size_t get_Subscribers (std::vector <Subscriber> & items) const;
     ::GAME::Mga::Collection_T <Subscriber> get_Subscribers (void) const;
 
-    size_t get_DomainParticipants (std::vector <DomainParticipant> & items) const;
-    ::GAME::Mga::Collection_T <DomainParticipant> get_DomainParticipants (void) const;
+    size_t get_DataReaders (std::vector <DataReader> & items) const;
+    ::GAME::Mga::Collection_T <DataReader> get_DataReaders (void) const;
 
     size_t get_Publishers (std::vector <Publisher> & items) const;
     ::GAME::Mga::Collection_T <Publisher> get_Publishers (void) const;
@@ -186,77 +192,17 @@ namespace DQML
     size_t get_DomainParticipantFactorys (std::vector <DomainParticipantFactory> & items) const;
     ::GAME::Mga::Collection_T <DomainParticipantFactory> get_DomainParticipantFactorys (void) const;
 
-    size_t get_dw_topic_Connections (std::vector <dw_topic_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dw_topic_Connection> get_dw_topic_Connections (void) const;
-
-    size_t get_topic_ownership_Connections (std::vector <topic_ownership_Connection> & items) const;
-    ::GAME::Mga::Collection_T <topic_ownership_Connection> get_topic_ownership_Connections (void) const;
-
-    size_t get_dw_ownership_Connections (std::vector <dw_ownership_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dw_ownership_Connection> get_dw_ownership_Connections (void) const;
-
-    size_t get_dr_ownership_Connections (std::vector <dr_ownership_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dr_ownership_Connection> get_dr_ownership_Connections (void) const;
-
-    size_t get_dr_topic_Connections (std::vector <dr_topic_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dr_topic_Connection> get_dr_topic_Connections (void) const;
-
-    size_t get_dr_sub_Connections (std::vector <dr_sub_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dr_sub_Connection> get_dr_sub_Connections (void) const;
+    size_t get_dp_topic_Connections (std::vector <dp_topic_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dp_topic_Connection> get_dp_topic_Connections (void) const;
 
     size_t get_dp_sub_Connections (std::vector <dp_sub_Connection> & items) const;
     ::GAME::Mga::Collection_T <dp_sub_Connection> get_dp_sub_Connections (void) const;
 
-    size_t get_dp_topic_Connections (std::vector <dp_topic_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dp_topic_Connection> get_dp_topic_Connections (void) const;
+    size_t get_dr_sub_Connections (std::vector <dr_sub_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dr_sub_Connection> get_dr_sub_Connections (void) const;
 
-    size_t get_dp_pub_Connections (std::vector <dp_pub_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dp_pub_Connection> get_dp_pub_Connections (void) const;
-
-    size_t get_dw_pub_Connections (std::vector <dw_pub_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dw_pub_Connection> get_dw_pub_Connections (void) const;
-
-    size_t get_pub_entityfactory_Connections (std::vector <pub_entityfactory_Connection> & items) const;
-    ::GAME::Mga::Collection_T <pub_entityfactory_Connection> get_pub_entityfactory_Connections (void) const;
-
-    size_t get_sub_entityfactory_Connections (std::vector <sub_entityfactory_Connection> & items) const;
-    ::GAME::Mga::Collection_T <sub_entityfactory_Connection> get_sub_entityfactory_Connections (void) const;
-
-    size_t get_dp_entityfactory_Connections (std::vector <dp_entityfactory_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dp_entityfactory_Connection> get_dp_entityfactory_Connections (void) const;
-
-    size_t get_dpfactory_entityfactory_Connections (std::vector <dpfactory_entityfactory_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> get_dpfactory_entityfactory_Connections (void) const;
-
-    size_t get_dpf_dp_Connections (std::vector <dpf_dp_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dpf_dp_Connection> get_dpf_dp_Connections (void) const;
-
-    size_t get_pub_part_Connections (std::vector <pub_part_Connection> & items) const;
-    ::GAME::Mga::Collection_T <pub_part_Connection> get_pub_part_Connections (void) const;
-
-    size_t get_sub_part_Connections (std::vector <sub_part_Connection> & items) const;
-    ::GAME::Mga::Collection_T <sub_part_Connection> get_sub_part_Connections (void) const;
-
-    size_t get_pub_groupdata_Connections (std::vector <pub_groupdata_Connection> & items) const;
-    ::GAME::Mga::Collection_T <pub_groupdata_Connection> get_pub_groupdata_Connections (void) const;
-
-    size_t get_sub_groupdata_Connections (std::vector <sub_groupdata_Connection> & items) const;
-    ::GAME::Mga::Collection_T <sub_groupdata_Connection> get_sub_groupdata_Connections (void) const;
-
-    size_t get_pub_presqos_Connections (std::vector <pub_presqos_Connection> & items) const;
-    ::GAME::Mga::Collection_T <pub_presqos_Connection> get_pub_presqos_Connections (void) const;
-
-    size_t get_sub_presqos_Connections (std::vector <sub_presqos_Connection> & items) const;
-    ::GAME::Mga::Collection_T <sub_presqos_Connection> get_sub_presqos_Connections (void) const;
-
-    size_t get_dp_userdata_Connections (std::vector <dp_userdata_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dp_userdata_Connection> get_dp_userdata_Connections (void) const;
-
-    size_t get_dw_userdata_Connections (std::vector <dw_userdata_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dw_userdata_Connection> get_dw_userdata_Connections (void) const;
-
-    size_t get_dr_userdata_Connections (std::vector <dr_userdata_Connection> & items) const;
-    ::GAME::Mga::Collection_T <dr_userdata_Connection> get_dr_userdata_Connections (void) const;
+    size_t get_dr_topic_Connections (std::vector <dr_topic_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dr_topic_Connection> get_dr_topic_Connections (void) const;
 
     size_t get_dr_readerdatalifecycle_Connections (std::vector <dr_readerdatalifecycle_Connection> & items) const;
     ::GAME::Mga::Collection_T <dr_readerdatalifecycle_Connection> get_dr_readerdatalifecycle_Connections (void) const;
@@ -279,6 +225,15 @@ namespace DQML
     size_t get_topic_history_Connections (std::vector <topic_history_Connection> & items) const;
     ::GAME::Mga::Collection_T <topic_history_Connection> get_topic_history_Connections (void) const;
 
+    size_t get_dr_userdata_Connections (std::vector <dr_userdata_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dr_userdata_Connection> get_dr_userdata_Connections (void) const;
+
+    size_t get_dw_userdata_Connections (std::vector <dw_userdata_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dw_userdata_Connection> get_dw_userdata_Connections (void) const;
+
+    size_t get_dp_userdata_Connections (std::vector <dp_userdata_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dp_userdata_Connection> get_dp_userdata_Connections (void) const;
+
     size_t get_dr_dstOrder_Connections (std::vector <dr_dstOrder_Connection> & items) const;
     ::GAME::Mga::Collection_T <dr_dstOrder_Connection> get_dr_dstOrder_Connections (void) const;
 
@@ -299,6 +254,15 @@ namespace DQML
 
     size_t get_dr_liveliness_Connections (std::vector <dr_liveliness_Connection> & items) const;
     ::GAME::Mga::Collection_T <dr_liveliness_Connection> get_dr_liveliness_Connections (void) const;
+
+    size_t get_dr_ownership_Connections (std::vector <dr_ownership_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dr_ownership_Connection> get_dr_ownership_Connections (void) const;
+
+    size_t get_dw_ownership_Connections (std::vector <dw_ownership_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dw_ownership_Connection> get_dw_ownership_Connections (void) const;
+
+    size_t get_topic_ownership_Connections (std::vector <topic_ownership_Connection> & items) const;
+    ::GAME::Mga::Collection_T <topic_ownership_Connection> get_topic_ownership_Connections (void) const;
 
     size_t get_dr_latency_Connections (std::vector <dr_latency_Connection> & items) const;
     ::GAME::Mga::Collection_T <dr_latency_Connection> get_dr_latency_Connections (void) const;
@@ -330,6 +294,45 @@ namespace DQML
     size_t get_topic_durqos_Connections (std::vector <topic_durqos_Connection> & items) const;
     ::GAME::Mga::Collection_T <topic_durqos_Connection> get_topic_durqos_Connections (void) const;
 
+    size_t get_sub_entityfactory_Connections (std::vector <sub_entityfactory_Connection> & items) const;
+    ::GAME::Mga::Collection_T <sub_entityfactory_Connection> get_sub_entityfactory_Connections (void) const;
+
+    size_t get_pub_entityfactory_Connections (std::vector <pub_entityfactory_Connection> & items) const;
+    ::GAME::Mga::Collection_T <pub_entityfactory_Connection> get_pub_entityfactory_Connections (void) const;
+
+    size_t get_dw_pub_Connections (std::vector <dw_pub_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dw_pub_Connection> get_dw_pub_Connections (void) const;
+
+    size_t get_dp_pub_Connections (std::vector <dp_pub_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dp_pub_Connection> get_dp_pub_Connections (void) const;
+
+    size_t get_pub_part_Connections (std::vector <pub_part_Connection> & items) const;
+    ::GAME::Mga::Collection_T <pub_part_Connection> get_pub_part_Connections (void) const;
+
+    size_t get_sub_part_Connections (std::vector <sub_part_Connection> & items) const;
+    ::GAME::Mga::Collection_T <sub_part_Connection> get_sub_part_Connections (void) const;
+
+    size_t get_pub_groupdata_Connections (std::vector <pub_groupdata_Connection> & items) const;
+    ::GAME::Mga::Collection_T <pub_groupdata_Connection> get_pub_groupdata_Connections (void) const;
+
+    size_t get_sub_groupdata_Connections (std::vector <sub_groupdata_Connection> & items) const;
+    ::GAME::Mga::Collection_T <sub_groupdata_Connection> get_sub_groupdata_Connections (void) const;
+
+    size_t get_pub_presqos_Connections (std::vector <pub_presqos_Connection> & items) const;
+    ::GAME::Mga::Collection_T <pub_presqos_Connection> get_pub_presqos_Connections (void) const;
+
+    size_t get_sub_presqos_Connections (std::vector <sub_presqos_Connection> & items) const;
+    ::GAME::Mga::Collection_T <sub_presqos_Connection> get_sub_presqos_Connections (void) const;
+
+    size_t get_dp_entityfactory_Connections (std::vector <dp_entityfactory_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dp_entityfactory_Connection> get_dp_entityfactory_Connections (void) const;
+
+    size_t get_dpfactory_entityfactory_Connections (std::vector <dpfactory_entityfactory_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> get_dpfactory_entityfactory_Connections (void) const;
+
+    size_t get_dpf_dp_Connections (std::vector <dpf_dp_Connection> & items) const;
+    ::GAME::Mga::Collection_T <dpf_dp_Connection> get_dpf_dp_Connections (void) const;
+
     size_t get_topic_lifespan_Connections (std::vector <topic_lifespan_Connection> & items) const;
     ::GAME::Mga::Collection_T <topic_lifespan_Connection> get_topic_lifespan_Connections (void) const;
 
@@ -350,9 +353,6 @@ namespace DQML
 
     size_t get_topic_topicdata_Connections (std::vector <topic_topicdata_Connection> & items) const;
     ::GAME::Mga::Collection_T <topic_topicdata_Connection> get_topic_topicdata_Connections (void) const;
-
-    size_t get_topic_liveliness_Connections (std::vector <topic_liveliness_Connection> & items) const;
-    ::GAME::Mga::Collection_T <topic_liveliness_Connection> get_topic_liveliness_Connections (void) const;
 
     size_t get_dw_writerdatalifecycle_Connections (std::vector <dw_writerdatalifecycle_Connection> & items) const;
     ::GAME::Mga::Collection_T <dw_writerdatalifecycle_Connection> get_dw_writerdatalifecycle_Connections (void) const;

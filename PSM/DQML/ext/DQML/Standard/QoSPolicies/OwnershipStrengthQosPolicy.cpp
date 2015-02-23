@@ -75,19 +75,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_ownerstrength_Connection
-  //
-  bool OwnershipStrengthQosPolicy_Impl::has_dst_of_dw_ownerstrength_Connection (void) const
-  {
-    return this->in_connections <dw_ownerstrength_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_ownerstrength_Connection
   //
-  dw_ownerstrength_Connection OwnershipStrengthQosPolicy_Impl::dst_of_dw_ownerstrength_Connection (void) const
+  GAME::Mga::Collection_T <dw_ownerstrength_Connection> OwnershipStrengthQosPolicy_Impl::dst_of_dw_ownerstrength_Connection (void) const
   {
-    return this->in_connections <dw_ownerstrength_Connection> ("dst").first ();
+    return this->in_connections <dw_ownerstrength_Connection> ("dst");
   }
 }
 

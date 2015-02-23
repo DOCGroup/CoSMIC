@@ -95,7 +95,8 @@ namespace DQML
 
     /// Get the src SubscriberConnection connection.
     size_t src_of_SubscriberConnection (std::vector <SubscriberConnection> & items) const;
-    GAME::Mga::Collection_T <SubscriberConnection> src_of_SubscriberConnection (void) const;
+    bool has_src_of_SubscriberConnection (void) const;
+    SubscriberConnection src_of_SubscriberConnection (void) const;
     ///@}
 
     /**
@@ -116,12 +117,6 @@ namespace DQML
     bool has_LivelinessQosPolicy (void) const;
     LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
 
-    bool has_OwnershipQosPolicy (void) const;
-    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
-
-    bool has_UserDataQosPolicy (void) const;
-    UserDataQosPolicy get_UserDataQosPolicy (void) const;
-
     bool has_ReaderDataLifecycleQosPolicy (void) const;
     ReaderDataLifecycleQosPolicy get_ReaderDataLifecycleQosPolicy (void) const;
 
@@ -131,11 +126,17 @@ namespace DQML
     bool has_HistoryQosPolicy (void) const;
     HistoryQosPolicy get_HistoryQosPolicy (void) const;
 
+    bool has_UserDataQosPolicy (void) const;
+    UserDataQosPolicy get_UserDataQosPolicy (void) const;
+
     bool has_DestinationOrderQosPolicy (void) const;
     DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
 
     bool has_ReliabilityQosPolicy (void) const;
     ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
+
+    bool has_OwnershipQosPolicy (void) const;
+    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
 
     bool has_LatencyBudgetQosPolicy (void) const;
     LatencyBudgetQosPolicy get_LatencyBudgetQosPolicy (void) const;
@@ -152,14 +153,14 @@ namespace DQML
     bool has_ShareQosPolicy (void) const;
     ShareQosPolicy get_ShareQosPolicy (void) const;
 
+    bool has_TopicQosReference (void) const;
+    TopicQosReference get_TopicQosReference (void) const;
+
     bool has_SubscriptionKeyQosPolicy (void) const;
     SubscriptionKeyQosPolicy get_SubscriptionKeyQosPolicy (void) const;
 
     bool has_ReaderLifespanQosPolicy (void) const;
     ReaderLifespanQosPolicy get_ReaderLifespanQosPolicy (void) const;
-
-    bool has_TopicQosReference (void) const;
-    TopicQosReference get_TopicQosReference (void) const;
     ///@}
   };
 }

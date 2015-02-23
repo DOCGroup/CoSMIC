@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_reliability_Connection
-  //
-  bool ReliabilityQosPolicy_Impl::has_dst_of_dr_reliability_Connection (void) const
-  {
-    return this->in_connections <dr_reliability_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_reliability_Connection
   //
-  dr_reliability_Connection ReliabilityQosPolicy_Impl::dst_of_dr_reliability_Connection (void) const
+  GAME::Mga::Collection_T <dr_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_dr_reliability_Connection (void) const
   {
-    return this->in_connections <dr_reliability_Connection> ("dst").first ();
+    return this->in_connections <dr_reliability_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_reliability_Connection
-  //
-  bool ReliabilityQosPolicy_Impl::has_dst_of_dw_reliability_Connection (void) const
-  {
-    return this->in_connections <dw_reliability_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_reliability_Connection
   //
-  dw_reliability_Connection ReliabilityQosPolicy_Impl::dst_of_dw_reliability_Connection (void) const
+  GAME::Mga::Collection_T <dw_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_dw_reliability_Connection (void) const
   {
-    return this->in_connections <dw_reliability_Connection> ("dst").first ();
+    return this->in_connections <dw_reliability_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_reliability_Connection
-  //
-  bool ReliabilityQosPolicy_Impl::has_dst_of_topic_reliability_Connection (void) const
-  {
-    return this->in_connections <topic_reliability_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_reliability_Connection
   //
-  topic_reliability_Connection ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (void) const
+  GAME::Mga::Collection_T <topic_reliability_Connection> ReliabilityQosPolicy_Impl::dst_of_topic_reliability_Connection (void) const
   {
-    return this->in_connections <topic_reliability_Connection> ("dst").first ();
+    return this->in_connections <topic_reliability_Connection> ("dst");
   }
 }
 

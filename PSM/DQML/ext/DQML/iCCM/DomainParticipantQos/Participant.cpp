@@ -8,17 +8,17 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/EntityFactoryQosPolicy.h"
 #include "DQML/iCCM/DomainQos/Domain.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
-#include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
 #include "DQML/iCCM/DomainQos/SubscriberConnection.h"
+#include "DQML/iCCM/DomainParticipantQos/ListenerSchedulingQosPolicy.h"
+#include "DQML/iCCM/DomainParticipantQos/WatchdogSchedulingQosPolicy.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,22 +67,6 @@ namespace DQML
   }
 
   //
-  // has_EntityFactoryQosPolicy
-  //
-  bool Participant_Impl::has_EntityFactoryQosPolicy (void) const
-  {
-    return this->children <EntityFactoryQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_EntityFactoryQosPolicy
-  //
-  EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
-  {
-    return this->children <EntityFactoryQosPolicy> ().first ();
-  }
-
-  //
   // has_UserDataQosPolicy
   //
   bool Participant_Impl::has_UserDataQosPolicy (void) const
@@ -96,6 +80,22 @@ namespace DQML
   UserDataQosPolicy Participant_Impl::get_UserDataQosPolicy (void) const
   {
     return this->children <UserDataQosPolicy> ().first ();
+  }
+
+  //
+  // has_EntityFactoryQosPolicy
+  //
+  bool Participant_Impl::has_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_EntityFactoryQosPolicy
+  //
+  EntityFactoryQosPolicy Participant_Impl::get_EntityFactoryQosPolicy (void) const
+  {
+    return this->children <EntityFactoryQosPolicy> ().first ();
   }
 
   //

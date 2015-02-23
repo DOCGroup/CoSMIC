@@ -81,11 +81,11 @@ namespace DQML
      */
     ///@{
 
-    bool has_EntityFactoryQosPolicy (void) const;
-    EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
-
     bool has_UserDataQosPolicy (void) const;
     UserDataQosPolicy get_UserDataQosPolicy (void) const;
+
+    bool has_EntityFactoryQosPolicy (void) const;
+    EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
 
     bool has_ListenerSchedulingQosPolicy (void) const;
     ListenerSchedulingQosPolicy get_ListenerSchedulingQosPolicy (void) const;

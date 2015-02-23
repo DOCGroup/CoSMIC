@@ -83,8 +83,7 @@ namespace DQML
 
     /// Get the dst PublisherConnection connection.
     size_t dst_of_PublisherConnection (std::vector <PublisherConnection> & items) const;
-    bool has_dst_of_PublisherConnection (void) const;
-    PublisherConnection dst_of_PublisherConnection (void) const;
+    GAME::Mga::Collection_T <PublisherConnection> dst_of_PublisherConnection (void) const;
     ///@}
 
     /**

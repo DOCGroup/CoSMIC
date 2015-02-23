@@ -13,8 +13,8 @@
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/ShareQosPolicy.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DomainQos/SubscriberConnection.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -71,19 +71,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_SubscriberConnection
-  //
-  bool SubscriberQos_Impl::has_dst_of_SubscriberConnection (void) const
-  {
-    return this->in_connections <SubscriberConnection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_SubscriberConnection
   //
-  SubscriberConnection SubscriberQos_Impl::dst_of_SubscriberConnection (void) const
+  GAME::Mga::Collection_T <SubscriberConnection> SubscriberQos_Impl::dst_of_SubscriberConnection (void) const
   {
-    return this->in_connections <SubscriberConnection> ("dst").first ();
+    return this->in_connections <SubscriberConnection> ("dst");
   }
 
   //

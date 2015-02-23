@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -104,30 +104,6 @@ namespace DQML
   }
 
   //
-  // dst_of_pub_entityfactory_Connection
-  //
-  size_t EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> (items);
-  }
-
-  //
-  // has_dst_of_pub_entityfactory_Connection
-  //
-  bool EntityFactoryQosPolicy_Impl::has_dst_of_pub_entityfactory_Connection (void) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_pub_entityfactory_Connection
-  //
-  pub_entityfactory_Connection EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (void) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> ("dst").first ();
-  }
-
-  //
   // dst_of_sub_entityfactory_Connection
   //
   size_t EntityFactoryQosPolicy_Impl::dst_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
@@ -136,19 +112,27 @@ namespace DQML
   }
 
   //
-  // has_dst_of_sub_entityfactory_Connection
+  // dst_of_sub_entityfactory_Connection
   //
-  bool EntityFactoryQosPolicy_Impl::has_dst_of_sub_entityfactory_Connection (void) const
+  GAME::Mga::Collection_T <sub_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_sub_entityfactory_Connection (void) const
   {
-    return this->in_connections <sub_entityfactory_Connection> ("dst").count () == 1;
+    return this->in_connections <sub_entityfactory_Connection> ("dst");
   }
 
   //
-  // dst_of_sub_entityfactory_Connection
+  // dst_of_pub_entityfactory_Connection
   //
-  sub_entityfactory_Connection EntityFactoryQosPolicy_Impl::dst_of_sub_entityfactory_Connection (void) const
+  size_t EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
   {
-    return this->in_connections <sub_entityfactory_Connection> ("dst").first ();
+    return this->in_connections <pub_entityfactory_Connection> (items);
+  }
+
+  //
+  // dst_of_pub_entityfactory_Connection
+  //
+  GAME::Mga::Collection_T <pub_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_pub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <pub_entityfactory_Connection> ("dst");
   }
 
   //
@@ -160,19 +144,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dp_entityfactory_Connection
-  //
-  bool EntityFactoryQosPolicy_Impl::has_dst_of_dp_entityfactory_Connection (void) const
-  {
-    return this->in_connections <dp_entityfactory_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dp_entityfactory_Connection
   //
-  dp_entityfactory_Connection EntityFactoryQosPolicy_Impl::dst_of_dp_entityfactory_Connection (void) const
+  GAME::Mga::Collection_T <dp_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_dp_entityfactory_Connection (void) const
   {
-    return this->in_connections <dp_entityfactory_Connection> ("dst").first ();
+    return this->in_connections <dp_entityfactory_Connection> ("dst");
   }
 
   //
@@ -184,19 +160,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dpfactory_entityfactory_Connection
-  //
-  bool EntityFactoryQosPolicy_Impl::has_dst_of_dpfactory_entityfactory_Connection (void) const
-  {
-    return this->in_connections <dpfactory_entityfactory_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dpfactory_entityfactory_Connection
   //
-  dpfactory_entityfactory_Connection EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (void) const
+  GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> EntityFactoryQosPolicy_Impl::dst_of_dpfactory_entityfactory_Connection (void) const
   {
-    return this->in_connections <dpfactory_entityfactory_Connection> ("dst").first ();
+    return this->in_connections <dpfactory_entityfactory_Connection> ("dst");
   }
 }
 

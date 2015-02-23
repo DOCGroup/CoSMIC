@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -103,27 +103,19 @@ namespace DQML
   }
 
   //
-  // dst_of_dp_userdata_Connection
+  // dst_of_dr_userdata_Connection
   //
-  size_t UserDataQosPolicy_Impl::dst_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
+  size_t UserDataQosPolicy_Impl::dst_of_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
   {
-    return this->in_connections <dp_userdata_Connection> (items);
+    return this->in_connections <dr_userdata_Connection> (items);
   }
 
   //
-  // has_dst_of_dp_userdata_Connection
+  // dst_of_dr_userdata_Connection
   //
-  bool UserDataQosPolicy_Impl::has_dst_of_dp_userdata_Connection (void) const
+  GAME::Mga::Collection_T <dr_userdata_Connection> UserDataQosPolicy_Impl::dst_of_dr_userdata_Connection (void) const
   {
-    return this->in_connections <dp_userdata_Connection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_dp_userdata_Connection
-  //
-  dp_userdata_Connection UserDataQosPolicy_Impl::dst_of_dp_userdata_Connection (void) const
-  {
-    return this->in_connections <dp_userdata_Connection> ("dst").first ();
+    return this->in_connections <dr_userdata_Connection> ("dst");
   }
 
   //
@@ -135,43 +127,27 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_userdata_Connection
-  //
-  bool UserDataQosPolicy_Impl::has_dst_of_dw_userdata_Connection (void) const
-  {
-    return this->in_connections <dw_userdata_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_userdata_Connection
   //
-  dw_userdata_Connection UserDataQosPolicy_Impl::dst_of_dw_userdata_Connection (void) const
+  GAME::Mga::Collection_T <dw_userdata_Connection> UserDataQosPolicy_Impl::dst_of_dw_userdata_Connection (void) const
   {
-    return this->in_connections <dw_userdata_Connection> ("dst").first ();
+    return this->in_connections <dw_userdata_Connection> ("dst");
   }
 
   //
-  // dst_of_dr_userdata_Connection
+  // dst_of_dp_userdata_Connection
   //
-  size_t UserDataQosPolicy_Impl::dst_of_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
+  size_t UserDataQosPolicy_Impl::dst_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
   {
-    return this->in_connections <dr_userdata_Connection> (items);
+    return this->in_connections <dp_userdata_Connection> (items);
   }
 
   //
-  // has_dst_of_dr_userdata_Connection
+  // dst_of_dp_userdata_Connection
   //
-  bool UserDataQosPolicy_Impl::has_dst_of_dr_userdata_Connection (void) const
+  GAME::Mga::Collection_T <dp_userdata_Connection> UserDataQosPolicy_Impl::dst_of_dp_userdata_Connection (void) const
   {
-    return this->in_connections <dr_userdata_Connection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_dr_userdata_Connection
-  //
-  dr_userdata_Connection UserDataQosPolicy_Impl::dst_of_dr_userdata_Connection (void) const
-  {
-    return this->in_connections <dr_userdata_Connection> ("dst").first ();
+    return this->in_connections <dp_userdata_Connection> ("dst");
   }
 }
 

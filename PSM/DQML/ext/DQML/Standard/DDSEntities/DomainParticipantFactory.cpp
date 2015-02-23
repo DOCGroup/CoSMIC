@@ -59,11 +59,19 @@ namespace DQML
   }
 
   //
+  // has_src_of_dpfactory_entityfactory_Connection
+  //
+  bool DomainParticipantFactory_Impl::has_src_of_dpfactory_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dpfactory_entityfactory_Connection> ("src").count () == 1;
+  }
+
+  //
   // src_of_dpfactory_entityfactory_Connection
   //
-  GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> DomainParticipantFactory_Impl::src_of_dpfactory_entityfactory_Connection (void) const
+  dpfactory_entityfactory_Connection DomainParticipantFactory_Impl::src_of_dpfactory_entityfactory_Connection (void) const
   {
-    return this->in_connections <dpfactory_entityfactory_Connection> ("src");
+    return this->in_connections <dpfactory_entityfactory_Connection> ("src").first ();
   }
 
   //
@@ -77,9 +85,9 @@ namespace DQML
   //
   // src_of_dpf_dp_Connection
   //
-  dpf_dp_Connection DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
+  GAME::Mga::Collection_T <dpf_dp_Connection> DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
   {
-    return this->in_connections <dpf_dp_Connection> ("src").first ();
+    return this->in_connections <dpf_dp_Connection> ("src");
   }
 }
 

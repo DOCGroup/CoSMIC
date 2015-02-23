@@ -93,19 +93,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_transpri_Connection
-  //
-  bool TransportPriorityQosPolicy_Impl::has_dst_of_topic_transpri_Connection (void) const
-  {
-    return this->in_connections <topic_transpri_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_transpri_Connection
   //
-  topic_transpri_Connection TransportPriorityQosPolicy_Impl::dst_of_topic_transpri_Connection (void) const
+  GAME::Mga::Collection_T <topic_transpri_Connection> TransportPriorityQosPolicy_Impl::dst_of_topic_transpri_Connection (void) const
   {
-    return this->in_connections <topic_transpri_Connection> ("dst").first ();
+    return this->in_connections <topic_transpri_Connection> ("dst");
   }
 
   //
@@ -117,19 +109,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_transpri_Connection
-  //
-  bool TransportPriorityQosPolicy_Impl::has_dst_of_dw_transpri_Connection (void) const
-  {
-    return this->in_connections <dw_transpri_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_transpri_Connection
   //
-  dw_transpri_Connection TransportPriorityQosPolicy_Impl::dst_of_dw_transpri_Connection (void) const
+  GAME::Mga::Collection_T <dw_transpri_Connection> TransportPriorityQosPolicy_Impl::dst_of_dw_transpri_Connection (void) const
   {
-    return this->in_connections <dw_transpri_Connection> ("dst").first ();
+    return this->in_connections <dw_transpri_Connection> ("dst");
   }
 }
 

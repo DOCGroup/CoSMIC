@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_durqos_Connection
-  //
-  bool DurabilityQosPolicy_Impl::has_dst_of_dr_durqos_Connection (void) const
-  {
-    return this->in_connections <dr_durqos_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_durqos_Connection
   //
-  dr_durqos_Connection DurabilityQosPolicy_Impl::dst_of_dr_durqos_Connection (void) const
+  GAME::Mga::Collection_T <dr_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_dr_durqos_Connection (void) const
   {
-    return this->in_connections <dr_durqos_Connection> ("dst").first ();
+    return this->in_connections <dr_durqos_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_durqos_Connection
-  //
-  bool DurabilityQosPolicy_Impl::has_dst_of_dw_durqos_Connection (void) const
-  {
-    return this->in_connections <dw_durqos_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_durqos_Connection
   //
-  dw_durqos_Connection DurabilityQosPolicy_Impl::dst_of_dw_durqos_Connection (void) const
+  GAME::Mga::Collection_T <dw_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_dw_durqos_Connection (void) const
   {
-    return this->in_connections <dw_durqos_Connection> ("dst").first ();
+    return this->in_connections <dw_durqos_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_durqos_Connection
-  //
-  bool DurabilityQosPolicy_Impl::has_dst_of_topic_durqos_Connection (void) const
-  {
-    return this->in_connections <topic_durqos_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_durqos_Connection
   //
-  topic_durqos_Connection DurabilityQosPolicy_Impl::dst_of_topic_durqos_Connection (void) const
+  GAME::Mga::Collection_T <topic_durqos_Connection> DurabilityQosPolicy_Impl::dst_of_topic_durqos_Connection (void) const
   {
-    return this->in_connections <topic_durqos_Connection> ("dst").first ();
+    return this->in_connections <topic_durqos_Connection> ("dst");
   }
 }
 

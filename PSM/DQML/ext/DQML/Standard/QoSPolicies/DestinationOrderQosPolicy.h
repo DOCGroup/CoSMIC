@@ -102,18 +102,15 @@ namespace DQML
 
     /// Get the dst dr_dstOrder_Connection connection.
     size_t dst_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const;
-    bool has_dst_of_dr_dstOrder_Connection (void) const;
-    dr_dstOrder_Connection dst_of_dr_dstOrder_Connection (void) const;
+    GAME::Mga::Collection_T <dr_dstOrder_Connection> dst_of_dr_dstOrder_Connection (void) const;
 
     /// Get the dst dw_dstOrder_Connection connection.
     size_t dst_of_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const;
-    bool has_dst_of_dw_dstOrder_Connection (void) const;
-    dw_dstOrder_Connection dst_of_dw_dstOrder_Connection (void) const;
+    GAME::Mga::Collection_T <dw_dstOrder_Connection> dst_of_dw_dstOrder_Connection (void) const;
 
     /// Get the dst topic_dstOrder_Connection connection.
     size_t dst_of_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const;
-    bool has_dst_of_topic_dstOrder_Connection (void) const;
-    topic_dstOrder_Connection dst_of_topic_dstOrder_Connection (void) const;
+    GAME::Mga::Collection_T <topic_dstOrder_Connection> dst_of_topic_dstOrder_Connection (void) const;
     ///@}
   };
 }

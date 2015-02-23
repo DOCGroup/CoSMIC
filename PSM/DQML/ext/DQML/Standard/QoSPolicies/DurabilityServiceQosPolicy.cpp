@@ -76,19 +76,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_dursvc_Connection
-  //
-  bool DurabilityServiceQosPolicy_Impl::has_dst_of_topic_dursvc_Connection (void) const
-  {
-    return this->in_connections <topic_dursvc_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_dursvc_Connection
   //
-  topic_dursvc_Connection DurabilityServiceQosPolicy_Impl::dst_of_topic_dursvc_Connection (void) const
+  GAME::Mga::Collection_T <topic_dursvc_Connection> DurabilityServiceQosPolicy_Impl::dst_of_topic_dursvc_Connection (void) const
   {
-    return this->in_connections <topic_dursvc_Connection> ("dst").first ();
+    return this->in_connections <topic_dursvc_Connection> ("dst");
   }
 
   //
@@ -100,19 +92,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_dursvc_Connection
-  //
-  bool DurabilityServiceQosPolicy_Impl::has_dst_of_dw_dursvc_Connection (void) const
-  {
-    return this->in_connections <dw_dursvc_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_dursvc_Connection
   //
-  dw_dursvc_Connection DurabilityServiceQosPolicy_Impl::dst_of_dw_dursvc_Connection (void) const
+  GAME::Mga::Collection_T <dw_dursvc_Connection> DurabilityServiceQosPolicy_Impl::dst_of_dw_dursvc_Connection (void) const
   {
-    return this->in_connections <dw_dursvc_Connection> ("dst").first ();
+    return this->in_connections <dw_dursvc_Connection> ("dst");
   }
 }
 

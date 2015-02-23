@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -111,43 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_liveliness_Connection
-  //
-  bool LivelinessQosPolicy_Impl::has_dst_of_dw_liveliness_Connection (void) const
-  {
-    return this->in_connections <dw_liveliness_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_liveliness_Connection
   //
-  dw_liveliness_Connection LivelinessQosPolicy_Impl::dst_of_dw_liveliness_Connection (void) const
+  GAME::Mga::Collection_T <dw_liveliness_Connection> LivelinessQosPolicy_Impl::dst_of_dw_liveliness_Connection (void) const
   {
-    return this->in_connections <dw_liveliness_Connection> ("dst").first ();
-  }
-
-  //
-  // dst_of_dr_liveliness_Connection
-  //
-  size_t LivelinessQosPolicy_Impl::dst_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
-  {
-    return this->in_connections <dr_liveliness_Connection> (items);
-  }
-
-  //
-  // has_dst_of_dr_liveliness_Connection
-  //
-  bool LivelinessQosPolicy_Impl::has_dst_of_dr_liveliness_Connection (void) const
-  {
-    return this->in_connections <dr_liveliness_Connection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_dr_liveliness_Connection
-  //
-  dr_liveliness_Connection LivelinessQosPolicy_Impl::dst_of_dr_liveliness_Connection (void) const
-  {
-    return this->in_connections <dr_liveliness_Connection> ("dst").first ();
+    return this->in_connections <dw_liveliness_Connection> ("dst");
   }
 
   //
@@ -159,19 +127,27 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_liveliness_Connection
+  // dst_of_topic_liveliness_Connection
   //
-  bool LivelinessQosPolicy_Impl::has_dst_of_topic_liveliness_Connection (void) const
+  GAME::Mga::Collection_T <topic_liveliness_Connection> LivelinessQosPolicy_Impl::dst_of_topic_liveliness_Connection (void) const
   {
-    return this->in_connections <topic_liveliness_Connection> ("dst").count () == 1;
+    return this->in_connections <topic_liveliness_Connection> ("dst");
   }
 
   //
-  // dst_of_topic_liveliness_Connection
+  // dst_of_dr_liveliness_Connection
   //
-  topic_liveliness_Connection LivelinessQosPolicy_Impl::dst_of_topic_liveliness_Connection (void) const
+  size_t LivelinessQosPolicy_Impl::dst_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
   {
-    return this->in_connections <topic_liveliness_Connection> ("dst").first ();
+    return this->in_connections <dr_liveliness_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_liveliness_Connection
+  //
+  GAME::Mga::Collection_T <dr_liveliness_Connection> LivelinessQosPolicy_Impl::dst_of_dr_liveliness_Connection (void) const
+  {
+    return this->in_connections <dr_liveliness_Connection> ("dst");
   }
 }
 

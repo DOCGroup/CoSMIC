@@ -100,13 +100,11 @@ namespace DQML
 
     /// Get the dst topic_lifespan_Connection connection.
     size_t dst_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const;
-    bool has_dst_of_topic_lifespan_Connection (void) const;
-    topic_lifespan_Connection dst_of_topic_lifespan_Connection (void) const;
+    GAME::Mga::Collection_T <topic_lifespan_Connection> dst_of_topic_lifespan_Connection (void) const;
 
     /// Get the dst dw_lifespan_Connection connection.
     size_t dst_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
-    bool has_dst_of_dw_lifespan_Connection (void) const;
-    dw_lifespan_Connection dst_of_dw_lifespan_Connection (void) const;
+    GAME::Mga::Collection_T <dw_lifespan_Connection> dst_of_dw_lifespan_Connection (void) const;
     ///@}
   };
 }

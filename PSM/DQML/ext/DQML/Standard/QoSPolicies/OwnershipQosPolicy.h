@@ -100,20 +100,17 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst topic_ownership_Connection connection.
-    size_t dst_of_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const;
-    bool has_dst_of_topic_ownership_Connection (void) const;
-    topic_ownership_Connection dst_of_topic_ownership_Connection (void) const;
+    /// Get the dst dr_ownership_Connection connection.
+    size_t dst_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_ownership_Connection> dst_of_dr_ownership_Connection (void) const;
 
     /// Get the dst dw_ownership_Connection connection.
     size_t dst_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
-    bool has_dst_of_dw_ownership_Connection (void) const;
-    dw_ownership_Connection dst_of_dw_ownership_Connection (void) const;
+    GAME::Mga::Collection_T <dw_ownership_Connection> dst_of_dw_ownership_Connection (void) const;
 
-    /// Get the dst dr_ownership_Connection connection.
-    size_t dst_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
-    bool has_dst_of_dr_ownership_Connection (void) const;
-    dr_ownership_Connection dst_of_dr_ownership_Connection (void) const;
+    /// Get the dst topic_ownership_Connection connection.
+    size_t dst_of_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const;
+    GAME::Mga::Collection_T <topic_ownership_Connection> dst_of_topic_ownership_Connection (void) const;
     ///@}
   };
 }

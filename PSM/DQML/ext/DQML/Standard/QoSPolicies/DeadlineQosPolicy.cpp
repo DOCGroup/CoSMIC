@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_deadline_Connection
-  //
-  bool DeadlineQosPolicy_Impl::has_dst_of_dr_deadline_Connection (void) const
-  {
-    return this->in_connections <dr_deadline_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_deadline_Connection
   //
-  dr_deadline_Connection DeadlineQosPolicy_Impl::dst_of_dr_deadline_Connection (void) const
+  GAME::Mga::Collection_T <dr_deadline_Connection> DeadlineQosPolicy_Impl::dst_of_dr_deadline_Connection (void) const
   {
-    return this->in_connections <dr_deadline_Connection> ("dst").first ();
+    return this->in_connections <dr_deadline_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_deadline_Connection
-  //
-  bool DeadlineQosPolicy_Impl::has_dst_of_dw_deadline_Connection (void) const
-  {
-    return this->in_connections <dw_deadline_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_deadline_Connection
   //
-  dw_deadline_Connection DeadlineQosPolicy_Impl::dst_of_dw_deadline_Connection (void) const
+  GAME::Mga::Collection_T <dw_deadline_Connection> DeadlineQosPolicy_Impl::dst_of_dw_deadline_Connection (void) const
   {
-    return this->in_connections <dw_deadline_Connection> ("dst").first ();
+    return this->in_connections <dw_deadline_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_top_deadline_Connection
-  //
-  bool DeadlineQosPolicy_Impl::has_dst_of_top_deadline_Connection (void) const
-  {
-    return this->in_connections <top_deadline_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_top_deadline_Connection
   //
-  top_deadline_Connection DeadlineQosPolicy_Impl::dst_of_top_deadline_Connection (void) const
+  GAME::Mga::Collection_T <top_deadline_Connection> DeadlineQosPolicy_Impl::dst_of_top_deadline_Connection (void) const
   {
-    return this->in_connections <top_deadline_Connection> ("dst").first ();
+    return this->in_connections <top_deadline_Connection> ("dst");
   }
 }
 

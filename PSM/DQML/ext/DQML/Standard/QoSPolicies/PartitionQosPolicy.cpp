@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
+#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -93,19 +93,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_pub_part_Connection
-  //
-  bool PartitionQosPolicy_Impl::has_dst_of_pub_part_Connection (void) const
-  {
-    return this->in_connections <pub_part_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_pub_part_Connection
   //
-  pub_part_Connection PartitionQosPolicy_Impl::dst_of_pub_part_Connection (void) const
+  GAME::Mga::Collection_T <pub_part_Connection> PartitionQosPolicy_Impl::dst_of_pub_part_Connection (void) const
   {
-    return this->in_connections <pub_part_Connection> ("dst").first ();
+    return this->in_connections <pub_part_Connection> ("dst");
   }
 
   //
@@ -117,19 +109,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_sub_part_Connection
-  //
-  bool PartitionQosPolicy_Impl::has_dst_of_sub_part_Connection (void) const
-  {
-    return this->in_connections <sub_part_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_sub_part_Connection
   //
-  sub_part_Connection PartitionQosPolicy_Impl::dst_of_sub_part_Connection (void) const
+  GAME::Mga::Collection_T <sub_part_Connection> PartitionQosPolicy_Impl::dst_of_sub_part_Connection (void) const
   {
-    return this->in_connections <sub_part_Connection> ("dst").first ();
+    return this->in_connections <sub_part_Connection> ("dst");
   }
 }
 

@@ -84,9 +84,6 @@ namespace DQML
     bool has_LivelinessQosPolicy (void) const;
     LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
 
-    bool has_OwnershipQosPolicy (void) const;
-    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
-
     bool has_ResourceLimitsQosPolicy (void) const;
     ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
 
@@ -98,6 +95,9 @@ namespace DQML
 
     bool has_ReliabilityQosPolicy (void) const;
     ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
+
+    bool has_OwnershipQosPolicy (void) const;
+    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
 
     bool has_LatencyBudgetQosPolicy (void) const;
     LatencyBudgetQosPolicy get_LatencyBudgetQosPolicy (void) const;

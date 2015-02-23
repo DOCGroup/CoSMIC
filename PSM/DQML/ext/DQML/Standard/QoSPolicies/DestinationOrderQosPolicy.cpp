@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_dstOrder_Connection
-  //
-  bool DestinationOrderQosPolicy_Impl::has_dst_of_dr_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_dstOrder_Connection
   //
-  dr_dstOrder_Connection DestinationOrderQosPolicy_Impl::dst_of_dr_dstOrder_Connection (void) const
+  GAME::Mga::Collection_T <dr_dstOrder_Connection> DestinationOrderQosPolicy_Impl::dst_of_dr_dstOrder_Connection (void) const
   {
-    return this->in_connections <dr_dstOrder_Connection> ("dst").first ();
+    return this->in_connections <dr_dstOrder_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_dstOrder_Connection
-  //
-  bool DestinationOrderQosPolicy_Impl::has_dst_of_dw_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dw_dstOrder_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_dstOrder_Connection
   //
-  dw_dstOrder_Connection DestinationOrderQosPolicy_Impl::dst_of_dw_dstOrder_Connection (void) const
+  GAME::Mga::Collection_T <dw_dstOrder_Connection> DestinationOrderQosPolicy_Impl::dst_of_dw_dstOrder_Connection (void) const
   {
-    return this->in_connections <dw_dstOrder_Connection> ("dst").first ();
+    return this->in_connections <dw_dstOrder_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_dstOrder_Connection
-  //
-  bool DestinationOrderQosPolicy_Impl::has_dst_of_topic_dstOrder_Connection (void) const
-  {
-    return this->in_connections <topic_dstOrder_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_dstOrder_Connection
   //
-  topic_dstOrder_Connection DestinationOrderQosPolicy_Impl::dst_of_topic_dstOrder_Connection (void) const
+  GAME::Mga::Collection_T <topic_dstOrder_Connection> DestinationOrderQosPolicy_Impl::dst_of_topic_dstOrder_Connection (void) const
   {
-    return this->in_connections <topic_dstOrder_Connection> ("dst").first ();
+    return this->in_connections <topic_dstOrder_Connection> ("dst");
   }
 }
 

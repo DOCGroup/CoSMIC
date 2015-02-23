@@ -9,10 +9,10 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
 #include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_history_Connection
-  //
-  bool HistoryQosPolicy_Impl::has_dst_of_dr_history_Connection (void) const
-  {
-    return this->in_connections <dr_history_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_history_Connection
   //
-  dr_history_Connection HistoryQosPolicy_Impl::dst_of_dr_history_Connection (void) const
+  GAME::Mga::Collection_T <dr_history_Connection> HistoryQosPolicy_Impl::dst_of_dr_history_Connection (void) const
   {
-    return this->in_connections <dr_history_Connection> ("dst").first ();
+    return this->in_connections <dr_history_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_history_Connection
-  //
-  bool HistoryQosPolicy_Impl::has_dst_of_dw_history_Connection (void) const
-  {
-    return this->in_connections <dw_history_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_history_Connection
   //
-  dw_history_Connection HistoryQosPolicy_Impl::dst_of_dw_history_Connection (void) const
+  GAME::Mga::Collection_T <dw_history_Connection> HistoryQosPolicy_Impl::dst_of_dw_history_Connection (void) const
   {
-    return this->in_connections <dw_history_Connection> ("dst").first ();
+    return this->in_connections <dw_history_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_history_Connection
-  //
-  bool HistoryQosPolicy_Impl::has_dst_of_topic_history_Connection (void) const
-  {
-    return this->in_connections <topic_history_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_history_Connection
   //
-  topic_history_Connection HistoryQosPolicy_Impl::dst_of_topic_history_Connection (void) const
+  GAME::Mga::Collection_T <topic_history_Connection> HistoryQosPolicy_Impl::dst_of_topic_history_Connection (void) const
   {
-    return this->in_connections <topic_history_Connection> ("dst").first ();
+    return this->in_connections <topic_history_Connection> ("dst");
   }
 }
 

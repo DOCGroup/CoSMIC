@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -75,19 +75,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_readerdatalifecycle_Connection
-  //
-  bool ReaderDataLifecycleQosPolicy_Impl::has_dst_of_dr_readerdatalifecycle_Connection (void) const
-  {
-    return this->in_connections <dr_readerdatalifecycle_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_readerdatalifecycle_Connection
   //
-  dr_readerdatalifecycle_Connection ReaderDataLifecycleQosPolicy_Impl::dst_of_dr_readerdatalifecycle_Connection (void) const
+  GAME::Mga::Collection_T <dr_readerdatalifecycle_Connection> ReaderDataLifecycleQosPolicy_Impl::dst_of_dr_readerdatalifecycle_Connection (void) const
   {
-    return this->in_connections <dr_readerdatalifecycle_Connection> ("dst").first ();
+    return this->in_connections <dr_readerdatalifecycle_Connection> ("dst");
   }
 }
 

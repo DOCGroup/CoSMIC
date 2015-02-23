@@ -9,11 +9,11 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_res_Connection
-  //
-  bool ResourceLimitsQosPolicy_Impl::has_dst_of_dr_res_Connection (void) const
-  {
-    return this->in_connections <dr_res_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_res_Connection
   //
-  dr_res_Connection ResourceLimitsQosPolicy_Impl::dst_of_dr_res_Connection (void) const
+  GAME::Mga::Collection_T <dr_res_Connection> ResourceLimitsQosPolicy_Impl::dst_of_dr_res_Connection (void) const
   {
-    return this->in_connections <dr_res_Connection> ("dst").first ();
+    return this->in_connections <dr_res_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_res_Connection
-  //
-  bool ResourceLimitsQosPolicy_Impl::has_dst_of_dw_res_Connection (void) const
-  {
-    return this->in_connections <dw_res_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_res_Connection
   //
-  dw_res_Connection ResourceLimitsQosPolicy_Impl::dst_of_dw_res_Connection (void) const
+  GAME::Mga::Collection_T <dw_res_Connection> ResourceLimitsQosPolicy_Impl::dst_of_dw_res_Connection (void) const
   {
-    return this->in_connections <dw_res_Connection> ("dst").first ();
+    return this->in_connections <dw_res_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_res_Connection
-  //
-  bool ResourceLimitsQosPolicy_Impl::has_dst_of_topic_res_Connection (void) const
-  {
-    return this->in_connections <topic_res_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_topic_res_Connection
   //
-  topic_res_Connection ResourceLimitsQosPolicy_Impl::dst_of_topic_res_Connection (void) const
+  GAME::Mga::Collection_T <topic_res_Connection> ResourceLimitsQosPolicy_Impl::dst_of_topic_res_Connection (void) const
   {
-    return this->in_connections <topic_res_Connection> ("dst").first ();
+    return this->in_connections <topic_res_Connection> ("dst");
   }
 }
 

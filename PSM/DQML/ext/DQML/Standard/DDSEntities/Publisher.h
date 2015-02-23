@@ -82,25 +82,29 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dw_pub_Connection connection.
-    size_t src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const;
-    dw_pub_Connection src_of_dw_pub_Connection (void) const;
-
     /// Get the src pub_entityfactory_Connection connection.
     size_t src_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
-    GAME::Mga::Collection_T <pub_entityfactory_Connection> src_of_pub_entityfactory_Connection (void) const;
+    bool has_src_of_pub_entityfactory_Connection (void) const;
+    pub_entityfactory_Connection src_of_pub_entityfactory_Connection (void) const;
+
+    /// Get the src dw_pub_Connection connection.
+    size_t src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const;
+    GAME::Mga::Collection_T <dw_pub_Connection> src_of_dw_pub_Connection (void) const;
 
     /// Get the src pub_part_Connection connection.
     size_t src_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const;
-    GAME::Mga::Collection_T <pub_part_Connection> src_of_pub_part_Connection (void) const;
+    bool has_src_of_pub_part_Connection (void) const;
+    pub_part_Connection src_of_pub_part_Connection (void) const;
 
     /// Get the src pub_groupdata_Connection connection.
     size_t src_of_pub_groupdata_Connection (std::vector <pub_groupdata_Connection> & items) const;
-    GAME::Mga::Collection_T <pub_groupdata_Connection> src_of_pub_groupdata_Connection (void) const;
+    bool has_src_of_pub_groupdata_Connection (void) const;
+    pub_groupdata_Connection src_of_pub_groupdata_Connection (void) const;
 
     /// Get the src pub_presqos_Connection connection.
     size_t src_of_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const;
-    GAME::Mga::Collection_T <pub_presqos_Connection> src_of_pub_presqos_Connection (void) const;
+    bool has_src_of_pub_presqos_Connection (void) const;
+    pub_presqos_Connection src_of_pub_presqos_Connection (void) const;
     ///@}
 
     /**
@@ -110,7 +114,7 @@ namespace DQML
 
     /// Get the dst dp_pub_Connection connection.
     size_t dst_of_dp_pub_Connection (std::vector <dp_pub_Connection> & items) const;
-    GAME::Mga::Collection_T <dp_pub_Connection> dst_of_dp_pub_Connection (void) const;
+    dp_pub_Connection dst_of_dp_pub_Connection (void) const;
     ///@}
   };
 }

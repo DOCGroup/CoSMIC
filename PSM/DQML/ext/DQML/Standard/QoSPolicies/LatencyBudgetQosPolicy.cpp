@@ -111,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dr_latency_Connection
-  //
-  bool LatencyBudgetQosPolicy_Impl::has_dst_of_dr_latency_Connection (void) const
-  {
-    return this->in_connections <dr_latency_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dr_latency_Connection
   //
-  dr_latency_Connection LatencyBudgetQosPolicy_Impl::dst_of_dr_latency_Connection (void) const
+  GAME::Mga::Collection_T <dr_latency_Connection> LatencyBudgetQosPolicy_Impl::dst_of_dr_latency_Connection (void) const
   {
-    return this->in_connections <dr_latency_Connection> ("dst").first ();
+    return this->in_connections <dr_latency_Connection> ("dst");
   }
 
   //
@@ -135,19 +127,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_latency_Connection
-  //
-  bool LatencyBudgetQosPolicy_Impl::has_dst_of_dw_latency_Connection (void) const
-  {
-    return this->in_connections <dw_latency_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_latency_Connection
   //
-  dw_latency_Connection LatencyBudgetQosPolicy_Impl::dst_of_dw_latency_Connection (void) const
+  GAME::Mga::Collection_T <dw_latency_Connection> LatencyBudgetQosPolicy_Impl::dst_of_dw_latency_Connection (void) const
   {
-    return this->in_connections <dw_latency_Connection> ("dst").first ();
+    return this->in_connections <dw_latency_Connection> ("dst");
   }
 
   //
@@ -159,19 +143,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_top_latency_Connection
-  //
-  bool LatencyBudgetQosPolicy_Impl::has_dst_of_top_latency_Connection (void) const
-  {
-    return this->in_connections <top_latency_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_top_latency_Connection
   //
-  top_latency_Connection LatencyBudgetQosPolicy_Impl::dst_of_top_latency_Connection (void) const
+  GAME::Mga::Collection_T <top_latency_Connection> LatencyBudgetQosPolicy_Impl::dst_of_top_latency_Connection (void) const
   {
-    return this->in_connections <top_latency_Connection> ("dst").first ();
+    return this->in_connections <top_latency_Connection> ("dst");
   }
 }
 

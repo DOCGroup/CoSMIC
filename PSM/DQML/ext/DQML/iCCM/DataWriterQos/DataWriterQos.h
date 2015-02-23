@@ -111,7 +111,8 @@ namespace DQML
 
     /// Get the src PublisherConnection connection.
     size_t src_of_PublisherConnection (std::vector <PublisherConnection> & items) const;
-    GAME::Mga::Collection_T <PublisherConnection> src_of_PublisherConnection (void) const;
+    bool has_src_of_PublisherConnection (void) const;
+    PublisherConnection src_of_PublisherConnection (void) const;
     ///@}
 
     /**
@@ -122,23 +123,23 @@ namespace DQML
     bool has_LivelinessQosPolicy (void) const;
     LivelinessQosPolicy get_LivelinessQosPolicy (void) const;
 
-    bool has_OwnershipQosPolicy (void) const;
-    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
-
-    bool has_UserDataQosPolicy (void) const;
-    UserDataQosPolicy get_UserDataQosPolicy (void) const;
-
     bool has_ResourceLimitsQosPolicy (void) const;
     ResourceLimitsQosPolicy get_ResourceLimitsQosPolicy (void) const;
 
     bool has_HistoryQosPolicy (void) const;
     HistoryQosPolicy get_HistoryQosPolicy (void) const;
 
+    bool has_UserDataQosPolicy (void) const;
+    UserDataQosPolicy get_UserDataQosPolicy (void) const;
+
     bool has_DestinationOrderQosPolicy (void) const;
     DestinationOrderQosPolicy get_DestinationOrderQosPolicy (void) const;
 
     bool has_ReliabilityQosPolicy (void) const;
     ReliabilityQosPolicy get_ReliabilityQosPolicy (void) const;
+
+    bool has_OwnershipQosPolicy (void) const;
+    OwnershipQosPolicy get_OwnershipQosPolicy (void) const;
 
     bool has_LatencyBudgetQosPolicy (void) const;
     LatencyBudgetQosPolicy get_LatencyBudgetQosPolicy (void) const;

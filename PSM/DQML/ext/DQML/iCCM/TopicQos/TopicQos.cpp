@@ -9,11 +9,11 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/QoSPolicies/LivelinessQosPolicy.h"
-#include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/ResourceLimitsQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/HistoryQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/ReliabilityQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/DurabilityQosPolicy.h"
@@ -87,22 +87,6 @@ namespace DQML
   }
 
   //
-  // has_OwnershipQosPolicy
-  //
-  bool TopicQos_Impl::has_OwnershipQosPolicy (void) const
-  {
-    return this->children <OwnershipQosPolicy> ().count () == 1;
-  }
-
-  //
-  // get_OwnershipQosPolicy
-  //
-  OwnershipQosPolicy TopicQos_Impl::get_OwnershipQosPolicy (void) const
-  {
-    return this->children <OwnershipQosPolicy> ().first ();
-  }
-
-  //
   // has_ResourceLimitsQosPolicy
   //
   bool TopicQos_Impl::has_ResourceLimitsQosPolicy (void) const
@@ -164,6 +148,22 @@ namespace DQML
   ReliabilityQosPolicy TopicQos_Impl::get_ReliabilityQosPolicy (void) const
   {
     return this->children <ReliabilityQosPolicy> ().first ();
+  }
+
+  //
+  // has_OwnershipQosPolicy
+  //
+  bool TopicQos_Impl::has_OwnershipQosPolicy (void) const
+  {
+    return this->children <OwnershipQosPolicy> ().count () == 1;
+  }
+
+  //
+  // get_OwnershipQosPolicy
+  //
+  OwnershipQosPolicy TopicQos_Impl::get_OwnershipQosPolicy (void) const
+  {
+    return this->children <OwnershipQosPolicy> ().first ();
   }
 
   //

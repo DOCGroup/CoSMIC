@@ -102,18 +102,15 @@ namespace DQML
 
     /// Get the dst dr_durqos_Connection connection.
     size_t dst_of_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
-    bool has_dst_of_dr_durqos_Connection (void) const;
-    dr_durqos_Connection dst_of_dr_durqos_Connection (void) const;
+    GAME::Mga::Collection_T <dr_durqos_Connection> dst_of_dr_durqos_Connection (void) const;
 
     /// Get the dst dw_durqos_Connection connection.
     size_t dst_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
-    bool has_dst_of_dw_durqos_Connection (void) const;
-    dw_durqos_Connection dst_of_dw_durqos_Connection (void) const;
+    GAME::Mga::Collection_T <dw_durqos_Connection> dst_of_dw_durqos_Connection (void) const;
 
     /// Get the dst topic_durqos_Connection connection.
     size_t dst_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const;
-    bool has_dst_of_topic_durqos_Connection (void) const;
-    topic_durqos_Connection dst_of_topic_durqos_Connection (void) const;
+    GAME::Mga::Collection_T <topic_durqos_Connection> dst_of_topic_durqos_Connection (void) const;
     ///@}
   };
 }

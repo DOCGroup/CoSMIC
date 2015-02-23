@@ -100,25 +100,21 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst pub_entityfactory_Connection connection.
-    size_t dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
-    bool has_dst_of_pub_entityfactory_Connection (void) const;
-    pub_entityfactory_Connection dst_of_pub_entityfactory_Connection (void) const;
-
     /// Get the dst sub_entityfactory_Connection connection.
     size_t dst_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
-    bool has_dst_of_sub_entityfactory_Connection (void) const;
-    sub_entityfactory_Connection dst_of_sub_entityfactory_Connection (void) const;
+    GAME::Mga::Collection_T <sub_entityfactory_Connection> dst_of_sub_entityfactory_Connection (void) const;
+
+    /// Get the dst pub_entityfactory_Connection connection.
+    size_t dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
+    GAME::Mga::Collection_T <pub_entityfactory_Connection> dst_of_pub_entityfactory_Connection (void) const;
 
     /// Get the dst dp_entityfactory_Connection connection.
     size_t dst_of_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const;
-    bool has_dst_of_dp_entityfactory_Connection (void) const;
-    dp_entityfactory_Connection dst_of_dp_entityfactory_Connection (void) const;
+    GAME::Mga::Collection_T <dp_entityfactory_Connection> dst_of_dp_entityfactory_Connection (void) const;
 
     /// Get the dst dpfactory_entityfactory_Connection connection.
     size_t dst_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
-    bool has_dst_of_dpfactory_entityfactory_Connection (void) const;
-    dpfactory_entityfactory_Connection dst_of_dpfactory_entityfactory_Connection (void) const;
+    GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> dst_of_dpfactory_entityfactory_Connection (void) const;
     ///@}
   };
 }

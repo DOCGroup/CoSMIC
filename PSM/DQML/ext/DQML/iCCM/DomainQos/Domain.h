@@ -80,11 +80,11 @@ namespace DQML
      * @name Containment Methods
      */
     ///@{
-    size_t get_Participants (std::vector <Participant> & items) const;
-    ::GAME::Mga::Collection_T <Participant> get_Participants (void) const;
-
     size_t get_PublishesConnections (std::vector <PublishesConnection> & items) const;
     ::GAME::Mga::Collection_T <PublishesConnection> get_PublishesConnections (void) const;
+
+    size_t get_Participants (std::vector <Participant> & items) const;
+    ::GAME::Mga::Collection_T <Participant> get_Participants (void) const;
 
     ///@}
   };

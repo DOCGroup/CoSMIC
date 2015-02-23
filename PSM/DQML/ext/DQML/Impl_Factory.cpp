@@ -32,8 +32,8 @@
 #include "DQML/Standard/QoSPolicies/OwnershipQosPolicy.h"
 #include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
-#include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/Standard/Main/dr_sub_Connection.h"
+#include "DQML/Standard/Main/dp_sub_Connection.h"
 #include "DQML/iCCM/iCCM/iCCM.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/WriterDataLifecycleQosPolicy.h"
@@ -49,32 +49,32 @@
 #include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h"
 #include "DQML/Standard/DDSEntities/DomainParticipant.h"
 #include "DQML/Standard/SchedulingQosPolicy/SchedulingQosPolicy.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
 #include "DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h"
 #include "DQML/Standard/DDSEntities/Topic.h"
 #include "DQML/iCCM/TopicQos/TopicQosFolder.h"
 #include "DQML/iCCM/TopicQos/TopicQosReference.h"
-#include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
+#include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
 #include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
 #include "DQML/iCCM/DomainQos/SubscriberConnection.h"
-#include "DQML/Standard/Main/dw_pub_Connection.h"
 #include "DQML/Standard/Main/dp_pub_Connection.h"
+#include "DQML/Standard/Main/dw_pub_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/Standard/QoSPolicies/DeadlineQosPolicy.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
@@ -90,16 +90,16 @@
 #include "DQML/Standard/DDSEntities/Subscriber.h"
 #include "DQML/Standard/QoSPolicies/DurabilityQosPolicy.h"
 #include "DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.h"
-#include "DQML/Standard/Main/dp_topic_Connection.h"
 #include "DQML/Standard/Main/dr_topic_Connection.h"
+#include "DQML/Standard/Main/dp_topic_Connection.h"
 #include "DQML/Standard/QoSPolicies/DestinationOrderQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/UserDataQosPolicy.h"
 #include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
 #include "DQML/Standard/Main/dpf_dp_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
 #include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
@@ -109,8 +109,8 @@
 #include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/DDSEntities/DataReader.h"
 #include "DQML/Standard/DDSEntities/DataWriter.h"
-#include "DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
+#include "DQML/Standard/QoSPolicies/LatencyBudgetQosPolicy.h"
 #include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
 #include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
 #include "DQML/Standard/DDSEntities/Publisher.h"
@@ -151,8 +151,8 @@ namespace DQML
     this->map_.bind ("OwnershipQosPolicy", &::GAME::Mga::allocate_impl <OwnershipQosPolicy_Impl>);
     this->map_.bind ("dr_deadline_Connection", &::GAME::Mga::allocate_impl <dr_deadline_Connection_Impl>);
     this->map_.bind ("top_latency_Connection", &::GAME::Mga::allocate_impl <top_latency_Connection_Impl>);
-    this->map_.bind ("dp_sub_Connection", &::GAME::Mga::allocate_impl <dp_sub_Connection_Impl>);
     this->map_.bind ("dr_sub_Connection", &::GAME::Mga::allocate_impl <dr_sub_Connection_Impl>);
+    this->map_.bind ("dp_sub_Connection", &::GAME::Mga::allocate_impl <dp_sub_Connection_Impl>);
     this->map_.bind ("iCCM", &::GAME::Mga::allocate_impl <iCCM_Impl>);
     this->map_.bind ("GroupDataQosPolicy", &::GAME::Mga::allocate_impl <GroupDataQosPolicy_Impl>);
     this->map_.bind ("WriterDataLifecycleQosPolicy", &::GAME::Mga::allocate_impl <WriterDataLifecycleQosPolicy_Impl>);
@@ -168,32 +168,32 @@ namespace DQML
     this->map_.bind ("dw_lifespan_Connection", &::GAME::Mga::allocate_impl <dw_lifespan_Connection_Impl>);
     this->map_.bind ("dw_res_Connection", &::GAME::Mga::allocate_impl <dw_res_Connection_Impl>);
     this->map_.bind ("dr_res_Connection", &::GAME::Mga::allocate_impl <dr_res_Connection_Impl>);
-    this->map_.bind ("dr_latency_Connection", &::GAME::Mga::allocate_impl <dr_latency_Connection_Impl>);
-    this->map_.bind ("dr_dstOrder_Connection", &::GAME::Mga::allocate_impl <dr_dstOrder_Connection_Impl>);
     this->map_.bind ("sub_groupdata_Connection", &::GAME::Mga::allocate_impl <sub_groupdata_Connection_Impl>);
     this->map_.bind ("pub_groupdata_Connection", &::GAME::Mga::allocate_impl <pub_groupdata_Connection_Impl>);
+    this->map_.bind ("dr_latency_Connection", &::GAME::Mga::allocate_impl <dr_latency_Connection_Impl>);
+    this->map_.bind ("dr_dstOrder_Connection", &::GAME::Mga::allocate_impl <dr_dstOrder_Connection_Impl>);
     this->map_.bind ("dr_userdata_Connection", &::GAME::Mga::allocate_impl <dr_userdata_Connection_Impl>);
     this->map_.bind ("topic_ownership_Connection", &::GAME::Mga::allocate_impl <topic_ownership_Connection_Impl>);
     this->map_.bind ("DomainParticipant", &::GAME::Mga::allocate_impl <DomainParticipant_Impl>);
     this->map_.bind ("SchedulingQosPolicy", &::GAME::Mga::allocate_impl <SchedulingQosPolicy_Impl>);
-    this->map_.bind ("topic_dstOrder_Connection", &::GAME::Mga::allocate_impl <topic_dstOrder_Connection_Impl>);
-    this->map_.bind ("sub_entityfactory_Connection", &::GAME::Mga::allocate_impl <sub_entityfactory_Connection_Impl>);
     this->map_.bind ("pub_entityfactory_Connection", &::GAME::Mga::allocate_impl <pub_entityfactory_Connection_Impl>);
+    this->map_.bind ("sub_entityfactory_Connection", &::GAME::Mga::allocate_impl <sub_entityfactory_Connection_Impl>);
+    this->map_.bind ("topic_dstOrder_Connection", &::GAME::Mga::allocate_impl <topic_dstOrder_Connection_Impl>);
     this->map_.bind ("dw_ownerstrength_Connection", &::GAME::Mga::allocate_impl <dw_ownerstrength_Connection_Impl>);
     this->map_.bind ("dw_deadline_Connection", &::GAME::Mga::allocate_impl <dw_deadline_Connection_Impl>);
     this->map_.bind ("Topic", &::GAME::Mga::allocate_impl <Topic_Impl>);
     this->map_.bind ("TopicQosFolder", &::GAME::Mga::allocate_impl <TopicQosFolder_Impl>);
     this->map_.bind ("TopicQosReference", &::GAME::Mga::allocate_impl <TopicQosReference_Impl>);
-    this->map_.bind ("dr_ownership_Connection", &::GAME::Mga::allocate_impl <dr_ownership_Connection_Impl>);
     this->map_.bind ("dw_ownership_Connection", &::GAME::Mga::allocate_impl <dw_ownership_Connection_Impl>);
+    this->map_.bind ("dr_ownership_Connection", &::GAME::Mga::allocate_impl <dr_ownership_Connection_Impl>);
     this->map_.bind ("topic_reliability_Connection", &::GAME::Mga::allocate_impl <topic_reliability_Connection_Impl>);
     this->map_.bind ("DataReaderQos", &::GAME::Mga::allocate_impl <DataReaderQos_Impl>);
     this->map_.bind ("topic_topicdata_Connection", &::GAME::Mga::allocate_impl <topic_topicdata_Connection_Impl>);
     this->map_.bind ("topic_history_Connection", &::GAME::Mga::allocate_impl <topic_history_Connection_Impl>);
     this->map_.bind ("dr_timebased_Connection", &::GAME::Mga::allocate_impl <dr_timebased_Connection_Impl>);
     this->map_.bind ("SubscriberConnection", &::GAME::Mga::allocate_impl <SubscriberConnection_Impl>);
-    this->map_.bind ("dw_pub_Connection", &::GAME::Mga::allocate_impl <dw_pub_Connection_Impl>);
     this->map_.bind ("dp_pub_Connection", &::GAME::Mga::allocate_impl <dp_pub_Connection_Impl>);
+    this->map_.bind ("dw_pub_Connection", &::GAME::Mga::allocate_impl <dw_pub_Connection_Impl>);
     this->map_.bind ("PublisherQos", &::GAME::Mga::allocate_impl <PublisherQos_Impl>);
     this->map_.bind ("DeadlineQosPolicy", &::GAME::Mga::allocate_impl <DeadlineQosPolicy_Impl>);
     this->map_.bind ("PublisherConnection", &::GAME::Mga::allocate_impl <PublisherConnection_Impl>);
@@ -209,16 +209,16 @@ namespace DQML
     this->map_.bind ("Subscriber", &::GAME::Mga::allocate_impl <Subscriber_Impl>);
     this->map_.bind ("DurabilityQosPolicy", &::GAME::Mga::allocate_impl <DurabilityQosPolicy_Impl>);
     this->map_.bind ("dw_writerdatalifecycle_Connection", &::GAME::Mga::allocate_impl <dw_writerdatalifecycle_Connection_Impl>);
-    this->map_.bind ("dp_topic_Connection", &::GAME::Mga::allocate_impl <dp_topic_Connection_Impl>);
     this->map_.bind ("dr_topic_Connection", &::GAME::Mga::allocate_impl <dr_topic_Connection_Impl>);
+    this->map_.bind ("dp_topic_Connection", &::GAME::Mga::allocate_impl <dp_topic_Connection_Impl>);
     this->map_.bind ("DestinationOrderQosPolicy", &::GAME::Mga::allocate_impl <DestinationOrderQosPolicy_Impl>);
     this->map_.bind ("UserDataQosPolicy", &::GAME::Mga::allocate_impl <UserDataQosPolicy_Impl>);
     this->map_.bind ("TopicQos", &::GAME::Mga::allocate_impl <TopicQos_Impl>);
     this->map_.bind ("dp_entityfactory_Connection", &::GAME::Mga::allocate_impl <dp_entityfactory_Connection_Impl>);
     this->map_.bind ("DDSQoS", &::GAME::Mga::allocate_impl <DDSQoS_Impl>);
     this->map_.bind ("topic_liveliness_Connection", &::GAME::Mga::allocate_impl <topic_liveliness_Connection_Impl>);
-    this->map_.bind ("dr_durqos_Connection", &::GAME::Mga::allocate_impl <dr_durqos_Connection_Impl>);
     this->map_.bind ("dpf_dp_Connection", &::GAME::Mga::allocate_impl <dpf_dp_Connection_Impl>);
+    this->map_.bind ("dr_durqos_Connection", &::GAME::Mga::allocate_impl <dr_durqos_Connection_Impl>);
     this->map_.bind ("sub_part_Connection", &::GAME::Mga::allocate_impl <sub_part_Connection_Impl>);
     this->map_.bind ("dr_liveliness_Connection", &::GAME::Mga::allocate_impl <dr_liveliness_Connection_Impl>);
     this->map_.bind ("dr_reliability_Connection", &::GAME::Mga::allocate_impl <dr_reliability_Connection_Impl>);
@@ -228,8 +228,8 @@ namespace DQML
     this->map_.bind ("dw_reliability_Connection", &::GAME::Mga::allocate_impl <dw_reliability_Connection_Impl>);
     this->map_.bind ("DataReader", &::GAME::Mga::allocate_impl <DataReader_Impl>);
     this->map_.bind ("DataWriter", &::GAME::Mga::allocate_impl <DataWriter_Impl>);
-    this->map_.bind ("LatencyBudgetQosPolicy", &::GAME::Mga::allocate_impl <LatencyBudgetQosPolicy_Impl>);
     this->map_.bind ("PresentationQosPolicy", &::GAME::Mga::allocate_impl <PresentationQosPolicy_Impl>);
+    this->map_.bind ("LatencyBudgetQosPolicy", &::GAME::Mga::allocate_impl <LatencyBudgetQosPolicy_Impl>);
     this->map_.bind ("top_deadline_Connection", &::GAME::Mga::allocate_impl <top_deadline_Connection_Impl>);
     this->map_.bind ("topic_res_Connection", &::GAME::Mga::allocate_impl <topic_res_Connection_Impl>);
     this->map_.bind ("Publisher", &::GAME::Mga::allocate_impl <Publisher_Impl>);

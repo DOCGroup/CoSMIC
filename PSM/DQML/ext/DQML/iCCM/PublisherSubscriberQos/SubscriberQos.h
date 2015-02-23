@@ -83,8 +83,7 @@ namespace DQML
 
     /// Get the dst SubscriberConnection connection.
     size_t dst_of_SubscriberConnection (std::vector <SubscriberConnection> & items) const;
-    bool has_dst_of_SubscriberConnection (void) const;
-    SubscriberConnection dst_of_SubscriberConnection (void) const;
+    GAME::Mga::Collection_T <SubscriberConnection> dst_of_SubscriberConnection (void) const;
     ///@}
 
     /**
