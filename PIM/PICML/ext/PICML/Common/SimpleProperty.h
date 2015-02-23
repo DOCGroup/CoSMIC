@@ -57,10 +57,10 @@ namespace PICML
      */
     ///@{
     static SimpleProperty _create (const ComponentAssembly_in parent);
-    static SimpleProperty _create (const ActionBase_in parent);
-    static SimpleProperty _create (const BehaviorInputAction_in parent);
-    static SimpleProperty _create (const QueryInputAction_in parent);
     static SimpleProperty _create (const RequirementBase_in parent);
+    static SimpleProperty _create (const BehaviorInputAction_in parent);
+    static SimpleProperty _create (const ActionBase_in parent);
+    static SimpleProperty _create (const QueryInputAction_in parent);
     static SimpleProperty _create (const Path_in parent);
     static SimpleProperty _create (const ImplementationContainer_in parent);
     static SimpleProperty _create (const ComponentContainer_in parent);

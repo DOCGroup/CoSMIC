@@ -84,8 +84,7 @@ namespace PICML
 
     /// Get the src Deploys connection.
     size_t src_of_Deploys (std::vector <Deploys> & items) const;
-    bool has_src_of_Deploys (void) const;
-    Deploys src_of_Deploys (void) const;
+    GAME::Mga::Collection_T <Deploys> src_of_Deploys (void) const;
     ///@}
 
     /**

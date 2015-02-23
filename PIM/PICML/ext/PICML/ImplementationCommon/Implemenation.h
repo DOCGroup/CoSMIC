@@ -85,13 +85,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src InfoProperty connection.
-    size_t src_of_InfoProperty (std::vector <InfoProperty> & items) const;
-    GAME::Mga::Collection_T <InfoProperty> src_of_InfoProperty (void) const;
-
     /// Get the src ConfigProperty connection.
     size_t src_of_ConfigProperty (std::vector <ConfigProperty> & items) const;
     GAME::Mga::Collection_T <ConfigProperty> src_of_ConfigProperty (void) const;
+
+    /// Get the src InfoProperty connection.
+    size_t src_of_InfoProperty (std::vector <InfoProperty> & items) const;
+    GAME::Mga::Collection_T <InfoProperty> src_of_InfoProperty (void) const;
     ///@}
   };
 }

@@ -67,19 +67,11 @@ namespace PICML
   }
 
   //
-  // has_src_of_TimerEventSinkConn
-  //
-  bool EventRef_Impl::has_src_of_TimerEventSinkConn (void) const
-  {
-    return this->in_connections <TimerEventSinkConn> ("src").count () == 1;
-  }
-
-  //
   // src_of_TimerEventSinkConn
   //
-  TimerEventSinkConn EventRef_Impl::src_of_TimerEventSinkConn (void) const
+  GAME::Mga::Collection_T <TimerEventSinkConn> EventRef_Impl::src_of_TimerEventSinkConn (void) const
   {
-    return this->in_connections <TimerEventSinkConn> ("src").first ();
+    return this->in_connections <TimerEventSinkConn> ("src");
   }
 
   //

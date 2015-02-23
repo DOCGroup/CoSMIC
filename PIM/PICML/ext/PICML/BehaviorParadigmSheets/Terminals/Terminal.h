@@ -94,8 +94,7 @@ namespace PICML
 
     /// Get the dst TerminalTransition connection.
     size_t dst_of_TerminalTransition (std::vector <TerminalTransition> & items) const;
-    bool has_dst_of_TerminalTransition (void) const;
-    TerminalTransition dst_of_TerminalTransition (void) const;
+    GAME::Mga::Collection_T <TerminalTransition> dst_of_TerminalTransition (void) const;
     ///@}
   };
 }

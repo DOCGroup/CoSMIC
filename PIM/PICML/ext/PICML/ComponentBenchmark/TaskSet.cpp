@@ -67,14 +67,6 @@ namespace PICML
   }
 
   //
-  // has_dst_of_WorkloadCharacteristics
-  //
-  bool TaskSet_Impl::has_dst_of_WorkloadCharacteristics (void) const
-  {
-    return this->in_connections <WorkloadCharacteristics> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_WorkloadCharacteristics
   //
   WorkloadCharacteristics TaskSet_Impl::dst_of_WorkloadCharacteristics (void) const

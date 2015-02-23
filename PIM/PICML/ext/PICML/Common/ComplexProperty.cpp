@@ -13,10 +13,10 @@
 #include "PICML/Common/DataValueContainer.h"
 #include "PICML/Common/ComplexTypeReference.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/Common/RequirementBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/ActionBase.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/PathDiagram/Path.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
@@ -52,9 +52,9 @@ namespace PICML
   }
 
   //
-  // _create (const ActionBase_in)
+  // _create (const RequirementBase_in)
   //
-  ComplexProperty ComplexProperty_Impl::_create (const ActionBase_in parent)
+  ComplexProperty ComplexProperty_Impl::_create (const RequirementBase_in parent)
   {
     return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
   }
@@ -68,17 +68,17 @@ namespace PICML
   }
 
   //
-  // _create (const QueryInputAction_in)
+  // _create (const ActionBase_in)
   //
-  ComplexProperty ComplexProperty_Impl::_create (const QueryInputAction_in parent)
+  ComplexProperty ComplexProperty_Impl::_create (const ActionBase_in parent)
   {
     return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
   }
 
   //
-  // _create (const RequirementBase_in)
+  // _create (const QueryInputAction_in)
   //
-  ComplexProperty ComplexProperty_Impl::_create (const RequirementBase_in parent)
+  ComplexProperty ComplexProperty_Impl::_create (const QueryInputAction_in parent)
   {
     return ::GAME::Mga::create < ComplexProperty > (parent, ComplexProperty_Impl::metaname);
   }

@@ -84,7 +84,8 @@ namespace PICML
 
     /// Get the dst Deploys connection.
     size_t dst_of_Deploys (std::vector <Deploys> & items) const;
-    GAME::Mga::Collection_T <Deploys> dst_of_Deploys (void) const;
+    bool has_dst_of_Deploys (void) const;
+    Deploys dst_of_Deploys (void) const;
     ///@}
 
     /**

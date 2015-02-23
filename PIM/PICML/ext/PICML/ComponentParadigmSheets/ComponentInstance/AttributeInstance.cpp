@@ -10,9 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMapping.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstance.h"
 #include "game/mga/Functional_T.h"
@@ -79,11 +79,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_AttributeValue
+  //
+  bool AttributeInstance_Impl::has_src_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("src").count () == 1;
+  }
+
+  //
   // src_of_AttributeValue
   //
-  GAME::Mga::Collection_T <AttributeValue> AttributeInstance_Impl::src_of_AttributeValue (void) const
+  AttributeValue AttributeInstance_Impl::src_of_AttributeValue (void) const
   {
-    return this->in_connections <AttributeValue> ("src");
+    return this->in_connections <AttributeValue> ("src").first ();
   }
 
   //
@@ -95,11 +103,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_AttributeDelegate
+  //
+  bool AttributeInstance_Impl::has_dst_of_AttributeDelegate (void) const
+  {
+    return this->in_connections <AttributeDelegate> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_AttributeDelegate
   //
-  GAME::Mga::Collection_T <AttributeDelegate> AttributeInstance_Impl::dst_of_AttributeDelegate (void) const
+  AttributeDelegate AttributeInstance_Impl::dst_of_AttributeDelegate (void) const
   {
-    return this->in_connections <AttributeDelegate> ("dst");
+    return this->in_connections <AttributeDelegate> ("dst").first ();
   }
 
   //

@@ -8,26 +8,23 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
-#include "PICML/NamedTypes/KeyMember.h"
-#include "PICML/NamedTypes/LabelConnection.h"
 #include "PICML/NamedTypes/MemberType.h"
 #include "PICML/NamedTypes/NamedType.h"
 #include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Alias.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Boxed.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
@@ -62,6 +59,9 @@
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "PICML/NamedTypes/LabelConnection.h"
+#include "PICML/NamedTypes/KeyMember.h"
 #include "PICML/InterfaceDefinition/Exception.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -167,6 +167,14 @@ namespace PICML
   }
 
   //
+  // has_src_of_MakeMemberPrivate
+  //
+  bool Member_Impl::has_src_of_MakeMemberPrivate (void) const
+  {
+    return this->in_connections <MakeMemberPrivate> ("src").count () == 1;
+  }
+
+  //
   // src_of_MakeMemberPrivate
   //
   MakeMemberPrivate Member_Impl::src_of_MakeMemberPrivate (void) const
@@ -185,9 +193,9 @@ namespace PICML
   //
   // src_of_LabelConnection
   //
-  LabelConnection Member_Impl::src_of_LabelConnection (void) const
+  GAME::Mga::Collection_T <LabelConnection> Member_Impl::src_of_LabelConnection (void) const
   {
-    return this->in_connections <LabelConnection> ("src").first ();
+    return this->in_connections <LabelConnection> ("src");
   }
 
   //
@@ -199,11 +207,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_KeyMember
+  //
+  bool Member_Impl::has_dst_of_KeyMember (void) const
+  {
+    return this->in_connections <KeyMember> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_KeyMember
   //
-  GAME::Mga::Collection_T <KeyMember> Member_Impl::dst_of_KeyMember (void) const
+  KeyMember Member_Impl::dst_of_KeyMember (void) const
   {
-    return this->in_connections <KeyMember> ("dst");
+    return this->in_connections <KeyMember> ("dst").first ();
   }
 
   //

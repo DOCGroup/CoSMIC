@@ -11,20 +11,20 @@
 #include "PICML/NamedTypes/MemberType.h"
 #include "PICML/NamedTypes/NamedType.h"
 #include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Alias.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/NamedTypes/Boxed.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
@@ -59,8 +59,8 @@
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -79,17 +79,17 @@ namespace PICML
   const bool ReturnType_Impl::is_abstract = false;
 
   //
-  // _create (const Operation_in)
+  // _create (const TwowayOperation_in)
   //
-  ReturnType ReturnType_Impl::_create (const Operation_in parent)
+  ReturnType ReturnType_Impl::_create (const TwowayOperation_in parent)
   {
     return ::GAME::Mga::create < ReturnType > (parent, ReturnType_Impl::metaname);
   }
 
   //
-  // _create (const TwowayOperation_in)
+  // _create (const Operation_in)
   //
-  ReturnType ReturnType_Impl::_create (const TwowayOperation_in parent)
+  ReturnType ReturnType_Impl::_create (const Operation_in parent)
   {
     return ::GAME::Mga::create < ReturnType > (parent, ReturnType_Impl::metaname);
   }
@@ -109,19 +109,19 @@ namespace PICML
   }
 
   //
-  // parent_Operation
-  //
-  Operation ReturnType_Impl::parent_Operation (void)
-  {
-    return Operation::_narrow (this->parent ());
-  }
-
-  //
   // parent_TwowayOperation
   //
   TwowayOperation ReturnType_Impl::parent_TwowayOperation (void)
   {
     return TwowayOperation::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Operation
+  //
+  Operation ReturnType_Impl::parent_Operation (void)
+  {
+    return Operation::_narrow (this->parent ());
   }
 
   //

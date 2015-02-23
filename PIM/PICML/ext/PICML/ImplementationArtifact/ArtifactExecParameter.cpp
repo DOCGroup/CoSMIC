@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

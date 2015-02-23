@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -76,22 +76,6 @@ namespace PICML
   }
 
   //
-  // get_ConnectorTypes
-  //
-  size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ConnectorTypes
-  //
-  ::GAME::Mga::Collection_T <ConnectorType> ConnectorImplementationContainer_Impl::get_ConnectorTypes (void) const
-  {
-    return this->children <ConnectorType> ();
-  }
-
-  //
   // get_ConnectorImplementss
   //
   size_t ConnectorImplementationContainer_Impl::get_ConnectorImplementss (std::vector <ConnectorImplements> & items) const
@@ -105,6 +89,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ConnectorImplements> ConnectorImplementationContainer_Impl::get_ConnectorImplementss (void) const
   {
     return this->children <ConnectorImplements> ();
+  }
+
+  //
+  // get_ConnectorTypes
+  //
+  size_t ConnectorImplementationContainer_Impl::get_ConnectorTypes (std::vector <ConnectorType> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ConnectorTypes
+  //
+  ::GAME::Mga::Collection_T <ConnectorType> ConnectorImplementationContainer_Impl::get_ConnectorTypes (void) const
+  {
+    return this->children <ConnectorType> ();
   }
 }
 

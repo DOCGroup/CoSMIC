@@ -86,11 +86,11 @@ namespace PICML
     size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
     ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
-    size_t get_PathPropertys (std::vector <PathProperty> & items) const;
-    ::GAME::Mga::Collection_T <PathProperty> get_PathPropertys (void) const;
-
     size_t get_Paths (std::vector <Path> & items) const;
     ::GAME::Mga::Collection_T <Path> get_Paths (void) const;
+
+    size_t get_PathPropertys (std::vector <PathProperty> & items) const;
+    ::GAME::Mga::Collection_T <PathProperty> get_PathPropertys (void) const;
 
     ///@}
   };

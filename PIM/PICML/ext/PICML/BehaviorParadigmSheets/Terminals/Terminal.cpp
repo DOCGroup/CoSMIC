@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
+#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -93,19 +93,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_TerminalTransition
-  //
-  bool Terminal_Impl::has_dst_of_TerminalTransition (void) const
-  {
-    return this->in_connections <TerminalTransition> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_TerminalTransition
   //
-  TerminalTransition Terminal_Impl::dst_of_TerminalTransition (void) const
+  GAME::Mga::Collection_T <TerminalTransition> Terminal_Impl::dst_of_TerminalTransition (void) const
   {
-    return this->in_connections <TerminalTransition> ("dst").first ();
+    return this->in_connections <TerminalTransition> ("dst");
   }
 }
 

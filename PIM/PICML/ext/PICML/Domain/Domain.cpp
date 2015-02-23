@@ -11,14 +11,14 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
-#include "PICML/TargetElements/Node.h"
 #include "PICML/Domain/InterconnectConnection.h"
 #include "PICML/Domain/BridgeConnection.h"
 #include "PICML/Domain/Shares.h"
-#include "PICML/Domain/Targets.h"
+#include "PICML/TargetElements/Node.h"
 #include "PICML/TargetElements/Interconnect.h"
 #include "PICML/TargetElements/Bridge.h"
 #include "PICML/TargetElements/SharedResource.h"
+#include "PICML/Domain/Targets.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -99,22 +99,6 @@ namespace PICML
   }
 
   //
-  // get_Nodes
-  //
-  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Nodes
-  //
-  ::GAME::Mga::Collection_T <Node> Domain_Impl::get_Nodes (void) const
-  {
-    return this->children <Node> ();
-  }
-
-  //
   // get_InterconnectConnections
   //
   size_t Domain_Impl::get_InterconnectConnections (std::vector <InterconnectConnection> & items) const
@@ -160,6 +144,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Shares> Domain_Impl::get_Sharess (void) const
   {
     return this->children <Shares> ();
+  }
+
+  //
+  // get_Nodes
+  //
+  size_t Domain_Impl::get_Nodes (std::vector <Node> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Nodes
+  //
+  ::GAME::Mga::Collection_T <Node> Domain_Impl::get_Nodes (void) const
+  {
+    return this->children <Node> ();
   }
 
   //

@@ -9,9 +9,9 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -73,9 +73,9 @@ namespace PICML
   //
   // src_of_ManagesComponent
   //
-  GAME::Mga::Collection_T <ManagesComponent> ComponentFactory_Impl::src_of_ManagesComponent (void) const
+  ManagesComponent ComponentFactory_Impl::src_of_ManagesComponent (void) const
   {
-    return this->in_connections <ManagesComponent> ("src");
+    return this->in_connections <ManagesComponent> ("src").first ();
   }
 
   //

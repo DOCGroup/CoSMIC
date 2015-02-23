@@ -59,11 +59,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_TerminalTransition
+  //
+  bool State_Impl::has_src_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("src").count () == 1;
+  }
+
+  //
   // src_of_TerminalTransition
   //
-  GAME::Mga::Collection_T <TerminalTransition> State_Impl::src_of_TerminalTransition (void) const
+  TerminalTransition State_Impl::src_of_TerminalTransition (void) const
   {
-    return this->in_connections <TerminalTransition> ("src");
+    return this->in_connections <TerminalTransition> ("src").first ();
   }
 
   //

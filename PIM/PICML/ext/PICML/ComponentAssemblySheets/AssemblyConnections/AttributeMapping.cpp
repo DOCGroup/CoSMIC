@@ -9,10 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -69,19 +69,11 @@ namespace PICML
   }
 
   //
-  // has_src_of_AttributeDelegate
-  //
-  bool AttributeMapping_Impl::has_src_of_AttributeDelegate (void) const
-  {
-    return this->in_connections <AttributeDelegate> ("src").count () == 1;
-  }
-
-  //
   // src_of_AttributeDelegate
   //
-  AttributeDelegate AttributeMapping_Impl::src_of_AttributeDelegate (void) const
+  GAME::Mga::Collection_T <AttributeDelegate> AttributeMapping_Impl::src_of_AttributeDelegate (void) const
   {
-    return this->in_connections <AttributeDelegate> ("src").first ();
+    return this->in_connections <AttributeDelegate> ("src");
   }
 
   //
@@ -93,19 +85,11 @@ namespace PICML
   }
 
   //
-  // has_src_of_AttributeMappingDelegate
-  //
-  bool AttributeMapping_Impl::has_src_of_AttributeMappingDelegate (void) const
-  {
-    return this->in_connections <AttributeMappingDelegate> ("src").count () == 1;
-  }
-
-  //
   // src_of_AttributeMappingDelegate
   //
-  AttributeMappingDelegate AttributeMapping_Impl::src_of_AttributeMappingDelegate (void) const
+  GAME::Mga::Collection_T <AttributeMappingDelegate> AttributeMapping_Impl::src_of_AttributeMappingDelegate (void) const
   {
-    return this->in_connections <AttributeMappingDelegate> ("src").first ();
+    return this->in_connections <AttributeMappingDelegate> ("src");
   }
 
   //
@@ -141,11 +125,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_AttributeMappingDelegate
+  //
+  bool AttributeMapping_Impl::has_dst_of_AttributeMappingDelegate (void) const
+  {
+    return this->in_connections <AttributeMappingDelegate> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_AttributeMappingDelegate
   //
-  GAME::Mga::Collection_T <AttributeMappingDelegate> AttributeMapping_Impl::dst_of_AttributeMappingDelegate (void) const
+  AttributeMappingDelegate AttributeMapping_Impl::dst_of_AttributeMappingDelegate (void) const
   {
-    return this->in_connections <AttributeMappingDelegate> ("dst");
+    return this->in_connections <AttributeMappingDelegate> ("dst").first ();
   }
 
   //

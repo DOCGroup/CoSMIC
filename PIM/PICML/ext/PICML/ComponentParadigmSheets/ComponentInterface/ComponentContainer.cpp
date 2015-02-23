@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentPropertyDescription.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -113,22 +113,6 @@ namespace PICML
   }
 
   //
-  // get_ComponentPropertyDescriptions
-  //
-  size_t ComponentContainer_Impl::get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentPropertyDescriptions
-  //
-  ::GAME::Mga::Collection_T <ComponentPropertyDescription> ComponentContainer_Impl::get_ComponentPropertyDescriptions (void) const
-  {
-    return this->children <ComponentPropertyDescription> ();
-  }
-
-  //
   // get_ComponentInfoPropertys
   //
   size_t ComponentContainer_Impl::get_ComponentInfoPropertys (std::vector <ComponentInfoProperty> & items) const
@@ -174,6 +158,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComponentProperty> ComponentContainer_Impl::get_ComponentPropertys (void) const
   {
     return this->children <ComponentProperty> ();
+  }
+
+  //
+  // get_ComponentPropertyDescriptions
+  //
+  size_t ComponentContainer_Impl::get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComponentPropertyDescriptions
+  //
+  ::GAME::Mga::Collection_T <ComponentPropertyDescription> ComponentContainer_Impl::get_ComponentPropertyDescriptions (void) const
+  {
+    return this->children <ComponentPropertyDescription> ();
   }
 }
 

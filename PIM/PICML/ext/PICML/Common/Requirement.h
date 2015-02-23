@@ -87,13 +87,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst AssemblyselectRequirement connection.
-    size_t dst_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
-    GAME::Mga::Collection_T <AssemblyselectRequirement> dst_of_AssemblyselectRequirement (void) const;
-
     /// Get the dst ArtifactDeployRequirement connection.
     size_t dst_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const;
     GAME::Mga::Collection_T <ArtifactDeployRequirement> dst_of_ArtifactDeployRequirement (void) const;
+
+    /// Get the dst AssemblyselectRequirement connection.
+    size_t dst_of_AssemblyselectRequirement (std::vector <AssemblyselectRequirement> & items) const;
+    GAME::Mga::Collection_T <AssemblyselectRequirement> dst_of_AssemblyselectRequirement (void) const;
 
     /// Get the dst PackageConfSelectRequirement connection.
     size_t dst_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;

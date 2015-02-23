@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"

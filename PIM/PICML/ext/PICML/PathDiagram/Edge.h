@@ -92,15 +92,15 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst EdgeProperty connection.
-    size_t dst_of_EdgeProperty (std::vector <EdgeProperty> & items) const;
-    bool has_dst_of_EdgeProperty (void) const;
-    EdgeProperty dst_of_EdgeProperty (void) const;
-
     /// Get the dst DstEdge connection.
     size_t dst_of_DstEdge (std::vector <DstEdge> & items) const;
     bool has_dst_of_DstEdge (void) const;
     DstEdge dst_of_DstEdge (void) const;
+
+    /// Get the dst EdgeProperty connection.
+    size_t dst_of_EdgeProperty (std::vector <EdgeProperty> & items) const;
+    bool has_dst_of_EdgeProperty (void) const;
+    EdgeProperty dst_of_EdgeProperty (void) const;
     ///@}
   };
 }

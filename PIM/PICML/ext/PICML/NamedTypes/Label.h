@@ -83,7 +83,7 @@ namespace PICML
 
     /// Get the dst LabelConnection connection.
     size_t dst_of_LabelConnection (std::vector <LabelConnection> & items) const;
-    GAME::Mga::Collection_T <LabelConnection> dst_of_LabelConnection (void) const;
+    LabelConnection dst_of_LabelConnection (void) const;
     ///@}
   };
 }

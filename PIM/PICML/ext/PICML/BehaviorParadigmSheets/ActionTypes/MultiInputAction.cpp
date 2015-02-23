@@ -58,11 +58,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_MultiInput
+  //
+  bool MultiInputAction_Impl::has_dst_of_MultiInput (void) const
+  {
+    return this->in_connections <MultiInput> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_MultiInput
   //
-  GAME::Mga::Collection_T <MultiInput> MultiInputAction_Impl::dst_of_MultiInput (void) const
+  MultiInput MultiInputAction_Impl::dst_of_MultiInput (void) const
   {
-    return this->in_connections <MultiInput> ("dst");
+    return this->in_connections <MultiInput> ("dst").first ();
   }
 }
 

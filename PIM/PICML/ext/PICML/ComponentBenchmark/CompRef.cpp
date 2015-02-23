@@ -67,14 +67,6 @@ namespace PICML
   }
 
   //
-  // has_dst_of_ComponentOperation
-  //
-  bool CompRef_Impl::has_dst_of_ComponentOperation (void) const
-  {
-    return this->in_connections <ComponentOperation> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_ComponentOperation
   //
   ComponentOperation CompRef_Impl::dst_of_ComponentOperation (void) const

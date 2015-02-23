@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedDelegate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,19 +66,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_ExtendedDelegate
-  //
-  bool ExtendedPortDelegate_Impl::has_dst_of_ExtendedDelegate (void) const
-  {
-    return this->in_connections <ExtendedDelegate> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_ExtendedDelegate
   //
-  ExtendedDelegate ExtendedPortDelegate_Impl::dst_of_ExtendedDelegate (void) const
+  GAME::Mga::Collection_T <ExtendedDelegate> ExtendedPortDelegate_Impl::dst_of_ExtendedDelegate (void) const
   {
-    return this->in_connections <ExtendedDelegate> ("dst").first ();
+    return this->in_connections <ExtendedDelegate> ("dst");
   }
 }
 

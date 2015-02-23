@@ -109,8 +109,7 @@ namespace PICML
 
     /// Get the dst PackageConfReference connection.
     size_t dst_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
-    bool has_dst_of_PackageConfReference (void) const;
-    PackageConfReference dst_of_PackageConfReference (void) const;
+    GAME::Mga::Collection_T <PackageConfReference> dst_of_PackageConfReference (void) const;
     ///@}
 
     /**

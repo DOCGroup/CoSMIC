@@ -8,16 +8,16 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
 #include "PICML/ImplementationArtifact/ImplementationArtifactReference.h"
 #include "PICML/ImplementationCommon/ComponentImplementationArtifact.h"
 #include "PICML/ImplementationCommon/ComponentServantArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
 #include "PICML/ImplementationArtifact/ArtifactDependency.h"
 #include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
 #include "PICML/ComponentBuild/ExternalResources.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ComponentBuild/Project.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -99,38 +99,6 @@ namespace PICML
   }
 
   //
-  // src_of_ArtifactExecParameter
-  //
-  size_t ImplementationArtifact_Impl::src_of_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
-  {
-    return this->in_connections <ArtifactExecParameter> (items);
-  }
-
-  //
-  // src_of_ArtifactExecParameter
-  //
-  GAME::Mga::Collection_T <ArtifactExecParameter> ImplementationArtifact_Impl::src_of_ArtifactExecParameter (void) const
-  {
-    return this->in_connections <ArtifactExecParameter> ("src");
-  }
-
-  //
-  // src_of_ArtifactDeployRequirement
-  //
-  size_t ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
-  {
-    return this->in_connections <ArtifactDeployRequirement> (items);
-  }
-
-  //
-  // src_of_ArtifactDeployRequirement
-  //
-  GAME::Mga::Collection_T <ArtifactDeployRequirement> ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (void) const
-  {
-    return this->in_connections <ArtifactDeployRequirement> ("src");
-  }
-
-  //
   // src_of_ArtifactDependency
   //
   size_t ImplementationArtifact_Impl::src_of_ArtifactDependency (std::vector <ArtifactDependency> & items) const
@@ -160,6 +128,38 @@ namespace PICML
   GAME::Mga::Collection_T <ArtifactInfoProperty> ImplementationArtifact_Impl::src_of_ArtifactInfoProperty (void) const
   {
     return this->in_connections <ArtifactInfoProperty> ("src");
+  }
+
+  //
+  // src_of_ArtifactExecParameter
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
+  {
+    return this->in_connections <ArtifactExecParameter> (items);
+  }
+
+  //
+  // src_of_ArtifactExecParameter
+  //
+  GAME::Mga::Collection_T <ArtifactExecParameter> ImplementationArtifact_Impl::src_of_ArtifactExecParameter (void) const
+  {
+    return this->in_connections <ArtifactExecParameter> ("src");
+  }
+
+  //
+  // src_of_ArtifactDeployRequirement
+  //
+  size_t ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
+  {
+    return this->in_connections <ArtifactDeployRequirement> (items);
+  }
+
+  //
+  // src_of_ArtifactDeployRequirement
+  //
+  GAME::Mga::Collection_T <ArtifactDeployRequirement> ImplementationArtifact_Impl::src_of_ArtifactDeployRequirement (void) const
+  {
+    return this->in_connections <ArtifactDeployRequirement> ("src");
   }
 
   //

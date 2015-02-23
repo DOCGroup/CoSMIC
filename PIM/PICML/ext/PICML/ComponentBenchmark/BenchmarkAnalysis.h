@@ -80,14 +80,14 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
+    size_t get_TwowayOperations (std::vector <TwowayOperation> & items) const;
+    ::GAME::Mga::Collection_T <TwowayOperation> get_TwowayOperations (void) const;
+
     size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
     ::GAME::Mga::Collection_T <LookupOperation> get_LookupOperations (void) const;
 
     size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
     ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
-
-    size_t get_TwowayOperations (std::vector <TwowayOperation> & items) const;
-    ::GAME::Mga::Collection_T <TwowayOperation> get_TwowayOperations (void) const;
 
     size_t get_OnewayOperations (std::vector <OnewayOperation> & items) const;
     ::GAME::Mga::Collection_T <OnewayOperation> get_OnewayOperations (void) const;

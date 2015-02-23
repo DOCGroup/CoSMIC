@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInputBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export ProvidedRequestPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual ObjectPort_Impl,
-    public virtual MultiInputBase_Impl
+    public virtual MultiInputBase_Impl,
+    public virtual ObjectPort_Impl
   {
     public:
     /// Tag type of this extension class.

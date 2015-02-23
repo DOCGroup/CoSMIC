@@ -47,6 +47,14 @@ namespace PICML
   }
 
   //
+  // has_src_of_WorkloadCharacteristics
+  //
+  bool MetricsBase_Impl::has_src_of_WorkloadCharacteristics (void) const
+  {
+    return this->in_connections <WorkloadCharacteristics> ("src").count () == 1;
+  }
+
+  //
   // src_of_WorkloadCharacteristics
   //
   WorkloadCharacteristics MetricsBase_Impl::src_of_WorkloadCharacteristics (void) const
@@ -84,14 +92,6 @@ namespace PICML
   size_t MetricsBase_Impl::dst_of_MetricConnection (std::vector <MetricConnection> & items) const
   {
     return this->in_connections <MetricConnection> (items);
-  }
-
-  //
-  // has_dst_of_MetricConnection
-  //
-  bool MetricsBase_Impl::has_dst_of_MetricConnection (void) const
-  {
-    return this->in_connections <MetricConnection> ("dst").count () == 1;
   }
 
   //

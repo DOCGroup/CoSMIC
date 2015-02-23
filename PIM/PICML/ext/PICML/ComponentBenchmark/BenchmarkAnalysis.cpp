@@ -10,9 +10,9 @@
 #include "PICML/Visitor.h"
 #include "PICML/OperationTypes/OperationBase.h"
 #include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
 #include "PICML/OperationTypes/OnewayOperation.h"
 #include "PICML/ComponentBenchmark/ComponentAnalyses.h"
 #include "PICML/ComponentBenchmark/BenchmarkType.h"
@@ -89,6 +89,22 @@ namespace PICML
   }
 
   //
+  // get_TwowayOperations
+  //
+  size_t BenchmarkAnalysis_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_TwowayOperations
+  //
+  ::GAME::Mga::Collection_T <TwowayOperation> BenchmarkAnalysis_Impl::get_TwowayOperations (void) const
+  {
+    return this->children <TwowayOperation> ();
+  }
+
+  //
   // get_LookupOperations
   //
   size_t BenchmarkAnalysis_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
@@ -118,22 +134,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <FactoryOperation> BenchmarkAnalysis_Impl::get_FactoryOperations (void) const
   {
     return this->children <FactoryOperation> ();
-  }
-
-  //
-  // get_TwowayOperations
-  //
-  size_t BenchmarkAnalysis_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TwowayOperations
-  //
-  ::GAME::Mga::Collection_T <TwowayOperation> BenchmarkAnalysis_Impl::get_TwowayOperations (void) const
-  {
-    return this->children <TwowayOperation> ();
   }
 
   //

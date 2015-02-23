@@ -72,8 +72,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/PredefinedTypes/Char.cpp
     PICML/NamedTypes/Discriminator.cpp
     PICML/PathDiagram/DisplayNode.cpp
-    PICML/ImplementationCommon/MonolithicImplementationBase.cpp
     PICML/PackageConfiguration/PackageConfigurationReference.cpp
+    PICML/ImplementationCommon/MonolithicImplementationBase.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/InEventPortEnd.cpp
     PICML/ComponentBenchmark/Latency.cpp
     PICML/NamedTypes/KeyMember.cpp
@@ -81,8 +81,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.cpp
     PICML/Common/SimpleType.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.cpp
-    PICML/ImplementationCommon/MonolithExecParameter.cpp
     PICML/ImplementationArtifact/ArtifactExecParameter.cpp
+    PICML/ImplementationCommon/MonolithExecParameter.cpp
     PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleOutputBase.cpp
     PICML/OperationTypes/OperationBase.cpp
     PICML/ComponentPackage/PackageConfigProperty.cpp
@@ -150,8 +150,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/PackageConfiguration/PackageConfSpecializedConfig.cpp
     PICML/ComponentParadigmSheets/ComponentType/ComponentRef.cpp
     PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.cpp
-    PICML/Common/Requirement.cpp
     PICML/ComponentParadigmSheets/ComponentType/Port.cpp
+    PICML/Common/Requirement.cpp
     PICML/Domain/Targets.cpp
     PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.cpp
     PICML/ComponentPackage/PackageContainer.cpp
@@ -195,8 +195,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentParadigmSheets/ComponentInterface/ComponentTypes.cpp
     PICML/ComponentBenchmark/Minimum.cpp
     PICML/InterfaceDefinition/File.cpp
-    PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/ExtendedPortInstanceBase.cpp
+    PICML/ComponentAssemblySheets/AssemblyConnections/MirrorPortInstanceBase.cpp
     PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/SingleInputBase.cpp
     PICML/PathDiagram/ConnectedComponent.cpp
     PICML/EventChannelRequirements/ECRequirements.cpp
@@ -311,8 +311,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/Common/DataValue.cpp
     PICML/ComponentBenchmark/DataAnalysisBase.cpp
     PICML/PredefinedTypes/PredefinedType.cpp
-    PICML/ImplementationArtifact/ImplementationArtifact.cpp
     PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.cpp
+    PICML/ImplementationArtifact/ImplementationArtifact.cpp
     PICML/NamedTypes/Key.cpp
     PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementation.cpp
     PICML/PredefinedTypes/UnsignedShortInteger.cpp
@@ -329,8 +329,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/InterfaceDefinition/TypeParameter.cpp
     PICML/DeploymentPlan/InstanceMapping.cpp
     PICML/ComponentBenchmark/EventRef.cpp
-    PICML/ImplementationCommon/MonolithprimaryArtifact.cpp
     PICML/BehaviorParadigmSheets/EffectTypes/Effect.cpp
+    PICML/ImplementationCommon/MonolithprimaryArtifact.cpp
     PICML/ComponentBenchmark/TriggerBenchmarks.cpp
     PICML/PredefinedTypes/StringType.cpp
     PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.cpp
@@ -372,8 +372,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentFactoryImplementation/ComponentFactoryInstance.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/ActionType.cpp
     PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.cpp
-    PICML/ComponentPackage/ComponentPackageReference.cpp
     PICML/TopLevelPackageDescription/package.cpp
+    PICML/ComponentPackage/ComponentPackageReference.cpp
     PICML/Domain/Domain.cpp
     PICML/ComponentBenchmark/TimerConnection.cpp
     PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.cpp

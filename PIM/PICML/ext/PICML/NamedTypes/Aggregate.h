@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/Common/ComplexType.h"
 #include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/Common/ComplexType.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export Aggregate_Impl :
     public virtual ::GAME::Mga::Model_Impl,
-    public virtual ComplexType_Impl,
-    public virtual NoInheritable_Impl
+    public virtual NoInheritable_Impl,
+    public virtual ComplexType_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -90,14 +90,14 @@ namespace PICML
 
     bool has_Key (void) const;
     Key get_Key (void) const;
-    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
-    ::GAME::Mga::Collection_T <KeyMember> get_KeyMembers (void) const;
-
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Collection_T <Member> get_Members (void) const;
 
     size_t get_ArrayMembers (std::vector <ArrayMember> & items) const;
     ::GAME::Mga::Collection_T <ArrayMember> get_ArrayMembers (void) const;
+
+    size_t get_KeyMembers (std::vector <KeyMember> & items) const;
+    ::GAME::Mga::Collection_T <KeyMember> get_KeyMembers (void) const;
 
     ///@}
   };

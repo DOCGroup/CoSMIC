@@ -86,7 +86,8 @@ namespace PICML
 
     /// Get the src AttributeValue connection.
     size_t src_of_AttributeValue (std::vector <AttributeValue> & items) const;
-    GAME::Mga::Collection_T <AttributeValue> src_of_AttributeValue (void) const;
+    bool has_src_of_AttributeValue (void) const;
+    AttributeValue src_of_AttributeValue (void) const;
     ///@}
 
     /**
@@ -96,7 +97,8 @@ namespace PICML
 
     /// Get the dst AttributeDelegate connection.
     size_t dst_of_AttributeDelegate (std::vector <AttributeDelegate> & items) const;
-    GAME::Mga::Collection_T <AttributeDelegate> dst_of_AttributeDelegate (void) const;
+    bool has_dst_of_AttributeDelegate (void) const;
+    AttributeDelegate dst_of_AttributeDelegate (void) const;
     ///@}
 
     /**

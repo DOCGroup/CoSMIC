@@ -18,8 +18,8 @@
 #include "PICML/PICML_export.h"
 
 #include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
-#include "PICML/IdTags/Prefixable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/IdTags/Prefixable.h"
 #include "game/mga/Model.h"
 
 namespace PICML
@@ -40,8 +40,8 @@ namespace PICML
   class PICML_Export Object_Impl :
     public virtual ::GAME::Mga::Model_Impl,
     public virtual Provideable_Impl,
-    public virtual Prefixable_Impl,
-    public virtual HasOperations_Impl
+    public virtual HasOperations_Impl,
+    public virtual Prefixable_Impl
   {
     public:
     /// Tag type of this extension class.

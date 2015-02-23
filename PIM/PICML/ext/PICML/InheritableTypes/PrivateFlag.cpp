@@ -68,14 +68,6 @@ namespace PICML
   }
 
   //
-  // has_dst_of_MakeMemberPrivate
-  //
-  bool PrivateFlag_Impl::has_dst_of_MakeMemberPrivate (void) const
-  {
-    return this->in_connections <MakeMemberPrivate> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_MakeMemberPrivate
   //
   MakeMemberPrivate PrivateFlag_Impl::dst_of_MakeMemberPrivate (void) const

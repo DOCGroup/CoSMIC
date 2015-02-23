@@ -59,11 +59,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Deploys
+  //
+  bool ComponentInstanceRef_Impl::has_dst_of_Deploys (void) const
+  {
+    return this->in_connections <Deploys> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Deploys
   //
-  GAME::Mga::Collection_T <Deploys> ComponentInstanceRef_Impl::dst_of_Deploys (void) const
+  Deploys ComponentInstanceRef_Impl::dst_of_Deploys (void) const
   {
-    return this->in_connections <Deploys> ("dst");
+    return this->in_connections <Deploys> ("dst").first ();
   }
 
   //

@@ -84,14 +84,14 @@ namespace PICML
     bool has_ComponentPackage (void) const;
     ComponentPackage get_ComponentPackage (void) const;
 
+    bool has_PackageConfBasePackage (void) const;
+    PackageConfBasePackage get_PackageConfBasePackage (void) const;
+
     bool has_PackageConfReference (void) const;
     PackageConfReference get_PackageConfReference (void) const;
 
     bool has_ComponentPackageReference (void) const;
     ComponentPackageReference get_ComponentPackageReference (void) const;
-
-    bool has_PackageConfBasePackage (void) const;
-    PackageConfBasePackage get_PackageConfBasePackage (void) const;
 
     bool has_PackageConfSpecializedConfig (void) const;
     PackageConfSpecializedConfig get_PackageConfSpecializedConfig (void) const;
@@ -104,6 +104,9 @@ namespace PICML
     size_t get_PackageConfigurations (std::vector <PackageConfiguration> & items) const;
     ::GAME::Mga::Collection_T <PackageConfiguration> get_PackageConfigurations (void) const;
 
+    size_t get_PackageConfSelectRequirements (std::vector <PackageConfSelectRequirement> & items) const;
+    ::GAME::Mga::Collection_T <PackageConfSelectRequirement> get_PackageConfSelectRequirements (void) const;
+
     size_t get_Requirements (std::vector <Requirement> & items) const;
     ::GAME::Mga::Collection_T <Requirement> get_Requirements (void) const;
 
@@ -115,9 +118,6 @@ namespace PICML
 
     size_t get_PackageConfConfigPropertys (std::vector <PackageConfConfigProperty> & items) const;
     ::GAME::Mga::Collection_T <PackageConfConfigProperty> get_PackageConfConfigPropertys (void) const;
-
-    size_t get_PackageConfSelectRequirements (std::vector <PackageConfSelectRequirement> & items) const;
-    ::GAME::Mga::Collection_T <PackageConfSelectRequirement> get_PackageConfSelectRequirements (void) const;
 
     ///@}
   };

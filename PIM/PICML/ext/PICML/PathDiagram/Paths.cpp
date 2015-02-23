@@ -11,9 +11,9 @@
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/PathDiagram/PathProperty.h"
 #include "PICML/PathDiagram/PathDiagrams.h"
-#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -94,22 +94,6 @@ namespace PICML
   }
 
   //
-  // get_PathPropertys
-  //
-  size_t Paths_Impl::get_PathPropertys (std::vector <PathProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PathPropertys
-  //
-  ::GAME::Mga::Collection_T <PathProperty> Paths_Impl::get_PathPropertys (void) const
-  {
-    return this->children <PathProperty> ();
-  }
-
-  //
   // get_Paths
   //
   size_t Paths_Impl::get_Paths (std::vector <Path> & items) const
@@ -123,6 +107,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <Path> Paths_Impl::get_Paths (void) const
   {
     return this->children <Path> ();
+  }
+
+  //
+  // get_PathPropertys
+  //
+  size_t Paths_Impl::get_PathPropertys (std::vector <PathProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PathPropertys
+  //
+  ::GAME::Mga::Collection_T <PathProperty> Paths_Impl::get_PathPropertys (void) const
+  {
+    return this->children <PathProperty> ();
   }
 }
 

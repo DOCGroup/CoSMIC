@@ -68,19 +68,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_PackageConfSpecializedConfig
-  //
-  bool PackageConfigurationReference_Impl::has_dst_of_PackageConfSpecializedConfig (void) const
-  {
-    return this->in_connections <PackageConfSpecializedConfig> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_PackageConfSpecializedConfig
   //
-  PackageConfSpecializedConfig PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
+  GAME::Mga::Collection_T <PackageConfSpecializedConfig> PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
   {
-    return this->in_connections <PackageConfSpecializedConfig> ("dst").first ();
+    return this->in_connections <PackageConfSpecializedConfig> ("dst");
   }
 
   //

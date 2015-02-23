@@ -112,6 +112,7 @@ namespace PICML
 
     /// Get the src WorkloadCharacteristics connection.
     size_t src_of_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const;
+    bool has_src_of_WorkloadCharacteristics (void) const;
     WorkloadCharacteristics src_of_WorkloadCharacteristics (void) const;
     ///@}
 
@@ -127,7 +128,6 @@ namespace PICML
 
     /// Get the dst MetricConnection connection.
     size_t dst_of_MetricConnection (std::vector <MetricConnection> & items) const;
-    bool has_dst_of_MetricConnection (void) const;
     MetricConnection dst_of_MetricConnection (void) const;
     ///@}
 

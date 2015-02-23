@@ -69,17 +69,17 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src MonolithprimaryArtifact connection.
-    size_t src_of_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
-    GAME::Mga::Collection_T <MonolithprimaryArtifact> src_of_MonolithprimaryArtifact (void) const;
+    /// Get the src MonolithExecParameter connection.
+    size_t src_of_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
+    GAME::Mga::Collection_T <MonolithExecParameter> src_of_MonolithExecParameter (void) const;
 
     /// Get the src MonolithDeployRequirement connection.
     size_t src_of_MonolithDeployRequirement (std::vector <MonolithDeployRequirement> & items) const;
     GAME::Mga::Collection_T <MonolithDeployRequirement> src_of_MonolithDeployRequirement (void) const;
 
-    /// Get the src MonolithExecParameter connection.
-    size_t src_of_MonolithExecParameter (std::vector <MonolithExecParameter> & items) const;
-    GAME::Mga::Collection_T <MonolithExecParameter> src_of_MonolithExecParameter (void) const;
+    /// Get the src MonolithprimaryArtifact connection.
+    size_t src_of_MonolithprimaryArtifact (std::vector <MonolithprimaryArtifact> & items) const;
+    GAME::Mga::Collection_T <MonolithprimaryArtifact> src_of_MonolithprimaryArtifact (void) const;
     ///@}
   };
 }

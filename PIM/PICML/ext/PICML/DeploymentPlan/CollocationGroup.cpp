@@ -71,11 +71,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_InstanceMapping
+  //
+  bool CollocationGroup_Impl::has_src_of_InstanceMapping (void) const
+  {
+    return this->in_connections <InstanceMapping> ("src").count () == 1;
+  }
+
+  //
   // src_of_InstanceMapping
   //
-  GAME::Mga::Collection_T <InstanceMapping> CollocationGroup_Impl::src_of_InstanceMapping (void) const
+  InstanceMapping CollocationGroup_Impl::src_of_InstanceMapping (void) const
   {
-    return this->in_connections <InstanceMapping> ("src");
+    return this->in_connections <InstanceMapping> ("src").first ();
   }
 
   //

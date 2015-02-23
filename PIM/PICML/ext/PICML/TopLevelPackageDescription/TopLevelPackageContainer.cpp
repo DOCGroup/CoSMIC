@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
-#include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
+#include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackages.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -60,19 +60,19 @@ namespace PICML
   }
 
   //
-  // has_TopLevelPackage
+  // has_PackageConfigurationReference
   //
-  bool TopLevelPackageContainer_Impl::has_TopLevelPackage (void) const
+  bool TopLevelPackageContainer_Impl::has_PackageConfigurationReference (void) const
   {
-    return this->children <TopLevelPackage> ().count () == 1;
+    return this->children <PackageConfigurationReference> ().count () == 1;
   }
 
   //
-  // get_TopLevelPackage
+  // get_PackageConfigurationReference
   //
-  TopLevelPackage TopLevelPackageContainer_Impl::get_TopLevelPackage (void) const
+  PackageConfigurationReference TopLevelPackageContainer_Impl::get_PackageConfigurationReference (void) const
   {
-    return this->children <TopLevelPackage> ().first ();
+    return this->children <PackageConfigurationReference> ().first ();
   }
 
   //
@@ -92,19 +92,19 @@ namespace PICML
   }
 
   //
-  // has_PackageConfigurationReference
+  // has_TopLevelPackage
   //
-  bool TopLevelPackageContainer_Impl::has_PackageConfigurationReference (void) const
+  bool TopLevelPackageContainer_Impl::has_TopLevelPackage (void) const
   {
-    return this->children <PackageConfigurationReference> ().count () == 1;
+    return this->children <TopLevelPackage> ().count () == 1;
   }
 
   //
-  // get_PackageConfigurationReference
+  // get_TopLevelPackage
   //
-  PackageConfigurationReference TopLevelPackageContainer_Impl::get_PackageConfigurationReference (void) const
+  TopLevelPackage TopLevelPackageContainer_Impl::get_TopLevelPackage (void) const
   {
-    return this->children <PackageConfigurationReference> ().first ();
+    return this->children <TopLevelPackage> ().first ();
   }
 }
 

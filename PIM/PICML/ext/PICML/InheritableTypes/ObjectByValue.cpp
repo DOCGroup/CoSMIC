@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
+#include "PICML/InheritableTypes/PrivateFlag.h"
 #include "PICML/NamedTypes/Member.h"
 #include "PICML/NamedTypes/ArrayMember.h"
-#include "PICML/InheritableTypes/PrivateFlag.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -29,19 +29,19 @@ namespace PICML
   const bool ObjectByValue_Impl::is_abstract = true;
 
   //
-  // get_MakeMemberPrivates
+  // get_PrivateFlags
   //
-  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
+  size_t ObjectByValue_Impl::get_PrivateFlags (std::vector <PrivateFlag> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_MakeMemberPrivates
+  // get_PrivateFlags
   //
-  ::GAME::Mga::Collection_T <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
+  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
   {
-    return this->children <MakeMemberPrivate> ();
+    return this->children <PrivateFlag> ();
   }
 
   //
@@ -77,19 +77,19 @@ namespace PICML
   }
 
   //
-  // get_PrivateFlags
+  // get_MakeMemberPrivates
   //
-  size_t ObjectByValue_Impl::get_PrivateFlags (std::vector <PrivateFlag> & items) const
+  size_t ObjectByValue_Impl::get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_PrivateFlags
+  // get_MakeMemberPrivates
   //
-  ::GAME::Mga::Collection_T <PrivateFlag> ObjectByValue_Impl::get_PrivateFlags (void) const
+  ::GAME::Mga::Collection_T <MakeMemberPrivate> ObjectByValue_Impl::get_MakeMemberPrivates (void) const
   {
-    return this->children <PrivateFlag> ();
+    return this->children <MakeMemberPrivate> ();
   }
 
   //

@@ -86,19 +86,19 @@ namespace PICML
     bool has_ComponentRef (void) const;
     ComponentRef get_ComponentRef (void) const;
 
-    bool has_PathReference (void) const;
-    PathReference get_PathReference (void) const;
-
     bool has_Implements (void) const;
     Implements get_Implements (void) const;
-    size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
-    ::GAME::Mga::Collection_T <ImplementationDependency> get_ImplementationDependencys (void) const;
+
+    bool has_PathReference (void) const;
+    PathReference get_PathReference (void) const;
+    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
+    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
 
     size_t get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const;
     ::GAME::Mga::Collection_T <MonolithicImplementation> get_MonolithicImplementations (void) const;
 
-    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
-    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
+    size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
+    ::GAME::Mga::Collection_T <ImplementationDependency> get_ImplementationDependencys (void) const;
 
     size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
     ::GAME::Mga::Collection_T <ImplementationDependsOn> get_ImplementationDependsOns (void) const;

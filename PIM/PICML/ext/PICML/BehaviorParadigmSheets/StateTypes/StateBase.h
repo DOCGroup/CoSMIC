@@ -70,8 +70,7 @@ namespace PICML
 
     /// Get the src Finish connection.
     size_t src_of_Finish (std::vector <Finish> & items) const;
-    bool has_src_of_Finish (void) const;
-    Finish src_of_Finish (void) const;
+    GAME::Mga::Collection_T <Finish> src_of_Finish (void) const;
     ///@}
 
     /**
@@ -86,13 +85,11 @@ namespace PICML
 
     /// Get the dst InputEffect connection.
     size_t dst_of_InputEffect (std::vector <InputEffect> & items) const;
-    bool has_dst_of_InputEffect (void) const;
-    InputEffect dst_of_InputEffect (void) const;
+    GAME::Mga::Collection_T <InputEffect> dst_of_InputEffect (void) const;
 
     /// Get the dst Effect connection.
     size_t dst_of_Effect (std::vector <Effect> & items) const;
-    bool has_dst_of_Effect (void) const;
-    Effect dst_of_Effect (void) const;
+    GAME::Mga::Collection_T <Effect> dst_of_Effect (void) const;
     ///@}
   };
 }

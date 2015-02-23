@@ -89,11 +89,12 @@ namespace PICML
 
     /// Get the src MakeMemberPrivate connection.
     size_t src_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
+    bool has_src_of_MakeMemberPrivate (void) const;
     MakeMemberPrivate src_of_MakeMemberPrivate (void) const;
 
     /// Get the src LabelConnection connection.
     size_t src_of_LabelConnection (std::vector <LabelConnection> & items) const;
-    LabelConnection src_of_LabelConnection (void) const;
+    GAME::Mga::Collection_T <LabelConnection> src_of_LabelConnection (void) const;
     ///@}
 
     /**
@@ -103,7 +104,8 @@ namespace PICML
 
     /// Get the dst KeyMember connection.
     size_t dst_of_KeyMember (std::vector <KeyMember> & items) const;
-    GAME::Mga::Collection_T <KeyMember> dst_of_KeyMember (void) const;
+    bool has_dst_of_KeyMember (void) const;
+    KeyMember dst_of_KeyMember (void) const;
     ///@}
 
     /**

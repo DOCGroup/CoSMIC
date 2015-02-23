@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 
 namespace PICML
 {
@@ -45,19 +45,11 @@ namespace PICML
   }
 
   //
-  // has_src_of_Finish
-  //
-  bool StateBase_Impl::has_src_of_Finish (void) const
-  {
-    return this->in_connections <Finish> ("src").count () == 1;
-  }
-
-  //
   // src_of_Finish
   //
-  Finish StateBase_Impl::src_of_Finish (void) const
+  GAME::Mga::Collection_T <Finish> StateBase_Impl::src_of_Finish (void) const
   {
-    return this->in_connections <Finish> ("src").first ();
+    return this->in_connections <Finish> ("src");
   }
 
   //
@@ -93,19 +85,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_InputEffect
-  //
-  bool StateBase_Impl::has_dst_of_InputEffect (void) const
-  {
-    return this->in_connections <InputEffect> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_InputEffect
   //
-  InputEffect StateBase_Impl::dst_of_InputEffect (void) const
+  GAME::Mga::Collection_T <InputEffect> StateBase_Impl::dst_of_InputEffect (void) const
   {
-    return this->in_connections <InputEffect> ("dst").first ();
+    return this->in_connections <InputEffect> ("dst");
   }
 
   //
@@ -117,19 +101,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_Effect
-  //
-  bool StateBase_Impl::has_dst_of_Effect (void) const
-  {
-    return this->in_connections <Effect> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_Effect
   //
-  Effect StateBase_Impl::dst_of_Effect (void) const
+  GAME::Mga::Collection_T <Effect> StateBase_Impl::dst_of_Effect (void) const
   {
-    return this->in_connections <Effect> ("dst").first ();
+    return this->in_connections <Effect> ("dst");
   }
 }
 

@@ -8,6 +8,7 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/PortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/RequiredRequestPortInstance.h"
@@ -16,9 +17,8 @@
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/MirrorPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/ComponentInstanceType.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

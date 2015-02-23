@@ -31,11 +31,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_MirrorDelegate
+  //
+  bool MirrorPortInstanceBase_Impl::has_src_of_MirrorDelegate (void) const
+  {
+    return this->in_connections <MirrorDelegate> ("src").count () == 1;
+  }
+
+  //
   // src_of_MirrorDelegate
   //
-  GAME::Mga::Collection_T <MirrorDelegate> MirrorPortInstanceBase_Impl::src_of_MirrorDelegate (void) const
+  MirrorDelegate MirrorPortInstanceBase_Impl::src_of_MirrorDelegate (void) const
   {
-    return this->in_connections <MirrorDelegate> ("src");
+    return this->in_connections <MirrorDelegate> ("src").first ();
   }
 }
 

@@ -82,7 +82,8 @@ namespace PICML
 
     /// Get the src Effect connection.
     size_t src_of_Effect (std::vector <Effect> & items) const;
-    GAME::Mga::Collection_T <Effect> src_of_Effect (void) const;
+    bool has_src_of_Effect (void) const;
+    Effect src_of_Effect (void) const;
     ///@}
 
     /**
@@ -90,15 +91,15 @@ namespace PICML
      */
     ///@{
 
-    /// Get the dst BranchTransition connection.
-    size_t dst_of_BranchTransition (std::vector <BranchTransition> & items) const;
-    bool has_dst_of_BranchTransition (void) const;
-    BranchTransition dst_of_BranchTransition (void) const;
-
     /// Get the dst LoopTransition connection.
     size_t dst_of_LoopTransition (std::vector <LoopTransition> & items) const;
     bool has_dst_of_LoopTransition (void) const;
     LoopTransition dst_of_LoopTransition (void) const;
+
+    /// Get the dst BranchTransition connection.
+    size_t dst_of_BranchTransition (std::vector <BranchTransition> & items) const;
+    bool has_dst_of_BranchTransition (void) const;
+    BranchTransition dst_of_BranchTransition (void) const;
 
     /// Get the dst Transition connection.
     size_t dst_of_Transition (std::vector <Transition> & items) const;

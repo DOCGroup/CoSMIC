@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
