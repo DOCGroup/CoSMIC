@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/OperationBase.h"
-#include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -167,7 +167,7 @@ namespace PICML
   //
   bool OperationRef_Impl::OperationBase_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

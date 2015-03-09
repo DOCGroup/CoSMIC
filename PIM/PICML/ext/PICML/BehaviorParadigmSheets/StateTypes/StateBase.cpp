@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/TerminalEffect.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
@@ -53,6 +53,22 @@ namespace PICML
   }
 
   //
+  // dst_of_InputEffect
+  //
+  size_t StateBase_Impl::dst_of_InputEffect (std::vector <InputEffect> & items) const
+  {
+    return this->in_connections <InputEffect> (items);
+  }
+
+  //
+  // dst_of_InputEffect
+  //
+  GAME::Mga::Collection_T <InputEffect> StateBase_Impl::dst_of_InputEffect (void) const
+  {
+    return this->in_connections <InputEffect> ("dst");
+  }
+
+  //
   // dst_of_TerminalEffect
   //
   size_t StateBase_Impl::dst_of_TerminalEffect (std::vector <TerminalEffect> & items) const
@@ -74,22 +90,6 @@ namespace PICML
   TerminalEffect StateBase_Impl::dst_of_TerminalEffect (void) const
   {
     return this->in_connections <TerminalEffect> ("dst").first ();
-  }
-
-  //
-  // dst_of_InputEffect
-  //
-  size_t StateBase_Impl::dst_of_InputEffect (std::vector <InputEffect> & items) const
-  {
-    return this->in_connections <InputEffect> (items);
-  }
-
-  //
-  // dst_of_InputEffect
-  //
-  GAME::Mga::Collection_T <InputEffect> StateBase_Impl::dst_of_InputEffect (void) const
-  {
-    return this->in_connections <InputEffect> ("dst");
   }
 
   //

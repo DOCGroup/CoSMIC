@@ -90,7 +90,7 @@ namespace PICML
   //
   bool Variable_Impl::PredefinedType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

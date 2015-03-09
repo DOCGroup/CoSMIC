@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPortBase.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/MirrorPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.h"
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "PICML/NamedTypes/Collection.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorInherits.h"
-#include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
@@ -83,6 +83,22 @@ namespace PICML
   ConnectorInherits ConnectorObject_Impl::get_ConnectorInherits (void) const
   {
     return this->children <ConnectorInherits> ().first ();
+  }
+
+  //
+  // get_Aggregates
+  //
+  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Aggregates
+  //
+  ::GAME::Mga::Collection_T <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
+  {
+    return this->children <Aggregate> ();
   }
 
   //
@@ -150,22 +166,6 @@ namespace PICML
   }
 
   //
-  // get_RequiredRequestPorts
-  //
-  size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_RequiredRequestPorts
-  //
-  ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectorObject_Impl::get_RequiredRequestPorts (void) const
-  {
-    return this->children <RequiredRequestPort> ();
-  }
-
-  //
   // get_ProvidedRequestPorts
   //
   size_t ConnectorObject_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
@@ -182,6 +182,22 @@ namespace PICML
   }
 
   //
+  // get_RequiredRequestPorts
+  //
+  size_t ConnectorObject_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectorObject_Impl::get_RequiredRequestPorts (void) const
+  {
+    return this->children <RequiredRequestPort> ();
+  }
+
+  //
   // get_Collections
   //
   size_t ConnectorObject_Impl::get_Collections (std::vector <Collection> & items) const
@@ -195,22 +211,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <Collection> ConnectorObject_Impl::get_Collections (void) const
   {
     return this->children <Collection> ();
-  }
-
-  //
-  // get_Aggregates
-  //
-  size_t ConnectorObject_Impl::get_Aggregates (std::vector <Aggregate> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_Aggregates
-  //
-  ::GAME::Mga::Collection_T <Aggregate> ConnectorObject_Impl::get_Aggregates (void) const
-  {
-    return this->children <Aggregate> ();
   }
 }
 

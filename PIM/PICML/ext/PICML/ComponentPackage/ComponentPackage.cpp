@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
-#include "PICML/ComponentPackage/Implementation.h"
-#include "PICML/ComponentPackage/PackageInterface.h"
 #include "PICML/ComponentPackage/ComponentPackageReference.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/ComponentPackage/Implementation.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentPackage/PackageInterface.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -97,19 +97,19 @@ namespace PICML
   }
 
   //
-  // src_of_PackageConfigProperty
+  // src_of_Implementation
   //
-  size_t ComponentPackage_Impl::src_of_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const
+  size_t ComponentPackage_Impl::src_of_Implementation (std::vector <Implementation> & items) const
   {
-    return this->in_connections <PackageConfigProperty> (items);
+    return this->in_connections <Implementation> (items);
   }
 
   //
-  // src_of_PackageConfigProperty
+  // src_of_Implementation
   //
-  GAME::Mga::Collection_T <PackageConfigProperty> ComponentPackage_Impl::src_of_PackageConfigProperty (void) const
+  GAME::Mga::Collection_T <Implementation> ComponentPackage_Impl::src_of_Implementation (void) const
   {
-    return this->in_connections <PackageConfigProperty> ("src");
+    return this->in_connections <Implementation> ("src");
   }
 
   //
@@ -129,19 +129,19 @@ namespace PICML
   }
 
   //
-  // src_of_Implementation
+  // src_of_PackageConfigProperty
   //
-  size_t ComponentPackage_Impl::src_of_Implementation (std::vector <Implementation> & items) const
+  size_t ComponentPackage_Impl::src_of_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const
   {
-    return this->in_connections <Implementation> (items);
+    return this->in_connections <PackageConfigProperty> (items);
   }
 
   //
-  // src_of_Implementation
+  // src_of_PackageConfigProperty
   //
-  GAME::Mga::Collection_T <Implementation> ComponentPackage_Impl::src_of_Implementation (void) const
+  GAME::Mga::Collection_T <PackageConfigProperty> ComponentPackage_Impl::src_of_PackageConfigProperty (void) const
   {
-    return this->in_connections <Implementation> ("src");
+    return this->in_connections <PackageConfigProperty> ("src");
   }
 
   //

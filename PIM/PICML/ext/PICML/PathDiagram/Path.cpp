@@ -8,27 +8,27 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/DstEdge.h"
+#include "PICML/PathDiagram/EdgeProperty.h"
+#include "PICML/PathDiagram/SrcEdge.h"
+#include "PICML/PathDiagram/PathProperty.h"
+#include "PICML/PathDiagram/Paths.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
+#include "PICML/PathDiagram/GraphVertex.h"
+#include "PICML/PathDiagram/DisplayNode.h"
+#include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/PathDiagram/Edge.h"
+#include "PICML/PathDiagram/PathReference.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/PathDiagram/DstEdge.h"
-#include "PICML/PathDiagram/SrcEdge.h"
-#include "PICML/PathDiagram/EdgeProperty.h"
-#include "PICML/PathDiagram/GraphVertex.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
-#include "PICML/PathDiagram/DisplayNode.h"
-#include "PICML/PathDiagram/ConnectedComponent.h"
-#include "PICML/PathDiagram/Edge.h"
-#include "PICML/PathDiagram/PathProperty.h"
-#include "PICML/PathDiagram/PathReference.h"
-#include "PICML/PathDiagram/Paths.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -93,54 +93,6 @@ namespace PICML
   }
 
   //
-  // get_SimplePropertys
-  //
-  size_t Path_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> Path_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t Path_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> Path_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_ComponentRefs
-  //
-  size_t Path_Impl::get_ComponentRefs (std::vector <ComponentRef> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComponentRefs
-  //
-  ::GAME::Mga::Collection_T <ComponentRef> Path_Impl::get_ComponentRefs (void) const
-  {
-    return this->children <ComponentRef> ();
-  }
-
-  //
   // get_DstEdges
   //
   size_t Path_Impl::get_DstEdges (std::vector <DstEdge> & items) const
@@ -154,22 +106,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <DstEdge> Path_Impl::get_DstEdges (void) const
   {
     return this->children <DstEdge> ();
-  }
-
-  //
-  // get_SrcEdges
-  //
-  size_t Path_Impl::get_SrcEdges (std::vector <SrcEdge> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SrcEdges
-  //
-  ::GAME::Mga::Collection_T <SrcEdge> Path_Impl::get_SrcEdges (void) const
-  {
-    return this->children <SrcEdge> ();
   }
 
   //
@@ -189,67 +125,35 @@ namespace PICML
   }
 
   //
-  // get_RequiredRequestPorts
+  // get_SrcEdges
   //
-  size_t Path_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  size_t Path_Impl::get_SrcEdges (std::vector <SrcEdge> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_RequiredRequestPorts
+  // get_SrcEdges
   //
-  ::GAME::Mga::Collection_T <RequiredRequestPort> Path_Impl::get_RequiredRequestPorts (void) const
+  ::GAME::Mga::Collection_T <SrcEdge> Path_Impl::get_SrcEdges (void) const
   {
-    return this->children <RequiredRequestPort> ();
+    return this->children <SrcEdge> ();
   }
 
   //
-  // get_ProvidedRequestPorts
+  // get_ComponentRefs
   //
-  size_t Path_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
+  size_t Path_Impl::get_ComponentRefs (std::vector <ComponentRef> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_ProvidedRequestPorts
+  // get_ComponentRefs
   //
-  ::GAME::Mga::Collection_T <ProvidedRequestPort> Path_Impl::get_ProvidedRequestPorts (void) const
+  ::GAME::Mga::Collection_T <ComponentRef> Path_Impl::get_ComponentRefs (void) const
   {
-    return this->children <ProvidedRequestPort> ();
-  }
-
-  //
-  // get_InEventPorts
-  //
-  size_t Path_Impl::get_InEventPorts (std::vector <InEventPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_InEventPorts
-  //
-  ::GAME::Mga::Collection_T <InEventPort> Path_Impl::get_InEventPorts (void) const
-  {
-    return this->children <InEventPort> ();
-  }
-
-  //
-  // get_OutEventPorts
-  //
-  size_t Path_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OutEventPorts
-  //
-  ::GAME::Mga::Collection_T <OutEventPort> Path_Impl::get_OutEventPorts (void) const
-  {
-    return this->children <OutEventPort> ();
+    return this->children <ComponentRef> ();
   }
 
   //
@@ -285,6 +189,70 @@ namespace PICML
   }
 
   //
+  // get_OutEventPorts
+  //
+  size_t Path_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_OutEventPorts
+  //
+  ::GAME::Mga::Collection_T <OutEventPort> Path_Impl::get_OutEventPorts (void) const
+  {
+    return this->children <OutEventPort> ();
+  }
+
+  //
+  // get_InEventPorts
+  //
+  size_t Path_Impl::get_InEventPorts (std::vector <InEventPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_InEventPorts
+  //
+  ::GAME::Mga::Collection_T <InEventPort> Path_Impl::get_InEventPorts (void) const
+  {
+    return this->children <InEventPort> ();
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  size_t Path_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ProvidedRequestPorts
+  //
+  ::GAME::Mga::Collection_T <ProvidedRequestPort> Path_Impl::get_ProvidedRequestPorts (void) const
+  {
+    return this->children <ProvidedRequestPort> ();
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  size_t Path_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPort> Path_Impl::get_RequiredRequestPorts (void) const
+  {
+    return this->children <RequiredRequestPort> ();
+  }
+
+  //
   // get_Edges
   //
   size_t Path_Impl::get_Edges (std::vector <Edge> & items) const
@@ -298,6 +266,38 @@ namespace PICML
   ::GAME::Mga::Collection_T <Edge> Path_Impl::get_Edges (void) const
   {
     return this->children <Edge> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t Path_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Collection_T <SimpleProperty> Path_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t Path_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> Path_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

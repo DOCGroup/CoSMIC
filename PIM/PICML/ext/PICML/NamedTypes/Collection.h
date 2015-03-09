@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/NamedTypes/NoInheritable.h"
 #include "PICML/Common/ComplexType.h"
+#include "PICML/NamedTypes/NoInheritable.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export Collection_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual NoInheritable_Impl,
-    public virtual ComplexType_Impl
+    public virtual ComplexType_Impl,
+    public virtual NoInheritable_Impl
   {
     public:
     /// Tag type of this extension class.

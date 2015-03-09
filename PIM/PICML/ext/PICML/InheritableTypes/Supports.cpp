@@ -9,11 +9,11 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/SupportsInterfaces.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/InheritableTypes/Object.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/SupportsInstance.h"
 #include "game/mga/Functional_T.h"
@@ -68,7 +68,7 @@ namespace PICML
   //
   bool Supports_Impl::Object_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

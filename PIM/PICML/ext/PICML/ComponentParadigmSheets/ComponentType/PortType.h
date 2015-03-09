@@ -89,11 +89,11 @@ namespace PICML
     size_t get_Attributes (std::vector <Attribute> & items) const;
     ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
 
-    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
-    ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
-
     size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
+
+    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
+    ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
 
     ///@}
   };

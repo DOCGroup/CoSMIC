@@ -90,7 +90,7 @@ namespace PICML
   //
   bool ComponentImplementationArtifact_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -63,7 +63,7 @@ namespace PICML
   //
   bool WorkerType_Impl::Worker_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

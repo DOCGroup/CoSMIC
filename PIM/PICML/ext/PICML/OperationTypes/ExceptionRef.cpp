@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InterfaceDefinition/ExceptionType.h"
-#include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/OperationTypes/HasExceptions.h"
 #include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/LookupOperation.h"
 #include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/InterfaceDefinition/ExceptionType.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/Exception.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,7 +67,7 @@ namespace PICML
   //
   bool ExceptionRef_Impl::ExceptionType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

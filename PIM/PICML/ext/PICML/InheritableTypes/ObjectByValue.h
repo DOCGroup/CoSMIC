@@ -84,8 +84,8 @@ namespace PICML
      * @name Containment Methods
      */
     ///@{
-    size_t get_PrivateFlags (std::vector <PrivateFlag> & items) const;
-    ::GAME::Mga::Collection_T <PrivateFlag> get_PrivateFlags (void) const;
+    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
+    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
 
     size_t get_Members (std::vector <Member> & items) const;
     ::GAME::Mga::Collection_T <Member> get_Members (void) const;
@@ -96,8 +96,8 @@ namespace PICML
     size_t get_MakeMemberPrivates (std::vector <MakeMemberPrivate> & items) const;
     ::GAME::Mga::Collection_T <MakeMemberPrivate> get_MakeMemberPrivates (void) const;
 
-    size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
-    ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
+    size_t get_PrivateFlags (std::vector <PrivateFlag> & items) const;
+    ::GAME::Mga::Collection_T <PrivateFlag> get_PrivateFlags (void) const;
 
     ///@}
   };

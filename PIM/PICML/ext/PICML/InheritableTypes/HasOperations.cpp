@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/InterfaceDefinition/Exception.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/InterfaceDefinition/Constant.h"
 #include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Collection.h"
 #include "PICML/NamedTypes/Aggregate.h"
 #include "PICML/NamedTypes/Alias.h"
 #include "PICML/NamedTypes/SwitchedAggregate.h"
 #include "PICML/NamedTypes/Enum.h"
-#include "PICML/InterfaceDefinition/Constant.h"
-#include "PICML/InterfaceDefinition/Exception.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 
@@ -35,35 +35,67 @@ namespace PICML
   const bool HasOperations_Impl::is_abstract = true;
 
   //
-  // get_PortTypes
+  // get_Exceptions
   //
-  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
+  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_PortTypes
+  // get_Exceptions
   //
-  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
+  ::GAME::Mga::Collection_T <Exception> HasOperations_Impl::get_Exceptions (void) const
   {
-    return this->children <PortType> ();
+    return this->children <Exception> ();
   }
 
   //
-  // get_Collections
+  // get_OnewayOperations
   //
-  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
+  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Collections
+  // get_OnewayOperations
   //
-  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
+  ::GAME::Mga::Collection_T <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
   {
-    return this->children <Collection> ();
+    return this->children <OnewayOperation> ();
+  }
+
+  //
+  // get_TwowayOperations
+  //
+  size_t HasOperations_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_TwowayOperations
+  //
+  ::GAME::Mga::Collection_T <TwowayOperation> HasOperations_Impl::get_TwowayOperations (void) const
+  {
+    return this->children <TwowayOperation> ();
+  }
+
+  //
+  // get_Constants
+  //
+  size_t HasOperations_Impl::get_Constants (std::vector <Constant> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Constants
+  //
+  ::GAME::Mga::Collection_T <Constant> HasOperations_Impl::get_Constants (void) const
+  {
+    return this->children <Constant> ();
   }
 
   //
@@ -131,67 +163,35 @@ namespace PICML
   }
 
   //
-  // get_Constants
+  // get_PortTypes
   //
-  size_t HasOperations_Impl::get_Constants (std::vector <Constant> & items) const
+  size_t HasOperations_Impl::get_PortTypes (std::vector <PortType> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Constants
+  // get_PortTypes
   //
-  ::GAME::Mga::Collection_T <Constant> HasOperations_Impl::get_Constants (void) const
+  ::GAME::Mga::Collection_T <PortType> HasOperations_Impl::get_PortTypes (void) const
   {
-    return this->children <Constant> ();
+    return this->children <PortType> ();
   }
 
   //
-  // get_Exceptions
+  // get_Collections
   //
-  size_t HasOperations_Impl::get_Exceptions (std::vector <Exception> & items) const
+  size_t HasOperations_Impl::get_Collections (std::vector <Collection> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Exceptions
+  // get_Collections
   //
-  ::GAME::Mga::Collection_T <Exception> HasOperations_Impl::get_Exceptions (void) const
+  ::GAME::Mga::Collection_T <Collection> HasOperations_Impl::get_Collections (void) const
   {
-    return this->children <Exception> ();
-  }
-
-  //
-  // get_TwowayOperations
-  //
-  size_t HasOperations_Impl::get_TwowayOperations (std::vector <TwowayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_TwowayOperations
-  //
-  ::GAME::Mga::Collection_T <TwowayOperation> HasOperations_Impl::get_TwowayOperations (void) const
-  {
-    return this->children <TwowayOperation> ();
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  size_t HasOperations_Impl::get_OnewayOperations (std::vector <OnewayOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_OnewayOperations
-  //
-  ::GAME::Mga::Collection_T <OnewayOperation> HasOperations_Impl::get_OnewayOperations (void) const
-  {
-    return this->children <OnewayOperation> ();
+    return this->children <Collection> ();
   }
 }
 

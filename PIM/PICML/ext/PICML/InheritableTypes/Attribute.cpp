@@ -9,10 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/SetException.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -29,6 +29,14 @@ namespace PICML
   // is_abstract
   //
   const bool Attribute_Impl::is_abstract = false;
+
+  //
+  // _create (const ConnectorObject_in)
+  //
+  Attribute Attribute_Impl::_create (const ConnectorObject_in parent)
+  {
+    return ::GAME::Mga::create < Attribute > (parent, Attribute_Impl::metaname);
+  }
 
   //
   // _create (const Inheritable_in)
@@ -50,14 +58,6 @@ namespace PICML
   // _create (const PortType_in)
   //
   Attribute Attribute_Impl::_create (const PortType_in parent)
-  {
-    return ::GAME::Mga::create < Attribute > (parent, Attribute_Impl::metaname);
-  }
-
-  //
-  // _create (const ConnectorObject_in)
-  //
-  Attribute Attribute_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create < Attribute > (parent, Attribute_Impl::metaname);
   }

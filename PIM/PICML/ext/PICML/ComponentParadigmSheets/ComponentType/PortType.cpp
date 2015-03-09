@@ -14,8 +14,8 @@
 #include "PICML/InheritableTypes/ReadonlyAttribute.h"
 #include "PICML/InheritableTypes/Attribute.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
@@ -107,22 +107,6 @@ namespace PICML
   }
 
   //
-  // get_RequiredRequestPorts
-  //
-  size_t PortType_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_RequiredRequestPorts
-  //
-  ::GAME::Mga::Collection_T <RequiredRequestPort> PortType_Impl::get_RequiredRequestPorts (void) const
-  {
-    return this->children <RequiredRequestPort> ();
-  }
-
-  //
   // get_ProvidedRequestPorts
   //
   size_t PortType_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
@@ -136,6 +120,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <ProvidedRequestPort> PortType_Impl::get_ProvidedRequestPorts (void) const
   {
     return this->children <ProvidedRequestPort> ();
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  size_t PortType_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPort> PortType_Impl::get_RequiredRequestPorts (void) const
+  {
+    return this->children <RequiredRequestPort> ();
   }
 }
 

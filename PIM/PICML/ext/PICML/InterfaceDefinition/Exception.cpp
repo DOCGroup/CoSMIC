@@ -8,18 +8,18 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
-#include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/NamedTypes/Member.h"
-#include "PICML/NamedTypes/ArrayMember.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/File.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/NamedTypes/Member.h"
+#include "PICML/NamedTypes/ArrayMember.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -38,14 +38,6 @@ namespace PICML
   const bool Exception_Impl::is_abstract = false;
 
   //
-  // _create (const HasOperations_in)
-  //
-  Exception Exception_Impl::_create (const HasOperations_in parent)
-  {
-    return ::GAME::Mga::create < Exception > (parent, Exception_Impl::metaname);
-  }
-
-  //
   // _create (const Package_in)
   //
   Exception Exception_Impl::_create (const Package_in parent)
@@ -57,6 +49,14 @@ namespace PICML
   // _create (const File_in)
   //
   Exception Exception_Impl::_create (const File_in parent)
+  {
+    return ::GAME::Mga::create < Exception > (parent, Exception_Impl::metaname);
+  }
+
+  //
+  // _create (const HasOperations_in)
+  //
+  Exception Exception_Impl::_create (const HasOperations_in parent)
   {
     return ::GAME::Mga::create < Exception > (parent, Exception_Impl::metaname);
   }
@@ -76,14 +76,6 @@ namespace PICML
   }
 
   //
-  // parent_HasOperations
-  //
-  HasOperations Exception_Impl::parent_HasOperations (void)
-  {
-    return HasOperations::_narrow (this->parent ());
-  }
-
-  //
   // parent_Package
   //
   Package Exception_Impl::parent_Package (void)
@@ -97,6 +89,14 @@ namespace PICML
   File Exception_Impl::parent_File (void)
   {
     return File::_narrow (this->parent ());
+  }
+
+  //
+  // parent_HasOperations
+  //
+  HasOperations Exception_Impl::parent_HasOperations (void)
+  {
+    return HasOperations::_narrow (this->parent ());
   }
 
   //

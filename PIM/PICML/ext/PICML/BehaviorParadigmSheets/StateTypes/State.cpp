@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/StateTypes/Transition.h"
+#include "PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -51,30 +51,6 @@ namespace PICML
   }
 
   //
-  // src_of_TerminalTransition
-  //
-  size_t State_Impl::src_of_TerminalTransition (std::vector <TerminalTransition> & items) const
-  {
-    return this->in_connections <TerminalTransition> (items);
-  }
-
-  //
-  // has_src_of_TerminalTransition
-  //
-  bool State_Impl::has_src_of_TerminalTransition (void) const
-  {
-    return this->in_connections <TerminalTransition> ("src").count () == 1;
-  }
-
-  //
-  // src_of_TerminalTransition
-  //
-  TerminalTransition State_Impl::src_of_TerminalTransition (void) const
-  {
-    return this->in_connections <TerminalTransition> ("src").first ();
-  }
-
-  //
   // src_of_Transition
   //
   size_t State_Impl::src_of_Transition (std::vector <Transition> & items) const
@@ -96,6 +72,30 @@ namespace PICML
   Transition State_Impl::src_of_Transition (void) const
   {
     return this->in_connections <Transition> ("src").first ();
+  }
+
+  //
+  // src_of_TerminalTransition
+  //
+  size_t State_Impl::src_of_TerminalTransition (std::vector <TerminalTransition> & items) const
+  {
+    return this->in_connections <TerminalTransition> (items);
+  }
+
+  //
+  // has_src_of_TerminalTransition
+  //
+  bool State_Impl::has_src_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("src").count () == 1;
+  }
+
+  //
+  // src_of_TerminalTransition
+  //
+  TerminalTransition State_Impl::src_of_TerminalTransition (void) const
+  {
+    return this->in_connections <TerminalTransition> ("src").first ();
   }
 }
 

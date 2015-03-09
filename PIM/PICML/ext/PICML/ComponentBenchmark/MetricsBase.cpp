@@ -13,10 +13,10 @@
 #include "PICML/ComponentBenchmark/Maximum.h"
 #include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/Average.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {
@@ -63,6 +63,22 @@ namespace PICML
   }
 
   //
+  // dst_of_MetricConnection
+  //
+  size_t MetricsBase_Impl::dst_of_MetricConnection (std::vector <MetricConnection> & items) const
+  {
+    return this->in_connections <MetricConnection> (items);
+  }
+
+  //
+  // dst_of_MetricConnection
+  //
+  MetricConnection MetricsBase_Impl::dst_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("dst").first ();
+  }
+
+  //
   // dst_of_BenchmarkCharacteristics
   //
   size_t MetricsBase_Impl::dst_of_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const
@@ -84,22 +100,6 @@ namespace PICML
   BenchmarkCharacteristics MetricsBase_Impl::dst_of_BenchmarkCharacteristics (void) const
   {
     return this->in_connections <BenchmarkCharacteristics> ("dst").first ();
-  }
-
-  //
-  // dst_of_MetricConnection
-  //
-  size_t MetricsBase_Impl::dst_of_MetricConnection (std::vector <MetricConnection> & items) const
-  {
-    return this->in_connections <MetricConnection> (items);
-  }
-
-  //
-  // dst_of_MetricConnection
-  //
-  MetricConnection MetricsBase_Impl::dst_of_MetricConnection (void) const
-  {
-    return this->in_connections <MetricConnection> ("dst").first ();
   }
 
   //

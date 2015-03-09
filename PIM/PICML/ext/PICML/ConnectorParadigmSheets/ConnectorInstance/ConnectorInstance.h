@@ -95,13 +95,13 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ConnectorToFacet connection.
-    size_t src_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
-    GAME::Mga::Collection_T <ConnectorToFacet> src_of_ConnectorToFacet (void) const;
-
     /// Get the src Consume connection.
     size_t src_of_Consume (std::vector <Consume> & items) const;
     GAME::Mga::Collection_T <Consume> src_of_Consume (void) const;
+
+    /// Get the src ConnectorToFacet connection.
+    size_t src_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const;
+    GAME::Mga::Collection_T <ConnectorToFacet> src_of_ConnectorToFacet (void) const;
     ///@}
 
     /**

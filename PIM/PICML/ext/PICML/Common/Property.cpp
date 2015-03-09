@@ -8,24 +8,32 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationCommon/ConfigProperty.h"
-#include "PICML/ImplementationCommon/MonolithExecParameter.h"
-#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
-#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
+#include "PICML/PathDiagram/EdgeProperty.h"
+#include "PICML/ImplementationCommon/InfoProperty.h"
+#include "PICML/PathDiagram/PathProperty.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
+#include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
 #include "PICML/Common/RequirementBase.h"
 #include "PICML/Common/ImplementationRequirement.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
-#include "PICML/PathDiagram/EdgeProperty.h"
-#include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
-#include "PICML/ImplementationCommon/InfoProperty.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/PathDiagram/Paths.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
+#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/Domain/Domain.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/BehaviorInputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/MultiInputAction.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/InputAction.h"
@@ -37,22 +45,14 @@
 #include "PICML/BehaviorParadigmSheets/ActionTypes/Action.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryInputAction.h"
 #include "PICML/PathDiagram/Path.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeValue.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AttributeMappingValue.h"
-#include "PICML/PathDiagram/PathProperty.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/ImplementationArtifact/ArtifactInfoProperty.h"
+#include "PICML/ImplementationCommon/ConfigProperty.h"
+#include "PICML/ImplementationCommon/MonolithExecParameter.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyConfigProperty.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
 #include "PICML/DeploymentPlan/PropertyMapping.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
-#include "PICML/PathDiagram/Paths.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
-#include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/Domain/Domain.h"
 
 namespace PICML
 {
@@ -65,54 +65,6 @@ namespace PICML
   // is_abstract
   //
   const bool Property_Impl::is_abstract = true;
-
-  //
-  // parent_ComponentAssembly
-  //
-  ComponentAssembly Property_Impl::parent_ComponentAssembly (void)
-  {
-    return ComponentAssembly::_narrow (this->parent ());
-  }
-
-  //
-  // parent_RequirementBase
-  //
-  RequirementBase Property_Impl::parent_RequirementBase (void)
-  {
-    return RequirementBase::_narrow (this->parent ());
-  }
-
-  //
-  // parent_BehaviorInputAction
-  //
-  BehaviorInputAction Property_Impl::parent_BehaviorInputAction (void)
-  {
-    return BehaviorInputAction::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ActionBase
-  //
-  ActionBase Property_Impl::parent_ActionBase (void)
-  {
-    return ActionBase::_narrow (this->parent ());
-  }
-
-  //
-  // parent_QueryInputAction
-  //
-  QueryInputAction Property_Impl::parent_QueryInputAction (void)
-  {
-    return QueryInputAction::_narrow (this->parent ());
-  }
-
-  //
-  // parent_Path
-  //
-  Path Property_Impl::parent_Path (void)
-  {
-    return Path::_narrow (this->parent ());
-  }
 
   //
   // parent_ImplementationContainer
@@ -128,6 +80,22 @@ namespace PICML
   ComponentContainer Property_Impl::parent_ComponentContainer (void)
   {
     return ComponentContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_RequirementBase
+  //
+  RequirementBase Property_Impl::parent_RequirementBase (void)
+  {
+    return RequirementBase::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ComponentAssembly
+  //
+  ComponentAssembly Property_Impl::parent_ComponentAssembly (void)
+  {
+    return ComponentAssembly::_narrow (this->parent ());
   }
 
   //
@@ -179,6 +147,38 @@ namespace PICML
   }
 
   //
+  // parent_BehaviorInputAction
+  //
+  BehaviorInputAction Property_Impl::parent_BehaviorInputAction (void)
+  {
+    return BehaviorInputAction::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ActionBase
+  //
+  ActionBase Property_Impl::parent_ActionBase (void)
+  {
+    return ActionBase::_narrow (this->parent ());
+  }
+
+  //
+  // parent_QueryInputAction
+  //
+  QueryInputAction Property_Impl::parent_QueryInputAction (void)
+  {
+    return QueryInputAction::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Path
+  //
+  Path Property_Impl::parent_Path (void)
+  {
+    return Path::_narrow (this->parent ());
+  }
+
+  //
   // src_of_EdgeProperty
   //
   size_t Property_Impl::src_of_EdgeProperty (std::vector <EdgeProperty> & items) const
@@ -208,6 +208,150 @@ namespace PICML
   GAME::Mga::Collection_T <CollocationGroupProperty> Property_Impl::src_of_CollocationGroupProperty (void) const
   {
     return this->in_connections <CollocationGroupProperty> ("src");
+  }
+
+  //
+  // dst_of_ComponentConfigProperty
+  //
+  size_t Property_Impl::dst_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const
+  {
+    return this->in_connections <ComponentConfigProperty> (items);
+  }
+
+  //
+  // dst_of_ComponentConfigProperty
+  //
+  GAME::Mga::Collection_T <ComponentConfigProperty> Property_Impl::dst_of_ComponentConfigProperty (void) const
+  {
+    return this->in_connections <ComponentConfigProperty> ("dst");
+  }
+
+  //
+  // dst_of_InfoProperty
+  //
+  size_t Property_Impl::dst_of_InfoProperty (std::vector <InfoProperty> & items) const
+  {
+    return this->in_connections <InfoProperty> (items);
+  }
+
+  //
+  // dst_of_InfoProperty
+  //
+  GAME::Mga::Collection_T <InfoProperty> Property_Impl::dst_of_InfoProperty (void) const
+  {
+    return this->in_connections <InfoProperty> ("dst");
+  }
+
+  //
+  // dst_of_PathProperty
+  //
+  size_t Property_Impl::dst_of_PathProperty (std::vector <PathProperty> & items) const
+  {
+    return this->in_connections <PathProperty> (items);
+  }
+
+  //
+  // dst_of_PathProperty
+  //
+  GAME::Mga::Collection_T <PathProperty> Property_Impl::dst_of_PathProperty (void) const
+  {
+    return this->in_connections <PathProperty> ("dst");
+  }
+
+  //
+  // dst_of_AttributeValue
+  //
+  size_t Property_Impl::dst_of_AttributeValue (std::vector <AttributeValue> & items) const
+  {
+    return this->in_connections <AttributeValue> (items);
+  }
+
+  //
+  // has_dst_of_AttributeValue
+  //
+  bool Property_Impl::has_dst_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_AttributeValue
+  //
+  AttributeValue Property_Impl::dst_of_AttributeValue (void) const
+  {
+    return this->in_connections <AttributeValue> ("dst").first ();
+  }
+
+  //
+  // dst_of_ComponentInfoProperty
+  //
+  size_t Property_Impl::dst_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const
+  {
+    return this->in_connections <ComponentInfoProperty> (items);
+  }
+
+  //
+  // dst_of_ComponentInfoProperty
+  //
+  GAME::Mga::Collection_T <ComponentInfoProperty> Property_Impl::dst_of_ComponentInfoProperty (void) const
+  {
+    return this->in_connections <ComponentInfoProperty> ("dst");
+  }
+
+  //
+  // dst_of_AttributeMappingValue
+  //
+  size_t Property_Impl::dst_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
+  {
+    return this->in_connections <AttributeMappingValue> (items);
+  }
+
+  //
+  // has_dst_of_AttributeMappingValue
+  //
+  bool Property_Impl::has_dst_of_AttributeMappingValue (void) const
+  {
+    return this->in_connections <AttributeMappingValue> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_AttributeMappingValue
+  //
+  AttributeMappingValue Property_Impl::dst_of_AttributeMappingValue (void) const
+  {
+    return this->in_connections <AttributeMappingValue> ("dst").first ();
+  }
+
+  //
+  // dst_of_PackageConfConfigProperty
+  //
+  size_t Property_Impl::dst_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
+  {
+    return this->in_connections <PackageConfConfigProperty> (items);
+  }
+
+  //
+  // dst_of_PackageConfConfigProperty
+  //
+  GAME::Mga::Collection_T <PackageConfConfigProperty> Property_Impl::dst_of_PackageConfConfigProperty (void) const
+  {
+    return this->in_connections <PackageConfConfigProperty> ("dst");
+  }
+
+  //
+  // dst_of_ArtifactInfoProperty
+  //
+  size_t Property_Impl::dst_of_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
+  {
+    return this->in_connections <ArtifactInfoProperty> (items);
+  }
+
+  //
+  // dst_of_ArtifactInfoProperty
+  //
+  GAME::Mga::Collection_T <ArtifactInfoProperty> Property_Impl::dst_of_ArtifactInfoProperty (void) const
+  {
+    return this->in_connections <ArtifactInfoProperty> ("dst");
   }
 
   //
@@ -243,35 +387,19 @@ namespace PICML
   }
 
   //
-  // dst_of_ArtifactInfoProperty
+  // dst_of_PackageInfoProperty
   //
-  size_t Property_Impl::dst_of_ArtifactInfoProperty (std::vector <ArtifactInfoProperty> & items) const
+  size_t Property_Impl::dst_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
   {
-    return this->in_connections <ArtifactInfoProperty> (items);
+    return this->in_connections <PackageInfoProperty> (items);
   }
 
   //
-  // dst_of_ArtifactInfoProperty
+  // dst_of_PackageInfoProperty
   //
-  GAME::Mga::Collection_T <ArtifactInfoProperty> Property_Impl::dst_of_ArtifactInfoProperty (void) const
+  GAME::Mga::Collection_T <PackageInfoProperty> Property_Impl::dst_of_PackageInfoProperty (void) const
   {
-    return this->in_connections <ArtifactInfoProperty> ("dst");
-  }
-
-  //
-  // dst_of_ArtifactExecParameter
-  //
-  size_t Property_Impl::dst_of_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
-  {
-    return this->in_connections <ArtifactExecParameter> (items);
-  }
-
-  //
-  // dst_of_ArtifactExecParameter
-  //
-  GAME::Mga::Collection_T <ArtifactExecParameter> Property_Impl::dst_of_ArtifactExecParameter (void) const
-  {
-    return this->in_connections <ArtifactExecParameter> ("dst");
+    return this->in_connections <PackageInfoProperty> ("dst");
   }
 
   //
@@ -283,11 +411,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_AssemblyConfigProperty
+  //
+  bool Property_Impl::has_dst_of_AssemblyConfigProperty (void) const
+  {
+    return this->in_connections <AssemblyConfigProperty> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_AssemblyConfigProperty
   //
-  GAME::Mga::Collection_T <AssemblyConfigProperty> Property_Impl::dst_of_AssemblyConfigProperty (void) const
+  AssemblyConfigProperty Property_Impl::dst_of_AssemblyConfigProperty (void) const
   {
-    return this->in_connections <AssemblyConfigProperty> ("dst");
+    return this->in_connections <AssemblyConfigProperty> ("dst").first ();
   }
 
   //
@@ -307,139 +443,19 @@ namespace PICML
   }
 
   //
-  // dst_of_PackageInfoProperty
+  // dst_of_ArtifactExecParameter
   //
-  size_t Property_Impl::dst_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
+  size_t Property_Impl::dst_of_ArtifactExecParameter (std::vector <ArtifactExecParameter> & items) const
   {
-    return this->in_connections <PackageInfoProperty> (items);
+    return this->in_connections <ArtifactExecParameter> (items);
   }
 
   //
-  // dst_of_PackageInfoProperty
+  // dst_of_ArtifactExecParameter
   //
-  GAME::Mga::Collection_T <PackageInfoProperty> Property_Impl::dst_of_PackageInfoProperty (void) const
+  GAME::Mga::Collection_T <ArtifactExecParameter> Property_Impl::dst_of_ArtifactExecParameter (void) const
   {
-    return this->in_connections <PackageInfoProperty> ("dst");
-  }
-
-  //
-  // dst_of_ComponentInfoProperty
-  //
-  size_t Property_Impl::dst_of_ComponentInfoProperty (std::vector <ComponentInfoProperty> & items) const
-  {
-    return this->in_connections <ComponentInfoProperty> (items);
-  }
-
-  //
-  // dst_of_ComponentInfoProperty
-  //
-  GAME::Mga::Collection_T <ComponentInfoProperty> Property_Impl::dst_of_ComponentInfoProperty (void) const
-  {
-    return this->in_connections <ComponentInfoProperty> ("dst");
-  }
-
-  //
-  // dst_of_ComponentConfigProperty
-  //
-  size_t Property_Impl::dst_of_ComponentConfigProperty (std::vector <ComponentConfigProperty> & items) const
-  {
-    return this->in_connections <ComponentConfigProperty> (items);
-  }
-
-  //
-  // dst_of_ComponentConfigProperty
-  //
-  GAME::Mga::Collection_T <ComponentConfigProperty> Property_Impl::dst_of_ComponentConfigProperty (void) const
-  {
-    return this->in_connections <ComponentConfigProperty> ("dst");
-  }
-
-  //
-  // dst_of_PackageConfConfigProperty
-  //
-  size_t Property_Impl::dst_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const
-  {
-    return this->in_connections <PackageConfConfigProperty> (items);
-  }
-
-  //
-  // dst_of_PackageConfConfigProperty
-  //
-  GAME::Mga::Collection_T <PackageConfConfigProperty> Property_Impl::dst_of_PackageConfConfigProperty (void) const
-  {
-    return this->in_connections <PackageConfConfigProperty> ("dst");
-  }
-
-  //
-  // dst_of_InfoProperty
-  //
-  size_t Property_Impl::dst_of_InfoProperty (std::vector <InfoProperty> & items) const
-  {
-    return this->in_connections <InfoProperty> (items);
-  }
-
-  //
-  // dst_of_InfoProperty
-  //
-  GAME::Mga::Collection_T <InfoProperty> Property_Impl::dst_of_InfoProperty (void) const
-  {
-    return this->in_connections <InfoProperty> ("dst");
-  }
-
-  //
-  // dst_of_AttributeValue
-  //
-  size_t Property_Impl::dst_of_AttributeValue (std::vector <AttributeValue> & items) const
-  {
-    return this->in_connections <AttributeValue> (items);
-  }
-
-  //
-  // dst_of_AttributeValue
-  //
-  GAME::Mga::Collection_T <AttributeValue> Property_Impl::dst_of_AttributeValue (void) const
-  {
-    return this->in_connections <AttributeValue> ("dst");
-  }
-
-  //
-  // dst_of_AttributeMappingValue
-  //
-  size_t Property_Impl::dst_of_AttributeMappingValue (std::vector <AttributeMappingValue> & items) const
-  {
-    return this->in_connections <AttributeMappingValue> (items);
-  }
-
-  //
-  // has_dst_of_AttributeMappingValue
-  //
-  bool Property_Impl::has_dst_of_AttributeMappingValue (void) const
-  {
-    return this->in_connections <AttributeMappingValue> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_AttributeMappingValue
-  //
-  AttributeMappingValue Property_Impl::dst_of_AttributeMappingValue (void) const
-  {
-    return this->in_connections <AttributeMappingValue> ("dst").first ();
-  }
-
-  //
-  // dst_of_PathProperty
-  //
-  size_t Property_Impl::dst_of_PathProperty (std::vector <PathProperty> & items) const
-  {
-    return this->in_connections <PathProperty> (items);
-  }
-
-  //
-  // dst_of_PathProperty
-  //
-  GAME::Mga::Collection_T <PathProperty> Property_Impl::dst_of_PathProperty (void) const
-  {
-    return this->in_connections <PathProperty> ("dst");
+    return this->in_connections <ArtifactExecParameter> ("dst");
   }
 
   //

@@ -97,11 +97,11 @@ namespace PICML
 
     bool has_LookupKey (void) const;
     LookupKey get_LookupKey (void) const;
-    size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
-    ::GAME::Mga::Collection_T <LookupOperation> get_LookupOperations (void) const;
-
     size_t get_FactoryOperations (std::vector <FactoryOperation> & items) const;
     ::GAME::Mga::Collection_T <FactoryOperation> get_FactoryOperations (void) const;
+
+    size_t get_LookupOperations (std::vector <LookupOperation> & items) const;
+    ::GAME::Mga::Collection_T <LookupOperation> get_LookupOperations (void) const;
 
     ///@}
   };

@@ -121,14 +121,14 @@ namespace PICML
      */
     ///@{
 
+    /// Get the dst MetricConnection connection.
+    size_t dst_of_MetricConnection (std::vector <MetricConnection> & items) const;
+    MetricConnection dst_of_MetricConnection (void) const;
+
     /// Get the dst BenchmarkCharacteristics connection.
     size_t dst_of_BenchmarkCharacteristics (std::vector <BenchmarkCharacteristics> & items) const;
     bool has_dst_of_BenchmarkCharacteristics (void) const;
     BenchmarkCharacteristics dst_of_BenchmarkCharacteristics (void) const;
-
-    /// Get the dst MetricConnection connection.
-    size_t dst_of_MetricConnection (std::vector <MetricConnection> & items) const;
-    MetricConnection dst_of_MetricConnection (void) const;
     ///@}
 
     /**

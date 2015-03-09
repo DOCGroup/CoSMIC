@@ -9,10 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/WorkerType.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackageBase.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerPackage.h"
 #include "PICML/WorkloadParadigmSheets/WML/WorkerFile.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

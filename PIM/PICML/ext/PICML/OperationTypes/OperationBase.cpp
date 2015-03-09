@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/InParameter.h"
-#include "PICML/ComponentBenchmark/OperationRef.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/OperationRef.h"
+#include "PICML/OperationTypes/InParameter.h"
 
 namespace PICML
 {

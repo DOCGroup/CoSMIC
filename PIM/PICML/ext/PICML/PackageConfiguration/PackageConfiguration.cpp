@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
-#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
-#include "PICML/PackageConfiguration/PackageConfReference.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/PackageConfiguration/PackageConfConfigProperty.h"
+#include "PICML/PackageConfiguration/PackageConfReference.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -63,70 +63,6 @@ namespace PICML
   }
 
   //
-  // src_of_PackageConfSelectRequirement
-  //
-  size_t PackageConfiguration_Impl::src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
-  {
-    return this->in_connections <PackageConfSelectRequirement> (items);
-  }
-
-  //
-  // src_of_PackageConfSelectRequirement
-  //
-  GAME::Mga::Collection_T <PackageConfSelectRequirement> PackageConfiguration_Impl::src_of_PackageConfSelectRequirement (void) const
-  {
-    return this->in_connections <PackageConfSelectRequirement> ("src");
-  }
-
-  //
-  // src_of_PackageConfBasePackage
-  //
-  size_t PackageConfiguration_Impl::src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
-  {
-    return this->in_connections <PackageConfBasePackage> (items);
-  }
-
-  //
-  // has_src_of_PackageConfBasePackage
-  //
-  bool PackageConfiguration_Impl::has_src_of_PackageConfBasePackage (void) const
-  {
-    return this->in_connections <PackageConfBasePackage> ("src").count () == 1;
-  }
-
-  //
-  // src_of_PackageConfBasePackage
-  //
-  PackageConfBasePackage PackageConfiguration_Impl::src_of_PackageConfBasePackage (void) const
-  {
-    return this->in_connections <PackageConfBasePackage> ("src").first ();
-  }
-
-  //
-  // src_of_PackageConfReference
-  //
-  size_t PackageConfiguration_Impl::src_of_PackageConfReference (std::vector <PackageConfReference> & items) const
-  {
-    return this->in_connections <PackageConfReference> (items);
-  }
-
-  //
-  // has_src_of_PackageConfReference
-  //
-  bool PackageConfiguration_Impl::has_src_of_PackageConfReference (void) const
-  {
-    return this->in_connections <PackageConfReference> ("src").count () == 1;
-  }
-
-  //
-  // src_of_PackageConfReference
-  //
-  PackageConfReference PackageConfiguration_Impl::src_of_PackageConfReference (void) const
-  {
-    return this->in_connections <PackageConfReference> ("src").first ();
-  }
-
-  //
   // src_of_PackageConfSpecializedConfig
   //
   size_t PackageConfiguration_Impl::src_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const
@@ -172,6 +108,70 @@ namespace PICML
   PackageConfConfigProperty PackageConfiguration_Impl::src_of_PackageConfConfigProperty (void) const
   {
     return this->in_connections <PackageConfConfigProperty> ("src").first ();
+  }
+
+  //
+  // src_of_PackageConfReference
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfReference (std::vector <PackageConfReference> & items) const
+  {
+    return this->in_connections <PackageConfReference> (items);
+  }
+
+  //
+  // has_src_of_PackageConfReference
+  //
+  bool PackageConfiguration_Impl::has_src_of_PackageConfReference (void) const
+  {
+    return this->in_connections <PackageConfReference> ("src").count () == 1;
+  }
+
+  //
+  // src_of_PackageConfReference
+  //
+  PackageConfReference PackageConfiguration_Impl::src_of_PackageConfReference (void) const
+  {
+    return this->in_connections <PackageConfReference> ("src").first ();
+  }
+
+  //
+  // src_of_PackageConfSelectRequirement
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> (items);
+  }
+
+  //
+  // src_of_PackageConfSelectRequirement
+  //
+  GAME::Mga::Collection_T <PackageConfSelectRequirement> PackageConfiguration_Impl::src_of_PackageConfSelectRequirement (void) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> ("src");
+  }
+
+  //
+  // src_of_PackageConfBasePackage
+  //
+  size_t PackageConfiguration_Impl::src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
+  {
+    return this->in_connections <PackageConfBasePackage> (items);
+  }
+
+  //
+  // has_src_of_PackageConfBasePackage
+  //
+  bool PackageConfiguration_Impl::has_src_of_PackageConfBasePackage (void) const
+  {
+    return this->in_connections <PackageConfBasePackage> ("src").count () == 1;
+  }
+
+  //
+  // src_of_PackageConfBasePackage
+  //
+  PackageConfBasePackage PackageConfiguration_Impl::src_of_PackageConfBasePackage (void) const
+  {
+    return this->in_connections <PackageConfBasePackage> ("src").first ();
   }
 }
 

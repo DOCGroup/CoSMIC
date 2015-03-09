@@ -60,9 +60,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static Exception _create (const HasOperations_in parent);
     static Exception _create (const Package_in parent);
     static Exception _create (const File_in parent);
+    static Exception _create (const HasOperations_in parent);
     ///@}
 
     // Default constructor.
@@ -81,9 +81,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    HasOperations parent_HasOperations (void);
     Package parent_Package (void);
     File parent_File (void);
+    HasOperations parent_HasOperations (void);
     ///@}
 
     /**

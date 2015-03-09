@@ -10,12 +10,12 @@
 #include "PICML/Visitor.h"
 #include "PICML/PathDiagram/DstEdge.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Port.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventPort.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/OutEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/InEventPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ProvidedRequestPort.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -73,35 +73,19 @@ namespace PICML
   }
 
   //
-  // get_RequiredRequestPorts
+  // get_OutEventPorts
   //
-  size_t ConnectedComponent_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_RequiredRequestPorts
+  // get_OutEventPorts
   //
-  ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectedComponent_Impl::get_RequiredRequestPorts (void) const
+  ::GAME::Mga::Collection_T <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
   {
-    return this->children <RequiredRequestPort> ();
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  size_t ConnectedComponent_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ProvidedRequestPorts
-  //
-  ::GAME::Mga::Collection_T <ProvidedRequestPort> ConnectedComponent_Impl::get_ProvidedRequestPorts (void) const
-  {
-    return this->children <ProvidedRequestPort> ();
+    return this->children <OutEventPort> ();
   }
 
   //
@@ -121,19 +105,35 @@ namespace PICML
   }
 
   //
-  // get_OutEventPorts
+  // get_ProvidedRequestPorts
   //
-  size_t ConnectedComponent_Impl::get_OutEventPorts (std::vector <OutEventPort> & items) const
+  size_t ConnectedComponent_Impl::get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_OutEventPorts
+  // get_ProvidedRequestPorts
   //
-  ::GAME::Mga::Collection_T <OutEventPort> ConnectedComponent_Impl::get_OutEventPorts (void) const
+  ::GAME::Mga::Collection_T <ProvidedRequestPort> ConnectedComponent_Impl::get_ProvidedRequestPorts (void) const
   {
-    return this->children <OutEventPort> ();
+    return this->children <ProvidedRequestPort> ();
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  size_t ConnectedComponent_Impl::get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_RequiredRequestPorts
+  //
+  ::GAME::Mga::Collection_T <RequiredRequestPort> ConnectedComponent_Impl::get_RequiredRequestPorts (void) const
+  {
+    return this->children <RequiredRequestPort> ();
   }
 }
 

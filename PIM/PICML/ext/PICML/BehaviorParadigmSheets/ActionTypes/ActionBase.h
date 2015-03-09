@@ -96,15 +96,15 @@ namespace PICML
     bool has_dst_of_LoopTransition (void) const;
     LoopTransition dst_of_LoopTransition (void) const;
 
-    /// Get the dst BranchTransition connection.
-    size_t dst_of_BranchTransition (std::vector <BranchTransition> & items) const;
-    bool has_dst_of_BranchTransition (void) const;
-    BranchTransition dst_of_BranchTransition (void) const;
-
     /// Get the dst Transition connection.
     size_t dst_of_Transition (std::vector <Transition> & items) const;
     bool has_dst_of_Transition (void) const;
     Transition dst_of_Transition (void) const;
+
+    /// Get the dst BranchTransition connection.
+    size_t dst_of_BranchTransition (std::vector <BranchTransition> & items) const;
+    bool has_dst_of_BranchTransition (void) const;
+    BranchTransition dst_of_BranchTransition (void) const;
     ///@}
 
     /**

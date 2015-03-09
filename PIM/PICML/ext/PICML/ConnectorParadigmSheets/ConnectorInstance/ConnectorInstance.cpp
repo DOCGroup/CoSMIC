@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -63,22 +63,6 @@ namespace PICML
   }
 
   //
-  // src_of_ConnectorToFacet
-  //
-  size_t ConnectorInstance_Impl::src_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
-  {
-    return this->in_connections <ConnectorToFacet> (items);
-  }
-
-  //
-  // src_of_ConnectorToFacet
-  //
-  GAME::Mga::Collection_T <ConnectorToFacet> ConnectorInstance_Impl::src_of_ConnectorToFacet (void) const
-  {
-    return this->in_connections <ConnectorToFacet> ("src");
-  }
-
-  //
   // src_of_Consume
   //
   size_t ConnectorInstance_Impl::src_of_Consume (std::vector <Consume> & items) const
@@ -92,6 +76,22 @@ namespace PICML
   GAME::Mga::Collection_T <Consume> ConnectorInstance_Impl::src_of_Consume (void) const
   {
     return this->in_connections <Consume> ("src");
+  }
+
+  //
+  // src_of_ConnectorToFacet
+  //
+  size_t ConnectorInstance_Impl::src_of_ConnectorToFacet (std::vector <ConnectorToFacet> & items) const
+  {
+    return this->in_connections <ConnectorToFacet> (items);
+  }
+
+  //
+  // src_of_ConnectorToFacet
+  //
+  GAME::Mga::Collection_T <ConnectorToFacet> ConnectorInstance_Impl::src_of_ConnectorToFacet (void) const
+  {
+    return this->in_connections <ConnectorToFacet> ("src");
   }
 
   //

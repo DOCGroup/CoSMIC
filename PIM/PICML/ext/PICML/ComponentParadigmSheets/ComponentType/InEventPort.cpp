@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/EventType.h"
-#include "PICML/InheritableTypes/Event.h"
 #include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InheritableTypes/Event.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -36,17 +36,17 @@ namespace PICML
   const bool InEventPort_Impl::is_abstract = false;
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectedComponent_in)
   //
-  InEventPort InEventPort_Impl::_create (const Component_in parent)
+  InEventPort InEventPort_Impl::_create (const ConnectedComponent_in parent)
   {
     return ::GAME::Mga::create < InEventPort > (parent, InEventPort_Impl::metaname);
   }
 
   //
-  // _create (const ConnectedComponent_in)
+  // _create (const Component_in)
   //
-  InEventPort InEventPort_Impl::_create (const ConnectedComponent_in parent)
+  InEventPort InEventPort_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create < InEventPort > (parent, InEventPort_Impl::metaname);
   }
@@ -78,7 +78,7 @@ namespace PICML
   //
   bool InEventPort_Impl::EventType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

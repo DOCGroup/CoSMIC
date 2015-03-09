@@ -99,20 +99,6 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src PackageConfSelectRequirement connection.
-    size_t src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
-    GAME::Mga::Collection_T <PackageConfSelectRequirement> src_of_PackageConfSelectRequirement (void) const;
-
-    /// Get the src PackageConfBasePackage connection.
-    size_t src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
-    bool has_src_of_PackageConfBasePackage (void) const;
-    PackageConfBasePackage src_of_PackageConfBasePackage (void) const;
-
-    /// Get the src PackageConfReference connection.
-    size_t src_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
-    bool has_src_of_PackageConfReference (void) const;
-    PackageConfReference src_of_PackageConfReference (void) const;
-
     /// Get the src PackageConfSpecializedConfig connection.
     size_t src_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
     bool has_src_of_PackageConfSpecializedConfig (void) const;
@@ -122,6 +108,20 @@ namespace PICML
     size_t src_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
     bool has_src_of_PackageConfConfigProperty (void) const;
     PackageConfConfigProperty src_of_PackageConfConfigProperty (void) const;
+
+    /// Get the src PackageConfReference connection.
+    size_t src_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    bool has_src_of_PackageConfReference (void) const;
+    PackageConfReference src_of_PackageConfReference (void) const;
+
+    /// Get the src PackageConfSelectRequirement connection.
+    size_t src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
+    GAME::Mga::Collection_T <PackageConfSelectRequirement> src_of_PackageConfSelectRequirement (void) const;
+
+    /// Get the src PackageConfBasePackage connection.
+    size_t src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
+    bool has_src_of_PackageConfBasePackage (void) const;
+    PackageConfBasePackage src_of_PackageConfBasePackage (void) const;
     ///@}
   };
 }

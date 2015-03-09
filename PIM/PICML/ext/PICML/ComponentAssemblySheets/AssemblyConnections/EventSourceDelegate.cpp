@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortEnd.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/OutEventPortInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

@@ -97,6 +97,9 @@ namespace PICML
 
     bool has_ConnectorInherits (void) const;
     ConnectorInherits get_ConnectorInherits (void) const;
+    size_t get_Aggregates (std::vector <Aggregate> & items) const;
+    ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
+
     size_t get_MirrorPorts (std::vector <MirrorPort> & items) const;
     ::GAME::Mga::Collection_T <MirrorPort> get_MirrorPorts (void) const;
 
@@ -109,17 +112,14 @@ namespace PICML
     size_t get_Attributes (std::vector <Attribute> & items) const;
     ::GAME::Mga::Collection_T <Attribute> get_Attributes (void) const;
 
-    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
-    ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
-
     size_t get_ProvidedRequestPorts (std::vector <ProvidedRequestPort> & items) const;
     ::GAME::Mga::Collection_T <ProvidedRequestPort> get_ProvidedRequestPorts (void) const;
 
+    size_t get_RequiredRequestPorts (std::vector <RequiredRequestPort> & items) const;
+    ::GAME::Mga::Collection_T <RequiredRequestPort> get_RequiredRequestPorts (void) const;
+
     size_t get_Collections (std::vector <Collection> & items) const;
     ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
-
-    size_t get_Aggregates (std::vector <Aggregate> & items) const;
-    ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
 
     ///@}
   };

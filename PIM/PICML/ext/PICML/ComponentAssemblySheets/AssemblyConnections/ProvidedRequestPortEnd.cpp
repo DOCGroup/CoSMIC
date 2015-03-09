@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/FacetDelegate.h"
 
 namespace PICML
 {
@@ -23,6 +23,22 @@ namespace PICML
   // is_abstract
   //
   const bool ProvidedRequestPortEnd_Impl::is_abstract = true;
+
+  //
+  // dst_of_FacetDelegate
+  //
+  size_t ProvidedRequestPortEnd_Impl::dst_of_FacetDelegate (std::vector <FacetDelegate> & items) const
+  {
+    return this->in_connections <FacetDelegate> (items);
+  }
+
+  //
+  // dst_of_FacetDelegate
+  //
+  GAME::Mga::Collection_T <FacetDelegate> ProvidedRequestPortEnd_Impl::dst_of_FacetDelegate (void) const
+  {
+    return this->in_connections <FacetDelegate> ("dst");
+  }
 
   //
   // dst_of_Invoke
@@ -54,22 +70,6 @@ namespace PICML
   GAME::Mga::Collection_T <ConnectorToFacet> ProvidedRequestPortEnd_Impl::dst_of_ConnectorToFacet (void) const
   {
     return this->in_connections <ConnectorToFacet> ("dst");
-  }
-
-  //
-  // dst_of_FacetDelegate
-  //
-  size_t ProvidedRequestPortEnd_Impl::dst_of_FacetDelegate (std::vector <FacetDelegate> & items) const
-  {
-    return this->in_connections <FacetDelegate> (items);
-  }
-
-  //
-  // dst_of_FacetDelegate
-  //
-  GAME::Mga::Collection_T <FacetDelegate> ProvidedRequestPortEnd_Impl::dst_of_FacetDelegate (void) const
-  {
-    return this->in_connections <FacetDelegate> ("dst");
   }
 }
 

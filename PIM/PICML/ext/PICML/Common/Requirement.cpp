@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
-#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/PackageConfiguration/PackageConfSelectRequirement.h"
+#include "PICML/ImplementationArtifact/ArtifactDeployRequirement.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/AssemblyselectRequirement.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -94,6 +94,22 @@ namespace PICML
   }
 
   //
+  // dst_of_PackageConfSelectRequirement
+  //
+  size_t Requirement_Impl::dst_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> (items);
+  }
+
+  //
+  // dst_of_PackageConfSelectRequirement
+  //
+  GAME::Mga::Collection_T <PackageConfSelectRequirement> Requirement_Impl::dst_of_PackageConfSelectRequirement (void) const
+  {
+    return this->in_connections <PackageConfSelectRequirement> ("dst");
+  }
+
+  //
   // dst_of_ArtifactDeployRequirement
   //
   size_t Requirement_Impl::dst_of_ArtifactDeployRequirement (std::vector <ArtifactDeployRequirement> & items) const
@@ -123,22 +139,6 @@ namespace PICML
   GAME::Mga::Collection_T <AssemblyselectRequirement> Requirement_Impl::dst_of_AssemblyselectRequirement (void) const
   {
     return this->in_connections <AssemblyselectRequirement> ("dst");
-  }
-
-  //
-  // dst_of_PackageConfSelectRequirement
-  //
-  size_t Requirement_Impl::dst_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const
-  {
-    return this->in_connections <PackageConfSelectRequirement> (items);
-  }
-
-  //
-  // dst_of_PackageConfSelectRequirement
-  //
-  GAME::Mga::Collection_T <PackageConfSelectRequirement> Requirement_Impl::dst_of_PackageConfSelectRequirement (void) const
-  {
-    return this->in_connections <PackageConfSelectRequirement> ("dst");
   }
 }
 
