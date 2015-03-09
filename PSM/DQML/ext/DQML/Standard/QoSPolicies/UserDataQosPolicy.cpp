@@ -8,11 +8,11 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -33,17 +33,17 @@ namespace DQML
   const bool UserDataQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const DataWriterQos_in)
+  // _create (const DataReaderQos_in)
   //
-  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataWriterQos_in parent)
+  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const DataWriterQos_in)
   //
-  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  UserDataQosPolicy UserDataQosPolicy_Impl::_create (const DataWriterQos_in parent)
   {
     return ::GAME::Mga::create < UserDataQosPolicy > (parent, UserDataQosPolicy_Impl::metaname);
   }
@@ -79,19 +79,19 @@ namespace DQML
   }
 
   //
-  // parent_DataWriterQos
-  //
-  DataWriterQos UserDataQosPolicy_Impl::parent_DataWriterQos (void)
-  {
-    return DataWriterQos::_narrow (this->parent ());
-  }
-
-  //
   // parent_DataReaderQos
   //
   DataReaderQos UserDataQosPolicy_Impl::parent_DataReaderQos (void)
   {
     return DataReaderQos::_narrow (this->parent ());
+  }
+
+  //
+  // parent_DataWriterQos
+  //
+  DataWriterQos UserDataQosPolicy_Impl::parent_DataWriterQos (void)
+  {
+    return DataWriterQos::_narrow (this->parent ());
   }
 
   //
@@ -119,22 +119,6 @@ namespace DQML
   }
 
   //
-  // dst_of_dw_userdata_Connection
-  //
-  size_t UserDataQosPolicy_Impl::dst_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
-  {
-    return this->in_connections <dw_userdata_Connection> (items);
-  }
-
-  //
-  // dst_of_dw_userdata_Connection
-  //
-  GAME::Mga::Collection_T <dw_userdata_Connection> UserDataQosPolicy_Impl::dst_of_dw_userdata_Connection (void) const
-  {
-    return this->in_connections <dw_userdata_Connection> ("dst");
-  }
-
-  //
   // dst_of_dp_userdata_Connection
   //
   size_t UserDataQosPolicy_Impl::dst_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
@@ -148,6 +132,22 @@ namespace DQML
   GAME::Mga::Collection_T <dp_userdata_Connection> UserDataQosPolicy_Impl::dst_of_dp_userdata_Connection (void) const
   {
     return this->in_connections <dp_userdata_Connection> ("dst");
+  }
+
+  //
+  // dst_of_dw_userdata_Connection
+  //
+  size_t UserDataQosPolicy_Impl::dst_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
+  {
+    return this->in_connections <dw_userdata_Connection> (items);
+  }
+
+  //
+  // dst_of_dw_userdata_Connection
+  //
+  GAME::Mga::Collection_T <dw_userdata_Connection> UserDataQosPolicy_Impl::dst_of_dw_userdata_Connection (void) const
+  {
+    return this->in_connections <dw_userdata_Connection> ("dst");
   }
 }
 

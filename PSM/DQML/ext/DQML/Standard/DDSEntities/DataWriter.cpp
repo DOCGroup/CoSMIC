@@ -8,23 +8,23 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
-#include "DQML/Standard/Main/dw_topic_Connection.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
-#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/dw_ownership_Connection.h"
-#include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
-#include "DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
-#include "DQML/Standard/Main/dw_pub_Connection.h"
-#include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
-#include "DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dw_reliability_Connection.h"
 #include "DQML/Standard/DurabilityServiceQosPolicy/dw_dursvc_Connection.h"
+#include "DQML/Standard/UserDataQosPolicy/dw_userdata_Connection.h"
 #include "DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.h"
+#include "DQML/Standard/LifespanQosPolicy/dw_lifespan_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
 #include "DQML/Standard/OwnershipStrengthQosPolicy/dw_ownerstrength_Connection.h"
+#include "DQML/Standard/TransportPriorityQosPolicy/dw_transpri_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
+#include "DQML/Standard/DeadlineQosPolicy/dw_deadline_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/dw_liveliness_Connection.h"
+#include "DQML/Standard/LatencyBudgetQosPolicy/dw_latency_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dw_res_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/dw_durqos_Connection.h"
+#include "DQML/Standard/Main/dw_topic_Connection.h"
+#include "DQML/Standard/Main/dw_pub_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -66,139 +66,27 @@ namespace DQML
   }
 
   //
-  // src_of_dw_liveliness_Connection
+  // src_of_dw_ownership_Connection
   //
-  size_t DataWriter_Impl::src_of_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const
+  size_t DataWriter_Impl::src_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const
   {
-    return this->in_connections <dw_liveliness_Connection> (items);
+    return this->in_connections <dw_ownership_Connection> (items);
   }
 
   //
-  // has_src_of_dw_liveliness_Connection
+  // has_src_of_dw_ownership_Connection
   //
-  bool DataWriter_Impl::has_src_of_dw_liveliness_Connection (void) const
+  bool DataWriter_Impl::has_src_of_dw_ownership_Connection (void) const
   {
-    return this->in_connections <dw_liveliness_Connection> ("src").count () == 1;
+    return this->in_connections <dw_ownership_Connection> ("src").count () == 1;
   }
 
   //
-  // src_of_dw_liveliness_Connection
+  // src_of_dw_ownership_Connection
   //
-  dw_liveliness_Connection DataWriter_Impl::src_of_dw_liveliness_Connection (void) const
+  dw_ownership_Connection DataWriter_Impl::src_of_dw_ownership_Connection (void) const
   {
-    return this->in_connections <dw_liveliness_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_topic_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const
-  {
-    return this->in_connections <dw_topic_Connection> (items);
-  }
-
-  //
-  // src_of_dw_topic_Connection
-  //
-  dw_topic_Connection DataWriter_Impl::src_of_dw_topic_Connection (void) const
-  {
-    return this->in_connections <dw_topic_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_res_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_res_Connection (std::vector <dw_res_Connection> & items) const
-  {
-    return this->in_connections <dw_res_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_res_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_res_Connection (void) const
-  {
-    return this->in_connections <dw_res_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_res_Connection
-  //
-  dw_res_Connection DataWriter_Impl::src_of_dw_res_Connection (void) const
-  {
-    return this->in_connections <dw_res_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_history_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const
-  {
-    return this->in_connections <dw_history_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_history_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_history_Connection (void) const
-  {
-    return this->in_connections <dw_history_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_history_Connection
-  //
-  dw_history_Connection DataWriter_Impl::src_of_dw_history_Connection (void) const
-  {
-    return this->in_connections <dw_history_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_userdata_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
-  {
-    return this->in_connections <dw_userdata_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_userdata_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_userdata_Connection (void) const
-  {
-    return this->in_connections <dw_userdata_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_userdata_Connection
-  //
-  dw_userdata_Connection DataWriter_Impl::src_of_dw_userdata_Connection (void) const
-  {
-    return this->in_connections <dw_userdata_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_dstOrder_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
-  {
-    return this->in_connections <dw_dstOrder_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_dstOrder_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dw_dstOrder_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_dstOrder_Connection
-  //
-  dw_dstOrder_Connection DataWriter_Impl::src_of_dw_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dw_dstOrder_Connection> ("src").first ();
+    return this->in_connections <dw_ownership_Connection> ("src").first ();
   }
 
   //
@@ -226,150 +114,6 @@ namespace DQML
   }
 
   //
-  // src_of_dw_ownership_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const
-  {
-    return this->in_connections <dw_ownership_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_ownership_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_ownership_Connection (void) const
-  {
-    return this->in_connections <dw_ownership_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_ownership_Connection
-  //
-  dw_ownership_Connection DataWriter_Impl::src_of_dw_ownership_Connection (void) const
-  {
-    return this->in_connections <dw_ownership_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_latency_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const
-  {
-    return this->in_connections <dw_latency_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_latency_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_latency_Connection (void) const
-  {
-    return this->in_connections <dw_latency_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_latency_Connection
-  //
-  dw_latency_Connection DataWriter_Impl::src_of_dw_latency_Connection (void) const
-  {
-    return this->in_connections <dw_latency_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_deadline_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const
-  {
-    return this->in_connections <dw_deadline_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_deadline_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_deadline_Connection (void) const
-  {
-    return this->in_connections <dw_deadline_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_deadline_Connection
-  //
-  dw_deadline_Connection DataWriter_Impl::src_of_dw_deadline_Connection (void) const
-  {
-    return this->in_connections <dw_deadline_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_durqos_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
-  {
-    return this->in_connections <dw_durqos_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_durqos_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_durqos_Connection (void) const
-  {
-    return this->in_connections <dw_durqos_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_durqos_Connection
-  //
-  dw_durqos_Connection DataWriter_Impl::src_of_dw_durqos_Connection (void) const
-  {
-    return this->in_connections <dw_durqos_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_lifespan_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const
-  {
-    return this->in_connections <dw_lifespan_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_lifespan_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_lifespan_Connection (void) const
-  {
-    return this->in_connections <dw_lifespan_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_lifespan_Connection
-  //
-  dw_lifespan_Connection DataWriter_Impl::src_of_dw_lifespan_Connection (void) const
-  {
-    return this->in_connections <dw_lifespan_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_transpri_Connection
-  //
-  size_t DataWriter_Impl::src_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
-  {
-    return this->in_connections <dw_transpri_Connection> (items);
-  }
-
-  //
-  // has_src_of_dw_transpri_Connection
-  //
-  bool DataWriter_Impl::has_src_of_dw_transpri_Connection (void) const
-  {
-    return this->in_connections <dw_transpri_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dw_transpri_Connection
-  //
-  dw_transpri_Connection DataWriter_Impl::src_of_dw_transpri_Connection (void) const
-  {
-    return this->in_connections <dw_transpri_Connection> ("src").first ();
-  }
-
-  //
   // src_of_dw_dursvc_Connection
   //
   size_t DataWriter_Impl::src_of_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const
@@ -391,6 +135,30 @@ namespace DQML
   dw_dursvc_Connection DataWriter_Impl::src_of_dw_dursvc_Connection (void) const
   {
     return this->in_connections <dw_dursvc_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_userdata_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const
+  {
+    return this->in_connections <dw_userdata_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_userdata_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_userdata_Connection (void) const
+  {
+    return this->in_connections <dw_userdata_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_userdata_Connection
+  //
+  dw_userdata_Connection DataWriter_Impl::src_of_dw_userdata_Connection (void) const
+  {
+    return this->in_connections <dw_userdata_Connection> ("src").first ();
   }
 
   //
@@ -418,6 +186,54 @@ namespace DQML
   }
 
   //
+  // src_of_dw_lifespan_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const
+  {
+    return this->in_connections <dw_lifespan_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_lifespan_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_lifespan_Connection (void) const
+  {
+    return this->in_connections <dw_lifespan_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_lifespan_Connection
+  //
+  dw_lifespan_Connection DataWriter_Impl::src_of_dw_lifespan_Connection (void) const
+  {
+    return this->in_connections <dw_lifespan_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_dstOrder_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const
+  {
+    return this->in_connections <dw_dstOrder_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_dstOrder_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_dstOrder_Connection (void) const
+  {
+    return this->in_connections <dw_dstOrder_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_dstOrder_Connection
+  //
+  dw_dstOrder_Connection DataWriter_Impl::src_of_dw_dstOrder_Connection (void) const
+  {
+    return this->in_connections <dw_dstOrder_Connection> ("src").first ();
+  }
+
+  //
   // src_of_dw_ownerstrength_Connection
   //
   size_t DataWriter_Impl::src_of_dw_ownerstrength_Connection (std::vector <dw_ownerstrength_Connection> & items) const
@@ -439,6 +255,190 @@ namespace DQML
   dw_ownerstrength_Connection DataWriter_Impl::src_of_dw_ownerstrength_Connection (void) const
   {
     return this->in_connections <dw_ownerstrength_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_transpri_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const
+  {
+    return this->in_connections <dw_transpri_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_transpri_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_transpri_Connection (void) const
+  {
+    return this->in_connections <dw_transpri_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_transpri_Connection
+  //
+  dw_transpri_Connection DataWriter_Impl::src_of_dw_transpri_Connection (void) const
+  {
+    return this->in_connections <dw_transpri_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_history_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const
+  {
+    return this->in_connections <dw_history_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_history_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_history_Connection (void) const
+  {
+    return this->in_connections <dw_history_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_history_Connection
+  //
+  dw_history_Connection DataWriter_Impl::src_of_dw_history_Connection (void) const
+  {
+    return this->in_connections <dw_history_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_deadline_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const
+  {
+    return this->in_connections <dw_deadline_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_deadline_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_deadline_Connection (void) const
+  {
+    return this->in_connections <dw_deadline_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_deadline_Connection
+  //
+  dw_deadline_Connection DataWriter_Impl::src_of_dw_deadline_Connection (void) const
+  {
+    return this->in_connections <dw_deadline_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_liveliness_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const
+  {
+    return this->in_connections <dw_liveliness_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_liveliness_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_liveliness_Connection (void) const
+  {
+    return this->in_connections <dw_liveliness_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_liveliness_Connection
+  //
+  dw_liveliness_Connection DataWriter_Impl::src_of_dw_liveliness_Connection (void) const
+  {
+    return this->in_connections <dw_liveliness_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_latency_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const
+  {
+    return this->in_connections <dw_latency_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_latency_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_latency_Connection (void) const
+  {
+    return this->in_connections <dw_latency_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_latency_Connection
+  //
+  dw_latency_Connection DataWriter_Impl::src_of_dw_latency_Connection (void) const
+  {
+    return this->in_connections <dw_latency_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_res_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_res_Connection (std::vector <dw_res_Connection> & items) const
+  {
+    return this->in_connections <dw_res_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_res_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_res_Connection (void) const
+  {
+    return this->in_connections <dw_res_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_res_Connection
+  //
+  dw_res_Connection DataWriter_Impl::src_of_dw_res_Connection (void) const
+  {
+    return this->in_connections <dw_res_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_durqos_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const
+  {
+    return this->in_connections <dw_durqos_Connection> (items);
+  }
+
+  //
+  // has_src_of_dw_durqos_Connection
+  //
+  bool DataWriter_Impl::has_src_of_dw_durqos_Connection (void) const
+  {
+    return this->in_connections <dw_durqos_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dw_durqos_Connection
+  //
+  dw_durqos_Connection DataWriter_Impl::src_of_dw_durqos_Connection (void) const
+  {
+    return this->in_connections <dw_durqos_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_topic_Connection
+  //
+  size_t DataWriter_Impl::src_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const
+  {
+    return this->in_connections <dw_topic_Connection> (items);
+  }
+
+  //
+  // src_of_dw_topic_Connection
+  //
+  dw_topic_Connection DataWriter_Impl::src_of_dw_topic_Connection (void) const
+  {
+    return this->in_connections <dw_topic_Connection> ("src").first ();
   }
 
   //

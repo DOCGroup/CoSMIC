@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
 #include "DQML/Standard/Main/dpf_dp_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dpfactory_entityfactory_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -51,6 +51,22 @@ namespace DQML
   }
 
   //
+  // src_of_dpf_dp_Connection
+  //
+  size_t DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const
+  {
+    return this->in_connections <dpf_dp_Connection> (items);
+  }
+
+  //
+  // src_of_dpf_dp_Connection
+  //
+  GAME::Mga::Collection_T <dpf_dp_Connection> DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
+  {
+    return this->in_connections <dpf_dp_Connection> ("src");
+  }
+
+  //
   // src_of_dpfactory_entityfactory_Connection
   //
   size_t DomainParticipantFactory_Impl::src_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const
@@ -72,22 +88,6 @@ namespace DQML
   dpfactory_entityfactory_Connection DomainParticipantFactory_Impl::src_of_dpfactory_entityfactory_Connection (void) const
   {
     return this->in_connections <dpfactory_entityfactory_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dpf_dp_Connection
-  //
-  size_t DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (std::vector <dpf_dp_Connection> & items) const
-  {
-    return this->in_connections <dpf_dp_Connection> (items);
-  }
-
-  //
-  // src_of_dpf_dp_Connection
-  //
-  GAME::Mga::Collection_T <dpf_dp_Connection> DomainParticipantFactory_Impl::src_of_dpf_dp_Connection (void) const
-  {
-    return this->in_connections <dpf_dp_Connection> ("src");
   }
 }
 

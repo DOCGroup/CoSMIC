@@ -8,19 +8,19 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/dr_sub_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/Main/dr_topic_Connection.h"
+#include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
 #include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
+#include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
+#include "DQML/Standard/Main/dr_sub_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
-#include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
-#include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
 #include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -63,6 +63,30 @@ namespace DQML
   }
 
   //
+  // src_of_dr_reliability_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
+  {
+    return this->in_connections <dr_reliability_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_reliability_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_reliability_Connection (void) const
+  {
+    return this->in_connections <dr_reliability_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_reliability_Connection
+  //
+  dr_reliability_Connection DataReader_Impl::src_of_dr_reliability_Connection (void) const
+  {
+    return this->in_connections <dr_reliability_Connection> ("src").first ();
+  }
+
+  //
   // src_of_dr_topic_Connection
   //
   size_t DataReader_Impl::src_of_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const
@@ -76,6 +100,22 @@ namespace DQML
   dr_topic_Connection DataReader_Impl::src_of_dr_topic_Connection (void) const
   {
     return this->in_connections <dr_topic_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_timebased_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const
+  {
+    return this->in_connections <dr_timebased_Connection> (items);
+  }
+
+  //
+  // src_of_dr_timebased_Connection
+  //
+  GAME::Mga::Collection_T <dr_timebased_Connection> DataReader_Impl::src_of_dr_timebased_Connection (void) const
+  {
+    return this->in_connections <dr_timebased_Connection> ("src");
   }
 
   //
@@ -103,51 +143,27 @@ namespace DQML
   }
 
   //
-  // src_of_dr_res_Connection
+  // src_of_dr_ownership_Connection
   //
-  size_t DataReader_Impl::src_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const
+  size_t DataReader_Impl::src_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
   {
-    return this->in_connections <dr_res_Connection> (items);
+    return this->in_connections <dr_ownership_Connection> (items);
   }
 
   //
-  // has_src_of_dr_res_Connection
+  // has_src_of_dr_ownership_Connection
   //
-  bool DataReader_Impl::has_src_of_dr_res_Connection (void) const
+  bool DataReader_Impl::has_src_of_dr_ownership_Connection (void) const
   {
-    return this->in_connections <dr_res_Connection> ("src").count () == 1;
+    return this->in_connections <dr_ownership_Connection> ("src").count () == 1;
   }
 
   //
-  // src_of_dr_res_Connection
+  // src_of_dr_ownership_Connection
   //
-  dr_res_Connection DataReader_Impl::src_of_dr_res_Connection (void) const
+  dr_ownership_Connection DataReader_Impl::src_of_dr_ownership_Connection (void) const
   {
-    return this->in_connections <dr_res_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dr_history_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const
-  {
-    return this->in_connections <dr_history_Connection> (items);
-  }
-
-  //
-  // has_src_of_dr_history_Connection
-  //
-  bool DataReader_Impl::has_src_of_dr_history_Connection (void) const
-  {
-    return this->in_connections <dr_history_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dr_history_Connection
-  //
-  dr_history_Connection DataReader_Impl::src_of_dr_history_Connection (void) const
-  {
-    return this->in_connections <dr_history_Connection> ("src").first ();
+    return this->in_connections <dr_ownership_Connection> ("src").first ();
   }
 
   //
@@ -199,75 +215,27 @@ namespace DQML
   }
 
   //
-  // src_of_dr_reliability_Connection
+  // src_of_dr_history_Connection
   //
-  size_t DataReader_Impl::src_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
+  size_t DataReader_Impl::src_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const
   {
-    return this->in_connections <dr_reliability_Connection> (items);
+    return this->in_connections <dr_history_Connection> (items);
   }
 
   //
-  // has_src_of_dr_reliability_Connection
+  // has_src_of_dr_history_Connection
   //
-  bool DataReader_Impl::has_src_of_dr_reliability_Connection (void) const
+  bool DataReader_Impl::has_src_of_dr_history_Connection (void) const
   {
-    return this->in_connections <dr_reliability_Connection> ("src").count () == 1;
+    return this->in_connections <dr_history_Connection> ("src").count () == 1;
   }
 
   //
-  // src_of_dr_reliability_Connection
+  // src_of_dr_history_Connection
   //
-  dr_reliability_Connection DataReader_Impl::src_of_dr_reliability_Connection (void) const
+  dr_history_Connection DataReader_Impl::src_of_dr_history_Connection (void) const
   {
-    return this->in_connections <dr_reliability_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dr_liveliness_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
-  {
-    return this->in_connections <dr_liveliness_Connection> (items);
-  }
-
-  //
-  // has_src_of_dr_liveliness_Connection
-  //
-  bool DataReader_Impl::has_src_of_dr_liveliness_Connection (void) const
-  {
-    return this->in_connections <dr_liveliness_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dr_liveliness_Connection
-  //
-  dr_liveliness_Connection DataReader_Impl::src_of_dr_liveliness_Connection (void) const
-  {
-    return this->in_connections <dr_liveliness_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dr_ownership_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
-  {
-    return this->in_connections <dr_ownership_Connection> (items);
-  }
-
-  //
-  // has_src_of_dr_ownership_Connection
-  //
-  bool DataReader_Impl::has_src_of_dr_ownership_Connection (void) const
-  {
-    return this->in_connections <dr_ownership_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_dr_ownership_Connection
-  //
-  dr_ownership_Connection DataReader_Impl::src_of_dr_ownership_Connection (void) const
-  {
-    return this->in_connections <dr_ownership_Connection> ("src").first ();
+    return this->in_connections <dr_history_Connection> ("src").first ();
   }
 
   //
@@ -295,19 +263,27 @@ namespace DQML
   }
 
   //
-  // src_of_dr_timebased_Connection
+  // src_of_dr_liveliness_Connection
   //
-  size_t DataReader_Impl::src_of_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const
+  size_t DataReader_Impl::src_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
   {
-    return this->in_connections <dr_timebased_Connection> (items);
+    return this->in_connections <dr_liveliness_Connection> (items);
   }
 
   //
-  // src_of_dr_timebased_Connection
+  // has_src_of_dr_liveliness_Connection
   //
-  GAME::Mga::Collection_T <dr_timebased_Connection> DataReader_Impl::src_of_dr_timebased_Connection (void) const
+  bool DataReader_Impl::has_src_of_dr_liveliness_Connection (void) const
   {
-    return this->in_connections <dr_timebased_Connection> ("src");
+    return this->in_connections <dr_liveliness_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_liveliness_Connection
+  //
+  dr_liveliness_Connection DataReader_Impl::src_of_dr_liveliness_Connection (void) const
+  {
+    return this->in_connections <dr_liveliness_Connection> ("src").first ();
   }
 
   //
@@ -332,6 +308,30 @@ namespace DQML
   dr_deadline_Connection DataReader_Impl::src_of_dr_deadline_Connection (void) const
   {
     return this->in_connections <dr_deadline_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_res_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const
+  {
+    return this->in_connections <dr_res_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_res_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_res_Connection (void) const
+  {
+    return this->in_connections <dr_res_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_res_Connection
+  //
+  dr_res_Connection DataReader_Impl::src_of_dr_res_Connection (void) const
+  {
+    return this->in_connections <dr_res_Connection> ("src").first ();
   }
 
   //

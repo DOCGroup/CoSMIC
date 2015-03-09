@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
-#include "DQML/Standard/Main/dw_pub_Connection.h"
-#include "DQML/Standard/Main/dp_pub_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
 #include "DQML/Standard/GroupDataQosPolicy/pub_groupdata_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/pub_part_Connection.h"
+#include "DQML/Standard/Main/dp_pub_Connection.h"
+#include "DQML/Standard/Main/dw_pub_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/pub_entityfactory_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -52,70 +52,6 @@ namespace DQML
       this_visitor->visit_Publisher (this);
     else
       v->visit_Model (this);
-  }
-
-  //
-  // src_of_pub_entityfactory_Connection
-  //
-  size_t Publisher_Impl::src_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> (items);
-  }
-
-  //
-  // has_src_of_pub_entityfactory_Connection
-  //
-  bool Publisher_Impl::has_src_of_pub_entityfactory_Connection (void) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_pub_entityfactory_Connection
-  //
-  pub_entityfactory_Connection Publisher_Impl::src_of_pub_entityfactory_Connection (void) const
-  {
-    return this->in_connections <pub_entityfactory_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_dw_pub_Connection
-  //
-  size_t Publisher_Impl::src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const
-  {
-    return this->in_connections <dw_pub_Connection> (items);
-  }
-
-  //
-  // src_of_dw_pub_Connection
-  //
-  GAME::Mga::Collection_T <dw_pub_Connection> Publisher_Impl::src_of_dw_pub_Connection (void) const
-  {
-    return this->in_connections <dw_pub_Connection> ("src");
-  }
-
-  //
-  // src_of_pub_part_Connection
-  //
-  size_t Publisher_Impl::src_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const
-  {
-    return this->in_connections <pub_part_Connection> (items);
-  }
-
-  //
-  // has_src_of_pub_part_Connection
-  //
-  bool Publisher_Impl::has_src_of_pub_part_Connection (void) const
-  {
-    return this->in_connections <pub_part_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_pub_part_Connection
-  //
-  pub_part_Connection Publisher_Impl::src_of_pub_part_Connection (void) const
-  {
-    return this->in_connections <pub_part_Connection> ("src").first ();
   }
 
   //
@@ -164,6 +100,70 @@ namespace DQML
   pub_presqos_Connection Publisher_Impl::src_of_pub_presqos_Connection (void) const
   {
     return this->in_connections <pub_presqos_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_pub_part_Connection
+  //
+  size_t Publisher_Impl::src_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const
+  {
+    return this->in_connections <pub_part_Connection> (items);
+  }
+
+  //
+  // has_src_of_pub_part_Connection
+  //
+  bool Publisher_Impl::has_src_of_pub_part_Connection (void) const
+  {
+    return this->in_connections <pub_part_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_pub_part_Connection
+  //
+  pub_part_Connection Publisher_Impl::src_of_pub_part_Connection (void) const
+  {
+    return this->in_connections <pub_part_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dw_pub_Connection
+  //
+  size_t Publisher_Impl::src_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const
+  {
+    return this->in_connections <dw_pub_Connection> (items);
+  }
+
+  //
+  // src_of_dw_pub_Connection
+  //
+  GAME::Mga::Collection_T <dw_pub_Connection> Publisher_Impl::src_of_dw_pub_Connection (void) const
+  {
+    return this->in_connections <dw_pub_Connection> ("src");
+  }
+
+  //
+  // src_of_pub_entityfactory_Connection
+  //
+  size_t Publisher_Impl::src_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <pub_entityfactory_Connection> (items);
+  }
+
+  //
+  // has_src_of_pub_entityfactory_Connection
+  //
+  bool Publisher_Impl::has_src_of_pub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <pub_entityfactory_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_pub_entityfactory_Connection
+  //
+  pub_entityfactory_Connection Publisher_Impl::src_of_pub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <pub_entityfactory_Connection> ("src").first ();
   }
 
   //

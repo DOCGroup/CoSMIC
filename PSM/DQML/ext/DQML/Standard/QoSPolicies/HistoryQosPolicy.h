@@ -56,9 +56,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static HistoryQosPolicy _create (const TopicQos_in parent);
-    static HistoryQosPolicy _create (const DataWriterQos_in parent);
     static HistoryQosPolicy _create (const DataReaderQos_in parent);
+    static HistoryQosPolicy _create (const DataWriterQos_in parent);
+    static HistoryQosPolicy _create (const TopicQos_in parent);
     static HistoryQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -78,9 +78,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    TopicQos parent_TopicQos (void);
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**

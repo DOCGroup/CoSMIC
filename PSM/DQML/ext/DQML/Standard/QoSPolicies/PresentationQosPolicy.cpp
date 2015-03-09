@@ -8,10 +8,10 @@
 #endif
 
 #include "DQML/Visitor.h"
+#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
+#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
-#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
-#include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -85,22 +85,6 @@ namespace DQML
   }
 
   //
-  // dst_of_pub_presqos_Connection
-  //
-  size_t PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const
-  {
-    return this->in_connections <pub_presqos_Connection> (items);
-  }
-
-  //
-  // dst_of_pub_presqos_Connection
-  //
-  GAME::Mga::Collection_T <pub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (void) const
-  {
-    return this->in_connections <pub_presqos_Connection> ("dst");
-  }
-
-  //
   // dst_of_sub_presqos_Connection
   //
   size_t PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const
@@ -114,6 +98,22 @@ namespace DQML
   GAME::Mga::Collection_T <sub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (void) const
   {
     return this->in_connections <sub_presqos_Connection> ("dst");
+  }
+
+  //
+  // dst_of_pub_presqos_Connection
+  //
+  size_t PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const
+  {
+    return this->in_connections <pub_presqos_Connection> (items);
+  }
+
+  //
+  // dst_of_pub_presqos_Connection
+  //
+  GAME::Mga::Collection_T <pub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (void) const
+  {
+    return this->in_connections <pub_presqos_Connection> ("dst");
   }
 }
 

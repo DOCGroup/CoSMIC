@@ -56,9 +56,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static OwnershipQosPolicy _create (const TopicQos_in parent);
-    static OwnershipQosPolicy _create (const DataWriterQos_in parent);
     static OwnershipQosPolicy _create (const DataReaderQos_in parent);
+    static OwnershipQosPolicy _create (const DataWriterQos_in parent);
+    static OwnershipQosPolicy _create (const TopicQos_in parent);
     static OwnershipQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -78,9 +78,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    TopicQos parent_TopicQos (void);
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -100,13 +100,13 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_ownership_Connection connection.
-    size_t dst_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_ownership_Connection> dst_of_dr_ownership_Connection (void) const;
-
     /// Get the dst dw_ownership_Connection connection.
     size_t dst_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
     GAME::Mga::Collection_T <dw_ownership_Connection> dst_of_dw_ownership_Connection (void) const;
+
+    /// Get the dst dr_ownership_Connection connection.
+    size_t dst_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_ownership_Connection> dst_of_dr_ownership_Connection (void) const;
 
     /// Get the dst topic_ownership_Connection connection.
     size_t dst_of_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const;

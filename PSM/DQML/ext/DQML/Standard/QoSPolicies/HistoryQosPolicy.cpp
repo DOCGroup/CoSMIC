@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
 #include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/dw_history_Connection.h"
 #include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -33,9 +33,9 @@ namespace DQML
   const bool HistoryQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -49,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  HistoryQosPolicy HistoryQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < HistoryQosPolicy > (parent, HistoryQosPolicy_Impl::metaname);
   }
@@ -79,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos HistoryQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -95,11 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos HistoryQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos HistoryQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
+    return TopicQos::_narrow (this->parent ());
   }
 
   //

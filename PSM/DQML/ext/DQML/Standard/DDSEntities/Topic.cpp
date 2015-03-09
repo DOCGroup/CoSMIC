@@ -8,22 +8,22 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/Main/dw_topic_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
-#include "DQML/Standard/Main/dp_topic_Connection.h"
 #include "DQML/Standard/Main/dr_topic_Connection.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
+#include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
 #include "DQML/Standard/ReliabilityQosPolicy/topic_reliability_Connection.h"
+#include "DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h"
 #include "DQML/Standard/OwnershipQosPolicy/topic_ownership_Connection.h"
+#include "DQML/Standard/Main/dp_topic_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
+#include "DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/topic_history_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/top_latency_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/top_deadline_Connection.h"
-#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
-#include "DQML/Standard/LifespanQosPolicy/topic_lifespan_Connection.h"
-#include "DQML/Standard/TransportPriorityQosPolicy/topic_transpri_Connection.h"
-#include "DQML/Standard/DurabilityServiceQosPolicy/topic_dursvc_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/topic_liveliness_Connection.h"
 #include "DQML/Standard/TopicDataQosPolicy/topic_topicdata_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/topic_res_Connection.h"
+#include "DQML/Standard/DurabilityQosPolicy/topic_durqos_Connection.h"
+#include "DQML/Standard/Main/dw_topic_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -65,99 +65,27 @@ namespace DQML
   }
 
   //
-  // src_of_topic_liveliness_Connection
+  // src_of_topic_transpri_Connection
   //
-  size_t Topic_Impl::src_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const
+  size_t Topic_Impl::src_of_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
   {
-    return this->in_connections <topic_liveliness_Connection> (items);
+    return this->in_connections <topic_transpri_Connection> (items);
   }
 
   //
-  // has_src_of_topic_liveliness_Connection
+  // has_src_of_topic_transpri_Connection
   //
-  bool Topic_Impl::has_src_of_topic_liveliness_Connection (void) const
+  bool Topic_Impl::has_src_of_topic_transpri_Connection (void) const
   {
-    return this->in_connections <topic_liveliness_Connection> ("src").count () == 1;
+    return this->in_connections <topic_transpri_Connection> ("src").count () == 1;
   }
 
   //
-  // src_of_topic_liveliness_Connection
+  // src_of_topic_transpri_Connection
   //
-  topic_liveliness_Connection Topic_Impl::src_of_topic_liveliness_Connection (void) const
+  topic_transpri_Connection Topic_Impl::src_of_topic_transpri_Connection (void) const
   {
-    return this->in_connections <topic_liveliness_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_topic_res_Connection
-  //
-  size_t Topic_Impl::src_of_topic_res_Connection (std::vector <topic_res_Connection> & items) const
-  {
-    return this->in_connections <topic_res_Connection> (items);
-  }
-
-  //
-  // has_src_of_topic_res_Connection
-  //
-  bool Topic_Impl::has_src_of_topic_res_Connection (void) const
-  {
-    return this->in_connections <topic_res_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_topic_res_Connection
-  //
-  topic_res_Connection Topic_Impl::src_of_topic_res_Connection (void) const
-  {
-    return this->in_connections <topic_res_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_topic_history_Connection
-  //
-  size_t Topic_Impl::src_of_topic_history_Connection (std::vector <topic_history_Connection> & items) const
-  {
-    return this->in_connections <topic_history_Connection> (items);
-  }
-
-  //
-  // has_src_of_topic_history_Connection
-  //
-  bool Topic_Impl::has_src_of_topic_history_Connection (void) const
-  {
-    return this->in_connections <topic_history_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_topic_history_Connection
-  //
-  topic_history_Connection Topic_Impl::src_of_topic_history_Connection (void) const
-  {
-    return this->in_connections <topic_history_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_topic_dstOrder_Connection
-  //
-  size_t Topic_Impl::src_of_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const
-  {
-    return this->in_connections <topic_dstOrder_Connection> (items);
-  }
-
-  //
-  // has_src_of_topic_dstOrder_Connection
-  //
-  bool Topic_Impl::has_src_of_topic_dstOrder_Connection (void) const
-  {
-    return this->in_connections <topic_dstOrder_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_topic_dstOrder_Connection
-  //
-  topic_dstOrder_Connection Topic_Impl::src_of_topic_dstOrder_Connection (void) const
-  {
-    return this->in_connections <topic_dstOrder_Connection> ("src").first ();
+    return this->in_connections <topic_transpri_Connection> ("src").first ();
   }
 
   //
@@ -185,6 +113,30 @@ namespace DQML
   }
 
   //
+  // src_of_topic_dursvc_Connection
+  //
+  size_t Topic_Impl::src_of_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
+  {
+    return this->in_connections <topic_dursvc_Connection> (items);
+  }
+
+  //
+  // has_src_of_topic_dursvc_Connection
+  //
+  bool Topic_Impl::has_src_of_topic_dursvc_Connection (void) const
+  {
+    return this->in_connections <topic_dursvc_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_topic_dursvc_Connection
+  //
+  topic_dursvc_Connection Topic_Impl::src_of_topic_dursvc_Connection (void) const
+  {
+    return this->in_connections <topic_dursvc_Connection> ("src").first ();
+  }
+
+  //
   // src_of_topic_ownership_Connection
   //
   size_t Topic_Impl::src_of_topic_ownership_Connection (std::vector <topic_ownership_Connection> & items) const
@@ -206,6 +158,78 @@ namespace DQML
   topic_ownership_Connection Topic_Impl::src_of_topic_ownership_Connection (void) const
   {
     return this->in_connections <topic_ownership_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_topic_dstOrder_Connection
+  //
+  size_t Topic_Impl::src_of_topic_dstOrder_Connection (std::vector <topic_dstOrder_Connection> & items) const
+  {
+    return this->in_connections <topic_dstOrder_Connection> (items);
+  }
+
+  //
+  // has_src_of_topic_dstOrder_Connection
+  //
+  bool Topic_Impl::has_src_of_topic_dstOrder_Connection (void) const
+  {
+    return this->in_connections <topic_dstOrder_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_topic_dstOrder_Connection
+  //
+  topic_dstOrder_Connection Topic_Impl::src_of_topic_dstOrder_Connection (void) const
+  {
+    return this->in_connections <topic_dstOrder_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_topic_lifespan_Connection
+  //
+  size_t Topic_Impl::src_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const
+  {
+    return this->in_connections <topic_lifespan_Connection> (items);
+  }
+
+  //
+  // has_src_of_topic_lifespan_Connection
+  //
+  bool Topic_Impl::has_src_of_topic_lifespan_Connection (void) const
+  {
+    return this->in_connections <topic_lifespan_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_topic_lifespan_Connection
+  //
+  topic_lifespan_Connection Topic_Impl::src_of_topic_lifespan_Connection (void) const
+  {
+    return this->in_connections <topic_lifespan_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_topic_history_Connection
+  //
+  size_t Topic_Impl::src_of_topic_history_Connection (std::vector <topic_history_Connection> & items) const
+  {
+    return this->in_connections <topic_history_Connection> (items);
+  }
+
+  //
+  // has_src_of_topic_history_Connection
+  //
+  bool Topic_Impl::has_src_of_topic_history_Connection (void) const
+  {
+    return this->in_connections <topic_history_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_topic_history_Connection
+  //
+  topic_history_Connection Topic_Impl::src_of_topic_history_Connection (void) const
+  {
+    return this->in_connections <topic_history_Connection> ("src").first ();
   }
 
   //
@@ -257,99 +281,27 @@ namespace DQML
   }
 
   //
-  // src_of_topic_durqos_Connection
+  // src_of_topic_liveliness_Connection
   //
-  size_t Topic_Impl::src_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const
+  size_t Topic_Impl::src_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const
   {
-    return this->in_connections <topic_durqos_Connection> (items);
+    return this->in_connections <topic_liveliness_Connection> (items);
   }
 
   //
-  // has_src_of_topic_durqos_Connection
+  // has_src_of_topic_liveliness_Connection
   //
-  bool Topic_Impl::has_src_of_topic_durqos_Connection (void) const
+  bool Topic_Impl::has_src_of_topic_liveliness_Connection (void) const
   {
-    return this->in_connections <topic_durqos_Connection> ("src").count () == 1;
+    return this->in_connections <topic_liveliness_Connection> ("src").count () == 1;
   }
 
   //
-  // src_of_topic_durqos_Connection
+  // src_of_topic_liveliness_Connection
   //
-  topic_durqos_Connection Topic_Impl::src_of_topic_durqos_Connection (void) const
+  topic_liveliness_Connection Topic_Impl::src_of_topic_liveliness_Connection (void) const
   {
-    return this->in_connections <topic_durqos_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_topic_lifespan_Connection
-  //
-  size_t Topic_Impl::src_of_topic_lifespan_Connection (std::vector <topic_lifespan_Connection> & items) const
-  {
-    return this->in_connections <topic_lifespan_Connection> (items);
-  }
-
-  //
-  // has_src_of_topic_lifespan_Connection
-  //
-  bool Topic_Impl::has_src_of_topic_lifespan_Connection (void) const
-  {
-    return this->in_connections <topic_lifespan_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_topic_lifespan_Connection
-  //
-  topic_lifespan_Connection Topic_Impl::src_of_topic_lifespan_Connection (void) const
-  {
-    return this->in_connections <topic_lifespan_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_topic_transpri_Connection
-  //
-  size_t Topic_Impl::src_of_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const
-  {
-    return this->in_connections <topic_transpri_Connection> (items);
-  }
-
-  //
-  // has_src_of_topic_transpri_Connection
-  //
-  bool Topic_Impl::has_src_of_topic_transpri_Connection (void) const
-  {
-    return this->in_connections <topic_transpri_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_topic_transpri_Connection
-  //
-  topic_transpri_Connection Topic_Impl::src_of_topic_transpri_Connection (void) const
-  {
-    return this->in_connections <topic_transpri_Connection> ("src").first ();
-  }
-
-  //
-  // src_of_topic_dursvc_Connection
-  //
-  size_t Topic_Impl::src_of_topic_dursvc_Connection (std::vector <topic_dursvc_Connection> & items) const
-  {
-    return this->in_connections <topic_dursvc_Connection> (items);
-  }
-
-  //
-  // has_src_of_topic_dursvc_Connection
-  //
-  bool Topic_Impl::has_src_of_topic_dursvc_Connection (void) const
-  {
-    return this->in_connections <topic_dursvc_Connection> ("src").count () == 1;
-  }
-
-  //
-  // src_of_topic_dursvc_Connection
-  //
-  topic_dursvc_Connection Topic_Impl::src_of_topic_dursvc_Connection (void) const
-  {
-    return this->in_connections <topic_dursvc_Connection> ("src").first ();
+    return this->in_connections <topic_liveliness_Connection> ("src").first ();
   }
 
   //
@@ -377,19 +329,67 @@ namespace DQML
   }
 
   //
-  // dst_of_dw_topic_Connection
+  // src_of_topic_res_Connection
   //
-  size_t Topic_Impl::dst_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const
+  size_t Topic_Impl::src_of_topic_res_Connection (std::vector <topic_res_Connection> & items) const
   {
-    return this->in_connections <dw_topic_Connection> (items);
+    return this->in_connections <topic_res_Connection> (items);
   }
 
   //
-  // dst_of_dw_topic_Connection
+  // has_src_of_topic_res_Connection
   //
-  GAME::Mga::Collection_T <dw_topic_Connection> Topic_Impl::dst_of_dw_topic_Connection (void) const
+  bool Topic_Impl::has_src_of_topic_res_Connection (void) const
   {
-    return this->in_connections <dw_topic_Connection> ("dst");
+    return this->in_connections <topic_res_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_topic_res_Connection
+  //
+  topic_res_Connection Topic_Impl::src_of_topic_res_Connection (void) const
+  {
+    return this->in_connections <topic_res_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_topic_durqos_Connection
+  //
+  size_t Topic_Impl::src_of_topic_durqos_Connection (std::vector <topic_durqos_Connection> & items) const
+  {
+    return this->in_connections <topic_durqos_Connection> (items);
+  }
+
+  //
+  // has_src_of_topic_durqos_Connection
+  //
+  bool Topic_Impl::has_src_of_topic_durqos_Connection (void) const
+  {
+    return this->in_connections <topic_durqos_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_topic_durqos_Connection
+  //
+  topic_durqos_Connection Topic_Impl::src_of_topic_durqos_Connection (void) const
+  {
+    return this->in_connections <topic_durqos_Connection> ("src").first ();
+  }
+
+  //
+  // dst_of_dr_topic_Connection
+  //
+  size_t Topic_Impl::dst_of_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const
+  {
+    return this->in_connections <dr_topic_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_topic_Connection
+  //
+  GAME::Mga::Collection_T <dr_topic_Connection> Topic_Impl::dst_of_dr_topic_Connection (void) const
+  {
+    return this->in_connections <dr_topic_Connection> ("dst");
   }
 
   //
@@ -409,19 +409,19 @@ namespace DQML
   }
 
   //
-  // dst_of_dr_topic_Connection
+  // dst_of_dw_topic_Connection
   //
-  size_t Topic_Impl::dst_of_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const
+  size_t Topic_Impl::dst_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const
   {
-    return this->in_connections <dr_topic_Connection> (items);
+    return this->in_connections <dw_topic_Connection> (items);
   }
 
   //
-  // dst_of_dr_topic_Connection
+  // dst_of_dw_topic_Connection
   //
-  dr_topic_Connection Topic_Impl::dst_of_dr_topic_Connection (void) const
+  GAME::Mga::Collection_T <dw_topic_Connection> Topic_Impl::dst_of_dw_topic_Connection (void) const
   {
-    return this->in_connections <dr_topic_Connection> ("dst").first ();
+    return this->in_connections <dw_topic_Connection> ("dst");
   }
 }
 
