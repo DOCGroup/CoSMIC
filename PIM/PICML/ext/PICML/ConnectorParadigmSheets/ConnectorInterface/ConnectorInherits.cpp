@@ -61,7 +61,7 @@ namespace PICML
   //
   bool ConnectorInherits_Impl::ConnectorObject_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -83,7 +83,8 @@ namespace PICML
 
     /// Get the src InstanceMapping connection.
     size_t src_of_InstanceMapping (std::vector <InstanceMapping> & items) const;
-    GAME::Mga::Collection_T <InstanceMapping> src_of_InstanceMapping (void) const;
+    bool has_src_of_InstanceMapping (void) const;
+    InstanceMapping src_of_InstanceMapping (void) const;
     ///@}
 
     /**

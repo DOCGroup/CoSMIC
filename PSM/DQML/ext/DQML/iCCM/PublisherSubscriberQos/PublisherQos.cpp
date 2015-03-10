@@ -12,8 +12,8 @@
 #include "DQML/Standard/QoSPolicies/PartitionQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/GroupDataQosPolicy.h"
 #include "DQML/Standard/QoSPolicies/PresentationQosPolicy.h"
-#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "DQML/iCCM/DomainQos/PublisherConnection.h"
+#include "DQML/iCCM/DomainParticipantQos/Participant.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -70,19 +70,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_PublisherConnection
-  //
-  bool PublisherQos_Impl::has_dst_of_PublisherConnection (void) const
-  {
-    return this->in_connections <PublisherConnection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_PublisherConnection
   //
-  PublisherConnection PublisherQos_Impl::dst_of_PublisherConnection (void) const
+  GAME::Mga::Collection_T <PublisherConnection> PublisherQos_Impl::dst_of_PublisherConnection (void) const
   {
-    return this->in_connections <PublisherConnection> ("dst").first ();
+    return this->in_connections <PublisherConnection> ("dst");
   }
 
   //

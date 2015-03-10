@@ -59,8 +59,8 @@
 #include "PICML/ComponentBenchmark/Latency.h"
 #include "PICML/NamedTypes/KeyMember.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
-#include "PICML/ImplementationCommon/MonolithExecParameter.h"
 #include "PICML/ImplementationArtifact/ArtifactExecParameter.h"
+#include "PICML/ImplementationCommon/MonolithExecParameter.h"
 #include "PICML/ComponentPackage/PackageConfigProperty.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/QueryAction.h"
 #include "PICML/InheritableTypes/GetException.h"
@@ -247,8 +247,8 @@
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/OperationTypes/InParameter.h"
 #include "PICML/Common/DataValue.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/NamedTypes/Key.h"
 #include "PICML/PredefinedTypes/UnsignedShortInteger.h"
 #include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
@@ -262,8 +262,8 @@
 #include "PICML/InterfaceDefinition/TypeParameter.h"
 #include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/ComponentBenchmark/EventRef.h"
-#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 #include "PICML/BehaviorParadigmSheets/EffectTypes/Effect.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 #include "PICML/ComponentBenchmark/TriggerBenchmarks.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/InEventPortInstance.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
@@ -296,8 +296,8 @@
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/ActionType.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/OutEventPortDelegate.h"
-#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/ComponentPackage/ComponentPackageReference.h"
 #include "PICML/Domain/Domain.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
 #include "PICML/BehaviorParadigmSheets/ActionTypes/RequestAction.h"
@@ -374,8 +374,8 @@ namespace PICML
     this->map_.bind ("Latency", &::GAME::Mga::allocate_impl <Latency_Impl>);
     this->map_.bind ("KeyMember", &::GAME::Mga::allocate_impl <KeyMember_Impl>);
     this->map_.bind ("ComponentImplementationReference", &::GAME::Mga::allocate_impl <ComponentImplementationReference_Impl>);
-    this->map_.bind ("MonolithExecParameter", &::GAME::Mga::allocate_impl <MonolithExecParameter_Impl>);
     this->map_.bind ("ArtifactExecParameter", &::GAME::Mga::allocate_impl <ArtifactExecParameter_Impl>);
+    this->map_.bind ("MonolithExecParameter", &::GAME::Mga::allocate_impl <MonolithExecParameter_Impl>);
     this->map_.bind ("PackageConfigProperty", &::GAME::Mga::allocate_impl <PackageConfigProperty_Impl>);
     this->map_.bind ("QueryAction", &::GAME::Mga::allocate_impl <QueryAction_Impl>);
     this->map_.bind ("GetException", &::GAME::Mga::allocate_impl <GetException_Impl>);
@@ -562,8 +562,8 @@ namespace PICML
     this->map_.bind ("ComponentContainer", &::GAME::Mga::allocate_impl <ComponentContainer_Impl>);
     this->map_.bind ("InParameter", &::GAME::Mga::allocate_impl <InParameter_Impl>);
     this->map_.bind ("DataValue", &::GAME::Mga::allocate_impl <DataValue_Impl>);
-    this->map_.bind ("ImplementationArtifact", &::GAME::Mga::allocate_impl <ImplementationArtifact_Impl>);
     this->map_.bind ("ManagesComponent", &::GAME::Mga::allocate_impl <ManagesComponent_Impl>);
+    this->map_.bind ("ImplementationArtifact", &::GAME::Mga::allocate_impl <ImplementationArtifact_Impl>);
     this->map_.bind ("Key", &::GAME::Mga::allocate_impl <Key_Impl>);
     this->map_.bind ("UnsignedShortInteger", &::GAME::Mga::allocate_impl <UnsignedShortInteger_Impl>);
     this->map_.bind ("ComponentProperty", &::GAME::Mga::allocate_impl <ComponentProperty_Impl>);
@@ -577,8 +577,8 @@ namespace PICML
     this->map_.bind ("TypeParameter", &::GAME::Mga::allocate_impl <TypeParameter_Impl>);
     this->map_.bind ("InstanceMapping", &::GAME::Mga::allocate_impl <InstanceMapping_Impl>);
     this->map_.bind ("EventRef", &::GAME::Mga::allocate_impl <EventRef_Impl>);
-    this->map_.bind ("MonolithprimaryArtifact", &::GAME::Mga::allocate_impl <MonolithprimaryArtifact_Impl>);
     this->map_.bind ("Effect", &::GAME::Mga::allocate_impl <Effect_Impl>);
+    this->map_.bind ("MonolithprimaryArtifact", &::GAME::Mga::allocate_impl <MonolithprimaryArtifact_Impl>);
     this->map_.bind ("TriggerBenchmarks", &::GAME::Mga::allocate_impl <TriggerBenchmarks_Impl>);
     this->map_.bind ("InEventPortInstance", &::GAME::Mga::allocate_impl <InEventPortInstance_Impl>);
     this->map_.bind ("Consume", &::GAME::Mga::allocate_impl <Consume_Impl>);
@@ -611,8 +611,8 @@ namespace PICML
     this->map_.bind ("ComponentFactoryInstance", &::GAME::Mga::allocate_impl <ComponentFactoryInstance_Impl>);
     this->map_.bind ("ActionType", &::GAME::Mga::allocate_impl <ActionType_Impl>);
     this->map_.bind ("OutEventPortDelegate", &::GAME::Mga::allocate_impl <OutEventPortDelegate_Impl>);
-    this->map_.bind ("ComponentPackageReference", &::GAME::Mga::allocate_impl <ComponentPackageReference_Impl>);
     this->map_.bind ("package", &::GAME::Mga::allocate_impl <package_Impl>);
+    this->map_.bind ("ComponentPackageReference", &::GAME::Mga::allocate_impl <ComponentPackageReference_Impl>);
     this->map_.bind ("Domain", &::GAME::Mga::allocate_impl <Domain_Impl>);
     this->map_.bind ("TimerConnection", &::GAME::Mga::allocate_impl <TimerConnection_Impl>);
     this->map_.bind ("RequestAction", &::GAME::Mga::allocate_impl <RequestAction_Impl>);

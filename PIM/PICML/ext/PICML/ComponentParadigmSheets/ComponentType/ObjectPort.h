@@ -62,8 +62,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    PortType parent_PortType (void);
     ConnectorObject parent_ConnectorObject (void);
+    PortType parent_PortType (void);
     ///@}
   };
 }

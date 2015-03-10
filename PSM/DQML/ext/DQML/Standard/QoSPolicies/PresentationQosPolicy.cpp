@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
+#include "DQML/Standard/PresentationQosPolicy/pub_presqos_Connection.h"
 #include "DQML/iCCM/PublisherSubscriberQos/PublisherQos.h"
 #include "DQML/iCCM/PublisherSubscriberQos/SubscriberQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
@@ -85,30 +85,6 @@ namespace DQML
   }
 
   //
-  // dst_of_pub_presqos_Connection
-  //
-  size_t PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const
-  {
-    return this->in_connections <pub_presqos_Connection> (items);
-  }
-
-  //
-  // has_dst_of_pub_presqos_Connection
-  //
-  bool PresentationQosPolicy_Impl::has_dst_of_pub_presqos_Connection (void) const
-  {
-    return this->in_connections <pub_presqos_Connection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_pub_presqos_Connection
-  //
-  pub_presqos_Connection PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (void) const
-  {
-    return this->in_connections <pub_presqos_Connection> ("dst").first ();
-  }
-
-  //
   // dst_of_sub_presqos_Connection
   //
   size_t PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const
@@ -117,19 +93,27 @@ namespace DQML
   }
 
   //
-  // has_dst_of_sub_presqos_Connection
+  // dst_of_sub_presqos_Connection
   //
-  bool PresentationQosPolicy_Impl::has_dst_of_sub_presqos_Connection (void) const
+  GAME::Mga::Collection_T <sub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (void) const
   {
-    return this->in_connections <sub_presqos_Connection> ("dst").count () == 1;
+    return this->in_connections <sub_presqos_Connection> ("dst");
   }
 
   //
-  // dst_of_sub_presqos_Connection
+  // dst_of_pub_presqos_Connection
   //
-  sub_presqos_Connection PresentationQosPolicy_Impl::dst_of_sub_presqos_Connection (void) const
+  size_t PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (std::vector <pub_presqos_Connection> & items) const
   {
-    return this->in_connections <sub_presqos_Connection> ("dst").first ();
+    return this->in_connections <pub_presqos_Connection> (items);
+  }
+
+  //
+  // dst_of_pub_presqos_Connection
+  //
+  GAME::Mga::Collection_T <pub_presqos_Connection> PresentationQosPolicy_Impl::dst_of_pub_presqos_Connection (void) const
+  {
+    return this->in_connections <pub_presqos_Connection> ("dst");
   }
 }
 

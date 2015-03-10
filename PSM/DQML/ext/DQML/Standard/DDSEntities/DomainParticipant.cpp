@@ -9,11 +9,11 @@
 
 #include "DQML/Visitor.h"
 #include "DQML/Standard/Main/dp_sub_Connection.h"
-#include "DQML/Standard/Main/dp_topic_Connection.h"
-#include "DQML/Standard/Main/dp_pub_Connection.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
-#include "DQML/Standard/Main/dpf_dp_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dp_userdata_Connection.h"
+#include "DQML/Standard/Main/dpf_dp_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/dp_entityfactory_Connection.h"
+#include "DQML/Standard/Main/dp_pub_Connection.h"
+#include "DQML/Standard/Main/dp_topic_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -65,25 +65,57 @@ namespace DQML
   //
   // src_of_dp_sub_Connection
   //
-  dp_sub_Connection DomainParticipant_Impl::src_of_dp_sub_Connection (void) const
+  GAME::Mga::Collection_T <dp_sub_Connection> DomainParticipant_Impl::src_of_dp_sub_Connection (void) const
   {
-    return this->in_connections <dp_sub_Connection> ("src").first ();
+    return this->in_connections <dp_sub_Connection> ("src");
   }
 
   //
-  // src_of_dp_topic_Connection
+  // src_of_dp_userdata_Connection
   //
-  size_t DomainParticipant_Impl::src_of_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const
+  size_t DomainParticipant_Impl::src_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
   {
-    return this->in_connections <dp_topic_Connection> (items);
+    return this->in_connections <dp_userdata_Connection> (items);
   }
 
   //
-  // src_of_dp_topic_Connection
+  // has_src_of_dp_userdata_Connection
   //
-  dp_topic_Connection DomainParticipant_Impl::src_of_dp_topic_Connection (void) const
+  bool DomainParticipant_Impl::has_src_of_dp_userdata_Connection (void) const
   {
-    return this->in_connections <dp_topic_Connection> ("src").first ();
+    return this->in_connections <dp_userdata_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dp_userdata_Connection
+  //
+  dp_userdata_Connection DomainParticipant_Impl::src_of_dp_userdata_Connection (void) const
+  {
+    return this->in_connections <dp_userdata_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dp_entityfactory_Connection
+  //
+  size_t DomainParticipant_Impl::src_of_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <dp_entityfactory_Connection> (items);
+  }
+
+  //
+  // has_src_of_dp_entityfactory_Connection
+  //
+  bool DomainParticipant_Impl::has_src_of_dp_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dp_entityfactory_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dp_entityfactory_Connection
+  //
+  dp_entityfactory_Connection DomainParticipant_Impl::src_of_dp_entityfactory_Connection (void) const
+  {
+    return this->in_connections <dp_entityfactory_Connection> ("src").first ();
   }
 
   //
@@ -97,41 +129,25 @@ namespace DQML
   //
   // src_of_dp_pub_Connection
   //
-  dp_pub_Connection DomainParticipant_Impl::src_of_dp_pub_Connection (void) const
+  GAME::Mga::Collection_T <dp_pub_Connection> DomainParticipant_Impl::src_of_dp_pub_Connection (void) const
   {
-    return this->in_connections <dp_pub_Connection> ("src").first ();
+    return this->in_connections <dp_pub_Connection> ("src");
   }
 
   //
-  // src_of_dp_entityfactory_Connection
+  // src_of_dp_topic_Connection
   //
-  size_t DomainParticipant_Impl::src_of_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const
+  size_t DomainParticipant_Impl::src_of_dp_topic_Connection (std::vector <dp_topic_Connection> & items) const
   {
-    return this->in_connections <dp_entityfactory_Connection> (items);
+    return this->in_connections <dp_topic_Connection> (items);
   }
 
   //
-  // src_of_dp_entityfactory_Connection
+  // src_of_dp_topic_Connection
   //
-  GAME::Mga::Collection_T <dp_entityfactory_Connection> DomainParticipant_Impl::src_of_dp_entityfactory_Connection (void) const
+  GAME::Mga::Collection_T <dp_topic_Connection> DomainParticipant_Impl::src_of_dp_topic_Connection (void) const
   {
-    return this->in_connections <dp_entityfactory_Connection> ("src");
-  }
-
-  //
-  // src_of_dp_userdata_Connection
-  //
-  size_t DomainParticipant_Impl::src_of_dp_userdata_Connection (std::vector <dp_userdata_Connection> & items) const
-  {
-    return this->in_connections <dp_userdata_Connection> (items);
-  }
-
-  //
-  // src_of_dp_userdata_Connection
-  //
-  GAME::Mga::Collection_T <dp_userdata_Connection> DomainParticipant_Impl::src_of_dp_userdata_Connection (void) const
-  {
-    return this->in_connections <dp_userdata_Connection> ("src");
+    return this->in_connections <dp_topic_Connection> ("src");
   }
 
   //
@@ -145,9 +161,9 @@ namespace DQML
   //
   // dst_of_dpf_dp_Connection
   //
-  GAME::Mga::Collection_T <dpf_dp_Connection> DomainParticipant_Impl::dst_of_dpf_dp_Connection (void) const
+  dpf_dp_Connection DomainParticipant_Impl::dst_of_dpf_dp_Connection (void) const
   {
-    return this->in_connections <dpf_dp_Connection> ("dst");
+    return this->in_connections <dpf_dp_Connection> ("dst").first ();
   }
 }
 

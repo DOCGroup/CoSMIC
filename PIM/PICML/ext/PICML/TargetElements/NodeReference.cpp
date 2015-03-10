@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TargetElements/Node.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
-#include "PICML/DeploymentPlan/PropertyMapping.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/TargetElements/Node.h"
+#include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -84,19 +84,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_InstanceMapping
-  //
-  bool NodeReference_Impl::has_dst_of_InstanceMapping (void) const
-  {
-    return this->in_connections <InstanceMapping> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_InstanceMapping
   //
-  InstanceMapping NodeReference_Impl::dst_of_InstanceMapping (void) const
+  GAME::Mga::Collection_T <InstanceMapping> NodeReference_Impl::dst_of_InstanceMapping (void) const
   {
-    return this->in_connections <InstanceMapping> ("dst").first ();
+    return this->in_connections <InstanceMapping> ("dst");
   }
 
   //
@@ -104,7 +96,7 @@ namespace PICML
   //
   bool NodeReference_Impl::Node_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/TopLevelPackageDescription/package.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -68,19 +68,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_PackageConfSpecializedConfig
-  //
-  bool PackageConfigurationReference_Impl::has_dst_of_PackageConfSpecializedConfig (void) const
-  {
-    return this->in_connections <PackageConfSpecializedConfig> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_PackageConfSpecializedConfig
   //
-  PackageConfSpecializedConfig PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
+  GAME::Mga::Collection_T <PackageConfSpecializedConfig> PackageConfigurationReference_Impl::dst_of_PackageConfSpecializedConfig (void) const
   {
-    return this->in_connections <PackageConfSpecializedConfig> ("dst").first ();
+    return this->in_connections <PackageConfSpecializedConfig> ("dst");
   }
 
   //
@@ -104,7 +96,7 @@ namespace PICML
   //
   bool PackageConfigurationReference_Impl::PackageConfiguration_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

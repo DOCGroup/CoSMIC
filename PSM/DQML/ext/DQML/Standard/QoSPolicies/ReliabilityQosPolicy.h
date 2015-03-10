@@ -56,9 +56,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static ReliabilityQosPolicy _create (const TopicQos_in parent);
-    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
     static ReliabilityQosPolicy _create (const DataReaderQos_in parent);
+    static ReliabilityQosPolicy _create (const DataWriterQos_in parent);
+    static ReliabilityQosPolicy _create (const TopicQos_in parent);
     static ReliabilityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -78,9 +78,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    TopicQos parent_TopicQos (void);
-    DataWriterQos parent_DataWriterQos (void);
     DataReaderQos parent_DataReaderQos (void);
+    DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -114,18 +114,15 @@ namespace DQML
 
     /// Get the dst dr_reliability_Connection connection.
     size_t dst_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
-    bool has_dst_of_dr_reliability_Connection (void) const;
-    dr_reliability_Connection dst_of_dr_reliability_Connection (void) const;
-
-    /// Get the dst dw_reliability_Connection connection.
-    size_t dst_of_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
-    bool has_dst_of_dw_reliability_Connection (void) const;
-    dw_reliability_Connection dst_of_dw_reliability_Connection (void) const;
+    GAME::Mga::Collection_T <dr_reliability_Connection> dst_of_dr_reliability_Connection (void) const;
 
     /// Get the dst topic_reliability_Connection connection.
     size_t dst_of_topic_reliability_Connection (std::vector <topic_reliability_Connection> & items) const;
-    bool has_dst_of_topic_reliability_Connection (void) const;
-    topic_reliability_Connection dst_of_topic_reliability_Connection (void) const;
+    GAME::Mga::Collection_T <topic_reliability_Connection> dst_of_topic_reliability_Connection (void) const;
+
+    /// Get the dst dw_reliability_Connection connection.
+    size_t dst_of_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
+    GAME::Mga::Collection_T <dw_reliability_Connection> dst_of_dw_reliability_Connection (void) const;
     ///@}
   };
 }

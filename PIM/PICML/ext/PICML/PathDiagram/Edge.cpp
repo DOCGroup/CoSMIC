@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/SrcEdge.h"
-#include "PICML/PathDiagram/EdgeProperty.h"
 #include "PICML/PathDiagram/DstEdge.h"
+#include "PICML/PathDiagram/EdgeProperty.h"
+#include "PICML/PathDiagram/SrcEdge.h"
 #include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -84,30 +84,6 @@ namespace PICML
   }
 
   //
-  // dst_of_EdgeProperty
-  //
-  size_t Edge_Impl::dst_of_EdgeProperty (std::vector <EdgeProperty> & items) const
-  {
-    return this->in_connections <EdgeProperty> (items);
-  }
-
-  //
-  // has_dst_of_EdgeProperty
-  //
-  bool Edge_Impl::has_dst_of_EdgeProperty (void) const
-  {
-    return this->in_connections <EdgeProperty> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_EdgeProperty
-  //
-  EdgeProperty Edge_Impl::dst_of_EdgeProperty (void) const
-  {
-    return this->in_connections <EdgeProperty> ("dst").first ();
-  }
-
-  //
   // dst_of_DstEdge
   //
   size_t Edge_Impl::dst_of_DstEdge (std::vector <DstEdge> & items) const
@@ -129,6 +105,30 @@ namespace PICML
   DstEdge Edge_Impl::dst_of_DstEdge (void) const
   {
     return this->in_connections <DstEdge> ("dst").first ();
+  }
+
+  //
+  // dst_of_EdgeProperty
+  //
+  size_t Edge_Impl::dst_of_EdgeProperty (std::vector <EdgeProperty> & items) const
+  {
+    return this->in_connections <EdgeProperty> (items);
+  }
+
+  //
+  // has_dst_of_EdgeProperty
+  //
+  bool Edge_Impl::has_dst_of_EdgeProperty (void) const
+  {
+    return this->in_connections <EdgeProperty> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_EdgeProperty
+  //
+  EdgeProperty Edge_Impl::dst_of_EdgeProperty (void) const
+  {
+    return this->in_connections <EdgeProperty> ("dst").first ();
   }
 }
 

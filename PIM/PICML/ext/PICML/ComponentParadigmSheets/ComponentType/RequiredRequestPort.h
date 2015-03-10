@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiOutputBase.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ObjectPort.h"
 #include "game/mga/Reference.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export RequiredRequestPort_Impl :
     public virtual ::GAME::Mga::Reference_Impl,
-    public virtual ObjectPort_Impl,
-    public virtual MultiOutputBase_Impl
+    public virtual MultiOutputBase_Impl,
+    public virtual ObjectPort_Impl
   {
     public:
     /// Tag type of this extension class.
@@ -58,10 +58,10 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static RequiredRequestPort _create (const PortType_in parent);
     static RequiredRequestPort _create (const ConnectorObject_in parent);
-    static RequiredRequestPort _create (const Component_in parent);
+    static RequiredRequestPort _create (const PortType_in parent);
     static RequiredRequestPort _create (const ConnectedComponent_in parent);
+    static RequiredRequestPort _create (const Component_in parent);
     static RequiredRequestPort _create (const Path_in parent);
     ///@}
 

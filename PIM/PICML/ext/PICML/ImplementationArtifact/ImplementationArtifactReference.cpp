@@ -8,9 +8,6 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
-#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
-#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
 #include "PICML/ImplementationCommon/ImplementationContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
@@ -19,6 +16,9 @@
 #include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
+#include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
+#include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -167,7 +167,7 @@ namespace PICML
   //
   bool ImplementationArtifactReference_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/MirrorDelegate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -66,19 +66,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_MirrorDelegate
-  //
-  bool MirrorPortDelegate_Impl::has_dst_of_MirrorDelegate (void) const
-  {
-    return this->in_connections <MirrorDelegate> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_MirrorDelegate
   //
-  MirrorDelegate MirrorPortDelegate_Impl::dst_of_MirrorDelegate (void) const
+  GAME::Mga::Collection_T <MirrorDelegate> MirrorPortDelegate_Impl::dst_of_MirrorDelegate (void) const
   {
-    return this->in_connections <MirrorDelegate> ("dst").first ();
+    return this->in_connections <MirrorDelegate> ("dst");
   }
 }
 

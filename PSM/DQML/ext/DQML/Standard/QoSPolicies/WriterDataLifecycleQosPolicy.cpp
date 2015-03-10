@@ -8,8 +8,8 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/WriterDataLifecycleQosPolicy/dw_writerdatalifecycle_Connection.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -75,19 +75,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_writerdatalifecycle_Connection
-  //
-  bool WriterDataLifecycleQosPolicy_Impl::has_dst_of_dw_writerdatalifecycle_Connection (void) const
-  {
-    return this->in_connections <dw_writerdatalifecycle_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_writerdatalifecycle_Connection
   //
-  dw_writerdatalifecycle_Connection WriterDataLifecycleQosPolicy_Impl::dst_of_dw_writerdatalifecycle_Connection (void) const
+  GAME::Mga::Collection_T <dw_writerdatalifecycle_Connection> WriterDataLifecycleQosPolicy_Impl::dst_of_dw_writerdatalifecycle_Connection (void) const
   {
-    return this->in_connections <dw_writerdatalifecycle_Connection> ("dst").first ();
+    return this->in_connections <dw_writerdatalifecycle_Connection> ("dst");
   }
 }
 

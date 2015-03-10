@@ -88,10 +88,12 @@ namespace PICML
 
     /// Get the src ComponentOperation connection.
     size_t src_of_ComponentOperation (std::vector <ComponentOperation> & items) const;
+    bool has_src_of_ComponentOperation (void) const;
     ComponentOperation src_of_ComponentOperation (void) const;
 
     /// Get the src MetricConnection connection.
     size_t src_of_MetricConnection (std::vector <MetricConnection> & items) const;
+    bool has_src_of_MetricConnection (void) const;
     MetricConnection src_of_MetricConnection (void) const;
 
     /// Get the src TimerConnection connection.

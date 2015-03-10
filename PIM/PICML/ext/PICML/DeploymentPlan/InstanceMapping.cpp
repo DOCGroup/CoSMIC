@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/DeploymentPlan/CollocationGroup.h"
-#include "PICML/TargetElements/NodeReference.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/TargetElements/NodeReference.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

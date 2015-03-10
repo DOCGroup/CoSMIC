@@ -100,13 +100,11 @@ namespace DQML
 
     /// Get the dst pub_part_Connection connection.
     size_t dst_of_pub_part_Connection (std::vector <pub_part_Connection> & items) const;
-    bool has_dst_of_pub_part_Connection (void) const;
-    pub_part_Connection dst_of_pub_part_Connection (void) const;
+    GAME::Mga::Collection_T <pub_part_Connection> dst_of_pub_part_Connection (void) const;
 
     /// Get the dst sub_part_Connection connection.
     size_t dst_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const;
-    bool has_dst_of_sub_part_Connection (void) const;
-    sub_part_Connection dst_of_sub_part_Connection (void) const;
+    GAME::Mga::Collection_T <sub_part_Connection> dst_of_sub_part_Connection (void) const;
     ///@}
   };
 }

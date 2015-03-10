@@ -13,10 +13,10 @@
 #include "PICML/ComponentBenchmark/Maximum.h"
 #include "PICML/ComponentBenchmark/Minimum.h"
 #include "PICML/ComponentBenchmark/Average.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/BenchmarkCharacteristics.h"
 #include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
-#include "PICML/ComponentBenchmark/MetricConnection.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 
 namespace PICML
 {
@@ -47,11 +47,35 @@ namespace PICML
   }
 
   //
+  // has_src_of_WorkloadCharacteristics
+  //
+  bool MetricsBase_Impl::has_src_of_WorkloadCharacteristics (void) const
+  {
+    return this->in_connections <WorkloadCharacteristics> ("src").count () == 1;
+  }
+
+  //
   // src_of_WorkloadCharacteristics
   //
   WorkloadCharacteristics MetricsBase_Impl::src_of_WorkloadCharacteristics (void) const
   {
     return this->in_connections <WorkloadCharacteristics> ("src").first ();
+  }
+
+  //
+  // dst_of_MetricConnection
+  //
+  size_t MetricsBase_Impl::dst_of_MetricConnection (std::vector <MetricConnection> & items) const
+  {
+    return this->in_connections <MetricConnection> (items);
+  }
+
+  //
+  // dst_of_MetricConnection
+  //
+  MetricConnection MetricsBase_Impl::dst_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("dst").first ();
   }
 
   //
@@ -76,30 +100,6 @@ namespace PICML
   BenchmarkCharacteristics MetricsBase_Impl::dst_of_BenchmarkCharacteristics (void) const
   {
     return this->in_connections <BenchmarkCharacteristics> ("dst").first ();
-  }
-
-  //
-  // dst_of_MetricConnection
-  //
-  size_t MetricsBase_Impl::dst_of_MetricConnection (std::vector <MetricConnection> & items) const
-  {
-    return this->in_connections <MetricConnection> (items);
-  }
-
-  //
-  // has_dst_of_MetricConnection
-  //
-  bool MetricsBase_Impl::has_dst_of_MetricConnection (void) const
-  {
-    return this->in_connections <MetricConnection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_MetricConnection
-  //
-  MetricConnection MetricsBase_Impl::dst_of_MetricConnection (void) const
-  {
-    return this->in_connections <MetricConnection> ("dst").first ();
   }
 
   //

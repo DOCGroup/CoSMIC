@@ -8,19 +8,19 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/GetException.h"
-#include "PICML/InheritableTypes/AttributeMember.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/InheritableTypes/AttributeMember.h"
+#include "PICML/InheritableTypes/GetException.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -39,17 +39,9 @@ namespace PICML
   const bool ReadonlyAttribute_Impl::is_abstract = false;
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectorObject_in)
   //
-  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Component_in parent)
-  {
-    return ::GAME::Mga::create < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
-  }
-
-  //
-  // _create (const PortType_in)
-  //
-  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const PortType_in parent)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
@@ -63,9 +55,17 @@ namespace PICML
   }
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const Component_in)
   //
-  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const ConnectorObject_in parent)
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const Component_in parent)
+  {
+    return ::GAME::Mga::create < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
+  }
+
+  //
+  // _create (const PortType_in)
+  //
+  ReadonlyAttribute ReadonlyAttribute_Impl::_create (const PortType_in parent)
   {
     return ::GAME::Mga::create < ReadonlyAttribute > (parent, ReadonlyAttribute_Impl::metaname);
   }
@@ -85,6 +85,22 @@ namespace PICML
   }
 
   //
+  // parent_ConnectorObject
+  //
+  ConnectorObject ReadonlyAttribute_Impl::parent_ConnectorObject (void)
+  {
+    return ConnectorObject::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Inheritable
+  //
+  Inheritable ReadonlyAttribute_Impl::parent_Inheritable (void)
+  {
+    return Inheritable::_narrow (this->parent ());
+  }
+
+  //
   // parent_Component
   //
   Component ReadonlyAttribute_Impl::parent_Component (void)
@@ -98,22 +114,6 @@ namespace PICML
   PortType ReadonlyAttribute_Impl::parent_PortType (void)
   {
     return PortType::_narrow (this->parent ());
-  }
-
-  //
-  // parent_Inheritable
-  //
-  Inheritable ReadonlyAttribute_Impl::parent_Inheritable (void)
-  {
-    return Inheritable::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ConnectorObject
-  //
-  ConnectorObject ReadonlyAttribute_Impl::parent_ConnectorObject (void)
-  {
-    return ConnectorObject::_narrow (this->parent ());
   }
 
   //

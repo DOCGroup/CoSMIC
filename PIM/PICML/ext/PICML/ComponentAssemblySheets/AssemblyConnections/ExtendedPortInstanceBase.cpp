@@ -31,11 +31,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_ExtendedDelegate
+  //
+  bool ExtendedPortInstanceBase_Impl::has_src_of_ExtendedDelegate (void) const
+  {
+    return this->in_connections <ExtendedDelegate> ("src").count () == 1;
+  }
+
+  //
   // src_of_ExtendedDelegate
   //
-  GAME::Mga::Collection_T <ExtendedDelegate> ExtendedPortInstanceBase_Impl::src_of_ExtendedDelegate (void) const
+  ExtendedDelegate ExtendedPortInstanceBase_Impl::src_of_ExtendedDelegate (void) const
   {
-    return this->in_connections <ExtendedDelegate> ("src");
+    return this->in_connections <ExtendedDelegate> ("src").first ();
   }
 }
 

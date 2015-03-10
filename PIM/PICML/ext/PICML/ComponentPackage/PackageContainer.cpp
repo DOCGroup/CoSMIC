@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
-#include "PICML/ComponentPackage/PackageInterface.h"
+#include "PICML/ComponentPackage/ComponentPackages.h"
 #include "PICML/ComponentPackage/Implementation.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentPackage/PackageInterface.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentRef.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
-#include "PICML/ComponentPackage/ComponentPackages.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,22 +67,6 @@ namespace PICML
   }
 
   //
-  // has_ComponentRef
-  //
-  bool PackageContainer_Impl::has_ComponentRef (void) const
-  {
-    return this->children <ComponentRef> ().count () == 1;
-  }
-
-  //
-  // get_ComponentRef
-  //
-  ComponentRef PackageContainer_Impl::get_ComponentRef (void) const
-  {
-    return this->children <ComponentRef> ().first ();
-  }
-
-  //
   // has_PackageInterface
   //
   bool PackageContainer_Impl::has_PackageInterface (void) const
@@ -96,6 +80,22 @@ namespace PICML
   PackageInterface PackageContainer_Impl::get_PackageInterface (void) const
   {
     return this->children <PackageInterface> ().first ();
+  }
+
+  //
+  // has_ComponentRef
+  //
+  bool PackageContainer_Impl::has_ComponentRef (void) const
+  {
+    return this->children <ComponentRef> ().count () == 1;
+  }
+
+  //
+  // get_ComponentRef
+  //
+  ComponentRef PackageContainer_Impl::get_ComponentRef (void) const
+  {
+    return this->children <ComponentRef> ().first ();
   }
 
   //
@@ -115,6 +115,22 @@ namespace PICML
   }
 
   //
+  // get_Implementations
+  //
+  size_t PackageContainer_Impl::get_Implementations (std::vector <Implementation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_Implementations
+  //
+  ::GAME::Mga::Collection_T <Implementation> PackageContainer_Impl::get_Implementations (void) const
+  {
+    return this->children <Implementation> ();
+  }
+
+  //
   // get_ComponentImplementationReferences
   //
   size_t PackageContainer_Impl::get_ComponentImplementationReferences (std::vector <ComponentImplementationReference> & items) const
@@ -131,19 +147,35 @@ namespace PICML
   }
 
   //
-  // get_Implementations
+  // get_PackageInfoPropertys
   //
-  size_t PackageContainer_Impl::get_Implementations (std::vector <Implementation> & items) const
+  size_t PackageContainer_Impl::get_PackageInfoPropertys (std::vector <PackageInfoProperty> & items) const
   {
     return this->children (items);
   }
 
   //
-  // get_Implementations
+  // get_PackageInfoPropertys
   //
-  ::GAME::Mga::Collection_T <Implementation> PackageContainer_Impl::get_Implementations (void) const
+  ::GAME::Mga::Collection_T <PackageInfoProperty> PackageContainer_Impl::get_PackageInfoPropertys (void) const
   {
-    return this->children <Implementation> ();
+    return this->children <PackageInfoProperty> ();
+  }
+
+  //
+  // get_PackageConfigPropertys
+  //
+  size_t PackageContainer_Impl::get_PackageConfigPropertys (std::vector <PackageConfigProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_PackageConfigPropertys
+  //
+  ::GAME::Mga::Collection_T <PackageConfigProperty> PackageContainer_Impl::get_PackageConfigPropertys (void) const
+  {
+    return this->children <PackageConfigProperty> ();
   }
 
   //
@@ -176,38 +208,6 @@ namespace PICML
   ::GAME::Mga::Collection_T <ComplexProperty> PackageContainer_Impl::get_ComplexPropertys (void) const
   {
     return this->children <ComplexProperty> ();
-  }
-
-  //
-  // get_PackageConfigPropertys
-  //
-  size_t PackageContainer_Impl::get_PackageConfigPropertys (std::vector <PackageConfigProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PackageConfigPropertys
-  //
-  ::GAME::Mga::Collection_T <PackageConfigProperty> PackageContainer_Impl::get_PackageConfigPropertys (void) const
-  {
-    return this->children <PackageConfigProperty> ();
-  }
-
-  //
-  // get_PackageInfoPropertys
-  //
-  size_t PackageContainer_Impl::get_PackageInfoPropertys (std::vector <PackageInfoProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_PackageInfoPropertys
-  //
-  ::GAME::Mga::Collection_T <PackageInfoProperty> PackageContainer_Impl::get_PackageInfoPropertys (void) const
-  {
-    return this->children <PackageInfoProperty> ();
   }
 }
 

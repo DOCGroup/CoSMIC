@@ -17,8 +17,8 @@
 #include "PICML/PICML_fwd.h"
 #include "PICML/PICML_export.h"
 
-#include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Provideable.h"
 #include "game/mga/Atom.h"
 
 namespace PICML
@@ -38,8 +38,8 @@ namespace PICML
    */
   class PICML_Export GenericObject_Impl :
     public virtual ::GAME::Mga::Atom_Impl,
-    public virtual Provideable_Impl,
-    public virtual PredefinedType_Impl
+    public virtual PredefinedType_Impl,
+    public virtual Provideable_Impl
   {
     public:
     /// Tag type of this extension class.

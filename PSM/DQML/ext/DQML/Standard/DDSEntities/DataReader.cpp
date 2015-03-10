@@ -8,19 +8,19 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
+#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
 #include "DQML/Standard/Main/dr_topic_Connection.h"
+#include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
+#include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
+#include "DQML/Standard/OwnershipQosPolicy/dr_ownership_Connection.h"
 #include "DQML/Standard/Main/dr_sub_Connection.h"
 #include "DQML/Standard/UserDataQosPolicy/dr_userdata_Connection.h"
-#include "DQML/Standard/ReaderDataLifecycleQosPolicy/dr_readerdatalifecycle_Connection.h"
-#include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
-#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
-#include "DQML/Standard/ReliabilityQosPolicy/dr_reliability_Connection.h"
-#include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
+#include "DQML/Standard/HistoryQosPolicy/dr_history_Connection.h"
 #include "DQML/Standard/LatencyBudgetQosPolicy/dr_latency_Connection.h"
-#include "DQML/Standard/TimeBasedFilterQosPolicy/dr_timebased_Connection.h"
+#include "DQML/Standard/LivelinessQosPolicy/dr_liveliness_Connection.h"
 #include "DQML/Standard/DeadlineQosPolicy/dr_deadline_Connection.h"
+#include "DQML/Standard/ResourceLimitsQosPolicy/dr_res_Connection.h"
 #include "DQML/Standard/DurabilityQosPolicy/dr_durqos_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
@@ -63,19 +63,27 @@ namespace DQML
   }
 
   //
-  // src_of_dr_ownership_Connection
+  // src_of_dr_reliability_Connection
   //
-  size_t DataReader_Impl::src_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
+  size_t DataReader_Impl::src_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
   {
-    return this->in_connections <dr_ownership_Connection> (items);
+    return this->in_connections <dr_reliability_Connection> (items);
   }
 
   //
-  // src_of_dr_ownership_Connection
+  // has_src_of_dr_reliability_Connection
   //
-  GAME::Mga::Collection_T <dr_ownership_Connection> DataReader_Impl::src_of_dr_ownership_Connection (void) const
+  bool DataReader_Impl::has_src_of_dr_reliability_Connection (void) const
   {
-    return this->in_connections <dr_ownership_Connection> ("src");
+    return this->in_connections <dr_reliability_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_reliability_Connection
+  //
+  dr_reliability_Connection DataReader_Impl::src_of_dr_reliability_Connection (void) const
+  {
+    return this->in_connections <dr_reliability_Connection> ("src").first ();
   }
 
   //
@@ -89,137 +97,9 @@ namespace DQML
   //
   // src_of_dr_topic_Connection
   //
-  GAME::Mga::Collection_T <dr_topic_Connection> DataReader_Impl::src_of_dr_topic_Connection (void) const
+  dr_topic_Connection DataReader_Impl::src_of_dr_topic_Connection (void) const
   {
-    return this->in_connections <dr_topic_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_userdata_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
-  {
-    return this->in_connections <dr_userdata_Connection> (items);
-  }
-
-  //
-  // src_of_dr_userdata_Connection
-  //
-  GAME::Mga::Collection_T <dr_userdata_Connection> DataReader_Impl::src_of_dr_userdata_Connection (void) const
-  {
-    return this->in_connections <dr_userdata_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_readerdatalifecycle_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const
-  {
-    return this->in_connections <dr_readerdatalifecycle_Connection> (items);
-  }
-
-  //
-  // src_of_dr_readerdatalifecycle_Connection
-  //
-  GAME::Mga::Collection_T <dr_readerdatalifecycle_Connection> DataReader_Impl::src_of_dr_readerdatalifecycle_Connection (void) const
-  {
-    return this->in_connections <dr_readerdatalifecycle_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_res_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const
-  {
-    return this->in_connections <dr_res_Connection> (items);
-  }
-
-  //
-  // src_of_dr_res_Connection
-  //
-  GAME::Mga::Collection_T <dr_res_Connection> DataReader_Impl::src_of_dr_res_Connection (void) const
-  {
-    return this->in_connections <dr_res_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_history_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const
-  {
-    return this->in_connections <dr_history_Connection> (items);
-  }
-
-  //
-  // src_of_dr_history_Connection
-  //
-  GAME::Mga::Collection_T <dr_history_Connection> DataReader_Impl::src_of_dr_history_Connection (void) const
-  {
-    return this->in_connections <dr_history_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_dstOrder_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> (items);
-  }
-
-  //
-  // src_of_dr_dstOrder_Connection
-  //
-  GAME::Mga::Collection_T <dr_dstOrder_Connection> DataReader_Impl::src_of_dr_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_reliability_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const
-  {
-    return this->in_connections <dr_reliability_Connection> (items);
-  }
-
-  //
-  // src_of_dr_reliability_Connection
-  //
-  GAME::Mga::Collection_T <dr_reliability_Connection> DataReader_Impl::src_of_dr_reliability_Connection (void) const
-  {
-    return this->in_connections <dr_reliability_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_liveliness_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
-  {
-    return this->in_connections <dr_liveliness_Connection> (items);
-  }
-
-  //
-  // src_of_dr_liveliness_Connection
-  //
-  GAME::Mga::Collection_T <dr_liveliness_Connection> DataReader_Impl::src_of_dr_liveliness_Connection (void) const
-  {
-    return this->in_connections <dr_liveliness_Connection> ("src");
-  }
-
-  //
-  // src_of_dr_latency_Connection
-  //
-  size_t DataReader_Impl::src_of_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
-  {
-    return this->in_connections <dr_latency_Connection> (items);
-  }
-
-  //
-  // src_of_dr_latency_Connection
-  //
-  GAME::Mga::Collection_T <dr_latency_Connection> DataReader_Impl::src_of_dr_latency_Connection (void) const
-  {
-    return this->in_connections <dr_latency_Connection> ("src");
+    return this->in_connections <dr_topic_Connection> ("src").first ();
   }
 
   //
@@ -239,6 +119,174 @@ namespace DQML
   }
 
   //
+  // src_of_dr_readerdatalifecycle_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const
+  {
+    return this->in_connections <dr_readerdatalifecycle_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_readerdatalifecycle_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_readerdatalifecycle_Connection (void) const
+  {
+    return this->in_connections <dr_readerdatalifecycle_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_readerdatalifecycle_Connection
+  //
+  dr_readerdatalifecycle_Connection DataReader_Impl::src_of_dr_readerdatalifecycle_Connection (void) const
+  {
+    return this->in_connections <dr_readerdatalifecycle_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_ownership_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const
+  {
+    return this->in_connections <dr_ownership_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_ownership_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_ownership_Connection (void) const
+  {
+    return this->in_connections <dr_ownership_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_ownership_Connection
+  //
+  dr_ownership_Connection DataReader_Impl::src_of_dr_ownership_Connection (void) const
+  {
+    return this->in_connections <dr_ownership_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_userdata_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const
+  {
+    return this->in_connections <dr_userdata_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_userdata_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_userdata_Connection (void) const
+  {
+    return this->in_connections <dr_userdata_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_userdata_Connection
+  //
+  dr_userdata_Connection DataReader_Impl::src_of_dr_userdata_Connection (void) const
+  {
+    return this->in_connections <dr_userdata_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_dstOrder_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
+  {
+    return this->in_connections <dr_dstOrder_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_dstOrder_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_dstOrder_Connection (void) const
+  {
+    return this->in_connections <dr_dstOrder_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_dstOrder_Connection
+  //
+  dr_dstOrder_Connection DataReader_Impl::src_of_dr_dstOrder_Connection (void) const
+  {
+    return this->in_connections <dr_dstOrder_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_history_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const
+  {
+    return this->in_connections <dr_history_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_history_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_history_Connection (void) const
+  {
+    return this->in_connections <dr_history_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_history_Connection
+  //
+  dr_history_Connection DataReader_Impl::src_of_dr_history_Connection (void) const
+  {
+    return this->in_connections <dr_history_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_latency_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const
+  {
+    return this->in_connections <dr_latency_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_latency_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_latency_Connection (void) const
+  {
+    return this->in_connections <dr_latency_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_latency_Connection
+  //
+  dr_latency_Connection DataReader_Impl::src_of_dr_latency_Connection (void) const
+  {
+    return this->in_connections <dr_latency_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_liveliness_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const
+  {
+    return this->in_connections <dr_liveliness_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_liveliness_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_liveliness_Connection (void) const
+  {
+    return this->in_connections <dr_liveliness_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_liveliness_Connection
+  //
+  dr_liveliness_Connection DataReader_Impl::src_of_dr_liveliness_Connection (void) const
+  {
+    return this->in_connections <dr_liveliness_Connection> ("src").first ();
+  }
+
+  //
   // src_of_dr_deadline_Connection
   //
   size_t DataReader_Impl::src_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const
@@ -247,11 +295,43 @@ namespace DQML
   }
 
   //
+  // has_src_of_dr_deadline_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_deadline_Connection (void) const
+  {
+    return this->in_connections <dr_deadline_Connection> ("src").count () == 1;
+  }
+
+  //
   // src_of_dr_deadline_Connection
   //
-  GAME::Mga::Collection_T <dr_deadline_Connection> DataReader_Impl::src_of_dr_deadline_Connection (void) const
+  dr_deadline_Connection DataReader_Impl::src_of_dr_deadline_Connection (void) const
   {
-    return this->in_connections <dr_deadline_Connection> ("src");
+    return this->in_connections <dr_deadline_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_dr_res_Connection
+  //
+  size_t DataReader_Impl::src_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const
+  {
+    return this->in_connections <dr_res_Connection> (items);
+  }
+
+  //
+  // has_src_of_dr_res_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_res_Connection (void) const
+  {
+    return this->in_connections <dr_res_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_dr_res_Connection
+  //
+  dr_res_Connection DataReader_Impl::src_of_dr_res_Connection (void) const
+  {
+    return this->in_connections <dr_res_Connection> ("src").first ();
   }
 
   //
@@ -263,11 +343,19 @@ namespace DQML
   }
 
   //
+  // has_src_of_dr_durqos_Connection
+  //
+  bool DataReader_Impl::has_src_of_dr_durqos_Connection (void) const
+  {
+    return this->in_connections <dr_durqos_Connection> ("src").count () == 1;
+  }
+
+  //
   // src_of_dr_durqos_Connection
   //
-  GAME::Mga::Collection_T <dr_durqos_Connection> DataReader_Impl::src_of_dr_durqos_Connection (void) const
+  dr_durqos_Connection DataReader_Impl::src_of_dr_durqos_Connection (void) const
   {
-    return this->in_connections <dr_durqos_Connection> ("src");
+    return this->in_connections <dr_durqos_Connection> ("src").first ();
   }
 
   //

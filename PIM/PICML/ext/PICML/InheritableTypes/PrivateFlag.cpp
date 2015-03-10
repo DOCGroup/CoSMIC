@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -65,14 +65,6 @@ namespace PICML
   size_t PrivateFlag_Impl::dst_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const
   {
     return this->in_connections <MakeMemberPrivate> (items);
-  }
-
-  //
-  // has_dst_of_MakeMemberPrivate
-  //
-  bool PrivateFlag_Impl::has_dst_of_MakeMemberPrivate (void) const
-  {
-    return this->in_connections <MakeMemberPrivate> ("dst").count () == 1;
   }
 
   //

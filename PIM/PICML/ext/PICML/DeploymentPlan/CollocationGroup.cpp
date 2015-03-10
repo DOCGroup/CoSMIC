@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/CollocationGroupMember.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
 #include "PICML/DeploymentPlan/ComponentInstanceRef.h"
 #include "PICML/DeploymentPlan/ComponentFactoryRef.h"
-#include "PICML/DeploymentPlan/CollocationGroupProperty.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
-#include "PICML/DeploymentPlan/DeploymentPlan.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssemblyReference.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -71,11 +71,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_InstanceMapping
+  //
+  bool CollocationGroup_Impl::has_src_of_InstanceMapping (void) const
+  {
+    return this->in_connections <InstanceMapping> ("src").count () == 1;
+  }
+
+  //
   // src_of_InstanceMapping
   //
-  GAME::Mga::Collection_T <InstanceMapping> CollocationGroup_Impl::src_of_InstanceMapping (void) const
+  InstanceMapping CollocationGroup_Impl::src_of_InstanceMapping (void) const
   {
-    return this->in_connections <InstanceMapping> ("src");
+    return this->in_connections <InstanceMapping> ("src").first ();
   }
 
   //

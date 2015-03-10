@@ -61,7 +61,7 @@ namespace PICML
   //
   bool ComponentInherits_Impl::Component_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

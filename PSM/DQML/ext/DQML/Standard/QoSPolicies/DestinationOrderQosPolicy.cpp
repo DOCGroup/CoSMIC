@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/iCCM/TopicQos/TopicQos.h"
-#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
-#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
-#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/dw_dstOrder_Connection.h"
 #include "DQML/Standard/DestinationOrderQosPolicy/topic_dstOrder_Connection.h"
+#include "DQML/Standard/DestinationOrderQosPolicy/dr_dstOrder_Connection.h"
+#include "DQML/iCCM/DataReaderQos/DataReaderQos.h"
+#include "DQML/iCCM/DataWriterQos/DataWriterQos.h"
+#include "DQML/iCCM/TopicQos/TopicQos.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -33,9 +33,9 @@ namespace DQML
   const bool DestinationOrderQosPolicy_Impl::is_abstract = false;
 
   //
-  // _create (const TopicQos_in)
+  // _create (const DataReaderQos_in)
   //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataReaderQos_in parent)
   {
     return ::GAME::Mga::create < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
@@ -49,9 +49,9 @@ namespace DQML
   }
 
   //
-  // _create (const DataReaderQos_in)
+  // _create (const TopicQos_in)
   //
-  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const DataReaderQos_in parent)
+  DestinationOrderQosPolicy DestinationOrderQosPolicy_Impl::_create (const TopicQos_in parent)
   {
     return ::GAME::Mga::create < DestinationOrderQosPolicy > (parent, DestinationOrderQosPolicy_Impl::metaname);
   }
@@ -79,11 +79,11 @@ namespace DQML
   }
 
   //
-  // parent_TopicQos
+  // parent_DataReaderQos
   //
-  TopicQos DestinationOrderQosPolicy_Impl::parent_TopicQos (void)
+  DataReaderQos DestinationOrderQosPolicy_Impl::parent_DataReaderQos (void)
   {
-    return TopicQos::_narrow (this->parent ());
+    return DataReaderQos::_narrow (this->parent ());
   }
 
   //
@@ -95,35 +95,11 @@ namespace DQML
   }
 
   //
-  // parent_DataReaderQos
+  // parent_TopicQos
   //
-  DataReaderQos DestinationOrderQosPolicy_Impl::parent_DataReaderQos (void)
+  TopicQos DestinationOrderQosPolicy_Impl::parent_TopicQos (void)
   {
-    return DataReaderQos::_narrow (this->parent ());
-  }
-
-  //
-  // dst_of_dr_dstOrder_Connection
-  //
-  size_t DestinationOrderQosPolicy_Impl::dst_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> (items);
-  }
-
-  //
-  // has_dst_of_dr_dstOrder_Connection
-  //
-  bool DestinationOrderQosPolicy_Impl::has_dst_of_dr_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> ("dst").count () == 1;
-  }
-
-  //
-  // dst_of_dr_dstOrder_Connection
-  //
-  dr_dstOrder_Connection DestinationOrderQosPolicy_Impl::dst_of_dr_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dr_dstOrder_Connection> ("dst").first ();
+    return TopicQos::_narrow (this->parent ());
   }
 
   //
@@ -135,19 +111,11 @@ namespace DQML
   }
 
   //
-  // has_dst_of_dw_dstOrder_Connection
-  //
-  bool DestinationOrderQosPolicy_Impl::has_dst_of_dw_dstOrder_Connection (void) const
-  {
-    return this->in_connections <dw_dstOrder_Connection> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_dw_dstOrder_Connection
   //
-  dw_dstOrder_Connection DestinationOrderQosPolicy_Impl::dst_of_dw_dstOrder_Connection (void) const
+  GAME::Mga::Collection_T <dw_dstOrder_Connection> DestinationOrderQosPolicy_Impl::dst_of_dw_dstOrder_Connection (void) const
   {
-    return this->in_connections <dw_dstOrder_Connection> ("dst").first ();
+    return this->in_connections <dw_dstOrder_Connection> ("dst");
   }
 
   //
@@ -159,19 +127,27 @@ namespace DQML
   }
 
   //
-  // has_dst_of_topic_dstOrder_Connection
+  // dst_of_topic_dstOrder_Connection
   //
-  bool DestinationOrderQosPolicy_Impl::has_dst_of_topic_dstOrder_Connection (void) const
+  GAME::Mga::Collection_T <topic_dstOrder_Connection> DestinationOrderQosPolicy_Impl::dst_of_topic_dstOrder_Connection (void) const
   {
-    return this->in_connections <topic_dstOrder_Connection> ("dst").count () == 1;
+    return this->in_connections <topic_dstOrder_Connection> ("dst");
   }
 
   //
-  // dst_of_topic_dstOrder_Connection
+  // dst_of_dr_dstOrder_Connection
   //
-  topic_dstOrder_Connection DestinationOrderQosPolicy_Impl::dst_of_topic_dstOrder_Connection (void) const
+  size_t DestinationOrderQosPolicy_Impl::dst_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const
   {
-    return this->in_connections <topic_dstOrder_Connection> ("dst").first ();
+    return this->in_connections <dr_dstOrder_Connection> (items);
+  }
+
+  //
+  // dst_of_dr_dstOrder_Connection
+  //
+  GAME::Mga::Collection_T <dr_dstOrder_Connection> DestinationOrderQosPolicy_Impl::dst_of_dr_dstOrder_Connection (void) const
+  {
+    return this->in_connections <dr_dstOrder_Connection> ("dst");
   }
 }
 

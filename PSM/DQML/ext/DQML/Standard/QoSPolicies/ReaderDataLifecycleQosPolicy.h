@@ -110,8 +110,7 @@ namespace DQML
 
     /// Get the dst dr_readerdatalifecycle_Connection connection.
     size_t dst_of_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const;
-    bool has_dst_of_dr_readerdatalifecycle_Connection (void) const;
-    dr_readerdatalifecycle_Connection dst_of_dr_readerdatalifecycle_Connection (void) const;
+    GAME::Mga::Collection_T <dr_readerdatalifecycle_Connection> dst_of_dr_readerdatalifecycle_Connection (void) const;
     ///@}
   };
 }

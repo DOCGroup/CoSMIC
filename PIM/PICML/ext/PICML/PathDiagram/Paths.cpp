@@ -8,12 +8,12 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/PathDiagram/PathDiagrams.h"
+#include "PICML/PathDiagram/PathProperty.h"
+#include "PICML/PathDiagram/Path.h"
 #include "PICML/Common/Property.h"
 #include "PICML/Common/SimpleProperty.h"
 #include "PICML/Common/ComplexProperty.h"
-#include "PICML/PathDiagram/PathProperty.h"
-#include "PICML/PathDiagram/PathDiagrams.h"
-#include "PICML/PathDiagram/Path.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -62,38 +62,6 @@ namespace PICML
   }
 
   //
-  // get_SimplePropertys
-  //
-  size_t Paths_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_SimplePropertys
-  //
-  ::GAME::Mga::Collection_T <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
-  {
-    return this->children <SimpleProperty> ();
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> Paths_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
-
-  //
   // get_PathPropertys
   //
   size_t Paths_Impl::get_PathPropertys (std::vector <PathProperty> & items) const
@@ -123,6 +91,38 @@ namespace PICML
   ::GAME::Mga::Collection_T <Path> Paths_Impl::get_Paths (void) const
   {
     return this->children <Path> ();
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  size_t Paths_Impl::get_SimplePropertys (std::vector <SimpleProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_SimplePropertys
+  //
+  ::GAME::Mga::Collection_T <SimpleProperty> Paths_Impl::get_SimplePropertys (void) const
+  {
+    return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t Paths_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> Paths_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

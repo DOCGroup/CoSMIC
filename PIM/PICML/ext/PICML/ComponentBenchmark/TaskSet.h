@@ -101,7 +101,6 @@ namespace PICML
 
     /// Get the dst WorkloadCharacteristics connection.
     size_t dst_of_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const;
-    bool has_dst_of_WorkloadCharacteristics (void) const;
     WorkloadCharacteristics dst_of_WorkloadCharacteristics (void) const;
     ///@}
 

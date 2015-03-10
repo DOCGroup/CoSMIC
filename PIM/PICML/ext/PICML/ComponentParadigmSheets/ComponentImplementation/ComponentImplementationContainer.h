@@ -83,25 +83,19 @@ namespace PICML
      */
     ///@{
 
+    bool has_Implements (void) const;
+    Implements get_Implements (void) const;
+
     bool has_ComponentRef (void) const;
     ComponentRef get_ComponentRef (void) const;
 
     bool has_PathReference (void) const;
     PathReference get_PathReference (void) const;
+    size_t get_Capabilitys (std::vector <Capability> & items) const;
+    ::GAME::Mga::Collection_T <Capability> get_Capabilitys (void) const;
 
-    bool has_Implements (void) const;
-    Implements get_Implements (void) const;
     size_t get_ImplementationDependencys (std::vector <ImplementationDependency> & items) const;
     ::GAME::Mga::Collection_T <ImplementationDependency> get_ImplementationDependencys (void) const;
-
-    size_t get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const;
-    ::GAME::Mga::Collection_T <MonolithicImplementation> get_MonolithicImplementations (void) const;
-
-    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
-    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
-
-    size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
-    ::GAME::Mga::Collection_T <ImplementationDependsOn> get_ImplementationDependsOns (void) const;
 
     size_t get_ImplementationCapabilitys (std::vector <ImplementationCapability> & items) const;
     ::GAME::Mga::Collection_T <ImplementationCapability> get_ImplementationCapabilitys (void) const;
@@ -109,8 +103,14 @@ namespace PICML
     size_t get_CriticalPaths (std::vector <CriticalPath> & items) const;
     ::GAME::Mga::Collection_T <CriticalPath> get_CriticalPaths (void) const;
 
-    size_t get_Capabilitys (std::vector <Capability> & items) const;
-    ::GAME::Mga::Collection_T <Capability> get_Capabilitys (void) const;
+    size_t get_ImplementationDependsOns (std::vector <ImplementationDependsOn> & items) const;
+    ::GAME::Mga::Collection_T <ImplementationDependsOn> get_ImplementationDependsOns (void) const;
+
+    size_t get_MonolithicImplementations (std::vector <MonolithicImplementation> & items) const;
+    ::GAME::Mga::Collection_T <MonolithicImplementation> get_MonolithicImplementations (void) const;
+
+    size_t get_ComponentAssemblys (std::vector <ComponentAssembly> & items) const;
+    ::GAME::Mga::Collection_T <ComponentAssembly> get_ComponentAssemblys (void) const;
 
     ///@}
   };

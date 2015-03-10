@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
-#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Invoke.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
+#include "PICML/ComponentAssemblySheets/AssemblyConnections/ReceptacleDelegate.h"
 
 namespace PICML
 {
@@ -23,22 +23,6 @@ namespace PICML
   // is_abstract
   //
   const bool RequiredRequestPortEnd_Impl::is_abstract = true;
-
-  //
-  // src_of_ConnectorToReceptacle
-  //
-  size_t RequiredRequestPortEnd_Impl::src_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
-  {
-    return this->in_connections <ConnectorToReceptacle> (items);
-  }
-
-  //
-  // src_of_ConnectorToReceptacle
-  //
-  GAME::Mga::Collection_T <ConnectorToReceptacle> RequiredRequestPortEnd_Impl::src_of_ConnectorToReceptacle (void) const
-  {
-    return this->in_connections <ConnectorToReceptacle> ("src");
-  }
 
   //
   // src_of_Invoke
@@ -54,6 +38,22 @@ namespace PICML
   GAME::Mga::Collection_T <Invoke> RequiredRequestPortEnd_Impl::src_of_Invoke (void) const
   {
     return this->in_connections <Invoke> ("src");
+  }
+
+  //
+  // src_of_ConnectorToReceptacle
+  //
+  size_t RequiredRequestPortEnd_Impl::src_of_ConnectorToReceptacle (std::vector <ConnectorToReceptacle> & items) const
+  {
+    return this->in_connections <ConnectorToReceptacle> (items);
+  }
+
+  //
+  // src_of_ConnectorToReceptacle
+  //
+  GAME::Mga::Collection_T <ConnectorToReceptacle> RequiredRequestPortEnd_Impl::src_of_ConnectorToReceptacle (void) const
+  {
+    return this->in_connections <ConnectorToReceptacle> ("src");
   }
 
   //

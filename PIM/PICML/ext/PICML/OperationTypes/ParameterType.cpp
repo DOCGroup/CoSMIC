@@ -8,25 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
 #include "PICML/NamedTypes/MemberType.h"
-#include "PICML/NamedTypes/NamedType.h"
-#include "PICML/NamedTypes/NoInheritable.h"
-#include "PICML/NamedTypes/Collection.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
-#include "PICML/NamedTypes/Aggregate.h"
-#include "PICML/NamedTypes/Alias.h"
-#include "PICML/NamedTypes/SwitchedAggregate.h"
-#include "PICML/NamedTypes/Enum.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
-#include "PICML/InheritableTypes/Inheritable.h"
-#include "PICML/InheritableTypes/HasOperations.h"
-#include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
-#include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/Event.h"
-#include "PICML/InheritableTypes/ValueObject.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
-#include "PICML/NamedTypes/Boxed.h"
+#include "PICML/InterfaceDefinition/TemplateParameter.h"
+#include "PICML/InterfaceDefinition/TypeParameter.h"
+#include "PICML/InterfaceDefinition/NameParameter.h"
+#include "PICML/InterfaceDefinition/CollectionParameter.h"
+#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
 #include "PICML/PredefinedTypes/CharType.h"
 #include "PICML/PredefinedTypes/Char.h"
@@ -54,12 +42,24 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/InterfaceDefinition/TemplateParameterReference.h"
-#include "PICML/InterfaceDefinition/TemplateParameter.h"
-#include "PICML/InterfaceDefinition/CollectionParameter.h"
-#include "PICML/InterfaceDefinition/TypeParameter.h"
-#include "PICML/InterfaceDefinition/NameParameter.h"
-#include "PICML/WorkloadParadigmSheets/WML/Operation.h"
+#include "PICML/NamedTypes/NamedType.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/NamedTypes/Boxed.h"
+#include "PICML/InheritableTypes/Inheritable.h"
+#include "PICML/InheritableTypes/HasOperations.h"
+#include "PICML/InheritableTypes/ObjectByValue.h"
+#include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/ValueObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
+#include "PICML/InheritableTypes/Object.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
+#include "PICML/NamedTypes/NoInheritable.h"
+#include "PICML/NamedTypes/Aggregate.h"
+#include "PICML/NamedTypes/Alias.h"
+#include "PICML/NamedTypes/SwitchedAggregate.h"
+#include "PICML/NamedTypes/Enum.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
+#include "PICML/NamedTypes/Collection.h"
 
 namespace PICML
 {
@@ -86,7 +86,7 @@ namespace PICML
   //
   bool ParameterType_Impl::MemberType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

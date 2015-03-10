@@ -56,8 +56,8 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
-    static TransportPriorityQosPolicy _create (const TopicQos_in parent);
     static TransportPriorityQosPolicy _create (const DataWriterQos_in parent);
+    static TransportPriorityQosPolicy _create (const TopicQos_in parent);
     static TransportPriorityQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -77,8 +77,8 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
-    TopicQos parent_TopicQos (void);
     DataWriterQos parent_DataWriterQos (void);
+    TopicQos parent_TopicQos (void);
     ///@}
 
     /**
@@ -100,13 +100,11 @@ namespace DQML
 
     /// Get the dst topic_transpri_Connection connection.
     size_t dst_of_topic_transpri_Connection (std::vector <topic_transpri_Connection> & items) const;
-    bool has_dst_of_topic_transpri_Connection (void) const;
-    topic_transpri_Connection dst_of_topic_transpri_Connection (void) const;
+    GAME::Mga::Collection_T <topic_transpri_Connection> dst_of_topic_transpri_Connection (void) const;
 
     /// Get the dst dw_transpri_Connection connection.
     size_t dst_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const;
-    bool has_dst_of_dw_transpri_Connection (void) const;
-    dw_transpri_Connection dst_of_dw_transpri_Connection (void) const;
+    GAME::Mga::Collection_T <dw_transpri_Connection> dst_of_dw_transpri_Connection (void) const;
     ///@}
   };
 }

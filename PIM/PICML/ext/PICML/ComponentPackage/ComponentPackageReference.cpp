@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfReference.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -84,19 +84,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_PackageConfReference
-  //
-  bool ComponentPackageReference_Impl::has_dst_of_PackageConfReference (void) const
-  {
-    return this->in_connections <PackageConfReference> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_PackageConfReference
   //
-  PackageConfReference ComponentPackageReference_Impl::dst_of_PackageConfReference (void) const
+  GAME::Mga::Collection_T <PackageConfReference> ComponentPackageReference_Impl::dst_of_PackageConfReference (void) const
   {
-    return this->in_connections <PackageConfReference> ("dst").first ();
+    return this->in_connections <PackageConfReference> ("dst");
   }
 
   //
@@ -104,7 +96,7 @@ namespace PICML
   //
   bool ComponentPackageReference_Impl::ComponentPackage_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

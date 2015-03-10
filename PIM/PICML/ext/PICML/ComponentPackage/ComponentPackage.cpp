@@ -8,15 +8,15 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentPackage/PackageInterface.h"
-#include "PICML/ComponentPackage/Implementation.h"
-#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentPackage/ComponentPackageReference.h"
-#include "PICML/ComponentPackage/PackageConfigProperty.h"
-#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
-#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
+#include "PICML/ComponentPackage/Implementation.h"
+#include "PICML/ComponentPackage/PackageInfoProperty.h"
+#include "PICML/PackageConfiguration/PackageConfBasePackage.h"
+#include "PICML/ComponentPackage/PackageConfigProperty.h"
+#include "PICML/ComponentPackage/PackageInterface.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -97,6 +97,54 @@ namespace PICML
   }
 
   //
+  // src_of_Implementation
+  //
+  size_t ComponentPackage_Impl::src_of_Implementation (std::vector <Implementation> & items) const
+  {
+    return this->in_connections <Implementation> (items);
+  }
+
+  //
+  // src_of_Implementation
+  //
+  GAME::Mga::Collection_T <Implementation> ComponentPackage_Impl::src_of_Implementation (void) const
+  {
+    return this->in_connections <Implementation> ("src");
+  }
+
+  //
+  // src_of_PackageInfoProperty
+  //
+  size_t ComponentPackage_Impl::src_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
+  {
+    return this->in_connections <PackageInfoProperty> (items);
+  }
+
+  //
+  // src_of_PackageInfoProperty
+  //
+  GAME::Mga::Collection_T <PackageInfoProperty> ComponentPackage_Impl::src_of_PackageInfoProperty (void) const
+  {
+    return this->in_connections <PackageInfoProperty> ("src");
+  }
+
+  //
+  // src_of_PackageConfigProperty
+  //
+  size_t ComponentPackage_Impl::src_of_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const
+  {
+    return this->in_connections <PackageConfigProperty> (items);
+  }
+
+  //
+  // src_of_PackageConfigProperty
+  //
+  GAME::Mga::Collection_T <PackageConfigProperty> ComponentPackage_Impl::src_of_PackageConfigProperty (void) const
+  {
+    return this->in_connections <PackageConfigProperty> ("src");
+  }
+
+  //
   // src_of_PackageInterface
   //
   size_t ComponentPackage_Impl::src_of_PackageInterface (std::vector <PackageInterface> & items) const
@@ -121,54 +169,6 @@ namespace PICML
   }
 
   //
-  // src_of_Implementation
-  //
-  size_t ComponentPackage_Impl::src_of_Implementation (std::vector <Implementation> & items) const
-  {
-    return this->in_connections <Implementation> (items);
-  }
-
-  //
-  // src_of_Implementation
-  //
-  GAME::Mga::Collection_T <Implementation> ComponentPackage_Impl::src_of_Implementation (void) const
-  {
-    return this->in_connections <Implementation> ("src");
-  }
-
-  //
-  // src_of_PackageConfigProperty
-  //
-  size_t ComponentPackage_Impl::src_of_PackageConfigProperty (std::vector <PackageConfigProperty> & items) const
-  {
-    return this->in_connections <PackageConfigProperty> (items);
-  }
-
-  //
-  // src_of_PackageConfigProperty
-  //
-  GAME::Mga::Collection_T <PackageConfigProperty> ComponentPackage_Impl::src_of_PackageConfigProperty (void) const
-  {
-    return this->in_connections <PackageConfigProperty> ("src");
-  }
-
-  //
-  // src_of_PackageInfoProperty
-  //
-  size_t ComponentPackage_Impl::src_of_PackageInfoProperty (std::vector <PackageInfoProperty> & items) const
-  {
-    return this->in_connections <PackageInfoProperty> (items);
-  }
-
-  //
-  // src_of_PackageInfoProperty
-  //
-  GAME::Mga::Collection_T <PackageInfoProperty> ComponentPackage_Impl::src_of_PackageInfoProperty (void) const
-  {
-    return this->in_connections <PackageInfoProperty> ("src");
-  }
-
-  //
   // dst_of_PackageConfBasePackage
   //
   size_t ComponentPackage_Impl::dst_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const
@@ -177,19 +177,11 @@ namespace PICML
   }
 
   //
-  // has_dst_of_PackageConfBasePackage
-  //
-  bool ComponentPackage_Impl::has_dst_of_PackageConfBasePackage (void) const
-  {
-    return this->in_connections <PackageConfBasePackage> ("dst").count () == 1;
-  }
-
-  //
   // dst_of_PackageConfBasePackage
   //
-  PackageConfBasePackage ComponentPackage_Impl::dst_of_PackageConfBasePackage (void) const
+  GAME::Mga::Collection_T <PackageConfBasePackage> ComponentPackage_Impl::dst_of_PackageConfBasePackage (void) const
   {
-    return this->in_connections <PackageConfBasePackage> ("dst").first ();
+    return this->in_connections <PackageConfBasePackage> ("dst");
   }
 }
 

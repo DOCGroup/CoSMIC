@@ -62,7 +62,7 @@ namespace PICML
   //
   bool ComponentInstanceType_Impl::MonolithicImplementation_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

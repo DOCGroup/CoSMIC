@@ -8,11 +8,11 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
-#include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/LookupKey.h"
 #include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/ManagesComponent.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/File.h"
 #include "game/mga/Functional_T.h"
@@ -73,9 +73,9 @@ namespace PICML
   //
   // src_of_ManagesComponent
   //
-  GAME::Mga::Collection_T <ManagesComponent> ComponentFactory_Impl::src_of_ManagesComponent (void) const
+  ManagesComponent ComponentFactory_Impl::src_of_ManagesComponent (void) const
   {
-    return this->in_connections <ManagesComponent> ("src");
+    return this->in_connections <ManagesComponent> ("src").first ();
   }
 
   //
@@ -95,22 +95,6 @@ namespace PICML
   }
 
   //
-  // get_LookupOperations
-  //
-  size_t ComponentFactory_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_LookupOperations
-  //
-  ::GAME::Mga::Collection_T <LookupOperation> ComponentFactory_Impl::get_LookupOperations (void) const
-  {
-    return this->children <LookupOperation> ();
-  }
-
-  //
   // get_FactoryOperations
   //
   size_t ComponentFactory_Impl::get_FactoryOperations (std::vector <FactoryOperation> & items) const
@@ -124,6 +108,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <FactoryOperation> ComponentFactory_Impl::get_FactoryOperations (void) const
   {
     return this->children <FactoryOperation> ();
+  }
+
+  //
+  // get_LookupOperations
+  //
+  size_t ComponentFactory_Impl::get_LookupOperations (std::vector <LookupOperation> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_LookupOperations
+  //
+  ::GAME::Mga::Collection_T <LookupOperation> ComponentFactory_Impl::get_LookupOperations (void) const
+  {
+    return this->children <LookupOperation> ();
   }
 }
 

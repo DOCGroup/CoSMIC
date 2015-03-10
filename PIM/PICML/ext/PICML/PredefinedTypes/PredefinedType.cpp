@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 #include "PICML/PredefinedTypes/PredefinedTypes.h"
+#include "PICML/BehaviorParadigmSheets/BehaviorModel/Variable.h"
 
 namespace PICML
 {

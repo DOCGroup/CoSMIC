@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/DeploymentPlan/Deploys.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryInstance.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -59,19 +59,11 @@ namespace PICML
   }
 
   //
-  // has_src_of_Deploys
-  //
-  bool ComponentFactoryRef_Impl::has_src_of_Deploys (void) const
-  {
-    return this->in_connections <Deploys> ("src").count () == 1;
-  }
-
-  //
   // src_of_Deploys
   //
-  Deploys ComponentFactoryRef_Impl::src_of_Deploys (void) const
+  GAME::Mga::Collection_T <Deploys> ComponentFactoryRef_Impl::src_of_Deploys (void) const
   {
-    return this->in_connections <Deploys> ("src").first ();
+    return this->in_connections <Deploys> ("src");
   }
 
   //
@@ -79,7 +71,7 @@ namespace PICML
   //
   bool ComponentFactoryRef_Impl::ComponentFactoryInstance_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

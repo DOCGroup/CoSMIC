@@ -87,8 +87,8 @@ namespace PICML
     virtual void visit_Latency (Latency_in item);
     virtual void visit_KeyMember (KeyMember_in item);
     virtual void visit_ComponentImplementationReference (ComponentImplementationReference_in item);
-    virtual void visit_MonolithExecParameter (MonolithExecParameter_in item);
     virtual void visit_ArtifactExecParameter (ArtifactExecParameter_in item);
+    virtual void visit_MonolithExecParameter (MonolithExecParameter_in item);
     virtual void visit_PackageConfigProperty (PackageConfigProperty_in item);
     virtual void visit_QueryAction (QueryAction_in item);
     virtual void visit_GetException (GetException_in item);
@@ -275,8 +275,8 @@ namespace PICML
     virtual void visit_ComponentContainer (ComponentContainer_in item);
     virtual void visit_InParameter (InParameter_in item);
     virtual void visit_DataValue (DataValue_in item);
-    virtual void visit_ImplementationArtifact (ImplementationArtifact_in item);
     virtual void visit_ManagesComponent (ManagesComponent_in item);
+    virtual void visit_ImplementationArtifact (ImplementationArtifact_in item);
     virtual void visit_Key (Key_in item);
     virtual void visit_UnsignedShortInteger (UnsignedShortInteger_in item);
     virtual void visit_ComponentProperty (ComponentProperty_in item);
@@ -290,8 +290,8 @@ namespace PICML
     virtual void visit_TypeParameter (TypeParameter_in item);
     virtual void visit_InstanceMapping (InstanceMapping_in item);
     virtual void visit_EventRef (EventRef_in item);
-    virtual void visit_MonolithprimaryArtifact (MonolithprimaryArtifact_in item);
     virtual void visit_Effect (Effect_in item);
+    virtual void visit_MonolithprimaryArtifact (MonolithprimaryArtifact_in item);
     virtual void visit_TriggerBenchmarks (TriggerBenchmarks_in item);
     virtual void visit_InEventPortInstance (InEventPortInstance_in item);
     virtual void visit_Consume (Consume_in item);
@@ -324,8 +324,8 @@ namespace PICML
     virtual void visit_ComponentFactoryInstance (ComponentFactoryInstance_in item);
     virtual void visit_ActionType (ActionType_in item);
     virtual void visit_OutEventPortDelegate (OutEventPortDelegate_in item);
-    virtual void visit_ComponentPackageReference (ComponentPackageReference_in item);
     virtual void visit_package (package_in item);
+    virtual void visit_ComponentPackageReference (ComponentPackageReference_in item);
     virtual void visit_Domain (Domain_in item);
     virtual void visit_TimerConnection (TimerConnection_in item);
     virtual void visit_RequestAction (RequestAction_in item);

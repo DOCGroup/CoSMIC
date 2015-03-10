@@ -83,7 +83,6 @@ namespace PICML
 
     /// Get the dst MakeMemberPrivate connection.
     size_t dst_of_MakeMemberPrivate (std::vector <MakeMemberPrivate> & items) const;
-    bool has_dst_of_MakeMemberPrivate (void) const;
     MakeMemberPrivate dst_of_MakeMemberPrivate (void) const;
     ///@}
   };

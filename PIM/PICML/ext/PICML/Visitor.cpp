@@ -375,16 +375,16 @@ namespace PICML
   }
 
   //
-  // visit_MonolithExecParameter
+  // visit_ArtifactExecParameter
   //
-  void Visitor::visit_MonolithExecParameter (MonolithExecParameter_in item)
+  void Visitor::visit_ArtifactExecParameter (ArtifactExecParameter_in item)
   {
   }
 
   //
-  // visit_ArtifactExecParameter
+  // visit_MonolithExecParameter
   //
-  void Visitor::visit_ArtifactExecParameter (ArtifactExecParameter_in item)
+  void Visitor::visit_MonolithExecParameter (MonolithExecParameter_in item)
   {
   }
 
@@ -1691,16 +1691,16 @@ namespace PICML
   }
 
   //
-  // visit_ImplementationArtifact
+  // visit_ManagesComponent
   //
-  void Visitor::visit_ImplementationArtifact (ImplementationArtifact_in item)
+  void Visitor::visit_ManagesComponent (ManagesComponent_in item)
   {
   }
 
   //
-  // visit_ManagesComponent
+  // visit_ImplementationArtifact
   //
-  void Visitor::visit_ManagesComponent (ManagesComponent_in item)
+  void Visitor::visit_ImplementationArtifact (ImplementationArtifact_in item)
   {
   }
 
@@ -1796,16 +1796,16 @@ namespace PICML
   }
 
   //
-  // visit_MonolithprimaryArtifact
+  // visit_Effect
   //
-  void Visitor::visit_MonolithprimaryArtifact (MonolithprimaryArtifact_in item)
+  void Visitor::visit_Effect (Effect_in item)
   {
   }
 
   //
-  // visit_Effect
+  // visit_MonolithprimaryArtifact
   //
-  void Visitor::visit_Effect (Effect_in item)
+  void Visitor::visit_MonolithprimaryArtifact (MonolithprimaryArtifact_in item)
   {
   }
 
@@ -2034,16 +2034,16 @@ namespace PICML
   }
 
   //
-  // visit_ComponentPackageReference
+  // visit_package
   //
-  void Visitor::visit_ComponentPackageReference (ComponentPackageReference_in item)
+  void Visitor::visit_package (package_in item)
   {
   }
 
   //
-  // visit_package
+  // visit_ComponentPackageReference
   //
-  void Visitor::visit_package (package_in item)
+  void Visitor::visit_ComponentPackageReference (ComponentPackageReference_in item)
   {
   }
 

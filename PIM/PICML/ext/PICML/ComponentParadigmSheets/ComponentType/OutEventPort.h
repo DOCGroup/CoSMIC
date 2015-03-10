@@ -58,8 +58,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static OutEventPort _create (const Component_in parent);
     static OutEventPort _create (const ConnectedComponent_in parent);
+    static OutEventPort _create (const Component_in parent);
     static OutEventPort _create (const Path_in parent);
     ///@}
 

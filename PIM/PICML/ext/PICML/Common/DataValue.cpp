@@ -9,6 +9,7 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/SimpleType.h"
+#include "PICML/NamedTypes/Enum.h"
 #include "PICML/PredefinedTypes/PredefinedType.h"
 #include "PICML/PredefinedTypes/CharType.h"
 #include "PICML/PredefinedTypes/Char.h"
@@ -36,7 +37,6 @@
 #include "PICML/PredefinedTypes/GenericObject.h"
 #include "PICML/PredefinedTypes/Boolean.h"
 #include "PICML/PredefinedTypes/Byte.h"
-#include "PICML/NamedTypes/Enum.h"
 #include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/DataValueContainer.h"
 #include "game/mga/Functional_T.h"
@@ -91,7 +91,7 @@ namespace PICML
   //
   bool DataValue_Impl::SimpleType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

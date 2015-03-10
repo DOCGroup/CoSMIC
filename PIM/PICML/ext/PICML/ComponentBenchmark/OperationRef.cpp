@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/OperationTypes/OperationBase.h"
-#include "PICML/OperationTypes/HasExceptions.h"
-#include "PICML/OperationTypes/LookupOperation.h"
-#include "PICML/OperationTypes/FactoryOperation.h"
-#include "PICML/OperationTypes/TwowayOperation.h"
-#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
 #include "PICML/ComponentBenchmark/WorkLoadOperationConnection.h"
 #include "PICML/ComponentBenchmark/ComponentOperation.h"
 #include "PICML/ComponentBenchmark/MetricConnection.h"
 #include "PICML/ComponentBenchmark/TimerConnection.h"
-#include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/OperationTypes/OperationBase.h"
+#include "PICML/OperationTypes/OnewayOperation.h"
+#include "PICML/OperationTypes/HasExceptions.h"
+#include "PICML/OperationTypes/TwowayOperation.h"
+#include "PICML/OperationTypes/FactoryOperation.h"
+#include "PICML/OperationTypes/LookupOperation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -99,6 +99,14 @@ namespace PICML
   }
 
   //
+  // has_src_of_ComponentOperation
+  //
+  bool OperationRef_Impl::has_src_of_ComponentOperation (void) const
+  {
+    return this->in_connections <ComponentOperation> ("src").count () == 1;
+  }
+
+  //
   // src_of_ComponentOperation
   //
   ComponentOperation OperationRef_Impl::src_of_ComponentOperation (void) const
@@ -112,6 +120,14 @@ namespace PICML
   size_t OperationRef_Impl::src_of_MetricConnection (std::vector <MetricConnection> & items) const
   {
     return this->in_connections <MetricConnection> (items);
+  }
+
+  //
+  // has_src_of_MetricConnection
+  //
+  bool OperationRef_Impl::has_src_of_MetricConnection (void) const
+  {
+    return this->in_connections <MetricConnection> ("src").count () == 1;
   }
 
   //
@@ -151,7 +167,7 @@ namespace PICML
   //
   bool OperationRef_Impl::OperationBase_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
 #include "PICML/InheritableTypes/Event.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/TimerEventSinkConn.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -67,19 +67,11 @@ namespace PICML
   }
 
   //
-  // has_src_of_TimerEventSinkConn
-  //
-  bool EventRef_Impl::has_src_of_TimerEventSinkConn (void) const
-  {
-    return this->in_connections <TimerEventSinkConn> ("src").count () == 1;
-  }
-
-  //
   // src_of_TimerEventSinkConn
   //
-  TimerEventSinkConn EventRef_Impl::src_of_TimerEventSinkConn (void) const
+  GAME::Mga::Collection_T <TimerEventSinkConn> EventRef_Impl::src_of_TimerEventSinkConn (void) const
   {
-    return this->in_connections <TimerEventSinkConn> ("src").first ();
+    return this->in_connections <TimerEventSinkConn> ("src");
   }
 
   //
@@ -87,7 +79,7 @@ namespace PICML
   //
   bool EventRef_Impl::Event_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

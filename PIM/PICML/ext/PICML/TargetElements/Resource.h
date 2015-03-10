@@ -56,9 +56,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static Resource _create (const Bridge_in parent);
     static Resource _create (const Node_in parent);
     static Resource _create (const Interconnect_in parent);
-    static Resource _create (const Bridge_in parent);
     ///@}
 
     // Default constructor.
@@ -77,9 +77,9 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
+    Bridge parent_Bridge (void);
     Node parent_Node (void);
     Interconnect parent_Interconnect (void);
-    Bridge parent_Bridge (void);
     ///@}
   };
 }

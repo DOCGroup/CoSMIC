@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentBenchmark/Task.h"
-#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "PICML/ComponentBenchmark/BenchmarkAnalysis.h"
+#include "PICML/ComponentBenchmark/WorkloadCharacteristics.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -64,14 +64,6 @@ namespace PICML
   size_t TaskSet_Impl::dst_of_WorkloadCharacteristics (std::vector <WorkloadCharacteristics> & items) const
   {
     return this->in_connections <WorkloadCharacteristics> (items);
-  }
-
-  //
-  // has_dst_of_WorkloadCharacteristics
-  //
-  bool TaskSet_Impl::has_dst_of_WorkloadCharacteristics (void) const
-  {
-    return this->in_connections <WorkloadCharacteristics> ("dst").count () == 1;
   }
 
   //
