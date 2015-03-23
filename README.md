@@ -31,12 +31,12 @@ Getting Started
 ============================
 1.  Start GME.
 
-2.  Select File->Import XML, and navigate to the directory �examples� under
+2.  Select File->Import XML, and navigate to the directory `examples` under
     the directory in which CoSMIC was installed. Note that each paradigm
-    mentioned above has its examples in its corresponding �examples�
-    directory. Choose Hello.xme. Leave the default item �Create
-    project file� checked in the dialog box that pops up. Click Next. Accept
-    the default name �Hello�. Click Open.
+    mentioned above has its examples in its corresponding `examples`
+    directory. Choose Hello.xme. Leave the default item `Create
+    project file` checked in the dialog box that pops up. Click Next. Accept
+    the default name `Hello`. Click Open.
 
 3.  The importer should succeed. Click on OK button on the next dialog box.
 
@@ -56,7 +56,7 @@ Generating Descriptors
     which lets you specify the output directory for the generated descriptors.
 
 2.  For example, in case of PICML models, to generate component package
-    descriptors, click on the icon that says �Generate Package Descriptors�.
+    descriptors, click on the icon that says `Generate Package Descriptors`.
     It will generate the component packaging, deployment and configuration
     related descriptors.
 
