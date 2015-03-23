@@ -16,7 +16,7 @@
 #include "PICML/PICML.h"
 #include "PICML/Visitor.h"
 
-#include "game/xml/Fragment.h"
+#include "game/xml/Document.h"
 
 #include "Deployment_Handler.h"
 
@@ -35,7 +35,7 @@ public:
    * Initializing constructor.
    */
   Connector_Visitor (Deployment_Handler * handler, 
-                     GAME::Xml::Fragment document,
+                     GAME::Xml::Document document,
                      std::vector <GAME::Xml::Fragment> & conns);
 
   /// Destructor.
@@ -104,11 +104,11 @@ private:
 
   void deploy_connector_fragment (ConnectorInstance_in inst);
 
-  void make_connection_local (xercesc::DOMElement * conn);
+  void make_connection_local (GAME::Xml::Fragment conn);
 
   Deployment_Handler * handler_;
 
-  GAME::Xml::Fragment document_;
+  GAME::Xml::Document document_;
 
   std::vector <GAME::Xml::Fragment> & conns_;
 

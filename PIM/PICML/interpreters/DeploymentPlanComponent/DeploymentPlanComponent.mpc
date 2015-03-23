@@ -19,6 +19,7 @@ project (PICML_DeploymentPlanComponent): picml_xml, game_mga_interpreter, picml_
     Deployment_Plan_Generator_Module.cpp
     DeploymentPlan_MainDialog.cpp
 
+    Artifact_Visitor.cpp
     Configuration.cpp
     Connection_Visitor.cpp
     Connector_Visitor.cpp

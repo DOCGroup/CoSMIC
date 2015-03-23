@@ -16,7 +16,7 @@
 #include "PICML/PICML.h"
 #include "PICML/Visitor.h"
 
-#include "game/xml/Fragment.h"
+#include "game/xml/Document.h"
 
 namespace PICML
 {
@@ -34,7 +34,7 @@ class External_Reference_Visitor : public Visitor
 {
 public:
   /// Default constructor.
-  External_Reference_Visitor (GAME::Xml::Fragment document, std::vector <GAME::Xml::Fragment> & conns);
+  External_Reference_Visitor (GAME::Xml::Document doc, std::vector <GAME::Xml::Fragment> & conns);
 
   /// Destructor
   virtual ~External_Reference_Visitor (void);
@@ -55,7 +55,7 @@ private:
                    bool provider,
                    ExternalDelegate_in ed);
 
-  GAME::Xml::Fragment document_;
+  GAME::Xml::Document doc_;
 
   std::vector <GAME::Xml::Fragment> & conns_;
 };

@@ -66,7 +66,7 @@ private:
 
 Connector_Visitor::
 Connector_Visitor (Deployment_Handler * handler, 
-                   GAME::Xml::Fragment document,
+                   GAME::Xml::Document document,
                    std::vector <GAME::Xml::Fragment> & conns)
 : handler_ (handler),
   document_ (document),
@@ -298,11 +298,11 @@ Visit_ConnectorToReceptacle (ConnectorToReceptacle_in conn)
     for (ProvidedRequestPortInstance facet : facets)
     {
       this->curr_conn_ = this->document_.create_element ("connection");
-      this->name_element_ = this->curr_conn_.create_element ("name");
+      this->name_element_ = this->curr_conn_.append_element ("name");
 
-      Fragment deployRequirement = this->curr_conn_.create_element ("deployRequirement");
-      deployRequirement.create_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
-      deployRequirement.create_simple_content ("resourceType", "Local_Interface");
+      Fragment deployRequirement = this->curr_conn_.append_element ("deployRequirement");
+      deployRequirement.append_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+      deployRequirement.append_simple_content ("resourceType", "Local_Interface");
 
       // Write the endpoint for the facet.
       std::string uuid = "_" + this->comp_inst_->UUID ();
@@ -428,7 +428,7 @@ Visit_ConnectorToFacet (ConnectorToFacet_in conn)
     // Since this is an ami4ccm connector, we need to generate a special
     // connection for it.
     this->curr_conn_ = this->document_.create_element ("connection");
-    this->name_element_ = this->curr_conn_.create_element ("name");
+    this->name_element_ = this->curr_conn_.append_element ("name");
 
     // Write the endpoint for the facet.
     std::string uuid = "_" + std::string (this->comp_inst_->UUID ());
@@ -698,7 +698,7 @@ deploy_connector_fragment (ConnectorInstance_in inst)
 void Connector_Visitor::start_new_connection (Object_in obj)
 {
   this->curr_conn_ = this->document_.create_element ("connection");
-  this->name_element_ = this->curr_conn_.create_element ("name");
+  this->name_element_ = this->curr_conn_.append_element ("name");
   this->connection_name_ = this->comp_inst_->path (".", false);
 
   // Determine if the interface is local. If this is the case, then we
@@ -721,13 +721,13 @@ append_endpoint (const std::string & portname,
   // Add the portname to the connection name.
   this->connection_name_ += "." + portname;
 
-  Fragment ep = this->curr_conn_.create_element ("internalEndpoint");
-  ep.create_simple_content ("portName", portname);
-  ep.create_simple_content ("provider", provider);
-  ep.create_simple_content ("kind", kind);
+  Fragment ep = this->curr_conn_.append_element ("internalEndpoint");
+  ep.append_simple_content ("portName", portname);
+  ep.append_simple_content ("provider", provider);
+  ep.append_simple_content ("kind", kind);
 
-  Fragment instance = ep.create_element ("instance");
-  instance->setAttribute (String ("xmi:idref"), String (inst));
+  Fragment instance = ep.append_element ("instance");
+  instance.set_attribute ("xmi:idref", inst);
 }
 
 //
@@ -742,13 +742,11 @@ void Connector_Visitor::end_connection (void)
 //
 // make_connection_local
 //
-void Connector_Visitor::
-make_connection_local (xercesc::DOMElement * conn)
+void Connector_Visitor::make_connection_local (Fragment conn)
 {
-  Fragment conn_fragment (conn);
-  Fragment deployRequirement = conn_fragment.create_element ("deployRequirement");
-  deployRequirement.create_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
-  deployRequirement.create_simple_content ("resourceType", "Local_Interface");
+  Fragment deployRequirement = conn.append_element ("deployRequirement");
+  deployRequirement.append_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+  deployRequirement.append_simple_content ("resourceType", "Local_Interface");
 }
 
 }

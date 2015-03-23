@@ -13,16 +13,16 @@ namespace Xml
 {
 
 Data_Value_Visitor::
-Data_Value_Visitor (const GAME::Xml::Fragment & parent)
-: fragment_ (parent),
+Data_Value_Visitor (GAME::Xml::Fragment parent)
+: fragment_ (parent.append_element ("value")),
   container_ (NONE)
 {
 
 }
 
 Data_Value_Visitor::
-Data_Value_Visitor (const GAME::Xml::Fragment & parent, const std::string & value)
-: fragment_ (parent),
+Data_Value_Visitor (GAME::Xml::Fragment parent, const std::string & value)
+: fragment_ (parent.append_element ("value")),
   value_ (value),
   container_ (NONE)
 {
@@ -31,164 +31,112 @@ Data_Value_Visitor (const GAME::Xml::Fragment & parent, const std::string & valu
 
 void Data_Value_Visitor::visit_DataType (PICML::DataType_in dt)
 {
-  GAME::Xml::Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("value"));
   dt->refers_to ()->accept (this);
 }
 
-//
-// Visit_Boolean
-//
 void Data_Value_Visitor::
-Visit_Boolean (PICML::Boolean_in )
+visit_Boolean (PICML::Boolean_in )
 {
-  this->fragment_.create_simple_content ("boolean", this->value_);
+  this->fragment_.append_simple_content ("boolean", this->value_);
 }
 
-//
-// Visit_Byte
-//
 void Data_Value_Visitor::
-Visit_Byte (PICML::Byte_in )
+visit_Byte (PICML::Byte_in )
 {
-  this->fragment_.create_simple_content ("octet", this->value_);
+  this->fragment_.append_simple_content ("octet", this->value_);
 }
 
-//
-// Visit_Char
-//
-void Data_Value_Visitor::Visit_Char (PICML::Char_in )
+void Data_Value_Visitor::visit_Char (PICML::Char_in )
 {
-  this->fragment_.create_simple_content ("char", this->value_);
+  this->fragment_.append_simple_content ("char", this->value_);
 }
 
-//
-// Visit_WideChar
-//
-void Data_Value_Visitor::Visit_WideChar (PICML::WideChar_in )
+void Data_Value_Visitor::visit_WideChar (PICML::WideChar_in )
 {
-  this->fragment_.create_simple_content ("wchar", this->value_);
+  this->fragment_.append_simple_content ("wchar", this->value_);
 }
 
-//
-// Visit_String
-//
 void Data_Value_Visitor::
-Visit_String (PICML::String_in )
+visit_String (PICML::String_in )
 {
-  this->fragment_.create_simple_content ("string", this->value_);
+  this->fragment_.append_simple_content ("string", this->value_);
 }
 
-//
-// Visit_WideString
-//
 void Data_Value_Visitor::
-Visit_WideString (PICML::WideString_in )
+visit_WideString (PICML::WideString_in )
 {
-  this->fragment_.create_simple_content ("wstring", this->value_);
+  this->fragment_.append_simple_content ("wstring", this->value_);
 }
 
-//
-// Visit_FloatNumber
-//
 void Data_Value_Visitor::
-Visit_FloatNumber (PICML::FloatNumber_in )
+visit_FloatNumber (PICML::FloatNumber_in )
 {
-  this->fragment_.create_simple_content ("float", this->value_);
+  this->fragment_.append_simple_content ("float", this->value_);
 }
 
-//
-// Visit_DoubleNumber
-//
 void Data_Value_Visitor::
-Visit_DoubleNumber (PICML::DoubleNumber_in )
+visit_DoubleNumber (PICML::DoubleNumber_in )
 {
-  this->fragment_.create_simple_content ("double", this->value_);
+  this->fragment_.append_simple_content ("double", this->value_);
 }
 
-//
-// Visit_LongDoubleNumber
-//
 void Data_Value_Visitor::
-Visit_LongDoubleNumber (PICML::LongDoubleNumber_in )
+visit_LongDoubleNumber (PICML::LongDoubleNumber_in )
 {
-  this->fragment_.create_simple_content ("longdouble", this->value_);
+  this->fragment_.append_simple_content ("longdouble", this->value_);
 }
 
-//
-// Visit_UnsignedShortInteger
-//
 void Data_Value_Visitor::
-Visit_UnsignedShortInteger (PICML::UnsignedShortInteger_in )
+visit_UnsignedShortInteger (PICML::UnsignedShortInteger_in )
 {
-  this->fragment_.create_simple_content ("ushort", this->value_);
+  this->fragment_.append_simple_content ("ushort", this->value_);
 }
 
-//
-// Visit_UnsignedLongInteger
-//
 void Data_Value_Visitor::
-Visit_UnsignedLongInteger (PICML::UnsignedLongInteger_in )
+visit_UnsignedLongInteger (PICML::UnsignedLongInteger_in )
 {
-  this->fragment_.create_simple_content ("ulong", this->value_);
+  this->fragment_.append_simple_content ("ulong", this->value_);
 }
 
-//
-// Visit_UnsignedLongLongInteger
-//
 void Data_Value_Visitor::
-Visit_UnsignedLongLongInteger (PICML::UnsignedLongLongInteger_in )
+visit_UnsignedLongLongInteger (PICML::UnsignedLongLongInteger_in )
 {
-  this->fragment_.create_simple_content ("ulonglong", this->value_);
+  this->fragment_.append_simple_content ("ulonglong", this->value_);
 }
 
-//
-// Visit_ShortInteger
-//
 void Data_Value_Visitor::
-Visit_ShortInteger (PICML::ShortInteger_in )
+visit_ShortInteger (PICML::ShortInteger_in )
 {
-  this->fragment_.create_simple_content ("short", this->value_);
+  this->fragment_.append_simple_content ("short", this->value_);
 }
 
-//
-// Visit_LongInteger
-//
 void Data_Value_Visitor::
-Visit_LongInteger (PICML::LongInteger_in )
+visit_LongInteger (PICML::LongInteger_in )
 {
-  this->fragment_.create_simple_content ("long", this->value_);
+  this->fragment_.append_simple_content ("long", this->value_);
 }
 
-//
-// Visit_LongLongInteger
-//
 void Data_Value_Visitor::
-Visit_LongLongInteger (PICML::LongLongInteger_in )
+visit_LongLongInteger (PICML::LongLongInteger_in )
 {
-  this->fragment_.create_simple_content ("longlong", this->value_);
+  this->fragment_.append_simple_content ("longlong", this->value_);
 }
 
-//
-// Visit_Enum
-//
 void Data_Value_Visitor::
-Visit_Enum (PICML::Enum_in )
+visit_Enum (PICML::Enum_in )
 {
-  this->fragment_.create_simple_content ("enum", this->value_);
+  this->fragment_.append_simple_content ("enum", this->value_);
 }
 
-//
-// Visit_DataValue
-//
 void Data_Value_Visitor::
-Visit_DataValue (PICML::DataValue_in value)
+visit_DataValue (PICML::DataValue_in value)
 {
   switch (this->container_)
   {
   case AGGREGATE:
     {
-      GAME::Xml::Fragment member = this->fragment_.create_element ("member");
-      member.create_simple_content ("name", value->name ());
+      GAME::Xml::Fragment member = this->fragment_.append_element ("member");
+      member.append_simple_content ("name", value->name ());
 
       // We can now visit the value using this visitor.
       Data_Value_Visitor dvv (member, this->value_);
@@ -198,7 +146,7 @@ Visit_DataValue (PICML::DataValue_in value)
 
   case SEQUENCE:
     {
-      GAME::Xml::Swap_Fragment element (this->fragment_, this->fragment_.create_element ("element"));
+      GAME::Xml::Swap_Fragment element (this->fragment_, this->fragment_.append_element ("element"));
 
       container_t old = NONE;
 
@@ -238,13 +186,13 @@ Container_Setter::visit_Aggregate (PICML::Aggregate_in aggr)
 }
 
 void Data_Value_Visitor::
-Visit_DataValueContainer (PICML::DataValueContainer_in c)
+visit_DataValueContainer (PICML::DataValueContainer_in c)
 {
   if (this->container_ == AGGREGATE)
   {
     // We are dealing with a struct parent container.
-    GAME::Xml::Fragment member = this->fragment_.create_element ("member");
-    member.create_simple_content ("name", c->name ());
+    GAME::Xml::Fragment member = this->fragment_.append_element ("member");
+    member.append_simple_content ("name", c->name ());
 
     // We can now visit the value using this visitor.
     Data_Value_Visitor dvv (member, this->value_);
@@ -253,7 +201,7 @@ Visit_DataValueContainer (PICML::DataValueContainer_in c)
   else if (this->container_ == SEQUENCE)
   {
     // We are dealing with a sequence parent container.
-    GAME::Xml::Swap_Fragment member (this->fragment_, this->fragment_.create_element ("member"));
+    GAME::Xml::Swap_Fragment member (this->fragment_, this->fragment_.append_element ("member"));
     container_t old = NONE;
 
     c->accept (this);
@@ -284,19 +232,13 @@ Visit_DataValueContainer (PICML::DataValueContainer_in c)
   }
 }
 
-//
-// Visit_SimpleProperty
-//
-void Data_Value_Visitor::Visit_SimpleProperty (PICML::SimpleProperty_in prop)
+void Data_Value_Visitor::visit_SimpleProperty (PICML::SimpleProperty_in prop)
 {
   this->value_ = prop->Value ();
-  prop->refers_to ()->accept (this);
+  prop->refers_to_MemberType ()->accept (this);
 }
 
-//
-// Visit_ComlexProperty
-//
-void Data_Value_Visitor::Visit_ComplexProperty (PICML::ComplexProperty_in prop)
+void Data_Value_Visitor::visit_ComplexProperty (PICML::ComplexProperty_in prop)
 {
   PICML::ComplexTypeReference complex = prop->get_ComplexTypeReference ();
   PICML::ComplexType t = complex->refers_to_ComplexType ();

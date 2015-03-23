@@ -16,7 +16,7 @@
 #include "PIM/PICML/ext/PICML/PICML.h"
 #include "PIM/PICML/ext/PICML/Visitor.h"
 
-#include "game/xml/Fragment.h"
+#include "game/xml/Document.h"
 
 namespace PICML
 {
@@ -29,12 +29,12 @@ namespace Deployment
 class Connection_Visitor : public Visitor
 {
 public:
+  typedef std::map <ComponentInstance, GAME::Xml::Fragment> instance_map_type;
+
   /**
    * Initializing constructor.
    */
-  Connection_Visitor (GAME::Xml::Fragment document, 
-                      std::vector <GAME::Xml::Fragment> & conns,
-                      const std::map <ComponentInstance, GAME::Xml::Fragment> & insts);
+  Connection_Visitor (GAME::Xml::Document document, const instance_map_type & insts);
 
   /// Destructor.
   virtual ~Connection_Visitor (void);
@@ -69,7 +69,7 @@ public:
 
   virtual void visit_InEventPortDelegate (InEventPortDelegate_in);
 
-  const std::vector <xercesc::DOMElement *> & connections (void) const;
+  const std::vector <GAME::Xml::Fragment> & connections (void) const;
 
 private:
   /// Helper method for creating a connection.
@@ -81,13 +81,13 @@ private:
   void make_local_connection (GAME::Xml::Fragment conn);
 
   /// The target document/parent for the connection.
-  GAME::Xml::Fragment document_;
+  GAME::Xml::Document doc_;
 
   /// Set of connection gathered.
-  std::vector <GAME::Xml::Fragment> & conns_;
+  std::vector <GAME::Xml::Fragment> conns_;
 
   /// Set of deployed instances.
-  const std::map <ComponentInstance, GAME::Xml::Fragment> & insts_;
+  const instance_map_type & insts_;
 
   ComponentInstance inst_;
 

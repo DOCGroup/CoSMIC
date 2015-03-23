@@ -62,7 +62,7 @@ void IDL_Generator_Visitor::visit_File (PICML::File_in file)
   }
 
   // Make sure the path exists.
-  filename += "/" + std::string (file->name ()) + ".idl";
+  filename += "/" + file->name () + ".idl";
 
   // Open the target file for writing.
   std::ofstream outfile (filename.c_str ());

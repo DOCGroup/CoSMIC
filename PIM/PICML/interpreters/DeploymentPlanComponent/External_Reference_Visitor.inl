@@ -8,8 +8,8 @@ namespace Deployment
 //
 inline
 External_Reference_Visitor::
-External_Reference_Visitor (GAME::Xml::Fragment document, std::vector <GAME::Xml::Fragment> & conns)
-: document_ (document),
+External_Reference_Visitor (GAME::Xml::Document doc, std::vector <GAME::Xml::Fragment> & conns)
+: doc_ (doc),
   conns_ (conns)
 {
 

@@ -41,6 +41,8 @@ invoke_ex (GAME::Mga::Project project,
 {
   try
   {
+    GAME::Mga::Transaction t (project);
+
     // First, make sure this project contains at least one deployment plan
     // before executing the rest of this interpreter.
     GAME::Mga::Filter filter (project);
@@ -86,8 +88,10 @@ invoke_ex (GAME::Mga::Project project,
           selection->accept (&dpv);
 
     if (this->is_interactive_)
-      ::AfxMessageBox ("Successfully generated deployment plan descriptors",
-                       MB_ICONINFORMATION);
+      ::AfxMessageBox ("Successfully generated deployment plan descriptors", MB_ICONINFORMATION);
+
+    // Commit any changes to the model.
+    t.commit ();
 
     return 0;
   }

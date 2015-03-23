@@ -45,13 +45,13 @@ void Deployment_Domain_Visitor::
 Visit_NodeReference (PICML::NodeReference_in noderef)
 {
   PICML::Node node = noderef->refers_to_Node ();
-  this->fragment_ = this->fragment_.create_element ("node");
-  this->fragment_.create_simple_content ("name", noderef->name ());   
-  this->fragment_.create_simple_content ("label", node->label ());
+  this->fragment_ = this->fragment_.append_element ("node");
+  this->fragment_.append_simple_content ("name", noderef->name ());   
+  this->fragment_.append_simple_content ("label", node->label ());
 
-  this->fragment_ = this->fragment_.create_element ("resource");
-  this->fragment_.create_simple_content ("name", "Node Address");
-  this->fragment_.create_simple_content ("resourceType", "edu.vanderbilt.dre.DAnCE.NodeAddress");
+  this->fragment_ = this->fragment_.append_element ("resource");
+  this->fragment_.append_simple_content ("name", "Node Address");
+  this->fragment_.append_simple_content ("resourceType", "edu.vanderbilt.dre.DAnCE.NodeAddress");
 
   for (PICML::PropertyMapping mapping : noderef->src_of_PropertyMapping ())
     mapping->accept (this);

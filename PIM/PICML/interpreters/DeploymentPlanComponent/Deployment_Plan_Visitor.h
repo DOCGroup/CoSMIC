@@ -108,7 +108,7 @@ private:
 
   void write_artifact_execParameter (const std::string & name, const std::string & value);
 
-  GAME::Xml::LS_Document document_;
+  std::unique_ptr <GAME::Xml::LS_Document> document_;
 
   /// The configuration for the generator.
   const Configuration & config_;
@@ -145,7 +145,7 @@ private:
 
   GAME::Xml::Fragment curr_artifact_;
 
-  GAME::Xml::Fragment param_parent_;
+  GAME::Xml::Fragment property_parent_;
 
   GAME::Xml::Fragment curr_param_;
 

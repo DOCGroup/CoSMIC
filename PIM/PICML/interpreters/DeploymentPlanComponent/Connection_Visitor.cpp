@@ -13,11 +13,9 @@ namespace Deployment
 using GAME::Xml::String;
 
 Connection_Visitor::
-Connection_Visitor (GAME::Xml::Fragment document,
-                    std::vector <GAME::Xml::Fragment> & conns,
+Connection_Visitor (GAME::Xml::Document doc,
                     const std::map <ComponentInstance, GAME::Xml::Fragment> & insts)
-: document_ (document),
-  conns_ (conns),
+: doc_ (doc),
   insts_ (insts)
 {
 
@@ -50,12 +48,12 @@ visit_OutEventPortInstance (OutEventPortInstance_in source)
 				
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
-  this->endpoint_ = this->document_.create_element ("internalEndpoint");
-  this->endpoint_.create_simple_content ("portName", source->name ());
-  this->endpoint_.create_simple_content ("provider", "false");
-  this->endpoint_.create_simple_content ("kind", kind);
+  this->endpoint_ = this->doc_.create_element ("internalEndpoint");
+  this->endpoint_.append_simple_content ("portName", source->name ());
+  this->endpoint_.append_simple_content ("provider", "false");
+  this->endpoint_.append_simple_content ("kind", kind);
 
-  GAME::Xml::Fragment instance = this->endpoint_.create_simple_content ("instance", "");
+  GAME::Xml::Fragment instance = this->endpoint_.append_simple_content ("instance", "");
   instance.set_attribute ("xmi:idref", uuid);
 
   this->name_ = source->path (".", false);
@@ -67,10 +65,6 @@ visit_OutEventPortInstance (OutEventPortInstance_in source)
   // Visit the delegation connections.
   for (EventSourceDelegate esd : source->src_of_EventSourceDelegate ())
     esd->accept (this);
-
-  // We can release this endpoint now.
-  this->endpoint_->release ();
-  this->endpoint_ = 0;
 }
 
 //
@@ -86,12 +80,12 @@ visit_RequiredRequestPortInstance (RequiredRequestPortInstance_in receptacle)
 
   // The endpoint of this connection is part of a deployed
   // instance. We therefore need to create an XML endpoint.
-  this->endpoint_ = this->document_.create_element ("internalEndpoint");
-  this->endpoint_.create_simple_content ("portName", receptacle->name ());
-  this->endpoint_.create_simple_content ("provider", "false");
-  this->endpoint_.create_simple_content ("kind", kind);
+  this->endpoint_ = this->doc_.create_element ("internalEndpoint");
+  this->endpoint_.append_simple_content ("portName", receptacle->name ());
+  this->endpoint_.append_simple_content ("provider", "false");
+  this->endpoint_.append_simple_content ("kind", kind);
 
-  GAME::Xml::Fragment instance = this->endpoint_.create_simple_content ("instance", "");
+  GAME::Xml::Fragment instance = this->endpoint_.append_simple_content ("instance", "");
   instance.set_attribute ("xmi:idref", uuid);
 
   this->name_ = receptacle->path (".", false);
@@ -103,10 +97,6 @@ visit_RequiredRequestPortInstance (RequiredRequestPortInstance_in receptacle)
   // Lastly, visit the delegation connections.
   for (ReceptacleDelegate deleg : receptacle->dst_of_ReceptacleDelegate ())
     deleg->accept (this);
-
-  // We can release this endpoint now.
-  this->endpoint_->release ();
-  this->endpoint_ = 0;
 }
 
 //
@@ -141,12 +131,12 @@ visit_InEventPortInstance (InEventPortInstance_in sink)
   InEventPort port = sink->refers_to ();
 
   // Create the template endpoint for these connections.
-  GAME::Xml::Fragment endpoint = this->document_.create_element ("internalEndpoint");
-  endpoint.create_simple_content ("portName", port->name ());
-  endpoint.create_simple_content ("provider", "true");
-  endpoint.create_simple_content ("kind", "EventConsumer");
+  GAME::Xml::Fragment endpoint = this->doc_.create_element ("internalEndpoint");
+  endpoint.append_simple_content ("portName", port->name ());
+  endpoint.append_simple_content ("provider", "true");
+  endpoint.append_simple_content ("kind", "EventConsumer");
 
-  GAME::Xml::Fragment instance = endpoint.create_simple_content ("instance", "");
+  GAME::Xml::Fragment instance = endpoint.append_simple_content ("instance", "");
   instance.set_attribute ("xmi:idref", uuid);
 
   // Finally, create final connection between the two endpoints.
@@ -174,12 +164,12 @@ visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in facet)
   const std::string uuid = "_" + inst->UUID ();
 
   // Create the endpoint for this port.
-  GAME::Xml::Fragment endpoint = this->document_.create_element ("internalEndpoint");
-  endpoint.create_simple_content ("portName", facet->name ());
-  endpoint.create_simple_content ("provider", "true");
-  endpoint.create_simple_content ("kind", "Facet");
+  GAME::Xml::Fragment endpoint = this->doc_.create_element ("internalEndpoint");
+  endpoint.append_simple_content ("portName", facet->name ());
+  endpoint.append_simple_content ("provider", "true");
+  endpoint.append_simple_content ("kind", "Facet");
 
-  GAME::Xml::Fragment instance = endpoint.create_simple_content ("instance", "");
+  GAME::Xml::Fragment instance = endpoint.append_simple_content ("instance", "");
   instance.set_attribute ("xmi:idref", uuid);
 
   std::string connection_name = this->name_;
@@ -283,28 +273,30 @@ create_connection (const std::string & name,
                    bool is_local)
 {
   // Create the new connection.
-  GAME::Xml::Fragment conn = this->document_.create_element ("connection");
-  conn.create_simple_content ("name", name);
+  GAME::Xml::Fragment conn = this->doc_.create_element ("connection");
+  conn.append_simple_content ("name", name);
 
   if (is_local)
     this->make_local_connection (conn);
 
   // Add its endpoints.
-  conn->appendChild (ep1);
-  conn->appendChild (ep2);
+  conn.append (ep1);
+  conn.append (ep2);
 
   // Save the connection.
   this->conns_.push_back (conn);
 }
 
-//
-// make_local_connection
-//
 void Connection_Visitor::make_local_connection (GAME::Xml::Fragment conn)
 {
-  GAME::Xml::Fragment deployRequirement = conn.create_element ("deployRequirement");
-  deployRequirement.create_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
-  deployRequirement.create_simple_content ("resourceType", "Local_Interface");
+  GAME::Xml::Fragment deployRequirement = conn.append_element ("deployRequirement");
+  deployRequirement.append_simple_content ("name", "edu.dre.vanderbilt.DAnCE.ConnectionType");
+  deployRequirement.append_simple_content ("resourceType", "Local_Interface");
+}
+
+const std::vector <GAME::Xml::Fragment> & Connection_Visitor::connections (void) const
+{
+  return this->conns_;
 }
 
 }

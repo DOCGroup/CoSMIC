@@ -41,7 +41,7 @@ protected:
 private:
   std::string output_path_;
 
-  GAME::Xml::LS_Document xml_doc_;
+  std::unique_ptr <GAME::Xml::LS_Document> xml_doc_;
 };
 
 #endif /* DOMAIN_VISITOR_H */

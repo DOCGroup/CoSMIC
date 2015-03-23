@@ -67,9 +67,7 @@ void Domain_Visitor::visit_Domain (PICML::Domain_in domain)
     shared->accept (this);
 
   // Write the document.
-  std::ostringstream ostr;
-  ostr << this->output_path_ << "/" << domain->name () << ".cdd";
-  this->write_document (ostr.str ());
+  this->write_document (domain->name ());
 }
 
 void Domain_Visitor::
@@ -80,8 +78,11 @@ begin_document (const std::string & uuid, const std::string & label)
 
   // Create a new document for the domain. This also requires initializing
   // its attributes.
-  this->xml_doc_.create ("http://www.omg.org/Deployment", "Deployment:domain");
-  Fragment root = this->fragment_ = this->xml_doc_.root ();
+  if (this->xml_doc_)
+    this->xml_doc_->close ();
+
+  this->xml_doc_.reset (new LS_Document ("http://www.omg.org/Deployment", "Deployment:domain"));
+  Fragment root = this->fragment_ = this->xml_doc_->root ();
 
   root->setAttributeNS (String ("http://www.w3.org/2000/xmlns/"),
                         String ("xmlns:Deployment"),
@@ -100,24 +101,24 @@ begin_document (const std::string & uuid, const std::string & label)
 
   // Attach the <label> to the root element.
   if (!label.empty ())
-    root.create_simple_content ("label", label);
+    root.append_simple_content ("label", label);
 
   // Attach the <UUID> to the root element. We generate a UUID if
   // one is not present.
   if (uuid.empty ())
-    root.create_simple_content ("UUID", uuid);
+    root.append_simple_content ("UUID", uuid);
 }
 
 void Domain_Visitor::write_document (const std::string & basename)
 {
   std::ostringstream filename;
-  filename << this->output_path_ << "/" << basename << ".cdd";
+  filename << this->output_path_ << "\\" << basename << ".cdd";
 
   using namespace GAME::Xml;
   using namespace xercesc;
 
   // Write the XML document to a file.  
-  DOMLSSerializer * serializer = this->xml_doc_.impl ()->createLSSerializer ();
+  DOMLSSerializer * serializer = this->xml_doc_->impl ()->createLSSerializer ();
 
   if (serializer->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
     serializer->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
@@ -136,12 +137,12 @@ void Domain_Visitor::visit_Node (PICML::Node_in node)
 {
   using namespace GAME::Xml;
 
-  Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("node"));
-  fragment.create_simple_content ("name", this->expand_shortname (node->name ()));
+  Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("node"));
+  fragment.append_simple_content ("name", this->expand_shortname (node->name ()));
 
   std::string label = node->label ();
   if (!label.empty ())
-    fragment.create_simple_content ("label", label);
+    fragment.append_simple_content ("label", label);
 
   for (PICML::Resource res : node->get_Resources ())
     res->accept (this);
@@ -151,17 +152,17 @@ void Domain_Visitor::visit_Interconnect (PICML::Interconnect_in ic)
 {
   using namespace GAME::Xml;
 
-  Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("interconnect"));
-  fragment.create_simple_content ("name", this->expand_shortname (ic->name ()));
+  Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("interconnect"));
+  fragment.append_simple_content ("name", this->expand_shortname (ic->name ()));
 
   std::string label = ic->label ();
   if (!label.empty ())
-    fragment.create_simple_content ("label", label);
+    fragment.append_simple_content ("label", label);
 
   for (PICML::Resource res : ic->get_Resources ())
   {
-    Fragment res_fragment = fragment.create_element ("resource");
-    res_fragment.create_simple_content ("name", this->expand_shortname (res->name ()));
+    Fragment res_fragment = fragment.append_element ("resource");
+    res_fragment.append_simple_content ("name", this->expand_shortname (res->name ()));
   }
 }
 
@@ -169,8 +170,8 @@ void Domain_Visitor::visit_Bridge (PICML::Bridge_in bridge)
 {
   using namespace GAME::Xml;
 
-  Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("bridge"));
-  fragment.create_simple_content ("name", this->expand_shortname (bridge->name ()));
+  Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("bridge"));
+  fragment.append_simple_content ("name", this->expand_shortname (bridge->name ()));
 
   for (PICML::Resource res : bridge->get_Resources ())
     res->accept (this);
@@ -180,9 +181,9 @@ void Domain_Visitor::visit_SharedResource (PICML::SharedResource_in sr)
 {
   using namespace GAME::Xml;
 
-  Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("sharedResource"));
-  fragment.create_simple_content ("name", this->expand_shortname (sr->name ()));
-  fragment.create_simple_content ("resourceType", sr->resourceType ());
+  Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("sharedResource"));
+  fragment.append_simple_content ("name", this->expand_shortname (sr->name ()));
+  fragment.append_simple_content ("resourceType", sr->resourceType ());
 
   for (PICML::SatisfierProperty prop : sr->get_SatisfierPropertys ())
     prop->accept (this);
@@ -197,9 +198,9 @@ void Domain_Visitor::visit_Resource (PICML::Resource_in res)
 {
   using namespace GAME::Xml;
 
-  Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("resource"));
-  fragment.create_simple_content ("name", this->expand_shortname (res->name ()));
-  fragment.create_simple_content ("resourceType", res->resourceType ());
+  Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("resource"));
+  fragment.append_simple_content ("name", this->expand_shortname (res->name ()));
+  fragment.append_simple_content ("resourceType", res->resourceType ());
 
   for (PICML::SatisfierProperty prop : res->get_SatisfierPropertys ())
     prop->accept (this);
@@ -209,14 +210,14 @@ void Domain_Visitor::visit_SatisfierProperty (PICML::SatisfierProperty_in prop)
 {
   using namespace GAME::Xml;
 
-  Swap_Fragment fragment (this->fragment_, this->fragment_.create_element ("property"));
-  fragment.create_simple_content ("name", this->expand_shortname (prop->name ()));
-  fragment.create_simple_content ("kind", prop->SatisfierPropertyKind ());
-  fragment.create_simple_content ("dynamic", prop->dynamic () ? "true" : "false");
+  Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("property"));
+  fragment.append_simple_content ("name", this->expand_shortname (prop->name ()));
+  fragment.append_simple_content ("kind", prop->SatisfierPropertyKind ());
+  fragment.append_simple_content ("dynamic", prop->dynamic () ? "true" : "false");
 
   // Write the type and value of the property.
   PICML::DataType data_type = prop->get_DataType ();
-  Fragment value = fragment.create_element ("value");
+  Fragment value = fragment.append_element ("value");
   PICML::Xml::Data_Type_Visitor data_type_visitor (value);
   data_type->accept (&data_type_visitor);
 

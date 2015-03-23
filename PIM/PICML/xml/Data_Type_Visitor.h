@@ -67,8 +67,8 @@ public:
 
   virtual void visit_Member (PICML::Member_in m);
   
-  virtual void Visit_SimpleProperty (PICML::SimpleProperty_in prop);
-  virtual void Visit_ComplexProperty (PICML::ComplexProperty_in prop);
+  virtual void visit_SimpleProperty (PICML::SimpleProperty_in prop);
+  virtual void visit_ComplexProperty (PICML::ComplexProperty_in prop);
 
 private:
   GAME::Xml::Fragment fragment_;
