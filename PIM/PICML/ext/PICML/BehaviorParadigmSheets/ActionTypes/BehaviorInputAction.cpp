@@ -8,14 +8,14 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
+#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/Finish.h"
-#include "PICML/BehaviorParadigmSheets/EffectTypes/InputEffect.h"
+#include "PICML/Common/ComplexProperty.h"
 
 namespace PICML
 {
@@ -46,11 +46,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_InputEffect
+  //
+  bool BehaviorInputAction_Impl::has_src_of_InputEffect (void) const
+  {
+    return this->in_connections <InputEffect> ("src").count () == 1;
+  }
+
+  //
   // src_of_InputEffect
   //
-  GAME::Mga::Collection_T <InputEffect> BehaviorInputAction_Impl::src_of_InputEffect (void) const
+  InputEffect BehaviorInputAction_Impl::src_of_InputEffect (void) const
   {
-    return this->in_connections <InputEffect> ("src");
+    return this->in_connections <InputEffect> ("src").first ();
   }
 
   //
@@ -62,27 +70,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Finish
+  //
+  bool BehaviorInputAction_Impl::has_dst_of_Finish (void) const
+  {
+    return this->in_connections <Finish> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Finish
   //
-  GAME::Mga::Collection_T <Finish> BehaviorInputAction_Impl::dst_of_Finish (void) const
+  Finish BehaviorInputAction_Impl::dst_of_Finish (void) const
   {
-    return this->in_connections <Finish> ("dst");
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t BehaviorInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> BehaviorInputAction_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
+    return this->in_connections <Finish> ("dst").first ();
   }
 
   //
@@ -99,6 +99,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> BehaviorInputAction_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t BehaviorInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> BehaviorInputAction_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

@@ -62,7 +62,7 @@ namespace PICML
   //
   bool SupportsInstance_Impl::Supports_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -92,11 +92,10 @@ int ComponentInstanceType_Event_Handler::handle_object_relation (GAME::Mga::Obje
   {
     ComponentInstance inst = ComponentInstance::_narrow (inst_type->parent ());
     MonolithicImplementation impl = inst_type->refers_to_MonolithicImplementation ();
-    GAME::Mga::Collection_T <Implements> implements = impl->src_of_Implements ();
 
-    if (implements.count ())
+    if (impl->has_src_of_Implements ())
     {
-      ComponentRef cref = implements.first ()->dst_ComponentRef ();
+      ComponentRef cref = impl->src_of_Implements ()->dst_ComponentRef ();
       Component comp = cref->refers_to_Component ();
 
       this->generate_port_instances (inst, comp);

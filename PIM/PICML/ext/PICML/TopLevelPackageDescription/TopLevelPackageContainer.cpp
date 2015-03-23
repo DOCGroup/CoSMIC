@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
 #include "PICML/TopLevelPackageDescription/TopLevelPackages.h"
-#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
 #include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/PackageConfiguration/PackageConfigurationReference.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -60,19 +60,19 @@ namespace PICML
   }
 
   //
-  // has_TopLevelPackage
+  // has_package
   //
-  bool TopLevelPackageContainer_Impl::has_TopLevelPackage (void) const
+  bool TopLevelPackageContainer_Impl::has_package (void) const
   {
-    return this->children <TopLevelPackage> ().count () == 1;
+    return this->children <package> ().count () == 1;
   }
 
   //
-  // get_TopLevelPackage
+  // get_package
   //
-  TopLevelPackage TopLevelPackageContainer_Impl::get_TopLevelPackage (void) const
+  package TopLevelPackageContainer_Impl::get_package (void) const
   {
-    return this->children <TopLevelPackage> ().first ();
+    return this->children <package> ().first ();
   }
 
   //
@@ -92,19 +92,19 @@ namespace PICML
   }
 
   //
-  // has_package
+  // has_TopLevelPackage
   //
-  bool TopLevelPackageContainer_Impl::has_package (void) const
+  bool TopLevelPackageContainer_Impl::has_TopLevelPackage (void) const
   {
-    return this->children <package> ().count () == 1;
+    return this->children <TopLevelPackage> ().count () == 1;
   }
 
   //
-  // get_package
+  // get_TopLevelPackage
   //
-  package TopLevelPackageContainer_Impl::get_package (void) const
+  TopLevelPackage TopLevelPackageContainer_Impl::get_TopLevelPackage (void) const
   {
-    return this->children <package> ().first ();
+    return this->children <TopLevelPackage> ().first ();
   }
 }
 

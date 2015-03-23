@@ -69,9 +69,9 @@ namespace PICML
   //
   // dst_of_ComponentOperation
   //
-  GAME::Mga::Collection_T <ComponentOperation> CompRef_Impl::dst_of_ComponentOperation (void) const
+  ComponentOperation CompRef_Impl::dst_of_ComponentOperation (void) const
   {
-    return this->in_connections <ComponentOperation> ("dst");
+    return this->in_connections <ComponentOperation> ("dst").first ();
   }
 
   //
@@ -79,7 +79,7 @@ namespace PICML
   //
   bool CompRef_Impl::Component_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

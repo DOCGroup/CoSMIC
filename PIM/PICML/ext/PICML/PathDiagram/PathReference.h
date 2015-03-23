@@ -83,7 +83,8 @@ namespace PICML
 
     /// Get the dst CriticalPath connection.
     size_t dst_of_CriticalPath (std::vector <CriticalPath> & items) const;
-    GAME::Mga::Collection_T <CriticalPath> dst_of_CriticalPath (void) const;
+    bool has_dst_of_CriticalPath (void) const;
+    CriticalPath dst_of_CriticalPath (void) const;
     ///@}
 
     /**

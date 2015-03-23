@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentParadigmSheets/ComponentInstance/ExtendedPortInstance.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -29,17 +29,17 @@ namespace PICML
   const bool ExtendedPort_Impl::is_abstract = false;
 
   //
-  // _create (const Component_in)
+  // _create (const ConnectorObject_in)
   //
-  ExtendedPort ExtendedPort_Impl::_create (const Component_in parent)
+  ExtendedPort ExtendedPort_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create < ExtendedPort > (parent, ExtendedPort_Impl::metaname);
   }
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const Component_in)
   //
-  ExtendedPort ExtendedPort_Impl::_create (const ConnectorObject_in parent)
+  ExtendedPort ExtendedPort_Impl::_create (const Component_in parent)
   {
     return ::GAME::Mga::create < ExtendedPort > (parent, ExtendedPort_Impl::metaname);
   }

@@ -65,7 +65,7 @@ namespace PICML
   //
   bool TemplateParameterReference_Impl::TemplateParameter_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

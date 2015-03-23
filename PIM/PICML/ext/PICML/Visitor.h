@@ -187,8 +187,8 @@ namespace PICML
     virtual void visit_RequiredRequestPortDelegate (RequiredRequestPortDelegate_in item);
     virtual void visit_ConnectorImplementation (ConnectorImplementation_in item);
     virtual void visit_MultiInput (MultiInput_in item);
-    virtual void visit_TerminalTransition (TerminalTransition_in item);
     virtual void visit_Transition (Transition_in item);
+    virtual void visit_TerminalTransition (TerminalTransition_in item);
     virtual void visit_ExtendedPort (ExtendedPort_in item);
     virtual void visit_PeriodicEvent (PeriodicEvent_in item);
     virtual void visit_ImplementationDependency (ImplementationDependency_in item);

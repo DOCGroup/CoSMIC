@@ -79,7 +79,7 @@ namespace PICML
   //
   bool PackageType_Impl::Package_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

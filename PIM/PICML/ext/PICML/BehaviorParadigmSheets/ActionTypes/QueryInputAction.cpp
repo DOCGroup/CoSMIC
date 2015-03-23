@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
 #include "PICML/BehaviorParadigmSheets/BehaviorModel/BehaviorModel.h"
 #include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/TopLevelBehavior.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
-#include "PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/QueryInput.h"
+#include "PICML/Common/ComplexProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -71,27 +71,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_QueryInput
+  //
+  bool QueryInputAction_Impl::has_dst_of_QueryInput (void) const
+  {
+    return this->in_connections <QueryInput> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_QueryInput
   //
-  GAME::Mga::Collection_T <QueryInput> QueryInputAction_Impl::dst_of_QueryInput (void) const
+  QueryInput QueryInputAction_Impl::dst_of_QueryInput (void) const
   {
-    return this->in_connections <QueryInput> ("dst");
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t QueryInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> QueryInputAction_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
+    return this->in_connections <QueryInput> ("dst").first ();
   }
 
   //
@@ -108,6 +100,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> QueryInputAction_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t QueryInputAction_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> QueryInputAction_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

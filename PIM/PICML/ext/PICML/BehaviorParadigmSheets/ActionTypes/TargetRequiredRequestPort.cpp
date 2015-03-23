@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/RequiredRequestPort.h"
+#include "PICML/BehaviorParadigmSheets/ActionTypes/CallAction.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -62,7 +62,7 @@ namespace PICML
   //
   bool TargetRequiredRequestPort_Impl::RequiredRequestPort_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

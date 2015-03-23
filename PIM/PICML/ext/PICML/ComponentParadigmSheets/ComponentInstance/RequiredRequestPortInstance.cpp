@@ -54,7 +54,7 @@ namespace PICML
   //
   bool RequiredRequestPortInstance_Impl::RequiredRequestPort_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -17,8 +17,8 @@
 #include "PICML/InterfaceDefinition/NameParameter.h"
 #include "PICML/InterfaceDefinition/CollectionParameter.h"
 #include "PICML/InheritableTypes/Object.h"
-#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInterface/ConnectorObject.h"
+#include "PICML/ComponentParadigmSheets/ComponentType/PortType.h"
 #include "PICML/PathDiagram/ConnectedComponent.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
@@ -40,17 +40,17 @@ namespace PICML
   const bool RequiredRequestPort_Impl::is_abstract = false;
 
   //
-  // _create (const PortType_in)
+  // _create (const ConnectorObject_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
   {
     return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
 
   //
-  // _create (const ConnectorObject_in)
+  // _create (const PortType_in)
   //
-  RequiredRequestPort RequiredRequestPort_Impl::_create (const ConnectorObject_in parent)
+  RequiredRequestPort RequiredRequestPort_Impl::_create (const PortType_in parent)
   {
     return ::GAME::Mga::create < RequiredRequestPort > (parent, RequiredRequestPort_Impl::metaname);
   }
@@ -98,7 +98,7 @@ namespace PICML
   //
   bool RequiredRequestPort_Impl::Provideable_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

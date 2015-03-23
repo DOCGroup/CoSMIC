@@ -1075,16 +1075,16 @@ namespace PICML
   }
 
   //
-  // visit_TerminalTransition
+  // visit_Transition
   //
-  void Visitor::visit_TerminalTransition (TerminalTransition_in item)
+  void Visitor::visit_Transition (Transition_in item)
   {
   }
 
   //
-  // visit_Transition
+  // visit_TerminalTransition
   //
-  void Visitor::visit_Transition (Transition_in item)
+  void Visitor::visit_TerminalTransition (TerminalTransition_in item)
   {
   }
 

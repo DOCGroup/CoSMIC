@@ -8,10 +8,10 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/PackageConfiguration/PackageConfSpecializedConfig.h"
 #include "PICML/TopLevelPackageDescription/package.h"
+#include "PICML/TopLevelPackageDescription/TopLevelPackageContainer.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -86,9 +86,9 @@ namespace PICML
   //
   // dst_of_package
   //
-  GAME::Mga::Collection_T <package> PackageConfigurationReference_Impl::dst_of_package (void) const
+  package PackageConfigurationReference_Impl::dst_of_package (void) const
   {
-    return this->in_connections <package> ("dst");
+    return this->in_connections <package> ("dst").first ();
   }
 
   //
@@ -96,7 +96,7 @@ namespace PICML
   //
   bool PackageConfigurationReference_Impl::PackageConfiguration_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

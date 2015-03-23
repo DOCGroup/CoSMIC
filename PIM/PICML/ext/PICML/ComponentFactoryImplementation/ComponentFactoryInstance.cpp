@@ -63,7 +63,7 @@ namespace PICML
   //
   bool ComponentFactoryInstance_Impl::ComponentFactory_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

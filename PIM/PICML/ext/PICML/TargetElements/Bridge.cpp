@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/Domain/Domain.h"
 #include "PICML/TargetElements/Resource.h"
+#include "PICML/Domain/Domain.h"
 #include "PICML/Domain/BridgeConnection.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"

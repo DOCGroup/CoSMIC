@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/Property.h"
-#include "PICML/Common/ComplexProperty.h"
 #include "PICML/Common/SimpleProperty.h"
+#include "PICML/Common/ComplexProperty.h"
 
 namespace PICML
 {
@@ -23,22 +23,6 @@ namespace PICML
   // is_abstract
   //
   const bool RequirementBase_Impl::is_abstract = true;
-
-  //
-  // get_ComplexPropertys
-  //
-  size_t RequirementBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
-  {
-    return this->children (items);
-  }
-
-  //
-  // get_ComplexPropertys
-  //
-  ::GAME::Mga::Collection_T <ComplexProperty> RequirementBase_Impl::get_ComplexPropertys (void) const
-  {
-    return this->children <ComplexProperty> ();
-  }
 
   //
   // get_SimplePropertys
@@ -54,6 +38,22 @@ namespace PICML
   ::GAME::Mga::Collection_T <SimpleProperty> RequirementBase_Impl::get_SimplePropertys (void) const
   {
     return this->children <SimpleProperty> ();
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  size_t RequirementBase_Impl::get_ComplexPropertys (std::vector <ComplexProperty> & items) const
+  {
+    return this->children (items);
+  }
+
+  //
+  // get_ComplexPropertys
+  //
+  ::GAME::Mga::Collection_T <ComplexProperty> RequirementBase_Impl::get_ComplexPropertys (void) const
+  {
+    return this->children <ComplexProperty> ();
   }
 }
 

@@ -112,13 +112,13 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_res_Connection connection.
-    size_t dst_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_res_Connection> dst_of_dr_res_Connection (void) const;
-
     /// Get the dst topic_res_Connection connection.
     size_t dst_of_topic_res_Connection (std::vector <topic_res_Connection> & items) const;
     GAME::Mga::Collection_T <topic_res_Connection> dst_of_topic_res_Connection (void) const;
+
+    /// Get the dst dr_res_Connection connection.
+    size_t dst_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_res_Connection> dst_of_dr_res_Connection (void) const;
 
     /// Get the dst dw_res_Connection connection.
     size_t dst_of_dw_res_Connection (std::vector <dw_res_Connection> & items) const;

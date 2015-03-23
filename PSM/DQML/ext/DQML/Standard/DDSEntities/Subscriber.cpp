@@ -8,12 +8,12 @@
 #endif
 
 #include "DQML/Visitor.h"
-#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
-#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
-#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
 #include "DQML/Standard/PresentationQosPolicy/sub_presqos_Connection.h"
 #include "DQML/Standard/Main/dr_sub_Connection.h"
 #include "DQML/Standard/Main/dp_sub_Connection.h"
+#include "DQML/Standard/GroupDataQosPolicy/sub_groupdata_Connection.h"
+#include "DQML/Standard/EntityFactoryQosPolicy/sub_entityfactory_Connection.h"
+#include "DQML/Standard/PartitionQosPolicy/sub_part_Connection.h"
 #include "DQML/Standard/Main/DDSQoS.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -55,54 +55,6 @@ namespace DQML
   }
 
   //
-  // src_of_sub_entityfactory_Connection
-  //
-  size_t Subscriber_Impl::src_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
-  {
-    return this->in_connections <sub_entityfactory_Connection> (items);
-  }
-
-  //
-  // src_of_sub_entityfactory_Connection
-  //
-  GAME::Mga::Collection_T <sub_entityfactory_Connection> Subscriber_Impl::src_of_sub_entityfactory_Connection (void) const
-  {
-    return this->in_connections <sub_entityfactory_Connection> ("src");
-  }
-
-  //
-  // src_of_sub_part_Connection
-  //
-  size_t Subscriber_Impl::src_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const
-  {
-    return this->in_connections <sub_part_Connection> (items);
-  }
-
-  //
-  // src_of_sub_part_Connection
-  //
-  GAME::Mga::Collection_T <sub_part_Connection> Subscriber_Impl::src_of_sub_part_Connection (void) const
-  {
-    return this->in_connections <sub_part_Connection> ("src");
-  }
-
-  //
-  // src_of_sub_groupdata_Connection
-  //
-  size_t Subscriber_Impl::src_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
-  {
-    return this->in_connections <sub_groupdata_Connection> (items);
-  }
-
-  //
-  // src_of_sub_groupdata_Connection
-  //
-  GAME::Mga::Collection_T <sub_groupdata_Connection> Subscriber_Impl::src_of_sub_groupdata_Connection (void) const
-  {
-    return this->in_connections <sub_groupdata_Connection> ("src");
-  }
-
-  //
   // src_of_sub_presqos_Connection
   //
   size_t Subscriber_Impl::src_of_sub_presqos_Connection (std::vector <sub_presqos_Connection> & items) const
@@ -111,11 +63,19 @@ namespace DQML
   }
 
   //
+  // has_src_of_sub_presqos_Connection
+  //
+  bool Subscriber_Impl::has_src_of_sub_presqos_Connection (void) const
+  {
+    return this->in_connections <sub_presqos_Connection> ("src").count () == 1;
+  }
+
+  //
   // src_of_sub_presqos_Connection
   //
-  GAME::Mga::Collection_T <sub_presqos_Connection> Subscriber_Impl::src_of_sub_presqos_Connection (void) const
+  sub_presqos_Connection Subscriber_Impl::src_of_sub_presqos_Connection (void) const
   {
-    return this->in_connections <sub_presqos_Connection> ("src");
+    return this->in_connections <sub_presqos_Connection> ("src").first ();
   }
 
   //
@@ -135,6 +95,78 @@ namespace DQML
   }
 
   //
+  // src_of_sub_groupdata_Connection
+  //
+  size_t Subscriber_Impl::src_of_sub_groupdata_Connection (std::vector <sub_groupdata_Connection> & items) const
+  {
+    return this->in_connections <sub_groupdata_Connection> (items);
+  }
+
+  //
+  // has_src_of_sub_groupdata_Connection
+  //
+  bool Subscriber_Impl::has_src_of_sub_groupdata_Connection (void) const
+  {
+    return this->in_connections <sub_groupdata_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_sub_groupdata_Connection
+  //
+  sub_groupdata_Connection Subscriber_Impl::src_of_sub_groupdata_Connection (void) const
+  {
+    return this->in_connections <sub_groupdata_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_sub_entityfactory_Connection
+  //
+  size_t Subscriber_Impl::src_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const
+  {
+    return this->in_connections <sub_entityfactory_Connection> (items);
+  }
+
+  //
+  // has_src_of_sub_entityfactory_Connection
+  //
+  bool Subscriber_Impl::has_src_of_sub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <sub_entityfactory_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_sub_entityfactory_Connection
+  //
+  sub_entityfactory_Connection Subscriber_Impl::src_of_sub_entityfactory_Connection (void) const
+  {
+    return this->in_connections <sub_entityfactory_Connection> ("src").first ();
+  }
+
+  //
+  // src_of_sub_part_Connection
+  //
+  size_t Subscriber_Impl::src_of_sub_part_Connection (std::vector <sub_part_Connection> & items) const
+  {
+    return this->in_connections <sub_part_Connection> (items);
+  }
+
+  //
+  // has_src_of_sub_part_Connection
+  //
+  bool Subscriber_Impl::has_src_of_sub_part_Connection (void) const
+  {
+    return this->in_connections <sub_part_Connection> ("src").count () == 1;
+  }
+
+  //
+  // src_of_sub_part_Connection
+  //
+  sub_part_Connection Subscriber_Impl::src_of_sub_part_Connection (void) const
+  {
+    return this->in_connections <sub_part_Connection> ("src").first ();
+  }
+
+  //
   // dst_of_dp_sub_Connection
   //
   size_t Subscriber_Impl::dst_of_dp_sub_Connection (std::vector <dp_sub_Connection> & items) const
@@ -145,9 +177,9 @@ namespace DQML
   //
   // dst_of_dp_sub_Connection
   //
-  GAME::Mga::Collection_T <dp_sub_Connection> Subscriber_Impl::dst_of_dp_sub_Connection (void) const
+  dp_sub_Connection Subscriber_Impl::dst_of_dp_sub_Connection (void) const
   {
-    return this->in_connections <dp_sub_Connection> ("dst");
+    return this->in_connections <dp_sub_Connection> ("dst").first ();
   }
 }
 

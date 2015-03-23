@@ -107,45 +107,6 @@ namespace PICML
     size_t get_TemplatePackageInstances (std::vector <TemplatePackageInstance> & items) const;
     ::GAME::Mga::Collection_T <TemplatePackageInstance> get_TemplatePackageInstances (void) const;
 
-    size_t get_Boxeds (std::vector <Boxed> & items) const;
-    ::GAME::Mga::Collection_T <Boxed> get_Boxeds (void) const;
-
-    size_t get_Components (std::vector <Component> & items) const;
-    ::GAME::Mga::Collection_T <Component> get_Components (void) const;
-
-    size_t get_ConnectorObjects (std::vector <ConnectorObject> & items) const;
-    ::GAME::Mga::Collection_T <ConnectorObject> get_ConnectorObjects (void) const;
-
-    size_t get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const;
-    ::GAME::Mga::Collection_T <SwitchedAggregate> get_SwitchedAggregates (void) const;
-
-    size_t get_Enums (std::vector <Enum> & items) const;
-    ::GAME::Mga::Collection_T <Enum> get_Enums (void) const;
-
-    size_t get_Aliass (std::vector <Alias> & items) const;
-    ::GAME::Mga::Collection_T <Alias> get_Aliass (void) const;
-
-    size_t get_PortTypes (std::vector <PortType> & items) const;
-    ::GAME::Mga::Collection_T <PortType> get_PortTypes (void) const;
-
-    size_t get_Aggregates (std::vector <Aggregate> & items) const;
-    ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
-
-    size_t get_Collections (std::vector <Collection> & items) const;
-    ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
-
-    size_t get_ValueObjects (std::vector <ValueObject> & items) const;
-    ::GAME::Mga::Collection_T <ValueObject> get_ValueObjects (void) const;
-
-    size_t get_Events (std::vector <Event> & items) const;
-    ::GAME::Mga::Collection_T <Event> get_Events (void) const;
-
-    size_t get_ComponentFactorys (std::vector <ComponentFactory> & items) const;
-    ::GAME::Mga::Collection_T <ComponentFactory> get_ComponentFactorys (void) const;
-
-    size_t get_Objects (std::vector <Object> & items) const;
-    ::GAME::Mga::Collection_T <Object> get_Objects (void) const;
-
     size_t get_Exceptions (std::vector <Exception> & items) const;
     ::GAME::Mga::Collection_T <Exception> get_Exceptions (void) const;
 
@@ -157,6 +118,45 @@ namespace PICML
 
     size_t get_Constants (std::vector <Constant> & items) const;
     ::GAME::Mga::Collection_T <Constant> get_Constants (void) const;
+
+    size_t get_ConnectorObjects (std::vector <ConnectorObject> & items) const;
+    ::GAME::Mga::Collection_T <ConnectorObject> get_ConnectorObjects (void) const;
+
+    size_t get_Boxeds (std::vector <Boxed> & items) const;
+    ::GAME::Mga::Collection_T <Boxed> get_Boxeds (void) const;
+
+    size_t get_Events (std::vector <Event> & items) const;
+    ::GAME::Mga::Collection_T <Event> get_Events (void) const;
+
+    size_t get_ValueObjects (std::vector <ValueObject> & items) const;
+    ::GAME::Mga::Collection_T <ValueObject> get_ValueObjects (void) const;
+
+    size_t get_ComponentFactorys (std::vector <ComponentFactory> & items) const;
+    ::GAME::Mga::Collection_T <ComponentFactory> get_ComponentFactorys (void) const;
+
+    size_t get_Objects (std::vector <Object> & items) const;
+    ::GAME::Mga::Collection_T <Object> get_Objects (void) const;
+
+    size_t get_Components (std::vector <Component> & items) const;
+    ::GAME::Mga::Collection_T <Component> get_Components (void) const;
+
+    size_t get_Aggregates (std::vector <Aggregate> & items) const;
+    ::GAME::Mga::Collection_T <Aggregate> get_Aggregates (void) const;
+
+    size_t get_Aliass (std::vector <Alias> & items) const;
+    ::GAME::Mga::Collection_T <Alias> get_Aliass (void) const;
+
+    size_t get_SwitchedAggregates (std::vector <SwitchedAggregate> & items) const;
+    ::GAME::Mga::Collection_T <SwitchedAggregate> get_SwitchedAggregates (void) const;
+
+    size_t get_Enums (std::vector <Enum> & items) const;
+    ::GAME::Mga::Collection_T <Enum> get_Enums (void) const;
+
+    size_t get_PortTypes (std::vector <PortType> & items) const;
+    ::GAME::Mga::Collection_T <PortType> get_PortTypes (void) const;
+
+    size_t get_Collections (std::vector <Collection> & items) const;
+    ::GAME::Mga::Collection_T <Collection> get_Collections (void) const;
 
     ///@}
   };

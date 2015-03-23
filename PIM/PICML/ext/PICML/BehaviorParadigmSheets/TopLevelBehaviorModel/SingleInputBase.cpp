@@ -31,11 +31,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_Input
+  //
+  bool SingleInputBase_Impl::has_src_of_Input (void) const
+  {
+    return this->in_connections <Input> ("src").count () == 1;
+  }
+
+  //
   // src_of_Input
   //
-  GAME::Mga::Collection_T <Input> SingleInputBase_Impl::src_of_Input (void) const
+  Input SingleInputBase_Impl::src_of_Input (void) const
   {
-    return this->in_connections <Input> ("src");
+    return this->in_connections <Input> ("src").first ();
   }
 }
 

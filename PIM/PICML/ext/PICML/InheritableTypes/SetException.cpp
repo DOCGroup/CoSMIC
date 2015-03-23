@@ -64,7 +64,7 @@ namespace PICML
   //
   bool SetException_Impl::ExceptionType_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

@@ -83,7 +83,8 @@ namespace PICML
 
     /// Get the dst ConnectorImplements connection.
     size_t dst_of_ConnectorImplements (std::vector <ConnectorImplements> & items) const;
-    GAME::Mga::Collection_T <ConnectorImplements> dst_of_ConnectorImplements (void) const;
+    bool has_dst_of_ConnectorImplements (void) const;
+    ConnectorImplements dst_of_ConnectorImplements (void) const;
     ///@}
 
     /**

@@ -126,11 +126,9 @@ handle_object_created (GAME::Mga::Object_in obj)
   // Create a component instance handler that will manage the
   // state of this model element. The instance handler will need
   // the Component model that is being observed.
-  GAME::Mga::Collection_T <PICML::Implements> implements = impl->src_of_Implements ();
-
-  if (1 == implements.count ())
+  if (impl->has_src_of_Implements ())
   {
-    PICML::ComponentRef c_ref = implements.first ()->dst_ComponentRef ();
+    PICML::ComponentRef c_ref = impl->src_of_Implements ()->dst_ComponentRef ();
 
     // Register an observer for this component that will make updates
     // to this component instance each time there is a change to the

@@ -8,17 +8,17 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ImplementationCommon/ImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
+#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
+#include "PICML/ImplementationArtifact/ArtifactContainer.h"
 #include "PICML/ComponentBuild/ExecutorProject.h"
 #include "PICML/ComponentBuild/ServantProject.h"
 #include "PICML/ComponentBuild/StubProject.h"
-#include "PICML/ImplementationArtifact/ArtifactContainer.h"
-#include "PICML/ImplementationCommon/ImplementationContainer.h"
-#include "PICML/ComponentFactoryImplementation/ComponentFactoryImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementationContainer.h"
-#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "PICML/ImplementationCommon/MonolithprimaryArtifact.h"
 #include "PICML/ImplementationArtifact/ArtifactDependsOn.h"
+#include "PICML/ImplementationArtifact/ImplementationArtifact.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -35,6 +35,22 @@ namespace PICML
   // is_abstract
   //
   const bool ImplementationArtifactReference_Impl::is_abstract = false;
+
+  //
+  // _create (const ImplementationContainer_in)
+  //
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ImplementationContainer_in parent)
+  {
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+  }
+
+  //
+  // _create (const ArtifactContainer_in)
+  //
+  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
+  {
+    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
+  }
 
   //
   // _create (const ExecutorProject_in)
@@ -61,22 +77,6 @@ namespace PICML
   }
 
   //
-  // _create (const ArtifactContainer_in)
-  //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ArtifactContainer_in parent)
-  {
-    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
-  }
-
-  //
-  // _create (const ImplementationContainer_in)
-  //
-  ImplementationArtifactReference ImplementationArtifactReference_Impl::_create (const ImplementationContainer_in parent)
-  {
-    return ::GAME::Mga::create < ImplementationArtifactReference > (parent, ImplementationArtifactReference_Impl::metaname);
-  }
-
-  //
   // accept
   //
   void ImplementationArtifactReference_Impl::accept (::GAME::Mga::Visitor * v)
@@ -88,6 +88,22 @@ namespace PICML
       this_visitor->visit_ImplementationArtifactReference (this);
     else
       v->visit_Reference (this);
+  }
+
+  //
+  // parent_ImplementationContainer
+  //
+  ImplementationContainer ImplementationArtifactReference_Impl::parent_ImplementationContainer (void)
+  {
+    return ImplementationContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_ArtifactContainer
+  //
+  ArtifactContainer ImplementationArtifactReference_Impl::parent_ArtifactContainer (void)
+  {
+    return ArtifactContainer::_narrow (this->parent ());
   }
 
   //
@@ -112,22 +128,6 @@ namespace PICML
   StubProject ImplementationArtifactReference_Impl::parent_StubProject (void)
   {
     return StubProject::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ArtifactContainer
-  //
-  ArtifactContainer ImplementationArtifactReference_Impl::parent_ArtifactContainer (void)
-  {
-    return ArtifactContainer::_narrow (this->parent ());
-  }
-
-  //
-  // parent_ImplementationContainer
-  //
-  ImplementationContainer ImplementationArtifactReference_Impl::parent_ImplementationContainer (void)
-  {
-    return ImplementationContainer::_narrow (this->parent ());
   }
 
   //
@@ -167,7 +167,7 @@ namespace PICML
   //
   bool ImplementationArtifactReference_Impl::ImplementationArtifact_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

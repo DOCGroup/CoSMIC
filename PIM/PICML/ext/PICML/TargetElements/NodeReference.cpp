@@ -10,8 +10,8 @@
 #include "PICML/Visitor.h"
 #include "PICML/DeploymentPlan/DeploymentPlan.h"
 #include "PICML/TargetElements/Node.h"
-#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "PICML/DeploymentPlan/PropertyMapping.h"
+#include "PICML/DeploymentPlan/InstanceMapping.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -96,7 +96,7 @@ namespace PICML
   //
   bool NodeReference_Impl::Node_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

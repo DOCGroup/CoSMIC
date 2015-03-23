@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorInstance.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -62,7 +62,7 @@ namespace PICML
   //
   bool ConnectorImplementationType_Impl::ConnectorImplementation_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

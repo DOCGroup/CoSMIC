@@ -8,13 +8,13 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "PICML/ComponentAssemblySheets/ComponentAssembly/ComponentAssembly.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToReceptacle.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorInstance/ConnectorImplementationType.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Publish.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/Consume.h"
 #include "PICML/ComponentAssemblySheets/AssemblyConnections/ConnectorToFacet.h"
-#include "PICML/ComponentParadigmSheets/ComponentInstance/AttributeInstance.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

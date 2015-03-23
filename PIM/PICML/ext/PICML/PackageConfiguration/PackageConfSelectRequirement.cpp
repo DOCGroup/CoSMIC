@@ -9,10 +9,10 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/PackageConfiguration/PackageConfigurationContainer.h"
-#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "PICML/Common/Requirement.h"
 #include "PICML/RealTimeRequirements/RTRequirements.h"
 #include "PICML/EventChannelRequirements/ECRequirements.h"
+#include "PICML/PackageConfiguration/PackageConfiguration.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

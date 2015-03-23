@@ -71,7 +71,8 @@ namespace PICML
 
     /// Get the src ExtendedDelegate connection.
     size_t src_of_ExtendedDelegate (std::vector <ExtendedDelegate> & items) const;
-    GAME::Mga::Collection_T <ExtendedDelegate> src_of_ExtendedDelegate (void) const;
+    bool has_src_of_ExtendedDelegate (void) const;
+    ExtendedDelegate src_of_ExtendedDelegate (void) const;
     ///@}
   };
 }

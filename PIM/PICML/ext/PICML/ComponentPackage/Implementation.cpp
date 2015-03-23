@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationReference.h"
+#include "PICML/ComponentPackage/ComponentPackage.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"

@@ -69,9 +69,9 @@ namespace PICML
   //
   // dst_of_WorkloadCharacteristics
   //
-  GAME::Mga::Collection_T <WorkloadCharacteristics> TaskSet_Impl::dst_of_WorkloadCharacteristics (void) const
+  WorkloadCharacteristics TaskSet_Impl::dst_of_WorkloadCharacteristics (void) const
   {
-    return this->in_connections <WorkloadCharacteristics> ("dst");
+    return this->in_connections <WorkloadCharacteristics> ("dst").first ();
   }
 
   //

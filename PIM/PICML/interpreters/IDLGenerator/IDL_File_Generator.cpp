@@ -311,8 +311,8 @@ void IDL_File_Generator::visit_Aggregate (PICML::Aggregate_in a)
     PICML::Key key = a->get_Key ();
 
     // First, gather all the members
-    for (auto connection : key->src_of_KeyMember ())
-      sorted_members.push_back (connection->dst_Member ());
+    for (auto member : key->src_of_KeyMember ())
+      sorted_members.push_back (member->dst_Member ());
 
     // Now sort the members
     ::GAME::Mga::Position_Sort_T <PICML::Member, GAME::Mga::PS_Top_To_Bottom> sorter_t;
@@ -379,8 +379,8 @@ visit_SwitchedAggregate (PICML::SwitchedAggregate_in s)
 //
 void IDL_File_Generator::visit_Member (PICML::Member_in m)
 {
-  for (auto label_connection : m->src_of_LabelConnection ())
-    label_connection->accept (this);
+  for (auto label : m->src_of_LabelConnection ())
+    label->accept (this);
   this->idl_ << nl;
 
   if (this->in_event_)
@@ -389,7 +389,7 @@ void IDL_File_Generator::visit_Member (PICML::Member_in m)
   this->visit_MemberType (m->refers_to_MemberType ());
   this->idl_ << " " << m->name () << ";";
 
-  for (auto member_connection : m->dst_of_KeyMember ())
+  if (m->has_dst_of_KeyMember ())
     this->idl_ << "  // @key";
 }
 
@@ -1092,23 +1092,10 @@ visit_ComponentFactory (PICML::ComponentFactory_in f)
   }
 
   // Write the component that this home manages.
-  GAME::Mga::Collection_T <PICML::ManagesComponent> manages = f->src_of_ManagesComponent ();
-  if (manages.size ())
-  {
-    this->idl_ << nl
-               << "manages ";
-
-    bool first_element = true;
-    for (PICML::ManagesComponent connection : manages)
-    {
-      if (!first_element)
-        this->idl_ << ", ";
-      first_element = false;
-
-      this->idl_ << PICML::fq_type (connection->dst_Manageable (), "::", true);
-    }
-  }
-
+  this->idl_ << nl
+             << "manages "
+             << PICML::fq_type (f->src_of_ManagesComponent ()->dst_Manageable (), "::", true);
+              ;
 
   if (f->has_LookupKey ())
   {

@@ -83,7 +83,8 @@ namespace PICML
 
     /// Get the src TerminalEffect connection.
     size_t src_of_TerminalEffect (std::vector <TerminalEffect> & items) const;
-    GAME::Mga::Collection_T <TerminalEffect> src_of_TerminalEffect (void) const;
+    bool has_src_of_TerminalEffect (void) const;
+    TerminalEffect src_of_TerminalEffect (void) const;
     ///@}
 
     /**

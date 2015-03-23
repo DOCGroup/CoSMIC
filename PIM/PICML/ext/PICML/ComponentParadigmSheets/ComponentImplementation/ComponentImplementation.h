@@ -70,17 +70,19 @@ namespace PICML
      */
     ///@{
 
-    /// Get the src ImplementationDependsOn connection.
-    size_t src_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
-    GAME::Mga::Collection_T <ImplementationDependsOn> src_of_ImplementationDependsOn (void) const;
+    /// Get the src Implements connection.
+    size_t src_of_Implements (std::vector <Implements> & items) const;
+    bool has_src_of_Implements (void) const;
+    Implements src_of_Implements (void) const;
 
     /// Get the src ImplementationCapability connection.
     size_t src_of_ImplementationCapability (std::vector <ImplementationCapability> & items) const;
-    GAME::Mga::Collection_T <ImplementationCapability> src_of_ImplementationCapability (void) const;
+    bool has_src_of_ImplementationCapability (void) const;
+    ImplementationCapability src_of_ImplementationCapability (void) const;
 
-    /// Get the src Implements connection.
-    size_t src_of_Implements (std::vector <Implements> & items) const;
-    GAME::Mga::Collection_T <Implements> src_of_Implements (void) const;
+    /// Get the src ImplementationDependsOn connection.
+    size_t src_of_ImplementationDependsOn (std::vector <ImplementationDependsOn> & items) const;
+    GAME::Mga::Collection_T <ImplementationDependsOn> src_of_ImplementationDependsOn (void) const;
     ///@}
   };
 }

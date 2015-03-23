@@ -62,7 +62,7 @@ namespace PICML
   //
   bool ActionType_Impl::Operation_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

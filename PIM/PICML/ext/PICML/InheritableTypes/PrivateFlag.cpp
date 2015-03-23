@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/MakeMemberPrivate.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
@@ -70,9 +70,9 @@ namespace PICML
   //
   // dst_of_MakeMemberPrivate
   //
-  GAME::Mga::Collection_T <MakeMemberPrivate> PrivateFlag_Impl::dst_of_MakeMemberPrivate (void) const
+  MakeMemberPrivate PrivateFlag_Impl::dst_of_MakeMemberPrivate (void) const
   {
-    return this->in_connections <MakeMemberPrivate> ("dst");
+    return this->in_connections <MakeMemberPrivate> ("dst").first ();
   }
 }
 

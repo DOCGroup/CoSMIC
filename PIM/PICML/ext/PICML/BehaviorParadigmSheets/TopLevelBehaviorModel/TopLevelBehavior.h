@@ -71,23 +71,23 @@ namespace PICML
 
     bool has_Environment (void) const;
     Environment get_Environment (void) const;
+    size_t get_MultiInputs (std::vector <MultiInput> & items) const;
+    ::GAME::Mga::Collection_T <MultiInput> get_MultiInputs (void) const;
+
+    size_t get_QueryInputs (std::vector <QueryInput> & items) const;
+    ::GAME::Mga::Collection_T <QueryInput> get_QueryInputs (void) const;
+
+    size_t get_WorkerTypes (std::vector <WorkerType> & items) const;
+    ::GAME::Mga::Collection_T <WorkerType> get_WorkerTypes (void) const;
+
+    size_t get_Inputs (std::vector <Input> & items) const;
+    ::GAME::Mga::Collection_T <Input> get_Inputs (void) const;
+
     size_t get_ApplicationTasks (std::vector <ApplicationTask> & items) const;
     ::GAME::Mga::Collection_T <ApplicationTask> get_ApplicationTasks (void) const;
 
     size_t get_PeriodicEvents (std::vector <PeriodicEvent> & items) const;
     ::GAME::Mga::Collection_T <PeriodicEvent> get_PeriodicEvents (void) const;
-
-    size_t get_WorkerTypes (std::vector <WorkerType> & items) const;
-    ::GAME::Mga::Collection_T <WorkerType> get_WorkerTypes (void) const;
-
-    size_t get_QueryInputs (std::vector <QueryInput> & items) const;
-    ::GAME::Mga::Collection_T <QueryInput> get_QueryInputs (void) const;
-
-    size_t get_MultiInputs (std::vector <MultiInput> & items) const;
-    ::GAME::Mga::Collection_T <MultiInput> get_MultiInputs (void) const;
-
-    size_t get_Inputs (std::vector <Input> & items) const;
-    ::GAME::Mga::Collection_T <Input> get_Inputs (void) const;
 
     ///@}
   };

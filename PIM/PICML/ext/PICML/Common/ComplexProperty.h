@@ -56,20 +56,20 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComplexProperty _create (const Domain_in parent);
+    static ComplexProperty _create (const ImplementationContainer_in parent);
+    static ComplexProperty _create (const ComponentContainer_in parent);
+    static ComplexProperty _create (const RequirementBase_in parent);
+    static ComplexProperty _create (const ComponentAssembly_in parent);
     static ComplexProperty _create (const Paths_in parent);
     static ComplexProperty _create (const DeploymentPlan_in parent);
     static ComplexProperty _create (const ArtifactContainer_in parent);
     static ComplexProperty _create (const PackageConfigurationContainer_in parent);
     static ComplexProperty _create (const PackageContainer_in parent);
-    static ComplexProperty _create (const ImplementationContainer_in parent);
-    static ComplexProperty _create (const ComponentContainer_in parent);
+    static ComplexProperty _create (const Domain_in parent);
     static ComplexProperty _create (const BehaviorInputAction_in parent);
     static ComplexProperty _create (const ActionBase_in parent);
     static ComplexProperty _create (const QueryInputAction_in parent);
     static ComplexProperty _create (const Path_in parent);
-    static ComplexProperty _create (const ComponentAssembly_in parent);
-    static ComplexProperty _create (const RequirementBase_in parent);
     ///@}
 
     // Default constructor.
@@ -97,11 +97,11 @@ namespace PICML
 
     bool has_ComplexTypeReference (void) const;
     ComplexTypeReference get_ComplexTypeReference (void) const;
-    size_t get_DataValueContainers (std::vector <DataValueContainer> & items) const;
-    ::GAME::Mga::Collection_T <DataValueContainer> get_DataValueContainers (void) const;
-
     size_t get_DataValues (std::vector <DataValue> & items) const;
     ::GAME::Mga::Collection_T <DataValue> get_DataValues (void) const;
+
+    size_t get_DataValueContainers (std::vector <DataValueContainer> & items) const;
+    ::GAME::Mga::Collection_T <DataValueContainer> get_DataValueContainers (void) const;
 
     ///@}
   };

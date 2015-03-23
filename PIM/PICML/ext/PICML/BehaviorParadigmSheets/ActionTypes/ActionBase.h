@@ -82,7 +82,8 @@ namespace PICML
 
     /// Get the src Effect connection.
     size_t src_of_Effect (std::vector <Effect> & items) const;
-    GAME::Mga::Collection_T <Effect> src_of_Effect (void) const;
+    bool has_src_of_Effect (void) const;
+    Effect src_of_Effect (void) const;
     ///@}
 
     /**
@@ -92,26 +93,29 @@ namespace PICML
 
     /// Get the dst LoopTransition connection.
     size_t dst_of_LoopTransition (std::vector <LoopTransition> & items) const;
-    GAME::Mga::Collection_T <LoopTransition> dst_of_LoopTransition (void) const;
-
-    /// Get the dst BranchTransition connection.
-    size_t dst_of_BranchTransition (std::vector <BranchTransition> & items) const;
-    GAME::Mga::Collection_T <BranchTransition> dst_of_BranchTransition (void) const;
+    bool has_dst_of_LoopTransition (void) const;
+    LoopTransition dst_of_LoopTransition (void) const;
 
     /// Get the dst Transition connection.
     size_t dst_of_Transition (std::vector <Transition> & items) const;
-    GAME::Mga::Collection_T <Transition> dst_of_Transition (void) const;
+    bool has_dst_of_Transition (void) const;
+    Transition dst_of_Transition (void) const;
+
+    /// Get the dst BranchTransition connection.
+    size_t dst_of_BranchTransition (std::vector <BranchTransition> & items) const;
+    bool has_dst_of_BranchTransition (void) const;
+    BranchTransition dst_of_BranchTransition (void) const;
     ///@}
 
     /**
      * @name Containment Methods
      */
     ///@{
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
-
     size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
     ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     ///@}
   };

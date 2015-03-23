@@ -56,9 +56,9 @@ namespace DQML
      * @name Factory Methods
      */
     ///@{
+    static EntityFactoryQosPolicy _create (const PublisherQos_in parent);
     static EntityFactoryQosPolicy _create (const SubscriberQos_in parent);
     static EntityFactoryQosPolicy _create (const Participant_in parent);
-    static EntityFactoryQosPolicy _create (const PublisherQos_in parent);
     static EntityFactoryQosPolicy _create (const DDSQoS_in parent);
     ///@}
 
@@ -78,9 +78,9 @@ namespace DQML
      * @name Parent Methods
      */
     ///@{
+    PublisherQos parent_PublisherQos (void);
     SubscriberQos parent_SubscriberQos (void);
     Participant parent_Participant (void);
-    PublisherQos parent_PublisherQos (void);
     ///@}
 
     /**
@@ -100,14 +100,6 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst pub_entityfactory_Connection connection.
-    size_t dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
-    GAME::Mga::Collection_T <pub_entityfactory_Connection> dst_of_pub_entityfactory_Connection (void) const;
-
-    /// Get the dst sub_entityfactory_Connection connection.
-    size_t dst_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
-    GAME::Mga::Collection_T <sub_entityfactory_Connection> dst_of_sub_entityfactory_Connection (void) const;
-
     /// Get the dst dpfactory_entityfactory_Connection connection.
     size_t dst_of_dpfactory_entityfactory_Connection (std::vector <dpfactory_entityfactory_Connection> & items) const;
     GAME::Mga::Collection_T <dpfactory_entityfactory_Connection> dst_of_dpfactory_entityfactory_Connection (void) const;
@@ -115,6 +107,14 @@ namespace DQML
     /// Get the dst dp_entityfactory_Connection connection.
     size_t dst_of_dp_entityfactory_Connection (std::vector <dp_entityfactory_Connection> & items) const;
     GAME::Mga::Collection_T <dp_entityfactory_Connection> dst_of_dp_entityfactory_Connection (void) const;
+
+    /// Get the dst pub_entityfactory_Connection connection.
+    size_t dst_of_pub_entityfactory_Connection (std::vector <pub_entityfactory_Connection> & items) const;
+    GAME::Mga::Collection_T <pub_entityfactory_Connection> dst_of_pub_entityfactory_Connection (void) const;
+
+    /// Get the dst sub_entityfactory_Connection connection.
+    size_t dst_of_sub_entityfactory_Connection (std::vector <sub_entityfactory_Connection> & items) const;
+    GAME::Mga::Collection_T <sub_entityfactory_Connection> dst_of_sub_entityfactory_Connection (void) const;
     ///@}
   };
 }

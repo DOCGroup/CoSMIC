@@ -67,11 +67,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_ConnectorImplements
+  //
+  bool ConnectorImplementation_Impl::has_src_of_ConnectorImplements (void) const
+  {
+    return this->in_connections <ConnectorImplements> ("src").count () == 1;
+  }
+
+  //
   // src_of_ConnectorImplements
   //
-  GAME::Mga::Collection_T <ConnectorImplements> ConnectorImplementation_Impl::src_of_ConnectorImplements (void) const
+  ConnectorImplements ConnectorImplementation_Impl::src_of_ConnectorImplements (void) const
   {
-    return this->in_connections <ConnectorImplements> ("src");
+    return this->in_connections <ConnectorImplements> ("src").first ();
   }
 }
 

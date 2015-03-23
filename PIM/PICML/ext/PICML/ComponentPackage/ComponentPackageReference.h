@@ -54,8 +54,8 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
-    static ComponentPackageReference _create (const PackageConfigurationContainer_in parent);
     static ComponentPackageReference _create (const ComponentAssembly_in parent);
+    static ComponentPackageReference _create (const PackageConfigurationContainer_in parent);
     ///@}
 
     // Default constructor.
@@ -74,8 +74,8 @@ namespace PICML
      * @name Parent Methods
      */
     ///@{
-    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     ComponentAssembly parent_ComponentAssembly (void);
+    PackageConfigurationContainer parent_PackageConfigurationContainer (void);
     ///@}
 
     /**

@@ -100,13 +100,13 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_deadline_Connection connection.
-    size_t dst_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_deadline_Connection> dst_of_dr_deadline_Connection (void) const;
-
     /// Get the dst dw_deadline_Connection connection.
     size_t dst_of_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
     GAME::Mga::Collection_T <dw_deadline_Connection> dst_of_dw_deadline_Connection (void) const;
+
+    /// Get the dst dr_deadline_Connection connection.
+    size_t dst_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_deadline_Connection> dst_of_dr_deadline_Connection (void) const;
 
     /// Get the dst top_deadline_Connection connection.
     size_t dst_of_top_deadline_Connection (std::vector <top_deadline_Connection> & items) const;

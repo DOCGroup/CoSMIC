@@ -11,8 +11,8 @@
 #include "PICML/InheritableTypes/Inheritable.h"
 #include "PICML/InheritableTypes/HasOperations.h"
 #include "PICML/InheritableTypes/ObjectByValue.h"
-#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/InheritableTypes/Event.h"
+#include "PICML/InheritableTypes/ValueObject.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/ComponentFactory.h"
 #include "PICML/InheritableTypes/Object.h"
 #include "game/mga/Functional_T.h"
@@ -67,7 +67,7 @@ namespace PICML
   //
   bool Inherits_Impl::Inheritable_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

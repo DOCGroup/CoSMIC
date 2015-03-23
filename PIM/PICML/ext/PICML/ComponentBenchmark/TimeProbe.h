@@ -83,11 +83,13 @@ namespace PICML
 
     /// Get the dst TimerConnection connection.
     size_t dst_of_TimerConnection (std::vector <TimerConnection> & items) const;
-    GAME::Mga::Collection_T <TimerConnection> dst_of_TimerConnection (void) const;
+    bool has_dst_of_TimerConnection (void) const;
+    TimerConnection dst_of_TimerConnection (void) const;
 
     /// Get the dst TimerEventSinkConn connection.
     size_t dst_of_TimerEventSinkConn (std::vector <TimerEventSinkConn> & items) const;
-    GAME::Mga::Collection_T <TimerEventSinkConn> dst_of_TimerEventSinkConn (void) const;
+    bool has_dst_of_TimerEventSinkConn (void) const;
+    TimerEventSinkConn dst_of_TimerEventSinkConn (void) const;
     ///@}
   };
 }

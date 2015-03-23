@@ -83,7 +83,7 @@ namespace PICML
 
     /// Get the dst ComponentOperation connection.
     size_t dst_of_ComponentOperation (std::vector <ComponentOperation> & items) const;
-    GAME::Mga::Collection_T <ComponentOperation> dst_of_ComponentOperation (void) const;
+    ComponentOperation dst_of_ComponentOperation (void) const;
     ///@}
 
     /**

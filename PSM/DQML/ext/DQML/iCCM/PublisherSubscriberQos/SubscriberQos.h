@@ -91,9 +91,6 @@ namespace DQML
      */
     ///@{
 
-    bool has_ShareQosPolicy (void) const;
-    ShareQosPolicy get_ShareQosPolicy (void) const;
-
     bool has_EntityFactoryQosPolicy (void) const;
     EntityFactoryQosPolicy get_EntityFactoryQosPolicy (void) const;
 
@@ -105,6 +102,9 @@ namespace DQML
 
     bool has_PresentationQosPolicy (void) const;
     PresentationQosPolicy get_PresentationQosPolicy (void) const;
+
+    bool has_ShareQosPolicy (void) const;
+    ShareQosPolicy get_ShareQosPolicy (void) const;
     ///@}
   };
 }

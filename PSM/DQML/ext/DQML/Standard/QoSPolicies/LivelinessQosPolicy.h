@@ -106,13 +106,13 @@ namespace DQML
      */
     ///@{
 
-    /// Get the dst dr_liveliness_Connection connection.
-    size_t dst_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_liveliness_Connection> dst_of_dr_liveliness_Connection (void) const;
-
     /// Get the dst dw_liveliness_Connection connection.
     size_t dst_of_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
     GAME::Mga::Collection_T <dw_liveliness_Connection> dst_of_dw_liveliness_Connection (void) const;
+
+    /// Get the dst dr_liveliness_Connection connection.
+    size_t dst_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
+    GAME::Mga::Collection_T <dr_liveliness_Connection> dst_of_dr_liveliness_Connection (void) const;
 
     /// Get the dst topic_liveliness_Connection connection.
     size_t dst_of_topic_liveliness_Connection (std::vector <topic_liveliness_Connection> & items) const;

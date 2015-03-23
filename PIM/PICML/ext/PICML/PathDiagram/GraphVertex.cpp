@@ -8,9 +8,9 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/PathDiagram/Path.h"
-#include "PICML/PathDiagram/SrcEdge.h"
 #include "PICML/PathDiagram/DstEdge.h"
+#include "PICML/PathDiagram/SrcEdge.h"
+#include "PICML/PathDiagram/Path.h"
 
 namespace PICML
 {
@@ -41,11 +41,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_DstEdge
+  //
+  bool GraphVertex_Impl::has_src_of_DstEdge (void) const
+  {
+    return this->in_connections <DstEdge> ("src").count () == 1;
+  }
+
+  //
   // src_of_DstEdge
   //
-  GAME::Mga::Collection_T <DstEdge> GraphVertex_Impl::src_of_DstEdge (void) const
+  DstEdge GraphVertex_Impl::src_of_DstEdge (void) const
   {
-    return this->in_connections <DstEdge> ("src");
+    return this->in_connections <DstEdge> ("src").first ();
   }
 
   //
@@ -57,11 +65,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_SrcEdge
+  //
+  bool GraphVertex_Impl::has_dst_of_SrcEdge (void) const
+  {
+    return this->in_connections <SrcEdge> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_SrcEdge
   //
-  GAME::Mga::Collection_T <SrcEdge> GraphVertex_Impl::dst_of_SrcEdge (void) const
+  SrcEdge GraphVertex_Impl::dst_of_SrcEdge (void) const
   {
-    return this->in_connections <SrcEdge> ("dst");
+    return this->in_connections <SrcEdge> ("dst").first ();
   }
 }
 

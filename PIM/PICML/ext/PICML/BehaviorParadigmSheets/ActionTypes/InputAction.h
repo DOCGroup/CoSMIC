@@ -84,7 +84,8 @@ namespace PICML
 
     /// Get the dst Input connection.
     size_t dst_of_Input (std::vector <Input> & items) const;
-    GAME::Mga::Collection_T <Input> dst_of_Input (void) const;
+    bool has_dst_of_Input (void) const;
+    Input dst_of_Input (void) const;
     ///@}
   };
 }

@@ -82,69 +82,84 @@ namespace DQML
      */
     ///@{
 
-    /// Get the src dw_lifespan_Connection connection.
-    size_t src_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_lifespan_Connection> src_of_dw_lifespan_Connection (void) const;
-
-    /// Get the src dw_dstOrder_Connection connection.
-    size_t src_of_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_dstOrder_Connection> src_of_dw_dstOrder_Connection (void) const;
+    /// Get the src dw_ownership_Connection connection.
+    size_t src_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
+    bool has_src_of_dw_ownership_Connection (void) const;
+    dw_ownership_Connection src_of_dw_ownership_Connection (void) const;
 
     /// Get the src dw_reliability_Connection connection.
     size_t src_of_dw_reliability_Connection (std::vector <dw_reliability_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_reliability_Connection> src_of_dw_reliability_Connection (void) const;
-
-    /// Get the src dw_liveliness_Connection connection.
-    size_t src_of_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_liveliness_Connection> src_of_dw_liveliness_Connection (void) const;
-
-    /// Get the src dw_ownership_Connection connection.
-    size_t src_of_dw_ownership_Connection (std::vector <dw_ownership_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_ownership_Connection> src_of_dw_ownership_Connection (void) const;
-
-    /// Get the src dw_deadline_Connection connection.
-    size_t src_of_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_deadline_Connection> src_of_dw_deadline_Connection (void) const;
-
-    /// Get the src dw_latency_Connection connection.
-    size_t src_of_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_latency_Connection> src_of_dw_latency_Connection (void) const;
-
-    /// Get the src dw_durqos_Connection connection.
-    size_t src_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_durqos_Connection> src_of_dw_durqos_Connection (void) const;
-
-    /// Get the src dw_userdata_Connection connection.
-    size_t src_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_userdata_Connection> src_of_dw_userdata_Connection (void) const;
+    bool has_src_of_dw_reliability_Connection (void) const;
+    dw_reliability_Connection src_of_dw_reliability_Connection (void) const;
 
     /// Get the src dw_dursvc_Connection connection.
     size_t src_of_dw_dursvc_Connection (std::vector <dw_dursvc_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_dursvc_Connection> src_of_dw_dursvc_Connection (void) const;
+    bool has_src_of_dw_dursvc_Connection (void) const;
+    dw_dursvc_Connection src_of_dw_dursvc_Connection (void) const;
 
-    /// Get the src dw_topic_Connection connection.
-    size_t src_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_topic_Connection> src_of_dw_topic_Connection (void) const;
-
-    /// Get the src dw_history_Connection connection.
-    size_t src_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_history_Connection> src_of_dw_history_Connection (void) const;
-
-    /// Get the src dw_res_Connection connection.
-    size_t src_of_dw_res_Connection (std::vector <dw_res_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_res_Connection> src_of_dw_res_Connection (void) const;
-
-    /// Get the src dw_ownerstrength_Connection connection.
-    size_t src_of_dw_ownerstrength_Connection (std::vector <dw_ownerstrength_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_ownerstrength_Connection> src_of_dw_ownerstrength_Connection (void) const;
-
-    /// Get the src dw_transpri_Connection connection.
-    size_t src_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_transpri_Connection> src_of_dw_transpri_Connection (void) const;
+    /// Get the src dw_userdata_Connection connection.
+    size_t src_of_dw_userdata_Connection (std::vector <dw_userdata_Connection> & items) const;
+    bool has_src_of_dw_userdata_Connection (void) const;
+    dw_userdata_Connection src_of_dw_userdata_Connection (void) const;
 
     /// Get the src dw_writerdatalifecycle_Connection connection.
     size_t src_of_dw_writerdatalifecycle_Connection (std::vector <dw_writerdatalifecycle_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_writerdatalifecycle_Connection> src_of_dw_writerdatalifecycle_Connection (void) const;
+    bool has_src_of_dw_writerdatalifecycle_Connection (void) const;
+    dw_writerdatalifecycle_Connection src_of_dw_writerdatalifecycle_Connection (void) const;
+
+    /// Get the src dw_lifespan_Connection connection.
+    size_t src_of_dw_lifespan_Connection (std::vector <dw_lifespan_Connection> & items) const;
+    bool has_src_of_dw_lifespan_Connection (void) const;
+    dw_lifespan_Connection src_of_dw_lifespan_Connection (void) const;
+
+    /// Get the src dw_dstOrder_Connection connection.
+    size_t src_of_dw_dstOrder_Connection (std::vector <dw_dstOrder_Connection> & items) const;
+    bool has_src_of_dw_dstOrder_Connection (void) const;
+    dw_dstOrder_Connection src_of_dw_dstOrder_Connection (void) const;
+
+    /// Get the src dw_ownerstrength_Connection connection.
+    size_t src_of_dw_ownerstrength_Connection (std::vector <dw_ownerstrength_Connection> & items) const;
+    bool has_src_of_dw_ownerstrength_Connection (void) const;
+    dw_ownerstrength_Connection src_of_dw_ownerstrength_Connection (void) const;
+
+    /// Get the src dw_transpri_Connection connection.
+    size_t src_of_dw_transpri_Connection (std::vector <dw_transpri_Connection> & items) const;
+    bool has_src_of_dw_transpri_Connection (void) const;
+    dw_transpri_Connection src_of_dw_transpri_Connection (void) const;
+
+    /// Get the src dw_history_Connection connection.
+    size_t src_of_dw_history_Connection (std::vector <dw_history_Connection> & items) const;
+    bool has_src_of_dw_history_Connection (void) const;
+    dw_history_Connection src_of_dw_history_Connection (void) const;
+
+    /// Get the src dw_deadline_Connection connection.
+    size_t src_of_dw_deadline_Connection (std::vector <dw_deadline_Connection> & items) const;
+    bool has_src_of_dw_deadline_Connection (void) const;
+    dw_deadline_Connection src_of_dw_deadline_Connection (void) const;
+
+    /// Get the src dw_liveliness_Connection connection.
+    size_t src_of_dw_liveliness_Connection (std::vector <dw_liveliness_Connection> & items) const;
+    bool has_src_of_dw_liveliness_Connection (void) const;
+    dw_liveliness_Connection src_of_dw_liveliness_Connection (void) const;
+
+    /// Get the src dw_latency_Connection connection.
+    size_t src_of_dw_latency_Connection (std::vector <dw_latency_Connection> & items) const;
+    bool has_src_of_dw_latency_Connection (void) const;
+    dw_latency_Connection src_of_dw_latency_Connection (void) const;
+
+    /// Get the src dw_res_Connection connection.
+    size_t src_of_dw_res_Connection (std::vector <dw_res_Connection> & items) const;
+    bool has_src_of_dw_res_Connection (void) const;
+    dw_res_Connection src_of_dw_res_Connection (void) const;
+
+    /// Get the src dw_durqos_Connection connection.
+    size_t src_of_dw_durqos_Connection (std::vector <dw_durqos_Connection> & items) const;
+    bool has_src_of_dw_durqos_Connection (void) const;
+    dw_durqos_Connection src_of_dw_durqos_Connection (void) const;
+
+    /// Get the src dw_topic_Connection connection.
+    size_t src_of_dw_topic_Connection (std::vector <dw_topic_Connection> & items) const;
+    dw_topic_Connection src_of_dw_topic_Connection (void) const;
     ///@}
 
     /**
@@ -154,7 +169,7 @@ namespace DQML
 
     /// Get the dst dw_pub_Connection connection.
     size_t dst_of_dw_pub_Connection (std::vector <dw_pub_Connection> & items) const;
-    GAME::Mga::Collection_T <dw_pub_Connection> dst_of_dw_pub_Connection (void) const;
+    dw_pub_Connection dst_of_dw_pub_Connection (void) const;
     ///@}
   };
 }

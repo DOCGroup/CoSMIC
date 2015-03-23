@@ -32,11 +32,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_Publish
+  //
+  bool ExtendPortEnd_Impl::has_src_of_Publish (void) const
+  {
+    return this->in_connections <Publish> ("src").count () == 1;
+  }
+
+  //
   // src_of_Publish
   //
-  GAME::Mga::Collection_T <Publish> ExtendPortEnd_Impl::src_of_Publish (void) const
+  Publish ExtendPortEnd_Impl::src_of_Publish (void) const
   {
-    return this->in_connections <Publish> ("src");
+    return this->in_connections <Publish> ("src").first ();
   }
 
   //
@@ -48,11 +56,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Consume
+  //
+  bool ExtendPortEnd_Impl::has_dst_of_Consume (void) const
+  {
+    return this->in_connections <Consume> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Consume
   //
-  GAME::Mga::Collection_T <Consume> ExtendPortEnd_Impl::dst_of_Consume (void) const
+  Consume ExtendPortEnd_Impl::dst_of_Consume (void) const
   {
-    return this->in_connections <Consume> ("dst");
+    return this->in_connections <Consume> ("dst").first ();
   }
 }
 

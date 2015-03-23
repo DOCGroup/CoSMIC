@@ -32,11 +32,19 @@ namespace PICML
   }
 
   //
+  // has_src_of_LoopTransition
+  //
+  bool LoopState_Impl::has_src_of_LoopTransition (void) const
+  {
+    return this->in_connections <LoopTransition> ("src").count () == 1;
+  }
+
+  //
   // src_of_LoopTransition
   //
-  GAME::Mga::Collection_T <LoopTransition> LoopState_Impl::src_of_LoopTransition (void) const
+  LoopTransition LoopState_Impl::src_of_LoopTransition (void) const
   {
-    return this->in_connections <LoopTransition> ("src");
+    return this->in_connections <LoopTransition> ("src").first ();
   }
 }
 

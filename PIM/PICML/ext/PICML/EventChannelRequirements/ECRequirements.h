@@ -56,9 +56,9 @@ namespace PICML
      * @name Factory Methods
      */
     ///@{
+    static ECRequirements _create (const ComponentAssembly_in parent);
     static ECRequirements _create (const ArtifactContainer_in parent);
     static ECRequirements _create (const PackageConfigurationContainer_in parent);
-    static ECRequirements _create (const ComponentAssembly_in parent);
     ///@}
 
     // Default constructor.

@@ -207,8 +207,8 @@ project (PICML_GAME_Mga) : game_extension_classes {
     PICML/ComponentBenchmark/BenchmarkType.cpp
     PICML/InterfaceDefinition/TemplateParameterValueType.cpp
     PICML/BehaviorParadigmSheets/TopLevelBehaviorModel/MultiInput.cpp
-    PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.cpp
     PICML/BehaviorParadigmSheets/StateTypes/Transition.cpp
+    PICML/BehaviorParadigmSheets/Terminals/TerminalTransition.cpp
     PICML/ComponentBuild/ComponentLib.cpp
     PICML/ComponentParadigmSheets/ComponentType/ExtendedPort.cpp
     PICML/BehaviorParadigmSheets/InputHooks/PeriodicEvent.cpp

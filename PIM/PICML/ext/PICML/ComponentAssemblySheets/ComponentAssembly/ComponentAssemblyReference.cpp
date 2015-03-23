@@ -70,7 +70,7 @@ namespace PICML
   //
   bool ComponentAssemblyReference_Impl::ComponentAssembly_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

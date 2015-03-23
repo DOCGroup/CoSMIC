@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/Common/RequirementSatisfier.h"
-#include "PICML/TargetElements/SharedResource.h"
 #include "PICML/TargetElements/Resource.h"
+#include "PICML/TargetElements/SharedResource.h"
 #include "PICML/Common/Capability.h"
 #include "PICML/Common/DataType.h"
 #include "game/mga/Functional_T.h"

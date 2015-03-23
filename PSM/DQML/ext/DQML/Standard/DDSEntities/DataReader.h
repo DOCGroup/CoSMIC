@@ -84,55 +84,66 @@ namespace DQML
 
     /// Get the src dr_reliability_Connection connection.
     size_t src_of_dr_reliability_Connection (std::vector <dr_reliability_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_reliability_Connection> src_of_dr_reliability_Connection (void) const;
+    bool has_src_of_dr_reliability_Connection (void) const;
+    dr_reliability_Connection src_of_dr_reliability_Connection (void) const;
 
-    /// Get the src dr_liveliness_Connection connection.
-    size_t src_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_liveliness_Connection> src_of_dr_liveliness_Connection (void) const;
-
-    /// Get the src dr_ownership_Connection connection.
-    size_t src_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_ownership_Connection> src_of_dr_ownership_Connection (void) const;
-
-    /// Get the src dr_deadline_Connection connection.
-    size_t src_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_deadline_Connection> src_of_dr_deadline_Connection (void) const;
-
-    /// Get the src dr_latency_Connection connection.
-    size_t src_of_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_latency_Connection> src_of_dr_latency_Connection (void) const;
+    /// Get the src dr_topic_Connection connection.
+    size_t src_of_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const;
+    dr_topic_Connection src_of_dr_topic_Connection (void) const;
 
     /// Get the src dr_timebased_Connection connection.
     size_t src_of_dr_timebased_Connection (std::vector <dr_timebased_Connection> & items) const;
     GAME::Mga::Collection_T <dr_timebased_Connection> src_of_dr_timebased_Connection (void) const;
 
-    /// Get the src dr_durqos_Connection connection.
-    size_t src_of_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_durqos_Connection> src_of_dr_durqos_Connection (void) const;
+    /// Get the src dr_readerdatalifecycle_Connection connection.
+    size_t src_of_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const;
+    bool has_src_of_dr_readerdatalifecycle_Connection (void) const;
+    dr_readerdatalifecycle_Connection src_of_dr_readerdatalifecycle_Connection (void) const;
 
-    /// Get the src dr_dstOrder_Connection connection.
-    size_t src_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_dstOrder_Connection> src_of_dr_dstOrder_Connection (void) const;
+    /// Get the src dr_ownership_Connection connection.
+    size_t src_of_dr_ownership_Connection (std::vector <dr_ownership_Connection> & items) const;
+    bool has_src_of_dr_ownership_Connection (void) const;
+    dr_ownership_Connection src_of_dr_ownership_Connection (void) const;
 
     /// Get the src dr_userdata_Connection connection.
     size_t src_of_dr_userdata_Connection (std::vector <dr_userdata_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_userdata_Connection> src_of_dr_userdata_Connection (void) const;
+    bool has_src_of_dr_userdata_Connection (void) const;
+    dr_userdata_Connection src_of_dr_userdata_Connection (void) const;
 
-    /// Get the src dr_topic_Connection connection.
-    size_t src_of_dr_topic_Connection (std::vector <dr_topic_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_topic_Connection> src_of_dr_topic_Connection (void) const;
-
-    /// Get the src dr_readerdatalifecycle_Connection connection.
-    size_t src_of_dr_readerdatalifecycle_Connection (std::vector <dr_readerdatalifecycle_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_readerdatalifecycle_Connection> src_of_dr_readerdatalifecycle_Connection (void) const;
-
-    /// Get the src dr_res_Connection connection.
-    size_t src_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_res_Connection> src_of_dr_res_Connection (void) const;
+    /// Get the src dr_dstOrder_Connection connection.
+    size_t src_of_dr_dstOrder_Connection (std::vector <dr_dstOrder_Connection> & items) const;
+    bool has_src_of_dr_dstOrder_Connection (void) const;
+    dr_dstOrder_Connection src_of_dr_dstOrder_Connection (void) const;
 
     /// Get the src dr_history_Connection connection.
     size_t src_of_dr_history_Connection (std::vector <dr_history_Connection> & items) const;
-    GAME::Mga::Collection_T <dr_history_Connection> src_of_dr_history_Connection (void) const;
+    bool has_src_of_dr_history_Connection (void) const;
+    dr_history_Connection src_of_dr_history_Connection (void) const;
+
+    /// Get the src dr_latency_Connection connection.
+    size_t src_of_dr_latency_Connection (std::vector <dr_latency_Connection> & items) const;
+    bool has_src_of_dr_latency_Connection (void) const;
+    dr_latency_Connection src_of_dr_latency_Connection (void) const;
+
+    /// Get the src dr_liveliness_Connection connection.
+    size_t src_of_dr_liveliness_Connection (std::vector <dr_liveliness_Connection> & items) const;
+    bool has_src_of_dr_liveliness_Connection (void) const;
+    dr_liveliness_Connection src_of_dr_liveliness_Connection (void) const;
+
+    /// Get the src dr_deadline_Connection connection.
+    size_t src_of_dr_deadline_Connection (std::vector <dr_deadline_Connection> & items) const;
+    bool has_src_of_dr_deadline_Connection (void) const;
+    dr_deadline_Connection src_of_dr_deadline_Connection (void) const;
+
+    /// Get the src dr_res_Connection connection.
+    size_t src_of_dr_res_Connection (std::vector <dr_res_Connection> & items) const;
+    bool has_src_of_dr_res_Connection (void) const;
+    dr_res_Connection src_of_dr_res_Connection (void) const;
+
+    /// Get the src dr_durqos_Connection connection.
+    size_t src_of_dr_durqos_Connection (std::vector <dr_durqos_Connection> & items) const;
+    bool has_src_of_dr_durqos_Connection (void) const;
+    dr_durqos_Connection src_of_dr_durqos_Connection (void) const;
     ///@}
 
     /**

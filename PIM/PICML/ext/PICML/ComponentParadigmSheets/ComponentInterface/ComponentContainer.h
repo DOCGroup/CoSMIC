@@ -83,15 +83,6 @@ namespace PICML
 
     bool has_ComponentRef (void) const;
     ComponentRef get_ComponentRef (void) const;
-    size_t get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const;
-    ::GAME::Mga::Collection_T <ComponentPropertyDescription> get_ComponentPropertyDescriptions (void) const;
-
-    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
-    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
-
-    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
-    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
-
     size_t get_ComponentConfigPropertys (std::vector <ComponentConfigProperty> & items) const;
     ::GAME::Mga::Collection_T <ComponentConfigProperty> get_ComponentConfigPropertys (void) const;
 
@@ -100,6 +91,15 @@ namespace PICML
 
     size_t get_ComponentPropertys (std::vector <ComponentProperty> & items) const;
     ::GAME::Mga::Collection_T <ComponentProperty> get_ComponentPropertys (void) const;
+
+    size_t get_ComponentPropertyDescriptions (std::vector <ComponentPropertyDescription> & items) const;
+    ::GAME::Mga::Collection_T <ComponentPropertyDescription> get_ComponentPropertyDescriptions (void) const;
+
+    size_t get_SimplePropertys (std::vector <SimpleProperty> & items) const;
+    ::GAME::Mga::Collection_T <SimpleProperty> get_SimplePropertys (void) const;
+
+    size_t get_ComplexPropertys (std::vector <ComplexProperty> & items) const;
+    ::GAME::Mga::Collection_T <ComplexProperty> get_ComplexPropertys (void) const;
 
     ///@}
   };

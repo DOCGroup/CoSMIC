@@ -8,20 +8,20 @@
 #endif
 
 #include "PICML/Visitor.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
+#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
+#include "PICML/ComponentPackage/PackageContainer.h"
 #include "PICML/InterfaceDefinition/Package.h"
 #include "PICML/InterfaceDefinition/TemplatePackageAlias.h"
 #include "PICML/InterfaceDefinition/TemplatePackageInstance.h"
 #include "PICML/InterfaceDefinition/File.h"
-#include "PICML/ComponentPackage/PackageContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/ComponentImplementationContainer.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentContainer.h"
 #include "PICML/ComponentParadigmSheets/ComponentType/Component.h"
 #include "PICML/PathDiagram/Path.h"
 #include "PICML/ComponentPackage/PackageInterface.h"
-#include "PICML/ComponentParadigmSheets/ComponentImplementation/Implements.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentConfigProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentInfoProperty.h"
-#include "PICML/ComponentParadigmSheets/ComponentInterface/ComponentProperty.h"
 #include "game/mga/Functional_T.h"
 #include "game/mga/MetaModel.h"
 #include "game/mga/MetaFolder.h"
@@ -40,17 +40,17 @@ namespace PICML
   const bool ComponentRef_Impl::is_abstract = false;
 
   //
-  // _create (const Package_in)
+  // _create (const ComponentImplementationContainer_in)
   //
-  ComponentRef ComponentRef_Impl::_create (const Package_in parent)
+  ComponentRef ComponentRef_Impl::_create (const ComponentImplementationContainer_in parent)
   {
     return ::GAME::Mga::create < ComponentRef > (parent, ComponentRef_Impl::metaname);
   }
 
   //
-  // _create (const File_in)
+  // _create (const ComponentContainer_in)
   //
-  ComponentRef ComponentRef_Impl::_create (const File_in parent)
+  ComponentRef ComponentRef_Impl::_create (const ComponentContainer_in parent)
   {
     return ::GAME::Mga::create < ComponentRef > (parent, ComponentRef_Impl::metaname);
   }
@@ -64,17 +64,17 @@ namespace PICML
   }
 
   //
-  // _create (const ComponentImplementationContainer_in)
+  // _create (const Package_in)
   //
-  ComponentRef ComponentRef_Impl::_create (const ComponentImplementationContainer_in parent)
+  ComponentRef ComponentRef_Impl::_create (const Package_in parent)
   {
     return ::GAME::Mga::create < ComponentRef > (parent, ComponentRef_Impl::metaname);
   }
 
   //
-  // _create (const ComponentContainer_in)
+  // _create (const File_in)
   //
-  ComponentRef ComponentRef_Impl::_create (const ComponentContainer_in parent)
+  ComponentRef ComponentRef_Impl::_create (const File_in parent)
   {
     return ::GAME::Mga::create < ComponentRef > (parent, ComponentRef_Impl::metaname);
   }
@@ -102,30 +102,6 @@ namespace PICML
   }
 
   //
-  // parent_Package
-  //
-  Package ComponentRef_Impl::parent_Package (void)
-  {
-    return Package::_narrow (this->parent ());
-  }
-
-  //
-  // parent_File
-  //
-  File ComponentRef_Impl::parent_File (void)
-  {
-    return File::_narrow (this->parent ());
-  }
-
-  //
-  // parent_PackageContainer
-  //
-  PackageContainer ComponentRef_Impl::parent_PackageContainer (void)
-  {
-    return PackageContainer::_narrow (this->parent ());
-  }
-
-  //
   // parent_ComponentImplementationContainer
   //
   ComponentImplementationContainer ComponentRef_Impl::parent_ComponentImplementationContainer (void)
@@ -139,6 +115,30 @@ namespace PICML
   ComponentContainer ComponentRef_Impl::parent_ComponentContainer (void)
   {
     return ComponentContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_PackageContainer
+  //
+  PackageContainer ComponentRef_Impl::parent_PackageContainer (void)
+  {
+    return PackageContainer::_narrow (this->parent ());
+  }
+
+  //
+  // parent_Package
+  //
+  Package ComponentRef_Impl::parent_Package (void)
+  {
+    return Package::_narrow (this->parent ());
+  }
+
+  //
+  // parent_File
+  //
+  File ComponentRef_Impl::parent_File (void)
+  {
+    return File::_narrow (this->parent ());
   }
 
   //
@@ -198,22 +198,6 @@ namespace PICML
   }
 
   //
-  // dst_of_PackageInterface
-  //
-  size_t ComponentRef_Impl::dst_of_PackageInterface (std::vector <PackageInterface> & items) const
-  {
-    return this->in_connections <PackageInterface> (items);
-  }
-
-  //
-  // dst_of_PackageInterface
-  //
-  GAME::Mga::Collection_T <PackageInterface> ComponentRef_Impl::dst_of_PackageInterface (void) const
-  {
-    return this->in_connections <PackageInterface> ("dst");
-  }
-
-  //
   // dst_of_Implements
   //
   size_t ComponentRef_Impl::dst_of_Implements (std::vector <Implements> & items) const
@@ -222,11 +206,43 @@ namespace PICML
   }
 
   //
+  // has_dst_of_Implements
+  //
+  bool ComponentRef_Impl::has_dst_of_Implements (void) const
+  {
+    return this->in_connections <Implements> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_Implements
   //
-  GAME::Mga::Collection_T <Implements> ComponentRef_Impl::dst_of_Implements (void) const
+  Implements ComponentRef_Impl::dst_of_Implements (void) const
   {
-    return this->in_connections <Implements> ("dst");
+    return this->in_connections <Implements> ("dst").first ();
+  }
+
+  //
+  // dst_of_PackageInterface
+  //
+  size_t ComponentRef_Impl::dst_of_PackageInterface (std::vector <PackageInterface> & items) const
+  {
+    return this->in_connections <PackageInterface> (items);
+  }
+
+  //
+  // has_dst_of_PackageInterface
+  //
+  bool ComponentRef_Impl::has_dst_of_PackageInterface (void) const
+  {
+    return this->in_connections <PackageInterface> ("dst").count () == 1;
+  }
+
+  //
+  // dst_of_PackageInterface
+  //
+  PackageInterface ComponentRef_Impl::dst_of_PackageInterface (void) const
+  {
+    return this->in_connections <PackageInterface> ("dst").first ();
   }
 
   //
@@ -234,7 +250,7 @@ namespace PICML
   //
   bool ComponentRef_Impl::Component_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

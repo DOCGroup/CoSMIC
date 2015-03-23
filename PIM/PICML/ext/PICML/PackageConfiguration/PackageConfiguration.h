@@ -101,15 +101,18 @@ namespace PICML
 
     /// Get the src PackageConfSpecializedConfig connection.
     size_t src_of_PackageConfSpecializedConfig (std::vector <PackageConfSpecializedConfig> & items) const;
-    GAME::Mga::Collection_T <PackageConfSpecializedConfig> src_of_PackageConfSpecializedConfig (void) const;
-
-    /// Get the src PackageConfReference connection.
-    size_t src_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
-    GAME::Mga::Collection_T <PackageConfReference> src_of_PackageConfReference (void) const;
+    bool has_src_of_PackageConfSpecializedConfig (void) const;
+    PackageConfSpecializedConfig src_of_PackageConfSpecializedConfig (void) const;
 
     /// Get the src PackageConfConfigProperty connection.
     size_t src_of_PackageConfConfigProperty (std::vector <PackageConfConfigProperty> & items) const;
-    GAME::Mga::Collection_T <PackageConfConfigProperty> src_of_PackageConfConfigProperty (void) const;
+    bool has_src_of_PackageConfConfigProperty (void) const;
+    PackageConfConfigProperty src_of_PackageConfConfigProperty (void) const;
+
+    /// Get the src PackageConfReference connection.
+    size_t src_of_PackageConfReference (std::vector <PackageConfReference> & items) const;
+    bool has_src_of_PackageConfReference (void) const;
+    PackageConfReference src_of_PackageConfReference (void) const;
 
     /// Get the src PackageConfSelectRequirement connection.
     size_t src_of_PackageConfSelectRequirement (std::vector <PackageConfSelectRequirement> & items) const;
@@ -117,7 +120,8 @@ namespace PICML
 
     /// Get the src PackageConfBasePackage connection.
     size_t src_of_PackageConfBasePackage (std::vector <PackageConfBasePackage> & items) const;
-    GAME::Mga::Collection_T <PackageConfBasePackage> src_of_PackageConfBasePackage (void) const;
+    bool has_src_of_PackageConfBasePackage (void) const;
+    PackageConfBasePackage src_of_PackageConfBasePackage (void) const;
     ///@}
   };
 }

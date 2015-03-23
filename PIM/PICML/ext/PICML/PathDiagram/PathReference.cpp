@@ -67,11 +67,19 @@ namespace PICML
   }
 
   //
+  // has_dst_of_CriticalPath
+  //
+  bool PathReference_Impl::has_dst_of_CriticalPath (void) const
+  {
+    return this->in_connections <CriticalPath> ("dst").count () == 1;
+  }
+
+  //
   // dst_of_CriticalPath
   //
-  GAME::Mga::Collection_T <CriticalPath> PathReference_Impl::dst_of_CriticalPath (void) const
+  CriticalPath PathReference_Impl::dst_of_CriticalPath (void) const
   {
-    return this->in_connections <CriticalPath> ("dst");
+    return this->in_connections <CriticalPath> ("dst").first ();
   }
 
   //
@@ -79,7 +87,7 @@ namespace PICML
   //
   bool PathReference_Impl::Path_is_nil (void) const
   {
-    return !this->refers_to ().is_nil ();
+    return this->refers_to ().is_nil ();
   }
 
   //

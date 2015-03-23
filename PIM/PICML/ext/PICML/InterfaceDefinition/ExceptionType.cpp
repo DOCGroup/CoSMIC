@@ -9,8 +9,8 @@
 
 #include "PICML/Visitor.h"
 #include "PICML/InheritableTypes/SetException.h"
-#include "PICML/InheritableTypes/GetException.h"
 #include "PICML/OperationTypes/ExceptionRef.h"
+#include "PICML/InheritableTypes/GetException.h"
 
 namespace PICML
 {

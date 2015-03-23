@@ -8,8 +8,8 @@
 #endif
 
 #include "PICML/Visitor.h"
-#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementations.h"
+#include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplementation.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorImplements.h"
 #include "PICML/ConnectorParadigmSheets/ConnectorImplementation/ConnectorType.h"
 #include "game/mga/Functional_T.h"
