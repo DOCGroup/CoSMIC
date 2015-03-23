@@ -120,7 +120,7 @@ void Connector_Visitor::
 Visit_ExtendedPortInstanceBase (ExtendedPortInstanceBase_in base, PortType_in pt)
 {
   // Vist the publish connection for this port if it exist.
-  Publish publish = base->src_of_Publish ().first ();
+  Publish publish = base->src_of_Publish ();
 
   if (publish)
   {
@@ -134,7 +134,7 @@ Visit_ExtendedPortInstanceBase (ExtendedPortInstanceBase_in base, PortType_in pt
 
   // We also need to see if this port type is receiving anything
   // from a connector.
-  Consume consume = base->dst_of_Consume ().first ();
+  Consume consume = base->dst_of_Consume ();
 
   if (consume)
   {
@@ -148,11 +148,11 @@ Visit_ExtendedPortInstanceBase (ExtendedPortInstanceBase_in base, PortType_in pt
 
   // Finally, check if this port is part of a delegation. If so,
   // we need to locate the non-delegated port for this port.
-  GAME::Mga::Collection_T <ExtendedDelegate> ed = base->src_of_ExtendedDelegate ();
+  ExtendedDelegate ed = base->src_of_ExtendedDelegate ();
 
-  if (!ed.is_empty ())
+  if (!ed.is_nil ())
   {
-    ExtendedPortDelegate epd = ed.first ()->dst_ExtendedPortDelegate ();
+    ExtendedPortDelegate epd = ed->dst_ExtendedPortDelegate ();
     this->Visit_ExtendedPortInstanceBase (epd, pt);
   }
 }
@@ -171,39 +171,29 @@ void Connector_Visitor::
 Visit_MirrorPortInstanceBase (MirrorPortInstanceBase_in base, PortType_in pt)
 {
   // Vist the publish connection for this port if it exist.
-  GAME::Mga::Collection_T <Publish> publish = base->src_of_Publish ();
+  Publish publish = base->src_of_Publish ();
+  publish->accept (this);
 
-  if (!publish.is_empty ())
-  {
-    // Find the target connector.
-    publish.first ()->accept (this);
-
-    // Write all the connections.
-    this->invert_ = true;
-    pt->accept (this);
-  }
+  // Write all the connections.
+  this->invert_ = true;
+  pt->accept (this);
 
   // We also need to see if this port type is receiving anything
   // from a connector.
-  GAME::Mga::Collection_T <Consume> consume = base->dst_of_Consume ();
+  Consume consume = base->dst_of_Consume ();
+  consume->accept (this);
 
-  if (!consume.is_empty ())
-  {
-    // Find the target connector.
-    consume.first ()->accept (this);
-
-    // Write all the connections.
-    this->invert_ = true;
-    pt->accept (this);
-  }
+  // Write all the connections.
+  this->invert_ = true;
+  pt->accept (this);
 
   // Finally, check if this port is part of a delegation. If so,
   // we need to locate the non-delegated port for this port.
-  GAME::Mga::Collection_T <MirrorDelegate> md = base->src_of_MirrorDelegate ();
+  MirrorDelegate md = base->src_of_MirrorDelegate ();
 
-  if (!md.is_empty ())
+  if (!md.is_nil ())
   {
-    MirrorPortDelegate mpd = md.first ()->dst_MirrorPortDelegate ();
+    MirrorPortDelegate mpd = md->dst_MirrorPortDelegate ();
     this->Visit_MirrorPortInstanceBase (mpd, pt);
   }
 }
@@ -498,7 +488,7 @@ bool Connector_Visitor::is_ami4ccm_connector (ConnectorInstance_in inst)
 {
   ConnectorImplementationType impl_type = inst->get_ConnectorImplementationType ();
   ConnectorImplementation impl = impl_type->refers_to_ConnectorImplementation ();
-  ConnectorImplements implements = impl->src_of_ConnectorImplements ().first ();
+  ConnectorImplements implements = impl->src_of_ConnectorImplements ();
 
   ConnectorType type = implements->dst_ConnectorType ();
   return this->is_ami4ccm_connector (type->refers_to_ConnectorObject ());
@@ -661,7 +651,7 @@ deploy_connector_fragment (ConnectorInstance_in inst)
     const std::string old_uuid (inst->UUID ());
     const std::string old_name (inst->name ());
 
-    InstanceMapping mapping = this->group_->src_of_InstanceMapping ().first ();
+    InstanceMapping mapping = this->group_->src_of_InstanceMapping ();
     NodeReference noderef = mapping->dst_NodeReference ();
     Node node = noderef->refers_to_Node ();
 

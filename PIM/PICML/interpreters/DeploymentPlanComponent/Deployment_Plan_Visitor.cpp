@@ -494,7 +494,7 @@ deploy_connector_fragment (PICML::ConnectorInstance_in connector,
     }
 
     // Get the target node's name for this instance
-    PICML::InstanceMapping mapping = group->src_of_InstanceMapping ().first ();
+    PICML::InstanceMapping mapping = group->src_of_InstanceMapping ();
     PICML::NodeReference noderef = mapping->dst_NodeReference ();
 
     // Create a new instance in the XML document.
@@ -620,7 +620,7 @@ visit_ConfigProperty (PICML::ConfigProperty_in cp)
 void Deployment_Plan_Visitor::
 visit_AttributeInstance (PICML::AttributeInstance_in attr)
 {
-  attr->src_of_AttributeValue ().first ()->accept (this);
+  attr->src_of_AttributeValue ()->accept (this);
 }
 
 void Deployment_Plan_Visitor::

@@ -142,19 +142,6 @@ void Domain_Visitor::visit_Node (PICML::Node_in node)
   Swap_Fragment fragment (this->fragment_, this->fragment_.append_element ("node"));
   fragment.append_simple_content ("name", this->expand_shortname (node->name ()));
 
-  // Testing
-  fragment.set_attribute ("test", String ("5"));
-  String test = fragment[String ("test")];
-  String foo = "5";
-    std::ostringstream ostr;
-    ostr << "Testing read attribute (asdf): " << test.to_string ().c_str () << " objects...";
-    GME_CONSOLE_SERVICE->info (ostr.str ().c_str ());
-
-  fragment.set_attribute ("test", "qwer");
-    std::ostringstream ostr2;
-    ostr2 << "Testing read attribute (qwer): " << test.to_string ().c_str () << " objects...";
-    GME_CONSOLE_SERVICE->info (ostr2.str ().c_str ());
-
   std::string label = node->label ();
   if (!label.empty ())
     fragment.append_simple_content ("label", label);
