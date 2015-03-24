@@ -14,9 +14,12 @@ public:
   Deployment_Domain_Visitor (const std::string & outpath);
   virtual ~Deployment_Domain_Visitor (void);
 
-  virtual void Visit_DeploymentPlan (PICML::DeploymentPlan_in);
-  virtual void Visit_NodeReference (PICML::NodeReference_in);
-  virtual void Visit_PropertyMapping (PICML::PropertyMapping_in);
+  virtual void visit_RootFolder (PICML::RootFolder_in);
+  virtual void visit_DeploymentPlans (PICML::DeploymentPlans_in);
+
+  virtual void visit_DeploymentPlan (PICML::DeploymentPlan_in);
+  virtual void visit_NodeReference (PICML::NodeReference_in);
+  virtual void visit_PropertyMapping (PICML::PropertyMapping_in);
 };
 
 #endif

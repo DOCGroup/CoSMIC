@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "Deployment_Plan_Generator_Impl.h"
 #include "Deployment_Plan_Visitor.h"
+#include "Deployment_Domain_Visitor.h"
+
 #include "DeploymentPlan_MainDialog.h"
 
 #include "game/mga/component/Interpreter_T.h"
@@ -79,13 +81,24 @@ invoke_ex (GAME::Mga::Project project,
     // or the selected objects. The selected objects must be a deployment
     // plan, or the behavior is unknown.
     PICML::Deployment::Deployment_Plan_Visitor dpv (this->config_);
+    Deployment_Domain_Visitor domain_visitor (this->config_.output_);
 
     if (selected.is_empty ())
+    {
       project.root_folder ()->accept (&dpv);
+      project.root_folder ()->accept (&domain_visitor);
+    }
     else
+    {
       for (GAME::Mga::FCO selection : selected)
-        if (selection->meta ()->name () == PICML::DeploymentPlan::impl_type::metaname)
-          selection->accept (&dpv);
+      {
+        if (selection->meta ()->name () != PICML::DeploymentPlan::impl_type::metaname)
+          continue;
+
+        selection->accept (&dpv);
+        selection->accept (&domain_visitor);
+      }
+    }
 
     if (this->is_interactive_)
       ::AfxMessageBox ("Successfully generated deployment plan descriptors", MB_ICONINFORMATION);

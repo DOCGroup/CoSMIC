@@ -105,7 +105,7 @@ begin_document (const std::string & uuid, const std::string & label)
 
   // Attach the <UUID> to the root element. We generate a UUID if
   // one is not present.
-  if (uuid.empty ())
+  if (!uuid.empty ())
     root.append_simple_content ("UUID", uuid);
 }
 
@@ -129,11 +129,9 @@ void Domain_Visitor::write_document (const std::string & basename)
   if (serializer->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
     serializer->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
 
-  serializer->writeToURI (this->fragment_, String (filename.str ()));
+  serializer->writeToURI (this->xml_doc_->root (), String (filename.str ()));
   serializer->release ();
 }
-
-#include "game/mga/component/Console_Service.h"
 
 void Domain_Visitor::visit_Node (PICML::Node_in node)
 {
