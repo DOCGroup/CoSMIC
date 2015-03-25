@@ -19,6 +19,8 @@
 #endif
 #define _ATL_APARTMENT_THREADED
 
+#include "game/config.h"
+
 #include <afx.h>
 #include <afxwin.h>
 #include <afxdisp.h>
@@ -29,6 +31,9 @@
 //something, but do not change the name of _Module
 extern CComModule _Module;
 #include <atlcom.h>
+
+
+#include "Deployment_Plan_Generator.h"
 
 #pragma warning( disable : 4666)
 

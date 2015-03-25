@@ -1,10 +1,12 @@
-// $Id$
-
 #include "stdafx.h"
+
 #include "Utility.h"
+
 #include "game/mga/MetaBase.h"
 #include "game/mga/MetaModel.h"
+
 #include <stack>
+#include <sstream>
 
 namespace PICML
 {
@@ -81,4 +83,26 @@ GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type)
   return GAME::Mga::Model ();
 }
 
+std::string repository_id (const PICML::NamedType_in named_type)
+{
+  std::ostringstream ostr;
+  ostr << "IDL:";
+
+  // Write the prefix, if applicable.
+  std::string prefix = named_type->SpecifyIdTag ();
+  if (!prefix.empty ())
+    ostr << prefix << "/";
+
+  // Write the full scope of the named type.
+  ostr << fq_type (named_type, "/", false) << ":";
+
+  // Write the version tag, if applicable.
+  std::string version = named_type->VersionTag ();
+  ostr << (version.empty () ? "1.0" : version);
+
+  return ostr.str ();
 }
+
+}
+
+

@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_TO_DQML_Component) : game_mga_interpreter, game_mga_utils, dqml_game_mga, picml_game_mga, cosmic_utils, cosmic_lib {
+project (PICML_TO_DQML_Component) : game_mga_interpreter, game_mga_utils, dqml_game_mga, picml_game_mga, cosmic_lib {
   sharedname = PICML_TO_DQML_Component
 
   pch_header = StdAfx.h

@@ -6,10 +6,7 @@
 #include "Validation.h"
 #include "Import_Dialog.h"
 
-#include "game/mga/Model.h"
-
-#include "boost/bind.hpp"
-#include <algorithm>
+#include "game/mga/MetaModel.h"
 
 namespace PICML
 {
@@ -47,7 +44,7 @@ handle_object_created (GAME::Mga::Object_in obj)
   if (obj->is_lib_object ())
     return 0;
 
-  return this->generate_default_implementation (obj);
+  return this->generate_default_implementation (PICML::Component::_narrow (obj));
 }
 
 //
@@ -72,20 +69,19 @@ int Default_Implementation_Event_Handler::handle_xml_import_begin (void)
 // generate_default_implementation
 //
 int Default_Implementation_Event_Handler::
-generate_default_implementation (const GAME::Mga::Object_in obj)
+  generate_default_implementation (PICML::Component_in type)
 {
-  ::GAME::Mga::Model model = ::GAME::Mga::Model::_narrow (obj);
-  if (is_in_template_module (model))
+  if (is_in_template_module (type))
     return 0;
 
   // Locate the object's type in the map.
-  map_t::const_iterator iter = this->meta_info_.find (obj->meta ()->name ());
+  const std::string metaname = type->meta ()->name ();
+  auto iter = this->meta_info_.find (metaname);
 
   if (iter == this->meta_info_.end ())
     return 0;
 
-  const std::string name (obj->name ());
-  const std::string metaname (obj->meta ()->name ());
+  const std::string name (type->name ());
   const std::string new_name ("New" + metaname);
 
   if (name == metaname || name == new_name)
@@ -99,12 +95,12 @@ generate_default_implementation (const GAME::Mga::Object_in obj)
       return 0;
 
     // Set the name of the object.
-    model->name (this->config_.type_name_);
+    type->name (this->config_.type_name_);
   }
 
   // Generate the default implementation.
-  Default_Implementation_Generator dig (obj->project (), iter->second);
-  return dig.generate (this->config_, model) ? 0 : -1;
+  Default_Implementation_Generator dig (type->project (), iter->second);
+  return dig.generate (this->config_, type) ? 0 : -1;
 }
 
 //

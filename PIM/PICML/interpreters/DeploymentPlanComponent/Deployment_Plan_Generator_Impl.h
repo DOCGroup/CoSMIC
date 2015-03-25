@@ -34,7 +34,7 @@ public:
   // Handle the InvokeEx callback.
   int invoke_ex (GAME::Mga::Project project,
                  GAME::Mga::FCO_in fco,
-                 std::vector <GAME::Mga::FCO> & selected,
+                 GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
                  long flags);
 
   int set_parameter (const std::string & name, const std::string & value);

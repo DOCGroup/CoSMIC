@@ -32,17 +32,13 @@ Default_Implementation_Generator (GAME::Mga::Project project, const meta_info_t 
 {
   using ::GAME::Mga_t;
 
-  GAME::Mga::Folder root_folder = project.root_folder ();
+  PICML::RootFolder root_folder = PICML::RootFolder::_narrow (project.root_folder ());
+  auto predicate = GAME::contains <Mga_t> ([&](PICML::ComponentImplementations folder) {
+    return folder->name () == info.impl_folder_name_;
+  });
 
-  if (GAME::create_if_not <Mga_t> (root_folder, info.impl_folder_, this->impl_folder_,
-      GAME::contains <Mga_t> (
-                        boost::bind (std::equal_to <std::string> (),
-                        info.impl_folder_name_,
-                        boost::bind (&GAME::Mga::Folder::impl_type::name,
-                                     boost::bind (&GAME::Mga::Folder::get, _1))))))
-  {
+  if (GAME::create_if_not <Mga_t> (root_folder, info.impl_folder_, this->impl_folder_, predicate))
     this->impl_folder_->name (info.impl_folder_name_);
-  }
 }
 
 //
@@ -57,7 +53,7 @@ Default_Implementation_Generator::~Default_Implementation_Generator (void)
 // generate
 //
 bool Default_Implementation_Generator::
-generate (const Implementation_Configuration & config, const ::GAME::Mga::Model_in type)
+generate (const Implementation_Configuration & config, Component_in type)
 {
   using ::GAME::Mga_t;
 

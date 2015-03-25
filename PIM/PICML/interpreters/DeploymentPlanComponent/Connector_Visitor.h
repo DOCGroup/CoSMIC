@@ -14,75 +14,76 @@
 #define _PICML_DEPLOYMENT_CONNECTOR_VISITOR_H_
 
 #include "PICML/PICML.h"
-#include "XML_Document.h"
-#include "game/xml/Fragment.h"
+#include "PICML/Visitor.h"
 
-// Forward decl.
-class DeploymentPlanVisitor;
+#include "game/xml/Document.h"
+
+#include "Deployment_Handler.h"
+
+namespace PICML
+{
+namespace Deployment
+{
 
 /**
  * @class DeploymentPlanVisitor
  */
-class Connector_Visitor :
-  public PICML::Visitor,
-  public XML_Document
+class Connector_Visitor : public Visitor
 {
 public:
   /**
    * Initializing constructor.
    */
-  Connector_Visitor (DeploymentPlanVisitor & dpv,
-                     std::vector <xercesc::DOMElement *> & conns,
-                     xercesc::DOMDocument * doc);
+  Connector_Visitor (Deployment_Handler * handler, 
+                     GAME::Xml::Document document,
+                     std::vector <GAME::Xml::Fragment> & conns);
 
   /// Destructor.
   virtual ~Connector_Visitor (void);
 
-  virtual void Visit_ComponentInstance (const PICML::ComponentInstance &);
+  virtual void Visit_ComponentInstance (ComponentInstance_in);
 
-  virtual void Visit_ExtendedPortInstance (const PICML::ExtendedPortInstance &);
+  virtual void Visit_ExtendedPortInstance (ExtendedPortInstance_in);
 
-  virtual void Visit_MirrorPortInstance (const PICML::MirrorPortInstance &);
+  virtual void Visit_MirrorPortInstance (MirrorPortInstance_in);
 
-  virtual void Visit_RequiredRequestPortInstance (const PICML::RequiredRequestPortInstance &);
+  virtual void Visit_RequiredRequestPortInstance (RequiredRequestPortInstance_in);
 
-  virtual void Visit_ProvidedRequestPortInstance (const PICML::ProvidedRequestPortInstance &);
+  virtual void Visit_ProvidedRequestPortInstance (ProvidedRequestPortInstance_in);
 
-  virtual void Visit_Publish (const PICML::Publish & );
+  virtual void Visit_Publish (Publish_in );
 
-  virtual void Visit_Consume (const PICML::Consume & );
+  virtual void Visit_Consume (Consume_in );
 
-  virtual void Visit_ConnectorToReceptacle (const PICML::ConnectorToReceptacle &);
+  virtual void Visit_ConnectorToReceptacle (ConnectorToReceptacle_in);
 
-  virtual void Visit_ConnectorToFacet (const PICML::ConnectorToFacet &);
+  virtual void Visit_ConnectorToFacet (ConnectorToFacet_in);
 
-  virtual void Visit_FacetDelegate (const PICML::FacetDelegate &);
-  virtual void Visit_ReceptacleDelegate (const PICML::ReceptacleDelegate &);
+  virtual void Visit_FacetDelegate (FacetDelegate_in);
+  virtual void Visit_ReceptacleDelegate (ReceptacleDelegate_in);
 
-  virtual void Visit_PortType (const PICML::PortType & pt);
+  virtual void Visit_PortType (PortType_in pt);
 
-  virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort &);
+  virtual void Visit_RequiredRequestPort (RequiredRequestPort_in);
 
-  virtual void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort &);
+  virtual void Visit_ProvidedRequestPort (ProvidedRequestPort_in);
 
 private:
-  void Visit_ProvidedRequestPortEnd (const PICML::ProvidedRequestPortEnd &);
-  void Visit_RequiredRequestPortEnd (const PICML::RequiredRequestPortEnd &);
+  void Visit_ProvidedRequestPortEnd (ProvidedRequestPortEnd_in);
+  void Visit_RequiredRequestPortEnd (RequiredRequestPortEnd_in);
 
-  bool is_ami4ccm_connector (const PICML::ConnectorInstance & inst);
-  bool is_ami4ccm_connector (const PICML::ConnectorObject & obj);
+  bool is_ami4ccm_connector (ConnectorInstance_in inst);
+  bool is_ami4ccm_connector (ConnectorObject_in obj);
 
   void Visit_ExtendedPortInstanceBase (
-    const PICML::ExtendedPortInstanceBase & base,
-    const PICML::PortType & pt);
+    ExtendedPortInstanceBase_in base,
+    PortType_in pt);
 
   void Visit_MirrorPortInstanceBase (
-    const PICML::MirrorPortInstanceBase & base,
-    const PICML::PortType & pt);
+    MirrorPortInstanceBase_in base,
+    PortType_in pt);
 
-  bool find_plan_locality (const PICML::ComponentInstance & inst);
-
-  void start_new_connection (const PICML::Object & obj);
+  void start_new_connection (Object_in obj);
 
   void append_endpoint (const std::string & portname,
                         const std::string & kind,
@@ -101,17 +102,15 @@ private:
                                     const std::string & port,
                                     bool invert);
 
-  void deploy_connector_fragment (const PICML::ConnectorInstance & inst);
+  void deploy_connector_fragment (ConnectorInstance_in inst);
 
-  void make_connection_local (xercesc::DOMElement * conn);
+  void make_connection_local (GAME::Xml::Fragment conn);
 
-  DeploymentPlanVisitor & dpv_;
+  Deployment_Handler * handler_;
 
-  /// Set of connection gathered.
-  std::vector <xercesc::DOMElement *> & conns_;
+  GAME::Xml::Document document_;
 
-  /// The target document.
-  xercesc::DOMDocument * doc_;
+  std::vector <GAME::Xml::Fragment> & conns_;
 
   GAME::Xml::Fragment curr_conn_;
 
@@ -119,12 +118,12 @@ private:
 
   std::string connection_name_;
 
-  PICML::CollocationGroup group_;
+  CollocationGroup group_;
 
-  PICML::ComponentInstance comp_inst_;
+  ComponentInstance comp_inst_;
 
-  PICML::RequiredRequestPort receptacle_;
-  PICML::ProvidedRequestPort facet_;
+  RequiredRequestPort receptacle_;
+  ProvidedRequestPort facet_;
 
   std::string connector_uuid_;
   std::string connector_name_;
@@ -137,14 +136,17 @@ private:
 
   bool invert_;
 
-  std::map <PICML::ConnectorInstance, std::string> connector_uuids_;
+  std::map <ConnectorInstance, std::string> connector_uuids_;
 
-  std::map <PICML::ConnectorInstance, size_t> connector_counter_;
+  std::map <ConnectorInstance, size_t> connector_counter_;
 
-  PICML::ProvidedRequestPortInstance active_facet_;
-  PICML::RequiredRequestPortInstance active_receptacle_;
+  ProvidedRequestPortInstance active_facet_;
+  RequiredRequestPortInstance active_receptacle_;
 
-  std::map <PICML::ProvidedRequestPortInstance, std::string> ami4ccm_uuids_;
+  std::map <ProvidedRequestPortInstance, std::string> ami4ccm_uuids_;
 };
+
+}
+}
 
 #endif  // !defined _PICML_DEPLOYMENT_CONNECTOR_VISITOR_H_

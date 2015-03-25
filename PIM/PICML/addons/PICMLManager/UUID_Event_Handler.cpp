@@ -10,10 +10,9 @@
 #include "game/mga/Attribute.h"
 #include "game/mga/dialogs/Selection_List_Dialog_T.h"
 #include "game/mga/dialogs/Dialog_Display_Strategy.h"
+#include "game/mga/Utils.h"
 
 #include "game/mga/Object_Filter.h"
-
-#include "Utils/Utils.h"
 
 #include "boost/bind.hpp"
 
@@ -124,13 +123,13 @@ handle_object_created (GAME::Mga::Object_in obj)
     // Get the current value of the attribute. Just because we
     // are creating the object does not mean that its value does
     // not already exist (e.g., importing an XME document).
-    const bool is_valid = uuid.empty () ? false : ::Utils::ValidUuid (uuid);
+    const bool is_valid = uuid.empty () ? false : GAME::Utils::valid_uuid (uuid);
     const bool is_duplicate = !is_valid ? false : this->is_duplicate_uuid (fco, uuid);
 
     if (!is_valid || is_duplicate)
     {
       // We need to generate a new UUID for the element.
-      uuid = ::Utils::CreateUuid ();
+      uuid = GAME::Utils::create_uuid ();
       bool is_readonly = obj->readonly_access ();
 
       // Remember the readonly access state since we need to restore
@@ -194,7 +193,7 @@ handle_object_attribute (GAME::Mga::Object_in obj)
   std::string old_uuid = uuid_attr->string_value ();
   bool is_duplicate = this->is_duplicate_uuid (fco, old_uuid);
 
-  if (::Utils::ValidUuid (old_uuid) && !is_duplicate)
+  if (GAME::Utils::valid_uuid (old_uuid) && !is_duplicate)
     return 0;
 
   std::string new_uuid;
@@ -202,7 +201,7 @@ handle_object_attribute (GAME::Mga::Object_in obj)
   do
   {
     // We need to create a new UUID for the object.
-    new_uuid = ::Utils::CreateUuid ();
+    new_uuid = GAME::Utils::create_uuid ();
   } while (0 == this->uuids_.find (new_uuid));
 
   // We can now use and store the newly created UUID. Make sure we

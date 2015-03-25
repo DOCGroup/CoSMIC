@@ -1,7 +1,8 @@
 // $Id$
 
-project (PICML_Domain_Component) : game_mga_interpreter, game_xml, picml_game_mga, cosmic_lib {
+project (PICML_Domain_Component) : game_mga_interpreter, picml_xml, picml_game_mga, cosmic_lib {
   sharedname = PICML_Domain_Component
+  dynamicflags += DOMAIN_COMPONENT_BUILD_DLL
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -11,9 +12,6 @@ project (PICML_Domain_Component) : game_mga_interpreter, game_xml, picml_game_mg
     Domain_Component_Impl.cpp
     Domain_Component_Module.cpp
     Domain_Visitor.cpp
-
-    Data_Type_Visitor.cpp
-    Data_Value_Visitor.cpp
   }
 
   Resource_Files {

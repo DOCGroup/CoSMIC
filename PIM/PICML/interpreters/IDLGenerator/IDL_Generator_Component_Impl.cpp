@@ -7,8 +7,7 @@
 
 #include "game/mga/component/Interpreter_T.h"
 #include "game/mga/utils/Project_Settings.h"
-
-#include "Utils/Utils.h"
+#include "game/mga/Utils.h"
 
 GAME_DECLARE_INTERPRETER (IDL_Generator_Component, IDL_Generator_Component_Impl);
 
@@ -45,7 +44,7 @@ invoke_ex (GAME::Mga::Project project,
   if (this->is_interactive_ || this->output_.empty ())
   {
     // Select the output directory for the files.
-    if (!::Utils::getPath ("Select target output directory...", this->output_))
+    if (!GAME::Utils::get_path ("Select target output directory...", this->output_))
       return -1;
   }
 

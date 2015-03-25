@@ -1,13 +1,14 @@
-// -*- C++ -*-
-// $Id$
+namespace PICML
+{
+namespace Deployment
+{
 
 //
-// PICML_External_Reference_Visitor
+// External_Reference_Visitor
 //
 inline
-PICML_External_Reference_Visitor::
-PICML_External_Reference_Visitor (xercesc::DOMDocument * doc,
-                                  std::vector <xercesc::DOMElement *> & conns)
+External_Reference_Visitor::
+External_Reference_Visitor (GAME::Xml::Document doc, std::vector <GAME::Xml::Fragment> & conns)
 : doc_ (doc),
   conns_ (conns)
 {
@@ -15,10 +16,13 @@ PICML_External_Reference_Visitor (xercesc::DOMDocument * doc,
 }
 
 //
-// ~PICML_External_Reference_Visitor
+// ~External_Reference_Visitor
 //
 inline
-PICML_External_Reference_Visitor::~PICML_External_Reference_Visitor (void)
+External_Reference_Visitor::~External_Reference_Visitor (void)
 {
 
+}
+
+}
 }

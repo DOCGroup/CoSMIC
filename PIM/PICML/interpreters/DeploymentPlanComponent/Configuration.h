@@ -13,7 +13,6 @@
 #ifndef _PICML_DEPLOYMENT_PLAN_CONFIGURATION_H_
 #define _PICML_DEPLOYMENT_PLAN_CONFIGURATION_H_
 
-#include "DeploymentPlan_Export.h"
 #include <string>
 
 /**
@@ -21,7 +20,7 @@
  *
  * Configuration values for the deployment plan generator.
  */
-class DeploymentPlan_Export Configuration
+class Configuration
 {
 public:
   /// Default constructor.

@@ -1,44 +1,17 @@
-// $Id$
-
 #include "StdAfx.h"
-#include "Deployment_Plan_Generator.h"
 #include "Deployment_Plan_Generator_Impl.h"
+#include "Deployment_Plan_Visitor.h"
+#include "Deployment_Domain_Visitor.h"
+
 #include "DeploymentPlan_MainDialog.h"
-#include "DeploymentPlanVisitor.h"
 
 #include "game/mga/component/Interpreter_T.h"
 #include "game/mga/utils/Project_Settings.h"
 #include "game/mga/Object_Filter.h"
 
-#include "Utils/Utils.h"
-
-#include "UdmGme.h"
-#include "UdmStatic.h"
+#include "PICML/DeploymentPlan/DeploymentPlan.h"
 
 GAME_DECLARE_INTERPRETER (Deployment_Plan_Generator, Deployment_Plan_Generator_Impl);
-
-/**
- * @struct insert_udm_t
- */
-struct insert_udm_t
-{
-  insert_udm_t (UdmGme::GmeDataNetwork & network, std::set <Udm::Object> & coll)
-    : network_ (network),
-      coll_ (coll)
-  {
-
-  }
-
-  void operator () (const GAME::Mga::FCO_in fco) const
-  {
-    this->coll_.insert (this->network_.Gme2Udm (fco->impl ()));
-  }
-
-private:
-  UdmGme::GmeDataNetwork & network_;
-
-  std::set <Udm::Object> & coll_;
-};
 
 //
 // Deployment_Plan_Generator_Impl
@@ -65,19 +38,17 @@ Deployment_Plan_Generator_Impl::~Deployment_Plan_Generator_Impl (void)
 int Deployment_Plan_Generator_Impl::
 invoke_ex (GAME::Mga::Project project,
            GAME::Mga::FCO_in focus,
-           std::vector <GAME::Mga::FCO> & selected,
+           GAME::Mga::Collection_T <GAME::Mga::FCO> & selected,
            long flags)
 {
-  UdmGme::GmeDataNetwork dngBackend (PICML::diagram);
-
   try
   {
-    dngBackend.OpenExisting (project.impl ());
+    GAME::Mga::Transaction t (project);
 
     // First, make sure this project contains at least one deployment plan
     // before executing the rest of this interpreter.
     GAME::Mga::Filter filter (project);
-    filter.kind ("DeploymentPlan");
+    filter.kind (PICML::DeploymentPlan_Impl::metaname);
 
     std::vector <GAME::Mga::FCO> plans;
     if (0 == filter.apply (plans))
@@ -106,50 +77,44 @@ invoke_ex (GAME::Mga::Project project,
       this->save_configuration (project, this->config_);
     }
 
-    // Opening backend
-    DeploymentPlanVisitor dpv (this->config_);
+    // Generate the deployment plan for either all the plans in the project
+    // or the selected objects. The selected objects must be a deployment
+    // plan, or the behavior is unknown.
+    PICML::Deployment::Deployment_Plan_Visitor dpv (this->config_);
+    Deployment_Domain_Visitor domain_visitor (this->config_.output_);
 
-    if (selected.empty ())
+    if (selected.is_empty ())
     {
-      PICML::RootFolder folder = PICML::RootFolder::Cast (dngBackend.GetRootObject ());
-      folder.Accept (dpv);
+      project.root_folder ()->accept (&dpv);
+      project.root_folder ()->accept (&domain_visitor);
     }
     else
     {
-      set <Udm::Object> objects;
-      std::for_each (selected.begin (),
-                     selected.end (),
-                     insert_udm_t (dngBackend, objects));
-
-      set <Udm::Object>::const_iterator
-        iter = objects.begin (), iter_end = objects.end ();
-
-      for (; iter != iter_end; ++ iter)
+      for (GAME::Mga::FCO selection : selected)
       {
-        if (iter->type () != PICML::DeploymentPlan::meta)
+        if (selection->meta ()->name () != PICML::DeploymentPlan::impl_type::metaname)
           continue;
 
-        PICML::DeploymentPlan plan = PICML::DeploymentPlan::Cast (*iter);
-        plan.Accept (dpv);
+        selection->accept (&dpv);
+        selection->accept (&domain_visitor);
       }
     }
 
     if (this->is_interactive_)
-      ::AfxMessageBox ("Successfully generated deployment plan descriptors",
-                       MB_ICONINFORMATION);
+      ::AfxMessageBox ("Successfully generated deployment plan descriptors", MB_ICONINFORMATION);
 
-    // Closing backend
-    dngBackend.CloseWithUpdate ();
+    // Commit any changes to the model.
+    t.commit ();
+
     return 0;
   }
-  catch (udm_exception & exc)
+  catch (const GAME::Mga::Exception & ex)
   {
     if (this->is_interactive_)
-      ::AfxMessageBox (exc.what ());
+      ::AfxMessageBox (ex.message ().c_str ());
   }
 
-  dngBackend.CloseNoUpdate ();
-  return -1;
+  return 0;
 }
 
 //

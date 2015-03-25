@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_IDLGeneratorComponent) : game_mga_interpreter, game_mga_utils, picml_game_mga, picml_game_utils, cosmic_utils, cosmic_lib {
+project (PICML_IDLGeneratorComponent) : game_mga_interpreter, game_mga_utils, picml_game_mga, picml_game_utils, cosmic_lib {
   sharedname    = PICML_IDLGeneratorComponent
 
   pch_header = StdAfx.h

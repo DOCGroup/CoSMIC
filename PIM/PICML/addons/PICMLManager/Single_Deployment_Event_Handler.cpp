@@ -52,14 +52,14 @@ handle_object_relation (GAME::Mga::Object_in obj)
   // Get the collection of CollocationGroups the FCO is a member.
   GAME::Mga::Collection_T <GAME::Mga::Set> sets = this->fco_->in_sets ();
 
-  if (!sets.count ())
+  if (sets.is_empty ())
     return 0;
 
-  for (GAME::Mga::Set set : sets)
+  for (GAME::Mga::Set item : sets)
   {
     // Remove the recently added object from the other set(s).
-    if (!obj->is_equal_to (set))
-      set->remove (this->fco_);
+    if (!obj->is_equal_to (item))
+      item->remove (this->fco_);
   }
 
   // Reset the FCO reference.

@@ -10,8 +10,6 @@
 #include "game/mga/Model.h"
 #include "game/mga/Reference.h"
 
-#include "Utils/Utils.h"
-
 #include "boost/bind.hpp"
 
 #include <functional>

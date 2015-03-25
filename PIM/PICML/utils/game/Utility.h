@@ -15,6 +15,7 @@
 
 #include "game/mga/Model.h"
 #include "PICML_GAME_Utils_export.h"
+#include "PICML/NamedTypes/NamedType.h"
 
 namespace PICML
 {
@@ -49,6 +50,12 @@ std::string fq_type (const GAME::Mga::FCO_in named_type,
  */
 PICML_GAME_UTILS_Export
 GAME::Mga::Model get_template_package_inst (const GAME::Mga::FCO_in type);
+
+/**
+ * Generate the repository id of a named type.
+ */
+PICML_GAME_UTILS_Export
+std::string repository_id (const PICML::NamedType_in named_type);
 
 }
 
